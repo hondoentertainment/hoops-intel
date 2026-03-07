@@ -1,4 +1,4 @@
-// NBA Pulse — Archive Data
+// Hoops Intel — Archive Data
 // Cumulative archive of all daily editions
 // New entries are prepended (most recent first)
 
