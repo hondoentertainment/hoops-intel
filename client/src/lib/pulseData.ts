@@ -1,4 +1,4 @@
-// NBA Pulse — Daily Edition Data
+// Hoops Intel — Daily Edition Data
 // Last updated: March 3, 2026 (Vol. 2026 · No. 62)
 // Live at: https://hoopsintel.net
 
