@@ -18,6 +18,9 @@ import { getTeamColor } from "../lib/teamColors";
 import { useLiveScores } from "../lib/useLiveScores";
 import { globalSearch, slugify, type SearchResult } from "../lib/searchUtils";
 import { useTheme } from "../contexts/ThemeContext";
+import BoxScoreCard from "../components/BoxScoreCard";
+import ReactionBar from "../components/ReactionBar";
+import AuthModal from "../components/AuthModal";
 
 // ═══════════════════════════════════════════════════════════
 // LIVE SCOREBAR — Real-time ESPN scores
@@ -332,6 +335,7 @@ function NotificationBell() {
 
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   // Cmd+K / Ctrl+K to open search
@@ -371,10 +375,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Archive"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -421,6 +425,18 @@ function Header() {
               {/* Notification Bell */}
               <NotificationBell />
 
+              {/* Sign In */}
+              <button
+                onClick={() => setShowAuth(true)}
+                className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded text-xs font-medium transition-colors hover:bg-white/10"
+                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+                </svg>
+                Sign In
+              </button>
+
               {/* Edition Date */}
               <div
                 className="px-3 py-1 rounded text-xs font-medium"
@@ -433,6 +449,7 @@ function Header() {
         </div>
       </header>
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={() => setShowAuth(false)} />}
     </>
   );
 }
@@ -524,6 +541,10 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
       {expanded && (
         <div className="px-4 pb-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="pt-3">{game.recap}</p>
+          <div onClick={(e) => e.stopPropagation()}>
+            <BoxScoreCard espnGameId={game.gameId} homeTeam={game.homeTeam} awayTeam={game.awayTeam} />
+            <ReactionBar itemId={`game-${game.gameId}`} />
+          </div>
         </div>
       )}
     </div>
@@ -615,7 +636,10 @@ function PulseIndexSection() {
   return (
     <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
-        <div className="section-label mb-2">DAILY RANKINGS</div>
+        <div className="flex items-center justify-between mb-2">
+          <div className="section-label">DAILY RANKINGS</div>
+          <a href="/pulse-history" className="text-xs font-medium hover:underline" style={{ color: "#0EA5E9" }}>View History &rarr;</a>
+        </div>
         <h2 className="display-heading text-white text-2xl mb-6">Pulse Index</h2>
         <div className="space-y-2">
           {pulseIndex.map((player: any) => {
@@ -1059,6 +1083,8 @@ function Footer() {
               <a href="#injuries" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Injury Wire</a>
               <a href="#tonight" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tonight's Games</a>
               <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
+              <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
+              <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
             </div>
           </div>
         </div>

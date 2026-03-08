@@ -34,6 +34,8 @@ function main() {
   let urls = [
     { loc: "/", priority: "1.0", changefreq: "daily" },
     { loc: "/archive", priority: "0.8", changefreq: "daily" },
+    { loc: "/pulse-history", priority: "0.7", changefreq: "daily" },
+    { loc: "/playoffs", priority: "0.7", changefreq: "daily" },
   ];
 
   for (const player of players) {
