@@ -37,6 +37,9 @@ jobs:
       - name: Generate RSS feed
         run: node scripts/generate-rss.mjs
 
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.mjs
+
       - name: Check for changes
         id: changes
         run: |
@@ -47,7 +50,7 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml
+          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml
           git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ=\"America/Los_Angeles\" now')"
           git push origin ${{ github.ref_name }}
 

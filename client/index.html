@@ -10,9 +10,13 @@
     <meta property="og:description" content="Your daily NBA intelligence briefing. Box scores, Pulse Index™ rankings, injury wire, and tonight's previews — updated every morning." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hoopsintel.net" />
+    <meta property="og:image" content="https://hoopsintel.net/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hoops Intel — Daily NBA Scores & Analysis" />
     <meta name="twitter:description" content="Daily NBA box scores, Pulse Index™ player rankings, injury wire, and tonight's game previews." />
+    <meta name="twitter:image" content="https://hoopsintel.net/og-image.svg" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://hoopsintel.net" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
@@ -27,6 +31,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
