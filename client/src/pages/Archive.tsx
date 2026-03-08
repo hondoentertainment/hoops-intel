@@ -94,9 +94,21 @@ function ArchiveCard({ edition }: { edition: any }) {
 // ARCHIVE PAGE — Main export
 // ═══════════════════════════════════════════════════════════
 
+const PAGE_SIZE = 12;
+
 export default function Archive() {
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const filtered = archiveEditions.filter((e: any) => matchesSearch(e, search));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paged = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  // Reset to page 1 when search changes
+  const handleSearch = (val: string) => {
+    setSearch(val);
+    setPage(1);
+  };
 
   return (
     <div className="min-h-screen" style={{ background: "#050D1A" }}>
@@ -149,7 +161,7 @@ export default function Archive() {
             type="text"
             placeholder="Search players, teams, stories..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
             className="w-full max-w-md px-4 py-2.5 rounded-lg text-sm outline-none"
             style={{
               background: "rgba(255,255,255,0.05)",
@@ -163,11 +175,12 @@ export default function Archive() {
           style={{ color: "rgba(255,255,255,0.4)" }}
         >
           {filtered.length} edition{filtered.length !== 1 ? "s" : ""} found
+          {totalPages > 1 && ` · Page ${currentPage} of ${totalPages}`}
         </div>
 
         {/* Edition Cards */}
         <div className="space-y-4">
-          {filtered.map((edition: any) => (
+          {paged.map((edition: any) => (
             <ArchiveCard key={edition.id} edition={edition} />
           ))}
         </div>
@@ -178,6 +191,60 @@ export default function Archive() {
             style={{ color: "rgba(255,255,255,0.4)" }}
           >
             No editions match your search.
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-8">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage <= 1}
+              className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
+              style={{
+                background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)",
+                color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "#0EA5E9",
+                cursor: currentPage <= 1 ? "default" : "pointer",
+              }}
+            >
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
+              .reduce<(number | "...")[]>((acc, p, idx, arr) => {
+                if (idx > 0 && p - (arr[idx - 1] ?? 0) > 1) acc.push("...");
+                acc.push(p);
+                return acc;
+              }, [])
+              .map((p, i) =>
+                p === "..." ? (
+                  <span key={`ellipsis-${i}`} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>...</span>
+                ) : (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className="w-8 h-8 rounded text-xs font-medium transition-colors"
+                    style={{
+                      background: p === currentPage ? "#0EA5E9" : "rgba(255,255,255,0.05)",
+                      color: p === currentPage ? "white" : "rgba(255,255,255,0.5)",
+                    }}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+              className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
+              style={{
+                background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)",
+                color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "#0EA5E9",
+                cursor: currentPage >= totalPages ? "default" : "pointer",
+              }}
+            >
+              Next
+            </button>
           </div>
         )}
       </div>

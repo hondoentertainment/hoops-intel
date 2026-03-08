@@ -31,6 +31,12 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/generate-edition.mjs
 
+      - name: Validate generated data
+        run: node scripts/validate-schema.mjs
+
+      - name: Generate RSS feed
+        run: node scripts/generate-rss.mjs
+
       - name: Check for changes
         id: changes
         run: |
@@ -41,7 +47,7 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts
+          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml
           git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ=\"America/Los_Angeles\" now')"
           git push origin ${{ github.ref_name }}
 
