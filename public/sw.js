@@ -1,5 +1,5 @@
 // Hoops Intel Service Worker — Cache-first for static assets, network-first for data
-const CACHE_NAME = "hoops-intel-v1";
+const CACHE_NAME = "hoops-intel-v2";
 const STATIC_ASSETS = ["/", "/manifest.json", "/assets/logo.png"];
 
 self.addEventListener("install", (event) => {
@@ -30,5 +30,51 @@ self.addEventListener("fetch", (event) => {
   // Cache-first for static assets
   event.respondWith(
     caches.match(request).then((cached) => cached || fetch(request))
+  );
+});
+
+// ═══════════════════════════════════════════════════════════
+// WEB PUSH NOTIFICATIONS
+// ═══════════════════════════════════════════════════════════
+
+self.addEventListener("push", (event) => {
+  let data = { title: "Hoops Intel", body: "New edition available!", url: "/" };
+  try {
+    data = event.data?.json() ?? data;
+  } catch {
+    // use defaults
+  }
+
+  const options = {
+    body: data.body,
+    icon: "/assets/logo.png",
+    badge: "/assets/logo.png",
+    tag: "hoops-intel-update",
+    renotify: true,
+    data: { url: data.url || "/" },
+    actions: [
+      { action: "open", title: "Read Now" },
+      { action: "dismiss", title: "Dismiss" },
+    ],
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  if (event.action === "dismiss") return;
+
+  const url = event.notification.data?.url || "/";
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if (client.url.includes("hoopsintel.net") && "focus" in client) {
+          client.navigate(url);
+          return client.focus();
+        }
+      }
+      return clients.openWindow(url);
+    })
   );
 });

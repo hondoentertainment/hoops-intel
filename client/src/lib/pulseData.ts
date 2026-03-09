@@ -1,41 +1,40 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: March 8, 2026 (Vol. 2026 · No. 67)
+// Last updated: March 9, 2026 (Vol. 2026 · No. 68)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 8, 2026",edition:"Vol. 2026 · No. 67"};
+export const pulseEdition = {date:"March 9, 2026",edition:"Vol. 2026 · No. 68"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT
 // ═══════════════════════════════════════════════════════════
 
-export const narrative = {headline:"SGA Is One Game From Wilt. The Thunder Are the First to 50.",subhead:"Gilgeous-Alexander scores 27 on 14-of-15 from the line to reach 125 straight 20-point games — one shy of Chamberlain's 63-year-old record; Banchero and Bane crush Minnesota; Nets snap 10-game skid in Detroit.",body:["Shai Gilgeous-Alexander scored 27 points Saturday night and the Oklahoma City Thunder beat the Golden State Warriors 104-97 to become the first team in the NBA to reach 50 wins. That's the headline. Here's the history: SGA has now scored at least 20 points in 125 consecutive games. One more — Monday night against Denver — and he ties Wilt Chamberlain's NBA record of 126 straight, set between 1961 and 1963. He shot just 6-of-15 from the field but went 14-of-15 from the free throw line. He has already broken Chamberlain's road scoring record (59 consecutive road games with 20-plus). The defending champions are 50-13 and playing like a team that expects to repeat.","In Minneapolis, the Orlando Magic dismantled the Timberwolves 119-92 behind Desmond Bane's 30 points and Paolo Banchero's 25-point, 15-rebound double-double. Anthony Edwards scored 34 for Minnesota but received almost no help as the Wolves shot just 38% from the field. Orlando has won three straight and Banchero is quietly putting together an All-NBA-caliber stretch. Minnesota (39-24) had its five-game winning streak snapped and dropped to fourth in the West.","In Auburn Hills, the Brooklyn Nets finally won a basketball game. Ziaire Williams hit two three-pointers in the final three minutes to rally Brooklyn past Detroit 107-105, snapping a brutal 10-game losing streak. The Pistons — still the East's best team at 46-15 — were without All-Star Cade Cunningham (quadriceps injury). Detroit's loss doesn't change their standing, but the absence of Cunningham is worth monitoring.","Kawhi Leonard and Darius Garland combined for 49 points as the Clippers held off Memphis 123-120. Garland scored 11 of his 21 in the fourth quarter. Kyle Kuzma closed out the Bucks' 113-99 win over Utah with nine of his 18 points in a game-ending 13-2 run. Keyonte George had 22 for the Jazz on an ugly 34.4% shooting night for Utah. And the Hawks rolled past Philadelphia 125-116 — the Sixers missing Embiid, George, and Edgecombe."]};
+export const narrative = {headline:"Tatum Owns Cleveland. Luka Gets His Triple-Double. Wemby Won't Stop.",subhead:"Tatum drops 28/9/6 on the road in his third game back from the Achilles — Boston rolls Cleveland 112-102; Luka's 38/12/10 edges Brunson's 33 in a 127-124 Lakers classic; Wembanyama goes 34/14/6BLK to bury Houston and push San Antonio to 15-1 since February.",body:["Jayson Tatum played 32 minutes in Cleveland on Sunday afternoon and looked like he never left. He scored 28 points on 11-of-19 shooting, grabbed 9 rebounds, and dished 6 assists as the Celtics rolled past the Cavaliers 112-102 on ABC. It was Tatum's first road game since tearing his Achilles 300 days ago. He hit four three-pointers, got to the rim twice in transition, and played the entire fourth quarter. Derrick White added 22 and Payton Pritchard scored 16 off the bench. Donovan Mitchell had 27 for Cleveland but Evan Mobley was held to just 10 points on 4-of-14 shooting. Boston (43-21) has won three straight. Cleveland (39-25) dropped a critical home game in the East 4-seed race.","The marquee ABC afternoon game lived up to the billing. Luka Doncic recorded a 38-point, 12-rebound, 10-assist triple-double and the Lakers held off the Knicks 127-124 in a game that featured 14 lead changes and was tied with two minutes to play. LeBron James returned from his elbow injury to add 18 points and 8 assists. Jalen Brunson was spectacular in defeat with 33 points and 11 assists, but Karl-Anthony Towns shot just 5-of-16 and the Knicks couldn't get stops when it mattered. OG Anunoby had 22 for New York. Los Angeles (38-24) moved into a tie for fourth in the West. The Knicks (40-24) have now lost two of three.","Victor Wembanyama is simply inevitable. He scored 34 points, grabbed 14 rebounds, blocked 6 shots, and hit 4 three-pointers as the Spurs destroyed the Rockets 119-108 in NBC's primetime game. San Antonio is now 15-1 since February 1 — the best stretch in the NBA. De'Aaron Fox added 24 and Dylan Harper had 14 off the bench. Alperen Sengun led Houston with 23 and Jalen Green scored 21, but the Rockets had no answer for Wembanyama's length and shot-making. The Spurs (37-25) are surging toward homecourt advantage in the first round. Houston (39-24) has lost three of their last five.","Tyler Herro scored 31 points and the Heat beat the Pistons 105-99 in Miami. Detroit played without Cade Cunningham for the second straight game (quadriceps) and missed 18 of their 27 three-point attempts. Bam Adebayo had 16 and 12 rebounds. Detroit (46-16) has now lost two straight. In Toronto, Scottie Barnes scored 26 as the Raptors beat Dallas 108-103 despite Cooper Flagg's 21/9/5 — Dallas has lost seven straight and is slipping out of the play-in picture at 33-31. And Paolo Banchero put up 28 and 11 as Orlando beat Milwaukee 118-112 behind Giannis Antetokounmpo's 36/12 — the Magic (34-28) have won four straight."]};
 
 // ═══════════════════════════════════════════════════════════
 // TICKER ITEMS
 // ═══════════════════════════════════════════════════════════
 
 export const tickerItems = [
-  {text:"TONIGHT: BOS @ CLE — Tatum's first road game back — 1:00 PM ET on ABC",type:"alert"},
-  {text:"TONIGHT: NYK @ LAL — Brunson vs. Luka — 3:30 PM ET on ABC",type:"alert"},
-  {text:"TONIGHT: HOU @ SAS — Rockets vs. red-hot Spurs — 8:00 PM ET on NBC",type:"alert"},
-  {text:"FINAL: OKC 104, GSW 97 — SGA 27 PTS · 125 straight 20+ games · ONE from tying Wilt Chamberlain",type:"score"},
-  {text:"FINAL: ORL 119, MIN 92 — Bane 30 PTS · Banchero 25/15 · Magic win 3rd straight",type:"score"},
-  {text:"FINAL: BRK 107, DET 105 — Nets snap 10-game losing streak; Cunningham out (quad)",type:"score"},
-  {text:"FINAL: LAC 123, MEM 120 — Kawhi 28 · Garland 21 (11 in Q4)",type:"score"},
-  {text:"FINAL: ATL 125, PHI 116 — Grimes 26 · Oubre 24; Sixers without Embiid, PG",type:"score"},
-  {text:"FINAL: MIL 113, UTA 99 — Kuzma 18 (9 in closing run); K. George 22 in loss",type:"score"},
-  {text:"ALERT: SGA one game from tying Wilt Chamberlain — 126 straight 20+ point games — Monday vs. DEN",type:"alert"},
-  {text:"ALERT: Thunder first team to 50 wins this season (50-13); defending champions on a tear",type:"news"},
-  {text:"INJURY: Cade Cunningham (DET) — quadriceps; missed loss to BRK; status TBD",type:"injury"},
-  {text:"INJURY: Jamal Murray (DEN) — left ankle sprain; MRI completed; status uncertain",type:"injury"},
-  {text:"INJURY: Joel Embiid (PHI) — right oblique strain; missed loss to ATL",type:"injury"},
-  {text:"INJURY: Paul George (PHI) — league suspension; missed loss to ATL",type:"injury"},
-  {text:"INJURY: Stephen Curry (GSW) — undisclosed; missed loss to OKC",type:"injury"},
-  {text:"TONIGHT: DET @ MIA — 6:00 PM ET · DAL @ TOR — 6:00 PM ET · ORL @ MIL — 8:00 PM ET",type:"score"}
+  {text:"TOMORROW: OKC @ DEN — SGA tries to TIE WILT — 126 straight 20+ point games — 8:00 PM ET on ESPN",type:"alert"},
+  {text:"FINAL: BOS 112, CLE 102 — Tatum 28/9/6 in 32 min — first road game back from Achilles · ABC",type:"score"},
+  {text:"FINAL: LAL 127, NYK 124 — Luka 38/12/10 triple-double · Brunson 33/11 AST in loss · ABC",type:"score"},
+  {text:"FINAL: SAS 119, HOU 108 — Wembanyama 34/14/6BLK · Spurs 15-1 since Feb 1 · NBC",type:"score"},
+  {text:"FINAL: MIA 105, DET 99 — Herro 31 PTS · Pistons lose 2nd straight without Cunningham",type:"score"},
+  {text:"FINAL: TOR 108, DAL 103 — Barnes 26 · Flagg 21/9/5 · Dallas loses 7th straight",type:"score"},
+  {text:"FINAL: ORL 118, MIL 112 — Banchero 28/11 · Giannis 36/12 in loss · Magic win 4th straight",type:"score"},
+  {text:"ALERT: Wembanyama is 15-1 since Feb 1 — best stretch in the NBA — 34/14/6BLK in primetime tonight",type:"alert"},
+  {text:"ALERT: SGA one game from tying Wilt Chamberlain — 126 straight 20+ point games — TOMORROW vs. DEN",type:"alert"},
+  {text:"ALERT: Dallas has lost 7 straight — Mavericks (33-31) in danger of missing the play-in entirely",type:"news"},
+  {text:"INJURY: Cade Cunningham (DET) — quadriceps; missed 2nd straight game; Pistons listing as day-to-day",type:"injury"},
+  {text:"INJURY: LeBron James (LAL) — elbow; returned tonight (18/8 AST); status for Tuesday TBD",type:"injury"},
+  {text:"INJURY: Jamal Murray (DEN) — left ankle sprain; questionable for Monday vs. OKC",type:"injury"},
+  {text:"INJURY: Joel Embiid (PHI) — right oblique strain; no timetable",type:"injury"},
+  {text:"INJURY: Stephen Curry (GSW) — undisclosed; missed 2nd straight game",type:"injury"},
+  {text:"TOMORROW: OKC @ DEN — 8:00 PM ET · CHI @ CHA — 7:00 PM ET · PHX @ MEM — 8:00 PM ET",type:"score"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -43,12 +42,12 @@ export const tickerItems = [
 // ═══════════════════════════════════════════════════════════
 
 export const gameResults = [
-  {homeTeam:"OKC",homeScore:104,awayTeam:"GSW",awayScore:97,status:"final",topPerformer:"Shai Gilgeous-Alexander",topLine:"27 PTS · 14-15 FT · 125 straight 20+ games",recap:"Shai Gilgeous-Alexander scored 27 points — shooting just 6-of-15 from the field but a stunning 14-of-15 from the free throw line — as the Thunder beat the Warriors 104-97 to become the first team in the league to reach 50 wins. SGA extended his streak of consecutive 20-plus-point games to 125, one shy of Wilt Chamberlain's all-time record of 126 set in 1963. Isaiah Joe added 18 points, Jaylin Williams posted 9 points and 14 rebounds, and Kristaps Porzingis returned for OKC. Gui Santos led the Warriors with 22 points and 11 rebounds; Brandin Podziemski had 17 and Draymond Green added 16 in Stephen Curry's continued absence. OKC is 50-13 and looking every bit like a repeat champion.",gameId:"OKC-GSW-20260307"},
-  {homeTeam:"MIN",homeScore:92,awayTeam:"ORL",awayScore:119,status:"final",topPerformer:"Desmond Bane",topLine:"30 PTS",recap:"Desmond Bane scored 30 points, Paolo Banchero added 25 points and 15 rebounds, and the Orlando Magic ran away from the Minnesota Timberwolves 119-92. Jalen Suggs contributed 14 and Tristan da Silva had 11 as the Magic won their third straight. Anthony Edwards scored 34 for Minnesota — including 13-of-14 from the free throw line — but the Wolves shot just 38% from the field and lost their five-game winning streak. Orlando (33-28) moved atop the Southeast Division. Minnesota (39-24) slips to fourth in the West.",gameId:"MIN-ORL-20260307"},
-  {homeTeam:"DET",homeScore:105,awayTeam:"BRK",awayScore:107,status:"final",topPerformer:"Ziaire Williams",topLine:"Clutch: Two 3PM in final 3 min",recap:"Ziaire Williams hit two three-pointers in the final three minutes and the Brooklyn Nets rallied to beat the Detroit Pistons 107-105, snapping a brutal 10-game losing streak. The Pistons played without All-Star Cade Cunningham (quadriceps injury) and couldn't close out a game they led for most of the second half. Detroit remains the East's best team at 46-15 but the Cunningham absence is worth watching.",gameId:"DET-BRK-20260307"},
-  {homeTeam:"MEM",homeScore:120,awayTeam:"LAC",awayScore:123,status:"final",topPerformer:"Kawhi Leonard",topLine:"28 PTS",recap:"Kawhi Leonard scored 28 points, Darius Garland added 21 — 11 in the fourth quarter — and the Clippers held off the Grizzlies 123-120 in Memphis. Garland's late-game orchestration sealed the road win for Los Angeles (33-30), which has now won two straight after dropping four of five. Memphis (33-30) lost its grip on a play-in cushion.",gameId:"MEM-LAC-20260307"},
-  {homeTeam:"PHI",homeScore:116,awayTeam:"ATL",awayScore:125,status:"final",topPerformer:"Quentin Grimes",topLine:"26 PTS",recap:"Quentin Grimes scored 26 points, Kelly Oubre Jr. added 24, and the Hawks beat Philadelphia 125-116 to snap the Sixers' four-game winning streak. Philadelphia played without Joel Embiid (right oblique strain), Paul George (league suspension), VJ Edgecombe (lumbar contusion), and Johni Broome (knee surgery recovery). Atlanta (32-31) pulled within a game of the 8-seed.",gameId:"PHI-ATL-20260307"},
-  {homeTeam:"UTA",homeScore:99,awayTeam:"MIL",awayScore:113,status:"final",topPerformer:"Kyle Kuzma",topLine:"18 PTS (9 in closing 13-2 run)",recap:"The Bucks broke open a tight game with a 13-2 closing run, with Kyle Kuzma scoring nine of his 18 during the surge. Ryan Rollins had 13 points, 11 rebounds, and 8 assists in an all-around effort. Keyonte George led Utah with 22 points but the Jazz shot just 34.4% from the floor. Milwaukee (28-34) picked up a needed road win as it fights for play-in positioning.",gameId:"UTA-MIL-20260307"}
+  {homeTeam:"CLE",homeScore:102,awayTeam:"BOS",awayScore:112,status:"final",topPerformer:"Jayson Tatum",topLine:"28 PTS · 9 REB · 6 AST · 11-19 FG",recap:"Jayson Tatum scored 28 points on 11-of-19 shooting — including four three-pointers — with 9 rebounds and 6 assists in 32 minutes as the Celtics beat the Cavaliers 112-102 in Cleveland. It was Tatum's first road game since tearing his right Achilles tendon 300 days ago, and he showed no limitations, playing the entire fourth quarter and attacking the rim in transition. Derrick White added 22 points, Payton Pritchard scored 16 off the bench, and Neemias Queta grabbed 11 rebounds. Donovan Mitchell had 27 for Cleveland but Evan Mobley struggled with 10 points on 4-of-14 shooting. Boston (43-21) has won three straight and served notice to the entire Eastern Conference.",gameId:"CLE-BOS-20260308"},
+  {homeTeam:"LAL",homeScore:127,awayTeam:"NYK",awayScore:124,status:"final",topPerformer:"Luka Dončić",topLine:"38 PTS · 12 REB · 10 AST (triple-double)",recap:"Luka Doncic delivered a 38-point triple-double — 12 rebounds and 10 assists — as the Lakers edged the Knicks 127-124 in one of the season's best games. There were 14 lead changes and the game was tied at 118 with 2:07 to play before Luka hit back-to-back pull-up threes to seize control. LeBron James returned from his elbow injury with 18 points and 8 assists in 28 minutes. Jalen Brunson was superb in defeat with 33 points and 11 assists, and OG Anunoby added 22. Karl-Anthony Towns shot 5-of-16 and the Knicks couldn't defend in the final two minutes. Los Angeles (38-24) is tied for fourth in the West. New York (40-24) has lost two of three.",gameId:"LAL-NYK-20260308"},
+  {homeTeam:"SAS",homeScore:119,awayTeam:"HOU",awayScore:108,status:"final",topPerformer:"Victor Wembanyama",topLine:"34 PTS · 14 REB · 6 BLK · 4 3PM",recap:"Victor Wembanyama was magnificent in primetime. He scored 34 points on 13-of-22 shooting, grabbed 14 rebounds, blocked 6 shots, and hit 4 three-pointers as the Spurs dismantled the Rockets 119-108 on NBC. The Spurs are now 15-1 since February 1 — the best stretch by any team in the NBA this season. De'Aaron Fox added 24 points and 7 assists, and Dylan Harper had 14 off the bench. Alperen Sengun led Houston with 23 points and 10 rebounds, and Jalen Green scored 21, but the Rockets simply couldn't contain Wembanyama at any level. San Antonio (37-25) is surging toward homecourt advantage. Houston (39-24) has lost three of five.",gameId:"SAS-HOU-20260308"},
+  {homeTeam:"MIA",homeScore:105,awayTeam:"DET",awayScore:99,status:"final",topPerformer:"Tyler Herro",topLine:"31 PTS · 7 AST · 5-9 3PM",recap:"Tyler Herro scored 31 points with 5 three-pointers and the Heat beat the Pistons 105-99 to extend their winning streak to four games. Bam Adebayo added 16 points, 12 rebounds, and 4 assists. Detroit played without Cade Cunningham for the second straight game (quadriceps) and their offense sputtered in the second half, scoring just 42 points after halftime. Ausar Thompson had 18 and Jalen Duren 14 for the Pistons. Detroit (46-16) has lost two in a row for the first time since January. Miami (34-29) is quietly climbing in the East.",gameId:"MIA-DET-20260308"},
+  {homeTeam:"TOR",homeScore:108,awayTeam:"DAL",awayScore:103,status:"final",topPerformer:"Scottie Barnes",topLine:"26 PTS · 8 REB · 6 AST",recap:"Scottie Barnes scored 26 points with 8 rebounds and 6 assists as the Raptors beat Dallas 108-103, extending the Mavericks' losing streak to a season-worst seven games. Cooper Flagg had 21 points, 9 rebounds, and 5 assists in a strong individual showing, but Dallas shot 6-of-25 from three as a team. RJ Barrett added 19 for Toronto and Immanuel Quickley had 15 off the bench. The Raptors (37-25) are firmly in the East's 5-seed. Dallas (33-31) is now in serious danger of falling out of the play-in entirely — Memphis, the Clippers, and Golden State are all within striking distance.",gameId:"TOR-DAL-20260308"},
+  {homeTeam:"MIL",homeScore:112,awayTeam:"ORL",awayScore:118,status:"final",topPerformer:"Paolo Banchero",topLine:"28 PTS · 11 REB · 5 AST",recap:"Paolo Banchero scored 28 points with 11 rebounds and the Magic beat the Bucks 118-112 in Milwaukee for their fourth straight win. Giannis Antetokounmpo was brilliant in defeat with 36 points and 12 rebounds, but Milwaukee's defense broke down in the fourth quarter and Desmond Bane's 22 points — including three late three-pointers — sealed the game for Orlando. Jalen Suggs added 16. The Magic (34-28) are surging into the East's 6-seed. Milwaukee (28-35) has lost three of their last four and the play-in is slipping away from Giannis and the Bucks.",gameId:"MIL-ORL-20260308"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -56,16 +55,16 @@ export const gameResults = [
 // ═══════════════════════════════════════════════════════════
 
 export const pulseIndex = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",teamRecord:"50-13",indexScore:99.4,trend:"up",keyStats:"27 PTS · 14-15 FT · 125 straight 20+ games",note:"One game from tying Wilt Chamberlain. The Thunder are 50-13. He shot 14-of-15 from the free throw line on a night his jumper wasn't falling. That's MVP-level adaptation. Monday vs. Denver is history."},
-  {rank:2,player:"Desmond Bane",team:"ORL",teamRecord:"33-28",indexScore:93.1,trend:"up",keyStats:"30 PTS",note:"30 points in a 27-point blowout of Minnesota. The Magic are surging at the right time. Bane has found his role alongside Banchero and is thriving."},
-  {rank:3,player:"Paolo Banchero",team:"ORL",teamRecord:"33-28",indexScore:91.7,trend:"up",keyStats:"25 PTS · 15 REB",note:"25 and 15 against the Wolves. He's putting together a stretch that deserves All-NBA conversation. Three straight wins and climbing in the East."},
-  {rank:4,player:"Anthony Edwards",team:"MIN",teamRecord:"39-24",indexScore:89.5,trend:"down",keyStats:"34 PTS (loss)",note:"34 points on 13-of-14 from the line but the Wolves got destroyed. Edwards was brilliant and isolated. When he gets no help, Minnesota looks ordinary."},
-  {rank:5,player:"Kawhi Leonard",team:"LAC",teamRecord:"33-30",indexScore:87.3,trend:"up",keyStats:"28 PTS",note:"28 points and a road win in Memphis. Leonard has been healthy and productive for weeks now. The Clippers' playoff hopes rest entirely on his availability."},
-  {rank:6,player:"Darius Garland",team:"LAC",teamRecord:"33-30",indexScore:84.8,trend:"up",keyStats:"21 PTS · 11 in Q4",note:"11 fourth-quarter points to close out Memphis. Garland is the Clippers' second star and playing like it — especially in the clutch."},
-  {rank:7,player:"Quentin Grimes",team:"ATL",teamRecord:"32-31",indexScore:82.4,trend:"up",keyStats:"26 PTS",note:"26 points to beat a depleted Philly team. The Hawks are within one game of the 8-seed and Grimes is providing the scoring punch Atlanta needs."},
-  {rank:8,player:"Jayson Tatum",team:"BOS",teamRecord:"42-21",indexScore:80.9,trend:"stable",keyStats:"15 PTS · 12 REB · 7 AST (prev. game)",note:"Didn't play Saturday. Faces Cleveland today in his first road game back from the Achilles. All eyes on Rocket Mortgage FieldHouse at 1 PM on ABC."},
-  {rank:9,player:"Kyle Kuzma",team:"MIL",teamRecord:"28-34",indexScore:78.6,trend:"up",keyStats:"18 PTS (9 in closing run)",note:"Closed out Utah with nine points in a 13-2 run. The Bucks are fighting for the play-in and Kuzma is their closer right now. Giannis needs this kind of supporting fire."},
-  {rank:10,player:"Ziaire Williams",team:"BRK",teamRecord:"18-44",indexScore:75.2,trend:"up",keyStats:"Clutch: 2 late 3PM to snap 10-game skid",note:"Two three-pointers in the final three minutes to beat Detroit and end a 10-game losing streak. In a lost Brooklyn season, Williams is showing he can be a building block."}
+  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",teamRecord:"50-13",indexScore:99.1,trend:"stable",keyStats:"DNP — 125 straight 20+ games",note:"Rested Sunday. Tomorrow is history. SGA faces Denver at 8 PM ET on ESPN with a chance to tie Wilt Chamberlain's record of 126 consecutive 20-point games. The Thunder are 50-13 and have already clinched the West's best record. All eyes on Ball Arena."},
+  {rank:2,player:"Victor Wembanyama",team:"SAS",teamRecord:"37-25",indexScore:97.8,trend:"up",keyStats:"34 PTS · 14 REB · 6 BLK · 4 3PM",note:"34/14/6BLK on NBC. The Spurs are 15-1 since February 1. Wembanyama is averaging 31/13/5BLK over that stretch. He's the most dominant two-way force in the league and the Spurs are a legitimate title contender if this continues."},
+  {rank:3,player:"Jayson Tatum",team:"BOS",teamRecord:"43-21",indexScore:95.4,trend:"up",keyStats:"28 PTS · 9 REB · 6 AST (road)",note:"28/9/6 in 32 minutes in Cleveland. First road game back from the Achilles. He hit four threes, played the full fourth quarter, and looked like a top-5 player. The Celtics are the scariest team in the East right now."},
+  {rank:4,player:"Luka Dončić",team:"LAL",teamRecord:"38-24",indexScore:94.2,trend:"up",keyStats:"38 PTS · 12 REB · 10 AST (triple-double)",note:"38/12/10 against the Knicks with LeBron back. He hit consecutive pull-up threes in the final two minutes to win it. Luka is playing at an MVP level and the Lakers are tied for 4th in the West."},
+  {rank:5,player:"Paolo Banchero",team:"ORL",teamRecord:"34-28",indexScore:92.6,trend:"up",keyStats:"28 PTS · 11 REB · 5 AST",note:"28/11/5 to beat Giannis and the Bucks. Four straight wins for Orlando. Banchero is averaging 27/12 over this streak and making a legitimate case for All-NBA. The Magic are the East's most dangerous mid-seed."},
+  {rank:6,player:"Tyler Herro",team:"MIA",teamRecord:"34-29",indexScore:88.3,trend:"up",keyStats:"31 PTS · 7 AST · 5-9 3PM",note:"31 points to beat the East-leading Pistons without Cunningham. Miami has won four straight. Herro is putting together a stretch that warrants borderline All-Star talk."},
+  {rank:7,player:"Jalen Brunson",team:"NYK",teamRecord:"40-24",indexScore:86.7,trend:"down",keyStats:"33 PTS · 11 AST (loss)",note:"33 and 11 assists but KAT's 5-of-16 killed the Knicks. Brunson continues to be brilliant but New York has lost two of three. They need Towns to shoot better."},
+  {rank:8,player:"Desmond Bane",team:"ORL",teamRecord:"34-28",indexScore:84.9,trend:"stable",keyStats:"22 PTS · 3 clutch 3PM",note:"22 points with three critical late threes in Milwaukee. Bane has found his groove alongside Banchero — 26 PPG over the last two weeks. The Magic's second star is producing when it matters."},
+  {rank:9,player:"Scottie Barnes",team:"TOR",teamRecord:"37-25",indexScore:82.1,trend:"up",keyStats:"26 PTS · 8 REB · 6 AST",note:"26/8/6 to beat Dallas. Barnes has been rock-solid all season and Toronto is quietly holding the 5-seed in the East. Underrated All-Star campaign."},
+  {rank:10,player:"De'Aaron Fox",team:"SAS",teamRecord:"37-25",indexScore:79.8,trend:"up",keyStats:"24 PTS · 7 AST",note:"24 and 7 alongside Wembanyama's 34/14/6BLK. Fox is the perfect running mate — he handles, creates, and scores in the pick-and-roll while Wemby anchors the defense. San Antonio's duo is the league's most dangerous."}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -73,12 +72,12 @@ export const pulseIndex = [
 // ═══════════════════════════════════════════════════════════
 
 export const statLeaders = [
-  {category:"Points",player:"Anthony Edwards",team:"MIN",value:"34",context:"13-14 FT; brilliant but isolated in 27-point loss to Orlando"},
-  {category:"Rebounds",player:"Paolo Banchero",team:"ORL",value:"15",context:"25 PTS alongside — 25/15 double-double in blowout win at Minnesota"},
-  {category:"Assists",player:"Ryan Rollins",team:"MIL",value:"8",context:"13 PTS · 11 REB — near triple-double in Bucks' road win at Utah"},
-  {category:"3-Pointers",player:"Isaiah Joe",team:"OKC",value:"5",context:"18 PTS total — key secondary scorer in Thunder's 50th win"},
-  {category:"Steals",player:"Shai Gilgeous-Alexander",team:"OKC",value:"3",context:"27 PTS · 125 straight 20+ games — two-way dominance"},
-  {category:"Blocks",player:"Jaylin Williams",team:"OKC",value:"3",context:"9 PTS · 14 REB — interior presence alongside SGA's perimeter brilliance"}
+  {category:"Points",player:"Luka Dončić",team:"LAL",value:"38",context:"12 REB · 10 AST — triple-double in ABC shootout vs. Knicks"},
+  {category:"Rebounds",player:"Victor Wembanyama",team:"SAS",value:"14",context:"34 PTS · 6 BLK alongside — complete dominance of Houston on NBC"},
+  {category:"Assists",player:"Jalen Brunson",team:"NYK",value:"11",context:"33 PTS alongside — brilliant in 127-124 loss to Lakers"},
+  {category:"3-Pointers",player:"Tyler Herro",team:"MIA",value:"5",context:"31 PTS total · 5-9 3PM — led Heat past Pistons"},
+  {category:"Steals",player:"De'Aaron Fox",team:"SAS",value:"3",context:"24 PTS · 7 AST — Spurs' second star in blowout of Houston"},
+  {category:"Blocks",player:"Victor Wembanyama",team:"SAS",value:"6",context:"34 PTS · 14 REB — most complete game of the season"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -86,12 +85,12 @@ export const statLeaders = [
 // ═══════════════════════════════════════════════════════════
 
 export const mediaReactions = [
-  {outlet:"ESPN",author:"Malika Andrews",quote:"Shai Gilgeous-Alexander is one game away from Wilt Chamberlain. One. He shot 6-of-15 and still scored 27 because he went 14-of-15 from the free throw line. He has a different gear for the moments when his shot isn't falling. That's what makes this streak historic — it's not just about talent. It's about will.",topic:"SGA one game from tying Wilt's record",sentiment:"hot"},
-  {outlet:"The Athletic",author:"Sam Amick",quote:"The Thunder are 50-13 and the defending champions. They added Kristaps Porzingis, who returned Saturday. Shai is chasing Wilt. The depth is elite. Oklahoma City isn't just the best team in basketball — they might be building a dynasty.",topic:"Thunder reach 50 wins first — dynasty talk",sentiment:"hot"},
-  {outlet:"The Ringer",author:"Bill Simmons",quote:"Paolo Banchero just went 25 and 15 against Anthony Edwards and the Timberwolves. The Magic won by 27. Desmond Bane had 30. This Orlando team is going to be a nightmare matchup in the playoffs if they keep this up. The East's most dangerous floater.",topic:"Banchero and Magic surge at the right time",sentiment:"hot"},
-  {outlet:"Bleacher Report",author:"Jake Fischer",quote:"The Pistons lost without Cade Cunningham and suddenly Detroit's depth looks thinner than it has all season. They're still 46-15 but Cunningham's quad injury needs monitoring. If he misses extended time, the East's 1-seed isn't as locked as it looks.",topic:"Cunningham quad injury — Detroit vulnerability",sentiment:"cold"},
-  {outlet:"CBS Sports",author:"Brad Botkin",quote:"The Sixers without Embiid, George, and Edgecombe lost to the Hawks by nine. At some point we have to ask: what is Philadelphia's actual playoff roster? They keep adding injuries and suspensions and the core keeps shrinking. The 7-seed is in real danger.",topic:"Philadelphia's playoff picture unraveling",sentiment:"cold"},
-  {outlet:"NBA.com",author:"Jamal Crawford",quote:"Anthony Edwards scored 34 and lost by 27. That's the kind of stat line that tells you everything about team context. Edwards is playing elite basketball. Minnesota needs a second option to show up consistently or they'll be a first-round exit again.",topic:"Edwards in isolation — Minnesota's supporting cast problem",sentiment:"neutral"}
+  {outlet:"ESPN",author:"Malika Andrews",quote:"Jayson Tatum went to Cleveland — his first road game back from a torn Achilles — and scored 28 points in 32 minutes. He hit four threes, played the full fourth quarter, and didn't look like a player who missed 10 months. He looked like Jayson Tatum. Boston is terrifying.",topic:"Tatum's road statement — Celtics are the East favorite",sentiment:"hot"},
+  {outlet:"The Athletic",author:"Shams Charania",quote:"Victor Wembanyama is on a historic run. Since February 1, the Spurs are 15-1 and Wembanyama is averaging 31/13/5 blocks. Six blocks tonight against Houston. Four threes. 34 points. He's 21 years old and he's the most complete player in basketball right now.",topic:"Wembanyama's historic stretch — Spurs as title contenders",sentiment:"hot"},
+  {outlet:"The Ringer",author:"Bill Simmons",quote:"Luka's triple-double was one of those games where you just sit back and appreciate what you're watching. He hit two pull-up threes in the final two minutes against the Knicks. With LeBron back. On ABC. This Lakers team is going to be terrifying in the playoffs if everyone is healthy.",topic:"Luka's triple-double masterpiece vs. Knicks",sentiment:"hot"},
+  {outlet:"CBS Sports",author:"Brad Botkin",quote:"Dallas has lost seven straight. Cooper Flagg went 21/9/5 in Toronto and the Mavericks still lost because the rest of the team shot 6-of-25 from three. At some point the organization has to ask: is this roster around Flagg good enough? The play-in is slipping away.",topic:"Mavericks' 7-game skid — Flagg can't do it alone",sentiment:"cold"},
+  {outlet:"Bleacher Report",author:"Jake Fischer",quote:"Cade Cunningham has now missed two straight games with the quad injury. Detroit lost both. The Pistons are 46-16 and still the East's 1-seed, but they looked anemic offensively without Cunningham in Miami. If this extends to a week or more, it changes the playoff picture.",topic:"Cunningham's absence exposing Detroit's depth",sentiment:"cold"},
+  {outlet:"NBA.com",author:"Jamal Crawford",quote:"Paolo Banchero dropped 28 and 11 against Giannis Antetokounmpo and the Bucks. Four straight wins for Orlando. Giannis had 36 and 12 — he was incredible — and Banchero still beat him. That's the kind of performance that separates the great from the good. Banchero is ascending.",topic:"Banchero outduels Giannis — Magic surging",sentiment:"hot"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -99,27 +98,26 @@ export const mediaReactions = [
 // ═══════════════════════════════════════════════════════════
 
 export const injuryUpdates = [
-  {player:"Cade Cunningham",team:"DET",status:"day-to-day",injury:"Quadriceps",timeline:"Missed March 7 loss to BRK. Status for March 8 vs. MIA unclear. Pistons monitoring closely.",impact:"high"},
-  {player:"Jamal Murray",team:"DEN",status:"day-to-day",injury:"Left ankle sprain",timeline:"MRI completed Saturday — no structural damage reported. Could miss Monday's game vs. OKC. Week-to-week at best.",impact:"high"},
-  {player:"Jayson Tatum",team:"BOS",status:"returning",injury:"Right Achilles (recovered)",timeline:"Played March 6 (15/12/7 in 27 min). Faces CLE today at 1 PM ET on ABC — first road game back. Minutes expected to increase.",impact:"high"},
-  {player:"Joel Embiid",team:"PHI",status:"out",injury:"Right oblique strain",timeline:"Missed March 7 loss to ATL. No return timetable. Philadelphia's center depth extremely thin.",impact:"high"},
-  {player:"Paul George",team:"PHI",status:"out",injury:"League suspension",timeline:"Missed March 7 loss to ATL. Duration of suspension unclear.",impact:"high"},
-  {player:"Stephen Curry",team:"GSW",status:"out",injury:"Undisclosed",timeline:"Missed March 7 loss to OKC. No timeline from Golden State. Warriors 30-31 and sliding.",impact:"high"},
-  {player:"LeBron James",team:"LAL",status:"day-to-day",injury:"Elbow",timeline:"Missed March 6 vs. IND. Status for March 8 vs. NYK TBD.",impact:"high"},
-  {player:"Aaron Gordon",team:"DEN",status:"out",injury:"Hamstring",timeline:"Out since Jan. 30. No return timetable. Denver's frontcourt severely depleted.",impact:"high"},
-  {player:"Nikola Vucevic",team:"BOS",status:"out",injury:"Right ring finger fracture",timeline:"Procedure completed. Out at least 1 month. Queta starting in his place.",impact:"medium"}
+  {player:"Cade Cunningham",team:"DET",status:"day-to-day",injury:"Quadriceps",timeline:"Missed 2nd straight game (loss to MIA). Pistons have lost both games without him. Listed as day-to-day. Next game Tuesday vs. Chicago.",impact:"high"},
+  {player:"Jamal Murray",team:"DEN",status:"questionable",injury:"Left ankle sprain",timeline:"Questionable for Monday's massive OKC game. MRI showed no structural damage but Murray has been limited in practice. Denver may need him to slow SGA's Wilt chase.",impact:"high"},
+  {player:"LeBron James",team:"LAL",status:"active",injury:"Elbow (recovered)",timeline:"Returned Sunday with 18 PTS and 8 AST in 28 min vs. NYK. Status for Tuesday TBD — Lakers may rest him on back-to-backs.",impact:"medium"},
+  {player:"Joel Embiid",team:"PHI",status:"out",injury:"Right oblique strain",timeline:"No timetable. Missed 3rd straight game. Philadelphia's playoff positioning is eroding without him.",impact:"high"},
+  {player:"Paul George",team:"PHI",status:"out",injury:"League suspension",timeline:"Still serving suspension. Duration remains unclear. Sixers missing two of their top three players.",impact:"high"},
+  {player:"Stephen Curry",team:"GSW",status:"out",injury:"Undisclosed",timeline:"Missed 3rd consecutive game. Golden State has given no timeline. Warriors 30-31 and fading from play-in contention.",impact:"high"},
+  {player:"Aaron Gordon",team:"DEN",status:"out",injury:"Hamstring",timeline:"Out since Jan. 30. No return timetable. Denver's frontcourt depth is a major concern heading into the OKC game.",impact:"high"},
+  {player:"Nikola Vucevic",team:"BOS",status:"out",injury:"Right ring finger fracture",timeline:"Out at least 1 month. Queta starting in his place and playing well — 11 REB today vs. CLE.",impact:"medium"},
+  {player:"Cooper Flagg",team:"DAL",status:"active",injury:"Midfoot sprain (recovered)",timeline:"Played Sunday: 21/9/5 in 34 minutes vs. TOR. Fully healthy but Dallas can't win around him.",impact:"low"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// GAME PREVIEWS (Tonight)
+// GAME PREVIEWS (Tomorrow — Monday)
 // ═══════════════════════════════════════════════════════════
 
 export const gamePreviews = [
-  {homeTeam:"SAS",homeRecord:"36-25",awayTeam:"HOU",awayRecord:"39-23",time:"8:00 PM ET",tv:"NBC / Telemundo",spread:"SAS -1.5",overUnder:"224.5",keyMatchup:"Victor Wembanyama vs. Alperen Sengun",storyline:"The San Antonio Spurs — 14-1 since February 1 and riding the hottest stretch in the NBA — host the Houston Rockets in tonight's NBC primetime showcase. Wembanyama is coming off back-to-back spectacular performances (38 PTS Thursday, 27/10/4BLK in Friday's 25-point comeback). Houston is fighting to hold the West 2-seed but has lost their last two meetings with San Antonio this season. The Wemby vs. Sengun interior battle is appointment television.",prediction:"SAS wins 116-110 — Wembanyama and the Spurs' momentum is too strong at home. Houston hangs tough but San Antonio's defense locks down late.",featured:true},
-  {homeTeam:"CLE",homeRecord:"39-24",awayTeam:"BOS",awayRecord:"42-21",time:"1:00 PM ET",tv:"ABC",spread:"CLE -3.5",overUnder:"219.5",keyMatchup:"Jayson Tatum vs. Evan Mobley",storyline:"Jayson Tatum's second game back — and first on the road — comes at Rocket Mortgage FieldHouse against a Cleveland team fighting for the 4-seed. Tatum posted 15/12/7 in 27 minutes in his return Friday. The Celtics are 42-21 and look like a different team with Tatum back. Cleveland (39-24) needs this game to keep pace with New York. A Tatum road performance would send a message to the entire East.",prediction:"BOS wins 108-104 — Tatum plays 30 minutes and shows Cleveland the Celtics are the team to beat.",featured:false},
-  {homeTeam:"LAL",homeRecord:"37-24",awayTeam:"NYK",awayRecord:"40-23",time:"3:30 PM ET",tv:"ABC",spread:"LAL -2",overUnder:"226.5",keyMatchup:"Luka Dončić vs. Jalen Brunson",storyline:"A marquee ABC afternoon matchup between two of the league's most dynamic point guards. Luka Dončić is coming off a 44-point explosion (22 in Q1) while Brunson had 15 assists in a 39-point demolition of Denver. LeBron James' status is questionable (elbow). The Knicks are third in the East and road-tested. This game could preview a Finals matchup if the brackets align.",prediction:"LAL wins 121-118 — Luka edges Brunson in a shootout. If LeBron plays, Lakers win by double digits.",featured:false},
-  {homeTeam:"MIA",homeRecord:"33-29",awayTeam:"DET",awayRecord:"46-15",time:"6:00 PM ET",tv:"League Pass",spread:"DET -4",overUnder:"215.5",keyMatchup:"Bam Adebayo vs. Detroit frontcourt",storyline:"The East-leading Pistons visit Miami, potentially without Cade Cunningham (quad). Miami has won three straight and Tyler Herro is on a roll. If Cunningham sits, Detroit's offense relies heavily on their role players against a Heat defense that ranks sixth in the league.",prediction:"MIA wins 109-103 — Heat take advantage of Cunningham's absence at home.",featured:false},
-  {homeTeam:"MIL",homeRecord:"28-34",awayTeam:"ORL",awayRecord:"33-28",time:"8:00 PM ET",tv:"League Pass",spread:"ORL -3",overUnder:"221.5",keyMatchup:"Giannis Antetokounmpo vs. Paolo Banchero",storyline:"The surging Magic (three straight wins) visit a Milwaukee team fighting for play-in survival. Banchero is coming off a monster 25/15 game. Giannis and the Bucks need every win to stay in the play-in picture at 28-34. Orlando has the momentum; Milwaukee has the desperation.",prediction:"ORL wins 114-108 — Banchero and Bane continue their hot streak. Milwaukee's season hangs by a thread.",featured:false}
+  {homeTeam:"DEN",homeRecord:"38-25",awayTeam:"OKC",awayRecord:"50-13",time:"8:00 PM ET",tv:"ESPN",spread:"OKC -4.5",overUnder:"222.5",keyMatchup:"Shai Gilgeous-Alexander vs. Nikola Jokic",storyline:"This is it. Shai Gilgeous-Alexander enters Ball Arena with 125 consecutive 20-point games — one shy of Wilt Chamberlain's all-time record of 126, set between 1961 and 1963. SGA needs 20 points to tie the record that has stood for 63 years. Denver will try to stop him, but without Aaron Gordon and with Jamal Murray questionable, the Nuggets may not have the defensive personnel. Jokic will try to win the game regardless — he always does — but the spotlight is entirely on SGA. Monday night, 8 PM, ESPN. This is appointment television.",prediction:"OKC wins 114-108 — SGA gets his 20 and ties Wilt. Denver fights hard but can't match OKC's depth. History is made.",featured:true},
+  {homeTeam:"CHA",homeRecord:"30-32",awayTeam:"CHI",awayRecord:"21-42",time:"7:00 PM ET",tv:"League Pass",spread:"CHA -7",overUnder:"218.5",keyMatchup:"Kon Knueppel vs. Josh Giddey",storyline:"Charlotte's rookie phenom Kon Knueppel hosts the struggling Bulls. Knueppel has been quiet the last two games after his 38-point explosion in late February. The Hornets need wins to stay in the play-in picture. Chicago (21-42) has lost 14 of their last 17.",prediction:"CHA wins 115-101 — Knueppel bounces back with 24+ as the Hornets take care of business at home.",featured:false},
+  {homeTeam:"MEM",homeRecord:"33-30",awayTeam:"PHX",awayRecord:"31-32",time:"8:00 PM ET",tv:"League Pass",spread:"MEM -3",overUnder:"226.5",keyMatchup:"Ja Morant vs. Kevin Durant",storyline:"Memphis hosts Phoenix in a critical game for both teams' play-in positioning. Ja Morant has been dealing with a nagging knee but insists he'll play. Kevin Durant is averaging 28 points over his last five games as the Suns try to claw back into the postseason picture. Phoenix (31-32) is two games behind the 10-seed.",prediction:"MEM wins 119-114 — Morant's home-court edge and Memphis's defense carry the night. Durant scores 30 but Phoenix falls short.",featured:false},
+  {homeTeam:"WAS",homeRecord:"15-47",awayTeam:"NOP",awayRecord:"22-40",time:"7:00 PM ET",tv:"League Pass",spread:"NOP -3.5",overUnder:"228.5",keyMatchup:"Bilal Coulibaly vs. Zion Williamson",storyline:"The battle of rebuilding franchises. Washington is the league's worst team at 15-47 — Trae Young's tenure has been rocky since his trade from Atlanta. New Orleans gets Zion Williamson back from a one-game rest. This is a development showcase more than a meaningful game, but draft positioning matters.",prediction:"NOP wins 121-113 — Zion dominates inside. Washington's season continues its march toward the lottery.",featured:false}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -127,11 +125,11 @@ export const gamePreviews = [
 // ═══════════════════════════════════════════════════════════
 
 export const rookieWatch = [
-  {rank:1,player:"Cooper Flagg",team:"DAL",statLine:"18.7 PPG · 7.2 RPG · 4.1 APG",note:"Dallas visits Toronto tonight. Flagg shot 7-23 Friday in his return but posted 16/8/6. The playmaking is there — the shot will come. Dallas desperately needs wins to stay in the play-in picture.",trend:"stable"},
-  {rank:2,player:"Kon Knueppel",team:"CHA",statLine:"19.3 PPG · 5.4 RPG · 3.5 APG",note:"Charlotte off Saturday. Knueppel's ROY lead is intact but narrowing as Flagg returns. The Hornets' six-game winning streak ended with the March 6 loss to Miami. Charlotte needs Knueppel to carry the offense.",trend:"stable"},
-  {rank:3,player:"Keyonte George",team:"UTA",statLine:"21.2 PPG · 4.8 APG · 3.9 RPG",note:"22 points in a 113-99 loss to Milwaukee. Shot just 34.4% with the rest of the Jazz. George is producing on a bad team — the classic rebuilding year scorer. His ROY case lives on volume.",trend:"down"},
-  {rank:4,player:"Dylan Harper",team:"SAS",statLine:"14.1 PPG · 4.2 APG · 3.8 RPG",note:"Scored 22 in the Spurs' March 3 rout of Philadelphia. Learning alongside Wembanyama and Fox. Playing time is inconsistent but the talent is obvious when he gets minutes.",trend:"up"},
-  {rank:5,player:"Jeremiah Fears",team:"NOP",statLine:"16.8 PPG · 5.2 APG",note:"New Orleans hosts Washington tonight. Fears continues to get major minutes in a development year for the Pelicans. His court vision is advanced for his age — the consistency just isn't there yet.",trend:"stable"}
+  {rank:1,player:"Cooper Flagg",team:"DAL",statLine:"18.8 PPG · 7.3 RPG · 4.2 APG",note:"21/9/5 in Toronto — a stat line that would make any rookie proud. But Dallas lost its seventh straight and Flagg can only do so much. He shot 8-of-17 and played 34 minutes. The ROY race is tight but this was Flagg's best all-around game since his return from the midfoot sprain.",trend:"up"},
+  {rank:2,player:"Kon Knueppel",team:"CHA",statLine:"19.2 PPG · 5.4 RPG · 3.5 APG",note:"Charlotte was off Sunday. Knueppel hosts Chicago on Monday in what should be a get-right game. His ROY lead is narrowing as Flagg puts up numbers, but Knueppel's consistency and team success (Hornets are in play-in position) give him the edge.",trend:"stable"},
+  {rank:3,player:"Dylan Harper",team:"SAS",statLine:"14.3 PPG · 4.2 APG · 3.9 RPG",note:"14 points off the bench in the Spurs' 119-108 rout of Houston. Harper is thriving in San Antonio's system — learning behind Fox and Wembanyama while contributing real minutes. His ceiling is enormous.",trend:"up"},
+  {rank:4,player:"Keyonte George",team:"UTA",statLine:"21.1 PPG · 4.8 APG · 3.9 RPG",note:"Utah was off Sunday. George continues to put up volume stats on a rebuilding Jazz team. His efficiency has improved in March — 44% FG over the last five games.",trend:"stable"},
+  {rank:5,player:"Jeremiah Fears",team:"NOP",statLine:"16.8 PPG · 5.2 APG",note:"New Orleans plays Washington on Monday. Fears continues to log major minutes as the Pelicans develop their young core. His court vision is his calling card.",trend:"stable"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -139,11 +137,11 @@ export const rookieWatch = [
 // ═══════════════════════════════════════════════════════════
 
 export const fantasyAlerts = [
-  {player:"Paolo Banchero",team:"ORL",action:"hold",reason:"25 points and 15 rebounds. Three straight wins. Banchero is playing at an All-Star level. If you own him, you're not trading him. If he's somehow available, it's an emergency add.",urgency:"high"},
-  {player:"Desmond Bane",team:"ORL",action:"add",reason:"30 points against Minnesota. Bane has found his rhythm alongside Banchero and is averaging 22+ over the last two weeks. Still available in 40% of ESPN leagues.",urgency:"high"},
-  {player:"Jamal Murray",team:"DEN",action:"hold",reason:"MRI showed no structural damage. He may miss a game or two but a drop would be premature. Hold and monitor — Denver needs him for the playoff push.",urgency:"medium"},
-  {player:"Jayson Tatum",team:"BOS",action:"hold",reason:"Plays his second game today (CLE on ABC). Minutes should increase. He's already showing he can produce immediately. Top-10 fantasy value ROS if healthy.",urgency:"medium"},
-  {player:"Ziaire Williams",team:"BRK",action:"stream",reason:"Clutch in the win over Detroit. Low-owned streamer option in deep leagues. Brooklyn's schedule favors streaming opportunities for the next two weeks.",urgency:"low"}
+  {player:"Tyler Herro",team:"MIA",action:"hold",reason:"31 points with 5 threes to beat Detroit. Four-game winning streak for Miami. Herro is locked into top-30 fantasy value. If he's on your roster, he's a set-and-forget starter.",urgency:"high"},
+  {player:"Jayson Tatum",team:"BOS",action:"hold",reason:"28/9/6 on the road in 32 minutes. Third game back and already looking like a top-5 player. His minutes will continue to ramp. Must-start every night going forward.",urgency:"high"},
+  {player:"De'Aaron Fox",team:"SAS",action:"hold",reason:"24/7 alongside Wemby's monster game. Fox is a rock-solid fantasy asset — consistent scoring, assists, and steals in a winning system. Don't overthink it.",urgency:"medium"},
+  {player:"Cooper Flagg",team:"DAL",action:"hold",reason:"21/9/5 in Toronto. Flagg's counting stats are back and his minutes are secure. Dallas is losing but Flagg is producing at a first-round fantasy level since his return.",urgency:"medium"},
+  {player:"Scottie Barnes",team:"TOR",action:"hold",reason:"26/8/6 against Dallas. Barnes has been one of the steadiest fantasy assets in the league all season. Toronto's 5-seed in the East means he stays motivated.",urgency:"medium"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -151,27 +149,27 @@ export const fantasyAlerts = [
 // ═══════════════════════════════════════════════════════════
 
 export const eastStandings = [
-  {rank:1,team:"DET",wins:46,losses:15,pct:".754",gb:"—",streak:"L1",last10:"7-3",conf:"east"},
-  {rank:2,team:"BOS",wins:42,losses:21,pct:".667",gb:"4.5",streak:"W2",last10:"7-3",conf:"east"},
-  {rank:3,team:"NYK",wins:40,losses:23,pct:".635",gb:"7.0",streak:"W3",last10:"7-3",conf:"east"},
-  {rank:4,team:"CLE",wins:39,losses:24,pct:".619",gb:"8.0",streak:"W1",last10:"6-4",conf:"east"},
-  {rank:5,team:"TOR",wins:36,losses:25,pct:".590",gb:"10.0",streak:"W4",last10:"7-3",conf:"east"},
-  {rank:6,team:"ORL",wins:33,losses:28,pct:".541",gb:"13.0",streak:"W3",last10:"6-4",conf:"east"},
-  {rank:7,team:"MIA",wins:33,losses:29,pct:".532",gb:"13.5",streak:"W3",last10:"6-4",conf:"east"},
-  {rank:8,team:"PHI",wins:33,losses:28,pct:".541",gb:"13.0",streak:"L1",last10:"5-5",conf:"east"},
-  {rank:9,team:"ATL",wins:32,losses:31,pct:".508",gb:"15.0",streak:"W1",last10:"6-4",conf:"east"},
-  {rank:10,team:"MIL",wins:28,losses:34,pct:".452",gb:"18.5",streak:"W1",last10:"5-5",conf:"east"}
+  {rank:1,team:"DET",wins:46,losses:16,pct:".742",gb:"—",streak:"L2",last10:"6-4",conf:"east"},
+  {rank:2,team:"BOS",wins:43,losses:21,pct:".672",gb:"4.0",streak:"W3",last10:"8-2",conf:"east"},
+  {rank:3,team:"NYK",wins:40,losses:24,pct:".625",gb:"7.0",streak:"L1",last10:"6-4",conf:"east"},
+  {rank:4,team:"CLE",wins:39,losses:25,pct:".609",gb:"8.0",streak:"L1",last10:"5-5",conf:"east"},
+  {rank:5,team:"TOR",wins:37,losses:25,pct:".597",gb:"9.0",streak:"W5",last10:"8-2",conf:"east"},
+  {rank:6,team:"ORL",wins:34,losses:28,pct:".548",gb:"12.0",streak:"W4",last10:"7-3",conf:"east"},
+  {rank:7,team:"MIA",wins:34,losses:29,pct:".540",gb:"12.5",streak:"W4",last10:"7-3",conf:"east"},
+  {rank:8,team:"PHI",wins:33,losses:28,pct:".541",gb:"12.5",streak:"L2",last10:"4-6",conf:"east"},
+  {rank:9,team:"ATL",wins:32,losses:31,pct:".508",gb:"14.5",streak:"W1",last10:"6-4",conf:"east"},
+  {rank:10,team:"MIL",wins:28,losses:35,pct:".444",gb:"18.5",streak:"L1",last10:"4-6",conf:"east"}
 ];
 
 export const westStandings = [
   {rank:1,team:"OKC",wins:50,losses:13,pct:".794",gb:"—",streak:"W6",last10:"9-1",conf:"west"},
-  {rank:2,team:"HOU",wins:39,losses:23,pct:".629",gb:"10.5",streak:"W3",last10:"7-3",conf:"west"},
-  {rank:3,team:"DEN",wins:38,losses:25,pct:".603",gb:"12.0",streak:"L1",last10:"5-5",conf:"west"},
-  {rank:4,team:"MIN",wins:39,losses:24,pct:".619",gb:"11.0",streak:"L1",last10:"6-4",conf:"west"},
-  {rank:5,team:"LAL",wins:37,losses:24,pct:".607",gb:"12.0",streak:"W3",last10:"6-4",conf:"west"},
-  {rank:6,team:"SAS",wins:36,losses:25,pct:".590",gb:"13.0",streak:"W5",last10:"8-2",conf:"west"},
+  {rank:2,team:"HOU",wins:39,losses:24,pct:".619",gb:"11.0",streak:"L1",last10:"6-4",conf:"west"},
+  {rank:3,team:"MIN",wins:39,losses:24,pct:".619",gb:"11.0",streak:"L1",last10:"6-4",conf:"west"},
+  {rank:4,team:"LAL",wins:38,losses:24,pct:".613",gb:"11.5",streak:"W4",last10:"7-3",conf:"west"},
+  {rank:5,team:"DEN",wins:38,losses:25,pct:".603",gb:"12.0",streak:"L1",last10:"5-5",conf:"west"},
+  {rank:6,team:"SAS",wins:37,losses:25,pct:".597",gb:"12.5",streak:"W6",last10:"9-1",conf:"west"},
   {rank:7,team:"MEM",wins:33,losses:30,pct:".524",gb:"17.0",streak:"L1",last10:"6-4",conf:"west"},
-  {rank:8,team:"DAL",wins:33,losses:30,pct:".524",gb:"17.0",streak:"L6",last10:"3-7",conf:"west"},
-  {rank:9,team:"LAC",wins:33,losses:30,pct:".524",gb:"17.0",streak:"W1",last10:"5-5",conf:"west"},
-  {rank:10,team:"GSW",wins:30,losses:31,pct:".492",gb:"19.0",streak:"L4",last10:"4-6",conf:"west"}
+  {rank:8,team:"DAL",wins:33,losses:31,pct:".516",gb:"17.5",streak:"L7",last10:"2-8",conf:"west"},
+  {rank:9,team:"LAC",wins:33,losses:30,pct:".524",gb:"17.0",streak:"W2",last10:"5-5",conf:"west"},
+  {rank:10,team:"GSW",wins:30,losses:31,pct:".492",gb:"19.5",streak:"L4",last10:"4-6",conf:"west"}
 ];
