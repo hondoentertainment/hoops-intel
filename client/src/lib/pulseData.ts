@@ -1,12 +1,12 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: March 12, 2026 (Vol. 2026 · No. 71)
+// Last updated: March 13, 2026 (Vol. 2026 · No. 72)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 12, 2026",edition:"Vol. 2026 · No. 71"};
+export const pulseEdition = {date:"March 13, 2026",edition:"Vol. 2026 · No. 72"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT
