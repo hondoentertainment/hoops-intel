@@ -165,9 +165,9 @@ export const westStandings = [
   {rank:3,team:"LAL",wins:43,losses:25,pct:".632",gb:"10.0",streak:"W6",last10:"9-1",conf:"west"},
   {rank:4,team:"HOU",wins:41,losses:26,pct:".612",gb:"11.5",streak:"L1",last10:"5-5",conf:"west"},
   {rank:5,team:"DEN",wins:41,losses:27,pct:".603",gb:"12.0",streak:"L1",last10:"5-5",conf:"west"},
-  {rank:6,team:"MIN",wins:40,losses:27,pct:".597",gb:"12.5",streak:"L1",last10:"5-5",conf:"west"},
-  {rank:7,team:"LAC",wins:34,losses:34,pct:".500",gb:"19.0",streak:"L2",last10:"4-6",conf:"west"},
-  {rank:8,team:"PHX",wins:33,losses:34,pct:".493",gb:"19.5",streak:"L1",last10:"5-5",conf:"west"},
+  {rank:6,team:"MIN",wins:41,losses:27,pct:".603",gb:"12.0",streak:"L1",last10:"5-5",conf:"west"},
+  {rank:7,team:"PHX",wins:39,losses:29,pct:".574",gb:"14.0",streak:"L1",last10:"5-5",conf:"west"},
+  {rank:8,team:"LAC",wins:34,losses:34,pct:".500",gb:"19.0",streak:"L2",last10:"4-6",conf:"west"},
   {rank:9,team:"POR",wins:33,losses:36,pct:".478",gb:"20.5",streak:"W1",last10:"5-5",conf:"west"},
   {rank:10,team:"GSW",wins:33,losses:36,pct:".478",gb:"20.5",streak:"W1",last10:"4-6",conf:"west"}
 ];
