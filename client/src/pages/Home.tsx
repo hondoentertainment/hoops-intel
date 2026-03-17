@@ -375,10 +375,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Season", "Archive"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Season" ? "/season" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -1085,6 +1085,7 @@ function Footer() {
               <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
               <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
               <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
+              <a href="/season" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Season Showcase</a>
             </div>
           </div>
         </div>
