@@ -948,8 +948,8 @@ function GamePreviewCard({ preview }: { preview: any }) {
             <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.tv}</div>
           </div>
           <div className="text-right ml-4">
-            <div className="mono-data text-xs" style={{ color: "#0EA5E9" }}>{preview.spread}</div>
-            <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>O/U {preview.overUnder}</div>
+            <div className="mono-data text-xs" style={{ color: "#0EA5E9" }} title="Vegas point spread — negative means favored">{preview.spread}</div>
+            <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }} title="Over/Under — projected combined total points">Total {preview.overUnder}</div>
           </div>
         </div>
         {preview.featured && (
@@ -1029,11 +1029,18 @@ function RookieAndFantasySection() {
                   hold: { color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
                   stream: { color: "#0EA5E9", bg: "rgba(14,165,233,0.1)" },
                 };
+                const actionLabels: Record<string, string> = {
+                  add: "Add to roster",
+                  drop: "Drop from roster",
+                  hold: "Keep on roster",
+                  stream: "Short-term pickup",
+                };
                 const ac = actionColors[alert.action] || actionColors.hold;
                 return (
                   <div key={i} className="glass-card rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded uppercase" style={{ background: ac.bg, color: ac.color }}>{alert.action}</span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded uppercase" style={{ background: ac.bg, color: ac.color }} title={actionLabels[alert.action]}>{alert.action}</span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{actionLabels[alert.action]}</span>
                       <a href={`/player/${slugify(alert.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{alert.player}</a>
                       <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{alert.team}</a>
                     </div>
