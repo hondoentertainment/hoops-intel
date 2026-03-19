@@ -19,21 +19,21 @@ export const narrative = {headline:"SGA's 40 — 129 Straight. Ten in a Row. Cun
 // ═══════════════════════════════════════════════════════════
 
 export const tickerItems = [
-  {text:"STREAK: SGA drops 40 — 129 consecutive 20-point games — extends his own all-time record · 10th straight Thunder win",type:"alert"},
-  {text:"FINAL: OKC 113, ORL 108 — SGA 40/3 3PM · Holmgren 20/12 · A. Mitchell 16 · Banchero 32/10/5 · Thunder 54-15",type:"score"},
-  {text:"FINAL: NYK 136, IND 110 — Hart 33 (12-13 FG · 5-5 3PT) · Anunoby 26 (10-13 FG) · KAT 22/11 · Brunson DNP (ankle/neck) · Knicks W4",type:"score"},
-  {text:"FINAL: DET 130, WAS 117 — Duren 36/12 · Cunningham exits after 5 min (back spasms) · Carrington 30 · Pistons 49-19",type:"score"},
-  {text:"FINAL: CHA 136, MIA 106 — LaMelo 30/13 AST · Knueppel 22 · Coby White 24 · Herro 20 · Hornets' biggest win of the season",type:"score"},
-  {text:"FINAL: CLE 123, MIL 116 — Mobley 27/15 (season-high REB) · Harden 27 · Porter Jr. 25/10 AST · Giannis out (knee/bone bruise)",type:"score"},
-  {text:"FINAL: MIN 116, PHX 104 — Randle 32 · Hyland 22 · Booker 34 · Edwards out (knee inflammation · 1-2 weeks) · Suns L3",type:"score"},
-  {text:"FINAL: DEN 124, PHI 96 — Braun 22 · Jokic 8/14 AST/7 REB · Drummond 9/10 · Nuggets 28-point rout",type:"score"},
-  {text:"FINAL: SAS 132, SAC 104 — Wemby 18/8 in 28 min · Raynaud 32/9 · Spurs led by 31 at halftime · SAS 51-18",type:"score"},
-  {text:"INJURY: Cade Cunningham (DET) — back spasms; exited after 5 min vs WAS; status TBD; collision with Tre Johnson",type:"injury"},
-  {text:"INJURY: Anthony Edwards (MIN) — right knee inflammation; out 1-2 weeks; MRI revealed inflammation; min 4 games missed",type:"injury"},
-  {text:"INJURY: Giannis Antetokounmpo (MIL) — hyperextended knee + bone bruise; re-evaluated March 28; 32nd missed game",type:"injury"},
-  {text:"INJURY: Jalen Brunson (NYK) — right ankle/neck strain; sat out vs IND; day-to-day; Knicks won 136-110 without him",type:"injury"},
-  {text:"TONIGHT: LAL @ HOU — 9:30 ET, ESPN — Luka vs. Durant rematch; Lakers won 100-92 on Monday",type:"alert"},
-  {text:"TONIGHT: GSW @ BOS — 7:00 ET, ESPN — Warriors without Curry at TD Garden; Tatum's return tour continues",type:"alert"}
+  {text:"RECORD: SGA scores 40 to extend his own all-time streak to 129 straight 20-point games — Thunder win their 10th in a row",type:"alert"},
+  {text:"FINAL: OKC 113 · ORL 108 — SGA 40 PTS / 3 3PM · Holmgren 20/12 · Banchero 32/10/5 for Orlando · Thunder move to 54-15",type:"score"},
+  {text:"FINAL: NYK 136 · IND 110 — Josh Hart 33 PTS on 12-of-13 FG without Brunson · Anunoby 26 (10-13 FG) · KAT 22/11 · Knicks W4",type:"score"},
+  {text:"FINAL: DET 130 · WAS 117 — Duren 36 PTS / 12 REB · Cunningham exits 5 min in (back spasms) · Carrington 30 · Pistons 49-19",type:"score"},
+  {text:"FINAL: CHA 136 · MIA 106 — LaMelo 30/13 AST · Knueppel 22 · Coby White 24 · Herro 20 · Charlotte's largest margin of victory this season",type:"score"},
+  {text:"FINAL: CLE 123 · MIL 116 — Mobley 27 PTS / 15 REB (career high) · Harden 27 · Porter Jr. 25/10 AST · Giannis sat out (bone bruise)",type:"score"},
+  {text:"FINAL: MIN 116 · PHX 104 — Randle 32 · Hyland 22 · Booker 34 in a loss · Edwards out (knee inflammation, 1-2 weeks) · Suns L3",type:"score"},
+  {text:"FINAL: DEN 124 · PHI 96 — Braun 22 · Jokic 8 PTS / 14 AST / 7 REB · Nuggets win by 28 in a dominant second half",type:"score"},
+  {text:"FINAL: SAS 132 · SAC 104 — Wemby 18/8 in 28 min · Raynaud 32/9 · Spurs led by 31 at halftime · San Antonio moves to 51-18",type:"score"},
+  {text:"INJURY — Cade Cunningham (DET): back spasms after collision with Tre Johnson · exited 5 min into game vs WAS · status TBD",type:"injury"},
+  {text:"INJURY — Anthony Edwards (MIN): right knee inflammation · out 1-2 weeks · MRI confirmed diagnosis · misses at least 4 games",type:"injury"},
+  {text:"INJURY — Giannis Antetokounmpo (MIL): hyperextended left knee + bone bruise · next evaluation March 28 · 32nd missed game of season",type:"injury"},
+  {text:"INJURY — Jalen Brunson (NYK): right ankle + neck strain · DNP vs Indiana · listed day-to-day · Knicks won by 26 in his absence",type:"injury"},
+  {text:"TONIGHT: LAL @ HOU · 9:30 PM ET on ESPN — Luka Doncic vs. Kevin Durant in a Western Conference rematch · Lakers won 100-92 Monday",type:"alert"},
+  {text:"TONIGHT: GSW @ BOS · 7:00 PM ET on ESPN — Warriors without Steph Curry at TD Garden · Tatum continues strong home stretch",type:"alert"},
 ];
 
 // ═══════════════════════════════════════════════════════════
