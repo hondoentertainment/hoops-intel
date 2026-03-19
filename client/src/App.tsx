@@ -11,6 +11,8 @@ const Player = lazy(() => import("./pages/Player"));
 const Team = lazy(() => import("./pages/Team"));
 const PulseHistory = lazy(() => import("./pages/PulseHistory"));
 const PlayoffBracket = lazy(() => import("./pages/PlayoffBracket"));
+const PickEm = lazy(() => import("./pages/PickEm"));
+const TradeValue = lazy(() => import("./pages/TradeValue"));
 
 function PageLoader() {
   return (
@@ -41,6 +43,8 @@ export default function App() {
             <Route path="/team/:abbr" component={Team} />
             <Route path="/pulse-history" component={PulseHistory} />
             <Route path="/playoffs" component={PlayoffBracket} />
+            <Route path="/pick-em" component={PickEm} />
+            <Route path="/trade-value" component={TradeValue} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>

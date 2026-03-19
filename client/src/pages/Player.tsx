@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "wouter";
 import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
@@ -39,13 +40,58 @@ export default function Player() {
   const editions = getPlayerEditions(player.name);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
 
+  // Share button state
+  const [shareOpen, setShareOpen] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
+  const shareRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!shareOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (shareRef.current && !shareRef.current.contains(e.target as Node)) {
+        setShareOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [shareOpen]);
+
+  const slug = params.slug || "";
+
+  const handleCopyLink = async () => {
+    const pageUrl = `${window.location.origin}/player/${slug}`;
+    try {
+      await navigator.clipboard.writeText(pageUrl);
+    } catch {
+      // Fallback for environments without clipboard API
+      const el = document.createElement("textarea");
+      el.value = pageUrl;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    }
+    setShareOpen(false);
+    setToastVisible(true);
+    setTimeout(() => setToastVisible(false), 2500);
+  };
+
+  const handleTweetShare = () => {
+    if (!currentPulse) return;
+    const tweetText = `${currentPulse.player} — Pulse Rank #${currentPulse.rank} 🏀 ${currentPulse.keyStats} hoopsintel.net/player/${slug}`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    window.open(tweetUrl, "_blank", "noopener,noreferrer");
+    setShareOpen(false);
+  };
+
   return (
     <div className="min-h-screen" style={{ background: "#050D1A" }}>
       <PageHeader />
       <div className="container py-8">
         {/* Player Header */}
         <div
-          className="glass-card rounded-lg p-6 mb-6"
+          className="glass-card rounded-lg p-6 mb-6 relative"
           style={{ borderLeft: `4px solid ${teamColor}` }}
         >
           <div className="flex items-start justify-between flex-wrap gap-4">
@@ -68,18 +114,95 @@ export default function Player() {
                 </span>
               </div>
             </div>
-            {currentPulse && (
-              <div className="text-right">
-                <div className="mono-data text-3xl font-bold" style={{ color: "#0EA5E9" }}>
-                  {currentPulse.indexScore}
+            <div className="flex items-start gap-3">
+              {currentPulse && (
+                <div className="text-right">
+                  <div className="mono-data text-3xl font-bold" style={{ color: "#0EA5E9" }}>
+                    {currentPulse.indexScore}
+                  </div>
+                  <div className="section-label">PULSE INDEX</div>
+                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    Rank #{currentPulse.rank}
+                  </div>
                 </div>
-                <div className="section-label">PULSE INDEX</div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Rank #{currentPulse.rank}
-                </div>
+              )}
+              {/* Share button */}
+              <div ref={shareRef} className="relative">
+                <button
+                  onClick={() => setShareOpen((v) => !v)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold transition-colors"
+                  style={{
+                    background: shareOpen ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.06)",
+                    color: shareOpen ? "#0EA5E9" : "rgba(255,255,255,0.65)",
+                    border: "1px solid",
+                    borderColor: shareOpen ? "rgba(14,165,233,0.4)" : "rgba(255,255,255,0.1)",
+                  }}
+                  aria-label="Share player"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="18" cy="5" r="3"/>
+                    <circle cx="6" cy="12" r="3"/>
+                    <circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                  </svg>
+                  Share
+                </button>
+                {shareOpen && (
+                  <div
+                    className="absolute right-0 mt-1 rounded-lg overflow-hidden z-10"
+                    style={{
+                      background: "#0B1728",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      minWidth: "160px",
+                      boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    <button
+                      onClick={handleCopyLink}
+                      className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors"
+                      style={{ color: "rgba(255,255,255,0.8)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                      </svg>
+                      Copy link
+                    </button>
+                    {currentPulse && (
+                      <button
+                        onClick={handleTweetShare}
+                        className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors"
+                        style={{ color: "rgba(255,255,255,0.8)" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.903-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Post on X
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
+          {/* Toast notification */}
+          {toastVisible && (
+            <div
+              className="absolute top-4 right-4 px-4 py-2 rounded text-xs font-semibold z-20"
+              style={{
+                background: "#10B981",
+                color: "#fff",
+                boxShadow: "0 4px 12px rgba(16,185,129,0.3)",
+              }}
+            >
+              Link copied!
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
