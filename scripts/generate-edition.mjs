@@ -145,12 +145,14 @@ ${currentPulse}
 1. Pick the night's best narrative — lead with the most dramatic/important game
 2. Feature 4–6 game results (most significant first)
 3. Write crisp, sharp copy — not a box score recitation; actual insights
-4. Pulse Index: rank the top 10 performers editorially, not just by points
+4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates)
 6. Update standings by applying last night's results to the current standings in the reference file
 7. Media reactions: write 6 quotes in the authentic voice of each journalist/outlet
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
 9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style
+10. Also generate a "This Day in NBA History" fact for ${editionDate}. Find a notable NBA event, record, or milestone that occurred on this calendar date in any prior year. If nothing notable occurred on this exact date, find something from the same week. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
+11. Also generate a Hoops IQ quiz with exactly 5 questions: 2 questions about last night's games (easy), 2 questions about season stats/standings/records (medium), and 1 historical/trivia question (hard). Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation with context.",difficulty:"easy"}]};
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
