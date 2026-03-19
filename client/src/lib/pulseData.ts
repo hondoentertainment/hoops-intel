@@ -65,7 +65,7 @@ export const pulseIndex = [
   {rank:7,player:"Cade Cunningham",team:"DET",teamRecord:"49-19",indexScore:93.8,trend:"down",keyStats:"6 PTS in 5 min · back spasms (exited game)",note:"Left after just five minutes with back spasms caused by a collision with Tre Johnson. The Pistons still won 130-117 behind Duren's 36, but Cunningham (24.9/10.1/5.6) is the irreplaceable engine of the East's best team. His status is day-to-day. Detroit holds its breath.",rationale:""},
   {rank:8,player:"Josh Hart",team:"NYK",teamRecord:"45-25",indexScore:92.3,trend:"up",keyStats:"33 PTS · 12-13 FG · 5-5 3PT · 7 REB",note:"One of the most efficient shooting nights in the NBA this season. Hart missed one shot — one — in 26 minutes. He went 5-for-5 from three. With Brunson out, Hart showed he's not just a role player — he's a legitimate second star in waiting. His energy is the Knicks' heartbeat.",rationale:""},
   {rank:9,player:"Evan Mobley",team:"CLE",teamRecord:"42-27",indexScore:91.4,trend:"up",keyStats:"27 PTS · 15 REB (season-high) · 2 BLK",note:"Mobley dominated the glass with a season-high 15 rebounds and scored 27 as the Cavs beat a depleted Milwaukee team. At 23, Mobley is becoming the two-way force Cleveland needs beside Mitchell and Harden. The Cavaliers (42-27) are quietly building momentum for a postseason push.",rationale:""},
-  {rank:10,player:"Jalen Duren",team:"DET",teamRecord:"49-19",indexScore:90.1,trend:"up",keyStats:"36 PTS · 12 REB · career-high scoring",note:"Stepped up massively when Cunningham went down. Duren's 36 points were a career high and he dominated the glass with 12 rebounds. At 22, he's evolved from rim-runner to go-to scorer. If Cunningham misses any time, Duren will need to carry this level of production for the East's best team."}
+  {rank:10,player:"Jalen Duren",team:"DET",teamRecord:"49-19",indexScore:90.1,trend:"up",keyStats:"36 PTS · 12 REB · career-high scoring",note:"Stepped up massively when Cunningham went down. Duren's 36 points were a career high and he dominated the glass with 12 rebounds. At 22, he's evolved from rim-runner to go-to scorer. If Cunningham misses any time, Duren will need to carry this level of production for the East's best team.",rationale:""}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -182,3 +182,27 @@ export const westStandings = [
   {rank:9,team:"GSW",wins:33,losses:35,pct:".485",gb:"20.5",streak:"W1",last10:"3-7",conf:"west"},
   {rank:10,team:"POR",wins:33,losses:36,pct:".478",gb:"21.0",streak:"W1",last10:"5-5",conf:"west"}
 ];
+
+// ═══════════════════════════════════════════════════════════
+// THIS DAY IN NBA HISTORY
+// ═══════════════════════════════════════════════════════════
+
+export const historyFact = {
+  year: 1996,
+  fact: "Michael Jordan scored 55 points against the New York Knicks at Madison Square Garden.",
+  players: ["Michael Jordan"],
+};
+
+// ═══════════════════════════════════════════════════════════
+// HOOPS IQ QUIZ
+// ═══════════════════════════════════════════════════════════
+
+export const hoopsIQ = {
+  questions: [
+    {question:"Which player scored 40 points last night to extend their consecutive 20-point game streak to 129?",options:["A. Luka Dončić","B. Kevin Durant","C. Shai Gilgeous-Alexander","D. Paolo Banchero"],answer:"C",explanation:"Shai Gilgeous-Alexander dropped 40 points in Orlando to extend his all-time record to 129 consecutive 20-point games.",difficulty:"easy"},
+    {question:"Josh Hart shot 12-for-13 from the field last night. How many three-pointers did he make?",options:["A. 3","B. 4","C. 5","D. 6"],answer:"C",explanation:"Hart went 5-for-5 from three-point range, missing just one shot overall in 26 minutes as the Knicks won 136-110 without Brunson.",difficulty:"easy"},
+    {question:"Which team currently holds the best record in the NBA's Western Conference?",options:["A. San Antonio Spurs","B. Oklahoma City Thunder","C. Los Angeles Lakers","D. Denver Nuggets"],answer:"B",explanation:"The Oklahoma City Thunder lead the West at 54-15, ahead of the San Antonio Spurs at 51-18.",difficulty:"medium"},
+    {question:"Anthony Edwards was ruled out with right knee inflammation. Approximately how many points per game is he averaging this season?",options:["A. 26.2","B. 27.8","C. 29.5","D. 31.1"],answer:"C",explanation:"Edwards is averaging 29.5 PPG this season, putting his scoring title candidacy in jeopardy with a 1-2 week absence.",difficulty:"medium"},
+    {question:"Wilt Chamberlain holds the NBA record for most consecutive 50-point games. How many did he have?",options:["A. 4","B. 6","C. 7","D. 9"],answer:"C",explanation:"Wilt Chamberlain scored 50 or more points in 7 consecutive games during the 1961-62 season, a record that still stands today.",difficulty:"hard"},
+  ],
+};
