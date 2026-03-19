@@ -1,0 +1,28 @@
+name: Injury Status Monitor
+
+on:
+  schedule:
+    # Run every 30 minutes from 5pm to midnight Eastern (game hours)
+    # 10pm UTC = 5pm ET, 5am UTC = midnight ET
+    - cron: '0,30 22-23 * * *'
+    - cron: '0,30 0-5 * * *'
+  workflow_dispatch:  # allow manual trigger
+
+jobs:
+  check-injuries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Check injury status changes
+        run: node scripts/check-injuries.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PUSH_API_URL: ${{ secrets.PUSH_API_URL }}
+          PUSH_API_SECRET: ${{ secrets.PUSH_API_SECRET }}
