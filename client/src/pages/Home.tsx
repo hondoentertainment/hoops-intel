@@ -88,10 +88,10 @@ function TickerBar() {
     >
       <div className="flex items-center">
         <div
-          className="flex-shrink-0 px-4 py-2.5 z-10 flex items-center gap-2"
-          style={{ background: "#0EA5E9", minWidth: 90 }}
+          className="flex-shrink-0 px-3 py-1.5 z-10 flex items-center gap-1.5"
+          style={{ background: "#0EA5E9", minWidth: 60 }}
         >
-          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           <span className="section-label text-white text-xs font-bold tracking-widest">LIVE</span>
         </div>
         <div className="flex-1 overflow-hidden">
