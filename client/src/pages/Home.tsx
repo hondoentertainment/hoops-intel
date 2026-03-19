@@ -589,7 +589,7 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
 function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
   const isPersonalized = favoriteTeams.length > 0;
 
-  // Re-order so a favorite team's game appears first
+  // Re-order so a favorite team's game appears first, preserving relative order otherwise
   const sortedGames = isPersonalized
     ? [...gameResults].sort((a, b) => {
         const aIsFav = favoriteTeams.some(
@@ -701,7 +701,7 @@ function Sparkline({ trend }: { trend: string }) {
   );
 }
 
-// Modal that shows the full editorial rationale for a pulse index ranking
+// Modal showing the full editorial rationale for a Pulse Index ranking
 function PulseNoteModal({ note, playerName, onClose }: { note: string; playerName: string; onClose: () => void }) {
   // Close on Escape key
   useEffect(() => {
