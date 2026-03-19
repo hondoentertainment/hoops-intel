@@ -6,7 +6,7 @@
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 18, 2026",edition:"Vol. 2026 · No. 76",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13"};
+export const pulseEdition = {date:"March 18, 2026",edition:"Vol. 2026 · No. 76",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT

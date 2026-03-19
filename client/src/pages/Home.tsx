@@ -493,9 +493,15 @@ function HeroSection() {
           <h1 className="display-heading text-white mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
             {narrative.headline}
           </h1>
-          <p className="text-base mb-6 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p className="text-base mb-4 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
             {narrative.subhead}
           </p>
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-xs font-semibold tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>BY</span>
+            <span className="text-xs font-semibold tracking-wide" style={{ color: "rgba(255,255,255,0.6)" }}>WILL HENDERSON</span>
+            <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Hoops Intel</span>
+          </div>
           <div className="flex flex-wrap gap-3">
             <a href="#scores" className="px-5 py-2.5 rounded text-sm font-semibold text-white transition-all" style={{ background: "#0EA5E9" }}>
               View All Scores
