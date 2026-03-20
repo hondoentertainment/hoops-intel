@@ -1,12 +1,12 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: March 18, 2026 (Vol. 2026 · No. 76)
+// Last updated: March 20, 2026 (Vol. 2026 · No. 78)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 18, 2026",edition:"Vol. 2026 · No. 76",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
+export const pulseEdition = {date:"March 20, 2026",edition:"Vol. 2026 · No. 78",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT
@@ -113,7 +113,7 @@ export const injuryUpdates = [
 ];
 
 // ═══════════════════════════════════════════════════════════
-// GAME PREVIEWS (Tonight — Wednesday)
+// GAME PREVIEWS (Tonight — Friday)
 // ═══════════════════════════════════════════════════════════
 
 export const gamePreviews = [
