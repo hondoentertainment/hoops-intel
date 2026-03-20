@@ -126,6 +126,35 @@ export default function Player() {
                   </div>
                 </div>
               )}
+              {/* Share Card link */}
+              <a
+                href={`/card/${slug}`}
+                className="flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold transition-colors"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  color: "rgba(255,255,255,0.65)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(14,165,233,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#0EA5E9";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(14,165,233,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)";
+                }}
+                aria-label="View shareable card"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                Share Card
+              </a>
               {/* Share button */}
               <div ref={shareRef} className="relative">
                 <button

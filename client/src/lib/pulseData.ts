@@ -194,6 +194,20 @@ export const historyFact = {
 };
 
 // ═══════════════════════════════════════════════════════════
+// HOOPS IQ TRIVIA (Daily)
+// ═══════════════════════════════════════════════════════════
+
+export const triviaQuestion = {
+  id: "2026-03-20",
+  question: "Nikola Jokic has won 3 MVP awards. Which other center has won the most MVPs in NBA history?",
+  options: ["Kareem Abdul-Jabbar", "Shaquille O'Neal", "Bill Russell", "Moses Malone"],
+  correctIndex: 0,
+  explanation: "Kareem Abdul-Jabbar won 6 MVP awards (1971–72, 1973–74, 1975–76, 1976–77, 1979–80, 1980–81), the most of any player in NBA history.",
+  relatedPlayer: "nikola-jokic",
+  difficulty: "medium" as "easy" | "medium" | "hard",
+};
+
+// ═══════════════════════════════════════════════════════════
 // HOOPS IQ QUIZ
 // ═══════════════════════════════════════════════════════════
 
