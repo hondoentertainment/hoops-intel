@@ -376,10 +376,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Hoops IQ"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
