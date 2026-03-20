@@ -379,7 +379,7 @@ function Header() {
               {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -901,6 +901,18 @@ function InjurySection() {
               </div>
             );
           })}
+        </div>
+        <div className="mt-5 text-right">
+          <a
+            href="/injuries"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:underline"
+            style={{ color: "#0EA5E9" }}
+          >
+            Full Report
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
