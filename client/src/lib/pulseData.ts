@@ -1,12 +1,12 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: March 20, 2026 (Vol. 2026 · No. 78)
+// Last updated: March 21, 2026 (Vol. 2026 · No. 79)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 20, 2026",edition:"Vol. 2026 · No. 78",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
+export const pulseEdition = {date:"March 21, 2026",edition:"Vol. 2026 · No. 79",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT
@@ -198,7 +198,7 @@ export const historyFact = {
 // ═══════════════════════════════════════════════════════════
 
 export const triviaQuestion = {
-  id: "2026-03-20",
+  id: "2026-03-21",
   question: "Nikola Jokic has won 3 MVP awards. Which other center has won the most MVPs in NBA history?",
   options: ["Kareem Abdul-Jabbar", "Shaquille O'Neal", "Bill Russell", "Moses Malone"],
   correctIndex: 0,

@@ -24,7 +24,7 @@ interface TVIData {
 }
 
 const TRADE_VALUE_DATA: TVIData = {
-  generatedDate: "March 19, 2026",
+  generatedDate: "March 21, 2026",
   weekLabel: "Week of March 16–22, 2026",
   players: [
     { rank: 1, prevRank: 1, player: "Shai Gilgeous-Alexander", team: "OKC", age: 27, contract: "4 yrs / $243M remaining", tradeValue: 99, trend: "stable", rationale: "Untouchable. The MVP frontrunner with a historic scoring streak is the most valuable trade chip in the NBA — except OKC would never move him." },
