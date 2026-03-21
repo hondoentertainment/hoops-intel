@@ -18,7 +18,7 @@
 //   SUPABASE_SERVICE_KEY — service-role key (bypasses RLS for reading subscriptions)
 //   PUSH_API_SECRET    — shared secret callers must pass in the request body
 
-export const config = { runtime: 'nodejs18.x' };
+export const config = { runtime: 'nodejs' };
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
