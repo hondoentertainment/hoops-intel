@@ -1,6 +1,6 @@
 # Hoops Intel — Competitive Enhancement Recommendations
 
-> Authored: March 19, 2026
+> Authored: March 21, 2026
 
 This document identifies high-impact enhancements that go beyond the existing roadmap to sharpen Hoops Intel's competitive edge against The Athletic, ESPN, Bleacher Report, The Ringer, and fantasy-first platforms like RotoWire and Sleeper.
 
