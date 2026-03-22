@@ -6,7 +6,7 @@
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"March 22, 2026",edition:"Vol. 2026 · No. 80",subtitle:"SGA's 40 Extends Streak to 129 · Cunningham Exits With Back Spasms · Hart Shoots 12-for-13",author:"Will Henderson"};
+export const pulseEdition = {date:"March 22, 2026",edition:"Vol. 2026 · No. 80",subtitle:"Luka's 44/10/12 Shreds Denver · SGA 132 Straight · Cunningham Triple-Double · Mitchell 36 · Tatum 32",author:"Will Henderson"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE NIGHT
