@@ -24,8 +24,8 @@ interface TVIData {
 }
 
 const TRADE_VALUE_DATA: TVIData = {
-  generatedDate: "March 21, 2026",
-  weekLabel: "Week of March 16–22, 2026",
+  generatedDate: "March 22, 2026",
+  weekLabel: "Week of March 22–28, 2026",
   players: [
     { rank: 1, prevRank: 1, player: "Shai Gilgeous-Alexander", team: "OKC", age: 27, contract: "4 yrs / $243M remaining", tradeValue: 99, trend: "stable", rationale: "Untouchable. The MVP frontrunner with a historic scoring streak is the most valuable trade chip in the NBA — except OKC would never move him." },
     { rank: 2, prevRank: 3, player: "Victor Wembanyama", team: "SAS", age: 22, contract: "3 yrs / $60M remaining (rookie)", tradeValue: 98, trend: "up", rationale: "The generational talent on a rookie deal with three years left. Every GM in the league would empty their roster for him. San Antonio holds all the cards." },
