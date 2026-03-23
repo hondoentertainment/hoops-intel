@@ -16,6 +16,7 @@ const TradeValue = lazy(() => import("./pages/TradeValue"));
 const InjuryReport = lazy(() => import("./pages/InjuryReport"));
 const Trivia = lazy(() => import("./pages/Trivia"));
 const PlayerCard = lazy(() => import("./pages/PlayerCard"));
+const SeasonPerformance = lazy(() => import("./pages/SeasonPerformance"));
 
 function PageLoader() {
   return (
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="/injuries" component={InjuryReport} />
             <Route path="/card/:player" component={PlayerCard} />
             <Route path="/trivia" component={Trivia} />
+            <Route path="/performance" component={SeasonPerformance} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>

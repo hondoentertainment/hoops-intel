@@ -376,10 +376,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Hoops IQ"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -1226,6 +1226,7 @@ function Footer() {
             </p>
             <div className="flex gap-3">
               <a href="/archive" className="text-xs" style={{ color: "#0EA5E9" }}>Archive</a>
+              <a href="/performance" className="text-xs" style={{ color: "#0EA5E9" }}>AI Performance</a>
               <a href="/feed.xml" className="text-xs" style={{ color: "#0EA5E9" }}>RSS Feed</a>
             </div>
           </div>
@@ -1271,6 +1272,7 @@ function Footer() {
               <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
               <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
               <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
+              <a href="/performance" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>AI Season Performance</a>
             </div>
           </div>
         </div>
