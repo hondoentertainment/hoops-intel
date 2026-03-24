@@ -220,7 +220,7 @@ export default function SeasonPerformance() {
             AI MODEL SEASON PERFORMANCE
           </h1>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Tracking Hoops Intel&apos;s prediction accuracy across the 2025-26 NBA season &middot; Updated March 23, 2026
+            Tracking Hoops Intel&apos;s prediction accuracy across the 2025-26 NBA season &middot; Updated March 24, 2026
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 # Hoops Intel — Feature Roadmap
 
-> Last updated: March 22, 2026
+> Last updated: March 24, 2026
 
 ---
 
