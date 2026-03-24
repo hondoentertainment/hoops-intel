@@ -1,13 +1,13 @@
-name: Daily Edition Update
+name: Weekly Data Update
 
 on:
   schedule:
-    # 5:00 AM PST (UTC-8) = 13:00 UTC
-    - cron: "0 13 * * *"
+    # Monday 6:00 AM PST (UTC-8) = 14:00 UTC
+    - cron: "0 14 * * 1"
   workflow_dispatch: # allow manual trigger from GitHub Actions UI
 
 jobs:
-  generate-edition:
+  generate-weekly:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,64 +26,60 @@ jobs:
       - name: Install Anthropic SDK
         run: npm install @anthropic-ai/sdk --no-save
 
-      - name: Generate today's edition
+      - name: Generate trade value index
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-edition.mjs
+        run: node scripts/generate-trade-value.mjs || true
 
-      - name: Validate generated data
-        run: node scripts/validate-schema.mjs
-
-      - name: Generate RSS feed
-        run: node scripts/generate-rss.mjs
-
-      - name: Generate sitemap
-        run: node scripts/generate-sitemap.mjs
-
-      - name: Generate watch guide
+      - name: Generate lineups
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-watch-guide.mjs || true
+        run: node scripts/generate-lineups.mjs || true
 
-      - name: Generate sentiment analysis
+      - name: Generate tactics
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-sentiment.mjs || true
+        run: node scripts/generate-tactics.mjs || true
 
-      - name: Generate podcast companion
+      - name: Generate projections
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-podcast.mjs || true
+        run: node scripts/generate-projections.mjs || true
 
-      - name: Generate history engine
+      - name: Generate draft intel
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-history.mjs || true
+        run: node scripts/generate-draft.mjs || true
 
-      - name: Generate referee reports
+      - name: Generate clutch ratings
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-refs.mjs || true
+        run: node scripts/generate-clutch.mjs || true
 
-      - name: Generate momentum engine
+      - name: Generate trade simulator
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-momentum.mjs || true
+        run: node scripts/generate-trade-sim.mjs || true
+
+      - name: Generate community pulse
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-community-pulse.mjs || true
 
       - name: Check for changes
         id: changes
         run: |
           git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push edition
+      - name: Commit and push weekly data
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml client/src/lib/watchGuideData.ts client/src/lib/sentimentData.ts client/src/lib/podcastData.ts client/src/lib/historyData.ts client/src/lib/refsData.ts client/src/lib/momentumData.ts
-          git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ=\"America/Los_Angeles\" now')"
+          git add client/src/lib/tradeValueData.ts client/src/lib/lineupsData.ts client/src/lib/tacticsData.ts client/src/lib/projectionsData.ts client/src/lib/draftData.ts client/src/lib/clutchData.ts client/src/lib/tradeSimData.ts client/src/lib/communityPulseData.ts
+          git commit -m "Weekly update: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'
-        run: echo "No game data changes — skipping commit."
+        run: echo "No data changes — skipping commit."
