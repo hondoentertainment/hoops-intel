@@ -1,0 +1,53 @@
+name: Backfill Missing Days
+
+on:
+  workflow_dispatch:
+    inputs:
+      dates:
+        description: 'Space-separated dates to backfill (YYYY-MM-DD)'
+        required: true
+        default: '2026-03-25 2026-03-26 2026-03-27'
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk --no-save
+
+      - name: Run backfill
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/backfill-days.mjs ${{ github.event.inputs.dates }}
+        timeout-minutes: 30
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "hoops-intel-bot"
+          git config user.email "bot@hoopsintel.net"
+          git add client/src/lib/ public/feed.xml public/sitemap.xml
+          git commit -m "Backfill editions: ${{ github.event.inputs.dates }}"
+          git push origin ${{ github.ref_name }}
+
+      - name: No changes detected
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No changes generated — skipping commit."
