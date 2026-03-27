@@ -1,13 +1,15 @@
-name: Daily Edition Update
+name: Backfill Missing Days
 
 on:
-  schedule:
-    # 5:00 AM PST (UTC-8) = 13:00 UTC
-    - cron: "0 13 * * *"
-  workflow_dispatch: # allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      dates:
+        description: 'Space-separated dates to backfill (YYYY-MM-DD)'
+        required: true
+        default: '2026-03-25 2026-03-26 2026-03-27'
 
 jobs:
-  generate-edition:
+  backfill:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,26 +28,26 @@ jobs:
       - name: Install Anthropic SDK
         run: npm install @anthropic-ai/sdk --no-save
 
-      - name: Run optimized daily generation
+      - name: Run backfill
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-all-daily.mjs
-        timeout-minutes: 10
+        run: node scripts/backfill-days.mjs ${{ github.event.inputs.dates }}
+        timeout-minutes: 30
 
       - name: Check for changes
         id: changes
         run: |
           git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push edition
+      - name: Commit and push
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml client/src/lib/watchGuideData.ts client/src/lib/sentimentData.ts client/src/lib/podcastData.ts client/src/lib/historyData.ts client/src/lib/refData.ts client/src/lib/momentumData.ts
-          git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
+          git add client/src/lib/ public/feed.xml public/sitemap.xml
+          git commit -m "Backfill editions: ${{ github.event.inputs.dates }}"
           git push origin ${{ github.ref_name }}
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'
-        run: echo "No game data changes — skipping commit."
+        run: echo "No changes generated — skipping commit."

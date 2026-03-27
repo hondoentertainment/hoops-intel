@@ -11,25 +11,11 @@ import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
+import { toESPNDate, toDisplayDate } from "./lib/dates.mjs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
-
-// ── Date helpers ───────────────────────────────────────────
-
-function toESPNDate(daysOffset = 0) {
-  const d = new Date();
-  const la = new Date(d.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  la.setDate(la.getDate() + daysOffset);
-  return la.toISOString().slice(0, 10).replace(/-/g, "");
-}
-
-function toDisplayDate(daysOffset = 0) {
-  const d = new Date();
-  const la = new Date(d.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  la.setDate(la.getDate() + daysOffset);
-  return la.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-}
 
 // ── ESPN scoreboard API ────────────────────────────────────
 

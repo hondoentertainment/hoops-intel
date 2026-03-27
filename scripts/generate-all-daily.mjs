@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-// generate-all-daily.mjs — Convenience script to run all daily generation scripts
+// generate-all-daily.mjs — Optimized daily generation runner
+// Runs edition first (others depend on pulseData.ts), then all remaining scripts in parallel.
 // Usage: node scripts/generate-all-daily.mjs
 
-import { execSync } from "child_process";
+import { spawn } from "child_process";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -10,8 +11,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
-const DAILY_SCRIPTS = [
+// Phase 1: Must run first — generates pulseData.ts that other scripts depend on
+const PHASE_1 = [
   { name: "Edition", script: "generate-edition.mjs" },
+];
+
+// Phase 1.5: Validation — must pass before continuing
+const VALIDATION = [
+  { name: "Schema Validation", script: "validate-schema.mjs" },
+];
+
+// Phase 2: Run in parallel — all independent of each other, only depend on pulseData.ts
+const PHASE_2 = [
   { name: "Watch Guide", script: "generate-watch-guide.mjs" },
   { name: "Sentiment", script: "generate-sentiment.mjs" },
   { name: "Momentum", script: "generate-momentum.mjs" },
@@ -22,52 +33,131 @@ const DAILY_SCRIPTS = [
   { name: "Sitemap", script: "generate-sitemap.mjs" },
 ];
 
-async function main() {
-  console.log("🏀 Hoops Intel — Daily Generation Runner");
-  console.log(`   Running ${DAILY_SCRIPTS.length} scripts...\n`);
+const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
 
-  const results = [];
-  let passed = 0;
-  let failed = 0;
-
-  for (const { name, script } of DAILY_SCRIPTS) {
+function runScript({ name, script }) {
+  return new Promise((resolve) => {
     const scriptPath = join(__dirname, script);
-    console.log(`── ${name} (${script}) ──`);
+    const start = Date.now();
 
-    try {
-      execSync(`node ${scriptPath}`, {
-        cwd: ROOT,
-        stdio: "inherit",
-        env: process.env,
-        timeout: 120_000, // 2 minute timeout per script
-      });
-      results.push({ name, status: "success" });
-      passed++;
-      console.log(`✅ ${name} — SUCCESS\n`);
-    } catch (err) {
-      results.push({ name, status: "failed", error: err.message });
-      failed++;
-      console.error(`❌ ${name} — FAILED: ${err.message}\n`);
+    const child = spawn("node", [scriptPath], {
+      cwd: ROOT,
+      env: process.env,
+      stdio: "pipe",
+    });
+
+    let stdout = "";
+    let stderr = "";
+    child.stdout.on("data", (d) => { stdout += d; });
+    child.stderr.on("data", (d) => { stderr += d; });
+
+    const timer = setTimeout(() => {
+      child.kill("SIGTERM");
+    }, SCRIPT_TIMEOUT);
+
+    child.on("close", (code) => {
+      clearTimeout(timer);
+      const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+      if (code === 0) {
+        resolve({ name, status: "success", elapsed });
+      } else {
+        // Print stderr for failed scripts
+        if (stderr) console.error(`  [${name}] ${stderr.trim()}`);
+        resolve({ name, status: "failed", elapsed, error: `exit code ${code}` });
+      }
+    });
+
+    child.on("error", (err) => {
+      clearTimeout(timer);
+      const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+      resolve({ name, status: "failed", elapsed, error: err.message });
+    });
+  });
+}
+
+async function runPhase(label, scripts, { parallel = false } = {}) {
+  console.log(`\n── ${label} ──`);
+  const start = Date.now();
+  let results;
+
+  if (parallel) {
+    console.log(`   Running ${scripts.length} scripts in parallel...`);
+    results = await Promise.all(scripts.map(runScript));
+  } else {
+    results = [];
+    for (const s of scripts) {
+      console.log(`   Running ${s.name}...`);
+      results.push(await runScript(s));
     }
   }
 
-  // ── Summary ───────────────────────────────────────────────
+  const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+  const passed = results.filter((r) => r.status === "success").length;
+  const failed = results.filter((r) => r.status === "failed").length;
+
+  for (const r of results) {
+    const icon = r.status === "success" ? "+" : "x";
+    const suffix = r.error ? ` (${r.error})` : "";
+    console.log(`   [${icon}] ${r.name} — ${r.elapsed}s${suffix}`);
+  }
+  console.log(`   Phase total: ${elapsed}s (${passed} passed, ${failed} failed)`);
+
+  return results;
+}
+
+async function main() {
+  const totalStart = Date.now();
+  console.log("Hoops Intel — Optimized Daily Generation Runner");
+  console.log(`   Total scripts: ${PHASE_1.length + VALIDATION.length + PHASE_2.length}`);
+
+  // Phase 1: Generate edition (sequential — must complete before others)
+  const p1 = await runPhase("Phase 1: Edition Generation", PHASE_1);
+  if (p1.some((r) => r.status === "failed")) {
+    console.error("\nEdition generation failed — aborting.");
+    process.exit(1);
+  }
+
+  // Phase 1.5: Validate schema
+  const val = await runPhase("Phase 1.5: Schema Validation", VALIDATION);
+  if (val.some((r) => r.status === "failed")) {
+    console.error("\nSchema validation failed — aborting.");
+    process.exit(1);
+  }
+
+  // Phase 2: All remaining scripts in parallel
+  const p2 = await runPhase("Phase 2: Parallel Content Generation", PHASE_2, { parallel: true });
+
+  // Summary
+  const allResults = [...p1, ...val, ...p2];
+  const passed = allResults.filter((r) => r.status === "success").length;
+  const failed = allResults.filter((r) => r.status === "failed").length;
+  const totalElapsed = ((Date.now() - totalStart) / 1000).toFixed(1);
+
   console.log("\n══════════════════════════════════════════");
   console.log("  Daily Generation Summary");
   console.log("══════════════════════════════════════════");
-  for (const r of results) {
-    const icon = r.status === "success" ? "✅" : "❌";
-    console.log(`  ${icon} ${r.name}`);
+  for (const r of allResults) {
+    const icon = r.status === "success" ? "+" : "x";
+    console.log(`  [${icon}] ${r.name} (${r.elapsed}s)`);
   }
-  console.log(`\n  Passed: ${passed}/${DAILY_SCRIPTS.length}`);
-  console.log(`  Failed: ${failed}/${DAILY_SCRIPTS.length}`);
+  console.log(`\n  Passed: ${passed}/${allResults.length}`);
+  console.log(`  Failed: ${failed}/${allResults.length}`);
+  console.log(`  Total time: ${totalElapsed}s`);
   console.log("══════════════════════════════════════════\n");
 
   if (failed > 0) {
-    console.log(`⚠️  ${failed} script(s) failed — check logs above for details.`);
-    process.exit(1);
+    // Only fail hard if critical scripts failed (edition/validation)
+    // Phase 2 failures are non-critical (workflow uses || true for these)
+    const criticalFail = [...p1, ...val].some((r) => r.status === "failed");
+    if (criticalFail) {
+      console.log(`${failed} critical script(s) failed.`);
+      process.exit(1);
+    } else {
+      console.log(`${failed} non-critical script(s) failed — edition was generated successfully.`);
+      process.exit(0);
+    }
   } else {
-    console.log("🎉 All daily scripts completed successfully!");
+    console.log("All daily scripts completed successfully!");
   }
 }
 
