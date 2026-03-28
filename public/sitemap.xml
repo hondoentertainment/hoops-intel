@@ -193,6 +193,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/player/cason-wallace</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/player/chet-holmgren</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
@@ -397,6 +403,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/player/jaime-jaquez-jr</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/player/jakob-poeltl</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
@@ -452,6 +464,12 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/player/jarace-walker</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/jarrett-allen</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -613,6 +631,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/player/kristaps-porzi-is</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/kyle-filipowski</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/player/kyle-kuzma</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
@@ -656,6 +686,12 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/player/mark-williams</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/marvin-bagley-iii</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -751,7 +787,19 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/player/obi-toppin</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/player/ochai-agbaji</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/olivier-maxence-prosper</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1094,6 +1142,12 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/team/Indiana Pacers</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/team/LA Clippers</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
