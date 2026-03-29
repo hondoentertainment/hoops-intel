@@ -39,8 +39,9 @@ const REQUIRED_ENV = [
 
 const missing = REQUIRED_ENV.filter((k) => !process.env[k]);
 if (missing.length > 0) {
-  console.error(`[check-injuries] Missing required env vars: ${missing.join(', ')}`);
-  process.exit(1);
+  console.log(`[check-injuries] Skipping — missing env vars: ${missing.join(', ')}`);
+  console.log(`[check-injuries] Add these as GitHub repository secrets to enable this workflow.`);
+  process.exit(0); // exit cleanly so the GH Action doesn't report a failure
 }
 
 const SUPABASE_URL         = process.env.SUPABASE_URL;

@@ -67,6 +67,11 @@ function getLastEditionNumber() {
 
 // ── Main ──────────────────────────────────────────────────
 async function main() {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.log('[generate-edition] Skipping — ANTHROPIC_API_KEY not set.');
+    console.log('[generate-edition] Add it as a GitHub repository secret to enable this workflow.');
+    process.exit(0);
+  }
   const client = new Anthropic(); // reads ANTHROPIC_API_KEY from env
 
   const yesterdayESPN = toESPNDate(-1);

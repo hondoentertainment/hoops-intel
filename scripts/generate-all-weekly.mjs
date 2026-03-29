@@ -10,6 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
+// ── Pre-flight: check for required secrets ─────────────────────────────────
+if (!process.env.ANTHROPIC_API_KEY) {
+  console.log("🏀 Hoops Intel — Weekly Generation Runner");
+  console.log("⏭️  Skipping — ANTHROPIC_API_KEY not set.");
+  console.log("   Add it as a GitHub repository secret to enable this workflow.");
+  process.exit(0);
+}
+
 const WEEKLY_SCRIPTS = [
   { name: "Trade Value", script: "generate-trade-value.mjs" },
   { name: "Lineups", script: "generate-lineups.mjs" },
