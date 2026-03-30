@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
+import { retryAsync, requireEnv } from "./lib/retry.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,6 +26,8 @@ function readPulseContext() {
 
 // ── Main ──────────────────────────────────────────────────
 async function main() {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-sentiment")) process.exit(0);
+
   const client = new Anthropic();
 
   const todayISO = toISODate(0);
@@ -122,11 +125,11 @@ export const sentimentData: SentimentData = {
 
 Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
-  const msg = await client.messages.create({
+  const msg = await retryAsync(() => client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
     messages: [{ role: "user", content: prompt }],
-  });
+  }));
 
   let content = msg.content[0].text.trim();
 

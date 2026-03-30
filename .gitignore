@@ -7,3 +7,5 @@ Thumbs.db
 .claude/
 .vercel
 .env*.local
+.espn-cache/
+.generation-report.json

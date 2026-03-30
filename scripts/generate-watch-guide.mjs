@@ -9,40 +9,12 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
+import { retryAsync, requireEnv } from "./lib/retry.mjs";
+import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
-
-// ── ESPN schedule API ──────────────────────────────────────
-async function fetchESPN(espnDate) {
-  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${espnDate}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`ESPN API ${url} returned ${res.status}`);
-  return res.json();
-}
-
-function parseGames(espnData) {
-  return (espnData.events || []).map((e) => {
-    const comp = e.competitions[0];
-    const home = comp.competitors.find((c) => c.homeAway === "home");
-    const away = comp.competitors.find((c) => c.homeAway === "away");
-    const done = comp.status?.type?.completed ?? false;
-
-    return {
-      status: done ? "final" : "scheduled",
-      homeTeam: home?.team?.abbreviation ?? "",
-      homeTeamFull: home?.team?.displayName ?? "",
-      homeRecord: home?.records?.[0]?.summary ?? "",
-      awayTeam: away?.team?.abbreviation ?? "",
-      awayTeamFull: away?.team?.displayName ?? "",
-      awayRecord: away?.records?.[0]?.summary ?? "",
-      time: comp.status?.type?.shortDetail ?? "",
-      venue: comp.venue?.fullName ?? "",
-      tv: (comp.broadcasts || []).map((b) => b.names?.join(", ")).filter(Boolean).join(" / ") || "Local",
-    };
-  });
-}
 
 // ── Read pulse context ─────────────────────────────────────
 function readPulseContext() {
@@ -55,6 +27,8 @@ function readPulseContext() {
 
 // ── Main ──────────────────────────────────────────────────
 async function main() {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-watch-guide")) process.exit(0);
+
   const client = new Anthropic();
 
   const todayESPN = toESPNDate(0);
@@ -67,7 +41,7 @@ async function main() {
   console.log(`🏀 Fetching ESPN schedule for ${todayESPN}...`);
   let games;
   try {
-    const espnData = await fetchESPN(todayESPN);
+    const espnData = await fetchESPNCached(todayESPN);
     games = parseGames(espnData);
   } catch (err) {
     console.error("ESPN fetch error:", err.message);
@@ -200,11 +174,11 @@ export const watchGuideData: WatchGuideData = {
 - Consider current narratives, streaks, playoff race, injuries
 - Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
-  const msg = await client.messages.create({
+  const msg = await retryAsync(() => client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
     messages: [{ role: "user", content: prompt }],
-  });
+  }));
 
   let content = msg.content[0].text.trim();
 

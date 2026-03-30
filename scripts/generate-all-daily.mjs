@@ -4,12 +4,19 @@
 // Usage: node scripts/generate-all-daily.mjs
 
 import { spawn } from "child_process";
+import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+
+// ── CLI flags ──────────────────────────────────────────────────────────────
+const DRY_RUN = process.argv.includes("--dry-run");
+if (DRY_RUN) {
+  console.log("🧪 DRY RUN MODE — will validate inputs but not generate content");
+}
 
 // ── Pre-flight: check for required secrets ─────────────────────────────────
 if (!process.env.ANTHROPIC_API_KEY) {
@@ -49,7 +56,8 @@ function runScript({ name, script }) {
     const scriptPath = join(__dirname, script);
     const start = Date.now();
 
-    const child = spawn("node", [scriptPath], {
+    const args = DRY_RUN ? [scriptPath, "--dry-run"] : [scriptPath];
+    const child = spawn("node", args, {
       cwd: ROOT,
       env: process.env,
       stdio: "pipe",
@@ -154,16 +162,29 @@ async function main() {
   console.log(`  Total time: ${totalElapsed}s`);
   console.log("══════════════════════════════════════════\n");
 
+  // Write generation report for debugging
+  const report = {
+    date: new Date().toISOString(),
+    totalTime: `${totalElapsed}s`,
+    passed,
+    failed,
+    results: allResults.map((r) => ({ name: r.name, status: r.status, elapsed: r.elapsed, error: r.error })),
+  };
+  try {
+    writeFileSync(join(ROOT, ".generation-report.json"), JSON.stringify(report, null, 2), "utf8");
+  } catch { /* non-critical */ }
+
   if (failed > 0) {
-    // Only fail hard if critical scripts failed (edition/validation)
-    // Phase 2 failures are non-critical (workflow uses || true for these)
     const criticalFail = [...p1, ...val].some((r) => r.status === "failed");
+    const failedNames = allResults.filter((r) => r.status === "failed").map((r) => r.name).join(", ");
     if (criticalFail) {
-      console.log(`${failed} critical script(s) failed.`);
+      console.log(`${failed} critical script(s) failed: ${failedNames}`);
       process.exit(1);
     } else {
-      console.log(`${failed} non-critical script(s) failed — edition was generated successfully.`);
-      process.exit(0);
+      // Exit with code 2 for partial failure — workflow can detect this
+      console.log(`${failed} non-critical script(s) failed (${failedNames}) — edition was generated successfully.`);
+      console.log("Exiting with code 2 (partial failure) to flag incomplete generation.");
+      process.exit(2);
     }
   } else {
     console.log("All daily scripts completed successfully!");
