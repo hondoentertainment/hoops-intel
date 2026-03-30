@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 import { toDisplayDate } from "./lib/dates.mjs";
+import { retryAsync, requireEnv } from "./lib/retry.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,6 +17,8 @@ const ROOT = join(__dirname, "..");
 
 // ── Main ──────────────────────────────────────────────────
 async function main() {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-refs")) process.exit(0);
+
   const client = new Anthropic();
   const editionDate = toDisplayDate(0);
 
@@ -100,11 +103,11 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
   console.log("🤖 Calling Claude API...");
 
-  const msg = await client.messages.create({
+  const msg = await retryAsync(() => client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 10000,
     messages: [{ role: "user", content: prompt }],
-  });
+  }));
 
   const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
 

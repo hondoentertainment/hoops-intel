@@ -12,50 +12,12 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 import { toESPNDate, toDisplayDate } from "./lib/dates.mjs";
+import { retryAsync, requireEnv } from "./lib/retry.mjs";
+import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
-
-// ── ESPN scoreboard API ────────────────────────────────────
-
-async function fetchESPN(espnDate) {
-  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${espnDate}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`ESPN API ${url} returned ${res.status}`);
-  return res.json();
-}
-
-function parseGames(espnData) {
-  return (espnData.events || []).map((e) => {
-    const comp = e.competitions[0];
-    const home = comp.competitors.find((c) => c.homeAway === "home");
-    const away = comp.competitors.find((c) => c.homeAway === "away");
-    const done = comp.status?.type?.completed ?? false;
-
-    const leaders = (comp.leaders || []).map((l) => ({
-      category: l.name,
-      player: l.leaders?.[0]?.athlete?.displayName ?? "",
-      team: l.leaders?.[0]?.team?.abbreviation ?? "",
-      value: l.leaders?.[0]?.displayValue ?? "",
-    }));
-
-    return {
-      status: done ? "final" : "scheduled",
-      homeTeam: home?.team?.abbreviation ?? "",
-      homeTeamFull: home?.team?.displayName ?? "",
-      homeRecord: home?.records?.[0]?.summary ?? "",
-      homeScore: done ? parseInt(home?.score ?? "0") : null,
-      awayTeam: away?.team?.abbreviation ?? "",
-      awayTeamFull: away?.team?.displayName ?? "",
-      awayRecord: away?.records?.[0]?.summary ?? "",
-      awayScore: done ? parseInt(away?.score ?? "0") : null,
-      time: comp.status?.type?.shortDetail ?? "",
-      venue: comp.venue?.fullName ?? "",
-      leaders,
-    };
-  });
-}
 
 // ── Read pulseData.ts as context ────────────────────────────
 
@@ -157,6 +119,8 @@ function writeOutput(content) {
 // ── Main ────────────────────────────────────────────────────
 
 async function main() {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-momentum")) process.exit(0);
+
   const displayDate = toDisplayDate(0);
   const yesterdayESPN = toESPNDate(-1);
 
@@ -169,7 +133,7 @@ async function main() {
   console.log("📡 Fetching ESPN scoreboard data...");
   let games;
   try {
-    const espnData = await fetchESPN(yesterdayESPN);
+    const espnData = await fetchESPNCached(yesterdayESPN);
     games = parseGames(espnData);
   } catch (err) {
     console.error("❌ ESPN fetch error:", err.message);
@@ -196,7 +160,7 @@ async function main() {
 
   let responseText;
   try {
-    const message = await client.messages.create({
+    const message = await retryAsync(() => client.messages.create({
       model: "claude-sonnet-4-6",
       max_tokens: 8192,
       messages: [
@@ -205,7 +169,7 @@ async function main() {
           content: prompt,
         },
       ],
-    });
+    }));
 
     const block = message.content.find((b) => b.type === "text");
     if (!block) throw new Error("No text block in Claude response");
