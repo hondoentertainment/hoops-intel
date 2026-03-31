@@ -1,0 +1,344 @@
+#!/usr/bin/env node
+// validate-content.mjs — Content validation tests for pulseData.ts
+// Validates structure, data integrity, and business rules.
+// No test framework needed — uses simple assert-style checks.
+// Usage: node scripts/tests/validate-content.mjs
+
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const ROOT = join(__dirname, "../..");
+const PULSE_PATH = join(ROOT, "client/src/lib/pulseData.ts");
+
+// ── Valid enums ─────────────────────────────────────────────
+
+const TEAM_ABBRS = new Set([
+  "ATL","BOS","BRK","CHA","CHI","CLE","DAL","DEN","DET","GSW",
+  "HOU","IND","LAC","LAL","MEM","MIA","MIL","MIN","NOP","NYK",
+  "OKC","ORL","PHI","PHX","POR","SAC","SAS","TOR","UTA","WAS",
+]);
+
+const VALID_FANTASY_ACTIONS = new Set(["add", "drop", "hold", "stream"]);
+
+const VALID_INJURY_STATUSES = new Set([
+  "Out", "Day-to-Day", "Questionable", "Probable", "Doubtful",
+]);
+
+// ── Test runner ─────────────────────────────────────────────
+
+let passed = 0;
+let failed = 0;
+const failures = [];
+
+function test(name, fn) {
+  try {
+    fn();
+    passed++;
+    console.log(`  [PASS] ${name}`);
+  } catch (err) {
+    failed++;
+    failures.push({ name, error: err.message });
+    console.log(`  [FAIL] ${name}`);
+    console.log(`         ${err.message}`);
+  }
+}
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function assertEqual(actual, expected, message) {
+  if (actual !== expected) {
+    throw new Error(`${message}: expected ${expected}, got ${actual}`);
+  }
+}
+
+// ── Parse pulseData.ts ──────────────────────────────────────
+
+function extractExport(content, name) {
+  // Match: export const NAME = <value>;
+  // Handles multi-line arrays and single-line objects
+  const regex = new RegExp(
+    `export\\s+const\\s+${name}\\s*=\\s*`,
+  );
+  const match = regex.exec(content);
+  if (!match) return undefined;
+
+  const start = match.index + match[0].length;
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  let i = start;
+
+  for (; i < content.length; i++) {
+    const ch = content[i];
+    if (escape) { escape = false; continue; }
+    if (ch === "\\") { escape = true; continue; }
+    if (ch === '"' && !escape) { inString = !inString; continue; }
+    if (inString) continue;
+    if (ch === "{" || ch === "[") depth++;
+    if (ch === "}" || ch === "]") {
+      depth--;
+      if (depth === 0) { i++; break; }
+    }
+  }
+
+  const jsonStr = content.slice(start, i);
+  try {
+    return JSON.parse(jsonStr);
+  } catch {
+    throw new Error(`Failed to parse export "${name}": invalid JSON`);
+  }
+}
+
+// ── Main ────────────────────────────────────────────────────
+
+function main() {
+  console.log("\n=== Content Validation Tests ===\n");
+
+  let content;
+  try {
+    content = readFileSync(PULSE_PATH, "utf8");
+  } catch (err) {
+    console.log(`  [FAIL] pulseData.ts not found at ${PULSE_PATH}`);
+    process.exit(1);
+  }
+
+  // ── Test: file can be parsed (no syntax errors in exports) ──
+
+  const exports = {};
+  const exportNames = [
+    "pulseEdition", "narrative", "tickerItems", "gameResults",
+    "pulseIndex", "statLeaders", "mediaReactions", "injuryUpdates",
+    "gamePreviews", "rookieWatch", "fantasyAlerts",
+    "eastStandings", "westStandings",
+    "historyFact", "triviaQuestion", "hoopsIQ",
+  ];
+
+  test("pulseData.ts can be parsed (all exports are valid JSON)", () => {
+    for (const name of exportNames) {
+      const val = extractExport(content, name);
+      assert(val !== undefined, `Export "${name}" not found`);
+      exports[name] = val;
+    }
+  });
+
+  // If parsing failed, bail out since remaining tests depend on parsed data
+  if (Object.keys(exports).length === 0) {
+    console.log("\n  Parsing failed — skipping remaining tests.\n");
+    process.exit(1);
+  }
+
+  // ── Test: game results have valid team abbreviations ──
+
+  test("game results have valid team abbreviations", () => {
+    const results = exports.gameResults;
+    assert(Array.isArray(results), "gameResults should be an array");
+    assert(results.length > 0, "gameResults should not be empty");
+    for (const game of results) {
+      assert(
+        TEAM_ABBRS.has(game.homeTeam),
+        `Invalid home team abbreviation: "${game.homeTeam}"`,
+      );
+      assert(
+        TEAM_ABBRS.has(game.awayTeam),
+        `Invalid away team abbreviation: "${game.awayTeam}"`,
+      );
+      assert(
+        typeof game.homeScore === "number" && game.homeScore > 0,
+        `Invalid home score for ${game.homeTeam} vs ${game.awayTeam}: ${game.homeScore}`,
+      );
+      assert(
+        typeof game.awayScore === "number" && game.awayScore > 0,
+        `Invalid away score for ${game.homeTeam} vs ${game.awayTeam}: ${game.awayScore}`,
+      );
+      assert(
+        game.status === "final",
+        `Game ${game.homeTeam} vs ${game.awayTeam} has unexpected status: "${game.status}"`,
+      );
+    }
+  });
+
+  // ── Test: pulse index has exactly 10 entries ranked 1-10 ──
+
+  test("pulse index has exactly 10 entries ranked 1-10", () => {
+    const index = exports.pulseIndex;
+    assert(Array.isArray(index), "pulseIndex should be an array");
+    assertEqual(index.length, 10, "pulseIndex length");
+    const ranks = index.map(e => e.rank).sort((a, b) => a - b);
+    for (let i = 0; i < 10; i++) {
+      assertEqual(ranks[i], i + 1, `Rank at position ${i}`);
+    }
+    // Validate teams
+    for (const entry of index) {
+      assert(
+        TEAM_ABBRS.has(entry.team),
+        `Invalid team in pulse index: "${entry.team}" for ${entry.player}`,
+      );
+      assert(
+        typeof entry.indexScore === "number" && entry.indexScore > 0,
+        `Invalid indexScore for ${entry.player}: ${entry.indexScore}`,
+      );
+      assert(
+        ["up", "down", "stable", "new"].includes(entry.trend),
+        `Invalid trend for ${entry.player}: "${entry.trend}"`,
+      );
+    }
+  });
+
+  // ── Test: standings have 10 entries per conference ──
+
+  test("standings have 10 entries per conference", () => {
+    const east = exports.eastStandings;
+    const west = exports.westStandings;
+    assert(Array.isArray(east), "eastStandings should be an array");
+    assert(Array.isArray(west), "westStandings should be an array");
+    assertEqual(east.length, 10, "eastStandings length");
+    assertEqual(west.length, 10, "westStandings length");
+
+    for (const entry of east) {
+      assert(TEAM_ABBRS.has(entry.team), `Invalid team in east standings: "${entry.team}"`);
+      assertEqual(entry.conf, "east", `East standings entry ${entry.team} has conf`);
+      assert(typeof entry.wins === "number", `wins should be a number for ${entry.team}`);
+      assert(typeof entry.losses === "number", `losses should be a number for ${entry.team}`);
+    }
+    for (const entry of west) {
+      assert(TEAM_ABBRS.has(entry.team), `Invalid team in west standings: "${entry.team}"`);
+      assertEqual(entry.conf, "west", `West standings entry ${entry.team} has conf`);
+      assert(typeof entry.wins === "number", `wins should be a number for ${entry.team}`);
+      assert(typeof entry.losses === "number", `losses should be a number for ${entry.team}`);
+    }
+
+    // Verify ranks are sequential
+    const eastRanks = east.map(e => e.rank).sort((a, b) => a - b);
+    const westRanks = west.map(e => e.rank).sort((a, b) => a - b);
+    for (let i = 0; i < 10; i++) {
+      assertEqual(eastRanks[i], i + 1, `East rank at position ${i}`);
+      assertEqual(westRanks[i], i + 1, `West rank at position ${i}`);
+    }
+  });
+
+  // ── Test: game previews have exactly one featured game ──
+
+  test("game previews have exactly one featured game", () => {
+    const previews = exports.gamePreviews;
+    assert(Array.isArray(previews), "gamePreviews should be an array");
+    assert(previews.length > 0, "gamePreviews should not be empty");
+
+    const featured = previews.filter(p => p.featured === true);
+    assertEqual(featured.length, 1, "Number of featured games");
+
+    // Validate team abbreviations in previews
+    for (const preview of previews) {
+      assert(
+        TEAM_ABBRS.has(preview.homeTeam),
+        `Invalid home team in preview: "${preview.homeTeam}"`,
+      );
+      assert(
+        TEAM_ABBRS.has(preview.awayTeam),
+        `Invalid away team in preview: "${preview.awayTeam}"`,
+      );
+    }
+  });
+
+  // ── Test: all dates in the edition match the expected date ──
+
+  test("all dates in the edition match the expected date", () => {
+    const edition = exports.pulseEdition;
+    assert(edition.date, "pulseEdition should have a date");
+
+    // Parse the edition date
+    const editionDate = new Date(edition.date);
+    assert(!isNaN(editionDate.getTime()), `Could not parse edition date: "${edition.date}"`);
+
+    // Check header date matches
+    const headerMatch = content.match(/\/\/ Last updated:\s*(.+?)\s*\(/);
+    assert(headerMatch, "Could not find header date");
+    const headerDate = new Date(headerMatch[1].trim());
+    assert(!isNaN(headerDate.getTime()), `Could not parse header date: "${headerMatch[1]}"`);
+
+    // Both should represent the same calendar date
+    assertEqual(
+      editionDate.toDateString(),
+      headerDate.toDateString(),
+      "Edition date should match header date",
+    );
+
+    // Trivia question ID should match the edition date
+    const trivia = exports.triviaQuestion;
+    if (trivia && trivia.id) {
+      const triviaDate = new Date(trivia.id);
+      if (!isNaN(triviaDate.getTime())) {
+        assertEqual(
+          editionDate.toDateString(),
+          triviaDate.toDateString(),
+          "Trivia question date should match edition date",
+        );
+      }
+    }
+  });
+
+  // ── Test: fantasy alerts have valid action values ──
+
+  test("fantasy alerts have valid action values (add/drop/hold/stream)", () => {
+    const alerts = exports.fantasyAlerts;
+    assert(Array.isArray(alerts), "fantasyAlerts should be an array");
+    assert(alerts.length > 0, "fantasyAlerts should not be empty");
+
+    for (const alert of alerts) {
+      assert(
+        VALID_FANTASY_ACTIONS.has(alert.action),
+        `Invalid fantasy action for ${alert.player}: "${alert.action}" (valid: ${[...VALID_FANTASY_ACTIONS].join(", ")})`,
+      );
+      assert(
+        TEAM_ABBRS.has(alert.team),
+        `Invalid team in fantasy alert: "${alert.team}" for ${alert.player}`,
+      );
+      assert(
+        ["high", "medium", "low"].includes(alert.urgency),
+        `Invalid urgency for ${alert.player}: "${alert.urgency}"`,
+      );
+    }
+  });
+
+  // ── Test: injury statuses are valid enum values ──
+
+  test("injury statuses are valid enum values", () => {
+    const injuries = exports.injuryUpdates;
+    assert(Array.isArray(injuries), "injuryUpdates should be an array");
+    assert(injuries.length > 0, "injuryUpdates should not be empty");
+
+    for (const injury of injuries) {
+      assert(
+        VALID_INJURY_STATUSES.has(injury.status),
+        `Invalid injury status for ${injury.player}: "${injury.status}" (valid: ${[...VALID_INJURY_STATUSES].join(", ")})`,
+      );
+      assert(
+        TEAM_ABBRS.has(injury.team),
+        `Invalid team in injury: "${injury.team}" for ${injury.player}`,
+      );
+      assert(
+        typeof injury.injury === "string" && injury.injury.length > 0,
+        `Missing injury description for ${injury.player}`,
+      );
+    }
+  });
+
+  // ── Summary ───────────────────────────────────────────────
+
+  console.log(`\n--- Results: ${passed} passed, ${failed} failed ---`);
+  if (failures.length > 0) {
+    console.log("\nFailures:");
+    for (const f of failures) {
+      console.log(`  - ${f.name}: ${f.error}`);
+    }
+  }
+  console.log("");
+
+  process.exit(failed > 0 ? 1 : 0);
+}
+
+main();

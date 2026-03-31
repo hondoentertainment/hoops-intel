@@ -47,6 +47,7 @@ const PHASE_2 = [
   { name: "Refs", script: "generate-refs.mjs" },
   { name: "RSS Feed", script: "generate-rss.mjs" },
   { name: "Sitemap", script: "generate-sitemap.mjs" },
+  { name: "OG Images", script: "generate-og-images.mjs" },
 ];
 
 const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script

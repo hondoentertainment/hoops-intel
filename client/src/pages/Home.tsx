@@ -21,6 +21,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import AuthModal from "../components/AuthModal";
+import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
 
 // ═══════════════════════════════════════════════════════════
@@ -460,12 +461,6 @@ function Header() {
 // ═══════════════════════════════════════════════════════════
 
 function HeroSection() {
-  const handleShareOnX = () => {
-    const tweetText = `Today's Hoops Intel is live 🏀 ${pulseEdition.subtitle} hoopsintel.net`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-    window.open(url, "_blank", "noopener,noreferrer,width=600,height=400");
-  };
-
   return (
     <section
       className="relative overflow-hidden"
@@ -513,17 +508,12 @@ function HeroSection() {
             >
               Tonight's Games
             </a>
-            {/* Share on X button */}
-            <button
-              onClick={handleShareOnX}
-              className="flex items-center gap-2 px-4 py-2.5 rounded text-sm font-semibold transition-all hover:bg-white/15"
-              style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.12)" }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
-              </svg>
-              Share on X
-            </button>
+            {/* Share edition */}
+            <ShareButton
+              url="https://hoopsintel.net"
+              tweetText={`Today's Hoops Intel is live | ${pulseEdition.subtitle} hoopsintel.net`}
+              size="md"
+            />
           </div>
         </div>
       </div>
@@ -795,20 +785,28 @@ function PulseIndexSection() {
                     <div className="mono-data text-lg font-bold" style={{ color: "#0EA5E9" }}>{player.indexScore}</div>
                     <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{player.teamRecord}</div>
                   </div>
-                  {/* "Why ranked here?" button */}
-                  <button
-                    onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
-                    className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/20"
-                    style={{
-                      background: "rgba(14,165,233,0.1)",
-                      color: "#0EA5E9",
-                      border: "1px solid rgba(14,165,233,0.25)",
-                    }}
-                    title="Why is this player ranked here?"
-                    aria-label={`Why is ${player.player} ranked here?`}
-                  >
-                    ?
-                  </button>
+                  <div className="flex items-center gap-1.5">
+                    {/* "Why ranked here?" button */}
+                    <button
+                      onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
+                      className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/20"
+                      style={{
+                        background: "rgba(14,165,233,0.1)",
+                        color: "#0EA5E9",
+                        border: "1px solid rgba(14,165,233,0.25)",
+                      }}
+                      title="Why is this player ranked here?"
+                      aria-label={`Why is ${player.player} ranked here?`}
+                    >
+                      ?
+                    </button>
+                    {/* Share player card */}
+                    <ShareButton
+                      url={`https://hoopsintel.net/player/${slugify(player.player)}`}
+                      tweetText={`${player.player} — Pulse Rank #${player.rank} | ${player.keyStats} hoopsintel.net/player/${slugify(player.player)}`}
+                      size="sm"
+                    />
+                  </div>
                 </div>
               </div>
             );
