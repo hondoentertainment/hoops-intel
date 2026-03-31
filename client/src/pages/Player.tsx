@@ -1,4 +1,3 @@
-import { useState, useRef, useEffect } from "react";
 import { useParams } from "wouter";
 import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
