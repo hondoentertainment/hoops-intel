@@ -8,4 +8,5 @@ Thumbs.db
 .vercel
 .env*.local
 .espn-cache/
+.daily-data/
 .generation-report.json
