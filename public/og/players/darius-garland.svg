@@ -31,11 +31,11 @@
 
   <!-- PULSE INDEX badge -->
   <rect x="870" y="40" width="270" height="48" rx="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1"/>
-  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="3">PULSE INDEX #7</text>
+  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="3">PULSE INDEX #8</text>
 
   <!-- Team + Record -->
   <text x="60" y="160" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#0EA5E9" letter-spacing="4">LAC</text>
-  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">39-36</text>
+  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">40-36</text>
 
   <!-- Player name -->
   <text x="60" y="270" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" fill="#FFFFFF" letter-spacing="-1">Darius Garland</text>
@@ -47,14 +47,14 @@
   <text x="60" y="400" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#10B981">94.5</text>
 
   <!-- Trend indicator -->
-  <text x="260" y="395" font-family="Arial, sans-serif" font-size="42" fill="#10B981">↑</text>
-  <text x="300" y="390" font-family="Arial, sans-serif" font-size="22" fill="#10B981">UP</text>
+  <text x="260" y="395" font-family="Arial, sans-serif" font-size="42" fill="#64748B">→</text>
+  <text x="300" y="390" font-family="Arial, sans-serif" font-size="22" fill="#64748B">STABLE</text>
 
   <!-- Key stats -->
-  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">28 PTS · 4 REB · 9 AST · 10-18 FG · 4-7 3PT · LAC W5</text>
+  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">25 PTS · 8 AST · 10-19 FG · LAC 40-36 · W6</text>
 
   <!-- Edition date -->
-  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">March 30, 2026</text>
+  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">April 1, 2026</text>
 
   <!-- Site URL -->
   <text x="60" y="580" font-family="monospace" font-size="16" fill="#0EA5E9">hoopsintel.net</text>

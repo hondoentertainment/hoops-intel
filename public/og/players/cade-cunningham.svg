@@ -35,7 +35,7 @@
 
   <!-- Team + Record -->
   <text x="60" y="160" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#0EA5E9" letter-spacing="4">DET</text>
-  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">54-20</text>
+  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">55-20</text>
 
   <!-- Player name -->
   <text x="60" y="270" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" fill="#FFFFFF" letter-spacing="-1">Cade Cunningham</text>
@@ -44,17 +44,17 @@
   <line x1="60" y1="300" x2="1140" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
 
   <!-- Index score (large) -->
-  <text x="60" y="400" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#10B981">93.5</text>
+  <text x="60" y="400" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#10B981">94</text>
 
   <!-- Trend indicator -->
   <text x="260" y="395" font-family="Arial, sans-serif" font-size="42" fill="#64748B">→</text>
   <text x="300" y="390" font-family="Arial, sans-serif" font-size="22" fill="#64748B">STABLE</text>
 
   <!-- Key stats -->
-  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">OUT — collapsed lung · re-evaluation expected this week · Pistons 54-20</text>
+  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">OUT — collapsed lung · re-evaluation this week · Pistons 55-20, 1st in East</text>
 
   <!-- Edition date -->
-  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">March 30, 2026</text>
+  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">April 1, 2026</text>
 
   <!-- Site URL -->
   <text x="60" y="580" font-family="monospace" font-size="16" fill="#0EA5E9">hoopsintel.net</text>

@@ -29,14 +29,14 @@
 
   <!-- Edition badge -->
   <rect x="870" y="40" width="270" height="48" rx="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1"/>
-  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="2">Vol. 2026 · No. 88</text>
+  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="2">Vol. 2026 · No. 89</text>
 
   <!-- Date -->
-  <text x="60" y="140" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.5)" letter-spacing="2">March 30, 2026</text>
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.5)" letter-spacing="2">April 1, 2026</text>
 
   <!-- Headline -->
-  <text x="60" y="200" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">Shai Gilgeous-Alexander Pours In 34 as OKC Dismantles New Yo</text>
-  <text x="60" y="240" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">rk 121-112 on NBC — Jokić Records 28/14/11 Triple-Double in…</text>
+  <text x="60" y="200" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">Nikola Jokić Posts 31/13/9 as Denver Stuns OKC 118-115, Snap</text>
+  <text x="60" y="240" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">ping the Thunder&apos;s Win Streak — Brunson Erupts for 31/7 AST…</text>
 
   <!-- Top 3 label -->
   <text x="60" y="280" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.35)" letter-spacing="3">TOP PULSE INDEX PLAYERS</text>
@@ -45,16 +45,16 @@
   <!-- Top 3 players -->
   
   <text x="60" y="310" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#1</text>
-  <text x="110" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Shai Gilgeous-Alexander</text>
-  <text x="650" y="310" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">OKC</text>
-  <text x="780" y="310" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">98.5</text>
+  <text x="110" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Nikola Jokić</text>
+  <text x="650" y="310" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">DEN</text>
+  <text x="780" y="310" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">99</text>
   <text x="880" y="310" font-family="Arial, sans-serif" font-size="24" fill="#10B981">↑</text>
 
   <text x="60" y="370" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#2</text>
-  <text x="110" y="370" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Nikola Jokić</text>
-  <text x="650" y="370" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">DEN</text>
-  <text x="780" y="370" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">98</text>
-  <text x="880" y="370" font-family="Arial, sans-serif" font-size="24" fill="#10B981">↑</text>
+  <text x="110" y="370" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Shai Gilgeous-Alexander</text>
+  <text x="650" y="370" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">OKC</text>
+  <text x="780" y="370" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">98.5</text>
+  <text x="880" y="370" font-family="Arial, sans-serif" font-size="24" fill="#F43F5E">↓</text>
 
   <text x="60" y="430" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#3</text>
   <text x="110" y="430" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Victor Wembanyama</text>

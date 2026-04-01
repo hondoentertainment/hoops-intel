@@ -31,11 +31,11 @@
 
   <!-- PULSE INDEX badge -->
   <rect x="870" y="40" width="270" height="48" rx="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1"/>
-  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="3">PULSE INDEX #6</text>
+  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="3">PULSE INDEX #7</text>
 
   <!-- Team + Record -->
   <text x="60" y="160" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#0EA5E9" letter-spacing="4">SAS</text>
-  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">56-18</text>
+  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">57-18</text>
 
   <!-- Player name -->
   <text x="60" y="270" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" fill="#FFFFFF" letter-spacing="-1">Stephon Castle</text>
@@ -51,10 +51,10 @@
   <text x="300" y="390" font-family="Arial, sans-serif" font-size="22" fill="#64748B">STABLE</text>
 
   <!-- Key stats -->
-  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">SAS off Sunday · 22/10/10 triple-double Saturday · W8</text>
+  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">SAS W9 · 57-18 · Monday off · 22/10/10 triple-double Saturday</text>
 
   <!-- Edition date -->
-  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">March 30, 2026</text>
+  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">April 1, 2026</text>
 
   <!-- Site URL -->
   <text x="60" y="580" font-family="monospace" font-size="16" fill="#0EA5E9">hoopsintel.net</text>
