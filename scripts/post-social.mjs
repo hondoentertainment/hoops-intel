@@ -1,0 +1,253 @@
+#!/usr/bin/env node
+// Social Media Distribution Bot for Hoops Intel
+// Posts daily edition highlights to Twitter/X and Bluesky.
+//
+// Required env vars (each platform is optional — skipped if not set):
+//   Twitter:  TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET
+//   Bluesky:  BLUESKY_HANDLE, BLUESKY_APP_PASSWORD
+
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { retryAsync } from "./lib/retry.mjs";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const PULSE_DATA_PATH = join(__dirname, "..", "client", "src", "lib", "pulseData.ts");
+const SITE_URL = "https://hoopsintel.net";
+
+// ─── Parse pulseData.ts ──────────────────────────────────────────────────────
+
+function parsePulseData() {
+  const src = readFileSync(PULSE_DATA_PATH, "utf-8");
+
+  function extractExport(name) {
+    // Match: export const <name> = <json-value>;
+    const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*([\\s\\S]*?);\\s*(?:export|//\\s*={5,}|$)`);
+    const m = src.match(re);
+    if (!m) throw new Error(`Could not find export "${name}" in pulseData.ts`);
+    // The captured group may include trailing comments / whitespace; trim & parse
+    let raw = m[1].trim();
+    // Remove trailing semicolons (sometimes double-captured)
+    raw = raw.replace(/;\s*$/, "");
+    try {
+      return JSON.parse(raw);
+    } catch {
+      // For arrays that may span many lines, try a more aggressive extraction:
+      // find the opening bracket/brace and its matching close
+      const open = raw[0];
+      if (open === "[" || open === "{") {
+        const close = open === "[" ? "]" : "}";
+        let depth = 0;
+        let end = -1;
+        for (let i = 0; i < raw.length; i++) {
+          if (raw[i] === open) depth++;
+          else if (raw[i] === close) { depth--; if (depth === 0) { end = i; break; } }
+        }
+        if (end > 0) return JSON.parse(raw.slice(0, end + 1));
+      }
+      throw new Error(`Failed to parse "${name}" as JSON`);
+    }
+  }
+
+  return {
+    pulseEdition: extractExport("pulseEdition"),
+    narrative: extractExport("narrative"),
+    pulseIndex: extractExport("pulseIndex"),
+    tickerItems: extractExport("tickerItems"),
+  };
+}
+
+// ─── Formatting helpers ──────────────────────────────────────────────────────
+
+function truncate(text, max) {
+  if (text.length <= max) return text;
+  return text.slice(0, max - 1).trimEnd() + "\u2026";
+}
+
+function buildTwitterThread(data) {
+  const { pulseEdition, narrative, pulseIndex, tickerItems } = data;
+
+  // Tweet 1: Edition headline + top story
+  const headline = narrative.headline.split(" \u2014 ")[0]; // first headline segment
+  const hashTags = " #NBA #HoopsIntel";
+  const ball = " \ud83c\udfc0";
+  const t1Suffix = ball + hashTags;
+  const tweet1 = truncate(headline, 280 - t1Suffix.length) + t1Suffix;
+
+  // Tweet 2: Pulse Index top 3
+  const top3 = pulseIndex.slice(0, 3);
+  const lines = top3.map(
+    (p) => `${p.rank}. ${p.player} (${p.team}) \u2014 ${p.indexScore}`
+  );
+  const tweet2Header = `\ud83d\udcca Pulse Index Top 3 \u2014 ${pulseEdition.edition}\n`;
+  const tweet2 = truncate(tweet2Header + lines.join("\n"), 280);
+
+  // Tweet 3: Tonight's featured game + link
+  const tonightItems = tickerItems.filter(
+    (t) => t.type === "alert" && /tonight/i.test(t.text)
+  );
+  let tweet3;
+  if (tonightItems.length > 0) {
+    const game = tonightItems[0].text.replace(/^TONIGHT:\s*/, "");
+    const linkSuffix = `\n${SITE_URL}`;
+    tweet3 = "\ud83d\udcfa " + truncate(game, 280 - linkSuffix.length - 3) + linkSuffix;
+  } else {
+    tweet3 = `Full edition live now \u2192 ${SITE_URL}`;
+  }
+
+  return [tweet1, tweet2, tweet3];
+}
+
+function buildBlueskyPost(data) {
+  const { pulseEdition, narrative, pulseIndex } = data;
+  const headline = narrative.headline.split(" \u2014 ")[0];
+  const top3 = pulseIndex.slice(0, 3).map(
+    (p) => `${p.rank}. ${p.player} (${p.team}) \u2014 ${p.indexScore}`
+  );
+  const body = [
+    `\ud83c\udfc0 ${headline}`,
+    "",
+    `Pulse Index \u2014 ${pulseEdition.edition}`,
+    ...top3,
+    "",
+    SITE_URL,
+  ].join("\n");
+  return truncate(body, 300);
+}
+
+// ─── Twitter posting ─────────────────────────────────────────────────────────
+
+async function postToTwitter(thread) {
+  const { TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET } = process.env;
+  if (!TWITTER_API_KEY || !TWITTER_API_SECRET || !TWITTER_ACCESS_TOKEN || !TWITTER_ACCESS_SECRET) {
+    console.log("[social] Skipping Twitter \u2014 credentials not set.");
+    return;
+  }
+
+  let TwitterApi;
+  try {
+    ({ TwitterApi } = await import("twitter-api-v2"));
+  } catch {
+    console.error("[social] twitter-api-v2 package not installed \u2014 skipping Twitter.");
+    return;
+  }
+
+  const client = new TwitterApi({
+    appKey: TWITTER_API_KEY,
+    appSecret: TWITTER_API_SECRET,
+    accessToken: TWITTER_ACCESS_TOKEN,
+    accessSecret: TWITTER_ACCESS_SECRET,
+  });
+
+  const rwClient = client.readWrite;
+
+  console.log("[social] Posting Twitter thread...");
+
+  let lastTweetId = null;
+  for (let i = 0; i < thread.length; i++) {
+    const params = { text: thread[i] };
+    if (lastTweetId) {
+      params.reply = { in_reply_to_tweet_id: lastTweetId };
+    }
+    const result = await retryAsync(() => rwClient.v2.tweet(params));
+    lastTweetId = result.data.id;
+    console.log(`  Tweet ${i + 1}/3 posted (id: ${lastTweetId})`);
+  }
+
+  console.log("[social] Twitter thread posted successfully.");
+}
+
+// ─── Bluesky posting ─────────────────────────────────────────────────────────
+
+async function postToBluesky(text) {
+  const { BLUESKY_HANDLE, BLUESKY_APP_PASSWORD } = process.env;
+  if (!BLUESKY_HANDLE || !BLUESKY_APP_PASSWORD) {
+    console.log("[social] Skipping Bluesky \u2014 credentials not set.");
+    return;
+  }
+
+  let BskyAgent;
+  try {
+    const atproto = await import("@atproto/api");
+    BskyAgent = atproto.BskyAgent ?? atproto.default?.BskyAgent;
+  } catch {
+    console.error("[social] @atproto/api package not installed \u2014 skipping Bluesky.");
+    return;
+  }
+
+  const agent = new BskyAgent({ service: "https://bsky.social" });
+
+  console.log("[social] Logging into Bluesky...");
+  await retryAsync(() =>
+    agent.login({ identifier: BLUESKY_HANDLE, password: BLUESKY_APP_PASSWORD })
+  );
+
+  // Build facets for link detection
+  const facets = [];
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  let urlMatch;
+  // Encode to UTF-8 bytes for proper byte offsets
+  const encoder = new TextEncoder();
+  const textBytes = encoder.encode(text);
+  while ((urlMatch = urlRegex.exec(text)) !== null) {
+    const beforeUrl = text.slice(0, urlMatch.index);
+    const byteStart = encoder.encode(beforeUrl).length;
+    const byteEnd = byteStart + encoder.encode(urlMatch[0]).length;
+    facets.push({
+      index: { byteStart, byteEnd },
+      features: [{ $type: "app.bsky.richtext.facet#link", uri: urlMatch[0] }],
+    });
+  }
+
+  console.log("[social] Posting to Bluesky...");
+  await retryAsync(() =>
+    agent.post({
+      text,
+      facets: facets.length > 0 ? facets : undefined,
+      createdAt: new Date().toISOString(),
+    })
+  );
+
+  console.log("[social] Bluesky post published successfully.");
+}
+
+// ─── Main ────────────────────────────────────────────────────────────────────
+
+async function main() {
+  console.log("[social] Reading pulseData.ts...");
+  const data = parsePulseData();
+  console.log(`[social] Edition: ${data.pulseEdition.edition} \u2014 ${data.pulseEdition.date}`);
+
+  const twitterThread = buildTwitterThread(data);
+  const bskyPost = buildBlueskyPost(data);
+
+  console.log("\n--- Twitter Thread ---");
+  twitterThread.forEach((t, i) => console.log(`Tweet ${i + 1} (${t.length} chars):\n${t}\n`));
+  console.log("--- Bluesky Post ---");
+  console.log(`(${bskyPost.length} chars):\n${bskyPost}\n`);
+
+  const errors = [];
+
+  try {
+    await postToTwitter(twitterThread);
+  } catch (err) {
+    console.error("[social] Twitter posting failed:", err.message || err);
+    errors.push("Twitter");
+  }
+
+  try {
+    await postToBluesky(bskyPost);
+  } catch (err) {
+    console.error("[social] Bluesky posting failed:", err.message || err);
+    errors.push("Bluesky");
+  }
+
+  if (errors.length > 0) {
+    console.warn(`[social] Completed with errors on: ${errors.join(", ")}`);
+    process.exitCode = 1;
+  } else {
+    console.log("[social] All platforms posted successfully.");
+  }
+}
+
+main();

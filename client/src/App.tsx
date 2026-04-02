@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import AskHoopsIntel from "./components/AskHoopsIntel";
 
 // Eager load Home (critical path)
 import Home from "./pages/Home";
@@ -34,6 +35,8 @@ const Widgets = lazy(() => import("./pages/Widgets"));
 const PodcastCompanion = lazy(() => import("./pages/PodcastCompanion"));
 const HistoryEngine = lazy(() => import("./pages/HistoryEngine"));
 const RefReports = lazy(() => import("./pages/RefReports"));
+const AskAI = lazy(() => import("./pages/AskAI"));
+const MyPulse = lazy(() => import("./pages/MyPulse"));
 
 function PageLoader() {
   return (
@@ -85,6 +88,8 @@ export default function App() {
             <Route path="/podcast-companion" component={PodcastCompanion} />
             <Route path="/history" component={HistoryEngine} />
             <Route path="/refs" component={RefReports} />
+            <Route path="/ask" component={AskAI} />
+            <Route path="/my-pulse" component={MyPulse} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>
@@ -96,6 +101,7 @@ export default function App() {
             </Route>
           </Switch>
         </Suspense>
+        <AskHoopsIntel />
       </div>
     </ThemeProvider>
   );

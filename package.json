@@ -7,7 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node scripts/tests/validate-content.mjs && node scripts/tests/test-assembly.mjs",
+    "health": "node scripts/health-check.mjs",
+    "social": "node scripts/post-social.mjs",
+    "digest": "node scripts/send-digest.mjs",
+    "digest:preview": "node scripts/send-digest.mjs --preview"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.0",
