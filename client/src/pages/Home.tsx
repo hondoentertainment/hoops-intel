@@ -788,6 +788,9 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
 
 function PulseIndexSection() {
   const [activeNote, setActiveNote] = useState<{ playerName: string; note: string } | null>(null);
+  const prefs = getPreferences();
+  const favPlayers = prefs.favoritePlayers.map((p) => p.toLowerCase());
+  const favTeams = prefs.favoriteTeams.map((t) => t.toUpperCase());
 
   return (
     <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
@@ -801,13 +804,19 @@ function PulseIndexSection() {
           {pulseIndex.map((player: any) => {
             const isUp = player.trend === "up";
             const isDown = player.trend === "down";
+            const isFavorite = favPlayers.includes(player.player.toLowerCase()) || favTeams.includes(player.team.toUpperCase());
             return (
-              <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4">
+              <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4" style={isFavorite ? { borderLeft: "3px solid #0EA5E9" } : {}}>
                 <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "#0EA5E9" }}>{player.rank}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <a href={`/player/${slugify(player.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{player.player}</a>
                     <a href={`/team/${player.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>{player.team}</a>
+                    {isFavorite && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#0EA5E9" className="flex-shrink-0">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    )}
                     <span className={`text-xs ${isUp ? "text-emerald-400" : isDown ? "text-rose-400" : "text-slate-400"}`}>
                       {isUp ? "▲" : isDown ? "▼" : "●"}
                     </span>
