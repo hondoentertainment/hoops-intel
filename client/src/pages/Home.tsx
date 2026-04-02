@@ -23,6 +23,7 @@ import ReactionBar from "../components/ReactionBar";
 import AuthModal from "../components/AuthModal";
 import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
+import { hasPreferences, getPreferences } from "../lib/userPreferences";
 
 // ═══════════════════════════════════════════════════════════
 // LIVE SCOREBAR — Real-time ESPN scores
@@ -377,10 +378,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ", "Ask AI"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : label === "Ask AI" ? "/ask" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -460,7 +461,7 @@ function Header() {
 // HERO SECTION
 // ═══════════════════════════════════════════════════════════
 
-function HeroSection() {
+function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   return (
     <section
       className="relative overflow-hidden"
@@ -514,7 +515,42 @@ function HeroSection() {
               tweetText={`Today's Hoops Intel is live | ${pulseEdition.subtitle} hoopsintel.net`}
               size="md"
             />
+            {/* My Pulse link */}
+            <a
+              href="/my-pulse"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded text-sm font-semibold transition-all hover:opacity-90"
+              style={{
+                background: "linear-gradient(135deg, rgba(14,165,233,0.2), rgba(14,165,233,0.08))",
+                color: "#0EA5E9",
+                border: "1px solid rgba(14,165,233,0.3)",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              My Pulse
+            </a>
           </div>
+          {/* Personalization banner */}
+          {showMyPulse && (
+            <a
+              href="/my-pulse"
+              className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs font-medium transition-all hover:opacity-90"
+              style={{
+                background: "rgba(14,165,233,0.1)",
+                color: "#0EA5E9",
+                border: "1px solid rgba(14,165,233,0.2)",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Personalized edition available
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+          )}
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-px pulse-line" style={{ background: "linear-gradient(to right, transparent, #0EA5E9, transparent)" }} />
@@ -1291,12 +1327,20 @@ function Footer() {
 
 export default function Home() {
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([]);
+  const [showMyPulse, setShowMyPulse] = useState(false);
 
   // Fetch user favorites on mount for client-side personalization
   useEffect(() => {
+    // Check localStorage preferences first
+    if (hasPreferences()) {
+      const prefs = getPreferences();
+      if (prefs.favoriteTeams.length > 0) setFavoriteTeams(prefs.favoriteTeams);
+      setShowMyPulse(true);
+    }
+    // Also check Supabase favorites (best-effort)
     getFavorites()
       .then(({ teams }) => {
-        if (teams.length > 0) setFavoriteTeams(teams);
+        if (teams.length > 0) setFavoriteTeams((prev) => prev.length > 0 ? prev : teams);
       })
       .catch(() => {
         // Silently ignore — personalization is best-effort
@@ -1308,7 +1352,7 @@ export default function Home() {
       <Header />
       <LiveScorebar />
       <TickerBar />
-      <HeroSection />
+      <HeroSection showMyPulse={showMyPulse} />
       <ScoresSection favoriteTeams={favoriteTeams} />
       <NarrativeSection />
       <PulseIndexSection />
