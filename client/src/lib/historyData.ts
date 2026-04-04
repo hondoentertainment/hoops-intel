@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: April 3, 2026
+// Last updated: April 4, 2026
 // Generated from current season narratives
 
 // ═══════════════════════════════════════════════════════════

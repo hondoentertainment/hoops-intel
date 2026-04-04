@@ -1,5 +1,5 @@
 // Social Sentiment Pulse — Daily NBA Sentiment Analysis
-// Last updated: April 3, 2026
+// Last updated: April 4, 2026
 // Live at: https://hoopsintel.net/sentiment
 
 // ═══════════════════════════════════════════════════════════

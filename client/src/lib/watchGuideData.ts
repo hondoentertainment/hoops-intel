@@ -1,6 +1,6 @@
 // Watch Priority Ranker — Tonight's games ranked by watchability
 // Data sourced from gamePreviews in pulseData.ts
-// Last updated: April 3, 2026
+// Last updated: April 4, 2026
 
 export interface WatchableGame {
   rank: number;
