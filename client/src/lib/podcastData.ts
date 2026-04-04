@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: March 23, 2026
+// Last updated: April 3, 2026
 // Generated from today's Hoops Intel edition
 
 // ═══════════════════════════════════════════════════════════
@@ -30,92 +30,133 @@ export interface PodcastCompanionData {
 // ═══════════════════════════════════════════════════════════
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "March 23, 2026",
-  episodeTitle: "Luka's Step-Back Dagger, Hawks Can't Stop Winning, and SGA's Historic Streak",
+  date: "April 3, 2026",
+  episodeTitle:
+    "Jokić's Triple-Double Drops OKC Again, Brunson Hits 50, and the Warriors Are Done",
   rundown: [
     {
-      topic: "Luka's 38-Point Masterpiece Sinks the Rockets",
+      topic: "Jokić 34/14/11 — Denver Wins 8 Straight and OKC Keeps Losing to Nikola",
       segment: "opener",
       duration: "5-7 min",
       keyStats: [
-        "38 PTS on 13-24 FG (54.2%), 5-8 from three",
-        "Step-back three with 47 seconds left sealed 118-115 win",
-        "Lakers have won 7 straight — 44-25, 2.5 games up on Houston for 3-seed",
-        "Luka averaging 34.2 PPG over his last 6 games",
-        "AD added 24/13 — the Luka-AD two-man game is elite"
+        "Jokić: 34 PTS, 14 REB, 11 AST — triple-double in 38 minutes",
+        "Denver 124, OKC 119 — Nuggets' 8th consecutive win",
+        "Jokić has now triple-doubled against OKC in 4 of his last 6 matchups",
+        "Denver improved to 47-25, surging into the top-4 of the West",
+        "SGA scored 38 in a losing effort — OKC now 3-7 against the Nuggets over two seasons",
       ],
-      debateAngle: "Is Luka the best closer in the NBA right now? Three game-deciding shots in his last five games. Is he having a better individual stretch than anyone not named SGA?",
-      suggestedQuote: "Luka hit a step-back three with 47 seconds left in Houston's own building. The Rockets had no answer. This is the version of Luka the Lakers traded everything for — and he's delivering.",
-      relevantPlayers: ["Luka Dončić", "Anthony Davis", "Kevin Durant", "Austin Reaves"]
+      debateAngle:
+        "Is Jokić the single biggest threat to OKC's title aspirations? The Thunder have no real answer for him — SGA can't guard him, and their bigs can't contain his passing. Does this performance reshape how we think about the West playoff picture?",
+      suggestedQuote:
+        "Nikola Jokić put up 34, 14, and 11 against the team with the best record in the West. It wasn't luck — it's the fourth time in six tries he's triple-doubled against Oklahoma City. Denver is on an 8-game win streak and OKC simply has no answer for the Joker.",
+      relevantPlayers: [
+        "Nikola Jokić",
+        "Shai Gilgeous-Alexander",
+        "Jamal Murray",
+        "Chet Holmgren",
+      ],
     },
     {
-      topic: "SGA's 130 Consecutive 20-Point Games — An All-Time Record",
+      topic: "Brunson's 34-Point Night Pushes Knicks to 50 Wins — The Legacy Conversation",
       segment: "deep-dive",
       duration: "8-10 min",
       keyStats: [
-        "130 consecutive 20-point games — the longest streak in NBA history",
-        "25 PTS in just three quarters vs. Brooklyn — didn't need the 4th",
-        "Thunder 55-15, on pace for 65 wins",
-        "11 straight wins — tied with Hawks for longest active streak",
-        "OKC's point differential is +12.3 over the streak"
+        "Brunson: 34 PTS, 4 REB, 8 AST in 115-109 win over Cleveland",
+        "New York's 50th win of the season — first time since 2012-13",
+        "Brunson is averaging 31.2 PPG over his last 10 games",
+        "Knicks are 50-21, holding the 2-seed in the East",
+        "Brunson has now led the Knicks to back-to-back 50-win seasons",
       ],
-      debateAngle: "At what point does SGA's streak become the most impressive individual accomplishment in modern NBA history? Wilt's records were set in a different era. Is 130 straight 20-point games more impressive than a 50-point average season?",
-      suggestedQuote: "SGA scored 25 in three quarters and sat down. He's so dominant that extending an all-time record is just another Tuesday night. The Thunder are on pace for 65 wins and the MVP race is over.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren"]
+      debateAngle:
+        "Where does Brunson rank in Knicks franchise history right now? He's delivering 50-win seasons that Madison Square Garden hasn't seen in over a decade. Is he already the best Knick since Patrick Ewing, and what does his ceiling look like come playoff time?",
+      suggestedQuote:
+        "Fifty wins. Jalen Brunson just gave the Knicks their 50th win of the season for the second straight year. That hasn't happened since the Carmelo Anthony era. At 34 points and 8 assists against a good Cleveland team, Brunson isn't just the best player in New York — he might be the best story in the East.",
+      relevantPlayers: [
+        "Jalen Brunson",
+        "OG Anunoby",
+        "Darius Garland",
+        "Evan Mobley",
+      ],
     },
     {
-      topic: "The Hawks Are the Hottest Team in Basketball",
+      topic: "Booker Drops 35 and the Warriors Are Officially Done — Phoenix Crushes Golden State",
       segment: "hot-take",
       duration: "5-7 min",
       keyStats: [
-        "11 straight wins — longest active streak in NBA (tied with OKC)",
-        "Jalen Johnson: 28/9/7 in Dallas — 14 triple-doubles this season",
-        "Atlanta surged to 38-31, tied for 7th in East",
-        "Best net rating in NBA over last 3 weeks",
-        "Nickeil Alexander-Walker added 24 PTS"
+        "Booker: 35 PTS, 6 REB on 13-21 FG in 122-101 Phoenix win",
+        "Warriors allowed 122 points and lost by 21 — their 5th loss in 6 games",
+        "Golden State has been outscored by 14.3 points per game over their last 5",
+        "Phoenix improved to 42-29 — solidified a top-6 West seed",
+        "Warriors are now 33-38 and in serious play-in jeopardy",
       ],
-      debateAngle: "Hot take: The Hawks are a legitimate second-round playoff team, not just a play-in story. Jalen Johnson is an All-NBA caliber player and nobody is giving Atlanta enough respect.",
-      suggestedQuote: "Eleven straight wins and nobody is talking about the Hawks. Jalen Johnson had 28, 9, and 7 in Dallas. This team has the best net rating in the league over three weeks. Atlanta is for real.",
-      relevantPlayers: ["Jalen Johnson", "Trae Young", "Nickeil Alexander-Walker", "Cooper Flagg"]
+      debateAngle:
+        "Hot take: the Warriors' dynasty is finished — not just this season, but structurally. This roster has no path to being a title contender again. Booker carved them up like it was a preseason game. Is this finally the moment we declare the Golden State era over?",
+      suggestedQuote:
+        "Devin Booker scored 35 and the Warriors lost by 21 at home. This wasn't competitive. Golden State is 33-38, heading toward the play-in with a roster that can't guard anyone. The dynasty is done. Close the book.",
+      relevantPlayers: [
+        "Devin Booker",
+        "Kevin Durant",
+        "Stephen Curry",
+        "Bradley Beal",
+      ],
     },
     {
-      topic: "Rapid-Fire: Warriors Below .500, Ingram's Hot Streak, Randle Stepping Up",
+      topic:
+        "Rapid-Fire: Trae 31/11 Keeps Hawks Hot, Banchero Survives Against Charlotte, Magic Grind",
       segment: "rapid-fire",
       duration: "4-5 min",
       keyStats: [
-        "Warriors 33-36 — dropped below .500 without Curry, lost to Celtics 118-101",
-        "Brandon Ingram: 28 PTS for 3rd straight game — shooting 52% from three since trade",
-        "Julius Randle: 28/8/4, second straight 28+ game without Edwards",
-        "Jokic: 22/11/9 — one assist shy of triple-double, Nuggets win 3rd in 4",
-        "Kawhi played 26 min on restriction — Clippers survive in New Orleans"
+        "Trae Young: 31 PTS, 11 AST in 121-117 Atlanta win over Philadelphia — Hawks W2",
+        "Banchero: 26 PTS, 8 REB, 6 AST in 104-98 Orlando win over Charlotte",
+        "Magic survived a sloppy game — won despite 17 turnovers",
+        "Hawks are 39-31 and firmly in the East play-in picture",
+        "Banchero has scored 25+ in 5 straight games",
       ],
-      debateAngle: "Is it time to declare the Warriors' dynasty officially over? Golden State is below .500, Curry has no timetable, and the roster around him is thin. Where does Golden State go from here?",
-      suggestedQuote: "Golden State dropped below .500. No Curry. No direction. The Warriors are at a crossroads and the clock is ticking on the Curry era in San Francisco.",
-      relevantPlayers: ["Stephen Curry", "Brandon Ingram", "Julius Randle", "Nikola Jokić", "Kawhi Leonard"]
+      debateAngle:
+        "Is Trae Young finally giving Atlanta what they've always needed from him — consistent, winning basketball when it matters? And is Banchero quietly having the best 25-and-under season of anyone not named Wemby?",
+      suggestedQuote:
+        "Trae Young had 31 and 11 and the Hawks won again. Atlanta keeps winning quietly while everyone looks at the top of the East. Meanwhile Banchero dropped 26-8-6 and survived a sloppy Orlando win. These two are the most interesting players in the next wave.",
+      relevantPlayers: [
+        "Trae Young",
+        "Paolo Banchero",
+        "Jalen Johnson",
+        "LaMelo Ball",
+      ],
     },
     {
-      topic: "Looking Ahead: Cunningham vs. LaMelo, Thunder Go for 12 Straight",
+      topic: "Tonight's Preview: DET @ BOS on ESPN, Wemby at Minnesota, LeBron vs. Houston",
       segment: "closer",
       duration: "3-4 min",
       keyStats: [
-        "DET @ CHA — Cunningham (back spasms) expected to return vs. LaMelo on ESPN",
-        "CLE @ ORL — Mobley vs. Banchero rematch, pivotal East seeding game",
-        "OKC vs. MIL — Thunder go for 12th straight against depleted Bucks",
-        "SAS vs. LAC — Wembanyama returns from rest to face Kawhi",
-        "PHX vs. NYK — Brunson expected to return for road trip"
+        "DET @ BOS — 7:30 PM ET, ESPN — potential first-round playoff preview",
+        "SAS @ MIN — 8:00 PM ET, TNT — Wemby vs. Gobert, the defensive chess match of the week",
+        "HOU @ LAL — 10:00 PM ET, TNT — Sengun vs. AD with West seeding on the line",
+        "MIL @ IND — 7:00 PM ET — Giannis vs. Pacers, East seeding implications",
+        "TOR @ PHI — 7:00 PM ET — safe to skip, both teams playing out the string",
       ],
-      debateAngle: "Thursday's DET-CHA game is the most important game of the night for the East playoff picture. If Charlotte wins, the play-in race blows wide open. If Detroit wins, the gap stays comfortable.",
-      suggestedQuote: "Cade vs. LaMelo on ESPN Thursday night. Two ascending young guards. One is leading the best team in the East. The other is carrying Charlotte's playoff hopes. This is must-watch basketball.",
-      relevantPlayers: ["Cade Cunningham", "LaMelo Ball", "Victor Wembanyama", "Jalen Brunson"]
-    }
+      debateAngle:
+        "The DET-BOS game on ESPN is the most important game of the night. If Detroit wins in Boston, it sends a message about who the real East contender below the Knicks is. Can the Pistons do it on the road against the defending champs?",
+      suggestedQuote:
+        "Detroit goes to Boston tonight on ESPN. After what Jokić just did to OKC and Brunson just did for the Knicks, the East is setting up beautifully for the playoffs. Don't sleep on this Pistons team. They are a problem for everyone.",
+      relevantPlayers: [
+        "Cade Cunningham",
+        "Jayson Tatum",
+        "Victor Wembanyama",
+        "LeBron James",
+        "Anthony Edwards",
+      ],
+    },
   ],
-  coldOpen: "What's up everybody — welcome back to the show. Last night, Luka Doncic hit a step-back three with 47 seconds left to beat the Rockets in their own building. Thirty-eight points. Seven straight wins for the Lakers. Meanwhile, SGA just scored 25 in three quarters — extending his all-time record to 130 consecutive 20-point games — and the Hawks won their eleventh straight without anyone noticing. The NBA is in an absolute sweet spot right now. Let's get into it.",
-  socialClip: "The SGA deep-dive segment comparing his 130-game streak to Wilt's records — this is the clip-worthy moment. The stat comparisons are jaw-dropping and the debate about whether this is the most impressive individual accomplishment in modern NBA history is compelling content that will drive engagement.",
+  coldOpen:
+    "What's up everybody — welcome back to the show. Last night, Nikola Jokić put up 34, 14, and 11 against the best record in the West and Denver won their eighth straight game. Jalen Brunson scored 34 points and gave the Knicks their 50th win of the season for the first time in over a decade. And Devin Booker dropped 35 as the Suns demolished the Warriors by 21 in Golden State. The NBA regular season is entering its final stretch and the picture is coming into focus fast. Let's break it all down.",
+  socialClip:
+    "The Brunson legacy deep-dive is the clip to pull. The Knicks hit 50 wins, haven't done it back-to-back since the Carmelo era, and Brunson is doing it without the superstar hype he deserves. The historical comparison to franchise greats drives engagement from the MSG faithful and the broader NBA fan base.",
   tweetThread: [
-    "1/ NEW EPISODE: Luka's step-back dagger, SGA's historic streak, and the Hawks' silent takeover. Here's what you need to know from last night's NBA action. A thread.",
-    "2/ Luka Doncic scored 38 points on 54% shooting and hit the game-sealing step-back three with 47 seconds left. The Lakers have won SEVEN STRAIGHT. He's averaging 34.2 PPG over his last six. This is the best basketball of his career.",
-    "3/ SGA now has 130 CONSECUTIVE 20-point games. That's an all-time record. He scored 25 last night... in three quarters... and sat down. The Thunder are 55-15 and on pace for 65 wins. The MVP race is over.",
-    "4/ Nobody is talking about the Hawks winning 11 straight games. Jalen Johnson had 28/9/7 in Dallas. Atlanta has the best net rating in the league over the last three weeks. This team is a legitimate playoff threat.",
-    "5/ Also: Warriors dropped below .500 without Curry. Ingram scored 28 for the 3rd straight game in Toronto. Randle had 28 without Edwards. And Jokic was one assist shy of another triple-double. Full breakdown in today's episode."
-  ]
+    "1/ NEW EPISODE: Jokić's 34/14/11 drops OKC, Brunson hits 50 wins, Booker ends the Warriors debate. Everything from last night. A thread.",
+    "2/ Nikola Jokić had 34 points, 14 rebounds, and 11 assists against the team with the best record in the West. Denver has won EIGHT STRAIGHT. OKC has no answer for him — 4 triple-doubles in his last 6 tries against the Thunder. The Joker is the West's biggest wildcard.",
+    "3/ Jalen Brunson scored 34 and gave the Knicks their 50th win of the season. Back-to-back 50-win seasons in New York. That hasn't happened since 2013. Brunson isn't just the best player on this team — he's building a legacy at MSG.",
+    "4/ Devin Booker dropped 35 and the Warriors lost by 21 at home. Golden State is 33-38. Their last 5 games: -14.3 per game. The dynasty is officially over. Booker barely broke a sweat.",
+    "5/ Also last night: Trae Young had 31 and 11 as Atlanta kept winning. Banchero dropped 26-8-6 in a Magic survive job over Charlotte. The East play-in is going to be chaos.",
+    "6/ Tonight: DET @ BOS on ESPN at 7:30 — best game of the night, potential playoff preview. Then Wemby vs. Gobert on TNT at 8. Then LeBron vs. Houston at 10. It's a good Friday for basketball. Full breakdown in today's episode.",
+  ],
 };

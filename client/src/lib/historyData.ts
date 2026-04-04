@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: March 23, 2026
+// Last updated: April 3, 2026
 // Generated from current season narratives
 
 // ═══════════════════════════════════════════════════════════
@@ -35,7 +35,13 @@ export interface HistoryData {
   comparisons: HistoricalComparison[];
   milestoneWatch: MilestoneWatch[];
   thisWeekInHistory: { year: number; event: string; players: string[] }[];
-  streakWatch: { player: string; team: string; streak: string; record: string; gamesAway: number }[];
+  streakWatch: {
+    player: string;
+    team: string;
+    streak: string;
+    record: string;
+    gamesAway: number;
+  }[];
   narrative: string;
 }
 
@@ -44,213 +50,186 @@ export interface HistoryData {
 // ═══════════════════════════════════════════════════════════
 
 export const historyData: HistoryData = {
-  generatedDate: "March 23, 2026",
+  generatedDate: "April 3, 2026",
   comparisons: [
     {
-      currentEvent: "SGA's 130 consecutive 20-point games",
-      player: "Shai Gilgeous-Alexander",
-      team: "OKC",
+      currentEvent:
+        "Jokic triple-double machine — 34/14/11 vs OKC as Denver extends winning streak to 8",
+      player: "Nikola Jokic",
+      team: "DEN",
       historicalParallel: {
-        player: "Wilt Chamberlain",
+        player: "Oscar Robertson",
         season: "1961-62",
-        stat: "126 consecutive 20-point games (previously longest streak)",
-        context: "Wilt averaged 50.4 PPG that season and his streak was considered untouchable for six decades. He played in an era with a faster pace and fewer teams."
+        stat:
+          "30.8 PPG / 12.5 RPG / 11.4 APG — the only player to average a triple-double for an entire season until Westbrook did it in 2016-17",
+        context:
+          "Oscar Robertson's 1961-62 season stood alone for over half a century as the pinnacle of all-around basketball excellence. He didn't just flirt with triple-doubles — he lived in them, night after night, with a consistency that seemed almost fictional.",
       },
-      comparison: "SGA has surpassed Wilt's record by 4 games and counting. While Wilt's scoring volume was higher (50.4 PPG vs SGA's 32.1 PPG), SGA is doing this in an era with more defensive sophistication, load management, and a 30-team league. SGA's consistency is arguably more impressive given modern rest protocols.",
-      verdict: "On pace to surpass"
+      comparison:
+        "Jokic's 34/14/11 line against OKC is the kind of stat line Robertson used to post routinely in a radically different era. What makes Jokic's version arguably more impressive is the context: he's doing it against elite modern defenses built around switching, analytics, and length. Robertson never faced a defense designed specifically to neutralize triple-double threats. Jokic is also doing it as a center, a position that historically produces rebounders and shot-blockers, not playmakers. His passing vision from the post is without historical precedent at his size.",
+      verdict: "Matching stride",
     },
     {
-      currentEvent: "Hawks' 11-game winning streak",
-      player: "Jalen Johnson",
-      team: "ATL",
+      currentEvent:
+        "Denver Nuggets riding an 8-game winning streak into the final stretch of the regular season",
+      player: "Nikola Jokic",
+      team: "DEN",
       historicalParallel: {
-        player: "Dominique Wilkins",
-        season: "1986-87",
-        stat: "14-game winning streak — longest in Hawks franchise history",
-        context: "The 1986-87 Hawks went 57-25 behind Dominique's 29.0 PPG and made the Eastern Conference Semifinals. That team was considered the best Hawks squad in the modern era."
+        player: "Russell Westbrook",
+        season: "2016-17",
+        stat:
+          "31.6 PPG / 10.7 RPG / 10.4 APG — averaged a triple-double and willed OKC to the playoffs as a one-man wrecking crew",
+        context:
+          "Westbrook's 2016-17 MVP campaign was fueled by rage and relentlessness after Durant's departure. He averaged a triple-double and dragged the Thunder to 47 wins through sheer force of will, closing the season with a historic late-season surge.",
       },
-      comparison: "The 2025-26 Hawks are 3 wins away from matching the franchise record. Jalen Johnson's versatility (28/9/7 last night, 14 triple-doubles this season) gives Atlanta a different engine than Dominique's pure scoring. This Hawks team relies on depth and ball movement rather than one superstar.",
-      verdict: "Matching stride"
+      comparison:
+        "Denver's 8-game streak has the same feel as OKC's late push in 2016-17, but with a critical difference: Jokic elevates everyone around him rather than carrying the load alone. Westbrook's triple-doubles came with a usage rate north of 41 percent. Jokic's come while making Jamal Murray and Michael Porter Jr. look like All-Stars. The Nuggets' streak is built on offensive beauty, not one man's fury. Both approaches win games, but Jokic's version is more sustainable heading into the playoffs.",
+      verdict: "On pace to surpass",
     },
     {
-      currentEvent: "Luka averaging 34.2 PPG over last 6 games for the Lakers",
-      player: "Luka Dončić",
-      team: "LAL",
-      historicalParallel: {
-        player: "Kobe Bryant",
-        season: "2005-06",
-        stat: "35.4 PPG — highest scoring season by a Laker since Shaq left",
-        context: "Kobe carried a rebuilding Lakers team with Smush Parker and Kwame Brown. He scored 81 points against Toronto in January 2006 and led the league in scoring."
-      },
-      comparison: "Luka's current stretch mirrors Kobe's 2006 dominance, but with a key difference: Luka has Anthony Davis. Kobe was doing it alone. Luka's 38-point game with the clutch step-back three evokes Kobe's killer instinct, and the Lakers' 7-game winning streak suggests this version of LA is far more dangerous than Kobe's 2006 squad.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "Spurs' 51-18 record through 69 games",
+      currentEvent:
+        "San Antonio Spurs rip off a 10-game winning streak behind Wembanyama's two-way dominance",
       player: "Victor Wembanyama",
       team: "SAS",
       historicalParallel: {
         player: "Tim Duncan",
         season: "2002-03",
-        stat: "52-17 through 69 games — Duncan's championship season",
-        context: "Duncan won the MVP and Finals MVP that year, leading the Spurs to the franchise's second title. He averaged 23.3 PPG, 12.9 RPG, and 3.9 APG."
+        stat:
+          "23.3 PPG / 12.9 RPG / 3.9 APG / 2.9 BPG — anchored a Spurs team that finished 60-22 and won the championship",
+        context:
+          "Duncan's 2002-03 Spurs were the prototype of San Antonio dominance: methodical, suffocating on defense, and built around a generational big man who controlled both ends of the floor. That team's late-season winning streaks were a preview of their championship run.",
       },
-      comparison: "The 2025-26 Spurs are one game behind the pace of Duncan's 2003 championship team. Wembanyama's two-way impact is comparable — the Spurs are 18-1 when he plays 30+ minutes. If San Antonio maintains this pace, they'll finish with 60+ wins for just the third time in franchise history.",
-      verdict: "Matching stride"
+      comparison:
+        "The parallels between Wembanyama's Spurs and Duncan's early-2000s dynasty are becoming impossible to ignore. Both players anchor their team's defense at an elite level while generating efficient offense from the post and mid-range. Duncan's 2002-03 team went on a similar late-season tear — winning 13 of their final 15 — and rode that momentum to a title. Wembanyama's 10-game streak carries the same feel: a young franchise cornerstone learning what dominance feels like in real time. The key difference is Wembanyama's perimeter versatility, which gives these Spurs a dimension Duncan's teams never had.",
+      verdict: "Matching stride",
     },
     {
-      currentEvent: "Brandon Ingram's three straight 28-point games for Toronto",
-      player: "Brandon Ingram",
-      team: "TOR",
+      currentEvent:
+        "Jalen Brunson pushes the Knicks to 50 wins — cementing himself among franchise greats at MSG",
+      player: "Jalen Brunson",
+      team: "NYK",
       historicalParallel: {
-        player: "Vince Carter",
-        season: "2000-01",
-        stat: "Four consecutive 28+ point games in February 2001",
-        context: "Carter was the face of the Raptors and led Toronto to their first playoff series win that season. He averaged 27.6 PPG and made the Raptors nationally relevant."
+        player: "Patrick Ewing",
+        season: "1992-93",
+        stat:
+          "24.2 PPG / 12.1 RPG / 1.9 BPG — led the Knicks to 60 wins and the Eastern Conference Finals in Pat Riley's system",
+        context:
+          "Ewing's 1992-93 season remains the gold standard for Knicks basketball. That team was physical, relentless, and built around a dominant big man who embodied New York toughness. Ewing carried the franchise on his back for a decade without ever winning a championship, but his impact on the city was immeasurable.",
       },
-      comparison: "Ingram's immediate impact in Toronto echoes Carter's transformative effect on the franchise. Carter put Toronto on the map; Ingram is making the Raptors a legitimate playoff threat. Ingram's 52% three-point shooting over this stretch is unsustainable, but his shot creation and efficiency suggest a long-term fit.",
-      verdict: "Matching stride"
+      comparison:
+        "Brunson reaching 50 wins invites the inevitable Ewing and Frazier comparisons. He lacks Ewing's size and Frazier's cool mystique, but Brunson has something neither of them sustained: consistent, modern-era winning at MSG without a second superstar demanding the spotlight. Ewing needed Starks and Oakley. Frazier had Reed and DeBusschere. Brunson is the unquestioned engine of these Knicks, and 50 wins in back-to-back seasons puts him in a tier of Knicks relevance that only Ewing and Frazier have occupied. The championship question remains, but the regular-season legacy is already written.",
+      verdict: "On pace to surpass",
     },
     {
-      currentEvent: "Pistons' 49-19 record — best in the East",
-      player: "Cade Cunningham",
-      team: "DET",
+      currentEvent:
+        "Shai Gilgeous-Alexander leading the MVP race with a 59-18 record and 30+ PPG scoring",
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
       historicalParallel: {
-        player: "Isiah Thomas",
-        season: "1988-89",
-        stat: "50-18 through 68 games — the Bad Boys' championship season",
-        context: "Thomas averaged 18.2 PPG and 8.3 APG as the Pistons won their first NBA title. Detroit was built on defense, toughness, and depth."
+        player: "Stephen Curry",
+        season: "2015-16",
+        stat:
+          "30.1 PPG / 6.7 APG / 5.4 RPG — unanimous MVP on a 73-9 team that redefined what a regular season could look like",
+        context:
+          "Curry's 2015-16 season was the most dominant individual-team combination in regular-season history. He won MVP unanimously while leading the Warriors to the best record ever. The combination of individual brilliance and team dominance set a standard that may never be matched.",
       },
-      comparison: "The 2025-26 Pistons are tracking remarkably close to the 1989 championship pace. Cunningham (24.9/10.1/5.6) is a more dominant scorer than Isiah was, while the team's identity is similarly built on balance and cohesion. The back spasms are concerning — Detroit's title hopes rest entirely on Cade's health.",
-      verdict: "On pace to surpass"
-    }
+      comparison:
+        "SGA's MVP case is built on the same foundation as Curry's 2015-16 campaign: elite individual scoring on the league's best team. OKC's 59-18 record projects to roughly 63 wins, which would put it in rare air alongside Curry's Warriors, Jordan's Bulls, and Duncan's Spurs. SGA's 32+ PPG on elite efficiency mirrors Curry's 30.1 PPG, though their styles could not be more different — Curry rewrote the game from beyond the arc while SGA dominates in the mid-range and at the rim. The MVP voters love the combination of best player on the best team, and SGA checks both boxes emphatically.",
+      verdict: "Matching stride",
+    },
   ],
   milestoneWatch: [
     {
-      player: "Shai Gilgeous-Alexander",
-      team: "OKC",
-      milestone: "150 consecutive 20-point games",
-      current: "130 games",
-      needed: "20 more games",
-      projectedDate: "Late April 2026 (if streak continues through playoffs)",
-      significance: "Would extend his own all-time record by 24 games beyond Wilt's previous mark. At his current pace, SGA would reach 150 before the end of the regular season if the streak holds."
-    },
-    {
-      player: "Nikola Jokić",
-      team: "DEN",
-      milestone: "100 career triple-doubles",
-      current: "94 career triple-doubles",
-      needed: "6 more",
-      projectedDate: "Mid-April 2026",
-      significance: "Would become just the fifth player in NBA history to reach 100 triple-doubles, joining Oscar Robertson, Russell Westbrook, Magic Johnson, and Jason Kidd."
-    },
-    {
-      player: "Luka Dončić",
-      team: "LAL",
-      milestone: "10,000 career assists",
-      current: "9,847 career assists",
-      needed: "153 more",
-      projectedDate: "Early April 2026 (at current 8.1 APG pace)",
-      significance: "Would become the youngest player to reach 10,000 career assists. Only 12 players in NBA history have reached this milestone."
-    },
-    {
       player: "Victor Wembanyama",
       team: "SAS",
-      milestone: "200 blocks in a single season",
-      current: "178 blocks (69 games)",
-      needed: "22 more in 13 games",
-      projectedDate: "On pace to reach ~201 blocks by season end",
-      significance: "Would be the first player since Marcus Camby in 2006-07 to block 200+ shots in a season. Wemby is averaging 2.58 BPG."
+      milestone: "DPOY award as a sophomore with potential MVP votes",
+      current: "Leading the league in blocks and rim protection metrics at age 22",
+      needed: "Sustained dominance through the final stretch and a deep playoff run",
+      projectedDate: "Awards announced in late April / early May 2026",
+      significance:
+        "Winning DPOY as a sophomore would make Wembanyama one of the youngest ever to claim the award. Receiving MVP votes on top of it would place him in a conversation with Hakeem Olajuwon and David Robinson as two-way big men who dominated both ends before their prime. The 10-game winning streak only strengthens his case.",
     },
     {
-      player: "Jalen Johnson",
-      team: "ATL",
-      milestone: "15 triple-doubles in a single season",
-      current: "14 triple-doubles",
-      needed: "1 more",
-      projectedDate: "Could happen any game",
-      significance: "Would be the most triple-doubles by a Hawks player in a single season. Only 7 players in NBA history have recorded 15+ triple-doubles in one season."
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      milestone: "60 wins in a single season",
+      current: "59-18 record with 5 games remaining",
+      needed: "1 more win in final 5 games",
+      projectedDate: "Virtually guaranteed — likely within the next 1-2 games",
+      significance:
+        "A 60-win season would be the first in OKC franchise history and only the second in the combined Seattle/OKC timeline (the 1995-96 SuperSonics won 64). For SGA, it would lock up the MVP award and validate OKC's patient rebuild as one of the most successful in modern NBA history.",
     },
     {
-      player: "Cade Cunningham",
-      team: "DET",
-      milestone: "2,000 points in a single season",
-      current: "1,692 points (68 games)",
-      needed: "308 more in 14 games",
-      projectedDate: "Needs 22 PPG over final 14 games",
-      significance: "Would be the first Piston to score 2,000 points in a season since Jerry Stackhouse in 2000-01. Cunningham's 24.9 PPG pace puts him right on the edge."
-    }
+      player: "Jalen Brunson",
+      team: "NYK",
+      milestone: "Franchise single-season scoring record chase",
+      current: "1,881 points through 71 games (26.5 PPG)",
+      needed: "Approaching Carmelo Anthony's 2012-13 mark of 1,920 points (28.7 PPG in 67 games)",
+      projectedDate: "On pace to surpass Carmelo within the next 2-3 games",
+      significance:
+        "Brunson passing Carmelo for single-season points scored would be a symbolic torch-passing moment for the franchise. Melo was the last Knick to carry the scoring mantle at MSG with this level of consistency. Brunson doing it while winning 50+ games adds a dimension Carmelo's Knicks teams rarely achieved.",
+    },
+    {
+      player: "Nikola Jokic",
+      team: "DEN",
+      milestone: "Triple-double season count approaching 30",
+      current: "27 triple-doubles this season (97 career)",
+      needed: "3 more this season to hit 30 and 100 career",
+      projectedDate: "At his pace of roughly one every 3.5 games, both milestones are reachable before the regular season ends",
+      significance:
+        "Thirty triple-doubles in a season would tie Russell Westbrook's 2020-21 mark and further cement Jokic as the most complete statistical force at the center position in NBA history. Reaching 100 career triple-doubles would make him only the fifth player ever to reach that number, joining Oscar Robertson, Westbrook, Magic Johnson, and Jason Kidd.",
+    },
   ],
   thisWeekInHistory: [
     {
-      year: 1996,
-      event: "The Chicago Bulls clinched their 70th win of the season, on their way to the historic 72-10 record. Michael Jordan scored 35 points against the Raptors.",
-      players: ["Michael Jordan", "Scottie Pippen", "Dennis Rodman"]
+      year: 1987,
+      event:
+        "Michael Jordan erupted for 61 points against the Atlanta Hawks on April 16, 1987 — but his early-April stretch that season was equally ferocious. Jordan was averaging 37.1 PPG for the season and routinely dropped 40+ in April as the Bulls pushed for a playoff spot. His scoring that month was a relentless assault on the record books.",
+      players: ["Michael Jordan"],
     },
     {
-      year: 2008,
-      event: "LeBron James recorded his 10th triple-double of the season as the Cavaliers beat the Wizards 102-96. He was 23 years old at the time.",
-      players: ["LeBron James"]
-    },
-    {
-      year: 2017,
-      event: "Russell Westbrook recorded his 33rd triple-double of the season, tying the single-season record held by Oscar Robertson since 1961-62.",
-      players: ["Russell Westbrook", "Oscar Robertson"]
-    },
-    {
-      year: 1962,
-      event: "Wilt Chamberlain scored 52 points against the Knicks — his 45th game of 50+ points that season. He would finish the year averaging 50.4 PPG.",
-      players: ["Wilt Chamberlain"]
+      year: 1984,
+      event:
+        "Larry Bird's Boston Celtics clinched the best record in the Eastern Conference in early April 1984, finishing 62-20. Bird was in the middle of his first MVP season, averaging 24.2 PPG / 10.1 RPG / 6.6 APG, and the Celtics were a juggernaut built on passing, toughness, and Bird's supernatural court vision. That team would go on to win the championship over the Lakers in seven games.",
+      players: ["Larry Bird", "Robert Parish", "Kevin McHale"],
     },
     {
       year: 2019,
-      event: "James Harden scored 61 points against the Spurs — his third 60-point game of the season. No other player has had more than one 60-point game in a single season.",
-      players: ["James Harden"]
-    }
+      event:
+        "Dirk Nowitzki played his final home game at the American Airlines Center on April 9, 2019, scoring 30 points in a loss to the Phoenix Suns. The arena was electric with tributes, tears, and a 21-season career flashing before Dallas's eyes. Nowitzki finished with 31,560 career points and the eternal love of an entire city.",
+      players: ["Dirk Nowitzki"],
+    },
   ],
   streakWatch: [
     {
-      player: "Shai Gilgeous-Alexander",
-      team: "OKC",
-      streak: "130 consecutive 20-point games (active)",
-      record: "130 — SGA's own record (surpassed Wilt's 126)",
-      gamesAway: 0
+      player: "Victor Wembanyama",
+      team: "SAS",
+      streak: "10-game team winning streak (active)",
+      record: "17 — San Antonio Spurs franchise record (2013-14 season)",
+      gamesAway: 7,
     },
     {
-      player: "Shai Gilgeous-Alexander",
-      team: "OKC",
-      streak: "11-game team winning streak",
-      record: "15 — OKC franchise record (2012-13 season)",
-      gamesAway: 4
+      player: "Nikola Jokic",
+      team: "DEN",
+      streak: "8-game team winning streak (active)",
+      record: "15 — Denver franchise record (2012-13 season)",
+      gamesAway: 7,
     },
     {
-      player: "Jalen Johnson",
-      team: "ATL",
-      streak: "11-game team winning streak",
-      record: "14 — Hawks franchise record (1986-87 season)",
-      gamesAway: 3
+      player: "Kawhi Leonard",
+      team: "LAC",
+      streak: "6-game team winning streak (active)",
+      record: "11 — Los Angeles Clippers franchise record (2024-25 season)",
+      gamesAway: 5,
     },
     {
-      player: "Luka Dončić",
-      team: "LAL",
-      streak: "7-game team winning streak",
-      record: "10 — Lakers' longest this season",
-      gamesAway: 3
+      player: "Jayson Tatum",
+      team: "BOS",
+      streak: "5-game team winning streak (active)",
+      record: "19 — Boston Celtics franchise record (2008-09 season)",
+      gamesAway: 14,
     },
-    {
-      player: "Brandon Ingram",
-      team: "TOR",
-      streak: "3 consecutive 28+ point games",
-      record: "7 — Vince Carter (2000-01) for Raptors",
-      gamesAway: 4
-    },
-    {
-      player: "Memphis Grizzlies",
-      team: "MEM",
-      streak: "9-game losing streak",
-      record: "13 — Grizzlies franchise record (2008-09 season)",
-      gamesAway: 4
-    }
   ],
-  narrative: "The 2025-26 NBA season is producing a remarkable convergence of historical parallels. SGA's 130-game scoring streak has already surpassed Wilt Chamberlain's six-decade-old record. The Hawks are chasing their own franchise history with an 11-game winning streak. Luka is channeling Kobe's 2006 Lakers dominance. And the Pistons are tracking the pace of the 1989 Bad Boys championship team. We're witnessing history in real time across multiple franchises — and the playoff race hasn't even begun."
+  narrative:
+    "April 3, 2026 finds the NBA in a rare convergence of generational talent and historic team runs. The Spurs' 10-game winning streak behind Wembanyama's two-way brilliance is drawing direct parallels to the Duncan-era dynasty that defined San Antonio for two decades. Denver's 8-game surge, powered by Jokic's triple-double artistry, has the Nuggets looking like a team no one wants to face in the playoffs. Meanwhile, SGA sits on the doorstep of 60 wins and an MVP trophy in Oklahoma City, and Brunson is rewriting Knicks history one 50-win season at a time. Four franchises, four transformational players, four separate histories being written simultaneously — and the playoffs haven't even started yet.",
 };
