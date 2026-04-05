@@ -50,11 +50,11 @@ export interface HistoryData {
 // ═══════════════════════════════════════════════════════════
 
 export const historyData: HistoryData = {
-  generatedDate: "April 4, 2026",
+  generatedDate: "April 5, 2026",
   comparisons: [
     {
       currentEvent:
-        "Wembanyama's Spurs extend winning streak to 11 games — tonight they host SGA and OKC in a clash of the league's two most dominant forces",
+        "Wembanyama's Spurs have now won 12 straight after toppling OKC last night — the longest Spurs winning streak since the 2013-14 championship run, and tonight they rest while the league digests what just happened",
       player: "Victor Wembanyama",
       team: "SAS",
       historicalParallel: {
@@ -66,12 +66,12 @@ export const historyData: HistoryData = {
           "Duncan's 2002-03 Spurs rattled off a 13-2 close to the regular season, building unstoppable momentum into a championship run. That late-season surge announced to the league that San Antonio was the team to beat, with Duncan controlling both ends of the floor at an all-time level.",
       },
       comparison:
-        "Wembanyama's 11-game streak now surpasses Duncan's longest regular-season run in 2002-03, and the parallels keep deepening. Both players anchor elite defenses while generating efficient offense from the post and perimeter. The critical difference remains Wembanyama's three-point shooting and perimeter switchability — dimensions Duncan never possessed. Tonight's showdown with OKC is the kind of late-season litmus test that defines legacies. Duncan's Spurs proved themselves in similar April crucibles; Wembanyama gets his chance tonight on ESPN.",
+        "Wembanyama's 12-game streak now firmly surpasses Duncan's longest regular-season run in 2002-03 and is closing in on the franchise record of 17 set during the 2013-14 title season. Last night's win over OKC — the team with the best record in basketball — was the kind of statement that separates good streaks from historically significant ones. Duncan's Spurs proved themselves in similar April crucibles; Wembanyama just passed his biggest test yet. Five more wins ties the franchise record. The Spurs are off tonight, but the reverberations of that OKC win will be felt across every Western Conference playoff calculation.",
       verdict: "On pace to surpass",
     },
     {
       currentEvent:
-        "Jayson Tatum and the Celtics closing in on the 1-seed — Boston has won 6 straight and Tatum is averaging 29 PPG in April",
+        "Jayson Tatum and the Celtics ride a 7-game winning streak into Atlanta tonight on ESPN — Tatum is averaging 30 PPG in April and the 1-seed is within grasp",
       player: "Jayson Tatum",
       team: "BOS",
       historicalParallel: {
@@ -83,12 +83,12 @@ export const historyData: HistoryData = {
           "Bird's 1985-86 Celtics are widely regarded as the greatest team in franchise history. Bird locked up the 1-seed in early April and used the final weeks to sharpen his team's execution, entering the playoffs as an overwhelming favorite. That team lost only one game in the entire Eastern Conference playoffs.",
       },
       comparison:
-        "Tatum's April surge has the same feel as Bird's late-season dominance in 1985-86 — a superstar elevating his game when the 1-seed is within reach. Bird's Celtics were never in doubt for the top spot, while Tatum's group is in a dogfight with Cleveland. That competitive pressure may actually serve Boston better come playoff time. Bird thrived on the biggest stages, and Tatum is proving he can do the same. The 6-game winning streak has Boston playing its best basketball of the season at exactly the right time.",
+        "Tatum's 7-game winning streak and 30 PPG April scoring average now mirrors Bird's late-season dominance in 1985-86 with uncanny precision. Bird used April to put teams away and sharpen his Celtics for the postseason; Tatum is doing the same, with each win tightening the vice on Cleveland's 1-seed hopes. Tonight's trip to Atlanta on ESPN is the kind of game Bird's Celtics would have treated as a tune-up — but Tatum cannot afford that luxury with the race this tight. The streak has transformed Boston from contender to favorite in the span of a week.",
       verdict: "Matching stride",
     },
     {
       currentEvent:
-        "Luka Doncic on a historic scoring tear — 35+ PPG over his last 7 games as Dallas fights for playoff positioning",
+        "Luka Doncic extends his scoring tear to 8 straight games of 35+ PPG — Dallas is now 6-2 in that stretch and clinging to playoff positioning",
       player: "Luka Doncic",
       team: "DAL",
       historicalParallel: {
@@ -100,29 +100,29 @@ export const historyData: HistoryData = {
           "Jordan's 1986-87 scoring explosion was a young superstar refusing to let his team fade. He averaged over 40 PPG in April, dragging a mediocre Bulls roster into the playoffs through sheer individual brilliance and an unquenchable competitive fire.",
       },
       comparison:
-        "Luka's 35+ PPG stretch over the last seven games carries the same desperate brilliance as Jordan's April 1987 assault on the record books. Both players took over because they had to — their supporting casts demanded it. Jordan's Bulls were a playoff-or-bust team and he responded with the most prolific scoring month of his career. Luka is in a similar position: Dallas needs wins, and he is willing them into existence with an offensive workload that borders on unsustainable. The difference is Jordan's athleticism allowed him to maintain that pace; Luka's game relies on craft, which may prove more durable in the short term.",
+        "Luka's 35+ PPG streak has now reached 8 games — one away from tying James Harden's 2018-19 mark of 9 consecutive games at 36+ PPG. The Jordan parallels intensify with each passing night: both players carried heavy offensive loads because no one else could, and both transformed that burden into something approaching art. Jordan's April 1987 was the most prolific scoring month of his career; Luka's April 2026 is threatening to match it. The difference is sustainability — Jordan's Bulls were eliminated in the first round despite his heroics. Luka's Mavericks have a real chance to parlay this run into homecourt advantage.",
       verdict: "Matching stride",
     },
     {
       currentEvent:
-        "Cleveland Cavaliers battling Boston for the 1-seed — tonight's CLE @ NYK game is a statement opportunity",
-      player: "Donovan Mitchell",
-      team: "CLE",
+        "OKC's 12-game winning streak ended in San Antonio last night — now they travel to Denver for a TNT showdown with Jokic and the surging Nuggets",
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
       historicalParallel: {
-        player: "LeBron James",
-        season: "2008-09",
+        player: "Kevin Durant",
+        season: "2012-13",
         stat:
-          "28.4 PPG / 7.6 RPG / 7.2 APG — led Cleveland to a league-best 66-16 record and the MVP award",
+          "28.1 PPG / 7.9 RPG / 4.6 APG — led OKC to 60 wins but the Thunder lost their final regular-season game at San Antonio before a playoff exit",
         context:
-          "LeBron's 2008-09 Cavaliers were a juggernaut built around one transcendent player and a supporting cast that maximized his brilliance. Cleveland clinched the 1-seed in early April and entered the playoffs as the overwhelming favorite, only to fall to Orlando in the Conference Finals.",
+          "Durant's 2012-13 Thunder were the class of the Western Conference for most of the season, but a late loss to the Spurs foreshadowed vulnerability. That San Antonio defeat exposed matchup problems OKC never solved, and the Thunder were bounced in the second round by Memphis.",
       },
       comparison:
-        "Mitchell's Cavaliers chasing the 1-seed invites the inevitable LeBron comparison. The difference is stark: Mitchell leads a genuinely deep, balanced roster rather than carrying the franchise solo. Cleveland's path to the top seed is built on Mobley's defense, Garland's playmaking, and Allen's rim protection — a collective effort LeBron's early Cleveland teams never had. Tonight at MSG is the kind of road test that separates pretenders from contenders, and Mitchell has a chance to make a statement that even LeBron's early Cavs rarely managed: winning a meaningful April game in the Garden.",
-      verdict: "Matching stride",
+        "SGA's Thunder suffering their streak-ending loss in San Antonio echoes Durant's 2013 squad, which also stumbled against the Spurs at a pivotal late-season moment. The question now is whether OKC responds the way championship teams do — with a bounce-back win on a national stage. Tonight's trip to Denver on TNT is that opportunity. Durant's Thunder let the San Antonio loss snowball; SGA has a chance to prove this team is built differently. The 60-win milestone is still within reach with 4 games left, but the aura of invincibility took a hit last night in the Alamo City.",
+      verdict: "Falling short",
     },
     {
       currentEvent:
-        "Jokic and the Nuggets take their 8-game winning streak to Los Angeles for a TNT showdown with the Lakers",
+        "Jokic and the Nuggets carry a 9-game winning streak into tonight's TNT showdown with a wounded OKC team — Denver smells blood",
       player: "Nikola Jokic",
       team: "DEN",
       historicalParallel: {
@@ -134,7 +134,7 @@ export const historyData: HistoryData = {
           "Kareem's early-1970s Bucks were built around the most unstoppable offensive weapon the game had ever seen. His skyhook was indefensible, and his teams rode long winning streaks fueled by his consistent dominance in the post. The Bucks won 63 games that season and Kareem was the undisputed best player alive.",
       },
       comparison:
-        "Jokic visiting the Lakers on TNT with an 8-game winning streak draws a direct line to Kareem's dominance in the early 1970s — another center who could do everything and whose teams won in bunches because of it. Kareem scored with the skyhook; Jokic scores with passing, vision, and an impossibly soft touch. Both players made their teammates dramatically better. The Denver-LA rivalry adds historical spice: Kareem eventually became a Laker. Jokic has spent his entire career making sure Denver never needs to look to Los Angeles for validation.",
+        "Jokic's 9-game winning streak and his pursuit of 100 career triple-doubles continue to evoke Kareem's early-1970s dominance — another center who could do everything and whose teams won in bunches because of it. Tonight's matchup with OKC on TNT is the kind of game that could define Denver's playoff seeding. Kareem's Bucks feasted on wounded opponents; Jokic gets that chance tonight against a Thunder team reeling from last night's loss in San Antonio. If Denver can extend this streak to 10, they will have seized the momentum in the Western Conference at the most critical moment of the season.",
       verdict: "On pace to surpass",
     },
   ],
@@ -143,93 +143,93 @@ export const historyData: HistoryData = {
       player: "Victor Wembanyama",
       team: "SAS",
       milestone: "Longest Spurs winning streak since the 2013-14 championship season",
-      current: "11-game winning streak entering tonight's game vs. OKC",
-      needed: "6 more wins to tie the franchise record of 17 (set in 2013-14)",
-      projectedDate: "If the streak continues, the franchise record could fall by mid-April",
+      current: "12-game winning streak — longest active streak in the NBA",
+      needed: "5 more wins to tie the franchise record of 17 (set in 2013-14)",
+      projectedDate: "If the streak continues, the franchise record could fall by April 12",
       significance:
-        "Wembanyama is already carrying the longest Spurs winning streak since the Pop-Duncan dynasty era. Tying or breaking the franchise record would officially announce these Spurs as legitimate contenders, not a team still building toward relevance. The 2013-14 Spurs used their late-season streak as a springboard to one of the most dominant championship runs in NBA history.",
+        "Last night's victory over OKC pushed the streak to 12 and officially announced the Spurs as the hottest team in basketball. Tying or breaking the 2013-14 franchise record would place Wembanyama's first great Spurs run alongside the Duncan-Parker-Ginobili dynasty in the franchise's pantheon. The Spurs are off tonight, but five winnable games remain on the schedule.",
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       milestone: "60 wins in a single season",
-      current: "59-18 record with 5 games remaining",
-      needed: "1 more win in final 5 games — tonight at San Antonio is the first opportunity",
-      projectedDate: "Could clinch tonight in San Antonio",
+      current: "59-19 record with 4 games remaining after last night's loss in San Antonio",
+      needed: "1 more win in final 4 games — tonight at Denver on TNT is the next chance",
+      projectedDate: "Should clinch within the next two games",
       significance:
-        "A 60-win season would be the first in OKC franchise history and only the second in the combined Seattle/OKC timeline (the 1995-96 SuperSonics won 64). Clinching it on the road against a surging Spurs team would only add to the accomplishment. For SGA, win number 60 effectively locks up the MVP award.",
+        "The loss in San Antonio delayed the milestone but did not derail it. A 60-win season would still be the first in OKC franchise history. Clinching it tonight in Denver — on TNT against a surging Nuggets team — would turn a bounce-back game into a celebration. SGA's MVP case took a minor hit last night, and a dominant response tonight would repair the narrative.",
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
       milestone: "100 career triple-doubles",
-      current: "28 triple-doubles this season (98 career)",
-      needed: "2 more to reach 100 career — tonight at LA Lakers on TNT is the stage",
-      projectedDate: "At his pace of roughly one every 3 games, likely within the next week",
+      current: "28 triple-doubles this season (99 career after last night's near-miss)",
+      needed: "1 more to reach 100 career — tonight vs. OKC on TNT is the stage",
+      projectedDate: "Could reach the milestone tonight against the Thunder",
       significance:
-        "One hundred career triple-doubles would make Jokic only the fifth player in NBA history to reach that number, joining Oscar Robertson, Russell Westbrook, Magic Johnson, and Jason Kidd. Doing it as a center — a position historically associated with rebounding and shot-blocking, not playmaking — makes it arguably the most impressive version of the milestone.",
+        "One hundred career triple-doubles would make Jokic only the fifth player in NBA history to reach that number, joining Oscar Robertson, Russell Westbrook, Magic Johnson, and Jason Kidd. Reaching it on national television against the team with the best record in basketball would be the most fitting stage imaginable for a milestone that defines Jokic's unique greatness.",
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
       milestone: "Franchise single-season scoring record",
-      current: "1,908 points through 72 games (26.5 PPG)",
-      needed: "13 more points to pass Carmelo Anthony's 2012-13 mark of 1,920 points",
-      projectedDate: "Should surpass Carmelo tonight vs. Cleveland at MSG",
+      current: "1,934 points through 73 games (26.5 PPG) — has already surpassed Carmelo Anthony's 2012-13 mark of 1,920",
+      needed: "Record secured — now extending the mark with every game remaining",
+      projectedDate: "Record was broken last night at MSG",
       significance:
-        "Brunson breaking Carmelo's single-season scoring record at Madison Square Garden — against Cleveland in a game with 1-seed implications — would be a storybook moment. Melo's scoring legacy at MSG is sacred ground. Brunson claiming it while leading a 50+ win team adds a dimension Carmelo's Knicks teams never achieved.",
+        "Brunson officially claimed the Knicks' single-season scoring record last night, surpassing Carmelo Anthony's 2012-13 mark in front of the MSG faithful. Melo's scoring legacy at the Garden was sacred ground — Brunson now owns it. Tonight he hosts Detroit at 7:30 PM on ABC, with a chance to extend the record and push the Knicks toward a higher playoff seed.",
     },
   ],
   thisWeekInHistory: [
     {
-      year: 1984,
+      year: 1975,
       event:
-        "Larry Bird's Boston Celtics clinched the best record in the Eastern Conference in early April 1984, finishing 62-20. Bird was in the middle of his first MVP season, averaging 24.2 PPG / 10.1 RPG / 6.6 APG, and the Celtics were a juggernaut built on passing, toughness, and Bird's supernatural court vision. That team went on to win the championship over the Lakers in seven games — a fitting parallel as Tatum's Celtics push for the 1-seed tonight.",
-      players: ["Larry Bird", "Robert Parish", "Kevin McHale"],
+        "On April 5, 1975, the Golden State Warriors defeated the Seattle SuperSonics in the regular-season finale to clinch the Western Conference's final playoff spot. That improbable Warriors team — led by Rick Barry — went on to sweep the Washington Bullets in the Finals, completing one of the greatest underdog runs in NBA history. Tonight's slate features its own desperate playoff pushes, as Detroit fights for relevance and Philadelphia battles Orlando for seeding.",
+      players: ["Rick Barry", "Jamaal Wilkes", "Phil Smith"],
     },
     {
-      year: 2004,
+      year: 1993,
       event:
-        "On April 4, 2004, Shaquille O'Neal and the Lakers beat the Sacramento Kings 99-90 in a game that all but clinched the Pacific Division title. Shaq had 28 points and 11 rebounds in a dominant performance that previewed LA's eventual run to the Finals. The Lakers-Kings rivalry was at its peak, and April showdowns between the two teams carried playoff-level intensity — much like tonight's DEN-LAL matchup on TNT.",
-      players: ["Shaquille O'Neal", "Kobe Bryant"],
+        "On April 5, 1993, Charles Barkley's Phoenix Suns beat the Lakers 112-104 to clinch the top seed in the Western Conference. Barkley had 31 points and 12 rebounds in a performance that cemented his MVP season. The Suns finished 62-20 and Barkley's late-season dominance carried Phoenix to the Finals — a reminder that April performances shape legacies. OKC's pursuit of 60 wins tonight in Denver carries the same gravity.",
+      players: ["Charles Barkley", "Kevin Johnson", "Dan Majerle"],
     },
     {
-      year: 2014,
+      year: 2016,
       event:
-        "The 2013-14 Spurs were in the middle of a 19-game winning streak in late March and early April — the longest in franchise history. That run was the foundation for their legendary championship campaign, in which they dismantled the Heat in five games with the most beautiful basketball the Finals had ever seen. Wembanyama's Spurs are chasing that same franchise record tonight.",
-      players: ["Tim Duncan", "Tony Parker", "Manu Ginobili"],
+        "On April 5, 2016, the Golden State Warriors sat at 70-8 with four games remaining, on the doorstep of breaking the 1995-96 Bulls' all-time wins record. Steph Curry was in the middle of the greatest shooting season in NBA history, and the basketball world held its breath for every remaining game. Tonight's pursuit of milestones — OKC chasing 60 wins, Jokic chasing 100 triple-doubles — captures that same late-season urgency.",
+      players: ["Stephen Curry", "Klay Thompson", "Draymond Green"],
     },
   ],
   streakWatch: [
     {
       player: "Victor Wembanyama",
       team: "SAS",
-      streak: "11-game team winning streak (active)",
+      streak: "12-game team winning streak (active)",
       record: "17 — San Antonio Spurs franchise record (2013-14 season)",
-      gamesAway: 6,
+      gamesAway: 5,
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
-      streak: "8-game team winning streak (active)",
+      streak: "9-game team winning streak (active)",
       record: "15 — Denver franchise record (2012-13 season)",
-      gamesAway: 7,
+      gamesAway: 6,
     },
     {
       player: "Jayson Tatum",
       team: "BOS",
-      streak: "6-game team winning streak (active)",
+      streak: "7-game team winning streak (active)",
       record: "19 — Boston Celtics franchise record (2008-09 season)",
-      gamesAway: 13,
+      gamesAway: 12,
     },
     {
       player: "Luka Doncic",
       team: "DAL",
-      streak: "7-game 35+ PPG scoring streak (active)",
+      streak: "8-game 35+ PPG scoring streak (active)",
       record: "9 — James Harden (2018-19 season, 36+ PPG)",
-      gamesAway: 2,
+      gamesAway: 1,
     },
   ],
   narrative:
-    "April 4, 2026 — Edition 92 — delivers one of the most loaded Saturday slates of the entire season. The headline is OKC at San Antonio on ESPN: SGA chasing win number 60 against Wembanyama's Spurs and their 11-game winning streak. Something has to give, and the result will reshape the MVP conversation and the Western Conference playoff picture in a single evening. On TNT, Jokic brings his 8-game winning streak and his pursuit of 100 career triple-doubles to Los Angeles, where the Lakers are fighting for their playoff lives. The Eastern Conference gets its own marquee moment with Cleveland at the Garden — the Cavaliers and Knicks battling for seeding while Brunson is poised to break Carmelo's franchise scoring record on the MSG floor. Five games, five historic narratives, and the regular season running out of time to contain them all.",
+    "April 5, 2026 — Edition 93 — arrives with last night's seismic result still reverberating: Wembanyama's Spurs ended OKC's dominance with a statement win that pushed their streak to 12 and handed the Thunder their first loss in weeks. Now the ripple effects play out across tonight's five-game slate. OKC travels to Denver on TNT at 9:30 PM, where Jokic and a 9-game winning streak await a wounded Thunder team — the bounce-back narrative meets an unstoppable force, and Jokic is one triple-double away from 100 career. The ABC headliner is Detroit at the Garden at 7:30 PM, where Brunson — the new franchise scoring king — looks to extend his record. Boston visits Atlanta at 8:00 PM on ESPN with a 7-game winning streak and the 1-seed in sight. Philadelphia and Orlando clash at 6:00 PM in a playoff-seeding tussle, and the Clippers visit Phoenix at 10:00 PM to close the night. The regular season is down to its final days, and every game carries the weight of a season's worth of storylines.",
 };
