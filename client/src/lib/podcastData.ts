@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 4, 2026
+// Last updated: April 5, 2026
 // Generated from today's Hoops Intel edition
 
 // ═══════════════════════════════════════════════════════════
@@ -30,133 +30,133 @@ export interface PodcastCompanionData {
 // ═══════════════════════════════════════════════════════════
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 4, 2026",
+  date: "April 5, 2026",
   episodeTitle:
-    "Spurs Win 11 Straight and Tie OKC for the 1-Seed, Tatum Owns Detroit, and Luka Won't Stop",
+    "Wemby Seizes the 1-Seed, Luka Ends Denver's Streak, and OKC Is in Crisis Mode",
   rundown: [
     {
-      topic: "Spurs W11 — Wemby 28/12/5/4BLK Ties OKC for the 1-Seed at 59-18",
+      topic: "Wemby's Coronation — 32/10/6/3BLK Seizes the 1-Seed, Spurs W12",
       segment: "opener",
       duration: "5-7 min",
       keyStats: [
-        "Wembanyama: 28 PTS, 12 REB, 5 AST, 4 BLK in the Spurs' 11th straight win",
-        "San Antonio is now 59-18, tied with OKC for the best record in the NBA",
-        "The Spurs have not lost since mid-March — the longest active streak in the league",
-        "Anthony Edwards scored 30 in the loss — Minnesota had no answer for Wemby",
-        "OKC and SAS meet TONIGHT at 8:30 PM ET on ESPN with the 1-seed on the line",
+        "Wembanyama: 32 PTS, 10 REB, 6 AST, 3 BLK as the Spurs won their 12th straight",
+        "San Antonio has seized the 1-seed outright over OKC, who have now lost 3 straight",
+        "The Spurs' 12-game win streak is the longest in the NBA this season",
+        "Wemby is putting up historic two-way numbers — nobody in the league is playing at this level right now",
+        "This is a coronation moment: the best player in basketball on the best team in basketball",
       ],
       debateAngle:
-        "Is San Antonio now the best team in the West? Eleven straight wins, Wemby putting up historic two-way numbers, and they've pulled completely even with OKC. Are the Spurs the team nobody wants to face in the playoffs, and is Wemby already the best player in basketball?",
+        "Is this the moment Wemby officially became the best player in the world? Thirty-two, ten, six, and three blocks to take the 1-seed while OKC collapses. The Spurs have won 12 straight and Wemby is the engine of everything they do. Is the MVP race over?",
       suggestedQuote:
-        "Victor Wembanyama had 28, 12, 5, and 4 blocks last night and the Spurs won their eleventh straight game. They are now tied with OKC at 59-18 for the best record in basketball. And tonight — tonight they play each other. This is the game of the year.",
+        "Victor Wembanyama had 32, 10, 6, and 3 blocks last night. The Spurs have won TWELVE straight games. They have the 1-seed. OKC has lost three in a row for the first time all season. This isn't a hot streak anymore — this is a coronation. Wemby is the best player in basketball right now and it's not particularly close.",
       relevantPlayers: [
         "Victor Wembanyama",
-        "Anthony Edwards",
         "Shai Gilgeous-Alexander",
         "Chet Holmgren",
       ],
     },
     {
-      topic: "Tatum 29/7/5 and Boston Wins 6 Straight — The East Gap Is Growing",
+      topic: "Luka 36/8/10 Ends Denver's 8-Game Streak — Lakers Win 5 Straight",
       segment: "deep-dive",
       duration: "8-10 min",
       keyStats: [
-        "Tatum: 29 PTS, 7 REB, 5 AST as Boston extended its win streak to 6",
-        "Boston's gap over the East field has grown to 2 games during the streak",
-        "Tatum is averaging 28.4 PPG over his last 8 games on elite efficiency",
-        "The Celtics' defense has held opponents under 105 in 5 of the last 6",
-        "Detroit had no answer for Tatum in the fourth quarter — he scored 12 in the final frame",
+        "Luka Doncic: 36 PTS, 8 REB, 10 AST in the Lakers' 5th straight win",
+        "The Lakers snapped Denver's 8-game win streak on the road",
+        "Luka is averaging 33.2 PPG over his last 6 games on elite efficiency",
+        "The Lakers' 5-game win streak has them surging up the West standings",
+        "Denver's loss, combined with OKC's skid, has blown the West race wide open",
       ],
       debateAngle:
-        "Has Tatum finally silenced the 'he disappears in big moments' narrative? Six straight wins, dominant fourth quarters, and the Celtics look like a team peaking at exactly the right time. Is Boston the clear East favorite, or are we sleeping on Cleveland and New York?",
+        "Luka just went into Denver and dropped 36/8/10 to end an 8-game win streak. The Lakers have won 5 straight. Is Luka playing the best basketball of his career right now? And has this Lakers surge turned the West into a four-team race instead of a two-team coronation?",
       suggestedQuote:
-        "Jayson Tatum dropped 29, 7, and 5 last night and Boston won their sixth straight. The Celtics' lead in the East has grown to two games. Tatum scored 12 in the fourth quarter against Detroit and made it look routine. This version of Tatum is the one that scares the rest of the conference.",
-      relevantPlayers: [
-        "Jayson Tatum",
-        "Jaylen Brown",
-        "Cade Cunningham",
-        "Derrick White",
-      ],
-    },
-    {
-      topic: "Hot Take: The Lakers Are the Scariest Team in the West Playoffs Behind Their Big Two",
-      segment: "hot-take",
-      duration: "5-7 min",
-      keyStats: [
-        "Luka Doncic: 32 PTS, 7 REB, 9 AST in the Lakers' 4th straight win",
-        "The Lakers are surging at exactly the right time — 4-game win streak heading into DEN tonight",
-        "Luka and AD have combined for 60+ points in 3 of the last 4 games",
-        "LA's net rating over the win streak is +9.2 — elite at both ends",
-        "Maxey had 33 in a Philly bounce-back win, but the Lakers are the story in the West",
-      ],
-      debateAngle:
-        "Hot take: the Lakers are the team nobody wants to draw in the West playoffs. Luka at 32/7/9, AD anchoring the defense, and a roster that's finally clicking — are they a dark horse to come out of the West? Or is this just a regular-season mirage that OKC and San Antonio will expose?",
-      suggestedQuote:
-        "Luka Doncic went for 32, 7, and 9 last night and the Lakers won their fourth straight. They play Denver tonight on TNT. If you're OKC or San Antonio, you do NOT want to see this Lakers team in the bracket. Luka and AD together when they're rolling is a nightmare matchup for anyone.",
+        "Luka Doncic went into Denver last night and dropped 36, 8, and 10. He ended the Nuggets' 8-game win streak and pushed the Lakers to 5 straight wins. That is a statement game. That is Luka saying 'we belong in this conversation.' The West is wide open right now and Luka is the reason the Lakers are in the middle of it.",
       relevantPlayers: [
         "Luka Doncic",
         "Anthony Davis",
-        "Tyrese Maxey",
+        "Nikola Jokic",
+        "Jamal Murray",
+      ],
+    },
+    {
+      topic: "Hot Take: OKC Is in Crisis — 3 Straight Losses for the First Time All Season",
+      segment: "hot-take",
+      duration: "5-7 min",
+      keyStats: [
+        "OKC has lost 3 consecutive games for the first time all season",
+        "The Thunder have surrendered the 1-seed to San Antonio during the skid",
+        "OKC's defense has allowed 115+ points in all three losses",
+        "SGA's efficiency has dipped significantly during the losing streak",
+        "Tonight: OKC @ DEN at 9:30 PM ET on TNT — a must-win to stop the bleeding",
+      ],
+      debateAngle:
+        "Hot take: this OKC losing streak isn't just a blip — it's exposing a real vulnerability. Three straight losses for the first time all year, the 1-seed gone, and now they have to go into Denver tonight? Is this the kind of late-season stumble that carries over into the playoffs, or will the Thunder use this as a wake-up call?",
+      suggestedQuote:
+        "OKC has lost three straight games for the first time all season. They've given the 1-seed to San Antonio. And tonight they have to go into Denver on TNT. This is a crisis. I don't care how good your record is — when you lose three straight in April after leading the league all year, something is wrong. The Thunder need to figure this out fast or they're going to be the 2-seed playing with a crisis of confidence heading into the playoffs.",
+      relevantPlayers: [
+        "Shai Gilgeous-Alexander",
+        "Chet Holmgren",
+        "Jalen Williams",
         "Nikola Jokic",
       ],
     },
     {
       topic:
-        "Rapid-Fire: Edwards 30 Not Enough, Maxey 33 Bounce-Back, Play-In Race Tightening",
+        "Rapid-Fire: Brunson 28/7 and 51 Wins, Trae 28/9 Hawks W3, Barnes 29/8/7 Bounce-Back",
       segment: "rapid-fire",
       duration: "4-5 min",
       keyStats: [
-        "Anthony Edwards: 30 PTS in a loss to San Antonio — Minnesota's playoff position slipping",
-        "Tyrese Maxey: 33 PTS in a Sixers bounce-back win — Philly showing life",
-        "The East play-in picture is a mess — ATL and MIA play each other tonight",
-        "CHA @ TOR tonight is a desperation game for two teams on the brink of elimination",
-        "Edwards has now lost 3 of his last 5 despite averaging 28+ PPG in those games",
+        "Jalen Brunson: 28 PTS, 7 AST as the Knicks reached 51 wins",
+        "Trae Young: 28 PTS, 9 AST as the Hawks extended their win streak to 3",
+        "Scottie Barnes: 29 PTS, 8 REB, 7 AST in a big bounce-back performance",
+        "The Knicks host Detroit tonight on ABC in a Saturday primetime East 1 vs. 3 showdown",
+        "Atlanta's 3-game streak has them rolling into Boston tonight on ESPN",
       ],
       debateAngle:
-        "Is Edwards' Minnesota situation becoming a problem? He's scoring 30 a night and they keep losing. And is Maxey's 33-point bounce-back a sign that Philly has one more run in them, or just noise?",
+        "Brunson has quietly pushed the Knicks to 51 wins and they host Detroit on ABC tonight. Trae has the Hawks on a 3-game streak heading into Boston. And Barnes bounced back with 29/8/7. Which of these performances matters most for the playoff picture?",
       suggestedQuote:
-        "Ant Edwards dropped 30 last night and it still wasn't enough against the Spurs. Minnesota is losing games that Edwards is dominating individually — that's a roster problem, not a star problem. Meanwhile Maxey went for 33 in a Sixers bounce-back. The East play-in race is about to get wild tonight.",
+        "Brunson had 28 and 7 last night and the Knicks have 51 wins. That's a special season in New York. Trae dropped 28 and 9 and the Hawks have won three straight — they go to Boston tonight on ESPN. And Scottie Barnes bounced back with 29, 8, and 7. A lot of star guards showed up last night.",
       relevantPlayers: [
-        "Anthony Edwards",
-        "Tyrese Maxey",
+        "Jalen Brunson",
         "Trae Young",
-        "Jimmy Butler",
+        "Scottie Barnes",
+        "Cade Cunningham",
       ],
     },
     {
-      topic: "Tonight's Preview: OKC @ SAS for the 1-Seed, DEN @ LAL on TNT, CLE @ NYK Rematch",
+      topic: "Tonight's Preview: DET @ NYK on ABC, OKC @ DEN on TNT, BOS @ ATL on ESPN",
       segment: "closer",
       duration: "3-4 min",
       keyStats: [
-        "OKC @ SAS — 8:30 PM ET, ESPN — 1-seed showdown, both 59-18, game of the year",
-        "DEN @ LAL — 10:00 PM ET, TNT — West 3 vs. 4, Luka vs. Jokic",
-        "CLE @ NYK — 7:30 PM ET, TNT — East heavyweights rematch at MSG",
-        "ATL @ MIA — 7:30 PM ET — play-in battle, loser is in serious trouble",
-        "CHA @ TOR — 7:00 PM ET — play-in desperation, safe to skip",
+        "DET @ NYK — 7:30 PM ET, ABC — Saturday primetime, East 1 vs. 3, Brunson vs. Cade",
+        "OKC @ DEN — 9:30 PM ET, TNT — Thunder desperate, Jokic vs. SGA III",
+        "BOS @ ATL — 8:00 PM ET, ESPN — Celtics W6 vs. Hawks W3, streaks collide",
+        "PHI @ ORL — 6:00 PM ET — play-in battle, Maxey vs. Paolo",
+        "LAC @ PHX — 10:00 PM ET — Booker vs. Kawhi in the late window",
       ],
       debateAngle:
-        "OKC at San Antonio is the game of the regular season. Both teams at 59-18, the 1-seed on the line, Wemby vs. SGA on ESPN Friday night. If you watch one game tonight, this is it. But DEN-LAL on TNT at 10 is the nightcap worth staying up for.",
+        "Saturday night is loaded. DET-NYK on ABC is the headliner — East 1 vs. 3 in primetime at the Garden. OKC-DEN on TNT is the desperation game with the Thunder trying to stop a 3-game skid. And BOS-ATL on ESPN is two streaking teams colliding. This is one of the best Saturday slates of the season.",
       suggestedQuote:
-        "Tonight is the best Friday night slate of the entire season. OKC and San Antonio at 59-18 playing for the 1-seed on ESPN. Then Denver at the Lakers on TNT with the 3-4 seeds on the line. Then Cavs-Knicks at MSG to start your evening. Set your alarms. Cancel your plans. This is what the regular season is for.",
+        "Tonight is a massive Saturday slate. Detroit at the Knicks on ABC at 7:30 — East 1 vs. 3, Brunson vs. Cade, the Garden on national TV. Then OKC at Denver on TNT at 9:30 — the Thunder have lost three straight and need a win desperately. And Boston at Atlanta on ESPN at 8 — two teams on winning streaks colliding. Set your reminders. This is appointment television.",
       relevantPlayers: [
-        "Victor Wembanyama",
-        "Shai Gilgeous-Alexander",
-        "Luka Doncic",
-        "Nikola Jokic",
         "Jalen Brunson",
+        "Cade Cunningham",
+        "Shai Gilgeous-Alexander",
+        "Nikola Jokic",
+        "Trae Young",
+        "Devin Booker",
       ],
     },
   ],
   coldOpen:
-    "What's up everybody — welcome back to the show. The San Antonio Spurs have won ELEVEN straight games. Victor Wembanyama went for 28, 12, 5, and 4 blocks last night to pull the Spurs dead even with OKC at 59-18. Jayson Tatum dropped 29, 7, and 5 as Boston won their sixth straight and opened a 2-game gap in the East. And Luka Doncic went for 32, 7, and 9 to push the Lakers' win streak to four. Oh — and tonight? OKC goes to San Antonio for the 1-seed. Denver goes to LA for the 3-4 matchup. And Cleveland visits the Knicks at MSG. This is the best Friday slate of the entire year. Let's get into it.",
+    "What's up everybody — welcome back to the show. Victor Wembanyama just seized the 1-seed. Thirty-two points, 10 rebounds, 6 assists, 3 blocks — and the Spurs have won TWELVE straight games. Meanwhile OKC has lost three in a row for the first time all season. Luka Doncic went into Denver and dropped 36, 8, and 10 to end the Nuggets' 8-game streak and push the Lakers to five straight wins. Brunson had 28 and 7 as the Knicks hit 51 wins. Trae had 28 and 9 as the Hawks won their third straight. And tonight? Detroit at the Knicks on ABC. OKC at Denver on TNT. Boston at Atlanta on ESPN. Saturday night basketball at its absolute best. Let's get into it.",
   socialClip:
-    "The Spurs opener is the clip. Wemby's 28/12/5/4BLK line, the 11-game win streak, the fact that they play OKC TONIGHT for the 1-seed — it's the most shareable story in basketball right now. The Wemby hype train meets real stakes, and the preview of tonight's showdown drives clicks and tune-in urgency.",
+    "The Wemby coronation opener is the clip. His 32/10/6/3BLK line seizing the 1-seed while OKC collapses with three straight losses is the most dramatic storyline in basketball right now. The combination of Wemby's dominance, the Spurs' 12-game streak, and OKC's sudden crisis makes this the most shareable segment — it captures the biggest power shift of the season in one story.",
   tweetThread: [
-    "1/ NEW EPISODE: Spurs win 11 straight, tie OKC at 59-18, and they play TONIGHT for the 1-seed. Plus Tatum owns Detroit, Luka won't stop, and the best Friday slate of the year. A thread.",
-    "2/ Victor Wembanyama: 28 PTS, 12 REB, 5 AST, 4 BLK. The Spurs have won ELEVEN STRAIGHT. They're 59-18 — tied with OKC for the best record in basketball. And tonight they play each other on ESPN at 8:30. This is the game of the year.",
-    "3/ Jayson Tatum went for 29/7/5 and Boston won their 6th straight. The Celtics' lead in the East is now 2 games. Tatum scored 12 in the fourth against Detroit. This version of Boston is peaking at exactly the right time.",
-    "4/ Luka Doncic: 32/7/9. Lakers win 4 straight. They play Denver TONIGHT on TNT at 10 PM. The 3 vs. 4 seed in the West. Luka and AD together when they're rolling is a nightmare matchup for anyone in the bracket.",
-    "5/ Ant Edwards dropped 30 in a loss to the Spurs. Maxey had 33 in a Philly bounce-back. The East play-in race gets wild tonight with ATL @ MIA. Individual brilliance everywhere, but winning is what matters now.",
-    "6/ TONIGHT: OKC @ SAS on ESPN at 8:30 for the 1-seed. DEN @ LAL on TNT at 10 for West 3-4. CLE @ NYK on TNT at 7:30. This is the best Friday night slate of the season. Full breakdown in today's episode. Don't miss it.",
+    "1/ NEW EPISODE: Wemby seizes the 1-seed with 32/10/6/3BLK, Spurs W12. Luka drops 36/8/10 to end Denver's streak. OKC loses 3 straight for the first time all year. Plus a loaded Saturday slate tonight. A thread.",
+    "2/ Victor Wembanyama: 32 PTS, 10 REB, 6 AST, 3 BLK. The Spurs have won TWELVE STRAIGHT. They own the 1-seed outright. OKC has lost three in a row for the first time all season. This is a coronation. Wemby is the best player in basketball.",
+    "3/ Luka Doncic went INTO Denver and dropped 36/8/10 to end the Nuggets' 8-game win streak. The Lakers have won 5 straight. The West is wide open and Luka is playing the best ball of his career at exactly the right time.",
+    "4/ OKC has lost 3 straight for the first time all season. They've given up the 1-seed. And tonight they go to Denver on TNT at 9:30. This is a crisis. The Thunder need to stop the bleeding or they're heading into the playoffs with serious questions.",
+    "5/ Brunson: 28/7, Knicks at 51 wins. Trae: 28/9, Hawks W3. Barnes: 29/8/7 bounce-back. A lot of star guards showed up last night. The playoff picture is taking shape and these performances matter.",
+    "6/ TONIGHT: DET @ NYK on ABC at 7:30 — East 1 vs. 3 in primetime. OKC @ DEN on TNT at 9:30 — Thunder desperate. BOS @ ATL on ESPN at 8 — streaks collide. Plus PHI @ ORL and LAC @ PHX. Saturday night basketball is LOADED.",
   ],
 };

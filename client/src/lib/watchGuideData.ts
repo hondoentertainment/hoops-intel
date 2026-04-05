@@ -1,6 +1,6 @@
 // Watch Priority Ranker — Tonight's games ranked by watchability
 // Data sourced from gamePreviews in pulseData.ts
-// Last updated: April 4, 2026
+// Last updated: April 5, 2026
 
 export interface WatchableGame {
   rank: number;
@@ -31,127 +31,127 @@ export interface WatchGuideData {
 }
 
 export const watchGuideData: WatchGuideData = {
-  date: "Friday, April 4, 2026",
+  date: "Saturday, April 5, 2026",
   games: [
     {
       rank: 1,
-      homeTeam: "SAS",
-      awayTeam: "OKC",
-      time: "8:30 PM ET",
-      tv: "ESPN",
-      watchScore: 96,
+      homeTeam: "NYK",
+      awayTeam: "DET",
+      time: "7:30 PM ET",
+      tv: "ABC",
+      watchScore: 95,
       factors: {
-        starPower: 20,
-        playoffImplications: 20,
-        rivalry: 18,
-        entertainment: 19,
-        storyline: 19,
+        starPower: 19,
+        playoffImplications: 19,
+        rivalry: 17,
+        entertainment: 20,
+        storyline: 20,
       },
-      headline: "1-Seed Showdown — Wemby's Spurs Host SGA's Thunder at 59-18 Apiece",
+      headline: "Saturday Primetime on ABC — East 1 vs. 3, Brunson's 51-Win Knicks Host Surging Detroit",
       mustWatch: true,
       storyline:
-        "This is the game of the regular season. San Antonio's 11-game win streak — capped by Wemby's 28/12/5/4BLK demolition of Minnesota last night — has pulled the Spurs dead even with OKC at 59-18. Both teams are playing for the 1-seed, home court through the West playoffs, and bragging rights between the two best young stars in basketball. The Spurs are the hottest team in the league and the Thunder need to answer. This has playoff intensity baked into every possession.",
+        "The marquee Saturday night game on ABC features two of the East's best. Brunson dropped 28/7 last night to push the Knicks to 51 wins, and New York is playing with the kind of confidence that makes the Garden feel like a playoff arena every night. Detroit has been one of the league's best stories and sits third in the East. This is the premier national TV window of the night — big stakes, big stage, big atmosphere.",
       keyMatchup:
-        "Victor Wembanyama vs. Chet Holmgren — two 7-foot unicorns who can shoot, block, and handle, going head-to-head with the 1-seed on the line.",
+        "Jalen Brunson vs. Cade Cunningham — two franchise point guards battling for East supremacy on the biggest stage of the regular-season Saturday slate.",
     },
     {
       rank: 2,
-      homeTeam: "LAL",
-      awayTeam: "DEN",
-      time: "10:00 PM ET",
+      homeTeam: "DEN",
+      awayTeam: "OKC",
+      time: "9:30 PM ET",
       tv: "TNT",
-      watchScore: 89,
+      watchScore: 93,
       factors: {
-        starPower: 19,
-        playoffImplications: 18,
-        rivalry: 17,
+        starPower: 20,
+        playoffImplications: 19,
+        rivalry: 18,
         entertainment: 18,
-        storyline: 17,
+        storyline: 18,
       },
-      headline: "Luka's Lakers vs. Jokic's Nuggets — West 3 vs. 4 Under the Lights",
+      headline: "Jokic vs. SGA III — Thunder Desperate After Losing 3 Straight for First Time All Season",
       mustWatch: true,
       storyline:
-        "The Lakers are riding a 4-game win streak with Luka looking unstoppable (32/7/9 last night) and now host Denver in a TNT late-night special separating the 3 and 4 seeds in the West. Jokic and the Nuggets have owned this matchup historically, but Luka has changed the calculus entirely. Two MVP-caliber playmakers going at each other with seeding and potential playoff matchup implications makes this the best late game of the week.",
+        "OKC has lost three straight games for the first time all season and surrendered the 1-seed to San Antonio after Wemby's 32/10/6/3BLK masterpiece last night. Now the Thunder walk into Denver, where Luka just ended the Nuggets' 8-game win streak. Jokic and SGA are two MVP-caliber players who produce elite theater every time they share a floor. OKC is desperate, Denver is stinging from last night's loss — this is a powder keg on TNT.",
       keyMatchup:
-        "Luka Doncic vs. Nikola Jokic — two of the most cerebral offensive players alive, each capable of bending the game to his will in completely different ways.",
+        "Shai Gilgeous-Alexander vs. Nikola Jokic — the third installment of the season's best individual rivalry, with OKC needing a statement win to stop the bleeding.",
     },
     {
       rank: 3,
-      homeTeam: "NYK",
-      awayTeam: "CLE",
-      time: "7:30 PM ET",
-      tv: "TNT",
-      watchScore: 84,
+      homeTeam: "ATL",
+      awayTeam: "BOS",
+      time: "8:00 PM ET",
+      tv: "ESPN",
+      watchScore: 85,
       factors: {
-        starPower: 17,
-        playoffImplications: 17,
-        rivalry: 17,
-        entertainment: 17,
-        storyline: 16,
+        starPower: 18,
+        playoffImplications: 16,
+        rivalry: 15,
+        entertainment: 18,
+        storyline: 18,
       },
-      headline: "Knicks-Cavs Rematch at the Garden — East Heavyweights Collide Again",
+      headline: "Celtics W6 vs. Hawks W3 — Two Streaking Teams Collide on ESPN",
       mustWatch: false,
       storyline:
-        "New York and Cleveland have been trading haymakers all season, and this rematch at MSG has real postseason preview energy. Brunson and the Knicks are rolling, Cleveland is trying to hold position in a tightening East race, and the Garden crowd will be electric. With Boston pulling ahead on a 6-game win streak, neither team can afford a slip. This is the early-evening appetizer before the Western Conference headliners.",
+        "Boston's 6-game win streak meets Atlanta's 3-game heater in a compelling style clash on ESPN. Trae Young dropped 28/9 last night and has the Hawks rolling, while the Celtics have been dominant on both ends during their streak. This is a fascinating test for Atlanta — can Trae's hot stretch hold up against the East's best defense? And can Boston maintain their momentum against a Hawks team playing with genuine confidence for the first time in months?",
       keyMatchup:
-        "Jalen Brunson vs. Darius Garland — two undersized, fearless point guards who thrive in big moments and will each try to put their stamp on this rivalry.",
+        "Trae Young vs. Derrick White — Atlanta's offensive engine against Boston's elite perimeter defender, a matchup that will define the game's tempo and outcome.",
     },
     {
       rank: 4,
-      homeTeam: "MIA",
-      awayTeam: "ATL",
-      time: "7:30 PM ET",
+      homeTeam: "PHX",
+      awayTeam: "LAC",
+      time: "10:00 PM ET",
       tv: "",
-      watchScore: 72,
+      watchScore: 76,
       factors: {
-        starPower: 14,
-        playoffImplications: 17,
-        rivalry: 13,
-        entertainment: 14,
+        starPower: 17,
+        playoffImplications: 15,
+        rivalry: 15,
+        entertainment: 15,
         storyline: 14,
       },
-      headline: "Play-In Pressure Cooker — Hawks and Heat Battle for Survival",
+      headline: "Booker vs. Kawhi — Late-Night West Showdown in the Desert",
       mustWatch: false,
       storyline:
-        "Both Atlanta and Miami are fighting for their postseason lives in the East play-in race, and a loss here could be devastating for either side. Trae Young has been carrying the Hawks with big scoring nights and Miami's veteran-heavy roster knows how to win desperate games. This is the kind of under-the-radar matchup where someone's season effectively ends even though there are still games left to play. High stakes, low margin for error.",
+        "The late window features two of the West's most talented wings going head-to-head in Phoenix. Booker has been carrying the Suns through a tight playoff race, and Kawhi Leonard's health and availability remain the story of the Clippers' season. When both are on the floor, this is an elite basketball matchup. The question is whether it has enough playoff stakes to justify the 10 PM start — but for hoops junkies, Booker vs. Kawhi is always appointment television.",
       keyMatchup:
-        "Trae Young vs. Jimmy Butler — Atlanta's engine against Miami's closer, both needing a signature performance to keep their team's season alive.",
+        "Devin Booker vs. Kawhi Leonard — two elite two-way wings with contrasting styles, each capable of taking over a game in the fourth quarter.",
     },
     {
       rank: 5,
-      homeTeam: "TOR",
-      awayTeam: "CHA",
-      time: "7:00 PM ET",
+      homeTeam: "ORL",
+      awayTeam: "PHI",
+      time: "6:00 PM ET",
       tv: "",
-      watchScore: 51,
+      watchScore: 68,
       factors: {
-        starPower: 11,
-        playoffImplications: 12,
-        rivalry: 8,
-        entertainment: 10,
-        storyline: 10,
+        starPower: 14,
+        playoffImplications: 18,
+        rivalry: 12,
+        entertainment: 12,
+        storyline: 12,
       },
-      headline: "Play-In Desperation — Charlotte and Toronto Claw at the East's Last Spots",
+      headline: "Play-In Battle — Sixers and Magic Scrap for Postseason Positioning",
       mustWatch: false,
       storyline:
-        "Two teams on the fringes of the play-in race meet in what amounts to a desperation game for both. Neither Toronto nor Charlotte has the firepower to scare anyone in the postseason, but the loser here is essentially done. LaMelo Ball and Scottie Barnes provide some young star intrigue, but the overall product is likely to be sloppy and low-stakes compared to the rest of tonight's slate. Background noise for a stacked Friday.",
+        "The early window features a play-in battle between two teams desperate for postseason traction. Philadelphia and Orlando are both fighting for positioning in the East's crowded middle, and a loss here could mean the difference between a favorable play-in matchup and a brutal one. Neither team inspires overwhelming confidence, but the stakes are real and the urgency will be palpable from tip-off.",
       keyMatchup:
-        "LaMelo Ball vs. Scottie Barnes — two dynamic young talents trying to will their teams into postseason relevance in a game most fans won't be watching.",
+        "Tyrese Maxey vs. Paolo Banchero — two young franchise cornerstones carrying heavy loads, each trying to will their team into the playoffs.",
     },
   ],
   topPick: {
     gameIndex: 0,
     reason:
-      "OKC @ SAS is the regular-season game of the year. Both teams are 59-18, tied for the 1-seed, and playing with playoff intensity. Wemby is coming off a 28/12/5/4BLK masterpiece and the Spurs are on an 11-game heater. SGA and the Thunder need to respond. This is must-watch from tip to buzzer — the kind of Friday night game you build your evening around.",
+      "DET @ NYK on ABC is the Saturday primetime headliner. Brunson just put up 28/7 to push the Knicks to 51 wins, the Garden will be rocking, and Detroit as the East's 3-seed makes this a legitimate playoff preview. ABC's national window, electric atmosphere, elite guard play — this is the game you build your Saturday night around.",
   },
   sleeper: {
     gameIndex: 3,
     reason:
-      "ATL @ MIA is a play-in desperation game that could produce genuine intensity. Both teams are fighting for survival, Trae Young has been on a tear, and Miami plays with a different edge when their backs are against the wall. Worth flipping to during breaks from the marquee games — the stakes are higher than the national profile suggests.",
+      "LAC @ PHX is buried in the 10 PM window but Booker vs. Kawhi is always worth watching when both are healthy. Phoenix is fighting for seeding and the Clippers are the definition of a wildcard. Worth flipping to after the TNT game winds down — these two have a way of producing memorable fourth quarters.",
   },
   skipIt: {
     gameIndex: 4,
     reason:
-      "CHA @ TOR is two fringe play-in teams stumbling toward the finish line. Neither roster has the depth or consistency to be compelling, and this game will be overshadowed by three superior matchups airing at the same time or shortly after. Save your attention for the 1-seed showdown.",
+      "PHI @ ORL at 6 PM is a play-in battle with real stakes but limited star power and entertainment value compared to the rest of tonight's loaded slate. The early tip means it won't compete with the primetime games, and neither team has been consistent enough to promise a compelling product.",
   },
 };
