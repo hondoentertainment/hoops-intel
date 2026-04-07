@@ -5,6 +5,11 @@ on:
     # 5:00 AM PST (UTC-8) = 13:00 UTC
     - cron: "0 13 * * *"
   workflow_dispatch: # allow manual trigger from GitHub Actions UI
+    inputs:
+      anthropic_api_key:
+        description: 'Anthropic API key (leave blank to use repo secret ANTHROPIC_API_KEY)'
+        required: false
+        default: ''
 
 concurrency:
   group: daily-edition
@@ -53,7 +58,7 @@ jobs:
       - name: Run optimized daily generation
         id: generate
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key || secrets.ANTHROPIC_API_KEY }}
         run: |
           set +e
           node scripts/generate-all-daily.mjs 2>&1 | tee generation.log
