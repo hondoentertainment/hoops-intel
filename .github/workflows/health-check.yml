@@ -6,6 +6,10 @@ on:
     - cron: "0 */6 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: health-check
+  cancel-in-progress: true
+
 jobs:
   health-check:
     runs-on: ubuntu-latest

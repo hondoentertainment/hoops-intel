@@ -6,8 +6,31 @@ on:
     - cron: "0 13 * * *"
   workflow_dispatch: # allow manual trigger from GitHub Actions UI
 
+concurrency:
+  group: daily-edition
+  cancel-in-progress: false
+
 jobs:
+  check-season:
+    runs-on: ubuntu-latest
+    outputs:
+      active: ${{ steps.season.outputs.active }}
+    steps:
+      - name: Check NBA season status
+        id: season
+        run: |
+          MONTH=$(date -u +%-m)
+          # NBA regular season: October (10) through April (4), playoffs through June (6)
+          if [ "$MONTH" -ge 7 ] && [ "$MONTH" -le 9 ]; then
+            echo "active=false" >> $GITHUB_OUTPUT
+            echo "NBA offseason (July-September) — skipping daily generation."
+          else
+            echo "active=true" >> $GITHUB_OUTPUT
+          fi
+
   generate-edition:
+    needs: check-season
+    if: needs.check-season.outputs.active == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
