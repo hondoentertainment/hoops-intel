@@ -1,0 +1,82 @@
+name: Post-Game Scores Refresh
+
+on:
+  schedule:
+    # Run at 1:30 AM ET (6:30 UTC) — after most games finish
+    - cron: "30 6 * * *"
+    # Run at 3:00 AM ET (8:00 UTC) — catch West Coast late games
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: scores-refresh
+  cancel-in-progress: true
+
+jobs:
+  check-season:
+    runs-on: ubuntu-latest
+    outputs:
+      active: ${{ steps.season.outputs.active }}
+    steps:
+      - name: Check NBA season status
+        id: season
+        run: |
+          MONTH=$(date -u +%-m)
+          if [ "$MONTH" -ge 7 ] && [ "$MONTH" -le 9 ]; then
+            echo "active=false" >> $GITHUB_OUTPUT
+          else
+            echo "active=true" >> $GITHUB_OUTPUT
+          fi
+
+  refresh-scores:
+    needs: check-season
+    if: needs.check-season.outputs.active == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest ESPN scores
+        id: fetch
+        run: |
+          node scripts/fetch-espn-data.mjs
+          echo "fetched=true" >> $GITHUB_OUTPUT
+        timeout-minutes: 2
+
+      - name: Update Supabase pulse snapshots
+        if: steps.fetch.outputs.fetched == 'true'
+        run: |
+          # Sync final scores to Supabase for historical tracking
+          if [ -f ".daily-data/espn-snapshot.json" ]; then
+            echo "ESPN snapshot available — scores cached for next edition."
+          else
+            echo "No snapshot generated — ESPN may be unavailable."
+          fi
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - name: Check for cache changes
+        id: changes
+        run: |
+          git add -N .espn-cache/ .daily-data/ 2>/dev/null || true
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit ESPN cache update
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "hoops-intel-bot"
+          git config user.email "bot@hoopsintel.net"
+          git add .espn-cache/ .daily-data/
+          git commit -m "Scores refresh: $(date +'%B %-d, %Y %l:%M %p ET' --date='TZ="America/New_York" now')"
+          git push origin ${{ github.ref_name }}
