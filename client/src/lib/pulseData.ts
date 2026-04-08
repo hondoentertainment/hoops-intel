@@ -101,4 +101,89 @@ export const mediaReactions = [
 export const injuryUpdates = [
   {"player":"Cade Cunningham","team":"DET","status":"out","injury":"Collapsed lung (left pneumothorax)","timeline":"No specific timetable. Re-evaluation ongoing.","impact":"Detroit's 123-107 loss to Orlando exposed how much they need Cunningham back. Without their primary playmaker, the Pistons managed just 107 points on 44% shooting and looked completely lost offensively. The East lead is now down to 2 games over Boston with one week remaining. Cunningham's return before the playoffs could be the difference between the 1-seed and potentially falling to the 2-seed."},
   {"player":"Franz Wagner","team":"ORL","status":"returning","injury":"Left knee injury","timeline":"Returned Sunday with 22 points vs Detroit. Full go.","impact":"Wagner's return couldn't have been better timed. His 22 points alongside Banchero's 35 gave Orlando the offensive firepower to upset Eastern Conference-leading Detroit 123-107. The Magic (43-37) are back in playoff contention, and Wagner's presence transforms them from a one-man show into a legitimate threat with multiple scoring options."},
-  {"player":"Anthony Edwards","team":"MIN","status":"probable","injury":"Right knee inflammation","timeline":"Fully healthy. Expected to play remainder of season.","impact":"Edwards is operating at full strength after his return from knee inflammation. Minnesota (47-30) holds the 5-seed and Edwards' explosiveness gives the T
+  {"player":"Anthony Edwards","team":"MIN","status":"probable","injury":"Right knee inflammation","timeline":"Fully healthy. Expected to play remainder of season.","impact":"high"},
+  {"player":"Joel Embiid","team":"PHI","status":"day-to-day","injury":"Left knee management","timeline":"Managed minutes. Limited to 32 min vs SAS.","impact":"high"},
+  {"player":"Ja Morant","team":"MEM","status":"day-to-day","injury":"Right shoulder soreness","timeline":"Played through it Sunday. Game-to-game basis.","impact":"medium"}
+];
+
+
+// ═══════════════════════════════════════════════════════════
+// GAME PREVIEWS (Tonight's Games)
+// ═══════════════════════════════════════════════════════════
+
+export const gamePreviews: any[] = [];
+
+
+// ═══════════════════════════════════════════════════════════
+// ROOKIE WATCH
+// ═══════════════════════════════════════════════════════════
+
+export const rookieWatch = [
+  {"rank":1,"player":"Zach Edey","team":"MEM","statLine":"16.8 PPG · 10.2 RPG · 1.8 BPG","note":"Edey continues to anchor Memphis' interior despite the team's struggles. His physicality and shot-blocking give the Grizzlies a defensive presence they desperately need.","trend":"stable"},
+  {"rank":2,"player":"Stephon Castle","team":"SAS","statLine":"14.5 PPG · 4.8 APG · 3.1 RPG","note":"Castle had 16 points and 7 assists in the Spurs' 13th straight win. His development alongside Wembanyama has been remarkable, and he's becoming a reliable two-way guard.","trend":"up"},
+  {"rank":3,"player":"Kon Knueppel","team":"CHA","statLine":"15.2 PPG · 3.9 RPG · 2.5 APG","note":"Knueppel continues to shoot efficiently from three and provide scoring punch off the bench. The youngest player to reach 250 career three-pointers remains a bright spot in Charlotte.","trend":"stable"},
+  {"rank":4,"player":"Dalton Knecht","team":"LAL","statLine":"13.1 PPG · 3.8 RPG · 1.9 APG","note":"Knecht's shooting has been a key element in the Lakers' second unit all season. His three-point range stretches defenses and creates driving lanes for LeBron and AD.","trend":"stable"},
+  {"rank":5,"player":"Yves Missi","team":"NOP","statLine":"10.4 PPG · 7.9 RPG · 1.4 BPG","note":"Missi's energy and rim protection have been encouraging for New Orleans despite a lost season. His athletic ability and defensive instincts project well for the future.","trend":"stable"}
+];
+
+
+// ═══════════════════════════════════════════════════════════
+// FANTASY ALERTS
+// ═══════════════════════════════════════════════════════════
+
+export const fantasyAlerts = [
+  {"player":"Franz Wagner","team":"ORL","action":"add","reason":"Wagner returned from injury with 22 points in Orlando's upset of Detroit. He's fully healthy and a must-add in all formats for the final week and playoffs.","urgency":"high"},
+  {"player":"Donovan Mitchell","team":"CLE","action":"hold","reason":"Mitchell exploded for 38 points in Cleveland's 142-point outburst. He's locked in and riding a hot streak heading into the playoffs. Do not bench or trade.","urgency":"high"},
+  {"player":"Paolo Banchero","team":"ORL","action":"hold","reason":"Banchero dropped 35 points to upset Detroit. With Wagner back, Orlando's offense has multiple weapons and Banchero's usage should remain elite.","urgency":"medium"},
+  {"player":"Jeremy Sochan","team":"SAS","action":"stream","reason":"Sochan scored 19 points in the Spurs' 13th straight win. He's a solid streaming option while the Spurs remain hot.","urgency":"medium"},
+  {"player":"Isaiah Stewart","team":"DET","action":"hold","reason":"With Cunningham still out, Stewart's usage stays elevated. He scored 19 against Orlando but the Pistons need Cunningham back desperately.","urgency":"low"}
+];
+
+
+// ═══════════════════════════════════════════════════════════
+// STANDINGS
+// ═══════════════════════════════════════════════════════════
+
+export const eastStandings = [
+  {"rank":1,"team":"DET","wins":57,"losses":23,"pct":".713","gb":"—","streak":"L1","last10":"7-3","conf":"east"},
+  {"rank":2,"team":"BOS","wins":55,"losses":25,"pct":".688","gb":"2","streak":"W6","last10":"8-2","conf":"east"},
+  {"rank":3,"team":"NYK","wins":52,"losses":28,"pct":".650","gb":"5","streak":"W4","last10":"7-3","conf":"east"},
+  {"rank":4,"team":"CLE","wins":51,"losses":29,"pct":".638","gb":"6","streak":"W2","last10":"7-3","conf":"east"},
+  {"rank":5,"team":"ATL","wins":45,"losses":35,"pct":".563","gb":"12","streak":"L1","last10":"6-4","conf":"east"},
+  {"rank":6,"team":"PHI","wins":43,"losses":37,"pct":".538","gb":"14","streak":"L1","last10":"5-5","conf":"east"},
+  {"rank":7,"team":"MIL","wins":43,"losses":37,"pct":".538","gb":"14","streak":"L2","last10":"4-6","conf":"east"},
+  {"rank":8,"team":"ORL","wins":43,"losses":37,"pct":".538","gb":"14","streak":"W1","last10":"5-5","conf":"east"},
+  {"rank":9,"team":"IND","wins":42,"losses":38,"pct":".525","gb":"15","streak":"L1","last10":"5-5","conf":"east"},
+  {"rank":10,"team":"MIA","wins":41,"losses":39,"pct":".513","gb":"16","streak":"W1","last10":"6-4","conf":"east"}
+];
+
+export const westStandings = [
+  {"rank":1,"team":"SAS","wins":61,"losses":19,"pct":".763","gb":"—","streak":"W13","last10":"10-0","conf":"west"},
+  {"rank":2,"team":"OKC","wins":59,"losses":21,"pct":".738","gb":"2","streak":"W1","last10":"8-2","conf":"west"},
+  {"rank":3,"team":"HOU","wins":52,"losses":28,"pct":".650","gb":"9","streak":"W1","last10":"7-3","conf":"west"},
+  {"rank":4,"team":"DEN","wins":51,"losses":29,"pct":".638","gb":"10","streak":"W1","last10":"6-4","conf":"west"},
+  {"rank":5,"team":"MIN","wins":47,"losses":33,"pct":".588","gb":"14","streak":"L1","last10":"5-5","conf":"west"},
+  {"rank":6,"team":"LAL","wins":46,"losses":34,"pct":".575","gb":"15","streak":"L1","last10":"6-4","conf":"west"},
+  {"rank":7,"team":"DAL","wins":45,"losses":35,"pct":".563","gb":"16","streak":"W1","last10":"5-5","conf":"west"},
+  {"rank":8,"team":"PHX","wins":44,"losses":36,"pct":".550","gb":"17","streak":"L1","last10":"5-5","conf":"west"},
+  {"rank":9,"team":"SAC","wins":42,"losses":38,"pct":".525","gb":"19","streak":"L2","last10":"4-6","conf":"west"},
+  {"rank":10,"team":"POR","wins":40,"losses":40,"pct":".500","gb":"21","streak":"L1","last10":"5-5","conf":"west"}
+];
+
+export const standings = [...eastStandings, ...westStandings];
+
+
+// ═══════════════════════════════════════════════════════════
+// THIS DAY IN NBA HISTORY
+// ═══════════════════════════════════════════════════════════
+
+export const historyFact = {year:1993,fact:"On April 7, 1993, the Charlotte Hornets clinched their first-ever playoff berth in franchise history with a victory over the Boston Celtics, marking a milestone for the expansion franchise in just their fifth NBA season.",players:["Alonzo Mourning"]};
+
+
+// ═══════════════════════════════════════════════════════════
+// HOOPS IQ QUIZ
+// ═══════════════════════════════════════════════════════════
+
+export const hoopsIQ = {questions:[{question:"How many points did the Cleveland Cavaliers score in their victory over Memphis — the highest total by any team this season?",options:["A. 138","B. 140","C. 142","D. 145"],answer:"C",explanation:"The Cavaliers erupted for 142 points on 58% shooting, led by Donovan Mitchell's 38 points.",difficulty:"easy"},{question:"How many consecutive games have the San Antonio Spurs won — the longest winning streak in the NBA this season?",options:["A. 10","B. 11","C. 12","D. 13"],answer:"D",explanation:"The Spurs extended their historic streak to 13 games with a 115-102 victory over Philadelphia.",difficulty:"easy"},{question:"Which team currently leads the Eastern Conference standings?",options:["A. Boston Celtics","B. Detroit Pistons","C. New York Knicks","D. Cleveland Cavaliers"],answer:"B",explanation:"Detroit (57-23) leads the East by 2 games over Boston, though their lead was cut after the Orlando loss.",difficulty:"medium"},{question:"How many triple-doubles has Nikola Jokic recorded this season after his 31/14/12 line against Portland?",options:["A. 20","B. 22","C. 25","D. 28"],answer:"C",explanation:"Jokic's overtime triple-double against Portland was his 25th of the 2025-26 season.",difficulty:"medium"},{question:"Which team did the Charlotte Hornets beat on April 7, 1993, to clinch their first-ever playoff berth?",options:["A. New York Knicks","B. Boston Celtics","C. Chicago Bulls","D. Atlanta Hawks"],answer:"B",explanation:"The Hornets defeated the Celtics to clinch their first playoff appearance in franchise history, in their fifth NBA season.",difficulty:"hard"}]};
+
+export const triviaQuestion = {id:"2026-04-07",question:"How many points did the Cleveland Cavaliers score against Memphis — the highest total by any team this season?",options:["138","140","142","145"],correctIndex:2,explanation:"The Cavaliers erupted for 142 points on 58% shooting, led by Donovan Mitchell's 38 points in the highest-scoring game of the 2025-26 season.",difficulty:"medium"};
