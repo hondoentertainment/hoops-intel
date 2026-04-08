@@ -24,7 +24,7 @@ function assertType(val, type, field) {
   assert(typeof val === type, `${field} should be ${type}, got ${typeof val}`);
 }
 
-function main() {
+export function validate() {
   const filePath = join(ROOT, "client/src/lib/pulseData.ts");
   const content = readFileSync(filePath, "utf8");
   let errors = 0;
@@ -117,8 +117,7 @@ function main() {
   }
 
   if (errors > 0) {
-    console.error(`\n❌ ${errors} validation error(s) found in pulseData.ts`);
-    process.exit(1);
+    throw new Error(`${errors} validation error(s) found in pulseData.ts`);
   }
 
   console.log("✅ pulseData.ts schema validation passed");
@@ -170,4 +169,12 @@ function main() {
   }
 }
 
-main();
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  try {
+    validate();
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+}

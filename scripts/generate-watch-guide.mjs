@@ -25,12 +25,8 @@ function readPulseContext() {
   }
 }
 
-// ── Main ──────────────────────────────────────────────────
-async function main() {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-watch-guide")) process.exit(0);
-
-  const client = new Anthropic();
-
+// ── Generate (callable from orchestrator or standalone) ───
+export async function generate({ client }) {
   const todayESPN = toESPNDate(0);
   const todayISO = toISODate(0);
   const todayDisplay = toDisplayDate(0);
@@ -44,8 +40,7 @@ async function main() {
     const espnData = await fetchESPNCached(todayESPN);
     games = parseGames(espnData);
   } catch (err) {
-    console.error("ESPN fetch error:", err.message);
-    process.exit(1);
+    throw new Error(`ESPN fetch error: ${err.message}`);
   }
 
   const scheduledGames = games.filter((g) => g.status !== "final");
@@ -193,7 +188,11 @@ export const watchGuideData: WatchGuideData = {
   console.log(`\n✅ Watch Guide complete for ${todayDisplay}`);
 }
 
-main().catch((err) => {
-  console.error("❌ Generation failed:", err);
-  process.exit(1);
-});
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-watch-guide")) process.exit(0);
+  generate({ client: new Anthropic() }).catch((err) => {
+    console.error("❌ Generation failed:", err);
+    process.exit(1);
+  });
+}

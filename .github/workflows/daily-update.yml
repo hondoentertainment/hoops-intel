@@ -52,8 +52,8 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Anthropic SDK
-        run: npm install @anthropic-ai/sdk --no-save
+      - name: Install dependencies
+        run: npm install --production
 
       - name: Run optimized daily generation
         id: generate
@@ -71,7 +71,7 @@ jobs:
             echo "⚠️ Partial failure — edition generated but some secondary content failed"
             echo "partial=true" >> $GITHUB_OUTPUT
           fi
-        timeout-minutes: 12
+        timeout-minutes: 20
 
       - name: Check for changes
         id: changes
@@ -83,7 +83,7 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml client/src/lib/watchGuideData.ts client/src/lib/sentimentData.ts client/src/lib/podcastData.ts client/src/lib/historyData.ts client/src/lib/refData.ts client/src/lib/momentumData.ts
+          git add client/src/lib/ public/feed.xml public/sitemap.xml public/og/
           git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 

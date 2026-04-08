@@ -19,7 +19,7 @@ function escapeXml(str) {
     .replace(/'/g, "&apos;");
 }
 
-function main() {
+export function generate() {
   const archiveFile = readFileSync(
     join(ROOT, "client/src/lib/archiveData.ts"),
     "utf8"
@@ -76,4 +76,7 @@ ${items}
   console.log(`✓ RSS feed written to public/feed.xml (${editions.length} editions)`);
 }
 
-main();
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generate();
+}

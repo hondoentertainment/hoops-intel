@@ -35,8 +35,8 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Anthropic SDK
-        run: npm install @anthropic-ai/sdk --no-save
+      - name: Install dependencies
+        run: npm install --production
 
       - name: Verify API key is available
         env:
@@ -53,7 +53,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key || secrets.ANTHROPIC_API_KEY }}
         run: node scripts/backfill-days.mjs ${{ github.event.inputs.dates }}
-        timeout-minutes: 30
+        timeout-minutes: 45
 
       - name: Check for changes
         id: changes
@@ -65,7 +65,7 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/ public/feed.xml public/sitemap.xml
+          git add client/src/lib/ public/feed.xml public/sitemap.xml public/og/
           git commit -m "Backfill editions: ${{ github.event.inputs.dates }}"
           git push origin main
 

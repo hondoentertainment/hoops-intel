@@ -27,15 +27,8 @@ function getLastEditionNumber() {
   }
 }
 
-// ── Main ──────────────────────────────────────────────────
-async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.log('[generate-edition] Skipping — ANTHROPIC_API_KEY not set.');
-    console.log('[generate-edition] Add it as a GitHub repository secret to enable this workflow.');
-    process.exit(0);
-  }
-  const client = new Anthropic(); // reads ANTHROPIC_API_KEY from env
-
+// ── Generate (callable from orchestrator or standalone) ───
+export async function generate({ client }) {
   const yesterdayESPN = toESPNDate(-1);
   const todayESPN = toESPNDate(0);
   const editionDate = toDisplayDate(0);   // e.g. "March 7, 2026"
@@ -55,8 +48,7 @@ async function main() {
     yesterdayGames = parseGames(yesterdayData);
     todayGames = parseGames(todayData);
   } catch (err) {
-    console.error("ESPN fetch error (all retries + cache exhausted):", err.message);
-    process.exit(1);
+    throw new Error(`ESPN fetch error (all retries + cache exhausted): ${err.message}`);
   }
 
   const finalGames = yesterdayGames.filter((g) => g.status === "final");
@@ -151,7 +143,14 @@ Keep it to one line, valid JSON-compatible syntax (strings in double quotes, no 
   console.log(`\n✅ Done! Vol. 2026 · No. ${editionNo} — ${editionDate}`);
 }
 
-main().catch((err) => {
-  console.error("❌ Generation failed:", err);
-  process.exit(1);
-});
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.log('[generate-edition] Skipping — ANTHROPIC_API_KEY not set.');
+    process.exit(0);
+  }
+  generate({ client: new Anthropic() }).catch((err) => {
+    console.error("❌ Generation failed:", err);
+    process.exit(1);
+  });
+}
