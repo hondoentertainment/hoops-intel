@@ -6,7 +6,7 @@ on:
       dates:
         description: 'Space-separated dates to backfill (YYYY-MM-DD)'
         required: true
-        default: '2026-04-06 2026-04-07'
+        default: '2026-04-05 2026-04-06 2026-04-07'
       anthropic_api_key:
         description: 'Anthropic API key (leave blank to use repo secret ANTHROPIC_API_KEY)'
         required: false
