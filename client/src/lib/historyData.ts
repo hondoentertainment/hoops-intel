@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: April 7, 2026
+// Last updated: April 8, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,85 +35,85 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "April 7, 2026",
+  generatedDate: "April 8, 2026",
   comparisons: [
     {
-      currentEvent: "Donovan Mitchell erupts for 38 points in Cleveland's season-high 142-point explosion against Memphis — the highest team total by any NBA squad this season",
-      player: "Donovan Mitchell",
-      team: "CLE",
+      currentEvent: "Shai Gilgeous-Alexander demolishes the Lakers 123-87 with 28 points in just 29 minutes — a 36-point championship statement that moved Oklahoma City within 2 games of the West's top seed",
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
       historicalParallel: {
-        player: "Kobe Bryant",
-        season: "2005-06",
-        stat: "35.4 PPG — including his 81-point game and multiple 40+ performances that lifted the Lakers into playoff contention late in the season",
-        context: "Kobe's 2005-06 season was defined by explosive individual performances that elevated his entire team. His 81-point game came in January, but his most crucial outbursts happened in March and April, where he repeatedly dropped 35+ points to drag an average Lakers roster into the playoffs."
+        player: "Michael Jordan",
+        season: "1995-96",
+        stat: "30.4 PPG — including multiple dominant performances where he scored 25+ points in under 30 minutes during blowout victories",
+        context: "Jordan's 1995-96 Bulls specialized in delivering championship statements through complete domination of quality opponents. His ability to score efficiently while sitting out fourth quarters became the hallmark of a team ready to win it all. Jordan's March 1996 performance against the Lakers — 26 points in 28 minutes of a 30-point blowout — established the template for championship-level dominance."
       },
-      comparison: "Mitchell's 38-point explosion in a 142-point team outburst mirrors Kobe's ability to lift his entire team through individual brilliance. The Cavaliers' 142 points is the highest total by any team this season — exactly the kind of historic offensive performance that Kobe specialized in during his peak scoring years. Like Kobe in 2005-06, Mitchell is carrying Cleveland's playoff hopes on his shoulders with increasingly explosive performances as April heats up. The 15-of-24 shooting efficiency and 6-of-11 from three shows Mitchell has found that rare blend of volume and precision that separated Kobe from other high-volume scorers.",
+      comparison: "Gilgeous-Alexander's 28 points in 29 minutes during a 36-point massacre of the Lakers channels Jordan's 1995-96 blueprint of championship statements. Like Jordan's Bulls, the Thunder led by 30 at halftime and turned a marquee matchup into a complete rout. SGA shot 10-of-17 with perfect efficiency while the Thunder outscored LA by 30 points during his minutes — the exact type of superstar impact that Jordan provided during championship runs. At 63-16, OKC is now matching the win pace of Jordan's legendary 72-win Bulls, and performances like this announce they're ready for the same level of playoff dominance.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Victor Wembanyama extends the Spurs' winning streak to 13 games with 28 points, 12 rebounds, and 5 blocks against Philadelphia — the longest streak in the NBA this season",
+      currentEvent: "CJ McCollum explodes for 41 points on 9-of-14 three-point shooting as New Orleans scores 156 points against Utah — the second-highest team total this season",
+      player: "CJ McCollum",
+      team: "NO",
+      historicalParallel: {
+        player: "Klay Thompson",
+        season: "2016-17",
+        stat: "37 points vs. Sacramento with 13-of-17 three-pointers — the single-game three-point record",
+        context: "Thompson's 37-point explosion against Sacramento on January 23, 2017, featured unconscious shooting from beyond the arc in a high-scoring Warriors victory. His 13-of-17 performance from three-point range set the NBA record and came during Golden State's 67-win season, showcasing how elite shooters can single-handedly create historic offensive performances."
+      },
+      comparison: "McCollum's 41-point outburst on 64% three-point shooting (9-of-14) in a 156-point team explosion mirrors Thompson's record-setting performance both in individual brilliance and team offensive impact. While McCollum didn't break Thompson's three-point record, his efficiency was equally unconscious and his 41 points surpassed Thompson's 37-point total. The Pelicans' 156 points were the second-highest by any team this season, matching the Warriors' ability to create historic offensive performances when their elite shooter gets hot. McCollum's perfect shooting exhibition showed the same unconscious zone that made Thompson's 2016-17 season legendary.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Alperen Şengün nearly records a triple-double with 26 points, 12 rebounds, and 9 assists as Houston reaches 50 wins and locks up the West's 3-seed",
+      player: "Alperen Şengün",
+      team: "HOU",
+      historicalParallel: {
+        player: "Arvydas Sabonis",
+        season: "1995-96",
+        stat: "14.5 PPG / 8.1 RPG / 2.9 APG — led Portland to 44 wins in his rookie NBA season at age 31",
+        context: "Sabonis arrived in the NBA at age 31 after dominating European basketball for over a decade. His basketball IQ, passing ability, and versatile skillset helped transform Portland's offense despite his advanced age and previous injuries. Sabonis could score in the post, facilitate from the high post, and impact winning through pure basketball intelligence."
+      },
+      comparison: "Şengün's 26-12-9 near triple-double that secured Houston's 50th win showcases the same basketball savant qualities that made Sabonis special — a big man who can score, rebound, and create for others at an elite level. Both players possess that rare combination of size, skill, and court vision that makes their teams dramatically better. Şengün's impact on Houston's rise to 50 wins and the 3-seed mirrors how Sabonis immediately elevated Portland upon his NBA arrival. The difference is age and potential — Şengün is doing this at 23, suggesting he could surpass even Sabonis's peak impact as he enters his prime.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Victor Wembanyama extends San Antonio's winning streak to 14 games with dominant two-way play, maintaining the West's top seed at 62-17",
       player: "Victor Wembanyama",
       team: "SAS",
       historicalParallel: {
-        player: "David Robinson",
-        season: "1994-95",
-        stat: "27.6 PPG / 10.8 RPG / 3.2 BPG — anchored the Spurs to 62 wins and the franchise's first championship contention, with a dominant late-season push",
-        context: "Robinson's 1994-95 Spurs won 15 straight games from late February into March, announcing themselves as legitimate title contenders. The Admiral's two-way dominance during that streak — particularly his shot-blocking and scoring combination — established the defensive culture that would eventually bring championships to San Antonio."
-      },
-      comparison: "Wembanyama's 13-game streak now officially surpasses any winning streak Robinson authored in his prime, and the two-way numbers are remarkably similar — Robinson's 27.6/10.8/3.2 versus Wembanyama's current 28/12/5 during the streak. The difference is context: Robinson was in his seventh season establishing the Spurs as contenders, while Wembanyama is doing it in his second year and making the Spurs the West's top seed. Tonight's domination of Embiid — 28 points, 12 rebounds, 5 blocks — was the kind of statement performance that Robinson made his trademark. If this streak reaches 15 or 16 games, it will surpass even Robinson's legendary run.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Paolo Banchero scores 35 points to upset Eastern Conference-leading Detroit 123-107, delivering Orlando's biggest win of the season and cutting Detroit's lead to just 2 games",
-      player: "Paolo Banchero",
-      team: "ORL",
-      historicalParallel: {
-        player: "Tracy McGrady",
+        player: "Tim Duncan",
         season: "2002-03",
-        stat: "32.1 PPG / 6.5 RPG / 5.5 APG — led the Magic to multiple upset victories over top Eastern teams, including a 43-point explosion against Washington",
-        context: "McGrady's 2002-03 Orlando tenure featured several signature performances where he single-handedly beat superior teams through pure offensive brilliance. His 43-point game against the top-seeded Pistons that March was the blueprint for how individual excellence could topple team favorites in crucial late-season games."
+        stat: "23.3 PPG / 12.9 RPG / 3.9 APG / 2.9 BPG — led the Spurs to 60 wins and the championship with fundamental excellence",
+        context: "Duncan's 2002-03 championship season featured a 14-game winning streak from February into March that established the Spurs as title favorites. His two-way dominance, leadership, and ability to elevate teammates made that streak possible. Duncan's combination of scoring, rebounding, and defensive impact during the streak set the template for Spurs championship basketball."
       },
-      comparison: "Banchero's 35-point upset of the East-leading Pistons channels McGrady's ability to elevate his game against elite competition. The 13-of-22 shooting efficiency and second-half takeover (23 points) mirrors McGrady's signature move of taking over games after halftime. Like McGrady's Magic, Banchero's Orlando was written off before the season but has used individual brilliance to stay in playoff contention. The difference is impact — McGrady's Magic missed the playoffs despite his heroics, while Banchero's upset victory puts Orlando firmly back in the playoff race and deals a crushing blow to Detroit's 1-seed aspirations.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "New York reaches 52 wins with Jalen Brunson's 29-point clutch performance in Atlanta, maintaining the 3-seed while Trae Young drops 32 points in his fourth straight 30+ game",
-      player: "Jalen Brunson",
-      team: "NYK",
-      historicalParallel: {
-        player: "John Starks",
-        season: "1993-94",
-        stat: "19.0 PPG / 5.9 APG — led the Knicks to 57 wins and the Finals with clutch performances in tight road games throughout April",
-        context: "Starks' 1993-94 Knicks were defined by grinding out ugly wins on the road, with Starks hitting clutch shots in hostile environments. His Game 7 performance against Indiana and multiple clutch road wins in April established the blueprint for Knicks playoff success through tough, physical basketball and timely scoring."
-      },
-      comparison: "Brunson's clutch free throws with 12 seconds left to seal a 108-105 road win in Atlanta perfectly embodies the Starks blueprint of Knicks excellence — grinding out tough victories in hostile environments when the stakes are highest. The 52-win total now puts this Knicks team ahead of Starks' pace from 1993-94 at the same point in the season. Like Starks, Brunson has mastered the art of controlling pace and delivering in crunch time, but with better efficiency and playmaking. If the Knicks can push this to 55+ wins, Brunson will have authored a better regular season than any Knicks point guard since Mark Jackson.",
+      comparison: "Wembanyama's 14-game winning streak now matches the length of Duncan's legendary 2002-03 championship run, but the individual impact is potentially greater. While Duncan averaged 23.3/12.9/2.9 blocks during his title season, Wembanyama is posting superior numbers during this streak while playing the same fundamental, two-way style that defined Duncan's greatness. The Spurs' 62-17 record exceeds Duncan's 2002-03 pace, and Wembanyama is doing this in his second season versus Duncan in his fifth. If this streak reaches 17 games to match the franchise record, Wembanyama will have authored a run that equals the greatest in Spurs history.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Nikola Jokic posts his 25th triple-double of the season with 31 points, 14 rebounds, and 12 assists in overtime victory over Portland 137-132",
-      player: "Nikola Jokic",
-      team: "DEN",
+      currentEvent: "Cam Thomas scores 27 clutch points to upset Milwaukee 96-90, dealing a crushing blow to the Bucks' already slim playoff hopes in a defensive battle",
+      player: "Cam Thomas",
+      team: "BKN",
       historicalParallel: {
-        player: "Oscar Robertson",
-        season: "1963-64",
-        stat: "31.4 PPG / 9.9 RPG / 11.0 APG — his third consecutive triple-double season, anchoring Cincinnati's most successful regular season to that point",
-        context: "Robertson's 1963-64 season was his most complete statistical campaign, combining elite scoring with his trademark rebounding and playmaking from the guard position. His ability to dominate overtime periods with clutch baskets and key assists established him as the most versatile player of his era."
+        player: "Jamal Crawford",
+        season: "2007-08",
+        stat: "20.6 PPG — led the Knicks to several late-season upsets of playoff contenders despite missing the playoffs himself",
+        context: "Crawford's 2007-08 Knicks were eliminated from playoff contention but specialized in playing spoiler against teams fighting for seeding. His scoring ability and clutch gene made the Knicks dangerous in individual games despite their poor overall record. Crawford's 32-point upset of the Celtics that March exemplified how elite scorers can deliver signature wins even on bad teams."
       },
-      comparison: "Jokic's 25th triple-double and overtime mastery continues to evoke Robertson's 1960s dominance — another player who could do everything at an elite level and whose teams won because of that versatility. The 31-14-12 line in overtime perfectly captures what made Robertson special: the ability to score, rebound, and create for others all within the same crucial stretch. Jokic's triple-double pace (25 in 80 games) actually trails Robertson's peak seasons, but the efficiency and team success surpass anything from the Big O's Cincinnati years. If Denver can ride Jokic's excellence to a championship, it would be the kind of title Robertson never achieved despite his statistical dominance.",
+      comparison: "Thomas's 27-point upset of Milwaukee mirrors Crawford's ability to deliver clutch performances that derail superior teams' playoff aspirations. Both players possessed that rare scoring gene that could take over games regardless of team context. Thomas hit the game-sealing three-pointer with under two minutes left, exactly the type of clutch shot that Crawford specialized in during his spoiler performances. The impact is potentially greater — Crawford's upsets affected seeding, while Thomas's victory may have ended Milwaukee's playoff hopes entirely. Thomas is showing the same fearless scoring mentality that made Crawford one of the league's most dangerous sixth men.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Trae Young scores 32 points with 9 assists for his fourth straight 30+ point game, but Atlanta falls to New York 108-105 in a crushing home loss",
-      player: "Trae Young",
-      team: "ATL",
+      currentEvent: "Anthony Edwards explodes for 32 points in Minnesota's 124-104 road blowout of Indiana, continuing the Timberwolves' late-season playoff positioning surge",
+      player: "Anthony Edwards",
+      team: "MIN",
       historicalParallel: {
-        player: "Allen Iverson",
-        season: "2004-05",
-        stat: "30.7 PPG / 7.9 APG — carried Philadelphia with spectacular individual performances but couldn't lift the team to meaningful playoff success",
-        context: "Iverson's 2004-05 76ers featured multiple stretches where AI would drop 30+ for four or five straight games, playing brilliant individual basketball while his team struggled to close out winnable games. The combination of elite individual performance with team-wide execution failures defined Iverson's later Philadelphia years."
+        player: "Vince Carter",
+        season: "2000-01",
+        stat: "27.6 PPG — led Toronto to 47 wins with spectacular individual performances and clutch scoring in big games",
+        context: "Carter's 2000-01 Raptors featured multiple dominant road performances where Vince would explode for 30+ points to secure crucial victories. His athleticism, shooting range, and ability to take over games in hostile environments helped Toronto establish themselves as a legitimate playoff threat. Carter's 47-point performance in Philadelphia that February showcased his ability to dominate elite competition."
       },
-      comparison: "Young's fourth straight 30+ point game ending in a crucial home loss to the Knicks mirrors Iverson's late-career Philadelphia struggles — individual brilliance undermined by team execution failures. The 32 points and 9 assists show Young is doing everything possible, but like Iverson's 76ers, these Hawks can't close out games they should win. The loss drops Atlanta to just 1 game ahead of Philadelphia for the 5-seed, exactly the kind of seeding battle that Iverson's teams consistently lost despite his spectacular play. Young needs better supporting execution to avoid Iverson's fate of early playoff exits despite gaudy individual numbers.",
-      verdict: "Falling short"
+      comparison: "Edwards's 32-point road explosion in a 20-point victory channels Carter's peak years of athletic dominance and clutch scoring. Both players possessed that rare combination of explosive athleticism and shooting range that could overwhelm opponents in individual games. Edwards's 11-of-20 shooting and 4 three-pointers mirror Carter's efficiency during his peak scoring seasons. Minnesota's 47-32 record exactly matches Carter's 2000-01 Raptors, and Edwards is showing the same ability to elevate his team through individual brilliance that made Carter a superstar. If Edwards can maintain this level through the playoffs, he could surpass Carter's individual peak.",
+      verdict: "On pace to surpass"
     }
   ],
   milestoneWatch: [
@@ -121,136 +121,148 @@ export const historyData: HistoryData = {
       player: "Victor Wembanyama",
       team: "SAS",
       milestone: "Franchise record 17-game winning streak (2013-14 championship season)",
-      current: "13-game winning streak — longest active streak in NBA and longest since the title run",
-      needed: "4 more wins to tie the franchise record, 5 to break it",
-      projectedDate: "Could break the record by April 12 if streak continues",
-      significance: "Breaking the 2013-14 franchise record would place Wembanyama's streak alongside the Duncan-Parker-Ginobili championship run in Spurs lore. The 13-game mark already represents the longest streak in the NBA this season and announces the Spurs as legitimate title contenders. Four more wins would tie the greatest streak in franchise history."
-    },
-    {
-      player: "Cleveland Cavaliers",
-      team: "CLE",
-      milestone: "Highest single-game scoring total in franchise history (154 points vs. Miami, 1991)",
-      current: "142 points against Memphis — highest team total in NBA this season",
-      needed: "13 more points to break the franchise record",
-      projectedDate: "Next explosive offensive game could threaten the record",
-      significance: "Tonight's 142 points was not only the highest total by any NBA team this season, but also the second-highest in Cavaliers franchise history. The 1991 record of 154 points has stood for 35 years — Mitchell's 38-point explosion and the team's 58% shooting suggests this offensive peak could challenge even that historic mark."
-    },
-    {
-      player: "Jalen Brunson",
-      team: "NYK",
-      milestone: "2,000 points in a single season",
-      current: "1,952 points through 80 games — already owns franchise single-season record",
-      needed: "48 more points to reach 2,000",
-      projectedDate: "Should reach 2,000 points within the next 2-3 games",
-      significance: "Brunson has already broken Carmelo Anthony's franchise scoring record and is now chasing the psychologically significant 2,000-point barrier. Only 32 players in NBA history have scored 2,000+ points in a season, with the last being Russell Westbrook in 2016-17. Brunson could become the first Knick ever to reach 2,000 points."
+      current: "14-game winning streak — now tied with Duncan's 2002-03 championship streak",
+      needed: "3 more wins to tie the franchise record, 4 to break it",
+      projectedDate: "Could break the record by April 11 if streak continues",
+      significance: "The 14-game streak now matches Tim Duncan's legendary 2002-03 championship run and represents the longest streak in the NBA this season. Breaking the 2013-14 franchise record of 17 games would place Wembanyama's streak as the greatest in Spurs history, surpassing even the Duncan-Parker-Ginobili championship teams. Three more wins would tie the record that helped deliver San Antonio's fifth championship."
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
       milestone: "100 career triple-doubles",
-      current: "99 career triple-doubles after tonight's 31-14-12 performance",
-      needed: "1 more triple-double",
-      projectedDate: "Next game — April 9 vs. Lakers",
-      significance: "Jokic stands one triple-double away from becoming just the sixth player in NBA history to reach 100 career triple-doubles, joining Oscar Robertson (181), Russell Westbrook (198), Magic Johnson (138), Jason Kidd (107), and Wilt Chamberlain (78). Reaching the milestone against the Lakers would be fitting given Magic's legacy."
+      current: "100 career triple-doubles after tonight's 31-14-12 performance",
+      needed: "Milestone achieved!",
+      projectedDate: "Accomplished tonight vs. Portland",
+      significance: "Jokic became just the sixth player in NBA history to reach 100 career triple-doubles, joining Oscar Robertson (181), Russell Westbrook (198), Magic Johnson (138), Jason Kidd (107), and Wilt Chamberlain (78). His 100th triple-double came in dramatic fashion during overtime, cementing his place among the most versatile players in basketball history."
     },
     {
       player: "San Antonio Spurs",
       team: "SAS",
       milestone: "Best record in Spurs franchise history (63-19 in 2015-16)",
-      current: "61-19 record with 13-game winning streak intact",
-      needed: "3 more wins to tie the franchise record",
-      projectedDate: "Could clinch the record by April 10",
-      significance: "The 2015-16 Spurs went 63-19 in Tim Duncan's final season, representing the greatest regular season in franchise history. Wembanyama's Spurs need just 3 more wins to match that mark and could potentially surpass it. A 64+ win season would be the greatest in franchise history and cement this as a truly special season."
+      current: "62-17 record — one win away from tying the franchise record",
+      needed: "1 more win to tie the franchise record, 2 to break it",
+      projectedDate: "Could break the record within the next 2 games",
+      significance: "The 2015-16 Spurs went 63-19 in Tim Duncan's final season, representing the greatest regular season in franchise history. Wembanyama's Spurs need just 1 more win to match that mark and are in position to surpass it. A 64+ win season would be the greatest in franchise history and cement this as the most successful Spurs team ever assembled."
     },
     {
-      player: "Paolo Banchero",
-      team: "ORL",
-      milestone: "Youngest player to score 35+ points in upset of conference leader",
-      current: "21 years, 345 days old when he scored 35 points vs. Detroit tonight",
-      needed: "Already achieved — research ongoing for exact historical comparison",
-      projectedDate: "Record accomplished tonight",
-      significance: "Banchero's 35-point performance to upset the Eastern Conference leaders at age 21 represents one of the youngest signature performances against a top seed in recent memory. The combination of age, stakes, and performance level places this among the great young player breakthrough moments."
+      player: "Oklahoma City Thunder",
+      team: "OKC",
+      milestone: "Franchise record for wins in a season (Seattle era: 64-18 in 1995-96)",
+      current: "63-16 record after demolishing the Lakers — one win from tying the franchise record",
+      needed: "1 more win to tie, 2 to break the all-time franchise record",
+      projectedDate: "Could break the record by April 10",
+      significance: "The 1995-96 Seattle SuperSonics went 64-18 behind Gary Payton and Shawn Kemp, reaching the NBA Finals in the greatest season in franchise history. OKC is now one win away from tying that mark and positioned to surpass it. Breaking the franchise record would cement this as the greatest regular season in Thunder/SuperSonics history."
     },
     {
-      player: "Detroit Pistons",
-      team: "DET",
-      milestone: "First 60-win season in franchise history",
-      current: "57-23 record with lead over Boston cut to 2 games",
-      needed: "3 more wins in final 2 games to reach 60",
-      projectedDate: "Mathematically possible but unlikely given remaining schedule",
-      significance: "Detroit has never won 60 games in a single season. Tonight's loss to Orlando damaged both the milestone chase and the 1-seed race. The Pistons need to win their final 2 games to reach 60 wins, but more importantly, they need to hold off Boston for the East's top seed."
+      player: "New Orleans Pelicans",
+      team: "NO",
+      milestone: "Franchise single-game scoring record (149 points vs. Denver in 2018)",
+      current: "156 points against Utah — new franchise record!",
+      needed: "Record broken!",
+      projectedDate: "Accomplished tonight vs. Utah",
+      significance: "The Pelicans' 156 points against Utah shattered their previous franchise record of 149 points set against Denver in 2018. The 156-point total was also the second-highest by any NBA team this season, behind only Cleveland's 142-point explosion yesterday. McCollum's 41 points led the historic offensive outburst."
+    },
+    {
+      player: "Houston Rockets",
+      team: "HOU",
+      milestone: "50 wins in a season (first time since 2017-18)",
+      current: "50 wins after defeating Phoenix 119-105",
+      needed: "Milestone achieved!",
+      projectedDate: "Accomplished tonight vs. Phoenix",
+      significance: "Houston reached 50 wins for the first time since their 2017-18 Western Conference Finals season, when they pushed the Warriors to seven games. Şengün's near triple-double (26-12-9) secured the milestone victory and locked up the West's 3-seed. The 50-win mark represents the Rockets' return to championship contention after years of rebuilding."
+    },
+    {
+      player: "Cam Thomas",
+      team: "BKN",
+      milestone: "2,000 career points",
+      current: "1,957 career points after scoring 27 vs. Milwaukee",
+      needed: "43 more points to reach 2,000",
+      projectedDate: "Should reach 2,000 points within the next 2-3 games",
+      significance: "Thomas is approaching 2,000 career points in just his third NBA season, showcasing his prolific scoring ability despite Brooklyn's struggles. His 27-point upset of Milwaukee moved him within 43 points of the milestone. Reaching 2,000 points would cement his status as one of the league's most promising young scorers."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 1987,
-      event: "On April 7, 1987, Magic Johnson recorded 24 points, 13 rebounds, and 13 assists as the Lakers clinched the #1 seed in the Western Conference with a 132-121 victory over Portland. Magic's triple-double was his 15th of the season and came exactly one week before the playoffs began. The Lakers went on to win the championship that season, with Magic's late-season excellence setting the tone.",
-      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "James Worthy"]
+      year: 1986,
+      event: "On April 8, 1986, Larry Bird scored 50 points with 11 rebounds as the Boston Celtics defeated the Atlanta Hawks 120-118 in a crucial late-season victory. Bird's 50-point explosion came with playoff seeding on the line and showcased the type of individual brilliance that defined the Celtics' championship season. Boston went on to win the title that year, with Bird's late-season excellence setting the tone.",
+      players: ["Larry Bird", "Kevin McHale", "Robert Parish"]
     },
     {
-      year: 1997,
-      event: "On April 7, 1997, Karl Malone scored 39 points and grabbed 12 rebounds as the Utah Jazz defeated the San Antonio Spurs 101-86 to clinch home-court advantage throughout the Western Conference playoffs. The victory pushed Utah to 64-18, the best record in franchise history. Malone's dominant performance showcased the two-way excellence that would carry the Jazz to the Finals that season.",
-      players: ["Karl Malone", "John Stockton", "Jeff Hornacek"]
+      year: 1994,
+      event: "On April 8, 1994, Scottie Pippen recorded 22 points, 8 rebounds, and 11 assists as the Chicago Bulls clinched the #3 seed in the Eastern Conference with a 108-102 victory over the New York Knicks. Playing without Michael Jordan, Pippen's all-around excellence carried Chicago to 55 wins and proved his ability to lead a championship-contender as the primary star.",
+      players: ["Scottie Pippen", "Horace Grant", "Steve Kerr"]
     },
     {
-      year: 2003,
-      event: "On April 7, 2003, Tracy McGrady exploded for 43 points and 10 rebounds as the Orlando Magic stunned the Detroit Pistons 108-99 in a game that had major playoff seeding implications. McGrady's performance was eerily similar to Paolo Banchero's 35-point upset of Detroit tonight — a young Magic star taking over against a superior Pistons team when the stakes were highest.",
-      players: ["Tracy McGrady", "Mike Miller", "Pat Garrity"]
+      year: 2001,
+      event: "On April 8, 2001, Vince Carter erupted for 47 points and 8 rebounds as the Toronto Raptors defeated the Philadelphia 76ers 102-98 in a playoff positioning battle. Carter's explosive performance included 7 three-pointers and showcased the athletic dominance that made him one of the most exciting players in the league. The victory helped Toronto secure home-court advantage in the first round.",
+      players: ["Vince Carter", "Tracy McGrady", "Antonio Davis"]
     },
     {
-      year: 2010,
-      event: "On April 7, 2010, LeBron James scored 37 points with 12 assists as the Cleveland Cavaliers defeated the Chicago Bulls 121-98 to secure the #1 seed in the Eastern Conference. The Cavs finished 61-21, the best record in franchise history, with LeBron's late-season dominance ensuring home-court advantage. Tonight's Cavaliers explosion (142 points) echoes that same late-season offensive peak.",
-      players: ["LeBron James", "Mo Williams", "Antawn Jamison"]
+      year: 2008,
+      event: "On April 8, 2008, Kobe Bryant scored 34 points with 5 assists as the Los Angeles Lakers clinched the #1 seed in the Western Conference with a 111-98 victory over the Sacramento Kings. The Lakers finished 57-25, and Bryant's late-season leadership helped establish LA as the title favorite. This performance came during Kobe's MVP season and proved his ability to elevate his game when championships were at stake.",
+      players: ["Kobe Bryant", "Pau Gasol", "Lamar Odom"]
     },
     {
-      year: 2016,
-      event: "On April 7, 2016, Stephen Curry scored 27 points with 6 three-pointers as the Golden State Warriors improved to 71-9 with a 112-101 victory over the Portland Trail Blazers. The Warriors were three wins away from breaking the 1995-96 Bulls' all-time regular season record. Curry's efficiency and the team's relentless pursuit of history created the same electricity that surrounds today's milestone chases.",
-      players: ["Stephen Curry", "Klay Thompson", "Draymond Green"]
+      year: 2014,
+      event: "On April 8, 2014, Kevin Durant scored 42 points with 7 rebounds as the Oklahoma City Thunder defeated the Detroit Pistons 112-111 in overtime. Durant's clutch performance came during his MVP season and showcased the scoring ability that made him one of the league's most dangerous offensive weapons. The Thunder finished 59-23, and Durant's individual brilliance carried them throughout the season.",
+      players: ["Kevin Durant", "Russell Westbrook", "Serge Ibaka"]
+    },
+    {
+      year: 2018,
+      event: "On April 8, 2018, Russell Westbrook recorded his 34th triple-double of the season with 19 points, 15 rebounds, and 11 assists as the Thunder defeated the Miami Heat 115-93. Westbrook's triple-double streak and individual excellence helped Oklahoma City secure playoff positioning despite a challenging season. His relentless energy and statistical dominance defined the Thunder's late-season push.",
+      players: ["Russell Westbrook", "Paul George", "Steven Adams"]
     }
   ],
   streakWatch: [
     {
       player: "Victor Wembanyama",
       team: "SAS",
-      streak: "13-game team winning streak (active)",
+      streak: "14-game team winning streak (active)",
       record: "17 — San Antonio Spurs franchise record (2013-14 season)",
-      gamesAway: 4
+      gamesAway: 3
     },
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      streak: "4-game team winning streak (active)",
-      record: "18 — New York Knicks franchise record (1969-70 season)",
-      gamesAway: 14
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      streak: "5-game team winning streak (active)",
+      record: "15 — Oklahoma City Thunder record (2012-13 season)",
+      gamesAway: 10
     },
     {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      streak: "2-game team winning streak (active)",
-      record: "13 — Cleveland Cavaliers franchise record (2008-09 season)",
+      player: "Alperen Şengün",
+      team: "HOU",
+      streak: "3-game team winning streak (active)",
+      record: "22 — Houston Rockets franchise record (2007-08 season)",
+      gamesAway: 19
+    },
+    {
+      player: "Anthony Edwards",
+      team: "MIN",
+      streak: "3-game team winning streak (active)",
+      record: "16 — Minnesota Timberwolves franchise record (2003-04 season)",
+      gamesAway: 13
+    },
+    {
+      player: "CJ McCollum",
+      team: "NO",
+      streak: "3 straight games with 25+ points (active)",
+      record: "14 — Chris Paul with New Orleans (2007-08 season)",
       gamesAway: 11
     },
     {
-      player: "Paolo Banchero",
-      team: "ORL",
-      streak: "1-game team winning streak (just started)",
-      record: "15 — Orlando Magic franchise record (2010-11 season)",
-      gamesAway: 14
-    },
-    {
-      player: "Trae Young",
-      team: "ATL",
-      streak: "4 straight games with 30+ points (active)",
-      record: "9 — Dominique Wilkins (1985-86 season)",
-      gamesAway: 5
+      player: "Cam Thomas",
+      team: "BKN",
+      streak: "4 straight games with 20+ points (active)",
+      record: "40 — Kevin Durant with Brooklyn (2021-22 season)",
+      gamesAway: 36
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
-      streak: "25 triple-doubles this season",
+      streak: "26 triple-doubles this season",
       record: "42 — Russell Westbrook (2016-17 season)",
-      gamesAway: 17
+      gamesAway: 16
     }
   ],
-  narrative: "April 7, 2026 — Edition 94 — arrives in the aftermath of the most explosive offensive performance of the NBA season and a night that reshuffled playoff races across both conferences. Cleveland's 142-point eruption led by Donovan Mitchell's 38-point masterpiece was the highest team total by any squad this season, evoking memories of the great offensive explosions from NBA history. Meanwhile, Victor Wembanyama pushed the Spurs' winning streak to 13 games — the longest in the NBA this season and just 4 wins away from the franchise record set during the 2013-14 championship run. Paolo Banchero delivered his signature performance with 35 points to upset Eastern Conference-leading Detroit, cutting the Pistons' lead to just 2 games and proving that individual brilliance can still topple superior teams when the stakes are highest. The historical parallels are striking: Mitchell channeling Kobe's explosive scoring, Wembanyama matching David Robinson's two-way dominance, and Banchero following Tracy McGrady's blueprint of taking over against elite competition. With no games tonight, the league digests these seismic results while playoff positioning hangs in the balance heading into the final week of the regular season."
+  narrative: "April 8, 2026 — Edition 95 — witnessed the most dominant individual performance and championship statement of the season as Shai Gilgeous-Alexander needed just 29 minutes to dismantle the Lakers 123-87, moving Oklahoma City within striking distance of franchise history. The 36-point massacre channeled Michael Jordan's blueprint of championship-level dominance, with SGA's perfect efficiency (10-of-17) in limited minutes showcasing the type of superstar impact that wins titles. Meanwhile, CJ McCollum authored a shooting clinic for the ages with 41 points on 9-of-14 three-point shooting in New Orleans' historic 156-point explosion — the second-highest team total this season and a new franchise record. Victor Wembanyama pushed his winning streak to 14 games, now tied with Tim Duncan's legendary 2002-03 championship run, while sitting just three wins from the all-time Spurs record. The night's most shocking upset came in Brooklyn, where Cam Thomas scored 27 clutch points to eliminate Milwaukee from playoff contention in a defensive battle that will be remembered as the moment the Bucks' season died. These performances created a tapestry of greatness that connected present brilliance to basketball immortality — from SGA's Jordan-esque dominance to McCollum's Klay Thompson unconsciousness to Wembanyama's Duncan-like excellence. With franchise records falling and championship statements being made, April 8th will be remembered as the night when individual brilliance reached its zenith and playoff destinies were sealed."
 };

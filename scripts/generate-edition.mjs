@@ -123,22 +123,41 @@ ${currentPulse}
 3. Write crisp, sharp copy — not a box score recitation; actual insights
 4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates)
-6. Update standings by applying last night's results to the current standings in the reference file
+6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
 7. Media reactions: write 6 quotes in the authentic voice of each journalist/outlet
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
 9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style
-10. Also generate a "This Day in NBA History" fact for ${editionDate}. Find a notable NBA event, record, or milestone that occurred on this calendar date in any prior year. If nothing notable occurred on this exact date, find something from the same week. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
-11. Also generate a Hoops IQ quiz with exactly 5 questions: 2 questions about last night's games (easy), 2 questions about season stats/standings/records (medium), and 1 historical/trivia question (hard). Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation with context.",difficulty:"easy"}]};
+10. Also generate a "This Day in NBA History" fact for ${editionDate}. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
+11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
+12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
+13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep media quotes to 2-3 sentences max. Keep recap text concise. The file MUST stay under 15000 tokens total.
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
   const pulseMsg = await claudeGenerate("pulse edition", {
-    model: "claude-sonnet-4-6",
-    max_tokens: 8192,
+    max_tokens: 16384,
     messages: [{ role: "user", content: pulsePrompt }],
   });
 
   const newPulseContent = pulseMsg.content[0].text.trim();
+
+  if (pulseMsg.stop_reason === "max_tokens") {
+    console.warn("⚠ Claude output was truncated (hit max_tokens) — regenerating is recommended");
+  }
+
+  const requiredExports = [
+    "pulseEdition", "narrative", "tickerItems", "gameResults", "pulseIndex",
+    "statLeaders", "mediaReactions", "injuryUpdates", "gamePreviews",
+    "rookieWatch", "fantasyAlerts", "eastStandings", "westStandings",
+    "standings", "historyFact", "hoopsIQ", "triviaQuestion",
+  ];
+  const missing = requiredExports.filter((e) => !newPulseContent.includes(`export const ${e}`));
+  if (missing.length > 0) {
+    console.error(`❌ pulseData.ts is missing exports: ${missing.join(", ")}`);
+    console.error("   This usually means Claude hit max_tokens. Aborting to avoid a broken build.");
+    process.exit(1);
+  }
+
   writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), newPulseContent, "utf8");
   console.log("✓ pulseData.ts written");
 
