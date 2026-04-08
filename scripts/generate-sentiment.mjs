@@ -24,12 +24,8 @@ function readPulseContext() {
   }
 }
 
-// ── Main ──────────────────────────────────────────────────
-async function main() {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-sentiment")) process.exit(0);
-
-  const client = new Anthropic();
-
+// ── Generate (callable from orchestrator or standalone) ───
+export async function generate({ client }) {
   const todayISO = toISODate(0);
   const todayDisplay = toDisplayDate(0);
   const yesterdayESPN = toESPNDate(-1);
@@ -144,7 +140,11 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
   console.log(`\n✅ Sentiment Analysis complete for ${todayDisplay}`);
 }
 
-main().catch((err) => {
-  console.error("❌ Generation failed:", err);
-  process.exit(1);
-});
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-sentiment")) process.exit(0);
+  generate({ client: new Anthropic() }).catch((err) => {
+    console.error("❌ Generation failed:", err);
+    process.exit(1);
+  });
+}

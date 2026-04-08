@@ -15,11 +15,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
-// ── Main ──────────────────────────────────────────────────
-async function main() {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-history")) process.exit(0);
-
-  const client = new Anthropic();
+// ── Generate (callable from orchestrator or standalone) ───
+export async function generate({ client }) {
   const editionDate = toDisplayDate(0);
 
   console.log(`📜 Generating Historical Context Engine for ${editionDate}...`);
@@ -119,7 +116,11 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
   console.log(`   Content length: ${cleaned.length} chars`);
 }
 
-main().catch((err) => {
-  console.error("❌ Error:", err.message);
-  process.exit(1);
-});
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-history")) process.exit(0);
+  generate({ client: new Anthropic() }).catch((err) => {
+    console.error("❌ Error:", err.message);
+    process.exit(1);
+  });
+}

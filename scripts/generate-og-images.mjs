@@ -11,30 +11,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
-// ── Read pulse data ───────────────────────────────────────────────────────
-const dataPath = join(ROOT, "client", "src", "lib", "pulseData.ts");
-const raw = readFileSync(dataPath, "utf8");
-
-function extractExport(name) {
-  const regex = new RegExp(`export const ${name} = (\\[.*?\\]|\\{.*?\\});`, "s");
-  const match = raw.match(regex);
-  if (!match) return null;
-  try {
-    return JSON.parse(match[1]);
-  } catch {
-    return null;
-  }
-}
-
-const pulseIndex = extractExport("pulseIndex");
-const pulseEdition = extractExport("pulseEdition");
-const narrative = extractExport("narrative");
-
-if (!pulseIndex || !pulseEdition) {
-  console.error("Could not parse pulseData.ts — aborting OG image generation.");
-  process.exit(1);
-}
-
 // ── Helpers ───────────────────────────────────────────────────────────────
 function slugify(name) {
   return name
@@ -72,8 +48,19 @@ function truncate(text, maxLen) {
   return text.slice(0, maxLen - 1) + "\u2026";
 }
 
+function extractExport(raw, name) {
+  const regex = new RegExp(`export const ${name} = (\\[.*?\\]|\\{.*?\\});`, "s");
+  const match = raw.match(regex);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
 // ── Generate player OG SVG ───────────────────────────────────────────────
-function generatePlayerSvg(player) {
+function generatePlayerSvg(player, pulseEdition) {
   const sc = scoreColor(player.indexScore);
   const trend = trendSymbol(player.trend);
   const stats = truncate(player.keyStats, 80);
@@ -150,7 +137,7 @@ function generatePlayerSvg(player) {
 }
 
 // ── Generate edition OG SVG ──────────────────────────────────────────────
-function generateEditionSvg() {
+function generateEditionSvg(pulseIndex, pulseEdition, narrative) {
   const edDate = esc(pulseEdition.date);
   const edition = esc(pulseEdition.edition);
   const headline = narrative ? truncate(narrative.headline, 120) : "";
@@ -227,20 +214,38 @@ function generateEditionSvg() {
 </svg>`;
 }
 
-// ── Write files ──────────────────────────────────────────────────────────
-const outDir = join(ROOT, "public", "og", "players");
-mkdirSync(outDir, { recursive: true });
+// ── Generate (callable from orchestrator or standalone) ───
+export function generate() {
+  const dataPath = join(ROOT, "client", "src", "lib", "pulseData.ts");
+  const raw = readFileSync(dataPath, "utf8");
 
-let count = 0;
-for (const player of pulseIndex) {
-  const slug = slugify(player.player);
-  const svg = generatePlayerSvg(player);
-  writeFileSync(join(outDir, `${slug}.svg`), svg, "utf8");
-  count++;
+  const pulseIndex = extractExport(raw, "pulseIndex");
+  const pulseEdition = extractExport(raw, "pulseEdition");
+  const narrative = extractExport(raw, "narrative");
+
+  if (!pulseIndex || !pulseEdition) {
+    throw new Error("Could not parse pulseData.ts — aborting OG image generation.");
+  }
+
+  const outDir = join(ROOT, "public", "og", "players");
+  mkdirSync(outDir, { recursive: true });
+
+  let count = 0;
+  for (const player of pulseIndex) {
+    const slug = slugify(player.player);
+    const svg = generatePlayerSvg(player, pulseEdition);
+    writeFileSync(join(outDir, `${slug}.svg`), svg, "utf8");
+    count++;
+  }
+
+  const editionSvg = generateEditionSvg(pulseIndex, pulseEdition, narrative);
+  writeFileSync(join(ROOT, "public", "og", "edition.svg"), editionSvg, "utf8");
+
+  console.log(`[+] OG images generated: ${count} player cards + 1 edition card`);
+  console.log(`    Output: public/og/players/*.svg, public/og/edition.svg`);
 }
 
-const editionSvg = generateEditionSvg();
-writeFileSync(join(ROOT, "public", "og", "edition.svg"), editionSvg, "utf8");
-
-console.log(`[+] OG images generated: ${count} player cards + 1 edition card`);
-console.log(`    Output: public/og/players/*.svg, public/og/edition.svg`);
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generate();
+}

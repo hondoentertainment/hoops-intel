@@ -116,11 +116,9 @@ function writeOutput(content) {
   return outPath;
 }
 
-// ── Main ────────────────────────────────────────────────────
+// ── Generate (callable from orchestrator or standalone) ───
 
-async function main() {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-momentum")) process.exit(0);
-
+export async function generate({ client }) {
   const displayDate = toDisplayDate(0);
   const yesterdayESPN = toESPNDate(-1);
 
@@ -136,8 +134,7 @@ async function main() {
     const espnData = await fetchESPNCached(yesterdayESPN);
     games = parseGames(espnData);
   } catch (err) {
-    console.error("❌ ESPN fetch error:", err.message);
-    process.exit(1);
+    throw new Error(`ESPN fetch error: ${err.message}`);
   }
 
   const finalGames = games.filter((g) => g.status === "final");
@@ -145,15 +142,12 @@ async function main() {
 
   if (finalGames.length === 0) {
     console.log("⚠  No completed games found. Skipping generation.");
-    process.exit(0);
+    return;
   }
 
   // Read pulse context
   const pulseContext = readPulseContext();
   console.log("📊 Loaded pulseData.ts context");
-
-  // Init Anthropic client
-  const client = new Anthropic();
 
   console.log("🤖 Calling Claude (claude-sonnet-4-6)...");
   const prompt = buildPrompt(displayDate, pulseContext, JSON.stringify(finalGames, null, 2));
@@ -175,8 +169,7 @@ async function main() {
     if (!block) throw new Error("No text block in Claude response");
     responseText = block.text;
   } catch (err) {
-    console.error("❌ Claude API error:", err.message);
-    process.exit(1);
+    throw new Error(`Claude API error: ${err.message}`);
   }
 
   // Strip any accidental markdown fences
@@ -190,18 +183,17 @@ async function main() {
   try {
     outPath = writeOutput(responseText);
   } catch (err) {
-    console.error("❌ Failed to write output:", err.message);
-    process.exit(1);
+    throw new Error(`Failed to write output: ${err.message}`);
   }
 
   console.log(`✅ Momentum Engine data written to: ${outPath}`);
-  console.log("");
-  console.log("Next steps:");
-  console.log("  1. Review client/src/lib/momentumData.ts for accuracy");
-  console.log("  2. Commit and deploy");
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!requireEnv("ANTHROPIC_API_KEY", "generate-momentum")) process.exit(0);
+  generate({ client: new Anthropic() }).catch((err) => {
+    console.error("❌ Generation failed:", err);
+    process.exit(1);
+  });
+}
