@@ -45,7 +45,10 @@ export async function fetchESPNCached(espnDate) {
       console.warn(`  [espn] Using cached data for ${espnDate}`);
       return cached;
     } catch {
-      throw new Error(`ESPN API failed and no cached data for ${espnDate}: ${err.message}`);
+      // Last resort: return empty scoreboard so generation can proceed
+      // Claude will generate content without specific game data
+      console.warn(`  [espn] No cached data for ${espnDate} — using empty scoreboard`);
+      return { events: [], day: { date: espnDate }, leagues: [] };
     }
   }
 }
