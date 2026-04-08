@@ -3,13 +3,11 @@
 // Uses Claude AI to simulate social media sentiment based on game results/narratives
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-
-import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
-import { retryAsync, requireEnv } from "./lib/retry.mjs";
+import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,8 +22,8 @@ function readPulseContext() {
   }
 }
 
-// ── Generate (callable from orchestrator or standalone) ───
-export async function generate({ client }) {
+// ── Main ──────────────────────────────────────────────────
+async function main() {
   const todayISO = toISODate(0);
   const todayDisplay = toDisplayDate(0);
   const yesterdayESPN = toESPNDate(-1);
@@ -121,11 +119,10 @@ export const sentimentData: SentimentData = {
 
 Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
-  const msg = await retryAsync(() => client.messages.create({
-    model: "claude-sonnet-4-6",
+  const msg = await claudeGenerate("sentiment", {
     max_tokens: 8192,
     messages: [{ role: "user", content: prompt }],
-  }));
+  });
 
   let content = msg.content[0].text.trim();
 
@@ -140,11 +137,7 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
   console.log(`\n✅ Sentiment Analysis complete for ${todayDisplay}`);
 }
 
-// ── Standalone CLI entry point ────────────────────────────
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-sentiment")) process.exit(0);
-  generate({ client: new Anthropic() }).catch((err) => {
-    console.error("❌ Generation failed:", err);
-    process.exit(1);
-  });
-}
+main().catch((err) => {
+  console.error("❌ Generation failed:", err);
+  process.exit(1);
+});

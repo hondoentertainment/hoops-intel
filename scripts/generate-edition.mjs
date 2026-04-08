@@ -3,18 +3,55 @@
 // Fetches last night's NBA data from ESPN + calls Claude API to write the edition
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-
-import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
-import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
-import { retryAsync } from "./lib/retry.mjs";
+import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+
+// ── ESPN scoreboard API ────────────────────────────────────
+async function fetchESPN(espnDate) {
+  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${espnDate}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`ESPN API ${url} returned ${res.status}`);
+  return res.json();
+}
+
+function parseGames(espnData) {
+  return (espnData.events || []).map((e) => {
+    const comp = e.competitions[0];
+    const home = comp.competitors.find((c) => c.homeAway === "home");
+    const away = comp.competitors.find((c) => c.homeAway === "away");
+    const done = comp.status?.type?.completed ?? false;
+
+    const leaders = (comp.leaders || []).map((l) => ({
+      category: l.name,
+      player: l.leaders?.[0]?.athlete?.displayName ?? "",
+      team: l.leaders?.[0]?.team?.abbreviation ?? "",
+      value: l.leaders?.[0]?.displayValue ?? "",
+    }));
+
+    return {
+      status: done ? "final" : "scheduled",
+      homeTeam: home?.team?.abbreviation ?? "",
+      homeTeamFull: home?.team?.displayName ?? "",
+      homeRecord: home?.records?.[0]?.summary ?? "",
+      homeScore: done ? parseInt(home?.score ?? "0") : null,
+      awayTeam: away?.team?.abbreviation ?? "",
+      awayTeamFull: away?.team?.displayName ?? "",
+      awayRecord: away?.records?.[0]?.summary ?? "",
+      awayScore: done ? parseInt(away?.score ?? "0") : null,
+      time: comp.status?.type?.shortDetail ?? "",
+      venue: comp.venue?.fullName ?? "",
+      tv: (comp.broadcasts || []).map((b) => b.names?.join(", ")).filter(Boolean).join(" / ") || "Local",
+      leaders,
+    };
+  });
+}
 
 // ── Read current edition number ────────────────────────────
 function getLastEditionNumber() {
@@ -27,8 +64,8 @@ function getLastEditionNumber() {
   }
 }
 
-// ── Generate (callable from orchestrator or standalone) ───
-export async function generate({ client }) {
+// ── Main ──────────────────────────────────────────────────
+async function main() {
   const yesterdayESPN = toESPNDate(-1);
   const todayESPN = toESPNDate(0);
   const editionDate = toDisplayDate(0);   // e.g. "March 7, 2026"
@@ -37,18 +74,15 @@ export async function generate({ client }) {
 
   console.log(`📅 Generating Vol. 2026 · No. ${editionNo} — ${editionDate}`);
 
-  // Fetch game data (with retry + cache fallback)
+  // Fetch game data
   console.log(`🏀 Fetching ESPN data for ${yesterdayESPN} (results) and ${todayESPN} (schedule)...`);
   let yesterdayGames, todayGames;
   try {
-    const [yesterdayData, todayData] = await Promise.all([
-      fetchESPNCached(yesterdayESPN),
-      fetchESPNCached(todayESPN),
-    ]);
-    yesterdayGames = parseGames(yesterdayData);
-    todayGames = parseGames(todayData);
+    yesterdayGames = parseGames(await fetchESPN(yesterdayESPN));
+    todayGames = parseGames(await fetchESPN(todayESPN));
   } catch (err) {
-    throw new Error(`ESPN fetch error (all retries + cache exhausted): ${err.message}`);
+    console.error("ESPN fetch error:", err.message);
+    process.exit(1);
   }
 
   const finalGames = yesterdayGames.filter((g) => g.status === "final");
@@ -98,11 +132,11 @@ ${currentPulse}
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
-  const pulseMsg = await retryAsync(() => client.messages.create({
+  const pulseMsg = await claudeGenerate("pulse edition", {
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
     messages: [{ role: "user", content: pulsePrompt }],
-  }));
+  });
 
   const newPulseContent = pulseMsg.content[0].text.trim();
   writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), newPulseContent, "utf8");
@@ -120,37 +154,28 @@ Required format — output ONLY this object literal (no export, no variable decl
 
 Keep it to one line, valid JSON-compatible syntax (strings in double quotes, no trailing commas).`;
 
-  const archiveMsg = await retryAsync(() => client.messages.create({
+  const archiveMsg = await claudeGenerate("archive entry", {
     model: "claude-sonnet-4-6",
     max_tokens: 1024,
     messages: [{ role: "user", content: archivePrompt }],
-  }));
+  });
 
   const archiveEntry = archiveMsg.content[0].text.trim();
 
-  // Prepend to archiveData.ts (with verification)
+  // Prepend to archiveData.ts
   const archivePath = join(ROOT, "client/src/lib/archiveData.ts");
   let archiveContent = readFileSync(archivePath, "utf8");
-  const marker = "export const archiveEditions = [";
-  if (!archiveContent.includes(marker)) {
-    console.error("⚠️ Archive marker not found — skipping archive update");
-  } else {
-    archiveContent = archiveContent.replace(marker, `${marker}\n  ${archiveEntry},`);
-    writeFileSync(archivePath, archiveContent, "utf8");
-    console.log("✓ archiveData.ts updated");
-  }
+  archiveContent = archiveContent.replace(
+    "export const archiveEditions = [",
+    `export const archiveEditions = [\n  ${archiveEntry},`
+  );
+  writeFileSync(archivePath, archiveContent, "utf8");
+  console.log("✓ archiveData.ts updated");
 
   console.log(`\n✅ Done! Vol. 2026 · No. ${editionNo} — ${editionDate}`);
 }
 
-// ── Standalone CLI entry point ────────────────────────────
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.log('[generate-edition] Skipping — ANTHROPIC_API_KEY not set.');
-    process.exit(0);
-  }
-  generate({ client: new Anthropic() }).catch((err) => {
-    console.error("❌ Generation failed:", err);
-    process.exit(1);
-  });
-}
+main().catch((err) => {
+  console.error("❌ Generation failed:", err);
+  process.exit(1);
+});

@@ -3,20 +3,18 @@
 // Reads today's pulseData.ts and generates historical comparisons via Claude API
 // Run daily after generate-edition.mjs completes
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-
-import { toDisplayDate } from "./lib/dates.mjs";
-import { retryAsync, requireEnv } from "./lib/retry.mjs";
+import { toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
-// ── Generate (callable from orchestrator or standalone) ───
-export async function generate({ client }) {
+// ── Main ──────────────────────────────────────────────────
+async function main() {
   const editionDate = toDisplayDate(0);
 
   console.log(`📜 Generating Historical Context Engine for ${editionDate}...`);
@@ -97,11 +95,10 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
   console.log("🤖 Calling Claude API...");
 
-  const msg = await retryAsync(() => client.messages.create({
-    model: "claude-sonnet-4-20250514",
+  const msg = await claudeGenerate("history", {
     max_tokens: 10000,
     messages: [{ role: "user", content: prompt }],
-  }));
+  });
 
   const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
 
@@ -116,11 +113,7 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
   console.log(`   Content length: ${cleaned.length} chars`);
 }
 
-// ── Standalone CLI entry point ────────────────────────────
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-history")) process.exit(0);
-  generate({ client: new Anthropic() }).catch((err) => {
-    console.error("❌ Error:", err.message);
-    process.exit(1);
-  });
-}
+main().catch((err) => {
+  console.error("❌ Error:", err.message);
+  process.exit(1);
+});

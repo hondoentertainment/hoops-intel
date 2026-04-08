@@ -3,18 +3,45 @@
 // Ranks tonight's NBA games by entertainment value using Claude AI
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-
-import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
-import { retryAsync, requireEnv } from "./lib/retry.mjs";
-import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
+import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+
+// ── ESPN schedule API ──────────────────────────────────────
+async function fetchESPN(espnDate) {
+  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${espnDate}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`ESPN API ${url} returned ${res.status}`);
+  return res.json();
+}
+
+function parseGames(espnData) {
+  return (espnData.events || []).map((e) => {
+    const comp = e.competitions[0];
+    const home = comp.competitors.find((c) => c.homeAway === "home");
+    const away = comp.competitors.find((c) => c.homeAway === "away");
+    const done = comp.status?.type?.completed ?? false;
+
+    return {
+      status: done ? "final" : "scheduled",
+      homeTeam: home?.team?.abbreviation ?? "",
+      homeTeamFull: home?.team?.displayName ?? "",
+      homeRecord: home?.records?.[0]?.summary ?? "",
+      awayTeam: away?.team?.abbreviation ?? "",
+      awayTeamFull: away?.team?.displayName ?? "",
+      awayRecord: away?.records?.[0]?.summary ?? "",
+      time: comp.status?.type?.shortDetail ?? "",
+      venue: comp.venue?.fullName ?? "",
+      tv: (comp.broadcasts || []).map((b) => b.names?.join(", ")).filter(Boolean).join(" / ") || "Local",
+    };
+  });
+}
 
 // ── Read pulse context ─────────────────────────────────────
 function readPulseContext() {
@@ -25,8 +52,8 @@ function readPulseContext() {
   }
 }
 
-// ── Generate (callable from orchestrator or standalone) ───
-export async function generate({ client }) {
+// ── Main ──────────────────────────────────────────────────
+async function main() {
   const todayESPN = toESPNDate(0);
   const todayISO = toISODate(0);
   const todayDisplay = toDisplayDate(0);
@@ -37,10 +64,11 @@ export async function generate({ client }) {
   console.log(`🏀 Fetching ESPN schedule for ${todayESPN}...`);
   let games;
   try {
-    const espnData = await fetchESPNCached(todayESPN);
+    const espnData = await fetchESPN(todayESPN);
     games = parseGames(espnData);
   } catch (err) {
-    throw new Error(`ESPN fetch error: ${err.message}`);
+    console.error("ESPN fetch error:", err.message);
+    process.exit(1);
   }
 
   const scheduledGames = games.filter((g) => g.status !== "final");
@@ -169,11 +197,10 @@ export const watchGuideData: WatchGuideData = {
 - Consider current narratives, streaks, playoff race, injuries
 - Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
-  const msg = await retryAsync(() => client.messages.create({
-    model: "claude-sonnet-4-6",
+  const msg = await claudeGenerate("watch guide", {
     max_tokens: 8192,
     messages: [{ role: "user", content: prompt }],
-  }));
+  });
 
   let content = msg.content[0].text.trim();
 
@@ -188,11 +215,7 @@ export const watchGuideData: WatchGuideData = {
   console.log(`\n✅ Watch Guide complete for ${todayDisplay}`);
 }
 
-// ── Standalone CLI entry point ────────────────────────────
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-watch-guide")) process.exit(0);
-  generate({ client: new Anthropic() }).catch((err) => {
-    console.error("❌ Generation failed:", err);
-    process.exit(1);
-  });
-}
+main().catch((err) => {
+  console.error("❌ Generation failed:", err);
+  process.exit(1);
+});

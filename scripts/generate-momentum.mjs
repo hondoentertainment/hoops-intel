@@ -6,18 +6,55 @@
 // Usage:
 //   node scripts/generate-momentum.mjs
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-
-import { toESPNDate, toDisplayDate } from "./lib/dates.mjs";
-import { retryAsync, requireEnv } from "./lib/retry.mjs";
-import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
+import { toESPNDate, toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+
+// ── ESPN scoreboard API ────────────────────────────────────
+
+async function fetchESPN(espnDate) {
+  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${espnDate}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`ESPN API ${url} returned ${res.status}`);
+  return res.json();
+}
+
+function parseGames(espnData) {
+  return (espnData.events || []).map((e) => {
+    const comp = e.competitions[0];
+    const home = comp.competitors.find((c) => c.homeAway === "home");
+    const away = comp.competitors.find((c) => c.homeAway === "away");
+    const done = comp.status?.type?.completed ?? false;
+
+    const leaders = (comp.leaders || []).map((l) => ({
+      category: l.name,
+      player: l.leaders?.[0]?.athlete?.displayName ?? "",
+      team: l.leaders?.[0]?.team?.abbreviation ?? "",
+      value: l.leaders?.[0]?.displayValue ?? "",
+    }));
+
+    return {
+      status: done ? "final" : "scheduled",
+      homeTeam: home?.team?.abbreviation ?? "",
+      homeTeamFull: home?.team?.displayName ?? "",
+      homeRecord: home?.records?.[0]?.summary ?? "",
+      homeScore: done ? parseInt(home?.score ?? "0") : null,
+      awayTeam: away?.team?.abbreviation ?? "",
+      awayTeamFull: away?.team?.displayName ?? "",
+      awayRecord: away?.records?.[0]?.summary ?? "",
+      awayScore: done ? parseInt(away?.score ?? "0") : null,
+      time: comp.status?.type?.shortDetail ?? "",
+      venue: comp.venue?.fullName ?? "",
+      leaders,
+    };
+  });
+}
 
 // ── Read pulseData.ts as context ────────────────────────────
 
@@ -116,9 +153,9 @@ function writeOutput(content) {
   return outPath;
 }
 
-// ── Generate (callable from orchestrator or standalone) ───
+// ── Main ────────────────────────────────────────────────────
 
-export async function generate({ client }) {
+async function main() {
   const displayDate = toDisplayDate(0);
   const yesterdayESPN = toESPNDate(-1);
 
@@ -131,10 +168,11 @@ export async function generate({ client }) {
   console.log("📡 Fetching ESPN scoreboard data...");
   let games;
   try {
-    const espnData = await fetchESPNCached(yesterdayESPN);
+    const espnData = await fetchESPN(yesterdayESPN);
     games = parseGames(espnData);
   } catch (err) {
-    throw new Error(`ESPN fetch error: ${err.message}`);
+    console.error("❌ ESPN fetch error:", err.message);
+    process.exit(1);
   }
 
   const finalGames = games.filter((g) => g.status === "final");
@@ -142,20 +180,19 @@ export async function generate({ client }) {
 
   if (finalGames.length === 0) {
     console.log("⚠  No completed games found. Skipping generation.");
-    return;
+    process.exit(0);
   }
 
   // Read pulse context
   const pulseContext = readPulseContext();
   console.log("📊 Loaded pulseData.ts context");
 
-  console.log("🤖 Calling Claude (claude-sonnet-4-6)...");
+  console.log("🤖 Calling Claude...");
   const prompt = buildPrompt(displayDate, pulseContext, JSON.stringify(finalGames, null, 2));
 
   let responseText;
   try {
-    const message = await retryAsync(() => client.messages.create({
-      model: "claude-sonnet-4-6",
+    const message = await claudeGenerate("momentum", {
       max_tokens: 8192,
       messages: [
         {
@@ -163,13 +200,14 @@ export async function generate({ client }) {
           content: prompt,
         },
       ],
-    }));
+    });
 
     const block = message.content.find((b) => b.type === "text");
     if (!block) throw new Error("No text block in Claude response");
     responseText = block.text;
   } catch (err) {
-    throw new Error(`Claude API error: ${err.message}`);
+    console.error("❌ Claude API error:", err.message);
+    process.exit(1);
   }
 
   // Strip any accidental markdown fences
@@ -183,17 +221,18 @@ export async function generate({ client }) {
   try {
     outPath = writeOutput(responseText);
   } catch (err) {
-    throw new Error(`Failed to write output: ${err.message}`);
+    console.error("❌ Failed to write output:", err.message);
+    process.exit(1);
   }
 
   console.log(`✅ Momentum Engine data written to: ${outPath}`);
+  console.log("");
+  console.log("Next steps:");
+  console.log("  1. Review client/src/lib/momentumData.ts for accuracy");
+  console.log("  2. Commit and deploy");
 }
 
-// ── Standalone CLI entry point ────────────────────────────
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!requireEnv("ANTHROPIC_API_KEY", "generate-momentum")) process.exit(0);
-  generate({ client: new Anthropic() }).catch((err) => {
-    console.error("❌ Generation failed:", err);
-    process.exit(1);
-  });
-}
+main().catch((err) => {
+  console.error("Fatal error:", err);
+  process.exit(1);
+});
