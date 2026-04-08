@@ -6,13 +6,23 @@ on:
       dates:
         description: 'Space-separated dates to backfill (YYYY-MM-DD)'
         required: true
-        default: '2026-03-25 2026-03-26 2026-03-27'
+        default: '2026-04-06 2026-04-07'
+      anthropic_api_key:
+        description: 'Anthropic API key (leave blank to use repo secret ANTHROPIC_API_KEY)'
+        required: false
+        default: ''
+
+concurrency:
+  group: backfill
+  cancel-in-progress: false
 
 jobs:
   backfill:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repository
@@ -23,14 +33,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install Anthropic SDK
         run: npm install @anthropic-ai/sdk --no-save
 
+      - name: Verify API key is available
+        env:
+          ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key || secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ERROR: No ANTHROPIC_API_KEY provided."
+            echo "Either pass it as a workflow input or set it as a repository secret."
+            exit 1
+          fi
+          echo "API key is set (${#ANTHROPIC_API_KEY} chars)"
+
       - name: Run backfill
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key || secrets.ANTHROPIC_API_KEY }}
         run: node scripts/backfill-days.mjs ${{ github.event.inputs.dates }}
         timeout-minutes: 30
 
@@ -46,7 +67,7 @@ jobs:
           git config user.email "bot@hoopsintel.net"
           git add client/src/lib/ public/feed.xml public/sitemap.xml
           git commit -m "Backfill editions: ${{ github.event.inputs.dates }}"
-          git push origin ${{ github.ref_name }}
+          git push origin main
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'
