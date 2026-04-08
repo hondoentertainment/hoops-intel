@@ -38,7 +38,9 @@ function runForDate(date) {
     });
 
     child.on("close", (code) => {
-      if (code === 0) {
+      if (code === 0 || code === 2) {
+        // code 0 = full success, code 2 = partial failure (edition OK, non-critical scripts failed)
+        if (code === 2) console.warn(`  ⚠ Partial failure for ${date} — edition generated, some non-critical scripts failed`);
         resolve();
       } else {
         reject(new Error(`generate-all-daily.mjs exited with code ${code} for date ${date}`));

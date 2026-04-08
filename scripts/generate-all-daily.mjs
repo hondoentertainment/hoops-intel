@@ -50,12 +50,14 @@ const PHASE_2 = [
   { name: "OG Images", script: "generate-og-images.mjs" },
 ];
 
-const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
+const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script (default)
+const EDITION_TIMEOUT = 360_000; // 6 minutes for Edition (2 Claude API calls + ESPN fetches + retries)
 
 function runScript({ name, script }) {
   return new Promise((resolve) => {
     const scriptPath = join(__dirname, script);
     const start = Date.now();
+    const timeout = script === "generate-edition.mjs" ? EDITION_TIMEOUT : SCRIPT_TIMEOUT;
 
     const args = DRY_RUN ? [scriptPath, "--dry-run"] : [scriptPath];
     const child = spawn("node", args, {
@@ -66,12 +68,14 @@ function runScript({ name, script }) {
 
     let stdout = "";
     let stderr = "";
+    let timedOut = false;
     child.stdout.on("data", (d) => { stdout += d; });
     child.stderr.on("data", (d) => { stderr += d; });
 
     const timer = setTimeout(() => {
+      timedOut = true;
       child.kill("SIGTERM");
-    }, SCRIPT_TIMEOUT);
+    }, timeout);
 
     child.on("close", (code) => {
       clearTimeout(timer);
@@ -81,7 +85,10 @@ function runScript({ name, script }) {
       } else {
         // Print stderr for failed scripts
         if (stderr) console.error(`  [${name}] ${stderr.trim()}`);
-        resolve({ name, status: "failed", elapsed, error: `exit code ${code}` });
+        const error = timedOut
+          ? `timed out after ${timeout / 1000}s`
+          : `exit code ${code}`;
+        resolve({ name, status: "failed", elapsed, error });
       }
     });
 
