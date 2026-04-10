@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 8, 2026
+// Last updated: April 9, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 8, 2026",
-  episodeTitle: "Thunder Drop Nuclear Bomb on Lakers | CJ McCollum Goes Video Game Mode | Bucks' Season Officially Over?",
+  date: "April 9, 2026",
+  episodeTitle: "Thunder's Championship Statement + Pistons Demolish Bucks + West Top Seed Race Heats Up",
   rundown: [
     {
-      topic: "Thunder Obliterate Lakers in Championship Statement",
+      topic: "Thunder Complete Dominant LA Sweep - Championship Contenders or Championship Favorites?",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "OKC 123, LAL 87 - 36-point annihilation",
-        "Shai Gilgeous-Alexander: 28 points in just 29 minutes",
-        "Thunder led by 30 at halftime",
-        "Chet Holmgren perfect 9-of-9 shooting",
-        "OKC now just 2 games behind SAS for West #1 seed",
-        "Lakers shot 39% while Thunder hit 57%"
+        "SGA drops 32 points on 12-of-20 shooting",
+        "Thunder win by 18 points at Intuit Dome", 
+        "OKC outscored both LA teams by 54 points combined",
+        "Thunder now 64-16, just 1 game behind SA for top seed",
+        "8-game winning streak for Oklahoma City",
+        "Thunder shot 54% from field as team"
       ],
-      debateAngle: "Is this the moment we officially crown OKC as championship favorites over San Antonio?",
-      suggestedQuote: "This wasn't just a win, this was a public execution. SGA needed 29 minutes to drop 28 on perfect efficiency while Chet went 9-for-9. When you beat a 50-win Lakers team by 36 points on their home court, you're sending a message to the entire league.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Josh Giddey", "LeBron James", "Anthony Davis"]
+      debateAngle: "Are the Thunder now the West favorites over San Antonio? This LA sweep was surgical - they dismantled both teams with different styles of dominance. SGA is playing at an MVP level and their depth is unmatched.",
+      suggestedQuote: "When you can go into LA and beat both teams by a combined 54 points, you're not just contending - you're making a championship statement. The Thunder look like the most complete team in basketball right now.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Josh Giddey", "Paul George", "Norman Powell"]
     },
     {
-      topic: "The Science Behind Championship-Level Dominance",
-      segment: "deep-dive",
+      topic: "East vs West Gap: Pistons Obliterate Bucks 137-111 in Conference Superiority Showcase",
+      segment: "deep-dive", 
       duration: "10 minutes",
       keyStats: [
-        "Thunder outscored Lakers by +30 in SGA's 29 minutes",
-        "OKC shooting 57% vs Lakers 39% - 18-point differential",
-        "Holmgren's 22 points, 9 rebounds, 4 blocks on perfect shooting",
-        "Thunder forced 16 Lakers turnovers",
-        "OKC now 63-16 with championship-level net rating",
-        "This was Lakers' worst home loss this season"
+        "Detroit wins by 26 points in wire-to-wire beatdown",
+        "Pistons shot 58% from field vs Bucks defense",
+        "Cade Cunningham: 28 points, 11 assists on 11-17 shooting",
+        "Detroit led by 25 at halftime",
+        "East top seed (58-22) vs West would-be 10-seed (31-49)",
+        "Giannis had 26 points but team was outclassed"
       ],
-      debateAngle: "What separates a regular blowout from a championship statement game like this Thunder performance?",
-      suggestedQuote: "There's a difference between beating a bad team by 30 and demolishing a playoff team by 36. The Thunder didn't just win, they controlled every single possession. Their defensive execution was championship-level, their offensive flow was pristine, and they never let up.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Jalen Williams"]
+      debateAngle: "This game perfectly illustrated the conference disparity. The East's 1-seed destroyed what would barely be a play-in team in the West. Is the East championship path dramatically easier than the West bloodbath?",
+      suggestedQuote: "This wasn't just a win - it was a clinic. Detroit showed why they're the East favorites while Milwaukee showed why conference records can be deceiving. The gap between East and West is real.",
+      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jalen Duren", "Giannis Antetokounmpo", "Bobby Portis"]
     },
     {
-      topic: "Are the New Orleans Pelicans the NBA's Biggest What-If Story?",
+      topic: "Hot Take: San Antonio's Home Perfection Makes Them Unbeatable in the Playoffs",
       segment: "hot-take",
-      duration: "7 minutes",
+      duration: "6 minutes", 
       keyStats: [
-        "Pelicans scored 156 points - second-highest this season",
-        "CJ McCollum: 41 points on 9-of-14 from three",
-        "Big 3 combined: McCollum 41, Ingram 32, Zion 28",
-        "New Orleans shot 60% from field, made 21 threes",
-        "Pelicans are 26-54 despite this offensive firepower",
-        "When Big 3 plays together: historic offensive rating"
+        "Spurs now 31-0 at Frost Bank Center this season",
+        "Wembanyama: 26 points, 12 rebounds, 4 blocks vs Portland",
+        "SA maintains 1-game lead over OKC for top seed",
+        "Only team with perfect home record in NBA history through 31 games",
+        "Wembanyama averaging 24.1 PPG, 11.8 RPG, 3.2 BPG",
+        "Spurs 61-19 overall record"
       ],
-      debateAngle: "If healthy all season, would this Pelicans Big 3 have been a legitimate championship contender?",
-      suggestedQuote: "When you watch CJ McCollum go 9-of-14 from three for 41 points while Ingram drops 32 and Zion adds 28, you realize this might be the most talented team to miss the playoffs in NBA history. The ceiling is championship-level, but availability is the best ability.",
-      relevantPlayers: ["CJ McCollum", "Brandon Ingram", "Zion Williamson", "Jonas Valanciunas"]
+      debateAngle: "Here's the hot take: San Antonio's perfect home record makes them championship locks. In a seven-game series, if you literally cannot lose at home, you only need to steal ONE road game. That's an impossible advantage.",
+      suggestedQuote: "Thirty-one and zero at home isn't just a stat - it's a psychological weapon. When you know you're unbeatable on your home court, that changes everything about how you approach a playoff series.",
+      relevantPlayers: ["Victor Wembanyama", "Devin Vassell", "Jeremy Sochan", "Damian Lillard", "Anfernee Simons"]
     },
     {
-      topic: "Rapid Fire: Rockets Lock Up 3-Seed, Bucks Season Over, Wild Scoreboards",
+      topic: "Rapid Fire: Mitchell's Clutch Gene + Orlando's Upset + Jokic's Triple-Double Mastery",
       segment: "rapid-fire",
-      duration: "6 minutes",
-      keyStats: [
-        "Rockets hit 50 wins, Şengün near triple-double: 26/12/9",
-        "Bucks lose to Nets 96-90, now 12 games out of playoffs",
-        "Cam Thomas 27 points in season-killing upset",
-        "Anthony Edwards 32 points in Wolves' 124-104 road win",
-        "Four games decided by 15+ points tonight",
-        "Combined 449 points in Pelicans-Jazz shootout"
-      ],
-      debateAngle: "Which second-tier storyline from tonight will have the biggest playoff implications?",
-      suggestedQuote: "The Rockets hitting 50 wins with Şengün's brilliant all-around play locks up the 3-seed, while Giannis and the Bucks just watched their season end courtesy of Cam Thomas and the Nets. Sometimes the NBA is beautifully cruel.",
-      relevantPlayers: ["Alperen Şengün", "Giannis Antetokounmpo", "Cam Thomas", "Anthony Edwards"]
-    },
-    {
-      topic: "Looking Ahead: Playoff Race Heating Up and Tomorrow's Must-Watch Games",
-      segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Thunder now 2 games behind Spurs for West #1 seed",
-        "Tonight: Cavs @ Hawks (ESPN) - major 4-seed vs 5-seed implications",
-        "Thunder visit Clippers after demolishing Lakers",
-        "One week left in regular season",
-        "Western Conference playoff picture nearly set",
-        "Eastern Conference still wide open outside top 4"
+        "Mitchell hits 5 threes including 2 clutch fourth-quarter daggers",
+        "Paolo Banchero explodes for 31 points in upset over Minnesota", 
+        "Jokic records 15th triple-double: 27-13-12 vs Memphis",
+        "Cleveland strengthens 4-seed grip with Atlanta victory",
+        "Orlando moves closer to home-court advantage in play-in",
+        "Denver officially locks up 4-seed with comfortable win"
       ],
-      debateAngle: "Can the Thunder actually catch San Antonio for the top seed, and does it even matter for their championship chances?",
-      suggestedQuote: "After that demolition job in Los Angeles, the Thunder have to feel like they can beat anyone, anywhere. The question isn't whether they can win a championship - it's whether anyone can stop them when they're playing like this.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Trae Young", "Donovan Mitchell", "Kawhi Leonard"]
+      debateAngle: "Which performance was more impressive - Mitchell's clutch shooting in a tight game with seeding implications, or Banchero's explosion leading an upset victory? Both players delivered when their teams needed it most.",
+      suggestedQuote: "The beauty of this time of year is every game matters. Mitchell delivered clutch moments, Banchero shocked Minnesota, and Jokic just casually dropped another triple-double. Peak basketball season right here.",
+      relevantPlayers: ["Donovan Mitchell", "Paolo Banchero", "Nikola Jokic", "Franz Wagner", "Anthony Edwards"]
+    },
+    {
+      topic: "Tonight's Must-Watch: Celtics-Knicks at MSG + Lakers-Warriors Rivalry Renewed",
+      segment: "closer",
+      duration: "4 minutes",
+      keyStats: [
+        "Boston (54-25) visits New York (51-28) on Prime Video",
+        "Only 3 games separate 2-seed Celtics from 3-seed Knicks", 
+        "Lakers (50-29) travel to Warriors (37-42) in late game",
+        "Both games have major playoff positioning implications",
+        "Celtics favored by 1.5 at Madison Square Garden",
+        "Lakers favored by 3.5 at Chase Center despite road game"
+      ],
+      debateAngle: "Which game has higher stakes - Celtics-Knicks for potential home-court advantage, or Lakers-Warriors where Golden State is fighting for their playoff lives? Both have different types of desperation.",
+      suggestedQuote: "Tonight's slate is appointment television. Celtics-Knicks at MSG for seeding, Lakers-Warriors for survival. This is why we love late-season NBA basketball - every possession matters.",
+      relevantPlayers: ["Jayson Tatum", "Jalen Brunson", "LeBron James", "Stephen Curry"]
     }
   ],
-  coldOpen: "Welcome to Hoops Intel - I'm your host and if you watched any basketball last night, you witnessed something special. The Oklahoma City Thunder didn't just beat the Lakers - they absolutely obliterated them 123-87 in what might be the most dominant championship statement of the season. Shai Gilgeous-Alexander needed just 29 minutes to drop 28 points on perfect efficiency while Chet Holmgren went 9-for-9 from the field. Meanwhile in New Orleans, CJ McCollum turned into Steph Curry on steroids, hitting 9 threes for 41 points in a 156-point explosion. We've got championship statements, historic scoring, and the Bucks' season officially ending. This is your NBA intel for April 8th - let's dive in.",
-  socialClip: "The moment from Shai Gilgeous-Alexander's post-game interview where he says 'We knew we had to make a statement tonight' paired with highlights of his 28 points in 29 minutes during the 36-point demolition of the Lakers. Caption: 'When SGA talks about making statements, this is what championship-level dominance looks like 🔥 #ThunderUp'",
+  coldOpen: "What's good, Hoops Intel family! The Thunder just sent shockwaves through the league with their LA demolition tour - sixty points from SGA across two games, outscoring both Lakers AND Clippers by a combined 54 points. Meanwhile, Detroit reminded everyone why the East-West gap is real with a 26-point beatdown of Milwaukee. San Antonio stayed perfect at home - that's 31-0 at Frost Bank Center - while tonight brings Celtics-Knicks at MSG and Lakers-Warriors for survival. Championship races are heating up, and we're breaking down every angle. Let's dive in!",
+  socialClip: "Thunder's Championship Statement: SGA drops 32 as OKC completes dominant LA sweep, outscoring Lakers and Clippers by 54 combined points. Are they now the West favorites over San Antonio? Full breakdown of their surgical precision and what it means for the title race.",
   tweetThread: [
-    "🚨 HOOPS INTEL PODCAST LIVE 🚨\n\nThe Thunder just dropped a NUCLEAR BOMB on the Lakers 123-87\n\n• SGA: 28 pts in 29 minutes\n• Chet: PERFECT 9-of-9 shooting\n• Led by 30 AT HALFTIME\n\nThis wasn't a game, it was a championship statement 🔥",
-    "Meanwhile CJ McCollum turned into a video game character:\n\n41 POINTS on 9-of-14 from THREE 🎯\n\nThe Pelicans scored 156 points (!!!) in a wild shootout vs Utah. When this Big 3 is healthy, they might have the highest ceiling in the league. What could have been... 😤",
-    "ICYMI: The Bucks season is officially OVER\n\nLost to the Nets 96-90 and are now 12 games out of the playoffs with one week left. Giannis deserved better than this. The championship window has officially closed in Milwaukee 📉",
-    "Quick hits from a WILD night:\n• Rockets hit 50 wins, Şengün near triple-double\n• Anthony Edwards dropped 32 in Minnesota's road win\n• Four blowouts of 15+ points\n• Combined 449 points in NO-Utah game\n\nThe playoff race is getting SPICY 🌶️",
-    "Tomorrow's MUST-WATCH:\nCavs @ Hawks on ESPN 📺\n\nMajor 4-seed vs 5-seed implications. Plus Thunder visit the Clippers after that Lakers massacre.\n\nFull breakdown on today's pod - link in bio! What storyline has you most hyped for the playoffs? 👇"
+    "🧵 HOOPS INTEL THREAD: Thunder complete statement LA sweep, Pistons demolish Bucks, and tonight brings must-watch games at MSG and Golden State. Here's what you need to know from an absolutely loaded Wednesday 👇",
+    "⚡ THUNDER DOMINANCE: SGA's 32 points cap off a PERFECT LA sweep. Combined 54-point margin over Lakers/Clippers is surgical. OKC now just 1 game behind SA for West top seed. This team looks ready for a championship run 🏆",
+    "🔥 EAST SUPERIORITY: Detroit's 137-111 demolition of Milwaukee perfectly illustrated the conference gap. Cade's 28/11 led a wire-to-wire beatdown. East 1-seed vs what would barely be West play-in team tells the whole story",
+    "🏠 SPURS PERFECTION: 31-0 at home after beating Portland. Wemby's 26/12/4 blocks was just another night at the office. In playoff basketball, being literally unbeatable at home is the ultimate trump card",
+    "🎯 TONIGHT'S STAKES: Celtics @ Knicks at MSG for potential home-court advantage. Lakers @ Warriors where GS fights for their season. Both on Prime Video. This is peak NBA basketball - every possession matters! 🔥"
   ]
 };

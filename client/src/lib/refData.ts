@@ -1,5 +1,5 @@
 // Referee Tendency Reports — Know the Whistle
-// Last updated: April 8, 2026
+// Last updated: April 9, 2026
 
 export interface RefereeProfile {
   name: string;
@@ -35,23 +35,55 @@ export interface RefData {
 }
 
 export const refData: RefData = {
-  generatedDate: "April 8, 2026",
+  generatedDate: "April 9, 2026",
   tonightAssignments: [
     {
-      game: "CLE @ ATL",
-      crew: ["Scott Foster", "Kane Fitzgerald", "Courtney Kirkland"],
-      leadRef: "Scott Foster",
-      impact: "Foster's physical tolerance and home-neutral tendencies (55% home win rate) could benefit Cleveland's road position in this crucial playoff seeding battle. His 43.4 fouls per game average suggests moderate whistle discipline, allowing both teams' stars to establish rhythm. Foster's high technical frequency could be a factor if tensions rise in this playoff-atmosphere contest between desperate teams.",
-      bettingAngle: "Under bettors should be cautious — Foster's 9 overtime games this season are second-most among active refs, and his physical style could keep this close enough for extra basketball. The pace will slow slightly (-0.6 impact) which favors Cleveland's half-court execution over Atlanta's transition game.",
-      historical: "Foster has officiated 4 Hawks games this season with Atlanta going 2-2, but he's been excellent in Cavs games where Cleveland is 6-2 in his assignments. His most recent Hawks game was their March collapse against Miami where Trae Young picked up a technical for arguing calls — Foster's zero-tolerance approach could again impact Young's aggression level."
+      game: "BOS @ NYK",
+      crew: ["Tony Brothers", "Ed Malloy", "Tyler Ford"],
+      leadRef: "Tony Brothers",
+      impact: "Brothers' heavy whistle (45.2 fouls/game) and strong home bias (58% home win rate) could significantly favor New York in this massive Eastern Conference showdown. His technical-prone approach may work against Boston's emotional players like Marcus Smart. The physical nature of Brothers' games suits both teams' playoff styles, but the MSG crowd factor combined with his home tendencies creates a challenging environment for the Celtics.",
+      bettingAngle: "Take the Knicks +1.5 with confidence — Brothers' 58% home win rate is elite, and New York is 6-2 ATS in his assignments this season. The Over looks attractive as Brothers' high foul rate often leads to bonus situations and extended game time, with 6 overtime games already this year.",
+      historical: "Brothers has officiated 4 Celtics games this season with Boston going 1-3, including two painful losses where Jayson Tatum picked up questionable sixth fouls. The Knicks are 5-2 in Brothers' assignments at MSG, taking advantage of his home-friendly whistle in crucial moments."
     },
     {
-      game: "OKC @ LAC",
-      crew: ["Zach Zarba", "Ed Malloy", "James Williams"],
+      game: "MIA @ TOR",
+      crew: ["Scott Foster", "Kane Fitzgerald", "Jacyn Goble"],
+      leadRef: "Scott Foster",
+      impact: "Foster's physical tolerance and pace-slowing tendencies (-0.6 impact) favor Toronto's half-court execution over Miami's transition attack. His high technical frequency could be problematic for Jimmy Butler's emotional leadership style. Foster's neutral home bias (55%) gives neither team a significant whistle advantage, making this purely about execution under his demanding officiating style.",
+      bettingAngle: "Under 212.5 is the play — Foster's pace-negative impact and physical style consistently produce lower-scoring affairs. Road teams are surprisingly strong (18-14 ATS) in Foster assignments, but his 9 overtime games this season create back-door Over potential if this stays tight.",
+      historical: "Foster has been tough on Miami this season, with the Heat going 2-5 in his assignments including a January blowout loss where Butler was ejected for arguing calls. Toronto is 4-3 in Foster games, benefiting from his physical style that suits their defensive identity."
+    },
+    {
+      game: "CHI @ WSH",
+      crew: ["Ben Taylor", "Courtney Kirkland", "Phenizee Ransom"],
+      leadRef: "Ben Taylor",
+      impact: "Taylor's whistle discipline (38.9 fouls/game) and neutral tendencies create a pure basketball environment perfect for skill-based outcomes. His pace-positive lean (+0.8) should favor Chicago's veteran execution over Washington's chaotic young roster. Taylor's low technical frequency allows emotional players to stay engaged without ejection risk.",
+      bettingAngle: "Take Chicago -8.5 — Taylor's clean officiating style rewards superior talent and execution, giving the Bulls a significant edge over Washington's inconsistent youth. His games rarely go Over due to efficient play, making Under 218.5 attractive despite the pace boost.",
+      historical: "Taylor has called 3 Bulls games this season with Chicago going 2-1, including a dominant road victory where his whistle discipline allowed their veterans to control tempo. Washington is just 1-4 in Taylor assignments, struggling when officials don't bail out their poor shot selection with favorable calls."
+    },
+    {
+      game: "IND @ BKN",
+      crew: ["Zach Zarba", "James Williams", "John Butler"],
       leadRef: "Zach Zarba",
-      impact: "Zarba's road-friendly tendencies (47% home win rate) and pace-positive impact (+1.2) strongly favor Oklahoma City's transition attack and athleticism advantage. His 39.6 fouls per game is well below league average, which should benefit OKC's defensive intensity and allow Shai Gilgeous-Alexander to attack aggressively without ticky-tack whistles slowing his rhythm.",
-      bettingAngle: "Take the Over with confidence — Zarba's pace-positive impact combined with low foul frequency creates optimal conditions for a high-scoring affair. Road teams are 23-11 ATS in Zarba's assignments this season, making OKC an attractive play after yesterday's dominant Lakers performance.",
-      historical: "Zarba has been exceptional for the Thunder this season, with OKC going 7-1 in his assignments including two blowout victories. The Clippers are just 2-4 in Zarba games, struggling against his whistle-swallowing style that negates their veteran savvy in working officials for favorable calls."
+      impact: "Zarba's road-friendly approach (47% home win rate) and pace-positive impact (+1.2) create optimal conditions for an up-tempo shootout between two rebuilding teams. His low foul rate (39.6/game) allows young players to play aggressively without foul trouble limiting their development minutes.",
+      bettingAngle: "Hammer the Over 225.5 — Zarba's crew combines for massive pace increases, and his low foul frequency creates perfect conditions for a high-scoring affair between two defensively challenged teams. Indiana +1.5 also has value given Zarba's road bias.",
+      historical: "Zarba has overseen some of the season's highest-scoring games involving these rebuilding teams. The Pacers are 3-1 in his assignments with strong offensive showings, while Brooklyn is 2-3 but consistently hits Over totals in Zarba games due to his pace-friendly approach."
+    },
+    {
+      game: "PHI @ HOU",
+      crew: ["Marc Davis", "Sean Wright", "Mousa Dagher"],
+      leadRef: "Marc Davis",
+      impact: "Davis' moderate whistle (44.0 fouls/game) and slight home bias (54%) could benefit Houston's playoff push at Toyota Center. His high technical frequency poses risks for Joel Embiid's emotional reactions, while favoring Houston's composed young core. Davis allows physical post play, which should favor Embiid if he can control his emotions.",
+      bettingAngle: "Take Houston -4.5 — Davis' home lean and technical-prone approach create tricky conditions for Philadelphia's veteran stars. The Under 214.5 has value as Davis' games often slow down in crucial moments with technical fouls and extended reviews.",
+      historical: "Davis ejected Embiid earlier this season for two technicals, and the 76ers are just 2-4 in his assignments. Houston is 4-2 in Davis games at home, benefiting from his physical style that suits their defensive identity and Alperen Şengün's interior presence."
+    },
+    {
+      game: "LAL @ GS",
+      crew: ["Pat Fraher", "CJ Washington", "Intae Hwang"],
+      leadRef: "Pat Fraher",
+      impact: "Fraher's balanced approach (41.8 fouls/game, 51% home rate) creates a neutral environment for this crucial West Coast rivalry. His average pace impact (0.3) won't dramatically favor either team's style, making this about pure execution. Fraher's moderate technical frequency allows emotional players to compete without ejection concerns.",
+      bettingAngle: "Take Lakers -3.5 — Fraher's neutral tendencies favor the more talented team, and LeBron James historically performs well in his assignments. The Over 221.5 has appeal as Fraher allows free-flowing basketball that suits both teams' offensive capabilities.",
+      historical: "Fraher has called some classic Lakers-Warriors battles, with LA going 3-2 in his assignments including two overtime thrillers. Golden State is 2-4 in Fraher games this season, struggling to execute in crucial moments when he doesn't provide favorable whistles."
     }
   ],
   refProfiles: [
@@ -59,7 +91,7 @@ export const refData: RefData = {
       name: "Tony Brothers",
       number: 25,
       experience: "30 years",
-      gamesThisSeason: 59,
+      gamesThisSeason: 62,
       tendencies: {
         foulsPerGame: 45.2,
         homeWinPct: 58,
@@ -69,13 +101,13 @@ export const refData: RefData = {
       },
       bestFor: "Home teams, physical post players, veteran teams",
       worstFor: "Fast-paced transition teams, young teams prone to emotional reactions",
-      notableGame: "Called 61 fouls in yesterday's CLE-MEM game where Cleveland scored 142 points — his whistle-heavy style paradoxically led to the highest-scoring game of the season as both teams got into bonus situations early and often."
+      notableGame: "Leading tonight's BOS-NYK crew at Madison Square Garden where his home bias and technical-heavy approach could significantly impact this crucial Eastern Conference seeding battle."
     },
     {
       name: "Scott Foster",
       number: 48,
       experience: "30 years",
-      gamesThisSeason: 61,
+      gamesThisSeason: 64,
       tendencies: {
         foulsPerGame: 43.4,
         homeWinPct: 55,
@@ -85,13 +117,13 @@ export const refData: RefData = {
       },
       bestFor: "Physical defensive teams, veteran stars who know how to work officials",
       worstFor: "Young guards who rely on drawing touch fouls",
-      notableGame: "Tonight's CLE-ATL assignment marks his return to Atlanta where he'll face Trae Young again — their history includes multiple technical fouls and heated exchanges, making Foster's zero-tolerance approach a key storyline in this playoff-atmosphere contest."
+      notableGame: "Officiating tonight's MIA-TOR matchup where his history of technical fouls with Jimmy Butler adds intrigue to this playoff positioning battle."
     },
     {
       name: "Zach Zarba",
       number: 15,
       experience: "20 years",
-      gamesThisSeason: 58,
+      gamesThisSeason: 61,
       tendencies: {
         foulsPerGame: 39.6,
         homeWinPct: 47,
@@ -101,13 +133,13 @@ export const refData: RefData = {
       },
       bestFor: "Athletic teams, transition-heavy offenses, road underdogs",
       worstFor: "Teams that depend on getting to the free-throw line",
-      notableGame: "Leading tonight's OKC-LAC crew after the Thunder's dominant performance yesterday — his whistle-swallowing style should allow Shai Gilgeous-Alexander to continue his aggressive attacking approach without getting bogged down in free-throw contests."
+      notableGame: "Leading tonight's IND-BKN crew where his pace-positive approach should create ideal conditions for a high-scoring affair between two young, athletic teams."
     },
     {
       name: "Ed Malloy",
       number: 14,
       experience: "23 years",
-      gamesThisSeason: 56,
+      gamesThisSeason: 59,
       tendencies: {
         foulsPerGame: 40.1,
         homeWinPct: 48,
@@ -117,77 +149,13 @@ export const refData: RefData = {
       },
       bestFor: "High-scoring offensive teams, road teams, pace-and-space systems",
       worstFor: "Grind-it-out defensive teams that rely on physicality",
-      notableGame: "Working tonight's OKC-LAC game as part of Zarba's crew — his pace-positive impact (+1.5) is the highest among active officials, making him perfect for a potential Thunder transition showcase."
-    },
-    {
-      name: "Kane Fitzgerald",
-      number: 5,
-      experience: "16 years",
-      gamesThisSeason: 57,
-      tendencies: {
-        foulsPerGame: 42.3,
-        homeWinPct: 53,
-        avgPace: 0.2,
-        technicalFrequency: "Average",
-        overtimeGames: 5,
-      },
-      bestFor: "Balanced teams with multiple scoring options",
-      worstFor: "Teams that need extreme officiating tendencies to succeed",
-      notableGame: "Part of tonight's CLE-ATL crew under Scott Foster — Fitzgerald's neutral tendencies provide balance to Foster's more aggressive whistle, potentially creating a fair environment for both teams' playoff positioning battle."
-    },
-    {
-      name: "Sean Wright",
-      number: 4,
-      experience: "18 years",
-      gamesThisSeason: 55,
-      tendencies: {
-        foulsPerGame: 42.8,
-        homeWinPct: 59,
-        avgPace: -0.4,
-        technicalFrequency: "Average",
-        overtimeGames: 5,
-      },
-      bestFor: "Home teams, interior-focused offenses",
-      worstFor: "Road teams seeking neutral whistles, perimeter-heavy offenses",
-      notableGame: "His 59% home-win rate remains the strongest home lean among active officials — Wright's assignment patterns consistently show he favors the home team in marginal calls and late-game situations, making him valuable for home underdogs."
-    },
-    {
-      name: "James Williams",
-      number: 60,
-      experience: "12 years",
-      gamesThisSeason: 53,
-      tendencies: {
-        foulsPerGame: 41.7,
-        homeWinPct: 52,
-        avgPace: 2.1,
-        technicalFrequency: "Average",
-        overtimeGames: 4,
-      },
-      bestFor: "Athletic wings, transition offenses, high-scoring games",
-      worstFor: "Methodical half-court teams, post-up heavy offenses",
-      notableGame: "Working tonight's OKC-LAC matchup as the third member of Zarba's pace-friendly crew — Williams' +2.1 pace impact is the most aggressive among all officials, virtually guaranteeing an up-tempo affair that favors Oklahoma City's athleticism."
-    },
-    {
-      name: "Marc Davis",
-      number: 36,
-      experience: "25 years",
-      gamesThisSeason: 57,
-      tendencies: {
-        foulsPerGame: 44.0,
-        homeWinPct: 54,
-        avgPace: -0.3,
-        technicalFrequency: "High",
-        overtimeGames: 6,
-      },
-      bestFor: "Veteran teams with strong leadership, home favorites",
-      worstFor: "Young teams that argue calls, emotionally volatile players",
-      notableGame: "Called double technicals on both benches in a heated March game between Miami and Philadelphia — Davis doesn't tolerate sideline antics and his technical frequency reflects his zero-tolerance approach to emotional outbursts."
+      notableGame: "Working tonight's BOS-NYK game under Tony Brothers — his pace-positive impact could accelerate what's expected to be a physical Eastern Conference battle."
     },
     {
       name: "Ben Taylor",
       number: 46,
       experience: "19 years",
-      gamesThisSeason: 54,
+      gamesThisSeason: 57,
       tendencies: {
         foulsPerGame: 38.9,
         homeWinPct: 49,
@@ -197,24 +165,88 @@ export const refData: RefData = {
       },
       bestFor: "Defensive-minded teams, teams that play clean basketball",
       worstFor: "Teams that need favorable whistles to create offense",
-      notableGame: "Officiated the season's lowest-foul game with just 26 total fouls in a January Spurs-Thunder matchup — Taylor's whistle discipline creates pure basketball environments where skill determines outcomes."
+      notableGame: "Leading tonight's CHI-WSH assignment where his whistle discipline should reward Chicago's veteran execution over Washington's chaotic approach."
     },
     {
-      name: "Courtney Kirkland",
-      number: 61,
-      experience: "15 years",
-      gamesThisSeason: 52,
+      name: "Marc Davis",
+      number: 36,
+      experience: "25 years",
+      gamesThisSeason: 60,
       tendencies: {
-        foulsPerGame: 43.1,
-        homeWinPct: 51,
-        avgPace: 0.5,
+        foulsPerGame: 44.0,
+        homeWinPct: 54,
+        avgPace: -0.3,
+        technicalFrequency: "High",
+        overtimeGames: 6,
+      },
+      bestFor: "Veteran teams with strong leadership, home favorites",
+      worstFor: "Young teams that argue calls, emotionally volatile players",
+      notableGame: "Officiating tonight's PHI-HOU matchup where his technical-prone approach could be problematic for Joel Embiid's emotional tendencies in a crucial game."
+    },
+    {
+      name: "Kane Fitzgerald",
+      number: 5,
+      experience: "16 years",
+      gamesThisSeason: 60,
+      tendencies: {
+        foulsPerGame: 42.3,
+        homeWinPct: 53,
+        avgPace: 0.2,
+        technicalFrequency: "Average",
+        overtimeGames: 5,
+      },
+      bestFor: "Balanced teams with multiple scoring options",
+      worstFor: "Teams that need extreme officiating tendencies to succeed",
+      notableGame: "Supporting Scott Foster in tonight's MIA-TOR game where his balanced approach provides stability to Foster's more aggressive whistle."
+    },
+    {
+      name: "Sean Wright",
+      number: 4,
+      experience: "18 years",
+      gamesThisSeason: 58,
+      tendencies: {
+        foulsPerGame: 42.8,
+        homeWinPct: 59,
+        avgPace: -0.4,
+        technicalFrequency: "Average",
+        overtimeGames: 5,
+      },
+      bestFor: "Home teams, interior-focused offenses",
+      worstFor: "Road teams seeking neutral whistles, perimeter-heavy offenses",
+      notableGame: "Working with Marc Davis in tonight's PHI-HOU game where his strong home bias could provide additional support for the Rockets' playoff push."
+    },
+    {
+      name: "James Williams",
+      number: 60,
+      experience: "12 years",
+      gamesThisSeason: 56,
+      tendencies: {
+        foulsPerGame: 41.7,
+        homeWinPct: 52,
+        avgPace: 2.1,
         technicalFrequency: "Average",
         overtimeGames: 4,
       },
-      bestFor: "Consistent, well-coached teams",
-      worstFor: "Teams that rely on getting favorable bounces from officials",
-      notableGame: "Working tonight's CLE-ATL game under Scott Foster — Kirkland's neutral approach provides balance to Foster's more aggressive tendencies, creating a fair environment for this crucial playoff positioning battle."
+      bestFor: "Athletic wings, transition offenses, high-scoring games",
+      worstFor: "Methodical half-court teams, post-up heavy offenses",
+      notableGame: "Supporting Zach Zarba in tonight's IND-BKN matchup where his extreme pace-positive impact (+2.1) virtually guarantees an up-tempo showcase."
+    },
+    {
+      name: "Pat Fraher",
+      number: 26,
+      experience: "14 years",
+      gamesThisSeason: 55,
+      tendencies: {
+        foulsPerGame: 41.8,
+        homeWinPct: 51,
+        avgPace: 0.3,
+        technicalFrequency: "Average",
+        overtimeGames: 3,
+      },
+      bestFor: "Skilled offensive teams, neutral game environments",
+      worstFor: "Teams that rely on home cooking or favorable whistles",
+      notableGame: "Leading tonight's LAL-GS crew where his neutral approach should create a fair environment for this crucial Western Conference rivalry at Chase Center."
     }
   ],
-  weeklyTrend: "Tonight's two-game slate features contrasting officiating philosophies that could significantly impact playoff positioning. The CLE-ATL assignment pairs Scott Foster's physical, high-technical approach with Kane Fitzgerald's balanced tendencies, creating an environment where veteran execution will be rewarded over emotional reactions. Foster's history with Trae Young adds intrigue to a game with massive seeding implications. Meanwhile, the OKC-LAC crew represents the most pace-positive combination possible — Zarba (+1.2), Malloy (+1.5), and Williams (+2.1) combine for a +4.8 pace impact that should create ideal conditions for Oklahoma City's transition attack coming off yesterday's dominant Lakers performance. The Thunder are 7-1 in Zarba assignments this season, while the Clippers struggle against his road-friendly tendencies. After yesterday's officiating variations — from Tony Brothers' whistle-heavy 61-foul game to Ben Taylor's free-flowing approach — tonight's crews represent polar opposites that will test different team strengths. Foster's physical tolerance in Atlanta rewards half-court execution, while Zarba's whistle discipline in Los Angeles favors athletic superiority. Both games carry massive playoff implications, and the officiating styles should amplify each matchup's natural dynamics rather than neutralize them."
+  weeklyTrend: "Tonight's six-game slate features the most diverse officiating philosophies of the season, creating vastly different game environments that will test various team strengths. The marquee BOS-NYK matchup gets Tony Brothers' home-heavy approach, giving the Knicks a significant whistle advantage in this crucial Eastern seeding battle. Meanwhile, the lottery teams in IND-BKN get Zach Zarba's pace-friendly crew that should produce fireworks in what could be the night's highest-scoring affair. Scott Foster returns to officiate MIA-TOR after yesterday's CLE-ATL assignment, bringing his physical style to another playoff positioning battle where Jimmy Butler's emotions will be tested. The most intriguing subplot involves Marc Davis handling PHI-HOU, where Joel Embiid's history of technical fouls meets Davis' zero-tolerance approach in a game with major seeding implications. Ben Taylor's assignment to CHI-WSH represents the cleanest officiating environment of the night, rewarding skill over gamesmanship. Pat Fraher's neutral approach for LAL-GS creates the fairest conditions for what should be the most competitive matchup. After yesterday's contrasting styles — from Tony Brothers' 45-foul games to Ben Taylor's whistle discipline — tonight's crew diversity allows teams to either capitalize on favorable tendencies or overcome challenging officiating environments. The combination of home-biased crews (Brothers, Wright) and road-friendly officials (Zarba, Malloy) across tonight's slate means location could be more decisive than talent in several outcomes."
 };
