@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 9, 2026
+// Last updated: April 10, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,252 +33,297 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 9, 2026",
-  gameOfTheNight: "ATL-CLE-20260408",
+  date: "April 10, 2026",
+  gameOfTheNight: "BOS-NY-20260409",
   topClutchPerformer: { 
-    player: "Donovan Mitchell", 
-    team: "CLE", 
+    player: "Jalen Brunson", 
+    team: "NY", 
     clutchRating: 92, 
-    description: "Two clutch three-pointers in final four minutes sealed crucial playoff seeding victory" 
+    description: "Scored 8 points in final 3 minutes including go-ahead three-pointer to silence Celtics comeback attempt at MSG"
   },
   games: [
     {
-      gameId: "OKC-LAC-20260408",
-      teams: { home: "LAC", away: "OKC" },
-      finalScore: { home: 110, away: 128 },
+      gameId: "MIA-TOR-20260409",
+      teams: { home: "TOR", away: "MIA" },
+      finalScore: { home: 128, away: 114 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "8:24",
-          description: "Thunder opened with 12-0 run behind SGA's three consecutive buckets",
-          runScore: "12-0",
+          timestamp: "8:42",
+          description: "Heat jump out early with Butler driving and Adebayo finishing inside",
+          runScore: "12-4 MIA",
           momentum: "away",
-          keyPlayer: "Shai Gilgeous-Alexander",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "4:17",
-          description: "Clippers responded with 14-4 burst led by Paul George's hot shooting",
-          runScore: "14-4",
-          momentum: "home",
-          keyPlayer: "Paul George",
-          impact: "notable"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "6:53",
-          description: "Holmgren dominated the paint with 11 third-quarter points, OKC pulled away",
-          runScore: "18-7",
-          momentum: "away",
-          keyPlayer: "Chet Holmgren",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The Thunder's championship statement was written in dominant ink from opening tip. Shai Gilgeous-Alexander conducted a symphony of basketball excellence, orchestrating runs that left the Clippers gasping for air at their own building. This wasn't just a victory—it was a declaration that Oklahoma City's time is now, completing their LA sweep with the ruthless efficiency of title contenders."
-    },
-    {
-      gameId: "MIL-DET-20260408",
-      teams: { home: "DET", away: "MIL" },
-      finalScore: { home: 137, away: 111 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "9:12",
-          description: "Pistons opened with devastating 16-2 run as Cunningham found every angle",
-          runScore: "16-2",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "7:33",
-          description: "Milwaukee briefly fought back with Giannis attacking the rim relentlessly",
-          runScore: "10-3",
-          momentum: "away",
-          keyPlayer: "Giannis Antetokounmpo",
+          keyPlayer: "Jimmy Butler",
           impact: "notable"
         },
         {
           quarter: "Q2",
-          timestamp: "2:45",
-          description: "Detroit answered immediately with 15-5 counter-punch to close the half",
-          runScore: "15-5",
+          timestamp: "6:15",
+          description: "Siakam takes over with three straight buckets, Scottie Barnes finds his rhythm",
+          runScore: "18-6 TOR",
           momentum: "home",
-          keyPlayer: "Isaiah Stewart",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "This was basketball brutality disguised as artistry, with Cade Cunningham wielding his court vision like a master painter's brush. Detroit's demolition of Milwaukee wasn't just dominant—it was prophetic, a glimpse into the vast chasm between the conferences' elite. The Pistons turned Little Caesars Arena into a championship showcase, leaving the Bucks wondering how they fell so far from grace."
-    },
-    {
-      gameId: "ATL-CLE-20260408",
-      teams: { home: "CLE", away: "ATL" },
-      finalScore: { home: 122, away: 116 },
-      swings: [
-        {
-          quarter: "Q2",
-          timestamp: "6:18",
-          description: "Cavaliers surged with 11-2 run as Mitchell caught fire from deep",
-          runScore: "11-2",
-          momentum: "home",
-          keyPlayer: "Donovan Mitchell",
+          keyPlayer: "Pascal Siakam",
           impact: "significant"
         },
         {
           quarter: "Q3",
-          timestamp: "8:41",
-          description: "Hawks roared back with 16-6 burst led by Young's vintage playmaking",
-          runScore: "16-6",
-          momentum: "away",
-          keyPlayer: "Trae Young",
+          timestamp: "4:30",
+          description: "Toronto explodes out of halftime with suffocating defense creating easy transition buckets",
+          runScore: "22-8 TOR",
+          momentum: "home",
+          keyPlayer: "OG Anunoby",
           impact: "game-changing"
         },
         {
           quarter: "Q4",
-          timestamp: "5:23",
-          description: "Murray's aggressive drives sparked 12-4 Atlanta run to tie the game",
-          runScore: "12-4",
+          timestamp: "9:12",
+          description: "Heat make desperate push behind Butler's aggressive drives but can't sustain",
+          runScore: "11-4 MIA",
           momentum: "away",
-          keyPlayer: "Dejounte Murray",
+          keyPlayer: "Jimmy Butler",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "The Raptors delivered a masterclass in playoff-caliber basketball, with Siakam orchestrating the symphony from start to finish. Toronto's third-quarter explosion turned a competitive game into a rout, showcasing the depth and execution that could make them dangerous in the postseason. The victory sends a clear message to the Eastern Conference that this Raptors team is peaking at exactly the right moment."
+    },
+    {
+      gameId: "LAL-GS-20260409",
+      teams: { home: "GS", away: "LAL" },
+      finalScore: { home: 103, away: 119 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "7:23",
+          description: "Warriors strike first with Curry hitting two early threes at Chase Center",
+          runScore: "14-6 GS",
+          momentum: "home",
+          keyPlayer: "Stephen Curry",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "5:47",
+          description: "LeBron takes control with vintage drives and finds Davis for easy buckets",
+          runScore: "16-7 LAL",
+          momentum: "away",
+          keyPlayer: "LeBron James",
           impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "2:18",
+          description: "Lakers defense clamps down, forcing Warriors turnovers and extending lead",
+          runScore: "20-9 LAL",
+          momentum: "away",
+          keyPlayer: "Anthony Davis",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:32",
+          description: "Warriors make final push behind Thompson's shooting but Lakers answer every run",
+          runScore: "12-8 GS",
+          momentum: "home",
+          keyPlayer: "Klay Thompson",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "LeBron James turned back the clock in enemy territory, delivering a vintage performance that may have ended Golden State's playoff hopes. The Lakers' suffocating defense and balanced scoring overwhelmed a Warriors team that looked every bit their age and limitations. This wasn't just a victory—it was a statement that the Lakers are ready for another postseason run while potentially closing the book on the Warriors' dynasty era."
+    },
+    {
+      gameId: "BOS-NY-20260409",
+      teams: { home: "NY", away: "BOS" },
+      finalScore: { home: 112, away: 106 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "9:14",
+          description: "Madison Square Garden erupts as Knicks start hot with Brunson facilitating beautiful ball movement",
+          runScore: "13-4 NY",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "3:52",
+          description: "Tatum and Brown combine for 14 straight points to swing momentum back to Boston",
+          runScore: "14-6 BOS",
+          momentum: "away",
+          keyPlayer: "Jayson Tatum",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "6:08",
+          description: "Physical defense defines the quarter with neither team able to establish rhythm",
+          runScore: "8-8 TIE",
+          momentum: "home",
+          keyPlayer: "Mitchell Robinson",
+          impact: "notable"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "2:47",
+          description: "Brunson hits clutch three-pointer over Brown as MSG reaches fever pitch",
+          runScore: "9-4 NY",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
+          impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Step-back three over Murray with shot clock expiring",
-          timeRemaining: "3:47",
-          winProbabilityShift: 18
+          player: "Jalen Brunson",
+          team: "NY",
+          description: "Step-back three-pointer over Jaylen Brown to break 103-103 tie",
+          timeRemaining: "2:47",
+          winProbabilityShift: 18.5
         },
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Deep three from the logo after Hawks timeout",
-          timeRemaining: "1:52",
-          winProbabilityShift: 24
+          player: "Julius Randle",
+          team: "NY",
+          description: "Offensive rebound and putback after missed free throw",
+          timeRemaining: "1:23",
+          winProbabilityShift: 12.3
         },
         {
-          player: "Trae Young",
-          team: "ATL",
-          description: "Floater through traffic to cut deficit to four",
-          timeRemaining: "1:14",
-          winProbabilityShift: -12
+          player: "Jayson Tatum",
+          team: "BOS",
+          description: "Contested three-pointer to cut deficit to 3 points",
+          timeRemaining: "0:38",
+          winProbabilityShift: -8.7
         }
       ],
-      narrative: "Rocket Arena witnessed playoff basketball in April as two desperate teams clawed for postseason positioning. Mitchell's clutch gene activated when it mattered most, his deep three-point daggers silencing a Hawks comeback that had all the ingredients of heartbreak. This was the kind of game that defines seasons—where stars separate themselves from pretenders in the crucible of late-game pressure."
+      narrative: "This was playoff basketball in April, with Madison Square Garden providing the perfect soundtrack to a heavyweight bout. Jalen Brunson proved he belongs among the elite point guards with his clutch shooting and leadership in crunch time. The victory wasn't just about climbing the standings—it was about the Knicks proving they can go toe-to-toe with championship contenders when the lights are brightest."
     },
     {
-      gameId: "POR-SA-20260408",
-      teams: { home: "SA", away: "POR" },
-      finalScore: { home: 112, away: 101 },
+      gameId: "PHI-HOU-20260409",
+      teams: { home: "HOU", away: "PHI" },
+      finalScore: { home: 113, away: 102 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "7:29",
-          description: "Wembanyama's rim protection sparked 10-0 Spurs run",
-          runScore: "10-0",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "5:44",
-          description: "Lillard's three-point barrage fueled 13-3 Portland surge",
-          runScore: "13-3",
+          timestamp: "6:45",
+          description: "Embiid dominates early possessions with his size advantage in the paint",
+          runScore: "10-4 PHI",
           momentum: "away",
-          keyPlayer: "Damian Lillard",
+          keyPlayer: "Joel Embiid",
           impact: "notable"
         },
         {
-          quarter: "Q3",
-          timestamp: "9:15",
-          description: "Vassell and Wemby combined for 12-2 run to regain control",
-          runScore: "12-2",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The Frost Bank Center remains an impenetrable fortress, with Wembanyama standing guard like a basketball sentinel. San Antonio's perfect home record isn't just about wins and losses—it's about the psychological warfare of invincibility. Every game at home feels like destiny manifesting, with the young phenom orchestrating victories that feel both inevitable and awe-inspiring."
-    },
-    {
-      gameId: "MIN-ORL-20260408",
-      teams: { home: "ORL", away: "MIN" },
-      finalScore: { home: 132, away: 120 },
-      swings: [
-        {
           quarter: "Q2",
-          timestamp: "8:17",
-          description: "Edwards answered with explosive 9-0 personal run",
-          runScore: "9-0",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
+          timestamp: "8:33",
+          description: "Şengün showcases his playmaking with four assists in five minutes, Rockets surge",
+          runScore: "15-7 HOU",
+          momentum: "home",
+          keyPlayer: "Alperen Şengün",
           impact: "significant"
         },
         {
           quarter: "Q3",
-          timestamp: "9:43",
-          description: "Banchero took over with 14 points in blistering third quarter",
-          runScore: "18-7",
+          timestamp: "4:21",
+          description: "Smith Jr. catches fire from three-point range as Houston extends lead",
+          runScore: "16-9 HOU",
           momentum: "home",
-          keyPlayer: "Paolo Banchero",
-          impact: "game-changing"
+          keyPlayer: "Jabari Smith Jr.",
+          impact: "significant"
         },
         {
           quarter: "Q4",
-          timestamp: "6:22",
-          description: "Wagner's timely buckets sealed the upset victory",
-          runScore: "8-2",
+          timestamp: "7:18",
+          description: "76ers make final push but Rockets' depth and ball movement prove decisive",
+          runScore: "11-8 HOU",
           momentum: "home",
-          keyPlayer: "Franz Wagner",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Paolo Banchero announced his arrival as a playoff threat with the kind of performance that reshuffles postseason expectations. The Magic's upset wasn't lucky—it was earned through the rising star's dominant will and Orlando's collective belief in their impossible dream. Minnesota learned that young hunger often devours veteran experience when the stakes are highest."
-    },
-    {
-      gameId: "MEM-DEN-20260408",
-      teams: { home: "DEN", away: "MEM" },
-      finalScore: { home: 136, away: 119 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "6:38",
-          description: "Jokić's early triple-double pace ignited 14-4 Nuggets burst",
-          runScore: "14-4",
-          momentum: "home",
-          keyPlayer: "Nikola Jokić",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "4:55",
-          description: "Morant's return sparked brief 8-0 Memphis rally",
-          runScore: "8-0",
-          momentum: "away",
-          keyPlayer: "Ja Morant",
-          impact: "notable"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "7:12",
-          description: "Porter Jr. caught fire with four threes in game-breaking 16-5 run",
-          runScore: "16-5",
-          momentum: "home",
-          keyPlayer: "Michael Porter Jr.",
+          keyPlayer: "Fred VanVleet",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Nikola Jokić reminded everyone why he's basketball's most complete weapon, conducting Denver's offensive symphony with triple-double mastery. Ball Arena became his personal concert hall, where every pass was poetry and every rebound a statement of dominance. The Nuggets' championship window isn't closing—it's wide open, with Jokić holding the keys to basketball immortality."
+      narrative: "Alperen Şengün continues to emerge as one of the league's most versatile big men, orchestrating Houston's offense like a seasoned floor general. The Rockets' balanced attack and relentless energy exposed Philadelphia's defensive limitations at the worst possible time. This victory solidifies Houston's championship aspirations while raising serious questions about Philadelphia's ability to make noise in the postseason."
+    },
+    {
+      gameId: "IND-BKN-20260409",
+      teams: { home: "BKN", away: "IND" },
+      finalScore: { home: 94, away: 123 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "9:42",
+          description: "Mathurin explodes out of the gate with three straight three-pointers",
+          runScore: "15-3 IND",
+          momentum: "away",
+          keyPlayer: "Bennedict Mathurin",
+          impact: "significant"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "5:29",
+          description: "Haliburton finds his passing rhythm, Pacers ball movement becomes unstoppable",
+          runScore: "18-8 IND",
+          momentum: "away",
+          keyPlayer: "Tyrese Haliburton",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "7:15",
+          description: "Thomas tries to rally Nets with scoring burst but Pacers answer every shot",
+          runScore: "14-11 IND",
+          momentum: "away",
+          keyPlayer: "Cam Thomas",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Bennedict Mathurin announced himself as a rising star with a dominant performance that showcased his scoring versatility and confidence. The Pacers' young core played with the chemistry and precision of a veteran team, making this blowout feel inevitable by halftime. While both teams are playing for draft position, performances like this suggest Indiana's rebuild is ahead of schedule."
+    },
+    {
+      gameId: "CHI-WSH-20260409",
+      teams: { home: "WSH", away: "CHI" },
+      finalScore: { home: 108, away: 119 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "8:17",
+          description: "Poole starts aggressive for Washington with early three-pointers",
+          runScore: "11-5 WSH",
+          momentum: "home",
+          keyPlayer: "Jordan Poole",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "6:54",
+          description: "White and DeRozan combine for efficient scoring to flip momentum",
+          runScore: "14-6 CHI",
+          momentum: "away",
+          keyPlayer: "Coby White",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "3:41",
+          description: "Bulls extend lead with balanced scoring and improved defensive effort",
+          runScore: "16-10 CHI",
+          momentum: "away",
+          keyPlayer: "DeMar DeRozan",
+          impact: "significant"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "4:32",
+          description: "Wizards make late push but can't overcome their defensive struggles",
+          runScore: "12-8 WSH",
+          momentum: "home",
+          keyPlayer: "Kyle Kuzma",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "In a game between two disappointing seasons, Coby White provided a glimpse of what could have been with his efficient scoring and playmaking. The Bulls showed flashes of the team many expected them to be, while Washington continued to struggle with the defensive consistency that has plagued them all season. Both franchises will enter the offseason with more questions than answers."
     }
   ]
 };

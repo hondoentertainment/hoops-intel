@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 9, 2026
+// Last updated: April 10, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 9, 2026",
-  episodeTitle: "Thunder's Championship Statement + Pistons Demolish Bucks + West Top Seed Race Heats Up",
+  date: "April 10, 2026",
+  episodeTitle: "Siakam's Statement Night — Lakers Crush Warriors Dreams — Tonight's MASSIVE 15-Game Slate",
   rundown: [
     {
-      topic: "Thunder Complete Dominant LA Sweep - Championship Contenders or Championship Favorites?",
+      topic: "Raptors Demolish Heat — Siakam's 32-Point Masterclass Shakes Up East Playoff Race",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "SGA drops 32 points on 12-of-20 shooting",
-        "Thunder win by 18 points at Intuit Dome", 
-        "OKC outscored both LA teams by 54 points combined",
-        "Thunder now 64-16, just 1 game behind SA for top seed",
-        "8-game winning streak for Oklahoma City",
-        "Thunder shot 54% from field as team"
+        "Pascal Siakam: 32 points on 12-of-19 shooting",
+        "Raptors shot 52% from the field in dominant wire-to-wire win",
+        "Toronto moves into tie for 5th place in East at 45-35",
+        "Heat drop to 41-39, falling further behind in playoff race",
+        "Scottie Barnes added 24 points and 7 assists",
+        "Raptors led by as many as 18 points in fourth quarter"
       ],
-      debateAngle: "Are the Thunder now the West favorites over San Antonio? This LA sweep was surgical - they dismantled both teams with different styles of dominance. SGA is playing at an MVP level and their depth is unmatched.",
-      suggestedQuote: "When you can go into LA and beat both teams by a combined 54 points, you're not just contending - you're making a championship statement. The Thunder look like the most complete team in basketball right now.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Josh Giddey", "Paul George", "Norman Powell"]
+      debateAngle: "Are the Raptors peaking at the perfect time, or is this just another false hope moment in their inconsistent season? Can they maintain this level against elite competition?",
+      suggestedQuote: "When Pascal Siakam is playing like THIS — 32 points on elite efficiency — the Raptors look like a team nobody wants to face in the playoffs. But we've seen this movie before in Toronto.",
+      relevantPlayers: ["Pascal Siakam", "Scottie Barnes", "OG Anunoby", "Jimmy Butler", "Bam Adebayo"]
     },
     {
-      topic: "East vs West Gap: Pistons Obliterate Bucks 137-111 in Conference Superiority Showcase",
-      segment: "deep-dive", 
-      duration: "10 minutes",
+      topic: "Lakers Statement Win — LeBron Vintage Performance Crushes Warriors' Playoff Dreams",
+      segment: "deep-dive",
+      duration: "9 minutes",
       keyStats: [
-        "Detroit wins by 26 points in wire-to-wire beatdown",
-        "Pistons shot 58% from field vs Bucks defense",
-        "Cade Cunningham: 28 points, 11 assists on 11-17 shooting",
-        "Detroit led by 25 at halftime",
-        "East top seed (58-22) vs West would-be 10-seed (31-49)",
-        "Giannis had 26 points but team was outclassed"
+        "LeBron James: 28 points, 9 assists, 6 rebounds in vintage performance",
+        "Lakers dominated 119-103 at Chase Center for statement road win",
+        "Anthony Davis added 22 points and 12 rebounds in paint dominance",
+        "Warriors fall to 37-43, playoff hopes hanging by thread",
+        "Lakers maintain 5th seed at 51-29 with bounce-back victory",
+        "Golden State now 27 games behind West leader Oklahoma City"
       ],
-      debateAngle: "This game perfectly illustrated the conference disparity. The East's 1-seed destroyed what would barely be a play-in team in the West. Is the East championship path dramatically easier than the West bloodbath?",
-      suggestedQuote: "This wasn't just a win - it was a clinic. Detroit showed why they're the East favorites while Milwaukee showed why conference records can be deceiving. The gap between East and West is real.",
-      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jalen Duren", "Giannis Antetokounmpo", "Bobby Portis"]
+      debateAngle: "Is this the moment we officially say goodbye to the Warriors dynasty? And are the Lakers secretly the most dangerous team nobody wants to face in the West playoffs?",
+      suggestedQuote: "That wasn't just LeBron turning back the clock — that was the Lakers sending a message that they're ready to make noise in May. Meanwhile, the Warriors dynasty might be officially over.",
+      relevantPlayers: ["LeBron James", "Anthony Davis", "Austin Reaves", "Stephen Curry", "Klay Thompson"]
     },
     {
-      topic: "Hot Take: San Antonio's Home Perfection Makes Them Unbeatable in the Playoffs",
+      topic: "MSG Magic Returns — Are the Knicks the East's Most Dangerous Dark Horse?",
       segment: "hot-take",
-      duration: "6 minutes", 
+      duration: "6 minutes",
       keyStats: [
-        "Spurs now 31-0 at Frost Bank Center this season",
-        "Wembanyama: 26 points, 12 rebounds, 4 blocks vs Portland",
-        "SA maintains 1-game lead over OKC for top seed",
-        "Only team with perfect home record in NBA history through 31 games",
-        "Wembanyama averaging 24.1 PPG, 11.8 RPG, 3.2 BPG",
-        "Spurs 61-19 overall record"
+        "Knicks edge Celtics 112-106 in defensive grind at MSG",
+        "Jalen Brunson: 26 points, 7 assists on 10-of-18 shooting",
+        "New York now within 2 games of Boston for 2nd seed",
+        "Knicks held Celtics to 41% shooting and forced 16 turnovers",
+        "Julius Randle: 20 points, 10 rebounds in physical battle",
+        "Both teams shot under 45% in playoff-style intensity"
       ],
-      debateAngle: "Here's the hot take: San Antonio's perfect home record makes them championship locks. In a seven-game series, if you literally cannot lose at home, you only need to steal ONE road game. That's an impossible advantage.",
-      suggestedQuote: "Thirty-one and zero at home isn't just a stat - it's a psychological weapon. When you know you're unbeatable on your home court, that changes everything about how you approach a playoff series.",
-      relevantPlayers: ["Victor Wembanyama", "Devin Vassell", "Jeremy Sochan", "Damian Lillard", "Anfernee Simons"]
+      debateAngle: "Hot take time: The Knicks are the team I'd LEAST want to face in a seven-game series in the East. Their defense, their crowd, their grit — are they being massively underestimated?",
+      suggestedQuote: "I'm telling you right now — nobody, and I mean NOBODY, wants to play a seven-game series against these Knicks at Madison Square Garden. They're built different.",
+      relevantPlayers: ["Jalen Brunson", "Julius Randle", "Mitchell Robinson", "Jayson Tatum", "Jaylen Brown"]
     },
     {
-      topic: "Rapid Fire: Mitchell's Clutch Gene + Orlando's Upset + Jokic's Triple-Double Mastery",
+      topic: "Rapid Fire Round — Rockets Surge Continues, Rookie Watch, Warriors in Freefall",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Mitchell hits 5 threes including 2 clutch fourth-quarter daggers",
-        "Paolo Banchero explodes for 31 points in upset over Minnesota", 
-        "Jokic records 15th triple-double: 27-13-12 vs Memphis",
-        "Cleveland strengthens 4-seed grip with Atlanta victory",
-        "Orlando moves closer to home-court advantage in play-in",
-        "Denver officially locks up 4-seed with comfortable win"
+        "Alperen Şengün near triple-double: 25 points, 11 rebounds, 8 assists",
+        "Houston improves to 51-29, solidifying 3rd seed in West",
+        "Bennedict Mathurin explodes for 27 points on 11-of-17 shooting",
+        "Pacers crush Nets 123-94 in 29-point blowout",
+        "Coby White leads Bulls past Wizards 119-108",
+        "Victor Wembanyama still runaway ROY leader despite not playing"
       ],
-      debateAngle: "Which performance was more impressive - Mitchell's clutch shooting in a tight game with seeding implications, or Banchero's explosion leading an upset victory? Both players delivered when their teams needed it most.",
-      suggestedQuote: "The beauty of this time of year is every game matters. Mitchell delivered clutch moments, Banchero shocked Minnesota, and Jokic just casually dropped another triple-double. Peak basketball season right here.",
-      relevantPlayers: ["Donovan Mitchell", "Paolo Banchero", "Nikola Jokic", "Franz Wagner", "Anthony Edwards"]
+      debateAngle: "Quick debates: Is Houston for real as a championship contender? Should we be more excited about Mathurin's development? And are the Warriors officially in panic mode?",
+      suggestedQuote: "Don't sleep on Houston — Şengün is special, they're 51-29, and they might be the West's biggest sleeper. Meanwhile, Bennedict Mathurin is showing why Indiana struck gold.",
+      relevantPlayers: ["Alperen Şengün", "Bennedict Mathurin", "Victor Wembanyama", "Coby White", "Tyrese Haliburton"]
     },
     {
-      topic: "Tonight's Must-Watch: Celtics-Knicks at MSG + Lakers-Warriors Rivalry Renewed",
+      topic: "Tonight's MASSIVE 15-Game Slate — OKC at Denver Headlines Championship-Level Action",
       segment: "closer",
-      duration: "4 minutes",
+      duration: "7 minutes",
       keyStats: [
-        "Boston (54-25) visits New York (51-28) on Prime Video",
-        "Only 3 games separate 2-seed Celtics from 3-seed Knicks", 
-        "Lakers (50-29) travel to Warriors (37-42) in late game",
-        "Both games have major playoff positioning implications",
-        "Celtics favored by 1.5 at Madison Square Garden",
-        "Lakers favored by 3.5 at Chase Center despite road game"
+        "15-game slate features critical playoff positioning battles",
+        "OKC (64-16) visits Denver (52-28) in West heavyweight bout",
+        "Thunder vs Nuggets could be playoff preview at Ball Arena",
+        "Detroit (58-22) visits Charlotte looking to clinch East superiority",
+        "Minnesota at Houston features two teams fighting for seeding",
+        "Knicks host Raptors in rematch after both won yesterday"
       ],
-      debateAngle: "Which game has higher stakes - Celtics-Knicks for potential home-court advantage, or Lakers-Warriors where Golden State is fighting for their playoff lives? Both have different types of desperation.",
-      suggestedQuote: "Tonight's slate is appointment television. Celtics-Knicks at MSG for seeding, Lakers-Warriors for survival. This is why we love late-season NBA basketball - every possession matters.",
-      relevantPlayers: ["Jayson Tatum", "Jalen Brunson", "LeBron James", "Stephen Curry"]
+      debateAngle: "Which game tonight has the highest stakes: Thunder-Nuggets for West positioning, or are we sleeping on some of these other playoff race battles?",
+      suggestedQuote: "Tonight's slate is absolutely bonkers — Thunder at Nuggets is must-watch basketball, but don't sleep on Wolves-Rockets or that Knicks-Raptors rematch. Championship implications everywhere.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Jamal Murray", "Nikola Jokic", "Cade Cunningham", "LaMelo Ball"]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! The Thunder just sent shockwaves through the league with their LA demolition tour - sixty points from SGA across two games, outscoring both Lakers AND Clippers by a combined 54 points. Meanwhile, Detroit reminded everyone why the East-West gap is real with a 26-point beatdown of Milwaukee. San Antonio stayed perfect at home - that's 31-0 at Frost Bank Center - while tonight brings Celtics-Knicks at MSG and Lakers-Warriors for survival. Championship races are heating up, and we're breaking down every angle. Let's dive in!",
-  socialClip: "Thunder's Championship Statement: SGA drops 32 as OKC completes dominant LA sweep, outscoring Lakers and Clippers by 54 combined points. Are they now the West favorites over San Antonio? Full breakdown of their surgical precision and what it means for the title race.",
+  coldOpen: "What's up Hoops Intel family! If you thought yesterday was wild, buckle up because we're just getting started. Pascal Siakam went nuclear with 32 points to crush Miami's playoff dreams, LeBron turned back the clock to embarrass the Warriors at Chase Center, and the Knicks are making MSG magic again with a statement win over Boston. But here's the kicker — tonight's 15-game slate might be the most important night of the regular season with Thunder-Nuggets headlining absolute chaos. I'm your host, and this is Hoops Intel where the basketball never stops. Let's dive in!",
+  socialClip: "Clip LeBron's vintage performance breakdown where we break down his 28 points and 9 assists, emphasizing 'This wasn't just turning back the clock — this was the Lakers announcing they're ready for May' with highlights of his best plays against the Warriors. Perfect for Instagram Reels and TikTok.",
   tweetThread: [
-    "🧵 HOOPS INTEL THREAD: Thunder complete statement LA sweep, Pistons demolish Bucks, and tonight brings must-watch games at MSG and Golden State. Here's what you need to know from an absolutely loaded Wednesday 👇",
-    "⚡ THUNDER DOMINANCE: SGA's 32 points cap off a PERFECT LA sweep. Combined 54-point margin over Lakers/Clippers is surgical. OKC now just 1 game behind SA for West top seed. This team looks ready for a championship run 🏆",
-    "🔥 EAST SUPERIORITY: Detroit's 137-111 demolition of Milwaukee perfectly illustrated the conference gap. Cade's 28/11 led a wire-to-wire beatdown. East 1-seed vs what would barely be West play-in team tells the whole story",
-    "🏠 SPURS PERFECTION: 31-0 at home after beating Portland. Wemby's 26/12/4 blocks was just another night at the office. In playoff basketball, being literally unbeatable at home is the ultimate trump card",
-    "🎯 TONIGHT'S STAKES: Celtics @ Knicks at MSG for potential home-court advantage. Lakers @ Warriors where GS fights for their season. Both on Prime Video. This is peak NBA basketball - every possession matters! 🔥"
+    "🚨 HOOPS INTEL DAILY DROP 🚨\n\nPascal Siakam DEMOLISHED Miami with 32 points on 12-of-19 shooting. The Raptors are now tied for 5th in the East after a 128-114 beatdown.\n\nAre they peaking at the perfect time? 👀",
+    "LeBron James said 'not today' to Father Time ⏰\n\n28 points, 9 assists, crushing the Warriors 119-103 AT CHASE CENTER\n\nThe Lakers just sent a message to the entire Western Conference. This team is DANGEROUS in May.",
+    "MSG MAGIC IS BACK 🏀✨\n\nKnicks edge Celtics 112-106 in a defensive grind\nJalen Brunson: 26 points, 7 assists\nNow just 2 games behind Boston for the 2-seed\n\nNobody wants to play a playoff series at Madison Square Garden.",
+    "Quick hits from last night:\n• Alperen Şengün near triple-double (25/11/8)\n• Bennedict Mathurin explodes for 27 points\n• Warriors playoff hopes in serious trouble\n• Rockets solidify 3rd seed at 51-29\n\nThe playoff picture is getting WILD 🔥",
+    "TONIGHT: 15-GAME BONANZA 🍿\n\n🔥 OKC @ Denver (Thunder vs Nuggets heavyweight bout)\n🔥 Detroit @ Charlotte (East powerhouse travels)\n🔥 Minnesota @ Houston (Critical seeding battle)\n\nChampionship implications EVERYWHERE\n\nFull breakdown in today's pod! ⬆️"
   ]
 };
