@@ -21,7 +21,9 @@ import { useTheme } from "../contexts/ThemeContext";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import AuthModal from "../components/AuthModal";
+import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
+import { hasPreferences, getPreferences } from "../lib/userPreferences";
 
 // ═══════════════════════════════════════════════════════════
 // LIVE SCOREBAR — Real-time ESPN scores
@@ -376,10 +378,10 @@ function Header() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ"].map((label) => (
+              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ", "Ask AI"].map((label) => (
                 <a
                   key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : `#${label.toLowerCase().replace(" ", "-")}`}
+                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : label === "Ask AI" ? "/ask" : `#${label.toLowerCase().replace(" ", "-")}`}
                   className="text-xs font-medium transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
@@ -459,13 +461,7 @@ function Header() {
 // HERO SECTION
 // ═══════════════════════════════════════════════════════════
 
-function HeroSection() {
-  const handleShareOnX = () => {
-    const tweetText = `Today's Hoops Intel is live 🏀 ${pulseEdition.subtitle} hoopsintel.net`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-    window.open(url, "_blank", "noopener,noreferrer,width=600,height=400");
-  };
-
+function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   return (
     <section
       className="relative overflow-hidden"
@@ -513,18 +509,48 @@ function HeroSection() {
             >
               Tonight's Games
             </a>
-            {/* Share on X button */}
-            <button
-              onClick={handleShareOnX}
-              className="flex items-center gap-2 px-4 py-2.5 rounded text-sm font-semibold transition-all hover:bg-white/15"
-              style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.12)" }}
+            {/* Share edition */}
+            <ShareButton
+              url="https://hoopsintel.net"
+              tweetText={`Today's Hoops Intel is live | ${pulseEdition.subtitle} hoopsintel.net`}
+              size="md"
+            />
+            {/* My Pulse link */}
+            <a
+              href="/my-pulse"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded text-sm font-semibold transition-all hover:opacity-90"
+              style={{
+                background: "linear-gradient(135deg, rgba(14,165,233,0.2), rgba(14,165,233,0.08))",
+                color: "#0EA5E9",
+                border: "1px solid rgba(14,165,233,0.3)",
+              }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
-              Share on X
-            </button>
+              My Pulse
+            </a>
           </div>
+          {/* Personalization banner */}
+          {showMyPulse && (
+            <a
+              href="/my-pulse"
+              className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs font-medium transition-all hover:opacity-90"
+              style={{
+                background: "rgba(14,165,233,0.1)",
+                color: "#0EA5E9",
+                border: "1px solid rgba(14,165,233,0.2)",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Personalized edition available
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+          )}
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-px pulse-line" style={{ background: "linear-gradient(to right, transparent, #0EA5E9, transparent)" }} />
@@ -762,6 +788,9 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
 
 function PulseIndexSection() {
   const [activeNote, setActiveNote] = useState<{ playerName: string; note: string } | null>(null);
+  const prefs = getPreferences();
+  const favPlayers = prefs.favoritePlayers.map((p) => p.toLowerCase());
+  const favTeams = prefs.favoriteTeams.map((t) => t.toUpperCase());
 
   return (
     <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
@@ -775,13 +804,19 @@ function PulseIndexSection() {
           {pulseIndex.map((player: any) => {
             const isUp = player.trend === "up";
             const isDown = player.trend === "down";
+            const isFavorite = favPlayers.includes(player.player.toLowerCase()) || favTeams.includes(player.team.toUpperCase());
             return (
-              <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4">
+              <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4" style={isFavorite ? { borderLeft: "3px solid #0EA5E9" } : {}}>
                 <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "#0EA5E9" }}>{player.rank}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <a href={`/player/${slugify(player.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{player.player}</a>
                     <a href={`/team/${player.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>{player.team}</a>
+                    {isFavorite && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#0EA5E9" className="flex-shrink-0">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    )}
                     <span className={`text-xs ${isUp ? "text-emerald-400" : isDown ? "text-rose-400" : "text-slate-400"}`}>
                       {isUp ? "▲" : isDown ? "▼" : "●"}
                     </span>
@@ -795,20 +830,28 @@ function PulseIndexSection() {
                     <div className="mono-data text-lg font-bold" style={{ color: "#0EA5E9" }}>{player.indexScore}</div>
                     <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{player.teamRecord}</div>
                   </div>
-                  {/* "Why ranked here?" button */}
-                  <button
-                    onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
-                    className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/20"
-                    style={{
-                      background: "rgba(14,165,233,0.1)",
-                      color: "#0EA5E9",
-                      border: "1px solid rgba(14,165,233,0.25)",
-                    }}
-                    title="Why is this player ranked here?"
-                    aria-label={`Why is ${player.player} ranked here?`}
-                  >
-                    ?
-                  </button>
+                  <div className="flex items-center gap-1.5">
+                    {/* "Why ranked here?" button */}
+                    <button
+                      onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
+                      className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/20"
+                      style={{
+                        background: "rgba(14,165,233,0.1)",
+                        color: "#0EA5E9",
+                        border: "1px solid rgba(14,165,233,0.25)",
+                      }}
+                      title="Why is this player ranked here?"
+                      aria-label={`Why is ${player.player} ranked here?`}
+                    >
+                      ?
+                    </button>
+                    {/* Share player card */}
+                    <ShareButton
+                      url={`https://hoopsintel.net/player/${slugify(player.player)}`}
+                      tweetText={`${player.player} — Pulse Rank #${player.rank} | ${player.keyStats} hoopsintel.net/player/${slugify(player.player)}`}
+                      size="sm"
+                    />
+                  </div>
                 </div>
               </div>
             );
@@ -1293,12 +1336,20 @@ function Footer() {
 
 export default function Home() {
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([]);
+  const [showMyPulse, setShowMyPulse] = useState(false);
 
   // Fetch user favorites on mount for client-side personalization
   useEffect(() => {
+    // Check localStorage preferences first
+    if (hasPreferences()) {
+      const prefs = getPreferences();
+      if (prefs.favoriteTeams.length > 0) setFavoriteTeams(prefs.favoriteTeams);
+      setShowMyPulse(true);
+    }
+    // Also check Supabase favorites (best-effort)
     getFavorites()
       .then(({ teams }) => {
-        if (teams.length > 0) setFavoriteTeams(teams);
+        if (teams.length > 0) setFavoriteTeams((prev) => prev.length > 0 ? prev : teams);
       })
       .catch(() => {
         // Silently ignore — personalization is best-effort
@@ -1310,7 +1361,7 @@ export default function Home() {
       <Header />
       <LiveScorebar />
       <TickerBar />
-      <HeroSection />
+      <HeroSection showMyPulse={showMyPulse} />
       <ScoresSection favoriteTeams={favoriteTeams} />
       <NarrativeSection />
       <PulseIndexSection />

@@ -1,4 +1,5 @@
 node_modules/
+dist/
 .env
 .env.local
 *.log
@@ -7,3 +8,7 @@ Thumbs.db
 .claude/
 .vercel
 .env*.local
+.espn-cache/
+.daily-data/
+.generation-report.json
+.weekly-generation-report.json

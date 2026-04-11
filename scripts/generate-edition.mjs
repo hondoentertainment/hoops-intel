@@ -3,37 +3,15 @@
 // Fetches last night's NBA data from ESPN + calls Claude API to write the edition
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
-import Anthropic from "@anthropic-ai/sdk";
+import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
-
-// ── Date helpers ───────────────────────────────────────────
-function toESPNDate(daysOffset = 0) {
-  const d = new Date();
-  // Interpret "today" as LA time so 5am PST = correct date
-  const la = new Date(d.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  la.setDate(la.getDate() + daysOffset);
-  return la.toISOString().slice(0, 10).replace(/-/g, "");
-}
-
-function toISODate(daysOffset = 0) {
-  const d = new Date();
-  const la = new Date(d.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  la.setDate(la.getDate() + daysOffset);
-  return la.toISOString().slice(0, 10); // "2026-03-07"
-}
-
-function toDisplayDate(daysOffset = 0) {
-  const d = new Date();
-  const la = new Date(d.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  la.setDate(la.getDate() + daysOffset);
-  return la.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-}
 
 // ── ESPN scoreboard API ────────────────────────────────────
 async function fetchESPN(espnDate) {
@@ -88,8 +66,6 @@ function getLastEditionNumber() {
 
 // ── Main ──────────────────────────────────────────────────
 async function main() {
-  const client = new Anthropic(); // reads ANTHROPIC_API_KEY from env
-
   const yesterdayESPN = toESPNDate(-1);
   const todayESPN = toESPNDate(0);
   const editionDate = toDisplayDate(0);   // e.g. "March 7, 2026"
@@ -147,22 +123,41 @@ ${currentPulse}
 3. Write crisp, sharp copy — not a box score recitation; actual insights
 4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates)
-6. Update standings by applying last night's results to the current standings in the reference file
+6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
 7. Media reactions: write 6 quotes in the authentic voice of each journalist/outlet
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
 9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style
-10. Also generate a "This Day in NBA History" fact for ${editionDate}. Find a notable NBA event, record, or milestone that occurred on this calendar date in any prior year. If nothing notable occurred on this exact date, find something from the same week. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
-11. Also generate a Hoops IQ quiz with exactly 5 questions: 2 questions about last night's games (easy), 2 questions about season stats/standings/records (medium), and 1 historical/trivia question (hard). Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation with context.",difficulty:"easy"}]};
+10. Also generate a "This Day in NBA History" fact for ${editionDate}. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
+11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
+12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
+13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep media quotes to 2-3 sentences max. Keep recap text concise. The file MUST stay under 15000 tokens total.
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
-  const pulseMsg = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 8192,
+  const pulseMsg = await claudeGenerate("pulse edition", {
+    max_tokens: 16384,
     messages: [{ role: "user", content: pulsePrompt }],
   });
 
   const newPulseContent = pulseMsg.content[0].text.trim();
+
+  if (pulseMsg.stop_reason === "max_tokens") {
+    console.warn("⚠ Claude output was truncated (hit max_tokens) — regenerating is recommended");
+  }
+
+  const requiredExports = [
+    "pulseEdition", "narrative", "tickerItems", "gameResults", "pulseIndex",
+    "statLeaders", "mediaReactions", "injuryUpdates", "gamePreviews",
+    "rookieWatch", "fantasyAlerts", "eastStandings", "westStandings",
+    "standings", "historyFact", "hoopsIQ", "triviaQuestion",
+  ];
+  const missing = requiredExports.filter((e) => !newPulseContent.includes(`export const ${e}`));
+  if (missing.length > 0) {
+    console.error(`❌ pulseData.ts is missing exports: ${missing.join(", ")}`);
+    console.error("   This usually means Claude hit max_tokens. Aborting to avoid a broken build.");
+    process.exit(1);
+  }
+
   writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), newPulseContent, "utf8");
   console.log("✓ pulseData.ts written");
 
@@ -178,7 +173,7 @@ Required format — output ONLY this object literal (no export, no variable decl
 
 Keep it to one line, valid JSON-compatible syntax (strings in double quotes, no trailing commas).`;
 
-  const archiveMsg = await client.messages.create({
+  const archiveMsg = await claudeGenerate("archive entry", {
     model: "claude-sonnet-4-6",
     max_tokens: 1024,
     messages: [{ role: "user", content: archivePrompt }],

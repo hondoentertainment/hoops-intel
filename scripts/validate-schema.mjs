@@ -24,7 +24,7 @@ function assertType(val, type, field) {
   assert(typeof val === type, `${field} should be ${type}, got ${typeof val}`);
 }
 
-function main() {
+export function validate() {
   const filePath = join(ROOT, "client/src/lib/pulseData.ts");
   const content = readFileSync(filePath, "utf8");
   let errors = 0;
@@ -117,11 +117,64 @@ function main() {
   }
 
   if (errors > 0) {
-    console.error(`\n❌ ${errors} validation error(s) found`);
-    process.exit(1);
+    throw new Error(`${errors} validation error(s) found in pulseData.ts`);
   }
 
   console.log("✅ pulseData.ts schema validation passed");
+
+  // ── Phase 2 output validation (warnings only, non-blocking) ──
+  let warnings = 0;
+  const phase2Files = [
+    { file: "watchGuideData.ts", exports: ["watchGuideData"] },
+    { file: "sentimentData.ts", exports: ["sentimentData"] },
+    { file: "momentumData.ts", exports: ["momentumData"] },
+    { file: "podcastData.ts", exports: ["podcastCompanion"] },
+    { file: "historyData.ts", exports: ["historyData"] },
+    { file: "refData.ts", exports: ["refData"] },
+  ];
+
+  for (const { file, exports: expectedExports } of phase2Files) {
+    try {
+      const p2Content = readFileSync(join(ROOT, "client/src/lib", file), "utf8");
+
+      // Check for markdown fences (common LLM output issue)
+      if (p2Content.includes("```")) {
+        console.warn(`⚠️ ${file} contains markdown code fences`);
+        warnings++;
+      }
+
+      // Check required exports
+      for (const exp of expectedExports) {
+        if (!new RegExp(`export\\s+const\\s+${exp}\\s*[=:]`).test(p2Content)) {
+          console.warn(`⚠️ ${file} missing export: ${exp}`);
+          warnings++;
+        }
+      }
+
+      // Check file is not empty/tiny (likely failed generation)
+      if (p2Content.length < 200) {
+        console.warn(`⚠️ ${file} looks too small (${p2Content.length} chars) — possible generation failure`);
+        warnings++;
+      }
+    } catch {
+      console.warn(`⚠️ ${file} not found — may not have been generated yet`);
+      warnings++;
+    }
+  }
+
+  if (warnings > 0) {
+    console.log(`⚠️ ${warnings} Phase 2 validation warning(s) — non-blocking`);
+  } else {
+    console.log("✅ Phase 2 output validation passed");
+  }
 }
 
-main();
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  try {
+    validate();
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+}

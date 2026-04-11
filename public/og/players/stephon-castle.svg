@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(14,165,233,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- HOOPS INTEL branding -->
+  <rect x="60" y="40" width="48" height="48" rx="8" fill="url(#accent)"/>
+  <text x="84" y="74" font-family="Arial Black, sans-serif" font-size="22" fill="white" text-anchor="middle" font-weight="900">HI</text>
+  <text x="124" y="62" font-family="Arial Black, sans-serif" font-size="18" fill="rgba(255,255,255,0.7)" font-weight="700" letter-spacing="3">HOOPS INTEL</text>
+
+  <!-- PULSE INDEX badge -->
+  <rect x="870" y="40" width="270" height="48" rx="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1"/>
+  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="3">PULSE INDEX #7</text>
+
+  <!-- Team + Record -->
+  <text x="60" y="160" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#0EA5E9" letter-spacing="4">SAS</text>
+  <text x="158" y="160" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.4)" letter-spacing="1">57-18</text>
+
+  <!-- Player name -->
+  <text x="60" y="270" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" fill="#FFFFFF" letter-spacing="-1">Stephon Castle</text>
+
+  <!-- Divider -->
+  <line x1="60" y1="300" x2="1140" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <!-- Index score (large) -->
+  <text x="60" y="400" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#10B981">95</text>
+
+  <!-- Trend indicator -->
+  <text x="260" y="395" font-family="Arial, sans-serif" font-size="42" fill="#64748B">→</text>
+  <text x="300" y="390" font-family="Arial, sans-serif" font-size="22" fill="#64748B">STABLE</text>
+
+  <!-- Key stats -->
+  <text x="60" y="470" font-family="monospace" font-size="22" fill="#F59E0B" letter-spacing="0.5">SAS W9 · 57-18 · Monday off · 22/10/10 triple-double Saturday</text>
+
+  <!-- Edition date -->
+  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">April 1, 2026</text>
+
+  <!-- Site URL -->
+  <text x="60" y="580" font-family="monospace" font-size="16" fill="#0EA5E9">hoopsintel.net</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
+</svg>

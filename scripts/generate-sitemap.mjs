@@ -13,7 +13,7 @@ function slugify(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-function main() {
+export function generate() {
   const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
 
   // Extract players and teams from archive
@@ -59,4 +59,7 @@ ${urls.map((u) => `  <url>
   console.log(`✓ Sitemap written with ${urls.length} URLs`);
 }
 
-main();
+// ── Standalone CLI entry point ────────────────────────────
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generate();
+}

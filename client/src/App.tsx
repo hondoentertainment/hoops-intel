@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import AskHoopsIntel from "./components/AskHoopsIntel";
 
 // Eager load Home (critical path)
 import Home from "./pages/Home";
@@ -17,6 +18,25 @@ const InjuryReport = lazy(() => import("./pages/InjuryReport"));
 const Trivia = lazy(() => import("./pages/Trivia"));
 const PlayerCard = lazy(() => import("./pages/PlayerCard"));
 const SeasonPerformance = lazy(() => import("./pages/SeasonPerformance"));
+
+// New feature pages
+const Momentum = lazy(() => import("./pages/Momentum"));
+const LineupIntel = lazy(() => import("./pages/LineupIntel"));
+const TradeSimulator = lazy(() => import("./pages/TradeSimulator"));
+const ClutchFactor = lazy(() => import("./pages/ClutchFactor"));
+const DraftTracker = lazy(() => import("./pages/DraftTracker"));
+const SentimentPulse = lazy(() => import("./pages/SentimentPulse"));
+const CoachCorner = lazy(() => import("./pages/CoachCorner"));
+const Projections = lazy(() => import("./pages/Projections"));
+const Badges = lazy(() => import("./pages/Badges"));
+const CommunityPulse = lazy(() => import("./pages/CommunityPulse"));
+const WatchGuide = lazy(() => import("./pages/WatchGuide"));
+const Widgets = lazy(() => import("./pages/Widgets"));
+const PodcastCompanion = lazy(() => import("./pages/PodcastCompanion"));
+const HistoryEngine = lazy(() => import("./pages/HistoryEngine"));
+const RefReports = lazy(() => import("./pages/RefReports"));
+const AskAI = lazy(() => import("./pages/AskAI"));
+const MyPulse = lazy(() => import("./pages/MyPulse"));
 
 function PageLoader() {
   return (
@@ -53,6 +73,23 @@ export default function App() {
             <Route path="/card/:player" component={PlayerCard} />
             <Route path="/trivia" component={Trivia} />
             <Route path="/performance" component={SeasonPerformance} />
+            <Route path="/momentum" component={Momentum} />
+            <Route path="/lineups" component={LineupIntel} />
+            <Route path="/trade-simulator" component={TradeSimulator} />
+            <Route path="/clutch" component={ClutchFactor} />
+            <Route path="/draft" component={DraftTracker} />
+            <Route path="/sentiment" component={SentimentPulse} />
+            <Route path="/tactics" component={CoachCorner} />
+            <Route path="/projections" component={Projections} />
+            <Route path="/badges" component={Badges} />
+            <Route path="/community-pulse" component={CommunityPulse} />
+            <Route path="/watch-guide" component={WatchGuide} />
+            <Route path="/widgets" component={Widgets} />
+            <Route path="/podcast-companion" component={PodcastCompanion} />
+            <Route path="/history" component={HistoryEngine} />
+            <Route path="/refs" component={RefReports} />
+            <Route path="/ask" component={AskAI} />
+            <Route path="/my-pulse" component={MyPulse} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>
@@ -64,6 +101,7 @@ export default function App() {
             </Route>
           </Switch>
         </Suspense>
+        <AskHoopsIntel />
       </div>
     </ThemeProvider>
   );

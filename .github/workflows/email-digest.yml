@@ -1,0 +1,40 @@
+name: Email Digest
+
+on:
+  workflow_run:
+    workflows: ["Daily Edition Update"]
+    types: [completed]
+  workflow_dispatch: # allow manual trigger
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    # Only run if the daily-update succeeded (or if manually triggered)
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Wait for content to settle
+        run: sleep 900  # 15-minute delay after edition generation
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main  # always use latest main after daily-update push
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Send daily digest
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          DIGEST_EMAILS: ${{ secrets.DIGEST_EMAILS }}
+        run: node scripts/send-digest.mjs

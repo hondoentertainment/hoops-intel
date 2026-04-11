@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Grid texture -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(14,165,233,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Branding -->
+  <rect x="60" y="40" width="48" height="48" rx="8" fill="url(#accent)"/>
+  <text x="84" y="74" font-family="Arial Black, sans-serif" font-size="22" fill="white" text-anchor="middle" font-weight="900">HI</text>
+  <text x="124" y="62" font-family="Arial Black, sans-serif" font-size="18" fill="rgba(255,255,255,0.7)" font-weight="700" letter-spacing="3">HOOPS INTEL</text>
+
+  <!-- Edition badge -->
+  <rect x="870" y="40" width="270" height="48" rx="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1"/>
+  <text x="1005" y="72" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0EA5E9" text-anchor="middle" letter-spacing="2">Vol. 2026 · No. 89</text>
+
+  <!-- Date -->
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.5)" letter-spacing="2">April 1, 2026</text>
+
+  <!-- Headline -->
+  <text x="60" y="200" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">Nikola Jokić Posts 31/13/9 as Denver Stuns OKC 118-115, Snap</text>
+  <text x="60" y="240" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">ping the Thunder&apos;s Win Streak — Brunson Erupts for 31/7 AST…</text>
+
+  <!-- Top 3 label -->
+  <text x="60" y="280" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.35)" letter-spacing="3">TOP PULSE INDEX PLAYERS</text>
+  <line x1="60" y1="288" x2="1140" y2="288" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <!-- Top 3 players -->
+  
+  <text x="60" y="310" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#1</text>
+  <text x="110" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Nikola Jokić</text>
+  <text x="650" y="310" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">DEN</text>
+  <text x="780" y="310" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">99</text>
+  <text x="880" y="310" font-family="Arial, sans-serif" font-size="24" fill="#10B981">↑</text>
+
+  <text x="60" y="370" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#2</text>
+  <text x="110" y="370" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Shai Gilgeous-Alexander</text>
+  <text x="650" y="370" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">OKC</text>
+  <text x="780" y="370" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">98.5</text>
+  <text x="880" y="370" font-family="Arial, sans-serif" font-size="24" fill="#F43F5E">↓</text>
+
+  <text x="60" y="430" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="rgba(255,255,255,0.5)">#3</text>
+  <text x="110" y="430" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Victor Wembanyama</text>
+  <text x="650" y="430" font-family="Arial, sans-serif" font-size="22" fill="#0EA5E9" letter-spacing="2">SAS</text>
+  <text x="780" y="430" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#10B981">97.5</text>
+  <text x="880" y="430" font-family="Arial, sans-serif" font-size="24" fill="#64748B">→</text>
+
+  <!-- Site URL -->
+  <text x="60" y="580" font-family="monospace" font-size="16" fill="#0EA5E9">hoopsintel.net</text>
+
+  <!-- Right label -->
+  <text x="1140" y="580" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="1">NBA INTELLIGENCE DASHBOARD</text>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
+</svg>

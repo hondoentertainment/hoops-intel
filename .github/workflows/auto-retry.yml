@@ -1,0 +1,101 @@
+name: Auto-Retry Failed Edition
+
+on:
+  workflow_run:
+    workflows: ["Daily Edition Update"]
+    types: [completed]
+
+concurrency:
+  group: daily-edition-retry
+  cancel-in-progress: false
+
+jobs:
+  retry-on-failure:
+    # Only retry if the daily update failed (not on success or manual cancel)
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Wait before retry
+        run: |
+          echo "Daily edition failed — waiting 10 minutes before retry..."
+          sleep 600
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk --no-save
+
+      - name: Retry daily generation
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "Retry attempt — running daily generation..."
+          set +e
+          node scripts/generate-all-daily.mjs 2>&1 | tee generation.log
+          exit_code=${PIPESTATUS[0]}
+          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
+          if [ "$exit_code" -eq 1 ]; then
+            echo "Retry also failed critically"
+            exit 1
+          elif [ "$exit_code" -eq 2 ]; then
+            echo "Partial success on retry"
+            echo "partial=true" >> $GITHUB_OUTPUT
+          fi
+        timeout-minutes: 12
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push edition (retry)
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "hoops-intel-bot"
+          git config user.email "bot@hoopsintel.net"
+          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml client/src/lib/watchGuideData.ts client/src/lib/sentimentData.ts client/src/lib/podcastData.ts client/src/lib/historyData.ts client/src/lib/refData.ts client/src/lib/momentumData.ts
+          git commit -m "Daily edition (retry): $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
+          git push origin ${{ github.ref_name }}
+
+      - name: Comment on failure issue if retry succeeded
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `Daily generation failed — ${today}`;
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'generation-failure',
+              per_page: 5,
+            });
+            const issue = issues.data.find(i => i.title === title);
+            if (issue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Auto-retry succeeded. Edition generated and pushed.\n\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }
