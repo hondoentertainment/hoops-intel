@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 10, 2026
+// Last updated: April 11, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 10, 2026",
-  episodeTitle: "Siakam's Statement Night — Lakers Crush Warriors Dreams — Tonight's MASSIVE 15-Game Slate",
+  date: "April 11, 2026",
+  episodeTitle: "PISTONS CROWN THEMSELVES KINGS — Edwards Clutch God — Hawks Shock Cleveland",
   rundown: [
     {
-      topic: "Raptors Demolish Heat — Siakam's 32-Point Masterclass Shakes Up East Playoff Race",
+      topic: "Pistons Officially Clinch Eastern Conference Top Seed",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Pascal Siakam: 32 points on 12-of-19 shooting",
-        "Raptors shot 52% from the field in dominant wire-to-wire win",
-        "Toronto moves into tie for 5th place in East at 45-35",
-        "Heat drop to 41-39, falling further behind in playoff race",
-        "Scottie Barnes added 24 points and 7 assists",
-        "Raptors led by as many as 18 points in fourth quarter"
+        "59-22 record — historic turnaround from lottery to conference leaders",
+        "Cade Cunningham: 26 points, 9 assists on 10-16 shooting",
+        "Dominated Charlotte 118-100 in wire-to-wire victory",
+        "Home-court advantage secured throughout East playoffs",
+        "Isaiah Stewart added 22 points, 10 rebounds in supporting role",
+        "Pistons shot 52% from field, held Hornets to 38%"
       ],
-      debateAngle: "Are the Raptors peaking at the perfect time, or is this just another false hope moment in their inconsistent season? Can they maintain this level against elite competition?",
-      suggestedQuote: "When Pascal Siakam is playing like THIS — 32 points on elite efficiency — the Raptors look like a team nobody wants to face in the playoffs. But we've seen this movie before in Toronto.",
-      relevantPlayers: ["Pascal Siakam", "Scottie Barnes", "OG Anunoby", "Jimmy Butler", "Bam Adebayo"]
+      debateAngle: "Is this the most shocking rebuild completion in NBA history? From basement dwellers to conference champions in one season — does Cade deserve MVP consideration for this transformation?",
+      suggestedQuote: "Detroit's 59-22 record and Eastern Conference top seed is one of the most remarkable turnarounds in NBA history. Cade Cunningham has transformed into a championship-caliber leader, and this Pistons team now has home-court advantage throughout the East playoffs. The rebuild is complete.",
+      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Ausar Thompson", "LaMelo Ball"]
     },
     {
-      topic: "Lakers Statement Win — LeBron Vintage Performance Crushes Warriors' Playoff Dreams",
+      topic: "Anthony Edwards' Clutch Gene Activated",
       segment: "deep-dive",
-      duration: "9 minutes",
+      duration: "10 minutes",
       keyStats: [
-        "LeBron James: 28 points, 9 assists, 6 rebounds in vintage performance",
-        "Lakers dominated 119-103 at Chase Center for statement road win",
-        "Anthony Davis added 22 points and 12 rebounds in paint dominance",
-        "Warriors fall to 37-43, playoff hopes hanging by thread",
-        "Lakers maintain 5th seed at 51-29 with bounce-back victory",
-        "Golden State now 27 games behind West leader Oklahoma City"
+        "35 points on scorching 13-22 shooting from the field",
+        "12 fourth-quarter points including game-winning three with 47 seconds left",
+        "Led Minnesota comeback from 10-point fourth-quarter deficit",
+        "Timberwolves improved to 48-33 in crucial playoff positioning battle",
+        "Edwards averaging 28.5 PPG in clutch situations this season",
+        "Minnesota now 2.5 games ahead of play-in tournament line"
       ],
-      debateAngle: "Is this the moment we officially say goodbye to the Warriors dynasty? And are the Lakers secretly the most dangerous team nobody wants to face in the West playoffs?",
-      suggestedQuote: "That wasn't just LeBron turning back the clock — that was the Lakers sending a message that they're ready to make noise in May. Meanwhile, the Warriors dynasty might be officially over.",
-      relevantPlayers: ["LeBron James", "Anthony Davis", "Austin Reaves", "Stephen Curry", "Klay Thompson"]
+      debateAngle: "Has Anthony Edwards officially entered the superstar tier? His clutch performances this season rival anyone in the league — is he ready to carry Minnesota deep into the playoffs as the primary option?",
+      suggestedQuote: "Anthony Edwards's 35-point comeback performance against Houston showcased why he's becoming one of the league's most clutch players. His 12 fourth-quarter points, capped by the game-winning three, kept Minnesota's playoff hopes alive. This is the Edwards we expected to see all season.",
+      relevantPlayers: ["Anthony Edwards", "Jaden McDaniels", "Karl-Anthony Towns", "Alperen Şengün"]
     },
     {
-      topic: "MSG Magic Returns — Are the Knicks the East's Most Dangerous Dark Horse?",
+      topic: "Atlanta's Stunning Upset Changes East Playoff Race",
       segment: "hot-take",
-      duration: "6 minutes",
-      keyStats: [
-        "Knicks edge Celtics 112-106 in defensive grind at MSG",
-        "Jalen Brunson: 26 points, 7 assists on 10-of-18 shooting",
-        "New York now within 2 games of Boston for 2nd seed",
-        "Knicks held Celtics to 41% shooting and forced 16 turnovers",
-        "Julius Randle: 20 points, 10 rebounds in physical battle",
-        "Both teams shot under 45% in playoff-style intensity"
-      ],
-      debateAngle: "Hot take time: The Knicks are the team I'd LEAST want to face in a seven-game series in the East. Their defense, their crowd, their grit — are they being massively underestimated?",
-      suggestedQuote: "I'm telling you right now — nobody, and I mean NOBODY, wants to play a seven-game series against these Knicks at Madison Square Garden. They're built different.",
-      relevantPlayers: ["Jalen Brunson", "Julius Randle", "Mitchell Robinson", "Jayson Tatum", "Jaylen Brown"]
-    },
-    {
-      topic: "Rapid Fire Round — Rockets Surge Continues, Rookie Watch, Warriors in Freefall",
-      segment: "rapid-fire",
-      duration: "5 minutes",
-      keyStats: [
-        "Alperen Şengün near triple-double: 25 points, 11 rebounds, 8 assists",
-        "Houston improves to 51-29, solidifying 3rd seed in West",
-        "Bennedict Mathurin explodes for 27 points on 11-of-17 shooting",
-        "Pacers crush Nets 123-94 in 29-point blowout",
-        "Coby White leads Bulls past Wizards 119-108",
-        "Victor Wembanyama still runaway ROY leader despite not playing"
-      ],
-      debateAngle: "Quick debates: Is Houston for real as a championship contender? Should we be more excited about Mathurin's development? And are the Warriors officially in panic mode?",
-      suggestedQuote: "Don't sleep on Houston — Şengün is special, they're 51-29, and they might be the West's biggest sleeper. Meanwhile, Bennedict Mathurin is showing why Indiana struck gold.",
-      relevantPlayers: ["Alperen Şengün", "Bennedict Mathurin", "Victor Wembanyama", "Coby White", "Tyrese Haliburton"]
-    },
-    {
-      topic: "Tonight's MASSIVE 15-Game Slate — OKC at Denver Headlines Championship-Level Action",
-      segment: "closer",
       duration: "7 minutes",
       keyStats: [
-        "15-game slate features critical playoff positioning battles",
-        "OKC (64-16) visits Denver (52-28) in West heavyweight bout",
-        "Thunder vs Nuggets could be playoff preview at Ball Arena",
-        "Detroit (58-22) visits Charlotte looking to clinch East superiority",
-        "Minnesota at Houston features two teams fighting for seeding",
-        "Knicks host Raptors in rematch after both won yesterday"
+        "Hawks demolished Cavaliers 124-102 in shocking blowout victory",
+        "Trae Young orchestrated with 28 points, 12 assists on 10-18 shooting",
+        "Atlanta shot 51% from field in dominant wire-to-wire performance",
+        "Dejounte Murray added 24 points, Clint Capela dominated with 18-14",
+        "Cleveland missing Jarrett Allen for third straight game",
+        "Hawks moved to 46-35, creating crucial playoff seeding separation"
       ],
-      debateAngle: "Which game tonight has the highest stakes: Thunder-Nuggets for West positioning, or are we sleeping on some of these other playoff race battles?",
-      suggestedQuote: "Tonight's slate is absolutely bonkers — Thunder at Nuggets is must-watch basketball, but don't sleep on Wolves-Rockets or that Knicks-Raptors rematch. Championship implications everywhere.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Jamal Murray", "Nikola Jokic", "Cade Cunningham", "LaMelo Ball"]
+      debateAngle: "Are the Hawks the most dangerous low seed in the Eastern Conference? Trae Young showed he can still take over games when motivated — should playoff teams be terrified of facing Atlanta in the first round?",
+      suggestedQuote: "Atlanta's 22-point upset of Cleveland might be the most important result of the night for Eastern Conference seeding. Trae Young's 28 and 12 performance showed he can still elevate his game when it matters most. The Hawks just made themselves a dangerous playoff matchup.",
+      relevantPlayers: ["Trae Young", "Dejounte Murray", "Clint Capela", "Donovan Mitchell"]
+    },
+    {
+      topic: "Heat's Offensive Explosion and Western Conference Chaos",
+      segment: "rapid-fire",
+      duration: "6 minutes",
+      keyStats: [
+        "Miami dropped 140 points on Washington behind Herro's 31-point return",
+        "Heat connected on 18 three-pointers, shot 58% from the field",
+        "Tyler Herro: 7 threes on 11-18 shooting in injury return",
+        "Wembanyama: 27 points, 11 rebounds, 4 blocks secures West's 2-seed",
+        "Spurs cruised past Dallas 139-120 to lock up playoff positioning",
+        "Multiple playoff seeding battles still unresolved with weekend left"
+      ],
+      debateAngle: "Which conference has the most wide-open playoff race? The East has multiple teams separated by games while the West's middle tier remains completely unpredictable — where will we see the biggest first-round upsets?",
+      suggestedQuote: "Miami's 140-point explosion against Washington was exactly what the Heat needed after recent struggles. Tyler Herro's 31 points with seven threes reminded everyone why he was Sixth Man of the Year. This offensive capability makes them a nightmare matchup for anyone.",
+      relevantPlayers: ["Tyler Herro", "Jimmy Butler", "Victor Wembanyama", "Devin Vassell"]
+    },
+    {
+      topic: "No Games Tonight Sets Up Epic Weekend Finale",
+      segment: "closer",
+      duration: "5 minutes",
+      keyStats: [
+        "Rare league-wide rest day before final weekend of regular season",
+        "Multiple playoff seeding battles remain unresolved",
+        "Eastern Conference positions 4-10 separated by just 8 games",
+        "Western Conference play-in race incredibly tight",
+        "Key injury updates: Jarrett Allen still day-to-day",
+        "Championship contenders getting healthy at perfect time"
+      ],
+      debateAngle: "Does this rest day benefit contenders more than teams fighting for playoff spots? Veterans can recover while hungry teams lose momentum — who gains the biggest advantage from tonight's break?",
+      suggestedQuote: "With no games tonight, teams get a rare chance to rest before the season's final weekend. The playoff picture is taking shape, but several seeding battles remain unresolved. This brief pause gives everyone time to prepare for what should be an electric finish to the regular season.",
+      relevantPlayers: ["Jarrett Allen", "Bradley Beal", "Kawhi Leonard", "Robert Williams III"]
     }
   ],
-  coldOpen: "What's up Hoops Intel family! If you thought yesterday was wild, buckle up because we're just getting started. Pascal Siakam went nuclear with 32 points to crush Miami's playoff dreams, LeBron turned back the clock to embarrass the Warriors at Chase Center, and the Knicks are making MSG magic again with a statement win over Boston. But here's the kicker — tonight's 15-game slate might be the most important night of the regular season with Thunder-Nuggets headlining absolute chaos. I'm your host, and this is Hoops Intel where the basketball never stops. Let's dive in!",
-  socialClip: "Clip LeBron's vintage performance breakdown where we break down his 28 points and 9 assists, emphasizing 'This wasn't just turning back the clock — this was the Lakers announcing they're ready for May' with highlights of his best plays against the Warriors. Perfect for Instagram Reels and TikTok.",
+  coldOpen: "What's good, Hoops Intel family! Welcome back to your daily NBA intelligence briefing. I'm coming at you on April 11th, and holy smokes, do we have some stories to unpack today. The Detroit Pistons just officially crowned themselves kings of the Eastern Conference with a dominant victory that clinched the top seed. Anthony Edwards went full clutch mode with 35 points in a heart-stopping comeback. And the Atlanta Hawks? They just shocked the basketball world with a 22-point beatdown of Cleveland that changes everything in the East playoff race. No games tonight, but trust me — we've got plenty to dive into. Let's get this intelligence rolling!",
+  socialClip: "Anthony Edwards clutch takeover sequence — capture his 12 fourth-quarter points including the game-winning three-pointer with 47 seconds left. Overlay with his season clutch stats and Minnesota's playoff positioning battle context. Perfect 90-second clip showing why Edwards is entering the superstar conversation.",
   tweetThread: [
-    "🚨 HOOPS INTEL DAILY DROP 🚨\n\nPascal Siakam DEMOLISHED Miami with 32 points on 12-of-19 shooting. The Raptors are now tied for 5th in the East after a 128-114 beatdown.\n\nAre they peaking at the perfect time? 👀",
-    "LeBron James said 'not today' to Father Time ⏰\n\n28 points, 9 assists, crushing the Warriors 119-103 AT CHASE CENTER\n\nThe Lakers just sent a message to the entire Western Conference. This team is DANGEROUS in May.",
-    "MSG MAGIC IS BACK 🏀✨\n\nKnicks edge Celtics 112-106 in a defensive grind\nJalen Brunson: 26 points, 7 assists\nNow just 2 games behind Boston for the 2-seed\n\nNobody wants to play a playoff series at Madison Square Garden.",
-    "Quick hits from last night:\n• Alperen Şengün near triple-double (25/11/8)\n• Bennedict Mathurin explodes for 27 points\n• Warriors playoff hopes in serious trouble\n• Rockets solidify 3rd seed at 51-29\n\nThe playoff picture is getting WILD 🔥",
-    "TONIGHT: 15-GAME BONANZA 🍿\n\n🔥 OKC @ Denver (Thunder vs Nuggets heavyweight bout)\n🔥 Detroit @ Charlotte (East powerhouse travels)\n🔥 Minnesota @ Houston (Critical seeding battle)\n\nChampionship implications EVERYWHERE\n\nFull breakdown in today's pod! ⬆️"
+    "🎯 HOOPS INTEL DAILY: Pistons officially clinch East's #1 seed, Edwards goes clutch god mode, Hawks shock Cleveland in 22-point upset! No games tonight but PLENTY to discuss. Thread below 👇",
+    "🔥 PISTONS CHAMPIONS: Detroit's 59-22 season is COMPLETE. Cade Cunningham (26-9) leads 118-100 domination of Charlotte to secure home-court throughout East playoffs. Most shocking rebuild in NBA history? 🏆",
+    "⚡ EDWARDS CLUTCH GENE: 35 points, 13-22 FG, game-winning three with 47 seconds left! Led Minnesota's comeback from 10 down in 4th to beat Houston 136-132. This man is entering SUPERSTAR territory 🌟",
+    "😱 HAWKS UPSET SPECIAL: Atlanta DEMOLISHED Cleveland 124-102 behind Trae's 28-12 masterpiece. Without Jarrett Allen, Cavs got completely outclassed. This changes EVERYTHING in East playoff seeding 🚨",
+    "🎙️ Full breakdown on today's Hoops Intel pod — link in bio! Plus: Heat drop 140 on Wizards, Wemby secures West's 2-seed, and why tonight's rest day sets up an EPIC weekend finale. Don't miss it! 📻"
   ]
 };
