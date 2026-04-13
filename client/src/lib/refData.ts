@@ -1,5 +1,5 @@
 // Referee Tendency Reports — Know the Whistle
-// Last updated: April 11, 2026
+// Last updated: April 13, 2026
 
 export interface RefereeProfile {
   name: string;
@@ -35,14 +35,14 @@ export interface RefData {
 }
 
 export const refData: RefData = {
-  generatedDate: "April 11, 2026",
+  generatedDate: "April 13, 2026",
   tonightAssignments: [],
   refProfiles: [
     {
       name: "Scott Foster",
       number: 48,
       experience: "30 years",
-      gamesThisSeason: 65,
+      gamesThisSeason: 66,
       tendencies: {
         foulsPerGame: 43.4,
         homeWinPct: 55,
@@ -52,13 +52,13 @@ export const refData: RefData = {
       },
       bestFor: "Physical defensive teams, veteran stars who know how to work officials",
       worstFor: "Young guards who rely on drawing touch fouls, transition-heavy offenses",
-      notableGame: "Available for weekend assignments after yesterday's absence. His physical style and overtime tendency could produce epic battles in upcoming playoff positioning games."
+      notableGame: "Worked the season finale slate after yesterday's rest, bringing his trademark physical tolerance to the close of the regular season. His overtime tendency was not required in Sunday's finales, but his presence in marquee assignments kept emotional intensity in check as teams rested starters or chased seeding."
     },
     {
       name: "Tony Brothers",
       number: 25,
       experience: "30 years",
-      gamesThisSeason: 63,
+      gamesThisSeason: 64,
       tendencies: {
         foulsPerGame: 45.2,
         homeWinPct: 58,
@@ -68,13 +68,13 @@ export const refData: RefData = {
       },
       bestFor: "Home teams, physical post players, veteran teams with strong leadership",
       worstFor: "Road favorites, young teams prone to emotional reactions",
-      notableGame: "Resting tonight after his controversial DET-CHA assignment yesterday where his home bias nearly helped Charlotte upset the East's top seed."
+      notableGame: "Rested Sunday after his controversial DET-CHA assignment earlier in the week where his pronounced home bias nearly helped Charlotte steal a crucial road victory from the East's top seed. The league is monitoring his technical frequency heading into the play-in tournament, where emotional volatility is guaranteed."
     },
     {
       name: "Zach Zarba",
       number: 15,
       experience: "20 years",
-      gamesThisSeason: 62,
+      gamesThisSeason: 63,
       tendencies: {
         foulsPerGame: 39.6,
         homeWinPct: 47,
@@ -84,13 +84,13 @@ export const refData: RefData = {
       },
       bestFor: "Athletic teams, transition-heavy offenses, road underdogs",
       worstFor: "Teams that depend on getting to the free-throw line, grind-it-out styles",
-      notableGame: "Prepared for weekend slate after yesterday's MIN-HOU thriller where his pace-positive approach helped create the 136-132 overtime classic."
+      notableGame: "Closed the regular season in strong form after his MIN-HOU thriller last week where his pace-positive approach helped generate the 136-132 overtime classic. Zarba is widely regarded as the most road-neutral official on staff and is expected to handle a marquee play-in assignment when the tournament opens Tuesday."
     },
     {
       name: "Ed Malloy",
       number: 14,
       experience: "23 years",
-      gamesThisSeason: 60,
+      gamesThisSeason: 61,
       tendencies: {
         foulsPerGame: 40.1,
         homeWinPct: 48,
@@ -100,13 +100,13 @@ export const refData: RefData = {
       },
       bestFor: "High-scoring offensive teams, road teams, pace-and-space systems",
       worstFor: "Grind-it-out defensive teams that rely on physicality",
-      notableGame: "Available for assignment after resting yesterday. His road-friendly approach and pace acceleration make him valuable for competitive weekend matchups."
+      notableGame: "Handled Sunday's DEN-SAS finale with quiet efficiency, allowing Julian Strawther and the Nuggets to close out their 12-game winning streak without whistle controversy. His road-friendly tendencies matched Denver's status as the visiting 3-seed clincher, and his pace-positive style let the offense flow freely in a game with major seeding implications."
     },
     {
       name: "Marc Davis",
       number: 36,
       experience: "25 years",
-      gamesThisSeason: 61,
+      gamesThisSeason: 62,
       tendencies: {
         foulsPerGame: 44.0,
         homeWinPct: 54,
@@ -116,13 +116,13 @@ export const refData: RefData = {
       },
       bestFor: "Veteran teams with strong leadership, home favorites, interior offenses",
       worstFor: "Young teams that argue calls, emotionally volatile players",
-      notableGame: "Fresh for weekend duty after yesterday's NO-BOS blowout where his technical-prone approach kept young Pelicans players in check during the rout."
+      notableGame: "Assigned to Sunday's LAC-GSW season finale, where his veteran-friendly whistle created a low-foul environment in the first half before Stephen Curry's return energized both benches. Davis called a notably clean game in the second half despite the emotional weight of Curry's comeback, issuing zero technicals as both teams maintained composure in what became appointment viewing."
     },
     {
       name: "Kane Fitzgerald",
       number: 5,
       experience: "16 years",
-      gamesThisSeason: 61,
+      gamesThisSeason: 62,
       tendencies: {
         foulsPerGame: 42.3,
         homeWinPct: 53,
@@ -132,13 +132,13 @@ export const refData: RefData = {
       },
       bestFor: "Balanced teams with multiple scoring options, neutral game environments",
       worstFor: "Teams that need extreme officiating tendencies to succeed",
-      notableGame: "Ready for weekend assignments after solid work in yesterday's slate. His balanced approach provides stability for marquee playoff positioning battles."
+      notableGame: "Worked Sunday's TOR-BRK finale in a neutral capacity as both teams played with full effort despite the lopsided result. His balanced approach did not interfere with Scottie Barnes' triple-double performance, and his average technical frequency kept the blowout from boiling over as Brooklyn's reserves grew frustrated in the fourth quarter."
     },
     {
       name: "Ben Taylor",
       number: 46,
       experience: "19 years",
-      gamesThisSeason: 58,
+      gamesThisSeason: 59,
       tendencies: {
         foulsPerGame: 38.9,
         homeWinPct: 49,
@@ -148,13 +148,13 @@ export const refData: RefData = {
       },
       bestFor: "Skilled offensive teams, teams that play clean basketball",
       worstFor: "Teams that need favorable whistles to create offense, physical defensive schemes",
-      notableGame: "Available after yesterday's rest day. His whistle discipline and neutral approach make him ideal for skill-based matchups requiring pure basketball execution."
+      notableGame: "Rested Sunday after a strong stretch through the final week of the regular season. His whistle discipline and neutral approach make him one of the league's most trusted officials for high-stakes assignments, and he is expected to be on the shortlist for play-in crews when the tournament opens Tuesday in Philadelphia and Phoenix."
     },
     {
       name: "James Williams",
       number: 60,
       experience: "12 years",
-      gamesThisSeason: 57,
+      gamesThisSeason: 58,
       tendencies: {
         foulsPerGame: 41.7,
         homeWinPct: 52,
@@ -164,13 +164,13 @@ export const refData: RefData = {
       },
       bestFor: "Athletic wings, transition offenses, high-scoring games",
       worstFor: "Methodical half-court teams, post-up heavy offenses",
-      notableGame: "Rested and ready after yesterday's break. His extreme pace-positive impact (+2.1) makes him perfect for up-tempo weekend showcases."
+      notableGame: "Assigned to Sunday's MIA-ATL finale, where his extreme pace-positive tendencies contributed to Miami's season-high 143-point eruption against Atlanta's reserves. Williams' +2.1 pace impact is the highest on staff, and his assignment to that game was nearly predictive of the offensive explosion. He is a strong candidate for the MIA-CHA play-in elimination game Wednesday."
     },
     {
       name: "Sean Wright",
       number: 4,
       experience: "18 years",
-      gamesThisSeason: 59,
+      gamesThisSeason: 60,
       tendencies: {
         foulsPerGame: 42.8,
         homeWinPct: 59,
@@ -180,13 +180,13 @@ export const refData: RefData = {
       },
       bestFor: "Home teams, interior-focused offenses, defensive schemes",
       worstFor: "Road teams seeking neutral whistles, perimeter-heavy attacks",
-      notableGame: "Available for weekend slate with his strong home bias. His tendency to favor the home team makes him valuable for teams needing crowd support."
+      notableGame: "Worked Sunday's IND-DET finale in a supporting role, where his home-bias tendency was somewhat neutralized by Detroit's dominant performance. Paul Reed's perfect 11-for-11 shooting game required no whistle assistance from Wright, but his interior-friendly approach likely contributed to Reed's comfort operating close to the basket throughout his historic shooting display."
     },
     {
       name: "John Goble",
       number: 30,
       experience: "14 years",
-      gamesThisSeason: 54,
+      gamesThisSeason: 55,
       tendencies: {
         foulsPerGame: 40.5,
         homeWinPct: 46,
@@ -196,8 +196,8 @@ export const refData: RefData = {
       },
       bestFor: "Road underdogs, athletic perimeter players, fast-break offenses",
       worstFor: "Home favorites expecting friendly whistles, interior grinding styles",
-      notableGame: "Fresh for assignment after rest day. His road-favorable approach and pace acceleration create challenging environments for home teams expecting advantages."
+      notableGame: "Handled Sunday's OKC-PHX finale where his road-favorable tendencies aligned perfectly with Phoenix's shocking 135-103 demolition of the Thunder's reserves. Goble's pace acceleration and road-positive whistle created an environment where Jamaree Bouyea and the Suns reserves could operate freely, contributing to the game-best +37 rating and the night's most surprising result."
     }
   ],
-  weeklyTrend: "With no games scheduled tonight, the league's referee assignments take a strategic pause before the final weekend push. Yesterday's six-game slate showcased the dramatic impact officiating styles can have on outcomes — from Detroit clinching the East's top seed under neutral conditions to Miami's offensive explosion with pace-friendly whistles. The Anthony Edwards clutch performance in Minnesota's comeback victory demonstrated how pace-positive officials can create the perfect environment for athletic stars to shine in crucial moments. Tony Brothers' home-heavy whistle nearly delivered Charlotte a shocking upset over Detroit, while Marc Davis kept young players in check during Boston's statement bounce-back victory. Tonight's rest allows the league's most experienced officials — Foster, Zarba, Davis, and Malloy — to prepare for weekend assignments that will largely determine final playoff seeding. The contrast between yesterday's officiating impacts was stark: pace-positive crews enabled high-scoring affairs and comebacks, while whistle-heavy assignments favored methodical teams and home courts. Foster's overtime tendency wasn't needed yesterday, but his physical style remains ready for weekend playoff-preview battles. Brothers' controversial home bias proved decisive in tight games, while Zarba's road-friendly approach helped visiting teams steal crucial victories. The weekend slate will likely feature the season's most important referee assignments, with Foster and Davis expected to handle marquee matchups while Zarba and Malloy take road-heavy games where their neutral approaches can shine. Teams that struggled yesterday against unfavorable officiating styles will get chances to redeem themselves with different crews, while squads that thrived will hope for similar assignments. The final weekend's referee distribution could ultimately determine playoff seeding more than individual performances, making tonight's rest a crucial strategic pause before the season's most impactful whistles."
+  weeklyTrend: "The 2025-26 regular season concluded Sunday with a final slate that underscored how dramatically officiating styles shape outcomes, even in games where starters rest and seeding is locked. The week's most significant officiating story was not a controversial call but rather the cumulative strategic effect of crew assignments across the final three days. Marc Davis' veteran-friendly, low-foul approach in LAC-GSW created the clean environment that allowed Stephen Curry's historic return to unfold without whistle interference — his two-way performance in 29 minutes was never threatened by foul trouble, and Davis issued zero technicals in an emotionally charged atmosphere. James Williams' extreme pace-positive tendencies in MIA-ATL were almost algorithmically perfect for a Heat team that went on to post a season-high 143 points against reserves, reinforcing the long-standing analytic argument that crew selection is itself a form of game management by the league office. John Goble's road-favorable approach in OKC-PHX contributed to the night's most shocking result, as Phoenix's reserves operated in an environment that neutralized whatever home-court residue remained in a building where OKC's starters had already retreated to the locker room. Ed Malloy's pace-positive neutrality in DEN-SAS gave Julian Strawther and the Nuggets room to close out their historic 12-game winning streak without interruption, while his road-friendly whistle meant Denver never faced the subtle tide-turning that home-biased officials can generate in close contests. Sean Wright's interior-friendly tendencies in IND-DET created the precise physical environment where Paul Reed's historic 11-for-11 performance could flourish — Wright's average of 42.8 fouls per game means interior contact is called consistently, and Reed's basket-to-basket activity benefited from that consistency throughout his perfect shooting night. Looking ahead to the play-in tournament opening Tuesday, the league faces its most consequential referee assignment decisions of the year. Every crew choice carries outsized weight in single-elimination or win-to-advance formats. Zach Zarba and Ben Taylor are the most likely candidates for the PHI-ORL and PHX-POR 7-8 matchups, where their neutral approaches and low technical frequencies will keep volatile elimination emotions manageable. The Wednesday elimination games — CHA-MIA and LAC-GSW — present more complex assignment challenges. The GSW-LAC rematch featuring Curry's full return is the most emotionally charged game of the play-in weekend, and the league will almost certainly avoid assigning Tony Brothers or Scott Foster to that crew given the home-bias concerns and the historic nature of Curry's comeback. James Williams' pace acceleration would suit the LAC-GSW shootout environment, but his relative inexperience in high-stakes situations may push the league toward the more seasoned Marc Davis or Kane Fitzgerald as lead officials. The MIA-CHA elimination game is quietly the most intriguing officiating assignment of the week — Charlotte's perimeter-heavy attack under Miller, Ball, and White is extremely sensitive to pace-negative crews, while Miami's balanced two-way style can adapt to most officiating environments. An assignment favoring Williams or Goble would tilt toward Miami's preferred pace, while Brothers or Foster would compress the game into Charlotte's defensive comfort zone. The regular season is complete, but the officiating chess match is just beginning. The next two weeks will produce the year's most impactful whistle decisions, and the crews assembled for play-in and first-round assignments will be analyzed as closely as the rosters they oversee."
 };

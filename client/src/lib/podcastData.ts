@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 11, 2026
+// Last updated: April 13, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,153 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 11, 2026",
-  episodeTitle: "PISTONS CROWN THEMSELVES KINGS — Edwards Clutch God — Hawks Shock Cleveland",
+  date: "April 13, 2026",
+
+  episodeTitle: "The Chef Is Back: Curry Returns, Reed Goes Perfect, and the Play-In Just Got Dangerous",
+
+  coldOpen:
+    "Seventy-three days. That's how long the NBA held its breath waiting for Stephen Curry to come back. And last night — in the final game of the regular season — he walked into Crypto.com Arena and dropped 24 points with four threes like he never left. Oh, and while that was happening? Paul Reed shot a perfect 11-for-11 in Detroit, Phoenix blew out the best team in basketball by 32 points, and Denver just kept winning — twelve straight to close the year. The regular season is officially dead. The play-in starts Tuesday. And folks, I am telling you right now — this postseason is going to be absolutely unhinged. Let's get into it.",
+
   rundown: [
     {
-      topic: "Pistons Officially Clinch Eastern Conference Top Seed",
+      topic: "Stephen Curry's 73-Day Return and What It Means for the Play-In",
       segment: "opener",
-      duration: "8 minutes",
+      duration: "8–10 minutes",
       keyStats: [
-        "59-22 record — historic turnaround from lottery to conference leaders",
-        "Cade Cunningham: 26 points, 9 assists on 10-16 shooting",
-        "Dominated Charlotte 118-100 in wire-to-wire victory",
-        "Home-court advantage secured throughout East playoffs",
-        "Isaiah Stewart added 22 points, 10 rebounds in supporting role",
-        "Pistons shot 52% from field, held Hornets to 38%"
+        "24 PTS · 4 3PM · 7-14 FG in 29 minutes — first game back after 73 days",
+        "Warriors fell 115-110 to the Clippers despite Curry's performance",
+        "Curry reportedly told teammates he feels 'the best I've felt since November'",
+        "Golden State enters the play-in as the 10-seed at 37-45",
+        "Wednesday's rematch with LAC is a winner-take-all elimination game",
+        "Jimmy Butler remains out with a torn ACL — Curry is the entire show"
       ],
-      debateAngle: "Is this the most shocking rebuild completion in NBA history? From basement dwellers to conference champions in one season — does Cade deserve MVP consideration for this transformation?",
-      suggestedQuote: "Detroit's 59-22 record and Eastern Conference top seed is one of the most remarkable turnarounds in NBA history. Cade Cunningham has transformed into a championship-caliber leader, and this Pistons team now has home-court advantage throughout the East playoffs. The rebuild is complete.",
-      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Ausar Thompson", "LaMelo Ball"]
+      debateAngle:
+        "Is Golden State actually the most dangerous team in the play-in field now that Curry is healthy — or is one good performance after a 73-day layoff not enough to make them a genuine threat? Do the Warriors have enough around Curry to beat the Clippers twice, let alone survive into the first round?",
+      suggestedQuote:
+        "Here's the thing about Stephen Curry — you don't ease back into being Stephen Curry. You either ARE Stephen Curry or you're not. And last night, in game one back from a 73-day absence, the man knocked down four threes, played 29 minutes, and looked like he'd been playing all week. The Warriors went from a lottery footnote to the most interesting team in the tournament overnight.",
+      relevantPlayers: [
+        "Stephen Curry",
+        "Bennedict Mathurin",
+        "Jimmy Butler",
+        "Bogdan Bogdanovic"
+      ]
     },
     {
-      topic: "Anthony Edwards' Clutch Gene Activated",
+      topic: "Paul Reed's Perfect 11-for-11 Night and Detroit's Historic 60-Win Season",
       segment: "deep-dive",
-      duration: "10 minutes",
+      duration: "7–9 minutes",
       keyStats: [
-        "35 points on scorching 13-22 shooting from the field",
-        "12 fourth-quarter points including game-winning three with 47 seconds left",
-        "Led Minnesota comeback from 10-point fourth-quarter deficit",
-        "Timberwolves improved to 48-33 in crucial playoff positioning battle",
-        "Edwards averaging 28.5 PPG in clutch situations this season",
-        "Minnesota now 2.5 games ahead of play-in tournament line"
+        "Reed: 11-for-11 FG · 26 PTS · 3 STL · 3 BLK · +28 in just 22 minutes",
+        "The odds of shooting perfect on 11+ field goal attempts in an NBA game are astronomically rare",
+        "Cade Cunningham: 14 AST in 22 MIN — second game back from a collapsed lung",
+        "Detroit finished 60-22 — their best record since the 2005-06 Ben Wallace era",
+        "Pistons own the East's 1-seed and home-court advantage throughout the playoffs",
+        "Detroit beat Indiana 133-121 to close the year on a dominant note"
       ],
-      debateAngle: "Has Anthony Edwards officially entered the superstar tier? His clutch performances this season rival anyone in the league — is he ready to carry Minnesota deep into the playoffs as the primary option?",
-      suggestedQuote: "Anthony Edwards's 35-point comeback performance against Houston showcased why he's becoming one of the league's most clutch players. His 12 fourth-quarter points, capped by the game-winning three, kept Minnesota's playoff hopes alive. This is the Edwards we expected to see all season.",
-      relevantPlayers: ["Anthony Edwards", "Jaden McDaniels", "Karl-Anthony Towns", "Alperen Şengün"]
+      debateAngle:
+        "Is the 2025-26 Detroit Pistons squad genuinely a championship-caliber team, or are they the best regular season story that gets exposed when the real competition starts? Cunningham is two games back from a collapsed lung, Reed is a reserve going perfect — can this team hold up for four playoff rounds against Boston, New York, and Cleveland?",
+      suggestedQuote:
+        "Paul Reed shot 11-for-11. Let that sink in. Not a layup line drill, not a free throw contest — eleven field goal attempts in an NBA game, and every single one went in. He also had three steals and three blocks. In twenty-two minutes. If you're building a highlight tape for the Pistons' season, you end it right there.",
+      relevantPlayers: [
+        "Paul Reed",
+        "Cade Cunningham",
+        "Jalen Duren",
+        "Killian Hayes"
+      ]
     },
     {
-      topic: "Atlanta's Stunning Upset Changes East Playoff Race",
+      topic: "Phoenix Just Torched the 1-Seed by 32 — Is OKC's Regular Season Success a Red Flag?",
       segment: "hot-take",
-      duration: "7 minutes",
+      duration: "6–8 minutes",
       keyStats: [
-        "Hawks demolished Cavaliers 124-102 in shocking blowout victory",
-        "Trae Young orchestrated with 28 points, 12 assists on 10-18 shooting",
-        "Atlanta shot 51% from field in dominant wire-to-wire performance",
-        "Dejounte Murray added 24 points, Clint Capela dominated with 18-14",
-        "Cleveland missing Jarrett Allen for third straight game",
-        "Hawks moved to 46-35, creating crucial playoff seeding separation"
+        "Phoenix 135, OKC 103 — a 32-point blowout despite Thunder owning the league's best record",
+        "Jamaree Bouyea: 27 PTS · 9 AST · +37 — the game's best plus-minus",
+        "Khaman Maluach: 18 PTS · 14 REB for Phoenix's second unit",
+        "OKC finished 64-18 — the best record in basketball — but lost by 32 to reserves",
+        "SGA and the Thunder's full rotation were all rested for the game",
+        "Phoenix enters Tuesday's play-in opener vs Portland with genuine momentum"
       ],
-      debateAngle: "Are the Hawks the most dangerous low seed in the Eastern Conference? Trae Young showed he can still take over games when motivated — should playoff teams be terrified of facing Atlanta in the first round?",
-      suggestedQuote: "Atlanta's 22-point upset of Cleveland might be the most important result of the night for Eastern Conference seeding. Trae Young's 28 and 12 performance showed he can still elevate his game when it matters most. The Hawks just made themselves a dangerous playoff matchup.",
-      relevantPlayers: ["Trae Young", "Dejounte Murray", "Clint Capela", "Donovan Mitchell"]
+      debateAngle:
+        "Hot take: Does OKC getting blown out by 32 — even with reserves — actually matter as playoff bulletin board material? Opposing coaches and players notice these things. Does this game reveal anything about the Thunder's depth, or is this completely meaningless noise that we should all ignore? And seriously — is Phoenix a sleeper that nobody is taking seriously enough heading into this play-in?",
+      suggestedQuote:
+        "I know, I know — the Thunder rested everybody. SGA didn't play. Their whole rotation sat. But I'm sorry, you cannot lose to anybody in this league by 32 points without it meaning SOMETHING. Jamaree Bouyea had a +37 rating. The Suns looked sharp, connected, and hungry. Meanwhile OKC's second unit got cooked for three quarters. That's a data point. File it away.",
+      relevantPlayers: [
+        "Jamaree Bouyea",
+        "Khaman Maluach",
+        "Shai Gilgeous-Alexander",
+        "Kevin Durant"
+      ]
     },
     {
-      topic: "Heat's Offensive Explosion and Western Conference Chaos",
+      topic: "Rapid Fire: Denver's 12-Game Streak, Barnes' Triple-Double, Knueppel's Record, and LeBron's Finale",
       segment: "rapid-fire",
-      duration: "6 minutes",
+      duration: "5–6 minutes",
       keyStats: [
-        "Miami dropped 140 points on Washington behind Herro's 31-point return",
-        "Heat connected on 18 three-pointers, shot 58% from the field",
-        "Tyler Herro: 7 threes on 11-18 shooting in injury return",
-        "Wembanyama: 27 points, 11 rebounds, 4 blocks secures West's 2-seed",
-        "Spurs cruised past Dallas 139-120 to lock up playoff positioning",
-        "Multiple playoff seeding battles still unresolved with weekend left"
+        "Denver won 12 straight to close the season — longest streak of the Jokić era — clinching the West's 3-seed",
+        "Julian Strawther: 25 PTS · 4-8 3PT in San Antonio · Jokić had 23 in just 18 minutes before being pulled",
+        "Scottie Barnes: 18 PTS · 12 REB · 12 AST on 8-of-11 FG in Toronto's 35-point blowout of Brooklyn",
+        "Kon Knueppel finished with 268 made threes — obliterating Keegan Murray's rookie record of 206 from 2022-23",
+        "LeBron James: 18 PTS · 4 REB · 6 AST in 17 MIN alongside Bronny (11/1/4) as Lakers beat Jazz 131-107",
+        "Miami dropped a season-high 143 points on Atlanta — Jaquez 26, Adebayo 25-10, Powell 25"
       ],
-      debateAngle: "Which conference has the most wide-open playoff race? The East has multiple teams separated by games while the West's middle tier remains completely unpredictable — where will we see the biggest first-round upsets?",
-      suggestedQuote: "Miami's 140-point explosion against Washington was exactly what the Heat needed after recent struggles. Tyler Herro's 31 points with seven threes reminded everyone why he was Sixth Man of the Year. This offensive capability makes them a nightmare matchup for anyone.",
-      relevantPlayers: ["Tyler Herro", "Jimmy Butler", "Victor Wembanyama", "Devin Vassell"]
+      debateAngle:
+        "Which of these stories deserves more attention than it's getting: Denver's 12-game streak making them a legit title contender, Knueppel's shattered rookie three-point record as a ROY argument, or the LeBron-Bronny finale moment as a cultural landmark? Pick one and make the case.",
+      suggestedQuote:
+        "Real quick — can we spend just thirty seconds appreciating that Kon Knueppel made 268 threes as a rookie? The previous record was 206. He didn't just break the record, he lapped it by sixty-two makes. Meanwhile Scottie Barnes had a triple-double on 8-of-11 shooting and we're barely talking about it because there's too much other stuff happening. This was a wild night of basketball, people.",
+      relevantPlayers: [
+        "Julian Strawther",
+        "Nikola Jokić",
+        "Scottie Barnes",
+        "Kon Knueppel",
+        "LeBron James",
+        "Bronny James",
+        "Jaime Jaquez Jr.",
+        "Bam Adebayo"
+      ]
     },
     {
-      topic: "No Games Tonight Sets Up Epic Weekend Finale",
+      topic: "Play-In Preview: Every Series, Every Storyline — What to Watch Starting Tuesday",
       segment: "closer",
-      duration: "5 minutes",
+      duration: "6–8 minutes",
       keyStats: [
-        "Rare league-wide rest day before final weekend of regular season",
-        "Multiple playoff seeding battles remain unresolved",
-        "Eastern Conference positions 4-10 separated by just 8 games",
-        "Western Conference play-in race incredibly tight",
-        "Key injury updates: Jarrett Allen still day-to-day",
-        "Championship contenders getting healthy at perfect time"
+        "East Play-In: (7) PHI vs (8) ORL on Tuesday · (9) CHA vs (10) MIA on Wednesday",
+        "West Play-In: (7) PHX vs (8) POR on Tuesday · (9) LAC vs (10) GSW on Wednesday — Curry rematch",
+        "First round of playoffs begins Saturday, April 18",
+        "Cooper Flagg ROY favorite at -290 odds — Knueppel's record keeps race interesting",
+        "Wembanyama fully healthy for San Antonio after precautionary rest — SAS drew DEN in Round 1",
+        "Detroit's Cade Cunningham is day-to-day (collapsed lung) but available for Round 1 vs TBD"
       ],
-      debateAngle: "Does this rest day benefit contenders more than teams fighting for playoff spots? Veterans can recover while hungry teams lose momentum — who gains the biggest advantage from tonight's break?",
-      suggestedQuote: "With no games tonight, teams get a rare chance to rest before the season's final weekend. The playoff picture is taking shape, but several seeding battles remain unresolved. This brief pause gives everyone time to prepare for what should be an electric finish to the regular season.",
-      relevantPlayers: ["Jarrett Allen", "Bradley Beal", "Kawhi Leonard", "Robert Williams III"]
+      debateAngle:
+        "Biggest first-round upset pick: Denver over San Antonio as the 3-seed, or Golden State — if they survive the play-in — knocking off a higher seed in the first round on the back of a fully healthy Curry? Which team scares you most as a potential bracket-breaker entering this postseason?",
+      suggestedQuote:
+        "Tuesday night, Phoenix and Portland tip off the play-in. Wednesday, Stephen Curry goes back to Crypto.com Arena for a rematch with the Clippers in an elimination game. I need you to understand — if Curry plays like he did last night and the Warriors win that game, we are going to be talking about Golden State for the entire first round of the playoffs. The regular season is a memory. The real season starts now. Don't miss a second of it.",
+      relevantPlayers: [
+        "Stephen Curry",
+        "Paolo Banchero",
+        "Jamaree Bouyea",
+        "Cade Cunningham",
+        "Victor Wembanyama",
+        "Nikola Jokić",
+        "Cooper Flagg",
+        "Kon Knueppel"
+      ]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! Welcome back to your daily NBA intelligence briefing. I'm coming at you on April 11th, and holy smokes, do we have some stories to unpack today. The Detroit Pistons just officially crowned themselves kings of the Eastern Conference with a dominant victory that clinched the top seed. Anthony Edwards went full clutch mode with 35 points in a heart-stopping comeback. And the Atlanta Hawks? They just shocked the basketball world with a 22-point beatdown of Cleveland that changes everything in the East playoff race. No games tonight, but trust me — we've got plenty to dive into. Let's get this intelligence rolling!",
-  socialClip: "Anthony Edwards clutch takeover sequence — capture his 12 fourth-quarter points including the game-winning three-pointer with 47 seconds left. Overlay with his season clutch stats and Minnesota's playoff positioning battle context. Perfect 90-second clip showing why Edwards is entering the superstar conversation.",
+
+  socialClip:
+    "Best clip for social: Open on the graphic — '73 DAYS' — then cut to Curry draining back-to-back threes in the third quarter, the arena erupting. Voice-over: 'Stephen Curry. 73 days. 24 points. 4 threes. 29 minutes. He's back.' End on his sideline reaction after the fourth three drops — pure joy, fist pump, pointing at a teammate. Caption: 'The most dangerous 10-seed in play-in history just showed up. 🍳🔥 #CurryIsBack #NBAPlayIn'. This clip will perform on every platform — the combo of the long absence, the immediate impact, and Curry's unmistakable personality gives it massive organic reach.",
+
   tweetThread: [
-    "🎯 HOOPS INTEL DAILY: Pistons officially clinch East's #1 seed, Edwards goes clutch god mode, Hawks shock Cleveland in 22-point upset! No games tonight but PLENTY to discuss. Thread below 👇",
-    "🔥 PISTONS CHAMPIONS: Detroit's 59-22 season is COMPLETE. Cade Cunningham (26-9) leads 118-100 domination of Charlotte to secure home-court throughout East playoffs. Most shocking rebuild in NBA history? 🏆",
-    "⚡ EDWARDS CLUTCH GENE: 35 points, 13-22 FG, game-winning three with 47 seconds left! Led Minnesota's comeback from 10 down in 4th to beat Houston 136-132. This man is entering SUPERSTAR territory 🌟",
-    "😱 HAWKS UPSET SPECIAL: Atlanta DEMOLISHED Cleveland 124-102 behind Trae's 28-12 masterpiece. Without Jarrett Allen, Cavs got completely outclassed. This changes EVERYTHING in East playoff seeding 🚨",
-    "🎙️ Full breakdown on today's Hoops Intel pod — link in bio! Plus: Heat drop 140 on Wizards, Wemby secures West's 2-seed, and why tonight's rest day sets up an EPIC weekend finale. Don't miss it! 📻"
+    "🚨 HOOPS INTEL — April 13, 2026 | The regular season is over. The play-in starts Tuesday. And last night was one of the wildest final nights in recent memory. Here's everything that happened and why it matters. Thread 🧵👇",
+
+    "1/ CURRY IS BACK. 73 days after bilateral runner's knee shut him down, Stephen Curry returned last night: 24 PTS · 4 3PM · 7-14 FG in 29 minutes. Golden State still lost 115-110 to the Clippers, but nobody cares about that. Wednesday's elimination rematch is now the most must-watch game of the week. The 10-seed just became the most dangerous team in the play-in. 🍳",
+
+    "2/ PERFECTION. Paul Reed went 11-for-11 from the field for 26 points in 22 minutes. Three steals. Three blocks. +28. The most makes without a miss in any game this entire season. Detroit finished 60-22 — East's 1-seed — with Cade Cunningham dropping 14 assists in 22 minutes in just his second game back from a collapsed lung. The Pistons are built different. 🏆",
+
+    "3/ WAIT — PHOENIX DID WHAT? The Suns just beat OKC 135-103. A 32-point beatdown of the team with the league's best record. Yes, the Thunder rested everyone. But Jamaree Bouyea went for 27-9 with a +37. Phoenix looks DANGEROUS heading into Tuesday's play-in opener vs Portland. Also: Denver won their 12th straight to clinch the West's 3-seed. Jokić needed 18 minutes. 💥",
+
+    "4/ RECORDS & MILESTONES from the season finale: Kon Knueppel finished with 268 made threes — crushing the rookie record of 206. Scottie Barnes had an 18-12-12 triple-double on 8-of-11 shooting. LeBron and Bronny James played side-by-side one last time in the regular season. Miami dropped 143 points. Cooper Flagg closed with a +21 to seal his ROY case.",
+
+    "5/ THE BRACKET IS SET. Play-in tips TUESDAY: PHI vs ORL | PHX vs POR. Wednesday's elimination games: CHA vs MIA | LAC vs GSW (Curry rematch). Round 1 starts Saturday April 18. Every series has upset potential. Every team has a storyline. The real season starts now — and after last night, we have absolutely no idea what's coming next. Don't sleep on any of it. 🏀🔥 | Full breakdown: hoopsintel.net"
   ]
 };

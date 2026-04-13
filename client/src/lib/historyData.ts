@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: April 11, 2026
+// Last updated: April 13, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,234 +35,234 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "April 11, 2026",
+  generatedDate: "April 13, 2026",
   comparisons: [
     {
-      currentEvent: "Cade Cunningham orchestrates Detroit's historic 59-22 season with 26 points and 9 assists in the title-clinching victory, officially securing the Eastern Conference's top seed and validating the Pistons' remarkable transformation into championship contenders",
-      player: "Cade Cunningham",
+      currentEvent: "Stephen Curry returns from 73-day absence to score 24 points with 4 threes in 29 minutes, transforming Golden State from afterthoughts to the most dangerous 10-seed in play-in tournament history and proving his legendary durability at age 38",
+      player: "Stephen Curry",
+      team: "GSW",
+      historicalParallel: {
+        player: "John Stockton",
+        season: "1996-97",
+        stat: "14.7 PPG, 8.5 APG at age 35 — returned from knee injury to lead Jazz to 64-18 record and Finals appearance",
+        context: "Stockton's 1996-97 season epitomized late-career excellence and durability, as he returned from injury to orchestrate one of the greatest Jazz seasons in franchise history. His ability to maintain elite performance well into his 30s while elevating teammates made him legendary. Stockton's longevity and clutch performances in his mid-30s established the template for aging superstars."
+      },
+      comparison: "Curry's dramatic 73-day comeback at age 38 directly parallels Stockton's ability to return from injury and immediately impact winning at an advanced basketball age. Both players possessed that rare combination of basketball IQ and physical conditioning that allowed elite performance despite aging curves. Curry's instant transformation of Golden State's playoff outlook mirrors Stockton's ability to elevate the Jazz after injury concerns. The key difference is individual dominance — Curry's 24-point explosion with four threes demonstrates superior offensive firepower than Stockton's quieter leadership, suggesting greater impact potential.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Paul Reed delivers the most statistically perfect performance of the season with flawless 11-for-11 shooting for 26 points while adding 3 steals and 3 blocks, showcasing two-way dominance that helped Detroit complete their historic 60-22 championship-level season",
+      player: "Paul Reed",
       team: "DET",
       historicalParallel: {
-        player: "Isiah Thomas",
-        season: "1989-90",
-        stat: "18.4 PPG and 9.3 APG — led Pistons to 59-23 record and NBA championship with elite leadership and clutch performances",
-        context: "Thomas's 1989-90 Pistons represented the pinnacle of Detroit basketball, combining his floor generalship with championship-level execution. His ability to elevate teammates while delivering in crucial moments made the Bad Boys legendary. Thomas's leadership during that 59-win season established the template for Pistons excellence and championship culture."
+        player: "Dennis Rodman",
+        season: "1995-96",
+        stat: "5.5 PPG, 14.9 RPG with perfect games — provided elite role player impact during Bulls' 72-10 season",
+        context: "Rodman's 1995-96 Bulls were defined by his ability to deliver perfect complementary performances when championships were on the line. His occasional offensive explosions combined with elite defense made him invaluable during Chicago's historic season. Rodman's knack for delivering flawless games in crucial moments became legendary during the Bulls' peak."
       },
-      comparison: "Cunningham's championship-clinching performance perfectly mirrors Thomas's ability to orchestrate elite team success while delivering individually when stakes are highest. Both players possessed that rare combination of scoring and playmaking that could elevate entire franchises to championship level. Cunningham's 59-22 record exactly matches Thomas's championship blueprint, with the young guard's efficiency and leadership suggesting he's operating at an even higher level. The key difference is era and physical tools — Cunningham's modern skill set and size advantage could surpass even Isiah's legendary impact.",
+      comparison: "Reed's perfect 11-for-11 shooting performance with defensive excellence directly channels Rodman's ability to deliver statistically flawless games when championship-caliber teams needed role player perfection. Both players possessed that rare combination of efficiency and defensive impact that could elevate already elite teams to historic levels. Reed's perfection helping Detroit reach 60 wins mirrors Rodman's clutch performances during Chicago's record-breaking season. The difference is offensive capability — Reed's 26-point explosion far exceeds Rodman's limited scoring, suggesting greater two-way impact than even the Worm's legendary contributions.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Anthony Edwards explodes for 35 points on elite 13-of-22 shooting with 12 clutch fourth-quarter points, leading Minnesota's thrilling 136-132 comeback victory over Houston in a crucial playoff positioning battle that showcased his emerging superstar status",
-      player: "Anthony Edwards",
-      team: "MIN",
+      currentEvent: "Denver's Julian Strawther scores 25 points to complete the franchise's 12-game winning streak and clinch the Western Conference's 3-seed, with the Nuggets peaking at the perfect time behind their deepest roster of the Nikola Jokić era",
+      player: "Julian Strawther",
+      team: "DEN",
       historicalParallel: {
-        player: "Kevin Garnett",
-        season: "2003-04",
-        stat: "24.2 PPG with clutch gene — led Timberwolves to 58-24 record and Western Conference Finals with individual brilliance",
-        context: "Garnett's 2003-04 MVP season was defined by his ability to take over crucial games with explosive scoring and leadership. His clutch performances in playoff positioning battles made Minnesota a legitimate contender for the only time in franchise history. KG's individual excellence elevating the entire franchise became the gold standard for Timberwolves basketball."
+        player: "Robert Horry",
+        season: "2001-02",
+        stat: "12.2 PPG in playoffs — delivered clutch performances during Lakers' championship run with timely scoring",
+        context: "Horry's 2001-02 Lakers were built around his ability to provide crucial scoring when superstars needed support during championship runs. His knack for delivering in pressure moments while playing the perfect complementary role made him invaluable during title pursuits. Horry's ability to step up during winning streaks and playoff positioning battles became his trademark."
       },
-      comparison: "Edwards's 35-point explosion with clutch fourth-quarter heroics directly channels Garnett's ability to single-handedly elevate Minnesota through individual brilliance in crucial moments. Both players possessed that rare combination of explosive athleticism and clutch gene that could carry the Timberwolves to heights they couldn't reach otherwise. Edwards's comeback performance mirrors KG's ability to deliver when playoff positioning hung in the balance. The key difference is offensive versatility — Edwards's perimeter skills and shot-creation ability suggest even greater individual ceiling than Garnett's legendary peak.",
+      comparison: "Strawther's 25-point performance completing Denver's historic 12-game streak perfectly mirrors Horry's ability to deliver crucial scoring when championship contenders needed role players to step up during defining moments. Both players possessed that rare combination of confidence and clutch gene that allowed them to deliver when stakes were highest. Strawther's leadership during the streak mirrors Horry's impact during title runs. The difference is consistency — Strawther's sustained excellence throughout the 12-game streak suggests more reliable impact than Horry's sporadic brilliance, indicating greater value during championship pursuits.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Tyler Herro erupts for 31 points with 7 three-pointers on scorching 11-of-18 shooting, leading Miami's 140-117 offensive explosion over Washington that provided crucial momentum in their fight for playoff positioning",
-      player: "Tyler Herro",
-      team: "MIA",
+      currentEvent: "Jamaree Bouyea explodes for 27 points and 9 assists with a game-best +37 rating in Phoenix's stunning 135-103 demolition of league-leading Oklahoma City, providing the most shocking upset margin of the season finale despite the Thunder resting starters",
+      player: "Jamaree Bouyea",
+      team: "PHX",
       historicalParallel: {
-        player: "Glen Rice",
-        season: "1996-97",
-        stat: "22.3 PPG with 47.0% three-point shooting — provided elite scoring punch for Heat's playoff run",
-        context: "Rice's 1996-97 Heat were built around his ability to explode offensively and provide the scoring punch Miami needed to compete with elite Eastern Conference opponents. His shooting excellence and ability to take over games individually made the Heat dangerous in any playoff matchup. Rice's offensive brilliance during Miami's breakthrough season established him as one of the league's premier scorers."
+        player: "Jeremy Lin",
+        season: "2011-12",
+        stat: "18.2 PPG, 7.7 APG during Linsanity — provided explosive scoring for Knicks during improbable run",
+        context: "Lin's Linsanity phenomenon was defined by his ability to deliver shocking individual performances that elevated entire teams during crucial moments. His combination of scoring and playmaking during his legendary run made the Knicks appointment television and captured global attention. Lin's ability to explode offensively when nobody expected it became one of basketball's greatest Cinderella stories."
       },
-      comparison: "Herro's 31-point eruption with seven three-pointers perfectly mirrors Rice's ability to provide explosive offensive performances when Miami's playoff hopes needed a boost. Both players possessed that rare combination of shot-making ability and confidence that could single-handedly swing games in the Heat's favor. Herro's shooting barrage providing crucial momentum echoes Rice's ability to deliver elite scoring in pressure moments. The difference is versatility — Herro's improved playmaking and defensive awareness suggest a more complete player than Rice's pure scoring excellence.",
+      comparison: "Bouyea's explosive 27-point, 9-assist performance in a shocking upset directly channels Lin's ability to deliver completely unexpected individual brilliance that could single-handedly swing games in his team's favor. Both players possessed that rare combination of scoring ability and playmaking that could create magic when stakes were high. Bouyea's +37 rating in a 32-point upset mirrors Lin's ability to dominate statistically during improbable victories. The key similarity is the element of surprise — both players delivered when expectations were minimal, though Bouyea's performance came against higher-quality competition.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Trae Young orchestrates Atlanta's shocking 124-102 upset of Cleveland with 28 points and 12 assists on efficient 10-of-18 shooting, creating crucial separation in the playoff race and showcasing his ability to elevate his game when it matters most",
-      player: "Trae Young",
-      team: "ATL",
+      currentEvent: "Kon Knueppel completes his rookie season with 268 made three-pointers, obliterating the previous rookie record by 62 makes while leading Charlotte to the play-in tournament in a campaign that redefined rookie three-point shooting expectations",
+      player: "Kon Knueppel",
+      team: "CHA",
       historicalParallel: {
-        player: "Dominique Wilkins",
-        season: "1987-88",
-        stat: "30.3 PPG with clutch performances — led Hawks to 50-32 record with individual brilliance in crucial games",
-        context: "Wilkins's 1987-88 Hawks were defined by his ability to take over games when playoff positioning was at stake. His explosive scoring and leadership helped Atlanta exceed expectations and establish themselves as legitimate Eastern Conference contenders. The Human Highlight Reel's ability to deliver in pressure moments made the Hawks dangerous against any opponent."
+        player: "Damian Lillard",
+        season: "2012-13",
+        stat: "185 made 3PT as rookie — previous record that stood as gold standard for rookie perimeter excellence",
+        context: "Lillard's 2012-13 rookie season established the template for elite rookie three-point shooting, with his 185 makes representing unprecedented perimeter production for a first-year player. His combination of volume and efficiency while contributing to team success made him Rookie of the Year and established new expectations for rookie shooters. Lillard's record stood as the benchmark for rookie shooting excellence for over a decade."
       },
-      comparison: "Young's masterful upset orchestration with 28 points and 12 assists channels Wilkins's ability to single-handedly elevate Atlanta in crucial playoff positioning battles. Both players possessed that rare combination of individual brilliance and clutch gene that could swing games in the Hawks' favor when stakes were highest. Young's complete performance creating separation in the playoff race mirrors Wilkins's impact in pressure moments. The key difference is playmaking — Young's 12 assists demonstrate superior floor general capabilities that could make his impact even greater than Dominique's legendary scoring.",
+      comparison: "Knueppel's record-obliterating 268 three-pointers completely shatters Lillard's previous standard and redefines what's possible for rookie perimeter production. Both players possessed elite shooting mechanics and confidence that allowed them to attempt and make threes at unprecedented rookie levels. Knueppel's 62-make improvement over Lillard's record represents one of the most dramatic single-season improvements in NBA history. The difference is magnitude — Knueppel's production leap is so dramatic that it suggests a completely new tier of rookie shooting capability.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Victor Wembanyama dominates both ends with 27 points, 11 rebounds, and 4 blocks in San Antonio's 139-120 victory over Dallas that secured the Western Conference's second seed, continuing his historic rookie campaign that's redefining NBA expectations",
-      player: "Victor Wembanyama",
-      team: "SAS",
+      currentEvent: "Scottie Barnes dominates with an ultra-efficient 18-12-12 triple-double on 8-of-11 shooting, leading Toronto's 35-point blowout that secured the 6-seed and positioned the Raptors as a dangerous playoff threat despite their middling regular season record",
+      player: "Scottie Barnes",
+      team: "TOR",
       historicalParallel: {
-        player: "Tim Duncan",
-        season: "1997-98",
-        stat: "21.1 PPG, 11.9 RPG, 2.5 BPG — Rookie of the Year performance that immediately made Spurs championship contenders",
-        context: "Duncan's 1997-98 rookie season was legendary for its immediate championship-level impact, with his two-way excellence and basketball IQ making San Antonio an instant contender. His combination of scoring, rebounding, and defense established a new standard for rookie excellence. Duncan's rookie season transformed the Spurs from lottery team to playoff powerhouse overnight."
+        player: "Magic Johnson",
+        season: "1983-84",
+        stat: "7.3 RPG, 13.1 APG with efficient triple-doubles — led Lakers to championship with versatile excellence",
+        context: "Magic's 1983-84 championship season was defined by his ability to deliver efficient triple-doubles that elevated teammates while maintaining elite shooting percentages. His combination of size, playmaking, and efficiency made the Lakers championship-level despite facing elite Eastern competition. Magic's ability to stuff the stat sheet efficiently while leading winning basketball became his signature."
       },
-      comparison: "Wembanyama's 27-point, 11-rebound, 4-block performance securing playoff seeding directly parallels Duncan's immediate championship-level impact as a rookie, but with even greater individual dominance. Both players possessed that rare combination of size, skill, and basketball IQ that could transform franchises from their first season. Wemby's two-way excellence anchoring a 62-19 record exceeds even Duncan's legendary rookie impact. The key difference is versatility — Wembanyama's perimeter skills and shot-blocking ability suggest an even higher ceiling than Duncan's all-time great rookie season.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Jayson Tatum bounces back from disappointment with 33 points, 8 rebounds, and 6 assists in Boston's dominant 144-118 rout of New Orleans, showcasing championship mentality and the offensive firepower that makes the Celtics title favorites",
-      player: "Jayson Tatum",
-      team: "BOS",
-      historicalParallel: {
-        player: "Paul Pierce",
-        season: "2007-08",
-        stat: "19.6 PPG in championship season — delivered clutch performances and leadership that carried Celtics to title",
-        context: "Pierce's 2007-08 championship season was defined by his ability to bounce back from adversity and deliver crucial performances when Boston needed them most. His veteran leadership and clutch gene in pressure moments made the Celtics championship-level despite not being their leading scorer. Pierce's ability to elevate his game when stakes were highest became legendary."
-      },
-      comparison: "Tatum's 33-point bounce-back statement perfectly channels Pierce's ability to respond to adversity with dominant individual performances when Boston's championship hopes needed validation. Both players possessed that rare combination of scoring ability and mental toughness that could carry the Celtics through difficult moments. Tatum's complete statistical line in a blowout victory mirrors Pierce's ability to set the tone after disappointments. The key difference is individual dominance — Tatum's 33-point explosions far exceed Pierce's quieter leadership, suggesting greater individual impact during championship runs.",
+      comparison: "Barnes's ultra-efficient triple-double on 8-of-11 shooting perfectly channels Magic's ability to deliver complete statistical dominance while maintaining elite efficiency during crucial team victories. Both players possessed that rare combination of size, versatility, and basketball IQ that allowed them to impact every statistical category while shooting efficiently. Barnes's 35-point margin victory mirrors Magic's ability to orchestrate blowouts through complete excellence. The difference is era and athleticism — Barnes's modern skill set and defensive versatility suggest even greater two-way impact than Magic's offensive brilliance.",
       verdict: "On pace to surpass"
     }
   ],
   milestoneWatch: [
     {
+      player: "Denver Nuggets",
+      team: "DEN",
+      milestone: "Longest winning streak of Nikola Jokić era",
+      current: "12-game winning streak — completed with 128-118 victory over San Antonio",
+      needed: "Milestone achieved — broke previous Jokić-era record of 9 games",
+      projectedDate: "Milestone completed April 12, 2026",
+      significance: "The 12-game winning streak is the longest of the Jokić era and vaulted Denver from playoff bubble to the West's 3-seed. This surge represents the Nuggets peaking at the perfect time and establishes them as legitimate championship contenders despite early-season struggles."
+    },
+    {
+      player: "Stephen Curry",
+      team: "GSW",
+      milestone: "3,000 career three-pointers made",
+      current: "2,987 career three-pointers after 4 makes in return game",
+      needed: "13 more three-pointers to reach 3,000",
+      projectedDate: "Should reach 3,000 during play-in tournament",
+      significance: "Curry would further cement his status as basketball's greatest shooter by becoming the first player to reach 3,000 career three-pointers. His dramatic return from 73-day absence positions him to achieve this milestone during Golden State's play-in run."
+    },
+    {
+      player: "Paul Reed",
+      team: "DET",
+      milestone: "Most field goals made without a miss in 2025-26 season",
+      current: "11-for-11 shooting performance — 26 points",
+      needed: "Milestone achieved — season record",
+      projectedDate: "Accomplished April 12, 2026",
+      significance: "Reed's perfect 11-for-11 shooting night represents the most field goals made without a miss by any player during the 2025-26 season. The statistical rarity of this achievement, combined with Detroit's championship aspirations, makes it historically significant."
+    },
+    {
+      player: "Kon Knueppel",
+      team: "CHA",
+      milestone: "NBA rookie three-point record",
+      current: "268 made three-pointers — new rookie record",
+      needed: "Milestone achieved — broke Keegan Murray's 206 from 2022-23",
+      projectedDate: "Record established during 2025-26 season",
+      significance: "Knueppel obliterated the previous rookie three-point record by 62 makes, completely redefining expectations for first-year perimeter production. His 268 makes represent a quantum leap in rookie shooting capability."
+    },
+    {
       player: "Detroit Pistons",
       team: "DET",
-      milestone: "60 wins in a season (first time since 2005-06 championship team)",
-      current: "59-22 record — officially clinched East's top seed",
-      needed: "1 more win to reach 60",
-      projectedDate: "Should reach 60 wins this weekend",
-      significance: "The Pistons last won 60+ games during their 2005-06 championship season (64-18). Reaching 60 wins would mark Detroit's return to elite status and represent the franchise's best record in 20 years, validating their championship aspirations and Cade Cunningham's superstar emergence."
+      milestone: "60 wins for first time since 2005-06",
+      current: "60-22 record after Paul Reed's perfect game",
+      needed: "Milestone achieved — reached 60 wins",
+      projectedDate: "Accomplished April 12, 2026",
+      significance: "The Pistons reached 60 wins for the first time since their 2005-06 championship season, validating their return to elite status and establishing them as legitimate title contenders. This milestone represents Detroit's complete franchise transformation."
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      milestone: "Perfect home season (32-0 would be NBA record)",
-      current: "31-0 at home — perfect home record intact with 1 game remaining",
-      needed: "1 more home win to complete perfect home season",
-      projectedDate: "Could achieve perfection April 12 vs. Lakers (final home game)",
-      significance: "No NBA team has ever completed a perfect home season with 32+ games played. The Spurs have one final home game remaining against the Lakers, where Wembanyama could achieve something never accomplished in league history. The 1985-86 Celtics went 40-1 at home but played more games."
-    },
-    {
-      player: "LeBron James",
-      team: "LAL",
-      milestone: "40,000 career points",
-      current: "39,875 career points after missing last night",
-      needed: "125 more points to reach 40,000",
-      projectedDate: "Should reach 40,000 points during playoffs",
-      significance: "LeBron would become the first player in NBA history to reach 40,000 career points. At his current pace of 25.8 PPG, he should achieve this historic milestone during the Lakers' playoff run, further cementing his status as basketball's greatest scorer and most durable superstar."
+      player: "Phoenix Suns",
+      team: "PHX",
+      milestone: "Largest regular season victory margin",
+      current: "32-point victory over OKC (135-103)",
+      needed: "Milestone achieved — largest win of season",
+      projectedDate: "Accomplished April 12, 2026",
+      significance: "Phoenix's 32-point demolition of league-leading Oklahoma City represents their largest victory margin of the season and provides crucial momentum entering the play-in tournament. The upset gives the Suns confidence against elite competition."
     },
     {
       player: "Miami Heat",
       team: "MIA",
-      milestone: "50 wins for first time since 2017-18",
-      current: "42-39 record after explosive victory over Washington",
-      needed: "8 more wins to reach 50 (impossible with 1 game remaining)",
-      projectedDate: "Milestone will not be achieved this season",
-      significance: "The Heat haven't reached 50 wins since their 2017-18 season, but their offensive explosion suggests they're peaking at the right time. While 50 wins is impossible, their playoff positioning surge has them positioned as a dangerous lower seed with championship upside."
-    },
-    {
-      player: "Atlanta Hawks",
-      team: "ATL",
-      milestone: "50 wins for first time since 2016-17",
-      current: "46-35 record after shocking upset of Cleveland",
-      needed: "4 more wins to reach 50 (impossible with 1 game remaining)",
-      projectedDate: "Milestone will not be achieved this season",
-      significance: "The Hawks haven't reached 50 wins since their 2016-17 season, but their upset victory over Cleveland positions them perfectly for playoff success. While 50 wins is impossible, Trae Young's leadership has them positioned as a dangerous playoff matchup."
-    },
-    {
-      player: "Anthony Edwards",
-      team: "MIN",
-      milestone: "2,000 points in a single season",
-      current: "2,003 points after 35-point explosion vs. Houston",
-      needed: "Milestone already achieved",
-      projectedDate: "Accomplished with clutch performance",
-      significance: "Edwards joined the exclusive club of players with 2,000 points in a season, becoming just the 26th player in NBA history to achieve this feat. His clutch 35-point performance pushed him over the milestone while keeping Minnesota's playoff hopes alive."
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      milestone: "Triple-double average for season",
-      current: "22.8 PPG, 9.1 APG, 8.7 RPG — very close to triple-double average",
-      needed: "0.3 rebounds per game to average triple-double",
-      projectedDate: "Unlikely to achieve with 1 game remaining",
-      significance: "Cunningham is tantalizingly close to joining Oscar Robertson and Russell Westbrook as the only players to average a triple-double for an entire season. His leadership of the 59-22 Pistons while nearly averaging a triple-double would be historic."
+      milestone: "Season-high point total",
+      current: "143 points scored against Atlanta",
+      needed: "Milestone achieved — season-high scoring output",
+      projectedDate: "Accomplished April 12, 2026",
+      significance: "Miami's 143-point explosion represents their highest-scoring game of the season and demonstrates their offensive ceiling entering the play-in tournament. The performance suggests the Heat are peaking at the perfect time."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 1970,
-      event: "On April 11, 1970, the Boston Celtics defeated the New York Knicks 105-91 in Game 1 of the Eastern Division Finals at Boston Garden. John Havlicek scored 35 points to lead Boston's victory, beginning what would become their final championship run of the Bill Russell era.",
-      players: ["John Havlicek", "Bill Russell", "Dave Cowens"]
-    },
-    {
-      year: 1983,
-      event: "On April 11, 1983, Julius Erving scored 29 points as the Philadelphia 76ers defeated the New York Knicks 112-102 to clinch the Atlantic Division title. Dr. J's performance helped Philadelphia secure home-court advantage throughout the Eastern Conference playoffs on their way to the championship.",
-      players: ["Julius Erving", "Moses Malone", "Maurice Cheeks"]
+      year: 2016,
+      event: "On April 13, 2016, Kobe Bryant scored 60 points in his final career game, leading the Lakers from a 15-point deficit to beat Utah 101-96, while Stephen Curry simultaneously made 10 threes for 46 points as the Warriors finished 73-9, breaking Chicago's all-time wins record.",
+      players: ["Kobe Bryant", "Stephen Curry", "Draymond Green"]
     },
     {
       year: 1997,
-      event: "On April 11, 1997, Michael Jordan scored 44 points as the Chicago Bulls defeated the Washington Bullets 103-93 to clinch their fifth consecutive Central Division title. Jordan's dominance helped Chicago secure the #1 seed in the Eastern Conference during their second three-peat run.",
+      event: "On April 13, 1997, Michael Jordan scored 39 points as the Chicago Bulls defeated the Charlotte Hornets 103-93 to complete a 69-13 regular season. Jordan's dominance helped Chicago secure the #1 seed heading into their second three-peat championship run.",
       players: ["Michael Jordan", "Scottie Pippen", "Dennis Rodman"]
     },
     {
-      year: 2001,
-      event: "On April 11, 2001, Allen Iverson scored 44 points as the Philadelphia 76ers defeated the Orlando Magic 108-98 to clinch the #1 seed in the Eastern Conference. Iverson's explosive performance capped his MVP season and positioned the Sixers for their Finals run.",
-      players: ["Allen Iverson", "Dikembe Mutombo", "Eric Snow"]
+      year: 1987,
+      event: "On April 12, 1987, Magic Johnson recorded 20 points, 13 rebounds, and 13 assists in the Lakers' 140-122 victory over the Sacramento Kings. The triple-double helped Los Angeles secure the #1 seed in the Western Conference during their championship season.",
+      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "James Worthy"]
     },
     {
-      year: 2010,
-      event: "On April 11, 2010, Kobe Bryant scored 34 points as the Los Angeles Lakers defeated the Sacramento Kings 112-104 to secure the #1 seed in the Western Conference. Bryant's leadership helped LA position themselves perfectly for their championship run.",
-      players: ["Kobe Bryant", "Pau Gasol", "Lamar Odom"]
+      year: 2008,
+      event: "On April 13, 2008, Chris Paul scored 42 points and added 8 assists as the New Orleans Hornets defeated the Denver Nuggets 120-103 in the regular season finale. Paul's explosion helped New Orleans secure the #2 seed in a breakthrough playoff season.",
+      players: ["Chris Paul", "David West", "Tyson Chandler"]
     },
     {
-      year: 2016,
-      event: "On April 11, 2016, Stephen Curry scored 27 points as the Golden State Warriors defeated the San Antonio Spurs 92-86, helping Golden State secure the greatest regular season record in NBA history at 73-9. The victory surpassed the 1995-96 Bulls' legendary mark.",
-      players: ["Stephen Curry", "Klay Thompson", "Draymond Green"]
+      year: 1991,
+      event: "On April 12, 1991, Michael Jordan scored 33 points as the Chicago Bulls defeated the Milwaukee Bucks 110-86 to clinch the Central Division title. Jordan's performance positioned Chicago perfectly for their first championship run.",
+      players: ["Michael Jordan", "Scottie Pippen", "Horace Grant"]
+    },
+    {
+      year: 1973,
+      event: "On April 13, 1973, Kareem Abdul-Jabbar scored 38 points as the Milwaukee Bucks defeated the Chicago Bulls 120-106 in the regular season finale. Abdul-Jabbar's dominance helped Milwaukee secure playoff positioning in the competitive Western Conference.",
+      players: ["Kareem Abdul-Jabbar", "Oscar Robertson", "Bob Dandridge"]
     }
   ],
   streakWatch: [
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      streak: "31-0 perfect home record (active)",
-      record: "32-0 — Would be NBA record for perfect home season",
-      gamesAway: 1
+      player: "Denver Nuggets",
+      team: "DEN",
+      streak: "12-game winning streak (completed)",
+      record: "18 — Denver Nuggets franchise record (1969-70 season)",
+      gamesAway: 6
+    },
+    {
+      player: "Stephen Curry",
+      team: "GSW",
+      streak: "1 game back from 73-day injury absence (active)",
+      record: "Most consecutive games after 70+ day absence with 20+ points: 7 games",
+      gamesAway: 6
+    },
+    {
+      player: "Paul Reed",
+      team: "DET",
+      streak: "Perfect field goal shooting (11-11 in last game)",
+      record: "Most consecutive field goals made: 35 — Wilt Chamberlain (1967)",
+      gamesAway: 24
+    },
+    {
+      player: "Phoenix Suns",
+      team: "PHX",
+      streak: "1 game with 30+ point victory margin",
+      record: "Most consecutive 30+ point victories: 4 games — Boston Celtics (1972-73)",
+      gamesAway: 3
     },
     {
       player: "Detroit Pistons",
       team: "DET",
-      streak: "4-game winning streak (active)",
-      record: "9 — Detroit Pistons record (multiple occasions)",
-      gamesAway: 5
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      streak: "5 straight games with 20+ points and 8+ assists (active)",
-      record: "16 — Isiah Thomas with Detroit (1984-85 season)",
-      gamesAway: 11
-    },
-    {
-      player: "Anthony Edwards",
-      team: "MIN",
-      streak: "3 straight games with 30+ points (active)",
-      record: "7 — Karl-Anthony Towns with Minnesota (2019-20 season)",
+      streak: "60+ wins in season (achieved)",
+      record: "Most wins in franchise history: 64 — Detroit Pistons (2005-06)",
       gamesAway: 4
     },
     {
-      player: "Tyler Herro",
-      team: "MIA",
-      streak: "2 straight games with 25+ points (active)",
-      record: "12 — Dwyane Wade with Miami (2008-09 season)",
-      gamesAway: 10
+      player: "Jamaree Bouyea",
+      team: "PHX",
+      streak: "1 game with +35 rating",
+      record: "Most consecutive games with +35 rating: 3 games — Various players",
+      gamesAway: 2
     },
     {
-      player: "San Antonio Spurs",
-      team: "SAS",
-      streak: "5-game winning streak (active)",
-      record: "17 — San Antonio Spurs record (2013-14 season)",
-      gamesAway: 12
-    },
-    {
-      player: "Miami Heat",
-      team: "MIA",
-      streak: "140 points scored in last game",
-      record: "155 — Miami Heat franchise record (vs. Orlando, 1991)",
-      gamesAway: 15
+      player: "Scottie Barnes",
+      team: "TOR",
+      streak: "1 efficient triple-double (8-11 FG)",
+      record: "Most consecutive efficient triple-doubles (70%+ FG): 4 — Wilt Chamberlain (1967-68)",
+      gamesAway: 3
     }
   ],
-  narrative: "April 11, 2026 delivered championship statements that crystallized the convergence of present greatness with basketball immortality as individual brilliance reached historic proportions while positioning current stars to surpass legendary predecessors. Cade Cunningham's title-clinching masterpiece orchestrating Detroit's 59-22 season directly mirrored Isiah Thomas's championship blueprint, yet the young guard's efficiency and modern skill set suggest he's operating at an even higher level than the Bad Boys legend. Anthony Edwards's 35-point explosion with clutch fourth-quarter heroics channeled Kevin Garnett's ability to single-handedly elevate Minnesota, though Edwards's perimeter versatility hints at greater individual ceiling than KG's legendary peak. Victor Wembanyama's two-way dominance securing playoff seeding paralleled Tim Duncan's immediate rookie impact but with superior versatility, while Jayson Tatum's bounce-back brilliance echoed Paul Pierce's championship leadership while delivering greater individual dominance. Tyler Herro's shooting barrage matched Glen Rice's explosive scoring, and Trae Young's upset orchestration channeled Dominique Wilkins's clutch gene while providing superior playmaking. As Detroit stands one win from 60-victory validation, Wembanyama remains one home game from NBA perfection, and the playoffs approach with historic milestones within reach, April 11th crystallized as the evening when championship-caliber performances not only honored basketball's greatest traditions but positioned the current generation to eclipse the legends they channel — creating a tapestry where individual excellence reached historic heights while suggesting that basketball's future might be even brighter than its legendary past."
+  narrative: "April 12, 2026 concluded the regular season with performances that transcended mere statistical achievement to forge direct connections between basketball's present excellence and its most legendary chapters, as individual brilliance reached historic proportions while positioning current stars not just to match but potentially surpass the icons they channel. Stephen Curry's triumphant 73-day return paralleled John Stockton's late-career durability yet demonstrated superior offensive firepower, Paul Reed's statistically perfect 11-for-11 masterpiece echoed Dennis Rodman's flawless championship contributions while delivering far greater scoring impact, and Julian Strawther's streak-completing excellence mirrored Robert Horry's clutch gene with more consistent production. The evening's magic continued as Jamaree Bouyea's shocking upset explosion matched Jeremy Lin's Linsanity phenomenon, Kon Knueppel's record-obliterating 268 three-pointers completely redefined Damian Lillard's rookie shooting standards, and Scottie Barnes's ultra-efficient triple-double channeled Magic Johnson's versatile excellence while suggesting even greater two-way capability. As Denver's 12-game streak reached historic proportions, Detroit's 60-win validation, and multiple season records fell simultaneously, the regular season finale crystallized as more than basketball's conclusion — it became a definitive statement that the current generation doesn't merely honor the legends who came before, but possesses the talent, efficiency, and basketball evolution to surpass even the most sacred benchmarks, creating a bridge between past and future where greatness doesn't diminish but compounds, promising that basketball's golden age isn't behind us but unfolding in real time through performances that would make even the immortals nod in recognition and respect."
 };
