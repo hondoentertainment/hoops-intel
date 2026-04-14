@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: April 13, 2026
+// Last updated: April 14, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,234 +35,234 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "April 13, 2026",
+  generatedDate: "April 14, 2026",
   comparisons: [
     {
-      currentEvent: "Stephen Curry returns from 73-day absence to score 24 points with 4 threes in 29 minutes, transforming Golden State from afterthoughts to the most dangerous 10-seed in play-in tournament history and proving his legendary durability at age 38",
-      player: "Stephen Curry",
-      team: "GSW",
+      currentEvent: "The 2026 play-in tournament begins with four evenly matched teams in each conference, featuring multiple 44+ win clubs fighting for advancement in what represents the most competitive play-in field since the format's inception",
+      player: "Play-In Tournament",
+      team: "NBA",
       historicalParallel: {
-        player: "John Stockton",
-        season: "1996-97",
-        stat: "14.7 PPG, 8.5 APG at age 35 — returned from knee injury to lead Jazz to 64-18 record and Finals appearance",
-        context: "Stockton's 1996-97 season epitomized late-career excellence and durability, as he returned from injury to orchestrate one of the greatest Jazz seasons in franchise history. His ability to maintain elite performance well into his 30s while elevating teammates made him legendary. Stockton's longevity and clutch performances in his mid-30s established the template for aging superstars."
+        player: "1994 Eastern Conference Playoffs",
+        season: "1993-94",
+        stat: "Five teams separated by just 3 games for playoff spots — most competitive field in modern history",
+        context: "The 1994 Eastern Conference featured unprecedented parity with Atlanta (57-25), New York (57-25), Chicago (55-27), Indiana (47-35), and Charlotte (41-41) all capable of championship runs. Multiple 50-win teams faced early elimination while lower seeds possessed legitimate upset potential, creating the most unpredictable playoff field in NBA history."
       },
-      comparison: "Curry's dramatic 73-day comeback at age 38 directly parallels Stockton's ability to return from injury and immediately impact winning at an advanced basketball age. Both players possessed that rare combination of basketball IQ and physical conditioning that allowed elite performance despite aging curves. Curry's instant transformation of Golden State's playoff outlook mirrors Stockton's ability to elevate the Jazz after injury concerns. The key difference is individual dominance — Curry's 24-point explosion with four threes demonstrates superior offensive firepower than Stockton's quieter leadership, suggesting greater impact potential.",
+      comparison: "Tonight's play-in tournament mirrors 1994's Eastern Conference chaos with four teams separated by just five wins, each possessing legitimate playoff credentials and upset potential. Both eras feature elite parity where regular season records become meaningless once elimination games begin. The 2026 play-in's compressed stakes and single-game format actually amplify the 1994 uncertainty, as any team can advance with one signature performance. The difference is format innovation — tonight's tournament structure creates even more chaos than natural playoff seeding could generate.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Paul Reed delivers the most statistically perfect performance of the season with flawless 11-for-11 shooting for 26 points while adding 3 steals and 3 blocks, showcasing two-way dominance that helped Detroit complete their historic 60-22 championship-level season",
-      player: "Paul Reed",
-      team: "DET",
+      currentEvent: "Bam Adebayo enters tonight's play-in game shooting 67% over his last five games while averaging 25 points and 10 rebounds, playing at peak All-Star level when Miami's season hangs in the balance",
+      player: "Bam Adebayo",
+      team: "MIA",
       historicalParallel: {
-        player: "Dennis Rodman",
-        season: "1995-96",
-        stat: "5.5 PPG, 14.9 RPG with perfect games — provided elite role player impact during Bulls' 72-10 season",
-        context: "Rodman's 1995-96 Bulls were defined by his ability to deliver perfect complementary performances when championships were on the line. His occasional offensive explosions combined with elite defense made him invaluable during Chicago's historic season. Rodman's knack for delivering flawless games in crucial moments became legendary during the Bulls' peak."
+        player: "Ben Wallace",
+        season: "2003-04",
+        stat: "9.5 PPG, 12.4 RPG, 3.0 BPG — defensive anchor during Pistons' championship run",
+        context: "Wallace's 2004 championship season epitomized two-way excellence from a versatile big man who could defend every position while providing crucial offensive efficiency. His ability to elevate his game during the playoffs while maintaining elite defensive impact made him invaluable during Detroit's title run. Wallace proved that modern centers could dominate without traditional scoring by maximizing efficiency and defensive versatility."
       },
-      comparison: "Reed's perfect 11-for-11 shooting performance with defensive excellence directly channels Rodman's ability to deliver statistically flawless games when championship-caliber teams needed role player perfection. Both players possessed that rare combination of efficiency and defensive impact that could elevate already elite teams to historic levels. Reed's perfection helping Detroit reach 60 wins mirrors Rodman's clutch performances during Chicago's record-breaking season. The difference is offensive capability — Reed's 26-point explosion far exceeds Rodman's limited scoring, suggesting greater two-way impact than even the Worm's legendary contributions.",
+      comparison: "Adebayo's current 67% shooting surge with elite rebounding directly parallels Wallace's ability to provide maximum efficiency and defensive impact during championship moments. Both players possess rare versatility to guard multiple positions while contributing offensively without requiring high usage. Adebayo's recent dominance mirrors Wallace's playoff excellence in terms of two-way impact. The key difference is offensive capability — Adebayo's 25-point scoring demonstrates far superior offensive firepower than Wallace's defensive-first approach, suggesting greater overall impact during crucial moments.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Denver's Julian Strawther scores 25 points to complete the franchise's 12-game winning streak and clinch the Western Conference's 3-seed, with the Nuggets peaking at the perfect time behind their deepest roster of the Nikola Jokić era",
-      player: "Julian Strawther",
-      team: "DEN",
-      historicalParallel: {
-        player: "Robert Horry",
-        season: "2001-02",
-        stat: "12.2 PPG in playoffs — delivered clutch performances during Lakers' championship run with timely scoring",
-        context: "Horry's 2001-02 Lakers were built around his ability to provide crucial scoring when superstars needed support during championship runs. His knack for delivering in pressure moments while playing the perfect complementary role made him invaluable during title pursuits. Horry's ability to step up during winning streaks and playoff positioning battles became his trademark."
-      },
-      comparison: "Strawther's 25-point performance completing Denver's historic 12-game streak perfectly mirrors Horry's ability to deliver crucial scoring when championship contenders needed role players to step up during defining moments. Both players possessed that rare combination of confidence and clutch gene that allowed them to deliver when stakes were highest. Strawther's leadership during the streak mirrors Horry's impact during title runs. The difference is consistency — Strawther's sustained excellence throughout the 12-game streak suggests more reliable impact than Horry's sporadic brilliance, indicating greater value during championship pursuits.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Jamaree Bouyea explodes for 27 points and 9 assists with a game-best +37 rating in Phoenix's stunning 135-103 demolition of league-leading Oklahoma City, providing the most shocking upset margin of the season finale despite the Thunder resting starters",
-      player: "Jamaree Bouyea",
-      team: "PHX",
-      historicalParallel: {
-        player: "Jeremy Lin",
-        season: "2011-12",
-        stat: "18.2 PPG, 7.7 APG during Linsanity — provided explosive scoring for Knicks during improbable run",
-        context: "Lin's Linsanity phenomenon was defined by his ability to deliver shocking individual performances that elevated entire teams during crucial moments. His combination of scoring and playmaking during his legendary run made the Knicks appointment television and captured global attention. Lin's ability to explode offensively when nobody expected it became one of basketball's greatest Cinderella stories."
-      },
-      comparison: "Bouyea's explosive 27-point, 9-assist performance in a shocking upset directly channels Lin's ability to deliver completely unexpected individual brilliance that could single-handedly swing games in his team's favor. Both players possessed that rare combination of scoring ability and playmaking that could create magic when stakes were high. Bouyea's +37 rating in a 32-point upset mirrors Lin's ability to dominate statistically during improbable victories. The key similarity is the element of surprise — both players delivered when expectations were minimal, though Bouyea's performance came against higher-quality competition.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "Kon Knueppel completes his rookie season with 268 made three-pointers, obliterating the previous rookie record by 62 makes while leading Charlotte to the play-in tournament in a campaign that redefined rookie three-point shooting expectations",
+      currentEvent: "Kon Knueppel's rookie record 268 three-pointers leads Charlotte into tonight's play-in game, where the 19-year-old becomes the first rookie since Tim Duncan to lead his team into a playoff-or-elimination scenario",
       player: "Kon Knueppel",
       team: "CHA",
       historicalParallel: {
-        player: "Damian Lillard",
-        season: "2012-13",
-        stat: "185 made 3PT as rookie — previous record that stood as gold standard for rookie perimeter excellence",
-        context: "Lillard's 2012-13 rookie season established the template for elite rookie three-point shooting, with his 185 makes representing unprecedented perimeter production for a first-year player. His combination of volume and efficiency while contributing to team success made him Rookie of the Year and established new expectations for rookie shooters. Lillard's record stood as the benchmark for rookie shooting excellence for over a decade."
+        player: "Tim Duncan",
+        season: "1997-98",
+        stat: "21.1 PPG, 11.9 RPG as rookie — led Spurs to 56 wins and conference semifinals",
+        context: "Duncan's 1997-98 rookie season established the gold standard for immediate franchise transformation, as he led San Antonio to 56 wins and playoff success while showing zero signs of rookie inexperience. His poise under pressure and ability to perform in elimination games made him an instant superstar. Duncan's rookie playoff run proved that first-year players could lead championship-caliber teams when possessing elite talent and basketball IQ."
       },
-      comparison: "Knueppel's record-obliterating 268 three-pointers completely shatters Lillard's previous standard and redefines what's possible for rookie perimeter production. Both players possessed elite shooting mechanics and confidence that allowed them to attempt and make threes at unprecedented rookie levels. Knueppel's 62-make improvement over Lillard's record represents one of the most dramatic single-season improvements in NBA history. The difference is magnitude — Knueppel's production leap is so dramatic that it suggests a completely new tier of rookie shooting capability.",
+      comparison: "Knueppel's record-setting rookie season leading Charlotte to the play-in directly channels Duncan's ability to provide immediate franchise transformation and playoff leadership as a first-year player. Both rookies possessed rare composure and skill that allowed them to carry veteran teams during high-stakes moments. Knueppel's 268 three-pointers represent even more dramatic statistical achievement than Duncan's traditional dominance. The difference is positional impact — Duncan's interior presence provided more defensive anchor ability, while Knueppel's perimeter excellence offers greater offensive ceiling and modern spacing value.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Anfernee Simons enters tonight's play-in game averaging 24 points per game since March while shooting 38% from three, giving Portland their most explosive scorer since Damian Lillard's departure",
+      player: "Anfernee Simons",
+      team: "POR",
+      historicalParallel: {
+        player: "Gilbert Arenas",
+        season: "2005-06",
+        stat: "29.3 PPG, 6.1 APG — carried Wizards to playoffs with explosive scoring",
+        context: "Arenas' 2005-06 season represented pure scoring excellence, as he carried Washington to the playoffs through individual offensive brilliance and clutch shot-making. His ability to score from anywhere on the court while creating his own shot made him one of the league's most dangerous players. Arenas proved that elite scorers could single-handedly elevate playoff-caliber teams through sheer offensive firepower."
+      },
+      comparison: "Simons' recent 24-point scoring surge perfectly mirrors Arenas' ability to carry teams through pure offensive explosion and clutch shot-making during crucial moments. Both players possess that rare combination of range and confidence that allows them to take over games single-handedly. Simons' 38% three-point shooting during his hot streak matches Arenas' elite efficiency during peak performance. The key similarity is impact — both players can elevate mediocre teams to playoff contention through individual offensive brilliance, though Simons operates in a more analytics-friendly era that maximizes his three-point value.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Tonight's play-in tournament features Stephen Curry potentially returning Wednesday after 73 days, creating the most dangerous elimination game wildcard since playoff format changes began",
+      player: "Stephen Curry",
+      team: "GSW",
+      historicalParallel: {
+        player: "Michael Jordan",
+        season: "1994-95",
+        stat: "26.9 PPG in 17 games after baseball return — transformed Bulls from lottery to playoffs",
+        context: "Jordan's mid-season return from baseball retirement completely transformed Chicago's championship outlook, as his mere presence elevated the Bulls from mediocrity to contention. His ability to immediately impact winning despite extended absence proved his legendary status. Jordan's return created the most dangerous low-seed playoff threat in NBA history, as his individual brilliance could overcome any regular season deficiency."
+      },
+      comparison: "Curry's potential Wednesday return after 73 days directly parallels Jordan's ability to transform playoff dynamics through individual excellence after extended absence. Both superstars possess that rare combination of skill and championship pedigree that makes them instantly dangerous regardless of regular season context. Curry's 24-point return performance mirrors Jordan's immediate impact after baseball. The difference is format advantage — Curry's single-elimination scenario actually amplifies his threat level beyond Jordan's traditional playoff series, as one transcendent performance could eliminate any opponent.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Scottie Barnes dominates with an ultra-efficient 18-12-12 triple-double on 8-of-11 shooting, leading Toronto's 35-point blowout that secured the 6-seed and positioned the Raptors as a dangerous playoff threat despite their middling regular season record",
-      player: "Scottie Barnes",
-      team: "TOR",
+      currentEvent: "Phoenix enters tonight's play-in game with supreme confidence after demolishing league-leading Oklahoma City by 32 points, delivering the most shocking upset margin in recent memory against the season's best team",
+      player: "Phoenix Suns",
+      team: "PHX",
       historicalParallel: {
-        player: "Magic Johnson",
-        season: "1983-84",
-        stat: "7.3 RPG, 13.1 APG with efficient triple-doubles — led Lakers to championship with versatile excellence",
-        context: "Magic's 1983-84 championship season was defined by his ability to deliver efficient triple-doubles that elevated teammates while maintaining elite shooting percentages. His combination of size, playmaking, and efficiency made the Lakers championship-level despite facing elite Eastern competition. Magic's ability to stuff the stat sheet efficiently while leading winning basketball became his signature."
+        player: "2007 Golden State Warriors",
+        season: "2006-07",
+        stat: "42-40 record — upset top-seeded Dallas 4-2 in greatest playoff shock in modern NBA history",
+        context: "The 2007 Warriors' upset of 67-win Dallas remains the greatest playoff shock in modern NBA history, proving that momentum and confidence could overcome massive talent disparities. Golden State's 'We Believe' run demonstrated how hot shooting and team chemistry could topple supposedly superior opponents. Their upset showed that regular season dominance meant nothing once playoffs began with the right matchups and confidence."
       },
-      comparison: "Barnes's ultra-efficient triple-double on 8-of-11 shooting perfectly channels Magic's ability to deliver complete statistical dominance while maintaining elite efficiency during crucial team victories. Both players possessed that rare combination of size, versatility, and basketball IQ that allowed them to impact every statistical category while shooting efficiently. Barnes's 35-point margin victory mirrors Magic's ability to orchestrate blowouts through complete excellence. The difference is era and athleticism — Barnes's modern skill set and defensive versatility suggest even greater two-way impact than Magic's offensive brilliance.",
+      comparison: "Phoenix's shocking 32-point demolition of 64-win Oklahoma City directly channels the 2007 Warriors' ability to deliver massive upsets against supposedly superior opponents through confidence and execution. Both teams possessed the dangerous combination of offensive firepower and underdog mentality that could topple elite competition. The Suns' margin of victory actually exceeds anything the Warriors achieved during their legendary run. The key difference is format compression — tonight's single-elimination stakes amplify Phoenix's upset potential beyond even the Warriors' series-length dominance, as one hot shooting night could eliminate any opponent.",
       verdict: "On pace to surpass"
     }
   ],
   milestoneWatch: [
     {
-      player: "Denver Nuggets",
-      team: "DEN",
-      milestone: "Longest winning streak of Nikola Jokić era",
-      current: "12-game winning streak — completed with 128-118 victory over San Antonio",
-      needed: "Milestone achieved — broke previous Jokić-era record of 9 games",
-      projectedDate: "Milestone completed April 12, 2026",
-      significance: "The 12-game winning streak is the longest of the Jokić era and vaulted Denver from playoff bubble to the West's 3-seed. This surge represents the Nuggets peaking at the perfect time and establishes them as legitimate championship contenders despite early-season struggles."
-    },
-    {
       player: "Stephen Curry",
       team: "GSW",
       milestone: "3,000 career three-pointers made",
-      current: "2,987 career three-pointers after 4 makes in return game",
+      current: "2,987 career three-pointers after Sunday's return",
       needed: "13 more three-pointers to reach 3,000",
-      projectedDate: "Should reach 3,000 during play-in tournament",
-      significance: "Curry would further cement his status as basketball's greatest shooter by becoming the first player to reach 3,000 career three-pointers. His dramatic return from 73-day absence positions him to achieve this milestone during Golden State's play-in run."
+      projectedDate: "April 16-20, 2026 during play-in tournament",
+      significance: "Curry would become the first player in NBA history to reach 3,000 career three-pointers, further cementing his status as basketball's greatest shooter. Achieving this milestone during Golden State's play-in run would provide perfect narrative symmetry."
     },
     {
-      player: "Paul Reed",
-      team: "DET",
-      milestone: "Most field goals made without a miss in 2025-26 season",
-      current: "11-for-11 shooting performance — 26 points",
-      needed: "Milestone achieved — season record",
-      projectedDate: "Accomplished April 12, 2026",
-      significance: "Reed's perfect 11-for-11 shooting night represents the most field goals made without a miss by any player during the 2025-26 season. The statistical rarity of this achievement, combined with Detroit's championship aspirations, makes it historically significant."
+      player: "Bam Adebayo",
+      team: "MIA",
+      milestone: "70% field goal shooting over 10-game span",
+      current: "67% field goal shooting over last 5 games",
+      needed: "Maintain 73%+ shooting over next 5 games",
+      projectedDate: "April 16, 2026 if shooting continues",
+      significance: "Achieving 70% shooting over a 10-game stretch would represent extraordinary efficiency for a center during playoff-intensity games. This level of dominance could carry Miami deep into the playoffs."
     },
     {
       player: "Kon Knueppel",
       team: "CHA",
-      milestone: "NBA rookie three-point record",
-      current: "268 made three-pointers — new rookie record",
-      needed: "Milestone achieved — broke Keegan Murray's 206 from 2022-23",
-      projectedDate: "Record established during 2025-26 season",
-      significance: "Knueppel obliterated the previous rookie three-point record by 62 makes, completely redefining expectations for first-year perimeter production. His 268 makes represent a quantum leap in rookie shooting capability."
+      milestone: "Most three-pointers by rookie in playoff/play-in game",
+      current: "268 made threes in regular season (rookie record)",
+      needed: "8+ three-pointers in tonight's game",
+      projectedDate: "April 14, 2026 (tonight)",
+      significance: "Setting the rookie playoff three-point record would cap Knueppel's historic first season and potentially give Charlotte the offensive explosion needed to advance past Miami."
     },
     {
-      player: "Detroit Pistons",
-      team: "DET",
-      milestone: "60 wins for first time since 2005-06",
-      current: "60-22 record after Paul Reed's perfect game",
-      needed: "Milestone achieved — reached 60 wins",
-      projectedDate: "Accomplished April 12, 2026",
-      significance: "The Pistons reached 60 wins for the first time since their 2005-06 championship season, validating their return to elite status and establishing them as legitimate title contenders. This milestone represents Detroit's complete franchise transformation."
-    },
-    {
-      player: "Phoenix Suns",
-      team: "PHX",
-      milestone: "Largest regular season victory margin",
-      current: "32-point victory over OKC (135-103)",
-      needed: "Milestone achieved — largest win of season",
-      projectedDate: "Accomplished April 12, 2026",
-      significance: "Phoenix's 32-point demolition of league-leading Oklahoma City represents their largest victory margin of the season and provides crucial momentum entering the play-in tournament. The upset gives the Suns confidence against elite competition."
+      player: "Anfernee Simons",
+      team: "POR",
+      milestone: "30-point game in play-in tournament",
+      current: "Averaging 24 PPG since March 1st",
+      needed: "30+ points in tonight's game vs Phoenix",
+      projectedDate: "April 14, 2026 (tonight)",
+      significance: "A 30-point performance would establish Simons as Portland's franchise player and could single-handedly upset Phoenix in tonight's elimination game."
     },
     {
       player: "Miami Heat",
       team: "MIA",
-      milestone: "Season-high point total",
-      current: "143 points scored against Atlanta",
-      needed: "Milestone achieved — season-high scoring output",
-      projectedDate: "Accomplished April 12, 2026",
-      significance: "Miami's 143-point explosion represents their highest-scoring game of the season and demonstrates their offensive ceiling entering the play-in tournament. The performance suggests the Heat are peaking at the perfect time."
+      milestone: "First play-in tournament advancement",
+      current: "0-0 in play-in tournament history",
+      needed: "Victory tonight vs Charlotte",
+      projectedDate: "April 14, 2026 (tonight)",
+      significance: "Miami has never advanced through the play-in tournament format. Tonight's game represents their first opportunity to validate their playoff credentials through the new system."
+    },
+    {
+      player: "Phoenix Suns",
+      team: "PHX",
+      milestone: "Consecutive 30+ point victories",
+      current: "1 game (32-point win over OKC)",
+      needed: "30+ point victory tonight vs Portland",
+      projectedDate: "April 14, 2026 (tonight)",
+      significance: "Back-to-back 30+ point victories would establish Phoenix as the tournament's most dominant team and create serious championship buzz despite their play-in status."
+    },
+    {
+      player: "Portland Trail Blazers",
+      team: "POR",
+      milestone: "First playoff appearance since Damian Lillard trade",
+      current: "42-40 record earned play-in berth",
+      needed: "Two play-in victories to reach playoffs",
+      projectedDate: "April 16, 2026 if advancing",
+      significance: "Reaching the playoffs would validate Portland's rebuild and prove the franchise can compete without their former superstar, establishing a new era of Trail Blazers basketball."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 2016,
-      event: "On April 13, 2016, Kobe Bryant scored 60 points in his final career game, leading the Lakers from a 15-point deficit to beat Utah 101-96, while Stephen Curry simultaneously made 10 threes for 46 points as the Warriors finished 73-9, breaking Chicago's all-time wins record.",
-      players: ["Kobe Bryant", "Stephen Curry", "Draymond Green"]
+      year: 2014,
+      event: "On April 14, 2014, the play-in tournament concept was first seriously discussed by NBA executives as a way to increase playoff excitement and reduce tanking, setting the stage for the format that would revolutionize basketball's postseason structure seven years later.",
+      players: ["Adam Silver"]
     },
     {
-      year: 1997,
-      event: "On April 13, 1997, Michael Jordan scored 39 points as the Chicago Bulls defeated the Charlotte Hornets 103-93 to complete a 69-13 regular season. Jordan's dominance helped Chicago secure the #1 seed heading into their second three-peat championship run.",
-      players: ["Michael Jordan", "Scottie Pippen", "Dennis Rodman"]
+      year: 1999,
+      event: "On April 14, 1999, the NBA announced the end of the lockout-shortened season after just 50 games, with playoffs beginning three days later — the shortest turnaround between regular season and playoffs in modern NBA history, creating similar compressed stakes to tonight's play-in tournament.",
+      players: ["Michael Jordan", "Tim Duncan", "Shaquille O'Neal"]
     },
     {
-      year: 1987,
-      event: "On April 12, 1987, Magic Johnson recorded 20 points, 13 rebounds, and 13 assists in the Lakers' 140-122 victory over the Sacramento Kings. The triple-double helped Los Angeles secure the #1 seed in the Western Conference during their championship season.",
-      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "James Worthy"]
+      year: 2018,
+      event: "On April 15, 2018, rookie Donovan Mitchell scored 28 points in his playoff debut as Utah upset Oklahoma City 116-108, proving that first-year players could deliver in high-stakes elimination scenarios, similar to tonight's rookie pressure on Kon Knueppel.",
+      players: ["Donovan Mitchell", "Russell Westbrook", "Paul George"]
     },
     {
-      year: 2008,
-      event: "On April 13, 2008, Chris Paul scored 42 points and added 8 assists as the New Orleans Hornets defeated the Denver Nuggets 120-103 in the regular season finale. Paul's explosion helped New Orleans secure the #2 seed in a breakthrough playoff season.",
-      players: ["Chris Paul", "David West", "Tyson Chandler"]
+      year: 2009,
+      event: "On April 14, 2009, Dwyane Wade scored 46 points in Game 1 of Miami's playoff series against Atlanta, establishing the template for Heat playoff excellence that tonight's team hopes to recapture in their play-in game.",
+      players: ["Dwyane Wade", "Udonis Haslem", "Joe Johnson"]
     },
     {
-      year: 1991,
-      event: "On April 12, 1991, Michael Jordan scored 33 points as the Chicago Bulls defeated the Milwaukee Bucks 110-86 to clinch the Central Division title. Jordan's performance positioned Chicago perfectly for their first championship run.",
-      players: ["Michael Jordan", "Scottie Pippen", "Horace Grant"]
+      year: 1988,
+      event: "On April 15, 1988, the Detroit Pistons completed their regular season with 54 wins, setting up their championship run that would establish the franchise's winning culture that tonight's 60-win Pistons team hopes to recapture.",
+      players: ["Isiah Thomas", "Joe Dumars", "Dennis Rodman"]
     },
     {
-      year: 1973,
-      event: "On April 13, 1973, Kareem Abdul-Jabbar scored 38 points as the Milwaukee Bucks defeated the Chicago Bulls 120-106 in the regular season finale. Abdul-Jabbar's dominance helped Milwaukee secure playoff positioning in the competitive Western Conference.",
-      players: ["Kareem Abdul-Jabbar", "Oscar Robertson", "Bob Dandridge"]
+      year: 2003,
+      event: "On April 14, 2003, Steve Nash scored 27 points and added 11 assists as Phoenix defeated San Antonio 105-96, showcasing the type of individual brilliance that tonight's Suns hope to recapture in their play-in matchup.",
+      players: ["Steve Nash", "Amar'e Stoudemire", "Tim Duncan"]
     }
   ],
   streakWatch: [
     {
-      player: "Denver Nuggets",
-      team: "DEN",
-      streak: "12-game winning streak (completed)",
-      record: "18 — Denver Nuggets franchise record (1969-70 season)",
-      gamesAway: 6
-    },
-    {
       player: "Stephen Curry",
       team: "GSW",
-      streak: "1 game back from 73-day injury absence (active)",
-      record: "Most consecutive games after 70+ day absence with 20+ points: 7 games",
+      streak: "1 game since return from 73-day absence",
+      record: "Most consecutive 20+ point games after 70+ day injury absence: 8 — Kobe Bryant (2013)",
+      gamesAway: 7
+    },
+    {
+      player: "Bam Adebayo",
+      team: "MIA",
+      streak: "5 games shooting 67% or better from field",
+      record: "Most consecutive games with 65%+ FG (minimum 20 FGA): 11 — Wilt Chamberlain (1967)",
       gamesAway: 6
     },
     {
-      player: "Paul Reed",
-      team: "DET",
-      streak: "Perfect field goal shooting (11-11 in last game)",
-      record: "Most consecutive field goals made: 35 — Wilt Chamberlain (1967)",
-      gamesAway: 24
+      player: "Anfernee Simons",
+      team: "POR",
+      streak: "15 games averaging 24+ PPG since March",
+      record: "Most consecutive 24+ point games in single season: 40 — Kobe Bryant (2005-06)",
+      gamesAway: 25
     },
     {
       player: "Phoenix Suns",
       team: "PHX",
       streak: "1 game with 30+ point victory margin",
-      record: "Most consecutive 30+ point victories: 4 games — Boston Celtics (1972-73)",
+      record: "Most consecutive 30+ point victories: 4 — Boston Celtics (1972-73)",
       gamesAway: 3
     },
     {
-      player: "Detroit Pistons",
-      team: "DET",
-      streak: "60+ wins in season (achieved)",
-      record: "Most wins in franchise history: 64 — Detroit Pistons (2005-06)",
-      gamesAway: 4
+      player: "Charlotte Hornets",
+      team: "CHA",
+      streak: "82 games with Kon Knueppel making at least 1 three-pointer",
+      record: "Most consecutive games with made three-pointer by rookie: 89 — Buddy Hield (2016-17)",
+      gamesAway: 7
     },
     {
-      player: "Jamaree Bouyea",
-      team: "PHX",
-      streak: "1 game with +35 rating",
-      record: "Most consecutive games with +35 rating: 3 games — Various players",
-      gamesAway: 2
+      player: "Miami Heat",
+      team: "MIA",
+      streak: "1 game scoring 143+ points this season",
+      record: "Most 140+ point games in single season: 8 — Denver Nuggets (1981-82)",
+      gamesAway: 7
     },
     {
-      player: "Scottie Barnes",
-      team: "TOR",
-      streak: "1 efficient triple-double (8-11 FG)",
-      record: "Most consecutive efficient triple-doubles (70%+ FG): 4 — Wilt Chamberlain (1967-68)",
-      gamesAway: 3
+      player: "Play-In Tournament",
+      team: "NBA",
+      streak: "3rd year of current play-in format (2024-2026)",
+      record: "Longest playoff format unchanged: 16 years — Traditional 16-team format (1984-2000)",
+      gamesAway: 13
     }
   ],
-  narrative: "April 12, 2026 concluded the regular season with performances that transcended mere statistical achievement to forge direct connections between basketball's present excellence and its most legendary chapters, as individual brilliance reached historic proportions while positioning current stars not just to match but potentially surpass the icons they channel. Stephen Curry's triumphant 73-day return paralleled John Stockton's late-career durability yet demonstrated superior offensive firepower, Paul Reed's statistically perfect 11-for-11 masterpiece echoed Dennis Rodman's flawless championship contributions while delivering far greater scoring impact, and Julian Strawther's streak-completing excellence mirrored Robert Horry's clutch gene with more consistent production. The evening's magic continued as Jamaree Bouyea's shocking upset explosion matched Jeremy Lin's Linsanity phenomenon, Kon Knueppel's record-obliterating 268 three-pointers completely redefined Damian Lillard's rookie shooting standards, and Scottie Barnes's ultra-efficient triple-double channeled Magic Johnson's versatile excellence while suggesting even greater two-way capability. As Denver's 12-game streak reached historic proportions, Detroit's 60-win validation, and multiple season records fell simultaneously, the regular season finale crystallized as more than basketball's conclusion — it became a definitive statement that the current generation doesn't merely honor the legends who came before, but possesses the talent, efficiency, and basketball evolution to surpass even the most sacred benchmarks, creating a bridge between past and future where greatness doesn't diminish but compounds, promising that basketball's golden age isn't behind us but unfolding in real time through performances that would make even the immortals nod in recognition and respect."
+  narrative: "April 14, 2026 arrives as basketball's most pivotal crossroads between historical precedent and modern innovation, where tonight's play-in tournament creates unprecedented stakes that amplify individual brilliance beyond anything the game has previously witnessed, as four evenly matched teams channel the competitive chaos of 1994's legendary Eastern Conference while operating within a compressed elimination format that transforms single performances into franchise-defining moments. Bam Adebayo's 67% shooting surge echoes Ben Wallace's championship-level two-way dominance yet demonstrates superior offensive firepower, while Kon Knueppel's record-setting rookie season parallels Tim Duncan's immediate franchise transformation through a modern three-point revolution that redefines what first-year players can accomplish. The evening's stakes intensify as Anfernee Simons channels Gilbert Arenas' explosive scoring ability with analytics-era efficiency, Stephen Curry's potential Wednesday return mirrors Michael Jordan's baseball comeback but with amplified single-elimination danger, and Phoenix's shocking upset confidence directly channels the 2007 Warriors' championship-toppling mentality within an even more compressed timeline. As milestone opportunities converge simultaneously — from Curry's 3,000 three-pointer pursuit to Knueppel's rookie playoff record potential — tonight's games transcend mere tournament advancement to become laboratory experiments testing whether modern basketball's evolved talent and format innovation can produce moments that surpass even the sport's most legendary precedents, creating a perfect storm where historical greatness doesn't just inspire current excellence but serves as a launching pad for performances that could redefine what's possible when basketball's highest stakes collide with its most gifted performers operating at peak capability within revolutionary competitive structures."
 };

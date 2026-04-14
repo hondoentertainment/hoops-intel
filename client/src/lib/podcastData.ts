@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 13, 2026
+// Last updated: April 14, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,153 +22,109 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 13, 2026",
-
-  episodeTitle: "The Chef Is Back: Curry Returns, Reed Goes Perfect, and the Play-In Just Got Dangerous",
-
-  coldOpen:
-    "Seventy-three days. That's how long the NBA held its breath waiting for Stephen Curry to come back. And last night — in the final game of the regular season — he walked into Crypto.com Arena and dropped 24 points with four threes like he never left. Oh, and while that was happening? Paul Reed shot a perfect 11-for-11 in Detroit, Phoenix blew out the best team in basketball by 32 points, and Denver just kept winning — twelve straight to close the year. The regular season is officially dead. The play-in starts Tuesday. And folks, I am telling you right now — this postseason is going to be absolutely unhinged. Let's get into it.",
-
+  date: "April 14, 2026",
+  episodeTitle: "The Real Season Begins: Play-In Chaos and Curry's Stunning Return",
+  
   rundown: [
     {
-      topic: "Stephen Curry's 73-Day Return and What It Means for the Play-In",
+      topic: "Play-In Tournament Tips Off: Heat-Hornets and Suns-Blazers Battle for Survival",
       segment: "opener",
-      duration: "8–10 minutes",
+      duration: "8 minutes",
       keyStats: [
-        "24 PTS · 4 3PM · 7-14 FG in 29 minutes — first game back after 73 days",
-        "Warriors fell 115-110 to the Clippers despite Curry's performance",
-        "Curry reportedly told teammates he feels 'the best I've felt since November'",
-        "Golden State enters the play-in as the 10-seed at 37-45",
-        "Wednesday's rematch with LAC is a winner-take-all elimination game",
-        "Jimmy Butler remains out with a torn ACL — Curry is the entire show"
+        "Charlotte leads play-in teams with 44-38 record",
+        "Miami riding 143-point explosion from Sunday",
+        "Phoenix demolished OKC by 32 points to close season",
+        "Portland won 4 of final 6 to secure play-in berth",
+        "Winners advance, losers face Golden State's rejuvenated Stephen Curry",
+        "Kon Knueppel set rookie record with 268 made threes"
       ],
-      debateAngle:
-        "Is Golden State actually the most dangerous team in the play-in field now that Curry is healthy — or is one good performance after a 73-day layoff not enough to make them a genuine threat? Do the Warriors have enough around Curry to beat the Clippers twice, let alone survive into the first round?",
-      suggestedQuote:
-        "Here's the thing about Stephen Curry — you don't ease back into being Stephen Curry. You either ARE Stephen Curry or you're not. And last night, in game one back from a 73-day absence, the man knocked down four threes, played 29 minutes, and looked like he'd been playing all week. The Warriors went from a lottery footnote to the most interesting team in the tournament overnight.",
-      relevantPlayers: [
-        "Stephen Curry",
-        "Bennedict Mathurin",
-        "Jimmy Butler",
-        "Bogdan Bogdanovic"
-      ]
+      debateAngle: "Which play-in game has higher upset potential — Miami's veteran experience in Charlotte or Portland's explosive scoring against Phoenix?",
+      suggestedQuote: "Tonight's not about the 82 games we just finished — it's about the next 48 minutes that determine who's playing real basketball and who's going home. The play-in tournament was designed for this exact chaos.",
+      relevantPlayers: ["Bam Adebayo", "Kon Knueppel", "Anfernee Simons", "Jamaree Bouyea"]
     },
+
     {
-      topic: "Paul Reed's Perfect 11-for-11 Night and Detroit's Historic 60-Win Season",
+      topic: "Bam Adebayo's Dominant Stretch: Can Miami's All-Star Lead the Heat Past Charlotte?",
       segment: "deep-dive",
-      duration: "7–9 minutes",
+      duration: "10 minutes",
       keyStats: [
-        "Reed: 11-for-11 FG · 26 PTS · 3 STL · 3 BLK · +28 in just 22 minutes",
-        "The odds of shooting perfect on 11+ field goal attempts in an NBA game are astronomically rare",
-        "Cade Cunningham: 14 AST in 22 MIN — second game back from a collapsed lung",
-        "Detroit finished 60-22 — their best record since the 2005-06 Ben Wallace era",
-        "Pistons own the East's 1-seed and home-court advantage throughout the playoffs",
-        "Detroit beat Indiana 133-121 to close the year on a dominant note"
+        "Adebayo shooting 67% from field over last 5 games",
+        "25 points, 10 rebounds, 3 steals in Sunday's win",
+        "Miami outscored Atlanta 143-119 in season finale",
+        "Heat are 6-4 in last 10 but trending up at perfect time",
+        "Charlotte allows 115.8 PPG to opposing centers this season",
+        "Adebayo's playoff experience: 4 previous postseasons"
       ],
-      debateAngle:
-        "Is the 2025-26 Detroit Pistons squad genuinely a championship-caliber team, or are they the best regular season story that gets exposed when the real competition starts? Cunningham is two games back from a collapsed lung, Reed is a reserve going perfect — can this team hold up for four playoff rounds against Boston, New York, and Cleveland?",
-      suggestedQuote:
-        "Paul Reed shot 11-for-11. Let that sink in. Not a layup line drill, not a free throw contest — eleven field goal attempts in an NBA game, and every single one went in. He also had three steals and three blocks. In twenty-two minutes. If you're building a highlight tape for the Pistons' season, you end it right there.",
-      relevantPlayers: [
-        "Paul Reed",
-        "Cade Cunningham",
-        "Jalen Duren",
-        "Killian Hayes"
-      ]
+      debateAngle: "Is Bam Adebayo playing well enough right now to single-handedly carry Miami through the play-in tournament, or does this Heat team still have too many offensive inconsistencies?",
+      suggestedQuote: "When Bam Adebayo is shooting 67% and grabbing double-digit rebounds while anchoring the defense, the Miami Heat become a completely different animal. This is playoff Bam arriving right on schedule.",
+      relevantPlayers: ["Bam Adebayo", "Jimmy Herro", "Terry Rozier", "Miles Bridges"]
     },
+
     {
-      topic: "Phoenix Just Torched the 1-Seed by 32 — Is OKC's Regular Season Success a Red Flag?",
+      topic: "Stephen Curry's Miraculous Return: 24 Points After 73 Days Changes Everything",
       segment: "hot-take",
-      duration: "6–8 minutes",
+      duration: "6 minutes",
       keyStats: [
-        "Phoenix 135, OKC 103 — a 32-point blowout despite Thunder owning the league's best record",
-        "Jamaree Bouyea: 27 PTS · 9 AST · +37 — the game's best plus-minus",
-        "Khaman Maluach: 18 PTS · 14 REB for Phoenix's second unit",
-        "OKC finished 64-18 — the best record in basketball — but lost by 32 to reserves",
-        "SGA and the Thunder's full rotation were all rested for the game",
-        "Phoenix enters Tuesday's play-in opener vs Portland with genuine momentum"
+        "Curry scored 24 points, 4 threes in just 29 minutes",
+        "73-day absence due to bilateral knee issues",
+        "Warriors went from play-in afterthought to most dangerous 10-seed",
+        "Golden State faces tonight's loser on Wednesday",
+        "Curry is 38 years old — oldest to score 20+ after 70+ day absence",
+        "Warriors' championship experience with healthy Curry"
       ],
-      debateAngle:
-        "Hot take: Does OKC getting blown out by 32 — even with reserves — actually matter as playoff bulletin board material? Opposing coaches and players notice these things. Does this game reveal anything about the Thunder's depth, or is this completely meaningless noise that we should all ignore? And seriously — is Phoenix a sleeper that nobody is taking seriously enough heading into this play-in?",
-      suggestedQuote:
-        "I know, I know — the Thunder rested everybody. SGA didn't play. Their whole rotation sat. But I'm sorry, you cannot lose to anybody in this league by 32 points without it meaning SOMETHING. Jamaree Bouyea had a +37 rating. The Suns looked sharp, connected, and hungry. Meanwhile OKC's second unit got cooked for three quarters. That's a data point. File it away.",
-      relevantPlayers: [
-        "Jamaree Bouyea",
-        "Khaman Maluach",
-        "Shai Gilgeous-Alexander",
-        "Kevin Durant"
-      ]
+      debateAngle: "HOT TAKE: A healthy Stephen Curry makes the Warriors more dangerous than any team that finishes 37-45 has a right to be — are they actually the scariest Wednesday matchup now?",
+      suggestedQuote: "Seventy-three days off, 38 years old, comes back and drops 24 points like he never left. Stephen Curry just turned the play-in tournament completely upside down with one performance.",
+      relevantPlayers: ["Stephen Curry", "Draymond Green", "Klay Thompson"]
     },
+
     {
-      topic: "Rapid Fire: Denver's 12-Game Streak, Barnes' Triple-Double, Knueppel's Record, and LeBron's Finale",
+      topic: "Rapid Fire: Kon's Record, Bouyea's Breakout, and Tournament Storylines",
       segment: "rapid-fire",
-      duration: "5–6 minutes",
+      duration: "7 minutes",
       keyStats: [
-        "Denver won 12 straight to close the season — longest streak of the Jokić era — clinching the West's 3-seed",
-        "Julian Strawther: 25 PTS · 4-8 3PT in San Antonio · Jokić had 23 in just 18 minutes before being pulled",
-        "Scottie Barnes: 18 PTS · 12 REB · 12 AST on 8-of-11 FG in Toronto's 35-point blowout of Brooklyn",
-        "Kon Knueppel finished with 268 made threes — obliterating Keegan Murray's rookie record of 206 from 2022-23",
-        "LeBron James: 18 PTS · 4 REB · 6 AST in 17 MIN alongside Bronny (11/1/4) as Lakers beat Jazz 131-107",
-        "Miami dropped a season-high 143 points on Atlanta — Jaquez 26, Adebayo 25-10, Powell 25"
+        "Kon Knueppel: 268 threes (previous rookie record: 206)",
+        "Jamaree Bouyea: 27 points, 9 assists, +37 vs OKC",
+        "Anfernee Simons: 24 PPG since March 1st",
+        "All four play-in teams report clean injury reports",
+        "Phoenix -4.5 favorites despite Portland's hot streak",
+        "Charlotte -1.5 at home despite Miami's recent dominance"
       ],
-      debateAngle:
-        "Which of these stories deserves more attention than it's getting: Denver's 12-game streak making them a legit title contender, Knueppel's shattered rookie three-point record as a ROY argument, or the LeBron-Bronny finale moment as a cultural landmark? Pick one and make the case.",
-      suggestedQuote:
-        "Real quick — can we spend just thirty seconds appreciating that Kon Knueppel made 268 threes as a rookie? The previous record was 206. He didn't just break the record, he lapped it by sixty-two makes. Meanwhile Scottie Barnes had a triple-double on 8-of-11 shooting and we're barely talking about it because there's too much other stuff happening. This was a wild night of basketball, people.",
-      relevantPlayers: [
-        "Julian Strawther",
-        "Nikola Jokić",
-        "Scottie Barnes",
-        "Kon Knueppel",
-        "LeBron James",
-        "Bronny James",
-        "Jaime Jaquez Jr.",
-        "Bam Adebayo"
-      ]
+      debateAngle: "Which rookie performance tonight matters more for their legacy — Kon Knueppel trying to lead Charlotte past Miami or VJ Edgecombe waiting to face the winner on Wednesday?",
+      suggestedQuote: "Kon Knueppel didn't just break the rookie three-point record — he obliterated it. Tonight we find out if that shooting translates to winning basketball when everything's on the line.",
+      relevantPlayers: ["Kon Knueppel", "Jamaree Bouyea", "Anfernee Simons", "VJ Edgecombe"]
     },
+
     {
-      topic: "Play-In Preview: Every Series, Every Storyline — What to Watch Starting Tuesday",
+      topic: "Looking Ahead: Wednesday's Elimination Games and Playoff Picture Clarity",
       segment: "closer",
-      duration: "6–8 minutes",
+      duration: "5 minutes",
       keyStats: [
-        "East Play-In: (7) PHI vs (8) ORL on Tuesday · (9) CHA vs (10) MIA on Wednesday",
-        "West Play-In: (7) PHX vs (8) POR on Tuesday · (9) LAC vs (10) GSW on Wednesday — Curry rematch",
-        "First round of playoffs begins Saturday, April 18",
-        "Cooper Flagg ROY favorite at -290 odds — Knueppel's record keeps race interesting",
-        "Wembanyama fully healthy for San Antonio after precautionary rest — SAS drew DEN in Round 1",
-        "Detroit's Cade Cunningham is day-to-day (collapsed lung) but available for Round 1 vs TBD"
+        "Winners advance to Friday's playoff openers",
+        "Losers face elimination Wednesday night",
+        "Philadelphia and Lakers await advancement game winners",
+        "Clippers-Warriors winner faces tonight's Western loser",
+        "Play-in tournament expanded playoff field by 33%",
+        "First round begins Friday with 8 games across 4 days"
       ],
-      debateAngle:
-        "Biggest first-round upset pick: Denver over San Antonio as the 3-seed, or Golden State — if they survive the play-in — knocking off a higher seed in the first round on the back of a fully healthy Curry? Which team scares you most as a potential bracket-breaker entering this postseason?",
-      suggestedQuote:
-        "Tuesday night, Phoenix and Portland tip off the play-in. Wednesday, Stephen Curry goes back to Crypto.com Arena for a rematch with the Clippers in an elimination game. I need you to understand — if Curry plays like he did last night and the Warriors win that game, we are going to be talking about Golden State for the entire first round of the playoffs. The regular season is a memory. The real season starts now. Don't miss a second of it.",
-      relevantPlayers: [
-        "Stephen Curry",
-        "Paolo Banchero",
-        "Jamaree Bouyea",
-        "Cade Cunningham",
-        "Victor Wembanyama",
-        "Nikola Jokić",
-        "Cooper Flagg",
-        "Kon Knueppel"
-      ]
+      debateAngle: "Does tonight's result matter more for who advances or for setting up Wednesday's elimination games with maximum drama?",
+      suggestedQuote: "Two games tonight, two teams advance, two teams face elimination Wednesday. This is exactly the chaos Adam Silver envisioned when he created the play-in tournament — and we're absolutely here for it.",
+      relevantPlayers: ["Joel Embiid", "LeBron James", "Paul George", "Victor Wembanyama"]
     }
   ],
 
-  socialClip:
-    "Best clip for social: Open on the graphic — '73 DAYS' — then cut to Curry draining back-to-back threes in the third quarter, the arena erupting. Voice-over: 'Stephen Curry. 73 days. 24 points. 4 threes. 29 minutes. He's back.' End on his sideline reaction after the fourth three drops — pure joy, fist pump, pointing at a teammate. Caption: 'The most dangerous 10-seed in play-in history just showed up. 🍳🔥 #CurryIsBack #NBAPlayIn'. This clip will perform on every platform — the combo of the long absence, the immediate impact, and Curry's unmistakable personality gives it massive organic reach.",
+  coldOpen: "Eighty-two games are in the books, and they don't mean a damn thing anymore. Tonight, the play-in tournament tips off with two games that will determine playoff dreams and heartbreak. Bam Adebayo is shooting 67% and looking unstoppable. Kon Knueppel just broke the rookie three-point record. And oh yeah — Stephen Curry just returned after 73 days to remind everyone why he's the most dangerous player alive. The real season starts now. This is Hoops Intel.",
+
+  socialClip: "Stephen Curry return segment (1:30-3:00) — Focus on the 73-day absence stat and the quote about making Warriors the 'scariest Wednesday matchup.' Perfect for viral social with Curry highlights and the age/comeback angle. Include graphics showing 24 points, 4 threes, 29 minutes.",
 
   tweetThread: [
-    "🚨 HOOPS INTEL — April 13, 2026 | The regular season is over. The play-in starts Tuesday. And last night was one of the wildest final nights in recent memory. Here's everything that happened and why it matters. Thread 🧵👇",
-
-    "1/ CURRY IS BACK. 73 days after bilateral runner's knee shut him down, Stephen Curry returned last night: 24 PTS · 4 3PM · 7-14 FG in 29 minutes. Golden State still lost 115-110 to the Clippers, but nobody cares about that. Wednesday's elimination rematch is now the most must-watch game of the week. The 10-seed just became the most dangerous team in the play-in. 🍳",
-
-    "2/ PERFECTION. Paul Reed went 11-for-11 from the field for 26 points in 22 minutes. Three steals. Three blocks. +28. The most makes without a miss in any game this entire season. Detroit finished 60-22 — East's 1-seed — with Cade Cunningham dropping 14 assists in 22 minutes in just his second game back from a collapsed lung. The Pistons are built different. 🏆",
-
-    "3/ WAIT — PHOENIX DID WHAT? The Suns just beat OKC 135-103. A 32-point beatdown of the team with the league's best record. Yes, the Thunder rested everyone. But Jamaree Bouyea went for 27-9 with a +37. Phoenix looks DANGEROUS heading into Tuesday's play-in opener vs Portland. Also: Denver won their 12th straight to clinch the West's 3-seed. Jokić needed 18 minutes. 💥",
-
-    "4/ RECORDS & MILESTONES from the season finale: Kon Knueppel finished with 268 made threes — crushing the rookie record of 206. Scottie Barnes had an 18-12-12 triple-double on 8-of-11 shooting. LeBron and Bronny James played side-by-side one last time in the regular season. Miami dropped 143 points. Cooper Flagg closed with a +21 to seal his ROY case.",
-
-    "5/ THE BRACKET IS SET. Play-in tips TUESDAY: PHI vs ORL | PHX vs POR. Wednesday's elimination games: CHA vs MIA | LAC vs GSW (Curry rematch). Round 1 starts Saturday April 18. Every series has upset potential. Every team has a storyline. The real season starts now — and after last night, we have absolutely no idea what's coming next. Don't sleep on any of it. 🏀🔥 | Full breakdown: hoopsintel.net"
+    "🏀 THE REAL SEASON BEGINS: Play-in tournament tips off TONIGHT with Heat-Hornets (7:30 ET) and Suns-Blazers (10:00 ET). Latest Hoops Intel pod breaks down why these games will be pure chaos 🧵",
+    
+    "📈 BAM'S DOMINANCE: Adebayo shooting 67% over last 5 games with elite defense. Heat riding Sunday's 143-point explosion into Charlotte. Can veteran playoff experience trump the Hornets' home court and Kon's record-breaking shooting?",
+    
+    "🔥 CURRY CHANGES EVERYTHING: 24 points, 4 threes after 73 days off. At 38 years old. Warriors went from play-in afterthought to the most dangerous elimination game opponent in tournament history. Wednesday just got terrifying.",
+    
+    "🎯 ROOKIE RECORDS: Kon Knueppel's 268 made threes obliterated the previous mark by 62. Tonight he gets to prove that shooting translates to winning basketball when everything's on the line. Pressure's on the 19-year-old.",
+    
+    "⚡ FULL POD BREAKDOWN: All the stats, storylines, and predictions you need for tonight's chaos. Link in bio — because these games are too good to watch unprepared. The play-in tournament delivers again. #HoopsIntel"
   ]
 };
