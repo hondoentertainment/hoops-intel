@@ -13,27 +13,37 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
+// Scripts marked critical=true will abort the run (exit 1) if they fail.
+// Secondary scripts (critical=false) produce exit code 2 (partial failure).
 const DAILY_SCRIPTS = [
-  { name: "Edition", script: "generate-edition.mjs" },
-  { name: "Watch Guide", script: "generate-watch-guide.mjs" },
-  { name: "Sentiment", script: "generate-sentiment.mjs" },
-  { name: "Momentum", script: "generate-momentum.mjs" },
-  { name: "Podcast", script: "generate-podcast.mjs" },
-  { name: "History", script: "generate-history.mjs" },
-  { name: "Refs", script: "generate-refs.mjs" },
-  { name: "RSS Feed", script: "generate-rss.mjs" },
-  { name: "Sitemap", script: "generate-sitemap.mjs" },
+  { name: "Edition",     script: "generate-edition.mjs",    critical: true  },
+  { name: "Watch Guide", script: "generate-watch-guide.mjs",critical: false },
+  { name: "Sentiment",   script: "generate-sentiment.mjs",  critical: false },
+  { name: "Momentum",    script: "generate-momentum.mjs",   critical: false },
+  { name: "Podcast",     script: "generate-podcast.mjs",    critical: false },
+  { name: "History",     script: "generate-history.mjs",    critical: false },
+  { name: "Refs",        script: "generate-refs.mjs",       critical: false },
+  { name: "RSS Feed",    script: "generate-rss.mjs",        critical: false },
+  { name: "Sitemap",     script: "generate-sitemap.mjs",    critical: false },
 ];
 
 async function main() {
+  // ── Pre-flight: validate required environment variables ───
+  if (!process.env.ANTHROPIC_API_KEY?.trim()) {
+    console.error("❌ ANTHROPIC_API_KEY is not set.");
+    console.error("   Set the ANTHROPIC_API_KEY repository secret in GitHub Settings → Secrets.");
+    process.exit(1);
+  }
+
   console.log("🏀 Hoops Intel — Daily Generation Runner");
   console.log(`   Running ${DAILY_SCRIPTS.length} scripts...\n`);
 
   const results = [];
   let passed = 0;
   let failed = 0;
+  let criticalFailed = false;
 
-  for (const { name, script } of DAILY_SCRIPTS) {
+  for (const { name, script, critical } of DAILY_SCRIPTS) {
     const scriptPath = join(__dirname, script);
     console.log(`── ${name} (${script}) ──`);
 
@@ -50,6 +60,7 @@ async function main() {
     } catch (err) {
       results.push({ name, status: "failed", error: err.message });
       failed++;
+      if (critical) criticalFailed = true;
       console.error(`❌ ${name} — FAILED: ${err.message}\n`);
     }
   }
@@ -66,9 +77,14 @@ async function main() {
   console.log(`  Failed: ${failed}/${DAILY_SCRIPTS.length}`);
   console.log("══════════════════════════════════════════\n");
 
-  if (failed > 0) {
-    console.log(`⚠️  ${failed} script(s) failed — check logs above for details.`);
+  if (criticalFailed) {
+    // Critical script (Edition) failed — hard failure
+    console.log(`❌ Critical script(s) failed — aborting.`);
     process.exit(1);
+  } else if (failed > 0) {
+    // Only secondary scripts failed — partial success
+    console.log(`⚠️  ${failed} secondary script(s) failed — edition generated but some content is missing.`);
+    process.exit(2);
   } else {
     console.log("🎉 All daily scripts completed successfully!");
   }
