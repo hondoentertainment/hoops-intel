@@ -37,6 +37,17 @@ jobs:
       - name: Install Anthropic SDK
         run: npm install @anthropic-ai/sdk --no-save
 
+      - name: Validate secrets
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "❌ ANTHROPIC_API_KEY is not set — retry cannot proceed."
+            echo "   Add ANTHROPIC_API_KEY to GitHub Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "✅ ANTHROPIC_API_KEY is present."
+
       - name: Retry daily generation
         id: generate
         env:
