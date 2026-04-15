@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 13, 2026
+// Last updated: April 15, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,363 +33,171 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 13, 2026",
-  gameOfTheNight: "GS-LAC-20260412",
+  date: "April 15, 2026",
+  gameOfTheNight: "MIA-CHA-20260414",
   topClutchPerformer: { 
-    player: "Stephen Curry", 
-    team: "GSW", 
-    clutchRating: 94, 
-    description: "Returned from 73-day absence to score 10 fourth-quarter points with three clutch threes, nearly stealing victory on the road" 
+    player: "LaMelo Ball", 
+    team: "CHA", 
+    clutchRating: 89, 
+    description: "Orchestrated overtime victory with 8 clutch points and 3 assists despite horrific three-point shooting, willing Charlotte past elimination" 
   },
   games: [
     {
-      gameId: "ORL-BOS-20260412",
-      teams: { home: "BOS", away: "ORL" },
-      finalScore: { home: 113, away: 108 },
+      gameId: "POR-PHX-20260414",
+      teams: { home: "PHX", away: "POR" },
+      finalScore: { home: 110, away: 114 },
       swings: [
         {
-          quarter: "Q2",
-          timestamp: "6:42",
-          description: "Paolo Banchero's personal 9-0 run gives Magic first double-digit lead",
-          runScore: "9-0 ORL",
+          quarter: "1st",
+          timestamp: "7:22",
+          description: "Avdija catches fire with 13 first-quarter points, connecting on contested jumpers and finding open teammates",
+          runScore: "12-3 run",
           momentum: "away",
-          keyPlayer: "Paolo Banchero",
+          keyPlayer: "Deni Avdija",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "3:15",
-          description: "Jayson Tatum explodes for 15 third-quarter points to flip the script",
-          runScore: "18-6 BOS",
+          quarter: "2nd",
+          timestamp: "4:15",
+          description: "Green responds with explosive scoring burst, hitting three straight threes to energize Phoenix crowd",
+          runScore: "15-6 run",
           momentum: "home",
-          keyPlayer: "Jayson Tatum",
+          keyPlayer: "Jalen Green",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "2:33",
+          description: "Clingan's rim protection sparks transition opportunities as Portland builds double-digit lead",
+          runScore: "18-8 run",
+          momentum: "away",
+          keyPlayer: "Donovan Clingan",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "1:28",
-          description: "Franz Wagner's contested three cuts deficit to one possession",
-          runScore: "7-2 ORL",
-          momentum: "away",
-          keyPlayer: "Franz Wagner",
+          quarter: "4th",
+          timestamp: "5:47",
+          description: "Booker and Green combine for 14 fourth-quarter points to cut deficit to two possessions",
+          runScore: "14-7 run",
+          momentum: "home",
+          keyPlayer: "Devin Booker",
           impact: "significant"
         }
       ],
       clutchPlays: [
         {
-          player: "Jayson Tatum",
-          team: "BOS",
-          description: "Step-back three over Wagner with shot clock winding down",
-          timeRemaining: "2:14",
-          winProbabilityShift: 18.5
+          player: "Deni Avdija",
+          team: "POR",
+          description: "Step-back three over Booker with shot clock winding down",
+          timeRemaining: "3:41",
+          winProbabilityShift: 18
         },
         {
-          player: "Paolo Banchero",
-          team: "ORL",
-          description: "And-one driving layup through contact to keep Magic alive",
+          player: "Jrue Holiday",
+          team: "POR",
+          description: "Clutch steal and transition layup to extend lead back to six",
+          timeRemaining: "1:55",
+          winProbabilityShift: 22
+        },
+        {
+          player: "Jalen Green",
+          team: "PHX",
+          description: "Contested three-pointer from deep cuts deficit to one possession",
           timeRemaining: "0:47",
-          winProbabilityShift: -12.3
+          winProbabilityShift: -16
         }
       ],
-      narrative: "The Celtics survived a desperate Orlando push in what felt like a playoff preview. Tatum's third-quarter explosion (15 points) was the difference-maker, but the Magic refused to fold as Banchero and Wagner combined for 11 fourth-quarter points. Boston's home-court advantage proved decisive in the final minutes, with Tatum delivering the dagger three that sent the Garden into a frenzy."
+      narrative: "Deni Avdija authored a masterpiece that sent Phoenix to the elimination bracket, showcasing the complete offensive arsenal that makes him Portland's most dangerous weapon. His surgical precision from mid-range and ability to create for others overwhelmed a Suns defense that had no answer for his versatility. While Jalen Green's 35 points kept Phoenix within striking distance, Avdija's clutch shot-making in the final minutes sealed Portland's date with destiny against the Spurs. The Trail Blazers' balanced attack and veteran poise proved too much for a talented but inconsistent Phoenix squad."
     },
     {
-      gameId: "GS-LAC-20260412",
-      teams: { home: "LAC", away: "GS" },
-      finalScore: { home: 115, away: 110 },
+      gameId: "MIA-CHA-20260414",
+      teams: { home: "CHA", away: "MIA" },
+      finalScore: { home: 127, away: 126 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "8:21",
-          description: "Curry's first three in 73 days ignites Warriors and brings crowd to its feet",
-          runScore: "10-2 GSW",
-          momentum: "away",
-          keyPlayer: "Stephen Curry",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "4:33",
-          description: "Bennedict Mathurin's 12-point quarter swing flips momentum to Clippers",
-          runScore: "16-4 LAC",
+          quarter: "1st",
+          timestamp: "8:41",
+          description: "Ball starts hot with early assists but Miami's Mitchell matches with aggressive drives",
+          runScore: "11-11 tie",
           momentum: "home",
-          keyPlayer: "Bennedict Mathurin",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "7:15",
-          description: "Curry's vintage flurry of three straight threes gives Warriors late hope",
-          runScore: "11-2 GSW",
-          momentum: "away",
-          keyPlayer: "Stephen Curry",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "1:42",
-          description: "Kawhi Leonard's clutch steal and dunk seals Clippers victory",
-          runScore: "6-0 LAC",
-          momentum: "home",
-          keyPlayer: "Kawhi Leonard",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Stephen Curry",
-          team: "GS",
-          description: "Deep three from the logo to cut lead to three points",
-          timeRemaining: "3:47",
-          winProbabilityShift: -24.1
-        },
-        {
-          player: "Kawhi Leonard",
-          team: "LAC",
-          description: "Steal on Curry's pass attempt leads to thunderous dunk",
-          timeRemaining: "1:42",
-          winProbabilityShift: 28.7
-        },
-        {
-          player: "Stephen Curry",
-          team: "GS",
-          description: "Pull-up three over Leonard keeps Warriors within striking distance",
-          timeRemaining: "0:58",
-          winProbabilityShift: -15.2
-        }
-      ],
-      narrative: "Stephen Curry's miraculous return turned this play-in game into instant theater. The 38-year-old magician showed no rust from his 73-day absence, scoring 24 points and nearly willing Golden State to an impossible victory. His fourth-quarter barrage of three straight threes had the Intuit Dome holding its breath, but Kawhi Leonard's clutch defensive play ultimately preserved the Clippers' season. Wednesday's rematch just became the most anticipated play-in game in years."
-    },
-    {
-      gameId: "DEN-SA-20260412",
-      teams: { home: "SA", away: "DEN" },
-      finalScore: { home: 118, away: 128 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "5:11",
-          description: "Jokic's perfect start (12 points, 5 assists) puts Nuggets in early control",
-          runScore: "14-4 DEN",
-          momentum: "away",
-          keyPlayer: "Nikola Jokic",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:22",
-          description: "De'Aaron Fox's explosive 15-point quarter brings Spurs back to within one",
-          runScore: "17-8 SA",
-          momentum: "home",
-          keyPlayer: "De'Aaron Fox",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "6:45",
-          description: "Julian Strawther's 14 third-quarter points extends Denver's 12-game win streak",
-          runScore: "20-7 DEN",
-          momentum: "away",
-          keyPlayer: "Julian Strawther",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Denver's championship-caliber depth was on full display as they completed their longest winning streak of the Jokic era. With the Serbian superstar dominating early before coasting (23 points in just 18 minutes), Julian Strawther stepped up with a career-defining 25-point performance. The Nuggets' 12-game streak has them peaking at the perfect time, while San Antonio's decision to rest Wembanyama ultimately cost them a chance at a statement win."
-    },
-    {
-      gameId: "DET-IND-20260412",
-      teams: { home: "IND", away: "DET" },
-      finalScore: { home: 121, away: 133 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "7:18",
-          description: "Paul Reed's perfect shooting display (7-7 FG) puts Pistons in command",
-          runScore: "18-6 DET",
-          momentum: "away",
-          keyPlayer: "Paul Reed",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "4:51",
-          description: "Cade Cunningham's 8 assists in 12 minutes orchestrates flawless offense",
-          runScore: "15-4 DET",
-          momentum: "away",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "8:33",
-          description: "Indiana's desperate rally behind Tyrese Haliburton cuts lead to single digits",
-          runScore: "12-4 IND",
-          momentum: "home",
-          keyPlayer: "Tyrese Haliburton",
-          impact: "notable"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Paul Reed authored basketball perfection with the season's only flawless 11-for-11 shooting performance, capping Detroit's remarkable rise to the East's top seed. Reed's aesthetic masterpiece was complemented by Cade Cunningham's return to elite form, dishing 14 assists in limited minutes while continuing his comeback from a collapsed lung. The Pistons' 60-22 record represents their best season since 2005-06, with home-court advantage throughout the playoffs now secured."
-    },
-    {
-      gameId: "BKN-TOR-20260412",
-      teams: { home: "TOR", away: "BKN" },
-      finalScore: { home: 136, away: 101 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "6:45",
-          description: "Scottie Barnes' early triple-double watch begins with 8 points, 4 rebounds, 5 assists",
-          runScore: "15-3 TOR",
-          momentum: "home",
-          keyPlayer: "Scottie Barnes",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "2:17",
-          description: "RJ Barrett's 16-point explosion extends Raptors' commanding lead",
-          runScore: "22-6 TOR",
-          momentum: "home",
-          keyPlayer: "RJ Barrett",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "9:08",
-          description: "Brandon Ingram's efficient scoring puts game completely out of reach",
-          runScore: "18-4 TOR",
-          momentum: "home",
-          keyPlayer: "Brandon Ingram",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Scottie Barnes orchestrated a 35-point demolition of Brooklyn with a masterful 18-12-12 triple-double that showcased his evolved playmaking. The Raptors' Big Three of Barnes, Barrett (26 points), and Ingram (25 points) operated with championship-level chemistry, systematically dismantling the Nets from the opening tip. Toronto's sixth seed sets up a tantalizing first-round matchup with New York, with Barnes playing at an All-NBA level that makes them a legitimate dark horse."
-    },
-    {
-      gameId: "ATL-MIA-20260412",
-      teams: { home: "MIA", away: "ATL" },
-      finalScore: { home: 143, away: 117 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "8:14",
-          description: "Jaime Jaquez Jr.'s hot start (11 points) ignites Heat's offensive explosion",
-          runScore: "14-2 MIA",
-          momentum: "home",
-          keyPlayer: "Jaime Jaquez Jr.",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "5:22",
-          description: "Bam Adebayo's dominant paint presence extends Miami's season-high scoring pace",
-          runScore: "18-5 MIA",
-          momentum: "home",
-          keyPlayer: "Bam Adebayo",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "7:41",
-          description: "Heat reserves continue the onslaught as starters rest for play-in game",
-          runScore: "16-4 MIA",
-          momentum: "home",
-          keyPlayer: "Tyler Herro",
-          impact: "notable"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Miami erupted for a season-high 143 points in a confidence-building rout that couldn't have come at a better time. With Atlanta resting their stars, Jaime Jaquez Jr. (26 points) and Bam Adebayo (25 points, 10 rebounds) feasted on inferior competition while finding their playoff rhythm. The offensive explosion provides crucial momentum heading into Wednesday's do-or-die elimination game against Charlotte, with the Heat's championship DNA finally awakening at the perfect moment."
-    },
-    {
-      gameId: "CHA-NY-20260412",
-      teams: { home: "NY", away: "CHA" },
-      finalScore: { home: 96, away: 110 },
-      swings: [
-        {
-          quarter: "Q2",
-          timestamp: "7:33",
-          description: "LaMelo Ball's 14-point quarter gives Hornets surprising road lead",
-          runScore: "16-4 CHA",
-          momentum: "away",
           keyPlayer: "LaMelo Ball",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "3:22",
+          description: "Miller's three-point barrage gives Charlotte separation as he hits four triples in the quarter",
+          runScore: "16-8 run",
+          momentum: "home",
+          keyPlayer: "Brandon Miller",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "4:18",
-          description: "Jalen Brunson's personal 10-0 run brings Madison Square Garden to life",
-          runScore: "10-0 NY",
-          momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          quarter: "3rd",
+          timestamp: "6:15",
+          description: "Wiggins and Mitchell combine for 18 third-quarter points to erase Charlotte's lead",
+          runScore: "22-12 run",
+          momentum: "away",
+          keyPlayer: "Andrew Wiggins",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:22",
-          description: "Brandon Miller's clutch three-point barrage seals stunning upset victory",
-          runScore: "12-2 CHA",
-          momentum: "away",
-          keyPlayer: "Brandon Miller",
+          quarter: "4th",
+          timestamp: "1:47",
+          description: "Ball forces overtime with clutch driving layup despite shooting struggles from deep",
+          runScore: "8-5 run",
+          momentum: "home",
+          keyPlayer: "LaMelo Ball",
+          impact: "game-changing"
+        },
+        {
+          quarter: "OT",
+          timestamp: "2:31",
+          description: "Bridges takes over in overtime with back-to-back buckets to secure elimination game victory",
+          runScore: "6-2 run",
+          momentum: "home",
+          keyPlayer: "Miles Bridges",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Brandon Miller",
+          player: "Davion Mitchell",
+          team: "MIA",
+          description: "Clutch three-pointer from the corner to tie the game",
+          timeRemaining: "4:23",
+          winProbabilityShift: -14
+        },
+        {
+          player: "LaMelo Ball",
           team: "CHA",
-          description: "Step-back three over OG Anunoby silences Garden crowd",
-          timeRemaining: "4:47",
-          winProbabilityShift: -19.4
+          description: "Driving layup through contact to force overtime",
+          timeRemaining: "0:08",
+          winProbabilityShift: 45
         },
         {
-          player: "Jalen Brunson",
-          team: "NY",
-          description: "Driving floater keeps Knicks within striking distance",
-          timeRemaining: "2:33",
-          winProbabilityShift: 8.7
+          player: "Miles Bridges",
+          team: "CHA",
+          description: "Go-ahead bucket in overtime after offensive rebound",
+          timeRemaining: "2:31 OT",
+          winProbabilityShift: 28
+        },
+        {
+          player: "Andrew Wiggins",
+          team: "MIA",
+          description: "Contested fadeaway to cut deficit to one in final seconds",
+          timeRemaining: "0:12 OT",
+          winProbabilityShift: -19
+        },
+        {
+          player: "Coby White",
+          team: "CHA",
+          description: "Ice-cold free throws to seal victory with four seconds remaining",
+          timeRemaining: "0:04 OT",
+          winProbabilityShift: 31
         }
       ],
-      narrative: "Charlotte delivered the upset of the night, stunning New York at Madison Square Garden in a result that reshuffles the Eastern Conference playoff picture. LaMelo Ball's explosive second quarter set the tone, but Brandon Miller's fourth-quarter heroics sealed the deal with three clutch three-pointers that silenced the Garden. The Hornets' shocking road victory positions them perfectly for Wednesday's play-in elimination game against Miami, while the Knicks must regroup after their worst performance in weeks."
-    },
-    {
-      gameId: "PHX-OKC-20260412",
-      teams: { home: "OKC", away: "PHX" },
-      finalScore: { home: 103, away: 135 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "9:12",
-          description: "Jamaree Bouyea's surprise emergence gives Suns early control against Thunder reserves",
-          runScore: "12-0 PHX",
-          momentum: "away",
-          keyPlayer: "Jamaree Bouyea",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "6:44",
-          description: "Khaman Maluach's dominant paint presence extends Phoenix's shocking lead",
-          runScore: "16-4 PHX",
-          momentum: "away",
-          keyPlayer: "Khaman Maluach",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:15",
-          description: "Suns' continued onslaught turns game into complete embarrassment for OKC",
-          runScore: "20-6 PHX",
-          momentum: "away",
-          keyPlayer: "Jamaree Bouyea",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The night's most shocking result saw Phoenix absolutely demolish Oklahoma City's reserves in a 32-point rout that defied all logic. With the Thunder resting their entire rotation and the top seed secured, Jamaree Bouyea (27 points, 9 assists, +37) delivered a star-making performance that announced his playoff readiness. The margin was still jarring even considering the circumstances, giving Phoenix tremendous momentum heading into Tuesday's play-in opener at Portland while leaving questions about OKC's depth."
+      narrative: "In one of the most improbable individual performances in play-in history, LaMelo Ball willed Charlotte past Miami despite shooting 2-of-16 from three-point range, showcasing the heart of a champion when his shot abandoned him. Ball's relentless drives and spectacular passing kept the Hornets alive before Miles Bridges delivered the knockout punch in overtime. Miami's season ends in heartbreak as Mitchell and Wiggins gave everything they had, but Charlotte's depth and home-court advantage proved decisive in a thriller that lived up to every expectation. The Hornets survive to fight another day, while the Heat's championship window may have officially closed."
     }
   ]
 };
