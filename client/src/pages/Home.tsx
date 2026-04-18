@@ -499,6 +499,9 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Hoops Intel</span>
           </div>
           <div className="flex flex-wrap gap-3">
+            <a href="/playoffs" className="px-5 py-2.5 rounded text-sm font-semibold text-white transition-all flex items-center gap-2" style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}>
+              🏆 Playoff Bracket
+            </a>
             <a href="#scores" className="px-5 py-2.5 rounded text-sm font-semibold text-white transition-all" style={{ background: "#0EA5E9" }}>
               View All Scores
             </a>
