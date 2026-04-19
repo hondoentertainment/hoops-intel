@@ -34,8 +34,8 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Anthropic SDK
-        run: npm install @anthropic-ai/sdk --no-save
+      - name: Install dependencies
+        run: npm install --production
 
       - name: Validate secrets
         env:
