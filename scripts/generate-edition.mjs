@@ -53,6 +53,39 @@ function parseGames(espnData) {
   });
 }
 
+// ── Parse a JS object/array literal export from pulseData.ts source.
+//    Walks the source respecting string and bracket nesting, then evaluates
+//    the literal inside an isolated Function scope. Throws on any mismatch.
+function extractExportLiteral(src, name) {
+  const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*`);
+  const m = re.exec(src);
+  if (!m) throw new Error("export not found");
+
+  const start = m.index + m[0].length;
+  let depth = 0, inStr = false, strCh = "", esc = false, end = -1;
+  for (let i = start; i < src.length; i++) {
+    const ch = src[i];
+    if (esc) { esc = false; continue; }
+    if (inStr) {
+      if (ch === "\\") { esc = true; continue; }
+      if (ch === strCh) { inStr = false; }
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") { inStr = true; strCh = ch; continue; }
+    if (ch === "{" || ch === "[" || ch === "(") depth++;
+    else if (ch === "}" || ch === "]" || ch === ")") depth--;
+    else if (ch === ";" && depth === 0) { end = i; break; }
+  }
+  if (end < 0) throw new Error("could not find terminating ;");
+
+  const literal = src.slice(start, end).trim();
+  try {
+    return new Function(`"use strict"; return (${literal});`)();
+  } catch (err) {
+    throw new Error(`literal eval failed: ${err.message}`);
+  }
+}
+
 // ── Read current edition number ────────────────────────────
 function getLastEditionNumber() {
   try {
@@ -131,6 +164,9 @@ ${currentPulse}
 11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
 12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
 13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep media quotes to 2-3 sentences max. Keep recap text concise. The file MUST stay under 15000 tokens total.
+14. CRITICAL — team abbreviations MUST be exactly one of: ATL, BOS, BRK, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS. NEVER use "NY" (use "NYK"), "SA" (use "SAS"), "BKN" (use "BRK"), "NO" (use "NOP"), or "GS" (use "GSW"). Anything else will fail validation.
+15. CRITICAL — injury status field MUST be exactly one of (case sensitive): "Out", "Day-to-Day", "Questionable", "Probable", "Doubtful". Never lowercase.
+16. CRITICAL — every \`{\` must be matched by \`}\` and every \`[\` must be matched by \`]\` in every export. Special attention to the \`narrative.body\` array — it MUST be wrapped in \`[\` and \`]\` and end with \`]}\` before the trailing semicolon.
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
@@ -157,6 +193,24 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
     console.error("   This usually means Claude hit max_tokens. Aborting to avoid a broken build.");
     process.exit(1);
   }
+
+  // ── Parse-validate every export so a bracket/string mismatch never
+  //    reaches the build (this is what broke the 2026-04-19 deploy).
+  const parseErrors = [];
+  for (const name of requiredExports) {
+    try {
+      extractExportLiteral(newPulseContent, name);
+    } catch (err) {
+      parseErrors.push(`${name}: ${err.message}`);
+    }
+  }
+  if (parseErrors.length > 0) {
+    console.error("❌ pulseData.ts failed parse validation:");
+    for (const e of parseErrors) console.error("   - " + e);
+    console.error("   Aborting to avoid a broken build / failed Vercel deploy.");
+    process.exit(1);
+  }
+  console.log("✓ all exports parse cleanly");
 
   writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), newPulseContent, "utf8");
   console.log("✓ pulseData.ts written");
