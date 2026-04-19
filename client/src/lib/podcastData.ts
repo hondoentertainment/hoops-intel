@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 16, 2026
+// Last updated: April 19, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,92 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 16, 2026",
-  episodeTitle: "Curry's Time Machine: 35 Points at 38 Saves Warriors as Maxey Claims Philadelphia's Playoff Spot",
+  date: "April 19, 2026",
+  episodeTitle: "Statement Saturday: Mobley Goes Nuclear & Denver's 13-Game Roll",
   rundown: [
     {
-      topic: "Stephen Curry's Vintage Masterpiece Defies Father Time",
+      topic: "Evan Mobley's Career Night Powers Cleveland's Statement Win",
       segment: "opener",
-      duration: "8 minutes",
-      keyStats: [
-        "35 points on 12-of-23 shooting at age 38",
-        "7-of-12 from three in elimination game",
-        "Third game back from 73-day absence",
-        "Warriors advance to Friday elimination at Phoenix",
-        "Clippers eliminated at 42-40 record"
-      ],
-      debateAngle: "Is this the most impressive individual performance of the 2026 season given Curry's age and injury layoff?",
-      suggestedQuote: "This wasn't just basketball — it was the controlled fury of a legend refusing to let time write his final chapter. Curry just reminded everyone why he's the most dangerous player alive when his back is against the wall.",
-      relevantPlayers: ["Stephen Curry", "Kawhi Leonard", "Kristaps Porzingis", "Gui Santos", "Bennedict Mathurin"]
-    },
-    {
-      topic: "Tyrese Maxey's Coming-of-Age Performance Clinches East 7-Seed",
-      segment: "deep-dive",
-      duration: "10 minutes",
-      keyStats: [
-        "31 points, 6 assists in 42 minutes of leadership",
-        "11-of-25 shooting with surgical mid-range precision",
-        "VJ Edgecombe's 19-11 double-double as rookie X-factor",
-        "Paolo Banchero's nightmare: 7-22 FG, 0-5 3PT, 6 turnovers",
-        "Philadelphia vs Boston Round 1 matchup locked"
-      ],
-      debateAngle: "Has Maxey proven he can be the franchise cornerstone for a championship contender, or does he still need a co-star?",
-      suggestedQuote: "Maxey didn't just score 31 points — he commanded every possession like a franchise player should. Meanwhile, Banchero wilted under pressure when Orlando needed him most. That's the difference between rising stars and proven stars.",
-      relevantPlayers: ["Tyrese Maxey", "Paolo Banchero", "VJ Edgecombe", "Desmond Bane", "Kelly Oubre Jr."]
-    },
-    {
-      topic: "Friday's Double Elimination: Can Lightning Strike Twice?",
-      segment: "hot-take",
       duration: "6 minutes",
       keyStats: [
-        "Charlotte at Orlando 7:00 ET for East 8-seed",
-        "Golden State at Phoenix 9:30 ET for West 8-seed",
-        "Banchero needs redemption after 7-22 shooting",
-        "Curry faces back-to-back elimination games at 38",
-        "Winners face Detroit (60-22) and Oklahoma City (64-18)"
+        "31 points on 13-of-19 shooting (68.4% FG)",
+        "12 rebounds and 4 blocks in dominant two-way performance",
+        "Cleveland shot 52.3% as a team in 126-113 blowout",
+        "Career-high scoring night for the fourth-year big man",
+        "Cavaliers improve to 53-30, strengthening 4th seed position",
+        "Six Cleveland players scored in double figures"
       ],
-      debateAngle: "Is it realistic to expect Curry to deliver another masterpiece just three days later on the road?",
-      suggestedQuote: "Curry's 35-point elimination game was legendary, but expecting lightning to strike twice in three days at age 38? That's asking for a miracle even from a four-time champion. Phoenix's depth and home court should end this magical run.",
-      relevantPlayers: ["Stephen Curry", "Paolo Banchero", "LaMelo Ball", "Devin Booker", "Kon Knueppel"]
+      debateAngle: "Is Mobley's breakout the missing piece that makes Cleveland a legitimate Eastern Conference championship threat, or was this just one great night against a vulnerable Toronto team?",
+      suggestedQuote: "When Evan Mobley plays like this — 31 and 12 with elite defense — the Cavaliers aren't just a playoff team, they're a problem for everyone in the East. This is what Cleveland has been waiting for from their franchise cornerstone.",
+      relevantPlayers: ["Evan Mobley", "Darius Garland", "Jarrett Allen", "RJ Barrett"]
     },
     {
-      topic: "Playoff Picture Rapid Fire: Six Matchups Locked and Loaded",
+      topic: "Denver's Historic 13-Game Win Streak and Championship Pedigree",
+      segment: "deep-dive",
+      duration: "8 minutes",
+      keyStats: [
+        "13 consecutive victories — longest active streak in NBA",
+        "Jokić's 24 points, 11 assists on 10-of-15 shooting",
+        "Nuggets shooting 49.1% during win streak",
+        "Aaron Gordon 19 points on 8-of-12 shooting as perfect third option",
+        "Minnesota held to 41.3% shooting in 116-105 defeat",
+        "Denver now 55-28, looking like Western Conference favorites"
+      ],
+      debateAngle: "Are we watching Denver hit their championship form at the perfect time, or is this streak masking deeper issues that will surface in the playoffs?",
+      suggestedQuote: "Thirteen straight wins isn't luck — it's championship DNA. When Jokić is playing like this and Aaron Gordon is your efficient third option, the Nuggets are basically playing a different sport than everyone else.",
+      relevantPlayers: ["Nikola Jokić", "Aaron Gordon", "Kentavious Caldwell-Pope", "Anthony Edwards"]
+    },
+    {
+      topic: "Lakers and Knicks Cruise: Are We Underestimating These Championship Dark Horses?",
+      segment: "hot-take",
+      duration: "7 minutes",
+      keyStats: [
+        "Lakers win fourth straight, now 54-29 with elite defense",
+        "Anthony Davis: 25 points, 11 rebounds, 3 blocks on 57.9% shooting",
+        "Knicks improve to 54-29 with 113-102 win over Atlanta",
+        "Jalen Brunson: 26 points, 7 assists on efficient 55.6% shooting",
+        "Both teams showing championship-level two-way balance",
+        "Houston held to 42.1% shooting by Lakers defense"
+      ],
+      debateAngle: "Hot Take: The Lakers and Knicks are being completely overlooked in championship conversations, but both teams are peaking at exactly the right time and could shock everyone in the playoffs.",
+      suggestedQuote: "While everyone's talking about Denver and Boston, the Lakers and Knicks are quietly putting together the kind of late-season runs that end with championship parades. Don't sleep on these teams.",
+      relevantPlayers: ["Anthony Davis", "D'Angelo Russell", "Jalen Brunson", "Julius Randle"]
+    },
+    {
+      topic: "Rapid Fire: Tonight's Heavyweight Battles and Injury Updates",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Detroit awaits East 8-seed (Orlando or Charlotte)",
-        "Boston locked in vs Philadelphia's young core",
-        "Oklahoma City awaits West 8-seed (Phoenix or Golden State)",
-        "Lakers-Rockets features Luka's injury uncertainty",
-        "Rookie VJ Edgecombe already playoff-tested with 19-11 game"
+        "Boston (-8.5) hosts Philadelphia in Eastern Conference clash",
+        "Oklahoma City (-12.5) welcomes Phoenix in potential playoff preview",
+        "Detroit faces Orlando in battle of Eastern Conference risers",
+        "Luka Dončić still day-to-day with knee soreness",
+        "Kawhi Leonard week-to-week with hip flexor strain",
+        "Marcus Smart expected to return for Memphis tonight"
       ],
-      debateAngle: "Which first-round series has the most upset potential?",
-      suggestedQuote: "Philadelphia at Boston is the sleeper series nobody's talking about. Maxey's on fire, Edgecombe looks fearless, and hunger beats experience more often than we think. Don't sleep on this 7-2 matchup.",
-      relevantPlayers: ["Tyrese Maxey", "Jayson Tatum", "VJ Edgecombe", "Luka Dončić", "Victor Wembanyama"]
+      debateAngle: "Which of tonight's four games has the biggest playoff seeding implications, and are we seeing the final injury concerns before the postseason push?",
+      suggestedQuote: "Tonight's slate is loaded: Tatum versus Embiid, SGA against Booker, and two Eastern Conference dark horses in Detroit and Orlando. Plus, the injury report is finally clearing up at the perfect time.",
+      relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Shai Gilgeous-Alexander", "Devin Booker", "Luka Dončić"]
     },
     {
-      topic: "The Pressure Cooker: Championship Windows Opening and Closing",
+      topic: "Championship Contenders Separate Themselves with Two Weeks Until Playoffs",
       segment: "closer",
       duration: "4 minutes",
       keyStats: [
-        "Curry's Warriors facing potential dynasty finale",
-        "Philadelphia's youth movement hitting playoff stage",
-        "Clippers' season ends with Leonard playing through injury",
-        "Oklahoma City and San Antonio as title favorites",
-        "First round starts Saturday with four games"
+        "Oklahoma City leads West at 64-18 (.780 winning percentage)",
+        "Detroit surprising everyone at 60-22 in the East",
+        "Denver's 13-game streak has them peaking at perfect time",
+        "Four teams (OKC, SAS, BOS, DET) with 55+ wins",
+        "Playoff races tightening with multiple teams at 45-37",
+        "Victor Wembanyama continues Rookie of the Year dominance"
       ],
-      debateAngle: "Are we watching the end of the Curry-Warriors era or the beginning of another championship run?",
-      suggestedQuote: "This postseason feels different. Old guard legends like Curry refusing to fade away, young guns like Maxey and Edgecombe announcing themselves on the biggest stage. The championship window isn't just shifting — it's exploding wide open.",
-      relevantPlayers: ["Stephen Curry", "Tyrese Maxey", "Victor Wembanyama", "Shai Gilgeous-Alexander", "Kawhi Leonard"]
+      debateAngle: "With two weeks left in the regular season, which teams are truly separating themselves as championship favorites versus pretenders who will falter in the playoffs?",
+      suggestedQuote: "The playoffs start in two weeks, and we're finally seeing which teams have that championship gear. Denver's rolling, Cleveland's hitting their ceiling, and the Lakers are looking dangerous. It's about to get really interesting.",
+      relevantPlayers: ["Victor Wembanyama", "Shai Gilgeous-Alexander", "Nikola Jokić", "Evan Mobley"]
     }
   ],
-  coldOpen: "Stephen Curry is 38 years old. He just played his third game in 73 days. His knees are held together by hope and advanced medicine. And last night? He dropped 35 points with seven three-pointers in an elimination game to save the Warriors' season. Meanwhile in Philadelphia, 23-year-old Tyrese Maxey scored 31 to punch his team's playoff ticket while Paolo Banchero crumbled under pressure. Father Time is undefeated, they say. Tell that to Steph Curry. This is Hoops Intel, and we've got stories that'll make you believe in basketball magic again.",
-  socialClip: "Curry's reaction after his seventh three-pointer with 2:47 left in the fourth quarter — the slow turn to the camera, the subtle shimmy, and the ice-cold stare of a legend who refuses to go quietly. Caption it: 'Age is just a number when you're Stephen Curry.' This clip will break the internet and trend for 48 hours straight.",
+  coldOpen: "Good morning, hoop heads! Last night was supposed to be a quiet Friday in the Association, but somebody forgot to tell Evan Mobley. The Cleveland big man just went absolutely nuclear — 31 points, 12 boards, 4 blocks, and a career-high performance that has the entire Eastern Conference on notice. Meanwhile, Nikola Jokić is making winning 13 straight games look as easy as breathing, and both the Lakers and Knicks sent their own messages with dominant home victories. With championship contenders starting to separate themselves and tonight's loaded slate featuring Boston-Philly and OKC-Phoenix, we've got a packed show ahead. This is Hoops Intel, and trust me — you're going to want to hear what happened while you were sleeping.",
+  socialClip: "30-second clip of the host breaking down Evan Mobley's career night with animated graphics showing his 31 points on 68.4% shooting, emphasizing how this performance elevates Cleveland's championship ceiling. Include the quote: 'When Mobley plays like this, the Cavaliers aren't just a playoff team — they're a legitimate threat to everyone in the East.' Perfect for Instagram Reels and TikTok with basketball highlights overlaid.",
   tweetThread: [
-    "🧵 THREAD: Last night proved basketball is still magical. Curry (38) drops 35 in elimination game while rookie VJ Edgecombe posts 19-11 double-double. Old legends, young stars, and everything in between. Let's break down the wildest playoff night of 2026... 1/5",
-    "Stephen Curry just delivered the performance of the season. 35 points, 7 threes, elimination game, age 38, third game back from 73-day absence. This wasn't just basketball — it was time travel. The Warriors live to fight Friday at Phoenix. Absolutely legendary. 2/5",
-    "Tyrese Maxey (31 pts, 6 ast) proved he's franchise material while Paolo Banchero (7-22 FG, 6 TO) wilted under pressure. Philadelphia gets Boston in Round 1. The difference between rising to the moment and shrinking from it was on full display. 3/5",
-    "VJ Edgecombe's 19-11 double-double as a rookie in a playoff-clinching game might be the most underrated performance of the night. Kid played 42 minutes without fear. Philadelphia just found their postseason X-factor at the perfect time. 4/5",
-    "Friday's elimination doubleheader: CHA @ ORL (7 ET), GSW @ PHX (9:30 ET). Can Banchero bounce back? Can Curry do it twice in three days? Two franchise players, two elimination games, everything on the line. Appointment television. 5/5"
+    "🏀 STATEMENT SATURDAY: Last night's results just shifted the entire playoff landscape. Mobley dropped a career-high 31, Denver won their 13TH STRAIGHT, and both LAL/NYK sent championship messages. Here's what you missed while sleeping... 🧵",
+    "2/ EVAN MOBLEY ERUPTION: 31 pts (13-19 FG), 12 reb, 4 blk in a 126-113 Cleveland ROUT of Toronto. This wasn't just a career night — it was a statement about the Cavs' championship ceiling. When Mobley plays like THIS, Cleveland becomes a legitimate Eastern Conference threat 🔥",
+    "3/ DENVER'S DOMINANCE: Jokić orchestrated win #13 in a row with 24 pts & 11 ast on 10-15 shooting. The Nuggets are hitting their championship form at the PERFECT time. Aaron Gordon (19 pts, 8-12 FG) as your third option? That's title-level depth right there 👑",
+    "4/ LAKERS & KNICKS ROLLING: Both teams improve to 54-29 with convincing home wins. AD: 25-11-3blk. Brunson: 26-7-5. While everyone talks Denver/Boston, these two are quietly building championship momentum. Don't sleep on teams peaking at the right time 👀",
+    "5/ TONIGHT'S LOADED SLATE: BOS vs PHI (1pm), OKC vs PHX (3:30pm), DET vs ORL (6:30pm), SA vs POR (9pm). Championship contenders are separating themselves with 2 weeks until playoffs. Which teams have that extra gear? We're about to find out 🚀 #HoopsIntel"
   ]
 };

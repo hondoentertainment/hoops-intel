@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 16, 2026
+// Last updated: April 19, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,126 +33,176 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 16, 2026",
-  gameOfTheNight: "GSW-LAC-20260415",
+  date: "April 19, 2026",
+  gameOfTheNight: "DEN-MIN-20260418",
   topClutchPerformer: { 
-    player: "Stephen Curry", 
-    team: "GSW", 
-    clutchRating: 94, 
-    description: "Two clutch threes in final 3 minutes to seal Warriors' season-saving victory" 
+    player: "Nikola Jokić", 
+    team: "DEN", 
+    clutchRating: 92, 
+    description: "Orchestrated a flawless 13th straight win with surgical precision, shooting 10-of-15 while conducting Denver's symphony offense" 
   },
   games: [
     {
-      gameId: "ORL-PHI-20260415",
-      teams: { home: "PHI", away: "ORL" },
-      finalScore: { home: 109, away: 97 },
+      gameId: "TOR-CLE-20260418",
+      teams: { home: "CLE", away: "TOR" },
+      finalScore: { home: 126, away: 113 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "8:42",
-          description: "Orlando opens with aggressive pace, Banchero scores 8 early points to stun Philadelphia crowd",
-          runScore: "14-6 ORL",
-          momentum: "away",
-          keyPlayer: "Paolo Banchero",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "4:15",
-          description: "Maxey takes over with 11 points in 3 minutes, Sixers flip script with suffocating defense",
-          runScore: "18-4 PHI",
+          quarter: "1st",
+          timestamp: "8:24",
+          description: "Evan Mobley announces his arrival with back-to-back dunks and a thunderous block on Scottie Barnes",
+          runScore: "12-4 CLE",
           momentum: "home",
-          keyPlayer: "Tyrese Maxey",
+          keyPlayer: "Evan Mobley",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "6:20",
-          description: "VJ Edgecombe's fearless rookie energy sparks 12-2 run, Philly pulls away decisively",
-          runScore: "12-2 PHI",
+          quarter: "2nd",
+          timestamp: "6:17",
+          description: "RJ Barrett catches fire from three, hitting three consecutive triples to pull Toronto within striking distance",
+          runScore: "9-2 TOR",
+          momentum: "away",
+          keyPlayer: "RJ Barrett",
+          impact: "notable"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "4:32",
+          description: "Mobley and Garland combine for 14 points in a devastating 18-6 run that breaks the game wide open",
+          runScore: "18-6 CLE",
           momentum: "home",
-          keyPlayer: "VJ Edgecombe",
+          keyPlayer: "Evan Mobley",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Evan Mobley's career night was a coming-out party for the ages, as he dominated the Raptors with relentless interior assault. The fourth-year big man was virtually unstoppable around the rim, converting contested shots with surgical precision while protecting the paint like a fortress. Cleveland's balanced attack and Mobley's two-way brilliance turned what started as a competitive affair into a statement victory. The Cavaliers' offensive efficiency was a thing of beauty, with crisp ball movement and elite shot selection leading to a dominant wire-to-wire performance."
+    },
+    {
+      gameId: "MIN-DEN-20260418",
+      teams: { home: "DEN", away: "MIN" },
+      finalScore: { home: 116, away: 105 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "7:45",
+          description: "Anthony Edwards explodes for 11 early points, including two highlight-reel drives that energize the visiting crowd",
+          runScore: "13-7 MIN",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "9:12",
+          description: "Jokić begins his masterclass with five assists in three minutes, finding Aaron Gordon for back-to-back alley-oops",
+          runScore: "14-4 DEN",
+          momentum: "home",
+          keyPlayer: "Nikola Jokić",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "5:28",
+          description: "Denver's championship pedigree shows as they execute a suffocating defensive stretch while Jokić orchestrates perfection",
+          runScore: "19-8 DEN",
+          momentum: "home",
+          keyPlayer: "Nikola Jokić",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "9:45",
-          description: "Banchero's shooting woes continue as Kelly Oubre Jr. buries back-to-back threes to seal it",
-          runScore: "10-2 PHI",
+          quarter: "4th",
+          timestamp: "8:47",
+          description: "The Nuggets' depth takes over as KCP and Gordon combine for 12 points to salt away the 13th straight victory",
+          runScore: "16-9 DEN",
           momentum: "home",
-          keyPlayer: "Kelly Oubre Jr.",
+          keyPlayer: "Kentavious Caldwell-Pope",
           impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Philadelphia's playoff experience showed in crunch time as Tyrese Maxey commanded the biggest stage with surgical precision. The breakout performance of rookie VJ Edgecombe provided the X-factor Philadelphia needed, while Paolo Banchero's shooting nightmare became Orlando's season-ending catastrophe. The Sixers advance to face Boston knowing they have multiple weapons capable of rising to playoff moments."
+      narrative: "Nikola Jokić's basketball artistry was on full display as Denver extended their incredible winning streak to 13 games. The two-time MVP played like a chess master, seeing moves three steps ahead while his teammates executed with championship-level precision. Minnesota's early energy couldn't match Denver's relentless execution and suffocating defensive adjustments. This was a clinic in how championship teams impose their will, with the Nuggets methodically breaking down a quality opponent through superior basketball IQ and depth."
     },
     {
-      gameId: "GSW-LAC-20260415",
-      teams: { home: "LAC", away: "GSW" },
-      finalScore: { home: 121, away: 126 },
+      gameId: "ATL-NY-20260418",
+      teams: { home: "NY", away: "ATL" },
+      finalScore: { home: 113, away: 102 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "9:15",
-          description: "Curry shows no rust with 3 early threes, Warriors jump out fast in elimination game",
-          runScore: "15-4 GSW",
+          quarter: "1st",
+          timestamp: "6:33",
+          description: "Trae Young dazzles Madison Square Garden with three deep threes and two no-look assists",
+          runScore: "13-6 ATL",
           momentum: "away",
-          keyPlayer: "Stephen Curry",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "5:30",
-          description: "Kawhi Leonard battles through injury with 12 second-quarter points, Clippers claw back",
-          runScore: "16-8 LAC",
-          momentum: "home",
-          keyPlayer: "Kawhi Leonard",
+          keyPlayer: "Trae Young",
           impact: "notable"
         },
         {
-          quarter: "Q3",
-          timestamp: "2:45",
-          description: "Mathurin catches fire from three-point land, hits 4 triples to give Clippers their biggest lead",
-          runScore: "20-9 LAC",
+          quarter: "2nd",
+          timestamp: "8:19",
+          description: "Jalen Brunson takes over with 12 points in five minutes, including a step-back three that silences the Atlanta bench",
+          runScore: "17-8 NY",
           momentum: "home",
-          keyPlayer: "Bennedict Mathurin",
+          keyPlayer: "Jalen Brunson",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "4:15",
+          description: "Julius Randle and OG Anunoby combine for 14 points as New York's size advantage becomes overwhelming",
+          runScore: "16-7 NY",
+          momentum: "home",
+          keyPlayer: "Julius Randle",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "The Garden was electric as Jalen Brunson put on a point guard clinic against his former team's division rival. After Trae Young's early fireworks threatened to steal the show, Brunson responded with the poise and precision that has made him a Knicks legend. New York's superior size and depth gradually wore down Atlanta's perimeter-heavy attack. The Knicks' balanced scoring and defensive intensity showcased why they've been one of the East's most consistent teams, methodically pulling away from a dangerous Hawks squad."
+    },
+    {
+      gameId: "HOU-LAL-20260418",
+      teams: { home: "LAL", away: "HOU" },
+      finalScore: { home: 107, away: 98 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "9:11",
+          description: "Alperen Şengün showcases his skill set with 8 early points and 3 assists, giving Houston early confidence",
+          runScore: "12-6 HOU",
+          momentum: "away",
+          keyPlayer: "Alperen Şengün",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "7:24",
+          description: "Anthony Davis awakens with three consecutive blocks and two thunderous dunks that electrify crypto.com Arena",
+          runScore: "10-2 LAL",
+          momentum: "home",
+          keyPlayer: "Anthony Davis",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "5:43",
+          description: "D'Angelo Russell catches fire from deep, hitting four threes in six minutes to blow the game open",
+          runScore: "18-8 LAL",
+          momentum: "home",
+          keyPlayer: "D'Angelo Russell",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:12",
-          description: "Gui Santos emerges as unlikely hero with clutch baskets, Warriors regain control",
-          runScore: "11-3 GSW",
-          momentum: "away",
-          keyPlayer: "Gui Santos",
+          quarter: "4th",
+          timestamp: "6:15",
+          description: "Davis dominates both ends with 7 points and 2 blocks to seal the Lakers' fourth straight victory",
+          runScore: "11-4 LAL",
+          momentum: "home",
+          keyPlayer: "Anthony Davis",
           impact: "significant"
         }
       ],
-      clutchPlays: [
-        {
-          player: "Stephen Curry",
-          team: "GSW",
-          description: "Step-back three over Leonard with 2:47 remaining",
-          timeRemaining: "2:47",
-          winProbabilityShift: 15
-        },
-        {
-          player: "Kawhi Leonard",
-          team: "LAC",
-          description: "Fadeaway jumper through contact to keep Clippers within 3",
-          timeRemaining: "1:55",
-          winProbabilityShift: -8
-        },
-        {
-          player: "Stephen Curry",
-          team: "GSW",
-          description: "Pull-up three in transition to extend lead to 6",
-          timeRemaining: "1:12",
-          winProbabilityShift: 18
-        }
-      ],
-      narrative: "Stephen Curry turned back time in the most crucial elimination game of his twilight years, showing zero mercy at Intuit Dome with vintage championship composure. The 38-year-old maestro's vintage performance overshadowed Kawhi Leonard's gutsy effort through injury, while unlikely heroes like Gui Santos provided the depth that championship teams require. Golden State's season lives another day, but the Warriors know they'll need this same magic against Phoenix to keep their playoff dreams breathing."
+      clutchPlays: [],
+      narrative: "Anthony Davis reminded everyone why he's still one of the league's most dominant two-way forces, completely taking over this game in the second half. After Houston's early energy and Şengün's crafty play-making, the Lakers' veteran savvy and playoff experience began to show. Davis was a defensive anchor and offensive catalyst, while D'Angelo Russell's hot shooting provided the perfect complement. The Lakers' four-game winning streak has them peaking at the perfect time, with Davis looking like his championship-winning self from 2020."
     }
   ]
 };
