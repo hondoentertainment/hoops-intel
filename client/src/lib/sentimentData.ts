@@ -47,142 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-19",
   displayDate: "April 19, 2026",
-  overallMood: "Championship contenders flexing before playoffs",
+  overallMood: "Playoff chaos energy — contenders are flexing, pretenders are getting exposed, and the internet cannot agree on who's actually winning a championship",
   topics: [
     {
-      id: "mobley-breakout-career-night",
-      topic: "Mobley's Career-High 31 Points",
+      id: "mobley-career-night-statement",
+      topic: "Mobley's 31-Point Career Night Is a Statement Game",
       sentiment: "positive",
-      intensity: 95,
-      volume: 23400,
-      summary: "Evan Mobley dominated with a career-high 31 points and 12 rebounds in Cleveland's blowout win over Toronto, showing why the Cavs could be a dark horse in the East.",
+      intensity: 97,
+      volume: 26800,
+      summary: "Evan Mobley's 31-point, 12-rebound, 4-block masterclass against Toronto exploded on basketball Twitter overnight, with fans declaring him the most underrated player in the NBA and the key to Cleveland's championship window. The career-high performance on 68.4% shooting has completely reframed how people view the Cavaliers heading into the playoffs.",
       sampleTakes: [
-        "EVAN MOBLEY IS DIFFERENT. 31/12/4 blocks on 68% shooting??? This man just became a problem 🔥",
-        "Mobley really said 'I'm the best big man in the East' and then went out and proved it against Toronto",
-        "Career night for Mobley but this feels like just the beginning. Cavs bout to shock some people in the playoffs",
-        "Y'all sleeping on Cleveland but Mobley performances like this show they got championship DNA"
+        "EVAN MOBLEY 31/12/4 BLOCKS ON 68% SHOOTING. Stop asking me who the best big man in the East is. It's him. It's been him.",
+        "The Cavaliers are legit terrifying and nobody wants to admit it. Mobley just had a career night and half the league is sleeping on Cleveland",
+        "31 points for Mobley and Garland had 22 and 8. That's two guys who can each carry you on any given night. Cavs are NOT the team you want in the second round",
+        "Career high 31 for Mobley on 13-19 shooting felt inevitable watching it live. He's been building to this all season and Toronto had absolutely no answer"
       ],
-      relatedPlayers: ["Evan Mobley", "Darius Garland", "Jarrett Allen"],
+      relatedPlayers: ["Evan Mobley", "Darius Garland", "Jarrett Allen", "RJ Barrett"],
       relatedTeams: ["CLE", "TOR"],
       trending: true
     },
     {
-      id: "nuggets-13-game-streak",
-      topic: "Denver's Historic 13-Game Win Streak",
+      id: "nuggets-13-game-streak-unstoppable",
+      topic: "Denver's 13-Game Win Streak Is Getting Scary",
       sentiment: "positive",
-      intensity: 92,
-      volume: 31200,
-      summary: "The Nuggets extended their winning streak to 13 games with another masterclass from Jokić, making them look unstoppable heading into the playoffs.",
+      intensity: 94,
+      volume: 34100,
+      summary: "The NBA internet is finally waking up to how dominant Denver has been over the past month. Jokić's 24-11-7 in the 13th straight win felt almost routine, which is the scariest part. Discourse is shifting from 'can the Nuggets sustain this?' to 'who in the world is actually stopping them in the playoffs?'",
       sampleTakes: [
-        "13 straight wins. Jokić making it look easy every single night. The West should be TERRIFIED",
-        "Nobody talking about Denver's win streak enough. 13 games is insane and they're not slowing down",
-        "Jokić with 24/11/7 in his sleep while everyone else fighting for their lives. Man is inevitable",
-        "Denver really bout to sleepwalk to another championship. This win streak is chef's kiss level dominance"
+        "13 straight wins for Denver and Jokić is playing like he's bored. He's going to win another MVP and another ring and we're all just going to have to accept it",
+        "Nobody in the West has an answer for this Nuggets team right now. 13 games. They're not slowing down. Western Conference should be terrified",
+        "Jokić 24/11/7 and people are treating it like a slow night. That's how dominant this man has been. The bar he set for himself is unreal",
+        "Denver quietly becoming the most dangerous team in the entire league again. 13 straight is not a fluke. This is a machine that has figured it out"
       ],
-      relatedPlayers: ["Nikola Jokić", "Aaron Gordon", "Kentavious Caldwell-Pope"],
+      relatedPlayers: ["Nikola Jokić", "Aaron Gordon", "Kentavious Caldwell-Pope", "Jamal Murray"],
       relatedTeams: ["DEN", "MIN"],
       trending: true
     },
     {
-      id: "lakers-fourth-straight-win",
-      topic: "Lakers Quietly Building Momentum",
-      sentiment: "positive",
-      intensity: 78,
-      volume: 18900,
-      summary: "The Lakers won their fourth straight game behind Anthony Davis' dominance, with fans wondering if they're timing their peak perfectly for another championship run.",
-      sampleTakes: [
-        "Lakers really about to fool everyone again aren't they? AD looking healthy, four straight wins...",
-        "Y'all laughed at the Lakers all season but they're 54-29 and looking scary right now",
-        "AD with 25/11/3 blocks and nobody talking about it. Lakers flying under the radar perfectly",
-        "Four straight wins and suddenly the Lakers look like title contenders again. Never doubt playoff LeBron"
-      ],
-      relatedPlayers: ["Anthony Davis", "D'Angelo Russell", "LeBron James"],
-      relatedTeams: ["LAL", "HOU"],
-      trending: false
-    },
-    {
-      id: "timberwolves-regression",
-      topic: "Timberwolves Looking Vulnerable",
+      id: "timberwolves-ceiling-doubt",
+      topic: "Anthony Edwards Struggles Reignite Wolves Ceiling Debate",
       sentiment: "negative",
-      intensity: 85,
-      volume: 16700,
-      summary: "Minnesota got dominated by Denver with Anthony Edwards struggling, raising questions about their playoff ceiling after early season hype.",
+      intensity: 88,
+      volume: 19200,
+      summary: "Edwards going 6-of-17 in a nationally relevant game against Denver has ripped open the wound that never fully healed for Minnesota fans and analysts. The question isn't whether Ant is talented — it's whether he can be the guy when the lights are brightest against the league's elite defenses.",
       sampleTakes: [
-        "Ant shooting 6-17 in a big game is exactly why people doubt the Wolves. Where's that superstar gene?",
-        "Minnesota really thought they were different this year but getting worked by Denver like this... yikes",
-        "Timberwolves overhype was REAL. Getting exposed by actual contenders when it matters",
-        "Edwards gotta show up in these moments. 19 points on terrible efficiency ain't gonna cut it in playoffs"
+        "6-17 from Ant in a game that mattered. Look I love Edwards but this is the third time this season he's vanished against a real defense. That's a pattern now",
+        "The Timberwolves ceiling conversation just got very uncomfortable again. Denver exposed them completely and it wasn't even that close",
+        "Anthony Edwards is electric and I believe in him but he CANNOT be shooting 35% in must-win situations. That's not a superstar. That's a work in progress",
+        "Minnesota fans stay in denial but Denver just showed the whole world what the Wolves are. A good team. Not a great one. There's a difference"
       ],
-      relatedPlayers: ["Anthony Edwards", "Karl-Anthony Towns"],
+      relatedPlayers: ["Anthony Edwards", "Karl-Anthony Towns", "Rudy Gobert"],
       relatedTeams: ["MIN", "DEN"],
       trending: true
     },
     {
-      id: "knicks-cruising-msg",
-      topic: "Knicks Dominant at MSG",
+      id: "lakers-four-straight-sneaky-scary",
+      topic: "Lakers Flying Under the Radar on Four-Game Win Streak",
       sentiment: "positive",
-      intensity: 72,
-      volume: 14300,
-      summary: "New York handled Atlanta easily at home behind Jalen Brunson's steady leadership, showing they're ready for a deep playoff run.",
+      intensity: 79,
+      volume: 17600,
+      summary: "The narrative of a resurgent Lakers squad quietly peaking at the right time is gaining serious traction on basketball Reddit and NBA Twitter alike. Four straight wins with AD looking dominant and healthy has fans invoking playoff LeBron mythology even before the postseason begins.",
       sampleTakes: [
-        "Brunson really turned into a legitimate #1 option. 26/7 and making it look effortless at MSG",
-        "Knicks looking scary good at home. 113-102 and never really in doubt against Atlanta",
-        "NY really built something special. Brunson, Randle, OG... this team has championship pieces",
-        "Madison Square Garden bout to be ELECTRIC in the playoffs. Knicks looking dangerous"
+        "The Lakers are 54-29, won four straight, AD looks healthy, and nobody is talking about them. That's either a red flag or the most dangerous team in the West flying under the radar",
+        "AD 25/11/3 blocks against Houston and the discourse is still about OKC and Denver. Perfect. Let them sleep. Lakers about to shock everybody",
+        "Every single year I say I won't fall for Playoff Lakers hype and every single year they make me regret it. 54-29 and rolling. I'm scared",
+        "Four consecutive victories with a dominant two-way performance from Davis in each one. If this Lakers team gets hot in April they are a nightmare draw for anyone"
+      ],
+      relatedPlayers: ["Anthony Davis", "D'Angelo Russell", "Austin Reaves", "LeBron James"],
+      relatedTeams: ["LAL", "HOU"],
+      trending: false
+    },
+    {
+      id: "todays-saturday-slate-loaded",
+      topic: "Saturday Slate Is the Best Day of Basketball All Season",
+      sentiment: "positive",
+      intensity: 86,
+      volume: 28900,
+      summary: "Four nationally televised games with major playoff implications have the NBA internet in full anticipation mode. The Celtics-76ers and Thunder-Suns doubleheader on ABC is being called a must-watch event, with fans already debating outcomes and imploring people to clear their Saturday schedules.",
+      sampleTakes: [
+        "BOS-PHI and OKC-PHX on the same Saturday afternoon and then DET-ORL and SA-POR at night?? The NBA schedule makers understood the assignment completely",
+        "Today's slate might be the most important single day of regular season basketball left. Championship pictures getting painted today. Don't miss it",
+        "Tatum vs Embiid then SGA vs Booker in the same afternoon. Basketball Twitter is about to be unhinged for eight straight hours and I'm completely here for it",
+        "Four games all mattering for playoff seeding. Every single possession counts today. This is why we love the NBA more than any other sport"
+      ],
+      relatedPlayers: ["Jayson Tatum", "Joel Embiid", "Shai Gilgeous-Alexander", "Devin Booker", "Victor Wembanyama", "Cade Cunningham"],
+      relatedTeams: ["BOS", "PHI", "OKC", "PHX", "DET", "ORL", "SA", "POR"],
+      trending: true
+    },
+    {
+      id: "wembanyama-rookie-year-historic",
+      topic: "Wembanyama's Rookie Season Is Already Historic",
+      sentiment: "positive",
+      intensity: 82,
+      volume: 21400,
+      summary: "With San Antonio hosting Portland tonight, attention has turned to Wembanyama's remarkable first season at 21.8 points, 11.2 rebounds, and 4.1 blocks per game. The conversation has shifted from 'is he living up to the hype' to 'is this the greatest rookie season ever?' and the answer from most of the internet is a resounding yes.",
+      sampleTakes: [
+        "Wembanyama is averaging 21/11/4 blocks as a ROOKIE on a championship-contending team. We are watching history and a lot of people are not appreciating it enough right now",
+        "The fact that Wemby is 7-foot-4 and can do everything on both ends of the floor is genuinely unfair. Other teams have to game plan for him differently than anyone they've ever faced",
+        "ROY race is not a race. It's been Wembanyama's award since November. The question is whether this is the greatest rookie season in NBA history and the answer is probably yes",
+        "Spurs fans went from tanking to legitimate championship contenders in one draft pick. One. The Wembanyama effect is the greatest single-player franchise transformation I've ever watched"
+      ],
+      relatedPlayers: ["Victor Wembanyama", "Brandon Miller", "Scoot Henderson"],
+      relatedTeams: ["SA", "POR"],
+      trending: false
+    },
+    {
+      id: "knicks-building-real-contender",
+      topic: "Knicks Look Like the Real Deal at MSG",
+      sentiment: "positive",
+      intensity: 74,
+      volume: 13700,
+      summary: "New York's comfortable 11-point win over Atlanta has reinforced the narrative that Brunson's Knicks are quietly becoming one of the East's most complete teams. MSG is going to be absolutely unhinged once the playoffs start and opposing teams are starting to acknowledge that New York presents real problems.",
+      sampleTakes: [
+        "Brunson 26 and 7, Randle 21 and 8, OG 18. Three guys who can all go off on any given night and a home court that is the loudest building in basketball. Knicks are built for this",
+        "New York handled Atlanta without breaking a sweat at MSG. 54-29 and still not getting enough credit as a genuine Eastern Conference threat",
+        "The Knicks have legitimate depth, a real point guard, and the best home court advantage in the sport. Stop sleeping on them before you regret it in May",
+        "Brunson quietly becoming one of the best clutch performers in the league. That 26-point game looked effortless and that's what scares opposing coaches the most"
       ],
       relatedPlayers: ["Jalen Brunson", "Julius Randle", "OG Anunoby"],
       relatedTeams: ["NY", "ATL"],
       trending: false
     },
     {
-      id: "playoff-seeding-chaos",
-      topic: "East Playoff Picture Tightening",
-      sentiment: "mixed",
-      intensity: 68,
-      volume: 12400,
-      summary: "With multiple teams in the 45-46 win range, the Eastern Conference playoff seeding is getting more chaotic by the day.",
-      sampleTakes: [
-        "East playoff race is INSANE. Atlanta, Toronto, Philly, Orlando all basically tied for seeding",
-        "One bad week could drop you from 5th to 9th seed in the East right now. Playoff implications everywhere",
-        "Toronto losing to Cleveland might cost them big time in seeding. Every game matters now",
-        "East gonna be a bloodbath. Any team 5-10 could make noise or flame out early"
-      ],
-      relatedPlayers: ["RJ Barrett", "Trae Young", "Joel Embiid", "Paolo Banchero"],
-      relatedTeams: ["ATL", "TOR", "PHI", "ORL"],
-      trending: false
-    },
-    {
-      id: "tonight-marquee-matchups",
-      topic: "Today's Loaded Saturday Slate",
+      id: "pistons-60-wins-disbelief",
+      topic: "Detroit at 60-22 Still Breaking People's Brains",
       sentiment: "positive",
-      intensity: 81,
-      volume: 22100,
-      summary: "Four huge games today including Celtics-76ers and Thunder-Suns have fans hyped for championship-level basketball.",
+      intensity: 71,
+      volume: 12100,
+      summary: "The Pistons' 60-22 record continues to generate genuine disbelief across basketball social media. With Detroit hosting Orlando tonight in a potential playoff preview, the question fans keep asking is whether this team is actually a championship contender or the greatest regular season mirage in recent memory.",
       sampleTakes: [
-        "BOS vs PHI and OKC vs PHX on the same day? NBA really spoiling us with this Saturday slate",
-        "Today's games could literally decide playoff seeding. Celtics-Sixers is must-watch TV",
-        "SGA vs Booker and Tatum vs Embiid in the same day? Saturday bout to be ELECTRIC",
-        "Four games that all matter for playoff positioning. This is why we watch basketball"
-      ],
-      relatedPlayers: ["Jayson Tatum", "Joel Embiid", "Shai Gilgeous-Alexander", "Devin Booker"],
-      relatedTeams: ["BOS", "PHI", "OKC", "PHX"],
-      trending: false
-    },
-    {
-      id: "pistons-shocking-season",
-      topic: "Detroit's Stunning 60-22 Record",
-      sentiment: "positive",
-      intensity: 76,
-      volume: 15800,
-      summary: "The Pistons sitting at 60-22 and leading the East continues to be one of the biggest stories of the season, with fans still in disbelief.",
-      sampleTakes: [
-        "Detroit Pistons leading the Eastern Conference at 60-22. I'm still not used to typing that sentence",
-        "Cade Cunningham really turned the Pistons into the #1 seed. What a timeline we're living in",
-        "Remember when everyone said Detroit was 3 years away? Now they're 60-22 and championship favorites",
-        "Pistons success story is incredible but can they actually win it all? Playoffs different beast"
+        "Detroit Pistons. 60 wins. Leading the Eastern Conference. I have typed that sentence hundreds of times this season and it still does not feel real",
+        "Cade Cunningham going from injury heartbreak to leading a 60-win team in two years is one of the best stories in the NBA in a long time and it deserves more recognition",
+        "I respect what Detroit has built but until they prove it in the playoffs I'm treating the 60-22 record with some caution. Regular season success and playoff success are very different animals",
+        "The Pistons are the best story in basketball this year and they're hosting a big game tonight. Give Detroit their flowers. Cade is special"
       ],
       relatedPlayers: ["Cade Cunningham", "Isaiah Stewart"],
-      relatedTeams: ["DET"],
+      relatedTeams: ["DET", "ORL"],
       trending: false
     }
   ],
@@ -191,81 +191,81 @@ export const sentimentData: SentimentData = {
       team: "CLE",
       teamFull: "Cleveland Cavaliers",
       sentiment: "positive",
-      score: 88,
-      buzzWords: ["Mobley dominance", "dark horse", "career night", "championship ceiling"],
-      narrativeSummary: "Cavs fans are ecstatic after Mobley's career-high 31 points showed their championship potential. The blowout win over Toronto has everyone believing they could shock the East."
+      score: 91,
+      buzzWords: ["Mobley unleashed", "dark horse alert", "East's most dangerous", "career night energy", "championship DNA"],
+      narrativeSummary: "Cavaliers fans are riding the highest wave of optimism all season after Mobley's career-high 31-point performance completely changed the national narrative around this team. The prevailing mood is that Cleveland has been quietly building something terrifying and the rest of the East is about to find out the hard way. Fans who have been preaching about Mobley's potential all year are finally getting their moment of validation, and the discourse has shifted from 'sleeper pick' to 'genuine threat' overnight."
     },
     {
       team: "DEN",
       teamFull: "Denver Nuggets",
       sentiment: "positive",
-      score: 94,
-      buzzWords: ["unstoppable", "13 straight", "Jokić masterclass", "inevitable"],
-      narrativeSummary: "Nuggets hype is at fever pitch with their 13-game win streak. Fans are convinced they're about to cruise to another championship with Jokić playing at an otherworldly level."
+      score: 96,
+      buzzWords: ["inevitable", "13 and counting", "Jokić chess master", "unstoppable machine", "Western Conference nightmare"],
+      narrativeSummary: "The Nuggets fanbase is operating with the quiet confidence of a group that has seen this movie before and knows exactly how it ends. Thirteen consecutive wins have transformed online Denver discourse from cautious optimism to full-blown championship expectation, with fans pointing to the streak as proof that the reigning champions have simply figured out how to win at the highest level again. The scariest part of the conversation is that most Nuggets fans aren't even celebrating — they're just expecting it now."
     },
     {
       team: "LAL",
       teamFull: "Los Angeles Lakers",
       sentiment: "positive",
-      score: 76,
-      buzzWords: ["flying under radar", "AD healthy", "four straight", "playoff Lakers"],
-      narrativeSummary: "Lakers fans are cautiously optimistic about their four-game win streak. With AD looking dominant and healthy, there's growing belief they could make another deep playoff run."
+      score: 78,
+      buzzWords: ["under the radar", "AD healthy", "four straight", "playoff mode activated", "don't sleep on us"],
+      narrativeSummary: "Lakers Twitter is doing something unusual: staying relatively quiet and letting the wins speak. Four straight victories with Anthony Davis looking genuinely healthy and dominant has the fanbase in a focused, almost ominous place heading into the final stretch. The prevailing take is that LA is timing their peak perfectly and that opposing teams are making a serious mistake by not talking about them as a championship threat right now."
     },
     {
       team: "MIN",
       teamFull: "Minnesota Timberwolves",
       sentiment: "negative",
-      score: -64,
-      buzzWords: ["exposed", "Ant struggles", "overhyped", "vulnerable"],
-      narrativeSummary: "Wolves fans are frustrated after getting dominated by Denver. Edwards' poor shooting in a big game has critics questioning if Minnesota can compete with elite teams."
+      score: -61,
+      buzzWords: ["ceiling exposed", "Ant inconsistency", "Denver nightmare", "overrated?", "heart check needed"],
+      narrativeSummary: "Minnesota's fanbase is in a genuinely conflicted place after watching their team get dominated by Denver with Edwards shooting just 35% from the field. The frustration isn't anger — it's more like a creeping anxiety that the Wolves are a legitimately good team that simply cannot compete with the very best, and that the playoffs are going to be a brutal awakening. The Edwards conversation in particular has turned pointed, with fans debating whether his inconsistency in big moments is a pattern problem or just a rough night."
     },
     {
       team: "NY",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 71,
-      buzzWords: ["Brunson leadership", "MSG dominance", "championship pieces", "scary good"],
-      narrativeSummary: "Knicks fans are confident after cruising past Atlanta at home. Brunson's steady play and the team's balance has New York believing they're built for a deep playoff run."
+      score: 73,
+      buzzWords: ["MSG fortress", "Brunson elite", "balanced attack", "playoff ready", "East's most complete"],
+      narrativeSummary: "Knicks fans are in a steady, confident groove after handling Atlanta without too much drama at Madison Square Garden. The mood isn't explosively celebratory — more of a settled conviction that this team has figured out what it needs to be to make a deep run. Brunson's leadership and the roster's collective depth are the two topics generating the most positive discussion, with fans quietly believing this group is more complete than any Knicks team in at least two decades."
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "negative",
-      score: -52,
-      buzzWords: ["got worked", "seeding implications", "couldn't match", "disappointing"],
-      narrativeSummary: "Raptors fans are concerned after getting blown out by Cleveland. The loss could hurt their playoff seeding, and they couldn't handle Mobley's dominance."
+      score: -54,
+      buzzWords: ["Mobley had no answer", "seeding in danger", "outclassed", "interior disaster", "must win streak needed"],
+      narrativeSummary: "Toronto's fanbase is managing a specific kind of frustration — not the blowout itself, which was against a genuinely elite team, but the manner in which Cleveland made it look so easy. Mobley's dominance in the paint exposed real structural questions about Toronto's ability to compete physically with the East's best teams. The seeding implications are real and fans know it, with the mood being more worried than angry as they look at a tightly packed middle tier of the conference standings."
     },
     {
       team: "ATL",
       teamFull: "Atlanta Hawks",
       sentiment: "mixed",
-      score: -31,
-      buzzWords: ["Trae tried", "not enough help", "playoff race", "inconsistent"],
-      narrativeSummary: "Hawks fans are frustrated despite Trae's 28 points. The road loss to New York highlighted their inconsistency and raised questions about their playoff readiness."
+      score: -28,
+      buzzWords: ["Trae not enough", "road woes continue", "help wanted", "playoff bubble anxiety", "efficiency problems"],
+      narrativeSummary: "Hawks fans are doing the familiar dance of appreciating Trae Young's 28-point effort while acknowledging the team around him just cannot hold up against quality opposition on the road. The mood is one of resigned frustration rather than outright anger — most Atlanta fans have made peace with what this team is and aren't shocked by the result. The lingering worry is about playoff seeding, with Atlanta sitting at 46-36 in a conference where every game could drop you two spots overnight."
     },
     {
       team: "HOU",
       teamFull: "Houston Rockets",
       sentiment: "mixed",
-      score: -23,
-      buzzWords: ["Sengun solid", "not enough offense", "Lakers defense", "development"],
-      narrativeSummary: "Rockets fans saw positives in Sengun's performance but were disappointed by the team's offensive struggles against the Lakers' improved defense."
+      score: -19,
+      buzzWords: ["Sengun building blocks", "perimeter shooting problem", "young team learning", "Davis too much", "development mode"],
+      narrativeSummary: "Rockets fans are in an interesting psychological place — disappointed by the loss to the Lakers but fundamentally optimistic about what Sengun's 22-8-5 performance represents for the franchise's future. The discourse is almost entirely forward-looking, with fans treating this game as a learning experience for a young team that knows it's not a championship contender yet but sees the blueprint clearly. The frustration is real but it's the constructive kind."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 79,
-      buzzWords: ["60-22 record", "Cade magic", "shocking success", "championship favorites"],
-      narrativeSummary: "Pistons fans are still in disbelief about their 60-22 record leading the East. There's growing belief that Cade and company could actually win it all this year."
+      score: 81,
+      buzzWords: ["60-22 and real", "Cade's moment", "East's top seed", "believe it now", "championship or bust"],
+      narrativeSummary: "Detroit fans have moved past disbelief and into a place of genuine championship expectation, which is a sentence that would have been incomprehensible eighteen months ago. The 60-22 record has stopped feeling like a surprise and started feeling like a standard, and with a crucial home game tonight against Orlando, the fanbase is locked in and focused. There's a thread of anxiety underneath the confidence — the understanding that none of this matters if they don't perform in the playoffs — but the dominant mood is justified pride in what Cade and this organization have built."
     },
     {
       team: "OKC",
       teamFull: "Oklahoma City Thunder",
       sentiment: "positive",
-      score: 82,
-      buzzWords: ["SGA MVP", "64-18 record", "home dominance", "championship ready"],
-      narrativeSummary: "Thunder fans are supremely confident heading into today's game against Phoenix. With the league's best record and SGA playing at an elite level, expectations are sky-high."
+      score: 85,
+      buzzWords: ["SGA MVP locked", "64-18 historic", "Paycom fortress", "Phoenix better be ready", "best team in the West"],
+      narrativeSummary: "Thunder fans are operating with supreme confidence entering today's home game against Phoenix, and why wouldn't they be? A 64-18 record and a home court where OKC has gone 35-6 gives this fanbase every reason to expect a dominant performance. The primary conversation is about SGA's MVP case and whether Oklahoma City is peaking at exactly the right time to win the Western Conference. The mood is electric heading into what looks like a potential first-round playoff preview on national television."
     }
   ],
   playerSentiments: [
@@ -273,75 +273,124 @@ export const sentimentData: SentimentData = {
       player: "Evan Mobley",
       team: "CLE",
       sentiment: "positive",
-      score: 96,
-      mentions: 18400,
-      topTake: "EVAN MOBLEY IS DIFFERENT. 31/12/4 blocks on 68% shooting??? This man just became a problem 🔥",
-      narrativeArc: "Career-high 31 points transforms him from rising star to legitimate superstar, with fans believing he's the key to Cleveland's championship hopes."
+      score: 97,
+      mentions: 22600,
+      topTake: "EVAN MOBLEY IS DIFFERENT. 31/12/4 blocks on 68% shooting in a blowout win. This man is not a rising star anymore — he is ARRIVED and the East is not ready.",
+      narrativeArc: "Mobley woke up this morning as the most talked-about player in basketball after his career-high 31 points completely rewrote how the internet perceives both him and the Cavaliers. The narrative arc is a classic underdog validation story — fans who have been saying he was underrated all year are vindicated, and national media is scrambling to recalibrate its Cleveland projections before the playoffs begin. His two-way dominance on both ends of the floor in a nationally visible game is the kind of performance that permanently changes perception."
     },
     {
       player: "Nikola Jokić",
       team: "DEN",
       sentiment: "positive",
-      score: 93,
-      mentions: 21200,
-      topTake: "Jokić making it look easy every single night during this 13-game win streak. Man is inevitable",
-      narrativeArc: "His masterful 24-11-7 performance during the 13th straight win has fans convinced he's playing chess while everyone else plays checkers."
+      score: 95,
+      mentions: 24300,
+      topTake: "Jokić with 24/11/7 in his 13th straight win and it feels like a Tuesday. This man has completely broken our ability to be impressed by greatness. He is just inevitable.",
+      narrativeArc: "The remarkable thing about Jokić's social media presence right now is the paradox of sustained excellence — his performances are so consistently brilliant that the internet has developed a strange combination of awe and numbness toward them. The 13-game win streak has snapped people out of that comfortable apathy though, and today's discourse has a genuine urgency to it. Fans and analysts are wrestling with whether they're watching the greatest stretch of individual dominance in recent NBA history and whether they're appreciating it enough in real time."
     },
     {
       player: "Anthony Davis",
       team: "LAL",
       sentiment: "positive",
-      score: 84,
-      mentions: 12900,
-      topTake: "AD with 25/11/3 blocks and nobody talking about it. Lakers flying under the radar perfectly",
-      narrativeArc: "His dominant two-way performance in the Lakers' fourth straight win has fans believing he's healthy and ready for another championship run."
+      score: 83,
+      mentions: 14100,
+      topTake: "AD 25/11/3 blocks and shooting 57% while holding Houston to 42% from the field. The man is playing the best basketball of his career and LA is conveniently staying off everyone's radar.",
+      narrativeArc: "Davis is in one of those rare positive narrative moments where the health gods seem to be cooperating and his performances are matching his max contract billing. The dominant theme in his social discourse is the combination of his offensive efficiency and defensive impact — 3 blocks and holding the Rockets to 42% shooting is the kind of two-way game that wins playoff series. Lakers fans are desperately trying not to jinx it by staying quiet, but the quiet confidence is palpable."
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
       sentiment: "negative",
-      score: -58,
-      mentions: 14600,
-      topTake: "Ant shooting 6-17 in a big game is exactly why people doubt the Wolves. Where's that superstar gene?",
-      narrativeArc: "His poor shooting performance against Denver has critics questioning whether he can step up in crucial moments against elite competition."
+      score: -62,
+      mentions: 17800,
+      topTake: "Ant going 6-17 against Denver's defense in a game Minnesota needed is becoming a troubling pattern. Elite players make their teammates better when their shot isn't falling. He didn't do that tonight.",
+      narrativeArc: "Edwards is experiencing the harsh side of superstar expectations — one bad performance against a quality opponent and the narrative machine turns on him completely. The social discourse is a mixture of genuine concern about his ability to perform in high-stakes situations against elite competition, and overcorrection from fans who were hyping him too aggressively earlier in the season. The most thoughtful takes acknowledge his age and trajectory while still identifying the performance gaps that need to close before Minnesota can be taken seriously as a championship threat."
     },
     {
       player: "Jalen Brunson",
       team: "NY",
       sentiment: "positive",
-      score: 78,
-      mentions: 9800,
-      topTake: "Brunson really turned into a legitimate #1 option. 26/7 and making it look effortless at MSG",
-      narrativeArc: "His steady leadership in the home win over Atlanta reinforces his status as a legitimate franchise cornerstone for the Knicks."
+      score: 80,
+      mentions: 10400,
+      topTake: "Brunson with 26 and 7 at MSG in a comfortable win against playoff-caliber opposition. He's doing it efficiently, he's doing it consistently, and he makes every player around him better. That's what a franchise cornerstone looks like.",
+      narrativeArc: "Brunson's current social media narrative is defined by a kind of quiet respect that's more valuable than hype — the basketball community has fully bought into him as a legitimate franchise player without the caveat of 'for a guy his size' or 'on a team like this.' His 26-7 performance was efficient and controlled rather than spectacular, which in some ways makes it more impressive. Knicks fans are increasingly convinced he's the right player to lead a playoff run."
     },
     {
-      player: "Darius Garland",
-      team: "CLE",
+      player: "Victor Wembanyama",
+      team: "SA",
       sentiment: "positive",
-      score: 72,
-      mentions: 8400,
-      topTake: "Garland's playmaking opened up everything for Mobley's career night. Perfect point guard performance",
-      narrativeArc: "His 22 points and 8 assists perfectly complemented Mobley's dominance, showing how Cleveland's core pieces fit together."
+      score: 91,
+      mentions: 19700,
+      topTake: "Wembanyama is averaging 21.8/11.2/4.1 blocks as a ROOKIE on a 62-win team and I genuinely think we are not giving this enough reverence. This is a generational event happening in real time.",
+      narrativeArc: "The anticipation for Wembanyama's performance tonight against Portland has basketball Twitter doing its pre-game ritual of superlatives and historical comparisons. The narrative this week has evolved beyond Rookie of the Year certainty into genuine debate about all-time great rookie seasons, with many arguing his combination of individual numbers and team impact is unprecedented. Tonight's home game is expected to be another showcase moment in a season full of them."
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       sentiment: "positive",
-      score: 89,
-      mentions: 16700,
-      topTake: "SGA bout to show Phoenix why OKC got the best record in the league. MVP level dominance incoming",
-      narrativeArc: "Anticipation is massive for his performance against Phoenix today, with fans expecting another MVP-caliber display at home."
+      score: 90,
+      mentions: 18300,
+      topTake: "SGA at home against Phoenix today. 64-18 team. MVP-level player in his own building against a team he's dominated all season. This is a scheduled massacre and I'm watching every minute of it.",
+      narrativeArc: "The pre-game anticipation for SGA's performance against Phoenix is generating as much discourse as most players' actual stat lines. His MVP case is the dominant thread — fans are making the argument that his two-way excellence and the Thunder's historic record make him the most impactful player in basketball right now. The narrative heading into today's game is essentially a coronation ceremony before the playoffs officially begin, with Oklahoma City's home dominance serving as the backdrop."
+    },
+    {
+      player: "Darius Garland",
+      team: "CLE",
+      sentiment: "positive",
+      score: 75,
+      mentions: 9200,
+      topTake: "Garland's 22 and 8 is getting lost in the Mobley conversation and that's almost the point — he set up the entire game with his playmaking, opened every lane, and Cleveland ran through him all night. That's elite point guard work.",
+      narrativeArc: "Garland is benefiting from the halo effect of Mobley's career night while also generating his own positive discussion among more analytically minded fans who appreciated how his playmaking created the conditions for Cleveland's offensive explosion. The narrative is one of a complementary star finally getting his moment recognized — 22 points and 8 assists on efficient shooting in a blowout win is a quietly brilliant performance that the numbers community is surfacing in the wake of the team's dominant victory."
     },
     {
       player: "Trae Young",
       team: "ATL",
       sentiment: "mixed",
-      score: -12,
-      mentions: 7200,
-      topTake: "Trae got 28 and 9 but Hawks still lost by double digits. Man needs more help around him",
-      narrativeArc: "His solid numbers in the loss to New York highlighted both his individual talent and the team's need for better supporting pieces."
-    }
-  ],
-  hottestTake: "Evan Mobley's career night proves Cleveland is the REAL threat in the East. Book it now: Cavs making the Finals and nobody will see it coming 🔥🔥🔥",
-  coldestTake: "The Lakers' four-game win streak is just fool's gold. They're still not a real championship contender and AD will get hurt in the playoffs like always."
-};
+      score: -14,
+      mentions: 8100,
+      topTake: "Trae got 28 and 9 in a road loss to the third seed and people are going to use this game to clown him. Stop. He's playing well. The roster around him is the problem and has been for two years.",
+      narrativeArc: "Young is stuck in the perpetual narrative limbo that has defined his career — talented enough to generate brilliant individual performances, but playing on a team that can't close games against quality opponents. The mixed sentiment reflects a genuine split in how people interpret his 28-9 line: half the basketball internet sees a star who can't win the games that matter, the other half sees an elite playmaker being let down by his supporting cast. Both takes have merit, which is what makes him one of the most argued-about players in the sport."
+    },
+    {
+      player: "Aaron Gordon",
+      team: "DEN",
+      sentiment: "positive",
+      score: 77,
+      mentions: 7600,
+      topTake: "8-12 shooting for 19 points and lockdown defense from Gordon in the 13th straight win. He is the most underrated player on the most dangerous team in basketball. Somebody please put some respect on his name.",
+      narrativeArc: "Gordon is getting a nice wave of appreciation from the analytics-forward portion of basketball Twitter, which has identified his 66.7% shooting and defensive versatility as crucial elements of Denver's winning streak that the casual fan typically overlooks. The prevailing narrative is one of deserved recognition for a player who makes the Nuggets work in ways that don't always show up in the headline stats but are impossible to miss when you watch the games closely."
+    },
+    {
+      player: "Joel Embiid",
+      team: "PHI",
+      sentiment: "mixed",
+      score: -8,
+      mentions: 13900,
+      topTake: "Going to Boston today as a 45-37 team and all the pressure is on Embiid to be the guy who drags Philadelphia back into relevance. He's done it before. He's also disappeared before. Today is a referendum on which version shows up.",
+      narrativeArc: "Embiid is generating pre-game anxiety discourse ahead of Philadelphia's crucial road game against Boston, with the dominant narrative being one of uncertainty rather than expectation. His brilliance and his fragility are both well-documented, and going into TD Garden as part of a 45-37 team has the basketball internet in a genuinely nervous place about what version of Embiid shows up. The load management questions have quieted, replaced by a simpler and more urgent one: can he be great when Philadelphia needs it most?"
+    },
+    {
+      player: "Jayson Tatum",
+      team: "BOS",
+      sentiment: "positive",
+      score: 86,
+      mentions: 15200,
+      topTake: "Tatum averaging 28.4 in his last five games and gets Philadelphia at home today. This is literally his dream scenario and he has been absolutely locked in. Book the dominant performance now.",
+      narrativeArc: "The pre-game narrative around Tatum today is almost entirely positive, built on his recent five-game scoring tear and the home-court advantage that TD Garden provides against a Philadelphia team with real road struggles. The dominant take is one of momentum and destiny — a player who has been scrutinized for his playoff performances now entering a quasi-playoff atmosphere against a divisional rival while on the hottest individual stretch of his season. Celtics fans are expectant rather than anxious, which is a meaningful psychological shift."
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      sentiment: "positive",
+      score: 84,
+      mentions: 11800,
+      topTake: "Cade Cunningham went from injury-shortened seasons to leading a 60-win team into the playoffs as the favorite to represent the East. This might be the best single-player transformation story in the league in the last five years.",
+      narrativeArc: "Cunningham's narrative is at peak positive right now — the combination of his comeback from injury concerns, Detroit's shocking 60-22 record, and tonight's high-stakes home game against Orlando has created a perfect storm of appreciation for a player who had his path to stardom genuinely threatened. The basketball internet is broadly united in respect for what he's accomplished, with the primary discourse being about whether Detroit can sustain this in the playoffs and what Cade's ceiling looks like in a deep postseason run."
+    },
+    {
+      player: "RJ Barrett",
+      team: "TOR",
+      sentiment: "mixed",
+      score: -18,
+      mentions: 6800,
+      topTake: "Barrett with 24 on 50% shooting in a 13-point blowout loss tells you everything. He played fine. Toronto's problem isn't RJ Barrett. It's that they have no answer for an Evan Mobley operating at this level.",
+      narrativeArc: "Barrett's discourse following the Cleveland loss is relatively measured — most observers recognized that his 24-point performance was solid in a team defeat rather than an individual failure. The more critical takes are focused not on Barrett specifically but on what his team around him can and cannot do, with the implicit question being whether Toronto has enough to compete with Cleveland, New York, and Boston in a playoff series. His personal narrative is one of a young star trying to

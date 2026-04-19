@@ -39,7 +39,7 @@ export const momentumData: MomentumData = {
     player: "Nikola Jokić", 
     team: "DEN", 
     clutchRating: 92, 
-    description: "Orchestrated a flawless 13th straight win with surgical precision, shooting 10-of-15 while conducting Denver's symphony offense" 
+    description: "Orchestrated a masterful 13th straight win with surgical precision, extending the NBA's longest active winning streak with his two-way excellence" 
   },
   games: [
     {
@@ -49,34 +49,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "8:24",
-          description: "Evan Mobley announces his arrival with back-to-back dunks and a thunderous block on Scottie Barnes",
-          runScore: "12-4 CLE",
+          timestamp: "8:23",
+          description: "Evan Mobley announces his presence with authority, scoring 11 straight points in the paint to ignite Rocket Arena",
+          runScore: "15-4 CLE",
           momentum: "home",
           keyPlayer: "Evan Mobley",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "6:17",
-          description: "RJ Barrett catches fire from three, hitting three consecutive triples to pull Toronto within striking distance",
-          runScore: "9-2 TOR",
+          timestamp: "4:17",
+          description: "RJ Barrett responds with back-to-back threes, cutting Cleveland's lead to single digits as Toronto finds its rhythm",
+          runScore: "8-2 TOR",
           momentum: "away",
           keyPlayer: "RJ Barrett",
           impact: "notable"
         },
         {
           quarter: "3rd",
-          timestamp: "4:32",
-          description: "Mobley and Garland combine for 14 points in a devastating 18-6 run that breaks the game wide open",
-          runScore: "18-6 CLE",
+          timestamp: "6:45",
+          description: "Mobley and Garland take over with a devastating 12-0 run, showcasing the Cavs' interior-perimeter balance",
+          runScore: "12-0 CLE",
           momentum: "home",
           keyPlayer: "Evan Mobley",
           impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "7:21",
+          description: "Cleveland's defense clamps down with three consecutive stops while Mobley dominates the glass",
+          runScore: "9-2 CLE",
+          momentum: "home",
+          keyPlayer: "Evan Mobley",
+          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Evan Mobley's career night was a coming-out party for the ages, as he dominated the Raptors with relentless interior assault. The fourth-year big man was virtually unstoppable around the rim, converting contested shots with surgical precision while protecting the paint like a fortress. Cleveland's balanced attack and Mobley's two-way brilliance turned what started as a competitive affair into a statement victory. The Cavaliers' offensive efficiency was a thing of beauty, with crisp ball movement and elite shot selection leading to a dominant wire-to-wire performance."
+      narrative: "Evan Mobley's career night turned Rocket Arena into his personal showcase, as the fourth-year big man carved up Toronto with a perfect blend of power and finesse. The Cavaliers' interior dominance was so complete that the Raptors looked helpless in the paint, watching Mobley shoot an absurd 68% from the field. Cleveland's balanced attack and suffocating defense never allowed Toronto to mount a serious comeback, turning what could have been a competitive Eastern Conference battle into a statement win."
     },
     {
       gameId: "MIN-DEN-20260418",
@@ -85,43 +94,51 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:45",
-          description: "Anthony Edwards explodes for 11 early points, including two highlight-reel drives that energize the visiting crowd",
-          runScore: "13-7 MIN",
+          timestamp: "9:14",
+          description: "Anthony Edwards starts hot with 8 quick points, giving Minnesota an early edge at Ball Arena",
+          runScore: "8-2 MIN",
           momentum: "away",
           keyPlayer: "Anthony Edwards",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "9:12",
-          description: "Jokić begins his masterclass with five assists in three minutes, finding Aaron Gordon for back-to-back alley-oops",
-          runScore: "14-4 DEN",
+          timestamp: "5:33",
+          description: "Jokić begins to flex his playmaking muscles, threading impossible passes for three consecutive Denver buckets",
+          runScore: "7-0 DEN",
           momentum: "home",
           keyPlayer: "Nikola Jokić",
           impact: "significant"
         },
         {
           quarter: "3rd",
-          timestamp: "5:28",
-          description: "Denver's championship pedigree shows as they execute a suffocating defensive stretch while Jokić orchestrates perfection",
-          runScore: "19-8 DEN",
+          timestamp: "8:47",
+          description: "The MVP candidate takes over completely, scoring and assisting on a devastating 14-2 run that breaks Minnesota's spirit",
+          runScore: "14-2 DEN",
           momentum: "home",
           keyPlayer: "Nikola Jokić",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "8:47",
-          description: "The Nuggets' depth takes over as KCP and Gordon combine for 12 points to salt away the 13th straight victory",
-          runScore: "16-9 DEN",
+          timestamp: "4:12",
+          description: "Aaron Gordon and KCP provide the dagger shots as Denver's depth overwhelms a tired Timberwolves squad",
+          runScore: "10-3 DEN",
           momentum: "home",
-          keyPlayer: "Kentavious Caldwell-Pope",
+          keyPlayer: "Aaron Gordon",
           impact: "significant"
         }
       ],
-      clutchPlays: [],
-      narrative: "Nikola Jokić's basketball artistry was on full display as Denver extended their incredible winning streak to 13 games. The two-time MVP played like a chess master, seeing moves three steps ahead while his teammates executed with championship-level precision. Minnesota's early energy couldn't match Denver's relentless execution and suffocating defensive adjustments. This was a clinic in how championship teams impose their will, with the Nuggets methodically breaking down a quality opponent through superior basketball IQ and depth."
+      clutchPlays: [
+        {
+          player: "Nikola Jokić",
+          team: "DEN",
+          description: "Threading a no-look pass through triple coverage to find Caldwell-Pope for a corner three",
+          timeRemaining: "3:47",
+          winProbabilityShift: 12.3
+        }
+      ],
+      narrative: "Nikola Jokić conducted another symphony of basketball brilliance, extending Denver's historic winning streak to 13 games with a performance that reminded everyone why he's a two-time MVP. The Serbian maestro made the difficult look effortless, picking apart Minnesota's defense with surgical precision while Anthony Edwards struggled to find his usual explosive rhythm. This wasn't just another regular season win—it was a statement that Denver is peaking at the perfect time, looking every bit like a championship contender."
     },
     {
       gameId: "ATL-NY-20260418",
@@ -130,34 +147,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "6:33",
-          description: "Trae Young dazzles Madison Square Garden with three deep threes and two no-look assists",
-          runScore: "13-6 ATL",
+          timestamp: "7:45",
+          description: "Trae Young dazzles early with three deep threes, silencing the Madison Square Garden crowd",
+          runScore: "11-4 ATL",
           momentum: "away",
           keyPlayer: "Trae Young",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "8:19",
-          description: "Jalen Brunson takes over with 12 points in five minutes, including a step-back three that silences the Atlanta bench",
-          runScore: "17-8 NY",
+          timestamp: "9:18",
+          description: "Jalen Brunson answers back with his own scoring flurry, igniting the Garden faithful as the Knicks take control",
+          runScore: "13-2 NY",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
-          impact: "significant"
+          impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "4:15",
-          description: "Julius Randle and OG Anunoby combine for 14 points as New York's size advantage becomes overwhelming",
-          runScore: "16-7 NY",
+          timestamp: "6:22",
+          description: "Randle and Anunoby combine for a powerful 10-0 run, showcasing New York's improved two-way balance",
+          runScore: "10-0 NY",
           momentum: "home",
           keyPlayer: "Julius Randle",
-          impact: "game-changing"
+          impact: "significant"
+        },
+        {
+          quarter: "4th",
+          timestamp: "5:47",
+          description: "The Knicks' defense suffocates Atlanta's offense with three straight steals leading to transition buckets",
+          runScore: "8-2 NY",
+          momentum: "home",
+          keyPlayer: "OG Anunoby",
+          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "The Garden was electric as Jalen Brunson put on a point guard clinic against his former team's division rival. After Trae Young's early fireworks threatened to steal the show, Brunson responded with the poise and precision that has made him a Knicks legend. New York's superior size and depth gradually wore down Atlanta's perimeter-heavy attack. The Knicks' balanced scoring and defensive intensity showcased why they've been one of the East's most consistent teams, methodically pulling away from a dangerous Hawks squad."
+      narrative: "Madison Square Garden witnessed vintage playoff-atmosphere basketball as Jalen Brunson outdueled Trae Young in a clash of elite point guards. While Young provided early fireworks, Brunson's steady excellence and the Knicks' superior depth gradually wore down Atlanta's resistance. New York's transformation into a legitimate Eastern Conference contender was on full display, with their suffocating defense and balanced offense proving too much for a Hawks team still searching for consistency."
     },
     {
       gameId: "HOU-LAL-20260418",
@@ -166,43 +192,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "9:11",
-          description: "Alperen Şengün showcases his skill set with 8 early points and 3 assists, giving Houston early confidence",
-          runScore: "12-6 HOU",
+          timestamp: "8:56",
+          description: "Alperen Şengün dominates early in the post, giving Houston a surprising early advantage at Crypto.com Arena",
+          runScore: "9-2 HOU",
           momentum: "away",
           keyPlayer: "Alperen Şengün",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "7:24",
-          description: "Anthony Davis awakens with three consecutive blocks and two thunderous dunks that electrify crypto.com Arena",
-          runScore: "10-2 LAL",
+          timestamp: "6:33",
+          description: "Anthony Davis awakens with a thunderous block leading to a transition dunk, sparking an 8-0 Lakers run",
+          runScore: "8-0 LAL",
           momentum: "home",
           keyPlayer: "Anthony Davis",
           impact: "significant"
         },
         {
           quarter: "3rd",
-          timestamp: "5:43",
-          description: "D'Angelo Russell catches fire from deep, hitting four threes in six minutes to blow the game open",
-          runScore: "18-8 LAL",
+          timestamp: "7:41",
+          description: "D'Angelo Russell catches fire from deep, hitting three consecutive threes to blow the game open",
+          runScore: "11-2 LAL",
           momentum: "home",
           keyPlayer: "D'Angelo Russell",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "6:15",
-          description: "Davis dominates both ends with 7 points and 2 blocks to seal the Lakers' fourth straight victory",
-          runScore: "11-4 LAL",
+          timestamp: "8:14",
+          description: "Davis seals the victory with dominant paint presence, scoring 8 straight points to crush Houston's comeback hopes",
+          runScore: "8-0 LAL",
           momentum: "home",
           keyPlayer: "Anthony Davis",
           impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Anthony Davis reminded everyone why he's still one of the league's most dominant two-way forces, completely taking over this game in the second half. After Houston's early energy and Şengün's crafty play-making, the Lakers' veteran savvy and playoff experience began to show. Davis was a defensive anchor and offensive catalyst, while D'Angelo Russell's hot shooting provided the perfect complement. The Lakers' four-game winning streak has them peaking at the perfect time, with Davis looking like his championship-winning self from 2020."
+      narrative: "Anthony Davis reminded everyone why he's still one of the league's most dominant two-way forces, methodically dismantling Houston's interior defense while anchoring a Lakers unit firing on all cylinders. The big man's efficient 25-point performance was the perfect complement to D'Angelo Russell's perimeter explosion, creating a balanced attack that Houston simply couldn't match. This fourth consecutive victory has the Lakers looking dangerous as the playoffs approach, with Davis playing at an All-NBA level when it matters most."
     }
   ]
 };
