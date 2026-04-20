@@ -29,7 +29,13 @@ if (!process.env.ANTHROPIC_API_KEY) {
 
 // All weekly scripts are independent — run them all in parallel.
 // `timeoutMs` overrides the default per-script timeout.
-const DEFAULT_SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
+//
+// Each script calls Anthropic with up to ~12-16K output tokens. Under load
+// individual calls can take 2-3 minutes, and `claudeGenerate` retries with
+// 5s→60s backoff on overload. The previous 3-minute default left no headroom
+// when several scripts requested simultaneously, so we use a 6-minute default.
+// The workflow itself still bounds total runtime via `timeout-minutes: 15`.
+const DEFAULT_SCRIPT_TIMEOUT = 360_000; // 6 minutes per script
 const WEEKLY_SCRIPTS = [
   { name: "Trade Value", script: "generate-trade-value.mjs" },
   { name: "Lineups", script: "generate-lineups.mjs" },
@@ -38,9 +44,7 @@ const WEEKLY_SCRIPTS = [
   { name: "Draft Intel", script: "generate-draft.mjs" },
   { name: "Clutch Ratings", script: "generate-clutch.mjs" },
   { name: "Trade Simulator", script: "generate-trade-sim.mjs" },
-  // Community Pulse emits 30 team rankings + 10 MVP candidates + debates +
-  // frustration index, so it routinely runs past the 3-minute default.
-  { name: "Community Pulse", script: "generate-community-pulse.mjs", timeoutMs: 360_000 },
+  { name: "Community Pulse", script: "generate-community-pulse.mjs" },
 ];
 
 function runScript({ name, script, timeoutMs = DEFAULT_SCRIPT_TIMEOUT }) {
