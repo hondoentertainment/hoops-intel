@@ -37,6 +37,8 @@ const HistoryEngine = lazy(() => import("./pages/HistoryEngine"));
 const RefReports = lazy(() => import("./pages/RefReports"));
 const AskAI = lazy(() => import("./pages/AskAI"));
 const MyPulse = lazy(() => import("./pages/MyPulse"));
+const Pro = lazy(() => import("./pages/Pro"));
+const Embed = lazy(() => import("./pages/Embed"));
 
 function PageLoader() {
   return (
@@ -90,6 +92,8 @@ export default function App() {
             <Route path="/refs" component={RefReports} />
             <Route path="/ask" component={AskAI} />
             <Route path="/my-pulse" component={MyPulse} />
+            <Route path="/pro" component={Pro} />
+            <Route path="/embed/:id" component={Embed} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>
