@@ -27,7 +27,9 @@ if (!process.env.ANTHROPIC_API_KEY) {
   process.exit(0);
 }
 
-// All weekly scripts are independent — run them all in parallel
+// All weekly scripts are independent — run them all in parallel.
+// `timeoutMs` overrides the default per-script timeout.
+const DEFAULT_SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
 const WEEKLY_SCRIPTS = [
   { name: "Trade Value", script: "generate-trade-value.mjs" },
   { name: "Lineups", script: "generate-lineups.mjs" },
@@ -36,12 +38,12 @@ const WEEKLY_SCRIPTS = [
   { name: "Draft Intel", script: "generate-draft.mjs" },
   { name: "Clutch Ratings", script: "generate-clutch.mjs" },
   { name: "Trade Simulator", script: "generate-trade-sim.mjs" },
-  { name: "Community Pulse", script: "generate-community-pulse.mjs" },
+  // Community Pulse emits 30 team rankings + 10 MVP candidates + debates +
+  // frustration index, so it routinely runs past the 3-minute default.
+  { name: "Community Pulse", script: "generate-community-pulse.mjs", timeoutMs: 360_000 },
 ];
 
-const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
-
-function runScript({ name, script }) {
+function runScript({ name, script, timeoutMs = DEFAULT_SCRIPT_TIMEOUT }) {
   return new Promise((resolve) => {
     const scriptPath = join(__dirname, script);
     const start = Date.now();
@@ -58,9 +60,11 @@ function runScript({ name, script }) {
     child.stdout.on("data", (d) => { stdout += d; });
     child.stderr.on("data", (d) => { stderr += d; });
 
+    let timedOut = false;
     const timer = setTimeout(() => {
+      timedOut = true;
       child.kill("SIGTERM");
-    }, SCRIPT_TIMEOUT);
+    }, timeoutMs);
 
     child.on("close", (code) => {
       clearTimeout(timer);
@@ -69,7 +73,10 @@ function runScript({ name, script }) {
         resolve({ name, status: "success", elapsed });
       } else {
         if (stderr) console.error(`  [${name}] ${stderr.trim()}`);
-        resolve({ name, status: "failed", elapsed, error: `exit code ${code}` });
+        const reason = timedOut
+          ? `timed out after ${(timeoutMs / 1000).toFixed(0)}s`
+          : `exit code ${code}`;
+        resolve({ name, status: "failed", elapsed, error: reason });
       }
     });
 

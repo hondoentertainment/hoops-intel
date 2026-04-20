@@ -55,8 +55,11 @@ function parseGames(espnData) {
 
 // ── Parse a JS object/array literal export from pulseData.ts source.
 //    Walks the source respecting string and bracket nesting, then evaluates
-//    the literal inside an isolated Function scope. Throws on any mismatch.
-function extractExportLiteral(src, name) {
+//    the literal inside an isolated Function scope. Previously-extracted
+//    exports can be passed in via `scope` so that derived exports such as
+//    `standings = [...eastStandings, ...westStandings]` resolve correctly.
+//    Throws on any mismatch.
+function extractExportLiteral(src, name, scope = {}) {
   const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*`);
   const m = re.exec(src);
   if (!m) throw new Error("export not found");
@@ -80,7 +83,9 @@ function extractExportLiteral(src, name) {
 
   const literal = src.slice(start, end).trim();
   try {
-    return new Function(`"use strict"; return (${literal});`)();
+    const keys = Object.keys(scope);
+    const values = keys.map((k) => scope[k]);
+    return new Function(...keys, `"use strict"; return (${literal});`)(...values);
   } catch (err) {
     throw new Error(`literal eval failed: ${err.message}`);
   }
@@ -196,10 +201,14 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
 
   // ── Parse-validate every export so a bracket/string mismatch never
   //    reaches the build (this is what broke the 2026-04-19 deploy).
+  //    Evaluate in declaration order and accumulate a scope so that
+  //    derived exports like `standings = [...eastStandings, ...westStandings]`
+  //    can resolve their references.
   const parseErrors = [];
+  const scope = {};
   for (const name of requiredExports) {
     try {
-      extractExportLiteral(newPulseContent, name);
+      scope[name] = extractExportLiteral(newPulseContent, name, scope);
     } catch (err) {
       parseErrors.push(`${name}: ${err.message}`);
     }
