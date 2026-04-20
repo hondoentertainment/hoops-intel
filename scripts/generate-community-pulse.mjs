@@ -137,6 +137,12 @@ export const communityPulseData: CommunityPulseData = {
   weeklyNarrative: "2-3 sentence overview of the community mood this week",
 };
 
+// Top 20 ratable players (consumed by CommunityPulse.tsx). MUST be present.
+export const ratablePlayers = [
+  { player: "...", team: "..." },
+  // ...20 entries total
+];
+
 ## Guidelines
 - powerRankings: Rank all 30 NBA teams. approvalRating 0-100 (fan approval of team direction).
 - mvpRankings: Top 10 MVP candidates. supportPct should roughly sum to ~100 across top 5.
@@ -146,6 +152,7 @@ export const communityPulseData: CommunityPulseData = {
 - prevRank: plausible previous week's rank (can differ by 1-5 spots).
 - All text should feel like authentic fan/community voice.
 - Base rankings on actual current standings and narratives from pulseData.
+- ratablePlayers MUST be exported with exactly 20 entries (top stars across the league). This export is consumed by the CommunityPulse page and the build will fail without it.
 
 Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
@@ -162,6 +169,14 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
     .replace(/^```(?:typescript|ts)?\n?/m, "")
     .replace(/\n?```$/m, "")
     .trim();
+
+  const requiredExports = ["communityPulseData", "ratablePlayers"];
+  const missing = requiredExports.filter((e) => !new RegExp(`export\\s+const\\s+${e}\\b`).test(content));
+  if (missing.length > 0) {
+    console.error(`❌ communityPulseData.ts is missing exports: ${missing.join(", ")}`);
+    console.error("   These exports are imported by CommunityPulse.tsx — build would fail.");
+    process.exit(1);
+  }
 
   writeFileSync(join(ROOT, "client/src/lib/communityPulseData.ts"), content, "utf8");
   console.log("✓ communityPulseData.ts written");

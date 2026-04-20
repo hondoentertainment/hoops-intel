@@ -659,11 +659,6 @@ export const tradeSimData: TradeSimData = {
       },
       team2: {
         team: "ATL",
-        sending: ["Trae Young"],
-        receiving: ["Damian Lillard", "2027 First-Round Pick (POR)"],
-      },
-      team2: {
-        team: "ATL",
         sending: ["Trae Young", "Scottie Barnes"],
         receiving: ["Damian Lillard", "2027 First-Round Pick (POR)"],
       },

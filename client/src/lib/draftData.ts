@@ -675,4 +675,5 @@ export const draftData: DraftData = {
       note: "Charlotte's front office has quietly rebuilt into a competent team, which limits their lottery odds. If they land a pick, Harper's size and playmaking would give LaMelo Ball an ideal co-creator — two big, skilled guards who can both initiate offense."
     }
   ],
-  weeklyScoutReport: "The 2026 NBA Draft class is beginning to crystallize at the top with Peterson, Essengue, and Tre Johnson separating themselves from the field — though Essengue's blistering week in Germany has injected genuine debate
+  weeklyScoutReport: "The 2026 NBA Draft class is beginning to crystallize at the top with Peterson, Essengue, and Tre Johnson separating themselves from the field — though Essengue's blistering week in Germany has injected genuine debate into the No. 1 conversation. Front offices remain split on the order behind Peterson, with several scouts now arguing Essengue's combination of size, skill, and pro-level production gives him the higher long-term ceiling. Below the top tier, Cooper Flagg and Dylan Harper continue to anchor a strong second wave, while late-rising prospects in the lottery range are creating meaningful trade-up incentive for teams in the 8–14 zone.",
+};
