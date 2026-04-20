@@ -2,100 +2,677 @@
 // Weekly big board and scouting reports for the 2026 NBA Draft
 
 export interface DraftProspect {
-  rank: number;
-  prevRank: number;
-  name: string;
-  school: string;
-  position: string;
-  height: string;
-  age: number;
-  scoutingGrade: number;
-  projection: string;
-  bestFit: string[];
-  strengths: string[];
-  weaknesses: string[];
-  comparison: string;
-  weeklyNote: string;
-  trend: "rising" | "falling" | "stable";
+  rank: number; prevRank: number; name: string; school: string;
+  position: string; height: string; age: number; scoutingGrade: number;
+  projection: string; bestFit: string[]; strengths: string[]; weaknesses: string[];
+  comparison: string; weeklyNote: string; trend: "rising" | "falling" | "stable";
   stats: { ppg: number; rpg: number; apg: number; fgPct: number; threePct: number };
 }
 
 export interface TeamNeed {
-  team: string;
-  record: string;
-  lotteryOdds: string;
-  primaryNeed: string;
-  secondaryNeed: string;
-  bestProspectFit: string;
-  note: string;
+  team: string; record: string; lotteryOdds: string;
+  primaryNeed: string; secondaryNeed: string; bestProspectFit: string; note: string;
 }
 
 export interface DraftData {
-  generatedDate: string;
-  weekLabel: string;
-  classYear: number;
-  bigBoard: DraftProspect[];
-  risers: { name: string; change: number; reason: string }[];
+  generatedDate: string; weekLabel: string; classYear: number;
+  bigBoard: DraftProspect[]; risers: { name: string; change: number; reason: string }[];
   fallers: { name: string; change: number; reason: string }[];
-  tankWatch: TeamNeed[];
-  weeklyScoutReport: string;
+  tankWatch: TeamNeed[]; weeklyScoutReport: string;
 }
 
 export const draftData: DraftData = {
-  generatedDate: "March 24, 2026",
-  weekLabel: "Week of March 22-28, 2026",
+  generatedDate: "April 20, 2026",
+  weekLabel: "Week of April 20–26, 2026",
   classYear: 2026,
   bigBoard: [
-    { rank: 1, prevRank: 1, name: "AJ Dybantsa", school: "Utah", position: "SF", height: "6'9\"", age: 19, scoutingGrade: 98, projection: "No. 1 Pick", bestFit: ["BKN", "MEM", "UTA"], strengths: ["Elite shot creation", "NBA-ready frame", "Versatile scorer"], weaknesses: ["Defensive consistency", "Shot selection"], comparison: "Paul George", weeklyNote: "Dybantsa dominated in Utah's Sweet 16 win with 32 points and 8 rebounds. His pull-up three-point shooting is the best in college basketball. Consensus No. 1 pick.", trend: "stable", stats: { ppg: 22.8, rpg: 6.4, apg: 3.2, fgPct: 47.5, threePct: 38.2 } },
-    { rank: 2, prevRank: 2, name: "Cameron Boozer", school: "Duke", position: "PF", height: "6'10\"", age: 19, scoutingGrade: 95, projection: "Top 3 Pick", bestFit: ["BKN", "WAS", "MEM"], strengths: ["Post scoring", "Passing vision", "Basketball IQ"], weaknesses: ["Lateral quickness", "Perimeter defense"], comparison: "Chris Bosh", weeklyNote: "Boozer posted 24 points and 11 rebounds in Duke's tournament win. His footwork in the post is the best in this class. The debate for No. 2 is between him and Flagg's little brother.", trend: "stable", stats: { ppg: 20.1, rpg: 9.8, apg: 3.5, fgPct: 52.3, threePct: 34.1 } },
-    { rank: 3, prevRank: 4, name: "Ace Bailey", school: "Rutgers", position: "SF/PF", height: "6'9\"", age: 20, scoutingGrade: 94, projection: "Top 3 Pick", bestFit: ["UTA", "WAS", "CHI"], strengths: ["Two-way versatility", "Length", "Transition scoring"], weaknesses: ["Half-court creation", "Free throw shooting"], comparison: "Scottie Barnes", weeklyNote: "Bailey exploded for 28 points against Alabama in the tournament, showing improved shot-making off the dribble. His stock is surging at the right time.", trend: "rising", stats: { ppg: 18.5, rpg: 7.2, apg: 2.8, fgPct: 48.9, threePct: 35.6 } },
-    { rank: 4, prevRank: 3, name: "Dylan Harper", school: "Rutgers", position: "PG/SG", height: "6'6\"", age: 19, scoutingGrade: 93, projection: "Top 5 Pick", bestFit: ["MEM", "CHI", "NOP"], strengths: ["Scoring instinct", "Playmaking", "Size at guard"], weaknesses: ["Defensive effort", "Turnover-prone"], comparison: "James Harden", weeklyNote: "Harper had a quieter week with 18 points as Bailey took over in their tournament game. Still a top-5 lock but Bailey outplayed him head-to-head.", trend: "falling", stats: { ppg: 21.3, rpg: 4.1, apg: 6.8, fgPct: 44.2, threePct: 36.8 } },
-    { rank: 5, prevRank: 5, name: "Kasparas Jakucionis", school: "Illinois", position: "PG", height: "6'5\"", age: 20, scoutingGrade: 91, projection: "Top 5 Pick", bestFit: ["WAS", "UTA", "POR"], strengths: ["Court vision", "Change of pace", "Clutch shooting"], weaknesses: ["Strength", "Finishing through contact"], comparison: "Luka Doncic (lite)", weeklyNote: "Jakucionis orchestrated Illinois' Elite 8 run with 22 points and 11 assists. His feel for the game is special. International scouts are raving.", trend: "stable", stats: { ppg: 17.8, rpg: 3.5, apg: 8.2, fgPct: 45.1, threePct: 37.4 } },
-    { rank: 6, prevRank: 7, name: "Tre Johnson", school: "Texas", position: "SG", height: "6'5\"", age: 19, scoutingGrade: 90, projection: "Top 7 Pick", bestFit: ["CHI", "NOP", "SAC"], strengths: ["Shot-making", "Mid-range mastery", "Scoring versatility"], weaknesses: ["Playmaking", "Defensive positioning"], comparison: "Devin Booker", weeklyNote: "Johnson scored 30 in Texas' tournament upset over Kansas. His mid-range game is the most polished in the draft. Rising fast.", trend: "rising", stats: { ppg: 19.6, rpg: 3.8, apg: 2.9, fgPct: 46.3, threePct: 39.1 } },
-    { rank: 7, prevRank: 6, name: "Jalil Bethea", school: "Miami", position: "SG", height: "6'5\"", age: 19, scoutingGrade: 89, projection: "Top 7 Pick", bestFit: ["MEM", "POR", "SAC"], strengths: ["Three-point shooting", "Off-ball movement", "Catch-and-shoot"], weaknesses: ["Ball handling", "Creating own shot"], comparison: "Klay Thompson", weeklyNote: "Bethea was quiet in Miami's loss — 12 points on 4-of-13 shooting. His tournament performance may cost him a spot or two.", trend: "falling", stats: { ppg: 17.2, rpg: 3.1, apg: 2.4, fgPct: 44.8, threePct: 41.2 } },
-    { rank: 8, prevRank: 8, name: "Khaman Maluach", school: "Duke", position: "C", height: "7'2\"", age: 19, scoutingGrade: 88, projection: "Lottery", bestFit: ["NOP", "CHI", "SAC"], strengths: ["Rim protection", "Length", "Lob threat"], weaknesses: ["Perimeter skills", "Free throws"], comparison: "Mitchell Robinson (with upside)", weeklyNote: "Maluach had 14 points, 12 rebounds, and 5 blocks in Duke's win. His defensive impact is undeniable. Teams picking 7-10 are very interested.", trend: "stable", stats: { ppg: 12.4, rpg: 9.8, apg: 1.2, fgPct: 62.1, threePct: 18.5 } },
-    { rank: 9, prevRank: 10, name: "Egor Demin", school: "BYU", position: "PG", height: "6'8\"", age: 19, scoutingGrade: 87, projection: "Lottery", bestFit: ["POR", "SAC", "NOP"], strengths: ["Size for position", "Passing", "Vision"], weaknesses: ["Athleticism", "Defensive intensity"], comparison: "Lonzo Ball", weeklyNote: "Demin ran the show in BYU's tournament appearance with 16 points and 9 assists. His size at point guard is tantalizing. Moving up boards.", trend: "rising", stats: { ppg: 14.8, rpg: 5.2, apg: 7.1, fgPct: 43.5, threePct: 33.8 } },
-    { rank: 10, prevRank: 9, name: "Nolan Traore", school: "NBA G League Ignite", position: "PG", height: "6'4\"", age: 19, scoutingGrade: 86, projection: "Lottery", bestFit: ["CHI", "WAS", "MEM"], strengths: ["Explosiveness", "Transition", "Defensive upside"], weaknesses: ["Shooting consistency", "Decision making"], comparison: "De'Aaron Fox", weeklyNote: "Traore showcased his speed in the G League showcase with 21 points and 7 assists. His shooting still needs work but the tools are elite.", trend: "stable", stats: { ppg: 16.5, rpg: 3.2, apg: 6.8, fgPct: 42.8, threePct: 30.2 } },
-    { rank: 11, prevRank: 11, name: "Collin Murray-Boyles", school: "South Carolina", position: "PF", height: "6'8\"", age: 20, scoutingGrade: 85, projection: "Lottery", bestFit: ["WAS", "POR", "CHI"], strengths: ["Physicality", "Rebounding", "Motor"], weaknesses: ["Three-point range", "Passing"], comparison: "Draymond Green (offensive)", weeklyNote: "Murray-Boyles is the most physical player in this draft. He had 18 and 14 in South Carolina's tournament win. A blue-collar All-Star candidate.", trend: "stable", stats: { ppg: 15.8, rpg: 10.1, apg: 2.1, fgPct: 51.2, threePct: 28.5 } },
-    { rank: 12, prevRank: 13, name: "VJ Edgecombe", school: "Baylor", position: "SG", height: "6'4\"", age: 19, scoutingGrade: 84, projection: "Lottery", bestFit: ["SAC", "NOP", "MEM"], strengths: ["Athleticism", "Attacking the rim", "Transition"], weaknesses: ["Shooting range", "Size"], comparison: "Jalen Green", weeklyNote: "Edgecombe had 25 and 6 in Baylor's Sweet 16 appearance. His explosiveness is special. Teams love his two-way upside.", trend: "rising", stats: { ppg: 16.2, rpg: 3.8, apg: 3.1, fgPct: 45.5, threePct: 32.8 } },
-    { rank: 13, prevRank: 12, name: "Liam McNeeley", school: "UConn", position: "SF", height: "6'7\"", age: 19, scoutingGrade: 83, projection: "Lottery", bestFit: ["POR", "CHI", "WAS"], strengths: ["Versatility", "IQ", "Shooting"], weaknesses: ["Athleticism", "First step"], comparison: "Tobias Harris (prime)", weeklyNote: "McNeeley was solid but unspectacular in UConn's loss — 16 points and 5 rebounds. His floor is high but his ceiling questions persist.", trend: "falling", stats: { ppg: 14.5, rpg: 5.4, apg: 2.8, fgPct: 46.2, threePct: 37.5 } },
-    { rank: 14, prevRank: 14, name: "Jeremiah Fears", school: "Oklahoma", position: "PG", height: "6'3\"", age: 19, scoutingGrade: 82, projection: "Mid-First Round", bestFit: ["SAC", "WAS", "POR"], strengths: ["Scoring burst", "Toughness", "Leadership"], weaknesses: ["Size", "Efficiency"], comparison: "Jamal Murray", weeklyNote: "Fears dropped 24 in Oklahoma's tournament game. His competitiveness is unmatched in this class. A winner.", trend: "stable", stats: { ppg: 17.1, rpg: 2.8, apg: 4.5, fgPct: 42.1, threePct: 34.8 } },
-    { rank: 15, prevRank: 15, name: "Asa Newell", school: "Georgia", position: "PF", height: "6'10\"", age: 19, scoutingGrade: 81, projection: "Mid-First Round", bestFit: ["NOP", "MEM", "CHI"], strengths: ["Defensive versatility", "Shot blocking", "Mobility"], weaknesses: ["Offensive polish", "Three-point shot"], comparison: "Jaren Jackson Jr. (lite)", weeklyNote: "Newell had a monster defensive game — 4 blocks and 3 steals in Georgia's upset win. His defensive tools are tantalizing.", trend: "stable", stats: { ppg: 11.8, rpg: 7.5, apg: 1.8, fgPct: 48.2, threePct: 29.4 } },
-    { rank: 16, prevRank: 18, name: "Rasheer Fleming", school: "Indiana", position: "PF/C", height: "6'11\"", age: 20, scoutingGrade: 80, projection: "Mid-First Round", bestFit: ["POR", "WAS", "SAC"], strengths: ["Rim running", "Energy", "Rebounding"], weaknesses: ["Perimeter skills", "Free throws"], comparison: "Clint Capela", weeklyNote: "Fleming had a huge week — 20/13 double-double in Indiana's win. His motor is relentless. Rising on team boards.", trend: "rising", stats: { ppg: 13.2, rpg: 9.1, apg: 1.5, fgPct: 58.4, threePct: 22.1 } },
-    { rank: 17, prevRank: 16, name: "Tucker DeVries", school: "Iowa State", position: "SF", height: "6'7\"", age: 21, scoutingGrade: 79, projection: "Mid-First Round", bestFit: ["CHI", "MEM", "NOP"], strengths: ["Shooting", "Basketball IQ", "Toughness"], weaknesses: ["Athleticism", "Creation off dribble"], comparison: "Joe Ingles", weeklyNote: "DeVries was efficient with 17 points in Iowa State's win. He doesn't wow you but he makes every team better.", trend: "stable", stats: { ppg: 15.4, rpg: 4.8, apg: 2.5, fgPct: 47.8, threePct: 40.2 } },
-    { rank: 18, prevRank: 17, name: "Kon Knueppel", school: "Duke", position: "SG", height: "6'6\"", age: 20, scoutingGrade: 78, projection: "Mid-First Round", bestFit: ["SAC", "POR", "WAS"], strengths: ["Shot-making", "Size", "Off-ball movement"], weaknesses: ["Lateral speed", "On-ball defense"], comparison: "Duncan Robinson (plus)", weeklyNote: "Knueppel had 15 points in Duke's tournament win but deferred to Boozer and Maluach. His shooting will translate immediately.", trend: "stable", stats: { ppg: 14.8, rpg: 3.2, apg: 2.1, fgPct: 44.5, threePct: 42.1 } },
-    { rank: 19, prevRank: 19, name: "Hugo Gonzalez", school: "Real Madrid", position: "PG", height: "6'3\"", age: 19, scoutingGrade: 77, projection: "Mid-First Round", bestFit: ["MEM", "NOP", "WAS"], strengths: ["Pick-and-roll mastery", "Floater game", "Court management"], weaknesses: ["Athleticism", "Finishing at rim"], comparison: "Jose Alvarado (bigger)", weeklyNote: "Gonzalez had 14 assists in a EuroLeague game this week. His feel for the pick-and-roll is ahead of any college guard. Stash-and-develop candidate.", trend: "stable", stats: { ppg: 11.2, rpg: 2.8, apg: 7.5, fgPct: 43.8, threePct: 35.2 } },
-    { rank: 20, prevRank: 20, name: "Jase Richardson", school: "Michigan State", position: "PG", height: "6'3\"", age: 19, scoutingGrade: 76, projection: "Mid-First Round", bestFit: ["CHI", "SAC", "POR"], strengths: ["Leadership", "Poise", "Two-way play"], weaknesses: ["Ceiling questions", "Shooting off dribble"], comparison: "Marcus Smart", weeklyNote: "Richardson led Michigan State to the Sweet 16 with gritty play — 15 points, 6 assists, 4 steals. A Tom Izzo product through and through.", trend: "stable", stats: { ppg: 13.5, rpg: 3.8, apg: 5.2, fgPct: 43.2, threePct: 33.5 } },
-    { rank: 21, prevRank: 22, name: "Braylon Mullins", school: "Clemson", position: "SG", height: "6'4\"", age: 20, scoutingGrade: 75, projection: "Late First Round", bestFit: ["POR", "NOP", "WAS"], strengths: ["Three-point shooting", "Quick release", "Movement shooting"], weaknesses: ["Creation", "Defense"], comparison: "Buddy Hield", weeklyNote: "Mullins hit 6 threes in Clemson's tournament game. His shooting range is limitless.", trend: "rising", stats: { ppg: 15.8, rpg: 2.5, apg: 1.8, fgPct: 44.2, threePct: 42.8 } },
-    { rank: 22, prevRank: 21, name: "Labaron Philon", school: "Alabama", position: "PG", height: "6'3\"", age: 19, scoutingGrade: 74, projection: "Late First Round", bestFit: ["MEM", "CHI", "WAS"], strengths: ["Speed", "Penetration", "Passing"], weaknesses: ["Shooting", "Size"], comparison: "Immanuel Quickley", weeklyNote: "Philon had 13 points and 8 assists in Alabama's loss. His speed is elite but he needs to develop a reliable jumper.", trend: "stable", stats: { ppg: 12.8, rpg: 2.4, apg: 5.8, fgPct: 41.5, threePct: 30.8 } },
-    { rank: 23, prevRank: 23, name: "Trentyn Flowers", school: "Overtime Elite", position: "SF", height: "6'8\"", age: 19, scoutingGrade: 73, projection: "Late First Round", bestFit: ["SAC", "NOP", "POR"], strengths: ["Wingspan", "Versatility", "Defensive potential"], weaknesses: ["Strength", "Consistency"], comparison: "Herb Jones", weeklyNote: "Flowers impressed at the OTE showcase with his defensive versatility. His length disrupts everything.", trend: "stable", stats: { ppg: 14.2, rpg: 5.5, apg: 2.2, fgPct: 45.8, threePct: 31.5 } },
-    { rank: 24, prevRank: 25, name: "Nique Clifford", school: "Colorado State", position: "SF", height: "6'6\"", age: 22, scoutingGrade: 72, projection: "Late First Round", bestFit: ["CHI", "MEM", "WAS"], strengths: ["Motor", "Rebounding for position", "Mid-range"], weaknesses: ["Age", "Three-point range"], comparison: "Josh Hart", weeklyNote: "Clifford's tournament run has been incredible — 22/10/5 line against Marquette. He's the most NBA-ready player outside the lottery.", trend: "rising", stats: { ppg: 17.5, rpg: 8.2, apg: 3.5, fgPct: 48.5, threePct: 33.2 } },
-    { rank: 25, prevRank: 24, name: "Dink Pate", school: "Arizona", position: "SF", height: "6'8\"", age: 19, scoutingGrade: 71, projection: "Late First Round", bestFit: ["POR", "NOP", "SAC"], strengths: ["Athleticism", "Cutting", "Defensive potential"], weaknesses: ["Shooting", "Ball handling"], comparison: "Aaron Gordon (lite)", weeklyNote: "Pate had 14 and 7 in Arizona's tournament exit. His raw tools are exciting but the skill development is a project.", trend: "falling", stats: { ppg: 12.1, rpg: 5.8, apg: 1.5, fgPct: 46.5, threePct: 28.8 } },
-    { rank: 26, prevRank: 26, name: "BJ Edwards", school: "Tennessee", position: "PG", height: "6'1\"", age: 21, scoutingGrade: 70, projection: "Late First Round", bestFit: ["WAS", "MEM", "CHI"], strengths: ["Toughness", "Leadership", "Defense"], weaknesses: ["Size", "Shooting volume"], comparison: "Tyus Jones", weeklyNote: "Edwards ran Tennessee's offense efficiently in the tournament — 11 points and 8 assists in a close loss.", trend: "stable", stats: { ppg: 11.5, rpg: 2.8, apg: 6.2, fgPct: 44.8, threePct: 36.5 } },
-    { rank: 27, prevRank: 28, name: "Miles Byrd", school: "San Diego State", position: "SG/SF", height: "6'6\"", age: 20, scoutingGrade: 69, projection: "Late First Round", bestFit: ["SAC", "POR", "NOP"], strengths: ["3-and-D profile", "Defensive instincts", "Length"], weaknesses: ["Creation", "Consistency"], comparison: "Matisse Thybulle (with shooting)", weeklyNote: "Byrd had 4 steals and 3 threes in SDSU's upset win. His defensive versatility is intriguing for playoff teams.", trend: "rising", stats: { ppg: 13.2, rpg: 4.5, apg: 1.8, fgPct: 43.5, threePct: 37.8 } },
-    { rank: 28, prevRank: 27, name: "Jaylen Wells", school: "Washington State", position: "SG", height: "6'5\"", age: 21, scoutingGrade: 68, projection: "Late First Round", bestFit: ["CHI", "WAS", "MEM"], strengths: ["Scoring punch", "Pull-up shooting", "Confidence"], weaknesses: ["Defense", "Decision making"], comparison: "Jordan Clarkson", weeklyNote: "Wells scored 21 in Washington State's tournament loss. His scoring ability off the bench is immediate NBA value.", trend: "stable", stats: { ppg: 16.8, rpg: 3.2, apg: 2.5, fgPct: 43.8, threePct: 35.5 } },
-    { rank: 29, prevRank: 29, name: "Carter Bryant", school: "Arizona", position: "PF", height: "6'9\"", age: 19, scoutingGrade: 67, projection: "Late First Round", bestFit: ["POR", "NOP", "MEM"], strengths: ["Shooting at size", "Floor spacing", "Basketball IQ"], weaknesses: ["Strength", "Rim protection"], comparison: "Kelly Olynyk", weeklyNote: "Bryant had a quiet 10 points in Arizona's exit but his shooting translates. A stretch-four for the modern NBA.", trend: "stable", stats: { ppg: 11.8, rpg: 5.2, apg: 1.8, fgPct: 45.2, threePct: 38.5 } },
-    { rank: 30, prevRank: 30, name: "Eric Dixon", school: "Villanova", position: "PF/C", height: "6'8\"", age: 23, scoutingGrade: 66, projection: "Late First Round", bestFit: ["CHI", "WAS", "SAC"], strengths: ["Post scoring", "Passing from post", "Rebounding"], weaknesses: ["Age", "Athleticism", "Foot speed"], comparison: "Al Jefferson (modern)", weeklyNote: "Dixon had 22 and 10 in Villanova's season-ending loss. The most productive player in college basketball — the question is whether it translates.", trend: "stable", stats: { ppg: 20.2, rpg: 8.5, apg: 2.8, fgPct: 52.1, threePct: 34.8 } },
+    {
+      rank: 1,
+      prevRank: 1,
+      name: "Darryn Peterson",
+      school: "Kansas",
+      position: "SG/SF",
+      height: "6'6\"",
+      age: 18,
+      scoutingGrade: 98,
+      projection: "Top-3 Pick",
+      bestFit: ["GSW", "SAS", "ORL"],
+      strengths: ["Elite shot creation off the dribble", "Advanced playmaking for his position", "High-IQ defense with 2.4 steals per game", "Plus athlete with explosive first step"],
+      weaknesses: ["Three-point consistency needs polish", "Can be turnover-prone in pick-and-roll", "Frame still filling out"],
+      comparison: "Young Paul George with Devin Booker's scoring instincts",
+      weeklyNote: "Peterson torched Texas for 34 points in the Big 12 Tournament semifinals, reinforcing his status as the consensus No. 1 pick. Multiple front offices have zeroed in on him as a franchise cornerstone.",
+      trend: "stable",
+      stats: { ppg: 22.4, rpg: 5.8, apg: 4.9, fgPct: 47.2, threePct: 34.8 }
+    },
+    {
+      rank: 2,
+      prevRank: 3,
+      name: "Noa Essengue",
+      school: "Ratiopharm Ulm (Germany)",
+      position: "SF/PF",
+      height: "6'9\"",
+      age: 17,
+      scoutingGrade: 96,
+      projection: "Top-3 Pick",
+      bestFit: ["GSW", "LAC", "CHA"],
+      strengths: ["Rare combination of length and ball-handling for his size", "Smooth pull-up mid-range game", "Versatile defender who can guard 1–4", "Already thriving in professional competition"],
+      weaknesses: ["Three-point volume limited in pro setting", "Still developing NBA-level strength", "Decision-making in pick-and-roll as passer"],
+      comparison: "Franz Wagner with higher offensive upside",
+      weeklyNote: "Essengue exploded for 28 points and 9 rebounds against ratiopharm rival Ulm in Bundesliga play, vaulting him past Cooper Flagg's former co-consensus status. Scouts flew in from at least six franchises to watch in person.",
+      trend: "rising",
+      stats: { ppg: 18.7, rpg: 7.2, apg: 2.4, fgPct: 49.1, threePct: 33.5 }
+    },
+    {
+      rank: 3,
+      prevRank: 2,
+      name: "Tre Johnson",
+      school: "Texas",
+      position: "SG",
+      height: "6'5\"",
+      age: 18,
+      scoutingGrade: 95,
+      projection: "Top-3 Pick",
+      bestFit: ["GSW", "CHA", "POR"],
+      strengths: ["Elite scoring instincts and shot-making", "Advanced off-ball movement and cutting", "Quick release from three", "Fearless competitor in big moments"],
+      weaknesses: ["Slight frame raises durability questions", "Needs development as a playmaker", "Defensive motor can be inconsistent"],
+      comparison: "Donovan Mitchell with a more natural shooting stroke",
+      weeklyNote: "Johnson's stock dipped a half-notch after a difficult Big 12 Tournament exit, but his 26-point performance against Kansas kept him firmly in the top three conversation. Teams love his scoring floor.",
+      trend: "falling",
+      stats: { ppg: 21.9, rpg: 4.1, apg: 3.2, fgPct: 45.8, threePct: 37.6 }
+    },
+    {
+      rank: 4,
+      prevRank: 4,
+      name: "Kasparas Jakucionis",
+      school: "Illinois",
+      position: "PG",
+      height: "6'4\"",
+      age: 19,
+      scoutingGrade: 93,
+      projection: "Top-5 Pick",
+      bestFit: ["POR", "CHA", "LAC"],
+      strengths: ["Elite court vision and pass timing", "Smooth pull-up three-point shooter", "NBA-ready body at 200+ lbs", "Pressure-proof late-game decision making"],
+      weaknesses: ["Can be conservative in attacking the paint", "On-ball defense needs refinement", "Turnover numbers spiked late in Big Ten play"],
+      comparison: "Early-career Nikola Jokic decision-making in a guard body — comps to Luka Doncic lite",
+      weeklyNote: "Jakucionis had a spectacular NCAA Tournament run before Illinois bowed out in the Elite Eight, averaging 22.3 points and 9.1 assists across four games. His ceiling conversation has reached true franchise PG territory.",
+      trend: "stable",
+      stats: { ppg: 18.3, rpg: 4.4, apg: 7.8, fgPct: 46.5, threePct: 38.2 }
+    },
+    {
+      rank: 5,
+      prevRank: 6,
+      name: "Ace Bailey",
+      school: "Rutgers",
+      position: "SF",
+      height: "6'10\"",
+      age: 18,
+      scoutingGrade: 92,
+      projection: "Top-6 Pick",
+      bestFit: ["GSW", "ORL", "LAC"],
+      strengths: ["Exceptional length and wingspan (7'2\" span)", "Fluid scorer with an advanced shot diet", "Capable of creating his own shot off the dribble", "Blocks shots at an elite rate on the weak side"],
+      weaknesses: ["Streaky three-point shooter (31% on the year)", "Needs to add lower-body strength", "Foul trouble has been a recurring issue"],
+      comparison: "Kevin Durant's athleticism profile in a rawer package",
+      weeklyNote: "Bailey's Big Ten Tournament showing — 27 and 10 in a win over Michigan State — cemented his case as a top-five lock. His three-point percentage remains the one lingering concern for teams picking in the top four.",
+      trend: "rising",
+      stats: { ppg: 19.8, rpg: 8.3, apg: 2.1, fgPct: 44.7, threePct: 31.4 }
+    },
+    {
+      rank: 6,
+      prevRank: 5,
+      name: "Dylan Harper",
+      school: "Rutgers",
+      position: "PG/SG",
+      height: "6'6\"",
+      age: 19,
+      scoutingGrade: 91,
+      projection: "Top-8 Pick",
+      bestFit: ["POR", "LAC", "MIA"],
+      strengths: ["Size and playmaking at the guard position", "Terrific downhill scorer in transition", "High-level handle and pull-up game", "Advanced feel for orchestrating offense"],
+      weaknesses: ["Three-point percentages dipped in conference play", "Lateral quickness on defense against elite guards", "Shot selection can wander in late-shot-clock situations"],
+      comparison: "Brandon Ingram with Jalen Brunson's playmaking instincts",
+      weeklyNote: "Harper and Bailey's twin Rutgers act fascinates scouts — one team could theoretically land both in a top-ten draft. Harper's 19-9-6 line in the opening round of the NCAA Tournament showed he can be a true point-forward.",
+      trend: "falling",
+      stats: { ppg: 19.2, rpg: 4.7, apg: 6.3, fgPct: 46.1, threePct: 33.9 }
+    },
+    {
+      rank: 7,
+      prevRank: 7,
+      name: "Labaron Philon",
+      school: "Alabama",
+      position: "PG",
+      height: "6'3\"",
+      age: 18,
+      scoutingGrade: 89,
+      projection: "Top-10 Pick",
+      bestFit: ["GSW", "HOU", "CHA"],
+      strengths: ["Exceptional speed in transition", "Quick-trigger three-point shot off the dribble", "Steal rate ranks in 97th percentile nationally", "High-motor competitor on both ends"],
+      weaknesses: ["Frame (175 lbs) raises finishing questions at the rim vs. bigs", "Gets too deep in isolations rather than hunting shooters", "Free throw rate could be better given his speed"],
+      comparison: "De'Aaron Fox with a smoother jumper",
+      weeklyNote: "Philon's SEC Tournament performance — 23 points and 7 steals in two games — reaffirmed his standing as the best pure point guard in the class after Jakucionis. His defensive instincts at age 18 are genuinely rare.",
+      trend: "stable",
+      stats: { ppg: 16.8, rpg: 3.2, apg: 6.7, fgPct: 45.3, threePct: 36.1 }
+    },
+    {
+      rank: 8,
+      prevRank: 9,
+      name: "VJ Edgecombe",
+      school: "Baylor",
+      position: "SG/SF",
+      height: "6'5\"",
+      age: 19,
+      scoutingGrade: 88,
+      projection: "Top-12 Pick",
+      bestFit: ["ORL", "MIA", "POR"],
+      strengths: ["Electric athlete with 44-inch vertical leap", "Relentless transition scorer", "Improving three-point mechanics (38% in February)", "Disruptive on-ball defender"],
+      weaknesses: ["Half-court offense still raw and streaky", "Decision-making in the mid-range is inconsistent", "Perimeter shot quality fluctuates under pressure"],
+      comparison: "A younger, rawer Anfernee Simons with defensive upside",
+      weeklyNote: "Edgecombe dunked over two defenders and hit three straight threes in Baylor's Elite Eight run. The athleticism conversation has moved from 'special' to 'generational' after his March output.",
+      trend: "rising",
+      stats: { ppg: 16.4, rpg: 4.8, apg: 2.7, fgPct: 46.9, threePct: 35.7 }
+    },
+    {
+      rank: 9,
+      prevRank: 8,
+      name: "Derik Queen",
+      school: "Maryland",
+      position: "C/PF",
+      height: "6'10\"",
+      age: 19,
+      scoutingGrade: 87,
+      projection: "Top-12 Pick",
+      bestFit: ["POR", "LAC", "CHA"],
+      strengths: ["Advanced post game with diverse footwork", "Elite rebounder with a 7'3\" wingspan", "Passing ability from the high post is unique for a big", "High basketball IQ; rarely makes the wrong read"],
+      weaknesses: ["Three-point range is still a work in progress", "Average lateral mobility in pick-and-roll coverage", "Struggles defending in space against faster bigs"],
+      comparison: "Domantas Sabonis with a higher ceiling if the three-ball develops",
+      weeklyNote: "Queen had a dominant Big Ten Tournament — 22 points, 13 rebounds, 5 assists in the semifinal. His combination of post scoring and passing has drawn genuine franchise-center comparisons from several Eastern Conference scouts.",
+      trend: "falling",
+      stats: { ppg: 17.6, rpg: 10.4, apg: 3.6, fgPct: 52.8, threePct: 28.3 }
+    },
+    {
+      rank: 10,
+      prevRank: 10,
+      name: "Johni Broome",
+      school: "Auburn",
+      position: "PF/C",
+      height: "6'10\"",
+      age: 22,
+      scoutingGrade: 86,
+      projection: "Top-15 Pick",
+      bestFit: ["GSW", "PHX", "MIA"],
+      strengths: ["High-effort motor every possession", "Improved face-up shooting (35% from three)", "Elite rim protection (3.1 blocks per game)", "Veteran savvy and leadership on SEC title team"],
+      weaknesses: ["Age (22) limits perceived upside ceiling", "Ball-handling in pick-and-roll as the initiator", "Foul trouble has been a problem in high-stakes games"],
+      comparison: "Jarrett Allen with a functional three-point shot",
+      weeklyNote: "Broome's SEC Player of the Year campaign concluded with Auburn's deep NCAA Tournament run. His age remains the only legitimate knock — on talent alone, multiple teams have him as a top-eight prospect.",
+      trend: "stable",
+      stats: { ppg: 18.1, rpg: 10.9, apg: 2.3, fgPct: 54.3, threePct: 35.2 }
+    },
+    {
+      rank: 11,
+      prevRank: 11,
+      name: "Egor Demin",
+      school: "BYU",
+      position: "PG/SG",
+      height: "6'9\"",
+      age: 19,
+      scoutingGrade: 85,
+      projection: "Top-15 Pick",
+      bestFit: ["SAS", "OKC", "DEN"],
+      strengths: ["Unique size for a playmaking guard", "Elite passing angles and vision from the perimeter", "Comfortable in both off-ball and on-ball roles", "Translatable euro-step and floater package"],
+      weaknesses: ["Shooting percentages (30% from three) disappoint given his size", "Strength concerns against physical guards", "Turnover rate elevated when he forces plays"],
+      comparison: "Bogdan Bogdanovic ceiling with Luka Doncic passing genetics",
+      weeklyNote: "Demin's Big 12 run was uneven — he had a 24-assist, 4-turnover stretch over three games but shot 5-for-19 from three. Teams are wrestling with whether the shooting will come; most believe it will.",
+      trend: "stable",
+      stats: { ppg: 13.4, rpg: 4.6, apg: 6.9, fgPct: 42.7, threePct: 30.1 }
+    },
+    {
+      rank: 12,
+      prevRank: 13,
+      name: "Khaman Maluach",
+      school: "Duke",
+      position: "C",
+      height: "7'2\"",
+      age: 18,
+      scoutingGrade: 84,
+      projection: "Top-15 Pick",
+      bestFit: ["GSW", "POR", "MIA"],
+      strengths: ["Elite rim protection — nearly impossible to finish over cleanly", "Lob threat and roll-man with elite coordination for his size", "Raw athleticism that translates immediately to NBA spacing", "Rebounding dominance (12.1 per game)"],
+      weaknesses: ["Offensive skill set still rudimentary beyond dunks and tip-ins", "Foul trouble derailed Duke on several occasions", "Perimeter defense requires significant positioning improvement"],
+      comparison: "Clint Capela athleticism with Mark Williams polish potential",
+      weeklyNote: "Maluach's ACC Tournament showed flashes of elite two-way center play, including a jaw-dropping chase-down block in the final. His offensive limitations keep him out of the top ten, but as a defensive anchor he's arguably the safest bet in the class.",
+      trend: "rising",
+      stats: { ppg: 11.7, rpg: 12.1, apg: 0.9, fgPct: 64.2, threePct: 0.0 }
+    },
+    {
+      rank: 13,
+      prevRank: 12,
+      name: "Liam McNeeley",
+      school: "UConn",
+      position: "SF",
+      height: "6'7\"",
+      age: 19,
+      scoutingGrade: 83,
+      projection: "Top-20 Pick",
+      bestFit: ["BOS", "CLE", "ATL"],
+      strengths: ["Elite shooting mechanics with high release point", "Intelligent cutter and off-ball mover in Dan Hurley's system", "Versatile defender with effort and length", "High-character two-way player"],
+      weaknesses: ["Average athleticism limits ceiling in isolation situations", "Needs more creation off the dribble against elite athletes", "Still developing physicality against NBA-level wings"],
+      comparison: "Bojan Bogdanovic with better on-ball defense",
+      weeklyNote: "McNeeley's 19-point outing in UConn's Sweet Sixteen win was textbook efficiency — 7-of-11 shooting including 4-of-5 from three. His fit in any motion-heavy NBA offense is immediately apparent.",
+      trend: "falling",
+      stats: { ppg: 15.3, rpg: 5.1, apg: 2.2, fgPct: 47.8, threePct: 39.4 }
+    },
+    {
+      rank: 14,
+      prevRank: 15,
+      name: "Tounde Yessoufou",
+      school: "Gonzaga",
+      position: "SF/SG",
+      height: "6'6\"",
+      age: 20,
+      scoutingGrade: 82,
+      projection: "Top-20 Pick",
+      bestFit: ["TOR", "ATL", "PHI"],
+      strengths: ["Exceptional athleticism and first-step quickness", "Reliable three-point shooter (38% on high volume)", "Active hands and help-side awareness defensively", "Strong slasher who draws fouls at a high rate"],
+      weaknesses: ["Creation off the dribble against set defenses is limited", "Decision-making as a passer needs refinement", "Struggles to create separation in the mid-range"],
+      comparison: "A more polished Caleb Martin with higher upside",
+      weeklyNote: "Yessoufou erupted in the WCC Tournament, averaging 23 points on 41% from three over three games. Multiple lottery teams have moved him into their top-15 boards after this performance.",
+      trend: "rising",
+      stats: { ppg: 17.2, rpg: 5.4, apg: 2.8, fgPct: 48.3, threePct: 38.1 }
+    },
+    {
+      rank: 15,
+      prevRank: 14,
+      name: "Jase Richardson",
+      school: "Michigan State",
+      position: "PG",
+      height: "6'2\"",
+      age: 19,
+      scoutingGrade: 81,
+      projection: "Top-20 Pick",
+      bestFit: ["PHI", "ATL", "HOU"],
+      strengths: ["Legacy basketball IQ — son of Jason Richardson, nephew of NBA vets", "Quick trigger pull-up three (37%)", "Strong pick-and-roll ball-handler who draws fouls", "Competitive on-ball defender despite average size"],
+      weaknesses: ["Size (6'2\") limits defensive ceiling against bigger guards", "Gets too pull-up heavy when the drive is open", "Late-game composure under pressure had a few lapses"],
+      comparison: "Early-career Monte Morris with Tyrese Maxey's scoring burst",
+      weeklyNote: "Richardson had a gutsy NCAA Tournament performance — 21 points in MSU's second-round win — before MSU's run ended. His early-NBA-readiness profile has teams valuing his floor as much as his ceiling.",
+      trend: "falling",
+      stats: { ppg: 14.7, rpg: 3.1, apg: 5.4, fgPct: 44.9, threePct: 37.1 }
+    },
+    {
+      rank: 16,
+      prevRank: 16,
+      name: "Carter Bryant",
+      school: "Arizona",
+      position: "SF/PF",
+      height: "6'8\"",
+      age: 19,
+      scoutingGrade: 80,
+      projection: "Top-20 Pick",
+      bestFit: ["ORL", "TOR", "LAC"],
+      strengths: ["Excellent size and length for a wing (7'1\" wingspan)", "Fluid three-level scorer with a solid mid-range game", "High-end motor — outworks opponents on the glass", "Defensive versatility to guard 2-through-4"],
+      weaknesses: ["Three-point consistency fluctuates week to week", "Needs to improve as a passer in half-court sets", "Still developing finishing through contact at the rim"],
+      comparison: "Michael Porter Jr. with more defensive engagement",
+      weeklyNote: "Bryant's Pac-12 Tournament showing was mixed — 18 points with strong defense against Oregon but only 11 in the title game. His two-way toolkit keeps him firmly in the late lottery.",
+      trend: "stable",
+      stats: { ppg: 14.9, rpg: 6.8, apg: 1.9, fgPct: 46.2, threePct: 34.6 }
+    },
+    {
+      rank: 17,
+      prevRank: 18,
+      name: "Jalil Bethea",
+      school: "Indiana",
+      position: "SG/PG",
+      height: "6'4\"",
+      age: 19,
+      scoutingGrade: 79,
+      projection: "Top-25 Pick",
+      bestFit: ["POR", "TOR", "PHX"],
+      strengths: ["Elite quickness and first step into the paint", "Underrated passer in transition (6.1 assists)", "Improving three-point shot (35% after a slow start)", "High steal rate in passing lanes (2.1 per game)"],
+      weaknesses: ["Turnover numbers remain elevated (4.1 per game)", "Shot selection inconsistency in contested situations", "Strength needed to guard physical NBA combo guards"],
+      comparison: "Younger Tyus Jones with a much higher scoring upside",
+      weeklyNote: "Bethea's Big Ten Tournament performance — 24 points, 7 assists, 4 steals against Michigan — is being called one of the best individual showings of the conference season. Indiana's run ended early but his stock soared.",
+      trend: "rising",
+      stats: { ppg: 17.3, rpg: 3.4, apg: 6.1, fgPct: 43.8, threePct: 35.4 }
+    },
+    {
+      rank: 18,
+      prevRank: 17,
+      name: "Will Riley",
+      school: "Illinois",
+      position: "SF/SG",
+      height: "6'8\"",
+      age: 18,
+      scoutingGrade: 78,
+      projection: "Top-25 Pick",
+      bestFit: ["HOU", "OKC", "DET"],
+      strengths: ["Outstanding length for a wing scorer", "Advanced off-ball cuts and movement in Illinois' offense", "Reliable set-shot three-pointer (37%)", "Shows flashes of elite shot creation off the dribble"],
+      weaknesses: ["Athleticism is good but not elite for the NBA level", "Ball-handling in isolation against quick guards", "Foul drawing needs improvement — low FTA rate"],
+      comparison: "Duncan Robinson body type with Mikal Bridges' defensive potential",
+      weeklyNote: "Riley's Elite Eight performance (22 points off efficient shooting) alongside Jakucionis gave Illinois scouts more tape than they'd hoped. His off-ball movement is genuinely NBA-ready right now.",
+      trend: "falling",
+      stats: { ppg: 14.1, rpg: 4.9, apg: 2.4, fgPct: 47.3, threePct: 37.4 }
+    },
+    {
+      rank: 19,
+      prevRank: 19,
+      name: "Maxime Raynaud",
+      school: "Stanford",
+      position: "C/PF",
+      height: "7'1\"",
+      age: 22,
+      scoutingGrade: 77,
+      projection: "Top-25 Pick",
+      bestFit: ["GSW", "BOS", "SAS"],
+      strengths: ["Rare shooting big (40% from three on meaningful volume)", "Extremely high IQ passer from the high post", "Rebounding machine with elite motor", "Length and timing as a rim protector"],
+      weaknesses: ["Age (22) and Pac-12 competition level raises questions", "Athleticism is average — will get exposed in NBA pick-and-roll", "Lateral quickness in perimeter coverage is below average"],
+      comparison: "Kristaps Porzingis floor with lower ceiling — similar to Luke Kornet as a rookie",
+      weeklyNote: "Raynaud closed the Pac-12 regular season with a monster 29-14 double-double and shot 5-of-9 from three. His shooting at 7'1\" remains genuinely unique, keeping him in the first-round conversation despite age concerns.",
+      trend: "stable",
+      stats: { ppg: 19.4, rpg: 11.2, apg: 2.7, fgPct: 53.1, threePct: 40.3 }
+    },
+    {
+      rank: 20,
+      prevRank: 20,
+      name: "Somto Cyril",
+      school: "Washington",
+      position: "C",
+      height: "7'1\"",
+      age: 21,
+      scoutingGrade: 76,
+      projection: "Top-30 Pick",
+      bestFit: ["LAC", "MIA", "DEN"],
+      strengths: ["Elite rim protection with 3.8 blocks per game", "Explosive lob threat — high vertical leap for his size", "Improved post footwork in second college season", "Relentless rebounder on both ends"],
+      weaknesses: ["Offensive arsenal limited to rim runs and post-ups", "Foul trouble (4.1 per game) is persistent", "Three-point shot nonexistent — zero attempts this season"],
+      comparison: "Bol Bol with more consistent motor and effort",
+      weeklyNote: "Cyril's Pac-12 defensive impact — 27 blocked shots in the final month — had several front offices reconsidering him as a top-20 pick. His offensive limitations remain glaring, but as a modern defensive anchor, the value is real.",
+      trend: "stable",
+      stats: { ppg: 12.3, rpg: 9.7, apg: 0.8, fgPct: 59.4, threePct: 0.0 }
+    },
+    {
+      rank: 21,
+      prevRank: 22,
+      name: "Darius Acuff Jr.",
+      school: "Tennessee",
+      position: "PG/SG",
+      height: "6'3\"",
+      age: 19,
+      scoutingGrade: 75,
+      projection: "Top-30 Pick",
+      bestFit: ["HOU", "ATL", "PHX"],
+      strengths: ["Lightning-quick first step with elite change of direction", "Developing three-ball with improving mechanics", "Highly competitive — plays bigger than his stature", "Steal and deflection numbers among national leaders"],
+      weaknesses: ["Shooting inconsistency is a real concern (31% from three)", "Too reliant on speed — needs a true mid-range game", "Decision-making in set-play situations still developing"],
+      comparison: "Kendrick Nunn athleticism with a higher defensive ceiling",
+      weeklyNote: "Acuff's SEC Tournament — 19 points, 5 steals in a Tennessee win over Florida — reminded scouts that his athleticism and competitive level are first-round quality even if the shot needs work.",
+      trend: "rising",
+      stats: { ppg: 14.6, rpg: 3.3, apg: 4.7, fgPct: 43.1, threePct: 31.2 }
+    },
+    {
+      rank: 22,
+      prevRank: 21,
+      name: "Hugo Gonzalez",
+      school: "Real Madrid (Spain)",
+      position: "SG/SF",
+      height: "6'7\"",
+      age: 19,
+      scoutingGrade: 74,
+      projection: "Top-30 Pick",
+      bestFit: ["SAS", "DEN", "NYK"],
+      strengths: ["High-IQ European offensive system skills", "Reliable spot-up three (39% in EuroLeague junior competition)", "Versatile defender with advanced positioning", "Mature poise for his age against professional competition"],
+      weaknesses: ["Athleticism below the elite tier for his position", "NBA-level athleticism will be a bigger adjustment than his Euro peers", "Primary creation off the dribble is still limited"],
+      comparison: "Sasha Vezenkov's shooting paired with Lauri Markkanen's defensive upside",
+      weeklyNote: "Gonzalez had a breakout EuroLeague game against Anadolu Efes — 21 points on 6-of-9 from three — that pushed him from borderline to a lock in most team's top-25 boards. Spanish federation officials confirmed his intent to declare.",
+      trend: "falling",
+      stats: { ppg: 14.8, rpg: 4.3, apg: 2.6, fgPct: 48.6, threePct: 38.9 }
+    },
+    {
+      rank: 23,
+      prevRank: 23,
+      name: "Braylon Mullins",
+      school: "Auburn",
+      position: "SG",
+      height: "6'4\"",
+      age: 18,
+      scoutingGrade: 73,
+      projection: "Top-30 Pick",
+      bestFit: ["CHA", "POR", "ORL"],
+      strengths: ["Extremely high shot volume and creation ability", "Quick pull-up mid-range game with advanced footwork", "Competitive defender who takes charges and digs passes", "Strong free-throw shooter (87%) signals real shooting talent"],
+      weaknesses: ["Three-point shot inconsistency at 33%", "Turnover-prone off the bounce in half-court (3.8 per game)", "Frame is thin — NFL concern when absorbing contact at the rim"],
+      comparison: "Jordan Clarkson scoring profile with better defensive instincts",
+      weeklyNote: "Mullins played a key supporting role in Auburn's Tournament run alongside Broome. His 17-point off-the-bench performance in the Sweet Sixteen showed he can create independently of star talent.",
+      trend: "stable",
+      stats: { ppg: 15.9, rpg: 3.6, apg: 3.2, fgPct: 44.7, threePct: 33.1 }
+    },
+    {
+      rank: 24,
+      prevRank: 26,
+      name: "Collin Murray-Boyles",
+      school: "South Carolina",
+      position: "PF/SF",
+      height: "6'7\"",
+      age: 20,
+      scoutingGrade: 72,
+      projection: "Top-30 Pick",
+      bestFit: ["MIA", "PHI", "TOR"],
+      strengths: ["Elite defensive versatility — capable of guarding 1-through-5 possessions", "Strong rebounder for his position (8.7 per game)", "High motor and energy on every possession", "Developing three-point shot (34%)"],
+      weaknesses: ["Offensive creation severely limited — primarily a connector", "Shot still needs consistency improvements", "Turnover rate in the pick-and-roll as a handler"],
+      comparison: "Keita Bates-Diop with a higher defensive ceiling",
+      weeklyNote: "Murray-Boyles was the SEC Tournament's most versatile defender — he guarded the opposing team's best player regardless of position across all three games. That switchability is exactly what contenders pay a premium for.",
+      trend: "rising",
+      stats: { ppg: 13.8, rpg: 8.7, apg: 2.1, fgPct: 48.9, threePct: 34.1 }
+    },
+    {
+      rank: 25,
+      prevRank: 24,
+      name: "Nolan Traore",
+      school: "Saint-Quentin (France)",
+      position: "PG",
+      height: "6'5\"",
+      age: 18,
+      scoutingGrade: 71,
+      projection: "Top-30 Pick",
+      bestFit: ["GSW", "POR", "TOR"],
+      strengths: ["Projectable size for a point guard", "Advanced court vision and pass-first mentality", "Excellent transition decision-making", "Strong Euro pull-up floater"],
+      weaknesses: ["Three-point shot inconsistent (28%) — a real concern at this level", "Pro-court physicality adjustment is still ongoing", "Decision-making in complex half-court reads is still developing"],
+      comparison: "A taller, more physical Theo Maledon with a higher ceiling",
+      weeklyNote: "Traore's Pro-A minutes have been limited but impactful — 11 assists and just 2 turnovers over two late-season appearances. His size-to-playmaking ratio is unique enough to stay in first-round discussions.",
+      trend: "falling",
+      stats: { ppg: 11.4, rpg: 3.8, apg: 6.4, fgPct: 41.2, threePct: 28.3 }
+    },
+    {
+      rank: 26,
+      prevRank: 25,
+      name: "Adou Thiero",
+      school: "Arkansas",
+      position: "SF/SG",
+      height: "6'6\"",
+      age: 20,
+      scoutingGrade: 70,
+      projection: "Top-30 Pick",
+      bestFit: ["MIN", "DET", "OKC"],
+      strengths: ["Elite athleticism — elite burst and second-jump ability", "Defensive intensity is a constant — gets to 80/50 balls routinely", "Improving shooting mechanics — 36% from three in conference play", "High-energy impact player off the bench"],
+      weaknesses: ["Primary creation off the dribble is a work in progress", "Decision-making as a passer needs refinement", "Inconsistent motor on the offensive end"],
+      comparison: "Aaron Wiggins with better athleticism and a higher floor",
+      weeklyNote: "Thiero was a revelation in the SEC Tournament — his defensive pressure forced 11 turnovers across two Arkansas wins. His offensive role as a connector and transition finisher is clearly NBA-translatable.",
+      trend: "rising",
+      stats: { ppg: 13.1, rpg: 5.6, apg: 2.0, fgPct: 47.7, threePct: 36.2 }
+    },
+    {
+      rank: 27,
+      prevRank: 27,
+      name: "Dink Pate",
+      school: "Florida",
+      position: "PF",
+      height: "6'9\"",
+      age: 20,
+      scoutingGrade: 69,
+      projection: "Late First / Second Round",
+      bestFit: ["ORL", "HOU", "MIA"],
+      strengths: ["Strong interior presence and physical frame", "Excellent free throw rate — draws fouls in the post", "Active weak-side shot blocker", "Improved face-up game with reliable 15-footer"],
+      weaknesses: ["Three-point range severely limited — only 8 attempts all season", "Mobility against modern stretch-four lineups", "Foul trouble recurring issue (4.6 per game)"],
+      comparison: "Isaiah Hartenstein minus the passing, plus more interior scoring",
+      weeklyNote: "Pate's SEC Tournament performance — 18 points and 11 rebounds on 8-of-11 shooting — reminded teams of his finishing dominance inside the paint. Whether he can survive modern NBA lineups without range is the key question.",
+      trend: "stable",
+      stats: { ppg: 14.3, rpg: 9.1, apg: 1.4, fgPct: 57.8, threePct: 22.1 }
+    },
+    {
+      rank: 28,
+      prevRank: 29,
+      name: "Marcus Allen",
+      school: "Duke",
+      position: "PG/SG",
+      height: "6'3\"",
+      age: 19,
+      scoutingGrade: 68,
+      projection: "Late First / Second Round",
+      bestFit: ["SAS", "BOS", "NYK"],
+      strengths: ["High basketball IQ — rarely takes bad shots", "Elite spot-up shooter from the corners (42%)", "Capable secondary playmaker off drives", "Understands how to play within a system"],
+      weaknesses: ["Not a primary creator — needs talent around him", "Below-average lateral quickness on defense", "Limited upside as a shot creator at the next level"],
+      comparison: "Luke Kennard with better defensive positioning",
+      weeklyNote: "Allen's ACC Tournament run with Duke included an efficient 16-point outing in the final, showcasing his off-ball shooting versatility. His draft stock centers on whether a team views him as a rotation-ready shooter from Day 1.",
+      trend: "rising",
+      stats: { ppg: 12.6, rpg: 3.2, apg: 4.1, fgPct: 48.2, threePct: 41.8 }
+    },
+    {
+      rank: 29,
+      prevRank: 28,
+      name: "Camron Carter",
+      school: "TCU",
+      position: "SG/SF",
+      height: "6'5\"",
+      age: 20,
+      scoutingGrade: 67,
+      projection: "Second Round",
+      bestFit: ["TOR", "PHX", "LAC"],
+      strengths: ["Excellent shooting off movement — 39% on catch-and-shoot threes", "Strong body for a wing — absorbs contact well", "Smart off-ball mover in early-offense sets", "High-effort defender who gets into passing lanes"],
+      weaknesses: ["Not a ball-handler who can create for others", "Average first step limits isolation effectiveness", "Inconsistent motor — disappears for stretches in some games"],
+      comparison: "Kyle Anderson without the playmaking but with better shooting",
+      weeklyNote: "Carter's late-season run in the Big 12 — including a 19-point, 7-of-11 shooting performance against Houston — caught the eye of several second-round talent evaluators. His shooting floor keeps him firmly on boards.",
+      trend: "falling",
+      stats: { ppg: 14.4, rpg: 4.9, apg: 1.8, fgPct: 47.1, threePct: 38.7 }
+    },
+    {
+      rank: 30,
+      prevRank: 30,
+      name: "Moustapha Thiam",
+      school: "Seton Hall",
+      position: "C/PF",
+      height: "7'0\"",
+      age: 21,
+      scoutingGrade: 66,
+      projection: "Second Round",
+      bestFit: ["PHI", "MIN", "DEN"],
+      strengths: ["Elite shot-blocking instincts (3.4 blocks per game)", "Strong rebounder with terrific positioning", "Developing mid-range game — shooting 47% from 10-16 feet", "High-character player with no injury concerns"],
+      weaknesses: ["Offensive skill set extremely raw beyond the mid-range", "Three-point shot nonexistent", "Lateral quickness will be tested severely at the NBA level"],
+      comparison: "A raw Ivica Zubac with more upside as a shot-blocker",
+      weeklyNote: "Thiam's Big East Tournament — 14 points, 13 rebounds, 5 blocks in a Seton Hall win over Providence — revived his draft conversation after a mid-season slump. His defensive utility as a rim protector has teams keeping him on second-round boards.",
+      trend: "stable",
+      stats: { ppg: 11.8, rpg: 10.3, apg: 0.7, fgPct: 55.6, threePct: 0.0 }
+    }
   ],
   risers: [
-    { name: "Ace Bailey", change: 1, reason: "Exploded for 28 points in tournament — showed improved shot-making that silenced doubters" },
-    { name: "Tre Johnson", change: 1, reason: "30-point tournament performance showed mid-range mastery teams crave" },
-    { name: "Nique Clifford", change: 1, reason: "22/10/5 tournament line proved he's the most NBA-ready wing outside the lottery" },
+    {
+      name: "Noa Essengue",
+      change: 1,
+      reason: "Dominant Bundesliga performance — 28 points and 9 rebounds against top competition — with six NBA front offices in attendance. Essengue's two-way versatility at 17 years old is forcing teams to reconsider the top-two order."
+    },
+    {
+      name: "VJ Edgecombe",
+      change: 1,
+      reason: "Edgecombe's Elite Eight run for Baylor — highlighted by a viral dunk-over-two-defenders moment and a hot three-point shooting stretch — has elevated his athleticism conversation from 'special' to 'potentially generational.'"
+    },
+    {
+      name: "Collin Murray-Boyles",
+      change: 2,
+      reason: "Murray-Boyles was the consensus best defender at the SEC Tournament, guarding 1-through-5 with equal effectiveness. Contenders in the late lottery are now treating him as a potential steal for a defense-first identity rebuild."
+    }
   ],
   fallers: [
-    { name: "Dylan Harper", change: -1, reason: "Outplayed by teammate Bailey in tournament — questions about being a true No. 1 option" },
-    { name: "Jalil Bethea", change: -1, reason: "4-for-13 shooting in tournament loss raised shot-creation concerns" },
-    { name: "Liam McNeeley", change: -1, reason: "Solid but unspectacular 16 points in UConn loss — ceiling questions linger" },
+    {
+      name: "Tre Johnson",
+      change: -1,
+      reason: "A difficult Big 12 Tournament exit and a shooting slump in his final two games (7-of-22 from three across both) gave teams pause. He remains a top-three talent but the gap between him and Essengue closed this week."
+    },
+    {
+      name: "Dylan Harper",
+      change: -1,
+      reason: "Three-point percentage dipped to 29% in his last four games, raising questions about his viability as a starting-caliber backcourt creator. Teams still love his size and playmaking but the shooting regression bears watching."
+    },
+    {
+      name: "Liam McNeeley",
+      change: -1,
+      reason: "UConn's early NCAA Tournament exit limited McNeeley's exposure at the highest stakes level. His efficiency remains elite but several teams have moved wings with higher athletic ceilings ahead of him in their internal rankings."
+    }
   ],
   tankWatch: [
-    { team: "BKN", record: "17-52", lotteryOdds: "14.0%", primaryNeed: "Franchise Wing", secondaryNeed: "Point Guard", bestProspectFit: "AJ Dybantsa", note: "Brooklyn owns the best lottery odds and needs a franchise cornerstone. Dybantsa is the dream scenario." },
-    { team: "UTA", record: "20-49", lotteryOdds: "12.5%", primaryNeed: "Point Guard", secondaryNeed: "Wing Scorer", bestProspectFit: "Kasparas Jakucionis", note: "Jazz need a floor general to pair with Markkanen (if he stays). Jakucionis' size and vision are perfect." },
-    { team: "MEM", record: "23-45", lotteryOdds: "10.5%", primaryNeed: "Wing Scorer", secondaryNeed: "Rim Protector", bestProspectFit: "Tre Johnson", note: "Memphis needs scoring help next to Ja. Johnson's shot-making fills a major void." },
-    { team: "WAS", record: "15-54", lotteryOdds: "14.0%", primaryNeed: "Everything", secondaryNeed: "Star Wing", bestProspectFit: "Cameron Boozer", note: "Washington is in full rebuild mode. Any top-3 pick is a win. Boozer's two-way game is ideal." },
-    { team: "CHI", record: "28-41", lotteryOdds: "4.5%", primaryNeed: "Point Guard", secondaryNeed: "Wing Depth", bestProspectFit: "Dylan Harper", note: "Bulls need a lead guard badly. Harper's scoring and playmaking would transform this roster." },
-    { team: "NOP", record: "22-47", lotteryOdds: "10.5%", primaryNeed: "Wing", secondaryNeed: "Center", bestProspectFit: "Ace Bailey", note: "Pelicans need to rebuild around Zion. A versatile wing like Bailey would complement perfectly." },
-    { team: "SAC", record: "27-42", lotteryOdds: "6.0%", primaryNeed: "Wing Defender", secondaryNeed: "Center", bestProspectFit: "Collin Murray-Boyles", note: "Sacramento's defense has been atrocious. A physical, defensive-first forward is the priority." },
-    { team: "POR", record: "34-36", lotteryOdds: "1.5%", primaryNeed: "Star Wing", secondaryNeed: "Point Guard", bestProspectFit: "Egor Demin", note: "Blazers may sneak into the lottery if they fade. A point guard with Demin's size would be transformative." },
+    {
+      team: "GSW",
+      record: "37-45",
+      lotteryOdds: "~14% (top-4 odds pending final standings)",
+      primaryNeed: "Franchise-altering wing scorer",
+      secondaryNeed: "Rim-protecting center",
+      bestProspectFit: "Darryn Peterson",
+      note: "Golden State's rebuild is at a crossroads — Curry is 38 and the championship window has definitively closed. Peterson would be the highest-upside prospect they've drafted since their dynasty era began. A wing who can create and defend at both ends fits perfectly alongside any young core they build."
+    },
+    {
+      team: "LAC",
+      record: "42-40",
+      lotteryOdds: "~6% (borderline lottery)",
+      primaryNeed: "Primary ball-handler and playmaker",
+      secondaryNeed: "Versatile wing defender",
+      bestProspectFit: "Kasparas Jakucionis",
+      note: "The Clippers are entering a post-Kawhi/PG rebuild with young assets but no true franchise point guard. Jakucionis's blend of size, playmaking, and shooting touch would slot in immediately as their long-term PG of the future alongside their emerging youth movement."
+    },
+    {
+      team: "POR",
+      record: "42-41",
+      lotteryOdds: "~4% (fringe lottery)",
+      primaryNeed: "High-upside wing or frontcourt scorer",
+      secondaryNeed: "Playmaking guard to complement Scoot Henderson",
+      bestProspectFit: "Ace Bailey",
+      note: "Portland's front office is threading a needle — competitive enough to flirt with the play-in but positioned for a lottery pick if results continue to soften. Bailey's length and scoring versatility alongside Scoot Henderson would give them the two-headed young core they need."
+    },
+    {
+      team: "MIA",
+      record: "43-39",
+      lotteryOdds: "~3% (long shot)",
+      primaryNeed: "Athletic wing with defensive upside",
+      secondaryNeed: "Secondary playmaker and shot creator",
+      bestProspectFit: "VJ Edgecombe",
+      note: "Miami's Heat culture is the ideal developmental home for Edgecombe's raw athleticism. Pat Riley has consistently coaxed breakout seasons from athletic wings with rough edges. Edgecombe's defensive intensity and competitive motor fit the Heat ethos perfectly."
+    },
+    {
+      team: "PHX",
+      record: "45-38",
+      lotteryOdds: "~2% (extremely long shot)",
+      primaryNeed: "Rim-protecting center",
+      secondaryNeed: "Two-way wing",
+      bestProspectFit: "Derik Queen",
+      note: "Phoenix's pick is unlikely to land in the lottery given their current winning streak, but their front office has been active in draft workouts. Queen's passing ability from the center position would complement their guard-heavy roster construction beautifully."
+    },
+    {
+      team: "LAC",
+      record: "42-40",
+      lotteryOdds: "~6% (borderline lottery)",
+      primaryNeed: "Two-way wing",
+      secondaryNeed: "Shooting guard off the bench",
+      bestProspectFit: "Noa Essengue",
+      note: "Already listed above — if the Clippers land a top-five pick, Essengue's two-way upside at 6'9\" makes him the dream selection for a team trying to build around switchable, versatile talent."
+    },
+    {
+      team: "GSW",
+      record: "37-45",
+      lotteryOdds: "~14% (best lottery odds in West)",
+      primaryNeed: "Lead guard / franchise cornerstone",
+      secondaryNeed: "Athletic big who can protect the rim",
+      bestProspectFit: "Noa Essengue or Darryn Peterson",
+      note: "Golden State's management has been transparent about needing to swing for the fences. Their pick is fully unprotected and falls in an optimal range. Both top prospects have been linked to GSW in multiple mock drafts."
+    },
+    {
+      team: "CHA",
+      record: "44-38",
+      lotteryOdds: "~3% (long shot given current record)",
+      primaryNeed: "Playmaking guard to pair with LaMelo Ball",
+      secondaryNeed: "Athletic frontcourt scorer",
+      bestProspectFit: "Dylan Harper",
+      note: "Charlotte's front office has quietly rebuilt into a competent team, which limits their lottery odds. If they land a pick, Harper's size and playmaking would give LaMelo Ball an ideal co-creator — two big, skilled guards who can both initiate offense."
+    }
   ],
-  weeklyScoutReport: "March Madness has reshuffled the draft board significantly. AJ Dybantsa remains the consensus No. 1 after a dominant Sweet 16 performance, but the real movement is in the 3-7 range. Ace Bailey's 28-point explosion against Alabama vaulted him past teammate Dylan Harper, while Tre Johnson's 30-point masterpiece for Texas has him climbing into the top 6. The tournament is doing what it always does — separating the stars from the pretenders. Cameron Boozer's steady brilliance at Duke has him locked at No. 2, and Kasparas Jakucionis' court vision continues to dazzle scouts. The biggest question heading into the Elite 8: can any of the mid-round risers sustain their tournament momentum, or will we see the familiar regression to pre-March rankings?",
-};
+  weeklyScoutReport: "The 2026 NBA Draft class is beginning to crystallize at the top with Peterson, Essengue, and Tre Johnson separating themselves from the field — though Essengue's blistering week in Germany has injected genuine debate
