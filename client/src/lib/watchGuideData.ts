@@ -46,12 +46,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/20 - 10:30 PM EDT",
       tv: "NBC, Peacock",
       venue: "Ball Arena",
-      entertainmentScore: 92,
+      entertainmentScore: 89,
       starPower: 9,
-      playoffImplications: 10,
+      playoffImplications: 9,
       rivalry: 7,
-      storyline: "Elite Western Conference playoff positioning battle features two legitimate title contenders with Anthony Edwards and Nikola Jokic leading explosive offenses. This is a potential playoff preview with massive seeding implications in the tightest Western Conference race in years.",
-      keyMatchup: "Anthony Edwards vs. Nikola Jokic",
+      storyline: "Western Conference heavyweights clash in potential playoff preview as Jokic and the Nuggets host Edwards' explosive Timberwolves. This could be a first-round matchup with serious title implications for both sides.",
+      keyMatchup: "Nikola Jokic vs. Karl-Anthony Towns",
       mustWatch: true
     },
     {
@@ -65,12 +65,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/20 - 8:00 PM EDT",
       tv: "NBC, Peacock",
       venue: "Madison Square Garden",
-      entertainmentScore: 88,
+      entertainmentScore: 84,
       starPower: 8,
-      playoffImplications: 9,
+      playoffImplications: 8,
       rivalry: 8,
-      storyline: "Madison Square Garden prime time showdown between Eastern Conference playoff contenders with Trae Young returning to his favorite stage. The Hawks desperately need this road win to solidify their playoff positioning against a surging Knicks team.",
-      keyMatchup: "Trae Young vs. Jalen Brunson",
+      storyline: "Madison Square Garden electricity as the Knicks battle Atlanta in a potential Eastern Conference first-round preview. Both teams desperate to secure favorable playoff seeding with just weeks remaining.",
+      keyMatchup: "Jalen Brunson vs. Trae Young",
       mustWatch: true
     },
     {
@@ -85,15 +85,15 @@ export const watchGuideData: WatchGuideData = {
       tv: "Peacock, NBCSN",
       venue: "Rocket Arena",
       venue: "Rocket Mortgage FieldHouse",
-      entertainmentScore: 79,
+      entertainmentScore: 74,
       starPower: 7,
-      playoffImplications: 8,
+      playoffImplications: 7,
       rivalry: 6,
-      storyline: "Eastern Conference playoff race intensifies as Toronto fights for positioning against a Cleveland team looking to lock down home court advantage. Both teams have been inconsistent lately, making this a crucial bounce-back spot.",
-      keyMatchup: "Scottie Barnes vs. Donovan Mitchell",
-      mustWatch: false
+      storyline: "Eastern Conference playoff positioning battle as Cleveland looks to maintain home-court advantage while Toronto fights to improve their postseason seeding. Both teams need every win down the stretch.",
+      keyMatchup: "Donovan Mitchell vs. Scottie Barnes",
+      mustWatch: true
     }
   ],
-  topPick: "Nuggets-Timberwolves is a Western Conference heavyweight bout with title implications",
-  nightOverview: "Tonight's three-game slate delivers playoff-atmosphere basketball with legitimate contenders battling for crucial seeding positioning. Every game features teams separated by just a few games in ultra-competitive conferences where each win could determine home court advantage."
+  topPick: "Nuggets-Timberwolves features elite championship contenders in what could be a playoff preview",
+  nightOverview: "Three playoff-bound teams clash in crucial seeding battles, headlined by a Western Conference heavyweight showdown in Denver. Every game carries significant postseason implications as teams jockey for favorable matchups."
 };
