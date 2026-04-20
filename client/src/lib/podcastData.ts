@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 19, 2026
+// Last updated: April 20, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 19, 2026",
-  episodeTitle: "Statement Saturday: Mobley Goes Nuclear & Denver's 13-Game Roll",
+  date: "April 20, 2026",
+  episodeTitle: "Thunder Drop 35-Point BOMB on Suns | Banchero's 31-Point Stunner Upsets Pistons | Tatum Goes Nuclear in Celtics Beatdown",
   rundown: [
     {
-      topic: "Evan Mobley's Career Night Powers Cleveland's Statement Win",
+      topic: "Oklahoma City's Historic 35-Point Demolition of Phoenix",
       segment: "opener",
-      duration: "6 minutes",
-      keyStats: [
-        "31 points on 13-of-19 shooting (68.4% FG)",
-        "12 rebounds and 4 blocks in dominant two-way performance",
-        "Cleveland shot 52.3% as a team in 126-113 blowout",
-        "Career-high scoring night for the fourth-year big man",
-        "Cavaliers improve to 53-30, strengthening 4th seed position",
-        "Six Cleveland players scored in double figures"
-      ],
-      debateAngle: "Is Mobley's breakout the missing piece that makes Cleveland a legitimate Eastern Conference championship threat, or was this just one great night against a vulnerable Toronto team?",
-      suggestedQuote: "When Evan Mobley plays like this — 31 and 12 with elite defense — the Cavaliers aren't just a playoff team, they're a problem for everyone in the East. This is what Cleveland has been waiting for from their franchise cornerstone.",
-      relevantPlayers: ["Evan Mobley", "Darius Garland", "Jarrett Allen", "RJ Barrett"]
-    },
-    {
-      topic: "Denver's Historic 13-Game Win Streak and Championship Pedigree",
-      segment: "deep-dive",
       duration: "8 minutes",
       keyStats: [
-        "13 consecutive victories — longest active streak in NBA",
-        "Jokić's 24 points, 11 assists on 10-of-15 shooting",
-        "Nuggets shooting 49.1% during win streak",
-        "Aaron Gordon 19 points on 8-of-12 shooting as perfect third option",
-        "Minnesota held to 41.3% shooting in 116-105 defeat",
-        "Denver now 55-28, looking like Western Conference favorites"
+        "OKC wins 119-84, largest margin of victory this season",
+        "Shai drops 29 points on 64.7% shooting (11-17 FG)",
+        "Thunder shoot 52.1% as team, hold Suns to 36.8%",
+        "Phoenix falls to 45-38, playoff hopes in serious jeopardy",
+        "Six Thunder players score in double figures",
+        "35-point margin ties franchise record for playoff-positioning game"
       ],
-      debateAngle: "Are we watching Denver hit their championship form at the perfect time, or is this streak masking deeper issues that will surface in the playoffs?",
-      suggestedQuote: "Thirteen straight wins isn't luck — it's championship DNA. When Jokić is playing like this and Aaron Gordon is your efficient third option, the Nuggets are basically playing a different sport than everyone else.",
-      relevantPlayers: ["Nikola Jokić", "Aaron Gordon", "Kentavious Caldwell-Pope", "Anthony Edwards"]
+      debateAngle: "Is this the performance that officially announces OKC as the West's title favorite over San Antonio and Denver?",
+      suggestedQuote: "When you're shooting 52% as a team and your superstar looks like he's playing a different sport than everyone else, that's championship DNA right there.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Josh Giddey", "Devin Booker"]
     },
     {
-      topic: "Lakers and Knicks Cruise: Are We Underestimating These Championship Dark Horses?",
+      topic: "Paolo Banchero's Career-High 31 Powers Stunning Magic Upset",
+      segment: "deep-dive",
+      duration: "10 minutes",
+      keyStats: [
+        "Banchero explodes for career-high 31 points on 60% shooting",
+        "Orlando upsets conference-leading Detroit 112-101 on the road",
+        "Magic shoot 48.7% while Pistons manage just 43.1% at home",
+        "Banchero adds 8 rebounds, 6 assists in complete performance",
+        "Franz Wagner contributes 23 points as secondary scorer",
+        "Detroit suffers rare home loss, record drops to 60-23"
+      ],
+      debateAngle: "Has Banchero officially arrived as a superstar, and are the Magic now a legitimate threat to upset higher seeds in the playoffs?",
+      suggestedQuote: "This wasn't just a career night for Paolo - this was a coming-out party. When you can walk into the East's best team's building and drop 31 like it's nothing, you're not a young player anymore. You're a problem.",
+      relevantPlayers: ["Paolo Banchero", "Franz Wagner", "Markelle Fultz", "Cade Cunningham"]
+    },
+    {
+      topic: "Are Boston and OKC Creating a Championship Gap?",
       segment: "hot-take",
       duration: "7 minutes",
       keyStats: [
-        "Lakers win fourth straight, now 54-29 with elite defense",
-        "Anthony Davis: 25 points, 11 rebounds, 3 blocks on 57.9% shooting",
-        "Knicks improve to 54-29 with 113-102 win over Atlanta",
-        "Jalen Brunson: 26 points, 7 assists on efficient 55.6% shooting",
-        "Both teams showing championship-level two-way balance",
-        "Houston held to 42.1% shooting by Lakers defense"
+        "Celtics demolish 76ers 123-91 behind Tatum's 35 points",
+        "Tatum shoots unconscious 7-12 from three in just 31 minutes",
+        "Boston and OKC combine for 67-point margin in home wins",
+        "Both teams shoot over 50% while holding opponents under 41%",
+        "Philadelphia and Phoenix both considered playoff contenders before Saturday",
+        "Combined 18 turnovers from Philly in blowout loss"
       ],
-      debateAngle: "Hot Take: The Lakers and Knicks are being completely overlooked in championship conversations, but both teams are peaking at exactly the right time and could shock everyone in the playoffs.",
-      suggestedQuote: "While everyone's talking about Denver and Boston, the Lakers and Knicks are quietly putting together the kind of late-season runs that end with championship parades. Don't sleep on these teams.",
-      relevantPlayers: ["Anthony Davis", "D'Angelo Russell", "Jalen Brunson", "Julius Randle"]
+      debateAngle: "Hot Take: Saturday night proved there are only 4-5 real championship contenders, and the gap between elite and good is bigger than we thought.",
+      suggestedQuote: "When Boston and OKC are both winning by 30+ on the same night, making it look effortless, that tells me we might have a two-tier league this season. The true contenders and everybody else.",
+      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Shai Gilgeous-Alexander", "Joel Embiid"]
     },
     {
-      topic: "Rapid Fire: Tonight's Heavyweight Battles and Injury Updates",
+      topic: "Rapid Fire: Wemby's Dominance, Playoff Race Chaos, Sunday Preview",
       segment: "rapid-fire",
+      duration: "6 minutes",
+      keyStats: [
+        "Wembanyama: 24 points, 11 rebounds, 4 blocks in Spurs win",
+        "Phoenix now 3-7 in last 10 games, playoff position in danger",
+        "Eastern Conference 5-8 seeds separated by just 1 game",
+        "Denver's 13-game win streak continues into Sunday vs Minnesota",
+        "Three teams tied at 46-37 fighting for Eastern playoff spots",
+        "Tonight's Knicks-Hawks game could shake up entire East bracket"
+      ],
+      debateAngle: "Which collapse would be more shocking - Phoenix missing the playoffs entirely or Philadelphia falling to the play-in tournament?",
+      suggestedQuote: "The playoff race went from interesting to absolutely bonkers in one night. Phoenix is in free fall, Philly looks lost, and Orlando just announced they're not going away quietly.",
+      relevantPlayers: ["Victor Wembanyama", "Trae Young", "Jalen Brunson", "Nikola Jokić"]
+    },
+    {
+      topic: "Sunday's Must-Watch: Can Anyone Stop Denver's Historic Run?",
+      segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Boston (-8.5) hosts Philadelphia in Eastern Conference clash",
-        "Oklahoma City (-12.5) welcomes Phoenix in potential playoff preview",
-        "Detroit faces Orlando in battle of Eastern Conference risers",
-        "Luka Dončić still day-to-day with knee soreness",
-        "Kawhi Leonard week-to-week with hip flexor strain",
-        "Marcus Smart expected to return for Memphis tonight"
+        "Nuggets riding 13-game winning streak into Minnesota matchup",
+        "Denver 8.5-point favorites despite Timberwolves' talent",
+        "Jokić averaging near triple-double during the streak",
+        "Knicks-Hawks on NBC could determine Eastern playoff seeding",
+        "Three games tonight with major postseason implications",
+        "Cleveland visits Toronto in crucial conference battle"
       ],
-      debateAngle: "Which of tonight's four games has the biggest playoff seeding implications, and are we seeing the final injury concerns before the postseason push?",
-      suggestedQuote: "Tonight's slate is loaded: Tatum versus Embiid, SGA against Booker, and two Eastern Conference dark horses in Detroit and Orlando. Plus, the injury report is finally clearing up at the perfect time.",
-      relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Shai Gilgeous-Alexander", "Devin Booker", "Luka Dončić"]
-    },
-    {
-      topic: "Championship Contenders Separate Themselves with Two Weeks Until Playoffs",
-      segment: "closer",
-      duration: "4 minutes",
-      keyStats: [
-        "Oklahoma City leads West at 64-18 (.780 winning percentage)",
-        "Detroit surprising everyone at 60-22 in the East",
-        "Denver's 13-game streak has them peaking at perfect time",
-        "Four teams (OKC, SAS, BOS, DET) with 55+ wins",
-        "Playoff races tightening with multiple teams at 45-37",
-        "Victor Wembanyama continues Rookie of the Year dominance"
-      ],
-      debateAngle: "With two weeks left in the regular season, which teams are truly separating themselves as championship favorites versus pretenders who will falter in the playoffs?",
-      suggestedQuote: "The playoffs start in two weeks, and we're finally seeing which teams have that championship gear. Denver's rolling, Cleveland's hitting their ceiling, and the Lakers are looking dangerous. It's about to get really interesting.",
-      relevantPlayers: ["Victor Wembanyama", "Shai Gilgeous-Alexander", "Nikola Jokić", "Evan Mobley"]
+      debateAngle: "Is Denver's 13-game streak the most impressive run of the season, and can Minnesota's defense finally slow down the machine?",
+      suggestedQuote: "Thirteen straight wins isn't luck - that's championship muscle memory. But if anyone can play spoiler tonight, it's a desperate Minnesota team with nothing to lose and everything to prove.",
+      relevantPlayers: ["Nikola Jokić", "Anthony Edwards", "Rudy Gobert", "Jamal Murray"]
     }
   ],
-  coldOpen: "Good morning, hoop heads! Last night was supposed to be a quiet Friday in the Association, but somebody forgot to tell Evan Mobley. The Cleveland big man just went absolutely nuclear — 31 points, 12 boards, 4 blocks, and a career-high performance that has the entire Eastern Conference on notice. Meanwhile, Nikola Jokić is making winning 13 straight games look as easy as breathing, and both the Lakers and Knicks sent their own messages with dominant home victories. With championship contenders starting to separate themselves and tonight's loaded slate featuring Boston-Philly and OKC-Phoenix, we've got a packed show ahead. This is Hoops Intel, and trust me — you're going to want to hear what happened while you were sleeping.",
-  socialClip: "30-second clip of the host breaking down Evan Mobley's career night with animated graphics showing his 31 points on 68.4% shooting, emphasizing how this performance elevates Cleveland's championship ceiling. Include the quote: 'When Mobley plays like this, the Cavaliers aren't just a playoff team — they're a legitimate threat to everyone in the East.' Perfect for Instagram Reels and TikTok with basketball highlights overlaid.",
+  coldOpen: "Saturday night wasn't just basketball - it was a statement. While Shai Gilgeous-Alexander and the Thunder were busy dropping a 35-point nuclear bomb on Phoenix, Paolo Banchero walked into Detroit and announced himself as a superstar with a career-high 31 points. Meanwhile in Boston, Jayson Tatum went absolutely unconscious from three, hitting seven triples in a 32-point beatdown of Philadelphia. When the best teams in the league win by a combined 67 points on the same night, that's not coincidence - that's championship DNA separating itself from the pack.",
+  socialClip: "Paolo Banchero career-high 31 points upset reaction - Focus on the moment when Banchero hits his 30th point and the Little Caesars Arena crowd realizes they're witnessing something special. Cut to his celebration, teammates' reactions, and overlay the stat: 'Career-High 31 Points | 60% Shooting | Upset of East's #1 Seed'. Perfect for Instagram Reels and TikTok with trending audio.",
   tweetThread: [
-    "🏀 STATEMENT SATURDAY: Last night's results just shifted the entire playoff landscape. Mobley dropped a career-high 31, Denver won their 13TH STRAIGHT, and both LAL/NYK sent championship messages. Here's what you missed while sleeping... 🧵",
-    "2/ EVAN MOBLEY ERUPTION: 31 pts (13-19 FG), 12 reb, 4 blk in a 126-113 Cleveland ROUT of Toronto. This wasn't just a career night — it was a statement about the Cavs' championship ceiling. When Mobley plays like THIS, Cleveland becomes a legitimate Eastern Conference threat 🔥",
-    "3/ DENVER'S DOMINANCE: Jokić orchestrated win #13 in a row with 24 pts & 11 ast on 10-15 shooting. The Nuggets are hitting their championship form at the PERFECT time. Aaron Gordon (19 pts, 8-12 FG) as your third option? That's title-level depth right there 👑",
-    "4/ LAKERS & KNICKS ROLLING: Both teams improve to 54-29 with convincing home wins. AD: 25-11-3blk. Brunson: 26-7-5. While everyone talks Denver/Boston, these two are quietly building championship momentum. Don't sleep on teams peaking at the right time 👀",
-    "5/ TONIGHT'S LOADED SLATE: BOS vs PHI (1pm), OKC vs PHX (3:30pm), DET vs ORL (6:30pm), SA vs POR (9pm). Championship contenders are separating themselves with 2 weeks until playoffs. Which teams have that extra gear? We're about to find out 🚀 #HoopsIntel"
+    "🚨 SATURDAY NIGHT RECAP THREAD 🚨 What a night of basketball! Three massive storylines that are reshaping the playoff picture heading into the final stretch...",
+    "1️⃣ THUNDER STATEMENT: OKC absolutely DEMOLISHED Phoenix 119-84. Shai dropped 29 on 64% shooting. The Suns got held to 36.8% FG and their playoff hopes might be over. This was championship-level dominance.",
+    "2️⃣ BANCHERO BREAKOUT: Career-high 31 points for Paolo in Orlando's STUNNING 112-101 upset of Detroit on the road. The Magic just announced they're not going away quietly in the playoff race. Star is born! ⭐",
+    "3️⃣ CELTICS NUCLEAR: Tatum went unconscious with 35 points (7 threes!) in Boston's 32-point destruction of Philly. When the best teams win by 30+, that's the championship gap showing itself.",
+    "Sunday's must-watch: Can ANYONE stop Denver's 13-game win streak? Minnesota visits Denver tonight in what could be the game of the weekend. Plus Knicks-Hawks will shake up the entire Eastern playoff picture! 🔥"
   ]
 };
