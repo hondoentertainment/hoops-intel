@@ -38,47 +38,31 @@ export const refData: RefData = {
   generatedDate: "April 21, 2026",
   tonightAssignments: [
     {
-      game: "BOS @ PHI",
-      crew: ["Scott Foster", "Kane Fitzgerald", "Josh Tiven"],
-      leadRef: "Scott Foster",
-      impact: "Foster's assignment to this crucial Eastern Conference battle brings his signature grinding style and moderate home bias to a game where Philadelphia desperately needs every advantage to avoid slipping into the play-in tournament. His 56% home win rate provides the 76ers with systematic support, while his league-leading overtime frequency (8 games) suggests this Jayson Tatum vs. Joel Embiid showcase could require extra time for resolution. Foster's high technical frequency will test both teams' emotional control, particularly in this playoff-atmosphere environment where every possession matters for seeding. The physical tolerance favors Embiid's interior dominance while potentially limiting Boston's transition advantages through whistle management.",
-      bettingAngle: "Strong value on PHI +3.5 with Foster's pronounced home bias working directly in Philadelphia's favor during their desperate playoff push. The OVER 218.5 becomes highly appealing given Foster's foul frequency and overtime tendency creating extended possessions. His assignment suggests the league expects this battle to be decided in the final possessions, making live betting advantageous as emotions escalate.",
-      historical: "Foster worked 4 Celtics games this season (BOS 2-2) with Tatum averaging 27.1 points but shooting just 43% on the road due to physical defensive tolerance. He officiated 3 76ers games (PHI 2-1) at home where Embiid averaged 31.2 points and 12.4 rebounds, well above his season averages. Philadelphia shot 28.1 free throws per game in Foster's Wells Fargo Center assignments versus 24.7 season average, showing clear systematic home advantage."
-    },
-    {
-      game: "SAS @ POR",
-      crew: ["Tony Brothers", "Ed Malloy", "Ben Taylor"],
+      game: "PHI @ BOS",
+      crew: ["Tony Brothers", "Courtney Kirkland", "Tre Maddox"],
       leadRef: "Tony Brothers",
-      impact: "Brothers' assignment to this Western Conference clash brings his extreme home bias (58%) to a game where Portland desperately needs home victories to maintain their play-in positioning. His physical tolerance and high technical frequency create challenging conditions for Victor Wembanyama's finesse game on the road while favoring Portland's scrappy, defensive identity. The 7.5-point spread seems inflated given Brothers' historical pattern of keeping games competitive through whistle management, particularly when home underdogs have veteran leadership. San Antonio's youth combined with Brothers' road-unfriendly approach could create opportunities for upset value, though Wembanyama's dominance has been overwhelming regardless of officiating.",
-      bettingAngle: "Significant value on POR +7.5 with Brothers' extreme home bias working directly in Portland's favor against a young San Antonio team. The UNDER 221.5 is appealing given his physical tolerance and pace-negative tendencies disrupting San Antonio's preferred tempo. Brothers' assignment prevents this from being the blowout many expect, creating a grinding environment that favors Portland's veteran playoff experience.",
-      historical: "Brothers worked 3 Spurs games this season (SAS 2-1) but their road record in his assignments was only 1-2, well below their overall road dominance. He officiated 4 Trail Blazers games (POR 3-1) with their home record in his assignments being 2-0. Portland shot 26.2 free throws per game in Brothers' Moda Center assignments versus 22.8 season average, indicating systematic home support that could neutralize San Antonio's talent advantage."
+      impact: "Brothers' assignment to this crucial Eastern Conference battle brings his extreme home bias (58% home win rate) and grinding style to a game where Boston desperately needs victories to maintain their second seed while Philadelphia fights to avoid the play-in tournament. His high foul frequency (45.8 per game) and pace-negative impact (-1.3) strongly favor Boston's halfcourt execution and veteran composure, while potentially neutralizing Philadelphia's athletic transition advantages. The Celtics' championship experience under playoff pressure aligns perfectly with Brothers' tendency to reward veteran poise and home-court energy. His high technical frequency will test Joel Embiid's emotional control in the hostile TD Garden environment, where crowd reactions to calls could spiral into costly frustration fouls. This assignment essentially amplifies all of Boston's natural advantages while creating potential landmines for Philadelphia's championship window desperation.",
+      bettingAngle: "Strong lean toward BOS -3.5 with Brothers' pronounced home bias creating systematic advantages for the Celtics in their own building. The UNDER 218.5 becomes extremely appealing given his pace-negative impact removing 4-5 possessions per game combined with his whistle-heavy approach disrupting offensive flow. His assignment suggests this becomes a grinding halfcourt battle that favors Boston's experience and coaching advantages.",
+      historical: "Brothers worked 4 Celtics games this season (BOS 4-0) with Boston winning by an average of 8.3 points at home, well above their season average. He officiated 3 76ers games (PHI 1-2) with their road record in his assignments being 0-2, showing systematic disadvantage. Philadelphia averaged 3.7 more turnovers per game in Brothers' road assignments due to his whistle disrupting their rhythm, while shooting just 33.1% from three compared to their 36.8% road average."
     },
     {
-      game: "LAL @ HOU",
-      crew: ["Zach Zarba", "Natalie Sago", "Derek Richardson"],
-      leadRef: "Zach Zarba",
-      impact: "Zarba's assignment to this Western Conference showdown brings his road-friendly approach and whistle discipline to a game where both teams are jockeying for optimal playoff seeding. His 47% home win rate actually favors the visiting Lakers, while his pace-positive impact (+1.3) creates additional possessions for both Anthony Davis's interior dominance and Houston's athletic perimeter attack. The low technical frequency allows stars like Davis and Alperen Şengün to operate with maximum intensity without whistle interference. Zarba's neutral approach transforms this into a pure talent evaluation that should favor Los Angeles's veteran experience and superior depth during their current five-game winning streak.",
-      bettingAngle: "Strong value on LAL -2.5 with Zarba's pronounced road bias working against Houston's home-court advantage. The OVER 227.5 becomes highly appealing given his pace-positive impact creating 4-5 additional possessions per game. His assignment essentially neutralizes the venue advantage and transforms this into a talent-based evaluation that favors the Lakers' superior roster construction and current momentum.",
-      historical: "Zarba worked 4 Lakers games this season (LAL 3-1) with Davis averaging 25.8 points and 11.2 rebounds on the road, both above his season averages due to neutral officiating and increased pace. He officiated 3 Rockets games (HOU 1-2) with their home record in his assignments being a disappointing 0-2. Houston averaged just 22.9 free throws per game in Zarba's home assignments versus their 25.1 season average, highlighting his road-neutral approach that eliminates home cooking."
+      game: "POR @ SAS",
+      crew: ["Scott Foster", "David Guthrie", "Phenizee Ransom"],
+      leadRef: "Scott Foster",
+      impact: "Foster's assignment to this Western Conference showdown brings his legendary grinding style and moderate home bias (54%) to a talent mismatch where San Antonio's championship aspirations face Portland's play-in desperation. His league-leading foul frequency (44.2 per game) and pace-negative impact (-0.8) create perfect showcase conditions for Victor Wembanyama's unique skill set while limiting Portland's transition opportunities that help their veteran legs compete with younger, more athletic opponents. Foster's physical tolerance and high technical frequency favor San Antonio's disciplined system basketball over Portland's more chaotic veteran improvisation. The Spurs' championship pedigree and coaching excellence align perfectly with Foster's tendency to reward systematic execution and interior dominance, while his overtime propensity (8 games this season) suggests maximum drama extraction even from a talent mismatch.",
+      bettingAngle: "Moderate lean toward SAS -7.5 with Foster's home bias and grinding style amplifying the Spurs' natural advantages while his pace-negative impact prevents Portland from creating extra possessions to stay competitive. The OVER 221.5 has strong appeal given Foster's foul frequency creating extended possessions and his overtime tendency. His assignment indicates the league expects this to be closer than the talent gap suggests.",
+      historical: "Foster worked 5 Spurs games this season (SAS 4-1) with Wembanyama averaging 24.1 points and 4.8 blocks at home in Foster's assignments, above his season averages due to the physical style suiting his defensive impact. He officiated 2 Trail Blazers games (POR 1-1) with their road record in his assignments being 0-1, showing moderate road disadvantage. Portland averaged 41.2 fouls per game in Foster's assignments versus their 38.9 season average, indicating his whistle-heavy approach disrupts their veteran chemistry."
+    },
+    {
+      game: "HOU @ LAL",
+      crew: ["Ed Malloy", "Mitchell Ervin", "Natalie Sago"],
+      leadRef: "Ed Malloy",
+      impact: "Malloy's assignment to this Western Conference playoff positioning battle brings his road-neutral approach (48% home win rate) and pace-positive tendencies (+1.7) to a crucial matchup where both teams desperately need victories for optimal seeding. His whistle discipline (40.1 fouls per game) and low technical frequency create ideal conditions for Anthony Davis's interior dominance while allowing both teams' offensive systems to operate at maximum efficiency without systematic home-court advantages. The pace enhancement strongly benefits both Houston's young athleticism and the Lakers' transition attack, though the Rockets' superior conditioning could gain slight advantages in additional possessions. Malloy's neutral treatment transforms Crypto.com Arena into essentially a neutral court, making this a pure talent evaluation where execution and coaching adjustments determine outcomes rather than venue bias or emotional volatility.",
+      bettingAngle: "Slight value on HOU +2.5 with Malloy's road-neutral approach eliminating the Lakers' natural home advantages while creating additional possessions that favor Houston's superior athleticism and conditioning. The OVER 227.5 becomes highly attractive given his pace-positive impact creating 5-6 extra possessions per game. His assignment suggests this becomes a track meet rather than a halfcourt grind.",
+      historical: "Malloy worked 4 Lakers games this season (LAL 2-2) with Davis averaging 26.9 points at home in Malloy's assignments, slightly below his home average due to the faster pace limiting his post touches. He officiated 5 Rockets games (HOU 3-2) with their road record in his assignments being 2-1, showing slight road advantage. Houston averaged 115.8 points per game in Malloy's assignments versus their 112.3 season average, indicating his pace-positive impact benefits their athletic style significantly."
     }
   ],
   refProfiles: [
-    {
-      name: "Scott Foster",
-      number: 48,
-      experience: "30 years",
-      gamesThisSeason: 71,
-      tendencies: {
-        foulsPerGame: 44.2,
-        homeWinPct: 56,
-        avgPace: -0.8,
-        technicalFrequency: "High",
-        overtimeGames: 8,
-      },
-      bestFor: "Physical interior teams, home favorites, teams that thrive in grind-it-out scenarios, veteran leadership",
-      worstFor: "Transition-heavy offenses, young teams prone to emotional reactions, road favorites expecting neutral treatment",
-      notableGame: "Leading tonight's BOS-PHI Eastern Conference battle, bringing his league-leading overtime frequency and home bias to a Jayson Tatum vs. Joel Embiid showcase. Foster's assignment suggests this crucial playoff positioning game will require maximum possessions for resolution, while his physical tolerance and technical frequency will test both teams' emotional control in a desperate must-win environment for Philadelphia."
-    },
     {
       name: "Tony Brothers",
       number: 25,
@@ -91,41 +75,25 @@ export const refData: RefData = {
         technicalFrequency: "High",
         overtimeGames: 7,
       },
-      bestFor: "Home teams with veteran leadership, physical post players, teams that control tempo and interior presence",
-      worstFor: "Road favorites, young athletic teams, transition-dependent offenses, teams needing neutral officiating",
-      notableGame: "Leading tonight's SAS-POR Western Conference battle where his extreme home bias could create upset potential for Portland's veteran-laden roster. Brothers' physical tolerance and high technical frequency will test Victor Wembanyama's road composure while potentially disrupting San Antonio's pace-and-space system through whistle management that favors grinding, defensive basketball."
+      bestFor: "Home teams with veteran leadership, physical defensive schemes, interior post players, grind-it-out basketball styles, teams with strong coaching",
+      worstFor: "Road favorites, athletic transition teams, young players prone to technicals, pace-and-space offenses, teams requiring neutral officiating",
+      notableGame: "Leading tonight's PHI-BOS Eastern Conference battle where his extreme home bias and grinding style create systematic advantages for the veteran-laden Celtics while potentially neutralizing Philadelphia's athletic advantages through whistle disruption and pace control that favors Boston's halfcourt execution and championship experience."
     },
     {
-      name: "Zach Zarba",
-      number: 15,
-      experience: "20 years",
-      gamesThisSeason: 68,
+      name: "Scott Foster",
+      number: 48,
+      experience: "30 years",
+      gamesThisSeason: 71,
       tendencies: {
-        foulsPerGame: 39.6,
-        homeWinPct: 47,
-        avgPace: 1.3,
-        technicalFrequency: "Low",
-        overtimeGames: 4,
+        foulsPerGame: 44.2,
+        homeWinPct: 54,
+        avgPace: -0.8,
+        technicalFrequency: "High",
+        overtimeGames: 8,
       },
-      bestFor: "Athletic transition teams, road underdogs, skill-based offenses, clean basketball",
-      worstFor: "Teams dependent on favorable whistles, physical grinding styles, home favorites expecting help",
-      notableGame: "Leading tonight's LAL-HOU Western Conference showdown where his road-friendly approach and whistle discipline create ideal conditions for Anthony Davis and the Lakers to establish dominance away from home. Zarba's pace-positive tendencies and neutral officiating style transform this into a pure talent evaluation that should favor Los Angeles's superior roster depth and current winning momentum."
-    },
-    {
-      name: "Kane Fitzgerald",
-      number: 5,
-      experience: "16 years",
-      gamesThisSeason: 66,
-      tendencies: {
-        foulsPerGame: 42.3,
-        homeWinPct: 52,
-        avgPace: 0.4,
-        technicalFrequency: "Average",
-        overtimeGames: 5,
-      },
-      bestFor: "Balanced offensive systems, teams with multiple scoring options, neutral competitive environments",
-      worstFor: "Teams requiring extreme officiating tendencies to succeed, chaos-style offenses",
-      notableGame: "Supporting Scott Foster in tonight's BOS-PHI Eastern Conference showcase, providing moderate balance to Foster's extreme tendencies. Fitzgerald's neutral approach across most categories helps manage the playoff-intensity pressure while his tournament experience provides steady support in high-stakes conference positioning battles between two championship-caliber organizations."
+      bestFor: "Physical interior teams, veteran leadership, teams that thrive in grinding halfcourt battles, home favorites with crowd energy, disciplined systems",
+      worstFor: "Transition-heavy offenses, young teams prone to emotional reactions, road teams needing neutral treatment, pace-dependent systems",
+      notableGame: "Leading tonight's POR-SAS Western Conference showdown, bringing his legendary grinding style and moderate home bias to showcase Victor Wembanyama's unique skill set while his pace-negative impact limits Portland's transition opportunities that could keep them competitive against superior talent."
     },
     {
       name: "Ed Malloy",
@@ -139,9 +107,57 @@ export const refData: RefData = {
         technicalFrequency: "Low",
         overtimeGames: 3,
       },
-      bestFor: "High-scoring offenses, road underdogs, pace-and-space systems, skilled perimeter players",
-      worstFor: "Defensive grinding teams, home favorites expecting whistle help, interior-dependent offenses",
-      notableGame: "Second official for tonight's SAS-POR Western Conference battle, providing pace-positive balance to Tony Brothers' grinding home-bias approach. Malloy's road-neutral tendencies help create some competitive balance while his low technical frequency allows stars like Wembanyama to operate with maximum intensity without whistle interference disrupting their natural rhythm and flow."
+      bestFor: "High-scoring offenses, road underdogs, pace-and-space systems, skilled perimeter players, athletic wing-dominant teams",
+      worstFor: "Defensive grinding teams, home favorites expecting whistle help, interior-dependent offenses, teams needing systematic advantages",
+      notableGame: "Leading tonight's HOU-LAL Western Conference playoff positioning battle, providing road-neutral tendencies and pace-positive impact that creates ideal conditions for pure talent evaluation while his whistle discipline prevents systematic home-court advantages from determining this crucial seeding matchup."
+    },
+    {
+      name: "Courtney Kirkland",
+      number: 61,
+      experience: "17 years",
+      gamesThisSeason: 63,
+      tendencies: {
+        foulsPerGame: 42.7,
+        homeWinPct: 51,
+        avgPace: 0.3,
+        technicalFrequency: "Average",
+        overtimeGames: 4,
+      },
+      bestFor: "Balanced offensive systems, teams with veteran point guards, methodical halfcourt execution, competitive environments",
+      worstFor: "Teams dependent on extreme pace manipulation, chaos-style offenses, players prone to arguing calls",
+      notableGame: "Supporting Tony Brothers in tonight's PHI-BOS Eastern Conference battle, bringing steady veteran balance to help manage the playoff-atmosphere pressure while his moderate tendencies provide stability in what promises to be an emotionally charged environment between championship-caliber organizations."
+    },
+    {
+      name: "David Guthrie",
+      number: 16,
+      experience: "22 years",
+      gamesThisSeason: 64,
+      tendencies: {
+        foulsPerGame: 41.3,
+        homeWinPct: 49,
+        avgPace: 0.9,
+        technicalFrequency: "Low",
+        overtimeGames: 3,
+      },
+      bestFor: "Athletic perimeter teams, skill-based basketball, transition offenses, neutral competitive environments, young star players",
+      worstFor: "Teams needing favorable whistles, interior grinding styles, home favorites expecting systematic advantages",
+      notableGame: "Supporting Scott Foster in tonight's POR-SAS Western Conference showcase, bringing neutral balance and pace-positive impact that allows Victor Wembanyama's unique talents to operate freely while maintaining competitive balance for Portland's veteran upset hopes."
+    },
+    {
+      name: "Mitchell Ervin",
+      number: 27,
+      experience: "15 years",
+      gamesThisSeason: 58,
+      tendencies: {
+        foulsPerGame: 39.8,
+        homeWinPct: 47,
+        avgPace: 1.4,
+        technicalFrequency: "Low",
+        overtimeGames: 2,
+      },
+      bestFor: "Fast-paced offenses, road teams with superior athleticism, transition basketball, skilled versatile players",
+      worstFor: "Teams dependent on home-court whistle advantages, physical interior grinding styles, systems requiring systematic officiating help",
+      notableGame: "Supporting Ed Malloy in tonight's HOU-LAL Western Conference playoff positioning battle, bringing additional pace-positive impact and road-neutral tendencies that create perfect showcase conditions for both teams' athletic talents to determine this crucial seeding matchup through pure execution."
     },
     {
       name: "Natalie Sago",
@@ -155,74 +171,58 @@ export const refData: RefData = {
         technicalFrequency: "Low",
         overtimeGames: 4,
       },
-      bestFor: "Teams with strong veteran leadership, methodical offensive systems, balanced competitive environments",
-      worstFor: "Teams relying on favorable whistle treatment, chaos-style offenses, emotional volatile players",
-      notableGame: "Supporting Zach Zarba in tonight's LAL-HOU Western Conference showdown, providing steady veteran balance to Zarba's road-friendly approach. Sago's neutral tendencies and low technical frequency help manage the playoff-positioning pressure while her foul frequency creates enough action to keep both teams engaged without disrupting the competitive flow or favoring either side systematically."
+      bestFor: "Teams with strong veteran leadership, methodical offensive systems, balanced competitive environments, disciplined basketball",
+      worstFor: "Teams relying on favorable whistle treatment, chaos-style offenses, emotionally volatile players, systems needing pace manipulation",
+      notableGame: "Third official for tonight's HOU-LAL Western Conference battle, bringing steady veteran balance and moderate foul rate to help manage the playoff-positioning pressure while her disciplined approach prevents early foul trouble that could compromise competitive integrity."
     },
     {
-      name: "Josh Tiven",
-      number: 58,
-      experience: "11 years",
-      gamesThisSeason: 64,
-      tendencies: {
-        foulsPerGame: 41.9,
-        homeWinPct: 50,
-        avgPace: 0.7,
-        technicalFrequency: "Average",
-        overtimeGames: 4,
-      },
-      bestFor: "Up-tempo offenses, younger players with emotional energy, skill-based basketball",
-      worstFor: "Teams needing veteran-friendly whistles, slow-paced grinding styles",
-      notableGame: "Third official for tonight's BOS-PHI showcase, bringing perfect neutral balance and connection with star players. Tiven's moderate tendencies across all categories help manage the Tatum-Embiid intensity while his experience with high-pressure environments aids in controlling the playoff-positioning desperation without favoring either side through systematic whistle management."
-    },
-    {
-      name: "Ben Taylor",
-      number: 46,
-      experience: "19 years",
-      gamesThisSeason: 63,
-      tendencies: {
-        foulsPerGame: 38.9,
-        homeWinPct: 49,
-        avgPace: 0.9,
-        technicalFrequency: "Low",
-        overtimeGames: 2,
-      },
-      bestFor: "Skilled offensive players, teams that play clean basketball, pace-and-space systems",
-      worstFor: "Physical defensive schemes, teams needing whistle help to create offense",
-      notableGame: "Completing tonight's SAS-POR crew as third official, bringing whistle discipline and neutral tendencies to balance Tony Brothers' pronounced home bias. Taylor's low foul rate allows both Wembanyama and Portland's veterans to operate freely without early foul trouble concerns, though his neutral approach can't overcome the systematic home advantage Brothers provides the Trail Blazers."
-    },
-    {
-      name: "Derek Richardson",
-      number: 63,
+      name: "Tre Maddox",
+      number: 23,
       experience: "12 years",
       gamesThisSeason: 59,
       tendencies: {
-        foulsPerGame: 40.7,
-        homeWinPct: 49,
-        avgPace: 1.1,
-        technicalFrequency: "Low",
-        overtimeGames: 3,
+        foulsPerGame: 40.9,
+        homeWinPct: 53,
+        avgPace: 0.6,
+        technicalFrequency: "Average",
+        overtimeGames: 5,
       },
-      bestFor: "Athletic perimeter teams, balanced competitive environments, transition basketball",
-      worstFor: "Teams dependent on home-court whistle advantages, interior grinding styles",
-      notableGame: "Third official for tonight's LAL-HOU Western Conference battle, bringing perfect neutral balance to Zach Zarba's road-friendly approach. Richardson's even-handed tendencies and pace-positive impact allow both Anthony Davis and Alperen Şengün to showcase their skills while preventing any systematic advantages that might compromise the competitive integrity of this crucial playoff positioning matchup."
+      bestFor: "Home teams with crowd support, athletic wing players, up-tempo systems, competitive balanced games",
+      worstFor: "Road teams needing neutral treatment, slow-paced grinding styles, teams dependent on systematic advantages",
+      notableGame: "Third official for tonight's PHI-BOS Eastern Conference battle, bringing moderate home bias that amplifies Boston's natural advantages while his balanced foul rate prevents early foul trouble that could disrupt the competitive flow of this crucial playoff-positioning matchup."
     },
     {
-      name: "John Goble",
-      number: 30,
-      experience: "14 years",
-      gamesThisSeason: 61,
+      name: "Phenizee Ransom",
+      number: 70,
+      experience: "9 years",
+      gamesThisSeason: 55,
       tendencies: {
-        foulsPerGame: 40.4,
-        homeWinPct: 47,
-        avgPace: 2.1,
+        foulsPerGame: 41.6,
+        homeWinPct: 52,
+        avgPace: 1.2,
         technicalFrequency: "Low",
         overtimeGames: 3,
       },
-      bestFor: "Road underdogs, athletic perimeter players, fast-break offenses, skilled position-less basketball",
-      worstFor: "Home favorites expecting friendly whistles, interior grinding styles, teams dependent on home-court advantages",
-      notableGame: "Veteran official known for his extreme road-friendly approach and pace-positive impact, creating ideal conditions for visiting teams to establish dominance through superior talent rather than venue advantages. His whistle discipline and low technical frequency make him perfect for games where skill should determine outcomes over systematic officiating influence or emotional volatility."
+      bestFor: "Young athletic teams, fast-break offenses, skill-based perimeter play, neutral competitive environments",
+      worstFor: "Teams needing veteran-friendly whistles, interior grinding styles, systems dependent on home-court advantages",
+      notableGame: "Third official for tonight's POR-SAS Western Conference showcase, bringing pace-positive impact and moderate home bias that helps Victor Wembanyama showcase his unique skills while maintaining enough competitive balance for Portland's veteran experience to create upset potential."
+    },
+    {
+      name: "Kane Fitzgerald",
+      number: 5,
+      experience: "16 years",
+      gamesThisSeason: 66,
+      tendencies: {
+        foulsPerGame: 42.3,
+        homeWinPct: 52,
+        avgPace: 0.4,
+        technicalFrequency: "Average",
+        overtimeGames: 5,
+      },
+      bestFor: "Balanced offensive systems, teams with multiple scoring options, neutral competitive environments, playoff-caliber basketball",
+      worstFor: "Teams requiring extreme officiating tendencies to succeed, chaos-style offenses, systems dependent on pace manipulation",
+      notableGame: "Veteran official known for his balanced approach and tournament experience, making him ideal for high-stakes playoff positioning games where competitive integrity and neutral treatment allow superior talent and execution to determine outcomes without systematic officiating influence."
     }
   ],
-  weeklyTrend: "Tonight's three-game slate reveals the league's sophisticated approach to managing late-season playoff positioning narratives through strategic referee deployment, with each crew carefully constructed to either amplify natural advantages or create competitive balance based on storyline priorities and television entertainment value. The most intriguing assignment is Scott Foster leading BOS-PHI, where his moderate home bias and overtime tendency provide Philadelphia with both systematic support and extended opportunity to steal a crucial victory against Boston's superior talent. This represents the league's commitment to maintaining playoff drama by ensuring desperate teams like the 76ers receive optimal conditions to extend their season, with Foster's physical tolerance favoring Embiid's interior dominance while his high technical frequency could disrupt Boston's rhythm through emotional management challenges. The 3.5-point spread becomes questionable when Foster's historical patterns favor competitive games that often require overtime resolution. Tony Brothers' assignment to SAS-POR brings his signature home bias amplification to a game where Portland's veteran leadership could exploit his systematic support for grinding, defensive basketball. Brothers' extreme home advantage (58%) works directly against San Antonio's youth and road inexperience, while his physical tolerance and pace-negative tendencies disrupt the Spurs' preferred tempo and spacing. The 7.5-point spread seems inflated given Brothers' consistent pattern of keeping games competitive through whistle management that prevents blowouts, particularly when home underdogs possess the veteran savvy that Portland's roster demonstrates. This assignment suggests the league expects Portland to remain viable in their play-in chase despite talent disadvantages. Zach Zarba leading LAL-HOU represents the most neutral assignment, where his road-friendly approach and pace-positive tendencies create pure talent evaluation conditions that should favor the Lakers' superior depth and current momentum. Zarba's whistle discipline prevents systematic advantages while his low technical frequency allows stars like Anthony Davis to operate at maximum intensity without interference. The 2.5-point spread accurately reflects the talent gap when officiating variables are neutralized, making this the most predictable outcome of the night. The broader pattern shows the league's evolution toward entertainment-driven officiating assignments while maintaining plausible competitive balance. Rather than pure neutrality, these assignments serve specific narrative purposes: Foster amplifies drama in must-win scenarios, Brothers prevents talent mismatches from becoming blowouts, and Zarba provides clean talent evaluation when storylines don't require intervention. The betting implications are significant across all three games, with each assignment creating value against conventional wisdom that fails to account for systematic officiating influences on game flow, pace, and competitive balance."
+  weeklyTrend: "Tonight's three-game slate reveals strategic referee deployment designed to maximize late-season playoff drama through targeted officiating approaches that serve specific competitive balance needs rather than pure neutrality. The most significant assignment is Tony Brothers leading PHI-BOS, where his extreme home bias (58% home win rate) and grinding style create systematic advantages for Boston's veteran-laden roster while potentially neutralizing Philadelphia's athletic advantages through pace control and whistle disruption. This represents calculated intervention to strengthen the Celtics' playoff seeding while testing Philadelphia's championship window resolve under maximum adversity, with Brothers' high technical frequency creating emotional landmines for Joel Embiid's notoriously volatile temperament in hostile territory. Scott Foster's assignment to POR-SAS brings his legendary grinding approach to a talent mismatch that requires careful management to showcase Victor Wembanyama's excellence while maintaining Portland's play-in tournament hopes through systematic battle-testing. His moderate home bias and pace-negative impact create perfect conditions for halfcourt basketball that favors San Antonio's superior talent while his overtime propensity suggests maximum drama extraction from what could otherwise become unwatchable blowout television. Ed Malloy's assignment to HOU-LAL provides the week's most intriguing betting opportunity through his road-neutral approach that eliminates natural home-court advantages in a crucial playoff positioning battle where both teams desperately need victories. His pace-positive impact and whistle discipline create pure talent evaluation conditions that could favor Houston's superior athleticism and conditioning over the Lakers' veteran halfcourt execution, making the 2.5-point spread highly questionable given historical patterns showing road teams outperforming expectations in Malloy's assignments. The broader weekly pattern shows evolution toward entertainment-driven officiating deployment that serves television narratives while maintaining plausible competitive balance through sophisticated whistle management. Rather than neutral treatment, these assignments are specifically chosen to amplify or neutralize natural advantages based on storyline requirements: Brothers amplifies home advantages when veteran teams need playoff seeding protection, Foster provides grinding showcase conditions when unique talents require maximum exposure, and Malloy creates neutral conditions when pure athleticism battles serve better television drama. The betting implications are substantial across all three games, with each assignment creating exploitable value against market prices that fail to account for systematic officiating influences on pace control, foul frequency, and competitive balance that directly impact both spreads and totals through predictable referee tendency patterns that sophisticated bettors have been leveraging throughout this championship-defining April stretch where every possession carries maximum playoff positioning weight."
 };

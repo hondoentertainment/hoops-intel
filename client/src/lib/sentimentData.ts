@@ -47,142 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-21",
   displayDate: "April 21, 2026",
-  overallMood: "Playoff seeding chaos",
+  overallMood: "Clutch chaos and playoff pandemonium",
   topics: [
     {
-      id: "trae-young-msg-dagger",
-      topic: "Trae Young's MSG Heroics",
-      sentiment: "positive",
+      id: "trae-young-msg-heroics",
+      topic: "Trae Young's Game-Winner at MSG",
+      sentiment: "mixed",
       intensity: 98,
-      volume: 45000,
-      summary: "Trae Young's clutch three-pointer with 8.4 seconds left at Madison Square Garden has NBA Twitter absolutely losing it. The step-back over Brunson is already being called one of the shots of the season.",
+      volume: 47500,
+      summary: "Trae's ice-cold step-back three over Brunson has NBA Twitter absolutely losing it, with Knicks fans in shambles and Hawks believers going wild",
       sampleTakes: [
-        "TRAE YOUNG JUST SILENCED THE GARDEN 🔥🔥🔥 That step-back three was FILTHY",
-        "Ice Trae really hit the most disrespectful three at MSG... Knicks fans in shambles",
-        "That Trae Young dagger might be the coldest shot I've seen all season no 🧢",
-        "Young really said 'this is my house' at Madison Square Garden 😤"
+        "Trae Young really just walked into MSG and broke 20,000 hearts with that shot 🥶",
+        "Knicks fans talking about championship and Trae said NOT TODAY 💀",
+        "That step-back three was DISRESPECTFUL and I'm here for it",
+        "Trae really owns the Garden more than the Knicks do at this point"
       ],
       relatedPlayers: ["Trae Young", "Jalen Brunson"],
       relatedTeams: ["ATL", "NYK"],
       trending: true
     },
     {
-      id: "anthony-edwards-nuggets-upset",
-      topic: "Ant-Man Ends Denver Streak",
-      sentiment: "positive",
-      intensity: 94,
-      volume: 38000,
-      summary: "Anthony Edwards' 32-point explosion ending Denver's 13-game winning streak has everyone talking about the Timberwolves as a legitimate playoff threat. His clutch gene is undeniable.",
+      id: "nuggets-streak-ended",
+      topic: "Denver's 13-Game Win Streak Snapped",
+      sentiment: "mixed",
+      intensity: 85,
+      volume: 32800,
+      summary: "Ant-Man's explosion ends Denver's historic run with fans debating if the Nuggets peaked too early or if Minnesota is just that dangerous",
       sampleTakes: [
-        "ANT-MAN DIFFERENT 🐜 32 points to end that streak... he's built for these moments",
-        "Edwards really said 'nah we stopping this streak tonight' and dropped 32 💀",
-        "The disrespect to end a 13-game streak on the road... Ant is that guy",
-        "Minnesota got their Batman back just in time for playoffs"
+        "Anthony Edwards really said 'your streak ends HERE' and dropped 32 with 6 threes",
+        "Nuggets looked TIRED. 13-game streaks hit different when playoff time comes",
+        "Minnesota just announced they're coming for everybody's neck in the playoffs",
+        "Jokic triple-double and still lost... that's how you know Ant was cooking"
       ],
       relatedPlayers: ["Anthony Edwards", "Nikola Jokic"],
       relatedTeams: ["MIN", "DEN"],
       trending: true
     },
     {
-      id: "knicks-collapse-takes",
-      topic: "Knicks Championship Dreams Dying?",
+      id: "knicks-home-collapse",
+      topic: "Knicks Collapse at Home",
       sentiment: "negative",
-      intensity: 89,
-      volume: 32000,
-      summary: "The Knicks blowing a 12-point third quarter lead at home to Atlanta has fans and media questioning if this team can handle pressure in big moments. The loss crushed their playoff seeding hopes.",
+      intensity: 92,
+      volume: 38900,
+      summary: "Knicks fans are in absolute crisis mode after blowing a double-digit lead at home with playoff seeding on the line",
       sampleTakes: [
-        "Knicks really choked at home against the Hawks... this team ain't built for playoffs",
-        "How you gonna blow a 12 point lead to TRAE YOUNG at MSG??? Embarrassing",
-        "Same old Knicks man... they fold every time the pressure gets real",
-        "MSG was SILENT after that Trae three... y'all thought you were different"
+        "Same old Knicks choking when it matters most... some things never change",
+        "Had a double-digit lead at MSG and still found a way to lose. Pain.",
+        "Brunson played well but couldn't stop Trae from cooking in the clutch",
+        "This loss might haunt us all playoffs long... momentum killer"
       ],
-      relatedPlayers: ["Jalen Brunson", "Julius Randle", "Trae Young"],
-      relatedTeams: ["NYK", "ATL"],
+      relatedPlayers: ["Jalen Brunson", "Julius Randle"],
+      relatedTeams: ["NYK"],
       trending: true
     },
     {
-      id: "denver-nuggets-fatigue",
-      topic: "Are the Nuggets Gassed?",
-      sentiment: "mixed",
-      intensity: 76,
-      volume: 28000,
-      summary: "Denver's 13-game winning streak ending at home has some questioning if they peaked too early. The defending champs looked tired against Minnesota's energy.",
-      sampleTakes: [
-        "Nuggets looked TIRED... maybe that streak was actually bad for them long term",
-        "Denver bout to learn why you don't go all out in regular season",
-        "13 games is a lot... Jokic and the boys might need some rest before playoffs",
-        "Still the defending champs but that loss was concerning ngl"
-      ],
-      relatedPlayers: ["Nikola Jokic", "Jamal Murray"],
-      relatedTeams: ["DEN"],
-      trending: false
-    },
-    {
-      id: "eastern-conference-chaos",
-      topic: "East Playoff Race Getting Spicy",
-      sentiment: "neutral",
-      intensity: 82,
-      volume: 25000,
-      summary: "With Atlanta jumping into a tie for 5th and multiple teams fighting for positioning, the Eastern Conference playoff picture is getting wild with days left in the season.",
-      sampleTakes: [
-        "East is WIDE OPEN... Hawks just jumped to 5th and nobody saw it coming",
-        "This East playoff race bout to be nastier than the West for once",
-        "Detroit at 60 wins and everyone else fighting for scraps... love to see it",
-        "Play-in tournament gonna be MUST WATCH TV this year"
-      ],
-      relatedPlayers: ["Trae Young", "Paolo Banchero"],
-      relatedTeams: ["ATL", "TOR", "PHI", "CHA"],
-      trending: false
-    },
-    {
-      id: "cavs-quiet-excellence",
-      topic: "Cavaliers Flying Under Radar",
+      id: "hawks-playoff-surge",
+      topic: "Hawks Jump to 5th Seed",
       sentiment: "positive",
-      intensity: 67,
-      volume: 18000,
-      summary: "Cleveland's workmanlike victory over Toronto showcased their balanced attack led by Evan Mobley. They're quietly positioning themselves as a dark horse in the East.",
+      intensity: 78,
+      volume: 25600,
+      summary: "Atlanta's stunning road win catapults them into playoff positioning with fans believing this team is built different",
       sampleTakes: [
-        "Cavs stay winning while everyone sleeps... Mobley is SPECIAL",
-        "Cleveland bout to surprise people in these playoffs fr",
-        "Most underrated team in the league... that defense is real",
-        "Mobley and Mitchell... that's a championship duo right there"
+        "Hawks went from play-in to 5th seed with ONE SHOT. Basketball is beautiful",
+        "Trae in the playoffs is about to be MUST-SEE TV",
+        "This team has that special sauce... watch out East",
+        "Road warriors showing championship mentality when it counts"
+      ],
+      relatedPlayers: ["Trae Young"],
+      relatedTeams: ["ATL"],
+      trending: false
+    },
+    {
+      id: "anthony-edwards-statement",
+      topic: "Ant-Man's 32-Point Statement",
+      sentiment: "positive",
+      intensity: 88,
+      volume: 29400,
+      summary: "Edwards' explosive performance has everyone talking about his clutch gene and whether Minnesota can make a real playoff run",
+      sampleTakes: [
+        "Anthony Edwards just put the entire Western Conference on NOTICE",
+        "32 points to end a 13-game streak... this man is SPECIAL",
+        "Ant got that Kobe mentality - steps up biggest in the biggest moments",
+        "Minnesota scary hours when Edwards is shooting 60% from three"
+      ],
+      relatedPlayers: ["Anthony Edwards"],
+      relatedTeams: ["MIN"],
+      trending: false
+    },
+    {
+      id: "playoff-seeding-chaos",
+      topic: "Playoff Race Getting Spicy",
+      sentiment: "neutral",
+      intensity: 72,
+      volume: 18700,
+      summary: "Sunday's upsets completely reshuffled both conferences with fans loving the chaos heading into the final stretch",
+      sampleTakes: [
+        "Playoff seeding still wide open and I'm absolutely HERE for this chaos",
+        "Every game matters and these players are showing OUT",
+        "This is why the NBA regular season hits different in April",
+        "Conference standings looking like a Rubik's cube rn"
+      ],
+      relatedPlayers: [],
+      relatedTeams: [],
+      trending: false
+    },
+    {
+      id: "cavaliers-quiet-consistency",
+      topic: "Cavaliers Steady Excellence",
+      sentiment: "positive",
+      intensity: 65,
+      volume: 14200,
+      summary: "Cleveland's dominant road win gets overlooked but fans appreciate Mobley's two-way excellence and team depth",
+      sampleTakes: [
+        "Cavs just quietly handling business while everyone else panicking",
+        "Evan Mobley really turned into the player we thought he'd be",
+        "Cleveland got that championship composure... sleeping on them",
+        "24 and 10 from Mobley on 62% shooting... future All-Star for real"
       ],
       relatedPlayers: ["Evan Mobley", "Donovan Mitchell"],
       relatedTeams: ["CLE"],
       trending: false
     },
     {
-      id: "playoff-atmosphere-games",
-      topic: "Regular Season Games Feeling Like Playoffs",
+      id: "timberwolves-playoff-threat",
+      topic: "Wolves Looking Dangerous",
       sentiment: "positive",
-      intensity: 71,
-      volume: 22000,
-      summary: "The intensity and stakes of recent games have fans hyped for the playoffs. Every game matters with seeding implications down to the wire.",
+      intensity: 70,
+      volume: 16800,
+      summary: "Minnesota's upset victory has fans believing they could be a serious playoff sleeper with Ant and KAT clicking",
       sampleTakes: [
-        "These games hitting different... playoff atmosphere in April hits different",
-        "NBA really saved the best for last... these games are ELECTRIC",
-        "Rather watch this than any other sport rn... stakes are REAL",
-        "This is why we love basketball... every possession matters"
+        "Timberwolves really might be the team nobody wants to see in Round 1",
+        "KAT with the double-double, Ant with 32... this duo is scary",
+        "Minnesota just beat the defending champs on the road. Respect.",
+        "Western Conference playoff bracket about to be WILD"
       ],
-      relatedPlayers: ["Trae Young", "Anthony Edwards"],
-      relatedTeams: ["ATL", "NYK", "MIN", "DEN"],
-      trending: false
-    },
-    {
-      id: "clutch-gene-debate",
-      topic: "Who Has the Clutch Gene?",
-      sentiment: "mixed",
-      intensity: 85,
-      volume: 30000,
-      summary: "Trae Young and Anthony Edwards both delivered in crunch time, reigniting debates about which young stars can perform when it matters most.",
-      sampleTakes: [
-        "Trae and Ant both different in clutch time... new generation taking over",
-        "Some players got it, some don't... last night proved who's who",
-        "Clutch gene can't be taught... you either built different or you not",
-        "Young stars stepping up when it matters... league in good hands"
-      ],
-      relatedPlayers: ["Trae Young", "Anthony Edwards", "Jalen Brunson"],
-      relatedTeams: ["ATL", "MIN", "NYK"],
+      relatedPlayers: ["Anthony Edwards", "Karl-Anthony Towns"],
+      relatedTeams: ["MIN"],
       trending: false
     }
   ],
@@ -191,81 +191,65 @@ export const sentimentData: SentimentData = {
       team: "ATL",
       teamFull: "Atlanta Hawks",
       sentiment: "positive",
-      score: 92,
-      buzzWords: ["clutch", "heroics", "stunning", "playoffs", "Ice Trae"],
-      narrativeSummary: "Hawks soar into playoff position behind Trae Young's legendary MSG performance. Fans are suddenly believing in a deep playoff run."
-    },
-    {
-      team: "MIN",
-      teamFull: "Minnesota Timberwolves",
-      sentiment: "positive",
-      score: 88,
-      buzzWords: ["upset", "Ant-Man", "streak-breakers", "dangerous", "clutch"],
-      narrativeSummary: "Timberwolves prove they're playoff dangerous with signature road win. Edwards' explosion has fans dreaming of upset potential."
+      score: 87,
+      buzzWords: ["clutch", "heroics", "surge", "playoff-ready", "road-warriors"],
+      narrativeSummary: "Hawks fans are absolutely euphoric after Trae's MSG heroics catapulted them into playoff positioning with the most dramatic win of the season"
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "negative",
-      score: -85,
-      buzzWords: ["choke", "collapse", "embarrassing", "pressure", "same old"],
-      narrativeSummary: "Knicks crushed at home by clutch-time failure. Fans questioning if this team can handle playoff pressure after brutal loss."
+      score: -79,
+      buzzWords: ["collapse", "choke", "heartbreak", "same-old", "devastating"],
+      narrativeSummary: "Knicks Twitter is in absolute shambles after blowing a home game that could define their entire playoff seeding and championship hopes"
+    },
+    {
+      team: "MIN",
+      teamFull: "Minnesota Timberwolves",
+      sentiment: "positive",
+      score: 82,
+      buzzWords: ["statement", "explosive", "dangerous", "sleeper", "announcement"],
+      narrativeSummary: "Wolves fans are riding high after Ant's explosion ended Denver's historic streak and announced Minnesota as a legitimate playoff threat"
     },
     {
       team: "DEN",
       teamFull: "Denver Nuggets",
       sentiment: "mixed",
-      score: -34,
-      buzzWords: ["tired", "streak over", "concerning", "gassed", "defending champs"],
-      narrativeSummary: "Nuggets' historic streak ends with concerning home loss. Mixed reactions about whether they peaked too early before playoffs."
+      score: -31,
+      buzzWords: ["streak-ended", "gassed", "concerning", "fatigue", "peaked-early"],
+      narrativeSummary: "Nuggets fans are split between disappointment over the ended streak and confidence that their team just needed a reality check before playoffs"
     },
     {
       team: "CLE",
       teamFull: "Cleveland Cavaliers",
       sentiment: "positive",
-      score: 76,
-      buzzWords: ["underrated", "Mobley", "balanced", "dark horse", "solid"],
-      narrativeSummary: "Cavaliers quietly building momentum with Mobley's emergence. Fans increasingly confident about playoff potential."
+      score: 68,
+      buzzWords: ["steady", "dominant", "composed", "underrated", "consistent"],
+      narrativeSummary: "Cavs fans appreciate their team's businesslike approach while Mobley's breakout performance has everyone excited about their ceiling"
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "negative",
-      score: -52,
-      buzzWords: ["struggling", "playoff race", "inconsistent", "concerning", "slipping"],
-      narrativeSummary: "Raptors losing ground in crucial playoff race stretch. Home loss to Cleveland has fans worried about postseason hopes."
+      score: -45,
+      buzzWords: ["outclassed", "struggled", "disappointing", "playoff-hopes", "fading"],
+      narrativeSummary: "Raptors fans frustrated with the team's inability to generate consistent offense in crucial playoff positioning games"
     },
     {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
-      sentiment: "mixed",
-      score: -18,
-      buzzWords: ["desperate", "must-win", "Embiid", "home court", "pressure"],
-      narrativeSummary: "76ers face mounting pressure with Celtics visit looming. Fans anxious about avoiding play-in tournament fate."
+      sentiment: "neutral",
+      score: 12,
+      buzzWords: ["crucial", "tonight", "must-win", "seeding", "pressure"],
+      narrativeSummary: "Sixers fans nervous about tonight's Boston game after watching other teams make moves in the playoff race"
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "positive",
-      score: 71,
-      buzzWords: ["rolling", "Tatum", "championship", "road warriors", "depth"],
-      narrativeSummary: "Celtics riding high ahead of Philadelphia showdown. Fans confident about championship ceiling with current form."
-    },
-    {
-      team: "SAS",
-      teamFull: "San Antonio Spurs",
-      sentiment: "positive",
-      score: 84,
-      buzzWords: ["Wembanyama", "special", "future", "dominant", "ROY"],
-      narrativeSummary: "Spurs building championship culture around generational talent. Wembanyama's impact has fans dreaming of dynasty potential."
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "positive",
-      score: 68,
-      buzzWords: ["veteran", "experience", "Davis", "winning streak", "clutch"],
-      narrativeSummary: "Lakers peaking at perfect time with veteran leadership. Fans cautiously optimistic about playoff positioning and health."
+      score: 45,
+      buzzWords: ["streak", "home-court", "tonight", "opportunity", "second-seed"],
+      narrativeSummary: "Celtics fans confident about their four-game winning streak and tonight's chance to take advantage of other teams' chaos"
     }
   ],
   playerSentiments: [
@@ -273,93 +257,75 @@ export const sentimentData: SentimentData = {
       player: "Trae Young",
       team: "ATL",
       sentiment: "positive",
-      score: 96,
-      mentions: 22000,
-      topTake: "Ice Trae really hit the most disrespectful three at MSG... Knicks fans in shambles",
-      narrativeArc: "Young's clutch gene on full display with legendary MSG moment cementing his superstar status"
+      score: 95,
+      mentions: 24600,
+      topTake: "Trae Young really just walked into MSG and hit the most disrespectful shot of the season 🥶",
+      narrativeArc: "Clutch assassin proving he belongs in the superstar conversation with ice-cold heroics in the world's most famous arena"
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
       sentiment: "positive",
-      score: 94,
-      mentions: 18500,
-      topTake: "ANT-MAN DIFFERENT 🐜 32 points to end that streak... he's built for these moments",
-      narrativeArc: "Edwards proving he's ready for superstar leap with clutch road performance against elite competition"
+      score: 89,
+      mentions: 18900,
+      topTake: "Ant-Man just dropped 32 to end a 13-game streak... this dude is BUILT DIFFERENT",
+      narrativeArc: "Rising superstar announcing himself as a playoff threat with explosive performance against defending champions"
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
-      sentiment: "negative",
-      score: -42,
-      mentions: 12000,
-      topTake: "Brunson couldn't stop Trae when it mattered... that's not your superstar right there",
-      narrativeArc: "Brunson's solid performance overshadowed by inability to prevent Young's clutch heroics in crucial moment"
+      sentiment: "mixed",
+      score: -15,
+      mentions: 12300,
+      topTake: "Brunson played well but couldn't stop Trae from cooking when it mattered most",
+      narrativeArc: "Solid performance overshadowed by inability to prevent clutch heroics from opposing star in crucial home game"
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
       sentiment: "mixed",
-      score: 15,
-      mentions: 14000,
-      topTake: "Jokic still elite but the team looked tired... maybe too much regular season intensity",
-      narrativeArc: "Individual excellence remains but questions about team fatigue after streak-ending loss"
+      score: 22,
+      mentions: 11700,
+      topTake: "Jokic had a triple-double and they still lost... shows how good Ant was tonight",
+      narrativeArc: "Consistent excellence not enough to maintain historic winning streak as fatigue and opposing star power take over"
     },
     {
       player: "Evan Mobley",
       team: "CLE",
       sentiment: "positive",
-      score: 88,
-      mentions: 9500,
-      topTake: "Mobley bout to be the most underrated playoff X-factor... kid is SPECIAL",
-      narrativeArc: "Dominant two-way performance solidifying reputation as rising star and championship piece"
+      score: 78,
+      mentions: 8400,
+      topTake: "Mobley really turned into the two-way monster we thought he'd be... 24 and 10 on 62% shooting",
+      narrativeArc: "Breakout performance showcasing elite two-way potential while leading team to dominant road victory"
     },
     {
       player: "Julius Randle",
       team: "NYK",
       sentiment: "negative",
-      score: -38,
-      mentions: 8000,
-      topTake: "Randle disappears in the clutch AGAIN... when will Knicks fans learn",
-      narrativeArc: "Solid numbers overshadowed by failure to deliver in crucial fourth quarter moments"
-    },
-    {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      sentiment: "positive",
-      score: 72,
-      mentions: 7200,
-      topTake: "Mitchell and Mobley... that duo bout to surprise people in these playoffs",
-      narrativeArc: "Veteran leadership and scoring punch perfectly complementing young star's emergence"
+      score: -52,
+      mentions: 7800,
+      topTake: "Randle disappeared when the Knicks needed him most... same old story",
+      narrativeArc: "Solid early performance followed by crucial fade in crunch time during devastating home collapse"
     },
     {
       player: "Karl-Anthony Towns",
       team: "MIN",
       sentiment: "positive",
-      score: 65,
-      mentions: 6800,
-      topTake: "KAT doing the little things in that upset... growth we love to see",
-      narrativeArc: "Role player excellence supporting Edwards' takeover in biggest moments of the season"
+      score: 61,
+      mentions: 6900,
+      topTake: "KAT with the double-double while Ant exploded... this duo is scary for playoffs",
+      narrativeArc: "Perfect complement providing interior presence and veteran leadership in massive upset victory"
     },
     {
-      player: "Scottie Barnes",
-      team: "TOR",
-      sentiment: "mixed",
-      score: -12,
-      mentions: 5500,
-      topTake: "Barnes tried his best but Raptors just don't have enough... tough spot for a young star",
-      narrativeArc: "Individual growth continuing but team struggles limiting impact and playoff hopes"
-    },
-    {
-      player: "Victor Wembanyama",
-      team: "SAS",
+      player: "Donovan Mitchell",
+      team: "CLE",
       sentiment: "positive",
-      score: 91,
-      mentions: 11000,
-      topTake: "Wemby bout to dominate Portland... that wingspan is unreal and he's getting stronger",
-      narrativeArc: "Generational talent continuing historic rookie campaign with championship-level impact on both ends"
+      score: 55,
+      mentions: 5200,
+      topTake: "D-Mitch doing his thing while Mobley takes over... Cleveland's future is bright",
+      narrativeArc: "Steady veteran leadership allowing young stars to flourish in crucial playoff positioning games"
     }
   ],
-  hottestTake: "Trae Young just proved he's more clutch than Luka and it's not even close... that MSG dagger was LEGENDARY 🔥🔥🔥",
-  coldestTake: "The Nuggets losing one game after 13 straight wins means nothing... y'all are overreacting to everything 🤡"
+  hottestTake: "Trae Young just proved he's more clutch than Damian Lillard ever was... that step-back three at MSG was the coldest shot in playoff race history 🧊",
+  coldestTake: "The Nuggets losing one game after 13 straight wins means they're not championship material anymore... totally washed 🤡"
 };

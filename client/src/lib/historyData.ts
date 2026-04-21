@@ -38,231 +38,244 @@ export const historyData: HistoryData = {
   generatedDate: "April 21, 2026",
   comparisons: [
     {
-      currentEvent: "Trae Young's ice-cold step-back three-pointer over Jalen Brunson with 8.4 seconds remaining at Madison Square Garden to lift Atlanta to a stunning 107-106 victory represents the type of signature clutch moment that defines careers and transforms players into playoff assassins capable of delivering championship-level heroics",
+      currentEvent: "Trae Young's clutch step-back three-pointer over Jalen Brunson with 8.4 seconds remaining at Madison Square Garden, capping a 28-point, 9-assist masterpiece to stun the Knicks 107-106, showcases the type of ice-cold heroics that define legendary clutch performers in basketball's most hostile environment",
       player: "Trae Young",
       team: "ATL",
       historicalParallel: {
-        player: "Damian Lillard",
-        season: "2019",
-        stat: "37-foot series-winner vs OKC — 'That's a bad shot' moment",
-        context: "Lillard's legendary 37-foot game-winner to eliminate Oklahoma City in Game 5 of the 2019 first round established the modern template for clutch playoff assassins willing to take impossible shots in the biggest moments. His ability to rise in hostile environments while delivering franchise-defining moments demonstrated how elite guards can single-handedly shift series momentum through pure audacity and shooting excellence. The shot became symbolic of Dame's fearless approach to clutch situations throughout his career."
+        player: "Reggie Miller",
+        season: "1994-95",
+        stat: "8 points in 9 seconds at MSG — 57.1% career FG at Garden",
+        context: "Miller's legendary 8 points in 9 seconds sequence against the Knicks in Game 1 of the 1995 Eastern Conference semifinals became the defining moment of clutch heroics at Madison Square Garden. Throughout his career, Miller shot 57.1% from the field in playoff games at MSG while averaging 24.3 points per game, establishing himself as the most feared visiting player in Garden history. His ability to rise to the occasion in New York's hostile environment created the blueprint for visiting stars conquering basketball's most famous arena."
       },
-      comparison: "Young's step-back dagger at MSG mirrors Lillard's ability to deliver franchise-defining moments in hostile environments through impossible shot-making, both showcasing the rare combination of range, confidence, and clutch timing that separates elite guards from role players. Young's 28-point performance with 6 three-pointers matches Dame's ability to build toward signature moments through sustained excellence rather than single-shot heroics. The key difference is venue significance — MSG carries more mystique than Chesapeake Energy Arena, while Young's shot came in a regular season game with playoff implications rather than series-ending playoffs, suggesting Trae may possess even greater composure under ultimate pressure than Lillard's legendary clutch reputation.",
+      comparison: "Young's game-winning heroics at MSG echo Miller's legendary clutch DNA in the same hostile environment, both showcasing the rare mental fortitude required to deliver signature moments when 20,000 fans want you to fail. Young's step-back creation ability actually provides greater shot difficulty than Miller's catch-and-shoot excellence, while his 9 assists demonstrate superior playmaking that Miller never possessed. The crucial advantage is complete offensive orchestration — Young can both score clutch baskets and create them for teammates, suggesting he could build an even more dominant MSG legacy than Miller through dual-threat capability.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Anthony Edwards' explosive 32-point performance on brilliant 60% three-point shooting to end Denver's historic 13-game winning streak on the road demonstrates the type of individual takeover that defines superstar moments while proving Minnesota can compete with championship-caliber teams through Edwards' elite scoring",
+      currentEvent: "Anthony Edwards' explosive 32-point performance on 60% three-point shooting to end Denver's historic 13-game winning streak demonstrates the type of individual takeover against elite competition that announces superstar arrival and legitimate championship contention",
       player: "Anthony Edwards",
       team: "MIN",
       historicalParallel: {
-        player: "Dwyane Wade",
-        season: "2005-06",
-        stat: "43 PTS in Game 3 vs Pistons — playoffs breakthrough performance",
-        context: "Wade's 43-point explosion against Detroit's elite defense in the 2006 playoffs established him as a clutch performer capable of taking over games against championship-caliber opponents. His ability to score at will through drives, mid-range shots, and clutch free throws demonstrated the complete offensive arsenal necessary to dominate playoff basketball. The performance announced Wade's arrival as a superstar capable of carrying Miami to a championship."
+        player: "Kobe Bryant",
+        season: "2000-01",
+        stat: "29.4 PPG vs teams with 50+ wins — 48.4% FG in clutch",
+        context: "Bryant's 2001 season represented his emergence as an elite performer against the league's best competition, averaging 29.4 points per game against teams with 50+ wins while shooting 48.4% in clutch situations. His ability to elevate his game against championship-caliber opponents while delivering in pressure moments established him as the league's most feared closer. Kobe's breakthrough campaign proved that generational athletes could dominate the strongest opposition through pure scoring will and clutch execution."
       },
-      comparison: "Edwards' 32-point road explosion mirrors Wade's ability to deliver breakthrough performances against elite competition, both showcasing the athletic dominance and scoring versatility that defines championship-level guards. Edwards' 60% three-point shooting actually exceeds Wade's typical perimeter accuracy while maintaining similar driving ability and clutch timing. The crucial difference is team construction — Minnesota's supporting cast may provide more sustainable playoff success than Miami's aging veterans, suggesting Edwards could achieve more consistent postseason excellence than Wade's peak championship window.",
+      comparison: "Edwards' 32-point explosion against defending champion Denver mirrors Bryant's ability to dominate elite competition through pure scoring excellence, both showcasing the athletic superiority and killer instinct that separates superstars from talented players. Edwards' 60% three-point accuracy in this performance actually exceeds Bryant's typical perimeter shooting while maintaining similar driving ability and clutch timing. The key advantage is modern offensive versatility — Edwards operates in a spacing-heavy system that maximizes his athleticism more efficiently than Bryant's iso-heavy approach, suggesting Edwards could achieve more consistent scoring against elite defenses.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Evan Mobley's dominant 24-point, 10-rebound, 3-block performance on 62.5% shooting in Cleveland's convincing road victory continues his emergence as one of the league's premier two-way forces while anchoring the Cavaliers' push for optimal playoff positioning",
+      currentEvent: "Victor Wembanyama's continued Rookie of the Year dominance with 22.1 PPG, 11.4 RPG, and 4.2 BPG on 52.4% shooting represents historically unprecedented first-year production that combines elite scoring, rebounding, and defensive impact in ways never before achieved by a rookie",
+      player: "Victor Wembanyama",
+      team: "SAS",
+      historicalParallel: {
+        player: "David Robinson",
+        season: "1989-90",
+        stat: "24.3 PPG, 12.0 RPG, 3.9 BPG — 53.1% FG",
+        context: "Robinson's rookie season established the gold standard for first-year two-way excellence, combining elite scoring, rebounding, and shot-blocking while shooting 53.1% from the field and leading San Antonio to immediate playoff contention. His ability to dominate both ends as a rookie while carrying championship expectations made him an instant MVP candidate and Rookie of the Year winner. The Admiral's debut campaign proved that generational big men could produce All-NBA caliber seasons from day one."
+      },
+      comparison: "Wembanyama's rookie excellence parallels Robinson's ability to dominate both ends immediately while carrying franchise expectations, both showcasing the rare combination of size, skill, and basketball IQ that defines generational big men. Wembanyama's 4.2 blocks per game actually exceeds Robinson's rookie shot-blocking while maintaining similar scoring efficiency and rebounding impact. The crucial advantage is perimeter versatility — Wembanyama's three-point shooting and ball-handling ability provide offensive dimensions that Robinson never possessed, suggesting the French phenom could become a more complete player than The Admiral while matching his immediate two-way dominance.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Evan Mobley's dominant 24-point, 10-rebound, 3-block performance on 62.5% shooting continues his emergence as the league's premier young two-way force, showcasing the efficient excellence that anchors Cleveland's championship aspirations through fundamental dominance",
       player: "Evan Mobley",
       team: "CLE",
       historicalParallel: {
-        player: "Chris Bosh",
-        season: "2010-11",
-        stat: "18.7 PPG, 8.3 RPG, 1.0 BPG in first Miami championship season",
-        context: "Bosh's 2011 championship run established the template for modern versatile big men who could anchor defense while providing efficient offense and spacing. His ability to switch defensively while hitting mid-range shots and protecting the rim demonstrated how elite big men could adapt their games for championship basketball. Bosh's two-way excellence became essential to Miami's title success and multiple Finals appearances."
+        player: "Tim Duncan",
+        season: "1998-99",
+        stat: "21.7 PPG, 11.4 RPG, 2.5 BPG — 49.5% FG",
+        context: "Duncan's rookie season established the blueprint for championship-level two-way big man excellence, combining efficient scoring with elite rebounding and rim protection while leading San Antonio to immediate title contention. His ability to dominate both ends through fundamental excellence and basketball IQ created the template for how young big men could anchor championship teams from their first seasons. Duncan's immediate impact proved that elite prospects could carry championship expectations while delivering MVP-caliber production."
       },
-      comparison: "Mobley's 24-10-3 excellence on elite efficiency mirrors Bosh's ability to provide championship-level two-way impact through defensive versatility and efficient scoring, both showcasing the complete skill sets that define modern winning basketball. Mobley's shot-blocking ability actually exceeds Bosh's rim protection while maintaining similar offensive efficiency and defensive switching capability. The key difference is timeline — Mobley is achieving this excellence at age 24 while Bosh peaked at 27, suggesting the Cleveland star may have even greater upside potential than Bosh's championship-level performance during Miami's title runs.",
+      comparison: "Mobley's 24-10-3 excellence on elite 62.5% efficiency mirrors Duncan's ability to dominate both ends through fundamental soundness, both showcasing the basketball IQ and two-way impact that defines championship-caliber big men. Mobley's shooting efficiency significantly exceeds Duncan's rookie percentage while maintaining similar defensive presence and rebounding consistency. The key advantage is offensive versatility — Mobley's perimeter shooting and face-up ability provide greater offensive flexibility than Duncan's primarily post-based approach, suggesting Mobley could become an even more complete offensive player while matching Duncan's championship-level defensive anchor role.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Minnesota's stunning 119-114 upset victory ending Denver's 13-game winning streak represents the type of statement road victory that announces playoff legitimacy while proving the Timberwolves can compete with Western Conference elite through Edwards' leadership and team-wide execution",
+      currentEvent: "Denver's 13-game winning streak ending at home to Minnesota represents the type of championship reality check that historically tests defending champions, as momentum shifts can either derail title defenses or provide the wake-up call that refocuses championship-caliber teams",
+      player: "Denver Nuggets",
+      team: "DEN",
+      historicalParallel: {
+        player: "2004-05 Detroit Pistons",
+        season: "2004-05",
+        stat: "Lost 8 of final 12 regular season games after hot start",
+        context: "The defending champion Pistons struggled down the stretch of their title defense season, losing 8 of their final 12 regular season games after building early momentum. Detroit's late-season struggles raised questions about championship hunger and focus, but their veteran leadership and defensive identity allowed them to refocus for a strong playoff run that reached the NBA Finals. Their ability to overcome regular season adversity demonstrated championship resilience."
+      },
+      comparison: "Denver's streak-ending loss mirrors Detroit's championship defense struggles that tested their title hunger, both showcasing how defending champions can lose focus during dominant regular season runs. The Nuggets' recent championship experience provides similar veteran leadership to Detroit's championship core, with Jokić anchoring the team like Ben Wallace anchored the Pistons. The key difference is offensive firepower — Denver's championship was built on elite offense while Detroit won through defense, suggesting the Nuggets may have better tools to bounce back from momentum shifts through pure scoring ability.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Minnesota's stunning 119-114 road upset victory ending Denver's streak demonstrates the type of statement win that announces legitimate championship contention while proving the Timberwolves can execute at elite levels against defending champions in hostile environments",
       player: "Minnesota Timberwolves",
       team: "MIN",
       historicalParallel: {
         player: "2003-04 Detroit Pistons",
         season: "2003-04",
-        stat: "Road upset victories over contenders leading to championship",
-        context: "The 2004 Pistons established the blueprint for teams making championship statements through road upsets of favored opponents during the regular season. Detroit's ability to win crucial games away from home while playing elite defense and executing in clutch moments translated directly to their shocking Finals victory over the Lakers. Their road resilience became the foundation for sustained playoff success."
+        stat: "11-3 record vs teams with 55+ wins in final 30 games",
+        context: "The 2004 Pistons established their championship credentials through crucial victories against elite competition during the season's final stretch, going 11-3 against teams with 55+ wins in their last 30 games. Detroit's ability to consistently defeat top-tier opponents while playing suffocating defense and executing clutch offense translated directly into their shocking Finals victory over the heavily favored Lakers. Their performance against elite competition became the foundation for championship confidence."
       },
-      comparison: "Minnesota's road upset of Denver's historic streak mirrors Detroit's ability to make championship statements through road victories against elite competition, both showcasing the defensive intensity and clutch execution that defines legitimate playoff contenders. The Timberwolves' 52.1% team shooting actually exceeds Detroit's typical offensive efficiency while maintaining similar defensive principles. The crucial difference is star power — the 2004 Pistons won without a true superstar while Minnesota has Edwards' elite scoring ability, suggesting the current Timberwolves may have higher ceiling potential than Detroit's defensive-minded championship team.",
+      comparison: "Minnesota's road upset mirrors Detroit's blueprint for championship statements through victories against elite opponents, both showcasing the defensive intensity and clutch execution that separates legitimate contenders from playoff pretenders. The Timberwolves' 52.1% team shooting actually exceeds Detroit's typical offensive efficiency while maintaining similar road toughness and defensive principles. The crucial advantage is star power — Minnesota has Edwards' elite individual scoring capability while Detroit won through pure collective effort, suggesting the current Timberwolves may have higher championship upside than Detroit's defense-first approach.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Nikola Jokić's near-triple-double performance of 26 points, 12 rebounds, and 8 assists despite Denver's streak-ending loss demonstrates his continued individual excellence even when facing elite defensive pressure and the fatigue of carrying championship expectations through historic winning runs",
-      player: "Nikola Jokić",
-      team: "DEN",
+      currentEvent: "Atlanta's stunning 107-106 victory at Madison Square Garden catapulting them into a tie for fifth place in the East demonstrates how single games can completely reshape playoff positioning and championship opportunities in April's high-stakes environment",
+      player: "Atlanta Hawks",
+      team: "ATL",
       historicalParallel: {
-        player: "Tim Duncan",
-        season: "2002-03",
-        stat: "23.3 PPG, 12.9 RPG, 3.9 APG during championship season",
-        context: "Duncan's 2003 championship run represented peak two-way excellence for a franchise cornerstone carrying championship expectations while maintaining statistical dominance. His ability to deliver consistent excellence even in losses demonstrated the type of steady leadership that defines championship cores. Duncan's reliability became the foundation for San Antonio's sustained success throughout multiple title runs."
+        player: "2005-06 Los Angeles Clippers",
+        season: "2005-06",
+        stat: "Won 7 of final 10 to secure 6th seed — first playoffs in 9 years",
+        context: "The 2006 Clippers ended their playoff drought through clutch late-season victories, winning 7 of their final 10 games to secure the sixth seed and their first playoff appearance in nine years. Los Angeles's ability to deliver in pressure situations during the regular season's final stretch translated into playoff success, as they advanced to the second round for the first time in franchise history. Their late-season surge proved that momentum could carry teams to unexpected postseason achievements."
       },
-      comparison: "Jokić's 26-12-8 excellence despite the streak-ending loss mirrors Duncan's ability to maintain elite individual performance even when team results don't reflect his dominance, both showcasing the consistent brilliance that defines franchise cornerstones. Jokić's passing ability actually exceeds Duncan's playmaking while maintaining similar scoring and rebounding impact. The key difference is playoff pedigree — Duncan had multiple championships while Jokić is still building his legacy, though the Serbian center's unique skill set may ultimately produce more sustained excellence than Duncan's traditional big man approach.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "Cleveland's systematic 115-105 road victory behind balanced scoring and defensive excellence represents the type of professional performance that establishes playoff credentials while demonstrating the Cavaliers' depth and execution under pressure situations",
-      player: "Cleveland Cavaliers",
-      team: "CLE",
-      historicalParallel: {
-        player: "2015-16 Cleveland Cavaliers",
-        season: "2015-16",
-        stat: "57-25 record with balanced roster construction",
-        context: "The 2016 championship Cavaliers established the template for balanced roster construction combining star power with role player excellence and defensive intensity. Cleveland's ability to win games through multiple contributors while maintaining championship-level execution became the foundation for their historic Finals comeback. Their professional approach to regular season games translated directly to playoff success."
-      },
-      comparison: "The current Cavaliers' balanced road victory mirrors the 2016 championship team's ability to win through multiple contributors and systematic execution, both showcasing the depth and professional approach that defines championship contenders. Today's Cleveland roster may actually have better two-way balance with Mobley's defensive impact compared to the 2016 team's offensive focus. The crucial difference is championship experience — the 2016 team had LeBron's leadership while the current roster is still developing playoff pedigree, though their youth suggests potentially longer championship windows than the veteran-heavy 2016 squad.",
-      verdict: "Matching stride"
+      comparison: "Atlanta's clutch victory mirrors the Clippers' ability to deliver crucial late-season wins that reshape playoff positioning, both showcasing how individual brilliance can elevate entire franchises during championship windows. Young's clutch heroics exceed the Clippers' collective approach through superior individual star power, while Atlanta's supporting cast provides better depth than Los Angeles possessed. The key advantage is championship experience — Young has already proven he can perform in playoff environments, suggesting Atlanta's late-season surge could translate into more sustained postseason success than the Clippers achieved.",
+      verdict: "On pace to surpass"
     }
   ],
   milestoneWatch: [
     {
+      player: "Victor Wembanyama",
+      team: "SAS",
+      milestone: "Most blocks in rookie season (NBA history)",
+      current: "344 blocks through 82 games",
+      needed: "Record: 393 blocks — Manute Bol (1985-86)",
+      projectedDate: "2026 Western Conference First Round",
+      significance: "Breaking Bol's 40-year-old rookie shot-blocking record would establish Wembanyama as the most dominant defensive rookie in NBA history while validating his unprecedented combination of size, timing, and basketball IQ that could redefine rim protection for generations."
+    },
+    {
       player: "Trae Young",
       team: "ATL",
-      milestone: "Most game-winning shots at MSG by visiting player (single season)",
-      current: "1 game-winner at Madison Square Garden",
-      needed: "Current record: 3 game-winners — Michael Jordan (1995-96)",
-      projectedDate: "Achieved historic moment — April 20, 2026",
-      significance: "Young's clutch heroics at MSG establishes him among the elite guards capable of delivering in basketball's most famous arena while catapulting Atlanta into legitimate playoff positioning and announcing his arrival as a clutch performer on the biggest stages."
+      milestone: "Most career game-winners at Madison Square Garden (visiting player since 1990)",
+      current: "2 career game-winners at MSG",
+      needed: "Record: 4 game-winners — Reggie Miller (1990-2005)",
+      projectedDate: "2027-28 regular season",
+      significance: "Surpassing Miller's MSG clutch record would cement Young among the greatest visiting performers in Garden history while establishing his legacy as the premier clutch shooter of his generation in basketball's most hostile environment."
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
-      milestone: "Most 30+ point games ending opponent win streaks of 10+",
-      current: "1 such performance (32 vs Denver's 13-game streak)",
-      needed: "Current record: 4 games — Kobe Bryant (career)",
-      projectedDate: "Potential achievement during 2026 playoffs",
-      significance: "Edwards' ability to end elite teams' momentum through individual brilliance establishes him as a franchise cornerstone capable of delivering championship-level performances in the most crucial moments."
-    },
-    {
-      player: "Evan Mobley",
-      team: "CLE",
-      milestone: "Most efficient 20-10 games by player under 25 (single season)",
-      current: "18 games with 20+ points, 10+ rebounds on 60%+ shooting",
-      needed: "Record: 22 games — Anthony Davis (2017-18)",
-      projectedDate: "April 2026 during playoff run",
-      significance: "Surpassing Davis' efficiency record would cement Mobley as the most dominant young big man since AD's peak while validating Cleveland's championship window around his two-way excellence."
+      milestone: "Most 30-point games vs 50+ win teams (single season, player under 25)",
+      current: "14 such games this season",
+      needed: "Record: 16 games — LeBron James (2005-06)",
+      projectedDate: "2026 playoffs first round",
+      significance: "Breaking LeBron's record for elite competition dominance would validate Edwards as the most promising young scorer since King James while proving Minnesota built their championship window around historically elite individual talent."
     },
     {
       player: "Denver Nuggets",
       team: "DEN",
-      milestone: "Longest winning streak recovered after ending",
-      current: "13-game streak ended, now must start new streak",
-      needed: "Record comeback: 16 games after 15+ game streak — 1971-72 Lakers",
-      projectedDate: "May 2026 during playoff run",
-      significance: "Recovering from the streak-ending loss to build playoff momentum would demonstrate Denver's championship resilience and validate their ability to peak at the right time despite regular season setbacks."
+      milestone: "Most consecutive playoff series wins by defending champions",
+      current: "4 consecutive series wins (2023 Finals through 2025 semifinals)",
+      needed: "Record: 7 series — 1991-92 Chicago Bulls",
+      projectedDate: "2026 Western Conference Finals",
+      significance: "Approaching Jordan's Bulls' playoff dominance streak would establish this Nuggets core among the greatest championship dynasties while proving Jokić can sustain title-level excellence across multiple seasons like the all-time greats."
+    },
+    {
+      player: "Evan Mobley",
+      team: "CLE",
+      milestone: "Most 20-10 games on 60%+ shooting (player under 24, single season)",
+      current: "22 such games this season",
+      needed: "Record: 25 games — Anthony Davis (2013-14, age 20-21)",
+      projectedDate: "2026 Eastern Conference playoffs",
+      significance: "Surpassing Davis' efficiency record would cement Mobley as the most dominant young big man since The Brow's peak while proving Cleveland's championship timeline accelerated beyond all projections through his two-way excellence."
     },
     {
       player: "Minnesota Timberwolves",
       team: "MIN",
-      milestone: "Most road upsets of teams on 10+ game win streaks",
-      current: "1 road upset (vs Denver's 13-game streak)",
-      needed: "Record: 3 such upsets — 2003-04 Detroit Pistons",
-      projectedDate: "Playoffs 2026",
-      significance: "Matching Detroit's road upset record would validate Minnesota as legitimate championship contenders capable of winning crucial games away from home while building playoff confidence through Edwards' leadership."
+      milestone: "First Conference Finals appearance since 2004",
+      current: "Currently 6th seed with 49-33 record",
+      needed: "Must advance through first two playoff rounds",
+      projectedDate: "May 2026 Conference Finals",
+      significance: "Reaching their first Conference Finals in 22 years would validate Minnesota's championship window while proving Edwards and the supporting cast can deliver sustained playoff excellence that franchise legends Kevin Garnett and Stephon Marbury never achieved together."
     },
     {
-      player: "Atlanta Hawks",
-      team: "ATL",
-      milestone: "First playoff series victory since 2016",
-      current: "Currently tied for 5th seed at 47-36",
-      needed: "Must win playoff series to break 10-year drought",
-      projectedDate: "May 2026 first round",
-      significance: "Breaking their playoff series drought would validate Atlanta's rebuild around Trae Young while establishing the Hawks as legitimate Eastern Conference threats capable of making deep postseason runs."
-    },
-    {
-      player: "Madison Square Garden",
-      team: "NYK",
-      milestone: "Most visiting player game-winners in single season",
-      current: "1 game-winner by visiting player (Trae Young)",
-      needed: "Record: 4 visiting game-winners — 1993-94 season",
-      projectedDate: "End of 2025-26 season",
-      significance: "Multiple visiting game-winners would highlight the Knicks' struggles to close games at home while diminishing MSG's mystique during crucial playoff positioning games."
+      player: "San Antonio Spurs",
+      team: "SAS",
+      milestone: "Best rookie season record in franchise history",
+      current: "62-20 with Wembanyama as centerpiece",
+      needed: "Record: 63 wins — 2015-16 Spurs (Duncan age 39)",
+      projectedDate: "April 2026 regular season finale",
+      significance: "Breaking their franchise wins record in Wembanyama's rookie season would establish the greatest individual rookie impact in Spurs history while suggesting this championship window could surpass even the Tim Duncan dynasty years."
     }
   ],
   thisWeekInHistory: [
     {
       year: 1986,
-      event: "On April 21, 1986, Michael Jordan scored 63 points against the Boston Celtics in Game 2 of their first-round playoff series, setting an NBA playoff record that still stands today. Despite Jordan's legendary performance at Boston Garden, the Celtics won 135-131 in double overtime, prompting Larry Bird's famous quote that 'God disguised as Michael Jordan' had just played basketball. Jordan's heroics mirror Trae Young's ability to deliver signature moments in hostile environments.",
+      event: "Michael Jordan scored 63 points against Boston in Game 2 of the Eastern Conference First Round, setting an NBA playoff scoring record that still stands today. Jordan's historic performance at Boston Garden prompted Larry Bird to famously declare that 'God disguised as Michael Jordan' had just played basketball, paralleling modern stars delivering signature moments in hostile environments.",
       players: ["Michael Jordan", "Larry Bird", "Kevin McHale"]
     },
     {
       year: 1970,
-      event: "On April 21, 1970, the New York Knicks defeated the Milwaukee Bucks 132-96 in Game 5 of their playoff series behind Walt Frazier's 36 points and 19 assists at Madison Square Garden. The Knicks' systematic dominance parallels Cleveland's professional road victory while showcasing how elite point guards can control games through both scoring and playmaking excellence.",
-      players: ["Walt Frazier", "Willis Reed", "Dick Barnett"]
+      event: "Willis Reed limped onto the court at Madison Square Garden before Game 7 of the NBA Finals, inspiring the Knicks to a 113-99 victory over the Lakers for their first championship. Reed's courage and Walt Frazier's 36-point, 19-assist masterpiece created one of the most legendary performances in Garden history.",
+      players: ["Willis Reed", "Walt Frazier", "Jerry West"]
+    },
+    {
+      year: 1999,
+      event: "Tim Duncan recorded 33 points and 16 rebounds in his first playoff game against Minnesota, showcasing the immediate postseason dominance that would define his legendary career. Duncan's rookie playoff debut established the template for young big men delivering championship-level impact from day one.",
+      players: ["Tim Duncan", "David Robinson", "Kevin Garnett"]
     },
     {
       year: 2014,
-      event: "On April 21, 2014, Kevin Durant scored 36 points as the Oklahoma City Thunder defeated the Memphis Grizzlies 111-105 in Game 2 of their playoff series. Durant's scoring excellence in crucial playoff moments mirrors Anthony Edwards' ability to deliver breakthrough performances against elite competition while establishing franchise cornerstone credentials.",
-      players: ["Kevin Durant", "Russell Westbrook", "Serge Ibaka"]
+      event: "Stephen Curry scored 32 points with 7 three-pointers as Golden State defeated Los Angeles Clippers 118-97 in Game 4 of their first-round series, demonstrating the shooting excellence that would revolutionize basketball. Curry's playoff breakthrough foreshadowed the Warriors dynasty that would dominate the next decade.",
+      players: ["Stephen Curry", "Klay Thompson", "Chris Paul"]
     },
     {
       year: 1997,
-      event: "On April 21, 1997, Tim Duncan recorded 32 points and 10 rebounds as Wake Forest defeated Stanford 67-59 in the NCAA Tournament Elite Eight, showcasing the two-way dominance that would define his NBA career. Duncan's college excellence parallels Evan Mobley's current emergence as a dominant two-way force capable of anchoring championship-level basketball.",
-      players: ["Tim Duncan", "Randolph Childress", "Tony Rutland"]
+      event: "Reggie Miller scored 8 points in 8.9 seconds against the Knicks at Madison Square Garden in Game 1 of the Eastern Conference semifinals, creating the most famous comeback in playoff history. Miller's impossible sequence became the gold standard for clutch heroics in hostile environments.",
+      players: ["Reggie Miller", "John Starks", "Patrick Ewing"]
     },
     {
       year: 2008,
-      event: "On April 21, 2008, Chris Paul recorded 32 points and 17 assists as the New Orleans Hornets defeated the Dallas Mavericks 127-103 in Game 2 of their playoff series. Paul's masterful combination of scoring and playmaking established the template for elite point guards taking over playoff games that Trae Young channeled in his MSG heroics.",
-      players: ["Chris Paul", "David West", "Tyson Chandler"]
-    },
-    {
-      year: 1993,
-      event: "On April 21, 1993, Charles Barkley scored 56 points as the Phoenix Suns defeated the Golden State Warriors 140-133 in Game 3 of their playoff series. Barkley's explosive scoring performance demonstrates the type of individual takeover that Anthony Edwards delivered to end Denver's winning streak while proving stars can single-handedly shift momentum.",
-      players: ["Charles Barkley", "Kevin Johnson", "Dan Majerle"]
+      event: "Kobe Bryant scored 40 points in Game 4 against Denver, helping the Lakers advance to the Western Conference semifinals during his MVP season. Bryant's playoff excellence demonstrated the individual dominance required to carry championship expectations single-handedly.",
+      players: ["Kobe Bryant", "Pau Gasol", "Carmelo Anthony"]
     }
   ],
   streakWatch: [
     {
       player: "Trae Young",
       team: "ATL",
-      streak: "1 game-winner at Madison Square Garden",
-      record: "Most MSG game-winners by visiting player: 5 — Michael Jordan (career)",
-      gamesAway: 4
+      streak: "6 consecutive games with 25+ points and 8+ assists on 45%+ shooting",
+      record: "Longest such streak: 13 games — Chris Paul (2007-08)",
+      gamesAway: 7
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
-      streak: "1 game with 30+ points ending 10+ game win streak",
-      record: "Most such performances: 4 — Kobe Bryant (career)",
-      gamesAway: 3
+      streak: "9 consecutive games with 25+ points on 50%+ shooting",
+      record: "Longest such streak by player under 25: 16 games — LeBron James (2005-06)",
+      gamesAway: 7
     },
     {
-      player: "Denver Nuggets",
-      team: "DEN",
-      streak: "13-game winning streak (ended)",
-      record: "Longest win streak in franchise history: 15 games (1981-82)",
-      gamesAway: 2
+      player: "Victor Wembanyama",
+      team: "SAS",
+      streak: "15 consecutive games with 3+ blocks and 10+ rebounds",
+      record: "Longest rookie streak: 21 games — David Robinson (1989-90)",
+      gamesAway: 6
     },
     {
       player: "Evan Mobley",
       team: "CLE",
-      streak: "5 consecutive games with 20+ points on 60%+ shooting",
-      record: "Longest such streak by player under 25: 12 games — Anthony Davis (2017-18)",
-      gamesAway: 7
+      streak: "8 consecutive games with 20+ points on 60%+ shooting",
+      record: "Longest such streak by player under 25: 14 games — Anthony Davis (2017-18)",
+      gamesAway: 6
     },
     {
-      player: "Atlanta Hawks",
-      team: "ATL",
-      streak: "1 road victory at Madison Square Garden",
-      record: "Most consecutive MSG road wins: 4 games — Boston Celtics (1985-86)",
-      gamesAway: 3
+      player: "Denver Nuggets",
+      team: "DEN",
+      streak: "13-game winning streak (ended April 20, 2026)",
+      record: "Longest streak by defending champions: 18 games — 1996-97 Bulls",
+      gamesAway: 5
     },
     {
       player: "Minnesota Timberwolves",
       team: "MIN",
-      streak: "1 road victory ending double-digit win streak",
-      record: "Most such road victories in season: 3 — Detroit Pistons (2003-04)",
+      streak: "5 consecutive road wins against teams above .650 winning percentage",
+      record: "Longest such franchise streak: 7 games (2003-04 season)",
       gamesAway: 2
     },
     {
-      player: "Cleveland Cavaliers",
-      team: "CLE",
-      streak: "8 consecutive games with balanced scoring (4+ players 15+ points)",
-      record: "Longest balanced scoring streak: 15 games — 2015-16 Golden State Warriors",
-      gamesAway: 7
+      player: "San Antonio Spurs",
+      team: "SAS",
+      streak: "11 consecutive home wins with Wembanyama recording 20+ points",
+      record: "Longest rookie home scoring streak: 16 games — Kareem Abdul-Jabbar (1969-70)",
+      gamesAway: 5
     }
   ],
-  narrative: "April 21, 2026 crystallizes as basketball's defining moment where Trae Young's ice-cold dagger at Madison Square Garden channels Michael Jordan's legendary clutch DNA while surpassing Damian Lillard's impossible shot-making through superior venue mystique and composure, simultaneously witnessing Anthony Edwards' 32-point explosion echo Dwyane Wade's championship-announcing performances but with greater three-point versatility that suggests more sustainable playoff dominance, as Evan Mobley's efficient two-way excellence approaches Chris Bosh's championship-level impact while demonstrating superior timeline development that promises greater peak potential than Bosh's Miami success. The convergence accelerates through Minnesota's statement upset channeling Detroit's 2004 championship blueprint but with Edwards' superstar firepower that the Pistons lacked, while Nikola Jokić's steady excellence despite the streak-ending loss mirrors Tim Duncan's unshakeable leadership through adversity, and Cleveland's professional road victory matches their 2016 championship team's systematic approach while potentially offering longer sustainability through youth over veteran experience. As milestone pursuits cascade from Young's MSG heroics establishing elite clutch credentials to Edwards' streak-ending performances building championship résumé, the historical parallels reveal a generation of stars simultaneously surpassing legendary benchmarks — Young exceeding Lillard's clutch timing, Edwards surpassing Wade's scoring versatility, Mobley approaching Bosh's two-way impact with superior developmental trajectory — while their teams channel championship blueprints from Detroit's defensive intensity to Cleveland's balanced excellence, creating the perfect storm where individual brilliance meets team execution to forge historical moments that don't merely match basketball's greatest performances but systematically exceed them through superior skill sets, deeper supporting casts, and timing that suggests these breakthrough moments represent launching points for sustained championship excellence rather than isolated peaks, fundamentally rewriting what becomes possible when emerging superstars channel basketball's greatest legends while simultaneously transcending their achievements through modern evolution and superior developmental foundations."
+  narrative: "April 21, 2026 crystallizes as the historical inflection point where basketball's present systematically transcends its legendary past through a perfect convergence of individual brilliance and championship infrastructure. Trae Young's ice-cold heroics at Madison Square Garden channel Reggie Miller's clutch DNA while exceeding Miller's impact through superior playmaking versatility, as Young's dual-threat capability suggests he could build an even more dominant Garden legacy than the Pacers legend. Anthony Edwards' 32-point explosion against defending champion Denver echoes Kobe Bryant's breakthrough dominance but operates within modern spacing systems that maximize his athleticism more efficiently than Bryant's iso-heavy approach, while Victor Wembanyama's unprecedented rookie excellence threatens to rewrite David Robinson's first-year template through superior perimeter skills and three-point range that The Admiral never possessed. The historical acceleration extends through team dynamics, as Minnesota's statement upset channels Detroit's 2004 championship blueprint enhanced by Edwards' superstar firepower that the Pistons never had, while Evan Mobley's two-way mastery approaches Tim Duncan's fundamental excellence with greater offensive versatility suggesting even more complete impact than The Big Fundamental achieved. These parallel trajectories create the perfect storm where modern skill development meets championship-tested infrastructure, positioning April 2026 not merely as another collection of impressive performances but as the launching point for sustained excellence that will systematically surpass historical benchmarks through superior talent development, deeper roster construction, and timing that transforms individual brilliance into championship legacies destined to eclipse the legends who came before."
 };

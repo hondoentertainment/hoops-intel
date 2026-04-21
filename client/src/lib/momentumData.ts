@@ -39,7 +39,7 @@ export const momentumData: MomentumData = {
     player: "Trae Young", 
     team: "ATL", 
     clutchRating: 98, 
-    description: "Ice-cold step-back three over Brunson with 8.4 seconds left to steal victory at MSG" 
+    description: "Step-back dagger three over Brunson with 8.4 seconds left to steal victory at MSG" 
   },
   games: [
     {
@@ -48,46 +48,37 @@ export const momentumData: MomentumData = {
       finalScore: { home: 106, away: 107 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "6:32",
-          description: "Brunson catches fire with three straight threes to give Knicks early control",
-          runScore: "11-2",
+          quarter: "2nd",
+          timestamp: "3:45",
+          description: "Brunson erupts for 12 straight points, including four consecutive pull-up jumpers",
+          runScore: "12-2",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "3:15",
-          description: "Young answers back with deep bombs, Hawks close gap before halftime",
-          runScore: "8-15",
-          momentum: "away",
-          keyPlayer: "Trae Young",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "9:41",
-          description: "Randle dominates the paint as Knicks build commanding 12-point cushion",
-          runScore: "18-8",
+          quarter: "3rd",
+          timestamp: "7:22",
+          description: "Randle powers inside for 9 points in 3 minutes as Knicks build commanding lead",
+          runScore: "13-4",
           momentum: "home",
           keyPlayer: "Julius Randle",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "4:22",
-          description: "Hawks rally with lockdown defense and transition buckets to tie it up",
-          runScore: "6-16",
-          momentum: "away",
-          keyPlayer: "Dejounte Murray",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "0:08",
-          description: "Young delivers the knockout punch with step-back dagger over Brunson",
-          runScore: "0-3",
+          quarter: "4th",
+          timestamp: "8:15",
+          description: "Young catches fire from deep with three consecutive triples to ignite Hawks comeback",
+          runScore: "11-2",
+          momentum: "away",
+          keyPlayer: "Trae Young",
+          impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "2:30",
+          description: "Hawks complete stunning 18-5 surge to erase 12-point deficit and take the lead",
+          runScore: "18-5",
           momentum: "away",
           keyPlayer: "Trae Young",
           impact: "game-changing"
@@ -95,21 +86,28 @@ export const momentumData: MomentumData = {
       ],
       clutchPlays: [
         {
+          player: "Trae Young",
+          team: "ATL",
+          description: "Freezes Brunson with hesitation dribble before draining contested three",
+          timeRemaining: "2:45",
+          winProbabilityShift: 28
+        },
+        {
           player: "Jalen Brunson",
           team: "NYK",
-          description: "Drives through traffic for crucial layup to tie game at 104",
-          timeRemaining: "1:42",
-          winProbabilityShift: 15
+          description: "Answers back with driving layup through traffic to tie the game",
+          timeRemaining: "1:55",
+          winProbabilityShift: -15
         },
         {
           player: "Trae Young",
           team: "ATL",
-          description: "Step-back three over Brunson with ice in his veins for the win",
+          description: "Step-back dagger three over Brunson with precision and ice in his veins",
           timeRemaining: "0:08",
           winProbabilityShift: 85
         }
       ],
-      narrative: "Trae Young authored one of the most dramatic finishes of the season, silencing Madison Square Garden with a cold-blooded step-back three that will haunt Knicks fans all summer. After trailing by 12 in the third quarter, the Hawks showed championship-level composure in their fourth-quarter comeback. Young's dagger over Brunson was pure theater—the kind of moment that separates superstars from mere scorers. The loss stings even more for New York, who controlled the game for three quarters only to watch their playoff seeding hopes take a devastating hit."
+      narrative: "Trae Young authored one of the most ruthless road performances in recent memory, transforming Madison Square Garden from a raucous celebration into a tomb of silence. His fourth-quarter masterclass was a clinic in shot-making and shot-creating, systematically dismantling the Knicks' season-high crowd with surgical precision. The step-back three over Brunson will be replayed for years as the moment Young announced himself as a bonafide superstar capable of stealing games in the most hostile environments. This was basketball artistry at its most vicious and beautiful."
     },
     {
       gameId: "MIN-DEN-20260420",
@@ -117,37 +115,37 @@ export const momentumData: MomentumData = {
       finalScore: { home: 114, away: 119 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "8:15",
-          description: "Edwards explodes early with back-to-back threes to stun the home crowd",
-          runScore: "4-12",
+          quarter: "1st",
+          timestamp: "4:12",
+          description: "Edwards explodes for 14 first-quarter points on perfect shooting to stun Denver crowd",
+          runScore: "16-6",
           momentum: "away",
           keyPlayer: "Anthony Edwards",
           impact: "significant"
         },
         {
-          quarter: "Q2",
-          timestamp: "5:43",
-          description: "Jokić takes over with his full arsenal, Nuggets storm back to tie",
-          runScore: "16-8",
+          quarter: "2nd",
+          timestamp: "6:30",
+          description: "Jokić orchestrates beautiful ball movement for 10-0 run to reclaim home momentum",
+          runScore: "10-0",
           momentum: "home",
           keyPlayer: "Nikola Jokić",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "7:28",
-          description: "Murray and Gordon combine for blistering run to push Denver ahead",
-          runScore: "13-4",
-          momentum: "home",
-          keyPlayer: "Jamal Murray",
-          impact: "notable"
+          quarter: "3rd",
+          timestamp: "9:45",
+          description: "McDaniels and Towns combine for 14 points as Minnesota builds separation",
+          runScore: "14-4",
+          momentum: "away",
+          keyPlayer: "Jaden McDaniels",
+          impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:12",
-          description: "Edwards refuses to let streak continue, leads Wolves charge with clutch buckets",
-          runScore: "8-18",
+          quarter: "4th",
+          timestamp: "5:20",
+          description: "Edwards takes over with three straight threes to break Denver's spirit and seal upset",
+          runScore: "13-3",
           momentum: "away",
           keyPlayer: "Anthony Edwards",
           impact: "game-changing"
@@ -157,71 +155,71 @@ export const momentumData: MomentumData = {
         {
           player: "Anthony Edwards",
           team: "MIN",
-          description: "Stepback three over Kentavious Caldwell-Pope extends lead to 5",
-          timeRemaining: "3:28",
+          description: "Step-back three from the logo over Aaron Gordon's outstretched arm",
+          timeRemaining: "4:45",
           winProbabilityShift: 22
         },
         {
           player: "Nikola Jokić",
           team: "DEN",
-          description: "Impossible fadeaway over Gobert keeps streak hopes alive",
-          timeRemaining: "2:14",
+          description: "No-look pass to Murray for three to keep Nuggets within striking distance",
+          timeRemaining: "3:10",
           winProbabilityShift: -18
         },
         {
-          player: "Jaden McDaniels",
+          player: "Anthony Edwards",
           team: "MIN",
-          description: "Corner three off Edwards assist puts the dagger in historic streak",
-          timeRemaining: "1:03",
-          winProbabilityShift: 31
+          description: "Drives baseline and finishes with authority over Jokić to ice the game",
+          timeRemaining: "1:25",
+          winProbabilityShift: 35
         }
       ],
-      narrative: "Anthony Edwards played the role of streak-breaker to perfection, ending Denver's magical 13-game home winning streak with a performance that announced his arrival among the NBA's elite closers. The young star was relentless in the fourth quarter, consistently answering every Nuggets surge with contested threes and athletic finishes that left Ball Arena deflated. Even Jokić's superhuman efforts couldn't extend the streak, as father time finally caught up with the Nuggets' incredible run. Sometimes the most historic streaks end not with a whimper, but with a future superstar making his statement on the biggest stage."
+      narrative: "Anthony Edwards delivered a coming-of-age performance that announced Minnesota as a legitimate threat to the reigning champions. His shot-making display was both breathtaking and ruthless, consistently answering every Denver rally with increasingly difficult baskets that seemed to defy physics. The Nuggets' 13-game winning streak never stood a chance against Edwards in this kind of zone, as he turned Ball Arena into his personal playground. This victory will be remembered as the night Edwards graduated from promising young star to genuine superstar capable of carrying his team to the biggest wins."
     },
     {
-      gameId: "CLE-TOR-20260420",
-      teams: { home: "TOR", away: "CLE" },
-      finalScore: { home: 105, away: 115 },
+      gameId: "TOR-CLE-20260420",
+      teams: { home: "CLE", away: "TOR" },
+      finalScore: { home: 115, away: 105 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "9:22",
-          description: "Barnes and Siakam combine for early barrage to energize home crowd",
+          quarter: "1st",
+          timestamp: "8:30",
+          description: "Barnes powers Toronto to early lead with aggressive drives and defensive energy",
           runScore: "12-4",
-          momentum: "home",
+          momentum: "away",
           keyPlayer: "Scottie Barnes",
           impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "8:31",
-          description: "Mobley dominates the paint while Mitchell heats up from deep",
-          runScore: "4-15",
-          momentum: "away",
-          keyPlayer: "Evan Mobley",
+          quarter: "2nd",
+          timestamp: "5:15",
+          description: "Mitchell heats up with three consecutive scoring possessions to flip momentum",
+          runScore: "9-2",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "5:17",
-          description: "Cavaliers length overwhelms Raptors offense, lead balloons to 18",
-          runScore: "6-21",
-          momentum: "away",
+          quarter: "3rd",
+          timestamp: "6:45",
+          description: "Mobley dominates both ends with 10 points and 2 blocks to break game open",
+          runScore: "15-6",
+          momentum: "home",
           keyPlayer: "Evan Mobley",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "7:45",
-          description: "Raptors make desperate push but Cleveland's defense holds firm",
-          runScore: "11-6",
+          quarter: "4th",
+          timestamp: "7:20",
+          description: "Cavaliers depth overwhelms tired Raptors with balanced scoring attack",
+          runScore: "18-8",
           momentum: "home",
-          keyPlayer: "Pascal Siakam",
-          impact: "notable"
+          keyPlayer: "Darius Garland",
+          impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Evan Mobley put on a defensive clinic that reminded everyone why he's the future of Cleveland's championship aspirations, completely neutralizing Toronto's interior attack with his otherworldly length and timing. The young big man was equally devastating on offense, using his smooth touch and mobility to carve up the Raptors' defense with surgical precision. Cleveland's suffocating length became too much for Toronto to handle, as the Cavaliers pulled away in the third quarter and never looked back. This was the kind of statement win that could propel the Cavs deep into the playoffs—dominant on both ends with their franchise cornerstone leading the way."
+      narrative: "Evan Mobley's two-way dominance showcased exactly why Cleveland believes they can make serious playoff noise this spring. His combination of offensive efficiency and defensive intimidation created the perfect storm that overwhelmed Toronto's scrappy effort. The Cavaliers' superior depth and execution in the second half demonstrated the kind of championship-caliber basketball that makes them such a dangerous playoff matchup. This was a statement win that should serve notice to the Eastern Conference that Cleveland is ready for prime time."
     }
   ]
 };

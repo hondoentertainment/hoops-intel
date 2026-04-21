@@ -23,96 +23,108 @@ export interface PodcastCompanionData {
 
 export const podcastCompanion: PodcastCompanionData = {
   date: "April 21, 2026",
-  episodeTitle: "Sunday Night Stunners: Trae Young's MSG Masterpiece & The End of Denver's Historic Run",
+  episodeTitle: "Ice Cold: Trae Stuns MSG, Ant-Man Ends Historic Streak",
+  
   rundown: [
     {
-      topic: "Trae Young's Clutch Heroics Stun Madison Square Garden",
+      topic: "Trae Young's MSG Masterpiece",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "28 points and 9 assists on 10-of-19 shooting",
-        "6-of-11 from three including game-winner with 8.4 seconds left",
-        "Hawks jump into tie for 5th place in East at 47-36",
-        "Knicks led by 12 points in third quarter before collapse",
-        "Brunson had 24 points but couldn't answer Young's barrage",
-        "Atlanta shot 47.8% from three as team in second half"
+        "28 points, 9 assists on 6-of-11 three-point shooting",
+        "Step-back three with 8.4 seconds left over Brunson",
+        "Hawks jump to 5th place tie in East at 46-36",
+        "Knicks blow double-digit lead, fall to 53-30",
+        "Young shot 54.5% from the field in hostile MSG environment",
+        "Atlanta outscored New York 32-24 in the fourth quarter"
       ],
-      debateAngle: "Is Trae Young proving he's built for the biggest moments, or are we overreacting to one shot? His playoff history suggests mixed results in pressure situations.",
-      suggestedQuote: "When you can walk into the world's most famous arena and hit that shot in that moment, you've announced yourself as a playoff assassin.",
+      debateAngle: "Is Trae Young now officially clutch enough to lead a championship run, or was this just one moment?",
+      suggestedQuote: "When you can walk into Madison Square Garden and hit that shot in that moment with playoff seeding on the line, you've announced yourself as a clutch assassin who belongs in any conversation about elite performers.",
       relevantPlayers: ["Trae Young", "Jalen Brunson", "Julius Randle"]
     },
+    
     {
-      topic: "Anthony Edwards Ends Denver's Historic 13-Game Winning Streak",
+      topic: "The Streak Snapper: Edwards Ends Denver's Historic Run",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Edwards exploded for 32 points on 12-of-21 shooting",
-        "Shot 6-of-10 from three-point range in clutch performance",
-        "Nuggets streak dated back to March 15th - first loss in over month",
-        "Minnesota shot 52.1% as team while holding Denver to 46.7%",
-        "Jokić had 26 points, 12 rebounds, 8 assists in losing effort",
-        "Timberwolves strengthen hold on 6th seed at 50-33"
+        "Anthony Edwards: 32 points on 12-21 shooting, 6-10 from three",
+        "Denver's 13-game win streak snapped - longest of the season",
+        "Timberwolves shot 52.1% as a team vs league's best defense",
+        "Jokić had 26-12-8 but looked gassed down the stretch",
+        "Minnesota's +18 net rating in Edwards' 38 minutes",
+        "Nuggets had won 13 straight dating back to March 15th"
       ],
-      debateAngle: "Did Denver's 13-game winning streak actually hurt them by creating unsustainable expectations? Sometimes peaking too early in the regular season backfires in playoffs.",
-      suggestedQuote: "Sometimes it takes a special individual performance to halt historic momentum, and Edwards delivered exactly that kind of game-changing effort.",
+      debateAngle: "Did Denver peak too early with their 13-game streak, or is this just a road bump before another title run?",
+      suggestedQuote: "Sometimes it takes a special individual performance to halt historic momentum, and Edwards delivered exactly that kind of game-changing effort on the biggest stage.",
       relevantPlayers: ["Anthony Edwards", "Nikola Jokić", "Karl-Anthony Towns", "Jaden McDaniels"]
     },
+    
     {
-      topic: "Are the Knicks Championship Window Closing After MSG Collapse?",
+      topic: "Playoff Seeding Chaos Theory",
       segment: "hot-take",
-      duration: "7 minutes",
+      duration: "6 minutes",
       keyStats: [
-        "Knicks had 12-point lead in third quarter at home",
-        "Now 53-30 but seeding hopes took massive hit",
-        "Randle and Brunson combined for 45 points but couldn't close",
-        "New York allowed 32 fourth-quarter points to Atlanta",
-        "Hawks shot 58.3% in final frame to steal victory",
-        "MSG crowd went from electric to stunned silence"
+        "Hawks now tied for 5th in East after stunning MSG win",
+        "Knicks' championship odds took massive hit with home loss",
+        "5 teams within 2 games for seeds 5-9 in Eastern Conference",
+        "Western Conference top 4 separated by just 1.5 games",
+        "10 teams still fighting for final playoff spots",
+        "Every remaining game carries maximum seeding weight"
       ],
-      debateAngle: "Is this loss a season-defining moment that exposes the Knicks' inability to close games, or just one bad quarter that doesn't define their championship potential?",
-      suggestedQuote: "The Knicks had everything set up perfectly — then Trae Young happened. That's a loss that will haunt New York for months.",
-      relevantPlayers: ["Jalen Brunson", "Julius Randle", "Trae Young"]
+      debateAngle: "Are road upsets like Hawks-Knicks and Wolves-Nuggets proof that playoff seeding doesn't matter anymore?",
+      suggestedQuote: "With just days remaining in the regular season, every single possession carries maximum weight, and we witnessed two teams rise to the moment while others crumbled under championship pressure.",
+      relevantPlayers: ["Trae Young", "Anthony Edwards", "Jalen Brunson", "Nikola Jokić"]
     },
+    
     {
-      topic: "Rapid-Fire Sunday Roundup: Standings Shakeup Edition",
+      topic: "Around the League Lightning Round",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Mobley's 24 points, 10 rebounds lead Cavs past Raptors 115-105",
-        "Cleveland improves to 53-30, strengthens 4th seed grip",
-        "Toronto drops into three-way tie for final playoff spots",
-        "Hawks and Magic now tied for 5th at 46-37",
-        "Eastern Conference playoff picture getting wild",
-        "Western Conference top seeds remain Oklahoma City and San Antonio"
+        "Evan Mobley: 24-10-3 blocks, 62.5% shooting vs Toronto",
+        "Cavaliers improve to 52-30 with convincing road win",
+        "Scottie Barnes led Raptors with 20-8-5 in losing effort",
+        "Cleveland outrebounded Toronto 48-39",
+        "Donovan Mitchell added 22 points as secondary scorer",
+        "Raptors shot just 42.9% from the field"
       ],
-      debateAngle: "With just games remaining, which teams are peaking at the right time versus those showing concerning signs before the playoffs?",
-      suggestedQuote: "Sunday's results were a perfect example of why the NBA regular season matters until the very last game.",
+      debateAngle: "Is Evan Mobley's two-way dominance being overshadowed by flashier stars around the league?",
+      suggestedQuote: "Mobley dominated both ends with 24 points on 62.5% shooting while adding 10 rebounds and 3 blocks in Cleveland's convincing road victory.",
       relevantPlayers: ["Evan Mobley", "Donovan Mitchell", "Scottie Barnes"]
     },
+    
     {
-      topic: "Monday Night Preview: Celtics-76ers Playoff Atmosphere Brewing",
+      topic: "Tonight's Must-Watch Games Preview",
       segment: "closer",
-      duration: "6 minutes",
+      duration: "7 minutes",
       keyStats: [
-        "Boston visits Philadelphia in crucial East showdown at 7 PM ET",
-        "Celtics riding 4-game win streak, 76ers desperate for home wins",
-        "Tatum averaging 28.4 points over last 10 games",
-        "Embiid has dominated Boston historically at home",
-        "Lakers-Rockets late night could preview playoff matchup",
-        "Wembanyama and Spurs continue top-seed chase in Portland"
+        "Celtics vs 76ers - 7:00 PM ET on Peacock",
+        "Boston 56-26 vs Philadelphia 45-37",
+        "Tatum vs Embiid marquee matchup with seeding implications",
+        "Lakers vs Rockets - 10:30 PM ET on NBC",
+        "Spurs vs Trail Blazers - 8:00 PM ET on NBC",
+        "3 games, all with playoff positioning consequences"
       ],
-      debateAngle: "Which Monday night game has the highest stakes - Celtics trying to lock up seeding, or Western Conference teams jockeying for playoff position?",
-      suggestedQuote: "Boston visits Philadelphia in a crucial Eastern Conference battle with massive playoff seeding implications for both teams.",
+      debateAngle: "Which tonight's game has the highest stakes for playoff positioning and championship hopes?",
+      suggestedQuote: "Boston hosts Philadelphia in a crucial Eastern Conference battle with massive playoff seeding implications for both teams.",
       relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Anthony Davis", "Victor Wembanyama"]
     }
   ],
-  coldOpen: "Sunday night in the NBA delivered playoff-level drama that left us speechless. At Madison Square Garden, Trae Young buried a step-back three with 8.4 seconds left to stun the Knicks and send the most famous arena in basketball into stunned silence. Three time zones away in Denver, Anthony Edwards exploded for 32 points to end the Nuggets' historic 13-game winning streak in equally dramatic fashion. We've got playoff positioning shakeups, clutch heroics, and championship implications - this is Hoops Intel, and we're breaking down the Sunday night stunners that just changed everything.",
-  socialClip: "Trae Young's step-back three-pointer over Jalen Brunson with 8.4 seconds left at Madison Square Garden. Perfect for social - capture the shot going in, crowd reaction, and Young's celebration. Caption: 'ICE COLD: Trae Young silences MSG with game-winning dagger!' Include slow-motion replay and crowd audio for maximum impact.",
+  
+  coldOpen: "Two seconds left at Madison Square Garden. Trae Young with the ball. Jalen Brunson draped all over him. Step-back three... BANG! The Garden goes silent. Meanwhile in Denver, Anthony Edwards just dropped 32 to snap the Nuggets' 13-game streak. Sunday night delivered playoff chaos, clutch heroics, and seismic shifts in both conferences. This is Hoops Intel, where the game never stops, and neither do we. Let's dive in.",
+  
+  socialClip: "30-second clip of Trae Young's step-back three with 8.4 seconds left, featuring the crowd reaction and Young's celebration. Overlay text: 'ICE COLD AT MSG' with Hawks vs Knicks final score. End with Young's post-game quote about performing in hostile environments.",
+  
   tweetThread: [
-    "🧵 SUNDAY NIGHT STUNNERS THREAD: Two massive upsets just reshuffled the entire playoff picture. Let's break down how Trae Young and Anthony Edwards delivered game-changing performances... 1/5",
-    "🎯 TRAE AT MSG: 28 points, 9 assists, and a step-back THREE with 8.4 seconds left over Jalen Brunson to stun the Knicks 107-106. The Hawks jump into a tie for 5th place while New York's seeding hopes take a massive hit. Playoff assassin mode activated. 2/5",
-    "🔥 ANT-MAN ERUPTS: Anthony Edwards dropped 32 points on 12-21 shooting (6-10 from three!) to end Denver's HISTORIC 13-game winning streak. The Nuggets hadn't lost since March 15th, but Edwards single-handedly ended their dominance with clutch shot after clutch shot. 3/5",
-    "📊 THE RIPPLE EFFECTS: Atlanta's win creates a three-way tie for playoff spots in the East. Meanwhile, Minnesota strengthens their 6th seed while proving they can beat anyone when Edwards is locked in. These aren't just wins - they're statement victories. 4/5",
-    "🏀 MONDAY PREVIEW: Celtics at 76ers (7 PM ET) brings playoff atmosphere to Philly, while Lakers-Rockets could preview a first-round series. The regular season is winding down, but the drama is just heating up. Which team made the biggest statement Sunday night? 5/5"
+    "🧵 SUNDAY NIGHT CHAOS: Two massive road upsets just reshuffled the entire playoff picture. Trae Young's dagger at MSG and Ant-Man ending Denver's 13-game streak - let's break it down...",
+    
+    "🎯 CLUTCH GENE: Trae Young buried a step-back three over Brunson with 8.4 seconds left to stun Madison Square Garden. 28 points, 9 assists, 6-of-11 from deep in the most hostile environment. Hawks jump to 5th place tie in the East.",
+    
+    "🔥 STREAK SNAPPER: Anthony Edwards exploded for 32 points on 60% three-point shooting to end Denver's season-high 13-game winning streak. The Nuggets looked gassed after their historic run - concerning timing with playoffs approaching.",
+    
+    "📊 SEEDING CHAOS: These upsets completely reshuffled playoff positioning. 5 Eastern Conference teams within 2 games for seeds 5-9. Every remaining game carries championship implications with just days left in the regular season.",
+    
+    "🎙️ TONIGHT'S INTEL: Celtics-76ers (7 PM), Spurs-Blazers (8 PM), Lakers-Rockets (10:30 PM). All with massive seeding stakes. Full breakdown on today's pod - link in bio 🎧"
   ]
 };

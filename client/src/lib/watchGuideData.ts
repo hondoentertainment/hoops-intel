@@ -46,12 +46,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/21 - 10:30 PM EDT",
       tv: "NBC, Peacock",
       venue: "crypto.com Arena",
-      entertainmentScore: 92,
+      entertainmentScore: 87,
       starPower: 9,
-      playoffImplications: 10,
+      playoffImplications: 8,
       rivalry: 7,
-      storyline: "A Western Conference heavyweight clash between two playoff-bound teams separated by just one game in the standings. This could be a first-round preview with major seeding implications.",
-      keyMatchup: "LeBron James vs. Alperen Sengun",
+      storyline: "Two elite Western Conference contenders clash in a massive seeding battle that could determine home-court advantage in the playoffs. Both teams enter red-hot with championship aspirations and explosive offensive capabilities.",
+      keyMatchup: "Alperen Sengun vs. Anthony Davis",
       mustWatch: true
     },
     {
@@ -65,11 +65,11 @@ export const watchGuideData: WatchGuideData = {
       time: "4/21 - 7:00 PM EDT",
       tv: "Peacock, NBCSN",
       venue: "TD Garden",
-      entertainmentScore: 87,
-      starPower: 8,
-      playoffImplications: 8,
+      entertainmentScore: 84,
+      starPower: 10,
+      playoffImplications: 7,
       rivalry: 9,
-      storyline: "Classic Atlantic Division rivalry renewed as Philadelphia looks to make a statement against the East-leading Celtics. Boston seeks to maintain their conference dominance with the playoffs looming.",
+      storyline: "The Atlantic Division rivals renew their historic playoff grudge as Philadelphia desperately needs road wins to climb the Eastern Conference standings. Boston looks to maintain their stranglehold on the top seed with dominant home court play.",
       keyMatchup: "Joel Embiid vs. Jayson Tatum",
       mustWatch: true
     },
@@ -84,15 +84,16 @@ export const watchGuideData: WatchGuideData = {
       time: "4/21 - 8:00 PM EDT",
       tv: "NBC, Peacock",
       venue: "Frost Bank Center",
+      venue: "Frost Bank Center",
       entertainmentScore: 78,
-      starPower: 7,
+      starPower: 8,
       playoffImplications: 6,
-      rivalry: 3,
-      storyline: "Portland fights for playoff positioning against the Western Conference's second seed. The Trail Blazers need every win as they battle for a postseason spot while San Antonio looks to stay sharp.",
-      keyMatchup: "Victor Wembanyama vs. Jusuf Nurkic",
-      mustWatch: false
+      rivalry: 4,
+      storyline: "Victor Wembanyama and the league-leading Spurs host a desperate Portland squad fighting for their playoff lives. The Trail Blazers need every road win they can get while San Antonio continues their historic championship push.",
+      keyMatchup: "Victor Wembanyama vs. Anfernee Simons",
+      mustWatch: true
     }
   ],
-  topPick: "Lakers-Rockets promises fireworks with two evenly-matched playoff contenders battling for crucial Western Conference seeding",
-  nightOverview: "Monday night delivers playoff-intensity basketball with three compelling matchups headlined by a potential West first-round preview in Los Angeles. The East gets its own drama as Philadelphia visits Boston in a classic rivalry showdown."
+  topPick: "Rockets-Lakers delivers the night's premier entertainment with two elite Western Conference contenders battling for crucial playoff seeding in primetime",
+  nightOverview: "Tonight's three-game slate features championship contenders and playoff hopefuls in must-win scenarios across both conferences. The Western Conference battle between Houston and Los Angeles headlines a night of high-stakes basketball with seeding implications throughout."
 };
