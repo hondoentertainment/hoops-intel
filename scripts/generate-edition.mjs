@@ -133,6 +133,29 @@ async function main() {
   const schema = readFileSync(join(ROOT, "references/data-schema.md"), "utf8");
   const currentPulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
 
+  // ── Detect playoff mode ──────────────────────────────────
+  // If any final/scheduled game has a populated ESPN `series` object OR any
+  // team in the slate has played a playoff game already, flip the context.
+  const playoffIndicators = [...finalGames, ...scheduledGames].filter((g) => {
+    const text = `${g.time ?? ""} ${g.venue ?? ""} ${g.tv ?? ""}`.toLowerCase();
+    return text.includes("playoff") || text.includes("game 1") || text.includes("game 2") || text.includes("game 3") || text.includes("game 4") || text.includes("game 5") || text.includes("game 6") || text.includes("game 7");
+  });
+  const isPlayoffMode = playoffIndicators.length > 0;
+  if (isPlayoffMode) console.log("🏆 Playoff mode detected — Pulse Index will scope to active playoff rosters.");
+  const playoffInstructions = isPlayoffMode
+    ? `
+
+## PLAYOFF MODE — CRITICAL OVERRIDES
+- Pulse Index must ONLY include players on teams currently in the playoffs
+- Weight last night's playoff performance heavily (game importance is the headline factor)
+- Use playoff context in notes: "Game 2 swing performance", "elimination-game brilliance", "series-opener statement"
+- Fantasy alerts should skip any player on an eliminated team
+- Rookie Watch: only include rookies on active playoff rosters; drop the section entirely if empty
+- Tonight's Games: describe each as a playoff matchup with series context (e.g. "BOS leads 2-0")
+- Subtitle and narrative should lead with series-defining moments, not regular-season context
+`
+    : "";
+
   // ── Generate pulseData.ts ────────────────────────────────
   console.log("🤖 Calling Claude API to generate edition...");
 
@@ -154,7 +177,7 @@ ${schema}
 
 ## Current pulseData.ts (for format reference and standings continuity)
 ${currentPulse}
-
+${playoffInstructions}
 ## Instructions
 1. Pick the night's best narrative — lead with the most dramatic/important game
 2. Feature 4–6 game results (most significant first)

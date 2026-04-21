@@ -170,6 +170,8 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
   style="border:none;border-radius:12px;"
   title="Hoops Intel ${widget.name}"
 ></iframe>`;
+  const scriptEmbedCode = `<div data-hoops-intel="${widget.id}" data-theme="${theme}" data-size="${size}"></div>
+<script async src="https://hoopsintel.net/embed.js"></script>`;
 
   return (
     <div
@@ -231,27 +233,51 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
       </div>
 
       {/* Embed code */}
-      <div className="p-6" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
-            Embed Code
+      <div className="p-6 space-y-6" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
+              Script Embed (recommended — auto-resizes)
+            </div>
+            <CopyButton text={scriptEmbedCode} />
           </div>
-          <CopyButton text={embedCode} />
+          <pre
+            className="rounded-lg p-4 text-xs overflow-x-auto"
+            style={{
+              background: "rgba(0,0,0,0.3)",
+              color: "rgba(255,255,255,0.6)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+              lineHeight: 1.6,
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-all",
+            }}
+          >
+            {scriptEmbedCode}
+          </pre>
         </div>
-        <pre
-          className="rounded-lg p-4 text-xs overflow-x-auto"
-          style={{
-            background: "rgba(0,0,0,0.3)",
-            color: "rgba(255,255,255,0.6)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-            lineHeight: 1.6,
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-all",
-          }}
-        >
-          {embedCode}
-        </pre>
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
+              iframe Fallback (fixed size)
+            </div>
+            <CopyButton text={embedCode} />
+          </div>
+          <pre
+            className="rounded-lg p-4 text-xs overflow-x-auto"
+            style={{
+              background: "rgba(0,0,0,0.3)",
+              color: "rgba(255,255,255,0.6)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+              lineHeight: 1.6,
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-all",
+            }}
+          >
+            {embedCode}
+          </pre>
+        </div>
       </div>
     </div>
   );

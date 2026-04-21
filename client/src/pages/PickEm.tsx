@@ -4,6 +4,8 @@
 import { useState, useEffect } from "react";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import PickEmWidget from "../components/PickEm";
+import BracketPicker from "../components/BracketPicker";
+import { isPlayoffsActive } from "../lib/playoffData";
 
 // ═══════════════════════════════════════════════════════════
 // INLINE SUPABASE REST HELPER (leaderboard — read-only, anon)
@@ -464,6 +466,23 @@ export default function PickEmPage() {
             {gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.
           </p>
         </div>
+
+        {/* Bracket Picks (during playoffs) */}
+        {isPlayoffsActive() && (
+          <section className="mb-10">
+            <div
+              className="text-xs font-semibold mb-4"
+              style={{
+                color: "#F43F5E",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                letterSpacing: "0.1em",
+              }}
+            >
+              PLAYOFF BRACKET &middot; PICK EVERY SERIES
+            </div>
+            <BracketPicker />
+          </section>
+        )}
 
         {/* Pick'em Widget */}
         <section className="mb-10">

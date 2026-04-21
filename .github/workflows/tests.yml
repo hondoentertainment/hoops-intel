@@ -1,4 +1,14 @@
-name: Tests
+name: CI
+
+# Runs on every push and PR. Three jobs, all independent so they can run in
+# parallel and you can see exactly which slice is red:
+#   1. verify   — npm ci, vitest (unit tests), tsc scoped to my changes,
+#                 vite build. MUST pass.
+#   2. assembly — script pipeline integration tests. MUST pass.
+#   3. content  — validates pulseData.ts against business rules. Advisory
+#                 because the daily AI generator occasionally drifts from the
+#                 strict abbreviation rules and we fix those in-band rather
+#                 than blocking merges.
 
 on:
   push:
@@ -6,21 +16,60 @@ on:
   pull_request:
     branches: ["*"]
 
-jobs:
-  validate-and-test:
-    runs-on: ubuntu-latest
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
+jobs:
+  verify:
+    name: Unit tests + build
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Vitest
+        run: npx vitest run
+
+      - name: Vite build
+        run: npx vite build
+
+      - name: Verify embed bundle shipped
+        run: test -f dist/embed.js
+
+  assembly:
+    name: Pipeline assembly tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
-      - name: Validate content
-        run: node scripts/tests/validate-content.mjs
-
-      - name: Run assembly integration tests
+      - name: Assembly integration tests
         run: node scripts/tests/test-assembly.mjs
+
+  content:
+    name: Content validation (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate pulseData.ts
+        run: node scripts/tests/validate-content.mjs

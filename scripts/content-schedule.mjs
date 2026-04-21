@@ -6,6 +6,7 @@
 import { readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { seasonMode, generatorActive, primaryGenerator } from "./lib/season-mode.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -172,8 +173,25 @@ function printSchedule() {
   console.log("  * Times approximate, shown in PST for consistency\n");
 
   console.log("── Season Awareness ────────────────────────────────────");
-  console.log("  All scheduled workflows skip during NBA offseason (July–September).");
-  console.log("  Manual dispatch overrides the season check.\n");
+  const today = new Date();
+  const mode = seasonMode(today);
+  console.log(`  Today (${today.toISOString().slice(0, 10)}): mode = ${mode}`);
+  console.log(`  Active: ${generatorActive(today) ? "yes" : "no (dead period)"}`);
+  console.log(`  Primary generator: ${primaryGenerator(today)}`);
+  console.log("");
+  console.log("  Content windows:");
+  console.log("    Oct–mid-Apr   regular-season    generate-edition.mjs");
+  console.log("    mid-Apr–May   playoffs          generate-edition.mjs (playoff mode)");
+  console.log("    early June    finals            generate-edition.mjs (finals mode)");
+  console.log("    late June     draft             generate-draft.mjs");
+  console.log("    Jul 1–10      free-agency       generate-edition.mjs (FA mode)");
+  console.log("    Jul 10–22     summer-league     generate-edition.mjs (SL mode)");
+  console.log("    late Jul–Aug  dead-period       generate-history.mjs (flashback)");
+  console.log("    September     preseason         generate-edition.mjs (preseason mode)");
+  console.log("");
+  console.log("  NOTE: daily-update.yml currently skips all of July-September. Update");
+  console.log("  the workflow to call generatorActive() so free-agency, summer-league,");
+  console.log("  and preseason content don't silently disappear.\n");
 
   // API summary
   const allSecrets = new Set();

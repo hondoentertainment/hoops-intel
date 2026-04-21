@@ -35,7 +35,13 @@ interface PushSubscription {
 interface PushPayload {
   secret: string;
   subscription?: PushSubscription;  // optional: send to one specific subscription
-  topic: 'injury' | 'game-start' | 'buzzer-beater' | 'milestone';
+  topic:
+    | 'injury'
+    | 'game-start'
+    | 'buzzer-beater'
+    | 'milestone'
+    | 'elimination-game'
+    | 'series-clincher';
   title: string;
   body: string;
   url?: string;         // deep link opened when user taps the notification

@@ -433,6 +433,14 @@ export const sentimentData: SentimentData = {
       player: "Damian Lillard",
       team: "POR",
       sentiment: "mixed",
+      score: -18,
+      mentions: 6800,
+      topTake: "Barrett with 24 on 50% shooting in a 13-point blowout loss tells you everything. He played fine. Toronto's problem isn't RJ Barrett. It's that they have no answer for an Evan Mobley operating at this level.",
+      narrativeArc: "Barrett's discourse following the Cleveland loss is relatively measured — most observers recognized that his 24-point performance was solid in a team defeat rather than an individual failure. The more critical takes are focused not on Barrett specifically but on what his team around him can and cannot do, with the implicit question being whether Toronto has enough to compete with Cleveland, New York, and Boston in a playoff series. His personal narrative is one of a young star trying to elevate a roster that may simply be outmatched at the top of the East."
+    }
+  ],
+  hottestTake: "EVAN MOBLEY 31/12/4 BLOCKS ON 68% SHOOTING. Stop asking me who the best big man in the East is. It's him. It's been him.",
+  coldestTake: "Anthony Edwards on 6-of-17 from the field in a double-digit loss to Denver is the exact regular-season no-show that makes me skeptical Minnesota can do anything in the playoffs."
       score: 8,
       mentions: 7400,
       topTake: "Lillard dropped 25 against Wembanyama's defense and Portland still lost comfortably. At this point Dame is just competing in a one-man exhibition every night and the saddest part is he never stops trying. Respect the effort even if the situation is hopeless.",

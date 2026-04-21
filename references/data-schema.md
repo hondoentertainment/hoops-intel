@@ -206,3 +206,70 @@ export interface StandingsEntry {
 ```
 
 **Include:** Ranks 1–10 for each conference (top 6 playoff seeds + 4 play-in teams). Total: 20 entries.
+
+---
+
+## Playoff Series
+
+```ts
+export type PlayoffRound =
+  | "first-round"
+  | "conference-semifinals"
+  | "conference-finals"
+  | "finals";
+
+export interface PlayoffSeriesGame {
+  gameNumber: number;      // 1–7
+  date: string;            // ISO date "2026-04-18"
+  homeTeam: string;        // Higher seed is listed first overall but home varies by game number
+  awayTeam: string;
+  homeScore: number | null;   // null if not yet played
+  awayScore: number | null;
+  status: "scheduled" | "live" | "final";
+  time?: string;              // "7:30 PM ET" — only for scheduled
+  tv?: string;                // broadcast network
+  topPerformer?: string;      // only for final games
+  topLine?: string;           // "31 PTS · 12 REB"
+}
+
+export interface PlayoffSeries {
+  seriesId: string;           // "E1-DET-ORL" / "W4-LAL-HOU"
+  conference: "east" | "west" | "finals";
+  round: PlayoffRound;
+  higherSeed: number;         // 1–8 (or 1 for Finals)
+  lowerSeed: number;
+  higherTeam: string;         // abbreviation
+  lowerTeam: string;
+  higherWins: number;         // games won by higher seed (0–4)
+  lowerWins: number;          // games won by lower seed (0–4)
+  status: "upcoming" | "active" | "complete";
+  winner?: string;            // abbreviation — only set when status === "complete"
+  eliminationGame?: boolean;  // true when next game could end the series
+  summary: string;            // "DET leads 1-0" / "Series tied 2-2" / "LAL wins 4-2"
+  games: PlayoffSeriesGame[];
+}
+```
+
+**Status guide:**
+- `"upcoming"` — series scheduled but no games played yet
+- `"active"` — at least one game played, neither team at 4 wins
+- `"complete"` — a team has 4 wins; `winner` must be set
+
+**`eliminationGame`:** Set to `true` whenever either team has 3 wins and the other does not yet have 4. Drives push notifications and UI treatment.
+
+---
+
+## Playoff Risers / Fallers
+
+```ts
+export interface PlayoffPulseMover {
+  player: string;
+  team: string;
+  direction: "riser" | "faller";
+  delta: number;              // rank change from pre-playoffs (positive = up)
+  playoffLine: string;        // "28.4 PPG · 9.1 RPG" across playoff games so far
+  note: string;               // 1–2 sentences of context
+}
+```
+
+Shown only when `playoffSeries` is non-empty.

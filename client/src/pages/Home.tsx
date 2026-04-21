@@ -24,6 +24,17 @@ import AuthModal from "../components/AuthModal";
 import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
 import { hasPreferences, getPreferences } from "../lib/userPreferences";
+import { playoffSeries, playoffMovers, isPlayoffsActive, seriesIntel, type PlayoffSeries } from "../lib/playoffData";
+
+function findSeriesForTeams(away: string, home: string): PlayoffSeries | undefined {
+  const a = away.toUpperCase();
+  const h = home.toUpperCase();
+  return playoffSeries.find(
+    (s) =>
+      (s.higherTeam === a && s.lowerTeam === h) ||
+      (s.higherTeam === h && s.lowerTeam === a),
+  );
+}
 
 // ═══════════════════════════════════════════════════════════
 // LIVE SCOREBAR — Real-time ESPN scores
@@ -966,6 +977,132 @@ function InjurySection() {
 }
 
 // ═══════════════════════════════════════════════════════════
+// PLAYOFF SERIES — Live state above Tonight's Games during playoffs
+// ═══════════════════════════════════════════════════════════
+
+function PlayoffSection() {
+  if (!isPlayoffsActive()) return null;
+
+  const active = playoffSeries.filter((s) => s.status !== "complete");
+  const elimination = active.filter((s) => s.higherWins === 3 || s.lowerWins === 3);
+
+  return (
+    <section id="playoffs" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+      <div className="container">
+        <div className="flex items-center justify-between mb-2">
+          <div className="section-label">POSTSEASON</div>
+          <a href="/playoffs" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>Full bracket &rarr;</a>
+        </div>
+        <h2 className="display-heading text-white text-2xl mb-2">Playoff Series</h2>
+        {elimination.length > 0 && (
+          <p className="text-xs mb-6" style={{ color: "#F43F5E" }}>
+            {elimination.length} elimination game{elimination.length > 1 ? "s" : ""} on deck — win or go home.
+          </p>
+        )}
+        {elimination.length === 0 && (
+          <p className="text-xs mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+            Round 1 in progress. {active.length} series alive.
+          </p>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          {active.map((s) => (<HomeSeriesCard key={s.seriesId} series={s} />))}
+        </div>
+        {playoffMovers.length > 0 && <PlayoffMoversCard />}
+      </div>
+    </section>
+  );
+}
+
+function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
+  const elimination = series.higherWins === 3 || series.lowerWins === 3;
+  const nextGame = series.games.find((g) => g.status === "scheduled");
+  const accent = elimination ? "rgba(244,63,94,0.55)" : "rgba(14,165,233,0.4)";
+
+  return (
+    <div className="glass-card rounded-lg p-3" style={{ borderLeft: `3px solid ${accent}` }}>
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
+          {series.conference === "east" ? "East" : "West"} · ({series.higherSeed}) vs ({series.lowerSeed})
+        </div>
+        {elimination && (
+          <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded" style={{ background: "rgba(244,63,94,0.15)", color: "#F43F5E" }}>
+            Elim
+          </span>
+        )}
+      </div>
+      <div className="space-y-1.5">
+        <SeriesTeamLine team={series.higherTeam} seed={series.higherSeed} wins={series.higherWins} leading={series.higherWins > series.lowerWins} />
+        <SeriesTeamLine team={series.lowerTeam} seed={series.lowerSeed} wins={series.lowerWins} leading={series.lowerWins > series.higherWins} />
+      </div>
+      <div className="mt-2 text-xs font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>
+        {series.summary}
+      </div>
+      {nextGame && (
+        <div className="mt-1 text-[11px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Game {nextGame.gameNumber} · {nextGame.time ?? nextGame.date}{nextGame.tv ? ` · ${nextGame.tv}` : ""}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SeriesTeamLine({ team, seed, wins, leading }: { team: string; seed: number; wins: number; leading: boolean }) {
+  return (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <span
+          className="w-5 h-5 rounded flex items-center justify-center text-[11px] font-bold"
+          style={{
+            background: leading ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.05)",
+            color: leading ? "#0EA5E9" : "rgba(255,255,255,0.5)",
+          }}
+        >
+          {seed}
+        </span>
+        <a href={`/team/${team.toLowerCase()}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
+          {team}
+        </a>
+      </div>
+      <div className="flex items-center gap-1">
+        {[0, 1, 2, 3].map((i) => (
+          <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: i < wins ? (leading ? "#0EA5E9" : "#10B981") : "rgba(255,255,255,0.1)" }} />
+        ))}
+        <span className="mono-data text-xs ml-1 font-bold" style={{ color: leading ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>{wins}</span>
+      </div>
+    </div>
+  );
+}
+
+function PlayoffMoversCard() {
+  return (
+    <div className="mt-6 glass-card rounded-lg p-4">
+      <div className="section-label mb-3" style={{ color: "#0EA5E9" }}>PLAYOFF RISERS &amp; FALLERS</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {playoffMovers.map((m, i) => (
+          <div key={i} className="flex items-start gap-3 p-2 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div
+              className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold flex-shrink-0"
+              style={{
+                background: m.direction === "riser" ? "rgba(16,185,129,0.15)" : "rgba(244,63,94,0.15)",
+                color: m.direction === "riser" ? "#10B981" : "#F43F5E",
+              }}
+              title={m.direction}
+            >
+              {m.direction === "riser" ? "↑" : "↓"}{Math.abs(m.delta)}
+            </div>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-white">{m.player} <span className="text-xs font-normal" style={{ color: "rgba(255,255,255,0.4)" }}>{m.team}</span></div>
+              <div className="mono-data text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>{m.playoffLine}</div>
+              <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.65)" }}>{m.note}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
 // TONIGHT'S GAMES — With betting links
 // ═══════════════════════════════════════════════════════════
 
@@ -985,6 +1122,8 @@ function TonightSection() {
 
 function GamePreviewCard({ preview }: { preview: any }) {
   const [expanded, setExpanded] = useState(false);
+  const series = findSeriesForTeams(preview.awayTeam, preview.homeTeam);
+  const intel = series ? seriesIntel[series.seriesId] : undefined;
 
   return (
     <div className={`glass-card rounded-lg overflow-hidden ${preview.featured ? "ring-1 ring-sky-500/40" : ""}`}>
@@ -1015,9 +1154,29 @@ function GamePreviewCard({ preview }: { preview: any }) {
             FEATURED GAME
           </div>
         )}
+        {series && (
+          <div className="mt-2 text-xs font-semibold px-2 py-0.5 rounded inline-block ml-2" style={{ background: "rgba(244,63,94,0.12)", color: "#F43F5E" }}>
+            {series.summary}
+          </div>
+        )}
       </div>
       {expanded && (
         <div className="px-4 pb-4 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          {intel && (
+            <div className="pt-3 space-y-2 mb-1" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "0.75rem" }}>
+              <div className="text-xs font-medium mb-1" style={{ color: "#F43F5E" }}>H2H SERIES INTEL</div>
+              <div className="text-xs" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>Regular season:</span> {intel.regularSeasonH2H}
+              </div>
+              <div className="text-xs" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>Playoff history:</span> {intel.playoffHistory}
+              </div>
+              <div className="text-xs" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>Matchup to watch:</span> {intel.keyMatchup}
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{intel.narrative}</p>
+            </div>
+          )}
           <div className="pt-3">
             <div className="text-xs font-medium mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>KEY MATCHUP</div>
             <div className="text-sm text-white">{preview.keyMatchup}</div>
@@ -1370,6 +1529,7 @@ export default function Home() {
       <PulseIndexSection />
       <MediaReactionsSection />
       <InjurySection />
+      <PlayoffSection />
       <TonightSection />
       <RookieAndFantasySection />
       <StandingsSection />
