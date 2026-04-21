@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 20, 2026
+// Last updated: April 21, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 20, 2026",
-  episodeTitle: "Thunder Drop 35-Point BOMB on Suns | Banchero's 31-Point Stunner Upsets Pistons | Tatum Goes Nuclear in Celtics Beatdown",
+  date: "April 21, 2026",
+  episodeTitle: "Sunday Night Stunners: Trae Young's MSG Masterpiece & The End of Denver's Historic Run",
   rundown: [
     {
-      topic: "Oklahoma City's Historic 35-Point Demolition of Phoenix",
+      topic: "Trae Young's Clutch Heroics Stun Madison Square Garden",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "OKC wins 119-84, largest margin of victory this season",
-        "Shai drops 29 points on 64.7% shooting (11-17 FG)",
-        "Thunder shoot 52.1% as team, hold Suns to 36.8%",
-        "Phoenix falls to 45-38, playoff hopes in serious jeopardy",
-        "Six Thunder players score in double figures",
-        "35-point margin ties franchise record for playoff-positioning game"
+        "28 points and 9 assists on 10-of-19 shooting",
+        "6-of-11 from three including game-winner with 8.4 seconds left",
+        "Hawks jump into tie for 5th place in East at 47-36",
+        "Knicks led by 12 points in third quarter before collapse",
+        "Brunson had 24 points but couldn't answer Young's barrage",
+        "Atlanta shot 47.8% from three as team in second half"
       ],
-      debateAngle: "Is this the performance that officially announces OKC as the West's title favorite over San Antonio and Denver?",
-      suggestedQuote: "When you're shooting 52% as a team and your superstar looks like he's playing a different sport than everyone else, that's championship DNA right there.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Josh Giddey", "Devin Booker"]
+      debateAngle: "Is Trae Young proving he's built for the biggest moments, or are we overreacting to one shot? His playoff history suggests mixed results in pressure situations.",
+      suggestedQuote: "When you can walk into the world's most famous arena and hit that shot in that moment, you've announced yourself as a playoff assassin.",
+      relevantPlayers: ["Trae Young", "Jalen Brunson", "Julius Randle"]
     },
     {
-      topic: "Paolo Banchero's Career-High 31 Powers Stunning Magic Upset",
+      topic: "Anthony Edwards Ends Denver's Historic 13-Game Winning Streak",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Banchero explodes for career-high 31 points on 60% shooting",
-        "Orlando upsets conference-leading Detroit 112-101 on the road",
-        "Magic shoot 48.7% while Pistons manage just 43.1% at home",
-        "Banchero adds 8 rebounds, 6 assists in complete performance",
-        "Franz Wagner contributes 23 points as secondary scorer",
-        "Detroit suffers rare home loss, record drops to 60-23"
+        "Edwards exploded for 32 points on 12-of-21 shooting",
+        "Shot 6-of-10 from three-point range in clutch performance",
+        "Nuggets streak dated back to March 15th - first loss in over month",
+        "Minnesota shot 52.1% as team while holding Denver to 46.7%",
+        "Jokić had 26 points, 12 rebounds, 8 assists in losing effort",
+        "Timberwolves strengthen hold on 6th seed at 50-33"
       ],
-      debateAngle: "Has Banchero officially arrived as a superstar, and are the Magic now a legitimate threat to upset higher seeds in the playoffs?",
-      suggestedQuote: "This wasn't just a career night for Paolo - this was a coming-out party. When you can walk into the East's best team's building and drop 31 like it's nothing, you're not a young player anymore. You're a problem.",
-      relevantPlayers: ["Paolo Banchero", "Franz Wagner", "Markelle Fultz", "Cade Cunningham"]
+      debateAngle: "Did Denver's 13-game winning streak actually hurt them by creating unsustainable expectations? Sometimes peaking too early in the regular season backfires in playoffs.",
+      suggestedQuote: "Sometimes it takes a special individual performance to halt historic momentum, and Edwards delivered exactly that kind of game-changing effort.",
+      relevantPlayers: ["Anthony Edwards", "Nikola Jokić", "Karl-Anthony Towns", "Jaden McDaniels"]
     },
     {
-      topic: "Are Boston and OKC Creating a Championship Gap?",
+      topic: "Are the Knicks Championship Window Closing After MSG Collapse?",
       segment: "hot-take",
       duration: "7 minutes",
       keyStats: [
-        "Celtics demolish 76ers 123-91 behind Tatum's 35 points",
-        "Tatum shoots unconscious 7-12 from three in just 31 minutes",
-        "Boston and OKC combine for 67-point margin in home wins",
-        "Both teams shoot over 50% while holding opponents under 41%",
-        "Philadelphia and Phoenix both considered playoff contenders before Saturday",
-        "Combined 18 turnovers from Philly in blowout loss"
+        "Knicks had 12-point lead in third quarter at home",
+        "Now 53-30 but seeding hopes took massive hit",
+        "Randle and Brunson combined for 45 points but couldn't close",
+        "New York allowed 32 fourth-quarter points to Atlanta",
+        "Hawks shot 58.3% in final frame to steal victory",
+        "MSG crowd went from electric to stunned silence"
       ],
-      debateAngle: "Hot Take: Saturday night proved there are only 4-5 real championship contenders, and the gap between elite and good is bigger than we thought.",
-      suggestedQuote: "When Boston and OKC are both winning by 30+ on the same night, making it look effortless, that tells me we might have a two-tier league this season. The true contenders and everybody else.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Shai Gilgeous-Alexander", "Joel Embiid"]
+      debateAngle: "Is this loss a season-defining moment that exposes the Knicks' inability to close games, or just one bad quarter that doesn't define their championship potential?",
+      suggestedQuote: "The Knicks had everything set up perfectly — then Trae Young happened. That's a loss that will haunt New York for months.",
+      relevantPlayers: ["Jalen Brunson", "Julius Randle", "Trae Young"]
     },
     {
-      topic: "Rapid Fire: Wemby's Dominance, Playoff Race Chaos, Sunday Preview",
+      topic: "Rapid-Fire Sunday Roundup: Standings Shakeup Edition",
       segment: "rapid-fire",
-      duration: "6 minutes",
-      keyStats: [
-        "Wembanyama: 24 points, 11 rebounds, 4 blocks in Spurs win",
-        "Phoenix now 3-7 in last 10 games, playoff position in danger",
-        "Eastern Conference 5-8 seeds separated by just 1 game",
-        "Denver's 13-game win streak continues into Sunday vs Minnesota",
-        "Three teams tied at 46-37 fighting for Eastern playoff spots",
-        "Tonight's Knicks-Hawks game could shake up entire East bracket"
-      ],
-      debateAngle: "Which collapse would be more shocking - Phoenix missing the playoffs entirely or Philadelphia falling to the play-in tournament?",
-      suggestedQuote: "The playoff race went from interesting to absolutely bonkers in one night. Phoenix is in free fall, Philly looks lost, and Orlando just announced they're not going away quietly.",
-      relevantPlayers: ["Victor Wembanyama", "Trae Young", "Jalen Brunson", "Nikola Jokić"]
-    },
-    {
-      topic: "Sunday's Must-Watch: Can Anyone Stop Denver's Historic Run?",
-      segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Nuggets riding 13-game winning streak into Minnesota matchup",
-        "Denver 8.5-point favorites despite Timberwolves' talent",
-        "Jokić averaging near triple-double during the streak",
-        "Knicks-Hawks on NBC could determine Eastern playoff seeding",
-        "Three games tonight with major postseason implications",
-        "Cleveland visits Toronto in crucial conference battle"
+        "Mobley's 24 points, 10 rebounds lead Cavs past Raptors 115-105",
+        "Cleveland improves to 53-30, strengthens 4th seed grip",
+        "Toronto drops into three-way tie for final playoff spots",
+        "Hawks and Magic now tied for 5th at 46-37",
+        "Eastern Conference playoff picture getting wild",
+        "Western Conference top seeds remain Oklahoma City and San Antonio"
       ],
-      debateAngle: "Is Denver's 13-game streak the most impressive run of the season, and can Minnesota's defense finally slow down the machine?",
-      suggestedQuote: "Thirteen straight wins isn't luck - that's championship muscle memory. But if anyone can play spoiler tonight, it's a desperate Minnesota team with nothing to lose and everything to prove.",
-      relevantPlayers: ["Nikola Jokić", "Anthony Edwards", "Rudy Gobert", "Jamal Murray"]
+      debateAngle: "With just games remaining, which teams are peaking at the right time versus those showing concerning signs before the playoffs?",
+      suggestedQuote: "Sunday's results were a perfect example of why the NBA regular season matters until the very last game.",
+      relevantPlayers: ["Evan Mobley", "Donovan Mitchell", "Scottie Barnes"]
+    },
+    {
+      topic: "Monday Night Preview: Celtics-76ers Playoff Atmosphere Brewing",
+      segment: "closer",
+      duration: "6 minutes",
+      keyStats: [
+        "Boston visits Philadelphia in crucial East showdown at 7 PM ET",
+        "Celtics riding 4-game win streak, 76ers desperate for home wins",
+        "Tatum averaging 28.4 points over last 10 games",
+        "Embiid has dominated Boston historically at home",
+        "Lakers-Rockets late night could preview playoff matchup",
+        "Wembanyama and Spurs continue top-seed chase in Portland"
+      ],
+      debateAngle: "Which Monday night game has the highest stakes - Celtics trying to lock up seeding, or Western Conference teams jockeying for playoff position?",
+      suggestedQuote: "Boston visits Philadelphia in a crucial Eastern Conference battle with massive playoff seeding implications for both teams.",
+      relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Anthony Davis", "Victor Wembanyama"]
     }
   ],
-  coldOpen: "Saturday night wasn't just basketball - it was a statement. While Shai Gilgeous-Alexander and the Thunder were busy dropping a 35-point nuclear bomb on Phoenix, Paolo Banchero walked into Detroit and announced himself as a superstar with a career-high 31 points. Meanwhile in Boston, Jayson Tatum went absolutely unconscious from three, hitting seven triples in a 32-point beatdown of Philadelphia. When the best teams in the league win by a combined 67 points on the same night, that's not coincidence - that's championship DNA separating itself from the pack.",
-  socialClip: "Paolo Banchero career-high 31 points upset reaction - Focus on the moment when Banchero hits his 30th point and the Little Caesars Arena crowd realizes they're witnessing something special. Cut to his celebration, teammates' reactions, and overlay the stat: 'Career-High 31 Points | 60% Shooting | Upset of East's #1 Seed'. Perfect for Instagram Reels and TikTok with trending audio.",
+  coldOpen: "Sunday night in the NBA delivered playoff-level drama that left us speechless. At Madison Square Garden, Trae Young buried a step-back three with 8.4 seconds left to stun the Knicks and send the most famous arena in basketball into stunned silence. Three time zones away in Denver, Anthony Edwards exploded for 32 points to end the Nuggets' historic 13-game winning streak in equally dramatic fashion. We've got playoff positioning shakeups, clutch heroics, and championship implications - this is Hoops Intel, and we're breaking down the Sunday night stunners that just changed everything.",
+  socialClip: "Trae Young's step-back three-pointer over Jalen Brunson with 8.4 seconds left at Madison Square Garden. Perfect for social - capture the shot going in, crowd reaction, and Young's celebration. Caption: 'ICE COLD: Trae Young silences MSG with game-winning dagger!' Include slow-motion replay and crowd audio for maximum impact.",
   tweetThread: [
-    "🚨 SATURDAY NIGHT RECAP THREAD 🚨 What a night of basketball! Three massive storylines that are reshaping the playoff picture heading into the final stretch...",
-    "1️⃣ THUNDER STATEMENT: OKC absolutely DEMOLISHED Phoenix 119-84. Shai dropped 29 on 64% shooting. The Suns got held to 36.8% FG and their playoff hopes might be over. This was championship-level dominance.",
-    "2️⃣ BANCHERO BREAKOUT: Career-high 31 points for Paolo in Orlando's STUNNING 112-101 upset of Detroit on the road. The Magic just announced they're not going away quietly in the playoff race. Star is born! ⭐",
-    "3️⃣ CELTICS NUCLEAR: Tatum went unconscious with 35 points (7 threes!) in Boston's 32-point destruction of Philly. When the best teams win by 30+, that's the championship gap showing itself.",
-    "Sunday's must-watch: Can ANYONE stop Denver's 13-game win streak? Minnesota visits Denver tonight in what could be the game of the weekend. Plus Knicks-Hawks will shake up the entire Eastern playoff picture! 🔥"
+    "🧵 SUNDAY NIGHT STUNNERS THREAD: Two massive upsets just reshuffled the entire playoff picture. Let's break down how Trae Young and Anthony Edwards delivered game-changing performances... 1/5",
+    "🎯 TRAE AT MSG: 28 points, 9 assists, and a step-back THREE with 8.4 seconds left over Jalen Brunson to stun the Knicks 107-106. The Hawks jump into a tie for 5th place while New York's seeding hopes take a massive hit. Playoff assassin mode activated. 2/5",
+    "🔥 ANT-MAN ERUPTS: Anthony Edwards dropped 32 points on 12-21 shooting (6-10 from three!) to end Denver's HISTORIC 13-game winning streak. The Nuggets hadn't lost since March 15th, but Edwards single-handedly ended their dominance with clutch shot after clutch shot. 3/5",
+    "📊 THE RIPPLE EFFECTS: Atlanta's win creates a three-way tie for playoff spots in the East. Meanwhile, Minnesota strengthens their 6th seed while proving they can beat anyone when Edwards is locked in. These aren't just wins - they're statement victories. 4/5",
+    "🏀 MONDAY PREVIEW: Celtics at 76ers (7 PM ET) brings playoff atmosphere to Philly, while Lakers-Rockets could preview a first-round series. The regular season is winding down, but the drama is just heating up. Which team made the biggest statement Sunday night? 5/5"
   ]
 };

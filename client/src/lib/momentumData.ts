@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 20, 2026
+// Last updated: April 21, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,184 +33,195 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 20, 2026",
-  gameOfTheNight: "ORL-DET-20260420",
-  topClutchPerformer: { player: "Paolo Banchero", team: "ORL", clutchRating: 94, description: "Scored 12 points in the final quarter to seal the stunning upset, including a dagger three with 2:14 remaining" },
+  date: "April 21, 2026",
+  gameOfTheNight: "ATL-NYK-20260420",
+  topClutchPerformer: { 
+    player: "Trae Young", 
+    team: "ATL", 
+    clutchRating: 98, 
+    description: "Ice-cold step-back three over Brunson with 8.4 seconds left to steal victory at MSG" 
+  },
   games: [
     {
-      gameId: "PHX-OKC-20260420",
-      teams: { home: "OKC", away: "PHX" },
-      finalScore: { home: 119, away: 84 },
+      gameId: "ATL-NYK-20260420",
+      teams: { home: "NYK", away: "ATL" },
+      finalScore: { home: 106, away: 107 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "7:43",
-          description: "Shai Gilgeous-Alexander erupts for 11 points in opening minutes",
-          runScore: "15-4 OKC",
+          timestamp: "6:32",
+          description: "Brunson catches fire with three straight threes to give Knicks early control",
+          runScore: "11-2",
           momentum: "home",
-          keyPlayer: "Shai Gilgeous-Alexander",
-          impact: "significant"
+          keyPlayer: "Jalen Brunson",
+          impact: "notable"
         },
         {
           quarter: "Q2",
+          timestamp: "3:15",
+          description: "Young answers back with deep bombs, Hawks close gap before halftime",
+          runScore: "8-15",
+          momentum: "away",
+          keyPlayer: "Trae Young",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "9:41",
+          description: "Randle dominates the paint as Knicks build commanding 12-point cushion",
+          runScore: "18-8",
+          momentum: "home",
+          keyPlayer: "Julius Randle",
+          impact: "significant"
+        },
+        {
+          quarter: "Q4",
           timestamp: "4:22",
-          description: "Thunder bench mob extends lead with 14-2 run",
-          runScore: "14-2 OKC",
-          momentum: "home",
-          keyPlayer: "Isaiah Joe",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "9:15",
-          description: "Holmgren's rim protection sparks 12-0 run to break it wide open",
-          runScore: "12-0 OKC",
-          momentum: "home",
-          keyPlayer: "Chet Holmgren",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "What started as a playoff atmosphere quickly turned into a Thunder clinic as Oklahoma City demolished Phoenix in historically dominant fashion. The Suns never recovered from falling behind early, watching helplessly as the Thunder's young core put on a masterclass in both ends of the floor. This wasn't just a win — it was a statement that OKC is ready for the biggest stage. Phoenix's championship window may have slammed shut with this embarrassing collapse on the road."
-    },
-    {
-      gameId: "PHI-BOS-20260420",
-      teams: { home: "BOS", away: "PHI" },
-      finalScore: { home: 123, away: 91 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "5:17",
-          description: "Tatum catches fire from three, hits four straight triples",
-          runScore: "12-0 BOS",
-          momentum: "home",
-          keyPlayer: "Jayson Tatum",
-          impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "8:44",
-          description: "Brown and White combine for 16 points in devastating run",
-          runScore: "16-3 BOS",
-          momentum: "home",
-          keyPlayer: "Jaylen Brown",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "6:30",
-          description: "Celtics force 8 turnovers in quarter-opening avalanche",
-          runScore: "18-4 BOS",
-          momentum: "home",
-          keyPlayer: "Derrick White",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The Celtics turned TD Garden into a house of horrors for Philadelphia, delivering their most ruthless performance of the season when it mattered most. Tatum was absolutely unconscious from deep, torching the Sixers with precision that bordered on unfair. This wasn't just a victory — it was a psychological demolition that exposed every flaw in Philadelphia's playoff armor. The 32-point margin felt merciful compared to how helpless the Sixers looked trying to contain Boston's suffocating pace."
-    },
-    {
-      gameId: "ORL-DET-20260420",
-      teams: { home: "DET", away: "ORL" },
-      finalScore: { home: 101, away: 112 },
-      swings: [
-        {
-          quarter: "Q2",
-          timestamp: "9:12",
-          description: "Banchero takes over with 13 points in quarter to flip script",
-          runScore: "13-4 ORL",
+          description: "Hawks rally with lockdown defense and transition buckets to tie it up",
+          runScore: "6-16",
           momentum: "away",
-          keyPlayer: "Paolo Banchero",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:45",
-          description: "Wagner's three-point barrage ignites 15-6 run",
-          runScore: "15-6 ORL",
-          momentum: "away",
-          keyPlayer: "Franz Wagner",
+          keyPlayer: "Dejounte Murray",
           impact: "game-changing"
         },
         {
           quarter: "Q4",
-          timestamp: "7:22",
-          description: "Cunningham rallies Pistons with 9 straight points",
-          runScore: "9-2 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "2:14",
-          description: "Banchero's dagger three silences Little Caesars Arena",
-          runScore: "8-2 ORL",
+          timestamp: "0:08",
+          description: "Young delivers the knockout punch with step-back dagger over Brunson",
+          runScore: "0-3",
           momentum: "away",
-          keyPlayer: "Paolo Banchero",
+          keyPlayer: "Trae Young",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Paolo Banchero",
-          team: "ORL",
-          description: "Step-back three over Isaiah Stewart to extend lead to 8",
-          timeRemaining: "2:14",
-          winProbabilityShift: 23.4
+          player: "Jalen Brunson",
+          team: "NYK",
+          description: "Drives through traffic for crucial layup to tie game at 104",
+          timeRemaining: "1:42",
+          winProbabilityShift: 15
         },
         {
-          player: "Cade Cunningham",
-          team: "DET",
-          description: "Driving layup plus foul to cut deficit to 3",
-          timeRemaining: "4:33",
-          winProbabilityShift: -18.7
-        },
-        {
-          player: "Markelle Fultz",
-          team: "ORL",
-          description: "Clutch steal and assist to Wagner for crucial bucket",
-          timeRemaining: "1:47",
-          winProbabilityShift: 15.2
+          player: "Trae Young",
+          team: "ATL",
+          description: "Step-back three over Brunson with ice in his veins for the win",
+          timeRemaining: "0:08",
+          winProbabilityShift: 85
         }
       ],
-      narrative: "In the biggest upset of the season, Paolo Banchero announced his arrival as a superstar by stunning the conference-leading Pistons on their home floor. The second-year phenom was absolutely unstoppable, dismantling Detroit's defense with a combination of power, finesse, and clutch gene that belied his age. This victory will be remembered as the moment Orlando's young core proved they belong in championship conversations. Detroit's supposed invincibility at home crumbled under the weight of Banchero's brilliance and their own shocking complacency."
+      narrative: "Trae Young authored one of the most dramatic finishes of the season, silencing Madison Square Garden with a cold-blooded step-back three that will haunt Knicks fans all summer. After trailing by 12 in the third quarter, the Hawks showed championship-level composure in their fourth-quarter comeback. Young's dagger over Brunson was pure theater—the kind of moment that separates superstars from mere scorers. The loss stings even more for New York, who controlled the game for three quarters only to watch their playoff seeding hopes take a devastating hit."
     },
     {
-      gameId: "POR-SAS-20260420",
-      teams: { home: "SAS", away: "POR" },
-      finalScore: { home: 111, away: 98 },
+      gameId: "MIN-DEN-20260420",
+      teams: { home: "DEN", away: "MIN" },
+      finalScore: { home: 114, away: 119 },
       swings: [
         {
+          quarter: "Q1",
+          timestamp: "8:15",
+          description: "Edwards explodes early with back-to-back threes to stun the home crowd",
+          runScore: "4-12",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
+          impact: "significant"
+        },
+        {
           quarter: "Q2",
-          timestamp: "6:18",
-          description: "Wembanyama's rim protection sparks 14-5 run",
-          runScore: "14-5 SAS",
+          timestamp: "5:43",
+          description: "Jokić takes over with his full arsenal, Nuggets storm back to tie",
+          runScore: "16-8",
           momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+          keyPlayer: "Nikola Jokić",
           impact: "significant"
         },
         {
           quarter: "Q3",
-          timestamp: "8:33",
-          description: "Lillard explodes for 12 points to cut deficit to 4",
-          runScore: "12-3 POR",
-          momentum: "away",
-          keyPlayer: "Damian Lillard",
+          timestamp: "7:28",
+          description: "Murray and Gordon combine for blistering run to push Denver ahead",
+          runScore: "13-4",
+          momentum: "home",
+          keyPlayer: "Jamal Murray",
           impact: "notable"
         },
         {
-          quarter: "Q3",
-          timestamp: "2:47",
-          description: "Vassell and Johnson combine for 10 straight to regain control",
-          runScore: "10-2 SAS",
-          momentum: "home",
-          keyPlayer: "Devin Vassell",
+          quarter: "Q4",
+          timestamp: "6:12",
+          description: "Edwards refuses to let streak continue, leads Wolves charge with clutch buckets",
+          runScore: "8-18",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
           impact: "game-changing"
         }
       ],
+      clutchPlays: [
+        {
+          player: "Anthony Edwards",
+          team: "MIN",
+          description: "Stepback three over Kentavious Caldwell-Pope extends lead to 5",
+          timeRemaining: "3:28",
+          winProbabilityShift: 22
+        },
+        {
+          player: "Nikola Jokić",
+          team: "DEN",
+          description: "Impossible fadeaway over Gobert keeps streak hopes alive",
+          timeRemaining: "2:14",
+          winProbabilityShift: -18
+        },
+        {
+          player: "Jaden McDaniels",
+          team: "MIN",
+          description: "Corner three off Edwards assist puts the dagger in historic streak",
+          timeRemaining: "1:03",
+          winProbabilityShift: 31
+        }
+      ],
+      narrative: "Anthony Edwards played the role of streak-breaker to perfection, ending Denver's magical 13-game home winning streak with a performance that announced his arrival among the NBA's elite closers. The young star was relentless in the fourth quarter, consistently answering every Nuggets surge with contested threes and athletic finishes that left Ball Arena deflated. Even Jokić's superhuman efforts couldn't extend the streak, as father time finally caught up with the Nuggets' incredible run. Sometimes the most historic streaks end not with a whimper, but with a future superstar making his statement on the biggest stage."
+    },
+    {
+      gameId: "CLE-TOR-20260420",
+      teams: { home: "TOR", away: "CLE" },
+      finalScore: { home: 105, away: 115 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "9:22",
+          description: "Barnes and Siakam combine for early barrage to energize home crowd",
+          runScore: "12-4",
+          momentum: "home",
+          keyPlayer: "Scottie Barnes",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "8:31",
+          description: "Mobley dominates the paint while Mitchell heats up from deep",
+          runScore: "4-15",
+          momentum: "away",
+          keyPlayer: "Evan Mobley",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:17",
+          description: "Cavaliers length overwhelms Raptors offense, lead balloons to 18",
+          runScore: "6-21",
+          momentum: "away",
+          keyPlayer: "Evan Mobley",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "7:45",
+          description: "Raptors make desperate push but Cleveland's defense holds firm",
+          runScore: "11-6",
+          momentum: "home",
+          keyPlayer: "Pascal Siakam",
+          impact: "notable"
+        }
+      ],
       clutchPlays: [],
-      narrative: "Victor Wembanyama put on another otherworldly display of two-way dominance, systematically dismantling Portland with a performance that showcased exactly why the Spurs are championship contenders. The rookie sensation controlled every aspect of the game, from rim protection to offensive versatility, making the Trail Blazers look ordinary by comparison. San Antonio's supporting cast stepped up beautifully around their franchise cornerstone, with Vassell and Johnson providing the scoring punch when it mattered most. This victory keeps the Spurs firmly in the hunt for the Western Conference's top seed while further cementing Wembanyama's Rookie of the Year candidacy."
+      narrative: "Evan Mobley put on a defensive clinic that reminded everyone why he's the future of Cleveland's championship aspirations, completely neutralizing Toronto's interior attack with his otherworldly length and timing. The young big man was equally devastating on offense, using his smooth touch and mobility to carve up the Raptors' defense with surgical precision. Cleveland's suffocating length became too much for Toronto to handle, as the Cavaliers pulled away in the third quarter and never looked back. This was the kind of statement win that could propel the Cavs deep into the playoffs—dominant on both ends with their franchise cornerstone leading the way."
     }
   ]
 };
