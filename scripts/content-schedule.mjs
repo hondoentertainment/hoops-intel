@@ -114,7 +114,7 @@ const SCHEDULE = {
       time: "Monday 6:00 AM PST",
       description: "Generate trade value, lineups, tactics, projections, draft, clutch, trade sim, community pulse",
       outputs: [
-        "tradeValueData.ts", "lineupsData.ts", "tacticsData.ts",
+        "tradeValueData.ts", "lineupData.ts", "tacticsData.ts",
         "projectionsData.ts", "draftData.ts", "clutchData.ts",
         "tradeSimData.ts", "communityPulseData.ts",
       ],

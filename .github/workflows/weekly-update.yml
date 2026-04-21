@@ -78,7 +78,17 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/tradeValueData.ts client/src/lib/lineupsData.ts client/src/lib/tacticsData.ts client/src/lib/projectionsData.ts client/src/lib/draftData.ts client/src/lib/clutchData.ts client/src/lib/tradeSimData.ts client/src/lib/communityPulseData.ts
+          # NOTE: filename is `lineupData.ts` (singular). Listing each file
+          # explicitly avoids accidental commits of unrelated changes.
+          git add \
+            client/src/lib/tradeValueData.ts \
+            client/src/lib/lineupData.ts \
+            client/src/lib/tacticsData.ts \
+            client/src/lib/projectionsData.ts \
+            client/src/lib/draftData.ts \
+            client/src/lib/clutchData.ts \
+            client/src/lib/tradeSimData.ts \
+            client/src/lib/communityPulseData.ts
           git commit -m "Weekly update: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 

@@ -5,7 +5,7 @@
 // Exit codes: 0 = all pass, 1 = critical failure, 2 = partial failure
 
 import { spawn } from "child_process";
-import { writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -27,21 +27,50 @@ if (!process.env.ANTHROPIC_API_KEY) {
   process.exit(0);
 }
 
-// All weekly scripts are independent — run them all in parallel
+// All weekly scripts are independent — run them all in parallel.
+// `timeoutMs` overrides the default per-script timeout.
+//
+// Each script calls Anthropic with up to ~12-16K output tokens. Under load
+// individual calls can take 2-3 minutes, and `claudeGenerate` retries with
+// 5s→60s backoff on overload. The previous 3-minute default left no headroom
+// when several scripts requested simultaneously, so we use a 6-minute default.
+// The workflow itself still bounds total runtime via `timeout-minutes: 15`.
+const DEFAULT_SCRIPT_TIMEOUT = 360_000; // 6 minutes per script
+// `output` is the data file the script is expected to write. After every
+// script finishes successfully we run a syntax/parse check against the file
+// to catch truncated AI output, duplicate keys, etc. before they reach commit
+// (which is what broke the 2026-04-20 Vercel build with `tradeSimData.ts`
+// duplicate keys and `draftData.ts` unterminated string).
 const WEEKLY_SCRIPTS = [
-  { name: "Trade Value", script: "generate-trade-value.mjs" },
-  { name: "Lineups", script: "generate-lineups.mjs" },
-  { name: "Tactics", script: "generate-tactics.mjs" },
-  { name: "Projections", script: "generate-projections.mjs" },
-  { name: "Draft Intel", script: "generate-draft.mjs" },
-  { name: "Clutch Ratings", script: "generate-clutch.mjs" },
-  { name: "Trade Simulator", script: "generate-trade-sim.mjs" },
-  { name: "Community Pulse", script: "generate-community-pulse.mjs" },
+  { name: "Trade Value",     script: "generate-trade-value.mjs",   output: "client/src/lib/tradeValueData.ts" },
+  { name: "Lineups",         script: "generate-lineups.mjs",       output: "client/src/lib/lineupData.ts" },
+  { name: "Tactics",         script: "generate-tactics.mjs",       output: "client/src/lib/tacticsData.ts" },
+  { name: "Projections",     script: "generate-projections.mjs",   output: "client/src/lib/projectionsData.ts" },
+  { name: "Draft Intel",     script: "generate-draft.mjs",         output: "client/src/lib/draftData.ts" },
+  { name: "Clutch Ratings",  script: "generate-clutch.mjs",        output: "client/src/lib/clutchData.ts" },
+  { name: "Trade Simulator", script: "generate-trade-sim.mjs",     output: "client/src/lib/tradeSimData.ts" },
+  { name: "Community Pulse", script: "generate-community-pulse.mjs", output: "client/src/lib/communityPulseData.ts" },
 ];
 
-const SCRIPT_TIMEOUT = 180_000; // 3 minutes per script
+// Quick parse check: the data files are TS module bodies that are 99% object
+// literals. esbuild's parser catches duplicate keys, unterminated strings,
+// stray `,`, mismatched brackets — exactly the failure modes Claude produces.
+async function validateOutput(absPath) {
+  if (!existsSync(absPath)) return { ok: false, reason: "output file missing" };
+  try {
+    const { transform } = await import("esbuild");
+    const code = readFileSync(absPath, "utf8");
+    await transform(code, { loader: "ts", format: "esm", target: "esnext" });
+    return { ok: true };
+  } catch (err) {
+    const first = (err.errors?.[0]?.text || err.message || String(err)).split("\n")[0];
+    const loc = err.errors?.[0]?.location;
+    const where = loc ? ` (line ${loc.line})` : "";
+    return { ok: false, reason: `syntax: ${first}${where}` };
+  }
+}
 
-function runScript({ name, script }) {
+function runScript({ name, script, output, timeoutMs = DEFAULT_SCRIPT_TIMEOUT }) {
   return new Promise((resolve) => {
     const scriptPath = join(__dirname, script);
     const start = Date.now();
@@ -58,18 +87,34 @@ function runScript({ name, script }) {
     child.stdout.on("data", (d) => { stdout += d; });
     child.stderr.on("data", (d) => { stderr += d; });
 
+    let timedOut = false;
     const timer = setTimeout(() => {
+      timedOut = true;
       child.kill("SIGTERM");
-    }, SCRIPT_TIMEOUT);
+    }, timeoutMs);
 
-    child.on("close", (code) => {
+    child.on("close", async (code) => {
       clearTimeout(timer);
       const elapsed = ((Date.now() - start) / 1000).toFixed(1);
       if (code === 0) {
+        // Validate the script's output file before declaring success so that
+        // syntactically broken Claude output (truncated strings, duplicate
+        // keys, etc.) is treated as a script failure rather than committed.
+        if (output && !DRY_RUN) {
+          const check = await validateOutput(join(ROOT, output));
+          if (!check.ok) {
+            console.error(`  [${name}] generated ${output} but it failed parse check: ${check.reason}`);
+            resolve({ name, status: "failed", elapsed, error: `invalid output (${check.reason})` });
+            return;
+          }
+        }
         resolve({ name, status: "success", elapsed });
       } else {
         if (stderr) console.error(`  [${name}] ${stderr.trim()}`);
-        resolve({ name, status: "failed", elapsed, error: `exit code ${code}` });
+        const reason = timedOut
+          ? `timed out after ${(timeoutMs / 1000).toFixed(0)}s`
+          : `exit code ${code}`;
+        resolve({ name, status: "failed", elapsed, error: reason });
       }
     });
 
