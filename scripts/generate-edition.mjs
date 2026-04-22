@@ -265,17 +265,57 @@ Keep it to one line, valid JSON-compatible syntax (strings in double quotes, no 
     messages: [{ role: "user", content: archivePrompt }],
   });
 
-  const archiveEntry = archiveMsg.content[0].text.trim();
+  // Strip any accidental markdown fences Claude tacked on.
+  let archiveEntry = archiveMsg.content[0].text.trim()
+    .replace(/^```(?:json|ts|typescript|js|javascript)?\n?/m, "")
+    .replace(/\n?```$/m, "")
+    .trim();
+  // Drop a trailing semicolon or comma if Claude added one.
+  archiveEntry = archiveEntry.replace(/[;,]+$/, "");
 
-  // Prepend to archiveData.ts
+  // Validate the entry is a parseable JS object literal *before* we touch
+  // archiveData.ts. The 2026-04-21 incident was caused by Claude returning
+  // entries with broken keys like `tags:["..."]` (missing close-quote on
+  // the key) which then poisoned the build for two days.
+  const { transform } = await import("esbuild");
+  try {
+    await transform(`const __entry = ${archiveEntry};`, { loader: "ts", format: "esm" });
+  } catch (err) {
+    const first = (err.errors?.[0]?.text || err.message || String(err)).split("\n")[0];
+    console.error(`❌ archive entry failed parse check: ${first}`);
+    console.error("   Skipping archiveData.ts update — pulseData.ts already updated successfully.");
+    return;
+  }
+
   const archivePath = join(ROOT, "client/src/lib/archiveData.ts");
-  let archiveContent = readFileSync(archivePath, "utf8");
-  archiveContent = archiveContent.replace(
+  const archiveBefore = readFileSync(archivePath, "utf8");
+
+  // Skip if we've already prepended an entry for this date this run (or
+  // earlier today). Avoids duplicate entries when the daily workflow
+  // retries — that's how 2026-04-21 ended up with five entries.
+  const dupRe = new RegExp(`["']?id["']?\\s*:\\s*["']${editionISO}["']`);
+  if (dupRe.test(archiveBefore.split("\n").slice(0, 30).join("\n"))) {
+    console.log(`ℹ archiveData.ts already has an entry for ${editionISO} — skipping prepend.`);
+    return;
+  }
+
+  const archiveContent = archiveBefore.replace(
     "export const archiveEditions = [",
     `export const archiveEditions = [\n  ${archiveEntry},`
   );
   writeFileSync(archivePath, archiveContent, "utf8");
-  console.log("✓ archiveData.ts updated");
+
+  // Final safety net: parse the whole file. If something we missed broke
+  // it, roll back.
+  try {
+    await transform(readFileSync(archivePath, "utf8"), { loader: "ts", format: "esm" });
+    console.log("✓ archiveData.ts updated");
+  } catch (err) {
+    writeFileSync(archivePath, archiveBefore, "utf8");
+    const first = (err.errors?.[0]?.text || err.message || String(err)).split("\n")[0];
+    console.error(`❌ archiveData.ts post-write parse failed: ${first}`);
+    console.error("   Rolled back to previous archive content.");
+  }
 
   console.log(`\n✅ Done! Vol. 2026 · No. ${editionNo} — ${editionDate}`);
 }

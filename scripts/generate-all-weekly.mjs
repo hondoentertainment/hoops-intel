@@ -5,9 +5,10 @@
 // Exit codes: 0 = all pass, 1 = critical failure, 2 = partial failure
 
 import { spawn } from "child_process";
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { validateOutput } from "./lib/validate-output.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -51,24 +52,6 @@ const WEEKLY_SCRIPTS = [
   { name: "Trade Simulator", script: "generate-trade-sim.mjs",     output: "client/src/lib/tradeSimData.ts" },
   { name: "Community Pulse", script: "generate-community-pulse.mjs", output: "client/src/lib/communityPulseData.ts" },
 ];
-
-// Quick parse check: the data files are TS module bodies that are 99% object
-// literals. esbuild's parser catches duplicate keys, unterminated strings,
-// stray `,`, mismatched brackets — exactly the failure modes Claude produces.
-async function validateOutput(absPath) {
-  if (!existsSync(absPath)) return { ok: false, reason: "output file missing" };
-  try {
-    const { transform } = await import("esbuild");
-    const code = readFileSync(absPath, "utf8");
-    await transform(code, { loader: "ts", format: "esm", target: "esnext" });
-    return { ok: true };
-  } catch (err) {
-    const first = (err.errors?.[0]?.text || err.message || String(err)).split("\n")[0];
-    const loc = err.errors?.[0]?.location;
-    const where = loc ? ` (line ${loc.line})` : "";
-    return { ok: false, reason: `syntax: ${first}${where}` };
-  }
-}
 
 function runScript({ name, script, output, timeoutMs = DEFAULT_SCRIPT_TIMEOUT }) {
   return new Promise((resolve) => {

@@ -6,6 +6,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { loadLocalEnv } from "./load-local-env.mjs";
+import { validateOutput } from "./lib/validate-output.mjs";
 
 loadLocalEnv();
 
@@ -15,16 +16,21 @@ const ROOT = join(__dirname, "..");
 
 // Scripts marked critical=true will abort the run (exit 1) if they fail.
 // Secondary scripts (critical=false) produce exit code 2 (partial failure).
+//
+// `output` is the data file the script writes (when applicable). After the
+// script exits 0 we run a TS parse check on the file using esbuild — this
+// catches truncated AI output, duplicate keys, etc. before they reach
+// commit. RSS Feed and Sitemap write XML, so they're skipped.
 const DAILY_SCRIPTS = [
-  { name: "Edition",     script: "generate-edition.mjs",    critical: true  },
-  { name: "Watch Guide", script: "generate-watch-guide.mjs",critical: false },
-  { name: "Sentiment",   script: "generate-sentiment.mjs",  critical: false },
-  { name: "Momentum",    script: "generate-momentum.mjs",   critical: false },
-  { name: "Podcast",     script: "generate-podcast.mjs",    critical: false },
-  { name: "History",     script: "generate-history.mjs",    critical: false },
-  { name: "Refs",        script: "generate-refs.mjs",       critical: false },
-  { name: "RSS Feed",    script: "generate-rss.mjs",        critical: false },
-  { name: "Sitemap",     script: "generate-sitemap.mjs",    critical: false },
+  { name: "Edition",     script: "generate-edition.mjs",     critical: true,  output: "client/src/lib/pulseData.ts"      },
+  { name: "Watch Guide", script: "generate-watch-guide.mjs", critical: false, output: "client/src/lib/watchGuideData.ts" },
+  { name: "Sentiment",   script: "generate-sentiment.mjs",   critical: false, output: "client/src/lib/sentimentData.ts"  },
+  { name: "Momentum",    script: "generate-momentum.mjs",    critical: false, output: "client/src/lib/momentumData.ts"   },
+  { name: "Podcast",     script: "generate-podcast.mjs",     critical: false, output: "client/src/lib/podcastData.ts"    },
+  { name: "History",     script: "generate-history.mjs",     critical: false, output: "client/src/lib/historyData.ts"    },
+  { name: "Refs",        script: "generate-refs.mjs",        critical: false, output: "client/src/lib/refData.ts"        },
+  { name: "RSS Feed",    script: "generate-rss.mjs",         critical: false },
+  { name: "Sitemap",     script: "generate-sitemap.mjs",     critical: false },
 ];
 
 async function main() {
@@ -43,7 +49,7 @@ async function main() {
   let failed = 0;
   let criticalFailed = false;
 
-  for (const { name, script, critical } of DAILY_SCRIPTS) {
+  for (const { name, script, critical, output } of DAILY_SCRIPTS) {
     const scriptPath = join(__dirname, script);
     console.log(`── ${name} (${script}) ──`);
 
@@ -54,6 +60,20 @@ async function main() {
         env: process.env,
         // No timeout — edition uses multi-minute overload retries (529).
       });
+      // Validate the script's output file (TS data files only). Catches
+      // syntactically broken Claude output before it gets committed and
+      // breaks the Vercel build.
+      if (output) {
+        const check = await validateOutput(join(ROOT, output));
+        if (!check.ok) {
+          const reason = `invalid output (${check.reason})`;
+          results.push({ name, status: "failed", error: reason });
+          failed++;
+          if (critical) criticalFailed = true;
+          console.error(`❌ ${name} — FAILED: ${reason}\n`);
+          continue;
+        }
+      }
       results.push({ name, status: "success" });
       passed++;
       console.log(`✅ ${name} — SUCCESS\n`);

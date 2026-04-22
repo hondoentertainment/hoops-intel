@@ -2,7 +2,8 @@
 // Route: /community-pulse
 
 import { useState, useCallback } from "react";
-import { communityPulseData, ratablePlayers } from "../lib/communityPulseData";
+import { communityPulseData } from "../lib/communityPulseData";
+import { ratablePlayers } from "../lib/communityRatablePlayers";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES

@@ -67,8 +67,12 @@ function parsePulseData() {
     }
 
     const raw = src.slice(start, i).trim();
+    // pulseData.ts uses TS object-literal syntax (unquoted keys, trailing
+    // commas) which `JSON.parse` rejects. The literal is valid JS, so we
+    // evaluate it in an isolated `new Function` scope. This mirrors the
+    // approach used by `generate-edition.mjs`'s `extractExportLiteral`.
     try {
-      return JSON.parse(raw);
+      return new Function(`"use strict"; return (${raw});`)();
     } catch {
       return null;
     }

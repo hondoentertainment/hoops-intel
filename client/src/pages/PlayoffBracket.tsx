@@ -1,172 +1,5 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { eastStandings, westStandings } from "../lib/pulseData";
-import { playoffSeries, type PlayoffSeries } from "../lib/playoffData";
-
-// ═══════════════════════════════════════════════════════════
-// PLAYOFF BRACKET
-// When `playoffSeries` is non-empty the bracket renders live series
-// state (score, elimination marker, next game). Otherwise it falls
-// back to projected matchups generated from current standings.
-// ═══════════════════════════════════════════════════════════
-
-interface BracketTeam {
-  seed: number;
-  team: string;
-  record: string;
-  pct: number;
-}
-
-function getSeededTeams(standings: any[]): BracketTeam[] {
-  return [...standings]
-    .sort((a: any, b: any) => {
-      const pctA = a.wins / (a.wins + a.losses);
-      const pctB = b.wins / (b.wins + b.losses);
-      return pctB - pctA;
-    })
-    .map((t: any, i: number) => ({
-      seed: i + 1,
-      team: t.team,
-      record: `${t.wins}-${t.losses}`,
-      pct: t.wins / (t.wins + t.losses),
-    }));
-}
-
-// ── Live series card ─────────────────────────────────────────
-
-function SeriesCard({ series }: { series: PlayoffSeries }) {
-  const elimination = series.higherWins === 3 || series.lowerWins === 3;
-  const complete = series.status === "complete";
-  const leaderWins = Math.max(series.higherWins, series.lowerWins);
-  const leader = series.higherWins > series.lowerWins ? series.higherTeam : series.lowerTeam;
-  const nextGame = series.games.find((g) => g.status === "scheduled");
-
-  const accentColor = complete
-    ? "rgba(16,185,129,0.6)"
-    : elimination
-    ? "rgba(244,63,94,0.6)"
-    : "rgba(14,165,233,0.4)";
-
-  return (
-    <div
-      className="glass-card rounded-lg p-3"
-      style={{ borderLeft: `3px solid ${accentColor}`, minWidth: 220 }}
-    >
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
-          {series.conference === "east" ? "East" : series.conference === "west" ? "West" : "Finals"} ·
-          {" "}({series.higherSeed}) vs ({series.lowerSeed})
-        </div>
-        {elimination && !complete && (
-          <span
-            className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
-            style={{ background: "rgba(244,63,94,0.15)", color: "#F43F5E" }}
-          >
-            Elimination
-          </span>
-        )}
-        {complete && (
-          <span
-            className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
-            style={{ background: "rgba(16,185,129,0.15)", color: "#10B981" }}
-          >
-            Advances
-          </span>
-        )}
-      </div>
-      <div className="space-y-1.5">
-        <TeamRow
-          team={series.higherTeam}
-          seed={series.higherSeed}
-          wins={series.higherWins}
-          highlighted={complete ? series.winner === series.higherTeam : series.higherWins >= series.lowerWins}
-          eliminated={complete && series.winner !== series.higherTeam}
-        />
-        <TeamRow
-          team={series.lowerTeam}
-          seed={series.lowerSeed}
-          wins={series.lowerWins}
-          highlighted={complete ? series.winner === series.lowerTeam : series.lowerWins > series.higherWins}
-          eliminated={complete && series.winner !== series.lowerTeam}
-        />
-      </div>
-      <div className="mt-2 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
-        {complete
-          ? `${leader} wins ${leaderWins}-${leaderWins === series.higherWins ? series.lowerWins : series.higherWins}`
-          : series.summary}
-      </div>
-      {nextGame && !complete && (
-        <div className="mt-1 text-[11px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
-          Game {nextGame.gameNumber} · {nextGame.time ?? nextGame.date} {nextGame.tv ? `· ${nextGame.tv}` : ""}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TeamRow({
-  team,
-  seed,
-  wins,
-  highlighted,
-  eliminated,
-}: {
-  team: string;
-  seed: number;
-  wins: number;
-  highlighted: boolean;
-  eliminated: boolean;
-}) {
-  return (
-    <div className="flex items-center justify-between" style={{ opacity: eliminated ? 0.35 : 1 }}>
-      <div className="flex items-center gap-2">
-        <span
-          className="w-5 h-5 rounded flex items-center justify-center text-xs font-bold"
-          style={{
-            background: highlighted ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.05)",
-            color: highlighted ? "#0EA5E9" : "rgba(255,255,255,0.5)",
-          }}
-        >
-          {seed}
-        </span>
-        <a
-          href={`/team/${team.toLowerCase()}`}
-          className={`text-sm font-semibold ${eliminated ? "line-through" : ""} text-white hover:text-sky-400 transition-colors`}
-        >
-          {team}
-        </a>
-      </div>
-      <div className="flex items-center gap-1">
-        {[0, 1, 2, 3].map((i) => (
-          <span
-            key={i}
-            className="w-2 h-2 rounded-full"
-            style={{
-              background: i < wins ? (highlighted ? "#0EA5E9" : "#10B981") : "rgba(255,255,255,0.08)",
-            }}
-          />
-        ))}
-        <span className="mono-data text-xs ml-2 font-bold" style={{ color: highlighted ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
-          {wins}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-// ── Projected bracket (fallback) ─────────────────────────────
-
-function MatchupCard({ higher, lower, round }: { higher: BracketTeam; lower: BracketTeam; round: string }) {
-  return (
-    <div className="glass-card rounded-lg p-3 mb-2" style={{ minWidth: 200 }}>
-      <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>{round}</div>
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-5 h-5 rounded flex items-center justify-center text-xs font-bold" style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9" }}>
-              {higher.seed}
-            </span>
-            <a href={`/team/${higher.team.toLowerCase()}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
-              {higher.team}
 import { getTeamColor } from "../lib/teamColors";
 import {
   playInGames,
@@ -183,9 +16,9 @@ import {
   type EliminationWatch,
 } from "../lib/playoffBracketData";
 
-// ═══════════════════════════════════════════════════════════
-// PLAYOFF BRACKET — Full Playoff Experience
-// ═══════════════════════════════════════════════════════════
+// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+// PLAYOFF BRACKET ΓÇö Full Playoff Experience
+// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 
 type TabId = "bracket" | "performers" | "mvp" | "tracker";
 
@@ -217,9 +50,9 @@ function getStatusLabel(urgency: EliminationWatch["urgency"]): string {
 
 function getTrendIcon(trend: "up" | "down" | "steady"): string {
   switch (trend) {
-    case "up": return "▲";
-    case "down": return "▼";
-    case "steady": return "—";
+    case "up": return "Γû▓";
+    case "down": return "Γû╝";
+    case "steady": return "ΓÇö";
   }
 }
 
@@ -287,10 +120,10 @@ function StatusBar() {
 
 function TabNav({ active, onChange }: { active: TabId; onChange: (t: TabId) => void }) {
   const tabs: { id: TabId; label: string; icon: string }[] = [
-    { id: "bracket", label: "Bracket", icon: "🏆" },
-    { id: "performers", label: "Performers", icon: "🔥" },
-    { id: "mvp", label: "MVP Race", icon: "👑" },
-    { id: "tracker", label: "Tracker", icon: "📊" },
+    { id: "bracket", label: "Bracket", icon: "≡ƒÅå" },
+    { id: "performers", label: "Performers", icon: "≡ƒöÑ" },
+    { id: "mvp", label: "MVP Race", icon: "≡ƒææ" },
+    { id: "tracker", label: "Tracker", icon: "≡ƒôè" },
   ];
 
   return (
@@ -346,7 +179,7 @@ function PlayInGameCard({ game }: { game: PlayInGame }) {
         <div className="flex items-center gap-2">
           {isLive && <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />}
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {isFinal ? "FINAL" : isLive ? "LIVE" : game.time} · {game.tv}
+            {isFinal ? "FINAL" : isLive ? "LIVE" : game.time} ┬╖ {game.tv}
           </span>
         </div>
       </div>
@@ -377,16 +210,10 @@ function PlayInGameCard({ game }: { game: PlayInGame }) {
             </a>
           </div>
           <span className="mono-data text-lg font-bold" style={{ color: awayWon ? "#fff" : "rgba(255,255,255,0.4)" }}>
-            {game.awayScore ?? "—"}
+            {game.awayScore ?? "ΓÇö"}
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-5 h-5 rounded flex items-center justify-center text-xs font-bold" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}>
-              {lower.seed}
-            </span>
-            <a href={`/team/${lower.team.toLowerCase()}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
-              {lower.team}
           <div className="flex items-center gap-3">
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
@@ -410,17 +237,17 @@ function PlayInGameCard({ game }: { game: PlayInGame }) {
             </a>
           </div>
           <span className="mono-data text-lg font-bold" style={{ color: homeWon ? "#fff" : "rgba(255,255,255,0.4)" }}>
-            {game.homeScore ?? "—"}
+            {game.homeScore ?? "ΓÇö"}
           </span>
         </div>
       </div>
 
-      {/* Bottom Bar — headline + top performer */}
+      {/* Bottom Bar ΓÇö headline + top performer */}
       <div className="px-4 py-2 border-t" style={{ borderColor: "rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.01)" }}>
         <div className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>{game.headline}</div>
         {game.topPerformer && (
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-xs" style={{ color: "#F59E0B" }}>★</span>
+            <span className="text-xs" style={{ color: "#F59E0B" }}>Γÿà</span>
             <a href={`/player/${game.topPerformer.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-")}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors">
               {game.topPerformer}
             </a>
@@ -429,7 +256,7 @@ function PlayInGameCard({ game }: { game: PlayInGame }) {
         )}
         {game.eliminated && (
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="text-xs">❌</span>
+            <span className="text-xs">Γ¥î</span>
             <span className="text-xs font-semibold" style={{ color: "#F43F5E" }}>{game.eliminated} eliminated</span>
           </div>
         )}
@@ -442,7 +269,7 @@ function PlayInGameCard({ game }: { game: PlayInGame }) {
 
 function PlayInSection() {
   const nights = [1, 2, 3];
-  const nightLabels = ["Night 1 — Mon April 14", "Night 2 — Wed April 15", "Night 3 — Fri April 17"];
+  const nightLabels = ["Night 1 ΓÇö Mon April 14", "Night 2 ΓÇö Wed April 15", "Night 3 ΓÇö Fri April 17"];
 
   return (
     <div className="mb-10">
@@ -484,28 +311,6 @@ function PlayInSection() {
   );
 }
 
-function ProjectedConferenceBracket({ title, standings }: { title: string; standings: any[] }) {
-  const teams = getSeededTeams(standings);
-  const top6 = teams.slice(0, 6);
-  const playIn = teams.slice(6, 10);
-  const matchups = [
-    { higher: teams[0], lower: teams[7] ?? teams[0], round: "First Round" },
-    { higher: teams[1], lower: teams[6] ?? teams[1], round: "First Round" },
-    { higher: teams[2], lower: teams[5] ?? teams[2], round: "First Round" },
-    { higher: teams[3], lower: teams[4] ?? teams[3], round: "First Round" },
-  ];
-  return (
-    <div>
-      <div className="section-label mb-3" style={{ color: "#0EA5E9" }}>{title}</div>
-      <div className="mb-4">
-        <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>CURRENT SEEDING</div>
-        <div className="grid grid-cols-2 gap-1">
-          {top6.map((t) => (
-            <div key={t.team} className="flex items-center gap-2 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
-              <span className="mono-data text-xs font-bold" style={{ color: "#0EA5E9", width: 16 }}>{t.seed}</span>
-              <a href={`/team/${t.team.toLowerCase()}`} className="text-xs text-white hover:text-sky-400">{t.team}</a>
-              <span className="mono-data text-xs ml-auto" style={{ color: "rgba(255,255,255,0.4)" }}>{t.record}</span>
-              <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>.{(t.pct * 1000).toFixed(0).padStart(3, "0")}</span>
 // --- Series Card ---
 
 function SeriesCard({ series }: { series: PlayoffSeries }) {
@@ -535,7 +340,7 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
               </span>
             )}
             {!isTBD && (
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{expanded ? "▲" : "▼"}</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{expanded ? "Γû▓" : "Γû╝"}</span>
             )}
           </div>
         </div>
@@ -606,14 +411,6 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mb-4">
-        <PlayInCard teams={playIn} />
-      </div>
-      <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>PROJECTED FIRST ROUND</div>
-      {matchups.map((m, i) => (
-        <MatchupCard key={i} higher={m.higher} lower={m.lower} round={`(${m.higher.seed}) vs (${m.lower.seed})`} />
-      ))}
 
         {/* Series status */}
         {totalGames > 0 && (
@@ -637,7 +434,7 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
       {series.keyMatchup && (
         <div className="px-4 py-2 border-t" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
           <div className="flex items-center gap-2">
-            <span className="text-xs">⚔️</span>
+            <span className="text-xs">ΓÜö∩╕Å</span>
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{series.keyMatchup}</span>
           </div>
         </div>
@@ -689,43 +486,6 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
   );
 }
 
-// ── Live conference bracket ──────────────────────────────────
-
-function LiveConferenceBracket({ title, conference }: { title: string; conference: "east" | "west" }) {
-  const series = playoffSeries
-    .filter((s) => s.conference === conference)
-    .sort((a, b) => a.higherSeed - b.higherSeed);
-
-  return (
-    <div>
-      <div className="section-label mb-3" style={{ color: "#0EA5E9" }}>{title}</div>
-      <div className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>
-        {series.filter((s) => s.round === "first-round").length > 0
-          ? "FIRST ROUND"
-          : "PLAYOFF SERIES"}
-      </div>
-      <div className="space-y-2">
-        {series.map((s) => (
-          <SeriesCard key={s.seriesId} series={s} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function PlayoffBracket() {
-  const live = playoffSeries.length > 0;
-
-  return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <header className="sticky top-0 z-50 border-b" style={{ background: "rgba(5,13,26,0.95)", borderColor: "rgba(255,255,255,0.08)", backdropFilter: "blur(20px)" }}>
-        <div className="container">
-          <div className="flex items-center justify-between h-14">
-            <a href="/" className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm" style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>HI</div>
-              <div>
-                <div className="display-heading text-white text-lg leading-none">HOOPS INTEL</div>
-                <div className="section-label" style={{ fontSize: "0.6rem" }}>PLAYOFF BRACKET</div>
 // --- First Round Section ---
 
 function FirstRoundSection() {
@@ -737,7 +497,7 @@ function FirstRoundSection() {
       <div className="flex items-center gap-3 mb-4">
         <div className="section-label" style={{ color: "#0EA5E9" }}>FIRST ROUND</div>
         <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-          Starts {bracketMeta.firstRoundStarts} · Best of 7
+          Starts {bracketMeta.firstRoundStarts} ┬╖ Best of 7
         </span>
       </div>
 
@@ -832,39 +592,16 @@ function VisualBracket() {
             <div className="flex flex-col items-center justify-center">
               <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>Conf Semis</div>
               <div className="glass-card rounded-lg p-4 text-center w-full" style={{ borderStyle: "dashed" }}>
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance →</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance ΓåÆ</span>
               </div>
               <div className="h-8" />
               <div className="glass-card rounded-lg p-4 text-center w-full" style={{ borderStyle: "dashed" }}>
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance →</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance ΓåÆ</span>
               </div>
             </div>
           </div>
         </div>
 
-      <div className="container py-8">
-        <div className="section-label mb-2">2025-26 NBA PLAYOFFS</div>
-        <h1 className="display-heading text-white text-3xl mb-2">
-          {live ? "Live Playoff Bracket" : "Projected Playoff Bracket"}
-        </h1>
-        <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
-          {live
-            ? "Series state updates with each game. Red accents mark elimination games; green marks series clinchers."
-            : "Based on current standings. Seeds 7-10 enter the Play-In Tournament. Updated daily."}
-        </p>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {live ? (
-            <>
-              <LiveConferenceBracket title="EASTERN CONFERENCE" conference="east" />
-              <LiveConferenceBracket title="WESTERN CONFERENCE" conference="west" />
-            </>
-          ) : (
-            <>
-              <ProjectedConferenceBracket title="EASTERN CONFERENCE" standings={eastStandings} />
-              <ProjectedConferenceBracket title="WESTERN CONFERENCE" standings={westStandings} />
-            </>
-          )}
         {/* West */}
         <div>
           <div className="text-sm font-bold text-center mb-4" style={{ color: "#F59E0B" }}>WEST</div>
@@ -878,11 +615,11 @@ function VisualBracket() {
             <div className="flex flex-col items-center justify-center">
               <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>Conf Semis</div>
               <div className="glass-card rounded-lg p-4 text-center w-full" style={{ borderStyle: "dashed" }}>
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance →</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance ΓåÆ</span>
               </div>
               <div className="h-8" />
               <div className="glass-card rounded-lg p-4 text-center w-full" style={{ borderStyle: "dashed" }}>
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance →</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Winners advance ΓåÆ</span>
               </div>
             </div>
           </div>
@@ -895,9 +632,9 @@ function VisualBracket() {
           className="glass-card rounded-xl p-5 text-center playoff-finals-glow"
           style={{ borderTop: "3px solid #F59E0B" }}
         >
-          <div className="section-label mb-1" style={{ color: "#F59E0B" }}>🏆 NBA FINALS</div>
+          <div className="section-label mb-1" style={{ color: "#F59E0B" }}>≡ƒÅå NBA FINALS</div>
           <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-            East Champion vs West Champion · June 2026
+            East Champion vs West Champion ┬╖ June 2026
           </div>
           <div className="flex items-center justify-center gap-8 mt-3">
             <div className="text-center">
@@ -916,27 +653,6 @@ function VisualBracket() {
   );
 }
 
-        {!live && (
-          <div className="mt-8">
-            <div className="glass-card rounded-xl p-6 text-center" style={{ borderTop: "3px solid #0EA5E9" }}>
-              <div className="section-label mb-2">PROJECTED NBA FINALS</div>
-              <div className="flex items-center justify-center gap-6">
-                <div>
-                  <a href={`/team/${getSeededTeams(eastStandings)[0]?.team.toLowerCase()}`} className="display-heading text-white text-2xl hover:text-sky-400 transition-colors">
-                    {getSeededTeams(eastStandings)[0]?.team}
-                  </a>
-                  <div className="mono-data text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    East #1 · {getSeededTeams(eastStandings)[0]?.record}
-                  </div>
-                </div>
-                <div className="text-2xl font-bold" style={{ color: "rgba(255,255,255,0.2)" }}>vs</div>
-                <div>
-                  <a href={`/team/${getSeededTeams(westStandings)[0]?.team.toLowerCase()}`} className="display-heading text-white text-2xl hover:text-sky-400 transition-colors">
-                    {getSeededTeams(westStandings)[0]?.team}
-                  </a>
-                  <div className="mono-data text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    West #1 · {getSeededTeams(westStandings)[0]?.record}
-                  </div>
 // --- Bracket Tab ---
 
 function BracketTab() {
@@ -1013,7 +729,7 @@ function MvpTab() {
         <div className="section-label" style={{ color: "#F59E0B" }}>PLAYOFF MVP RACE</div>
       </div>
       <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
-        Pre-playoff odds — rankings will update as the postseason unfolds
+        Pre-playoff odds ΓÇö rankings will update as the postseason unfolds
       </p>
       <div className="space-y-3">
         {mvpCandidates.map((c) => (
@@ -1027,7 +743,7 @@ function MvpTab() {
                   border: c.rank === 1 ? "1px solid rgba(245,158,11,0.4)" : "1px solid rgba(255,255,255,0.06)",
                 }}
               >
-                <span className="text-lg">{c.rank === 1 ? "👑" : c.rank === 2 ? "🥈" : c.rank === 3 ? "🥉" : `#${c.rank}`}</span>
+                <span className="text-lg">{c.rank === 1 ? "≡ƒææ" : c.rank === 2 ? "≡ƒÑê" : c.rank === 3 ? "≡ƒÑë" : `#${c.rank}`}</span>
               </div>
 
               <div className="flex-1 min-w-0">
@@ -1048,7 +764,6 @@ function MvpTab() {
               </div>
             </div>
           </div>
-        )}
         ))}
       </div>
     </div>
@@ -1168,7 +883,7 @@ function TrackerTab() {
                   </td>
                   <td className="text-right px-4 py-2">
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                      {s.games[0]?.date ?? "TBD"}{s.games[0]?.tv ? ` · ${s.games[0].tv}` : ""}
+                      {s.games[0]?.date ?? "TBD"}{s.games[0]?.tv ? ` ┬╖ ${s.games[0].tv}` : ""}
                     </span>
                   </td>
                 </tr>
@@ -1181,9 +896,9 @@ function TrackerTab() {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 // MAIN PAGE
-// ═══════════════════════════════════════════════════════════
+// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 
 export default function PlayoffBracket() {
   const [activeTab, setActiveTab] = useState<TabId>("bracket");
@@ -1196,11 +911,11 @@ export default function PlayoffBracket() {
         {/* Page title */}
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl">≡ƒÅå</span>
             <div>
               <h1 className="display-heading text-white text-2xl sm:text-3xl">2026 NBA PLAYOFFS</h1>
               <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Updated {bracketMeta.lastUpdated} · {bracketMeta.currentRound}
+                Updated {bracketMeta.lastUpdated} ┬╖ {bracketMeta.currentRound}
               </p>
             </div>
           </div>
@@ -1223,7 +938,7 @@ export default function PlayoffBracket() {
       <footer className="border-t py-6 mt-12" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         <div className="container flex items-center justify-between">
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-            Hoops Intel · Playoff Mode · {bracketMeta.lastUpdated}
+            Hoops Intel ┬╖ Playoff Mode ┬╖ {bracketMeta.lastUpdated}
           </span>
           <a href="/" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>
             &larr; Back to Today's Edition

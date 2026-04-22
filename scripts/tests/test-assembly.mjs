@@ -246,7 +246,10 @@ function writeTestSections(sections) {
 }
 
 function runAssembler() {
-  return execSync(`node ${ASSEMBLER}`, {
+  // Quote the path so spaces in the workspace directory (common on Windows
+  // — e.g. `C:\Users\…\OneDrive\Desktop\Hoops Intel`) don't get split into
+  // separate argv entries.
+  return execSync(`node "${ASSEMBLER}"`, {
     cwd: ROOT,
     encoding: "utf8",
     stdio: ["pipe", "pipe", "pipe"],

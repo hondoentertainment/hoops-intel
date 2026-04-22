@@ -639,27 +639,7 @@ export const communityPulseData: CommunityPulseData = {
   weeklyNarrative: "The NBA community spent Saturday in awe of dominance and shock in equal measure — Oklahoma City's ruthless dismantling of Phoenix and Boston's emphatic beatdown of Philadelphia confirmed the sport's elite hierarchy, while Paolo Banchero's career-defining 31-point eruption in Detroit rewired the Eastern Conference narrative entirely and introduced a new name to the star conversation. The Phoenix Suns discourse has reached a fever pitch, with fan frustration at historic levels after a 35-point home obliteration, while Detroit's unexpected vulnerability against Orlando has reminded the community that 60 regular season wins means nothing if the switch can't flip in April. It's championship-posturing season, the seedings are crystallizing, and the community is fully locked in.",
 };
 
-// Top 20 ratable players for the voting section.
-// NOTE: kept stable (not regenerated weekly) so CommunityPulse.tsx imports stay valid.
-export const ratablePlayers = [
-  { player: "Shai Gilgeous-Alexander", team: "OKC" },
-  { player: "Luka Doncic", team: "LAL" },
-  { player: "Victor Wembanyama", team: "SAS" },
-  { player: "Jayson Tatum", team: "BOS" },
-  { player: "Nikola Jokic", team: "DEN" },
-  { player: "Jalen Johnson", team: "ATL" },
-  { player: "Cade Cunningham", team: "DET" },
-  { player: "Julius Randle", team: "MIN" },
-  { player: "LaMelo Ball", team: "CHA" },
-  { player: "Brandon Ingram", team: "TOR" },
-  { player: "Anthony Edwards", team: "MIN" },
-  { player: "Devin Booker", team: "PHX" },
-  { player: "Kevin Durant", team: "HOU" },
-  { player: "Jalen Brunson", team: "NYK" },
-  { player: "Evan Mobley", team: "CLE" },
-  { player: "Trae Young", team: "ATL" },
-  { player: "Kawhi Leonard", team: "LAC" },
-  { player: "Cooper Flagg", team: "DAL" },
-  { player: "Anthony Davis", team: "LAL" },
-  { player: "Jamal Murray", team: "DEN" },
-];
+// `ratablePlayers` lives in `./communityRatablePlayers` so it survives the
+// weekly regeneration of this file. Re-exported here for backwards-compat
+// with anything that imports it from `communityPulseData`.
+export { ratablePlayers } from "./communityRatablePlayers";
