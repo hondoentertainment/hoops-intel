@@ -47,142 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-22",
   displayDate: "April 22, 2026",
-  overallMood: "Playoff chaos and stunning upsets",
+  overallMood: "Absolute playoff pandemonium — the basketball internet is on fire after two historic upsets shook the entire postseason landscape",
   topics: [
     {
-      id: "embiid-game-7-masterpiece",
-      topic: "Embiid's Game 7 Dominance",
+      id: "embiid-game7-legend",
+      topic: "Embiid's Game 7 Masterpiece at TD Garden",
       sentiment: "positive",
-      intensity: 95,
-      volume: 47382,
-      summary: "Joel Embiid's 32-point, 14-rebound masterpiece in Game 7 at TD Garden to eliminate the Celtics has NBA Twitter going absolutely insane with praise",
+      intensity: 98,
+      volume: 52847,
+      summary: "Joel Embiid's 32-point, 14-rebound destruction of the Celtics in Game 7 on their own floor has the entire basketball internet treating him like a newly-crowned legend. The volume, intensity, and unanimous tone of the praise is nearly unprecedented for a first-round series.",
       sampleTakes: [
-        "EMBIID JUST BROKE THE CURSE. 32 AND 14 IN GAME 7 AT BOSTON. THIS MAN IS DIFFERENT 🔥🔥🔥",
-        "That Embiid performance was legendary. Walked into TD Garden and sent the Celtics home. Pure dominance.",
-        "Joel Embiid in a Game 7 elimination game: 32/14/3blks on 13-21 shooting. The Process is COMPLETE.",
-        "Embiid just did what Giannis couldn't, what KD couldn't. Eliminated the Celtics at home in Game 7. Superstar."
+        "EMBIID WALKED INTO TD GARDEN IN GAME 7 AND DESTROYED THE CELTICS. 32 AND 14. THE PROCESS IS OFFICIALLY COMPLETE 🔥🔥🔥",
+        "Joel Embiid just did something generational. You don't go into Boston in a Game 7 and make it look like a regular Tuesday. That man is different.",
+        "13-21 from the field in a Game 7 elimination game on the road. Embiid answered every single question tonight. Every. Single. One.",
+        "The people who spent years clowning Embiid for playoff failures owe him the biggest apology in NBA Twitter history right now 😭"
       ],
-      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum"],
+      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Jaylen Brown"],
       relatedTeams: ["PHI", "BOS"],
       trending: true
     },
     {
-      id: "blazers-historic-upset",
-      topic: "Portland's Shocking Upset",
-      sentiment: "positive",
-      intensity: 88,
-      volume: 41726,
-      summary: "The Trail Blazers completing a historic upset of the 62-win Spurs has everyone losing their minds about Dame Time and playoff experience",
-      sampleTakes: [
-        "THE 8TH SEED BLAZERS JUST ELIMINATED THE 62-WIN SPURS. DAME TIME IS ETERNAL 🏀⏰",
-        "Portland really said 'regular season records don't matter in the playoffs' and backed it up. Incredible.",
-        "Damian Lillard is 35 years old and still carrying teams to impossible upsets. Legendary status.",
-        "Anfernee Simons with 6 threes in an elimination game. The Blazers really pulled this off."
-      ],
-      relatedPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama"],
-      relatedTeams: ["POR", "SAS"],
-      trending: true
-    },
-    {
-      id: "celtics-collapse",
-      topic: "Celtics' Devastating Elimination",
+      id: "celtics-home-choke",
+      topic: "Celtics Eliminated at Home in Game 7",
       sentiment: "negative",
-      intensity: 92,
-      volume: 38947,
-      summary: "The Celtics getting eliminated at home in Game 7 has spawned brutal takes about their championship window and mental toughness",
+      intensity: 95,
+      volume: 48293,
+      summary: "Boston losing Game 7 at TD Garden to a seventh seed has detonated one of the nastiest discourse cycles of the entire season. Tatum's efficiency, the team's mental fortitude, and the franchise's championship ceiling are all being dragged through the mud simultaneously.",
       sampleTakes: [
-        "THE CELTICS REALLY GOT ELIMINATED AT HOME IN GAME 7 BY THE 7TH SEED 😭😭😭",
-        "Tatum shooting 7-19 in a Game 7 at home. This is why people question his superstar status.",
-        "Boston's championship window might be closed. Can't lose Game 7 at home to a lower seed.",
-        "The Celtics had homecourt and still choked. Embiid completely owned them when it mattered."
+        "THE CELTICS LOST GAME 7 AT HOME. TO THE SIXERS. THE 7TH SEED. I NEED EVERYONE TO SIT WITH THAT FOR A MOMENT 😭😭",
+        "Tatum went 7-for-19 in a Game 7 at home with a season on the line. That's not a superstar performance. That's not even a star performance.",
+        "Boston fans built this team up for YEARS and they got bounced in the first round at home. The championship window is nailed shut.",
+        "The Celtics DNA in big moments is just broken at this point. They had homecourt, they had the talent, and they still found a way to implode."
       ],
       relatedPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid"],
       relatedTeams: ["BOS", "PHI"],
       trending: true
     },
     {
-      id: "spurs-early-exit",
-      topic: "Spurs' Shocking First Round Exit",
-      sentiment: "negative",
-      intensity: 76,
-      volume: 29483,
-      summary: "San Antonio's stunning elimination despite 62 wins has fans debating youth vs experience and Wemby's playoff debut",
+      id: "dame-time-spurs-upset",
+      topic: "Portland's Historic Upset of 62-Win Spurs",
+      sentiment: "positive",
+      intensity: 91,
+      volume: 44718,
+      summary: "The Trail Blazers eliminating San Antonio in what might be the biggest first-round upset in a decade has the internet going absolutely feral. Dame Time mythology is at an all-time peak and everyone is suddenly a Portland fan.",
       sampleTakes: [
-        "62 wins and eliminated in the first round. The Spurs learned the hard way that playoffs are different.",
-        "Wembanyama put up numbers but couldn't win when it mattered. Growing pains in the playoffs.",
-        "Portland's veterans just outclassed San Antonio's youth. Experience > talent sometimes.",
-        "The Spurs window isn't closed but this has to sting. 62 wins for nothing."
+        "THE 8TH SEED TRAIL BLAZERS JUST ELIMINATED THE 62-WIN SPURS. DAME TIME IS NOT A SLOGAN. IT IS A RELIGION. ⏰🔥",
+        "Damian Lillard is 35 years old, plays for an 8th seed, and just led a playoff upset that will be talked about for 20 years. Respect this man.",
+        "Portland shot 15-of-32 from three in an elimination road game against a 62-win team. I don't care what anyone says, this is one of the greatest upsets in playoff history.",
+        "Anfernee Simons dropped 6 threes and nobody is talking about it because Dame went absolutely nuclear. What a night to be a Blazers fan."
       ],
-      relatedPlayers: ["Victor Wembanyama", "Damian Lillard"],
-      relatedTeams: ["SAS", "POR"],
-      trending: false
+      relatedPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama", "Jusuf Nurkić"],
+      relatedTeams: ["POR", "SAS"],
+      trending: true
     },
     {
-      id: "lakers-playoff-positioning",
-      topic: "Lakers Looking Dangerous",
-      sentiment: "positive",
-      intensity: 71,
-      volume: 27164,
-      summary: "Anthony Davis' dominant two-way performance against Houston has Lakers fans believing they can make another run",
+      id: "wemby-playoff-baptism",
+      topic: "Wembanyama's Harsh Playoff Debut",
+      sentiment: "mixed",
+      intensity: 82,
+      volume: 36492,
+      summary: "Victor Wembanyama putting up 27 and 11 in a losing elimination game has split the internet clean in half — one side calling it a masterclass in growing pains, the other side insisting individual stats mean nothing if you can't win the series.",
       sampleTakes: [
-        "AD with 26/11/4blks against Houston. When he's healthy, the Lakers are scary.",
-        "LeBron and AD both looked great tonight. Lakers might be peaking at the right time.",
-        "If AD stays healthy, the Lakers can beat anyone in the West. That defense is elite.",
-        "The Lakers just locked down Houston. Championship experience matters in the playoffs."
+        "Wemby had 27 and 11 in a playoff elimination game as a rookie. That's not failure, that's a preview of the next decade of basketball.",
+        "I don't care that Wembanyama scored 27. His team won 62 games and got bounced in the first round. Numbers don't mean anything without wins.",
+        "Portland's veterans ate Wemby's lunch every time it mattered. He needs to learn that playoff basketball is a completely different monster.",
+        "Give Wembanyama some actual playoff experience around him and he turns that series around easily. San Antonio failed him tonight."
       ],
-      relatedPlayers: ["Anthony Davis", "LeBron James"],
+      relatedPlayers: ["Victor Wembanyama", "Damian Lillard", "Anfernee Simons"],
+      relatedTeams: ["SAS", "POR"],
+      trending: true
+    },
+    {
+      id: "sixers-title-contender",
+      topic: "76ers Officially in Championship Conversation",
+      sentiment: "positive",
+      intensity: 86,
+      volume: 38124,
+      summary: "After years of near-misses and injury disasters, Philadelphia eliminating Boston in Game 7 on the road has finally pushed the internet into genuinely believing in the Sixers as a title threat. A healthy Embiid is changing narratives in real time.",
+      sampleTakes: [
+        "A healthy Joel Embiid is the most dominant player in these playoffs. The Sixers just eliminated a 56-win team on the road. They are for REAL.",
+        "Maxey with 26 in Game 7. Embiid with 32. The Sixers have two guys who can go nuclear in playoff moments. That's terrifying for the rest of the East.",
+        "Philadelphia going to the conference semis to face the Knicks is the most chaotic possible outcome and I am completely here for it.",
+        "The Process took forever but watching Embiid absolutely destroy the Celtics at TD Garden made every single painful year worth it."
+      ],
+      relatedPlayers: ["Joel Embiid", "Tyrese Maxey"],
+      relatedTeams: ["PHI", "NYK"],
+      trending: true
+    },
+    {
+      id: "ad-lakers-danger",
+      topic: "Anthony Davis Making the Lakers Scary Again",
+      sentiment: "positive",
+      intensity: 72,
+      volume: 27653,
+      summary: "Davis dropping 26-11-4 blocks while holding Houston to under 43% shooting has rekindled the conversation about whether a healthy Laker duo is still among the West's most dangerous threats heading into the postseason.",
+      sampleTakes: [
+        "Anthony Davis with 26, 11, and 4 blocks. When AD is healthy and locked in, the Lakers genuinely cannot be taken lightly by anyone in the West.",
+        "AD at both ends looking like a top-3 player in the league tonight. The Lakers are going to be a massive problem in these playoffs.",
+        "LeBron at 41 with 22 and 8 dimes. AD with a monster two-way game. This Lakers team might actually be built for a run.",
+        "Houston couldn't score against the Lakers because Anthony Davis was in their heads all night. That defensive performance was elite."
+      ],
+      relatedPlayers: ["Anthony Davis", "LeBron James", "Alperen Şengün"],
       relatedTeams: ["LAL", "HOU"],
       trending: false
     },
     {
-      id: "sixers-championship-hype",
-      topic: "Sixers Title Contender Status",
-      sentiment: "positive",
-      intensity: 83,
-      volume: 35829,
-      summary: "Philadelphia's Game 7 victory has everyone suddenly putting them in championship conversations with a healthy Embiid",
-      sampleTakes: [
-        "The Sixers just eliminated a 56-win team in Game 7 on the road. They're legit title contenders now.",
-        "Healthy Embiid is the best big man in the playoffs. Philly can beat anybody.",
-        "Maxey with 26 in Game 7. This Sixers team has championship DNA finally.",
-        "The Process is finally complete. Embiid just proved he can carry in the biggest moments."
-      ],
-      relatedPlayers: ["Joel Embiid", "Tyrese Maxey"],
-      relatedTeams: ["PHI"],
-      trending: false
-    },
-    {
-      id: "playoff-upsets-chaos",
-      topic: "Playoff Chaos and Upsets",
+      id: "playoff-chaos-narrative",
+      topic: "Lower Seeds Running Wild — Playoffs Are Pure Chaos",
       sentiment: "mixed",
-      intensity: 79,
-      volume: 31672,
-      summary: "Multiple upset victories have fans celebrating the unpredictability of playoff basketball while favorites are getting roasted",
+      intensity: 77,
+      volume: 31847,
+      summary: "The meta-narrative consuming NBA Twitter right now is that the 2026 playoffs have exposed every assumption about regular season success. With the 7th and 8th seeds both advancing while multiple favorites collapse, the discourse has gone full 'regular season means nothing.'",
       sampleTakes: [
-        "Lower seeds winning everywhere. This is why the NBA playoffs are the best postseason in sports.",
-        "Regular season means nothing. Portland and Philly just proved it.",
-        "The favorites are dropping like flies. Playoff basketball hits different.",
-        "62 wins for the Spurs, 56 for the Celtics, both eliminated. Pure chaos."
+        "56 wins: eliminated. 62 wins: eliminated. The regular season is genuinely a simulation at this point. Playoff basketball is a different sport.",
+        "The NBA playoffs are the single greatest sporting event on the planet and Tuesday night proved it for the millionth time. Nothing compares.",
+        "I love that the favorites keep losing. Makes every single game appointment viewing because nobody knows what's going to happen.",
+        "Every year the same lesson: home court advantage in the playoffs is a myth. Any team can win on any night. That's what makes this great."
       ],
-      relatedPlayers: ["Joel Embiid", "Damian Lillard", "Victor Wembanyama"],
+      relatedPlayers: ["Joel Embiid", "Damian Lillard", "Jayson Tatum", "Victor Wembanyama"],
       relatedTeams: ["PHI", "POR", "BOS", "SAS"],
       trending: false
     },
     {
-      id: "wembanyama-growing-pains",
-      topic: "Wemby's Playoff Learning Experience",
-      sentiment: "mixed",
-      intensity: 68,
-      volume: 24951,
-      summary: "Victor Wembanyama's strong individual stats in a losing effort has fans split between praising his potential and questioning his impact",
+      id: "okcdet-playoff-openers",
+      topic: "Tonight's Playoff Openers — OKC and Detroit",
+      sentiment: "positive",
+      intensity: 65,
+      volume: 22934,
+      summary: "With two marquee playoff series tipping off tonight, the pre-game discourse is heating up around SGA's title push and Cade Cunningham's playoff debut. Both conversations are generating significant organic hype ahead of what promises to be another massive night.",
       sampleTakes: [
-        "Wemby had 27 and 11 but still lost. Individual stats don't mean everything in the playoffs.",
-        "This playoff experience will make Wembanyama even better. Growing pains for a future legend.",
-        "27 points in an elimination game as a rookie. Wemby's future is still unlimited.",
-        "Portland's veterans just showed Wemby what playoff basketball is really about."
+        "OKC with 64 wins and home court against Phoenix tonight. SGA is about to put on a show and remind everyone why he's MVP caliber.",
+        "Cade Cunningham's first playoff game tonight. Detroit is back. I refuse to downplay how important this is for that franchise and that city.",
+        "The Thunder vs Suns matchup is actually more interesting than people are giving it credit for. Devin Booker in the playoffs is a different animal.",
+        "64 wins and the top seed in the West. Tonight is just the beginning of OKC's run. I am fully buying in on these kids."
       ],
-      relatedPlayers: ["Victor Wembanyama", "Damian Lillard"],
-      relatedTeams: ["SAS", "POR"],
+      relatedPlayers: ["Shai Gilgeous-Alexander", "Cade Cunningham", "Devin Booker", "Paolo Banchero"],
+      relatedTeams: ["OKC", "PHX", "DET", "ORL"],
       trending: false
     }
   ],
@@ -191,81 +191,81 @@ export const sentimentData: SentimentData = {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
       sentiment: "positive",
-      score: 89,
-      buzzWords: ["championship", "process", "embiid", "game7", "legendary"],
-      narrativeSummary: "The Sixers are getting massive love for their stunning Game 7 victory at Boston, with fans finally believing in their title chances with a healthy Embiid leading the way"
+      score: 91,
+      buzzWords: ["championship", "embiid", "process", "game7road", "maxey", "legitimate"],
+      narrativeSummary: "The Sixers are riding the highest wave of positive sentiment they've experienced in years. Eliminating the Celtics in Game 7 on their floor has shifted the entire internet narrative from 'injury-plagued disappointment' to 'legitimate title contender.' A healthy Embiid is genuinely terrifying people across the East."
     },
     {
       team: "POR",
       teamFull: "Portland Trail Blazers",
       sentiment: "positive",
-      score: 85,
-      buzzWords: ["upset", "dame", "veterans", "experience", "clutch"],
-      narrativeSummary: "Portland is being praised for their incredible upset of the 62-win Spurs, with Dame Time and veteran leadership stealing hearts across NBA Twitter"
+      score: 87,
+      buzzWords: ["dametime", "historicupset", "8thseed", "veterans", "clutch", "believers"],
+      narrativeSummary: "Portland has become everyone's second-favorite team overnight. The Trail Blazers pulling off one of the most shocking upsets in recent playoff history has generated an enormous wave of goodwill, neutral fans are adopting them wholesale, and Dame Time is trending globally."
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "negative",
-      score: -76,
-      buzzWords: ["choke", "home", "tatum", "eliminated", "disappointing"],
-      narrativeSummary: "The Celtics are getting absolutely roasted for losing Game 7 at home to the lower-seeded Sixers, with brutal takes about their championship window and mental toughness"
+      score: -81,
+      buzzWords: ["choked", "tatum", "homegame7loss", "window", "disappointing", "embarrassing"],
+      narrativeSummary: "The Celtics are getting absolutely obliterated on every corner of NBA social media right now. Losing at home in Game 7 to a 7th seed has brought every latent criticism of this roster — Tatum's clutch gene, their mental toughness, the front office's construction — exploding to the surface simultaneously. It is ugly."
     },
     {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "negative",
-      score: -68,
-      buzzWords: ["upset", "youth", "inexperience", "62wins", "shocking"],
-      narrativeSummary: "San Antonio is facing criticism for their stunning first-round exit despite 62 wins, though many are defending their young core as a learning experience"
+      score: -64,
+      buzzWords: ["62winsexit", "wemby", "youth", "experience", "stunned", "firstround"],
+      narrativeSummary: "San Antonio is absorbing a brutal news cycle after their 62-win season ended in shocking fashion. The discourse is somewhat split — some are roasting the organization for surrounding Wembanyama with insufficient playoff experience, while others are treating it as a painful but inevitable growing pain. Neither camp is happy."
     },
     {
       team: "LAL",
       teamFull: "Los Angeles Lakers",
       sentiment: "positive",
-      score: 73,
-      buzzWords: ["ad", "healthy", "defense", "experience", "dangerous"],
-      narrativeSummary: "The Lakers are generating positive buzz with AD's dominant two-way performance, as fans believe they're peaking at the perfect time for a playoff run"
+      score: 74,
+      buzzWords: ["ad", "twowaydominance", "lebron", "championship", "healthy", "dangerous"],
+      narrativeSummary: "The Lakers are generating steady, confident positive sentiment — not the explosive kind that comes with a stunning upset, but the slow-building kind that suggests the basketball world is quietly getting nervous about a healthy Davis-LeBron pairing entering the playoffs. People are starting to put the Lakers back in their bracket predictions."
     },
     {
       team: "HOU",
       teamFull: "Houston Rockets",
       sentiment: "neutral",
-      score: -15,
-      buzzWords: ["potential", "young", "future", "sengun", "development"],
-      narrativeSummary: "Houston is getting mixed reactions after their loss to the Lakers, with fans split between praising their young talent and questioning their playoff readiness"
+      score: -18,
+      buzzWords: ["sengun", "young", "future", "notready", "learning", "potential"],
+      narrativeSummary: "Houston is barely registering on the sentiment radar after absorbing a loss to the Lakers. Şengün's numbers earned him some praise, but the broader narrative around the Rockets is that they're a year or two away from being a real threat. Frustration is mild, expectations were already calibrated."
     },
     {
       team: "OKC",
       teamFull: "Oklahoma City Thunder",
       sentiment: "positive",
-      score: 68,
-      buzzWords: ["sga", "youth", "64wins", "title", "future"],
-      narrativeSummary: "The Thunder are getting steady praise as they prepare for their playoff opener, with fans excited about their 64-win season and championship potential"
+      score: 69,
+      buzzWords: ["sga", "64wins", "title", "depth", "topseeds", "tonight"],
+      narrativeSummary: "Oklahoma City is drawing pre-game hype ahead of their playoff opener and riding a sustained wave of respect for their 64-win season. The sentiment is less explosive than Philadelphia's or Portland's — OKC is the expected winner — but the belief in their championship potential is genuine and building."
     },
     {
       team: "PHX",
       teamFull: "Phoenix Suns",
       sentiment: "negative",
-      score: -42,
-      buzzWords: ["aging", "seventh", "struggle", "book", "disappointing"],
-      narrativeSummary: "Phoenix is facing skepticism as they prepare to face the top-seeded Thunder, with concerns about their aging core and disappointing regular season finish"
+      score: -45,
+      buzzWords: ["aging", "7thseed", "book", "concerned", "outmatched", "lost"],
+      narrativeSummary: "Phoenix is walking into tonight's opener carrying the worst pre-series vibes imaginable. Fans and analysts alike are treating their matchup with OKC less like a competitive series and more like a foregone conclusion. Three-game losing streak, aging core, and the prospect of facing 64-win OKC has Suns fans genuinely bracing for the worst."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 71,
-      buzzWords: ["cade", "60wins", "playoff", "return", "finally"],
-      narrativeSummary: "Detroit is getting love as they prepare for their first playoff appearance in years, with fans excited about Cade's development and their 60-win season"
+      score: 72,
+      buzzWords: ["cade", "playoffs", "return", "60wins", "motorCity", "tonight"],
+      narrativeSummary: "Detroit is experiencing a feel-good wave of sentiment that goes well beyond basketball — this franchise's return to playoff relevance is being treated as a genuine cultural moment. Cade Cunningham's playoff debut tonight is one of the most eagerly anticipated moments on social media heading into the evening slate."
     },
     {
       team: "ORL",
       teamFull: "Orlando Magic",
       sentiment: "positive",
-      score: 64,
-      buzzWords: ["paolo", "young", "playoff", "future", "exciting"],
-      narrativeSummary: "Orlando is receiving positive sentiment for making the playoffs with their young core, though fans are realistic about their chances against the top-seeded Pistons"
+      score: 62,
+      buzzWords: ["paolo", "firstround", "upsetwatch", "young", "exciting", "tonight"],
+      narrativeSummary: "Orlando is receiving warm, underdog-flavored sentiment heading into their series opener at Detroit. Nobody is picking them to win, but after watching Portland and Philadelphia shock the basketball world last night, more people than expected are putting Paolo Banchero in the upset conversation. The chaos energy is contagious."
     }
   ],
   playerSentiments: [
@@ -273,93 +273,138 @@ export const sentimentData: SentimentData = {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "positive",
-      score: 94,
-      mentions: 23847,
-      topTake: "EMBIID JUST WALKED INTO TD GARDEN AND SENT THE CELTICS HOME WITH 32 AND 14. THE PROCESS IS COMPLETE 🔥",
-      narrativeArc: "From injury concerns to Game 7 hero - Embiid's dominant elimination performance has everyone believing he's finally ready for a championship run"
+      score: 96,
+      mentions: 54382,
+      topTake: "Joel Embiid walked into TD Garden in a Game 7 and destroyed the Celtics with 32 and 14. Every single person who spent years doubting this man owes him a public apology. The Process is complete. 🔥",
+      narrativeArc: "Embiid has reached a genuine inflection point in his public legacy overnight. The years of playoff disappointment, injury controversies, and MVP debates have been temporarily swept aside by what the internet is treating as a defining, career-cementing performance. He is the most universally praised player in the NBA right now, and it isn't particularly close."
     },
     {
       player: "Damian Lillard",
       team: "POR",
       sentiment: "positive",
-      score: 91,
-      mentions: 21659,
-      topTake: "Dame Time at 35 years old leading the 8th seed to upset the 62-win Spurs. This man is pure playoff magic ⏰",
-      narrativeArc: "The veteran point guard is being celebrated as a playoff legend after leading Portland's stunning upset with clutch shot-making and leadership"
+      score: 93,
+      mentions: 48764,
+      topTake: "Damian Lillard is 35 years old, playing for an 8th seed, and just led the most shocking upset in years against a 62-win team. Dame Time is not a phase. It is a lifetime. ⏰",
+      narrativeArc: "Lillard's social media standing has hit a peak that rivals his prime Rip City era. The narrative arc being constructed across NBA Twitter is of a veteran warrior refusing to let age or circumstance define him — a player who simply wills playoff magic into existence. The reverence is immense and the viral energy around his performance shows no sign of slowing."
     },
     {
       player: "Jayson Tatum",
       team: "BOS",
       sentiment: "negative",
-      score: -72,
-      mentions: 19384,
-      topTake: "Tatum shooting 7-19 in Game 7 at home is exactly why people question his superstar status. Can't disappear in big moments",
-      narrativeArc: "From championship favorite to eliminated star - Tatum is facing harsh criticism for his poor Game 7 performance in the devastating home loss"
+      score: -78,
+      mentions: 43917,
+      topTake: "Tatum going 7-for-19 in Game 7 at home with a season on the line. That is not a franchise player performance. That is not even a supporting cast performance. That is costing your team everything. ❄️",
+      narrativeArc: "Tatum is receiving the harshest, most concentrated wave of criticism in the entire league right now. The efficiency numbers in a game this high-stakes, in a building this favorable, against an opponent this supposedly beatable — it has ripped the lid off a simmering debate about whether Tatum can truly carry a team when the margin for error disappears entirely."
     },
     {
       player: "Anthony Davis",
       team: "LAL",
       sentiment: "positive",
-      score: 78,
-      mentions: 16732,
-      topTake: "AD with 26/11/4 blocks against Houston. When this man is healthy, the Lakers are championship contenders",
-      narrativeArc: "The Lakers big man is gaining momentum with his dominant two-way performance, reminding everyone of his impact when healthy"
-    },
-    {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      sentiment: "mixed",
-      score: 24,
-      mentions: 18947,
-      topTake: "Wemby put up 27 and 11 in the elimination game but still lost. Individual brilliance isn't enough in the playoffs",
-      narrativeArc: "The rookie phenom is receiving mixed reactions - praised for his playoff numbers but learning that individual stats don't guarantee wins"
+      score: 79,
+      mentions: 31847,
+      topTake: "AD with 26, 11 rebounds, and 4 blocks while holding Houston to 42.7% shooting. When this man is locked in and healthy, the Lakers are genuinely one of the scariest teams in the entire West. Period.",
+      narrativeArc: "Davis is benefitting enormously from the 'healthy AD equals danger' narrative that resurfaces every playoff cycle, and this time it's being amplified by a genuinely dominant two-way performance. The discourse around him is shifting from 'injury risk' to 'unstoppable force' in real time, which is exactly what the Lakers want going into the postseason."
     },
     {
       player: "Tyrese Maxey",
       team: "PHI",
       sentiment: "positive",
-      score: 85,
-      mentions: 14283,
-      topTake: "Maxey with 26 points in Game 7 at Boston. This kid was born for the biggest moments 🔥",
-      narrativeArc: "The young guard is being praised for his clutch Game 7 performance, proving he can handle playoff pressure alongside Embiid"
+      score: 87,
+      mentions: 29384,
+      topTake: "Maxey dropped 26 points in Game 7 at Boston. He was born for these moments. Philly has two absolute stars and the rest of the East is already scared. 🔥",
+      narrativeArc: "Maxey is experiencing a breakthrough moment in terms of national recognition. Always overshadowed by Embiid in Philadelphia's narrative, his Game 7 performance is finally earning him his own headlines. The basketball internet is upgrading him from 'promising secondary piece' to 'legitimate co-star' with enormous speed."
+    },
+    {
+      player: "Victor Wembanyama",
+      team: "SAS",
+      sentiment: "mixed",
+      score: 21,
+      mentions: 41293,
+      topTake: "Wemby put up 27 and 11 in an elimination game as a rookie. That's simultaneously proof that his ceiling is stratospheric and a reminder that individual brilliance means absolutely nothing without winning.",
+      narrativeArc: "Wembanyama is living in the most fascinating split-screen narrative in the league right now. His mention volume is enormous — third highest on the night — but the sentiment is genuinely divided down the middle. Half the basketball internet is insisting he's a generational talent going through necessary growing pains; the other half is pointing to the final score and asking why 27 points wasn't enough."
     },
     {
       player: "Anfernee Simons",
       team: "POR",
       sentiment: "positive",
-      score: 79,
-      mentions: 12957,
-      topTake: "Simons dropped 6 threes in an elimination game. This man said goodbye to the 62-win Spurs with pure fire",
-      narrativeArc: "The explosive shooting guard is earning recognition for his crucial role in Portland's historic upset with clutch three-point shooting"
+      score: 81,
+      mentions: 24673,
+      topTake: "Simons with 6 threes in an elimination road game against the 62-win Spurs. This man looked at a hostile arena and chose violence. Pure ice in his veins. 🧊",
+      narrativeArc: "Simons is riding the Portland wave and earning genuine individual recognition in the process. He's been an underrated contributor for years and last night's shooting display in a pressure game has people finally acknowledging him as a legitimate weapon rather than just Dame's sidekick. The buzz is new and feels like it could become a sustained narrative."
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "positive",
-      score: 69,
-      mentions: 15462,
-      topTake: "LeBron at 41 still orchestrating with 22 and 8 assists. The Lakers look dangerous with the King healthy",
-      narrativeArc: "The aging superstar continues to impress with his leadership and playmaking, keeping championship hopes alive in Los Angeles"
+      score: 71,
+      mentions: 33847,
+      topTake: "LeBron James at 41 years old, 22 points and 8 assists in a playoff preview game. The King refuses to age. The Lakers refusing to die. This is the most stubborn greatness in sports history.",
+      narrativeArc: "LeBron's social media narrative has settled into a comfortable groove of reverent admiration for his longevity. He's not dominating the discourse the way Embiid or Lillard are tonight, but the underlying sentiment is deeply positive and the age-defying storyline never loses its pull. Every time he posts a quality line at 41, a new wave of appreciation rolls through."
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       sentiment: "positive",
-      score: 73,
-      mentions: 11846,
-      topTake: "SGA about to show the Suns why he's MVP caliber. 64 wins wasn't an accident",
-      narrativeArc: "The Thunder star is generating excitement as he prepares for his playoff opener, with fans expecting MVP-level performances"
+      score: 75,
+      mentions: 22184,
+      topTake: "SGA is about to remind everyone why OKC won 64 games. He doesn't need a playoff narrative — he IS the playoff narrative. MVP-caliber talent entering the postseason on the top seed. 🏆",
+      narrativeArc: "SGA is generating significant pre-game hype ahead of Oklahoma City's playoff opener tonight. The conversation is less about last night's results and more about what's coming — a 64-win team led by a genuinely elite two-way guard entering championship contention mode. The excitement is controlled but very real."
     },
     {
       player: "Cade Cunningham",
       team: "DET",
       sentiment: "positive",
-      score: 71,
-      mentions: 10493,
-      topTake: "Cade's first playoff game tonight. The kid who brought Detroit back to relevance is ready for primetime",
-      narrativeArc: "The young point guard is receiving positive attention as he prepares for his playoff debut after leading Detroit's impressive regular season"
+      score: 73,
+      mentions: 19847,
+      topTake: "Cade Cunningham making his playoff debut tonight for a 60-win Detroit Pistons team. This moment has been years in the making and the basketball world is ready to watch Motor City basketball again. 🏀",
+      narrativeArc: "Cunningham's narrative is entirely forward-looking — the buzz around him today is about what his first playoff game tonight means for him, for Detroit, and for the Eastern Conference. The city of Detroit returning to playoff basketball is generating enormous emotional resonance, and Cade is at the center of it."
+    },
+    {
+      player: "Paolo Banchero",
+      team: "ORL",
+      sentiment: "positive",
+      score: 65,
+      mentions: 16293,
+      topTake: "Paolo Banchero's playoff debut tonight. After watching Embiid and Lillard go nuclear last night, don't sleep on young stars making statements in their first playoff games. The Magic might surprise people.",
+      narrativeArc: "Banchero is getting pre-game attention that has been amplified by the previous night's chaos. The 'young star making playoff debut' narrative is extremely potent right now after the upsets, and people are starting to wonder if Orlando could be the next team to pull a stunner. It's early buzz, but it's genuine."
+    },
+    {
+      player: "Devin Booker",
+      team: "PHX",
+      sentiment: "mixed",
+      score: 18,
+      mentions: 14827,
+      topTake: "Devin Booker in the playoffs is genuinely terrifying and I think everyone picking OKC to sweep Phoenix is making a mistake. Book doesn't care that he's a 7 seed. He's done this before.",
+      narrativeArc: "Booker is in a fascinating narrative position — most of the discourse around Phoenix is pessimistic, but there's a meaningful contrarian thread building around the idea that he personally could make this series competitive even if his team can't win it outright. His playoff résumé is being cited constantly in both directions."
+    },
+    {
+      player: "Alperen Şengün",
+      team: "HOU",
+      sentiment: "positive",
+      score: 52,
+      mentions: 12483,
+      topTake: "Şengün with 21 points, 9 rebounds, and 5 assists against the Lakers' defense. This kid is going to be an absolute star in these playoffs for years to come. Houston's future is in great hands.",
+      narrativeArc: "Şengün is quietly generating one of the more positive individual sentiment arcs of the night despite being on the losing team. His all-around numbers and skill level are earning him genuine praise as a future cornerstone, and the Houston discourse is largely optimistic about where he's headed even after a loss."
+    },
+    {
+      player: "Jusuf Nurkić",
+      team: "POR",
+      sentiment: "positive",
+      score: 68,
+      mentions: 11847,
+      topTake: "Nurkić with 14 and 12 rebounds in an elimination game at San Antonio. Nobody talks about Nurk enough. That man is a war veteran and Portland doesn't make this run without him. Period.",
+      narrativeArc: "Nurkić is the beneficiary of the Portland goodwill wave and a specific corner of NBA Twitter that champions overlooked contributors. His efficient performance in a massive game is getting exactly the recognition a niche but passionate fanbase gives to their underrated veterans, and it's adding to his endearing public profile."
+    },
+    {
+      player: "Jaylen Brown",
+      team: "BOS",
+      sentiment: "negative",
+      score: -61,
+      mentions: 18473,
+      topTake: "Where was Jaylen Brown in Game 7? Where was anyone on the Celtics who wasn't completely overwhelmed by Embiid? This whole team went into hiding when it mattered most and now they have all summer to think about it.",
+      narrativeArc: "Brown is caught in the blast radius of Boston's collapse and while Tatum is absorbing the majority of the criticism, JB is not escaping scrutiny. Questions about his role, his production in elimination games, and whether this pairing can ever win the big one are circulating with real force. The narrative is brutal and he's fully inside it."
     }
   ],
-  hottestTake: "The Celtics championship window is CLOSED. You can't lose Game 7 at home to a 7th seed and claim you're title contenders. Tatum isn't that guy and never will be 🔥🔥🔥",
-  coldestTake: "The Sixers got lucky and won't make it past the second round. Embiid will get hurt again and this whole run was just fool's gold ❄️"
+  hottestTake: "The Celtics lost Game 7 at home to the 7th seed and Tatum went 7-for-19. You cannot call yourself a franchise player and produce that. Boston's championship window is not closing — it is already closed, bricked over, and the building is condemned. Tatum is NOT that guy and the evidence is overwhelming at this point 🔥🔥🔥",
+  coldestTake: "Embiid had one good Game 7 after years of playoff failures and everyone is ready to hand him the trophy. He's about to get injured against New York in the second round and we'll all be right back where we started. The Sixers are fool's gold wrapped in a single spectacular performance and the basketball world is falling for it again ❄️"
 };

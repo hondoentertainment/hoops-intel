@@ -48,10 +48,10 @@ export const watchGuideData: WatchGuideData = {
       venue: "Paycom Center",
       entertainmentScore: 92,
       starPower: 9,
-      playoffImplications: 10,
+      playoffImplications: 8,
       rivalry: 7,
-      storyline: "The league's best team hosts a desperate Suns squad fighting for playoff seeding in a Western Conference battle featuring elite offensive firepower.",
-      keyMatchup: "Shai Gilgeous-Alexander vs. Devin Booker",
+      storyline: "The elite Thunder test their championship mettle against Kevin Durant's revenge-driven Suns in a potential Western Conference preview.",
+      keyMatchup: "Shai Gilgeous-Alexander vs. Kevin Durant",
       mustWatch: true
     },
     {
@@ -65,15 +65,15 @@ export const watchGuideData: WatchGuideData = {
       time: "4/22 - 7:00 PM EDT",
       tv: "ESPN",
       venue: "Little Caesars Arena",
-      entertainmentScore: 86,
-      starPower: 8,
+      entertainmentScore: 85,
+      starPower: 7,
       playoffImplications: 9,
-      rivalry: 6,
-      storyline: "Detroit's surprising season continues as they look to maintain their elite record against a Magic team pushing for playoff positioning in the competitive Eastern Conference.",
+      rivalry: 5,
+      storyline: "Detroit's remarkable season continues as they look to secure home-court advantage against Paolo Banchero's surging Magic squad.",
       keyMatchup: "Paolo Banchero vs. Cade Cunningham",
       mustWatch: true
     }
   ],
-  topPick: "Thunder host Suns in a Western Conference heavyweight clash with massive playoff seeding implications",
-  nightOverview: "A prime-time doubleheader on ESPN features two games with significant playoff implications, headlined by the Thunder's elite offense against a desperate Suns team. Both games showcase rising young stars in crucial late-season battles."
+  topPick: "Thunder-Suns features elite championship contenders with KD returning to face the West's best young core",
+  nightOverview: "Two ESPN showcases highlight seeding battles with Detroit's stunning season continuation and Phoenix testing the conference-leading Thunder. Both games carry major playoff positioning implications as the regular season winds down."
 };
