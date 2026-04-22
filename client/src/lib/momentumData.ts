@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 21, 2026
+// Last updated: April 22, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,200 +33,154 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 21, 2026",
-  gameOfTheNight: "ATL-NYK-20260420",
+  date: "April 22, 2026",
+  gameOfTheNight: "PHI-BOS-20260421",
   topClutchPerformer: { 
-    player: "Trae Young", 
-    team: "ATL", 
-    clutchRating: 98, 
-    description: "Ice-cold step-back three over Brunson with 8.4 seconds left to silence MSG and steal victory" 
+    player: "Joel Embiid", 
+    team: "PHI", 
+    clutchRating: 94, 
+    description: "Dominated the fourth quarter with 8 points and 3 rebounds while shutting down Boston's interior attack to force Game 7"
   },
   games: [
     {
-      gameId: "ATL-NYK-20260420",
-      teams: { home: "NYK", away: "ATL" },
-      finalScore: { home: 106, away: 107 },
+      gameId: "PHI-BOS-20260421",
+      teams: { home: "BOS", away: "PHI" },
+      finalScore: { home: 97, away: 111 },
       swings: [
         {
-          quarter: "Q2",
-          timestamp: "6:42",
-          description: "Brunson and Randle combine for 12 straight points to break open tight game",
-          runScore: "12-2",
+          quarter: "1st",
+          timestamp: "7:24",
+          description: "Celtics jump out early with aggressive defense forcing three straight turnovers",
+          runScore: "12-4 BOS",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Jayson Tatum",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "4:12",
+          description: "Embiid takes over with consecutive post moves as 76ers erase deficit",
+          runScore: "16-6 PHI",
+          momentum: "away",
+          keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "4:18",
-          description: "Hawks respond with Trae Young three-point barrage, hitting 4 triples in 5 minutes",
-          runScore: "16-7",
+          quarter: "3rd",
+          timestamp: "2:38",
+          description: "Maxey explodes for 11 third-quarter points as Philadelphia pulls away",
+          runScore: "21-9 PHI",
           momentum: "away",
-          keyPlayer: "Trae Young",
+          keyPlayer: "Tyrese Maxey",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
+          quarter: "4th",
           timestamp: "8:45",
-          description: "Knicks push lead back to double digits with suffocating defense and Randle post-ups",
-          runScore: "11-4",
-          momentum: "home",
-          keyPlayer: "Julius Randle",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "3:22",
-          description: "Atlanta's closing surge erases 10-point deficit with relentless attacking",
-          runScore: "13-3",
+          description: "Embiid's defensive dominance completely stifles Boston's comeback attempt",
+          runScore: "14-7 PHI",
           momentum: "away",
-          keyPlayer: "Trae Young",
+          keyPlayer: "Joel Embiid",
           impact: "game-changing"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Jalen Brunson",
-          team: "NYK",
-          description: "Difficult layup through contact to maintain 4-point lead",
-          timeRemaining: "2:18",
-          winProbabilityShift: 12
-        },
-        {
-          player: "Trae Young",
-          team: "ATL",
-          description: "Deep three-pointer from 28 feet to cut deficit to one",
-          timeRemaining: "1:42",
-          winProbabilityShift: -18
-        },
-        {
-          player: "Julius Randle",
-          team: "NYK",
-          description: "Clutch mid-range jumper to answer Young's three",
-          timeRemaining: "1:05",
-          winProbabilityShift: 15
-        },
-        {
-          player: "Trae Young",
-          team: "ATL",
-          description: "Step-back three-pointer over Brunson for the lead with 8.4 seconds left",
-          timeRemaining: "0:08",
-          winProbabilityShift: -35
-        }
-      ],
-      narrative: "Madison Square Garden witnessed pure basketball theater as Trae Young delivered one of the season's most clutch performances. After trailing by double digits in the fourth quarter, Young orchestrated a masterful comeback that culminated in the ultimate dagger—a step-back three over Jalen Brunson that left 20,000 fans stunned into silence. The Hawks' road warrior mentality was on full display as they refused to fold against a desperate Knicks team fighting for playoff positioning. Young's 28 points and 6 three-pointers served as a reminder that some players are simply built different in the brightest lights."
-    },
-    {
-      gameId: "MIN-DEN-20260420",
-      teams: { home: "DEN", away: "MIN" },
-      finalScore: { home: 114, away: 119 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "7:23",
-          description: "Edwards explodes for 12 first-quarter points to give Wolves early confidence",
-          runScore: "8-0",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:15",
-          description: "Jokić takes over with brilliant passing display, assisting on 5 straight baskets",
-          runScore: "15-6",
-          momentum: "home",
-          keyPlayer: "Nikola Jokić",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "5:44",
-          description: "Nuggets push 13-game winning streak momentum with suffocating defense",
-          runScore: "12-4",
-          momentum: "home",
-          keyPlayer: "Aaron Gordon",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "6:28",
-          description: "Edwards and McDaniels combine for crushing run that breaks Denver's spirit",
-          runScore: "18-8",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Anthony Edwards",
-          team: "MIN",
-          description: "Contested three-pointer over Murray to extend lead",
-          timeRemaining: "4:12",
-          winProbabilityShift: -14
-        },
-        {
-          player: "Nikola Jokić",
-          team: "DEN",
-          description: "Beautiful hook shot to keep Nuggets within striking distance",
-          timeRemaining: "2:55",
-          winProbabilityShift: 8
-        },
-        {
-          player: "Jaden McDaniels",
-          team: "MIN",
-          description: "Back-to-back defensive stops and transition threes",
-          timeRemaining: "1:48",
-          winProbabilityShift: -16
-        }
-      ],
-      narrative: "The unstoppable force met the immovable object, and Anthony Edwards proved he's ready for his superstar moment. Minnesota's young core outplayed the defending champions in their own building, ending Denver's season-high 13-game winning streak with authority. Edwards was simply spectacular, shooting the lights out while matching Jokić's every brilliant play with one of his own. The Nuggets looked every bit of a team that had been grinding through a marathon winning streak, running out of gas when they needed their legs most against Minnesota's youthful energy."
-    },
-    {
-      gameId: "TOR-CLE-20260420",
-      teams: { home: "CLE", away: "TOR" },
-      finalScore: { home: 115, away: 105 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "8:12",
-          description: "Barnes and Poeltl dominate early with size advantage in the paint",
-          runScore: "10-2",
-          momentum: "away",
-          keyPlayer: "Scottie Barnes",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "5:33",
-          description: "Mobley takes over with defensive presence, blocking 3 shots in 4 minutes",
-          runScore: "14-6",
-          momentum: "home",
-          keyPlayer: "Evan Mobley",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "7:45",
-          description: "Mitchell and Garland backcourt catches fire from three-point range",
-          runScore: "16-8",
-          momentum: "home",
-          keyPlayer: "Donovan Mitchell",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "9:22",
-          description: "Cavaliers depth advantage becomes overwhelming as starters rest",
-          runScore: "12-4",
-          momentum: "home",
-          keyPlayer: "Caris LeVert",
-          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Evan Mobley reminded everyone why he's one of the league's most impactful two-way players, completely controlling this Eastern Conference battle from start to finish. Cleveland's superior depth and athleticism gradually wore down Toronto as the game progressed, with Mobley serving as the anchor that everything revolved around. The Cavaliers' balanced offensive attack complemented their suffocating defense perfectly, creating the kind of wire-to-wire dominance that championship contenders display. Toronto fought valiantly but simply couldn't match Cleveland's combination of star power and role player execution when it mattered most."
+      narrative: "The basketball world witnessed a seismic shift at TD Garden as Joel Embiid delivered a vintage elimination-game masterpiece, turning what should have been Boston's coronation into Philadelphia's stunning resurrection. The 76ers completely flipped the script of this series with their most dominant performance, outmuscling and outhustling the higher-seeded Celtics on their home floor. Embiid looked like the MVP candidate of old, imposing his will on both ends while Maxey provided the explosive scoring punch that has made this duo so dangerous. Game 7 now looms as one of the most anticipated decisive games in recent playoff memory."
+    },
+    {
+      gameId: "POR-SAS-20260421",
+      teams: { home: "SAS", away: "POR" },
+      finalScore: { home: 103, away: 106 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "5:18",
+          description: "Wembanyama's early dominance gives Spurs commanding lead at home",
+          runScore: "18-8 SAS",
+          momentum: "home",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "6:32",
+          description: "Portland's three-point barrage led by Simons cuts deficit dramatically",
+          runScore: "19-8 POR",
+          momentum: "away",
+          keyPlayer: "Anfernee Simons",
+          impact: "game-changing"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "1:24",
+          description: "Lillard takes control with clutch shooting to give Trail Blazers first lead",
+          runScore: "13-5 POR",
+          momentum: "away",
+          keyPlayer: "Damian Lillard",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Damian Lillard",
+          team: "POR",
+          description: "Step-back three over Wembanyama's outstretched arm",
+          timeRemaining: "2:47",
+          winProbabilityShift: 18
+        },
+        {
+          player: "Anfernee Simons",
+          team: "POR",
+          description: "Corner three off Lillard assist to ice the upset",
+          timeRemaining: "1:12",
+          winProbabilityShift: 24
+        }
+      ],
+      narrative: "Dame Time struck at the most improbable moment, as Damian Lillard orchestrated one of the biggest upsets in recent playoff history by eliminating the 62-win Spurs on their home court. The Trail Blazers' veteran leadership shined brightest when the lights were hottest, with Lillard and Simons combining for a three-point clinic that left San Antonio stunned. Despite Wembanyama's valiant 27-point effort, the young Spurs couldn't match Portland's playoff poise and execution in crunch time. This shocking first-round exit will send shockwaves through the basketball world and raise serious questions about San Antonio's championship readiness."
+    },
+    {
+      gameId: "HOU-LAL-20260421",
+      teams: { home: "LAL", away: "HOU" },
+      finalScore: { home: 101, away: 94 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "3:45",
+          description: "Rockets' energy and pace gives them early advantage in hostile environment",
+          runScore: "15-7 HOU",
+          momentum: "away",
+          keyPlayer: "Alperen Şengün",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "8:21",
+          description: "Davis asserts himself with powerful interior scoring to tie the game",
+          runScore: "12-4 LAL",
+          momentum: "home",
+          keyPlayer: "Anthony Davis",
+          impact: "significant"
+        },
+        {
+          quarter: "4th",
+          timestamp: "6:15",
+          description: "LeBron-AD pick and roll devastates Houston's defense in crucial stretch",
+          runScore: "16-8 LAL",
+          momentum: "home",
+          keyPlayer: "LeBron James",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Anthony Davis",
+          team: "LAL",
+          description: "Thunderous dunk plus foul after LeBron drive and kick",
+          timeRemaining: "3:28",
+          winProbabilityShift: 12
+        }
+      ],
+      narrative: "The Lakers' championship experience proved decisive in a gritty, playoff-atmosphere battle that showcased why Anthony Davis remains one of the league's most impactful two-way players. Davis controlled the paint on both ends, using his length and athleticism to frustrate Houston's offense while providing the interior scoring punch Los Angeles needed. LeBron's veteran savvy in orchestrating the fourth-quarter run demonstrated the timeless value of playoff experience in high-pressure moments. This victory solidifies the Lakers' playoff positioning and sends a message that this team remains a dangerous postseason threat when healthy."
     }
   ]
 };

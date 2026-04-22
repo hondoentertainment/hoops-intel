@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 21, 2026
+// Last updated: April 22, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,92 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 21, 2026",
-  episodeTitle: "Road Warriors Rule Sunday Night: Trae's MSG Dagger & Ant-Man Ends Denver's Historic Streak",
+  date: "April 22, 2026",
+  episodeTitle: "Playoff Chaos: Embiid Forces Game 7, Dame Delivers Historic Upset",
   rundown: [
     {
-      topic: "Trae Young's Clutch Masterpiece at Madison Square Garden",
+      topic: "Joel Embiid's Dominant Road Performance Forces Game 7",
       segment: "opener",
-      duration: "7 minutes",
+      duration: "6 minutes",
       keyStats: [
-        "28 points, 9 assists on 6-of-11 three-point shooting",
-        "Step-back three over Brunson with 8.4 seconds left",
-        "Hawks jump into tie for 5th place in East at 46-36",
-        "Knicks led by double digits in 3rd quarter before collapse",
-        "Young shot 54.5% from field in hostile MSG environment",
-        "Atlanta's most impressive road win of the season"
+        "28 points, 12 rebounds, 3 blocks on 11-19 shooting",
+        "Philadelphia shot 47.8% as a team vs Boston's 41.2%",
+        "76ers outrebounded Celtics 48-36 at TD Garden",
+        "Game-high +18 plus-minus in 36 minutes",
+        "Embiid dominated paint with 18 points inside"
       ],
-      debateAngle: "Is Trae Young now officially in the elite tier of clutch performers alongside Dame and Curry, or does he need playoff success to cement that status?",
-      suggestedQuote: "When you can walk into Madison Square Garden and hit THAT shot over Jalen Brunson with the season on the line, you've just announced yourself as a stone-cold assassin. That's the kind of moment that defines careers and creates playoff folklore.",
-      relevantPlayers: ["Trae Young", "Jalen Brunson", "Julius Randle"]
+      debateAngle: "Is this the healthiest and most dangerous we've seen Joel Embiid in the playoffs? Can Philadelphia actually beat Boston in Game 7 on the road?",
+      suggestedQuote: "When you can walk into Boston and completely take over an elimination game with 28 and 12, you've announced that Philadelphia is far from finished.",
+      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Jaylen Brown"]
     },
     {
-      topic: "Anthony Edwards Ends Denver's Historic 13-Game Streak",
+      topic: "Portland's Stunning Upset: How Dame Time Shocked San Antonio",
       segment: "deep-dive",
       duration: "8 minutes",
       keyStats: [
-        "Edwards exploded for 32 points on 12-21 shooting",
-        "Scorching 6-of-10 from three-point range (60%)",
-        "Ended Nuggets' season-high 13-game win streak dating to March 15",
-        "Jokić had 26 points, 12 rebounds, 8 assists in loss",
-        "Timberwolves shot 52.1% as team against league's top defense",
-        "Minnesota moves to 49-33, solidifying playoff position"
+        "Dame dropped 31 points on 12-22 shooting, 5-9 from three",
+        "Trail Blazers shot 15-32 (46.9%) from three as a team",
+        "Anfernee Simons added 24 points with 6 three-pointers",
+        "8th seed eliminated 62-win 2nd seed in first round",
+        "Portland won despite Wembanyama's 27 points, 11 rebounds"
       ],
-      debateAngle: "Did Denver's 13-game streak actually hurt them by peaking too early, and should defending champions be worried about fatigue heading into the playoffs?",
-      suggestedQuote: "Sometimes it takes a special individual performance to halt historic momentum, and Anthony Edwards delivered exactly that. When you're shooting 60% from three in Denver against the defending champs, you're not just playing basketball - you're making a statement about who you want to be in this league.",
-      relevantPlayers: ["Anthony Edwards", "Nikola Jokić", "Jaden McDaniels", "Karl-Anthony Towns"]
+      debateAngle: "What does this upset say about the value of playoff experience versus regular season dominance? Are the Spurs too young for championship contention?",
+      suggestedQuote: "Sometimes veteran leadership is worth more than youth and talent, and Portland just proved that in the most dramatic way possible.",
+      relevantPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama", "Jusuf Nurkić"]
     },
     {
-      topic: "Are the New York Knicks Pretenders or Contenders After This Collapse?",
+      topic: "Are the Boston Celtics Championship Pretenders?",
       segment: "hot-take",
-      duration: "6 minutes",
+      duration: "5 minutes",
       keyStats: [
-        "Knicks fall to 53-29 after crushing home loss",
-        "Led by double digits in 3rd quarter before meltdown",
-        "Brunson scored 24 points but couldn't close",
-        "MSG crowd of 20,000 left in stunned silence",
-        "Lost crucial game in playoff positioning battle",
-        "Team's championship aspirations take major blow"
+        "Celtics managed just 97 points on 41.2% shooting at home",
+        "Jayson Tatum struggled with 19 points on 6-18 shooting",
+        "Boston blew home court advantage in elimination game",
+        "56-26 regular season record now means nothing",
+        "Embiid completely neutralized their interior defense"
       ],
-      debateAngle: "Is this loss a season-defining moment that exposes the Knicks as fraudulent contenders, or just a tough break that every championship team experiences during the grind?",
-      suggestedQuote: "The Knicks had everything set up perfectly - home court, double-digit lead, MSG rocking, playoff positioning on the line. Then Trae Young happened. If you can't close out that game at home, what does that say about your championship DNA?",
-      relevantPlayers: ["Jalen Brunson", "Julius Randle", "Trae Young"]
+      debateAngle: "Does Boston's Game 6 collapse expose them as mental midgets who can't handle pressure? Or is this just the unpredictable nature of playoff basketball?",
+      suggestedQuote: "The Celtics' home loss raises serious questions about their mental toughness and championship readiness when facing real adversity.",
+      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Tyrese Maxey"]
     },
     {
-      topic: "Sunday Night Rapid Fire: Mobley Dominates, Playoff Picture Chaos",
+      topic: "Rapid Fire: Lakers Survive, Playoff Picture Updates, Rookie Report",
       segment: "rapid-fire",
       duration: "4 minutes",
       keyStats: [
-        "Evan Mobley: 24 points, 10 rebounds, 3 blocks on 62.5% shooting",
-        "Cavaliers cruise past Raptors 115-105 on road",
-        "Atlanta jumps into three-way tie for 5th in East",
-        "Western Conference seeding gets major shakeup",
-        "Road teams went 3-0 on Sunday night",
-        "Playoff positioning implications massive with days remaining"
+        "Anthony Davis: 26 points, 11 rebounds, 4 blocks vs Houston",
+        "Lakers held Rockets to 42.7% shooting in 101-94 win",
+        "Two new playoff series begin tonight: DET-ORL, OKC-PHX",
+        "Victor Wembanyama's rookie playoff experience ends early",
+        "Luka Dončić probable to return from four-game absence"
       ],
-      debateAngle: "Which Sunday upset - Hawks at MSG or Wolves in Denver - has bigger implications for the championship race?",
-      suggestedQuote: "Road warriors absolutely stole the show Sunday night. When you're getting clutch daggers at MSG and historic streaks ending in Denver, you know the playoff race just reached another level of intensity.",
-      relevantPlayers: ["Evan Mobley", "Scottie Barnes", "Donovan Mitchell"]
+      debateAngle: "Which tonight's playoff opener will be more competitive - Detroit hosting Orlando or Oklahoma City welcoming Phoenix?",
+      suggestedQuote: "The playoffs continue to prove that anything can happen when championship pressure reaches its peak.",
+      relevantPlayers: ["Anthony Davis", "LeBron James", "Cade Cunningham", "Shai Gilgeous-Alexander"]
     },
     {
-      topic: "Looking Ahead: Lakers-Rockets Showdown and Playoff Race Final Sprint",
+      topic: "Looking Ahead: Game 7 Stakes and New Series Predictions",
       segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Lakers (53-29) host Rockets (52-30) tonight on NBC",
-        "Anthony Davis vs. Alperen Şengün key matchup",
-        "LAL riding 5-game win streak, fighting for 4th seed",
-        "Western Conference seeding battle intensifies",
-        "Luka Dončić probable to return from knee soreness",
-        "Just days remaining in regular season"
+        "Game 7 between Boston and Philadelphia tomorrow night",
+        "Detroit enters as 8.5-point favorite over Orlando",
+        "OKC favored by 12.5 points against Phoenix",
+        "Portland advances to face Denver in second round",
+        "Four playoff series still to be determined"
       ],
-      debateAngle: "With the playoff picture this chaotic, should teams prioritize seeding or rest their stars to avoid injury risk?",
-      suggestedQuote: "We're in the final sprint now, folks. Every possession matters, every game has playoff implications, and tonight's Lakers-Rockets showdown could determine first-round matchups. This is why we love April basketball - the intensity is off the charts.",
-      relevantPlayers: ["Anthony Davis", "Alperen Şengün", "Luka Dončić"]
+      debateAngle: "Who has more pressure in tomorrow's Game 7 - the higher-seeded Celtics at home or the road warriors from Philadelphia?",
+      suggestedQuote: "Game 7 will test everything both teams believe about their championship aspirations and reveal their true character.",
+      relevantPlayers: ["Joel Embiid", "Jayson Tatum", "Cade Cunningham", "Paolo Banchero"]
     }
   ],
-  coldOpen: "Sunday night in the NBA delivered pure theater, folks. Trae Young walked into the world's most famous arena and buried a step-back dagger over Jalen Brunson with 8.4 seconds left, silencing 20,000 New Yorkers and crushing the Knicks' championship dreams. Meanwhile in Denver, Anthony Edwards dropped 32 points to end the Nuggets' historic 13-game winning streak, proving once again that no lead is safe and no streak lasts forever when elite players decide to take over. I'm your host, and this is Hoops Intel - where Sunday night's road warriors just reminded us why April basketball hits different.",
-  socialClip: "30-second clip of Trae Young's game-winning three-pointer sequence at MSG, starting from the inbound pass and ending with Young's celebration while MSG falls silent. Overlay key stats: '28 PTS, 9 AST, 6-11 3PM, CLUTCH GENE ACTIVATED.' Perfect for Instagram Reels and TikTok with dramatic music.",
+  coldOpen: "Welcome to Hoops Intel, where playoff chaos just reached a whole new level. I'm your host, and if you went to bed early last night, you missed some of the most stunning basketball of the entire season. Joel Embiid walked into TD Garden and absolutely dominated the Celtics to force a Game 7. Damian Lillard delivered a masterclass in clutch basketball to complete one of the biggest upsets in playoff history. And the Lakers survived a physical battle with Houston behind Anthony Davis' two-way excellence. This is why we watch playoff basketball, folks. Let's break it all down.",
+  socialClip: "Joel Embiid's dominant 28-point, 12-rebound performance discussion from the opener segment - specifically the moment analyzing his +18 plus-minus and complete takeover at TD Garden. Caption: 'When Embiid is healthy and locked in like this... the 76ers become a completely different team 🔥'",
   tweetThread: [
-    "🎯 SUNDAY NIGHT RECAP: Road warriors absolutely stole the show with two massive upsets that completely reshuffled the playoff picture. Trae Young's MSG dagger and Ant-Man's Denver demolition proved why April basketball hits different. #HoopsIntel",
-    "🔥 TRAE AT MSG: 28 PTS, 9 AST, 6-11 from three including a step-back DAGGER over Brunson with 8.4 seconds left. Hawks jump into tie for 5th while Knicks' title hopes take a crushing blow. That's pure clutch DNA right there.",
-    "⚡ ANT-MAN TAKEOVER: Edwards exploded for 32 points on 60% three-point shooting to end Denver's season-high 13-game winning streak. Sometimes it takes a special performance to halt historic momentum, and Edwards delivered exactly that.",
-    "📊 BY THE NUMBERS: Road teams went 3-0 Sunday night. Mobley dominated Toronto with 24-10-3 blocks. Jokić's 26-12-8 wasn't enough. Playoff positioning just got WILD with days remaining in the regular season.",
-    "🚨 TONIGHT: Lakers host Rockets on NBC (10:30 ET) in a Western Conference seeding battle. AD vs. Şengün, playoff implications everywhere. The final sprint is here, folks. Every possession matters now. #NBAPlayoffs"
+    "🧵 PLAYOFF CHAOS RECAP: Last night delivered everything we love about postseason basketball - upsets, elimination game drama, and legendary individual performances. Here's what you need to know:",
+    "1/ Joel Embiid was UNSTOPPABLE at TD Garden: 28 PTS, 12 REB, 3 BLK on 11-19 shooting. The 76ers shot 47.8% as a team while holding Boston to just 97 points. This is the healthiest and most dominant we've seen Embiid in any playoff series.",
+    "2/ DAME TIME IN SAN ANTONIO: Lillard dropped 31 points to complete a STUNNING upset as 8th-seed Portland eliminated the 62-win Spurs. The Trail Blazers shot 46.9% from three while Anfernee Simons added 24 points and 6 threes. Veteran leadership > youth.",
+    "3/ The Boston Celtics have serious questions to answer after blowing home court in an elimination game. Tatum shot just 6-18 for 19 points, and their offense completely disappeared when it mattered most. Game 7 will test their championship DNA.",
+    "4/ Tonight brings fresh playoff action: Pistons host Magic (7 PM ET) and Thunder welcome Suns (9:30 PM ET). Plus Luka is expected back for Dallas. The chaos is just getting started 🏀"
   ]
 };
