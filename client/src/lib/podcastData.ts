@@ -23,91 +23,96 @@ export interface PodcastCompanionData {
 
 export const podcastCompanion: PodcastCompanionData = {
   date: "April 22, 2026",
-  episodeTitle: "Playoff Chaos: Embiid Forces Game 7, Dame Delivers Historic Upset",
+  episodeTitle: "Embiid's Masterpiece & Dame's Historic Upset Rock the NBA Playoffs",
   rundown: [
     {
-      topic: "Joel Embiid's Dominant Road Performance Forces Game 7",
+      topic: "Joel Embiid Eliminates the Celtics at TD Garden",
       segment: "opener",
-      duration: "6 minutes",
+      duration: "8 minutes",
       keyStats: [
-        "28 points, 12 rebounds, 3 blocks on 11-19 shooting",
-        "Philadelphia shot 47.8% as a team vs Boston's 41.2%",
-        "76ers outrebounded Celtics 48-36 at TD Garden",
-        "Game-high +18 plus-minus in 36 minutes",
-        "Embiid dominated paint with 18 points inside"
+        "32 points on 13-21 shooting in Game 7",
+        "14 rebounds dominating the glass",
+        "Game-high +21 plus-minus in 38 minutes",
+        "76ers won by 14 points (111-97)",
+        "Celtics shot just 40.8% from the field",
+        "Philadelphia's first conference semifinals since 2019"
       ],
-      debateAngle: "Is this the healthiest and most dangerous we've seen Joel Embiid in the playoffs? Can Philadelphia actually beat Boston in Game 7 on the road?",
-      suggestedQuote: "When you can walk into Boston and completely take over an elimination game with 28 and 12, you've announced that Philadelphia is far from finished.",
+      debateAngle: "Was this the best Game 7 road performance we've seen in the last decade? And does this catapult Embiid into the true championship superstar conversation?",
+      suggestedQuote: "When you can walk into Boston and completely dominate an elimination game with 32 points and 14 rebounds, you've announced that Philadelphia is ready to make a serious championship run.",
       relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Jaylen Brown"]
     },
     {
-      topic: "Portland's Stunning Upset: How Dame Time Shocked San Antonio",
+      topic: "Portland's Historic Upset: How the 8-Seed Eliminated 62-Win San Antonio",
       segment: "deep-dive",
-      duration: "8 minutes",
+      duration: "10 minutes",
       keyStats: [
-        "Dame dropped 31 points on 12-22 shooting, 5-9 from three",
-        "Trail Blazers shot 15-32 (46.9%) from three as a team",
-        "Anfernee Simons added 24 points with 6 three-pointers",
-        "8th seed eliminated 62-win 2nd seed in first round",
-        "Portland won despite Wembanyama's 27 points, 11 rebounds"
+        "Trail Blazers shot 15-32 from three-point range",
+        "Dame Lillard: 31 points, 5 three-pointers made",
+        "Anfernee Simons: 24 points, 6 three-pointers",
+        "Spurs finished 62-20 in regular season",
+        "Wembanyama had 27 points, 11 rebounds in loss",
+        "Portland reaches conference semifinals after missing playoffs for years"
       ],
-      debateAngle: "What does this upset say about the value of playoff experience versus regular season dominance? Are the Spurs too young for championship contention?",
-      suggestedQuote: "Sometimes veteran leadership is worth more than youth and talent, and Portland just proved that in the most dramatic way possible.",
-      relevantPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama", "Jusuf Nurkić"]
+      debateAngle: "Is this the biggest upset in first-round playoff history? And what does it say about the importance of veteran leadership versus young talent in the postseason?",
+      suggestedQuote: "Portland's elimination of the 62-win Spurs proves that veteran leadership and playoff experience can overcome talent and regular season success when the pressure reaches its peak.",
+      relevantPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama", "Jusuf Nurkic"]
     },
     {
       topic: "Are the Boston Celtics Championship Pretenders?",
       segment: "hot-take",
-      duration: "5 minutes",
+      duration: "6 minutes",
       keyStats: [
-        "Celtics managed just 97 points on 41.2% shooting at home",
-        "Jayson Tatum struggled with 19 points on 6-18 shooting",
-        "Boston blew home court advantage in elimination game",
-        "56-26 regular season record now means nothing",
-        "Embiid completely neutralized their interior defense"
+        "Celtics were 56-26 in regular season",
+        "Lost Game 7 at home by 14 points",
+        "Tatum shot 7-19 for just 21 points",
+        "Boston managed only 97 points total",
+        "Gave up 32 points to Embiid on elite efficiency",
+        "Failed to reach conference semifinals"
       ],
-      debateAngle: "Does Boston's Game 6 collapse expose them as mental midgets who can't handle pressure? Or is this just the unpredictable nature of playoff basketball?",
-      suggestedQuote: "The Celtics' home loss raises serious questions about their mental toughness and championship readiness when facing real adversity.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Tyrese Maxey"]
+      debateAngle: "Hot take time - are the Celtics championship pretenders who crumble under real pressure? This home Game 7 loss is absolutely devastating for their championship credibility.",
+      suggestedQuote: "Boston's devastating Game 7 loss at home raises serious questions about their championship DNA and ability to handle pressure when it matters most.",
+      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Marcus Smart"]
     },
     {
-      topic: "Rapid Fire: Lakers Survive, Playoff Picture Updates, Rookie Report",
+      topic: "Lakers Lock In, Rookie Watch, and Tonight's Playoff Action",
       segment: "rapid-fire",
-      duration: "4 minutes",
+      duration: "5 minutes",
       keyStats: [
         "Anthony Davis: 26 points, 11 rebounds, 4 blocks vs Houston",
-        "Lakers held Rockets to 42.7% shooting in 101-94 win",
-        "Two new playoff series begin tonight: DET-ORL, OKC-PHX",
-        "Victor Wembanyama's rookie playoff experience ends early",
-        "Luka Dončić probable to return from four-game absence"
+        "LeBron James added 22 points, 8 assists",
+        "Lakers held Rockets to 42.7% shooting",
+        "Wembanyama still leads ROY race despite early exit",
+        "Two playoff series begin tonight: DET-ORL, OKC-PHX",
+        "Pistons are 8.5-point favorites over Magic"
       ],
-      debateAngle: "Which tonight's playoff opener will be more competitive - Detroit hosting Orlando or Oklahoma City welcoming Phoenix?",
-      suggestedQuote: "The playoffs continue to prove that anything can happen when championship pressure reaches its peak.",
-      relevantPlayers: ["Anthony Davis", "LeBron James", "Cade Cunningham", "Shai Gilgeous-Alexander"]
+      debateAngle: "Quick hits on whether the Lakers are peaking at the right time, if Wembanyama's early playoff exit hurts his ROY case, and predictions for tonight's openers.",
+      suggestedQuote: "Davis dominated both ends while anchoring a defense that completely stifled Houston's offensive rhythm throughout the contest.",
+      relevantPlayers: ["Anthony Davis", "LeBron James", "Victor Wembanyama", "Cade Cunningham", "Paolo Banchero"]
     },
     {
-      topic: "Looking Ahead: Game 7 Stakes and New Series Predictions",
+      topic: "Championship Chaos: What These Upsets Mean for the Title Race",
       segment: "closer",
-      duration: "5 minutes",
+      duration: "7 minutes",
       keyStats: [
-        "Game 7 between Boston and Philadelphia tomorrow night",
-        "Detroit enters as 8.5-point favorite over Orlando",
-        "OKC favored by 12.5 points against Phoenix",
-        "Portland advances to face Denver in second round",
-        "Four playoff series still to be determined"
+        "Two higher seeds eliminated in stunning fashion",
+        "Philadelphia now faces New York in round two",
+        "Portland gets Denver in conference semifinals",
+        "Oklahoma City and Detroit begin as heavy favorites tonight",
+        "Multiple championship contenders already eliminated",
+        "Road teams dominated Monday's elimination games"
       ],
-      debateAngle: "Who has more pressure in tomorrow's Game 7 - the higher-seeded Celtics at home or the road warriors from Philadelphia?",
-      suggestedQuote: "Game 7 will test everything both teams believe about their championship aspirations and reveal their true character.",
-      relevantPlayers: ["Joel Embiid", "Jayson Tatum", "Cade Cunningham", "Paolo Banchero"]
+      debateAngle: "With Boston out and San Antonio shocked, who are the real championship favorites now? And are we witnessing one of the most unpredictable playoffs ever?",
+      suggestedQuote: "Monday night perfectly captured the unpredictable magic that makes the NBA playoffs the greatest show in sports, with elimination games revealing the true character of championship contenders.",
+      relevantPlayers: ["Joel Embiid", "Damian Lillard", "Shai Gilgeous-Alexander", "Cade Cunningham", "Nikola Jokic"]
     }
   ],
-  coldOpen: "Welcome to Hoops Intel, where playoff chaos just reached a whole new level. I'm your host, and if you went to bed early last night, you missed some of the most stunning basketball of the entire season. Joel Embiid walked into TD Garden and absolutely dominated the Celtics to force a Game 7. Damian Lillard delivered a masterclass in clutch basketball to complete one of the biggest upsets in playoff history. And the Lakers survived a physical battle with Houston behind Anthony Davis' two-way excellence. This is why we watch playoff basketball, folks. Let's break it all down.",
-  socialClip: "Joel Embiid's dominant 28-point, 12-rebound performance discussion from the opener segment - specifically the moment analyzing his +18 plus-minus and complete takeover at TD Garden. Caption: 'When Embiid is healthy and locked in like this... the 76ers become a completely different team 🔥'",
+  coldOpen: "What's good Hoops Intel family! Welcome back to your daily NBA intelligence briefing. I'm your host and we need to talk about what just happened last night because the NBA playoffs just delivered absolute CHAOS. Joel Embiid walked into TD Garden and put up 32 and 14 to eliminate the Boston Celtics in Game 7. Meanwhile, Dame Lillard and the eighth-seeded Trail Blazers just completed one of the biggest upsets in playoff history, knocking out the 62-win San Antonio Spurs. Two championship contenders are going home, two underdogs are advancing, and the entire playoff picture just got flipped upside down. We're breaking it all down in the next 36 minutes, so strap in because this is going to be a wild ride through the most shocking night of playoff basketball we've seen in years.",
+  socialClip: "Joel Embiid walking off the TD Garden court after dropping 32 points in Game 7 to eliminate the Celtics. Capture the moment he raises his arms to the stunned Boston crowd, with the overlay text: 'EMBIID SILENCES TD GARDEN' and '32 PTS • 14 REB • GAME 7 MASTERPIECE'. Use the audio of the crowd going silent mixed with Embiid's postgame quote about proving doubters wrong. Perfect 60-second clip that captures the shock and dominance.",
   tweetThread: [
-    "🧵 PLAYOFF CHAOS RECAP: Last night delivered everything we love about postseason basketball - upsets, elimination game drama, and legendary individual performances. Here's what you need to know:",
-    "1/ Joel Embiid was UNSTOPPABLE at TD Garden: 28 PTS, 12 REB, 3 BLK on 11-19 shooting. The 76ers shot 47.8% as a team while holding Boston to just 97 points. This is the healthiest and most dominant we've seen Embiid in any playoff series.",
-    "2/ DAME TIME IN SAN ANTONIO: Lillard dropped 31 points to complete a STUNNING upset as 8th-seed Portland eliminated the 62-win Spurs. The Trail Blazers shot 46.9% from three while Anfernee Simons added 24 points and 6 threes. Veteran leadership > youth.",
-    "3/ The Boston Celtics have serious questions to answer after blowing home court in an elimination game. Tatum shot just 6-18 for 19 points, and their offense completely disappeared when it mattered most. Game 7 will test their championship DNA.",
-    "4/ Tonight brings fresh playoff action: Pistons host Magic (7 PM ET) and Thunder welcome Suns (9:30 PM ET). Plus Luka is expected back for Dallas. The chaos is just getting started 🏀"
+    "🧵 THREAD: Last night's NBA playoffs delivered absolute CHAOS with two massive upsets that completely changed the championship picture. Let's break down the madness...",
+    "1/ JOEL EMBIID IS DIFFERENT 🔥 32 points, 14 rebounds in Game 7 AT TD Garden to eliminate the 56-win Celtics. That's how you announce you're ready for a championship run. Absolutely dominant two-way performance when it mattered most.",
+    "2/ DAME TIME IN THE PLAYOFFS ⏰ The Trail Blazers just eliminated the 62-WIN Spurs in one of the biggest first-round upsets ever. Lillard (31 pts) and Simons (24 pts, 6 threes) were unconscious from deep. Veteran leadership > regular season records.",
+    "3/ THE CELTICS ARE IN CRISIS 📉 Getting eliminated at home in Game 7 after a 56-win season raises serious championship DNA questions. Tatum shot 7-19, they managed just 97 points, and got outplayed in every key moment. Devastating for their title hopes.",
+    "4/ TONIGHT'S SLATE 🏀 DET hosts ORL (7 PM ET) and OKC welcomes PHX (9:30 PM ET) to begin their playoff runs. After last night's chaos, can the higher seeds avoid more upsets? This postseason is already legendary. #NBAPlayoffs #HoopsIntel"
   ]
 };

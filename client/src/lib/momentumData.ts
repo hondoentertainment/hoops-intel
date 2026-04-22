@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Joel Embiid", 
     team: "PHI", 
-    clutchRating: 94, 
-    description: "Dominated the fourth quarter with 8 points and 3 rebounds while shutting down Boston's interior attack to force Game 7"
+    clutchRating: 96, 
+    description: "Delivered a masterful Game 7 performance, shooting 13-of-21 while dismantling Boston's championship dreams at TD Garden"
   },
   games: [
     {
@@ -48,44 +48,44 @@ export const momentumData: MomentumData = {
       finalScore: { home: 97, away: 111 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "7:24",
-          description: "Celtics jump out early with aggressive defense forcing three straight turnovers",
-          runScore: "12-4 BOS",
-          momentum: "home",
-          keyPlayer: "Jayson Tatum",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "4:12",
-          description: "Embiid takes over with consecutive post moves as 76ers erase deficit",
-          runScore: "16-6 PHI",
+          quarter: "1Q",
+          timestamp: "6:42",
+          description: "Embiid dominates early with back-to-back dunks and a block on Tatum",
+          runScore: "12-4 PHI",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
-          quarter: "3rd",
-          timestamp: "2:38",
-          description: "Maxey explodes for 11 third-quarter points as Philadelphia pulls away",
-          runScore: "21-9 PHI",
+          quarter: "2Q",
+          timestamp: "2:15",
+          description: "Brown's explosive 9-0 personal run gets TD Garden rocking",
+          runScore: "9-0 BOS",
+          momentum: "home",
+          keyPlayer: "Jaylen Brown",
+          impact: "notable"
+        },
+        {
+          quarter: "3Q",
+          timestamp: "8:30",
+          description: "Maxey catches fire with three straight threes to break the game open",
+          runScore: "13-2 PHI",
           momentum: "away",
           keyPlayer: "Tyrese Maxey",
           impact: "game-changing"
         },
         {
-          quarter: "4th",
-          timestamp: "8:45",
-          description: "Embiid's defensive dominance completely stifles Boston's comeback attempt",
-          runScore: "14-7 PHI",
+          quarter: "4Q",
+          timestamp: "4:17",
+          description: "Embiid's dominant paint presence seals Boston's elimination",
+          runScore: "8-0 PHI",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "The basketball world witnessed a seismic shift at TD Garden as Joel Embiid delivered a vintage elimination-game masterpiece, turning what should have been Boston's coronation into Philadelphia's stunning resurrection. The 76ers completely flipped the script of this series with their most dominant performance, outmuscling and outhustling the higher-seeded Celtics on their home floor. Embiid looked like the MVP candidate of old, imposing his will on both ends while Maxey provided the explosive scoring punch that has made this duo so dangerous. Game 7 now looms as one of the most anticipated decisive games in recent playoff memory."
+      narrative: "Joel Embiid authored one of the greatest Game 7 road performances in playoff history, methodically dismantling Boston's championship hopes with surgical precision. The 76ers' superstar was unstoppable from the opening tip, bullying his way to 32 points while completely neutralizing Boston's interior defense. What started as nervous energy in TD Garden transformed into stunned silence as Philadelphia's 18-point second-half lead made it clear that the heavily favored Celtics' season was ending in devastating fashion. This wasn't just an upset—it was a statement game that announced Philadelphia as a legitimate championship contender."
     },
     {
       gameId: "POR-SAS-20260421",
@@ -93,50 +93,59 @@ export const momentumData: MomentumData = {
       finalScore: { home: 103, away: 106 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "5:18",
-          description: "Wembanyama's early dominance gives Spurs commanding lead at home",
-          runScore: "18-8 SAS",
+          quarter: "1Q",
+          timestamp: "4:22",
+          description: "Wembanyama's rim protection sparks early San Antonio energy",
+          runScore: "10-2 SAS",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
+          impact: "notable"
+        },
+        {
+          quarter: "2Q",
+          timestamp: "7:18",
+          description: "Lillard's deep three-point barrage shifts momentum to Portland",
+          runScore: "11-3 POR",
+          momentum: "away",
+          keyPlayer: "Damian Lillard",
           impact: "significant"
         },
         {
-          quarter: "2nd",
-          timestamp: "6:32",
-          description: "Portland's three-point barrage led by Simons cuts deficit dramatically",
-          runScore: "19-8 POR",
+          quarter: "3Q",
+          timestamp: "1:45",
+          description: "Simons explodes for 14 third-quarter points on perfect shooting",
+          runScore: "14-4 POR",
           momentum: "away",
           keyPlayer: "Anfernee Simons",
           impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "1:24",
-          description: "Lillard takes control with clutch shooting to give Trail Blazers first lead",
-          runScore: "13-5 POR",
-          momentum: "away",
-          keyPlayer: "Damian Lillard",
-          impact: "game-changing"
+          quarter: "4Q",
+          timestamp: "2:33",
+          description: "Wembanyama's late surge gives Spurs hope in final minutes",
+          runScore: "7-0 SAS",
+          momentum: "home",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
           player: "Damian Lillard",
           team: "POR",
-          description: "Step-back three over Wembanyama's outstretched arm",
-          timeRemaining: "2:47",
-          winProbabilityShift: 18
+          description: "Drains contested 28-footer over Wembanyama to silence crowd",
+          timeRemaining: "1:47",
+          winProbabilityShift: 23
         },
         {
           player: "Anfernee Simons",
           team: "POR",
-          description: "Corner three off Lillard assist to ice the upset",
-          timeRemaining: "1:12",
-          winProbabilityShift: 24
+          description: "Clutch steal and transition three seals series upset",
+          timeRemaining: "0:38",
+          winProbabilityShift: 31
         }
       ],
-      narrative: "Dame Time struck at the most improbable moment, as Damian Lillard orchestrated one of the biggest upsets in recent playoff history by eliminating the 62-win Spurs on their home court. The Trail Blazers' veteran leadership shined brightest when the lights were hottest, with Lillard and Simons combining for a three-point clinic that left San Antonio stunned. Despite Wembanyama's valiant 27-point effort, the young Spurs couldn't match Portland's playoff poise and execution in crunch time. This shocking first-round exit will send shockwaves through the basketball world and raise serious questions about San Antonio's championship readiness."
+      narrative: "Portland delivered one of the most shocking playoff upsets in recent memory, using veteran savvy and unconscious three-point shooting to topple the 62-win Spurs on their home floor. Damian Lillard was absolutely electric in the clutch, hitting impossible shots over Victor Wembanyama's seven-foot frame while Anfernee Simons provided the perfect complement with six three-pointers. The Trail Blazers' 15-of-32 performance from beyond the arc was a clinic in playoff execution, proving that experience and composure can overcome youth and talent when the stakes reach their peak. San Antonio's magical season ended not with a whimper, but with the harsh reality that playoff basketball is an entirely different beast."
     },
     {
       gameId: "HOU-LAL-20260421",
@@ -144,43 +153,52 @@ export const momentumData: MomentumData = {
       finalScore: { home: 101, away: 94 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "3:45",
-          description: "Rockets' energy and pace gives them early advantage in hostile environment",
-          runScore: "15-7 HOU",
-          momentum: "away",
-          keyPlayer: "Alperen Şengün",
+          quarter: "1Q",
+          timestamp: "8:15",
+          description: "Davis establishes early dominance with three straight blocks",
+          runScore: "8-0 LAL",
+          momentum: "home",
+          keyPlayer: "Anthony Davis",
           impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "8:21",
-          description: "Davis asserts himself with powerful interior scoring to tie the game",
-          runScore: "12-4 LAL",
-          momentum: "home",
-          keyPlayer: "Anthony Davis",
+          quarter: "2Q",
+          timestamp: "5:30",
+          description: "Şengün's crafty post moves spark Houston's best run",
+          runScore: "12-4 HOU",
+          momentum: "away",
+          keyPlayer: "Alperen Şengün",
           impact: "significant"
         },
         {
-          quarter: "4th",
-          timestamp: "6:15",
-          description: "LeBron-AD pick and roll devastates Houston's defense in crucial stretch",
-          runScore: "16-8 LAL",
+          quarter: "3Q",
+          timestamp: "3:45",
+          description: "LeBron takes over with vintage drive-and-kick sequence",
+          runScore: "10-2 LAL",
           momentum: "home",
           keyPlayer: "LeBron James",
+          impact: "significant"
+        },
+        {
+          quarter: "4Q",
+          timestamp: "6:12",
+          description: "Davis's defensive presence completely shuts down Houston's offense",
+          runScore: "9-2 LAL",
+          momentum: "home",
+          keyPlayer: "Anthony Davis",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Anthony Davis",
+          player: "LeBron James",
           team: "LAL",
-          description: "Thunderous dunk plus foul after LeBron drive and kick",
-          timeRemaining: "3:28",
-          winProbabilityShift: 12
+          description: "Perfect bounce pass to Davis for dagger dunk",
+          timeRemaining: "2:18",
+          winProbabilityShift: 18
         }
       ],
-      narrative: "The Lakers' championship experience proved decisive in a gritty, playoff-atmosphere battle that showcased why Anthony Davis remains one of the league's most impactful two-way players. Davis controlled the paint on both ends, using his length and athleticism to frustrate Houston's offense while providing the interior scoring punch Los Angeles needed. LeBron's veteran savvy in orchestrating the fourth-quarter run demonstrated the timeless value of playoff experience in high-pressure moments. This victory solidifies the Lakers' playoff positioning and sends a message that this team remains a dangerous postseason threat when healthy."
+      narrative: "Anthony Davis put on a defensive masterclass that showcased exactly why the Lakers remain a playoff threat, completely altering Houston's offensive rhythm with his rim protection and length. The big man was equally dominant on offense, shooting an efficient 10-of-17 while LeBron James orchestrated the attack with vintage playmaking down the stretch. This physical, grinding affair had all the hallmarks of a potential playoff series, with both teams showcasing the defensive intensity and execution that separates contenders from pretenders. The Lakers' veteran savvy ultimately prevailed in the final minutes, as their championship experience proved invaluable when the game hung in the balance."
     }
   ]
 };

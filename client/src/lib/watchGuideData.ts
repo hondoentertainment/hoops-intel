@@ -48,9 +48,9 @@ export const watchGuideData: WatchGuideData = {
       venue: "Paycom Center",
       entertainmentScore: 92,
       starPower: 9,
-      playoffImplications: 9,
+      playoffImplications: 10,
       rivalry: 7,
-      storyline: "Elite Thunder squad with 64 wins tests their championship mettle against a dangerous Suns team fighting for playoff positioning. This Western Conference showdown features explosive offensive talent and potential playoff preview drama.",
+      storyline: "The league's best team hosts a desperate Suns squad fighting for playoff seeding in a Western Conference battle featuring elite offensive firepower.",
       keyMatchup: "Shai Gilgeous-Alexander vs. Devin Booker",
       mustWatch: true
     },
@@ -65,15 +65,15 @@ export const watchGuideData: WatchGuideData = {
       time: "4/22 - 7:00 PM EDT",
       tv: "ESPN",
       venue: "Little Caesars Arena",
-      entertainmentScore: 87,
+      entertainmentScore: 86,
       starPower: 8,
-      playoffImplications: 8,
+      playoffImplications: 9,
       rivalry: 6,
-      storyline: "The resurgent Pistons with an impressive 60-22 record host a scrappy Magic squad in a clash of Eastern Conference playoff contenders. Detroit's remarkable turnaround season meets Orlando's young core in a potential postseason positioning battle.",
-      keyMatchup: "Cade Cunningham vs. Paolo Banchero",
+      storyline: "Detroit's surprising season continues as they look to maintain their elite record against a Magic team pushing for playoff positioning in the competitive Eastern Conference.",
+      keyMatchup: "Paolo Banchero vs. Cade Cunningham",
       mustWatch: true
     }
   ],
-  topPick: "Thunder vs. Suns delivers elite offensive firepower and Western Conference playoff implications",
-  nightOverview: "Tuesday's two-game slate features heavyweight matchups as both the Thunder and Pistons showcase their impressive seasons against playoff-hungry opponents. Late-night Western Conference fireworks cap off an evening of high-stakes basketball."
+  topPick: "Thunder host Suns in a Western Conference heavyweight clash with massive playoff seeding implications",
+  nightOverview: "A prime-time doubleheader on ESPN features two games with significant playoff implications, headlined by the Thunder's elite offense against a desperate Suns team. Both games showcase rising young stars in crucial late-season battles."
 };
