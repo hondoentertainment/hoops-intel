@@ -42,7 +42,7 @@ export default function TickerWidget({ theme = "dark", size = "medium" }: Ticker
 
   // Calculate animation duration based on content length
   const totalWidth = scrollContent.reduce((acc, item) => acc + item.text.length * 7 + 60, 0);
-  const duration = Math.max(totalWidth / 50, 30);
+  const duration = Math.max(totalWidth / 35, 45);
 
   return (
     <div

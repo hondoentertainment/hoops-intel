@@ -22,17 +22,21 @@ import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import AuthModal from "../components/AuthModal";
 import ShareButton from "../components/ShareButton";
-import { getFavorites } from "../lib/supabaseClient";
+import { getFavorites, getUser, signOut, type User } from "../lib/supabaseClient";
 import { hasPreferences, getPreferences } from "../lib/userPreferences";
+import type { LiveGame } from "../lib/espnApi";
+import LiveGameCenter from "../components/LiveGameCenter";
+import ForYouBriefing from "../components/ForYouBriefing";
+import UserProfileCard from "../components/UserProfileCard";
+import DiscussionThread from "../components/discussion/DiscussionThread";
+import { listNotifications, markNotificationRead, type CommunityNotification } from "../lib/communityClient";
+import { trackMetric } from "../lib/engagementMetrics";
 
 // ═══════════════════════════════════════════════════════════
 // LIVE SCOREBAR — Real-time ESPN scores
 // ═══════════════════════════════════════════════════════════
 
-function LiveScorebar() {
-  const { data, loading } = useLiveScores();
-  const liveGames = data?.games.filter((g) => g.status === "in") ?? [];
-
+function LiveScorebar({ liveGames, loading }: { liveGames: LiveGame[]; loading: boolean }) {
   if (loading || liveGames.length === 0) return null;
 
   return (
@@ -229,9 +233,10 @@ function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }
 // NOTIFICATION BELL
 // ═══════════════════════════════════════════════════════════
 
-function NotificationBell() {
+function NotificationBell({ user }: { user: User | null }) {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
+  const [feed, setFeed] = useState<CommunityNotification[]>([]);
   const [subscribed, setSubscribed] = useState(() =>
     localStorage.getItem("hoopsintel-subscribed") === "true"
   );
@@ -260,6 +265,15 @@ function NotificationBell() {
     }
   };
 
+  useEffect(() => {
+    if (!showModal || !user) return;
+    listNotifications(15)
+      .then((rows) => setFeed(rows))
+      .catch(() => setFeed([]));
+  }, [showModal, user]);
+
+  const unreadCount = feed.filter((n) => !n.read_at).length;
+
   return (
     <>
       <button
@@ -267,11 +281,11 @@ function NotificationBell() {
         className="relative p-1.5 rounded transition-colors hover:bg-white/10"
         title="Notifications"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: subscribed || notifEnabled ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: subscribed || notifEnabled || unreadCount > 0 ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
           <path d="M13.73 21a2 2 0 0 1-3.46 0" />
         </svg>
-        {(subscribed || notifEnabled) && (
+        {(subscribed || notifEnabled || unreadCount > 0) && (
           <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400" />
         )}
       </button>
@@ -325,6 +339,33 @@ function NotificationBell() {
                 </button>
               </div>
             )}
+
+            {user && (
+              <div className="mt-4">
+                <div className="section-label mb-2">COMMUNITY</div>
+                <div className="space-y-2 max-h-40 overflow-y-auto">
+                  {feed.length === 0 && (
+                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>No notifications yet.</div>
+                  )}
+                  {feed.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        markNotificationRead(item.id).catch(() => {});
+                        window.location.href = item.target_path || "/";
+                      }}
+                      className="w-full text-left rounded p-2 text-xs"
+                      style={{
+                        background: item.read_at ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.12)",
+                        color: "rgba(255,255,255,0.72)",
+                      }}
+                    >
+                      {item.message}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -336,7 +377,7 @@ function NotificationBell() {
 // HEADER — With search, dark mode toggle, notifications
 // ═══════════════════════════════════════════════════════════
 
-function Header() {
+function Header({ user, onRefreshUser }: { user: User | null; onRefreshUser: () => void }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -426,19 +467,34 @@ function Header() {
               </button>
 
               {/* Notification Bell */}
-              <NotificationBell />
+              <NotificationBell user={user} />
 
-              {/* Sign In */}
-              <button
-                onClick={() => setShowAuth(true)}
-                className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded text-xs font-medium transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-                </svg>
-                Sign In
-              </button>
+              {/* Profile / Auth */}
+              {user ? (
+                <div className="hidden sm:flex items-center gap-2">
+                  <UserProfileCard user={user} />
+                  <button
+                    onClick={() => {
+                      signOut().then(onRefreshUser).catch(() => {});
+                    }}
+                    className="px-2 py-1 rounded text-xs"
+                    style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowAuth(true)}
+                  className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded text-xs font-medium transition-colors hover:bg-white/10"
+                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Sign In
+                </button>
+              )}
 
               {/* Edition Date */}
               <div
@@ -452,7 +508,15 @@ function Header() {
         </div>
       </header>
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-      {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={() => setShowAuth(false)} />}
+      {showAuth && (
+        <AuthModal
+          onClose={() => setShowAuth(false)}
+          onAuth={() => {
+            setShowAuth(false);
+            onRefreshUser();
+          }}
+        />
+      )}
     </>
   );
 }
@@ -1338,8 +1402,24 @@ function Footer() {
 // ═══════════════════════════════════════════════════════════
 
 export default function Home() {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([]);
+  const [favoritePlayers, setFavoritePlayers] = useState<string[]>([]);
   const [showMyPulse, setShowMyPulse] = useState(false);
+  const [clutchAlertsEnabled, setClutchAlertsEnabled] = useState(true);
+  const { data: liveData, loading: liveLoading } = useLiveScores();
+  const liveGames = liveData?.games.filter((g) => g.status === "in") ?? [];
+
+  const refreshCurrentUser = () => {
+    getUser()
+      .then((u) => setCurrentUser(u))
+      .catch(() => setCurrentUser(null));
+  };
+
+  useEffect(() => {
+    refreshCurrentUser();
+    trackMetric("session_start");
+  }, []);
 
   // Fetch user favorites on mount for client-side personalization
   useEffect(() => {
@@ -1351,8 +1431,9 @@ export default function Home() {
     }
     // Also check Supabase favorites (best-effort)
     getFavorites()
-      .then(({ teams }) => {
-        if (teams.length > 0) setFavoriteTeams((prev) => prev.length > 0 ? prev : teams);
+      .then(({ teams, players }) => {
+        if (teams.length > 0) setFavoriteTeams((prev) => (prev.length > 0 ? prev : teams));
+        if (players && players.length > 0) setFavoritePlayers(players);
       })
       .catch(() => {
         // Silently ignore — personalization is best-effort
@@ -1361,10 +1442,33 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <Header />
-      <LiveScorebar />
-      <TickerBar />
+      <Header user={currentUser} onRefreshUser={refreshCurrentUser} />
+      <LiveScorebar liveGames={liveGames} loading={liveLoading} />
+      <ForYouBriefing
+        favoriteTeams={favoriteTeams}
+        favoritePlayers={favoritePlayers}
+        pulseIndex={pulseIndex}
+        gamePreviews={gamePreviews}
+        injuryUpdates={injuryUpdates}
+        fantasyAlerts={fantasyAlerts}
+        onPrefsChange={(prefs) => setClutchAlertsEnabled(prefs.clutchAlerts)}
+      />
+      <LiveGameCenter
+        liveGames={liveGames}
+        favoriteTeams={favoriteTeams}
+        clutchAlertsEnabled={clutchAlertsEnabled}
+      />
       <HeroSection showMyPulse={showMyPulse} />
+      <section className="py-8 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="container">
+          <DiscussionThread
+            scopeType="edition"
+            scopeKey={pulseEdition.edition}
+            title={`${pulseEdition.edition} Discussion`}
+            targetPath="/#edition-discussion"
+          />
+        </div>
+      </section>
       <ScoresSection favoriteTeams={favoriteTeams} />
       <NarrativeSection />
       <PulseIndexSection />

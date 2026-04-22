@@ -1,0 +1,16 @@
+---
+description: Rules for live game updates, clutch alerts, and realtime stability.
+globs:
+  - client/src/lib/useLiveScores.ts
+  - client/src/lib/useLiveGameCenter.ts
+  - client/src/lib/liveGameCenter.ts
+  - client/src/components/LiveGameCenter.tsx
+  - api/push-notify.ts
+---
+
+- Prefer resilient data fallbacks when ESPN payloads omit fields.
+- Keep polling idempotent and bounded; avoid duplicate notification sends.
+- Use one-time clutch alert semantics per game id.
+- Never expose service role secrets in client code.
+- Keep live UI non-blocking: load partial panels even when one subfeed fails.
+- Preserve existing visual language (`glass-card`, `section-label`, accent blue/emerald/rose).

@@ -202,6 +202,49 @@
 
 ---
 
+## Competitive Gap Backlog (Post-Live Center + For You)
+
+> Added after competitive review to capture all remaining parity/differentiation gaps.
+
+### P1 — Engagement & Personalization Depth
+- [ ] Account-based community identity (profiles, display names, badges, public stats)
+- [ ] Per-game and per-edition discussion threads (not local-only voting)
+- [ ] Follow graph (friends/analysts), activity feed, and “friends picks” layer in Pick’em
+- [ ] Pick’em private leagues + invite links + league leaderboards
+- [ ] Weekly streak challenges (e.g., “Beat the AI 5 days straight”) with unlockable rewards
+- [ ] Notification strategy center (tip-off / clutch / final / milestones + quiet hours + digest cadence)
+
+### P2 — Product Credibility & Utility
+- [ ] Trade Lab credibility pass: replace heuristic verdicts with model-backed evaluator + explicit assumptions panel
+- [ ] Salary/CBA rule engine v1 (matching bands, roster slot validation, exception-aware guardrails)
+- [ ] Confidence scoring + “why this trade grade” trace for each simulation output
+- [ ] Scenario compare mode (A/B/C trade packages side-by-side with outcome deltas)
+
+### P2 — Media & Real-Time Context
+- [ ] “What to Watch Now” graph (leverage score, rivalry context, playoff implications, spread volatility)
+- [ ] Live moments rail (biggest swings, dagger plays, clutch possessions) with timeline anchors
+- [ ] Short-form recap cards optimized for social sharing (story/shorts format)
+- [ ] Optional clip/embed module where rights-safe sources are available
+
+### P2/P3 — Query Experience
+- [ ] NL query assistant (“Ask Hoops Intel”) with strict source citations to editions/box scores
+- [ ] Query templates for common intents (player trend, team form, matchup edge, injury impact)
+- [ ] Conversational follow-up support with context memory per session
+- [ ] “Show work” mode: expose filters/assumptions used in generated answers
+
+### P3 — Monetization Productization
+- [ ] Pro paywall packaging with clear feature gates (advanced projections, deep lineup intel, export tools)
+- [ ] In-product upgrade triggers on high-intent actions (saved dashboards, premium alerts, compare exports)
+- [ ] Trial + win-back flows with usage-based messaging
+- [ ] Revenue instrumentation dashboard (conversion funnel, retention by tier, churn reasons)
+
+### Suggested sequencing (remaining gaps)
+- **Q2 2026**: Community identity + threads, private Pick’em leagues, notification strategy center
+- **Q3 2026**: Trade Lab credibility v1, What to Watch graph, Ask Hoops Intel v1
+- **Q4 2026**: Pro packaging + upgrade funnel optimization + monetization analytics
+
+---
+
 ## Architecture Decisions
 
 | Decision | Choice | Rationale |

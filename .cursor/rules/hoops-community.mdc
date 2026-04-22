@@ -1,0 +1,15 @@
+---
+description: Rules for discussion threads, comments, votes, and community notifications.
+globs:
+  - client/src/components/discussion/**
+  - client/src/lib/communityClient.ts
+  - supabase/community_migration.sql
+  - client/src/pages/Home.tsx
+---
+
+- Use authenticated writes for comments/votes/notifications; reads can remain public where intended.
+- Keep thread scope deterministic (`scope_type` + `scope_key`) for game and edition contexts.
+- Favor optimistic but reversible UX: refresh after writes and handle permission failures gracefully.
+- Enforce one vote per user per comment via unique constraints + upsert patterns.
+- Keep discussion mobile-friendly and accessible with clear action labels.
+- Include “hot take” surfacing from objective score signals (vote totals).

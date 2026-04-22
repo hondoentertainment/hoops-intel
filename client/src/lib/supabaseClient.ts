@@ -33,6 +33,10 @@ function getStoredToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
 }
 
+export function getAccessToken(): string | null {
+  return getStoredToken();
+}
+
 function storeSession(session: AuthSession): void {
   localStorage.setItem(TOKEN_KEY, session.access_token);
   localStorage.setItem(REFRESH_KEY, session.refresh_token);

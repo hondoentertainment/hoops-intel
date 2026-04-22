@@ -1,0 +1,13 @@
+---
+description: Rules for For You briefing, user preferences, and notification tuning.
+globs:
+  - client/src/components/ForYouBriefing.tsx
+  - client/src/lib/supabaseClient.ts
+  - client/src/pages/Home.tsx
+---
+
+- Keep personalization deterministic and explainable (show why content is prioritized).
+- Persist local preference toggles safely with sane defaults and backward-compatible parsing.
+- Prioritize favorites-driven relevance over global defaults when data exists.
+- Keep opt-in behavior explicit for alerts and digest-related settings.
+- Avoid hard dependencies on auth; unauthenticated users should still get graceful fallbacks.
