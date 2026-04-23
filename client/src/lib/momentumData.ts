@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 22, 2026
+// Last updated: April 23, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,186 +33,126 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 22, 2026",
-  gameOfTheNight: "PHI-BOS-20260421",
+  date: "April 23, 2026",
+  gameOfTheNight: "ORL-DET-20260423",
   topClutchPerformer: { 
-    player: "Joel Embiid", 
-    team: "PHI", 
-    clutchRating: 98, 
-    description: "Delivered a masterful Game 7 performance with 32 points and 14 rebounds, completely dominating Boston's defense in the most pressure-packed environment imaginable"
+    player: "Shai Gilgeous-Alexander", 
+    team: "OKC", 
+    clutchRating: 87, 
+    description: "Closed the door on Phoenix with 11 fourth-quarter points including back-to-back threes" 
   },
   games: [
     {
-      gameId: "PHI-BOS-20260421",
-      teams: { home: "BOS", away: "PHI" },
-      finalScore: { home: 97, away: 111 },
+      gameId: "ORL-DET-20260423",
+      teams: { home: "DET", away: "ORL" },
+      finalScore: { home: 98, away: 83 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "6:42",
-          description: "Embiid scores 8 straight points including back-to-back dunks to silence TD Garden early",
-          runScore: "PHI 8-0",
+          quarter: "Q1",
+          timestamp: "7:42",
+          description: "Orlando opens with aggressive defense, forcing 5 early turnovers",
+          runScore: "11-4 ORL",
           momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "3:15",
-          description: "Jayson Tatum catches fire with three consecutive three-pointers to cut deficit to 2",
-          runScore: "BOS 11-2",
-          momentum: "home",
-          keyPlayer: "Jayson Tatum",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "8:24",
-          description: "Maxey explodes for 12 points in 4 minutes as Sixers build commanding 16-point lead",
-          runScore: "PHI 16-4",
-          momentum: "away",
-          keyPlayer: "Tyrese Maxey",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "9:17",
-          description: "Embiid answers every Boston rally attempt with dominant post moves and defensive stops",
-          runScore: "PHI 10-3",
-          momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The TD Garden fell eerily silent as Joel Embiid delivered one of the most dominant Game 7 performances in recent playoff history, systematically dismantling the favored Celtics on their home court. What started as nervous energy quickly turned to stunned disbelief as the Sixers built an insurmountable lead behind Embiid's unstoppable interior presence and Maxey's explosive scoring bursts. By the fourth quarter, the building that expected a celebration had become a mausoleum, witnessing one of the most shocking playoff eliminations in franchise history. Philadelphia's veteran composure and playoff experience shined brightest when the lights were brightest, turning Boston's championship dreams into a nightmare scenario."
-    },
-    {
-      gameId: "POR-SAS-20260421",
-      teams: { home: "SAS", away: "POR" },
-      finalScore: { home: 103, away: 106 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "4:18",
-          description: "Wembanyama scores 11 early points including two blocks on consecutive possessions",
-          runScore: "SAS 13-4",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "7:45",
-          description: "Trail Blazers hit 6 of 8 three-pointers in explosive quarter-ending run",
-          runScore: "POR 18-6",
-          momentum: "away",
-          keyPlayer: "Anfernee Simons",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "5:33",
-          description: "Lillard takes over with 14 points in 6 minutes to extend Portland's lead to 12",
-          runScore: "POR 16-4",
-          momentum: "away",
-          keyPlayer: "Damian Lillard",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "2:47",
-          description: "Spurs mount desperate comeback behind Wembanyama's interior dominance",
-          runScore: "SAS 12-3",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Damian Lillard",
-          team: "POR",
-          description: "Pulls up for deep three-pointer over Wembanyama's outstretched arm",
-          timeRemaining: "1:42",
-          winProbabilityShift: 23
-        },
-        {
-          player: "Anfernee Simons",
-          team: "POR",
-          description: "Hits contested step-back three after offensive rebound",
-          timeRemaining: "0:47",
-          winProbabilityShift: 31
-        },
-        {
-          player: "Victor Wembanyama",
-          team: "SAS",
-          description: "Blocks Lillard at rim then scores putback dunk on other end",
-          timeRemaining: "0:23",
-          winProbabilityShift: -18
-        }
-      ],
-      narrative: "In one of the most stunning playoff upsets in recent memory, Portland's veteran savvy and three-point barrage completely overwhelmed San Antonio's youth and regular season dominance. The Trail Blazers' championship experience showed in crunch time as Lillard and Simons hit impossible shots under immense pressure, while the 62-win Spurs couldn't match their composure when the stakes reached their peak. Wembanyama's brilliance wasn't enough to overcome Portland's surgical precision from beyond the arc, as the Blazers shot lights-out when it mattered most. The Frost Bank Center crowd watched in stunned silence as their championship hopes evaporated against a team that simply knew how to win when everything was on the line."
-    },
-    {
-      gameId: "HOU-LAL-20260421",
-      teams: { home: "LAL", away: "HOU" },
-      finalScore: { home: 101, away: 94 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "8:21",
-          description: "Rockets open with aggressive pace, forcing Lakers into early turnovers and transition buckets",
-          runScore: "HOU 12-3",
-          momentum: "away",
-          keyPlayer: "Alperen Şengün",
+          keyPlayer: "Paolo Banchero",
           impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "5:47",
-          description: "Davis dominates the paint with 3 blocks and 8 points to flip momentum",
-          runScore: "LAL 13-4",
+          quarter: "Q2",
+          timestamp: "4:15",
+          description: "Pistons respond with suffocating paint defense and transition scoring",
+          runScore: "18-6 DET",
           momentum: "home",
-          keyPlayer: "Anthony Davis",
+          keyPlayer: "Isaiah Stewart",
           impact: "significant"
         },
         {
-          quarter: "3rd",
-          timestamp: "9:15",
-          description: "LeBron orchestrates perfect ball movement leading to 4 straight assists",
-          runScore: "LAL 10-2",
+          quarter: "Q3",
+          timestamp: "8:30",
+          description: "Detroit locks down defensively, holding Orlando to 2-of-14 shooting",
+          runScore: "14-4 DET",
           momentum: "home",
-          keyPlayer: "LeBron James",
+          keyPlayer: "Cade Cunningham",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:22",
+          description: "Magic mount desperate comeback attempt with full-court pressure",
+          runScore: "9-2 ORL",
+          momentum: "away",
+          keyPlayer: "Franz Wagner",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Detroit's dominant defensive performance turned Little Caesars Arena into a fortress as the Pistons suffocated Orlando's offense in a statement playoff-style victory. The Magic managed just 36.8% shooting against Detroit's swarming defense, with the home crowd feeding off every steal and blocked shot. This was vintage Pistons basketball - physical, relentless, and built on defensive identity. The 15-point margin hardly tells the story of Detroit's complete defensive domination that had Orlando searching for answers all night long."
+    },
+    {
+      gameId: "PHX-OKC-20260423",
+      teams: { home: "OKC", away: "PHX" },
+      finalScore: { home: 120, away: 107 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "5:18",
+          description: "Devin Booker catches fire early with three consecutive threes",
+          runScore: "11-2 PHX",
+          momentum: "away",
+          keyPlayer: "Devin Booker",
           impact: "significant"
         },
         {
-          quarter: "4th",
-          timestamp: "6:33",
-          description: "Lakers defense clamps down, holding Rockets to 2-of-12 shooting in crucial stretch",
-          runScore: "LAL 8-2",
+          quarter: "Q2",
+          timestamp: "9:45",
+          description: "Thunder unleash devastating fast break attack off turnovers",
+          runScore: "16-4 OKC",
           momentum: "home",
-          keyPlayer: "Anthony Davis",
+          keyPlayer: "Jalen Williams",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "2:33",
+          description: "Suns battle back with methodical halfcourt execution",
+          runScore: "12-4 PHX",
+          momentum: "away",
+          keyPlayer: "Kevin Durant",
+          impact: "notable"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "8:15",
+          description: "SGA takes over completely, scoring on four straight possessions",
+          runScore: "12-2 OKC",
+          momentum: "home",
+          keyPlayer: "Shai Gilgeous-Alexander",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "LeBron James",
-          team: "LAL",
-          description: "Drives through contact for and-one layup to extend lead",
-          timeRemaining: "3:28",
-          winProbabilityShift: 19
+          player: "Shai Gilgeous-Alexander",
+          team: "OKC",
+          description: "Step-back three over Booker to extend lead to 9",
+          timeRemaining: "4:47",
+          winProbabilityShift: 15.2
         },
         {
-          player: "Anthony Davis",
-          team: "LAL",
-          description: "Blocks Şengün at rim then hits mid-range jumper on other end",
-          timeRemaining: "1:57",
-          winProbabilityShift: 22
+          player: "Devin Booker",
+          team: "PHX",
+          description: "Contested pull-up jumper keeps Suns within striking distance",
+          timeRemaining: "3:28",
+          winProbabilityShift: -8.7
+        },
+        {
+          player: "Shai Gilgeous-Alexander",
+          team: "OKC",
+          description: "Drives through traffic for and-one finish",
+          timeRemaining: "2:14",
+          winProbabilityShift: 18.9
         }
       ],
-      narrative: "This physical, playoff-intensity battle showcased exactly why the Lakers remain a dangerous postseason threat despite their regular season inconsistencies. Anthony Davis was simply unstoppable on both ends, using his length and athleticism to completely disrupt Houston's offensive rhythm while dominating the glass. The veteran leadership of LeBron and AD proved decisive down the stretch as they made all the winning plays when the Rockets needed stops most. Houston showed they belong in the playoff conversation, but learned a valuable lesson about the difference between regular season basketball and the elevated intensity that championship-level teams bring every single night."
+      narrative: "The Paycom Center exploded as Shai Gilgeous-Alexander put on a fourth-quarter masterclass, outdueling Kevin Durant and Devin Booker when the stakes were highest. What started as a back-and-forth battle between two explosive offenses became SGA's personal showcase in the final frame, as he scored seemingly at will against Phoenix's desperate defensive adjustments. The Thunder's young core showed they're ready for any challenge, turning a competitive game into a statement victory with pure clutch execution. Oklahoma City's 64-win season continues to look more and more legitimate with performances like this against elite competition."
     }
-  ],
+  ]
 };
