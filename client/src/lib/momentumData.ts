@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 23, 2026
+// Last updated: April 24, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,126 +33,169 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 23, 2026",
-  gameOfTheNight: "ORL-DET-20260423",
+  date: "April 24, 2026",
+  gameOfTheNight: "NY-ATL-20260424",
   topClutchPerformer: { 
-    player: "Shai Gilgeous-Alexander", 
-    team: "OKC", 
-    clutchRating: 87, 
-    description: "Closed the door on Phoenix with 11 fourth-quarter points including back-to-back threes" 
+    player: "Trae Young", 
+    team: "ATL", 
+    clutchRating: 94, 
+    description: "Hit the game-winning three with 1.2 seconds left after trailing by 5 with under 2 minutes remaining" 
   },
   games: [
     {
-      gameId: "ORL-DET-20260423",
-      teams: { home: "DET", away: "ORL" },
-      finalScore: { home: 98, away: 83 },
+      gameId: "NY-ATL-20260424",
+      teams: { home: "ATL", away: "NY" },
+      finalScore: { home: 109, away: 108 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "7:42",
-          description: "Orlando opens with aggressive defense, forcing 5 early turnovers",
-          runScore: "11-4 ORL",
-          momentum: "away",
-          keyPlayer: "Paolo Banchero",
-          impact: "notable"
-        },
-        {
           quarter: "Q2",
-          timestamp: "4:15",
-          description: "Pistons respond with suffocating paint defense and transition scoring",
-          runScore: "18-6 DET",
+          timestamp: "6:23",
+          description: "Hawks erupt for 14-2 run capped by Young's deep three",
+          runScore: "14-2",
           momentum: "home",
-          keyPlayer: "Isaiah Stewart",
+          keyPlayer: "Trae Young",
           impact: "significant"
         },
         {
           quarter: "Q3",
-          timestamp: "8:30",
-          description: "Detroit locks down defensively, holding Orlando to 2-of-14 shooting",
-          runScore: "14-4 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
+          timestamp: "2:45",
+          description: "Knicks answer with 18-6 surge behind Brunson's playmaking",
+          runScore: "18-6",
+          momentum: "away",
+          keyPlayer: "Jalen Brunson",
           impact: "game-changing"
         },
         {
           quarter: "Q4",
-          timestamp: "6:22",
-          description: "Magic mount desperate comeback attempt with full-court pressure",
-          runScore: "9-2 ORL",
+          timestamp: "8:12",
+          description: "Randle takes over with back-to-back threes and a steal",
+          runScore: "11-3",
           momentum: "away",
-          keyPlayer: "Franz Wagner",
-          impact: "notable"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Detroit's dominant defensive performance turned Little Caesars Arena into a fortress as the Pistons suffocated Orlando's offense in a statement playoff-style victory. The Magic managed just 36.8% shooting against Detroit's swarming defense, with the home crowd feeding off every steal and blocked shot. This was vintage Pistons basketball - physical, relentless, and built on defensive identity. The 15-point margin hardly tells the story of Detroit's complete defensive domination that had Orlando searching for answers all night long."
-    },
-    {
-      gameId: "PHX-OKC-20260423",
-      teams: { home: "OKC", away: "PHX" },
-      finalScore: { home: 120, away: 107 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "5:18",
-          description: "Devin Booker catches fire early with three consecutive threes",
-          runScore: "11-2 PHX",
-          momentum: "away",
-          keyPlayer: "Devin Booker",
+          keyPlayer: "Julius Randle",
           impact: "significant"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:45",
-          description: "Thunder unleash devastating fast break attack off turnovers",
-          runScore: "16-4 OKC",
-          momentum: "home",
-          keyPlayer: "Jalen Williams",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "2:33",
-          description: "Suns battle back with methodical halfcourt execution",
-          runScore: "12-4 PHX",
-          momentum: "away",
-          keyPlayer: "Kevin Durant",
-          impact: "notable"
         },
         {
           quarter: "Q4",
-          timestamp: "8:15",
-          description: "SGA takes over completely, scoring on four straight possessions",
-          runScore: "12-2 OKC",
+          timestamp: "1:47",
+          description: "Young ignites comeback with steal, assist, and clutch three",
+          runScore: "8-1",
           momentum: "home",
-          keyPlayer: "Shai Gilgeous-Alexander",
+          keyPlayer: "Trae Young",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Shai Gilgeous-Alexander",
-          team: "OKC",
-          description: "Step-back three over Booker to extend lead to 9",
-          timeRemaining: "4:47",
-          winProbabilityShift: 15.2
+          player: "Jalen Brunson",
+          team: "NY",
+          description: "Stepped back three over Collins to give Knicks 106-103 lead",
+          timeRemaining: "2:34",
+          winProbabilityShift: 18
         },
         {
-          player: "Devin Booker",
-          team: "PHX",
-          description: "Contested pull-up jumper keeps Suns within striking distance",
-          timeRemaining: "3:28",
-          winProbabilityShift: -8.7
+          player: "Trae Young",
+          team: "ATL",
+          description: "Steal and fastbreak layup to cut deficit to one possession",
+          timeRemaining: "1:47",
+          winProbabilityShift: -14
         },
         {
-          player: "Shai Gilgeous-Alexander",
-          team: "OKC",
-          description: "Drives through traffic for and-one finish",
-          timeRemaining: "2:14",
-          winProbabilityShift: 18.9
+          player: "De'Andre Hunter",
+          team: "ATL",
+          description: "Corner three off Young assist to tie game at 106",
+          timeRemaining: "0:52",
+          winProbabilityShift: -22
+        },
+        {
+          player: "Trae Young",
+          team: "ATL",
+          description: "Game-winning three from 28 feet with Randle draped on him",
+          timeRemaining: "0:01",
+          winProbabilityShift: -48
         }
       ],
-      narrative: "The Paycom Center exploded as Shai Gilgeous-Alexander put on a fourth-quarter masterclass, outdueling Kevin Durant and Devin Booker when the stakes were highest. What started as a back-and-forth battle between two explosive offenses became SGA's personal showcase in the final frame, as he scored seemingly at will against Phoenix's desperate defensive adjustments. The Thunder's young core showed they're ready for any challenge, turning a competitive game into a statement victory with pure clutch execution. Oklahoma City's 64-win season continues to look more and more legitimate with performances like this against elite competition."
+      narrative: "State Farm Arena witnessed pure theater as Trae Young authored one of the season's most dramatic finishes, drilling a 28-foot game-winner with Julius Randle in his jersey to stun the Knicks 109-108. The Hawks trailed by five with under two minutes remaining before Young orchestrated a masterful comeback, capping an 8-1 closing run with the kind of deep dagger that has become his signature. New York had controlled the fourth quarter behind Brunson's steady hand, but Young's clutch gene proved unstoppable when the lights burned brightest. This was vintage Ice Trae—cold-blooded, audacious, and absolutely devastating when it mattered most."
+    },
+    {
+      gameId: "CLE-TOR-20260424",
+      teams: { home: "TOR", away: "CLE" },
+      finalScore: { home: 126, away: 104 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "4:18",
+          description: "Barnes and Siakam combine for 12-0 personal run",
+          runScore: "12-0",
+          momentum: "home",
+          keyPlayer: "Scottie Barnes",
+          impact: "significant"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "9:32",
+          description: "Mitchell heats up with three straight triples to cut deficit",
+          runScore: "11-2",
+          momentum: "away",
+          keyPlayer: "Donovan Mitchell",
+          impact: "notable"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:41",
+          description: "Raptors explode for 20-4 run behind suffocating defense",
+          runScore: "20-4",
+          momentum: "home",
+          keyPlayer: "Pascal Siakam",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "The Raptors delivered a statement victory that felt like a playoff preview, dismantling Cleveland 126-104 behind a dominant third-quarter surge that broke the game wide open. Pascal Siakam and Scottie Barnes formed a devastating frontcourt duo, combining for 51 points while Toronto's suffocating defense held Donovan Mitchell and the Cavaliers to just 42% shooting. The 20-4 third-quarter run was pure basketball artistry—crisp ball movement, lockdown defense, and the kind of energy that made Scotiabank Arena feel like a playoff cauldron. Cleveland never recovered from that knockout punch, as the Raptors showcased the two-way excellence that makes them a legitimate threat in the Eastern Conference."
+    },
+    {
+      gameId: "DEN-MIN-20260424",
+      teams: { home: "MIN", away: "DEN" },
+      finalScore: { home: 113, away: 96 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "7:22",
+          description: "Jokic dominates early with 11 points in first 8 minutes",
+          runScore: "15-6",
+          momentum: "away",
+          keyPlayer: "Nikola Jokic",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "3:15",
+          description: "Wolves respond with Gobert-anchored 16-4 defensive clinic",
+          runScore: "16-4",
+          momentum: "home",
+          keyPlayer: "Rudy Gobert",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "8:47",
+          description: "Edwards erupts for 17-point quarter with spectacular scoring display",
+          runScore: "22-8",
+          momentum: "home",
+          keyPlayer: "Anthony Edwards",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:33",
+          description: "McDaniels and Reid extend lead with timely threes and stops",
+          runScore: "13-4",
+          momentum: "home",
+          keyPlayer: "Jaden McDaniels",
+          impact: "significant"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Anthony Edwards put on a third-quarter masterclass that left Target Center in a frenzy, scoring 17 points in 12 minutes to lead Minnesota's 113-96 demolition of the defending champion Nuggets. After a slow start that saw Nikola Jokic control the early tempo, the Wolves unleashed their defensive intensity and Edwards' explosive scoring to turn a competitive game into a rout. The two-time MVP finished with respectable numbers, but Denver had no answer for Minnesota's suffocating defense and Edwards' nuclear third quarter. This was the kind of complete performance that announces the Timberwolves as legitimate contenders—dominant on defense, explosive on offense, and utterly relentless when they smell blood."
     }
   ]
 };
