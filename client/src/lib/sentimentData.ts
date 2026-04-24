@@ -374,4 +374,9 @@ export const sentimentData: SentimentData = {
       score: 83,
       mentions: 27493,
       topTake: "Six three-pointers in a road elimination game to knock out the 62-win Spurs. Simons has been underrated for his entire career and last night was his formal introduction to the national audience. That man is a certified bucket and Portland doesn't make this historic run without him. Ice cold. 🧊",
-      narrativeArc: "Simons is experiencing the kind of extended viral moment that changes a player's public profile permanently. He generated enough first-time engagement last night
+      narrativeArc: "Simons is experiencing the kind of extended viral moment that changes a player's public profile permanently. He generated enough first-time engagement last night to shift him from 'Dame's sidekick' to a national headline in a single game, and the replays of his six threes are dominating timelines in a way that is hard to manufacture. Portland's upset has several heroes, but Simons is earning the specific praise — cold shot-making under elimination pressure — that sticks with neutral fans long after the confetti."
+    }
+  ],
+  hottestTake: "We just watched a 7 seed and an 8 seed close out superior teams on the road in back-to-back nights, and the discourse is still hedging about who is 'for real.' Portland and Philly did not luck into wins — they won series. If your priors survived the last forty-eight hours unchanged, you were not watching the same postseason 🔥🔥🔥",
+  coldestTake: "The internet is one good injury report away from snapping back to chalk. Embiid and Dame had legendary nights — they still have to win four more times against teams that have film, rest, and zero sentiment to protect. Chaos is fun until the favorites adjust, and they almost always do ❄️"
+};
