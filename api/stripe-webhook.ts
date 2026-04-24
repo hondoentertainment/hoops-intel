@@ -17,9 +17,7 @@
 //   customer.subscription.deleted
 //   invoice.payment_failed
 //
-// Once STRIPE_SECRET_KEY is in place, install the Stripe SDK:
-//   npm install stripe
-// and replace the `verifySignature` stub with `stripe.webhooks.constructEvent`.
+import Stripe from 'stripe';
 
 export const config = { runtime: 'nodejs' };
 
@@ -59,16 +57,16 @@ async function supabaseUpsert(row: Record<string, unknown>): Promise<void> {
   }
 }
 
-// Placeholder until the Stripe SDK is wired in. Keeping the shape so the
-// switch to `stripe.webhooks.constructEvent` is a one-line change.
-async function verifySignature(rawBody: string, _signature: string | null): Promise<StripeSubscriptionEvent> {
-  if (!process.env.STRIPE_WEBHOOK_SECRET) {
+async function verifySignature(rawBody: string, signature: string | null): Promise<StripeSubscriptionEvent> {
+  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+  const sk = process.env.STRIPE_SECRET_KEY;
+  if (!secret || !sk) {
     throw new Error('STRIPE_WEBHOOK_SECRET not configured');
   }
-  // TODO: replace with:
-  //   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-  //   return stripe.webhooks.constructEvent(rawBody, signature, process.env.STRIPE_WEBHOOK_SECRET!);
-  return JSON.parse(rawBody) as StripeSubscriptionEvent;
+  if (!signature) throw new Error('Missing stripe-signature header');
+  const stripe = new Stripe(sk);
+  const event = stripe.webhooks.constructEvent(rawBody, signature, secret);
+  return event as unknown as StripeSubscriptionEvent;
 }
 
 function planFromInterval(interval: string | undefined): 'monthly' | 'annual' {

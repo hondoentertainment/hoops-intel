@@ -1,15 +1,12 @@
 #!/usr/bin/env node
-// fetch-playoff-series.mjs — Normalize ESPN playoff series state and write a snapshot.
+// fetch-playoff-series.mjs — Reconstruct NBA playoff series from ESPN scoreboards.
 //
-// ESPN's scoreboard endpoint exposes per-game series info (summary, title,
-// gameNumber) on `event.competitions[0].series` during the postseason.
-// We aggregate the last ~3 weeks of scoreboards to reconstruct each series.
+// During the postseason, each game carries `competitions[0].series` metadata.
+// We scan a window of dates, aggregate by matchup (pair of teams), derive
+// wins, elimination flags, and stable seriesIds compatible with BracketPicker + Series Intel.
 //
-// Usage:   node scripts/fetch-playoff-series.mjs
-// Output:  .daily-data/playoff-series.json
-//
-// The snapshot is consumed by assemble-pulse-data.mjs to regenerate
-// client/src/lib/playoffData.ts on each daily run.
+// Output: .daily-data/playoff-series.json
+// Next:   node scripts/sync-playoff-data.mjs
 
 import { writeFileSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
@@ -22,8 +19,6 @@ const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 const DATA_DIR = join(ROOT, ".daily-data");
 
-// Pull scoreboards back to April 15, 2026 (start of Play-In / Round 1 window)
-// to reconstruct series state without needing a dedicated ESPN endpoint.
 const DAYS_BACK = 21;
 const DAYS_AHEAD = 7;
 
@@ -40,8 +35,8 @@ function conferenceFromSeries(series) {
   const t = (series?.title ?? "").toLowerCase();
   if (t.includes("east")) return "east";
   if (t.includes("west")) return "west";
-  if (t.includes("finals") && !t.includes("conference")) return "finals";
-  return null;
+  if (/nba finals|\bfinals\b/.test(t) && !t.includes("conference")) return "finals";
+  return "east";
 }
 
 function roundFromSeries(series) {
@@ -49,12 +44,40 @@ function roundFromSeries(series) {
   if (t.includes("first round")) return "first-round";
   if (t.includes("semifinal")) return "conference-semifinals";
   if (t.includes("conference finals")) return "conference-finals";
-  if (t.includes("nba finals") || t === "finals") return "finals";
+  if (t.includes("nba finals")) return "finals";
   return "first-round";
+}
+
+function roundRank(round) {
+  switch (round) {
+    case "first-round":
+      return 1;
+    case "conference-semifinals":
+      return 2;
+    case "conference-finals":
+      return 3;
+    case "finals":
+      return 4;
+    default:
+      return 1;
+  }
+}
+
+/** Lower numeric seed = better (NBA convention). */
+function playoffSeed(c) {
+  const raw = c?.curatedRank?.current ?? c?.rank ?? c?.seed ?? c?.team?.seed;
+  const n = parseInt(String(raw ?? "").replace(/\D/g, "") || "99", 10);
+  return Number.isFinite(n) && n > 0 && n < 99 ? n : 99;
 }
 
 function seriesKey(homeAbbr, awayAbbr) {
   return [homeAbbr, awayAbbr].sort().join("-");
+}
+
+function buildSeriesId(conference, round, higherTeam, lowerTeam) {
+  const r = roundRank(round);
+  const prefix = conference === "east" ? "E" : conference === "west" ? "W" : "F";
+  return `${prefix}${r}-${higherTeam}-${lowerTeam}`;
 }
 
 function upsertGame(series, game) {
@@ -66,9 +89,9 @@ function upsertGame(series, game) {
 function buildSummary(s) {
   if (s.status === "upcoming") return "Series tied 0-0";
   if (s.status === "complete") {
-    const winnerWins = Math.max(s.higherWins, s.lowerWins);
-    const loserWins = Math.min(s.higherWins, s.lowerWins);
-    return `${s.winner} wins ${winnerWins}-${loserWins}`;
+    const w = Math.max(s.higherWins, s.lowerWins);
+    const l = Math.min(s.higherWins, s.lowerWins);
+    return `${s.winner} wins ${w}-${l}`;
   }
   if (s.higherWins === s.lowerWins) return `Series tied ${s.higherWins}-${s.lowerWins}`;
   const leader = s.higherWins > s.lowerWins ? s.higherTeam : s.lowerTeam;
@@ -77,7 +100,8 @@ function buildSummary(s) {
 
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
-  const seriesMap = new Map(); // seriesKey -> series object
+  /** @type Map<string, object> */
+  const seriesMap = new Map();
 
   for (let offset = -DAYS_BACK; offset <= DAYS_AHEAD; offset++) {
     const espnDate = toESPNDate(offset);
@@ -97,24 +121,35 @@ async function main() {
 
       const homeAbbr = home.team?.abbreviation ?? "";
       const awayAbbr = away.team?.abbreviation ?? "";
-      const key = seriesKey(homeAbbr, awayAbbr);
+      if (!homeAbbr || !awayAbbr) continue;
 
-      const conference = conferenceFromSeries(comp.series) ?? "east";
+      const key = seriesKey(homeAbbr, awayAbbr);
+      const conference = conferenceFromSeries(comp.series);
       const round = roundFromSeries(comp.series);
-      const gameNumber = comp.series?.gameNumber ?? (comp.series?.summary?.match(/Game\s*(\d+)/i)?.[1] ? parseInt(RegExp.$1) : 1);
+
+      const hs = playoffSeed(home);
+      const as = playoffSeed(away);
+      const homeHigher = hs <= as;
+
+      const higherTeam = homeHigher ? homeAbbr : awayAbbr;
+      const lowerTeam = homeHigher ? awayAbbr : homeAbbr;
+      const higherSeed = homeHigher ? hs : as;
+      const lowerSeed = homeHigher ? as : hs;
+
+      const gm = comp.series?.summary?.match(/Game\s*(\d+)/i);
+      const gameNumber = comp.series?.gameNumber ?? (gm ? parseInt(gm[1], 10) : 1);
       const done = comp.status?.type?.completed ?? false;
       const live = comp.status?.type?.state === "in";
 
       if (!seriesMap.has(key)) {
-        // First time we see this pair — seed from ESPN series info
         seriesMap.set(key, {
-          seriesId: `${conference[0].toUpperCase()}-${homeAbbr}-${awayAbbr}`,
+          seriesId: buildSeriesId(conference, round, higherTeam, lowerTeam),
           conference,
           round,
-          higherSeed: parseInt(home.curatedRank?.current ?? home.rank ?? "0") || 0,
-          lowerSeed: parseInt(away.curatedRank?.current ?? away.rank ?? "0") || 0,
-          higherTeam: homeAbbr,
-          lowerTeam: awayAbbr,
+          higherSeed,
+          lowerSeed,
+          higherTeam,
+          lowerTeam,
           higherWins: 0,
           lowerWins: 0,
           status: "upcoming",
@@ -123,14 +158,18 @@ async function main() {
         });
       }
       const series = seriesMap.get(key);
+      // Refresh metadata from the latest ESPN row (round text improves over time).
+      series.seriesId = buildSeriesId(conference, round, series.higherTeam, series.lowerTeam);
+      series.conference = conference;
+      series.round = round;
 
       upsertGame(series, {
         gameNumber,
         date: espnDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"),
         homeTeam: homeAbbr,
         awayTeam: awayAbbr,
-        homeScore: done ? parseInt(home.score ?? "0") : null,
-        awayScore: done ? parseInt(away.score ?? "0") : null,
+        homeScore: done ? parseInt(home.score ?? "0", 10) : null,
+        awayScore: done ? parseInt(away.score ?? "0", 10) : null,
         status: done ? "final" : live ? "live" : "scheduled",
         time: comp.status?.type?.shortDetail ?? "",
         tv: (comp.broadcasts ?? []).map((b) => b.names?.join(", ")).filter(Boolean).join(" / ") || "",
@@ -138,17 +177,17 @@ async function main() {
     }
   }
 
-  // Derive wins + status + summary per series
   for (const series of seriesMap.values()) {
     let higherWins = 0;
     let lowerWins = 0;
     for (const g of series.games) {
       if (g.status !== "final") continue;
-      const higherIsHome = series.higherTeam === g.homeTeam;
-      const higherScore = higherIsHome ? g.homeScore : g.awayScore;
-      const lowerScore = higherIsHome ? g.awayScore : g.homeScore;
-      if (higherScore > lowerScore) higherWins++;
-      else lowerWins++;
+      const hs = g.homeScore ?? 0;
+      const as = g.awayScore ?? 0;
+      if (hs === as) continue;
+      const winner = hs > as ? g.homeTeam : g.awayTeam;
+      if (winner === series.higherTeam) higherWins++;
+      else if (winner === series.lowerTeam) lowerWins++;
     }
     series.higherWins = higherWins;
     series.lowerWins = lowerWins;
@@ -173,7 +212,7 @@ async function main() {
     fetchedAt: new Date().toISOString(),
     seriesCount: seriesMap.size,
     series: [...seriesMap.values()].sort((a, b) => {
-      if (a.conference !== b.conference) return a.conference.localeCompare(b.conference);
+      if (a.conference !== b.conference) return String(a.conference).localeCompare(String(b.conference));
       return a.higherSeed - b.higherSeed;
     }),
   };

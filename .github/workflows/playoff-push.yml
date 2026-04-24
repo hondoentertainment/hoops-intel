@@ -1,0 +1,35 @@
+# Runs every 30 minutes: refresh playoff snapshot from ESPN, dispatch elimination /
+# clincher pushes (scripts/check-playoff-series.mjs). Silently skips when env vars
+# are absent or there is no postseason data.
+
+name: Playoff Push Alerts
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Fetch playoff snapshot
+        run: node scripts/fetch-playoff-series.mjs
+
+      - name: Dispatch playoff pushes
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PUSH_API_URL: ${{ secrets.PUSH_API_URL }}
+          PUSH_API_SECRET: ${{ secrets.PUSH_API_SECRET }}
+        run: node scripts/check-playoff-series.mjs

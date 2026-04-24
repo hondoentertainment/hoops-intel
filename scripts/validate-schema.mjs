@@ -48,7 +48,7 @@ export function validate() {
   const editionMatch = content.match(/export\s+const\s+pulseEdition\s*[=:]\s*\{([^}]+)\}/);
   if (editionMatch) {
     const block = editionMatch[1];
-    for (const field of ["date", "edition"]) {
+    for (const field of ["date", "edition", "editionContext"]) {
       if (!block.includes(`${field}:`)) {
         console.error(`pulseEdition missing field: ${field}`);
         errors++;

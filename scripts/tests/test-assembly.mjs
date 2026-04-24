@@ -51,6 +51,7 @@ const TEST_SECTIONS = {
         date: "March 31, 2026",
         edition: "Vol. 2026 · No. 89",
         subtitle: "Test Edition Subtitle",
+        editionContext: "regular",
       },
       narrative: {
         headline: "Test Headline",

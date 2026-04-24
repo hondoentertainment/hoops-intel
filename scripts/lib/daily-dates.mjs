@@ -1,5 +1,6 @@
 // Shared LA-calendar date helpers for daily generators.
-// Set HOOPS_EDITION_DATE=YYYY-MM-DD to target a specific publication day (backfill).
+// Set HOOPS_EDITION_DATE=YYYY-MM-DD (or GENERATION_DATE for backfill compatibility)
+// to target a specific publication day.
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
@@ -7,7 +8,9 @@ const MONTHS = [
 ];
 
 function getPublicationCalendar() {
-  const env = process.env.HOOPS_EDITION_DATE?.trim();
+  const env =
+    process.env.HOOPS_EDITION_DATE?.trim() ||
+    process.env.GENERATION_DATE?.trim();
   if (env && /^\d{4}-\d{2}-\d{2}$/.test(env)) {
     const [y, mo, da] = env.split("-").map(Number);
     return { y, mo, da };

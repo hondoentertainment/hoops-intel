@@ -30,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "npm"
 
       - name: Install dependencies
@@ -38,6 +38,9 @@ jobs:
 
       - name: Vitest
         run: npx vitest run
+
+      - name: Validate archive duplicate ids
+        run: node scripts/validate-archive-duplicates.mjs
 
       - name: Vite build
         run: npx vite build
@@ -54,7 +57,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Assembly integration tests
         run: node scripts/tests/test-assembly.mjs
@@ -69,7 +72,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Validate pulseData.ts
         run: node scripts/tests/validate-content.mjs

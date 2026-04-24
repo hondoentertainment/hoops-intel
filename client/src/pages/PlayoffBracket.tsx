@@ -15,6 +15,45 @@ import {
   type MvpCandidate,
   type EliminationWatch,
 } from "../lib/playoffBracketData";
+import { playoffSeries as livePlayoffSeries } from "../lib/playoffData";
+
+/** Overlay ESPN-synced series wins / games onto static bracket scaffolding. */
+function overlayBracketSeries(base: PlayoffSeries[]): PlayoffSeries[] {
+  return base.map((s) => {
+    const teamsStatic = [s.higherTeam, s.lowerTeam].filter((t) => t !== "TBD").sort().join("-");
+    if (!teamsStatic) return s;
+    const live = livePlayoffSeries.find((l) => {
+      const a = [l.higherTeam, l.lowerTeam].sort().join("-");
+      return a === teamsStatic;
+    });
+    if (!live) return s;
+    const mapStatus =
+      live.status === "upcoming" ? "scheduled" : live.status === "complete" ? "complete" : "active";
+    return {
+      ...s,
+      higherWins: live.higherWins,
+      lowerWins: live.lowerWins,
+      status: mapStatus as PlayoffSeries["status"],
+      winner: live.winner,
+      games: live.games.map((g) => ({
+        gameNumber: g.gameNumber,
+        date: g.date,
+        time: g.time,
+        tv: g.tv,
+        homeTeam: g.homeTeam,
+        awayTeam: g.awayTeam,
+        homeScore: g.homeScore,
+        awayScore: g.awayScore,
+        status: g.status === "live" ? ("live" as const) : g.status === "final" ? ("final" as const) : ("scheduled" as const),
+        topPerformer: g.topPerformer,
+        topPerformerLine: g.topLine,
+      })),
+      narrative: live.summary || s.narrative,
+    };
+  });
+}
+
+const mergedFirstRound = overlayBracketSeries(firstRoundSeries);
 
 // ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 // PLAYOFF BRACKET ΓÇö Full Playoff Experience
@@ -489,8 +528,8 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
 // --- First Round Section ---
 
 function FirstRoundSection() {
-  const eastSeries = firstRoundSeries.filter((s) => s.conference === "east");
-  const westSeries = firstRoundSeries.filter((s) => s.conference === "west");
+  const eastSeries = mergedFirstRound.filter((s) => s.conference === "east");
+  const westSeries = mergedFirstRound.filter((s) => s.conference === "west");
 
   return (
     <div className="mb-10">
@@ -535,8 +574,8 @@ function FirstRoundSection() {
 // --- Visual Bracket ---
 
 function VisualBracket() {
-  const eastSeries = firstRoundSeries.filter((s) => s.conference === "east");
-  const westSeries = firstRoundSeries.filter((s) => s.conference === "west");
+  const eastSeries = mergedFirstRound.filter((s) => s.conference === "east");
+  const westSeries = mergedFirstRound.filter((s) => s.conference === "west");
 
   function BracketSlot({ team, seed, wins, isWinner, isTBD }: { team: string; seed: number; wins: number; isWinner: boolean; isTBD: boolean }) {
     return (
@@ -866,7 +905,7 @@ function TrackerTab() {
               </tr>
             </thead>
             <tbody>
-              {firstRoundSeries.map((s) => (
+              {mergedFirstRound.map((s) => (
                 <tr key={s.seriesId} className="border-t" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
                   <td className="px-4 py-2">
                     <span className="text-xs font-semibold text-white">

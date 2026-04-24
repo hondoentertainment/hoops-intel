@@ -4,10 +4,11 @@
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
+import { seasonMode } from "./lib/season-mode.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -140,8 +141,22 @@ async function main() {
     const text = `${g.time ?? ""} ${g.venue ?? ""} ${g.tv ?? ""}`.toLowerCase();
     return text.includes("playoff") || text.includes("game 1") || text.includes("game 2") || text.includes("game 3") || text.includes("game 4") || text.includes("game 5") || text.includes("game 6") || text.includes("game 7");
   });
-  const isPlayoffMode = playoffIndicators.length > 0;
-  if (isPlayoffMode) console.log("🏆 Playoff mode detected — Pulse Index will scope to active playoff rosters.");
+  let snapPlayoffs = false;
+  try {
+    const pj = join(ROOT, ".daily-data/playoff-series.json");
+    if (existsSync(pj)) {
+      const j = JSON.parse(readFileSync(pj, "utf8"));
+      snapPlayoffs = (j.series?.length ?? 0) > 0;
+    }
+  } catch {
+    /* ignore */
+  }
+  const cal = seasonMode(new Date());
+  const calendarPlayoff = cal === "playoffs" || cal === "finals";
+  const isPlayoffMode = calendarPlayoff || snapPlayoffs || playoffIndicators.length > 0;
+  const editionContext =
+    cal === "finals" ? "finals" : isPlayoffMode ? "playoffs" : "regular";
+  if (isPlayoffMode) console.log("🏆 Playoff/finals mode — Pulse Index scopes to postseason context.");
   const playoffInstructions = isPlayoffMode
     ? `
 
@@ -165,6 +180,7 @@ async function main() {
 - Publication date: ${editionDate}
 - Edition: Vol. 2026 · No. ${editionNo}
 - Content covers games played YESTERDAY (${yesterdayESPN})
+- **pulseEdition.editionContext** MUST be exactly: "${editionContext}" (one of "regular" | "playoffs" | "finals"). Use "finals" only during the NBA Finals; "playoffs" for all other postseason including play-in and early rounds.
 
 ## Yesterday's Game Results (${yesterdayESPN}) — ESPN API
 ${JSON.stringify(finalGames, null, 2)}
@@ -242,9 +258,37 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
     console.error("   Aborting to avoid a broken build / failed Vercel deploy.");
     process.exit(1);
   }
+  let contentToWrite = newPulseContent;
+  try {
+    const ctx = scope.pulseEdition?.editionContext;
+    if (!ctx || !["regular", "playoffs", "finals"].includes(ctx)) {
+      console.warn(`⚠ pulseEdition.editionContext missing or invalid (${JSON.stringify(ctx)}) — injecting "${editionContext}"`);
+      const patched = contentToWrite.replace(
+        /export const pulseEdition = (\{[^}]+\});/,
+        (m, inner) => {
+          if (inner.includes("editionContext")) return m;
+          return `export const pulseEdition = ${inner.slice(0, -1)},editionContext:${JSON.stringify(editionContext)}};`;
+        }
+      );
+      if (patched === contentToWrite) {
+        console.error("❌ Could not inject editionContext (pulseEdition may be multi-line).");
+        process.exit(1);
+      }
+      contentToWrite = patched;
+      scope.pulseEdition = extractExportLiteral(contentToWrite, "pulseEdition", {});
+      const ctx2 = scope.pulseEdition?.editionContext;
+      if (!ctx2 || !["regular", "playoffs", "finals"].includes(ctx2)) {
+        console.error("❌ editionContext still invalid after inject");
+        process.exit(1);
+      }
+    }
+  } catch (e) {
+    console.error("❌ pulseEdition.editionContext handling failed:", e.message);
+    process.exit(1);
+  }
   console.log("✓ all exports parse cleanly");
 
-  writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), newPulseContent, "utf8");
+  writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), contentToWrite, "utf8");
   console.log("✓ pulseData.ts written");
 
   // ── Generate archive entry ───────────────────────────────
@@ -252,7 +296,7 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
 
   const archivePrompt = `Based on this pulseData.ts, generate a single archive entry object for archiveData.ts.
 
-${newPulseContent}
+${contentToWrite}
 
 Required format — output ONLY this object literal (no export, no variable declaration, just the raw object):
 {id:"${editionISO}",date:"${editionISO}",displayDate:"${editionDate}",headline:"...",subheadline:"...",gamesCount:N,topStory:"...",topPlayer:"...",topStatLine:"...",tags:[...5-7 keywords...],players:[...all full player names mentioned...],teams:[...alternating "ABB","Full Team Name" pairs...]}

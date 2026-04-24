@@ -86,6 +86,16 @@ const SCHEDULE = {
   ],
   recurring: [
     {
+      name: "Playoff Push Alerts",
+      workflow: "playoff-push.yml",
+      cron: "*/30 * * * *",
+      time: "Every 30 minutes (when secrets configured)",
+      description: "ESPN playoff snapshot + elimination/clincher web pushes",
+      outputs: ["Web Push notifications"],
+      apis: ["ESPN (free)", "Supabase", "Web Push (VAPID)"],
+      secrets: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY", "PUSH_API_URL", "PUSH_API_SECRET"],
+    },
+    {
       name: "Injury Status Monitor",
       workflow: "injury-check.yml",
       cron: "0,30 22-23,0-5 * * *",
@@ -189,9 +199,9 @@ function printSchedule() {
   console.log("    late Jul–Aug  dead-period       generate-history.mjs (flashback)");
   console.log("    September     preseason         generate-edition.mjs (preseason mode)");
   console.log("");
-  console.log("  NOTE: daily-update.yml currently skips all of July-September. Update");
-  console.log("  the workflow to call generatorActive() so free-agency, summer-league,");
-  console.log("  and preseason content don't silently disappear.\n");
+  console.log("  NOTE: daily-update.yml uses scripts/check-generator-active.mjs (season-mode)");
+  console.log("  so only the late-July/August dead period skips generation; free-agency and");
+  console.log("  summer-league windows run when primaryGenerator returns generate-edition.\n");
 
   // API summary
   const allSecrets = new Set();

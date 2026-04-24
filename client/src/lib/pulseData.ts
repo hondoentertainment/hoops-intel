@@ -6,7 +6,7 @@
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"April 22, 2026",edition:"Vol. 2026 · No. 117",subtitle:"Sixers Complete Stunning Comeback to Eliminate Celtics · Trail Blazers Advance Past First Round After Historic Upset · Lakers Hold Off Rockets Behind Davis' Dominance"};
+export const pulseEdition = {date:"April 22, 2026",edition:"Vol. 2026 · No. 117",subtitle:"Sixers Complete Stunning Comeback to Eliminate Celtics · Trail Blazers Advance Past First Round After Historic Upset · Lakers Hold Off Rockets Behind Davis' Dominance",editionContext:"playoffs"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE DAY

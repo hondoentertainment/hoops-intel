@@ -34,6 +34,26 @@ const DAILY_SCRIPTS = [
 ];
 
 async function main() {
+  // ── ESPN playoff snapshot → committed playoffData.ts (no API key) ───
+  console.log("🏀 Hoops Intel — Daily Generation Runner");
+  console.log("   Preflight: playoff series from ESPN scoreboards…\n");
+  try {
+    execSync(`node "${join(__dirname, "fetch-playoff-series.mjs")}"`, {
+      cwd: ROOT,
+      stdio: "inherit",
+      env: process.env,
+    });
+    execSync(`node "${join(__dirname, "sync-playoff-data.mjs")}"`, {
+      cwd: ROOT,
+      stdio: "inherit",
+      env: process.env,
+    });
+    const chk = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
+    if (!chk.ok) console.warn(`⚠ playoffData.ts parse check: ${chk.reason} (left as-is if sync skipped)`);
+  } catch (err) {
+    console.warn(`⚠ Preflight playoff sync: ${err.message}`);
+  }
+
   // ── Pre-flight: validate required environment variables ───
   if (!process.env.ANTHROPIC_API_KEY?.trim()) {
     console.error("❌ ANTHROPIC_API_KEY is not set.");
@@ -41,7 +61,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("🏀 Hoops Intel — Daily Generation Runner");
+  console.log("");
   console.log(`   Running ${DAILY_SCRIPTS.length} scripts...\n`);
 
   const results = [];

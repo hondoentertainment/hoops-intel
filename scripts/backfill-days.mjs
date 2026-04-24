@@ -2,6 +2,9 @@
 // backfill-days.mjs — Run daily generation for one or more past dates
 // Usage: node scripts/backfill-days.mjs 2026-03-25 2026-03-26 2026-03-27
 // Each date runs the full daily pipeline (edition + parallel content) sequentially.
+//
+// Sets both HOOPS_EDITION_DATE and GENERATION_DATE so generate-edition (daily-dates.mjs)
+// and fetch-playoff-series (dates.mjs) target the same publication day.
 
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
@@ -33,7 +36,9 @@ function runForDate(date) {
 
     const child = spawn("node", [join(__dirname, "generate-all-daily.mjs")], {
       cwd: ROOT,
-      env: { ...process.env, GENERATION_DATE: date },
+      // HOOPS_EDITION_DATE: all scripts using daily-dates.mjs (edition, watch guide, …)
+      // GENERATION_DATE: scripts using dates.mjs (fetch-playoff-series, espn snapshot)
+      env: { ...process.env, HOOPS_EDITION_DATE: date, GENERATION_DATE: date },
       stdio: "inherit",
     });
 

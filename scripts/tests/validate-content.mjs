@@ -254,6 +254,10 @@ function main() {
   test("all dates in the edition match the expected date", () => {
     const edition = exports.pulseEdition;
     assert(edition.date, "pulseEdition should have a date");
+    assert(
+      edition.editionContext && ["regular", "playoffs", "finals"].includes(edition.editionContext),
+      "pulseEdition.editionContext should be regular | playoffs | finals",
+    );
 
     // Parse the edition date
     const editionDate = new Date(edition.date);

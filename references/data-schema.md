@@ -11,6 +11,7 @@ export interface PulseEdition {
   date: string;      // Display date: "March 3, 2026"
   edition: string;   // "Vol. 2026 · No. 62"
   subtitle: string;  // 2–3 story bullets joined by " · "
+  editionContext: "regular" | "playoffs" | "finals"; // set from calendar + ESPN snapshot
 }
 ```
 

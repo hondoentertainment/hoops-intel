@@ -41,6 +41,13 @@ interface LeaderboardRow {
   current_streak: number;
 }
 
+interface BracketLbRow {
+  user_id: string;
+  total_settled: number;
+  correct_series: number;
+  accuracy_pct: number | null;
+}
+
 // ═══════════════════════════════════════════════════════════
 // LEADERBOARD SECTION
 // ═══════════════════════════════════════════════════════════
@@ -197,6 +204,134 @@ function LeaderboardTable({ rows }: { rows: LeaderboardRow[] }) {
         );
       })}
     </div>
+  );
+}
+
+function BracketLeaderboardSection() {
+  const [rows, setRows] = useState<BracketLbRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!SUPABASE_URL) {
+      setLoading(false);
+      return;
+    }
+    anonDbFetch(
+      "bracket_leaderboard",
+      "select=user_id,total_settled,correct_series,accuracy_pct&order=accuracy_pct.desc.nullslast,correct_series.desc&limit=10",
+    )
+      .then((data) => setRows(data as BracketLbRow[]))
+      .catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : "Failed to load bracket leaderboard";
+        setError(msg);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (!SUPABASE_URL) return null;
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <div
+            className="text-xs font-semibold mb-1"
+            style={{
+              color: "#F43F5E",
+              fontFamily: "'Barlow Condensed', sans-serif",
+              letterSpacing: "0.1em",
+            }}
+          >
+            PLAYOFF BRACKET BOARD
+          </div>
+          <h2
+            className="text-2xl font-bold"
+            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            Series Pick Accuracy
+          </h2>
+        </div>
+      </div>
+      {loading && <LeaderboardSkeleton />}
+      {error && !loading && (
+        <div
+          className="rounded-lg px-4 py-3 text-sm"
+          style={{
+            background: "rgba(244,63,94,0.06)",
+            border: "1px solid rgba(244,63,94,0.15)",
+            color: "rgba(244,63,94,0.8)",
+            fontFamily: "'DM Sans', sans-serif",
+          }}
+        >
+          Bracket leaderboard: {error}
+        </div>
+      )}
+      {!loading && !error && rows.length === 0 && (
+        <div
+          className="rounded-lg px-5 py-8 text-center text-sm"
+          style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            color: "rgba(255,255,255,0.35)",
+            fontFamily: "'DM Sans', sans-serif",
+          }}
+        >
+          No bracket results settled yet. Check back as series finish.
+        </div>
+      )}
+      {!loading && !error && rows.length > 0 && (
+        <div
+          className="rounded-xl overflow-hidden"
+          style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+        >
+          <div
+            className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              color: "rgba(255,255,255,0.35)",
+              fontFamily: "'Barlow Condensed', sans-serif",
+              letterSpacing: "0.06em",
+            }}
+          >
+            <div className="col-span-1">#</div>
+            <div className="col-span-5">USER</div>
+            <div className="col-span-3 text-right">ACCURACY</div>
+            <div className="col-span-3 text-right">CORRECT</div>
+          </div>
+          {rows.map((row, idx) => {
+            const rank = idx + 1;
+            const rankColors = ["#F59E0B", "#94A3B8", "#CD7F32"];
+            const rankColor = rank <= 3 ? rankColors[rank - 1] : "rgba(255,255,255,0.3)";
+            return (
+              <div
+                key={row.user_id}
+                className="grid grid-cols-12 gap-2 px-4 py-3 items-center"
+                style={{
+                  borderTop: "1px solid rgba(255,255,255,0.04)",
+                  background: idx % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent",
+                }}
+              >
+                <div className="col-span-1 text-sm font-bold" style={{ color: rankColor, fontFamily: "'Barlow Condensed', sans-serif" }}>
+                  {rank}
+                </div>
+                <div className="col-span-5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem" }}>
+                  {truncateUserId(row.user_id)}
+                </div>
+                <div className="col-span-3 text-right">
+                  <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}>
+                    {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
+                  </span>
+                </div>
+                <div className="col-span-3 text-right text-sm font-semibold" style={{ color: "#10B981", fontFamily: "'JetBrains Mono', monospace" }}>
+                  {row.correct_series}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -507,6 +642,17 @@ export default function PickEmPage() {
 
         {/* Leaderboard */}
         <LeaderboardSection />
+
+        {/* Bracket leaderboard (playoffs) */}
+        {isPlayoffsActive() && (
+          <>
+            <div
+              className="mb-10"
+              style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
+            />
+            <BracketLeaderboardSection />
+          </>
+        )}
 
         {/* Divider */}
         <div

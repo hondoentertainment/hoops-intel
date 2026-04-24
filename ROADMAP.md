@@ -21,7 +21,7 @@ document tracks what's shipped and what's still genuinely on the horizon.
 - Player detail pages (`/player/:slug`)
 - Team detail pages (`/team/:abbr`)
 - Pulse Index History (`/pulse-history`) with 7-day/30-day trends & biggest movers
-- Playoff Bracket (`/playoffs`) — live series state + projections
+- Playoff Bracket (`/playoffs`) — ESPN-synced series scores overlaid on bracket UI + static narrative layer
 - Global search (Cmd+K) across players, teams, games, stories
 - Ask Hoops Intel (`/ask`) — conversational AI Q&A over the archive
 - Daily Pick'em (`/pickem`) — per-game picks + playoff bracket picks

@@ -50,3 +50,8 @@ select
   ) as accuracy_pct
 from public.bracket_picks
 group by user_id;
+
+-- Optional: expose bracket leaderboard to the anon role for the Pick'em page.
+-- Grant in the SQL editor if the client fetch should work for logged-out users:
+--   grant usage on schema public to anon;
+--   grant select on public.bracket_leaderboard to anon;

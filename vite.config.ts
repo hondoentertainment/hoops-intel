@@ -14,5 +14,18 @@ export default defineConfig({
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "client/index.html"),
+        embed: path.resolve(__dirname, "client/embed.html"),
+      },
+      output: {
+        entryFileNames(chunkInfo) {
+          return chunkInfo.name === "embed" ? "embed.js" : "assets/[name]-[hash].js";
+        },
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
+      },
+    },
   },
 });
