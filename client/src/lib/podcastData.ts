@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 22, 2026
+// Last updated: April 25, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,92 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 22, 2026",
-  episodeTitle: "Embiid's Masterpiece & Dame's Historic Upset Rock the NBA Playoffs",
+  date: "April 25, 2026",
+  episodeTitle: "Wemby's 38-Point Masterpiece Forces Game 7 • AD Powers Lakers Past Rockets • Tatum Redeems Himself in Philly",
   rundown: [
     {
-      topic: "Joel Embiid Eliminates the Celtics at TD Garden",
+      topic: "Victor Wembanyama's 38-Point Game 7-Forcing Masterpiece",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "32 points on 13-21 shooting in Game 7",
-        "14 rebounds dominating the glass",
-        "Game-high +21 plus-minus in 38 minutes",
-        "76ers won by 14 points (111-97)",
-        "Celtics shot just 40.8% from the field",
-        "Philadelphia's first conference semifinals since 2019"
+        "38 points on 15-24 shooting (62.5% FG)",
+        "15 rebounds in dominant glass control",
+        "3 blocks while altering countless more shots",
+        "14 fourth-quarter points to seal the victory",
+        "First rookie with 35+ points in elimination game since LeBron 2006"
       ],
-      debateAngle: "Was this the best Game 7 road performance we've seen in the last decade? And does this catapult Embiid into the true championship superstar conversation?",
-      suggestedQuote: "When you can walk into Boston and completely dominate an elimination game with 32 points and 14 rebounds, you've announced that Philadelphia is ready to make a serious championship run.",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Jaylen Brown"]
+      debateAngle: "Is this the single most impressive rookie playoff performance we've ever witnessed? Wemby just walked into Portland facing elimination and completely took over both ends of the floor like a seasoned veteran.",
+      suggestedQuote: "This wasn't just a rookie having a good game - this was generational talent announcing itself on the biggest stage. When you can dominate like that in a hostile environment with your season on the line, you're not a prospect anymore, you're a superstar.",
+      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "LeBron James", "Tim Duncan"]
     },
     {
-      topic: "Portland's Historic Upset: How the 8-Seed Eliminated 62-Win San Antonio",
+      topic: "The Lakers' Championship DNA Shines in Overtime Thriller",
       segment: "deep-dive",
-      duration: "10 minutes",
+      duration: "7 minutes",
       keyStats: [
-        "Trail Blazers shot 15-32 from three-point range",
-        "Dame Lillard: 31 points, 5 three-pointers made",
-        "Anfernee Simons: 24 points, 6 three-pointers",
-        "Spurs finished 62-20 in regular season",
-        "Wembanyama had 27 points, 11 rebounds in loss",
-        "Portland reaches conference semifinals after missing playoffs for years"
+        "Overcame 18-point third-quarter deficit",
+        "AD's 35 points and 12 rebounds with 8 overtime points",
+        "LeBron's game-winning assist with 12 seconds left",
+        "4-6 from three in overtime (67% clutch shooting)",
+        "Lakers advance to face whoever emerges from Spurs-Blazers Game 7"
       ],
-      debateAngle: "Is this the biggest upset in first-round playoff history? And what does it say about the importance of veteran leadership versus young talent in the postseason?",
-      suggestedQuote: "Portland's elimination of the 62-win Spurs proves that veteran leadership and playoff experience can overcome talent and regular season success when the pressure reaches its peak.",
-      relevantPlayers: ["Damian Lillard", "Anfernee Simons", "Victor Wembanyama", "Jusuf Nurkic"]
+      debateAngle: "Are we sleeping on the Lakers as title contenders? This team just showed they can overcome massive deficits and execute in the clutch moments that separate champions from pretenders.",
+      suggestedQuote: "Anthony Davis in overtime was absolutely unstoppable. Those post moves, that rim protection - this is exactly what championship-level two-way dominance looks like when everything is on the line.",
+      relevantPlayers: ["Anthony Davis", "LeBron James", "Alperen Şengün", "Fred VanVleet"]
     },
     {
-      topic: "Are the Boston Celtics Championship Pretenders?",
+      topic: "Does Tatum's Bounce-Back Performance Change Everything for Boston?",
       segment: "hot-take",
       duration: "6 minutes",
       keyStats: [
-        "Celtics were 56-26 in regular season",
-        "Lost Game 7 at home by 14 points",
-        "Tatum shot 7-19 for just 21 points",
-        "Boston managed only 97 points total",
-        "Gave up 32 points to Embiid on elite efficiency",
-        "Failed to reach conference semifinals"
+        "31 points on 12-21 shooting after Game 1 struggles",
+        "Series now tied 1-1 with home court advantage stolen",
+        "Jaylen Brown added 24 points on 9-16 shooting",
+        "Celtics led by 15 in the fourth quarter",
+        "Joel Embiid held to 23 points on 8-18 shooting"
       ],
-      debateAngle: "Hot take time - are the Celtics championship pretenders who crumble under real pressure? This home Game 7 loss is absolutely devastating for their championship credibility.",
-      suggestedQuote: "Boston's devastating Game 7 loss at home raises serious questions about their championship DNA and ability to handle pressure when it matters most.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Marcus Smart"]
+      debateAngle: "Hot take: Tatum's Game 2 performance was more impressive than Wemby's 38-piece because it showed championship-level mental toughness. Stars separate themselves by how they respond to adversity.",
+      suggestedQuote: "This is what elite players do - they get punched in the mouth in Game 1, then come back and dominate on the road when everyone's questioning them. That's championship DNA right there.",
+      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Tyrese Maxey"]
     },
     {
-      topic: "Lakers Lock In, Rookie Watch, and Tonight's Playoff Action",
+      topic: "Friday's Playoff Slate: Four New Series Tip Off",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Anthony Davis: 26 points, 11 rebounds, 4 blocks vs Houston",
-        "LeBron James added 22 points, 8 assists",
-        "Lakers held Rockets to 42.7% shooting",
-        "Wembanyama still leads ROY race despite early exit",
-        "Two playoff series begin tonight: DET-ORL, OKC-PHX",
-        "Pistons are 8.5-point favorites over Magic"
+        "Top-seeded Pistons (-7.5) visit scrappy Magic at 1 PM",
+        "Thunder's 64-win juggernaut (-11.5) faces Suns at 3:30 PM",
+        "Knicks-Hawks battle features Brunson vs Trae Young at 6 PM",
+        "Defending champ Nuggets (-6) visit dangerous Timberwolves at 8:30 PM",
+        "Four series begin today with championship implications"
       ],
-      debateAngle: "Quick hits on whether the Lakers are peaking at the right time, if Wembanyama's early playoff exit hurts his ROY case, and predictions for tonight's openers.",
-      suggestedQuote: "Davis dominated both ends while anchoring a defense that completely stifled Houston's offensive rhythm throughout the contest.",
-      relevantPlayers: ["Anthony Davis", "LeBron James", "Victor Wembanyama", "Cade Cunningham", "Paolo Banchero"]
+      debateAngle: "Which of these four new series has the highest upset potential? The Magic hosting Detroit feels like the most dangerous 8-seed situation we've seen in years.",
+      suggestedQuote: "Paolo Banchero making his playoff debut at home against the top seed? That has all the ingredients for magic to happen in Orlando - pun absolutely intended.",
+      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Shai Gilgeous-Alexander", "Devin Booker", "Jalen Brunson", "Trae Young", "Nikola Jokić", "Karl-Anthony Towns"]
     },
     {
-      topic: "Championship Chaos: What These Upsets Mean for the Title Race",
+      topic: "Game 7 Madness and What's Next in the Playoffs",
       segment: "closer",
-      duration: "7 minutes",
+      duration: "4 minutes",
       keyStats: [
-        "Two higher seeds eliminated in stunning fashion",
-        "Philadelphia now faces New York in round two",
-        "Portland gets Denver in conference semifinals",
-        "Oklahoma City and Detroit begin as heavy favorites tonight",
-        "Multiple championship contenders already eliminated",
-        "Road teams dominated Monday's elimination games"
+        "Spurs-Blazers Game 7 will determine who faces the Lakers",
+        "Winner gets a Lakers team riding high after overtime heroics",
+        "Eastern Conference features three series still to begin",
+        "Road teams went 3-0 in Thursday's elimination games",
+        "Playoff intensity reaching fever pitch across both conferences"
       ],
-      debateAngle: "With Boston out and San Antonio shocked, who are the real championship favorites now? And are we witnessing one of the most unpredictable playoffs ever?",
-      suggestedQuote: "Monday night perfectly captured the unpredictable magic that makes the NBA playoffs the greatest show in sports, with elimination games revealing the true character of championship contenders.",
-      relevantPlayers: ["Joel Embiid", "Damian Lillard", "Shai Gilgeous-Alexander", "Cade Cunningham", "Nikola Jokic"]
+      debateAngle: "Is this the most wide-open playoff field we've seen in years? With upsets brewing and stars stepping up, anyone can make a championship run right now.",
+      suggestedQuote: "This is why we love playoff basketball - one night you're watching a rookie announce himself as a superstar, the next you're seeing veterans show why experience matters most. Buckle up, folks - this ride is just getting started.",
+      relevantPlayers: ["Victor Wembanyama", "Anthony Davis", "Jayson Tatum", "Damian Lillard"]
     }
   ],
-  coldOpen: "What's good Hoops Intel family! Welcome back to your daily NBA intelligence briefing. I'm your host and we need to talk about what just happened last night because the NBA playoffs just delivered absolute CHAOS. Joel Embiid walked into TD Garden and put up 32 and 14 to eliminate the Boston Celtics in Game 7. Meanwhile, Dame Lillard and the eighth-seeded Trail Blazers just completed one of the biggest upsets in playoff history, knocking out the 62-win San Antonio Spurs. Two championship contenders are going home, two underdogs are advancing, and the entire playoff picture just got flipped upside down. We're breaking it all down in the next 36 minutes, so strap in because this is going to be a wild ride through the most shocking night of playoff basketball we've seen in years.",
-  socialClip: "Joel Embiid walking off the TD Garden court after dropping 32 points in Game 7 to eliminate the Celtics. Capture the moment he raises his arms to the stunned Boston crowd, with the overlay text: 'EMBIID SILENCES TD GARDEN' and '32 PTS • 14 REB • GAME 7 MASTERPIECE'. Use the audio of the crowd going silent mixed with Embiid's postgame quote about proving doubters wrong. Perfect 60-second clip that captures the shock and dominance.",
+  coldOpen: "Victor Wembanyama just dropped 38 points to force Game 7, Anthony Davis put the Lakers on his back in overtime, and Jayson Tatum reminded everyone why Boston's dangerous when their backs are against the wall. Three superstar performances, three series-shifting moments, and four brand new playoff series tipping off today. This is Hoops Intel, and if you thought the playoffs were intense before, just wait until you hear what happened on Thursday night.",
+  socialClip: "Victor Wembanyama absolutely DOMINATED in Portland with 38 points and 15 rebounds to force Game 7! The rookie phenom shot 15-24 from the field and scored 14 fourth-quarter points to keep San Antonio's championship dreams alive. This wasn't just a good game - this was a generational talent announcing himself on the biggest stage in basketball.",
   tweetThread: [
-    "🧵 THREAD: Last night's NBA playoffs delivered absolute CHAOS with two massive upsets that completely changed the championship picture. Let's break down the madness...",
-    "1/ JOEL EMBIID IS DIFFERENT 🔥 32 points, 14 rebounds in Game 7 AT TD Garden to eliminate the 56-win Celtics. That's how you announce you're ready for a championship run. Absolutely dominant two-way performance when it mattered most.",
-    "2/ DAME TIME IN THE PLAYOFFS ⏰ The Trail Blazers just eliminated the 62-WIN Spurs in one of the biggest first-round upsets ever. Lillard (31 pts) and Simons (24 pts, 6 threes) were unconscious from deep. Veteran leadership > regular season records.",
-    "3/ THE CELTICS ARE IN CRISIS 📉 Getting eliminated at home in Game 7 after a 56-win season raises serious championship DNA questions. Tatum shot 7-19, they managed just 97 points, and got outplayed in every key moment. Devastating for their title hopes.",
-    "4/ TONIGHT'S SLATE 🏀 DET hosts ORL (7 PM ET) and OKC welcomes PHX (9:30 PM ET) to begin their playoff runs. After last night's chaos, can the higher seeds avoid more upsets? This postseason is already legendary. #NBAPlayoffs #HoopsIntel"
+    "🔥 PLAYOFF MADNESS THREAD 🔥\n\nThursday night delivered LEGENDARY performances:\n\n• Wemby: 38 PTS forces Game 7\n• AD: 35 PTS in OT thriller \n• Tatum: 31 PTS redemption game\n\nRoad teams went 3-0 in elimination scenarios. Playoff basketball hits different 🏀",
+    "Victor Wembanyama just had the most dominant rookie playoff performance since LeBron in 2006\n\n38 PTS | 15 REB | 3 BLK\n15-24 FG | 14 4th quarter points\n\nWalked into Portland facing elimination and took over like a seasoned veteran. Generational talent on full display 🌟",
+    "Anthony Davis in OVERTIME was absolutely UNSTOPPABLE\n\n35 PTS | 12 REB | 4 BLK\n8 points in OT to seal series\n\nOvercame 18-point deficit to advance Lakers to conference semis. This is championship-level two-way dominance when everything's on the line 💪",
+    "Jayson Tatum's bounce-back performance in Philly was ELITE\n\n31 PTS | 8 REB | 5 AST\n12-21 FG on the road\n\nSeries now tied 1-1 after stealing home court advantage. This is how superstars respond to Game 1 struggles - pure championship DNA 🔥",
+    "TODAY'S PLAYOFF SLATE IS LOADED:\n\n🏀 1 PM: Pistons @ Magic (Peacock)\n🏀 3:30 PM: Thunder @ Suns (NBC) \n🏀 6 PM: Knicks @ Hawks (NBC)\n🏀 8:30 PM: Nuggets @ Timberwolves (ABC)\n\nFour new series begin + Spurs-Blazers Game 7 looming. Playoff intensity at MAXIMUM 📺"
   ]
 };

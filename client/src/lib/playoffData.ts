@@ -70,7 +70,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-25", homeTeam: "ATL", awayTeam: "NY", homeScore: null, awayScore: null, status: "scheduled", time: "4/25 - 6:00 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "NY", awayTeam: "ATL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -86,7 +86,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-27", homeTeam: "ORL", awayTeam: "DET", homeScore: null, awayScore: null, status: "scheduled", time: "4/27 - 8:00 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "ORL", awayTeam: "DET", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -102,7 +102,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-26", homeTeam: "POR", awayTeam: "SA", homeScore: null, awayScore: null, status: "scheduled", time: "4/26 - 3:30 PM EDT", tv: "ESPN" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "SA", awayTeam: "POR", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -118,7 +118,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-27", homeTeam: "PHX", awayTeam: "OKC", homeScore: null, awayScore: null, status: "scheduled", time: "4/27 - 9:30 PM EDT", tv: "Peacock, NBCSN" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "PHX", awayTeam: "OKC", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -134,7 +134,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-26", homeTeam: "TOR", awayTeam: "CLE", homeScore: null, awayScore: null, status: "scheduled", time: "4/26 - 1:00 PM EDT", tv: "ESPN" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "TOR", awayTeam: "CLE", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -150,7 +150,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-27", homeTeam: "DEN", awayTeam: "MIN", homeScore: null, awayScore: null, status: "scheduled", time: "4/27 - 10:30 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "DEN", awayTeam: "MIN", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -166,7 +166,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-26", homeTeam: "HOU", awayTeam: "LAL", homeScore: null, awayScore: null, status: "scheduled", time: "4/26 - 9:30 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "HOU", awayTeam: "LAL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   },
   {
@@ -182,7 +182,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-04-26", homeTeam: "PHI", awayTeam: "BOS", homeScore: null, awayScore: null, status: "scheduled", time: "4/26 - 7:00 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   }
 ];
