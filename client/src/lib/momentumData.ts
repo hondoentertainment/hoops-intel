@@ -39,7 +39,7 @@ export const momentumData: MomentumData = {
     player: "Anthony Davis", 
     team: "LAL", 
     clutchRating: 96, 
-    description: "Davis completely took over overtime with 8 points and multiple defensive stops, capping his 35-point masterpiece with the game-sealing block with 18 seconds left. His 4-minute overtime performance was pure championship DNA." 
+    description: "Dominated overtime with 8 points and game-saving defensive stops to advance the Lakers to the conference semifinals" 
   },
   games: [
     {
@@ -48,44 +48,59 @@ export const momentumData: MomentumData = {
       finalScore: { home: 100, away: 108 },
       swings: [
         {
-          quarter: "Q1",
+          quarter: "1Q",
           timestamp: "6:42",
-          description: "Philadelphia opens with aggressive home crowd energy as Embiid dominates early",
-          runScore: "PHI 12-4 run",
+          description: "Embiid responds to early Boston run with dominant post sequence",
+          runScore: "12-4",
           momentum: "home",
           keyPlayer: "Joel Embiid",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "8:15",
-          description: "Tatum finds his rhythm with three consecutive buckets to flip momentum",
-          runScore: "BOS 14-6 run",
-          momentum: "away",
-          keyPlayer: "Jayson Tatum",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "2:28",
-          description: "Brown and Tatum combine for 18 third-quarter points to take control",
-          runScore: "BOS 20-11 run",
-          momentum: "away",
-          keyPlayer: "Jaylen Brown",
-          impact: "game-changing"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "7:45",
-          description: "Boston's championship experience shows as they extend lead to 15 points",
-          runScore: "BOS 16-8 run",
+          quarter: "2Q",
+          timestamp: "3:15",
+          description: "Tatum erupts for 11 straight points to flip the script",
+          runScore: "11-2",
           momentum: "away",
           keyPlayer: "Jayson Tatum",
           impact: "game-changing"
+        },
+        {
+          quarter: "3Q",
+          timestamp: "8:30",
+          description: "Sixers crowd erupts as Philadelphia storms back to tie",
+          runScore: "14-6",
+          momentum: "home",
+          keyPlayer: "Tyrese Maxey",
+          impact: "significant"
+        },
+        {
+          quarter: "4Q",
+          timestamp: "7:22",
+          description: "Brown and Tatum combine for devastating 13-2 closeout run",
+          runScore: "13-2",
+          momentum: "away",
+          keyPlayer: "Jaylen Brown",
+          impact: "game-changing"
         }
       ],
-      clutchPlays: [],
-      narrative: "Jayson Tatum's redemption tour continued in Philadelphia as the Celtics star silenced a raucous Wells Fargo Center crowd with his most complete playoff performance in recent memory. After struggling in Game 1, Tatum showed the killer instinct that defines championship teams, methodically dismantling the Sixers' defense with a surgeon's precision. The Celtics' veteran savvy was on full display as they weathered Philadelphia's early storm and gradually imposed their will, stealing home court advantage with the kind of road playoff victory that separates contenders from pretenders. Boston's ability to execute in hostile territory while Tatum rediscovered his All-NBA form has this series perfectly positioned for an epic showdown."
+      clutchPlays: [
+        {
+          player: "Jayson Tatum",
+          team: "BOS",
+          description: "Step-back three over Embiid to extend lead to 8",
+          timeRemaining: "3:45",
+          winProbabilityShift: 18
+        },
+        {
+          player: "Jaylen Brown",
+          team: "BOS",
+          description: "Steal and transition dunk to silence Wells Fargo Center",
+          timeRemaining: "1:52",
+          winProbabilityShift: 22
+        }
+      ],
+      narrative: "Jayson Tatum's redemption story reached a crescendo as he dismantled Philadelphia's championship hopes with surgical precision. The Celtics' championship DNA emerged in the crucible moments, turning a hostile Wells Fargo Center into a morgue with their devastating fourth-quarter execution. Boston's veteran composure proved the difference as they stole homecourt advantage with the kind of road playoff victory that defines championship runs."
     },
     {
       gameId: "LAL-HOU-20260424",
@@ -93,37 +108,37 @@ export const momentumData: MomentumData = {
       finalScore: { home: 108, away: 112 },
       swings: [
         {
-          quarter: "Q2",
-          timestamp: "4:33",
-          description: "Rockets' young legs take over as they build double-digit lead",
-          runScore: "HOU 18-7 run",
-          momentum: "home",
-          keyPlayer: "Alperen Şengün",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "9:12",
-          description: "Houston extends lead to 18 points with suffocating defense",
-          runScore: "HOU 16-8 run",
+          quarter: "2Q",
+          timestamp: "4:18",
+          description: "Rockets explode for franchise-record playoff quarter",
+          runScore: "22-8",
           momentum: "home",
           keyPlayer: "Alperen Şengün",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:45",
-          description: "Lakers' championship experience emerges as Davis and LeBron take over",
-          runScore: "LAL 22-10 run",
+          quarter: "3Q",
+          timestamp: "2:45",
+          description: "Houston extends to largest lead with suffocating defense",
+          runScore: "16-6",
+          momentum: "home",
+          keyPlayer: "Fred VanVleet",
+          impact: "significant"
+        },
+        {
+          quarter: "4Q",
+          timestamp: "5:30",
+          description: "LeBron orchestrates legendary comeback with vintage assists",
+          runScore: "18-6",
           momentum: "away",
-          keyPlayer: "Anthony Davis",
+          keyPlayer: "LeBron James",
           impact: "game-changing"
         },
         {
           quarter: "OT",
-          timestamp: "3:00",
-          description: "Davis completely dominates overtime on both ends of the floor",
-          runScore: "LAL 8-4 run",
+          timestamp: "3:15",
+          description: "Davis completely takes over overtime with unstoppable dominance",
+          runScore: "10-4",
           momentum: "away",
           keyPlayer: "Anthony Davis",
           impact: "game-changing"
@@ -131,28 +146,28 @@ export const momentumData: MomentumData = {
       ],
       clutchPlays: [
         {
+          player: "LeBron James",
+          team: "LAL",
+          description: "Clutch three-pointer to force overtime with crowd stunned",
+          timeRemaining: "0:32",
+          winProbabilityShift: 45
+        },
+        {
           player: "Anthony Davis",
           team: "LAL",
-          description: "Clutch three-pointer to tie the game with 1:12 remaining in regulation",
-          timeRemaining: "1:12",
-          winProbabilityShift: 23
+          description: "Rim-protecting block followed by thunderous dunk",
+          timeRemaining: "2:18 OT",
+          winProbabilityShift: 28
         },
         {
           player: "LeBron James",
           team: "LAL",
-          description: "Perfect pass to Davis for the go-ahead bucket in overtime",
-          timeRemaining: "0:12",
-          winProbabilityShift: 41
-        },
-        {
-          player: "Anthony Davis",
-          team: "LAL",
-          description: "Game-sealing block on Şengün's final shot attempt",
-          timeRemaining: "0:18",
-          winProbabilityShift: 18
+          description: "Game-winning assist through triple coverage",
+          timeRemaining: "0:12 OT",
+          winProbabilityShift: 35
         }
       ],
-      narrative: "This was playoff basketball at its absolute finest - a heavyweight bout that showcased why the Lakers remain championship contenders despite their age. Anthony Davis delivered the kind of superhuman overtime performance that legends are built upon, completely taking over when elimination stared Los Angeles in the face. The Lakers' championship DNA shined brightest when the lights were hottest, as LeBron's vintage court vision found Davis for the dagger while their collective playoff experience proved the difference against Houston's talented but inexperienced core. Davis didn't just advance the Lakers to the next round - he announced that this team's championship window remains wide open with performances like this still in the tank."
+      narrative: "The Toyota Center witnessed playoff folklore as the Lakers orchestrated one of the most improbable series-clinching victories in recent memory. Anthony Davis transformed into an overtime destroyer, completely dominating both ends while LeBron James turned back the clock with vintage playoff magic. Houston's young core learned a brutal lesson about championship experience as the Lakers' playoff pedigree emerged when elimination loomed largest."
     },
     {
       gameId: "SAS-POR-20260424",
@@ -160,44 +175,44 @@ export const momentumData: MomentumData = {
       finalScore: { home: 108, away: 120 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "8:30",
-          description: "Wembanyama showcases his full arsenal early with dominant two-way play",
-          runScore: "SAS 14-6 run",
+          quarter: "1Q",
+          timestamp: "7:15",
+          description: "Wembanyama announces his presence with rim-rattling sequence",
+          runScore: "10-2",
           momentum: "away",
           keyPlayer: "Victor Wembanyama",
           impact: "significant"
         },
         {
-          quarter: "Q2",
-          timestamp: "5:15",
-          description: "Portland's veteran savvy shows as Lillard heats up from deep",
-          runScore: "POR 16-8 run",
+          quarter: "2Q",
+          timestamp: "9:20",
+          description: "Lillard time arrives early with deep three-point barrage",
+          runScore: "15-5",
           momentum: "home",
           keyPlayer: "Damian Lillard",
-          impact: "notable"
+          impact: "game-changing"
         },
         {
-          quarter: "Q3",
-          timestamp: "7:22",
-          description: "Spurs' length and athleticism begin to overwhelm Portland's offense",
-          runScore: "SAS 18-10 run",
+          quarter: "3Q",
+          timestamp: "4:45",
+          description: "Spurs length overwhelms Portland with suffocating defense",
+          runScore: "18-8",
           momentum: "away",
-          keyPlayer: "Victor Wembanyama",
+          keyPlayer: "Jeremy Sochan",
           impact: "significant"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:00",
-          description: "Wembanyama's 14 fourth-quarter points completely take over the game",
-          runScore: "SAS 22-12 run",
+          quarter: "4Q",
+          timestamp: "6:30",
+          description: "Wembanyama delivers knockout punch with unstoppable fourth quarter",
+          runScore: "20-10",
           momentum: "away",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Victor Wembanyama officially announced his arrival as a legitimate playoff superstar with a performance that had shades of Tim Duncan's legendary postseason dominance in San Antonio. The rookie phenom didn't just force a Game 7 - he completely dismantled Portland's upset dreams with the kind of two-way excellence that defines generational talents. Wembanyama's fourth-quarter takeover was a masterclass in playoff basketball, as his rim protection, rebounding, and scoring completely neutralized every answer Portland tried to throw at him. The basketball world just witnessed the birth of the next great playoff performer, and if this performance is any indication, San Antonio's championship timeline might be accelerating faster than anyone imagined."
+      narrative: "Victor Wembanyama delivered a coming-of-age masterpiece that will be replayed for generations, completely dismantling Portland's upset dreams with otherworldly dominance. The rookie phenom showcased the kind of two-way brilliance that transforms franchises overnight, turning the Moda Center into his personal playground. San Antonio's length and athleticism proved too overwhelming for Portland's veteran guile as Wembanyama announced his arrival as a playoff superstar with thunderous authority."
     }
   ]
 };
