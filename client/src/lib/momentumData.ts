@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Paolo Banchero", 
     team: "ORL", 
-    clutchRating: 94, 
-    description: "Led decisive 15-4 fourth quarter run to complete stunning upset of top-seeded Pistons in playoff debut" 
+    clutchRating: 95, 
+    description: "Erupted for 11 fourth-quarter points including back-to-back threes during Orlando's decisive 15-4 run that stunned the top-seeded Pistons in the Magic's first playoff win in over a decade"
   },
   games: [
     {
@@ -48,37 +48,37 @@ export const momentumData: MomentumData = {
       finalScore: { home: 113, away: 105 },
       swings: [
         {
-          quarter: "Q1",
+          quarter: "1st",
           timestamp: "6:42",
-          description: "Detroit races out to early double-digit lead behind Cade Cunningham's explosive start",
-          runScore: "12-2",
+          description: "Detroit opens with authority as Cade Cunningham scores 8 quick points",
+          runScore: "DET 12-4 run",
           momentum: "away",
           keyPlayer: "Cade Cunningham",
           impact: "significant"
         },
         {
-          quarter: "Q2",
-          timestamp: "8:15",
-          description: "Orlando's home crowd erupts as Magic claw back with suffocating defense and transition buckets",
-          runScore: "16-6",
+          quarter: "2nd",
+          timestamp: "3:15",
+          description: "Magic respond with energy as Banchero finds his rhythm with three straight buckets",
+          runScore: "ORL 9-2 run",
           momentum: "home",
           keyPlayer: "Paolo Banchero",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "4:21",
-          description: "Pistons reassert control with veteran poise, building their largest lead of the night",
-          runScore: "11-3",
-          momentum: "away",
-          keyPlayer: "Isaiah Stewart",
           impact: "notable"
         },
         {
-          quarter: "Q4",
-          timestamp: "7:45",
-          description: "Banchero takes over completely, scoring 12 points in game-changing run that stuns Kia Center",
-          runScore: "15-4",
+          quarter: "3rd",
+          timestamp: "8:30",
+          description: "Pistons push back behind their veteran leadership, extending to largest lead",
+          runScore: "DET 13-6 run",
+          momentum: "away",
+          keyPlayer: "Isaiah Stewart",
+          impact: "significant"
+        },
+        {
+          quarter: "4th",
+          timestamp: "7:22",
+          description: "Banchero ignites Kia Center with back-to-back threes, sparking the upset",
+          runScore: "ORL 15-4 run",
           momentum: "home",
           keyPlayer: "Paolo Banchero",
           impact: "game-changing"
@@ -88,71 +88,62 @@ export const momentumData: MomentumData = {
         {
           player: "Paolo Banchero",
           team: "ORL",
-          description: "Step-back three over two defenders to give Magic the lead",
-          timeRemaining: "3:42",
-          winProbabilityShift: 28
+          description: "Step-back three over Isaiah Stewart to cut deficit to 2",
+          timeRemaining: "4:18",
+          winProbabilityShift: 18.4
         },
         {
           player: "Paolo Banchero", 
           team: "ORL",
-          description: "Driving layup through contact plus the foul to extend lead to 5",
-          timeRemaining: "1:58",
-          winProbabilityShift: 31
+          description: "Driving and-one layup to give Magic first lead since first quarter",
+          timeRemaining: "2:45",
+          winProbabilityShift: 24.7
         },
         {
-          player: "Cade Cunningham",
-          team: "DET", 
-          description: "Clutch three-pointer cuts deficit to 4 points",
-          timeRemaining: "1:15",
-          winProbabilityShift: -22
+          player: "Franz Wagner",
+          team: "ORL", 
+          description: "Clutch corner three off Banchero assist to seal the upset",
+          timeRemaining: "1:02",
+          winProbabilityShift: 31.2
         }
       ],
-      narrative: "In what may go down as the defining moment of Paolo Banchero's career, the young star delivered a masterclass in clutch execution to complete one of the most stunning upsets in recent playoff memory. The Magic's first playoff victory in over a decade didn't just announce their arrival—it served notice that this young core has championship DNA. Detroit's championship aspirations took a devastating blow as they discovered that regular season dominance means nothing without playoff heart. The series has been completely flipped on its head, transforming from a potential sweep into a legitimate upset threat that has the entire basketball world talking."
+      narrative: "Paolo Banchero announced his playoff arrival with a performance that will echo through Magic lore for decades. Down 8 entering the fourth quarter, the 22-year-old superstar took over with the poise of a championship veteran, burying back-to-back threes that sent Kia Center into delirium and the heavily favored Pistons into panic mode. This wasn't just Orlando's first playoff victory in over a decade—it was a seismic shift in the franchise's trajectory, transforming from rebuilding afterthought to legitimate championship threat in one magical evening."
     },
     {
-      gameId: "OKC-PHX-20260425", 
+      gameId: "OKC-PHX-20260425",
       teams: { home: "PHX", away: "OKC" },
       finalScore: { home: 109, away: 121 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "7:23",
-          description: "Phoenix veterans show early playoff poise, building comfortable early advantage at home",
-          runScore: "14-5",
+          quarter: "1st",
+          timestamp: "9:15",
+          description: "Thunder establish early dominance with Shai's explosive start",
+          runScore: "OKC 14-3 run", 
+          momentum: "away",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "significant"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "5:42",
+          description: "Suns fight back behind Booker's scoring burst and home crowd energy",
+          runScore: "PHX 11-2 run",
           momentum: "home", 
           keyPlayer: "Devin Booker",
           impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "5:17",
-          description: "Thunder's suffocating defense triggers massive turnaround, completely flipping the script",
-          runScore: "20-7",
+          quarter: "3rd",
+          timestamp: "4:20",
+          description: "Oklahoma City's depth overwhelms aging Phoenix core with relentless pace",
+          runScore: "OKC 18-7 run",
           momentum: "away",
-          keyPlayer: "Shai Gilgeous-Alexander", 
+          keyPlayer: "Jalen Williams", 
           impact: "game-changing"
-        },
-        {
-          quarter: "Q3", 
-          timestamp: "8:42",
-          description: "OKC's depth overwhelms aging Suns core, building commanding 20-point advantage",
-          runScore: "18-8",
-          momentum: "away",
-          keyPlayer: "Jalen Williams",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
-          timestamp: "6:30",
-          description: "Suns mount desperate rally but Thunder's championship composure never wavers",
-          runScore: "12-4", 
-          momentum: "home",
-          keyPlayer: "Devin Booker",
-          impact: "notable"
         }
       ],
       clutchPlays: [],
-      narrative: "The Thunder's championship intentions were crystal clear as they methodically dismantled Phoenix with the kind of systematic dominance that separates contenders from pretenders. Shai Gilgeous-Alexander looked every bit the MVP candidate while orchestrating an offensive clinic that left the Suns scrambling for answers. Oklahoma City's combination of youthful athleticism and veteran leadership created a suffocating environment that completely neutralized Phoenix's home court advantage. This wasn't just a victory—it was a statement that the West's top seed has no intention of relinquishing their crown without a championship fight."
+      narrative: "Shai Gilgeous-Alexander orchestrated a basketball symphony in the desert, conducting Oklahoma City's championship orchestra with the precision of a maestro. The Thunder's suffocating defense and explosive pace exposed every weakness in Phoenix's aging foundation, turning what should have been a competitive playoff opener into a statement victory. This performance served notice to the entire Western Conference—the young Thunder aren't just happy to be here, they're here to claim the throne."
     },
     {
       gameId: "NYK-ATL-20260425",
@@ -160,71 +151,71 @@ export const momentumData: MomentumData = {
       finalScore: { home: 98, away: 114 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "9:15", 
-          description: "Trae Young silences doubters with explosive start, giving Hawks early momentum in hostile State Farm Arena",
-          runScore: "13-4",
+          quarter: "1st",
+          timestamp: "7:30",
+          description: "Hawks come out firing at home, Young orchestrating early offense",
+          runScore: "ATL 10-2 run",
           momentum: "home",
           keyPlayer: "Trae Young", 
-          impact: "significant"
+          impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "4:38",
-          description: "Knicks' championship DNA emerges as they methodically erase deficit with suffocating defense",
-          runScore: "16-6",
+          quarter: "2nd",
+          timestamp: "8:45",
+          description: "Knicks' defensive pressure starts to wear down Atlanta's offensive flow",
+          runScore: "NYK 16-6 run",
           momentum: "away",
           keyPlayer: "Jalen Brunson",
           impact: "significant"
         },
         {
-          quarter: "Q3",
+          quarter: "3rd", 
           timestamp: "6:12",
-          description: "New York's playoff experience shows as they build commanding double-digit road lead",
-          runScore: "22-11", 
+          description: "New York's veteran experience takes control as Randle dominates inside",
+          runScore: "NYK 12-4 run",
           momentum: "away",
           keyPlayer: "Julius Randle",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "The Knicks' playoff pedigree was on full display as they systematically dismantled Atlanta's home court advantage with the kind of suffocating defense that wins championships. Jalen Brunson's masterful floor leadership completely neutralized Trae Young's explosive offense, turning what should have been a hostile environment into a showcase for New York's championship aspirations. This victory established the Knicks as the clear series favorites while proving that their defensive identity travels exceptionally well in high-pressure playoff environments. Atlanta's young core learned a harsh lesson about the difference between regular season success and playoff execution."
+      narrative: "The Knicks imposed their defensive will on State Farm Arena like visiting conquerors, systematically dismantling Atlanta's high-octane offense with the kind of suffocating pressure that wins championships. Jalen Brunson conducted this defensive masterpiece while never forcing his own offense, proving that playoff basketball is won in the trenches, not in highlight reels. This wasn't just a road victory—it was a statement that New York's playoff experience and defensive identity can travel anywhere and dominate anyone."
     },
     {
-      gameId: "DEN-MIN-20260425",
+      gameId: "DEN-MIN-20260425", 
       teams: { home: "MIN", away: "DEN" },
       finalScore: { home: 112, away: 96 },
       swings: [
         {
-          quarter: "Q1", 
-          timestamp: "8:27",
-          description: "Defending champion Nuggets assert early dominance with vintage Jokic orchestration",
-          runScore: "10-2",
-          momentum: "away",
+          quarter: "1st",
+          timestamp: "8:20",
+          description: "Nuggets assert early control behind Jokic's masterful passing display",
+          runScore: "DEN 10-3 run",
+          momentum: "away", 
           keyPlayer: "Nikola Jokic",
           impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "5:44", 
-          description: "Edwards explodes for 16 second-quarter points, completely shifting energy at Target Center",
-          runScore: "24-10",
+          quarter: "2nd",
+          timestamp: "4:35",
+          description: "Edwards awakens Target Center with explosive athleticism and energy",
+          runScore: "MIN 14-4 run",
           momentum: "home",
-          keyPlayer: "Anthony Edwards", 
-          impact: "game-changing"
+          keyPlayer: "Anthony Edwards",
+          impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "7:18",
-          description: "Timberwolves' defensive intensity overwhelms sluggish Nuggets, building commanding advantage",
-          runScore: "18-7",
+          quarter: "3rd",
+          timestamp: "7:15", 
+          description: "Timberwolves seize complete control with suffocating defense and transition offense",
+          runScore: "MIN 18-6 run",
           momentum: "home",
-          keyPlayer: "Rudy Gobert",
-          impact: "significant"
+          keyPlayer: "Anthony Edwards",
+          impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Anthony Edwards announced his arrival as a legitimate championship centerpiece by completely outdueling the reigning MVP in a performance that had Target Center rocking like the old playoff days. The Timberwolves proved their magical run last season was no fluke, showcasing the kind of two-way dominance that makes them a nightmare matchup for any championship contender. Denver's championship defense looked vulnerable and sluggish against Minnesota's explosive athleticism, raising serious questions about their ability to repeat. This statement victory established the Timberwolves as a legitimate championship threat while serving notice that the Northwest Division runs through Minneapolis this spring."
+      narrative: "Anthony Edwards delivered a playoff performance that shook the championship landscape, outdueling the reigning MVP Nikola Jokic with the kind of explosive dominance that separates superstars from pretenders. The Timberwolves transformed Target Center into a house of horrors for the defending champions, proving their magical run last season was just the beginning of something special. This wasn't just Minnesota winning Game 1—it was Anthony Edwards announcing his arrival as the face of the NBA's next generation."
     }
   ]
 };
