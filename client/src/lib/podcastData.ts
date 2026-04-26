@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 25, 2026
+// Last updated: April 26, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,92 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 25, 2026",
-  episodeTitle: "Wemby's 38-Point Masterpiece Forces Game 7 • AD Powers Lakers Past Rockets • Tatum Redeems Himself in Philly",
+  date: "April 26, 2026",
+  episodeTitle: "Rookie Magic: Banchero Stuns Detroit, SGA Demolishes Phoenix in Playoff Openers",
   rundown: [
     {
-      topic: "Victor Wembanyama's 38-Point Game 7-Forcing Masterpiece",
+      topic: "Paolo Banchero's Playoff Masterpiece Delivers Historic Upset",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "38 points on 15-24 shooting (62.5% FG)",
-        "15 rebounds in dominant glass control",
-        "3 blocks while altering countless more shots",
-        "14 fourth-quarter points to seal the victory",
-        "First rookie with 35+ points in elimination game since LeBron 2006"
+        "29 points, 8 rebounds, 5 assists on 11-19 shooting",
+        "Led 15-4 fourth quarter run to seal the upset",
+        "Orlando's first playoff win in over a decade",
+        "8th seed Magic beat 60-win top seed Pistons 113-105",
+        "Banchero shot 57.9% from field in playoff debut",
+        "First rookie to score 25+ in playoff debut upset since 2019"
       ],
-      debateAngle: "Is this the single most impressive rookie playoff performance we've ever witnessed? Wemby just walked into Portland facing elimination and completely took over both ends of the floor like a seasoned veteran.",
-      suggestedQuote: "This wasn't just a rookie having a good game - this was generational talent announcing itself on the biggest stage. When you can dominate like that in a hostile environment with your season on the line, you're not a prospect anymore, you're a superstar.",
-      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "LeBron James", "Tim Duncan"]
+      debateAngle: "Is this the arrival of Orlando as a legitimate championship threat or just rookie magic that won't sustain?",
+      suggestedQuote: "When a 21-year-old walks into his first playoff game and completely dominates a 60-win championship favorite, you're not just watching an upset - you're witnessing the birth of a superstar.",
+      relevantPlayers: ["Paolo Banchero", "Cade Cunningham", "Anthony Black"]
     },
     {
-      topic: "The Lakers' Championship DNA Shines in Overtime Thriller",
+      topic: "Thunder's Championship Statement: SGA's Dominant Playoff Opener",
       segment: "deep-dive",
       duration: "7 minutes",
       keyStats: [
-        "Overcame 18-point third-quarter deficit",
-        "AD's 35 points and 12 rebounds with 8 overtime points",
-        "LeBron's game-winning assist with 12 seconds left",
-        "4-6 from three in overtime (67% clutch shooting)",
-        "Lakers advance to face whoever emerges from Spurs-Blazers Game 7"
+        "Shai Gilgeous-Alexander: 34 points, 7 assists on 61.9% shooting",
+        "Thunder led by as many as 20 points in 121-109 victory",
+        "OKC forced 18 Phoenix turnovers with suffocating defense",
+        "Thunder shot 48.9% from field, 40.0% from three",
+        "SGA posted game-high +19 plus-minus in 36 minutes",
+        "Oklahoma City's 64-18 regular season best in franchise history"
       ],
-      debateAngle: "Are we sleeping on the Lakers as title contenders? This team just showed they can overcome massive deficits and execute in the clutch moments that separate champions from pretenders.",
-      suggestedQuote: "Anthony Davis in overtime was absolutely unstoppable. Those post moves, that rim protection - this is exactly what championship-level two-way dominance looks like when everything is on the line.",
-      relevantPlayers: ["Anthony Davis", "LeBron James", "Alperen Şengün", "Fred VanVleet"]
+      debateAngle: "Are the Thunder the West's most complete championship contender when they're firing on all cylinders?",
+      suggestedQuote: "Shai Gilgeous-Alexander just put the entire Western Conference on notice - when he plays at this level, no team can match Oklahoma City's offensive explosiveness.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Devin Booker", "Jalen Williams"]
     },
     {
-      topic: "Does Tatum's Bounce-Back Performance Change Everything for Boston?",
+      topic: "The Pistons Problem: Are 60-Win Teams Championship Frauds?",
       segment: "hot-take",
       duration: "6 minutes",
       keyStats: [
-        "31 points on 12-21 shooting after Game 1 struggles",
-        "Series now tied 1-1 with home court advantage stolen",
-        "Jaylen Brown added 24 points on 9-16 shooting",
-        "Celtics led by 15 in the fourth quarter",
-        "Joel Embiid held to 23 points on 8-18 shooting"
+        "Detroit's 60-22 record led to top seed in East",
+        "Pistons were 12.5-point home favorites against Orlando",
+        "Cade Cunningham shot just 42.1% (8-19) in the loss",
+        "Detroit allowed 113 points to 8th-seeded offense",
+        "Pistons went 7-3 in final 10 games entering playoffs",
+        "Only 3 teams since 2010 lost Game 1 at home as 1-seed and won series"
       ],
-      debateAngle: "Hot take: Tatum's Game 2 performance was more impressive than Wemby's 38-piece because it showed championship-level mental toughness. Stars separate themselves by how they respond to adversity.",
-      suggestedQuote: "This is what elite players do - they get punched in the mouth in Game 1, then come back and dominate on the road when everyone's questioning them. That's championship DNA right there.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "Tyrese Maxey"]
+      debateAngle: "Do regular season records mean nothing in today's NBA, or is Detroit still the East favorite despite this upset?",
+      suggestedQuote: "Championship favorites can't afford to drop home games to eighth seeds - Detroit just proved they might not be ready for the moment when it matters most.",
+      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Isaiah Stewart"]
     },
     {
-      topic: "Friday's Playoff Slate: Four New Series Tip Off",
+      topic: "Playoff Rapid Fire: Edwards Dominates, Knicks Grind, Game 7 Drama",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Top-seeded Pistons (-7.5) visit scrappy Magic at 1 PM",
-        "Thunder's 64-win juggernaut (-11.5) faces Suns at 3:30 PM",
-        "Knicks-Hawks battle features Brunson vs Trae Young at 6 PM",
-        "Defending champ Nuggets (-6) visit dangerous Timberwolves at 8:30 PM",
-        "Four series begin today with championship implications"
+        "Anthony Edwards: 28 points, outdueled Nikola Jokic",
+        "Jalen Brunson: 26 points in road win over Hawks",
+        "Trae Young held to 19 points on 35.3% shooting",
+        "Minnesota led Denver by as many as 18 points",
+        "Spurs-Blazers Game 7 tips at 3:30 PM ET today",
+        "Victor Wembanyama averaged 31.2 PPG in first 6 games"
       ],
-      debateAngle: "Which of these four new series has the highest upset potential? The Magic hosting Detroit feels like the most dangerous 8-seed situation we've seen in years.",
-      suggestedQuote: "Paolo Banchero making his playoff debut at home against the top seed? That has all the ingredients for magic to happen in Orlando - pun absolutely intended.",
-      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Shai Gilgeous-Alexander", "Devin Booker", "Jalen Brunson", "Trae Young", "Nikola Jokić", "Karl-Anthony Towns"]
+      debateAngle: "Which Friday performance was more impressive - Edwards outplaying the defending champ or Brunson's road mastery?",
+      suggestedQuote: "Anthony Edwards just announced that Minnesota's playoff run last year was no fluke - the Timberwolves might be the West's most dangerous lower seed.",
+      relevantPlayers: ["Anthony Edwards", "Jalen Brunson", "Nikola Jokic", "Trae Young"]
     },
     {
-      topic: "Game 7 Madness and What's Next in the Playoffs",
+      topic: "Saturday's Must-Watch Games and Playoff Storylines",
       segment: "closer",
       duration: "4 minutes",
       keyStats: [
-        "Spurs-Blazers Game 7 will determine who faces the Lakers",
-        "Winner gets a Lakers team riding high after overtime heroics",
-        "Eastern Conference features three series still to begin",
-        "Road teams went 3-0 in Thursday's elimination games",
-        "Playoff intensity reaching fever pitch across both conferences"
+        "Spurs-Blazers Game 7 at 3:30 PM - elimination drama",
+        "Celtics-Sixers Game 3 with series tied 1-1",
+        "Cavaliers-Raptors begins afternoon slate at 1:00 PM",
+        "Lakers begin conference semis against Rockets",
+        "Wembanyama needs 7 more points for 200 in 7 games",
+        "Four different games across 8.5 hours of basketball"
       ],
-      debateAngle: "Is this the most wide-open playoff field we've seen in years? With upsets brewing and stars stepping up, anyone can make a championship run right now.",
-      suggestedQuote: "This is why we love playoff basketball - one night you're watching a rookie announce himself as a superstar, the next you're seeing veterans show why experience matters most. Buckle up, folks - this ride is just getting started.",
-      relevantPlayers: ["Victor Wembanyama", "Anthony Davis", "Jayson Tatum", "Damian Lillard"]
+      debateAngle: "Is today's Spurs-Blazers Game 7 the most anticipated elimination game of the first round?",
+      suggestedQuote: "Game 7 between San Antonio and Portland isn't just about survival - it's about which franchise gets to carry championship momentum into the conference semifinals.",
+      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "Jayson Tatum", "Anthony Davis"]
     }
   ],
-  coldOpen: "Victor Wembanyama just dropped 38 points to force Game 7, Anthony Davis put the Lakers on his back in overtime, and Jayson Tatum reminded everyone why Boston's dangerous when their backs are against the wall. Three superstar performances, three series-shifting moments, and four brand new playoff series tipping off today. This is Hoops Intel, and if you thought the playoffs were intense before, just wait until you hear what happened on Thursday night.",
-  socialClip: "Victor Wembanyama absolutely DOMINATED in Portland with 38 points and 15 rebounds to force Game 7! The rookie phenom shot 15-24 from the field and scored 14 fourth-quarter points to keep San Antonio's championship dreams alive. This wasn't just a good game - this was a generational talent announcing himself on the biggest stage in basketball.",
+  coldOpen: "Good morning, basketball junkies! What happens when a 21-year-old rookie walks into his first playoff game and completely destroys a 60-win championship favorite? You get the kind of magic that only happens in April and May. Paolo Banchero just announced his arrival on basketball's biggest stage with 29 points and the upset of the century, while Shai Gilgeous-Alexander reminded everyone why Oklahoma City might be the most dangerous team in the league. Plus, we've got Game 7 elimination drama on deck. This is Hoops Intel - let's dive into the madness.",
+  socialClip: "30-second highlight package of Paolo Banchero's fourth quarter takeover against Detroit, featuring his clutch baskets and defensive plays, overlaid with playoff debut statistics and 'ROOKIE MAGIC' graphics. Perfect for Instagram Reels and TikTok with dramatic music building to his series-clinching free throws.",
   tweetThread: [
-    "🔥 PLAYOFF MADNESS THREAD 🔥\n\nThursday night delivered LEGENDARY performances:\n\n• Wemby: 38 PTS forces Game 7\n• AD: 35 PTS in OT thriller \n• Tatum: 31 PTS redemption game\n\nRoad teams went 3-0 in elimination scenarios. Playoff basketball hits different 🏀",
-    "Victor Wembanyama just had the most dominant rookie playoff performance since LeBron in 2006\n\n38 PTS | 15 REB | 3 BLK\n15-24 FG | 14 4th quarter points\n\nWalked into Portland facing elimination and took over like a seasoned veteran. Generational talent on full display 🌟",
-    "Anthony Davis in OVERTIME was absolutely UNSTOPPABLE\n\n35 PTS | 12 REB | 4 BLK\n8 points in OT to seal series\n\nOvercame 18-point deficit to advance Lakers to conference semis. This is championship-level two-way dominance when everything's on the line 💪",
-    "Jayson Tatum's bounce-back performance in Philly was ELITE\n\n31 PTS | 8 REB | 5 AST\n12-21 FG on the road\n\nSeries now tied 1-1 after stealing home court advantage. This is how superstars respond to Game 1 struggles - pure championship DNA 🔥",
-    "TODAY'S PLAYOFF SLATE IS LOADED:\n\n🏀 1 PM: Pistons @ Magic (Peacock)\n🏀 3:30 PM: Thunder @ Suns (NBC) \n🏀 6 PM: Knicks @ Hawks (NBC)\n🏀 8:30 PM: Nuggets @ Timberwolves (ABC)\n\nFour new series begin + Spurs-Blazers Game 7 looming. Playoff intensity at MAXIMUM 📺"
+    "🚨 PLAYOFF UPSET ALERT: Paolo Banchero just delivered one of the greatest playoff debuts in NBA history - 29 points, 8 rebounds, and a stunning upset of 60-win Detroit. The Magic are LEGIT. 🪄",
+    "Shai Gilgeous-Alexander put on an absolute clinic: 34 points on 62% shooting as OKC demolished Phoenix by 12. When SGA plays like this, the Thunder look unbeatable. Championship statement made. ⚡",
+    "Anthony Edwards outdueled Nikola Jokic with 28 points, proving Minnesota's playoff run last year was no fluke. The defending champs just got served notice by the Wolves. 🐺",
+    "TODAY'S MUST-WATCH: Spurs vs Blazers Game 7 at 3:30 PM. Victor Wembanyama vs Damian Lillard. Winner-take-all elimination drama. This is why we love playoff basketball. 🔥",
+    "Full breakdown of last night's playoff chaos + today's Game 7 preview now live on the pod. The first round is already delivering historic moments. Link in bio! 🎧"
   ]
 };
