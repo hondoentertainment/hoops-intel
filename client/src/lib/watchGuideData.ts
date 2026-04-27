@@ -46,11 +46,11 @@ export const watchGuideData: WatchGuideData = {
       time: "4/27 - 9:30 PM EDT",
       tv: "NBCSN, Peacock",
       venue: "Mortgage Matchup Center",
-      entertainmentScore: 95,
+      entertainmentScore: 92,
       starPower: 9,
       playoffImplications: 10,
       rivalry: 7,
-      storyline: "Elite Thunder team faces desperate Suns who need every win to secure their playoff position in a potential West preview.",
+      storyline: "The Thunder's championship-caliber 64-win season meets a desperate Suns team fighting for playoff positioning in what could be a Western Conference preview.",
       keyMatchup: "Shai Gilgeous-Alexander vs. Devin Booker",
       mustWatch: true
     },
@@ -67,10 +67,10 @@ export const watchGuideData: WatchGuideData = {
       venue: "Ball Arena",
       entertainmentScore: 88,
       starPower: 8,
-      playoffImplications: 8,
+      playoffImplications: 9,
       rivalry: 6,
-      storyline: "Western Conference heavyweights clash in Denver as both teams battle for crucial playoff seeding advantages.",
-      keyMatchup: "Nikola Jokić vs. Karl-Anthony Towns",
+      storyline: "Two Western Conference playoff contenders clash in a crucial seeding battle, with Denver's championship experience facing Minnesota's rising young core.",
+      keyMatchup: "Nikola Jokic vs. Karl-Anthony Towns",
       mustWatch: true
     },
     {
@@ -86,13 +86,13 @@ export const watchGuideData: WatchGuideData = {
       venue: "Kia Center",
       entertainmentScore: 82,
       starPower: 7,
-      playoffImplications: 7,
+      playoffImplications: 8,
       rivalry: 5,
-      storyline: "Surging Pistons look to continue their impressive season against a Magic team fighting for home court advantage.",
+      storyline: "Detroit's surprising 60-win campaign gets tested in Orlando as the Magic fight to secure their playoff positioning in a crucial Eastern Conference matchup.",
       keyMatchup: "Cade Cunningham vs. Paolo Banchero",
       mustWatch: true
     }
   ],
-  topPick: "Thunder-Suns showdown features championship contenders OKC against playoff-desperate Phoenix in a high-stakes Western Conference battle",
-  nightOverview: "Tonight's slate features three compelling matchups with major playoff implications, headlined by the Thunder visiting Phoenix in a potential postseason preview. All three games carry significant seeding ramifications as the regular season winds down."
+  topPick: "Thunder at Suns features elite star power and massive playoff implications as OKC's title contenders face a desperate Phoenix team",
+  nightOverview: "Three compelling games highlight crucial playoff positioning battles across both conferences. The Thunder's championship aspirations face their biggest test yet in Phoenix, while Western Conference seeding battles dominate the late slate."
 };

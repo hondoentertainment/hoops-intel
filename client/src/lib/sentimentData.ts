@@ -47,142 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-27",
   displayDate: "April 27, 2026",
-  overallMood: "Playoff upsets and rookie brilliance stealing the spotlight",
+  overallMood: "The basketball internet is euphoric and chaotic in equal measure — Wemby is ascending to myth, Philly is in crisis mode, and the LeBron eulogy machine is running at full capacity",
   topics: [
     {
-      id: "tatum-championship-statement",
-      topic: "Tatum's 35-point demolition proves Celtics are title favorites",
+      id: "tatum-finals-mvp-campaign",
+      topic: "Tatum's 35-point road demolition officially launches his Finals MVP campaign",
       sentiment: "positive",
-      intensity: 94,
-      volume: 47200,
-      summary: "Jayson Tatum's explosive 35-point performance in Boston's 32-point blowout of Philadelphia has NBA Twitter convinced the Celtics are the team to beat. Fans are calling it a Finals MVP preview performance.",
+      intensity: 96,
+      volume: 51400,
+      summary: "Jayson Tatum's 35-point evisceration of Philadelphia on the road has completely taken over NBA discourse. The consensus is forming fast — Tatum is playing his best playoff basketball ever and Boston looks genuinely unbeatable when he's in this mode. Twitter is already printing Finals MVP graphics.",
       sampleTakes: [
-        "Tatum just dropped 35 and made it look EASY. This is your Finals MVP right here 🏆",
-        "The way Tatum dismantled Philly on the road... Boston different when he's in this mode",
-        "32-point blowout in the playoffs is NASTY work. Tatum is ready for his championship moment",
-        "JT just put the entire league on notice. That was superstar dominance at its finest"
+        "Tatum put up 35 on 13-of-21 shooting IN PHILLY and it wasn't even close. Pack it up, league 🏆",
+        "JT is doing to Joel Embiid what Embiid has been promising to do to everyone else for a decade. The irony is immaculate",
+        "35 points, 32-point WIN, on the road, in the playoffs. At some point we have to start calling Tatum a top-3 player in the world",
+        "The way Boston just walks into hostile arenas and turns them into libraries... Tatum is built for this moment"
       ],
-      relatedPlayers: ["Jayson Tatum", "Joel Embiid"],
+      relatedPlayers: ["Jayson Tatum", "Joel Embiid", "Jaylen Brown"],
       relatedTeams: ["BOS", "PHI"],
       trending: true
     },
     {
-      id: "wembanyama-rookie-legend",
-      topic: "Wemby's 31-point series winner cements rookie playoff legend status",
+      id: "wembanyama-all-time-rookie-debate",
+      topic: "Is Wemby already the greatest rookie playoff performer of all time?",
       sentiment: "positive",
-      intensity: 91,
-      volume: 43800,
-      summary: "Victor Wembanyama's series-clinching 31-point masterpiece has social media declaring him the greatest rookie playoff performer ever. The hype around his championship potential is reaching fever pitch.",
+      intensity: 93,
+      volume: 47600,
+      summary: "Victor Wembanyama's series-clinching 31/14/4 blocks has triggered the all-time rookie debate in a serious way. Reddit threads are pulling up Magic's rookie numbers, Duncan's numbers, LeBron's numbers — and Wemby is holding up embarrassingly well. This is no longer about potential. This is about legacy.",
       sampleTakes: [
-        "31 points to CLOSE OUT a playoff series as a rookie??? Wemby is not human 👽",
-        "This kid just carried the Spurs to the second round at 20 years old. We're witnessing greatness",
-        "Wembanyama in the playoffs hits different. 31/14/4 blocks to advance? GENERATIONAL",
-        "Rookie playoff runs don't get better than this. Wemby is already championship ready"
+        "31 points, 14 boards, 4 blocks to CLOSE OUT a playoff series. AT 20 YEARS OLD. I genuinely don't know what to do with this information 👽",
+        "We are watching the greatest rookie playoff performance in NBA history unfold in real time and people are sleeping on it",
+        "Wemby just casually averaged 31.8/13.2/4.3 blocks in his first playoff run. The Spurs are going to win a championship in like two years and I'm not even joking",
+        "Every game Wembanyama plays I feel like I need to call someone. He's not supposed to be this good this fast"
       ],
       relatedPlayers: ["Victor Wembanyama", "Damian Lillard"],
       relatedTeams: ["SAS", "POR"],
       trending: true
     },
     {
-      id: "raptors-stunning-upset",
-      topic: "Siakam leads shocking Raptors upset over heavily favored Cavs",
-      sentiment: "mixed",
-      intensity: 87,
-      volume: 38900,
-      summary: "Pascal Siakam's vintage 28-point performance that stunned Cleveland has fans split between praising Toronto's playoff experience and questioning the Cavaliers' championship readiness.",
+      id: "siakam-raptors-resurrection",
+      topic: "Siakam's vintage masterclass stuns Cavs and resurrects Raptors playoff identity",
+      sentiment: "positive",
+      intensity: 88,
+      volume: 39700,
+      summary: "Pascal Siakam's 28-point, 11-rebound performance to shock the heavily favored Cavaliers has reminded the entire basketball internet that playoff Siakam is a completely different organism. Toronto's physical identity suffocated Cleveland and the 12-2 fourth-quarter run is already being dissected on every podcast feed.",
       sampleTakes: [
-        "SPICY P IS BACK! 28 points to upset the Cavs like it's 2019 all over again 🌶️",
-        "Cleveland really lost to Toronto at home??? Their championship window looking shaky",
-        "Never doubt playoff Siakam. This man knows how to show up when it matters most",
-        "Raptors just reminded everyone they're still dangerous in the playoffs"
+        "SPICY P REMEMBERED WHO HE WAS 🌶️🌶️🌶️ This is the guy who carried Toronto to a championship. Cleveland had no answers",
+        "People been sleeping on Siakam for two years and he just walked into a playoff series against a 52-win team and cooked them. Respect earned",
+        "The 12-2 fourth quarter run Toronto went on was the most Raptors thing I've ever seen. Physical, suffocating, relentless. They're BACK",
+        "Cleveland entered this series like it was a formality. Siakam said not today, not ever, not in my building"
       ],
-      relatedPlayers: ["Pascal Siakam", "Donovan Mitchell"],
+      relatedPlayers: ["Pascal Siakam", "Scottie Barnes", "Donovan Mitchell"],
       relatedTeams: ["TOR", "CLE"],
       trending: true
     },
     {
-      id: "sixers-championship-concerns",
-      topic: "Embiid's struggles raise questions about Sixers' title hopes",
+      id: "embiid-ceiling-discourse",
+      topic: "Embiid's 18-point blowout loss reignites his championship ceiling debate",
       sentiment: "negative",
-      intensity: 83,
-      volume: 31500,
-      summary: "Joel Embiid's disappointing 18-point performance in Philadelphia's 32-point home loss has fans questioning whether this core can ever reach championship level when facing elite competition.",
+      intensity: 86,
+      volume: 34200,
+      summary: "Joel Embiid's 18-point, 6-of-15 night in a 32-point home demolition has cracked open the ceiling discourse with a sledgehammer. The takes are particularly brutal because this is Philadelphia's HOME court, the series is early, and Boston wasn't even playing desperate basketball. The 'he can't do it when it matters' narrative is fully operational.",
       sampleTakes: [
-        "Embiid getting dominated by the Celtics AGAIN. Some things never change 🤦‍♂️",
-        "18 points in a 32-point home loss??? This is why Philly will never win with this core",
-        "Embiid disappears every time he faces real championship competition. Story of his career",
-        "The Process is officially over. This team can't win when it matters most"
+        "Embiid: 18 points on 6-15 in a 32-point HOME playoff loss. Tatum: 35 points on 13-21 in an AWAY playoff win. One of these guys is a franchise player 🤷‍♂️",
+        "The Process ended in a 32-point blowout at home in the playoffs. Philadelphia sports is a lifestyle and that lifestyle is suffering",
+        "At this point Embiid's entire career is a warning to GMs everywhere. You can be the MVP and still never matter when it counts",
+        "Sixers fans in 2018: 'Trust the Process.' Sixers fans in 2026: 'WHAT IS THE PROCESS EVEN FOR'"
       ],
       relatedPlayers: ["Joel Embiid", "Jayson Tatum"],
       relatedTeams: ["PHI", "BOS"],
       trending: false
     },
     {
-      id: "lakers-aging-reality",
-      topic: "Lakers' loss to Houston exposes Father Time concerns",
+      id: "lebron-father-time-reckoning",
+      topic: "Lakers' loss to Rockets triggers the LeBron Father Time eulogy cycle again",
       sentiment: "negative",
-      intensity: 79,
-      volume: 29200,
-      summary: "Los Angeles' disappointing defeat to a younger Houston team has social media discussing whether LeBron and AD's championship window has officially closed as Father Time catches up.",
+      intensity: 82,
+      volume: 31800,
+      summary: "Houston's dominant 19-point win over Los Angeles has rebooted the 'LeBron is done' content machine at full volume. The specific image of Alperen Şengün absolutely manhandling Anthony Davis in the post while LeBron watched helplessly has become the defining visual of the night for anyone wanting to write a dynasty obituary.",
       sampleTakes: [
-        "LeBron and AD getting bodied by young guys... the window is CLOSED 🪟",
-        "Lakers really thought they could compete with this old roster. Houston's youth showing",
-        "Alperen Şengün just dominated Anthony Davis. That tells you everything about where LA is",
-        "Time to rebuild Lakers fans. This championship core is DONE"
+        "LeBron watched Şengün humiliate AD for 48 minutes and finished with 20 points on 7-18. Father Time don't negotiate 🕰️",
+        "The Lakers genuinely thought this roster could win a championship. Houston just showed them what youth and hunger looks like",
+        "AD versus Şengün in the paint was the saddest thing I've watched all season. One of these guys is ascending, one is just... there",
+        "Before y'all say 'LeBron always figures it out' — he's like 41 years old playing against athletes in their early twenties. The math is mathing"
       ],
       relatedPlayers: ["LeBron James", "Anthony Davis", "Alperen Şengün"],
       relatedTeams: ["LAL", "HOU"],
       trending: false
     },
     {
-      id: "magic-playoff-miracle",
-      topic: "Banchero's Magic shocking everyone with playoff upset potential",
+      id: "banchero-magic-shock-pistons",
+      topic: "Paolo Banchero's 29-point debut has everyone believing in Magic upset magic",
       sentiment: "positive",
-      intensity: 76,
-      volume: 25800,
-      summary: "Paolo Banchero's 29-point playoff debut that upset top-seeded Detroit has fans believing Orlando could complete one of the biggest playoff upsets in NBA history.",
+      intensity: 77,
+      volume: 27300,
+      summary: "Paolo Banchero's stunning 29-point performance that upset the 60-win Pistons has Orlando fans completely losing their minds and the broader basketball internet genuinely intrigued. The question everyone is asking heading into Game 2 tonight: is this real? Can this actually happen?",
       sampleTakes: [
-        "Paolo dropping 29 on the 60-win Pistons??? Magic about to shock the world 🪄",
-        "Orlando really has Detroit shook. This rookie class built different",
-        "Banchero in the playoffs already looking like a superstar. Orlando's future is NOW",
-        "Nobody expected the Magic to be here but Paolo is making believers out of everyone"
+        "Paolo Banchero is 22 years old and just dropped 29 on the best team in the East in his FIRST playoff game. The Magic are not playing around 🪄",
+        "Detroit was a 60-win team and they genuinely got shocked by Orlando. Banchero looked like a 10-year vet in his first playoff game",
+        "If Banchero does this again in Game 2 tonight, we need to have a serious conversation about Orlando going to the second round",
+        "The Pistons got MAGIC'd. Detroit fans trying to explain this one to their kids is going to be rough"
       ],
-      relatedPlayers: ["Paolo Banchero", "Cade Cunningham"],
+      relatedPlayers: ["Paolo Banchero", "Cade Cunningham", "Anthony Black"],
       relatedTeams: ["ORL", "DET"],
       trending: false
     },
     {
-      id: "nuggets-title-defense-trouble",
-      topic: "Defending champion Nuggets in serious trouble after Game 1 loss",
+      id: "nuggets-dynasty-in-danger",
+      topic: "Defending champions Denver looking like a paper tiger after Game 1 loss to Minnesota",
       sentiment: "negative",
-      intensity: 72,
-      volume: 23400,
-      summary: "Denver's shocking loss to Minnesota in their playoff opener has fans questioning whether the defending champions can repeat, especially with Anthony Edwards looking unstoppable.",
+      intensity: 74,
+      volume: 24600,
+      summary: "Denver's 16-point loss to Minnesota in their playoff opener has the defending champions discourse in a dark place. Edwards vs. Jokic was supposed to be the marquee matchup — and Anthony Edwards won it convincingly. The 'Jokic can't do it alone anymore' narrative is picking up serious steam.",
       sampleTakes: [
-        "Jokic got outplayed by ANT... the Nuggets' championship defense is in TROUBLE",
-        "Minnesota just embarrassed the defending champs at home. Dynasty over?",
-        "Edwards is ready to take over the West. Nuggets can't match this energy",
-        "Denver looking like they're hungover from last year's title. No urgency whatsoever"
+        "Jokic triple-doubled and still lost by 16. The Nuggets around him are just cooked. That's the whole story",
+        "Anthony Edwards just outdueled the two-time MVP in a playoff game. This is his league now and we should accept that",
+        "Denver looked flat, slow, and uninspired in Game 1. Title hangover is REAL and Minnesota smelled blood immediately",
+        "The dynasty is over before it started. One title. A second-round exit incoming. Rough way to be remembered"
       ],
       relatedPlayers: ["Anthony Edwards", "Nikola Jokic"],
       relatedTeams: ["MIN", "DEN"],
       trending: false
     },
     {
-      id: "playoff-rookie-revolution",
-      topic: "Rookie class taking over the playoffs with historic performances",
-      sentiment: "positive",
-      intensity: 68,
-      volume: 21700,
-      summary: "The combination of Wembanyama and Banchero's dominant playoff debuts has social media celebrating the most impactful rookie playoff class in recent memory.",
+      id: "sengün-davis-interior-battle",
+      topic: "Şengün's demolition of Anthony Davis becoming the defining image of HOU-LAL series",
+      sentiment: "mixed",
+      intensity: 71,
+      volume: 21900,
+      summary: "The interior battle between Alperen Şengün and Anthony Davis has become symbolic of everything people want to say about generational transition in the NBA. Şengün's 26/12/8 against Davis' 16/8 is being used as evidence for a dozen different narratives simultaneously.",
       sampleTakes: [
-        "Wemby AND Paolo dominating in the playoffs as rookies... this class is special ✨",
-        "These rookies playing like 10-year vets in the playoffs. Future is in good hands",
-        "When's the last time we had rookies THIS good in their first postseason? Incredible",
-        "The league is changing before our eyes. These young guys are fearless"
+        "Şengün is 22 years old and just embarrassed the guy who was supposed to be the best big man in basketball. The torch has been passed whether AD likes it or not",
+        "26 points, 12 boards, 8 assists from a CENTER in a playoff game. Şengün is built so different and the league hasn't figured him out yet",
+        "Houston has a franchise player and nobody outside of Texas wants to admit it. Şengün is genuinely elite",
+        "AD versus Şengün should have been a mismatch in the other direction. The fact that it went the way it did is genuinely alarming for Lakers fans"
       ],
-      relatedPlayers: ["Victor Wembanyama", "Paolo Banchero"],
-      relatedTeams: ["SAS", "ORL"],
+      relatedPlayers: ["Alperen Şengün", "Anthony Davis", "LeBron James"],
+      relatedTeams: ["HOU", "LAL"],
       trending: false
     }
   ],
@@ -191,81 +191,81 @@ export const sentimentData: SentimentData = {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "positive",
-      score: 91,
-      buzzWords: ["championship", "dominant", "statement", "title favorites"],
-      narrativeSummary: "Tatum's 35-point demolition has fans convinced Boston is the team to beat for the championship"
+      score: 93,
+      buzzWords: ["unstoppable", "championship", "Tatum cooking", "title favorites", "road warriors"],
+      narrativeSummary: "Boston's 32-point road demolition of Philadelphia has Celtics fans in a state of full championship confidence. There's a quiet menace to this team that the internet finds genuinely intimidating."
     },
     {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "positive",
-      score: 88,
-      buzzWords: ["Wemby", "legendary", "future", "generational"],
-      narrativeSummary: "Wembanyama's series-clinching brilliance has everyone believing in San Antonio's championship potential"
+      score: 89,
+      buzzWords: ["Wemby alien", "dynasty incoming", "Pop magic", "second coming", "generational"],
+      narrativeSummary: "The Spurs are the internet's adopted team right now and it's entirely because of Wembanyama. San Antonio advancing to the second round feels like the beginning of something that will be talked about for decades."
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "positive",
-      score: 76,
-      buzzWords: ["upset", "vintage", "experience", "dangerous"],
-      narrativeSummary: "Siakam's vintage playoff performance has fans remembering why Toronto can never be counted out"
-    },
-    {
-      team: "ORL",
-      teamFull: "Orlando Magic",
-      sentiment: "positive",
-      score: 73,
-      buzzWords: ["magic", "upset", "Banchero", "shocking"],
-      narrativeSummary: "Banchero's playoff debut has fans believing Orlando could pull off a historic upset"
+      score: 77,
+      buzzWords: ["Spicy P resurgent", "never count us out", "playoff DNA", "physical", "believers"],
+      narrativeSummary: "Toronto's fanbase went from resigned to electric overnight. The energy around Siakam's performance has reminded everyone that this franchise has championship DNA that doesn't fully expire."
     },
     {
       team: "HOU",
       teamFull: "Houston Rockets",
       sentiment: "positive",
-      score: 69,
-      buzzWords: ["young", "energy", "future", "dominant"],
-      narrativeSummary: "The Rockets' youth and energy overpowering the Lakers has fans excited about their potential"
+      score: 72,
+      buzzWords: ["youth movement", "Şengün ascending", "hungry", "future is now", "home court secured"],
+      narrativeSummary: "Houston fans are riding high after exposing the Lakers' age problem. The Rockets' brand of youthful, aggressive basketball is drawing genuine national attention for the first time in years."
     },
     {
-      team: "PHI",
-      teamFull: "Philadelphia 76ers",
-      sentiment: "negative",
-      score: -78,
-      buzzWords: ["disappointing", "blown out", "concerns", "fraud"],
-      narrativeSummary: "The 32-point home loss has fans questioning if this core can ever win a championship"
-    },
-    {
-      team: "CLE",
-      teamFull: "Cleveland Cavaliers",
-      sentiment: "negative",
-      score: -72,
-      buzzWords: ["upset", "stunned", "overrated", "pretenders"],
-      narrativeSummary: "Getting shocked by Toronto at home has fans wondering if Cleveland is really championship ready"
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "negative",
-      score: -69,
-      buzzWords: ["aging", "done", "window closed", "dominated"],
-      narrativeSummary: "The loss to Houston has fans declaring the LeBron-AD era officially over"
-    },
-    {
-      team: "DEN",
-      teamFull: "Denver Nuggets",
-      sentiment: "negative",
-      score: -65,
-      buzzWords: ["trouble", "defending champs", "outplayed", "concerned"],
-      narrativeSummary: "The defending champions looking vulnerable against Minnesota has fans worried about their repeat chances"
+      team: "ORL",
+      teamFull: "Orlando Magic",
+      sentiment: "positive",
+      score: 74,
+      buzzWords: ["Banchero breakout", "magic is real", "believe", "nobody expected this", "Game 2 big"],
+      narrativeSummary: "The Orlando fanbase is giddy and barely containing themselves ahead of tonight's Game 2. Banchero's breakout has given them something they haven't had in a very long time — genuine playoff hope."
     },
     {
       team: "MIN",
       teamFull: "Minnesota Timberwolves",
       sentiment: "positive",
       score: 71,
-      buzzWords: ["Edwards", "young", "energy", "giant killers"],
-      narrativeSummary: "Anthony Edwards leading a dominant win over the defending champs has fans believing in Minnesota's potential"
+      buzzWords: ["ANT season", "giant killers", "Edwards erupting", "believers", "championship dark horse"],
+      narrativeSummary: "Minnesota fans are walking around with serious energy right now. Outplaying the defending champions by 16 points in their own building is the kind of statement that changes how a fanbase sees itself."
+    },
+    {
+      team: "PHI",
+      teamFull: "Philadelphia 76ers",
+      sentiment: "negative",
+      score: -81,
+      buzzWords: ["the process failed", "Embiid fraudulent", "blown out at home", "championship ceiling zero", "fire everyone"],
+      narrativeSummary: "Philadelphia is in full crisis mode. Getting demolished by 32 points at home in the playoffs is the kind of loss that ends coaching tenures and triggers front-office soul-searching. The discourse is ugly and getting uglier."
+    },
+    {
+      team: "CLE",
+      teamFull: "Cleveland Cavaliers",
+      sentiment: "negative",
+      score: -70,
+      buzzWords: ["shocked", "Mitchell shooting bricks", "overrated", "pretenders exposed", "how did this happen"],
+      narrativeSummary: "Cleveland fans are experiencing the specific kind of horror that comes from being stunned by a team you were supposed to easily handle. The Mitchell efficiency questions are loud and getting louder."
+    },
+    {
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "negative",
+      score: -67,
+      buzzWords: ["window closed", "Father Time wins", "AD can't guard anyone", "LeBron declining", "rebuild time"],
+      narrativeSummary: "Los Angeles fans are split between those running the Father Time content and the loyalists insisting it's just one game. The loyalists are losing the argument badly right now."
+    },
+    {
+      team: "DEN",
+      teamFull: "Denver Nuggets",
+      sentiment: "negative",
+      score: -62,
+      buzzWords: ["title hangover", "dynasty over", "Jokic can't do it alone", "cooked", "vulnerable"],
+      narrativeSummary: "Denver's fanbase is uneasy in a way that feels new. This team has been unshakeable for two years but the Game 1 loss had a flatness to it that even the truest believers noticed and couldn't explain away."
     }
   ],
   playerSentiments: [
@@ -273,93 +273,138 @@ export const sentimentData: SentimentData = {
       player: "Jayson Tatum",
       team: "BOS",
       sentiment: "positive",
-      score: 94,
-      mentions: 23800,
-      topTake: "Tatum just dropped 35 and made it look EASY. This is your Finals MVP right here 🏆",
-      narrativeArc: "Championship-level dominance proving he's ready to lead Boston to a title"
+      score: 95,
+      mentions: 26400,
+      topTake: "Tatum dropped 35 on 13-of-21 shooting in a road playoff game and made it look like a Wednesday practice. At some point we have to just crown him a top-3 player in the world and move on.",
+      narrativeArc: "The Finals MVP narrative is fully constructed and gaining momentum by the hour. Every efficient Tatum performance in this postseason adds another brick to it."
     },
     {
       player: "Victor Wembanyama",
       team: "SAS",
       sentiment: "positive",
-      score: 92,
-      mentions: 22100,
-      topTake: "31 points to CLOSE OUT a playoff series as a rookie??? Wemby is not human 👽",
-      narrativeArc: "Legendary rookie playoff run cementing his status as a generational talent"
+      score: 93,
+      mentions: 24700,
+      topTake: "31 points, 14 rebounds, 4 blocks to CLOSE OUT a playoff series as a rookie. Wemby is not playing the same sport as other people and that's a scientific fact at this point 👽",
+      narrativeArc: "The greatest rookie playoff performer in modern NBA history debate is no longer hypothetical. Wemby is winning it in real time and social media cannot stop talking about it."
     },
     {
       player: "Pascal Siakam",
       team: "TOR",
       sentiment: "positive",
-      score: 81,
-      mentions: 16400,
-      topTake: "SPICY P IS BACK! 28 points to upset the Cavs like it's 2019 all over again 🌶️",
-      narrativeArc: "Vintage playoff performance reminding everyone of his championship pedigree"
+      score: 82,
+      mentions: 17800,
+      topTake: "SPICY P remembered who he was at the exact right moment. 28 and 11 to shock the Cavs is the most vintage Raptors playoff energy we've seen since 2019. The man is built different.",
+      narrativeArc: "The redemption arc narrative is irresistible and the internet is fully invested. Siakam going from forgotten to remembered overnight is the feel-good playoff story nobody saw coming."
     },
     {
       player: "Paolo Banchero",
       team: "ORL",
       sentiment: "positive",
-      score: 78,
-      mentions: 14900,
-      topTake: "Paolo dropping 29 on the 60-win Pistons??? Magic about to shock the world 🪄",
-      narrativeArc: "Rookie playoff debut announcing his arrival as a superstar in the making"
-    },
-    {
-      player: "Anthony Edwards",
-      team: "MIN",
-      sentiment: "positive",
-      score: 76,
-      mentions: 13200,
-      topTake: "Jokic got outplayed by ANT... Edwards is ready to take over the West",
-      narrativeArc: "Outdueling the reigning MVP showing he's ready to be the face of the West"
+      score: 79,
+      mentions: 15600,
+      topTake: "Paolo Banchero is 22 years old and just dropped 29 on the 60-win Pistons in his first career playoff game. The Magic genuinely might do this. I'm starting to believe and I hate that I am.",
+      narrativeArc: "Rookie entering superstar conversation faster than anyone predicted. The intrigue around tonight's Game 2 is the highest of any game on the board."
     },
     {
       player: "Alperen Şengün",
       team: "HOU",
       sentiment: "positive",
-      score: 72,
-      mentions: 11800,
-      topTake: "Alperen Şengün just dominated Anthony Davis. Houston's future is NOW",
-      narrativeArc: "Elite two-way performance proving he can be the centerpiece of a playoff team"
+      score: 75,
+      mentions: 13100,
+      topTake: "Şengün put up 26/12/8 against Anthony Davis and made it look effortless. Houston has an actual franchise player and the national media is only now catching up to what Rockets fans have known all year.",
+      narrativeArc: "The underrated-to-recognized pipeline is fully activated. Şengün's demolition of a marquee name like Davis is the kind of performance that permanently changes how the internet perceives a player."
+    },
+    {
+      player: "Anthony Edwards",
+      team: "MIN",
+      sentiment: "positive",
+      score: 77,
+      mentions: 14400,
+      topTake: "ANT outdueled Nikola Jokic in a playoff game and Minnesota won by 16. This is his league now. Jokic is going to win the MVP again and it won't matter because Edwards is taking over.",
+      narrativeArc: "The 'next face of the NBA' conversation intensifies with every big moment. Edwards beating the defending champions' best player in a playoff opener is as big as it gets for a rising star narrative."
+    },
+    {
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      sentiment: "positive",
+      score: 84,
+      mentions: 18200,
+      topTake: "SGA dropped 34 in Game 1 and Oklahoma City won by double digits on the road. He's been the most consistent star in the league all season and the playoffs are just confirming everything we already knew.",
+      narrativeArc: "The quiet MVP conversation is running alongside his playoff performance. SGA does everything efficiently and without drama, which the internet simultaneously loves and occasionally forgets to talk about."
     },
     {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "negative",
-      score: -74,
-      mentions: 18600,
-      topTake: "Embiid disappears every time he faces real championship competition. Story of his career",
-      narrativeArc: "Another disappointing playoff performance raising questions about his championship ceiling"
+      score: -79,
+      mentions: 21300,
+      topTake: "Embiid: 18 points, 6-of-15, in a 32-point HOME playoff loss. The Process was supposed to lead somewhere. At this point the destination is 'another first-round embarrassment' and that's being generous.",
+      narrativeArc: "The championship ceiling conversation has fully consumed his narrative. Every disappointing playoff performance adds weight to the argument that his regular season excellence simply doesn't translate when the stakes peak."
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "negative",
-      score: -68,
-      mentions: 15300,
-      topTake: "LeBron getting bodied by young guys... Father Time is undefeated 🪟",
-      narrativeArc: "Aging limitations being exposed against Houston's youthful energy"
+      score: -65,
+      mentions: 19800,
+      topTake: "LeBron watched Houston's 22-year-old center dismantle his team for 48 minutes and scored 20 points on 7-of-18 shooting. Father Time doesn't care about your legacy. The conversation is over.",
+      narrativeArc: "The aging superstar discourse peaks every time he has a rough playoff game. The specific framing of youth-vs-experience makes this version of the narrative particularly brutal and particularly viral."
     },
     {
       player: "Donovan Mitchell",
       team: "CLE",
       sentiment: "negative",
-      score: -61,
-      mentions: 12700,
-      topTake: "Mitchell shot them out of the game. Cleveland's championship hopes looking shaky",
-      narrativeArc: "Poor efficiency in upset loss raising concerns about his ability to lead a championship run"
+      score: -63,
+      mentions: 14100,
+      topTake: "Mitchell shot 9-of-22 against a Toronto team that had no business beating Cleveland. He had every opportunity to be the hero and instead shot them out of the game. Some stars just don't show up.",
+      narrativeArc: "The 'great regular season, disappears when it matters' narrative is being freshly applied to Mitchell after the Raptors upset. It's unfair and also extremely loud on every NBA forum right now."
     },
     {
       player: "Anthony Davis",
       team: "LAL",
       sentiment: "negative",
-      score: -58,
-      mentions: 10900,
-      topTake: "AD getting dominated by Şengün... this Lakers core is DONE",
-      narrativeArc: "Getting outplayed by a younger center highlighting the Lakers' championship window closing"
+      score: -61,
+      mentions: 12300,
+      topTake: "AD got absolutely cooked by Şengün in the paint and finished with 16 points on 6-of-14. He's supposed to be the best big man in basketball. Şengün just proved that's no longer true.",
+      narrativeArc: "The physical dominance questions follow Davis into every difficult series. Getting outworked by a younger center is the exact narrative his critics have been waiting to deploy."
+    },
+    {
+      player: "Nikola Jokic",
+      team: "DEN",
+      sentiment: "mixed",
+      score: -31,
+      mentions: 16700,
+      topTake: "Jokic triple-doubled and lost by 16. The MVP got outplayed by a 24-year-old and his teammates gave him nothing. This is what a dynasty in decline looks like and it's genuinely sad to watch.",
+      narrativeArc: "The impossible situation narrative — Jokic producing but the team around him regressing — creates a complex sentiment. He's simultaneously being praised and used as evidence that Denver's window has closed."
+    },
+    {
+      player: "Jaylen Brown",
+      team: "BOS",
+      sentiment: "positive",
+      score: 80,
+      mentions: 11900,
+      topTake: "Brown finished plus-28 in 32 minutes while Tatum ran the show. He doesn't need to carry anything when Boston's cooking like this and that versatility is why they're the scariest team in the East.",
+      narrativeArc: "The perfect co-star narrative elevates Brown whenever Boston dominates. His +28 and efficient complementary performance is exactly what championship teams need from a second option."
+    },
+    {
+      player: "Scottie Barnes",
+      team: "TOR",
+      sentiment: "positive",
+      score: 71,
+      mentions: 9800,
+      topTake: "19 points, 9 rebounds, 7 assists and he guarded three different Cavaliers on defense. Barnes is the engine Toronto needs to make this upset real. He's everywhere and he never stops moving.",
+      narrativeArc: "The ascending young star supporting a veteran-led upset is a narrative the basketball internet finds genuinely compelling. Barnes is getting his flowers and the attention feels overdue."
+    },
+    {
+      player: "Damian Lillard",
+      team: "POR",
+      sentiment: "negative",
+      score: -52,
+      mentions: 8700,
+      topTake: "Dame dropped 22 on 8-of-20 shooting in an elimination loss and Portland's playoff run is over. He gave everything he had and it just wasn't enough against Wemby's Spurs. That's a brutal way to go out.",
+      narrativeArc: "The wistful sadness narrative dominates — a great player losing to an unstoppable force beyond his control. It's less angry than the Embiid takes and more resigned, which somehow makes it more affecting."
     }
   ],
-  hottestTake: "Wembanyama is already a better playoff performer than Embiid and he's literally a rookie. The gap between elite young players and supposed 'superstars' is getting embarrassing",
-  coldestTake: "The Lakers are still title contenders - it's just one game and LeBron always figures it out in the playoffs when it matters most"
+  hottestTake: "Embiid has now been in the league for a decade, won an MVP, made multiple All-Star teams, and his best playoff moment is still a first-round exit. Wembanyama accomplished more in one rookie postseason than Embiid has in his entire career when it actually matters. We need to stop pretending they're in the same conversation.",
+  coldestTake: "The Lakers are completely fine and everyone needs to relax — LeBron always saves his best basketball for when the series is actually on the line, and Anthony Davis is going to remind everyone why he's an All-NBA center the moment Houston gets comfortable. One game means absolutely nothing."
 };
