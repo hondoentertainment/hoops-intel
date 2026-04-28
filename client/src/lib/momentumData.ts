@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Paolo Banchero", 
     team: "ORL", 
-    clutchRating: 94, 
-    description: "Led historic upset with 26 points and clutch 14-4 closing run to eliminate 60-win Detroit" 
+    clutchRating: 96, 
+    description: "Led historic upset with ice-cold 14-4 closing run, delivering clutch baskets and defensive stops to complete stunning series victory over 60-win Detroit" 
   },
   games: [
     {
@@ -49,9 +49,9 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "8:32",
-          description: "Detroit opens with authoritative 12-2 run behind Cunningham's scoring",
-          runScore: "12-2",
+          timestamp: "8:42",
+          description: "Detroit opens with authority as Cunningham scores 8 quick points",
+          runScore: "12-4 DET",
           momentum: "away",
           keyPlayer: "Cade Cunningham",
           impact: "significant"
@@ -59,35 +59,26 @@ export const momentumData: MomentumData = {
         {
           quarter: "Q2",
           timestamp: "4:15",
-          description: "Magic bench sparks 18-6 rally to flip halftime momentum at home",
-          runScore: "18-6",
+          description: "Banchero responds with three consecutive buckets to ignite Kia Center",
+          runScore: "8-0 ORL",
           momentum: "home",
-          keyPlayer: "Cole Anthony",
-          impact: "significant"
-        },
-        {
-          quarter: "Q3",
-          timestamp: "2:48",
-          description: "Pistons reassert dominance with punishing 15-4 run to regain control",
-          runScore: "15-4",
-          momentum: "away",
-          keyPlayer: "Isaiah Stewart",
+          keyPlayer: "Paolo Banchero",
           impact: "notable"
         },
         {
-          quarter: "Q4",
-          timestamp: "6:12",
-          description: "Banchero ignites Kia Center with thunderous dunk and defensive steal",
-          runScore: "8-0",
-          momentum: "home",
-          keyPlayer: "Paolo Banchero",
-          impact: "game-changing"
+          quarter: "Q3",
+          timestamp: "6:28",
+          description: "Pistons reassert control with suffocating defense forcing four turnovers",
+          runScore: "11-2 DET",
+          momentum: "away",
+          keyPlayer: "Isaiah Stewart",
+          impact: "significant"
         },
         {
           quarter: "Q4",
-          timestamp: "3:21",
-          description: "Historic 14-4 closing surge completes stunning playoff upset",
-          runScore: "14-4",
+          timestamp: "5:47",
+          description: "Magic unleash stunning closing run as crowd reaches fever pitch",
+          runScore: "14-4 ORL",
           momentum: "home",
           keyPlayer: "Paolo Banchero",
           impact: "game-changing"
@@ -97,26 +88,26 @@ export const momentumData: MomentumData = {
         {
           player: "Paolo Banchero",
           team: "ORL",
-          description: "Clutch three-pointer breaks 84-84 tie with ice in his veins",
-          timeRemaining: "2:45",
-          winProbabilityShift: 24
+          description: "Step-back three over Cunningham to break 84-84 tie",
+          timeRemaining: "3:22",
+          winProbabilityShift: 18
         },
         {
-          player: "Franz Wagner",
-          team: "ORL",
-          description: "Steal and transition dunk extends lead to six points",
-          timeRemaining: "1:38",
-          winProbabilityShift: 18
+          player: "Paolo Banchero",
+          team: "ORL", 
+          description: "Steal and fast-break dunk to extend lead to 6",
+          timeRemaining: "1:48",
+          winProbabilityShift: 24
         },
         {
           player: "Cade Cunningham",
           team: "DET",
-          description: "Desperate three-point attempt falls short as upset becomes reality",
-          timeRemaining: "0:22",
-          winProbabilityShift: -12
+          description: "Clutch three-pointer to cut deficit to one possession",
+          timeRemaining: "0:52",
+          winProbabilityShift: -16
         }
       ],
-      narrative: "Paolo Banchero authored one of the most stunning playoff upsets in NBA history, willing Orlando past the 60-win Pistons with a masterful clutch performance. The young star's 14-4 closing run transformed Kia Center into pandemonium while Detroit's championship dreams evaporated in shocking fashion. This victory will be remembered as the moment Orlando's rebuild officially arrived on the playoff stage. The heavily favored Pistons appeared completely overwhelmed by the Magic's youth and desperation, proving that playoff basketball remains beautifully unpredictable."
+      narrative: "The Kia Center witnessed basketball history as Paolo Banchero orchestrated one of the most stunning playoff upsets in NBA lore, dismantling a 60-win Detroit squad with championship-level poise. The young superstar's clutch gene manifested in the final five minutes, hitting impossible shots while the entire arena shook with playoff electricity. Detroit's regular season dominance crumbled under Orlando's relentless energy and Banchero's transcendent performance. This was the moment a franchise announced its arrival on the championship stage."
     },
     {
       gameId: "OKC-PHX-20260427",
@@ -125,43 +116,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "6:45",
-          description: "Suns establish early rhythm with Booker's hot shooting display",
-          runScore: "15-6",
+          timestamp: "7:23",
+          description: "Booker catches fire early with four three-pointers in Phoenix homecoming",
+          runScore: "14-2 PHX",
           momentum: "home",
           keyPlayer: "Devin Booker",
-          impact: "notable"
+          impact: "significant"
         },
         {
           quarter: "Q2",
-          timestamp: "9:18",
-          description: "SGA takes over completely with unstoppable scoring barrage",
-          runScore: "22-8",
+          timestamp: "9:14",
+          description: "SGA takes over completely, scoring 18 points in devastating quarter",
+          runScore: "22-8 OKC",
           momentum: "away",
           keyPlayer: "Shai Gilgeous-Alexander",
           impact: "game-changing"
         },
         {
           quarter: "Q3",
-          timestamp: "5:33",
-          description: "Thunder's youth movement explodes for series-defining run",
-          runScore: "18-7",
+          timestamp: "2:45",
+          description: "Thunder extend lead as young legs overwhelm aging Phoenix roster",
+          runScore: "16-6 OKC",
           momentum: "away",
           keyPlayer: "Jalen Williams",
           impact: "significant"
         },
         {
           quarter: "Q4",
-          timestamp: "7:24",
-          description: "Phoenix makes desperate push behind veteran leadership",
-          runScore: "12-4",
+          timestamp: "6:12",
+          description: "Suns make desperate final push but Thunder answer every shot",
+          runScore: "12-8 PHX",
           momentum: "home",
-          keyPlayer: "Kevin Durant",
+          keyPlayer: "Devin Booker",
           impact: "notable"
         }
       ],
       clutchPlays: [],
-      narrative: "Shai Gilgeous-Alexander delivered a coming-of-age playoff performance that officially announced Oklahoma City as championship contenders. His 38-point masterpiece overwhelmed Phoenix's aging core and highlighted the generational transition happening across the Western Conference. The Thunder's youthful athleticism proved too much for a Suns team desperately clinging to their closing championship window. This series victory represents more than advancement—it's a declaration that the future of the NBA has arrived in Oklahoma City."
+      narrative: "Shai Gilgeous-Alexander put on an absolute clinic at Footprint Center, methodically dissecting Phoenix's defense with the precision of a championship-caliber superstar. The Thunder's youth movement reached its crescendo as they overwhelmed a Suns team that looked every bit of their advanced age in crucial moments. OKC's relentless pace and SGA's unstoppable scoring proved too much for a Phoenix squad whose championship window has definitively closed. This series-clinching performance announced the Thunder as legitimate title contenders with their young superstar leading the charge."
     },
     {
       gameId: "MIN-DEN-20260427",
@@ -170,43 +161,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "7:21",
-          description: "Edwards and McDaniels fuel Minnesota's aggressive opening statement",
-          runScore: "14-4",
+          timestamp: "5:18",
+          description: "Edwards explodes for 12 early points as Minnesota takes early control",
+          runScore: "10-2 MIN",
           momentum: "away",
           keyPlayer: "Anthony Edwards",
-          impact: "significant"
+          impact: "notable"
         },
         {
           quarter: "Q2",
-          timestamp: "8:45",
-          description: "Jokic begins his triple-double masterpiece with brilliant passing",
-          runScore: "16-6",
+          timestamp: "8:33",
+          description: "Jokic begins his masterpiece with perfect playmaking display",
+          runScore: "15-4 DEN",
+          momentum: "home",
+          keyPlayer: "Nikola Jokic",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "4:07",
+          description: "Defending champions assert dominance with suffocating defensive run",
+          runScore: "18-6 DEN",
           momentum: "home",
           keyPlayer: "Nikola Jokic",
           impact: "game-changing"
         },
         {
-          quarter: "Q3",
-          timestamp: "4:12",
-          description: "Championship experience shows as Nuggets seize total control",
-          runScore: "21-9",
-          momentum: "home",
-          keyPlayer: "Jamal Murray",
-          impact: "game-changing"
-        },
-        {
           quarter: "Q4",
-          timestamp: "6:48",
-          description: "Ball Arena erupts as Denver pulls away for crucial victory",
-          runScore: "12-3",
+          timestamp: "7:21",
+          description: "Jokic triple-double seals victory as championship experience takes over",
+          runScore: "12-3 DEN",
           momentum: "home",
           keyPlayer: "Nikola Jokic",
           impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Nikola Jokic reminded everyone why he's a two-time MVP with a triple-double masterclass that saved Denver's season at the perfect moment. The Serbian superstar's 32-point, 15-rebound, 11-assist performance showcased championship-level execution when elimination loomed largest. Ball Arena witnessed playoff magic as the defending champions proved their experience advantage over Minnesota's talented but inexperienced core. This victory shifted the entire series momentum and demonstrated that championship pedigree remains invaluable in the postseason crucible."
+      narrative: "Nikola Jokic reminded everyone why he's a two-time MVP with a triple-double masterclass that saved Denver's championship defense from the brink of elimination. The Serbian maestro conducted a basketball symphony at Ball Arena, orchestrating perfect possessions while Minnesota's young legs wilted under championship pressure. This was vintage playoff Jokic - patient, calculated, and utterly dominant when elimination loomed largest. The Nuggets proved that championship DNA still matters most when the lights shine brightest, shifting series momentum back in their favor with trademark resilience."
     }
   ]
 };

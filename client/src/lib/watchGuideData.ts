@@ -48,10 +48,10 @@ export const watchGuideData: WatchGuideData = {
       venue: "TD Garden",
       entertainmentScore: 92,
       starPower: 9,
-      playoffImplications: 10,
-      rivalry: 8,
-      storyline: "Classic Atlantic Division playoff battle as the Celtics' championship aspirations face Philadelphia's desperate push for postseason positioning in the hostile confines of TD Garden.",
-      keyMatchup: "Jayson Tatum vs. Joel Embiid",
+      playoffImplications: 9,
+      rivalry: 9,
+      storyline: "Classic Atlantic Division rivalry renewed as Philadelphia looks to steal crucial playoff seeding in hostile Boston environment. The Sixers' championship aspirations could hinge on proving they can win big games on the road.",
+      keyMatchup: "Joel Embiid vs. Jayson Tatum",
       mustWatch: true
     },
     {
@@ -65,12 +65,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/28 - 8:00 PM EDT",
       tv: "NBC, Peacock",
       venue: "Madison Square Garden",
-      entertainmentScore: 87,
+      entertainmentScore: 88,
       starPower: 8,
-      playoffImplications: 9,
+      playoffImplications: 8,
       rivalry: 7,
-      storyline: "The Garden electricity reaches playoff levels as New York's impressive season faces a Hawks team fighting for crucial playoff seeding in this Eastern Conference showdown.",
-      keyMatchup: "Jalen Brunson vs. Trae Young",
+      storyline: "Madison Square Garden playoff atmosphere as the Knicks look to solidify home-court advantage against a dangerous Hawks team fighting for seeding position. Trae Young thrives in hostile MSG environments.",
+      keyMatchup: "Trae Young vs. Jalen Brunson",
       mustWatch: true
     },
     {
@@ -85,14 +85,14 @@ export const watchGuideData: WatchGuideData = {
       tv: "ESPN",
       venue: "Frost Bank Center",
       entertainmentScore: 85,
-      starPower: 9,
-      playoffImplications: 8,
-      rivalry: 5,
-      storyline: "Victor Wembanyama and the dominant Spurs host a Trail Blazers team desperately clinging to playoff hopes in what could be a season-defining battle for Portland.",
-      keyMatchup: "Victor Wembanyama vs. Anfernee Simons",
+      starPower: 8,
+      playoffImplications: 7,
+      rivalry: 4,
+      storyline: "Western Conference powerhouse San Antonio hosts scrappy Portland in a matchup featuring Victor Wembanyama's dominant second season. The Trail Blazers need every win to secure their playoff position.",
+      keyMatchup: "Victor Wembanyama vs. Jusuf Nurkic",
       mustWatch: true
     }
   ],
-  topPick: "Celtics-76ers delivers classic Eastern Conference playoff atmosphere with championship implications",
-  nightOverview: "Three high-stakes games highlight playoff positioning battles across both conferences. The Eastern Conference takes center stage with two crucial matchups featuring playoff-bound teams fighting for seeding, while the West showcases dominant San Antonio against desperate Portland in a potential season-ender."
+  topPick: "76ers at Celtics - Historic rivalry meets playoff implications in primetime ESPN showcase at TD Garden",
+  nightOverview: "Monday's three-game slate delivers premium playoff-race drama across both conferences. The headliner features Philadelphia visiting Boston in a rivalry game with massive seeding implications, followed by Atlanta's dangerous visit to Madison Square Garden and Portland's tough test against powerhouse San Antonio."
 };

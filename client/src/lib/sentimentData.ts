@@ -47,142 +47,186 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-28",
   displayDate: "April 28, 2026",
-  overallMood: "Playoff chaos and upset hysteria",
+  overallMood: "Historic upset hysteria meets championship reckoning — the NBA internet is fully unhinged today",
   topics: [
     {
-      id: "magic-historic-upset",
-      topic: "Magic Complete Historic Upset",
+      id: "banchero-superstar-arrival",
+      topic: "Paolo Banchero Is A Certified Superstar",
       sentiment: "positive",
-      intensity: 98,
-      volume: 47283,
-      summary: "NBA Twitter is absolutely losing it over Orlando's stunning 4-0 sweep of 60-win Detroit. Paolo Banchero has become an overnight superstar with one of the biggest upsets in playoff history.",
+      intensity: 99,
+      volume: 54892,
+      summary: "The NBA internet has completely lost its mind over Paolo Banchero leading the most shocking playoff upset in recent memory. Social media is crowning him a superstar in real time — the discourse is less about whether he's good and more about exactly how high his ceiling goes.",
       sampleTakes: [
-        "PAOLO BANCHERO IS HIM. Just swept the #1 seed as a rookie. We witnessing greatness 🔥🔥🔥",
-        "60 wins don't mean nothing if you can't handle the pressure. Magic just made history",
-        "Banchero really said 'I'm the best player in this series' and proved it. SUPERSTAR.",
-        "Detroit really thought regular season wins meant something 💀 Magic just different"
+        "Paolo Banchero is 20 years old and just swept the #1 seed. Name another 20-year-old who's done this. I'll wait. 🔥",
+        "The Magic picked RIGHT. Banchero over every pick in that draft and it ain't close after tonight",
+        "26 points, clutch fourth quarter, swept Detroit. Paolo Banchero is not a prospect anymore. He's THE GUY.",
+        "I don't wanna hear nothing about Wemby vs Banchero. Paolo just made HISTORY. Full stop.",
+        "Banchero doing this as a rookie while Cade Cunningham hides? Generational talent gap exposed 💀"
       ],
-      relatedPlayers: ["Paolo Banchero", "Franz Wagner", "Cade Cunningham"],
+      relatedPlayers: ["Paolo Banchero", "Franz Wagner", "Jalen Suggs"],
       relatedTeams: ["ORL", "DET"],
       trending: true
     },
     {
-      id: "pistons-collapse",
-      topic: "Pistons Championship Meltdown",
+      id: "detroit-all-time-collapse",
+      topic: "Detroit's All-Time Playoff Meltdown",
       sentiment: "negative",
-      intensity: 95,
-      volume: 39847,
-      summary: "The basketball world is roasting Detroit for one of the worst playoff collapses ever. A 60-win team getting swept by the 8th seed has everyone questioning everything about the Pistons.",
+      intensity: 97,
+      volume: 48317,
+      summary: "Sixty wins. Best record in the East. Swept by the eight seed. NBA Twitter is writing the Pistons' obituary in real time and burying Cade Cunningham's superstar ceiling in the same grave. The roasting is relentless and the memes are absolutely flourishing.",
       sampleTakes: [
-        "60 wins and swept by a rookie. Detroit should be embarrassed forever",
-        "Cade Cunningham ain't that guy. Can't even make the second round as the #1 seed",
-        "Detroit really peaked in the regular season and thought that was enough 😂",
-        "This might be the worst collapse in NBA history. 60 wins means NOTHING now"
+        "60 wins and swept by a team whose best player can legally rent a car. Detroit is a fraud of historic proportions.",
+        "Cade Cunningham CANNOT be your franchise player. End of discussion. You don't lose to a rookie-led 8 seed as the 1 seed.",
+        "Detroit really played 82 games just to get embarrassed in April. What a complete waste of a season 💀",
+        "The Pistons gonna need therapy after this. A 60-win team doesn't just lose — they got humiliated.",
+        "Someone in Detroit's front office needs to answer for this. You don't get swept at home by Orlando without consequences."
       ],
-      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart"],
+      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jaden Ivey"],
       relatedTeams: ["DET"],
       trending: true
     },
     {
-      id: "sga-thunder-rising",
-      topic: "SGA and Thunder Championship Mode",
+      id: "sga-elite-playoff-performer",
+      topic: "SGA Is An Unstoppable Playoff Force",
       sentiment: "positive",
-      intensity: 89,
-      volume: 34562,
-      summary: "Shai Gilgeous-Alexander's 38-point masterpiece has NBA Twitter convinced OKC is ready to win it all. The Thunder look unstoppable with their young superstar leading the way.",
+      intensity: 92,
+      volume: 41283,
+      summary: "Thirty-eight points on 14-of-22 shooting in a series-clinching road win. The NBA internet has officially anointed Shai Gilgeous-Alexander as a legitimate MVP and championship contender. The discourse is shifting from 'is SGA really that good' to 'can anyone in the West even guard this man.'",
       sampleTakes: [
-        "SGA just announced the Thunder as title favorites. That 38-piece was NASTY",
-        "Oklahoma City different this year. SGA playing like prime Kobe in the playoffs",
-        "The West runs through OKC now. Don't @ me. SGA is unguardable",
-        "38 points on that efficiency? SGA might be the best player in the league rn"
+        "SGA just dropped 38 on Phoenix in a closeout game and made it look EASY. Unguardable. That's it, that's the tweet.",
+        "When SGA locks in during the playoffs he looks like prime Kobe and nobody wants to admit it",
+        "14-22 shooting in a closeout game on the road. SGA is not human. This man is built different.",
+        "OKC to the Finals conversation is REAL now. SGA won't let anyone tell him otherwise.",
+        "The Thunder have the best player in the playoffs right now and it might not even be close 🔥"
       ],
-      relatedPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren"],
+      relatedPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Jalen Williams"],
       relatedTeams: ["OKC", "PHX"],
       trending: true
     },
     {
-      id: "jokic-championship-defense",
-      topic: "Jokic Saves Denver's Title Defense",
+      id: "jokic-elimination-masterpiece",
+      topic: "Jokic's Elimination Game Brilliance",
       sentiment: "positive",
-      intensity: 76,
-      volume: 28934,
-      summary: "The defending champs stay alive thanks to Jokic's triple-double brilliance. NBA Twitter respects the two-time MVP's elimination game performance even if some think Denver's window is closing.",
+      intensity: 82,
+      volume: 31764,
+      summary: "A 32-15-11 triple-double when facing elimination has reminded the NBA world exactly who Nikola Jokic is. The respect on the timeline is real — even fans who doubted Denver are tipping their cap to the two-time MVP showing up when it mattered most.",
       sampleTakes: [
-        "Jokic really said 'not today' to elimination. Triple-double when it mattered most",
-        "Championship poise. That's what separates Jokic from these other centers",
-        "Denver lucky they got the GOAT center carrying them. Still the favorites until proven otherwise",
-        "32-15-11 in an elimination game is just ridiculous. Jokic different"
+        "32-15-11 in an elimination game. Jokic really said 'not today' and carried the entire franchise on his back",
+        "People keep sleeping on Jokic because he's not flashy but the man shows up EVERY SINGLE TIME the stakes are real",
+        "Triple-double in an elimination game while being double-teamed all night. GOAT center conversation is justified.",
+        "Denver should be grateful every single day they have Jokic. Without him this series is over and everyone knows it.",
+        "Jokic doing Jokic things. 11 assists in an elimination game while also scoring 32. Absolutely ridiculous."
       ],
-      relatedPlayers: ["Nikola Jokic", "Jamal Murray"],
+      relatedPlayers: ["Nikola Jokic", "Jamal Murray", "Aaron Gordon"],
       relatedTeams: ["DEN", "MIN"],
       trending: false
     },
     {
-      id: "suns-window-closed",
-      topic: "Phoenix Championship Window Slammed Shut",
+      id: "suns-dynasty-over",
+      topic: "Phoenix Championship Window Officially Slammed Shut",
       sentiment: "negative",
-      intensity: 73,
-      volume: 22817,
-      summary: "The basketball world is writing the Suns' obituary after getting eliminated by OKC. Book and the aging core can't compete with young legs and NBA Twitter is brutal about it.",
+      intensity: 79,
+      volume: 26548,
+      summary: "The Suns got eliminated and NBA Twitter is eulogizing the entire Devin Booker era in one afternoon. The discourse is equal parts sadness for Book and brutal honesty about an aging core that simply couldn't keep pace with OKC's youth and athleticism.",
       sampleTakes: [
-        "Devin Booker really wasted his prime years. Should've demanded a trade to a real contender",
-        "Phoenix window closed harder than a bank vault. Time to blow it up",
-        "Chris Paul curse is real. Even without him the Suns still can't get it done",
-        "Book shooting 11-24 in elimination game tells you everything about his clutch gene"
+        "Devin Booker deserved better. He gave everything to Phoenix and they never built a real team around him. Genuinely sad.",
+        "Book shooting 11-24 in an elimination game while SGA drops 38. The talent gap is real and it ain't changing",
+        "Phoenix had KD, Book, and Beal and still couldn't get past the second round. Championship window? What window?",
+        "Someone needs to go to Book and tell him to demand a trade while he still has years left. Phoenix is cooked.",
+        "The Chris Paul curse transferred to the whole franchise. Suns just can't close in the playoffs no matter who they run out there 💀"
       ],
-      relatedPlayers: ["Devin Booker", "Kevin Durant"],
+      relatedPlayers: ["Devin Booker", "Kevin Durant", "Bradley Beal"],
       relatedTeams: ["PHX"],
       trending: false
     },
     {
-      id: "rookie-playoff-madness",
-      topic: "Rookie Playoff Takeover",
+      id: "rookie-wave-playoffs",
+      topic: "Rookies Are Taking Over The Playoffs",
       sentiment: "positive",
-      intensity: 68,
-      volume: 19643,
-      summary: "Between Banchero's upset and Wemby's dominance, rookies are stealing the playoff spotlight. NBA Twitter can't believe how these young players are performing on the biggest stage.",
+      intensity: 74,
+      volume: 22931,
+      summary: "With Banchero completing the historic upset and Wembanyama beginning the conference semifinals tonight, NBA Twitter is fully bought into the idea that rookies are running this playoff. The generational talent conversation is back with a vengeance.",
       sampleTakes: [
-        "Banchero and Wemby really said 'this our league now' and meant it",
-        "These rookies different. Playing like 10-year vets in the playoffs",
-        "Paolo completing the biggest upset while Wemby dominating. ROY debate heating up again",
-        "The future is NOW. These young guys fearless on the playoff stage"
+        "Banchero sweeping the 1 seed while Wemby dominates his first second-round game. These rookies don't know fear.",
+        "The league is getting YOUNGER and BETTER simultaneously. Banchero and Wemby are going to own this league for 15 years",
+        "ROY race is honestly disrespectful as a concept when both candidates are doing THIS in the playoffs",
+        "Old heads really thought these rookies would shrink on the big stage. They're actually THRIVING 🔥",
+        "Paolo vs Wemby is the best rivalry the NBA has had since LeBron and KD were young. We're blessed rn."
       ],
       relatedPlayers: ["Paolo Banchero", "Victor Wembanyama", "Chet Holmgren"],
       relatedTeams: ["ORL", "SAS", "OKC"],
+      trending: true
+    },
+    {
+      id: "ant-man-missed-chance",
+      topic: "Anthony Edwards Blew A Chance To Slay The Dragon",
+      sentiment: "mixed",
+      intensity: 67,
+      volume: 18473,
+      summary: "Minnesota had a chance to eliminate the defending champions and Anthony Edwards couldn't get it done efficiently. NBA Twitter is split between defending him as the future and questioning whether his inconsistency is a real problem.",
+      sampleTakes: [
+        "Ant-Man shot 9-21 when he had a chance to knock out the champs. Gotta be better than that if you want the next level",
+        "Don't @ me but Edwards needs to improve his decision-making in crunch time. The talent is there, the execution isn't yet",
+        "Stop killing Ant. He's 24 against Jokic in an elimination game on the road. Give the man grace.",
+        "Minnesota really bottled a chance to eliminate Denver and now the defending champs have momentum back. Brutal.",
+        "Edwards vs Jokic is a 10-year rivalry in the making. Last night was just chapter one."
+      ],
+      relatedPlayers: ["Anthony Edwards", "Karl-Anthony Towns", "Rudy Gobert"],
+      relatedTeams: ["MIN", "DEN"],
       trending: false
     },
     {
-      id: "playoff-pressure-exposed",
-      topic: "Regular Season Records Mean Nothing",
-      sentiment: "mixed",
-      intensity: 65,
-      volume: 16892,
-      summary: "Detroit's collapse has NBA Twitter debating whether regular season success translates to playoff glory. The discourse is split between respecting playoff performers vs regular season achievement.",
+      id: "celtics-semifinals-command",
+      topic: "Celtics Marching Toward The Finals",
+      sentiment: "positive",
+      intensity: 61,
+      volume: 15829,
+      summary: "Boston's 2-0 series lead over Philadelphia has the Eastern Conference discourse shifting toward who gets to face them in the Finals. Tatum is quietly cooking and NBA Twitter is starting to take the Celtics seriously as the class of the East.",
       sampleTakes: [
-        "Regular season is just practice. Playoffs separate the real ones from the pretenders",
-        "60 wins and swept by the 8th seed. This why nobody cares about regular season anymore",
-        "Playoff basketball just different. Can't coast on regular season reputation",
-        "Championships are won in May and June, not December and January"
+        "Celtics 2-0 and playing their best basketball of the season. This might finally be Tatum's year.",
+        "Philly has to win tonight or this series is over. Boston looking absolutely locked in on both ends",
+        "Tatum been QUIET but efficient. That's more dangerous than the loud 45-point games honestly",
+        "Eastern Conference is Boston's to lose at this point. East is weak and the Celtics are taking full advantage.",
+        "If Embiid plays at like 70% tonight Philadelphia is in serious trouble. Boston's defense is just too good."
+      ],
+      relatedPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid"],
+      relatedTeams: ["BOS", "PHI"],
+      trending: false
+    },
+    {
+      id: "regular-season-meaningless",
+      topic: "Regular Season Records Are A Lie",
+      sentiment: "mixed",
+      intensity: 71,
+      volume: 20642,
+      summary: "Detroit's 60-win sweep is fueling the perennial playoff discourse about whether regular season dominance means anything at all. The takes are flying hot and heavy and the debate is genuinely splitting NBA Twitter down the middle.",
+      sampleTakes: [
+        "60 wins means NOTHING. Detroit just proved regular season basketball is glorified practice. Playoffs are a different sport.",
+        "Stop saying regular season doesn't matter. You need those wins to get home court, matchups, and momentum. Detroit's failure is execution not record.",
+        "The NBA regular season is 82 games of meaningless basketball and Detroit is the proof we needed",
+        "Actually the regular season tells you a lot — it tells you Banchero is elite and Orlando is well-coached. The upset wasn't random.",
+        "Every year there's a 1-8 upset and everyone acts shocked. The playoffs are chaos by design and we love it."
       ],
       relatedPlayers: [],
       relatedTeams: ["DET", "ORL"],
-      trending: false
+      trending: true
     },
     {
-      id: "western-conference-chaos",
-      topic: "West Getting Even Scarier",
+      id: "western-conference-semifinals-hype",
+      topic: "Western Conference Semifinals Will Be Appointment Television",
       sentiment: "neutral",
-      intensity: 58,
-      volume: 13764,
-      summary: "With OKC advancing and Denver surviving, the Western Conference semifinals look absolutely loaded. NBA Twitter is trying to predict which powerhouse will emerge.",
+      intensity: 55,
+      volume: 12847,
+      summary: "OKC advancing and Denver surviving has NBA Twitter mapping out a Western Conference gauntlet that looks genuinely terrifying. The SAS-POR series starting tonight only adds to the anticipation of what promises to be a loaded second round.",
       sampleTakes: [
-        "OKC vs Spurs gonna be the real Finals. West is absolutely stacked",
-        "Denver vs Minnesota Game 6 gonna be must-see TV. Defending champs got life",
-        "Western Conference semifinals bout to be better than the actual Finals",
-        "The East looking weak compared to this Western Conference bloodbath"
+        "OKC vs Spurs would literally be the best series in years. Two generational rookies coaching staffs and playoff intensity",
+        "Denver vs Minnesota Game 6 and 7 incoming. These teams HATE each other and it's going to be must-watch TV",
+        "The West Conference semifinals is going to make the Finals look tame. Four legitimate title contenders minimum.",
+        "Wemby starting his conference semifinals run tonight against Portland and I honestly feel bad for Nurkic 😂",
+        "SGA, Wemby, Jokic all in the second round. The Western Conference is unfair and I love every second of it."
       ],
       relatedPlayers: ["Shai Gilgeous-Alexander", "Victor Wembanyama", "Nikola Jokic"],
-      relatedTeams: ["OKC", "SAS", "DEN", "MIN"],
+      relatedTeams: ["OKC", "SAS", "DEN", "MIN", "POR"],
       trending: false
     }
   ],
@@ -191,81 +235,81 @@ export const sentimentData: SentimentData = {
       team: "ORL",
       teamFull: "Orlando Magic",
       sentiment: "positive",
-      score: 94,
-      buzzWords: ["historic", "upset", "championship", "magic", "fearless"],
-      narrativeSummary: "The Magic are the toast of NBA Twitter after pulling off one of the biggest upsets in playoff history. Paolo Banchero has transformed into a superstar overnight and fans believe this team can make a deep run."
+      score: 96,
+      buzzWords: ["historic", "magic", "banchero", "superstar", "believers", "unstoppable"],
+      narrativeSummary: "Orlando is the hottest team on NBA Twitter right now and it's not even close. Completing a 4-0 sweep of the 60-win top seed has Magic fans feeling like they're watching destiny unfold in real time. The discourse isn't just about winning a series — it's about the birth of a superstar and an organization that finally figured out how to build a winner. The city of Orlando is losing its mind and the entire basketball world is watching."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "negative",
-      score: -89,
-      buzzWords: ["collapse", "choke", "embarrassing", "overrated", "frauds"],
-      narrativeSummary: "Getting swept as the #1 seed by an 8th-seeded rookie-led team has the basketball world roasting Detroit mercilessly. The 60-win regular season means nothing after this historic meltdown."
+      score: -91,
+      buzzWords: ["swept", "embarrassing", "fraud", "collapse", "wasted", "exposed"],
+      narrativeSummary: "The Pistons are being buried on social media in real time and the dirt is being shoveled enthusiastically. Sixty regular season wins followed by a first-round sweep at the hands of an eighth seed is the kind of historical failure that defines franchises for decades. Fan confidence has evaporated, front office questions are flying, and the Cade Cunningham superstar narrative has taken severe damage. Detroit's off-season is going to be a reckoning."
     },
     {
       team: "OKC",
       teamFull: "Oklahoma City Thunder",
       sentiment: "positive",
-      score: 87,
-      buzzWords: ["championship", "dominant", "unstoppable", "favorites", "elite"],
-      narrativeSummary: "SGA's 38-point elimination game has NBA Twitter convinced the Thunder are legitimate title favorites. The young core looks ready to take over the league with their playoff brilliance."
-    },
-    {
-      team: "PHX",
-      teamFull: "Phoenix Suns",
-      sentiment: "negative",
-      score: -71,
-      buzzWords: ["done", "washed", "disappointing", "old", "window closed"],
-      narrativeSummary: "The Suns are getting killed on social media for another playoff disappointment. Booker and the aging core couldn't match OKC's energy and fans think it's time to rebuild."
-    },
-    {
-      team: "DEN",
-      teamFull: "Denver Nuggets",
-      sentiment: "positive",
-      score: 68,
-      buzzWords: ["clutch", "champions", "jokic", "experience", "survivors"],
-      narrativeSummary: "Jokic's triple-double in an elimination game has restored some faith in the defending champs. NBA Twitter respects their championship pedigree even if some question their long-term future."
+      score: 89,
+      buzzWords: ["championship", "dynasty", "sga", "unstoppable", "favorites", "loaded"],
+      narrativeSummary: "The Thunder are the consensus Western Conference favorites on social media after SGA's elimination game masterpiece. The combination of the best player in the playoffs, a perfect supporting cast, and the best record in the West has fans and analysts converging on Oklahoma City as the team to beat. The discourse has shifted from 'can OKC win a title?' to 'who can actually stop them?' — and nobody has a good answer."
     },
     {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "positive",
-      score: 82,
-      buzzWords: ["wemby", "future", "dynasty", "scary", "loaded"],
-      narrativeSummary: "The Spurs entering the conference semifinals with Wembanyama has NBA Twitter excited about their championship potential. The rookie phenom has this team looking like title contenders already."
+      score: 84,
+      buzzWords: ["wemby", "dynasty", "scary", "popovich", "future", "terrifying"],
+      narrativeSummary: "San Antonio entering the conference semifinals with Wembanyama has NBA Twitter buzzing with a mixture of excitement and genuine fear. The Spurs have the most unique weapon in basketball and a coaching staff that knows exactly how to deploy it — the combination has fans talking dynasty before Wemby has played a single second-round game. Tonight's opener against Portland is appointment television for anyone who loves watching dominant basketball."
+    },
+    {
+      team: "DEN",
+      teamFull: "Denver Nuggets",
+      sentiment: "positive",
+      score: 65,
+      buzzWords: ["clutch", "jokic", "champions", "alive", "experience", "resilient"],
+      narrativeSummary: "Jokic's elimination game triple-double has restored significant faith in the defending champions among the analytical crowd. NBA Twitter respects what Denver has done — avoiding elimination on the road against a motivated Minnesota team is genuinely impressive — though a contingent of fans still questions whether the Nuggets have enough runway left in their championship window. The respect is real but the doubt hasn't fully disappeared."
+    },
+    {
+      team: "PHX",
+      teamFull: "Phoenix Suns",
+      sentiment: "negative",
+      score: -74,
+      buzzWords: ["done", "rebuild", "wasted", "booker", "old", "disappointment"],
+      narrativeSummary: "The Suns' elimination has unleashed a full social media eulogy for the entire Booker era in Phoenix. Fans are frustrated, analysts are calling for a rebuild, and the discourse around Devin Booker has split between sympathy for a star let down by his front office and criticism of his clutch performances in elimination scenarios. The off-season conversation in Phoenix is going to be brutally honest and the front office knows it."
     },
     {
       team: "MIN",
       teamFull: "Minnesota Timberwolves",
       sentiment: "mixed",
-      score: -23,
-      buzzWords: ["chokers", "missed opportunity", "ant", "inconsistent"],
-      narrativeSummary: "Blowing a chance to eliminate the defending champs has some fans frustrated with Minnesota's execution. Anthony Edwards' inconsistency in crucial moments is drawing criticism."
+      score: -27,
+      buzzWords: ["inconsistent", "missed chance", "ant", "frustrating", "potential"],
+      narrativeSummary: "Minnesota blowing a chance to eliminate the defending champions has Timberwolves fans oscillating between frustration and rationalization. The analytical crowd points out that Denver at home with Jokic healthy was always going to be difficult, but the emotional reaction is dominated by the image of Anthony Edwards shooting 9-of-21 when the series was in reach. The series heads back to Minnesota with momentum shifted — and the fan base is nervous."
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "positive",
-      score: 72,
-      buzzWords: ["dominating", "favorites", "tatum", "championship", "rolling"],
-      narrativeSummary: "The Celtics' 2-0 series lead has NBA Twitter viewing them as the clear Eastern Conference favorites. Tatum's playoff excellence has fans believing this is finally their year."
+      score: 74,
+      buzzWords: ["favorites", "tatum", "championship", "rolling", "complete", "dominant"],
+      narrativeSummary: "Boston's quiet 2-0 series lead is generating increasing confidence among Celtics fans and Eastern Conference observers. The discourse around Tatum has shifted from 'can he lead a champion' to 'this finally looks like his year' — which is a meaningful evolution. The biggest concern on Celtic Twitter is complacency, not talent, which is exactly the kind of problem you want heading into a potential series-closing road game in Philly."
     },
     {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
       sentiment: "negative",
-      score: -58,
-      buzzWords: ["disappointment", "embiid", "underachieving", "same old"],
-      narrativeSummary: "Down 2-0 to Boston has Sixers fans frustrated with another playoff disappointment. Embiid's health concerns and the team's inability to show up in big moments is drawing heavy criticism."
+      score: -61,
+      buzzWords: ["same old", "embiid", "health", "desperate", "sinking", "must-win"],
+      narrativeSummary: "Down 2-0 with Embiid nursing a knee and facing a must-win at home, Sixers fans are in a familiar and miserable emotional place. The 'same old Sixers' narrative is trending hard on basketball Twitter and the discourse around Joel Embiid's health has become inseparable from the franchise's championship viability. Tonight is genuinely must-win for Philadelphia's season and the fan base knows the weight of what's at stake."
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 61,
-      buzzWords: ["msg", "brunson", "energy", "playoff atmosphere", "gritty"],
-      narrativeSummary: "The Knicks taking a 1-0 lead at Madison Square Garden has NBA Twitter buzzing about playoff basketball in New York. Jalen Brunson's leadership is earning widespread praise."
+      score: 63,
+      buzzWords: ["msg", "brunson", "electric", "loud", "gritty", "momentum"],
+      narrativeSummary: "Knicks fans are energized after taking a 1-0 series lead and tonight's Game 2 at Madison Square Garden is generating enormous anticipation. Jalen Brunson's playoff leadership is earning genuine respect across basketball Twitter — not just from New York fans — and the consensus view is that the Knicks are built for exactly this kind of physical, high-stakes playoff basketball. The atmosphere at MSG tonight is going to be deafening and the basketball world knows it."
     }
   ],
   playerSentiments: [
@@ -273,93 +317,147 @@ export const sentimentData: SentimentData = {
       player: "Paolo Banchero",
       team: "ORL",
       sentiment: "positive",
-      score: 96,
-      mentions: 23847,
-      topTake: "Paolo Banchero just completed the biggest upset in NBA history as a 20-year-old rookie. This man is a SUPERSTAR 🌟",
-      narrativeArc: "From promising rookie to playoff legend overnight with one of the most shocking series wins ever"
+      score: 97,
+      mentions: 51283,
+      topTake: "Paolo Banchero is 20 years old and just swept the #1 seed in NBA history as a rookie. We are watching a superstar being born in real time and I refuse to let anyone downplay what this man just did. 🌟",
+      narrativeArc: "From highly-touted prospect to certified playoff legend in a single series — the narrative around Banchero has made a quantum leap overnight and the entire basketball world is adjusting their mental models of his ceiling in real time"
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       sentiment: "positive",
-      score: 92,
-      mentions: 19632,
-      topTake: "SGA's 38-point masterpiece just announced OKC as title favorites. Man is unguardable in the playoffs",
-      narrativeArc: "Establishing himself as a legitimate MVP candidate and championship leader with clutch playoff brilliance"
+      score: 93,
+      mentions: 43917,
+      topTake: "38 points. 14-of-22 shooting. Closeout game on the road. SGA is the best player in these playoffs right now and OKC is going to the Finals. I said what I said.",
+      narrativeArc: "Cementing his status as a legitimate MVP candidate and the Western Conference's most dangerous playoff performer — the debate about SGA's ceiling has been replaced by a debate about whether anyone can stop him"
     },
     {
       player: "Cade Cunningham",
       team: "DET",
       sentiment: "negative",
-      score: -84,
-      mentions: 17293,
-      topTake: "Cade Cunningham really got swept by a rookie. Can't be your franchise player if you can't show up in the playoffs",
-      narrativeArc: "From rising star to playoff choker after failing to prevent one of the worst upsets in NBA history"
+      score: -87,
+      mentions: 38642,
+      topTake: "Cade Cunningham got swept by a rookie as the #1 overall pick leading the top seed. You cannot convince me he's a franchise cornerstone after this. The ceiling has been permanently lowered.",
+      narrativeArc: "The defining narrative of his career has shifted overnight from 'rising star learning how to win' to 'player who crumbled when it mattered most' — and the social media court of opinion is not being gentle about the distinction"
     },
     {
       player: "Nikola Jokic",
       team: "DEN",
       sentiment: "positive",
-      score: 88,
-      mentions: 16547,
-      topTake: "32-15-11 in an elimination game. Jokic is just different when the stakes are highest. Two-time MVP showing out",
-      narrativeArc: "Proving his championship mettle once again with a masterful performance when facing elimination"
-    },
-    {
-      player: "Devin Booker",
-      team: "PHX",
-      sentiment: "negative",
-      score: -67,
-      mentions: 14829,
-      topTake: "Devin Booker shot 11-24 in an elimination game. This man ain't built for playoff pressure",
-      narrativeArc: "Another playoff disappointment has fans questioning if he can ever lead a championship team"
+      score: 91,
+      mentions: 34829,
+      topTake: "32 points. 15 rebounds. 11 assists. In. An. Elimination. Game. Nikola Jokic is not human and I'm tired of people acting like his greatness is normal. Two-time MVP on a different level.",
+      narrativeArc: "Reminding a skeptical basketball world why he's the standard for elite center play — the triple-double in an elimination game has refreshed his legendary status and quieted the doubters who thought Denver's window was closed"
     },
     {
       player: "Victor Wembanyama",
       team: "SAS",
       sentiment: "positive",
-      score: 89,
-      mentions: 13764,
-      topTake: "Wemby about to dominate the conference semifinals. This rookie is already the best player on a title contender",
-      narrativeArc: "Living up to unprecedented rookie hype with dominant playoff performances that have the Spurs looking scary"
+      score: 90,
+      mentions: 31547,
+      topTake: "Wemby hasn't even played tonight yet and I'm already scared for Portland. This man is going to do something we've never seen from a rookie in the conference semifinals and everyone knows it.",
+      narrativeArc: "The anticipation surrounding his conference semifinals debut is generating enormous social media energy before a single tip-off — the discourse around Wembanyama has evolved from 'can he handle the playoffs' to 'how dominant will he be'"
+    },
+    {
+      player: "Devin Booker",
+      team: "PHX",
+      sentiment: "negative",
+      score: -69,
+      mentions: 28394,
+      topTake: "Devin Booker shot 11-of-24 in a closeout loss while SGA went 14-of-22. The talent gap between a franchise player and a genuine superstar has never been clearer than last night.",
+      narrativeArc: "Another playoff elimination is deepening the discourse around whether Booker has the clutch gene to lead a championship team — the sympathy faction and the criticism faction are both loud and neither is backing down"
+    },
+    {
+      player: "Jamal Murray",
+      team: "DEN",
+      sentiment: "positive",
+      score: 76,
+      mentions: 19283,
+      topTake: "24 points and 9-of-16 shooting in an elimination game on the road. Murray really said 'Jokic doesn't have to do this alone' and meant it. The two-man game is still elite.",
+      narrativeArc: "Quietly reinforcing his status as one of the most reliable second options in playoff basketball — Murray's efficient elimination game performance is being recognized by the analytical crowd even if Jokic is getting the headlines"
+    },
+    {
+      player: "Franz Wagner",
+      team: "ORL",
+      sentiment: "positive",
+      score: 83,
+      mentions: 18647,
+      topTake: "Franz Wagner dropped 19 points in the biggest game of Orlando's season and nobody is talking about him enough. This man is the PERFECT co-star and he's been elite all series.",
+      narrativeArc: "Emerging as a social media darling for his under-the-radar brilliance in the historic upset — the basketball analytics crowd is increasingly loud about Wagner being one of the most complete two-way wings in the league"
     },
     {
       player: "Jayson Tatum",
       team: "BOS",
       sentiment: "positive",
-      score: 79,
-      mentions: 12483,
-      topTake: "Tatum cooking in these playoffs. Celtics finally gonna get him that ring he deserves",
-      narrativeArc: "Looking like the championship leader Boston needs with consistent excellence in crucial playoff moments"
+      score: 78,
+      mentions: 17394,
+      topTake: "Tatum is quietly cooking these Sixers and everyone is so distracted by the Magic upset they're not paying attention. He's about to put the Celtics in the conference semifinals with another efficient masterpiece tonight.",
+      narrativeArc: "Operating in the background of the playoff chaos but generating growing momentum among Celtics fans and Eastern Conference observers who see a player finally performing with championship-level consistency"
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
       sentiment: "mixed",
-      score: -31,
-      mentions: 11296,
-      topTake: "Ant-Man inconsistent when it matters most. Had a chance to eliminate the champs and blew it",
-      narrativeArc: "Showing flashes of brilliance but struggling with consistency in the biggest playoff moments"
+      score: -33,
+      mentions: 16829,
+      topTake: "9-of-21 shooting when you had a chance to eliminate the champs. Ant-Man is unbelievably talented but he is NOT ready to consistently deliver when the series is on the line. Growth is a process.",
+      narrativeArc: "Caught in the crossfire between his undeniable star power and his still-developing playoff decision-making — the social media discourse splits cleanly between fans who see a superstar in progress and critics who want more right now"
     },
     {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "mixed",
-      score: -45,
-      mentions: 10784,
-      topTake: "Embiid's knee issues showing up at the worst time. Sixers need him healthy to have any chance",
-      narrativeArc: "Battling through injury concerns while trying to prevent another disappointing playoff exit"
+      score: -48,
+      mentions: 15763,
+      topTake: "If Embiid's knee is at 80% tonight the Sixers are done. Philadelphia really needs a miracle and they're asking an injured giant to provide it. This is the same old Sixers story with a new injury.",
+      narrativeArc: "His playoff legacy is being rewritten in real time as fans and analysts debate whether his health situation is the cause of Philadelphia's playoff struggles or a convenient excuse for a team that hasn't found its championship identity"
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
       sentiment: "positive",
-      score: 74,
-      mentions: 9651,
-      topTake: "Brunson really turned into a playoff assassin. Madison Square Garden going crazy for this man",
-      narrativeArc: "Emerging as the perfect playoff leader for New York with clutch performances and steady leadership"
+      score: 75,
+      mentions: 14382,
+      topTake: "Jalen Brunson has turned Madison Square Garden into a fortress and Trae Young has to walk into that building tonight on a sprained ankle. Good luck. The Garden is going to be absolutely ELECTRIC.",
+      narrativeArc: "Establishing a genuine reputation as one of the clutchest playoff performers in the game — the transformation from Mavericks point guard to MSG folk hero is now complete and the basketball world has fully bought in"
+    },
+    {
+      player: "Trae Young",
+      team: "ATL",
+      sentiment: "mixed",
+      score: -29,
+      mentions: 13847,
+      topTake: "Trae Young hobbling into MSG on a sprained ankle for a must-win Game 2 is either the most courageous or the most reckless thing I'll see all playoffs. Either way Atlanta is in serious trouble tonight.",
+      narrativeArc: "The injury narrative is dominating all discourse about his playoff performance — the question of whether a healthy Trae can compete with Brunson at MSG has been replaced by the question of whether he should even be on the floor at all"
+    },
+    {
+      player: "Chet Holmgren",
+      team: "OKC",
+      sentiment: "positive",
+      score: 81,
+      mentions: 12964,
+      topTake: "16 points and 3 blocks in a closeout win while being an absolute force on the defensive end. Holmgren is the most underrated piece of the Thunder's championship puzzle and the basketball world is finally noticing.",
+      narrativeArc: "Quietly becoming one of the most respected role players on social media — the analytical crowd has been screaming about Holmgren's two-way value all season and his playoff performances are finally making the broader audience listen"
+    },
+    {
+      player: "Jalen Suggs",
+      team: "ORL",
+      sentiment: "positive",
+      score: 71,
+      mentions: 11283,
+      topTake: "14 points and 4 steals from Jalen Suggs in the biggest game of Orlando's season. The defensive intensity this man brings cannot be quantified by a box score. Magic fans know what they have in him.",
+      narrativeArc: "Receiving overdue recognition for his defensive impact and competitive intensity after years of being overshadowed by bigger names — the historic upset has put the entire Magic roster under a positive microscope and Suggs is benefiting enormously"
+    },
+    {
+      player: "Nikola Jokic",
+      team: "DEN",
+      sentiment: "positive",
+      score: 91,
+      mentions: 34829,
+      topTake: "The Joker really said 'you're not eliminating ME' and went for 32-15-11. Championship DNA is real and Jokic has more of it than anyone in the league right now.",
+      narrativeArc: "Every time the basketball world writes Denver's obituary, Jokic produces a performance that makes them feel embarrassed for doubting him — the narrative cycle is so well-established at this point that even his critics admit they should know better by now"
     }
   ],
-  hottestTake: "Paolo Banchero just proved he's better than Cade Cunningham by sweeping his 60-win team as a rookie. The Magic got the real franchise player in that trade 🔥🔥🔥",
-  coldestTake: "Detroit is still the better team, they just had a bad series. 60 wins don't lie - they'll be back stronger next year"
+  hottestTake: "Paolo Banchero just proved he's a better franchise player than Cade Cunningham by sweeping his 60-win team as a literal teenager. Orlando got the right guy and Detroit is going to spend the next decade knowing it. This isn't even a debate anymore 🔥",
+  coldestTake: "Detroit had the best record in the Eastern Conference for a reason. One bad series doesn't erase 60 wins and the Pistons will be right back in this spot next year with more playoff experience. Banchero got hot — it happens. The Pistons are still a well-built franchise."
 };
