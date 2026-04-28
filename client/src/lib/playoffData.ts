@@ -58,38 +58,6 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E1-ATL-NY",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "ATL",
-    lowerTeam: "NY",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "NY", awayTeam: "ATL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
-    ],
-  },
-  {
-    seriesId: "E1-ORL-DET",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "ORL",
-    lowerTeam: "DET",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
-    ],
-  },
-  {
     seriesId: "E1-SA-POR",
     conference: "east",
     round: "first-round",
@@ -113,12 +81,12 @@ export const playoffSeries: PlayoffSeries[] = [
     lowerSeed: 99,
     higherTeam: "OKC",
     lowerTeam: "PHX",
-    higherWins: 0,
+    higherWins: 1,
     lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    status: "active",
+    summary: "OKC leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "OKC", awayTeam: "PHX", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-04-27", homeTeam: "PHX", awayTeam: "OKC", homeScore: 122, awayScore: 131, status: "final", time: "Final", tv: "NBCSN, Peacock" }
     ],
   },
   {
@@ -154,6 +122,22 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
+    seriesId: "E1-NY-ATL",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "NY",
+    lowerTeam: "ATL",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "NY", awayTeam: "ATL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+    ],
+  },
+  {
     seriesId: "E1-LAL-HOU",
     conference: "east",
     round: "first-round",
@@ -183,6 +167,22 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "Series tied 0-0",
     games: [
       { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+    ],
+  },
+  {
+    seriesId: "E1-DET-ORL",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "DET",
+    lowerTeam: "ORL",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   }
 ];

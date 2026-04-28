@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 27, 2026
+// Last updated: April 28, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,216 +33,180 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 27, 2026",
-  gameOfTheNight: "CLE-TOR-20260426",
+  date: "April 28, 2026",
+  gameOfTheNight: "DET-ORL-20260427",
   topClutchPerformer: { 
-    player: "Pascal Siakam", 
-    team: "TOR", 
+    player: "Paolo Banchero", 
+    team: "ORL", 
     clutchRating: 94, 
-    description: "Delivered 8 points in the final 4:30 to complete a stunning playoff upset" 
+    description: "Led historic upset with 26 points and clutch 14-4 closing run to eliminate 60-win Detroit" 
   },
   games: [
     {
-      gameId: "CLE-TOR-20260426",
-      teams: { home: "TOR", away: "CLE" },
-      finalScore: { home: 93, away: 89 },
+      gameId: "DET-ORL-20260427",
+      teams: { home: "ORL", away: "DET" },
+      finalScore: { home: 94, away: 88 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "7:42",
-          description: "Donovan Mitchell ignites early with three straight three-pointers",
-          runScore: "11-2",
+          quarter: "Q1",
+          timestamp: "8:32",
+          description: "Detroit opens with authoritative 12-2 run behind Cunningham's scoring",
+          runScore: "12-2",
           momentum: "away",
-          keyPlayer: "Donovan Mitchell",
+          keyPlayer: "Cade Cunningham",
           impact: "significant"
         },
         {
-          quarter: "2nd",
+          quarter: "Q2",
           timestamp: "4:15",
-          description: "Siakam responds with thunderous dunk and steal, Scotiabank Arena erupts",
-          runScore: "9-0",
+          description: "Magic bench sparks 18-6 rally to flip halftime momentum at home",
+          runScore: "18-6",
           momentum: "home",
-          keyPlayer: "Pascal Siakam",
+          keyPlayer: "Cole Anthony",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "2:48",
+          description: "Pistons reassert dominance with punishing 15-4 run to regain control",
+          runScore: "15-4",
+          momentum: "away",
+          keyPlayer: "Isaiah Stewart",
           impact: "notable"
         },
         {
-          quarter: "3rd",
-          timestamp: "1:28",
-          description: "Cavaliers push lead to 12 with methodical offense and defensive pressure",
-          runScore: "14-4",
-          momentum: "away",
-          keyPlayer: "Jarrett Allen",
-          impact: "significant"
+          quarter: "Q4",
+          timestamp: "6:12",
+          description: "Banchero ignites Kia Center with thunderous dunk and defensive steal",
+          runScore: "8-0",
+          momentum: "home",
+          keyPlayer: "Paolo Banchero",
+          impact: "game-changing"
         },
         {
-          quarter: "4th",
-          timestamp: "4:30",
-          description: "Siakam takes over with vintage playoff performance, leads decisive 12-2 run",
-          runScore: "12-2",
+          quarter: "Q4",
+          timestamp: "3:21",
+          description: "Historic 14-4 closing surge completes stunning playoff upset",
+          runScore: "14-4",
           momentum: "home",
-          keyPlayer: "Pascal Siakam",
+          keyPlayer: "Paolo Banchero",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Pascal Siakam",
-          team: "TOR",
-          description: "Step-back jumper over Evan Mobley ties the game",
-          timeRemaining: "3:42",
-          winProbabilityShift: 28
+          player: "Paolo Banchero",
+          team: "ORL",
+          description: "Clutch three-pointer breaks 84-84 tie with ice in his veins",
+          timeRemaining: "2:45",
+          winProbabilityShift: 24
         },
         {
-          player: "Pascal Siakam",
-          team: "TOR",
-          description: "Putback dunk after offensive rebound gives Toronto first lead since first quarter",
-          timeRemaining: "1:55",
-          winProbabilityShift: 35
+          player: "Franz Wagner",
+          team: "ORL",
+          description: "Steal and transition dunk extends lead to six points",
+          timeRemaining: "1:38",
+          winProbabilityShift: 18
         },
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Contested three-pointer cuts deficit to one possession",
-          timeRemaining: "0:47",
-          winProbabilityShift: -22
+          player: "Cade Cunningham",
+          team: "DET",
+          description: "Desperate three-point attempt falls short as upset becomes reality",
+          timeRemaining: "0:22",
+          winProbabilityShift: -12
         }
       ],
-      narrative: "Pascal Siakam turned back the clock in the most dramatic fashion, delivering a vintage playoff performance that stunned the heavily favored Cavaliers in Toronto's first postseason game in three years. The veteran forward completely took over the final 4:30, scoring 8 crucial points while showcasing the championship pedigree that once made him a title cornerstone. Cleveland appeared to have control for most of the night, but Siakam's fourth-quarter explosion transformed Scotiabank Arena into a cauldron and immediately made this series far more dangerous than anyone expected. This wasn't just a Game 1 upset — it was a statement that the Raptors' playoff DNA remains intact."
+      narrative: "Paolo Banchero authored one of the most stunning playoff upsets in NBA history, willing Orlando past the 60-win Pistons with a masterful clutch performance. The young star's 14-4 closing run transformed Kia Center into pandemonium while Detroit's championship dreams evaporated in shocking fashion. This victory will be remembered as the moment Orlando's rebuild officially arrived on the playoff stage. The heavily favored Pistons appeared completely overwhelmed by the Magic's youth and desperation, proving that playoff basketball remains beautifully unpredictable."
     },
     {
-      gameId: "SAS-POR-20260426",
-      teams: { home: "POR", away: "SAS" },
-      finalScore: { home: 93, away: 114 },
+      gameId: "OKC-PHX-20260427",
+      teams: { home: "PHX", away: "OKC" },
+      finalScore: { home: 122, away: 131 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "8:30",
-          description: "Lillard opens with vintage long-range barrage, Moda Center electric",
+          quarter: "Q1",
+          timestamp: "6:45",
+          description: "Suns establish early rhythm with Booker's hot shooting display",
+          runScore: "15-6",
+          momentum: "home",
+          keyPlayer: "Devin Booker",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "9:18",
+          description: "SGA takes over completely with unstoppable scoring barrage",
+          runScore: "22-8",
+          momentum: "away",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:33",
+          description: "Thunder's youth movement explodes for series-defining run",
+          runScore: "18-7",
+          momentum: "away",
+          keyPlayer: "Jalen Williams",
+          impact: "significant"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "7:24",
+          description: "Phoenix makes desperate push behind veteran leadership",
+          runScore: "12-4",
+          momentum: "home",
+          keyPlayer: "Kevin Durant",
+          impact: "notable"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Shai Gilgeous-Alexander delivered a coming-of-age playoff performance that officially announced Oklahoma City as championship contenders. His 38-point masterpiece overwhelmed Phoenix's aging core and highlighted the generational transition happening across the Western Conference. The Thunder's youthful athleticism proved too much for a Suns team desperately clinging to their closing championship window. This series victory represents more than advancement—it's a declaration that the future of the NBA has arrived in Oklahoma City."
+    },
+    {
+      gameId: "MIN-DEN-20260427",
+      teams: { home: "DEN", away: "MIN" },
+      finalScore: { home: 125, away: 113 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "7:21",
+          description: "Edwards and McDaniels fuel Minnesota's aggressive opening statement",
+          runScore: "14-4",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
+          impact: "significant"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "8:45",
+          description: "Jokic begins his triple-double masterpiece with brilliant passing",
+          runScore: "16-6",
+          momentum: "home",
+          keyPlayer: "Nikola Jokic",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "4:12",
+          description: "Championship experience shows as Nuggets seize total control",
+          runScore: "21-9",
+          momentum: "home",
+          keyPlayer: "Jamal Murray",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:48",
+          description: "Ball Arena erupts as Denver pulls away for crucial victory",
           runScore: "12-3",
           momentum: "home",
-          keyPlayer: "Damian Lillard",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "6:15",
-          description: "Wembanyama showcases two-way dominance with block-to-dunk sequence",
-          runScore: "16-6",
-          momentum: "away",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "2:45",
-          description: "Spurs pull away with suffocating defense and transition offense",
-          runScore: "18-4",
-          momentum: "away",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "9:20",
-          description: "Wembanyama puts series away with dominant paint presence",
-          runScore: "13-2",
-          momentum: "away",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Victor Wembanyama announced his playoff arrival in the most emphatic way possible, completely overwhelming Portland with a two-way masterpiece that showcased why he's already a franchise cornerstone at just 22 years old. The French phenom controlled every aspect of the game from the second quarter onward, turning what began as a competitive series-deciding battle into a systematic dismantling of veteran playoff competition. Damian Lillard's early fireworks briefly threatened to extend the series, but Wembanyama's length and athleticism eventually proved too much for Portland's aging core. San Antonio's advancement to the conference semifinals feels like the official changing of the guard in the Western Conference."
-    },
-    {
-      gameId: "BOS-PHI-20260426",
-      teams: { home: "PHI", away: "BOS" },
-      finalScore: { home: 96, away: 128 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "5:22",
-          description: "Embiid dominates early paint battle, Sixers take commanding lead",
-          runScore: "15-4",
-          momentum: "home",
-          keyPlayer: "Joel Embiid",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "3:10",
-          description: "Tatum erupts with three consecutive threes, completely shifts series momentum",
-          runScore: "18-5",
-          momentum: "away",
-          keyPlayer: "Jayson Tatum",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "6:45",
-          description: "Celtics unleash devastating three-point barrage, crowd stunned into silence",
-          runScore: "22-6",
-          momentum: "away",
-          keyPlayer: "Jayson Tatum",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "8:30",
-          description: "Boston coasts to blowout victory with suffocating defensive pressure",
-          runScore: "16-3",
-          momentum: "away",
-          keyPlayer: "Jaylen Brown",
+          keyPlayer: "Nikola Jokic",
           impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Jayson Tatum delivered a championship-level statement performance that completely obliterated Philadelphia's home court advantage and raised serious questions about the Sixers' title readiness. The Celtics superstar was absolutely unconscious from three-point range, turning a competitive playoff battle into a 32-point massacre that left Wells Fargo Center in stunned silence. Boston's systematic dismantling of Joel Embiid and the Sixers showcased the championship experience and mental toughness that makes them legitimate title favorites. This wasn't just a road victory — it was a psychological beatdown that may have broken Philadelphia's championship spirit entirely."
-    },
-    {
-      gameId: "LAL-HOU-20260426",
-      teams: { home: "HOU", away: "LAL" },
-      finalScore: { home: 115, away: 96 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "4:45",
-          description: "LeBron rolls back the years with vintage drive-and-finish sequence",
-          runScore: "8-0",
-          momentum: "away",
-          keyPlayer: "LeBron James",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "7:20",
-          description: "Şengün showcases elite playmaking with three straight assists",
-          runScore: "12-2",
-          momentum: "home",
-          keyPlayer: "Alperen Şengün",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "1:55",
-          description: "Rockets seize control with devastating inside-outside combination",
-          runScore: "16-4",
-          momentum: "home",
-          keyPlayer: "Alperen Şengün",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "9:45",
-          description: "Houston pulls away as Lakers appear overwhelmed by youth and energy",
-          runScore: "13-5",
-          momentum: "home",
-          keyPlayer: "Jalen Green",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Alperen Şengün completely outclassed Anthony Davis in a dominant paint performance that announced Houston as a legitimate Western Conference threat while exposing the Lakers' aging championship window. The Turkish center was absolutely brilliant on both ends, showcasing the elite playmaking and post moves that make him one of the league's most unique talents. LeBron James showed flashes of vintage brilliance early, but the Rockets' youth and athleticism eventually overwhelmed Los Angeles in concerning fashion. This wasn't just a Game 1 loss — it was a sobering reminder that the Lakers' championship aspirations may already be slipping away as Father Time remains undefeated."
+      narrative: "Nikola Jokic reminded everyone why he's a two-time MVP with a triple-double masterclass that saved Denver's season at the perfect moment. The Serbian superstar's 32-point, 15-rebound, 11-assist performance showcased championship-level execution when elimination loomed largest. Ball Arena witnessed playoff magic as the defending champions proved their experience advantage over Minnesota's talented but inexperienced core. This victory shifted the entire series momentum and demonstrated that championship pedigree remains invaluable in the postseason crucible."
     }
   ]
 };

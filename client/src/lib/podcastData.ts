@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 27, 2026
+// Last updated: April 28, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 27, 2026",
-  episodeTitle: "Playoff Chaos: Tatum's Statement, Wemby's Coronation, and Siakam's Vintage Magic",
+  date: "April 28, 2026",
+  episodeTitle: "MAGIC KINGDOM: Banchero's Historic Upset Shakes NBA Championship Race",
   rundown: [
     {
-      topic: "Jayson Tatum's Championship Declaration",
+      topic: "Orlando's Historic Upset Over Detroit",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "35 points on 13-21 shooting (61.9% FG)",
-        "6 three-pointers made, 8 rebounds, 6 assists",
-        "Boston's 128-96 victory = 32-point demolition",
-        "Tatum's +28 in 34 minutes of dominance",
-        "Celtics shot 52.4% from field, 41.7% from three",
-        "Philadelphia held to just 96 points at home"
+        "Paolo Banchero: 26 points, 8 rebounds, 10-18 shooting",
+        "Orlando sweeps Detroit 4-0 as 8th seed vs 1st seed",
+        "Pistons went 60-22 in regular season",
+        "Magic's first conference semifinals since 2020",
+        "14-4 Orlando closing run in final 6 minutes",
+        "Biggest playoff upset in over a decade"
       ],
-      debateAngle: "Is Tatum now the Eastern Conference's most dangerous playoff performer, or does Giannis still hold that crown when healthy?",
-      suggestedQuote: "When you can walk into a hostile playoff environment and drop 35 while turning a competitive game into a 32-point laugher, you're not just making a statement — you're writing championship résumé material in real time.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid", "James Harden"]
+      debateAngle: "Is Paolo Banchero already a top-10 player in the NBA after this series?",
+      suggestedQuote: "When a 20-year-old can carry an eighth seed past a 60-win championship favorite, you're not just watching an upset - you're watching the birth of a superstar on basketball's biggest stage.",
+      relevantPlayers: ["Paolo Banchero", "Franz Wagner", "Cade Cunningham", "Jalen Suggs"]
     },
     {
-      topic: "Victor Wembanyama's Historic Rookie Playoff Run",
+      topic: "Thunder Emerge as Championship Contenders",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "31 points, 14 rebounds, 4 blocks in series clincher",
-        "12-19 shooting (63.2% FG) with elite efficiency",
-        "Averaging 31.8 PPG, 13.2 RPG, 4.3 BPG this playoffs",
-        "At 20 years old, youngest to average 30+ in playoff series",
-        "San Antonio 4-2 series victory advances to conference semis",
-        "Shot 61.2% from field across entire first round"
+        "Shai Gilgeous-Alexander: 38 points, 7 assists, 14-22 FG",
+        "OKC advances 4-1 over Phoenix with 131-122 win",
+        "Thunder went 64-18 in regular season",
+        "SGA averaging 34.2 PPG in playoffs",
+        "Chet Holmgren: 16 points, 9 rebounds, 3 blocks",
+        "Thunder outscored Suns by 45 points in fourth quarters"
       ],
-      debateAngle: "Are we witnessing the fastest superstar ascension in NBA history, and can Wemby actually carry San Antonio to a championship in Year 1?",
-      suggestedQuote: "What Wembanyama accomplished in this series isn't just rookie excellence — it's generational basketball that happens maybe once every two decades. Tim Duncan didn't do this as a rookie. Anthony Davis didn't do this. We're in uncharted territory.",
-      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "Tim Duncan", "Anthony Davis"]
+      debateAngle: "Are the Thunder now the Western Conference favorites over San Antonio and Denver?",
+      suggestedQuote: "Shai Gilgeous-Alexander's 38-point masterpiece didn't just advance Oklahoma City - it announced them as legitimate championship contenders who can match any team's star power.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Devin Booker", "Josh Giddey"]
     },
     {
-      topic: "Are the Lakers Already Cooked?",
+      topic: "Championship Windows Opening and Closing",
       segment: "hot-take",
       duration: "7 minutes",
       keyStats: [
-        "LeBron: 20 points on 7-18 shooting (38.9% FG)",
-        "Anthony Davis: 16 points on 6-14 shooting (42.9% FG)",
-        "Lakers outrebounded 52-38 by Houston",
-        "Alperen Şengün: 26 points, 12 rebounds, 8 assists",
-        "Houston shot 49.2% from field vs Lakers' 41.3%",
-        "Lakers entered playoffs with championship expectations"
+        "Detroit's 60 wins meant nothing in playoff execution",
+        "Phoenix eliminated despite Booker's 28 points",
+        "Nikola Jokic's triple-double saved Denver's season",
+        "Four different rookies making major playoff impact",
+        "Age gap: Banchero (20) vs Booker (29) vs Embiid (32)",
+        "Young teams (OKC, ORL, SAS) dominating veterans"
       ],
-      debateAngle: "Is this the beginning of the end for LeBron and AD, or just one bad game against a hungry young team?",
-      suggestedQuote: "When you watch LeBron and AD get physically dominated by Alperen Şengün and a bunch of 23-year-olds, you have to ask — is Father Time finally catching up to this Lakers core, or can championship experience still trump youthful legs?",
-      relevantPlayers: ["LeBron James", "Anthony Davis", "Alperen Şengün", "Jalen Green"]
+      debateAngle: "Hot Take: The NBA's championship window has officially shifted to teams built around players 25 and under",
+      suggestedQuote: "We're witnessing a seismic shift where championship DNA isn't about veteran leadership anymore - it's about young stars who grew up in the social media era and thrive under pressure.",
+      relevantPlayers: ["Paolo Banchero", "Victor Wembanyama", "Shai Gilgeous-Alexander", "Devin Booker"]
     },
     {
-      topic: "Rapid Fire: Upset Alerts and Playoff Chaos",
+      topic: "Monday's Must-Watch Games",
       segment: "rapid-fire",
-      duration: "6 minutes",
-      keyStats: [
-        "Pascal Siakam: 28 points, 11 rebounds in upset over Cleveland",
-        "Toronto shot 48.9% vs Cleveland's 42.2%",
-        "Paolo Banchero leads Orlando to 1-0 lead over 60-win Detroit",
-        "Minnesota up 1-0 on defending champion Denver",
-        "Four lower seeds currently leading their series",
-        "Only 2 of 8 playoff series going according to seeding"
-      ],
-      debateAngle: "Is this playoff chaos sustainable, or will higher seeds eventually impose their will with superior talent?",
-      suggestedQuote: "When Pascal Siakam can turn back the clock like it's 2019 and Paolo Banchero is outplaying an entire 60-win roster, you realize playoff basketball truly is a different beast where anything can happen.",
-      relevantPlayers: ["Pascal Siakam", "Paolo Banchero", "Anthony Edwards", "Donovan Mitchell"]
-    },
-    {
-      topic: "Sunday's Must-Watch Games and Championship Implications",
-      segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Magic can take 2-0 lead over 60-win Pistons at 8 PM ET",
-        "Thunder looking to go up 2-0 on Suns at 9:30 PM ET",
-        "Timberwolves could put defending champs on brink at 10:30 PM ET",
-        "Three potential 2-0 series leads on the line",
-        "Home teams are 6-2 in playoff games so far",
-        "Lower seeds have won 5 of 8 completed games"
+        "Celtics lead Sixers 2-0, can take 3-0 stranglehold",
+        "Joel Embiid probable with knee soreness",
+        "Knicks up 1-0 on Hawks at Madison Square Garden",
+        "Trae Young questionable with ankle sprain",
+        "Spurs-Blazers conference semifinals begin",
+        "Wembanyama averaging 31.8 PPG in playoffs"
       ],
-      debateAngle: "Which Sunday game has the biggest championship implications — Orlando potentially stunning Detroit, or Minnesota putting Denver on the brink?",
-      suggestedQuote: "Sunday night could completely reshape the championship landscape. If Orlando goes up 2-0, Minnesota puts Denver on the brink, and OKC takes command — we're looking at the most chaotic playoff picture in recent memory.",
-      relevantPlayers: ["Paolo Banchero", "Cade Cunningham", "Anthony Edwards", "Nikola Jokic"]
+      debateAngle: "Which Game 3 is more crucial - Boston trying to sweep Philly or New York taking control against Atlanta?",
+      suggestedQuote: "Monday night could end two seasons and launch two championship runs - that's the beauty of playoff basketball in late April.",
+      relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Jalen Brunson", "Trae Young", "Victor Wembanyama"]
+    },
+    {
+      topic: "Looking Ahead to Conference Semifinals",
+      segment: "closer",
+      duration: "6 minutes",
+      keyStats: [
+        "Orlando advances to face winner of BOS-PHI",
+        "OKC awaits DEN-MIN winner in West semis",
+        "San Antonio begins semis vs Portland tonight",
+        "Six teams still alive in championship hunt",
+        "Average age of remaining stars: 24.8 years",
+        "Three rookie standouts still playing"
+      ],
+      debateAngle: "Which conference semifinals matchup will produce the most surprising result?",
+      suggestedQuote: "The championship race just got infinitely more interesting - when eighth seeds are eliminating top seeds and rookies are outplaying All-Stars, anything can happen in the next round.",
+      relevantPlayers: ["Paolo Banchero", "Victor Wembanyama", "Shai Gilgeous-Alexander", "Nikola Jokic"]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! Saturday night was absolutely BONKERS. Jayson Tatum dropped 35 in a 32-point demolition that had Philly fans heading for the exits. Victor Wembanyama clinched his first playoff series with 31 and 14 like he's been doing this for a decade. And Pascal Siakam? He turned back the clock to upset Cleveland and remind everyone that playoff experience is still undefeated. We've got championship statements, rookie coronations, and upset alerts that are flipping the entire playoff picture upside down. Buckle up — this is gonna be a wild ride through the most chaotic Saturday in recent playoff memory.",
-  socialClip: "Tatum's Takeover Moment: Pull the audio from the 'Championship Declaration' segment where we break down Tatum's 35-point explosion and debate whether he's now the East's most dangerous playoff performer. Include the stats overlay showing his 13-21 shooting and the +28 plus-minus. Perfect for Instagram Reels and TikTok with the quote about 'writing championship résumé material in real time.' This clip encapsulates the night's biggest individual performance while setting up Sunday's storylines.",
+  coldOpen: "What's good, Hoops Intel family! Sunday night just gave us one of the most shocking results in NBA playoff history. The eighth-seeded Orlando Magic didn't just beat the top-seeded Detroit Pistons - they SWEPT them. Paolo Banchero dropped 26 points to close out a 60-win team that was supposed to be championship bound. Meanwhile, Shai Gilgeous-Alexander put up 38 to send the Thunder to the conference semifinals, and Nikola Jokic's triple-double kept Denver's title defense alive. The playoff landscape just got turned completely upside down, and we're breaking down every single moment right now on Hoops Intel.",
+  socialClip: "Clip the moment we break down Paolo Banchero's series-clinching performance - specifically the part where we analyze his 14-4 closing run and compare it to other historic rookie playoff moments. The energy when we talk about him being 'championship ready at 20' will be perfect for social.",
   tweetThread: [
-    "🎧 NEW EPISODE: 'Playoff Chaos: Tatum's Statement, Wemby's Coronation, and Siakam's Vintage Magic' — Saturday's playoff action was absolutely UNREAL. Here's what you need to know 🧵",
-    "1️⃣ TATUM'S TAKEOVER: 35 points on 13-21 shooting in a 32-point DEMOLITION of Philly. When you can walk into a hostile playoff environment and turn a game into a laugher, you're writing championship résumé material in real time 🔥",
-    "2️⃣ WEMBY'S CORONATION: 31 points, 14 rebounds to CLINCH his first playoff series. At 20 years old, we're witnessing generational basketball that happens maybe once every two decades. The Spurs are legitimate championship threats 👑",
-    "3️⃣ SIAKAM'S VINTAGE MAGIC: Turned back the clock with 28 and 11 to UPSET Cleveland. When playoff experience meets home court magic, anything can happen. The Raptors just reminded everyone they know how to win big games 🦖",
-    "4️⃣ SUNDAY'S STAKES: Magic can shock Detroit again, T-Wolves could put defending champs on the brink, Thunder looking to take command. Championship implications everywhere you look 👀 Full episode link in bio — let's hoop! 🏀"
+    "🚨 HOOPS INTEL POD DROP: \"Magic Kingdom\" - Breaking down Paolo Banchero's historic upset that just shook the entire NBA championship race",
+    "🎯 MAIN TOPICS: Orlando's stunning sweep of Detroit, SGA's 38-point masterpiece advancing OKC, and why championship windows are shifting to players under 25",
+    "📊 THE NUMBERS: Banchero (26 pts), SGA (38 pts), Jokic (32-15-11 triple-double) - three performances that defined Sunday's playoff chaos",
+    "🔥 HOT TAKE ALERT: We argue the NBA's title window has officially shifted to teams built around stars 25 and under - and the data backs it up",
+    "🎧 FULL EP: Link in bio - 36 minutes of championship analysis, playoff predictions, and why Monday's games could end two seasons 🏀"
   ]
 };
