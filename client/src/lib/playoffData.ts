@@ -65,12 +65,12 @@ export const playoffSeries: PlayoffSeries[] = [
     lowerSeed: 99,
     higherTeam: "SA",
     lowerTeam: "POR",
-    higherWins: 0,
+    higherWins: 1,
     lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    status: "active",
+    summary: "SA leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "SA", awayTeam: "POR", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-04-28", homeTeam: "SA", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN" }
     ],
   },
   {

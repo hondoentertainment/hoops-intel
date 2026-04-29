@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 28, 2026
+// Last updated: April 29, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,92 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 28, 2026",
-  episodeTitle: "MAGIC KINGDOM: Banchero's Historic Upset Shakes NBA Championship Race",
+  date: "April 29, 2026",
+  episodeTitle: "Playoff Shockwaves: Embiid's Heroics, Wemby's Statement & Historic Upsets",
   rundown: [
     {
-      topic: "Orlando's Historic Upset Over Detroit",
+      topic: "Joel Embiid Saves Philadelphia's Season with Elimination Game Masterpiece",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Paolo Banchero: 26 points, 8 rebounds, 10-18 shooting",
-        "Orlando sweeps Detroit 4-0 as 8th seed vs 1st seed",
-        "Pistons went 60-22 in regular season",
-        "Magic's first conference semifinals since 2020",
-        "14-4 Orlando closing run in final 6 minutes",
-        "Biggest playoff upset in over a decade"
+        "35 points, 12 rebounds, 3 blocks on 13-21 shooting",
+        "113-97 road victory at TD Garden",
+        "First Sixers playoff road win in Boston since 2012",
+        "+22 plus-minus leading all players",
+        "Celtics now lead series 2-1 instead of sweeping"
       ],
-      debateAngle: "Is Paolo Banchero already a top-10 player in the NBA after this series?",
-      suggestedQuote: "When a 20-year-old can carry an eighth seed past a 60-win championship favorite, you're not just watching an upset - you're watching the birth of a superstar on basketball's biggest stage.",
-      relevantPlayers: ["Paolo Banchero", "Franz Wagner", "Cade Cunningham", "Jalen Suggs"]
+      debateAngle: "Can Embiid single-handedly carry the Sixers to a historic series comeback, or was this just delaying the inevitable against a superior Celtics team?",
+      suggestedQuote: "This is what championship DNA looks like - when your back is against the wall, when elimination is staring you in the face, you either fold or you become legendary. Embiid chose legendary last night.",
+      relevantPlayers: ["Joel Embiid", "Jayson Tatum", "Tobias Harris", "Tyrese Maxey"]
     },
     {
-      topic: "Thunder Emerge as Championship Contenders",
+      topic: "Victor Wembanyama Announces His Arrival on the Conference Semifinals Stage",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Shai Gilgeous-Alexander: 38 points, 7 assists, 14-22 FG",
-        "OKC advances 4-1 over Phoenix with 131-122 win",
-        "Thunder went 64-18 in regular season",
-        "SGA averaging 34.2 PPG in playoffs",
-        "Chet Holmgren: 16 points, 9 rebounds, 3 blocks",
-        "Thunder outscored Suns by 45 points in fourth quarters"
+        "31 points, 14 rebounds, 6 blocks in conference semifinals debut",
+        "12-18 shooting (66.7%) from the field",
+        "114-95 dominant home victory over Portland",
+        "Spurs outscored Trail Blazers by 19 points",
+        "31.2 PPG, 13.4 RPG, 4.8 BPG through playoffs"
       ],
-      debateAngle: "Are the Thunder now the Western Conference favorites over San Antonio and Denver?",
-      suggestedQuote: "Shai Gilgeous-Alexander's 38-point masterpiece didn't just advance Oklahoma City - it announced them as legitimate championship contenders who can match any team's star power.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Chet Holmgren", "Devin Booker", "Josh Giddey"]
+      debateAngle: "Is Wembanyama's two-way dominance already making the Spurs the Western Conference favorites, or does playoff inexperience still make them vulnerable against veteran teams?",
+      suggestedQuote: "We're watching basketball history unfold in real time. When a 20-year-old can dominate both ends of the floor like this in his first conference semifinals appearance, you're not just watching a future superstar - you're watching the present changing before your eyes.",
+      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "Devin Vassell", "Paolo Banchero"]
     },
     {
-      topic: "Championship Windows Opening and Closing",
+      topic: "Are We Witnessing the Most Unpredictable Playoffs in NBA History?",
       segment: "hot-take",
       duration: "7 minutes",
       keyStats: [
-        "Detroit's 60 wins meant nothing in playoff execution",
-        "Phoenix eliminated despite Booker's 28 points",
-        "Nikola Jokic's triple-double saved Denver's season",
-        "Four different rookies making major playoff impact",
-        "Age gap: Banchero (20) vs Booker (29) vs Embiid (32)",
-        "Young teams (OKC, ORL, SAS) dominating veterans"
+        "8th-seeded Orlando leads 1st-seeded Detroit 3-0",
+        "Philadelphia forces Game 4 after facing elimination",
+        "5th-seeded Toronto takes 1-0 lead over 4th-seeded Cleveland",
+        "Multiple series going opposite of seeding expectations",
+        "Historic upset potential across multiple matchups"
       ],
-      debateAngle: "Hot Take: The NBA's championship window has officially shifted to teams built around players 25 and under",
-      suggestedQuote: "We're witnessing a seismic shift where championship DNA isn't about veteran leadership anymore - it's about young stars who grew up in the social media era and thrive under pressure.",
-      relevantPlayers: ["Paolo Banchero", "Victor Wembanyama", "Shai Gilgeous-Alexander", "Devin Booker"]
+      debateAngle: "Does this level of playoff chaos prove the regular season means nothing anymore, or are we seeing the natural evolution of NBA parity finally paying off?",
+      suggestedQuote: "Forget everything you thought you knew about playoff basketball. When the 8th seed is about to sweep the 1 seed and elimination games are being won on the road, we're not just seeing upsets - we're seeing a complete paradigm shift.",
+      relevantPlayers: ["Paolo Banchero", "Cade Cunningham", "Joel Embiid", "Pascal Siakam"]
     },
     {
-      topic: "Monday's Must-Watch Games",
+      topic: "Rapid Fire: Knicks Domination, Rookie Brilliance, and Tonight's Must-Watch Games",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Celtics lead Sixers 2-0, can take 3-0 stranglehold",
-        "Joel Embiid probable with knee soreness",
-        "Knicks up 1-0 on Hawks at Madison Square Garden",
-        "Trae Young questionable with ankle sprain",
-        "Spurs-Blazers conference semifinals begin",
-        "Wembanyama averaging 31.8 PPG in playoffs"
+        "Knicks beat Hawks 126-97 for commanding 2-0 lead",
+        "Jalen Brunson: 28 points, 8 assists on 11-18 shooting",
+        "Orlando can complete historic upset tonight at Detroit",
+        "LeBron and Lakers begin series against Houston",
+        "Wembanyama leads rookie playoff performers"
       ],
-      debateAngle: "Which Game 3 is more crucial - Boston trying to sweep Philly or New York taking control against Atlanta?",
-      suggestedQuote: "Monday night could end two seasons and launch two championship runs - that's the beauty of playoff basketball in late April.",
-      relevantPlayers: ["Jayson Tatum", "Joel Embiid", "Jalen Brunson", "Trae Young", "Victor Wembanyama"]
+      debateAngle: "Which of tonight's games has the highest stakes - Orlando's potential historic upset, Cleveland's must-win home game, or the Lakers-Rockets series opener?",
+      suggestedQuote: "Three games tonight, three completely different storylines. You've got history in the making in Detroit, desperation in Cleveland, and championship expectations colliding in Los Angeles.",
+      relevantPlayers: ["Jalen Brunson", "Paolo Banchero", "LeBron James", "Donovan Mitchell"]
     },
     {
-      topic: "Looking Ahead to Conference Semifinals",
+      topic: "Championship Contenders Are Separating Themselves - What's Next?",
       segment: "closer",
       duration: "6 minutes",
       keyStats: [
-        "Orlando advances to face winner of BOS-PHI",
-        "OKC awaits DEN-MIN winner in West semis",
-        "San Antonio begins semis vs Portland tonight",
-        "Six teams still alive in championship hunt",
-        "Average age of remaining stars: 24.8 years",
-        "Three rookie standouts still playing"
+        "Spurs and Thunder emerge as Western Conference powerhouses",
+        "Eastern Conference wide open with multiple upsets brewing",
+        "Embiid's health becomes crucial for Sixers' survival",
+        "Madison Square Garden energy propelling Knicks forward",
+        "Conference semifinals field taking shape dramatically"
       ],
-      debateAngle: "Which conference semifinals matchup will produce the most surprising result?",
-      suggestedQuote: "The championship race just got infinitely more interesting - when eighth seeds are eliminating top seeds and rookies are outplaying All-Stars, anything can happen in the next round.",
-      relevantPlayers: ["Paolo Banchero", "Victor Wembanyama", "Shai Gilgeous-Alexander", "Nikola Jokic"]
+      debateAngle: "After these playoff shakeups, who are your real championship favorites heading into the deeper rounds?",
+      suggestedQuote: "This is what makes playoff basketball beautiful - all the regular season expectations, all the expert predictions, all the seeding advantages mean absolutely nothing when it's win or go home. Pure basketball, pure heart, pure championship dreams on the line.",
+      relevantPlayers: ["Victor Wembanyama", "Joel Embiid", "Paolo Banchero", "Jalen Brunson"]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! Sunday night just gave us one of the most shocking results in NBA playoff history. The eighth-seeded Orlando Magic didn't just beat the top-seeded Detroit Pistons - they SWEPT them. Paolo Banchero dropped 26 points to close out a 60-win team that was supposed to be championship bound. Meanwhile, Shai Gilgeous-Alexander put up 38 to send the Thunder to the conference semifinals, and Nikola Jokic's triple-double kept Denver's title defense alive. The playoff landscape just got turned completely upside down, and we're breaking down every single moment right now on Hoops Intel.",
-  socialClip: "Clip the moment we break down Paolo Banchero's series-clinching performance - specifically the part where we analyze his 14-4 closing run and compare it to other historic rookie playoff moments. The energy when we talk about him being 'championship ready at 20' will be perfect for social.",
+  coldOpen: "The NBA playoffs just delivered one of the most shocking nights in recent memory. Joel Embiid erupted for 35 points to stun the Celtics in Boston and save Philadelphia's season. Victor Wembanyama dominated his conference semifinals debut with 31 and 6 blocks. And the 8th-seeded Magic are one win away from completing the biggest upset in NBA history. This is Hoops Intel, I'm your host, and we're about to break down a night that just changed everything about these playoffs.",
+  socialClip: "Embiid's dominance saving the Sixers season - capture the moment he hit that dagger three in the fourth quarter with the crowd stunned silent, then cut to his celebration. Perfect 30-second clip showing elimination game heroics with dramatic music overlay.",
   tweetThread: [
-    "🚨 HOOPS INTEL POD DROP: \"Magic Kingdom\" - Breaking down Paolo Banchero's historic upset that just shook the entire NBA championship race",
-    "🎯 MAIN TOPICS: Orlando's stunning sweep of Detroit, SGA's 38-point masterpiece advancing OKC, and why championship windows are shifting to players under 25",
-    "📊 THE NUMBERS: Banchero (26 pts), SGA (38 pts), Jokic (32-15-11 triple-double) - three performances that defined Sunday's playoff chaos",
-    "🔥 HOT TAKE ALERT: We argue the NBA's title window has officially shifted to teams built around stars 25 and under - and the data backs it up",
-    "🎧 FULL EP: Link in bio - 36 minutes of championship analysis, playoff predictions, and why Monday's games could end two seasons 🏀"
+    "🚨 PLAYOFF CHAOS ALERT 🚨 Last night delivered the most shocking results of the 2026 postseason and we're breaking it ALL down on today's @HoopsIntel pod 🎧",
+    "Joel Embiid just delivered one of the greatest elimination game performances in NBA history → 35 PTS, 12 REB, stunning the Celtics IN BOSTON to force Game 4. Championship DNA on full display 💎",
+    "Victor Wembanyama's conference semifinals debut: 31 PTS, 14 REB, 6 BLK on 66% shooting. The Spurs look UNSTOPPABLE and Wemby is announcing his arrival on basketball's biggest stage 👽",
+    "Meanwhile, Paolo Banchero and the 8th-seeded Magic are ONE WIN away from completing the biggest upset in NBA playoff history. Tonight in Detroit could be legendary 🪄",
+    "From elimination game heroics to historic upsets brewing - this episode breaks down why these might be the most unpredictable playoffs we've ever witnessed 🔥 Link in bio!"
   ]
 };
