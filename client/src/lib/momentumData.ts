@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Joel Embiid", 
     team: "PHI", 
-    clutchRating: 95, 
-    description: "Delivered the elimination game performance of his career, scoring 15 fourth-quarter points to silence TD Garden and extend the series" 
+    clutchRating: 94, 
+    description: "Delivered when elimination loomed largest, scoring 12 fourth-quarter points to silence TD Garden and extend Philadelphia's season with a dominant road playoff performance."
   },
   games: [
     {
@@ -49,43 +49,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "8:32",
-          description: "Boston opened with early 9-2 run behind Tatum's aggressive attacking",
-          runScore: "9-2 BOS",
-          momentum: "home",
-          keyPlayer: "Jayson Tatum",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "5:47",
-          description: "Embiid dominated the paint with 12-4 personal run, TD Garden stunned silent",
-          runScore: "12-4 PHI",
+          timestamp: "7:32",
+          description: "Embiid scores 8 straight points with two thunderous dunks to stun the TD Garden crowd early",
+          runScore: "8-0",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
+          quarter: "2nd",
+          timestamp: "4:15",
+          description: "Tatum responds with back-to-back threes as Celtics fight back to tie the game",
+          runScore: "9-2",
+          momentum: "home",
+          keyPlayer: "Jayson Tatum",
+          impact: "notable"
+        },
+        {
           quarter: "3rd",
-          timestamp: "3:15",
-          description: "Philadelphia exploded for 18-6 run capped by Embiid's thunderous dunk",
-          runScore: "18-6 PHI",
+          timestamp: "8:44",
+          description: "Philadelphia explodes with a devastating 18-4 run to break the game wide open",
+          runScore: "18-4",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "7:22",
-          description: "Embiid's elimination-game magic continued with 10 straight Sixers points",
-          runScore: "10-0 PHI",
+          timestamp: "6:28",
+          description: "Embiid's dominant post display completely shuts down any Boston comeback hopes",
+          runScore: "12-3",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Joel Embiid delivered the performance of his postseason career, completely dismantling Boston's championship aspirations with a tour de force display at TD Garden. The usually raucous home crowd fell eerily silent as Embiid systematically destroyed every defensive scheme the Celtics threw at him, turning what seemed like a series-ending game into Philadelphia's most dominant road playoff victory in over a decade. This wasn't just avoiding elimination—this was a generational talent announcing he refuses to go home quietly."
+      narrative: "Joel Embiid delivered the performance of his playoff career when facing elimination, completely dismantling the Celtics' defense with surgical precision and brute force. The big man's dominance in the paint turned TD Garden from a raucous home advantage into a stunned silence as Philadelphia controlled every meaningful possession down the stretch. This was the kind of transcendent individual performance that legends are built upon, proving that elite talent can overcome any deficit when backed against the wall. The Sixers' stunning road victory has completely shifted the series dynamics and left Boston questioning everything they thought they knew about this matchup."
     },
     {
       gameId: "ATL-NYK-20260428",
@@ -94,43 +94,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "6:18",
-          description: "MSG erupted as Knicks opened with 14-4 burst behind Brunson's precision",
-          runScore: "14-4 NYK",
+          timestamp: "9:12",
+          description: "Brunson opens with 11 points in first five minutes as Madison Square Garden erupts",
+          runScore: "15-4",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "9:43",
-          description: "Atlanta briefly fought back with 11-3 run sparked by Young's three-pointers",
-          runScore: "11-3 ATL",
+          timestamp: "6:33",
+          description: "Young briefly rallies Atlanta with three consecutive assists and a deep three",
+          runScore: "8-2",
           momentum: "away",
           keyPlayer: "Trae Young",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "2:05",
-          description: "Knicks closed half with devastating 19-4 run, MSG reached playoff fever pitch",
-          runScore: "19-4 NYK",
+          timestamp: "2:47",
+          description: "Knicks close the half with a suffocating 16-2 run that breaks Atlanta's spirit",
+          runScore: "16-2",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
           impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "4:31",
-          description: "New York's balanced attack delivered another 16-5 burst to break Hawks' spirit",
-          runScore: "16-5 NYK",
+          timestamp: "5:21",
+          description: "New York's balanced attack extends lead to 30+ points with relentless ball movement",
+          runScore: "14-3",
           momentum: "home",
-          keyPlayer: "OG Anunoby",
+          keyPlayer: "Jalen Brunson",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Madison Square Garden transformed into a basketball cathedral as the Knicks delivered their most complete playoff performance in years, systematically dismantling Atlanta with suffocating defense and balanced scoring. Jalen Brunson orchestrated the symphony with veteran poise, but this victory belonged to the entire roster—from role players stepping up to the crowd providing championship-level energy. With a commanding 2-0 series lead, New York has announced they're not just happy to be here—they're legitimate Eastern Conference contenders with title aspirations."
+      narrative: "Jalen Brunson orchestrated a playoff masterpiece that transformed Madison Square Garden into an absolute cauldron of championship dreams and playoff euphoria. The Knicks' offensive execution was surgical in its precision, with Brunson's leadership setting the tone for a complete team performance that left Atlanta searching for answers. New York's suffocating defense and balanced scoring attack created the kind of playoff atmosphere that MSG is legendary for, with every possession feeling like a statement about their championship aspirations. The Hawks now face the daunting reality that they're completely outmatched by a Knicks team that looks ready to make a serious playoff run."
     },
     {
       gameId: "POR-SAS-20260428",
@@ -139,43 +139,43 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:55",
-          description: "Wembanyama's early dominance sparked 12-2 Spurs run, Frost Bank Center electric",
-          runScore: "12-2 SAS",
+          timestamp: "8:45",
+          description: "Wembanyama announces his presence with three consecutive blocks and a transition dunk",
+          runScore: "10-2",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "6:23",
-          description: "Lillard answered with vintage scoring burst, hitting three straight threes",
-          runScore: "11-3 POR",
+          timestamp: "7:18",
+          description: "Lillard heats up with back-to-back deep threes to keep Portland competitive",
+          runScore: "8-0",
           momentum: "away",
           keyPlayer: "Damian Lillard",
           impact: "notable"
         },
         {
           quarter: "3rd",
-          timestamp: "8:14",
-          description: "Wemby's two-way brilliance fueled game-breaking 20-6 San Antonio explosion",
-          runScore: "20-6 SAS",
+          timestamp: "4:52",
+          description: "Wembanyama's otherworldly sequence of blocks, assists, and scoring breaks the game open",
+          runScore: "17-4",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "9:17",
-          description: "Young Spurs closed with authority on 14-4 run, Wemby capping with thunderous block",
-          runScore: "14-4 SAS",
+          timestamp: "9:33",
+          description: "San Antonio cruises as Wembanyama showcases complete two-way dominance",
+          runScore: "12-3",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Victor Wembanyama officially announced his arrival as a championship-caliber superstar, delivering a masterclass performance that left Portland's veteran roster looking helpless and overmatched. The generational talent showcased unprecedented two-way dominance, swatting shots on defense before gliding downcourt to score with the grace of a guard in a 7'4\" frame. This wasn't just a Game 1 victory—this was a coming-out party for a player ready to carry San Antonio to their first title since the Duncan era, with Frost Bank Center witnessing the birth of basketball's next dynasty."
+      narrative: "Victor Wembanyama delivered a coming-of-age playoff performance that announced his arrival as a legitimate championship centerpiece with breathtaking two-way brilliance. The generational talent's combination of rim protection, offensive versatility, and court vision was simply too much for Portland to handle, creating the kind of talent disparity that decides playoff series. San Antonio's Frost Bank Center witnessed something truly special as Wembanyama showcased why he's already being mentioned alongside the game's greatest big men despite his youth. The Spurs now look like legitimate title contenders with their franchise player hitting his playoff stride at the perfect moment, while Portland faces the harsh reality of being completely overmatched."
     }
   ]
 };

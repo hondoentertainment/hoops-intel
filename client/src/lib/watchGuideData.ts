@@ -46,12 +46,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/29 - 10:00 PM EDT",
       tv: "ESPN",
       venue: "crypto.com Arena",
-      entertainmentScore: 88,
+      entertainmentScore: 92,
       starPower: 9,
-      playoffImplications: 8,
+      playoffImplications: 9,
       rivalry: 7,
-      storyline: "Two Western Conference juggernauts collide in what could be a playoff seeding preview with massive postseason positioning implications. The Lakers' championship experience meets Houston's young, explosive core in a must-see clash of styles.",
-      keyMatchup: "LeBron James vs. Alperen Şengün",
+      storyline: "Two playoff-bound Western Conference powerhouses clash in a potential conference semifinals preview with seeding on the line. This matchup features elite offensive systems going head-to-head in what could be a playoff atmosphere at crypto.com Arena.",
+      keyMatchup: "Alperen Şengün vs. Anthony Davis",
       mustWatch: true
     },
     {
@@ -65,12 +65,12 @@ export const watchGuideData: WatchGuideData = {
       time: "4/29 - 7:30 PM EDT",
       tv: "ESPN",
       venue: "Rocket Arena",
-      entertainmentScore: 82,
-      starPower: 7,
-      playoffImplications: 9,
+      entertainmentScore: 85,
+      starPower: 8,
+      playoffImplications: 8,
       rivalry: 6,
-      storyline: "Cleveland looks to solidify their playoff seeding against a dangerous Toronto squad fighting for their postseason lives in a crucial Eastern Conference battle. The Cavaliers' home court advantage could be decisive in this high-stakes showdown.",
-      keyMatchup: "Darius Garland vs. Scottie Barnes",
+      storyline: "Cleveland looks to maintain their strong home court advantage against a scrappy Toronto team fighting for playoff positioning. The Cavaliers' balanced attack meets the Raptors' defensive intensity in a crucial Eastern Conference battle.",
+      keyMatchup: "Donovan Mitchell vs. RJ Barrett",
       mustWatch: true
     },
     {
@@ -84,15 +84,15 @@ export const watchGuideData: WatchGuideData = {
       time: "4/29 - 7:00 PM EDT",
       tv: "Prime Video",
       venue: "Little Caesars Arena",
-      entertainmentScore: 75,
-      starPower: 7,
+      entertainmentScore: 88,
+      starPower: 8,
       playoffImplications: 7,
       rivalry: 5,
-      storyline: "Detroit's incredible 60-win campaign gets tested by Orlando's playoff-hungry squad in what could be a dangerous trap game for the Eastern Conference powerhouse. The Magic have nothing to lose against the conference's top seed.",
+      storyline: "The surprising Eastern Conference-leading Pistons host a talented Magic squad in what should be a showcase of young talent and playoff-caliber basketball. Detroit's remarkable season continues as they look to secure home court advantage throughout the playoffs.",
       keyMatchup: "Cade Cunningham vs. Paolo Banchero",
       mustWatch: true
     }
   ],
-  topPick: "Lakers vs Rockets offers championship-level basketball with LeBron and Houston's rising stars battling for crucial playoff positioning",
-  nightOverview: "Tuesday's three-game slate delivers elite playoff positioning battles across both conferences. The marquee Lakers-Rockets showdown headlines a night where every game carries significant postseason implications."
+  topPick: "Lakers-Rockets showdown features two Western Conference giants in a potential playoff preview",
+  nightOverview: "Tonight's slate features three compelling matchups with playoff implications across both conferences. The marquee Western Conference battle between Houston and LA headlines a night where young stars like Cunningham, Banchero, and established veterans clash in crucial late-season contests.",
 };

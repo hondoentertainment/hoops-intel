@@ -47,139 +47,139 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-29",
   displayDate: "April 29, 2026",
-  overallMood: "Elimination game chaos and conference semifinals magic",
+  overallMood: "Playoff chaos reigns as Embiid's resurrection, Wemby's coronation, and Orlando's historic sweep watch consume every NBA conversation simultaneously",
   topics: [
     {
-      id: "embiid-elimination-masterpiece",
-      topic: "Embiid's 35-Point Elimination Game Heroics",
+      id: "embiid-elimination-resurrection",
+      topic: "Embiid's 35-Point Resurrection in Boston",
       sentiment: "positive",
-      intensity: 95,
-      volume: 47500,
-      summary: "Joel Embiid's dominant 35-point performance in Boston to avoid elimination has NBA Twitter going absolutely insane with championship takes",
+      intensity: 97,
+      volume: 52400,
+      summary: "Joel Embiid's absolutely unhinged 35-point, 12-rebound demolition of the Celtics at TD Garden to avoid elimination has broken NBA Twitter into a million pieces of chaotic adoration",
       sampleTakes: [
-        "EMBIID JUST SAVED THE SIXERS SEASON WITH THE MOST DOMINANT PLAYOFF PERFORMANCE I'VE EVER SEEN",
-        "That's why you can never count out a generational talent. Embiid just reminded everyone he's built different",
-        "35 points in TD Garden in an elimination game... Joel Embiid is not human",
-        "Boston really thought they were gonna sweep Embiid??? This man is a walking bucket when it matters most"
+        "EMBIID IN BOSTON IN AN ELIMINATION GAME DROPPING 35 AND 12 IS THE MOST DISRESPECTFUL THING I HAVE EVER WITNESSED IN MY LIFE",
+        "The way Embiid just walked into TD Garden and cooked the Celtics like it was a preseason game... this man is built from a completely different material than the rest of us",
+        "Every single person who wrote the Sixers off after Game 2 owes Joel Embiid a personal apology delivered via certified mail",
+        "Tatum had 18 points on 6-17 shooting while Embiid had 35 on 13-21. The talent gap between these two is a canyon not a crack"
       ],
-      relatedPlayers: ["Joel Embiid", "Jayson Tatum", "Tobias Harris"],
+      relatedPlayers: ["Joel Embiid", "Jayson Tatum", "Tobias Harris", "Tyrese Maxey"],
       relatedTeams: ["PHI", "BOS"],
       trending: true
     },
     {
-      id: "wembanyama-conference-semifinals-debut",
-      topic: "Wemby's Conference Semifinals Takeover",
+      id: "wembanyama-semifinals-coronation",
+      topic: "Wemby's Conference Semifinals Coronation",
       sentiment: "positive",
-      intensity: 92,
-      volume: 43200,
-      summary: "Victor Wembanyama's 31-point, 14-rebound, 6-block masterpiece in his conference semifinals debut has everyone crowning the Spurs as title favorites",
+      intensity: 94,
+      volume: 48700,
+      summary: "Victor Wembanyama's 31-14-6 masterpiece in his conference semifinals debut has the internet collectively agreeing that we are witnessing something that has never existed before in basketball history",
       sampleTakes: [
-        "Wembanyama just announced himself as the best player in the playoffs with that performance",
-        "31 points, 14 rebounds, 6 blocks in your FIRST conference semifinals game... generational talent is real",
-        "The Spurs are winning the championship and it's not even close anymore. Wemby is unstoppable",
-        "Portland got cooked by a 20-year-old alien. This kid is about to run the league for the next 15 years"
+        "31 points 14 rebounds 6 blocks in your FIRST conference semifinals appearance. I don't know what we did to deserve watching this man play basketball but I'm grateful every single day",
+        "Wembanyama is playing a completely different sport than everyone else on that floor and Portland just had to sit there and experience it",
+        "The Spurs are not winning the championship. They are going to win MULTIPLE championships. Wemby is 20 years old and already unguardable. This is so unfair",
+        "Damian Lillard is a Hall of Famer and he looked like a confused tourist trying to figure out how to guard a 7-foot-4 alien who can shoot threes and swat everything"
       ],
       relatedPlayers: ["Victor Wembanyama", "Damian Lillard", "Devin Vassell"],
       relatedTeams: ["SAS", "POR"],
       trending: true
     },
     {
-      id: "magic-historic-upset-brewing",
-      topic: "Orlando Magic's Historic Upset Watch",
+      id: "magic-historic-sweep-watch",
+      topic: "Orlando's Historic Sweep of Detroit",
       sentiment: "mixed",
-      intensity: 88,
-      volume: 35600,
-      summary: "The Magic leading Detroit 3-0 in the biggest playoff upset ever has fans torn between amazement and disbelief",
+      intensity: 90,
+      volume: 39800,
+      summary: "The Magic leading the 60-win Pistons 3-0 and one game away from completing the most embarrassing upset in modern NBA playoff history has fans oscillating between pure joy and existential horror depending on their team affiliation",
       sampleTakes: [
-        "Paolo Banchero really about to complete the biggest upset in NBA history as a rookie. This is insane",
-        "Detroit getting swept by the 8-seed after winning 60 games is the most embarrassing thing I've ever seen",
-        "The Magic are proof that regular season records don't mean anything in the playoffs",
-        "Pistons fans really thought they were championship favorites LMAOOO this is why the East is trash"
+        "Paolo Banchero is about to complete the most historically humiliating playoff sweep of a top seed EVER and he's doing it as a second-year player. This kid is not real",
+        "Detroit won 60 GAMES. SIXTY. And they're about to get swept by an 8-seed. I need everyone who said the East was the superior conference to log off permanently",
+        "The Orlando Magic are proof that seeding is meaningless and the NBA regular season is a complete and total lie that we all agreed to believe",
+        "Cade Cunningham has to be the most depressed person on planet Earth right now. His team just blew a 3-0 series lead to give up... wait they're DOWN 3-0. I mixed it up because this is so unprecedented"
       ],
       relatedPlayers: ["Paolo Banchero", "Cade Cunningham", "Anthony Black"],
       relatedTeams: ["ORL", "DET"],
       trending: true
     },
     {
-      id: "celtics-championship-concerns",
-      topic: "Boston's Championship Credibility Crisis",
+      id: "celtics-tatum-championship-meltdown",
+      topic: "Celtics' Championship DNA Evaporating",
       sentiment: "negative",
-      intensity: 85,
-      volume: 28900,
-      summary: "The Celtics' shocking home loss to Philadelphia has fans questioning their championship DNA and mental toughness",
+      intensity: 87,
+      volume: 33100,
+      summary: "Boston's shocking home loss with a chance to sweep has Twitter absolutely eating the Celtics alive with takes about mental fragility, Tatum's ceiling, and whether this core can ever win a title",
       sampleTakes: [
-        "Boston really lost at home to avoid sweeping Philly... these guys don't have championship mentality",
-        "Tatum disappearing in big moments again. This is why he'll never be a championship level player",
-        "The Celtics are frauds. Championship teams don't lose elimination games at home to lower seeds",
-        "Boston's about to blow a 2-0 lead because they can't handle pressure. Same old Celtics"
+        "The Celtics are the most talented team to never win a championship since the 2001 Kings and I will die on this hill",
+        "Jayson Tatum 6-of-17 in a game where you can clinch a sweep at home. The man simply does not have the clutch gene and I don't know why we keep pretending otherwise",
+        "Boston fans really spent two weeks planning a sweep parade and now have to fly to Philadelphia for Game 4. The humiliation is top tier",
+        "This Celtics team is made of glass. The second any adversity shows up they completely disintegrate mentally and it's been happening for three years now"
       ],
       relatedPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid"],
       relatedTeams: ["BOS", "PHI"],
-      trending: false
+      trending: true
     },
     {
-      id: "knicks-msg-championship-energy",
-      topic: "Knicks' MSG Championship Vibes",
+      id: "knicks-msg-takeover",
+      topic: "Knicks Establishing MSG as Fortress",
       sentiment: "positive",
-      intensity: 78,
-      volume: 25400,
-      summary: "New York's dominant home victory over Atlanta has fans believing championship basketball is back at Madison Square Garden",
+      intensity: 80,
+      volume: 27600,
+      summary: "New York's 126-97 blowout of Atlanta has Knicks fans in full championship delusion mode while the rest of the internet debates whether Brunson has officially become an elite playoff player",
       sampleTakes: [
-        "MSG was rocking tonight. This is what championship basketball looks like in New York",
-        "Jalen Brunson is the perfect point guard for this city. The Garden was electric tonight",
-        "The Knicks are going to the Finals and nobody can convince me otherwise after that performance",
-        "Hawks got cooked at MSG. New York basketball hits different when the crowd is involved"
+        "MSG was so loud tonight you could hear it through the TV. Championship basketball is back in New York and I refuse to let anyone take this from me",
+        "Jalen Brunson 28 points 8 assists 11-of-18 shooting in the playoffs. He's not just a good fit for New York, he's one of the best playoff point guards in the entire league",
+        "The Knicks are going to the Finals. I know I say this every year but this time I genuinely mean it and I have never felt more right in my entire life",
+        "Atlanta flew all the way to New York to get embarrassed by 29 points and Trae Young shot 5-of-16. Hawks fans are really living through something this week"
       ],
       relatedPlayers: ["Jalen Brunson", "Josh Hart", "Trae Young"],
       relatedTeams: ["NYK", "ATL"],
       trending: false
     },
     {
-      id: "lakers-rockets-series-opener",
-      topic: "Lakers-Rockets Championship Clash",
+      id: "lakers-rockets-series-anticipation",
+      topic: "LeBron vs. Young Rockets Tonight",
       sentiment: "neutral",
-      intensity: 72,
-      volume: 22100,
-      summary: "Tonight's Lakers-Rockets series opener has fans debating whether LeBron's experience can overcome Houston's young energy",
+      intensity: 74,
+      volume: 24300,
+      summary: "Tonight's Lakers-Rockets series opener has two very distinct camps forming online — old heads betting on LeBron's playoff wizardry versus the younger crowd convinced Houston's energy will overwhelm LA",
       sampleTakes: [
-        "LeBron vs the young Rockets is going to be an absolute war. This series going 7",
-        "Houston's youth and energy is going to overwhelm these old Lakers. Rockets in 5",
-        "You can never bet against playoff LeBron. Lakers championship experience shows tonight",
-        "This is the most even first round matchup. Could go either way but I love the energy"
+        "Playoff LeBron at 41 years old is still the most terrifying thing in basketball and Houston is about to find out the hard way",
+        "The Rockets have more athleticism, more energy, and more to prove than any team in the playoffs. Lakers in five? Try Rockets in five actually",
+        "This is the matchup I've been waiting for all season. LeBron vs Sengun is going to be must-watch basketball and I don't care what the casual fans say",
+        "Anthony Davis better show up tonight because if LeBron has to carry this team against Houston's youth the series is going seven and I'm not emotionally ready"
       ],
       relatedPlayers: ["LeBron James", "Alperen Sengun", "Anthony Davis"],
       relatedTeams: ["LAL", "HOU"],
       trending: false
     },
     {
-      id: "raptors-cavs-series-upset",
-      topic: "Toronto's Surprising Series Lead",
+      id: "raptors-cavs-upset-brewing",
+      topic: "Toronto Quietly Stirring Up Trouble in Cleveland",
       sentiment: "mixed",
-      intensity: 68,
-      volume: 18750,
-      summary: "The Raptors' 1-0 series lead over Cleveland has fans split on whether it's a fluke or the start of another upset",
+      intensity: 69,
+      volume: 19400,
+      summary: "The Raptors stealing Game 1 in Cleveland has a small but passionate corner of NBA Twitter screaming about another first round upset while Cavs fans try to convince themselves it was just rust",
       sampleTakes: [
-        "Toronto stealing Game 1 in Cleveland might be the start of another first round upset",
-        "Cavs better wake up before they're down 2-0. Home court advantage means nothing this year",
-        "Siakam and Barnes are cooking. This Raptors team is more dangerous than people thought",
-        "Cleveland will be fine. No way they lose this series, Game 1 was just rust"
+        "Everyone is sleeping on Toronto because they're watching Detroit get swept but the Raptors just stole Game 1 in Cleveland and nobody is talking about it. NOBODY",
+        "Donovan Mitchell is one bad game away from becoming a lightning rod for criticism and if the Cavs go down 2-0 tonight this fanbase is going to absolutely implode",
+        "Siakam and Barnes healthy in the playoffs is genuinely dangerous. This isn't the Raptors people remember from the regular season",
+        "Cleveland will win tonight. Mitchell always bounces back at home. This is not a story. Stop trying to make this a story"
       ],
       relatedPlayers: ["Pascal Siakam", "Donovan Mitchell", "Scottie Barnes"],
       relatedTeams: ["TOR", "CLE"],
       trending: false
     },
     {
-      id: "playoff-upsets-everywhere",
-      topic: "First Round Upset Mania",
+      id: "playoff-seeding-chaos-discourse",
+      topic: "Does Regular Season Seeding Mean Anything Anymore",
       sentiment: "mixed",
-      intensity: 75,
-      volume: 31200,
-      summary: "Multiple potential upsets brewing across both conferences has fans questioning if higher seeds mean anything anymore",
+      intensity: 76,
+      volume: 29800,
+      summary: "With multiple lower seeds winning or threatening upsets across both conferences, the perennial NBA Twitter debate about whether regular season records matter has reached peak volume",
       sampleTakes: [
-        "Home court advantage is dead. These playoffs are pure chaos and I'm here for it",
-        "Lower seeds are cooking everybody. Regular season really doesn't matter anymore",
-        "This is why the NBA playoffs are the best postseason in sports. Anything can happen",
-        "Higher seeds are frauds. Orlando, Toronto, and Philly proving regular season is meaningless"
+        "Orlando 3-0. Philly wins in Boston. Toronto wins in Cleveland. The NBA regular season is 82 games of vibes and absolutely nothing else",
+        "Home court advantage meant literally nothing last night. The entire premise of seeding is a fraud and the NBA should just do an open bracket at this point",
+        "This is why the playoffs are the greatest postseason in professional sports. Every single night you can witness something that has never happened before",
+        "Higher seeds are 0-for-last-night in terms of not getting embarrassed. Maybe depth and talent matter more than record and these narratives are getting out of hand"
       ],
       relatedPlayers: ["Paolo Banchero", "Joel Embiid", "Pascal Siakam"],
       relatedTeams: ["ORL", "PHI", "TOR", "DET", "BOS", "CLE"],
@@ -188,84 +188,84 @@ export const sentimentData: SentimentData = {
   ],
   teamSentiments: [
     {
-      team: "PHI",
-      teamFull: "Philadelphia 76ers",
-      sentiment: "positive",
-      score: 85,
-      buzzWords: ["elimination", "heroics", "embiid", "clutch", "dominant"],
-      narrativeSummary: "Sixers saved their season with Embiid's dominant elimination game performance in Boston"
-    },
-    {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "positive",
-      score: 92,
-      buzzWords: ["wembanyama", "championship", "dominant", "unstoppable", "generational"],
-      narrativeSummary: "Spurs looking like title favorites after Wemby's masterful conference semifinals debut"
+      score: 94,
+      buzzWords: ["wembanyama", "dynasty", "unstoppable", "generational", "championship", "coronation"],
+      narrativeSummary: "Spurs fan base and neutral observers alike are fully convinced they're watching the beginning of a dynasty after Wemby's masterful conference semifinals debut. The discourse has shifted from 'contender' to 'inevitable'"
+    },
+    {
+      team: "PHI",
+      teamFull: "Philadelphia 76ers",
+      sentiment: "positive",
+      score: 88,
+      buzzWords: ["embiid", "alive", "resilient", "heroics", "elimination", "resurrection"],
+      narrativeSummary: "Sixers fans went from funeral planning to championship dreaming in a single night. The energy is chaotic, grateful, and slightly unhinged in the best possible way after Embiid's Boston masterpiece"
     },
     {
       team: "ORL",
       teamFull: "Orlando Magic",
       sentiment: "positive",
-      score: 78,
-      buzzWords: ["historic", "upset", "banchero", "shocking", "clutch"],
-      narrativeSummary: "Magic one win away from completing the biggest playoff upset in NBA history"
+      score: 82,
+      buzzWords: ["historic", "banchero", "sweep", "upset", "clutch", "shocking"],
+      narrativeSummary: "Magic fans are experiencing something between euphoria and vertigo as their team sits one win away from completing the most shocking upset in modern playoff history. The vibes are electric and slightly disbelieving"
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 74,
-      buzzWords: ["msg", "championship", "brunson", "dominant", "energy"],
-      narrativeSummary: "Knicks dominating at MSG with championship-level energy and balanced attack"
-    },
-    {
-      team: "BOS",
-      teamFull: "Boston Celtics",
-      sentiment: "negative",
-      score: -62,
-      buzzWords: ["choke", "frauds", "tatum", "disappointing", "concerns"],
-      narrativeSummary: "Celtics' shocking home loss raises serious questions about their championship DNA"
-    },
-    {
-      team: "DET",
-      teamFull: "Detroit Pistons",
-      sentiment: "negative",
-      score: -88,
-      buzzWords: ["embarrassing", "choke", "upset", "shocking", "fraud"],
-      narrativeSummary: "Pistons facing historic embarrassment as 60-win team on brink of 8-seed sweep"
-    },
-    {
-      team: "ATL",
-      teamFull: "Atlanta Hawks",
-      sentiment: "negative",
-      score: -45,
-      buzzWords: ["cooked", "outmatched", "struggling", "young", "deficit"],
-      narrativeSummary: "Hawks completely outmatched in New York, facing nearly impossible 0-2 deficit"
-    },
-    {
-      team: "POR",
-      teamFull: "Portland Trail Blazers",
-      sentiment: "negative",
-      score: -38,
-      buzzWords: ["outmatched", "overwhelmed", "talent", "disparity", "struggled"],
-      narrativeSummary: "Trail Blazers appeared completely overwhelmed by Spurs' generational talent"
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "neutral",
-      score: 12,
-      buzzWords: ["lebron", "experience", "rockets", "series", "opener"],
-      narrativeSummary: "Lakers banking on LeBron's playoff experience in highly anticipated series opener"
+      score: 77,
+      buzzWords: ["msg", "brunson", "championship", "dominant", "commanding", "garden"],
+      narrativeSummary: "Knicks fans are in full championship delirium mode after the Garden performance. Brunson discourse has reached new heights and the 2-0 series lead has everyone convinced this is finally the year"
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "positive",
-      score: 35,
-      buzzWords: ["upset", "siakam", "steal", "road", "dangerous"],
-      narrativeSummary: "Raptors looking dangerous after stealing Game 1 in Cleveland"
+      score: 38,
+      buzzWords: ["siakam", "upset", "dangerous", "overlooked", "road", "steal"],
+      narrativeSummary: "Raptors fans quietly thrilled about Game 1 steal in Cleveland while the rest of the basketball world ignores them completely. The chip on the shoulder energy is at maximum levels"
+    },
+    {
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "neutral",
+      score: 14,
+      buzzWords: ["lebron", "experience", "tonight", "rockets", "series", "opener"],
+      narrativeSummary: "Lakers Twitter is split between blind LeBron faith and genuine concern about their depth against Houston's youth. The pre-series energy is cautiously optimistic with a thin layer of anxiety"
+    },
+    {
+      team: "BOS",
+      teamFull: "Boston Celtics",
+      sentiment: "negative",
+      score: -65,
+      buzzWords: ["chokers", "tatum", "fragile", "frauds", "mental", "disappointing"],
+      narrativeSummary: "Celtics fans are in a doom spiral after the home loss and the national media is piling on about mental toughness. The championship credibility conversation has gotten loud and uncomfortable in Boston"
+    },
+    {
+      team: "ATL",
+      teamFull: "Atlanta Hawks",
+      sentiment: "negative",
+      score: -48,
+      buzzWords: ["exposed", "trae", "outmatched", "struggling", "deficit", "cooked"],
+      narrativeSummary: "Hawks fans largely resigned to their fate after getting blown out in New York for the second straight game. The discourse has turned from 'can they win?' to 'is this roster built correctly at all?'"
+    },
+    {
+      team: "POR",
+      teamFull: "Portland Trail Blazers",
+      sentiment: "negative",
+      score: -41,
+      buzzWords: ["overmatched", "lillard", "outclassed", "wemby", "disparity", "overwhelmed"],
+      narrativeSummary: "Trail Blazers fans feeling a mix of helplessness and grudging respect after watching Wembanyama dismantle their team. The talent disparity conversation has been blunt and a little brutal online"
+    },
+    {
+      team: "DET",
+      teamFull: "Detroit Pistons",
+      sentiment: "negative",
+      score: -91,
+      buzzWords: ["historically bad", "sweep", "embarrassing", "collapse", "fraud", "cunningham"],
+      narrativeSummary: "Pistons fans are living through one of the most humiliating playoff experiences any fan base has ever endured. The 60-win record now reads as a cruel joke and the team is getting absolutely eviscerated online from every direction"
     }
   ],
   playerSentiments: [
@@ -273,93 +273,138 @@ export const sentimentData: SentimentData = {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "positive",
-      score: 95,
-      mentions: 24500,
-      topTake: "Embiid just proved why you can never count out a generational talent in elimination games",
-      narrativeArc: "From injury concerns to playoff hero with dominant elimination game performance"
+      score: 96,
+      mentions: 27800,
+      topTake: "Embiid just walked into the loudest building in the playoffs, down in a series, and dropped 35-12 on the most efficient night of his playoff career. The man is a different species when his back is against the wall.",
+      narrativeArc: "From injury-plagued question mark to undeniable playoff hero overnight — Embiid has silenced every single concern with one transcendent performance and the internet is reacting accordingly"
     },
     {
       player: "Victor Wembanyama",
       team: "SAS",
       sentiment: "positive",
-      score: 98,
-      mentions: 22800,
-      topTake: "Wemby's conference semifinals debut was the most dominant two-way performance I've ever seen from a rookie",
-      narrativeArc: "Announcing himself as championship-level superstar on biggest playoff stage"
+      score: 99,
+      mentions: 25600,
+      topTake: "Wembanyama's first conference semifinals game featured 31 points, 14 rebounds, and 6 blocks. He is 20 years old. I need everyone to sit with that for a moment before resuming their normal lives.",
+      narrativeArc: "Each playoff game adds another layer to the legend — Wemby's conference semifinals debut has moved the conversation from 'special talent' to 'generational force that cannot be contained or compared to anything that came before'"
     },
     {
       player: "Paolo Banchero",
       team: "ORL",
       sentiment: "positive",
-      score: 82,
-      mentions: 18600,
-      topTake: "Banchero is about to complete the biggest upset in NBA history as a rookie. Generational talent",
-      narrativeArc: "Leading historic upset as rookie, establishing himself as franchise cornerstone"
+      score: 85,
+      mentions: 21200,
+      topTake: "Paolo Banchero is one win away from completing the most historic upset in NBA playoff history and he looks like he was born for exactly this moment. The clutch gene is real and he has it in enormous quantities.",
+      narrativeArc: "Transforming from promising young forward into a genuine playoff superstar in real time — Banchero's sweep watch has turned him into the most talked-about player nobody expected to be talking about"
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
       sentiment: "positive",
-      score: 76,
-      mentions: 15400,
-      topTake: "Brunson is the perfect point guard for New York. MSG was electric tonight",
-      narrativeArc: "Proving he's the franchise cornerstone with dominant MSG performances"
+      score: 79,
+      mentions: 17300,
+      topTake: "28 points, 8 assists, 11-of-18 from the floor in a playoff blowout at MSG. Brunson is not just a good fit for New York — he is the best version of New York basketball that has existed in twenty years.",
+      narrativeArc: "Every dominant MSG performance adds another chapter to the Brunson mythology — he's graduated from 'overpaid point guard' to undeniable franchise centerpiece in the eyes of even his harshest critics"
     },
     {
       player: "Jayson Tatum",
       team: "BOS",
       sentiment: "negative",
-      score: -58,
-      mentions: 19200,
-      topTake: "Tatum disappearing in big moments again. This is why he'll never win a championship",
-      narrativeArc: "Championship credibility questioned after poor elimination game performance"
+      score: -61,
+      mentions: 22100,
+      topTake: "Tatum went 6-of-17 in a game where the Celtics could have SWEPT the Sixers at home. The ceiling conversation is officially back and it is louder than it has ever been before. This keeps happening.",
+      narrativeArc: "Another high-stakes disappointing performance has reignited the most exhausting debate in the NBA — whether Tatum is a true number-one option or a brilliant second star trapped in a franchise player's role"
+    },
+    {
+      player: "Tobias Harris",
+      team: "PHI",
+      sentiment: "positive",
+      score: 72,
+      mentions: 11400,
+      topTake: "22 points on 9-of-14 shooting from Tobias Harris in an elimination game on the road. The most consistently underappreciated player in the NBA just had his best playoff game in years and everyone is too distracted by Embiid to notice.",
+      narrativeArc: "Finally getting recognition as a legitimate co-star rather than an overpaid afterthought — Harris's efficient playoff contribution is reshaping public perception one efficient performance at a time"
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "neutral",
-      score: 25,
-      mentions: 16800,
-      topTake: "You can never bet against playoff LeBron. Experience shows in series openers",
-      narrativeArc: "Veteran leader preparing for another deep playoff run at age 41"
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      sentiment: "negative",
-      score: -42,
-      mentions: 12100,
-      topTake: "Cade can't lead this team to a championship if they're getting swept by the 8-seed",
-      narrativeArc: "Young star facing criticism as team faces historic upset"
+      score: 28,
+      mentions: 19500,
+      topTake: "Playoff LeBron at 41 still has the most terrifying highlight reel in basketball and Houston is about to rediscover that tonight. You simply cannot simulate experience against youth.",
+      narrativeArc: "Playing out another chapter in the longest and most debated career in NBA history — LeBron's pre-series discourse centers on whether age has finally caught up or if another playoff miracle is imminent"
     },
     {
       player: "Damian Lillard",
       team: "POR",
       sentiment: "negative",
-      score: -28,
-      mentions: 11500,
-      topTake: "Dame's window might be closed. Can't compete with generational talent like Wembanyama",
-      narrativeArc: "Veteran star outclassed by next generation of superstars"
-    },
-    {
-      player: "Pascal Siakam",
-      team: "TOR",
-      sentiment: "positive",
-      score: 45,
-      mentions: 8900,
-      topTake: "Siakam is cooking in the playoffs. This Raptors team is more dangerous than people thought",
-      narrativeArc: "Veteran leader driving potential upset with consistent playoff excellence"
+      score: -32,
+      mentions: 13700,
+      topTake: "Dame dropped 22 but shot 8-of-20 and Portland lost by 19 in the conference semifinals opener. The window conversation is uncomfortable but it needs to happen — can he compete at this level against Wembanyama?",
+      narrativeArc: "A respected veteran being outclassed by the next generation — the narrative has shifted from 'great player' to 'great player watching his title window close against impossible competition'"
     },
     {
       player: "Trae Young",
       team: "ATL",
       sentiment: "negative",
-      score: -35,
-      mentions: 9700,
-      topTake: "Trae getting exposed against good teams again. Same playoff struggles every year",
-      narrativeArc: "Young star struggling to translate regular season success to playoff advancement"
+      score: -52,
+      mentions: 11900,
+      topTake: "5-of-16 shooting in New York. Again. Trae Young against elite playoff defense in hostile environments is a completely different player than Trae Young in regular season and the gap keeps getting wider.",
+      narrativeArc: "The annual playoff Trae discourse is back and louder than ever — brilliant regular season maestro repeatedly unable to replicate that magic when defenses tighten and environments get hostile"
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      sentiment: "negative",
+      score: -47,
+      mentions: 14200,
+      topTake: "Your 60-win team is getting swept by the 8-seed and your franchise point guard looks completely paralyzed. Cade Cunningham needs to have a historic performance tonight or this is going to define his early career narrative.",
+      narrativeArc: "Thrust into the most embarrassing team situation in the playoffs — Cunningham's leadership and clutch credentials are being stress-tested in the worst possible circumstances and the results have been unsatisfying"
+    },
+    {
+      player: "Josh Hart",
+      team: "NYK",
+      sentiment: "positive",
+      score: 68,
+      mentions: 9800,
+      topTake: "18 points, 11 rebounds, 6 assists from Josh Hart in a playoff blowout. The man does absolutely everything for this team and plays with an energy that is genuinely infectious and impossible not to love.",
+      narrativeArc: "Cementing his status as the perfect complementary superstar — Hart's all-around excellence is increasingly recognized as an irreplaceable piece of New York's championship formula"
+    },
+    {
+      player: "Devin Vassell",
+      team: "SAS",
+      sentiment: "positive",
+      score: 64,
+      mentions: 8600,
+      topTake: "20 points on 8-of-13 shooting from Vassell while the entire world is watching Wembanyama. San Antonio's depth is genuinely terrifying and Vassell is a legitimately dangerous secondary option in the playoffs.",
+      narrativeArc: "Quietly building a reputation as one of the most reliable secondary scorers in the conference semifinals — Vassell benefits from Wemby's gravitational pull in ways that make him uniquely dangerous"
+    },
+    {
+      player: "Pascal Siakam",
+      team: "TOR",
+      sentiment: "positive",
+      score: 42,
+      mentions: 9100,
+      topTake: "Siakam is the most dangerous veteran in a first round series that nobody is watching because Detroit is getting swept. If Toronto takes a 2-0 lead tonight this conversation gets very loud very quickly.",
+      narrativeArc: "Operating in near-total media invisibility while quietly being excellent — Siakam's playoff performance is the best-kept secret in the first round and he seems perfectly content keeping it that way"
+    },
+    {
+      player: "Donovan Mitchell",
+      team: "CLE",
+      sentiment: "mixed",
+      score: -18,
+      mentions: 10300,
+      topTake: "Mitchell needs to be an absolute monster at home tonight or Cleveland is in serious, serious trouble. He's the kind of player who can fix everything with one great game, but the pressure is enormous right now.",
+      narrativeArc: "In a vulnerable moment that could define his playoff reputation — Mitchell's response to adversity tonight will either silence critics or amplify every concern that has followed him since Utah"
+    },
+    {
+      player: "Tyrese Maxey",
+      team: "PHI",
+      sentiment: "positive",
+      score: 58,
+      mentions: 8400,
+      topTake: "19 points and 5 assists from Maxey in an elimination road game while running full speed for 40 minutes. He is the engine that makes this Sixers team dangerous even when Embiid is having an off night, which last night was not.",
+      narrativeArc: "Growing into his identity as the perfect co-star alongside Embiid — Maxey's playoff performances are systematically dismantling the narrative that Philadelphia is a one-man team"
     }
   ],
-  hottestTake: "Wembanyama is already the best player in the NBA and the Spurs are about to win 5 championships in a row. This kid is more dominant than prime Shaq and prime Jordan combined",
-  coldestTake: "The Celtics are still championship favorites and will easily beat the Sixers in 5 games. One bad game doesn't erase 82 games of dominance"
+  hottestTake: "Wembanyama is going to win 6 championships, 8 MVPs, and 10 Defensive Player of the Year awards and future generations are going to look back at 2026 as the year they first realized they were watching the greatest basketball player who has ever lived. Shaq, Jordan, LeBron — they are all the prologue. Wemby is the actual story.",
+  coldestTake: "The Celtics still have the best roster in the Eastern Conference, Tatum is going to average 32 points the rest of the series, and Philadelphia is going to run out of gas by Game 6 because one great road performance from an injury-prone center does not erase Boston's structural advantages. This series is far from over and anyone panicking is being embarrassingly reactionary."
 };
