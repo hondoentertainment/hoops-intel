@@ -48,9 +48,9 @@ export const watchGuideData: WatchGuideData = {
       venue: "Xfinity Mobile Arena",
       entertainmentScore: 92,
       starPower: 9,
-      playoffImplications: 9,
+      playoffImplications: 10,
       rivalry: 8,
-      storyline: "Classic Atlantic Division playoff battle as Boston brings their championship pedigree to hostile Philadelphia territory. The 76ers desperately need this statement win to solidify their playoff positioning.",
+      storyline: "Elite Eastern Conference matchup with massive playoff seeding implications as both teams battle for positioning in the final stretch. These division rivals always deliver intense, physical basketball with championship aspirations on the line.",
       keyMatchup: "Jayson Tatum vs. Joel Embiid",
       mustWatch: true
     },
@@ -65,11 +65,11 @@ export const watchGuideData: WatchGuideData = {
       time: "4/30 - 9:30 PM EDT",
       tv: "ESPN",
       venue: "Target Center",
-      entertainmentScore: 88,
+      entertainmentScore: 87,
       starPower: 8,
-      playoffImplications: 8,
+      playoffImplications: 9,
       rivalry: 6,
-      storyline: "Western Conference heavyweight clash as defending champion Nuggets face the young, hungry Timberwolves in Minneapolis. Both teams fighting for crucial playoff seeding with championship aspirations.",
+      storyline: "Western Conference heavyweight bout featuring the defending champion Nuggets against a hungry Timberwolves squad fighting for home-court advantage. Minnesota's home crowd and playoff desperation make this a must-see late-night thriller.",
       keyMatchup: "Nikola Jokic vs. Karl-Anthony Towns",
       mustWatch: true
     },
@@ -84,15 +84,15 @@ export const watchGuideData: WatchGuideData = {
       time: "4/30 - 7:00 PM EDT",
       tv: "ESPN",
       venue: "State Farm Arena",
-      entertainmentScore: 84,
+      entertainmentScore: 81,
       starPower: 7,
       playoffImplications: 8,
-      rivalry: 5,
-      storyline: "Knicks look to continue their impressive season momentum against a Hawks team fighting to improve their playoff positioning. New York's championship window appears wide open this season.",
+      rivalry: 7,
+      storyline: "The resurgent Knicks visit Atlanta in a crucial Eastern Conference clash that could determine playoff positioning. Both teams are playing their best basketball of the season with everything to play for in the final weeks.",
       keyMatchup: "Jalen Brunson vs. Trae Young",
       mustWatch: true
     }
   ],
-  topPick: "Celtics at 76ers delivers the night's premium playoff atmosphere with championship-level intensity in Philadelphia",
-  nightOverview: "Tonight's triple-header features three playoff-implication heavyweight battles across both conferences. The East showcases two elite matchups while the West delivers a potential championship preview."
+  topPick: "Celtics-76ers delivers elite Eastern Conference basketball with massive playoff implications and star power",
+  nightOverview: "Three compelling playoff-caliber matchups highlight tonight's slate, featuring Eastern Conference rivals battling for seeding and a Western Conference heavyweight bout in Minneapolis. Every game carries significant playoff implications with championship contenders showcasing their best basketball."
 };

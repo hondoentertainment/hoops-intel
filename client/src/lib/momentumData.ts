@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Cade Cunningham", 
     team: "DET", 
-    clutchRating: 94, 
-    description: "Scored 12 points in the final 6 minutes with three crucial assists to stave off elimination" 
+    clutchRating: 92, 
+    description: "Delivered consecutive clutch buckets and assists in final 4 minutes to stave off elimination, shooting 3-4 with 2 assists when it mattered most" 
   },
   games: [
     {
@@ -49,36 +49,36 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "8:24",
-          description: "Orlando opened with a devastating 12-2 run, looking to complete the historic sweep on the road",
-          runScore: "12-2 ORL",
+          timestamp: "5:42",
+          description: "Orlando jumps out early with Paolo Banchero scoring 8 straight points, silencing the desperate Detroit crowd",
+          runScore: "8-0 ORL",
           momentum: "away",
           keyPlayer: "Paolo Banchero",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "4:17",
-          description: "Little Caesars Arena erupted as Detroit answered with 18-4 surge, Cunningham orchestrating every possession",
-          runScore: "18-4 DET",
+          timestamp: "8:15",
+          description: "Cunningham responds with authority, scoring 12 points in a 16-4 run that has Little Caesars Arena erupting",
+          runScore: "16-4 DET",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
           impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "2:45",
-          description: "Magic regained control with suffocating defense, forcing six straight Detroit turnovers",
-          runScore: "15-5 ORL",
+          timestamp: "3:28",
+          description: "Magic weather the storm with a 13-2 surge, reminding everyone they're one win from history",
+          runScore: "13-2 ORL",
           momentum: "away",
           keyPlayer: "Franz Wagner",
           impact: "significant"
         },
         {
           quarter: "4th",
-          timestamp: "6:12",
-          description: "Cunningham took over completely, scoring or assisting on 14 straight Detroit points in elimination-saving rally",
-          runScore: "14-3 DET",
+          timestamp: "6:45",
+          description: "Detroit's championship experience finally shows as they rip off 18-6 run to seize control",
+          runScore: "18-6 DET",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
           impact: "game-changing"
@@ -88,26 +88,26 @@ export const momentumData: MomentumData = {
         {
           player: "Cade Cunningham",
           team: "DET",
-          description: "Step-back three over two defenders to extend lead to 7",
-          timeRemaining: "3:42",
-          winProbabilityShift: 18.5
+          description: "Drives through traffic for and-one bucket, flexing at the crowd",
+          timeRemaining: "4:12",
+          winProbabilityShift: 15
         },
         {
           player: "Paolo Banchero",
           team: "ORL",
-          description: "And-1 finish through contact to cut deficit to 4",
-          timeRemaining: "2:18",
-          winProbabilityShift: -12.3
+          description: "Answers with step-back three to keep Magic within striking distance",
+          timeRemaining: "3:34",
+          winProbabilityShift: -12
         },
         {
           player: "Cade Cunningham",
           team: "DET",
-          description: "Perfect assist to open Isaiah Stewart for dagger dunk",
-          timeRemaining: "1:07",
-          winProbabilityShift: 22.1
+          description: "Thread-the-needle assist to Isaiah Stewart for crucial dunk",
+          timeRemaining: "2:08",
+          winProbabilityShift: 11
         }
       ],
-      narrative: "Detroit delivered the most emotionally charged performance of the playoffs, with Cade Cunningham playing like a superstar in his elimination game moment. The Little Caesars Arena crowd created an atmosphere that seemed to lift the Pistons above their capabilities, turning what looked like inevitable disappointment into playoff magic. Orlando showed championship-level composure even in defeat, but couldn't quite close the door on a desperate Detroit team fighting for survival. This was playoff basketball at its most dramatic - raw emotion meets elite execution."
+      narrative: "In a do-or-die performance that exemplified championship heart, Cade Cunningham authored one of the most crucial individual performances in Pistons playoff history. The home crowd's deafening energy became a sixth man as Detroit finally matched Orlando's upset intensity that had dominated this shocking series. While the Magic proved their young core belongs on this stage, the Pistons' veteran leadership and Cunningham's clutch gene prevented what would have been the most embarrassing collapse in NBA playoff history. This was playoff basketball at its most raw and desperate."
     },
     {
       gameId: "TOR-CLE-20260429",
@@ -116,65 +116,58 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "6:33",
-          description: "Toronto's ball movement was poetry in motion, finding open looks with precision passing for early 14-4 advantage",
-          runScore: "14-4 TOR",
-          momentum: "away",
-          keyPlayer: "Pascal Siakam",
-          impact: "notable"
+          timestamp: "7:20",
+          description: "Mitchell catches fire early, nailing three consecutive threes to set the tone",
+          runScore: "11-2 CLE",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
+          impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "9:15",
-          description: "Mitchell caught fire from deep, hitting four threes in five minutes to flip the script completely",
-          runScore: "16-6 CLE",
-          momentum: "home",
-          keyPlayer: "Donovan Mitchell",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "1:28",
-          description: "Raptors responded with their own three-point barrage, Siakam and Barnes combining for 12 straight points",
-          runScore: "12-2 TOR",
+          timestamp: "4:15",
+          description: "Siakam takes over with his signature mid-range game, leading 14-5 surge",
+          runScore: "14-5 TOR",
           momentum: "away",
           keyPlayer: "Pascal Siakam",
           impact: "significant"
         },
         {
-          quarter: "4th",
-          timestamp: "7:45",
-          description: "Cleveland's defense finally locked in, forcing five consecutive Toronto misses while Mitchell stayed scorching hot",
-          runScore: "13-0 CLE",
+          quarter: "3rd",
+          timestamp: "9:30",
+          description: "Cleveland explodes out of halftime with suffocating defense fueling fast breaks",
+          runScore: "17-4 CLE",
           momentum: "home",
           keyPlayer: "Donovan Mitchell",
           impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "7:22",
+          description: "Raptors refuse to fold as Barnes and Siakam combine for 10 straight points",
+          runScore: "10-0 TOR",
+          momentum: "away",
+          keyPlayer: "Scottie Barnes",
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
           player: "Donovan Mitchell",
           team: "CLE",
-          description: "Contested pull-up three from 28 feet to push lead to 8",
-          timeRemaining: "4:23",
-          winProbabilityShift: 16.7
+          description: "Pulls up for contested three with shot clock winding down",
+          timeRemaining: "3:45",
+          winProbabilityShift: 8
         },
         {
-          player: "Scottie Barnes",
+          player: "Pascal Siakam",
           team: "TOR",
-          description: "Steal and transition dunk to cut deficit to 3",
-          timeRemaining: "2:45",
-          winProbabilityShift: -14.2
-        },
-        {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Drive and dish to Mobley for critical basket",
-          timeRemaining: "1:33",
-          winProbabilityShift: 11.8
+          description: "Spins baseline for tough fadeaway to cut deficit to three",
+          timeRemaining: "1:52",
+          winProbabilityShift: -6
         }
       ],
-      narrative: "Donovan Mitchell reminded everyone why Cleveland traded for him, delivering a masterclass in playoff scoring that had Rocket Arena rocking from start to finish. This was the kind of back-and-forth battle that makes the NBA playoffs appointment television, with both teams trading haymakers like heavyweight boxers. Toronto showed they won't go quietly, but Mitchell's individual brilliance might be the difference-maker Cleveland needs to make a deep run. The series is now perfectly positioned for an epic seven-game war."
+      narrative: "Donovan Mitchell's 34-point explosion was a masterclass in playoff takeover basketball, showcasing exactly why Cleveland traded for him. The Cavaliers' balanced attack and improved defensive intensity suggested they've found another gear after their Game 1 stumble. Toronto's resilience, led by Pascal Siakam's crafty veteran play, proved this series has the makings of a seven-game thriller. The back-and-forth nature of this contest exemplified playoff basketball at its finest, with both teams trading haymakers like heavyweight prizefighters."
     },
     {
       gameId: "HOU-LAL-20260429",
@@ -183,43 +176,34 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:42",
-          description: "Sengun dominated the paint early, scoring 8 straight points while Lakers looked sluggish and unprepared",
-          runScore: "10-2 HOU",
-          momentum: "away",
-          keyPlayer: "Alperen Sengun",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "5:21",
-          description: "Lakers veterans finally woke up, LeBron and AD combining for 12 points to briefly seize control at crypto.com",
+          timestamp: "6:15",
+          description: "LeBron opens with vintage aggression, scoring 8 early points as crypto.com Arena buzzes",
           runScore: "12-4 LAL",
           momentum: "home",
           keyPlayer: "LeBron James",
           impact: "notable"
         },
         {
-          quarter: "3rd",
-          timestamp: "3:18",
-          description: "Houston's youth movement exploded, Reed and Thompson scoring 11 straight as Lakers' defense crumbled",
-          runScore: "15-4 HOU",
+          quarter: "2nd",
+          timestamp: "9:45",
+          description: "Sengun takes over the paint completely, dominating both ends in stunning 16-3 run",
+          runScore: "16-3 HOU",
           momentum: "away",
-          keyPlayer: "Jalen Green",
+          keyPlayer: "Alperen Sengun",
           impact: "game-changing"
         },
         {
-          quarter: "4th",
-          timestamp: "8:33",
-          description: "Sengun took over completely, scoring and facilitating as Houston pulled away from a deflated Lakers squad",
-          runScore: "11-3 HOU",
+          quarter: "3rd",
+          timestamp: "2:30",
+          description: "Lakers offense sputters as Houston's youth and energy overwhelms veteran legs",
+          runScore: "13-4 HOU",
           momentum: "away",
-          keyPlayer: "Alperen Sengun",
+          keyPlayer: "Jalen Green",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "The changing of the guard happened in real-time at crypto.com Arena, with Houston's young core outplaying LeBron James and the Lakers when it mattered most. Alperen Sengun looked like a future All-Star, completely controlling both ends while LeBron appeared every bit of his 41 years in crucial moments. This wasn't just a Game 1 loss for the Lakers - it was a glimpse of their championship window potentially slamming shut. Houston's confidence will only grow after stealing homecourt from a Lakers team that suddenly looks vulnerable and old."
+      narrative: "In a stunning road victory that announced Houston's playoff arrival, Alperen Sengun's paint dominance exposed every flaw in the Lakers' aging roster. LeBron James looked his age for perhaps the first time in years, managing just 18 points as the Rockets' relentless energy wore down Los Angeles' veteran core. This wasn't just a Game 1 upset—it was a changing of the guard moment that could define both franchises' futures. The young, hungry Rockets played with the kind of desperate playoff intensity that championship teams possess, while the Lakers appeared caught off guard by Houston's legitimate title aspirations."
     }
   ]
 };

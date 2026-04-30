@@ -47,125 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-04-30",
   displayDate: "April 30, 2026",
-  overallMood: "Playoff chaos and historic upset alerts",
+  overallMood: "Full playoff pandemonium — LeBron's legacy in the crosshairs, Detroit on life support, and Houston's young wolves are eating",
   topics: [
     {
-      id: "pistons-historic-collapse",
-      topic: "Pistons Avoid Historic Sweep",
-      sentiment: "mixed",
-      intensity: 94,
-      volume: 47823,
-      summary: "Detroit barely survived elimination to avoid becoming the first #1 seed ever swept in the first round, but Twitter is split on whether this was heroic or embarrassing",
+      id: "lebron-legacy-crisis",
+      topic: "LeBron's Playoff Legacy Under Fire",
+      sentiment: "negative",
+      intensity: 97,
+      volume: 58341,
+      summary: "18 points at home in a playoff opener against a team led by a 22-year-old center has NBA Twitter digging LeBron's grave in real time — and his defenders are running out of talking points",
       sampleTakes: [
-        "Cade just saved the Pistons from the most embarrassing collapse in NBA history 😤",
-        "Congrats on not getting swept by the 8th seed I guess? 💀",
-        "This Pistons team is FRAUDULENT. Magic still gonna finish the job in Game 5",
-        "60 wins means NOTHING if you can't show up in the playoffs"
-      ],
-      relatedPlayers: ["Cade Cunningham", "Paolo Banchero"],
-      relatedTeams: ["DET", "ORL"],
-      trending: true
-    },
-    {
-      id: "lakers-rockets-upset",
-      topic: "Rockets Stun Lakers in Game 1",
-      sentiment: "mixed",
-      intensity: 89,
-      volume: 42156,
-      summary: "Houston shocked LA at crypto.com Arena with the young core outplaying LeBron and AD, sending Lakers fans into panic mode",
-      sampleTakes: [
-        "ALPEREN SENGUN IS THAT DUDE. Rockets bout to send LeBron home early 🚀",
-        "LeBron really got outplayed by a 22-year-old center LMAOOO",
-        "Lakers getting bounced first round would be POETIC JUSTICE",
-        "One game relax. Lakers always start slow in playoffs"
+        "18 points. AT HOME. In the playoffs. Against a team that wasn't in the top 4 of their own conference. King James is DONE 💀",
+        "LeBron getting outplayed by Alperen Sengun in 2026 is genuinely something I never thought I'd type",
+        "Father Time remains the only undefeated champion in NBA history. Goodnight king 👑🪦",
+        "Y'all really thought a 41-year-old LeBron was gonna dominate the playoffs? Be serious 😭"
       ],
       relatedPlayers: ["LeBron James", "Alperen Sengun", "Anthony Davis"],
       relatedTeams: ["LAL", "HOU"],
       trending: true
     },
     {
-      id: "mitchell-takeover",
-      topic: "Donovan Mitchell Goes Nuclear",
-      sentiment: "positive",
-      intensity: 86,
-      volume: 38947,
-      summary: "Mitchell's 34-point explosion evened the Cavs-Raptors series and reminded everyone why Cleveland is a title contender",
+      id: "pistons-fraud-debate",
+      topic: "Are The Pistons Frauds? The Internet Decides",
+      sentiment: "negative",
+      intensity: 93,
+      volume: 51209,
+      summary: "Detroit winning Game 4 has done almost nothing to calm the discourse — the 60-win top seed is still down 3-1 to the 8th seed and NBA Twitter has fully committed to the clown emoji",
       sampleTakes: [
-        "DONOVAN MITCHELL IS BUILT DIFFERENT IN THE PLAYOFFS 🔥",
-        "That step-back three to ice the game was NASTY",
-        "Spida mode activated. Raptors in trouble now",
-        "This is why the Cavs traded for him. PLAYOFF PERFORMER"
+        "Congrats to the Detroit Pistons for not getting swept by the team they were supposed to sweep. Peak 🤡",
+        "60 wins and you're fighting for your life against Orlando in the FIRST ROUND. Name a bigger fraud in NBA history. I'll wait.",
+        "Cade had 28 and 9 and they STILL almost lost by double digits at home. The supporting cast is atrocious",
+        "I genuinely respect that they showed up but this organization is cooked if Orlando closes it out in 5"
       ],
-      relatedPlayers: ["Donovan Mitchell", "Pascal Siakam"],
+      relatedPlayers: ["Cade Cunningham", "Paolo Banchero", "Isaiah Stewart"],
+      relatedTeams: ["DET", "ORL"],
+      trending: true
+    },
+    {
+      id: "sengun-coronation",
+      topic: "Alperen Sengun's Coronation Moment",
+      sentiment: "positive",
+      intensity: 91,
+      volume: 47832,
+      summary: "The internet is officially in love with Sengun after he dismantled Anthony Davis and LeBron James in their own building — the young Rockets center is trending as the league's next franchise cornerstone",
+      sampleTakes: [
+        "ALPEREN SENGUN COOKED ANTHONY DAVIS IN HIS OWN HOUSE. This man is a PROBLEM 🔥",
+        "24 and 11 on 67% shooting against two All-Stars. Someone explain why he isn't in the MVP conversation",
+        "Sengun has the footwork of a veteran and the athleticism of someone ten years younger. Rockets fans eating GOOD right now",
+        "Turkish Delight is out here making AD look like a rookie. The disrespect is REAL and I'm here for it 🚀"
+      ],
+      relatedPlayers: ["Alperen Sengun", "Anthony Davis", "Jalen Green"],
+      relatedTeams: ["HOU", "LAL"],
+      trending: true
+    },
+    {
+      id: "mitchell-spida-mode",
+      topic: "Donovan Mitchell Is Built for This",
+      sentiment: "positive",
+      intensity: 88,
+      volume: 41567,
+      summary: "Mitchell's 34-point takeover has Cleveland fans feeling themselves and has the rest of the East on notice — Spida always shows up when it matters most and the internet is giving him his flowers",
+      sampleTakes: [
+        "SPIDA MODE IS REAL. 34 points, 6 threes, ice in his veins when it mattered. This man was BUILT for the playoffs 🕷️",
+        "Mitchell just erased every single person who said Cleveland can't win a big game without Kyrie. Rest in peace to that take",
+        "That step-back three with two minutes left was one of the most disgusting shots I've ever seen. Raptors cooked",
+        "People really sleep on Donovan Mitchell as an elite playoff performer. Dude does this EVERY year now"
+      ],
+      relatedPlayers: ["Donovan Mitchell", "Pascal Siakam", "Scottie Barnes"],
       relatedTeams: ["CLE", "TOR"],
       trending: true
     },
     {
-      id: "magic-historic-run",
-      topic: "Magic One Win From History",
+      id: "magic-one-win-away",
+      topic: "Orlando Magic Writing Fairy Tales",
       sentiment: "positive",
-      intensity: 77,
-      volume: 31245,
-      summary: "Despite the Game 4 loss, Orlando is still poised to complete the biggest upset in NBA playoff history with Paolo leading the charge",
+      intensity: 79,
+      volume: 34891,
+      summary: "Even after dropping Game 4, the Magic are still the darling of the internet — one win away from the greatest upset in NBA playoff history and nobody outside Detroit wants to stop them",
       sampleTakes: [
-        "Paolo Banchero is a STAR. Magic gonna finish this at home 🪄",
-        "Don't let Game 4 fool you. Magic still got the Pistons shook",
-        "Orlando making the playoffs AND upsetting the 1 seed? WHAT A SEASON",
-        "Young Magic core playing with house money and zero pressure"
+        "The entire NBA world is rooting for the Magic to finish this off. Be honest with yourself 🪄",
+        "Paolo Banchero scoring 25 in a hostile environment against a desperate top seed. STAR BEHAVIOR.",
+        "If Orlando wins Game 5 it's legitimately the most shocking thing to happen in NBA playoff history. I need it to happen",
+        "Detroit got their little moment. Magic gonna go home and close it out. ORLANDO MAGIC STAY MAGICAL"
       ],
-      relatedPlayers: ["Paolo Banchero", "Anthony Black"],
+      relatedPlayers: ["Paolo Banchero", "Anthony Black", "Cade Cunningham"],
       relatedTeams: ["ORL", "DET"],
       trending: false
     },
     {
-      id: "lebron-age-concerns",
-      topic: "Is LeBron Finally Showing His Age?",
-      sentiment: "negative",
-      intensity: 72,
-      volume: 29834,
-      summary: "LeBron's worst playoff game in years has NBA Twitter questioning if Father Time is finally catching up to the King",
-      sampleTakes: [
-        "18 points in a playoff game? LeBron is COOKED",
-        "Father Time remains undefeated. The decline is here",
-        "Lakers bout to waste AD's prime because LeBron can't accept reality",
-        "Still the GOAT but this is hard to watch ngl"
-      ],
-      relatedPlayers: ["LeBron James", "Anthony Davis"],
-      relatedTeams: ["LAL"],
-      trending: false
-    },
-    {
-      id: "young-stars-rising",
-      topic: "Young Stars Taking Over Playoffs",
+      id: "rockets-youth-movement",
+      topic: "Houston's Young Core Announces Itself",
       sentiment: "positive",
-      intensity: 68,
-      volume: 26712,
-      summary: "Paolo, Sengun, and other young players are stealing the spotlight from aging superstars in these playoffs",
+      intensity: 83,
+      volume: 38214,
+      summary: "Sengun and Jalen Green combining for 46 points in a road playoff win has the basketball world doing a full reappraisal of the Rockets as genuine title threats — the youth movement is no longer hypothetical",
       sampleTakes: [
-        "The league is in GREAT hands with Paolo, Sengun, Chet etc.",
-        "Young guys playing fearless basketball while vets look scared",
-        "This is why we love the playoffs. Stars are made in these moments",
-        "2022 draft class bout to run the league for the next decade"
+        "Rockets looked like the MORE experienced team last night and that is terrifying for everyone else in the West",
+        "Jalen Green finally playing within himself + Sengun going OFF = the most dangerous young team in the league. It's happening",
+        "Houston was supposed to be a 'watch them in two years' team. Turns out two years is NOW",
+        "The Rockets coaching staff deserves so much credit. This team is flying with zero fear 🚀"
       ],
-      relatedPlayers: ["Paolo Banchero", "Alperen Sengun", "Chet Holmgren"],
-      relatedTeams: ["ORL", "HOU", "OKC"],
+      relatedPlayers: ["Alperen Sengun", "Jalen Green", "LeBron James"],
+      relatedTeams: ["HOU", "LAL"],
+      trending: true
+    },
+    {
+      id: "elimination-wednesday",
+      topic: "Three Elimination Games Tonight — Chaos Incoming",
+      sentiment: "neutral",
+      intensity: 74,
+      volume: 29456,
+      summary: "Hawks, Sixers, and Timberwolves all staring down season-ending pressure tonight — the internet is most fixated on whether Embiid shows up in a close-out game after years of disappointing in big moments",
+      sampleTakes: [
+        "Three elimination games on one night? The NBA scheduling gods are FEEDING us tonight 🙏",
+        "Embiid in a potential close-out loss situation is content I've seen too many times. History about to repeat",
+        "Trae Young in an elimination game at home is must-watch TV regardless of how you feel about the Hawks",
+        "Denver winning a Game 5 on the road would prove this Nuggets team is still built different. Championship DNA is real"
+      ],
+      relatedPlayers: ["Joel Embiid", "Trae Young", "Anthony Edwards", "Jamal Murray"],
+      relatedTeams: ["ATL", "PHI", "MIN", "NYK", "BOS", "DEN"],
       trending: false
     },
     {
-      id: "elimination-games-tonight",
-      topic: "Three Must-Win Games Tonight",
-      sentiment: "neutral",
-      intensity: 65,
-      volume: 23567,
-      summary: "Hawks, Sixers, and Timberwolves all face elimination pressure in what could be a crazy night of playoff basketball",
+      id: "ad-accountability",
+      topic: "Anthony Davis Gets Roasted by the Internet",
+      sentiment: "negative",
+      intensity: 71,
+      volume: 26783,
+      summary: "Davis getting dominated by Sengun in what was supposed to be a favorable frontcourt matchup has fans questioning his ability to be the secondary star on a championship team",
       sampleTakes: [
-        "Tonight bout to be INSANE. Three elimination games 👀",
-        "Trae gotta show up or the Hawks season is over",
-        "Embiid vs elimination pressure. We've seen this before...",
-        "Nuggets-Wolves Game 5 gonna be a CLASSIC"
+        "Anthony Davis getting cooked by a 22-year-old Turkish center in his own building is genuinely one of the funniest things in recent NBA history",
+        "AD is the best player in the world when he wants to be. The problem is he only wants to be like 40% of the time",
+        "14 points and getting outplayed on both ends? AD better have a BIG Game 2 or this series is over",
+        "We need to stop pretending AD is a reliable second star. He just isn't 💀"
       ],
-      relatedPlayers: ["Trae Young", "Joel Embiid", "Anthony Edwards"],
-      relatedTeams: ["ATL", "PHI", "MIN", "NYK", "BOS", "DEN"],
+      relatedPlayers: ["Anthony Davis", "Alperen Sengun", "LeBron James"],
+      relatedTeams: ["LAL", "HOU"],
       trending: false
     }
   ],
@@ -174,81 +191,81 @@ export const sentimentData: SentimentData = {
       team: "HOU",
       teamFull: "Houston Rockets",
       sentiment: "positive",
-      score: 87,
-      buzzWords: ["young core", "upset alert", "championship dark horse", "Sengun dominance"],
-      narrativeSummary: "Rockets shocking the Lakers has fans believing this young core can make a deep playoff run"
+      score: 91,
+      buzzWords: ["young wolves", "Sengun coronation", "upset kings", "road warriors", "championship DNA"],
+      narrativeSummary: "Rockets fans are absolutely electric after stealing Game 1 in LA — the vibe is that this young core has officially arrived and LeBron's Lakers are in genuine trouble. Everyone outside of Los Angeles is quietly rooting for Houston to pull this off."
     },
     {
       team: "CLE",
       teamFull: "Cleveland Cavaliers",
       sentiment: "positive",
-      score: 79,
-      buzzWords: ["Mitchell takeover", "title contender", "playoff experience", "championship mode"],
-      narrativeSummary: "Mitchell's explosion reminded everyone why Cleveland traded for him - they're built for playoff success"
+      score: 82,
+      buzzWords: ["Spida mode", "championship window", "Eastern threat", "Mitchell money", "series momentum"],
+      narrativeSummary: "Cleveland fans went from nervous after Game 1 to fully confident after Mitchell's explosion — the consensus is that this team has the firepower to beat anyone in the East when Spida is cooking, and the Raptors are in serious trouble heading to Toronto."
     },
     {
       team: "ORL",
       teamFull: "Orlando Magic",
       sentiment: "positive",
-      score: 74,
-      buzzWords: ["historic upset", "Paolo rising", "house money", "fearless youth"],
-      narrativeSummary: "Despite Game 4 loss, Magic are still one win away from completing the biggest upset in NBA history"
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "negative",
-      score: -68,
-      buzzWords: ["LeBron decline", "championship window", "age concerns", "wasted season"],
-      narrativeSummary: "Lakers fans in panic mode after getting outplayed by Houston's young core at home"
-    },
-    {
-      team: "DET",
-      teamFull: "Detroit Pistons",
-      sentiment: "negative",
-      score: -45,
-      buzzWords: ["historic embarrassment", "fraudulent 1 seed", "playoff chokers", "60 wins meaningless"],
-      narrativeSummary: "Avoiding the sweep doesn't erase the fact that Detroit is on the verge of the most embarrassing upset ever"
+      score: 77,
+      buzzWords: ["make history", "Paolo rising", "neutral site heroes", "upset kings", "fairy tale season"],
+      narrativeSummary: "The entire basketball internet is in Orlando's corner right now — even dropping Game 4 didn't dampen the enthusiasm. Magic fans and neutrals alike are dreaming about what happens if Paolo closes it out in Game 5, and the vibe is pure joy."
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 71,
-      buzzWords: ["Brunson excellence", "championship run", "playoff tough", "Garden magic"],
-      narrativeSummary: "Knicks one win away from advancing as Brunson continues his elite playoff performance"
+      score: 74,
+      buzzWords: ["Brunson assassin", "Garden energy", "close out time", "Knicks are back", "playoff tough"],
+      narrativeSummary: "Knicks Twitter is in full confident mode — Brunson's consistency has them feeling like the team to beat in the East. The main sentiment is 'just close it out tonight' and then the real tournament begins. MSG energy is palpable even on a road game day."
+    },
+    {
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "negative",
+      score: -79,
+      buzzWords: ["LeBron declining", "championship window closed", "embarrassing at home", "AD accountability", "panic mode"],
+      narrativeSummary: "Lakers fans are somewhere between devastated and furious — the loss wasn't just a loss, it was a statement. The discourse has fully shifted from 'championship contender' to 'can they even win a series?' and the LeBron decline conversation is dominating every Lakers space."
+    },
+    {
+      team: "DET",
+      teamFull: "Detroit Pistons",
+      sentiment: "negative",
+      score: -52,
+      buzzWords: ["60 wins wasted", "fraud season", "historic embarrassment", "on life support", "Cade deserves better"],
+      narrativeSummary: "Detroit fans are genuinely miserable — the Game 4 win brought momentary relief but the overwhelming feeling is embarrassment and dread. The takes range from 'Cade needs to demand a trade' to 'this front office built wrong' and the prevailing mood is that Orlando is still finishing this off."
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "mixed",
-      score: 32,
-      buzzWords: ["championship favorites", "Embiid concerns", "close out game", "title pressure"],
-      narrativeSummary: "Celtics expected to advance but Embiid's Game 3 performance showed this series isn't over"
+      score: 38,
+      buzzWords: ["don't overlook Embiid", "championship experience", "close out or else", "road test incoming", "banner or bust"],
+      narrativeSummary: "Celtics fans are cautiously confident but the Sixers' Game 3 upset has introduced real anxiety — Boston Twitter is oscillating between 'we're fine, it's one game' and 'if we blow this to Philly I'll never recover.' The pressure to close it out tonight is extremely real."
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "mixed",
-      score: -23,
-      buzzWords: ["Mitchell problem", "home court lost", "Siakam struggles", "series momentum"],
-      narrativeSummary: "Raptors lost series momentum after Mitchell's takeover game in Cleveland"
+      score: -28,
+      buzzWords: ["Mitchell problem", "lost home court", "Siakam not enough", "must win Game 3", "belief still there"],
+      narrativeSummary: "Raptors fans are disappointed but not panicked — the general feeling is that they gave it away in Cleveland and need to protect home court in Game 3. The Siakam vs. Mitchell comparison is driving a lot of discourse, and Toronto Twitter is defensive about their star's 26-point effort."
     },
     {
       team: "ATL",
       teamFull: "Atlanta Hawks",
       sentiment: "negative",
-      score: -51,
-      buzzWords: ["elimination game", "Trae pressure", "season on line", "must win"],
-      narrativeSummary: "Hawks facing elimination after falling 0-2 to the Knicks with their backs against the wall"
+      score: -63,
+      buzzWords: ["Trae on the line", "season over almost", "must win or bust", "embarrassing start", "need a miracle"],
+      narrativeSummary: "Hawks fans are in full crisis mode — being down 0-2 to New York with an elimination game at home tonight has the fanbase split between 'Trae needs to go nuclear' and 'start planning the offseason.' The mood is bleak but a home game gives a sliver of hope."
     },
     {
       team: "MIN",
       teamFull: "Minnesota Timberwolves",
       sentiment: "mixed",
-      score: 15,
-      buzzWords: ["elimination pressure", "Ant-Man time", "home court", "winner take all"],
-      narrativeSummary: "Wolves have home court in decisive Game 5 but Denver's championship experience is scary"
+      score: 19,
+      buzzWords: ["Ant-Man moment", "home court advantage", "Denver experience scary", "winner take all", "Edwards ready"],
+      narrativeSummary: "Wolves fans are nervous but genuinely believe in Anthony Edwards to deliver in a winner-take-all moment — the home court advantage feels meaningful and Ant's reputation as a big-moment performer is carrying the optimism. But Denver's championship pedigree is creating a very real undercurrent of dread."
     }
   ],
   playerSentiments: [
@@ -256,93 +273,138 @@ export const sentimentData: SentimentData = {
       player: "Donovan Mitchell",
       team: "CLE",
       sentiment: "positive",
-      score: 92,
-      mentions: 24567,
-      topTake: "SPIDA MODE ACTIVATED 🕷️ That step-back three to seal it was FILTHY",
-      narrativeArc: "Mitchell's 34-point explosion reminded everyone why Cleveland traded for him - he's built for playoff moments"
+      score: 93,
+      mentions: 27834,
+      topTake: "SPIDA MODE IS REAL AND RAPTORS FANS KNOW IT 🕷️ 34 points, 6 threes, dagger step-back with two minutes left — this man was built for playoff basketball and it's not even close",
+      narrativeArc: "Mitchell's explosive 34-point series-evening performance has completely shifted his playoff narrative — no longer 'good regular season guy' but 'elite clutch performer when it matters most.' Cleveland fans are treating this like a coronation and the rest of the East is paying attention."
     },
     {
       player: "Alperen Sengun",
       team: "HOU",
       sentiment: "positive",
-      score: 89,
-      mentions: 21843,
-      topTake: "SENGUN IS HIM. 24 and 11 against AD and LeBron? YOUNG KING 👑",
-      narrativeArc: "Sengun's dominant Game 1 performance announced Houston as a legitimate threat to the Lakers"
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      sentiment: "mixed",
-      score: 34,
-      mentions: 19723,
-      topTake: "Cade saved the Pistons from eternal embarrassment but they still down 3-1 💀",
-      narrativeArc: "Cunningham prevented historic disaster but Detroit is still on the brink of the biggest upset ever"
-    },
-    {
-      player: "Paolo Banchero",
-      team: "ORL",
-      sentiment: "positive",
-      score: 81,
-      mentions: 18945,
-      topTake: "Paolo playing with ZERO fear against the #1 seed. Rookie of the Year behavior 🔥",
-      narrativeArc: "Banchero continues to lead Orlando's historic upset bid despite the Game 4 setback"
+      score: 91,
+      mentions: 31245,
+      topTake: "24 points, 11 boards, +18 on the road in the playoffs against LeBron James and Anthony Davis. Alperen Sengun is THAT DUDE and anyone who doubted him owes a public apology 🦁",
+      narrativeArc: "Sengun went from 'promising young center' to 'internet's favorite player' in the span of one playoff game — his dominant performance against two Hall of Famers in their own building has the basketball world fully buying into the Houston dream."
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "negative",
-      score: -74,
-      mentions: 31267,
-      topTake: "18 points in a playoff game? Father Time is UNDEFEATED 😬",
-      narrativeArc: "LeBron's worst playoff game in years has fans questioning if the decline is finally here"
+      score: -78,
+      mentions: 44892,
+      topTake: "18 points. At home. Against a team led by a 22-year-old center who wasn't even drafted in the lottery. Father Time has officially claimed his most famous victim and I don't want to hear about GOAT debates for a week 💀",
+      narrativeArc: "LeBron's worst playoff performance in recent memory has reignited every 'is the decline real?' conversation simultaneously — his mention count is the highest of any player but the vast majority are negative. Even his defenders are going quiet."
     },
     {
-      player: "Joel Embiid",
-      team: "PHI",
+      player: "Cade Cunningham",
+      team: "DET",
       sentiment: "mixed",
-      score: 28,
-      mentions: 15432,
-      topTake: "Embiid dominated Game 3 but can he do it in elimination games? History says... 📉",
-      narrativeArc: "Embiid's Game 3 dominance gave Philly life but his playoff track record creates doubt"
+      score: 31,
+      mentions: 22156,
+      topTake: "Cade had 28 and 9 and basically saved Detroit from going down in history as the biggest fraud top seed ever. Great night for him individually. Absolutely terrifying situation for him as a franchise player 😬",
+      narrativeArc: "Cunningham is getting credit for a strong individual performance but the discourse around him is heavy with sympathy and concern — the prevailing take is that he deserves better teammates and a better organization around him. He saved them from history but couldn't win the series."
     },
     {
-      player: "Jalen Brunson",
-      team: "NYK",
+      player: "Paolo Banchero",
+      team: "ORL",
       sentiment: "positive",
-      score: 78,
-      mentions: 14567,
-      topTake: "Brunson really turned into a playoff ASSASSIN. Hawks in trouble 🎯",
-      narrativeArc: "Brunson's consistent excellence has the Knicks one win away from advancing"
+      score: 84,
+      mentions: 21433,
+      topTake: "Paolo Banchero is playing like a 10-year veteran in the playoffs as a second-year player. 25 points in a road elimination game against a desperate top seed isn't just impressive — it's STAR behavior. The league better get used to him 🪄",
+      narrativeArc: "Despite the Game 4 loss, Banchero's sustained excellence throughout this series has elevated his status massively — the internet has fully anointed him a franchise cornerstone and the 'Magic are a fluke' narrative has completely collapsed. He's the reason everyone is rooting for Orlando."
     },
     {
       player: "Anthony Davis",
       team: "LAL",
       sentiment: "negative",
-      score: -41,
-      mentions: 12834,
-      topTake: "AD getting cooked by a 22-year-old center is NOT championship behavior",
-      narrativeArc: "Davis got dominated by Sengun in what was supposed to be a favorable matchup for LA"
+      score: -69,
+      mentions: 19678,
+      topTake: "Anthony Davis getting cooked by Alperen Sengun for 24 and 11 while managing 14 points himself is not a championship player performance. This is why people don't trust him when it matters 😤",
+      narrativeArc: "Davis is absorbing enormous criticism after being dominated in what looked like a favorable matchup — the 'he can't be your guy in a big series' narrative is back in full force and Lakers fans are directing significant frustration his way alongside LeBron."
+    },
+    {
+      player: "Jalen Green",
+      team: "HOU",
+      sentiment: "positive",
+      score: 77,
+      mentions: 16234,
+      topTake: "22 points on 57% shooting in a road playoff win. Jalen Green is finally playing within himself and it's making him 10x more dangerous. Rockets are SCARY right now 🚀",
+      narrativeArc: "Green's efficient supporting act alongside Sengun has the internet buying into his growth narrative — the conversation has shifted from 'boom or bust scorer' to 'legitimate second star' after his composed playoff debut. Houston fans are ecstatic."
+    },
+    {
+      player: "Isaiah Stewart",
+      team: "DET",
+      sentiment: "positive",
+      score: 58,
+      mentions: 12891,
+      topTake: "18 and 12 from Isaiah Stewart in a must-win game is the under-the-radar performance of the night. Cade gets the headlines but Stewie was in the trenches keeping this Pistons season alive 💪",
+      narrativeArc: "Stewart is getting quiet appreciation from basketball heads who watched the game closely — his rebounding and interior defense were crucial to Detroit's survival and he's emerging as an underappreciated piece of this team's identity."
     },
     {
       player: "Pascal Siakam",
       team: "TOR",
       sentiment: "mixed",
-      score: -12,
-      mentions: 11245,
-      topTake: "Siakam had 26 but Mitchell had 34. Sometimes you just gotta tip your cap 🤷‍♂️",
-      narrativeArc: "Siakam played well but couldn't match Mitchell's explosive takeover performance"
+      score: -14,
+      mentions: 13456,
+      topTake: "26 points from Siakam and they still lost by five. Sometimes you do your job and your team still comes up short. Still gotta be better in the clutch though — that's just the reality of being THE guy 🤷",
+      narrativeArc: "Siakam is in an uncomfortable position where his strong individual performance doesn't save him from blame — the internet is split between 'he did what he could' and 'he should have been the one making plays in the final minutes, not Mitchell.'"
+    },
+    {
+      player: "Joel Embiid",
+      team: "PHI",
+      sentiment: "mixed",
+      score: 22,
+      mentions: 17234,
+      topTake: "Embiid has a chance to close out a series tonight and we've all seen this movie before. Praying for the people of Philadelphia 😬",
+      narrativeArc: "Embiid's elimination game appearance tonight is generating enormous anticipation mixed with dread — his playoff track record creates built-in skepticism even when he's playing well. Philly fans want to believe but the internet refuses to let them be comfortable."
+    },
+    {
+      player: "Scottie Barnes",
+      team: "TOR",
+      sentiment: "mixed",
+      score: 29,
+      mentions: 10234,
+      topTake: "16 and 9 from Scottie Barnes in a road loss is not bad at all — the kid is genuinely good and people don't give him enough credit because he's playing second fiddle to Siakam in a losing effort",
+      narrativeArc: "Barnes is operating under the radar in this series but getting genuine appreciation from analytics-forward basketball fans who recognize his all-around contributions — the narrative around him is one of the few positive Toronto stories coming out of Game 2."
+    },
+    {
+      player: "Jalen Brunson",
+      team: "NYK",
+      sentiment: "positive",
+      score: 80,
+      mentions: 15678,
+      topTake: "Jalen Brunson turned himself into a playoff assassin in front of our eyes and people STILL want to debate if he's worth his contract. He's one win away from the second round and looked inevitable doing it 🎯",
+      narrativeArc: "Brunson's consistent playoff excellence has fully silenced his doubters — the discourse around him has shifted from 'overrated regular season scorer' to 'legitimate playoff engine.' Knicks fans are giving him his flowers and the national media is coming around."
     },
     {
       player: "Anthony Edwards",
       team: "MIN",
       sentiment: "mixed",
-      score: 45,
-      mentions: 13567,
-      topTake: "Ant-Man bout to show out in elimination Game 5. This kid is DIFFERENT in pressure moments",
-      narrativeArc: "Edwards faces his biggest test yet in winner-take-all Game 5 against championship-tested Denver"
+      score: 48,
+      mentions: 14123,
+      topTake: "Anthony Edwards in a do-or-die elimination Game 5 tonight is must-watch television regardless of what you think about Minnesota's chances. This kid was BORN for big moments and Denver is about to find that out 😤",
+      narrativeArc: "Edwards is generating enormous pre-game anticipation as the focal point of tonight's winner-take-all Game 5 — the internet is building him up as the X-factor who can carry Minnesota past championship-tested Denver, and the pressure is enormous but he seems to thrive under it."
+    },
+    {
+      player: "Trae Young",
+      team: "ATL",
+      sentiment: "mixed",
+      score: -31,
+      mentions: 13456,
+      topTake: "Trae Young in an elimination game at home is one of the most unpredictable forces in basketball. He's either about to go for 40 and force a Game 4 or disappear completely. There is absolutely no middle ground with this man 🎭",
+      narrativeArc: "Young faces his biggest moment of the season tonight in an elimination home game against the Knicks — his reputation as a player who elevates in some big moments and vanishes in others has the discourse genuinely split, and even Atlanta fans aren't sure what they're going to get."
+    },
+    {
+      player: "Jamal Murray",
+      team: "DEN",
+      sentiment: "positive",
+      score: 67,
+      mentions: 11234,
+      topTake: "Everyone's talking about the young stars but Jamal Murray in an elimination Game 5 on the road is the sleeper story tonight. Dude has a championship ring and a clutch gene that doesn't turn off. Denver's secret weapon 🏔️",
+      narrativeArc: "Murray is quietly building buzz ahead of tonight's elimination game as the under-the-radar performer who could be the difference — his playoff pedigree and championship experience are being cited as Denver's biggest advantage over a young, emotional Minnesota team."
     }
   ],
-  hottestTake: "The Lakers are about to get SWEPT by a team that wasn't even supposed to make the playoffs. LeBron's legacy taking SERIOUS damage if they can't turn this around 🔥",
-  coldestTake: "The Pistons winning Game 4 proves they're still championship contenders. They're about to come back from 3-1 and win it all ❄️"
+  hottestTake: "The Lakers are genuinely about to get bounced in the first round by a team their fans spent all season laughing at. LeBron's playoff legacy — already complicated — is about to take the most embarrassing hit of his career. 18 points at home in a Game 1 loss to Alperen Sengun is not recoverable as a narrative. Father Time just sent his invoice and it's overdue 🔥",
+  coldestTake: "People are completely overreacting to one playoff game. Detroit is still a 60-win team with the best player in the series and they just proved they can play at that level. LeBron has been here a thousand times and bounced back every single time. Both of these series are going seven games and everyone who is panicking right now is going to feel extremely silly ❄️"
 };
