@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 29, 2026
+// Last updated: April 30, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,92 +22,97 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 29, 2026",
-  episodeTitle: "Playoff Shockwaves: Embiid's Heroics, Wemby's Statement & Historic Upsets",
+  date: "April 30, 2026",
+  episodeTitle: "Upset Prevention & Young Kings Rising: Mitchell Explodes, Rockets Shock Lakers, Pistons Avoid History",
   rundown: [
     {
-      topic: "Joel Embiid Saves Philadelphia's Season with Elimination Game Masterpiece",
+      topic: "Detroit's Historic Close Call & Houston's Championship Statement",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "35 points, 12 rebounds, 3 blocks on 13-21 shooting",
-        "113-97 road victory at TD Garden",
-        "First Sixers playoff road win in Boston since 2012",
-        "+22 plus-minus leading all players",
-        "Celtics now lead series 2-1 instead of sweeping"
+        "Detroit avoided becoming first top seed EVER swept in Round 1",
+        "Cunningham: 28 PTS, 9 AST, 11-19 FG in must-win Game 4",
+        "Houston shot 52.1% from field in stunning Lakers road upset", 
+        "Sengun dominated: 24 PTS, 11 REB, 10-15 FG vs AD and Lakers frontcourt",
+        "LeBron managed just 18 points - worst playoff showing in years",
+        "Rockets steal home court advantage in series opener"
       ],
-      debateAngle: "Can Embiid single-handedly carry the Sixers to a historic series comeback, or was this just delaying the inevitable against a superior Celtics team?",
-      suggestedQuote: "This is what championship DNA looks like - when your back is against the wall, when elimination is staring you in the face, you either fold or you become legendary. Embiid chose legendary last night.",
-      relevantPlayers: ["Joel Embiid", "Jayson Tatum", "Tobias Harris", "Tyrese Maxey"]
+      debateAngle: "Which story is bigger - Detroit barely avoiding the most embarrassing playoff collapse ever, or Houston announcing themselves as legitimate championship contenders by dominating LeBron and the Lakers on the road?",
+      suggestedQuote: "Folks, we almost witnessed NBA history last night - and I'm talking about the BAD kind of history. No top seed has EVER been swept in the first round, and Detroit was literally one loss away from that ignominy.",
+      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Alperen Sengun", "LeBron James"]
     },
     {
-      topic: "Victor Wembanyama Announces His Arrival on the Conference Semifinals Stage",
-      segment: "deep-dive",
+      topic: "Donovan Mitchell's Playoff Evolution: From Disappointment to Dominance",
+      segment: "deep-dive", 
       duration: "10 minutes",
       keyStats: [
-        "31 points, 14 rebounds, 6 blocks in conference semifinals debut",
-        "12-18 shooting (66.7%) from the field",
-        "114-95 dominant home victory over Portland",
-        "Spurs outscored Trail Blazers by 19 points",
-        "31.2 PPG, 13.4 RPG, 4.8 BPG through playoffs"
+        "Mitchell exploded for 34 points on 13-22 shooting (59.1%)",
+        "Hit 6 three-pointers in series-evening victory",
+        "Cleveland shot 125-120 in dominant home bounce-back",
+        "Mitchell averaging 31.5 PPG through first two playoff games",
+        "Cavs seized home court advantage back from Toronto",
+        "Series now dead even at 1-1 heading to Toronto"
       ],
-      debateAngle: "Is Wembanyama's two-way dominance already making the Spurs the Western Conference favorites, or does playoff inexperience still make them vulnerable against veteran teams?",
-      suggestedQuote: "We're watching basketball history unfold in real time. When a 20-year-old can dominate both ends of the floor like this in his first conference semifinals appearance, you're not just watching a future superstar - you're watching the present changing before your eyes.",
-      relevantPlayers: ["Victor Wembanyama", "Damian Lillard", "Devin Vassell", "Paolo Banchero"]
+      debateAngle: "Is this the playoff breakthrough we've been waiting for from Donovan Mitchell? Has he finally shed the narrative of playoff disappointments and proven he can be the guy for a championship contender?",
+      suggestedQuote: "Mitchell didn't just score 34 points - he completely took over every crucial moment. This looked like a superstar having his playoff coming-of-age moment in real time.",
+      relevantPlayers: ["Donovan Mitchell", "Pascal Siakam", "Scottie Barnes"]
     },
     {
-      topic: "Are We Witnessing the Most Unpredictable Playoffs in NBA History?",
+      topic: "Is This the End of Lakers Championship Window?",
       segment: "hot-take",
-      duration: "7 minutes",
+      duration: "7 minutes", 
       keyStats: [
-        "8th-seeded Orlando leads 1st-seeded Detroit 3-0",
-        "Philadelphia forces Game 4 after facing elimination",
-        "5th-seeded Toronto takes 1-0 lead over 4th-seeded Cleveland",
-        "Multiple series going opposite of seeding expectations",
-        "Historic upset potential across multiple matchups"
+        "LeBron shot poorly and looked his age against young Rockets",
+        "Anthony Davis managed just 14 points, dominated by Sengun",
+        "Lakers lost home court in Game 1 - historically bad sign",
+        "Houston's young core completely outplayed LA veterans",
+        "Rockets shot 52.1% while Lakers struggled offensively",
+        "LeBron will be 42 next season if this is the end"
       ],
-      debateAngle: "Does this level of playoff chaos prove the regular season means nothing anymore, or are we seeing the natural evolution of NBA parity finally paying off?",
-      suggestedQuote: "Forget everything you thought you knew about playoff basketball. When the 8th seed is about to sweep the 1 seed and elimination games are being won on the road, we're not just seeing upsets - we're seeing a complete paradigm shift.",
-      relevantPlayers: ["Paolo Banchero", "Cade Cunningham", "Joel Embiid", "Pascal Siakam"]
+      debateAngle: "After watching LeBron struggle against Houston's young energy and the Lakers get completely outplayed at home, are we watching the end of their championship window in real time? Should they blow it up this summer?",
+      suggestedQuote: "I hate to say it, but that looked like Father Time finally catching up to LeBron. When your 39-year-old superstar can't keep up with hungry 22-year-olds, your window might be slamming shut.",
+      relevantPlayers: ["LeBron James", "Anthony Davis", "Alperen Sengun", "Jalen Green"]
     },
     {
-      topic: "Rapid Fire: Knicks Domination, Rookie Brilliance, and Tonight's Must-Watch Games",
+      topic: "Tonight's Elimination Theater & Series Momentum Shifts",
       segment: "rapid-fire",
-      duration: "5 minutes",
-      keyStats: [
-        "Knicks beat Hawks 126-97 for commanding 2-0 lead",
-        "Jalen Brunson: 28 points, 8 assists on 11-18 shooting",
-        "Orlando can complete historic upset tonight at Detroit",
-        "LeBron and Lakers begin series against Houston",
-        "Wembanyama leads rookie playoff performers"
-      ],
-      debateAngle: "Which of tonight's games has the highest stakes - Orlando's potential historic upset, Cleveland's must-win home game, or the Lakers-Rockets series opener?",
-      suggestedQuote: "Three games tonight, three completely different storylines. You've got history in the making in Detroit, desperation in Cleveland, and championship expectations colliding in Los Angeles.",
-      relevantPlayers: ["Jalen Brunson", "Paolo Banchero", "LeBron James", "Donovan Mitchell"]
-    },
-    {
-      topic: "Championship Contenders Are Separating Themselves - What's Next?",
-      segment: "closer",
       duration: "6 minutes",
       keyStats: [
-        "Spurs and Thunder emerge as Western Conference powerhouses",
-        "Eastern Conference wide open with multiple upsets brewing",
-        "Embiid's health becomes crucial for Sixers' survival",
-        "Madison Square Garden energy propelling Knicks forward",
-        "Conference semifinals field taking shape dramatically"
+        "Knicks can close out Hawks tonight (7 PM ET, ESPN)",
+        "Celtics look to finish Sixers despite Embiid's Game 3 explosion", 
+        "Nuggets-Timberwolves Game 5 is winner-take-all (9:30 PM ET)",
+        "Three potential elimination games on Wednesday slate",
+        "Orlando still leads Detroit 3-1 despite Game 4 setback",
+        "Victor Wembanyama averaging 31.2 PPG in conference semifinals"
       ],
-      debateAngle: "After these playoff shakeups, who are your real championship favorites heading into the deeper rounds?",
-      suggestedQuote: "This is what makes playoff basketball beautiful - all the regular season expectations, all the expert predictions, all the seeding advantages mean absolutely nothing when it's win or go home. Pure basketball, pure heart, pure championship dreams on the line.",
-      relevantPlayers: ["Victor Wembanyama", "Joel Embiid", "Paolo Banchero", "Jalen Brunson"]
+      debateAngle: "Which of tonight's games has the highest stakes - the Knicks potentially closing out Atlanta, Boston trying to finish Philly, or that elimination showdown between Denver and Minnesota?",
+      suggestedQuote: "Tonight we could see three teams punch their tickets to the next round. The elimination game energy is going to be absolutely electric, especially in that Nuggets-Wolves winner-take-all battle.",
+      relevantPlayers: ["Joel Embiid", "Jalen Brunson", "Anthony Edwards", "Jamal Murray"]
+    },
+    {
+      topic: "Young Stars Seizing Their Playoff Moments",
+      segment: "closer",
+      duration: "5 minutes",
+      keyStats: [
+        "Paolo Banchero still averaging 25.8 PPG despite Game 4 loss",
+        "Wembanyama dominating conference semifinals: 31.2 PPG, 13.4 RPG",
+        "Sengun announced himself as championship-level center",
+        "Chet Holmgren helped OKC advance with efficient two-way play",
+        "Young Rockets core outplaying Lakers veterans",
+        "Next generation taking over from aging superstars"
+      ],
+      debateAngle: "Are we witnessing the official changing of the guard in the NBA? The young stars aren't just getting experience anymore - they're taking over and winning series.",
+      suggestedQuote: "This isn't about the future anymore - this is about right now. Wemby, Paolo, Sengun, these young guys are grabbing playoff moments and refusing to give them back to the old guard.",
+      relevantPlayers: ["Victor Wembanyama", "Paolo Banchero", "Alperen Sengun", "Chet Holmgren", "Amen Thompson"]
     }
   ],
-  coldOpen: "The NBA playoffs just delivered one of the most shocking nights in recent memory. Joel Embiid erupted for 35 points to stun the Celtics in Boston and save Philadelphia's season. Victor Wembanyama dominated his conference semifinals debut with 31 and 6 blocks. And the 8th-seeded Magic are one win away from completing the biggest upset in NBA history. This is Hoops Intel, I'm your host, and we're about to break down a night that just changed everything about these playoffs.",
-  socialClip: "Embiid's dominance saving the Sixers season - capture the moment he hit that dagger three in the fourth quarter with the crowd stunned silent, then cut to his celebration. Perfect 30-second clip showing elimination game heroics with dramatic music overlay.",
+  coldOpen: "What's good, Hoops Intel family! Last night delivered playoff drama that had everything - historic upset prevention, championship statements, and Father Time coming to collect his debt. Detroit avoided the most embarrassing collapse in NBA history while a 22-year-old Turkish center just announced himself to LeBron James and the basketball world. We've got young stars seizing their moments and aging legends facing reality checks. This is Hoops Intel, I'm your host, and we're breaking down a Tuesday night that shifted championship narratives across the league. Let's get into it!",
+  socialClip: "Clip the segment where we discuss LeBron's struggles against Houston's young core - specifically the quote about Father Time catching up and the championship window slamming shut. The debate about whether the Lakers should blow it up will generate massive engagement and hot takes in the comments.",
   tweetThread: [
-    "🚨 PLAYOFF CHAOS ALERT 🚨 Last night delivered the most shocking results of the 2026 postseason and we're breaking it ALL down on today's @HoopsIntel pod 🎧",
-    "Joel Embiid just delivered one of the greatest elimination game performances in NBA history → 35 PTS, 12 REB, stunning the Celtics IN BOSTON to force Game 4. Championship DNA on full display 💎",
-    "Victor Wembanyama's conference semifinals debut: 31 PTS, 14 REB, 6 BLK on 66% shooting. The Spurs look UNSTOPPABLE and Wemby is announcing his arrival on basketball's biggest stage 👽",
-    "Meanwhile, Paolo Banchero and the 8th-seeded Magic are ONE WIN away from completing the biggest upset in NBA playoff history. Tonight in Detroit could be legendary 🪄",
-    "From elimination game heroics to historic upsets brewing - this episode breaks down why these might be the most unpredictable playoffs we've ever witnessed 🔥 Link in bio!"
+    "🧵 THREAD: Last night's playoff action was absolutely WILD. Let's break down how Detroit avoided history, Houston shocked the Lakers, and Mitchell exploded in Cleveland 👇",
+    "1️⃣ HISTORY AVOIDED: Detroit prevented becoming the first top seed EVER swept in Round 1. Cunningham's 28 PTS & 9 AST gave the Pistons life, but they still trail Orlando 3-1. The Magic are still one win away from the biggest upset in NBA history 😤",
+    "2️⃣ ROCKETS RISING: Houston STUNNED the Lakers 99-93 in LA behind Sengun's dominant 24 PTS & 11 REB. LeBron managed just 18 points in one of his worst playoff performances. Are we watching the changing of the guard in real time? 🚀",
+    "3️⃣ MITCHELL'S MOMENT: Donovan Mitchell exploded for 34 points on 59% shooting to even Cleveland's series with Toronto. This looked like a superstar having his playoff breakthrough - the kind of performance that defines championship runs ⭐",
+    "4️⃣ TONIGHT'S STAKES: Three potential elimination games including that winner-take-all Nuggets-Wolves showdown. Plus Embiid trying to save Philly's season and the Knicks looking to close out Atlanta. Championship dreams on the line everywhere 🔥"
   ]
 };

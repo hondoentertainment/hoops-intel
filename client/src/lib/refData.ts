@@ -1,5 +1,5 @@
 // Referee Tendency Reports — Know the Whistle
-// Last updated: April 29, 2026
+// Last updated: April 30, 2026
 
 export interface RefereeProfile {
   name: string;
@@ -35,49 +35,49 @@ export interface RefData {
 }
 
 export const refData: RefData = {
-  generatedDate: "April 29, 2026",
+  generatedDate: "April 30, 2026",
   tonightAssignments: [
     {
-      game: "ORL @ DET",
-      crew: ["Ed Malloy", "Courtney Kirkland", "Mitchell Ervin"],
-      leadRef: "Ed Malloy",
-      impact: "Malloy's assignment to this potential historic upset brings his road-neutral approach (48% home win rate) and pace-positive tendencies (+1.7) to a series where Orlando stands one victory away from completing one of the biggest playoff upsets in NBA history. His clean whistle management (40.1 fouls per game) and low technical frequency create perfect showcase conditions for Paolo Banchero's clutch gene without artificial home court advantages disrupting the Magic's momentum. Malloy's pace-positive impact amplifies Orlando's athletic transition game while his road-neutral stance prevents systematic advantages for the desperate Pistons facing elimination at home, making this assignment ideal for allowing superior execution to determine whether the Magic can complete their shocking sweep. The assignment suggests competitive showcase basketball where Malloy's championship-level experience prevents artificial manipulation while Orlando's talent and momentum face their ultimate test in hostile Detroit atmosphere.",
-      bettingAngle: "Value play on ORL +3.5 as Malloy's road-neutral approach neutralizes Detroit's home court desperation while his pace-positive impact amplifies the Magic's transition advantages. The OVER 208.5 is attractive given Malloy's pace acceleration creating showcase conditions for Banchero's explosive offensive potential in series-clinching opportunity.",
-      historical: "Malloy worked 3 Magic games this season (ORL 2-1) with Orlando averaging 118.3 points per game on the road in Malloy's assignments, thriving in his pace-positive neutral conditions that showcase their athletic talent. He officiated 4 Pistons games (DET 2-2) with Detroit shooting just 44.2% from the field at home in Malloy assignments, struggling when denied systematic home advantages in competitive neutral officiating."
+      game: "NYK @ ATL",
+      crew: ["Tony Brothers", "Lauren Holtkamp", "Jacyn Goble"],
+      leadRef: "Tony Brothers",
+      impact: "Brothers' assignment to this pivotal Game 3 brings his notorious home bias (58% home win rate) and grinding whistle-heavy approach (45.8 fouls per game) to Atlanta's desperate last stand against elimination. The Hawks face a commanding 0-2 deficit after falling at Madison Square Garden and need Brothers' systematic home advantages to generate the defensive intensity required to extend the series. His pace-negative tendencies (-1.8) favor Atlanta's halfcourt execution over New York's athletic transition game while his high technical frequency creates emotional landmines for the Knicks' veteran leadership in hostile State Farm Arena atmosphere. Brothers' grinding approach neutralizes Jalen Brunson's pace-and-space brilliance while amplifying Trae Young's individual shot creation through extended possessions and favorable whistle treatment, creating perfect conditions for the Hawks' survival basketball against New York's series-closing execution.",
+      bettingAngle: "Strong fade on NYK -4.5 as Brothers' extreme home bias and pace-grinding create systematic advantages for Atlanta's desperate elimination game. The UNDER 212.5 is premium given Brothers' whistle-heavy approach and pace-negative impact creating extended possessions that favor Atlanta's halfcourt survival.",
+      historical: "Brothers worked 4 Hawks games this season (ATL 3-1) with Atlanta shooting 8.3% better from three at home in Brothers' assignments, thriving in his pace-grinding that showcases Young's shot creation. He officiated 3 Knicks games (NYK 1-2) with New York averaging 4.7 fewer assists on the road in Brothers assignments, struggling when their ball movement is disrupted by his whistle-heavy grinding approach."
     },
     {
-      game: "TOR @ CLE",
-      crew: ["Scott Foster", "Sean Williams", "Natalie Sago"],
+      game: "BOS @ PHI",
+      crew: ["Scott Foster", "Bill Kennedy", "Tre Maddox"],
       leadRef: "Scott Foster",
-      impact: "Foster's assignment to this crucial Game 2 brings his legendary grinding approach (44.2 fouls per game) and moderate home bias (54% home win rate) to a series where Toronto stunned Cleveland in Game 1 and seeks a commanding 2-0 road lead. His whistle-heavy style and pace-negative tendencies (-0.8) create systematic advantages for the Cavaliers' desperate home response while potentially disrupting the Raptors' athletic rhythm through foul trouble and pace manipulation. Foster's moderate home bias amplifies Cleveland's crowd energy while his grinding approach favors Donovan Mitchell's individual brilliance over Toronto's balanced team execution, creating perfect conditions for the Cavaliers to even the series with systematic officiating support. The assignment suggests maximum drama extraction with Foster's overtime propensity keeping late-game heroics in play while his technical frequency creates emotional landmines for Toronto's veteran leadership in pressure-packed Cleveland atmosphere.",
-      bettingAngle: "Strong value play on CLE -4.5 as Foster's moderate home bias and grinding style create systematic advantages for Mitchell's elite scoring while disrupting Toronto's balanced attack. The UNDER 210.5 is premium given Foster's pace-negative impact and high foul frequency creating extended possessions that favor Cleveland's desperate home execution.",
-      historical: "Foster worked 5 Cavaliers games this season (CLE 4-1) with Cleveland averaging 8.2 more free throw attempts at home in Foster's assignments, benefiting from his whistle-heavy approach and moderate home bias. He officiated 4 Raptors games (TOR 2-2) with Toronto shooting just 35.1% from three on the road in Foster assignments, struggling with his pace grinding that disrupts their ball movement and rhythm offense."
+      impact: "Foster's assignment to this potential series-clinching Game 4 brings his legendary grinding expertise (44.2 fouls per game) and moderate home bias (54% home win rate) to Philadelphia's desperate elimination scenario after falling behind 2-1 following their stunning Game 3 upset victory. The Sixers need Foster's systematic home advantages and pace-negative tendencies (-0.8) to generate the grinding defensive intensity required to force Game 5, while his whistle-heavy approach creates foul trouble opportunities for Boston's championship-caliber depth. Foster's grinding style favors Joel Embiid's interior dominance while disrupting Boston's pace-and-space execution through extended possessions and physical play allowance, creating perfect conditions for Philadelphia's survival basketball against the Celtics' series-closing championship experience. His high technical frequency and overtime propensity keep dramatic late-game scenarios in play where Embiid's individual brilliance can overcome Boston's systematic advantages.",
+      bettingAngle: "Value play on PHI +3.5 as Foster's moderate home bias and grinding approach create systematic advantages for Embiid's dominance while disrupting Boston's rhythm offense. The UNDER 209.5 is strong given Foster's pace-negative impact and whistle-heavy style creating extended defensive possessions.",
+      historical: "Foster worked 5 Celtics games this season (BOS 3-2) with Boston shooting just 33.8% from three on the road in Foster assignments, struggling when their pace-and-space is disrupted by his grinding approach. He officiated 4 Sixers games (PHI 3-1) with Philadelphia averaging 6.2 more free throw attempts at home in Foster assignments, benefiting from his whistle-heavy interior-friendly officiating style."
     },
     {
-      game: "HOU @ LAL",
-      crew: ["Kane Fitzgerald", "Pat Fraher", "Rodney Mott"],
+      game: "DEN @ MIN",
+      crew: ["Kane Fitzgerald", "Sean Williams", "Nate Green"],
       leadRef: "Kane Fitzgerald",
-      impact: "Fitzgerald's assignment to this Western Conference first-round opener brings his balanced championship-level approach (42.3 fouls per game) and moderate home bias (52% home win rate) to a series between two evenly matched playoff contenders beginning their championship pursuit. His controlled whistle management and slight pace-positive tendencies (+0.4) create competitive showcase conditions for both LeBron James' playoff experience and Houston's youthful energy while maintaining integrity in what projects to be a seven-game battle. Fitzgerald's moderate home bias provides subtle advantages for the Lakers' championship-caliber crowd while his balanced approach prevents artificial manipulation, allowing veteran execution and young athleticism to clash in pure basketball competition. The assignment suggests elite competitive balance where Fitzgerald's championship experience manages intensity without interference, creating perfect conditions for LeBron's playoff mastery to face Houston's emerging championship potential in series-opening dynamics.",
-      bettingAngle: "Lean toward LAL -2.5 as Fitzgerald's moderate home bias creates subtle systematic advantages for LeBron's championship experience while his balanced approach maintains competitive integrity. The OVER 221.5 becomes attractive given Fitzgerald's pace-positive impact showcasing both explosive offenses in series-opening basketball.",
-      historical: "Fitzgerald worked 4 Lakers games this season (LAL 3-1) with Los Angeles averaging 12.7 more assists at home in Fitzgerald's assignments, thriving in his balanced pace that showcases LeBron's playmaking brilliance. He officiated 3 Rockets games (HOU 2-1) with Houston shooting 42.8% from three on the road in Fitzgerald assignments, maintaining their offensive efficiency in neutral championship-level officiating environments."
+      impact: "Fitzgerald's assignment to this winner-take-all Game 5 elimination showdown brings his balanced championship-level approach (42.3 fouls per game) and moderate home bias (52% home win rate) to the most pressure-packed scenario in tonight's slate with both teams facing season-ending stakes. The series tied 2-2 creates perfect conditions for Fitzgerald's controlled whistle management and slight pace-positive tendencies (+0.4) to showcase elite talent without artificial manipulation, allowing Anthony Edwards' explosive athleticism to battle Jamal Murray's championship experience in pure competitive basketball. His moderate home bias provides subtle advantages for Minnesota's Target Center energy while his balanced approach prevents systematic manipulation, creating perfect elimination game conditions where veteran execution and youthful desperation clash in championship-defining moments. Fitzgerald's championship experience manages maximum intensity without interference while his pace-positive impact amplifies both teams' offensive firepower in do-or-die basketball.",
+      bettingAngle: "Lean toward MIN +2.5 as Fitzgerald's moderate home bias creates subtle systematic advantages for Edwards' explosive potential in elimination desperation. The OVER 218.5 becomes attractive given Fitzgerald's pace-positive impact showcasing both explosive offenses in winner-take-all intensity.",
+      historical: "Fitzgerald worked 3 Timberwolves games this season (MIN 2-1) with Minnesota averaging 12.4 more transition points at home in Fitzgerald assignments, thriving in his pace-positive approach that showcases Edwards' athleticism. He officiated 4 Nuggets games (DEN 2-2) with Denver shooting 47.1% from the field on the road in Fitzgerald assignments, maintaining offensive efficiency in his balanced competitive environments."
     }
   ],
   refProfiles: [
     {
-      name: "Ed Malloy",
-      number: 14,
-      experience: "23 years",
-      gamesThisSeason: 65,
+      name: "Tony Brothers",
+      number: 25,
+      experience: "30 years",
+      gamesThisSeason: 69,
       tendencies: {
-        foulsPerGame: 40.1,
-        homeWinPct: 48,
-        avgPace: 1.7,
-        technicalFrequency: "Low",
-        overtimeGames: 3,
+        foulsPerGame: 45.8,
+        homeWinPct: 58,
+        avgPace: -1.8,
+        technicalFrequency: "High",
+        overtimeGames: 7,
       },
-      bestFor: "Athletic transition teams, road underdogs, pace-and-space offenses, skilled perimeter players, competitive balanced matchups",
-      worstFor: "Teams needing home-court whistle advantages, grinding defensive styles, interior-dependent offenses, systems requiring systematic help",
-      notableGame: "Leading tonight's ORL-DET Game 4, bringing road-neutral showcase conditions that allow Orlando's superior execution and momentum to determine whether they can complete one of the biggest playoff upsets in NBA history without artificial home court interference."
+      bestFor: "Home teams with veteran leadership, physical defensive schemes, grinding halfcourt execution, teams with strong crowd support, methodical offensive systems",
+      worstFor: "Road teams needing neutral treatment, athletic transition offenses, pace-dependent systems, young teams prone to technical fouls, emotionally volatile players",
+      notableGame: "Leading tonight's NYK-ATL Game 3, bringing extreme home bias and grinding approach that creates systematic advantages for Atlanta's desperate elimination survival while disrupting New York's pace-and-space execution through whistle-heavy manipulation."
     },
     {
       name: "Scott Foster",
@@ -93,7 +93,7 @@ export const refData: RefData = {
       },
       bestFor: "Grinding halfcourt teams, veteran leadership, physical interior play, teams thriving in dramatic environments, home teams with crowd energy",
       worstFor: "Fast-paced transition offenses, young teams prone to technical fouls, road teams needing neutral treatment, pace-dependent systems",
-      notableGame: "Leading tonight's TOR-CLE Game 2, bringing legendary grinding approach and moderate home bias that creates systematic advantages for Mitchell's championship response while disrupting Toronto's balanced rhythm in desperate Cleveland atmosphere."
+      notableGame: "Leading tonight's BOS-PHI Game 4, bringing legendary grinding expertise and moderate home bias that creates systematic advantages for Embiid's interior dominance while disrupting Boston's championship rhythm in desperate Philadelphia atmosphere."
     },
     {
       name: "Kane Fitzgerald",
@@ -109,55 +109,39 @@ export const refData: RefData = {
       },
       bestFor: "Championship-caliber teams, balanced offensive systems, competitive playoff environments, teams with veteran leadership, elite talent showcases",
       worstFor: "Teams requiring extreme officiating advantages, chaos-style offenses, systems dependent on pace manipulation, inexperienced playoff squads",
-      notableGame: "Leading tonight's HOU-LAL Game 1, bringing balanced championship-level approach that creates showcase conditions for LeBron's playoff mastery against Houston's emerging talent while maintaining competitive integrity in series opener."
+      notableGame: "Leading tonight's DEN-MIN Game 5, bringing balanced championship-level approach that creates showcase conditions for Edwards vs Murray elimination battle while maintaining competitive integrity in winner-take-all basketball."
     },
     {
-      name: "Tony Brothers",
-      number: 25,
-      experience: "30 years",
-      gamesThisSeason: 69,
+      name: "Lauren Holtkamp",
+      number: 7,
+      experience: "11 years",
+      gamesThisSeason: 58,
       tendencies: {
-        foulsPerGame: 45.8,
-        homeWinPct: 58,
-        avgPace: -1.8,
-        technicalFrequency: "High",
-        overtimeGames: 7,
-      },
-      bestFor: "Home teams with veteran leadership, physical defensive schemes, grinding halfcourt execution, teams with strong crowd support, methodical offensive systems",
-      worstFor: "Road teams needing neutral treatment, athletic transition offenses, pace-dependent systems, young teams prone to technical fouls, emotionally volatile players",
-      notableGame: "Recent assignment to PHI-BOS Game 3 brought extreme home bias and grinding approach that created systematic advantages for the Celtics' series-closing opportunity while disrupting Philadelphia's desperation rhythm through pace manipulation."
-    },
-    {
-      name: "Courtney Kirkland",
-      number: 61,
-      experience: "19 years",
-      gamesThisSeason: 62,
-      tendencies: {
-        foulsPerGame: 41.6,
-        homeWinPct: 50,
-        avgPace: 0.8,
+        foulsPerGame: 43.2,
+        homeWinPct: 55,
+        avgPace: -0.6,
         technicalFrequency: "Average",
         overtimeGames: 4,
       },
-      bestFor: "Balanced competitive games, athletic young players, pace-and-space offenses, skilled shot-makers, neutral competitive environments",
-      worstFor: "Teams needing systematic advantages, grinding interior styles, veteran-dependent systems, chaos-style offenses",
-      notableGame: "Supporting Ed Malloy in tonight's ORL-DET Game 4, providing neutral competitive flow that complements Malloy's road-neutral approach while maintaining showcase conditions for potential historic upset completion."
+      bestFor: "Home teams with disciplined systems, veteran point guards, methodical execution, teams with strong coaching, physical interior play",
+      worstFor: "Chaotic transition offenses, emotionally volatile players, teams relying on pace manipulation, young undisciplined squads",
+      notableGame: "Supporting Tony Brothers in tonight's NYK-ATL Game 3, providing additional home bias amplification that complements Brothers' grinding approach while maintaining competitive flow in desperate Atlanta atmosphere."
     },
     {
-      name: "Mitchell Ervin",
-      number: 27,
-      experience: "12 years",
-      gamesThisSeason: 58,
+      name: "Bill Kennedy",
+      number: 55,
+      experience: "26 years",
+      gamesThisSeason: 64,
       tendencies: {
-        foulsPerGame: 39.8,
-        homeWinPct: 49,
-        avgPace: 1.1,
+        foulsPerGame: 41.9,
+        homeWinPct: 53,
+        avgPace: -0.3,
         technicalFrequency: "Low",
-        overtimeGames: 3,
+        overtimeGames: 6,
       },
-      bestFor: "Athletic transition teams, clean competitive games, young talented players, pace-positive systems, showcase basketball",
-      worstFor: "Teams requiring whistle advantages, physical grinding styles, veteran-friendly calls, systematic manipulation",
-      notableGame: "Supporting Ed Malloy in tonight's ORL-DET Game 4, bringing clean pace-positive approach that amplifies Malloy's showcase conditions while preventing artificial interference in potential historic upset."
+      bestFor: "Veteran-led teams, methodical halfcourt systems, teams with strong leadership, physical defensive schemes, experienced playoff squads",
+      worstFor: "Young athletic teams, fast-break dependent offenses, teams requiring pace acceleration, emotionally driven systems",
+      notableGame: "Supporting Scott Foster in tonight's BOS-PHI Game 4, bringing veteran stability and clean whistle that maintains championship-level competitive flow while Foster controls primary grinding tendencies."
     },
     {
       name: "Sean Williams",
@@ -173,56 +157,72 @@ export const refData: RefData = {
       },
       bestFor: "Home teams with crowd energy, physical interior play, veteran leadership, methodical execution, defensive-minded systems",
       worstFor: "Road teams requiring neutral treatment, fast-paced offenses, young teams prone to foul trouble, transition-dependent systems",
-      notableGame: "Supporting Scott Foster in tonight's TOR-CLE Game 2, providing additional home bias amplification that complements Foster's grinding approach while maintaining competitive flow in desperate Cleveland atmosphere."
+      notableGame: "Supporting Kane Fitzgerald in tonight's DEN-MIN Game 5, providing additional home bias amplification that complements Fitzgerald's balanced approach while maintaining elimination game intensity."
     },
     {
-      name: "Natalie Sago",
-      number: 9,
-      experience: "8 years",
-      gamesThisSeason: 62,
+      name: "Jacyn Goble",
+      number: 68,
+      experience: "9 years",
+      gamesThisSeason: 55,
       tendencies: {
-        foulsPerGame: 43.1,
-        homeWinPct: 51,
-        avgPace: -0.1,
+        foulsPerGame: 40.8,
+        homeWinPct: 56,
+        avgPace: -1.2,
         technicalFrequency: "Low",
-        overtimeGames: 4,
+        overtimeGames: 3,
       },
-      bestFor: "Teams with disciplined offensive systems, veteran point guards, methodical execution, balanced competitive games, skilled shot-makers",
-      worstFor: "Chaos-style offenses, emotionally volatile players, teams relying on whistle advantages, pace-manipulation dependent systems",
-      notableGame: "Supporting Scott Foster in tonight's TOR-CLE Game 2, bringing disciplined approach and clean whistle that maintains championship-level competitive flow while Foster controls primary grinding tendencies."
+      bestFor: "Home teams with grinding styles, disciplined offensive systems, teams with veteran leadership, physical defensive schemes",
+      worstFor: "Athletic transition teams, pace-dependent offenses, teams requiring neutral treatment, fast-break systems",
+      notableGame: "Supporting Tony Brothers in tonight's NYK-ATL Game 3, bringing additional pace-grinding and home bias that amplifies Brothers' systematic advantages for Atlanta's desperate elimination survival."
     },
     {
-      name: "Pat Fraher",
-      number: 26,
-      experience: "18 years",
-      gamesThisSeason: 61,
+      name: "Tre Maddox",
+      number: 23,
+      experience: "7 years",
+      gamesThisSeason: 52,
       tendencies: {
-        foulsPerGame: 41.7,
+        foulsPerGame: 42.1,
         homeWinPct: 51,
-        avgPace: 1.2,
+        avgPace: 0.2,
         technicalFrequency: "Low",
-        overtimeGames: 4,
+        overtimeGames: 3,
+      },
+      bestFor: "Balanced competitive games, disciplined young players, methodical systems, teams with strong coaching, clean execution",
+      worstFor: "Chaotic offensive systems, emotionally volatile players, teams requiring systematic advantages, pace-manipulation dependent styles",
+      notableGame: "Supporting Scott Foster in tonight's BOS-PHI Game 4, bringing clean balanced approach that maintains competitive flow while Foster controls primary grinding dynamics in elimination basketball."
+    },
+    {
+      name: "Nate Green",
+      number: 65,
+      experience: "6 years",
+      gamesThisSeason: 49,
+      tendencies: {
+        foulsPerGame: 39.4,
+        homeWinPct: 50,
+        avgPace: 1.1,
+        technicalFrequency: "Low",
+        overtimeGames: 2,
       },
       bestFor: "Athletic young teams, fast-break offenses, skilled perimeter play, pace-and-space systems, competitive showcases",
       worstFor: "Teams needing veteran-friendly whistles, grinding interior styles, systems dependent on systematic advantages, physical defensive schemes",
-      notableGame: "Supporting Kane Fitzgerald in tonight's HOU-LAL Game 1, providing pace-positive amplification that showcases both teams' athletic talent while maintaining competitive flow in series opener."
+      notableGame: "Supporting Kane Fitzgerald in tonight's DEN-MIN Game 5, providing pace-positive amplification that showcases both teams' athletic talent while maintaining competitive balance in elimination showdown."
     },
     {
-      name: "Rodney Mott",
-      number: 71,
-      experience: "29 years",
-      gamesThisSeason: 63,
+      name: "Ed Malloy",
+      number: 14,
+      experience: "23 years",
+      gamesThisSeason: 65,
       tendencies: {
-        foulsPerGame: 42.8,
-        homeWinPct: 49,
-        avgPace: 0.6,
-        technicalFrequency: "Average",
-        overtimeGames: 5,
+        foulsPerGame: 40.1,
+        homeWinPct: 48,
+        avgPace: 1.7,
+        technicalFrequency: "Low",
+        overtimeGames: 3,
       },
-      bestFor: "Veteran-led teams, methodical execution, balanced competitive environments, teams with strong coaching systems, experienced players",
-      worstFor: "Young chaotic offenses, teams requiring extreme pace manipulation, systems dependent on emotional energy, inexperienced playoff squads",
-      notableGame: "Supporting Kane Fitzgerald in tonight's HOU-LAL Game 1, bringing veteran stability and balanced approach that helps manage series-opening intensity while Fitzgerald controls primary showcase dynamics."
+      bestFor: "Athletic transition teams, road underdogs, pace-and-space offenses, skilled perimeter players, competitive balanced matchups",
+      worstFor: "Teams needing home-court whistle advantages, grinding defensive styles, interior-dependent offenses, systems requiring systematic help",
+      notableGame: "Recently officiated ORL-DET Game 4, bringing road-neutral showcase conditions that allowed Orlando's superior execution and momentum to nearly complete one of the biggest playoff upsets in NBA history without artificial home court interference."
     }
   ],
-  weeklyTrend: "Tuesday's playoff assignments reveal strategic officiating deployment designed to manage historic upset potential, series-evening desperation, and championship series openers through calculated referee tendency exploitation across multiple competitive scenarios. The Ed Malloy assignment to ORL-DET Game 4 represents the most significant neutral deployment, where his road-neutral approach (48%) and pace-positive tendencies (+1.7) create perfect showcase conditions for Orlando to complete one of the biggest playoff upsets in NBA history without artificial home court interference disrupting the Magic's momentum, making this assignment ideal for pure basketball execution determining whether Paolo Banchero's clutch gene can finish the shocking sweep. Malloy's assignment screams historic moment management as his clean whistle and pace acceleration allow superior talent and momentum to determine outcomes without systematic manipulation, creating exploitable value on Orlando +3.5 through neutralized home court advantages while the OVER 208.5 becomes premium through pace acceleration showcasing Banchero's explosive potential in series-clinching basketball. The Scott Foster assignment to TOR-CLE Game 2 brings his legendary grinding expertise to desperate swing-game dynamics where Cleveland faces a potential 0-2 deficit after Toronto's shocking road victory, with Foster's moderate home bias (54%) and whistle-heavy approach creating systematic advantages for Donovan Mitchell's championship response while disrupting the Raptors' balanced rhythm through foul trouble and pace manipulation in hostile Cleveland atmosphere, providing strong value on Cleveland -4.5 while his pace-negative impact makes the UNDER 210.5 premium through grinding execution favoring desperate home court basketball. The Kane Fitzgerald assignment to HOU-LAL delivers championship-level competitive balance where his moderate home bias (52%) and slight pace-positive impact (+0.4) create perfect series-opening conditions for LeBron James' playoff mastery against Houston's emerging talent, making Los Angeles -2.5 attractive through subtle systematic advantages while the OVER 221.5 becomes strong through accelerated pace showcasing both explosive offenses in competitive series-opening dynamics. The supporting crew selections strategically amplify these primary tendencies without creating officiating chaos, with Courtney Kirkland and Mitchell Ervin providing neutral pace-positive support around Malloy's showcase management, Sean Williams and Natalie Sago offering home bias amplification around Foster's grinding approach, and Pat Fraher and Rodney Mott complementing Fitzgerald's balanced competitive control. The broader assignment pattern shows calculated deployment where Malloy's neutrality allows historic upset completion through pure execution, Foster's grinding creates systematic home advantages for Cleveland's desperate response, and Fitzgerald's balance showcases championship-level talent in series-opening competitive dynamics. These assignments create clear betting value through predictable officiating impacts, particularly Malloy's neutralization of Detroit's home court desperation allowing Orlando's superior momentum to prevail, Foster's systematic amplification of Cleveland's grinding home advantages in swing-game dynamics, and Fitzgerald's balanced showcase acceleration of both elite offenses in competitive series-opening basketball, establishing systematic advantages that reward understanding referee tendency deployment in championship-defining playoff moments where historic upsets, series momentum, and championship series launches hang in the balance through strategic officiating management."
+  weeklyTrend: "Wednesday's playoff assignments reveal strategic officiating deployment designed to manage elimination desperation, series-clinching opportunities, and winner-take-all scenarios through calculated referee tendency exploitation across multiple high-stakes competitive dynamics. The Tony Brothers assignment to NYK-ATL Game 3 represents the most aggressive home bias deployment, where his extreme home favoritism (58%) and grinding whistle-heavy approach create systematic advantages for Atlanta's desperate elimination survival against New York's series-closing execution, making this assignment ideal for Hawks survival basketball through pace disruption and favorable whistle treatment that neutralizes the Knicks' athletic advantages while amplifying Trae Young's individual brilliance in hostile home atmosphere. Brothers' assignment screams desperation management as his grinding approach and technical frequency create emotional landmines for New York's veteran leadership while generating the systematic home advantages Atlanta needs to force Game 4, creating exploitable fade value on New York -4.5 through neutralized road execution while the UNDER 212.5 becomes premium through pace-grinding creating extended defensive possessions favoring Atlanta's halfcourt survival instincts. The Scott Foster assignment to BOS-PHI Game 4 brings his legendary grinding expertise to another elimination scenario where Philadelphia faces series defeat after Boston seized a 2-1 lead, with Foster's moderate home bias (54%) and whistle-heavy approach creating systematic advantages for Joel Embiid's interior dominance while disrupting Boston's championship rhythm through foul trouble and pace manipulation in desperate Philadelphia atmosphere, providing value on Philadelphia +3.5 while his pace-negative impact makes the UNDER 209.5 strong through grinding execution favoring Embiid's individual brilliance over Boston's systematic team advantages. The Kane Fitzgerald assignment to DEN-MIN Game 5 delivers championship-level competitive balance to the night's most pressure-packed winner-take-all scenario where both teams face season-ending stakes, with his moderate home bias (52%) and slight pace-positive impact (+0.4) creating perfect elimination game conditions for Anthony Edwards' explosive athleticism against Jamal Murray's championship experience, making Minnesota +2.5 attractive through subtle systematic advantages while the OVER 218.5 becomes strong through accelerated pace showcasing both explosive offenses in do-or-die competitive basketball. The supporting crew selections strategically amplify these primary tendencies without creating officiating chaos, with Lauren Holtkamp and Jacyn Goble providing additional home bias and pace-grinding around Brothers' Atlanta advantages, Bill Kennedy and Tre Maddox offering veteran stability around Foster's grinding approach, and Sean Williams and Nate Green complementing Fitzgerald's balanced elimination management. The broader assignment pattern shows calculated deployment where Brothers' extreme bias creates Atlanta's survival pathway through systematic home advantages, Foster's grinding generates Philadelphia's elimination response through interior-friendly officiating, and Fitzgerald's balance showcases elite talent in pure winner-take-all basketball. These assignments create clear betting value through predictable officiating impacts, particularly Brothers' systematic home bias making Atlanta +4.5 fade premium through pace disruption neutralizing New York's advantages, Foster's grinding approach providing Philadelphia +3.5 value through interior-friendly systematic advantages, and Fitzgerald's balanced showcase creating Minnesota +2.5 appeal through subtle home bias in elimination desperation, establishing systematic advantages that reward understanding referee tendency deployment in championship-defining playoff moments where elimination survival, series-closing execution, and winner-take-all dynamics hang in the balance through strategic officiating management designed to maximize competitive drama while maintaining predetermined systematic advantages."
 };

@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 29, 2026
+// Last updated: April 30, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,149 +33,193 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 29, 2026",
-  gameOfTheNight: "PHI-BOS-20260428",
+  date: "April 30, 2026",
+  gameOfTheNight: "ORL-DET-20260429",
   topClutchPerformer: { 
-    player: "Joel Embiid", 
-    team: "PHI", 
+    player: "Cade Cunningham", 
+    team: "DET", 
     clutchRating: 94, 
-    description: "Delivered when elimination loomed largest, scoring 12 fourth-quarter points to silence TD Garden and extend Philadelphia's season with a dominant road playoff performance."
+    description: "Scored 12 points in the final 6 minutes with three crucial assists to stave off elimination" 
   },
   games: [
     {
-      gameId: "PHI-BOS-20260428",
-      teams: { home: "BOS", away: "PHI" },
-      finalScore: { home: 97, away: 113 },
+      gameId: "ORL-DET-20260429",
+      teams: { home: "DET", away: "ORL" },
+      finalScore: { home: 116, away: 109 },
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:32",
-          description: "Embiid scores 8 straight points with two thunderous dunks to stun the TD Garden crowd early",
-          runScore: "8-0",
+          timestamp: "8:24",
+          description: "Orlando opened with a devastating 12-2 run, looking to complete the historic sweep on the road",
+          runScore: "12-2 ORL",
           momentum: "away",
-          keyPlayer: "Joel Embiid",
+          keyPlayer: "Paolo Banchero",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "4:15",
-          description: "Tatum responds with back-to-back threes as Celtics fight back to tie the game",
-          runScore: "9-2",
+          timestamp: "4:17",
+          description: "Little Caesars Arena erupted as Detroit answered with 18-4 surge, Cunningham orchestrating every possession",
+          runScore: "18-4 DET",
           momentum: "home",
-          keyPlayer: "Jayson Tatum",
-          impact: "notable"
+          keyPlayer: "Cade Cunningham",
+          impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "8:44",
-          description: "Philadelphia explodes with a devastating 18-4 run to break the game wide open",
-          runScore: "18-4",
+          timestamp: "2:45",
+          description: "Magic regained control with suffocating defense, forcing six straight Detroit turnovers",
+          runScore: "15-5 ORL",
           momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "6:28",
-          description: "Embiid's dominant post display completely shuts down any Boston comeback hopes",
-          runScore: "12-3",
-          momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Joel Embiid delivered the performance of his playoff career when facing elimination, completely dismantling the Celtics' defense with surgical precision and brute force. The big man's dominance in the paint turned TD Garden from a raucous home advantage into a stunned silence as Philadelphia controlled every meaningful possession down the stretch. This was the kind of transcendent individual performance that legends are built upon, proving that elite talent can overcome any deficit when backed against the wall. The Sixers' stunning road victory has completely shifted the series dynamics and left Boston questioning everything they thought they knew about this matchup."
-    },
-    {
-      gameId: "ATL-NYK-20260428",
-      teams: { home: "NYK", away: "ATL" },
-      finalScore: { home: 126, away: 97 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "9:12",
-          description: "Brunson opens with 11 points in first five minutes as Madison Square Garden erupts",
-          runScore: "15-4",
-          momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Franz Wagner",
           impact: "significant"
         },
         {
-          quarter: "2nd",
+          quarter: "4th",
+          timestamp: "6:12",
+          description: "Cunningham took over completely, scoring or assisting on 14 straight Detroit points in elimination-saving rally",
+          runScore: "14-3 DET",
+          momentum: "home",
+          keyPlayer: "Cade Cunningham",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Cade Cunningham",
+          team: "DET",
+          description: "Step-back three over two defenders to extend lead to 7",
+          timeRemaining: "3:42",
+          winProbabilityShift: 18.5
+        },
+        {
+          player: "Paolo Banchero",
+          team: "ORL",
+          description: "And-1 finish through contact to cut deficit to 4",
+          timeRemaining: "2:18",
+          winProbabilityShift: -12.3
+        },
+        {
+          player: "Cade Cunningham",
+          team: "DET",
+          description: "Perfect assist to open Isaiah Stewart for dagger dunk",
+          timeRemaining: "1:07",
+          winProbabilityShift: 22.1
+        }
+      ],
+      narrative: "Detroit delivered the most emotionally charged performance of the playoffs, with Cade Cunningham playing like a superstar in his elimination game moment. The Little Caesars Arena crowd created an atmosphere that seemed to lift the Pistons above their capabilities, turning what looked like inevitable disappointment into playoff magic. Orlando showed championship-level composure even in defeat, but couldn't quite close the door on a desperate Detroit team fighting for survival. This was playoff basketball at its most dramatic - raw emotion meets elite execution."
+    },
+    {
+      gameId: "TOR-CLE-20260429",
+      teams: { home: "CLE", away: "TOR" },
+      finalScore: { home: 125, away: 120 },
+      swings: [
+        {
+          quarter: "1st",
           timestamp: "6:33",
-          description: "Young briefly rallies Atlanta with three consecutive assists and a deep three",
-          runScore: "8-2",
+          description: "Toronto's ball movement was poetry in motion, finding open looks with precision passing for early 14-4 advantage",
+          runScore: "14-4 TOR",
           momentum: "away",
-          keyPlayer: "Trae Young",
+          keyPlayer: "Pascal Siakam",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "2:47",
-          description: "Knicks close the half with a suffocating 16-2 run that breaks Atlanta's spirit",
-          runScore: "16-2",
+          timestamp: "9:15",
+          description: "Mitchell caught fire from deep, hitting four threes in five minutes to flip the script completely",
+          runScore: "16-6 CLE",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Donovan Mitchell",
           impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "5:21",
-          description: "New York's balanced attack extends lead to 30+ points with relentless ball movement",
-          runScore: "14-3",
+          timestamp: "1:28",
+          description: "Raptors responded with their own three-point barrage, Siakam and Barnes combining for 12 straight points",
+          runScore: "12-2 TOR",
+          momentum: "away",
+          keyPlayer: "Pascal Siakam",
+          impact: "significant"
+        },
+        {
+          quarter: "4th",
+          timestamp: "7:45",
+          description: "Cleveland's defense finally locked in, forcing five consecutive Toronto misses while Mitchell stayed scorching hot",
+          runScore: "13-0 CLE",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Donovan Mitchell",
           impact: "game-changing"
         }
       ],
-      clutchPlays: [],
-      narrative: "Jalen Brunson orchestrated a playoff masterpiece that transformed Madison Square Garden into an absolute cauldron of championship dreams and playoff euphoria. The Knicks' offensive execution was surgical in its precision, with Brunson's leadership setting the tone for a complete team performance that left Atlanta searching for answers. New York's suffocating defense and balanced scoring attack created the kind of playoff atmosphere that MSG is legendary for, with every possession feeling like a statement about their championship aspirations. The Hawks now face the daunting reality that they're completely outmatched by a Knicks team that looks ready to make a serious playoff run."
+      clutchPlays: [
+        {
+          player: "Donovan Mitchell",
+          team: "CLE",
+          description: "Contested pull-up three from 28 feet to push lead to 8",
+          timeRemaining: "4:23",
+          winProbabilityShift: 16.7
+        },
+        {
+          player: "Scottie Barnes",
+          team: "TOR",
+          description: "Steal and transition dunk to cut deficit to 3",
+          timeRemaining: "2:45",
+          winProbabilityShift: -14.2
+        },
+        {
+          player: "Donovan Mitchell",
+          team: "CLE",
+          description: "Drive and dish to Mobley for critical basket",
+          timeRemaining: "1:33",
+          winProbabilityShift: 11.8
+        }
+      ],
+      narrative: "Donovan Mitchell reminded everyone why Cleveland traded for him, delivering a masterclass in playoff scoring that had Rocket Arena rocking from start to finish. This was the kind of back-and-forth battle that makes the NBA playoffs appointment television, with both teams trading haymakers like heavyweight boxers. Toronto showed they won't go quietly, but Mitchell's individual brilliance might be the difference-maker Cleveland needs to make a deep run. The series is now perfectly positioned for an epic seven-game war."
     },
     {
-      gameId: "POR-SAS-20260428",
-      teams: { home: "SAS", away: "POR" },
-      finalScore: { home: 114, away: 95 },
+      gameId: "HOU-LAL-20260429",
+      teams: { home: "LAL", away: "HOU" },
+      finalScore: { home: 93, away: 99 },
       swings: [
         {
           quarter: "1st",
-          timestamp: "8:45",
-          description: "Wembanyama announces his presence with three consecutive blocks and a transition dunk",
-          runScore: "10-2",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+          timestamp: "7:42",
+          description: "Sengun dominated the paint early, scoring 8 straight points while Lakers looked sluggish and unprepared",
+          runScore: "10-2 HOU",
+          momentum: "away",
+          keyPlayer: "Alperen Sengun",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "7:18",
-          description: "Lillard heats up with back-to-back deep threes to keep Portland competitive",
-          runScore: "8-0",
-          momentum: "away",
-          keyPlayer: "Damian Lillard",
+          timestamp: "5:21",
+          description: "Lakers veterans finally woke up, LeBron and AD combining for 12 points to briefly seize control at crypto.com",
+          runScore: "12-4 LAL",
+          momentum: "home",
+          keyPlayer: "LeBron James",
           impact: "notable"
         },
         {
           quarter: "3rd",
-          timestamp: "4:52",
-          description: "Wembanyama's otherworldly sequence of blocks, assists, and scoring breaks the game open",
-          runScore: "17-4",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+          timestamp: "3:18",
+          description: "Houston's youth movement exploded, Reed and Thompson scoring 11 straight as Lakers' defense crumbled",
+          runScore: "15-4 HOU",
+          momentum: "away",
+          keyPlayer: "Jalen Green",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "9:33",
-          description: "San Antonio cruises as Wembanyama showcases complete two-way dominance",
-          runScore: "12-3",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+          timestamp: "8:33",
+          description: "Sengun took over completely, scoring and facilitating as Houston pulled away from a deflated Lakers squad",
+          runScore: "11-3 HOU",
+          momentum: "away",
+          keyPlayer: "Alperen Sengun",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "Victor Wembanyama delivered a coming-of-age playoff performance that announced his arrival as a legitimate championship centerpiece with breathtaking two-way brilliance. The generational talent's combination of rim protection, offensive versatility, and court vision was simply too much for Portland to handle, creating the kind of talent disparity that decides playoff series. San Antonio's Frost Bank Center witnessed something truly special as Wembanyama showcased why he's already being mentioned alongside the game's greatest big men despite his youth. The Spurs now look like legitimate title contenders with their franchise player hitting his playoff stride at the perfect moment, while Portland faces the harsh reality of being completely overmatched."
+      narrative: "The changing of the guard happened in real-time at crypto.com Arena, with Houston's young core outplaying LeBron James and the Lakers when it mattered most. Alperen Sengun looked like a future All-Star, completely controlling both ends while LeBron appeared every bit of his 41 years in crucial moments. This wasn't just a Game 1 loss for the Lakers - it was a glimpse of their championship window potentially slamming shut. Houston's confidence will only grow after stealing homecourt from a Lakers team that suddenly looks vulnerable and old."
     }
   ]
 };

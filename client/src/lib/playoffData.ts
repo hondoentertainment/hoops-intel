@@ -58,22 +58,6 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E1-SA-POR",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "SA",
-    lowerTeam: "POR",
-    higherWins: 1,
-    lowerWins: 0,
-    status: "active",
-    summary: "SA leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-04-28", homeTeam: "SA", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN" }
-    ],
-  },
-  {
     seriesId: "E1-OKC-PHX",
     conference: "east",
     round: "first-round",
@@ -183,6 +167,22 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "Series tied 0-0",
     games: [
       { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+    ],
+  },
+  {
+    seriesId: "E1-SA-POR",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "SA",
+    lowerTeam: "POR",
+    higherWins: 1,
+    lowerWins: 0,
+    status: "active",
+    summary: "SA leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-04-28", homeTeam: "SA", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN" }
     ],
   }
 ];

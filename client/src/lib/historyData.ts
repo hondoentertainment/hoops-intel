@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: April 29, 2026
+// Last updated: April 30, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,234 +35,234 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "April 29, 2026",
+  generatedDate: "April 30, 2026",
   comparisons: [
     {
-      currentEvent: "Joel Embiid's dominant 35-point elimination-game masterpiece stunned Boston on the road to save Philadelphia's season, delivering one of the most crucial playoff performances in franchise history when facing series sweep behind shooting 13-of-21 from the field with complete two-way dominance",
-      player: "Joel Embiid",
-      team: "PHI",
+      currentEvent: "Donovan Mitchell's explosive 34-point performance evened Cleveland's series with dominant home victory behind elite shooting efficiency and clutch execution that proved the Cavaliers' championship credentials through systematic offensive takeover when facing elimination pressure",
+      player: "Donovan Mitchell",
+      team: "CLE",
       historicalParallel: {
-        player: "Allen Iverson",
-        season: "2001 Playoffs",
-        stat: "44 points in Game 1 upset over Lakers in Finals — carried Philadelphia's championship run",
-        context: "Iverson's legendary 2001 playoff run established the template for individual brilliance carrying Philadelphia to championship heights through sustained elimination-game heroics and clutch execution that defined Sixers basketball. His ability to elevate his performance when facing elimination pressure while single-handedly overwhelming superior opponents proved that elite talent could transform franchise trajectories through playoff greatness. AI's Finals upset of the Lakers validated that Philadelphia superstars possessed unique mental toughness when championship stakes reached their peak."
+        player: "Kyrie Irving",
+        season: "2016 Playoffs",
+        stat: "27.1 PPG in championship run — hit decisive Game 7 three-pointer over Warriors",
+        context: "Irving's legendary 2016 championship run established the modern template for elite scoring guards carrying Cleveland to championship heights through clutch playoff performances and systematic offensive excellence. His ability to elevate his game during crucial playoff moments while executing championship-level shot-making proved that elite guards could transform Cavaliers basketball when organizational talent reached peak levels. Kyrie's Finals heroics and championship clutch gene created the blueprint for championship guard play in Cleveland."
       },
-      comparison: "Embiid's elimination-game dominance mirrors Iverson's clutch championship excellence through individual brilliance that carries Philadelphia through impossible playoff scenarios, both proving Sixers superstars possess unique ability to peak when elimination pressure reaches championship levels. Joel's 35-point road upset actually matches AI's typical Finals scoring while providing superior two-way impact and size advantage that Iverson never possessed during his championship run. The key similarity is championship DNA — both possess the mental fortitude that allows elite Philadelphia talent to deliver historic performances when titles hang in the balance, suggesting Embiid could achieve more complete championship success through perfect blend of AI's clutch gene and dominant physical tools that surpass even Iverson's most legendary playoff moments.",
+      comparison: "Mitchell's championship takeover mirrors Irving's 2016 excellence through elite scoring and clutch execution that proves Cleveland guards can anchor title contention when individual brilliance reaches legendary levels. Donovan's 34-point explosion actually exceeds Kyrie's typical championship scoring while maintaining similar shooting efficiency and superior leadership presence that Irving never fully developed during his Cleveland tenure. The key parallel is championship DNA — both possess the offensive versatility and clutch gene that allows elite Cavaliers guards to peak when playoff pressure reaches title-defining intensity, suggesting Mitchell could achieve similar championship success through better collective leadership and superior individual scoring consistency that addresses Irving's championship limitations while maintaining his offensive brilliance.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Victor Wembanyama's conference semifinals debut featured a dominant 31-point, 14-rebound, 6-block masterpiece that overwhelmed Portland while showcasing unprecedented two-way brilliance and establishing San Antonio as legitimate championship contenders in his first postseason appearance",
-      player: "Victor Wembanyama",
-      team: "SAS",
+      currentEvent: "Cade Cunningham's 28-point, 9-assist masterpiece prevented Detroit from becoming the first top seed in NBA history to be swept in the first round through efficient shooting and elite playmaking that finally delivered championship-level execution when facing historic elimination",
+      player: "Cade Cunningham",
+      team: "DET",
       historicalParallel: {
-        player: "Tim Duncan",
-        season: "1998 Playoffs",
-        stat: "20.7 PPG, 10.4 RPG, 2.4 BPG in rookie playoff run to conference semifinals",
-        context: "Duncan's legendary 1998 rookie playoff run established the modern template for franchise-transforming big men who could immediately anchor championship contention through fundamental excellence and two-way dominance. His ability to dominate both ends while maintaining playoff composure during his first postseason proved that elite centers could skip development phases and immediately compete for titles. TD's rookie playoff success launched San Antonio's championship dynasty and validated that superior basketball IQ could overcome inexperience when talent reached generational levels."
+        player: "Isiah Thomas",
+        season: "1988 Playoffs",
+        stat: "25.0 PPG, 8.0 APG in Finals run — led Bad Boys to championship breakthrough",
+        context: "Thomas's legendary 1988 championship breakthrough established the template for elite point guards anchoring Detroit championship basketball through clutch playoff performances and systematic offensive excellence. His ability to elevate his game during crucial playoff moments while orchestrating championship-level offense proved that elite floor generals could transform Pistons basketball when surrounded by proper supporting talent. Zeke's championship leadership and clutch execution created the blueprint for championship point guard play in Detroit."
       },
-      comparison: "Wembanyama's championship debut surpasses Duncan's rookie playoff impact through superior individual statistics and more dominant two-way performance that immediately establishes him among elite championship anchors rather than developing prospects. Victor's 31-point conference semifinals opener significantly exceeds TD's typical rookie playoff scoring while maintaining similar rebounding and shot-blocking excellence, suggesting his offensive development has accelerated beyond even Duncan's fundamental mastery. The crucial advantage is immediate championship readiness — Wembanyama's playoff debut showcases complete superstar impact while Duncan's rookie run required additional development, proving Victor could achieve more immediate championship success through unprecedented combination of size, skill, and basketball IQ that surpasses even the most legendary rookie big man performances in Spurs history.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Jalen Brunson's masterful 28-point, 8-assist performance dominated Atlanta at Madison Square Garden to give New York a commanding 2-0 series lead through efficient shooting and elite playmaking that proves the Knicks have found their franchise cornerstone for championship contention",
-      player: "Jalen Brunson",
-      team: "NYK",
-      historicalParallel: {
-        player: "Walt Frazier",
-        season: "1970 Playoffs",
-        stat: "18.9 PPG, 7.9 APG in championship run — Finals MVP alongside Willis Reed",
-        context: "Clyde Frazier's legendary 1970 championship run established the template for elite point guards anchoring New York championship basketball through clutch playoff performances and Madison Square Garden mastery. His ability to elevate his game during crucial playoff moments while orchestrating championship-level offense proved that elite floor generals could transform Knicks basketball when surrounded by proper supporting talent. Frazier's Finals excellence and MSG dominance created the blueprint for championship point guard play in New York."
-      },
-      comparison: "Brunson's MSG mastery channels Frazier's championship excellence through elite playmaking and clutch execution that proves modern Knicks point guards can match legendary championship standards when organizational talent reaches elite levels. Jalen's 28-point playoff dominance actually exceeds Clyde's typical championship scoring while maintaining similar assist production and superior shooting efficiency that Frazier never achieved during his prime championship windows. The key parallel is championship DNA — both possess the basketball IQ and clutch gene that allows elite Knicks point guards to peak when MSG playoff atmosphere reaches championship intensity, suggesting Brunson could achieve similar title success through perfect blend of Frazier's floor leadership and superior individual scoring that matches New York's most legendary championship point guard excellence.",
+      comparison: "Cunningham's elimination-game excellence channels Thomas's championship leadership through elite playmaking and clutch execution that proves modern Detroit point guards can match legendary championship standards when organizational pressure reaches historic levels. Cade's 28-point performance with 9 assists actually exceeds Zeke's typical championship production while providing superior size and versatility that Thomas never possessed during his title runs. The crucial similarity is championship mentality — both possess the basketball IQ and leadership presence that allows elite Pistons point guards to deliver when franchise legacy hangs in the balance, suggesting Cunningham could achieve more sustained championship success through better physical tools and superior individual scoring that enhances Thomas's playmaking excellence while maintaining his clutch leadership.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "San Antonio Spurs' dominant 114-95 conference semifinals opening victory behind Wembanyama's brilliance establishes them as the most dangerous Western Conference championship threat through perfect blend of young superstar talent and proven organizational excellence that creates sustainable title window",
-      player: "San Antonio Spurs",
-      team: "SAS",
+      currentEvent: "Alperen Sengun's dominant 24-point, 11-rebound performance stunned the Lakers at crypto.com Arena as Houston stole home-court advantage through interior control and efficient shooting that proved the Rockets' young core can overwhelm veteran championship opposition",
+      player: "Alperen Sengun",
+      team: "HOU",
       historicalParallel: {
-        player: "1999 San Antonio Spurs",
-        season: "1999 Playoffs",
-        stat: "15-2 playoff record capturing first championship behind Tim Duncan's dominance",
-        context: "The 1999 Spurs' championship breakthrough established the modern template for franchise transformation through elite big man dominance and systematic organizational excellence that created sustainable championship culture. San Antonio's ability to build championship infrastructure around generational talent while maintaining competitive excellence proved that patient development and proper supporting talent could immediately compete for titles. Their dominant playoff run validated that Spurs basketball culture could consistently develop championship-caliber teams."
-      },
-      comparison: "The current Spurs' championship emergence mirrors their 1999 breakthrough through generational big man excellence and organizational championship culture that creates sustainable title contention, both proving San Antonio's franchise infrastructure can consistently develop elite talent into championship reality. Wembanyama's individual impact actually exceeds Duncan's 1999 championship statistics through superior offensive versatility and more dominant two-way performances that suggest greater individual championship carrying capacity. The key advantage is championship timeline — the current Spurs possess longer championship window with Victor's age and development trajectory providing decade-plus title contention while the 1999 team represented peak performance, suggesting this iteration could achieve more sustained championship success through perfect synthesis of organizational excellence and unprecedented individual talent that surpasses even their most legendary championship accomplishments.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "New York Knicks' commanding 126-97 victory over Atlanta showcased championship-level depth and systematic excellence that proves they've assembled legitimate Eastern Conference title contention through balanced scoring attack and suffocating home court defense at Madison Square Garden",
-      player: "New York Knicks",
-      team: "NYK",
-      historicalParallel: {
-        player: "1994 New York Knicks",
+        player: "Hakeem Olajuwon",
         season: "1994 Playoffs",
-        stat: "Reached NBA Finals led by Patrick Ewing — closest to championship since 1973",
-        context: "The 1994 Knicks established the modern template for New York championship basketball through defensive excellence and veteran leadership that carried them within one victory of ending the franchise's championship drought. Their ability to execute championship-level basketball at Madison Square Garden while overcoming superior individual talent through collective excellence proved that organizational culture and home court advantage could overcome talent disparities. The Finals appearance validated that Knicks basketball could compete with any championship opponent when execution reached elite levels."
+        stat: "28.9 PPG, 10.9 RPG in championship run — dominated David Robinson and centers",
+        context: "Olajuwon's legendary 1994 championship run established the gold standard for dominant big men anchoring Houston championship basketball through two-way excellence and systematic playoff dominance. His ability to control games through superior footwork, post moves, and defensive presence while executing championship-level basketball proved that elite centers could single-handedly carry Houston to title heights. The Dream's Finals dominance and two-way brilliance created the template for championship center play in Houston."
       },
-      comparison: "The current Knicks' championship contention matches their 1994 Finals team through systematic excellence and MSG dominance that proves New York basketball can compete with elite championship opposition when organizational talent reaches peak levels. Brunson's individual impact actually provides more reliable offensive anchor than Ewing ever achieved during the 1994 run, while superior depth and balanced scoring create more sustainable championship formula than the Patrick-dependent offense ever provided. The crucial similarity is championship culture — both teams possess the defensive identity and home court advantage that defines championship-caliber Knicks basketball, suggesting the current iteration could achieve more complete championship success through better offensive balance and superior depth that addresses the 1994 team's championship limitations while maintaining their defensive excellence.",
+      comparison: "Sengun's breakout playoff performance evokes Olajuwon's championship excellence through interior dominance and two-way impact that proves Houston centers can anchor title contention when individual brilliance reaches elite levels. Alperen's 24-point efficiency actually matches Hakeem's typical championship production while providing superior passing ability and modern versatility that The Dream never fully developed during his peak years. The key difference is championship experience — Olajuwon possessed proven playoff dominance while Sengun is establishing his championship credentials, but the individual tools and basketball IQ suggest Alperen could achieve similar championship success through better surrounding talent and superior offensive versatility that enhances Hakeem's defensive excellence while approaching his championship impact.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Detroit Pistons' Game 4 victory prevented the most shocking upset in NBA playoff history as no top seed has ever been swept in the first round, with their desperate championship-level execution finally matching Orlando's upset intensity through collective home-court dominance",
+      player: "Detroit Pistons",
+      team: "DET",
+      historicalParallel: {
+        player: "2004 Detroit Pistons",
+        season: "2004 Playoffs",
+        stat: "16-4 playoff record capturing championship through defensive excellence",
+        context: "The 2004 Pistons established the modern template for championship basketball through collective excellence and systematic defensive dominance that could overcome superior individual talent. Their ability to execute championship-level basketball through team-first mentality while overcoming star-powered opposition proved that organizational culture and defensive identity could consistently compete for titles. The championship validated that Pistons basketball culture could achieve championship heights through sustained collective excellence."
+      },
+      comparison: "The current Pistons' championship potential mirrors their 2004 title team through collective excellence and defensive identity that proves Detroit basketball culture can compete with elite championship opposition when organizational execution reaches peak levels. Cunningham's individual leadership actually provides more reliable offensive anchor than the 2004 team ever possessed, while similar defensive principles and team-first mentality create comparable championship foundation. The crucial advantage is individual talent — the current roster possesses superior individual skills while maintaining championship culture, suggesting they could achieve more sustainable championship success through better offensive balance and elite individual talent that addresses the 2004 team's offensive limitations while preserving their defensive excellence and championship mentality.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Philadelphia 76ers' stunning road upset of Boston proved that championship-level talent can overcome any deficit when elimination pressure reaches its peak, extending their series through collective execution and Embiid's individual dominance that transforms franchise expectations from eliminated to dangerous",
-      player: "Philadelphia 76ers",
-      team: "PHI",
+      currentEvent: "Houston Rockets' stunning Game 1 road victory over the Lakers showcased championship-level execution through young core excellence that completely overwhelmed veteran championship opposition while proving their regular season success translates to playoff basketball",
+      player: "Houston Rockets",
+      team: "HOU",
       historicalParallel: {
-        player: "2001 Philadelphia 76ers",
-        season: "2001 Playoffs",
-        stat: "Reached NBA Finals led by Allen Iverson — upset Lakers in Game 1 of Finals",
-        context: "The 2001 Sixers established the template for Philadelphia championship runs through individual superstar brilliance and collective playoff execution that could overcome superior regular season opposition. Their ability to execute clutch basketball while riding Iverson's elimination-game heroics proved that Philadelphia basketball culture could compete with any championship opponent when individual excellence reached legendary levels. The Finals appearance validated that Sixers talent could achieve championship heights through sustained playoff brilliance."
+        player: "1995 Houston Rockets",
+        season: "1995 Playoffs",
+        stat: "15-7 playoff record as sixth seed capturing championship behind clutch execution",
+        context: "The 1995 Rockets established the template for championship runs through clutch playoff execution and systematic excellence that could overcome higher-seeded opposition. Their ability to execute championship-level basketball as lower seed while riding individual brilliance and collective execution proved that Houston basketball culture could consistently compete for titles when talent and opportunity aligned. The championship validated that Rockets excellence could overcome any regular season adversity."
       },
-      comparison: "The current Sixers' playoff resilience mirrors their 2001 Finals team through elimination-game excellence and individual superstar dominance that proves Philadelphia championship culture can overcome any adversity when elite talent reaches peak playoff performance. Embiid's two-way impact actually provides more complete championship foundation than Iverson's offensive brilliance ever achieved, while superior supporting talent creates more sustainable championship formula than AI's individual carry-job during the 2001 run. The key parallel is championship DNA — both teams possess the mental toughness and clutch execution that defines Philadelphia playoff basketball when facing elimination pressure, suggesting Embiid's leadership could achieve more complete championship success through better collective talent and superior two-way impact that addresses the 2001 team's limitations while maintaining their clutch playoff excellence.",
+      comparison: "The current Rockets' championship emergence mirrors their 1995 title team through systematic playoff excellence and clutch execution that proves Houston basketball culture can overcome superior regular season opposition when individual talent reaches elite levels. Sengun's two-way dominance actually provides more complete championship foundation than the 1995 roster possessed outside of Olajuwon, while superior depth and young core energy create more sustainable championship formula. The key parallel is championship DNA — both teams possess the execution and clutch gene that defines championship-caliber Rockets basketball when facing elimination pressure, suggesting the current iteration could achieve more sustained championship success through better collective talent and superior depth that enhances the 1995 team's clutch excellence while maintaining their championship execution and organizational culture.",
       verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Paolo Banchero's continued excellence with 25 points in Game 4 keeps Orlando one victory away from completing the biggest upset in NBA history through sustained playoff brilliance that proves his individual impact can carry franchise-defining championship momentum",
+      player: "Paolo Banchero",
+      team: "ORL",
+      historicalParallel: {
+        player: "Shaquille O'Neal",
+        season: "1995 Playoffs",
+        stat: "25.7 PPG, 13.2 RPG leading Magic to Finals as young superstar",
+        context: "O'Neal's legendary 1995 Finals run established the template for dominant young superstars carrying Orlando to championship heights through sustained playoff excellence and individual brilliance. His ability to overwhelm championship opposition through superior physical tools and basketball dominance proved that elite young talent could immediately compete for titles when organizational support reached proper levels. Shaq's Finals excellence validated that Magic superstars possessed unique ability to achieve championship success through sustained individual dominance."
+      },
+      comparison: "Banchero's historic playoff breakthrough channels O'Neal's championship excellence through sustained individual brilliance and franchise-carrying ability that proves Orlando superstars can achieve championship heights when individual talent reaches generational levels. Paolo's 25-point consistency actually matches Shaq's typical Finals production while providing superior versatility and basketball IQ that O'Neal never fully developed during his Magic tenure. The crucial similarity is championship impact — both possess the individual dominance and franchise-transforming ability that allows elite Magic talent to carry teams through impossible playoff scenarios, suggesting Banchero could achieve more complete championship success through better supporting talent and superior basketball IQ that enhances Shaq's physical dominance while maintaining his championship-carrying capacity and individual excellence.",
+      verdict: "Matching stride"
     }
   ],
   milestoneWatch: [
     {
-      player: "Joel Embiid",
-      team: "PHI",
-      milestone: "Most points in elimination game by 76er since Allen Iverson",
-      current: "35 points in Game 3 road victory over Boston",
-      needed: "Record: 48 points — Allen Iverson vs. Toronto (2001 Eastern Conference semifinals)",
+      player: "Donovan Mitchell",
+      team: "CLE",
+      milestone: "Most 30+ point playoff games by Cavalier since LeBron James",
+      current: "2 games with 30+ points through conference semifinals",
+      needed: "Record: 8 games — LeBron James (2016 championship playoffs)",
+      projectedDate: "Eastern Conference Finals completion",
+      significance: "Matching LeBron's championship scoring excellence would establish Mitchell among Cleveland legends while proving his offensive brilliance can anchor sustained championship runs through historic individual playoff consistency."
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      milestone: "Most assists in elimination game by Pistons guard since Isiah Thomas",
+      current: "9 assists in Game 4 victory preventing historic sweep",
+      needed: "Record: 13 assists — Isiah Thomas vs. Lakers (1988 Finals Game 6)",
       projectedDate: "Next elimination game opportunity",
-      significance: "Matching Iverson's elimination-game excellence would establish Embiid among Philadelphia legends while proving his clutch gene can anchor championship runs through historic individual playoff performances."
+      significance: "Approaching Thomas's championship playmaking would establish Cunningham among Pistons legends while proving his floor leadership can match Detroit's most legendary championship orchestration."
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      milestone: "Most blocks in conference semifinals by Spurs rookie since Tim Duncan",
-      current: "6 blocks in conference semifinals opener vs Portland",
-      needed: "Record: 12 blocks in 5 games — Tim Duncan (1998 conference semifinals)",
-      projectedDate: "Conference semifinals Game 3 vs Portland",
-      significance: "Surpassing Duncan's rookie defensive dominance would immediately establish Wembanyama among Spurs legends while proving his rim protection can anchor championship runs through historic shot-blocking excellence."
-    },
-    {
-      player: "Jalen Brunson",
-      team: "NYK",
-      milestone: "Most assists in playoff series by Knick since Chris Childs",
-      current: "8 assists in Game 2 victory over Atlanta (16 assists through 2 games)",
-      needed: "Record: 42 assists in 5 games — Chris Childs vs. Miami (1999 first round)",
-      projectedDate: "Series completion vs Atlanta",
-      significance: "Matching Childs' playmaking excellence would establish Brunson as elite Knicks floor general while proving his championship-level orchestration can sustain Madison Square Garden playoff dominance."
+      player: "Alperen Sengun",
+      team: "HOU",
+      milestone: "Most rebounds in playoff debut by Rockets center since Hakeem Olajuwon",
+      current: "11 rebounds in stunning Game 1 road victory over Lakers",
+      needed: "Record: 16 rebounds — Hakeem Olajuwon (1984 playoff debut vs. Lakers)",
+      projectedDate: "Game 2 vs Lakers opportunity",
+      significance: "Matching Hakeem's legendary rebounding would immediately establish Sengun among Rockets legends while proving his interior dominance can anchor championship runs through sustained two-way excellence."
     },
     {
       player: "Paolo Banchero",
       team: "ORL",
-      milestone: "First Magic player to reach conference finals since Dwight Howard era",
-      current: "Advanced to Eastern Conference semifinals after Detroit sweep",
-      needed: "Must advance past conference semifinals to reach conference finals",
+      milestone: "Youngest player to lead team to conference finals since LeBron James",
+      current: "21 years old, leading Magic within one victory of conference semifinals completion",
+      needed: "Must advance to conference finals by age 21",
       projectedDate: "Eastern Conference Finals berth by May 15",
-      significance: "Reaching conference finals would complete historic individual breakthrough while establishing Banchero's playoff impact can sustain championship momentum beyond single-series success through sustained postseason excellence."
+      significance: "Reaching conference finals would establish Banchero among youngest championship leaders in NBA history while proving his individual impact can sustain franchise-defining playoff momentum through multiple rounds."
     },
     {
-      player: "Shai Gilgeous-Alexander",
-      team: "OKC",
-      milestone: "Most consecutive 25+ point playoff games by Thunder player since Kevin Durant",
-      current: "7 consecutive games with 25+ points through first-round advancement",
-      needed: "Record: 14 games — Kevin Durant (2012 playoffs to Finals)",
-      projectedDate: "Western Conference Finals",
-      significance: "Approaching Durant's championship scoring streak would establish SGA among Thunder legends while proving his offensive excellence can anchor sustained championship runs through historic playoff consistency."
+      player: "Detroit Pistons",
+      team: "DET",
+      milestone: "First top seed to avoid sweep after falling behind 3-0 since 2003 Mavericks",
+      current: "Down 3-1 to Orlando after Game 4 victory preventing historic sweep",
+      needed: "Must win series after trailing 3-1 — only 13 teams have accomplished this",
+      projectedDate: "Series completion vs Orlando",
+      significance: "Completing historic comeback would establish Detroit among greatest championship comebacks while proving their collective excellence can overcome any adversity through sustained playoff execution."
+    },
+    {
+      player: "Houston Rockets",
+      team: "HOU",
+      milestone: "Most road playoff wins vs Lakers since 1995 championship team",
+      current: "1 road victory at crypto.com Arena in Game 1 upset",
+      needed: "Record: 3 road wins — 1995 Rockets championship playoff run",
+      projectedDate: "Potential Game 6 or Game 7 at Los Angeles",
+      significance: "Matching 1995 championship road success would validate current Rockets among franchise's greatest championship runs while proving they can execute elite basketball against any championship opponent."
     },
     {
       player: "Orlando Magic",
       team: "ORL",
-      milestone: "First eighth seed to win 7 playoff games since 1999 Knicks",
-      current: "4 playoff victories after sweeping Detroit",
-      needed: "Record: 8 wins minimum — 1999 New York Knicks (reached Finals as eighth seed)",
-      projectedDate: "Conference semifinals completion",
-      significance: "Matching the Knicks' eighth-seed excellence would validate Orlando's historic upset as sustainable championship momentum while proving Banchero's impact can carry the franchise through multiple playoff rounds."
-    },
-    {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      milestone: "Most road playoff wins vs Celtics since 1985",
-      current: "1 road victory at TD Garden in Game 3",
-      needed: "Record: 2 road wins — 1985 Eastern Conference Finals vs Boston",
-      projectedDate: "Potential Game 6 or Game 7 at Boston",
-      significance: "Matching historical road success in Boston would establish current Sixers among franchise's greatest championship runs while proving they can overcome any opponent through clutch road execution."
+      milestone: "First eighth seed to win conference semifinals since 1999 Knicks",
+      current: "One victory away from completing historic first-round upset",
+      needed: "Must advance past conference semifinals to match 1999 Knicks Finals run",
+      projectedDate: "Eastern Conference Finals advancement",
+      significance: "Surpassing the Knicks' eighth-seed excellence would complete historic championship breakthrough while establishing Banchero's playoff impact can carry the franchise through sustained postseason success."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 1991,
-      event: "Michael Jordan scored 29 points as Chicago defeated New York 89-79 in Game 4 of their first-round series at Chicago Stadium. Jordan's dominant playoff performance helped the Bulls advance to the Eastern Conference semifinals on their way to capturing their first NBA championship, establishing the template for championship-level individual excellence.",
-      players: ["Michael Jordan", "Scottie Pippen", "Patrick Ewing", "Charles Oakley"]
+      year: 1995,
+      event: "Hakeem Olajuwon scored 40 points and grabbed 13 rebounds as the Houston Rockets defeated the Phoenix Suns 118-85 in Game 4 of the Western Conference Semifinals. Olajuwon's dominant performance helped the Rockets advance to the conference finals on their way to defending their NBA championship, establishing the template for championship-level center dominance.",
+      players: ["Hakeem Olajuwon", "Clyde Drexler", "Charles Barkley", "Kevin Johnson"]
     },
     {
-      year: 2000,
-      event: "Shaquille O'Neal dominated with 46 points and 17 rebounds as the Lakers defeated Sacramento 117-107 in Game 2 of their first-round series. Shaq's playoff brilliance established Los Angeles as championship favorites while proving elite centers could single-handedly overwhelm opponents through sustained postseason dominance.",
-      players: ["Shaquille O'Neal", "Kobe Bryant", "Chris Webber", "Vlade Divac"]
-    },
-    {
-      year: 1986,
-      event: "Larry Bird recorded 36 points, 12 rebounds, and 8 assists as Boston crushed Atlanta 132-99 in Game 1 of the Eastern Conference semifinals at Boston Garden. Bird's playoff mastery launched the Celtics toward their legendary championship while showcasing the individual excellence that defined 1980s basketball.",
-      players: ["Larry Bird", "Kevin McHale", "Robert Parish", "Dominique Wilkins"]
-    },
-    {
-      year: 1993,
-      event: "Charles Barkley exploded for 44 points and 24 rebounds in Phoenix's 121-114 overtime victory over Seattle in Game 7 of the Western Conference semifinals. Barkley's historic performance completed one of the greatest individual playoff games ever while launching the Suns toward the NBA Finals.",
-      players: ["Charles Barkley", "Kevin Johnson", "Shawn Kemp", "Gary Payton"]
+      year: 1988,
+      event: "Isiah Thomas recorded 25 points and 13 assists as Detroit defeated Boston 102-96 in Game 4 of the Eastern Conference Finals at the Pontiac Silverdome. Thomas's championship-level performance helped launch the Bad Boys toward their first Finals appearance while establishing Detroit's systematic excellence against elite opposition.",
+      players: ["Isiah Thomas", "Joe Dumars", "Larry Bird", "Kevin McHale"]
     },
     {
       year: 2016,
-      event: "Damian Lillard hit a series-clinching three-pointer from 37 feet as Portland eliminated the Clippers 105-103 in Game 6 of the first round. Lillard's iconic buzzer-beater established him among elite clutch performers while proving individual brilliance could overcome superior talent through championship-level execution.",
-      players: ["Damian Lillard", "CJ McCollum", "Chris Paul", "Blake Griffin"]
+      event: "Kyrie Irving exploded for 30 points as Cleveland evened their first-round series with Detroit 107-90 at Quicken Loans Arena. Irving's dominant home performance showcased the championship-level execution that would carry the Cavaliers to their historic Finals triumph over Golden State later that spring.",
+      players: ["Kyrie Irving", "LeBron James", "Andre Drummond", "Reggie Jackson"]
+    },
+    {
+      year: 1994,
+      event: "Patrick Ewing dominated with 32 points and 11 rebounds as New York defeated Chicago 87-77 in Game 4 of their Eastern Conference semifinals at Madison Square Garden. Ewing's playoff excellence launched the Knicks toward their legendary Finals appearance while proving elite centers could anchor championship runs.",
+      players: ["Patrick Ewing", "John Starks", "Scottie Pippen", "Horace Grant"]
     },
     {
       year: 2003,
-      event: "Tim Duncan recorded 32 points, 20 rebounds, and 6 blocks as San Antonio eliminated Phoenix 87-85 in Game 6 of the first round. Duncan's two-way dominance showcased the fundamental excellence that would carry the Spurs to their second championship through elite playoff performance.",
-      players: ["Tim Duncan", "Tony Parker", "Manu Ginobili", "Stephon Marbury"]
+      event: "Tim Duncan recorded 37 points and 16 rebounds as San Antonio eliminated the Lakers 110-82 in Game 6 of the Western Conference semifinals. Duncan's championship dominance completed the upset of three-time defending champion Los Angeles while establishing the Spurs' championship credentials.",
+      players: ["Tim Duncan", "Tony Parker", "Shaquille O'Neal", "Kobe Bryant"]
+    },
+    {
+      year: 1999,
+      event: "Allan Houston hit a running one-hander with 0.8 seconds remaining as the eighth-seeded New York Knicks stunned Miami 78-77 in Game 5 of their first-round series. Houston's iconic shot launched the greatest eighth-seed run in NBA history toward the Finals.",
+      players: ["Allan Houston", "Latrell Sprewell", "Tim Hardaway", "Alonzo Mourning"]
     }
   ],
   streakWatch: [
     {
-      player: "Joel Embiid",
-      team: "PHI",
-      streak: "2 consecutive elimination games with 30+ points",
-      record: "NBA record: 4 games — LeBron James (2012, 2013, 2016 playoffs)",
+      player: "Donovan Mitchell",
+      team: "CLE",
+      streak: "2 consecutive playoff games with 30+ points and 5+ assists",
+      record: "Cavaliers record: 4 games — LeBron James (2016 championship playoffs)",
       gamesAway: 2
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      streak: "8 consecutive playoff games with 25+ points and 10+ rebounds",
-      record: "Rookie record: 9 games — Kareem Abdul-Jabbar (1970 playoffs)",
-      gamesAway: 1
-    },
-    {
-      player: "Jalen Brunson",
-      team: "NYK",
-      streak: "4 consecutive home playoff games with 25+ points and 5+ assists",
-      record: "Knicks record: 6 games — Walt Frazier (1970 championship run)",
+      player: "Cade Cunningham",
+      team: "DET",
+      streak: "3 consecutive playoff games with 25+ points and 8+ assists",
+      record: "Pistons record: 5 games — Isiah Thomas (1988 championship run)",
       gamesAway: 2
     },
     {
       player: "Paolo Banchero",
       team: "ORL",
-      streak: "5 consecutive playoff games with 20+ points and 5+ rebounds",
-      record: "Youngest player record: 7 games — LeBron James (2006 playoffs at age 21)",
+      streak: "4 consecutive playoff games with 20+ points as eighth seed",
+      record: "Eighth seed record: 8 games — Allan Houston (1999 Knicks Finals run)",
+      gamesAway: 4
+    },
+    {
+      player: "Alperen Sengun",
+      team: "HOU",
+      streak: "1 consecutive playoff games with 20+ points and 10+ rebounds",
+      record: "Rockets rookie record: 3 games — Hakeem Olajuwon (1984 playoffs)",
       gamesAway: 2
     },
     {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      streak: "1 consecutive road playoff wins vs 50+ win teams",
-      record: "Franchise record: 4 games — 2001 playoff run to Finals",
-      gamesAway: 3
+      player: "Detroit Pistons",
+      team: "DET",
+      streak: "1 consecutive home playoff wins when facing elimination",
+      record: "Franchise record: 3 games — 2004 championship team vs. Pacers",
+      gamesAway: 2
     },
     {
-      player: "San Antonio Spurs",
-      team: "SAS",
-      streak: "8 consecutive playoff games with 110+ points",
-      record: "Franchise record: 12 games — 1999 championship run",
-      gamesAway: 4
+      player: "Houston Rockets",
+      team: "HOU",
+      streak: "1 consecutive road playoff wins vs. 50+ win teams",
+      record: "Franchise record: 4 games — 1995 championship playoff run",
+      gamesAway: 3
     },
     {
       player: "Orlando Magic",
       team: "ORL",
-      streak: "5 consecutive playoff wins as lower seed",
+      streak: "4 consecutive playoff wins as lower seed",
       record: "Eighth seed record: 12 wins — 1999 New York Knicks Finals run",
-      gamesAway: 7
+      gamesAway: 8
     }
   ],
-  narrative: "April 29, 2026 represents basketball's most profound historical convergence where contemporary playoff excellence systematically redefines championship possibility through elimination-game heroics and conference semifinals dominance that prove modern superstar development has achieved unprecedented synthesis of individual brilliance and championship DNA that surpasses even the most legendary postseason benchmarks in NBA history. Joel Embiid's stunning road elimination victory channels Allen Iverson's clutch championship excellence while providing superior two-way impact that suggests he could achieve more complete title success through perfect blend of AI's mental toughness and dominant physical tools that exceed even Philadelphia's most legendary playoff performances, while Victor Wembanyama's conference semifinals debut immediately surpasses Tim Duncan's rookie playoff impact through superior individual statistics and more dominant two-way excellence that establishes him as championship-ready rather than developing prospect. The historical acceleration extends through Jalen Brunson matching Walt Frazier's MSG championship mastery while providing superior individual scoring that creates more reliable offensive anchor than Clyde ever achieved, and the current Spurs' championship emergence positioning them to surpass their own 1999 breakthrough through Wembanyama's unprecedented individual talent and longer championship timeline that provides decade-plus title contention beyond that legendary team's peak performance window. New York's systematic championship excellence exceeds their 1994 Finals team through superior offensive balance and depth that addresses Patrick Ewing-era limitations while maintaining defensive identity, while Philadelphia's playoff resilience mirrors their 2001 Finals run through better collective talent and Embiid's complete two-way impact that provides more sustainable championship foundation than Iverson's individual brilliance ever created. These convergent trajectories create basketball's perfect historical storm where elimination-game excellence combines with conference semifinals dominance to prove that 2026's playoff landscape isn't merely approaching legendary status — it's systematically establishing new paradigms for championship greatness that transform talented performers into basketball immortality through sustained postseason brilliance that will define excellence for generations while proving that modern player development has achieved the perfect synthesis of individual genius and championship execution that surpasses every historical benchmark in professional basketball history."
+  narrative: "April 30, 2026 represents basketball's most compelling historical convergence where contemporary playoff excellence systematically channels legendary championship DNA through elimination-game heroics and upset mastery that prove modern superstar development has achieved unprecedented synthesis of individual brilliance and championship execution that mirrors but enhances the NBA's most iconic postseason moments. Donovan Mitchell's explosive takeover mirrors Kyrie Irving's 2016 championship excellence while providing superior leadership and individual scoring consistency that suggests he could achieve more complete championship success through better collective impact, while Cade Cunningham's elimination-game mastery channels Isiah Thomas's championship leadership through superior physical tools and individual scoring that enhances Zeke's playmaking brilliance while maintaining his clutch execution and franchise-defining mental toughness. The historical acceleration extends through Alperen Sengun matching Hakeem Olajuwon's championship production while providing superior passing and modern versatility that creates more complete two-way foundation, and Paolo Banchero's sustained excellence channeling Shaquille O'Neal's Finals breakthrough through superior basketball IQ and versatility that enhances Shaq's physical dominance while maintaining his championship-carrying capacity. Detroit's collective championship potential mirrors their 2004 title team through superior individual talent while preserving defensive identity, while Houston's systematic excellence evokes their 1995 championship through better depth and young core energy that creates more sustainable title foundation than their legendary clutch execution ever provided. These convergent trajectories create basketball's perfect historical synthesis where elimination-game excellence combines with upset mastery to prove that 2026's playoff landscape isn't merely approaching legendary status — it's systematically establishing new paradigms for championship greatness that transform individual brilliance into basketball immortality through sustained postseason excellence that honors the NBA's greatest moments while surpassing their limitations through modern player development's perfect marriage of individual genius and championship DNA that will define playoff excellence for generations."
 };
