@@ -98,11 +98,11 @@ export const playoffSeries: PlayoffSeries[] = [
     higherTeam: "DEN",
     lowerTeam: "MIN",
     higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    lowerWins: 1,
+    status: "active",
+    summary: "MIN leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "DEN", awayTeam: "MIN", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-04-30", homeTeam: "MIN", awayTeam: "DEN", homeScore: 110, awayScore: 98, status: "final", time: "Final", tv: "ESPN" }
     ],
   },
   {
@@ -113,12 +113,12 @@ export const playoffSeries: PlayoffSeries[] = [
     lowerSeed: 99,
     higherTeam: "NY",
     lowerTeam: "ATL",
-    higherWins: 0,
+    higherWins: 1,
     lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    status: "active",
+    summary: "NY leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "NY", awayTeam: "ATL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-04-30", homeTeam: "ATL", awayTeam: "NY", homeScore: 89, awayScore: 140, status: "final", time: "Final", tv: "ESPN" }
     ],
   },
   {
@@ -150,7 +150,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: null, awayScore: null, status: "scheduled", time: "5/2 - 7:30 PM EDT", tv: "NBC, Peacock" }
     ],
   },
   {
@@ -183,6 +183,38 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "SA leads 1-0",
     games: [
       { gameNumber: 1, date: "2026-04-28", homeTeam: "SA", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN" }
+    ],
+  },
+  {
+    seriesId: "E1-SA-MIN",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "SA",
+    lowerTeam: "MIN",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-08", homeTeam: "MIN", awayTeam: "SA", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+    ],
+  },
+  {
+    seriesId: "E1-TBD-TBD",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "TBD",
+    lowerTeam: "TBD",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-08", homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   }
 ];

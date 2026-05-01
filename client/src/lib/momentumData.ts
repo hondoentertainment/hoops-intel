@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: April 30, 2026
+// Last updated: May 1, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,177 +33,172 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "April 30, 2026",
-  gameOfTheNight: "ORL-DET-20260429",
+  date: "May 1, 2026",
+  gameOfTheNight: "NYK-ATL-20260430",
   topClutchPerformer: { 
-    player: "Cade Cunningham", 
-    team: "DET", 
-    clutchRating: 92, 
-    description: "Delivered consecutive clutch buckets and assists in final 4 minutes to stave off elimination, shooting 3-4 with 2 assists when it mattered most" 
+    player: "Joel Embiid", 
+    team: "PHI", 
+    clutchRating: 94, 
+    description: "Delivered when elimination loomed, dominating both ends with championship-level intensity" 
   },
   games: [
     {
-      gameId: "ORL-DET-20260429",
-      teams: { home: "DET", away: "ORL" },
-      finalScore: { home: 116, away: 109 },
+      gameId: "NYK-ATL-20260430",
+      teams: { home: "ATL", away: "NYK" },
+      finalScore: { home: 89, away: 140 },
       swings: [
         {
           quarter: "1st",
-          timestamp: "5:42",
-          description: "Orlando jumps out early with Paolo Banchero scoring 8 straight points, silencing the desperate Detroit crowd",
-          runScore: "8-0 ORL",
+          timestamp: "6:42",
+          description: "Brunson catches fire with 11 straight points, Knicks open 18-4 lead",
+          runScore: "14-2",
           momentum: "away",
-          keyPlayer: "Paolo Banchero",
+          keyPlayer: "Jalen Brunson",
           impact: "significant"
         },
         {
           quarter: "2nd",
           timestamp: "8:15",
-          description: "Cunningham responds with authority, scoring 12 points in a 16-4 run that has Little Caesars Arena erupting",
-          runScore: "16-4 DET",
+          description: "Hawks fight back with Young leading 10-0 spurt to cut deficit to single digits",
+          runScore: "10-0",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "3:28",
-          description: "Magic weather the storm with a 13-2 surge, reminding everyone they're one win from history",
-          runScore: "13-2 ORL",
-          momentum: "away",
-          keyPlayer: "Franz Wagner",
-          impact: "significant"
-        },
-        {
-          quarter: "4th",
-          timestamp: "6:45",
-          description: "Detroit's championship experience finally shows as they rip off 18-6 run to seize control",
-          runScore: "18-6 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Cade Cunningham",
-          team: "DET",
-          description: "Drives through traffic for and-one bucket, flexing at the crowd",
-          timeRemaining: "4:12",
-          winProbabilityShift: 15
-        },
-        {
-          player: "Paolo Banchero",
-          team: "ORL",
-          description: "Answers with step-back three to keep Magic within striking distance",
-          timeRemaining: "3:34",
-          winProbabilityShift: -12
-        },
-        {
-          player: "Cade Cunningham",
-          team: "DET",
-          description: "Thread-the-needle assist to Isaiah Stewart for crucial dunk",
-          timeRemaining: "2:08",
-          winProbabilityShift: 11
-        }
-      ],
-      narrative: "In a do-or-die performance that exemplified championship heart, Cade Cunningham authored one of the most crucial individual performances in Pistons playoff history. The home crowd's deafening energy became a sixth man as Detroit finally matched Orlando's upset intensity that had dominated this shocking series. While the Magic proved their young core belongs on this stage, the Pistons' veteran leadership and Cunningham's clutch gene prevented what would have been the most embarrassing collapse in NBA playoff history. This was playoff basketball at its most raw and desperate."
-    },
-    {
-      gameId: "TOR-CLE-20260429",
-      teams: { home: "CLE", away: "TOR" },
-      finalScore: { home: 125, away: 120 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "7:20",
-          description: "Mitchell catches fire early, nailing three consecutive threes to set the tone",
-          runScore: "11-2 CLE",
-          momentum: "home",
-          keyPlayer: "Donovan Mitchell",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "4:15",
-          description: "Siakam takes over with his signature mid-range game, leading 14-5 surge",
-          runScore: "14-5 TOR",
-          momentum: "away",
-          keyPlayer: "Pascal Siakam",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "9:30",
-          description: "Cleveland explodes out of halftime with suffocating defense fueling fast breaks",
-          runScore: "17-4 CLE",
-          momentum: "home",
-          keyPlayer: "Donovan Mitchell",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "7:22",
-          description: "Raptors refuse to fold as Barnes and Siakam combine for 10 straight points",
-          runScore: "10-0 TOR",
-          momentum: "away",
-          keyPlayer: "Scottie Barnes",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Pulls up for contested three with shot clock winding down",
-          timeRemaining: "3:45",
-          winProbabilityShift: 8
-        },
-        {
-          player: "Pascal Siakam",
-          team: "TOR",
-          description: "Spins baseline for tough fadeaway to cut deficit to three",
-          timeRemaining: "1:52",
-          winProbabilityShift: -6
-        }
-      ],
-      narrative: "Donovan Mitchell's 34-point explosion was a masterclass in playoff takeover basketball, showcasing exactly why Cleveland traded for him. The Cavaliers' balanced attack and improved defensive intensity suggested they've found another gear after their Game 1 stumble. Toronto's resilience, led by Pascal Siakam's crafty veteran play, proved this series has the makings of a seven-game thriller. The back-and-forth nature of this contest exemplified playoff basketball at its finest, with both teams trading haymakers like heavyweight prizefighters."
-    },
-    {
-      gameId: "HOU-LAL-20260429",
-      teams: { home: "LAL", away: "HOU" },
-      finalScore: { home: 93, away: 99 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "6:15",
-          description: "LeBron opens with vintage aggression, scoring 8 early points as crypto.com Arena buzzes",
-          runScore: "12-4 LAL",
-          momentum: "home",
-          keyPlayer: "LeBron James",
+          keyPlayer: "Trae Young",
           impact: "notable"
         },
         {
           quarter: "2nd",
-          timestamp: "9:45",
-          description: "Sengun takes over the paint completely, dominating both ends in stunning 16-3 run",
-          runScore: "16-3 HOU",
+          timestamp: "3:28",
+          description: "Knicks explode with 19-4 run to close half, crowd goes silent at State Farm",
+          runScore: "19-4",
           momentum: "away",
-          keyPlayer: "Alperen Sengun",
+          keyPlayer: "Josh Hart",
           impact: "game-changing"
         },
         {
           quarter: "3rd",
-          timestamp: "2:30",
-          description: "Lakers offense sputters as Houston's youth and energy overwhelms veteran legs",
-          runScore: "13-4 HOU",
+          timestamp: "4:11",
+          description: "New York extends lead to 40+ with suffocating defense and transition dunks",
+          runScore: "16-3",
           momentum: "away",
-          keyPlayer: "Jalen Green",
+          keyPlayer: "OG Anunoby",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "In a stunning road victory that announced Houston's playoff arrival, Alperen Sengun's paint dominance exposed every flaw in the Lakers' aging roster. LeBron James looked his age for perhaps the first time in years, managing just 18 points as the Rockets' relentless energy wore down Los Angeles' veteran core. This wasn't just a Game 1 upset—it was a changing of the guard moment that could define both franchises' futures. The young, hungry Rockets played with the kind of desperate playoff intensity that championship teams possess, while the Lakers appeared caught off guard by Houston's legitimate title aspirations."
+      narrative: "The Knicks delivered a playoff massacre for the ages, turning State Farm Arena into a morgue with the most dominant postseason road performance in franchise history. Jalen Brunson orchestrated a symphony of destruction, dissecting Atlanta's defense with surgical precision while his teammates buried three after three. This wasn't just a victory—it was a statement that New York has championship DNA flowing through their veins. The 51-point annihilation left Hawks fans streaming for the exits and the basketball world wondering if we're witnessing the birth of a juggernaut."
+    },
+    {
+      gameId: "BOS-PHI-20260430",
+      teams: { home: "PHI", away: "BOS" },
+      finalScore: { home: 106, away: 93 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "7:23",
+          description: "Embiid dominates early with 8 points and 2 blocks, Sixers jump to 16-8 lead",
+          runScore: "12-2",
+          momentum: "home",
+          keyPlayer: "Joel Embiid",
+          impact: "significant"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "5:14",
+          description: "Tatum heats up with three consecutive threes, Celtics take 45-42 advantage",
+          runScore: "13-4",
+          momentum: "away",
+          keyPlayer: "Jayson Tatum",
+          impact: "notable"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "2:47",
+          description: "Philadelphia responds with thunderous 18-5 run, Wells Fargo Center erupts",
+          runScore: "18-5",
+          momentum: "home",
+          keyPlayer: "Tyrese Maxey",
+          impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "7:32",
+          description: "Embiid takes over with back-to-back blocks and scoring, seals elimination game victory",
+          runScore: "11-2",
+          momentum: "home",
+          keyPlayer: "Joel Embiid",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Joel Embiid",
+          team: "PHI",
+          description: "Massive block on Tatum followed by thunderous dunk on other end",
+          timeRemaining: "4:18",
+          winProbabilityShift: 18.4
+        },
+        {
+          player: "Tyrese Maxey",
+          team: "PHI",
+          description: "Clutch step-back three over Smart to push lead to 12",
+          timeRemaining: "2:51",
+          winProbabilityShift: 22.1
+        }
+      ],
+      narrative: "Joel Embiid played like his legacy depended on it, and perhaps it did. With elimination staring the Sixers in the face, the big man delivered a masterclass in two-way dominance that reminded everyone why he's a former MVP. Wells Fargo Center became a cauldron of desperate energy as Philadelphia refused to let their season die. The Celtics, who looked poised to close out the series, instead got punched in the mouth by a team that remembered how to fight when it mattered most."
+    },
+    {
+      gameId: "DEN-MIN-20260430",
+      teams: { home: "MIN", away: "DEN" },
+      finalScore: { home: 110, away: 98 },
+      swings: [
+        {
+          quarter: "1st",
+          timestamp: "8:41",
+          description: "Edwards opens with authority, scoring 9 early points as Wolves take 19-11 lead",
+          runScore: "11-2",
+          momentum: "home",
+          keyPlayer: "Anthony Edwards",
+          impact: "notable"
+        },
+        {
+          quarter: "2nd",
+          timestamp: "6:33",
+          description: "Jokic finds his rhythm with 8 straight points, Nuggets tie game at 38",
+          runScore: "12-4",
+          momentum: "away",
+          keyPlayer: "Nikola Jokic",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "4:19",
+          description: "Minnesota's defense clamps down with 15-4 run, Edwards dunks send Target Center into frenzy",
+          runScore: "15-4",
+          momentum: "home",
+          keyPlayer: "Anthony Edwards",
+          impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "6:28",
+          description: "Timberwolves pull away for good with suffocating defense and transition buckets",
+          runScore: "13-3",
+          momentum: "home",
+          keyPlayer: "Jaden McDaniels",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Anthony Edwards",
+          team: "MIN",
+          description: "Explosive drive and dunk through contact with and-one to ice the game",
+          timeRemaining: "3:42",
+          winProbabilityShift: 15.7
+        }
+      ],
+      narrative: "Anthony Edwards announced himself as a playoff star by putting the defending champions on the brink of elimination in the most shocking upset of the postseason. Target Center witnessed something special as Ant-Man soared through Denver's defense with the fearlessness of youth and the skill of a superstar. The Nuggets, who looked invincible just months ago, now face the unthinkable reality of a first-round exit. Minnesota's suffocating defense and Edwards' explosive scoring have turned this series into a changing of the guard moment that could reshape the Western Conference hierarchy."
     }
   ]
 };

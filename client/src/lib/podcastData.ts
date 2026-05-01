@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: April 30, 2026
+// Last updated: May 1, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,92 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "April 30, 2026",
-  episodeTitle: "Upset Prevention & Young Kings Rising: Mitchell Explodes, Rockets Shock Lakers, Pistons Avoid History",
+  date: "May 1, 2026",
+  episodeTitle: "PLAYOFF MASSACRE: Knicks Historic 51-Point Blowout + Sixers Shock Celtics + Wolves Stun Champions",
   rundown: [
     {
-      topic: "Detroit's Historic Close Call & Houston's Championship Statement",
+      topic: "Knicks Demolish Hawks in Historic 51-Point Playoff Massacre",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Detroit avoided becoming first top seed EVER swept in Round 1",
-        "Cunningham: 28 PTS, 9 AST, 11-19 FG in must-win Game 4",
-        "Houston shot 52.1% from field in stunning Lakers road upset", 
-        "Sengun dominated: 24 PTS, 11 REB, 10-15 FG vs AD and Lakers frontcourt",
-        "LeBron managed just 18 points - worst playoff showing in years",
-        "Rockets steal home court advantage in series opener"
+        "New York wins 140-89, largest margin in franchise playoff history",
+        "Jalen Brunson: 32 points, 11 assists on 12-of-18 shooting",
+        "Knicks shot 58.7% from field, led by as many as 53 points",
+        "Donte DiVincenzo added 24 points with 6 three-pointers",
+        "Atlanta held to just 89 points at home in elimination game"
       ],
-      debateAngle: "Which story is bigger - Detroit barely avoiding the most embarrassing playoff collapse ever, or Houston announcing themselves as legitimate championship contenders by dominating LeBron and the Lakers on the road?",
-      suggestedQuote: "Folks, we almost witnessed NBA history last night - and I'm talking about the BAD kind of history. No top seed has EVER been swept in the first round, and Detroit was literally one loss away from that ignominy.",
-      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Alperen Sengun", "LeBron James"]
+      debateAngle: "Is this the most dominant road playoff performance we've seen in the last decade? Are the Knicks now legitimate Eastern Conference championship threats?",
+      suggestedQuote: "This wasn't just a basketball game, this was a complete and total annihilation. The Knicks didn't just beat Atlanta, they sent a message to the entire Eastern Conference that they're ready for a championship run.",
+      relevantPlayers: ["Jalen Brunson", "Donte DiVincenzo", "Trae Young", "De'Andre Hunter"]
     },
     {
-      topic: "Donovan Mitchell's Playoff Evolution: From Disappointment to Dominance",
-      segment: "deep-dive", 
+      topic: "Are the Timberwolves About to End Denver's Championship Defense?",
+      segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Mitchell exploded for 34 points on 13-22 shooting (59.1%)",
-        "Hit 6 three-pointers in series-evening victory",
-        "Cleveland shot 125-120 in dominant home bounce-back",
-        "Mitchell averaging 31.5 PPG through first two playoff games",
-        "Cavs seized home court advantage back from Toronto",
-        "Series now dead even at 1-1 heading to Toronto"
+        "Minnesota leads series 3-1 after 110-98 Game 4 victory",
+        "Anthony Edwards: 31 points, 7 rebounds, 5 assists on 12-21 shooting",
+        "Wolves held Denver to 42.1% shooting from the field",
+        "Nikola Jokic: 24 points, 11 rebounds but couldn't prevent defeat",
+        "Denver faces elimination after being defending champions"
       ],
-      debateAngle: "Is this the playoff breakthrough we've been waiting for from Donovan Mitchell? Has he finally shed the narrative of playoff disappointments and proven he can be the guy for a championship contender?",
-      suggestedQuote: "Mitchell didn't just score 34 points - he completely took over every crucial moment. This looked like a superstar having his playoff coming-of-age moment in real time.",
-      relevantPlayers: ["Donovan Mitchell", "Pascal Siakam", "Scottie Barnes"]
+      debateAngle: "What does this series tell us about championship windows and the rise of young stars? Is Edwards ready to be the face of a conference finals team?",
+      suggestedQuote: "Anthony Edwards isn't just announcing himself as a playoff star - he's potentially ending the reign of the defending champions. This is what a changing of the guard looks like in real time.",
+      relevantPlayers: ["Anthony Edwards", "Nikola Jokic", "Mike Conley", "Jaden McDaniels"]
     },
     {
-      topic: "Is This the End of Lakers Championship Window?",
+      topic: "Embiid Forces Game 5: Are the Sixers Really Coming Back Against Boston?",
       segment: "hot-take",
-      duration: "7 minutes", 
+      duration: "7 minutes",
       keyStats: [
-        "LeBron shot poorly and looked his age against young Rockets",
-        "Anthony Davis managed just 14 points, dominated by Sengun",
-        "Lakers lost home court in Game 1 - historically bad sign",
-        "Houston's young core completely outplayed LA veterans",
-        "Rockets shot 52.1% while Lakers struggled offensively",
-        "LeBron will be 42 next season if this is the end"
+        "Philadelphia wins 106-93, forcing Game 5 in Boston",
+        "Joel Embiid: 29 points, 12 rebounds, 3 blocks on 11-19 shooting",
+        "Tyrese Maxey added 23 points and 7 assists in supporting role",
+        "Celtics held to 41.2% shooting in disappointing road performance",
+        "Series now tied 2-2 with all momentum shifting to Philly"
       ],
-      debateAngle: "After watching LeBron struggle against Houston's young energy and the Lakers get completely outplayed at home, are we watching the end of their championship window in real time? Should they blow it up this summer?",
-      suggestedQuote: "I hate to say it, but that looked like Father Time finally catching up to LeBron. When your 39-year-old superstar can't keep up with hungry 22-year-olds, your window might be slamming shut.",
-      relevantPlayers: ["LeBron James", "Anthony Davis", "Alperen Sengun", "Jalen Green"]
+      debateAngle: "HOT TAKE: The Celtics are about to blow a 2-0 series lead because they can't handle playoff pressure when it matters most. Prove me wrong.",
+      suggestedQuote: "Joel Embiid just reminded everyone why he's one of the most dominant two-way forces in this league when healthy. The Celtics better hope they can handle the pressure back home because Philly smells blood in the water.",
+      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Nic Claxton"]
     },
     {
-      topic: "Tonight's Elimination Theater & Series Momentum Shifts",
+      topic: "Rapid Fire: Paolo's Upset Bid + LeBron's Elimination Pressure + Rookie Playoff Madness",
       segment: "rapid-fire",
       duration: "6 minutes",
       keyStats: [
-        "Knicks can close out Hawks tonight (7 PM ET, ESPN)",
-        "Celtics look to finish Sixers despite Embiid's Game 3 explosion", 
-        "Nuggets-Timberwolves Game 5 is winner-take-all (9:30 PM ET)",
-        "Three potential elimination games on Wednesday slate",
-        "Orlando still leads Detroit 3-1 despite Game 4 setback",
-        "Victor Wembanyama averaging 31.2 PPG in conference semifinals"
+        "Paolo Banchero: 26.8 PPG leading Orlando's 3-1 lead over Detroit",
+        "Lakers face 0-1 deficit to Houston after shocking Game 1 upset",
+        "Three elimination games scheduled for Thursday night action",
+        "Four different rookies averaging double digits in current playoff run",
+        "Orlando one win away from biggest upset in recent NBA history"
       ],
-      debateAngle: "Which of tonight's games has the highest stakes - the Knicks potentially closing out Atlanta, Boston trying to finish Philly, or that elimination showdown between Denver and Minnesota?",
-      suggestedQuote: "Tonight we could see three teams punch their tickets to the next round. The elimination game energy is going to be absolutely electric, especially in that Nuggets-Wolves winner-take-all battle.",
-      relevantPlayers: ["Joel Embiid", "Jalen Brunson", "Anthony Edwards", "Jamal Murray"]
+      debateAngle: "Which storyline has you more excited: Paolo completing a historic upset or LeBron facing early elimination pressure?",
+      suggestedQuote: "Thursday night is going to be absolute chaos - we've got potential series clinchers, elimination pressure, and rookie magic all happening at once. This is why the playoffs are the greatest show in sports.",
+      relevantPlayers: ["Paolo Banchero", "LeBron James", "Cade Cunningham", "Alperen Sengun"]
     },
     {
-      topic: "Young Stars Seizing Their Playoff Moments",
+      topic: "Thursday Preview: Can Orlando Complete the Upset? Will LeBron Respond?",
       segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Paolo Banchero still averaging 25.8 PPG despite Game 4 loss",
-        "Wembanyama dominating conference semifinals: 31.2 PPG, 13.4 RPG",
-        "Sengun announced himself as championship-level center",
-        "Chet Holmgren helped OKC advance with efficient two-way play",
-        "Young Rockets core outplaying Lakers veterans",
-        "Next generation taking over from aging superstars"
+        "Orlando can eliminate #1 seed Detroit with home victory in Game 5",
+        "Lakers desperate to avoid 0-2 hole against Houston's young core",
+        "Cleveland-Toronto Game 3 with series tied 1-1 after home splits",
+        "Three potential elimination games across Thursday's slate",
+        "Banchero probable despite ankle sprain for potential clincher"
       ],
-      debateAngle: "Are we witnessing the official changing of the guard in the NBA? The young stars aren't just getting experience anymore - they're taking over and winning series.",
-      suggestedQuote: "This isn't about the future anymore - this is about right now. Wemby, Paolo, Sengun, these young guys are grabbing playoff moments and refusing to give them back to the old guard.",
-      relevantPlayers: ["Victor Wembanyama", "Paolo Banchero", "Alperen Sengun", "Chet Holmgren", "Amen Thompson"]
+      debateAngle: "What's the must-watch game tomorrow: Paolo trying to complete history or LeBron trying to avoid disaster?",
+      suggestedQuote: "Tomorrow night we could witness history with Orlando completing one of the biggest upsets ever, or we could see LeBron James remind everyone why he's still the king when his back is against the wall. Either way, we're not missing a second of it.",
+      relevantPlayers: ["Paolo Banchero", "LeBron James", "Donovan Mitchell", "Pascal Siakam"]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! Last night delivered playoff drama that had everything - historic upset prevention, championship statements, and Father Time coming to collect his debt. Detroit avoided the most embarrassing collapse in NBA history while a 22-year-old Turkish center just announced himself to LeBron James and the basketball world. We've got young stars seizing their moments and aging legends facing reality checks. This is Hoops Intel, I'm your host, and we're breaking down a Tuesday night that shifted championship narratives across the league. Let's get into it!",
-  socialClip: "Clip the segment where we discuss LeBron's struggles against Houston's young core - specifically the quote about Father Time catching up and the championship window slamming shut. The debate about whether the Lakers should blow it up will generate massive engagement and hot takes in the comments.",
+  coldOpen: "What's good Hoops Intel faithful! Wednesday night was absolute PLAYOFF MADNESS and we're about to break it all down for you. The New York Knicks just delivered the most savage beatdown we've seen in years - and I'm talking a historic 51-point massacre that left Atlanta completely humiliated on their own court. Meanwhile, Anthony Edwards is putting the defending champion Nuggets on the brink of elimination, and Joel Embiid just reminded Boston why they should never count out a desperate superstar. Buckle up because we're diving deep into a night that completely shifted the playoff landscape. This is Hoops Intel, I'm your host, and we're about to get into it!",
+  socialClip: "Create a 60-second clip of the host breaking down Jalen Brunson's historic 51-point blowout performance with animated stats overlays showing the 140-89 final score, Brunson's 32 points and 11 assists, and the Knicks' 58.7% shooting percentage. Include passionate commentary about this being the most dominant road playoff performance in franchise history with visual highlights of the biggest lead reaching 53 points.",
   tweetThread: [
-    "🧵 THREAD: Last night's playoff action was absolutely WILD. Let's break down how Detroit avoided history, Houston shocked the Lakers, and Mitchell exploded in Cleveland 👇",
-    "1️⃣ HISTORY AVOIDED: Detroit prevented becoming the first top seed EVER swept in Round 1. Cunningham's 28 PTS & 9 AST gave the Pistons life, but they still trail Orlando 3-1. The Magic are still one win away from the biggest upset in NBA history 😤",
-    "2️⃣ ROCKETS RISING: Houston STUNNED the Lakers 99-93 in LA behind Sengun's dominant 24 PTS & 11 REB. LeBron managed just 18 points in one of his worst playoff performances. Are we watching the changing of the guard in real time? 🚀",
-    "3️⃣ MITCHELL'S MOMENT: Donovan Mitchell exploded for 34 points on 59% shooting to even Cleveland's series with Toronto. This looked like a superstar having his playoff breakthrough - the kind of performance that defines championship runs ⭐",
-    "4️⃣ TONIGHT'S STAKES: Three potential elimination games including that winner-take-all Nuggets-Wolves showdown. Plus Embiid trying to save Philly's season and the Knicks looking to close out Atlanta. Championship dreams on the line everywhere 🔥"
+    "🚨 PLAYOFF MASSACRE ALERT 🚨 The Knicks just delivered a HISTORIC 51-point blowout over Atlanta (140-89) - the most dominant road playoff performance in franchise history. Jalen Brunson was absolutely unconscious with 32 pts & 11 assists. This wasn't a game, it was a statement. 🧵",
+    "Anthony Edwards (31 pts) has the defending champion Nuggets on the ELIMINATION BRINK after Minnesota's stunning 110-98 victory. The Wolves lead 3-1 and Ant-Man is proving he's ready to be the face of a conference finals team. Championship changing of the guard happening live 📈",
+    "Joel Embiid REFUSED to go quietly, dominating with 29 pts & 12 rebounds as the Sixers shocked Boston 106-93 to force Game 5. The series is now tied 2-2 and all momentum has shifted to Philly. Never count out a desperate superstar with his back against the wall 💪",
+    "Thursday's slate is BONKERS: Paolo Banchero can complete one of the biggest upsets in NBA history vs Detroit, LeBron faces elimination pressure against Houston's young core, and we've got THREE potential series clinchers. The playoffs just keep delivering chaos 🔥",
+    "Bottom line: Wednesday night completely shifted the playoff landscape. The Knicks announced themselves as legit title threats, Edwards is ending Denver's reign, and Embiid reminded us why he's elite. Thursday can't come fast enough. What a time to be alive! #PlayoffMadness"
   ]
 };
