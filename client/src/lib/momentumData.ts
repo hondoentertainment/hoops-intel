@@ -36,10 +36,10 @@ export const momentumData: MomentumData = {
   date: "May 1, 2026",
   gameOfTheNight: "NYK-ATL-20260430",
   topClutchPerformer: { 
-    player: "Joel Embiid", 
-    team: "PHI", 
-    clutchRating: 94, 
-    description: "Delivered when elimination loomed, dominating both ends with championship-level intensity" 
+    player: "Anthony Edwards", 
+    team: "MIN", 
+    clutchRating: 92, 
+    description: "Edwards delivered 12 fourth-quarter points including back-to-back threes to seal Minnesota's series-clinching victory over the defending champions" 
   },
   games: [
     {
@@ -50,8 +50,8 @@ export const momentumData: MomentumData = {
         {
           quarter: "1st",
           timestamp: "6:42",
-          description: "Brunson catches fire with 11 straight points, Knicks open 18-4 lead",
-          runScore: "14-2",
+          description: "Brunson orchestrates 15-2 Knicks run with four assists and a step-back three",
+          runScore: "15-2",
           momentum: "away",
           keyPlayer: "Jalen Brunson",
           impact: "significant"
@@ -59,33 +59,33 @@ export const momentumData: MomentumData = {
         {
           quarter: "2nd",
           timestamp: "8:15",
-          description: "Hawks fight back with Young leading 10-0 spurt to cut deficit to single digits",
-          runScore: "10-0",
+          description: "Hawks briefly rally with Young finding his rhythm, cutting deficit to single digits",
+          runScore: "11-3",
           momentum: "home",
           keyPlayer: "Trae Young",
           impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "3:28",
-          description: "Knicks explode with 19-4 run to close half, crowd goes silent at State Farm",
-          runScore: "19-4",
+          quarter: "3rd",
+          timestamp: "4:30",
+          description: "Knicks explode with suffocating defense leading to 18-0 run that breaks the game open",
+          runScore: "18-0",
           momentum: "away",
-          keyPlayer: "Josh Hart",
+          keyPlayer: "OG Anunoby",
           impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "4:11",
-          description: "New York extends lead to 40+ with suffocating defense and transition dunks",
-          runScore: "16-3",
+          quarter: "4th",
+          timestamp: "9:45",
+          description: "Historic blowout reaches 53-point peak as Knicks bench continues the onslaught",
+          runScore: "22-4",
           momentum: "away",
-          keyPlayer: "OG Anunoby",
+          keyPlayer: "Miles McBride",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "The Knicks delivered a playoff massacre for the ages, turning State Farm Arena into a morgue with the most dominant postseason road performance in franchise history. Jalen Brunson orchestrated a symphony of destruction, dissecting Atlanta's defense with surgical precision while his teammates buried three after three. This wasn't just a victory—it was a statement that New York has championship DNA flowing through their veins. The 51-point annihilation left Hawks fans streaming for the exits and the basketball world wondering if we're witnessing the birth of a juggernaut."
+      narrative: "The Knicks delivered the most ruthless playoff beatdown in franchise history, turning State Farm Arena into their personal demolition site. What started as Brunson's masterclass became a complete team annihilation that left Hawks fans streaming toward the exits by the third quarter. This wasn't just a victory—it was a statement to the entire Eastern Conference that New York has arrived as a legitimate championship threat. The 51-point margin represents more than a box score; it's a psychological assassination that may haunt Atlanta for years."
     },
     {
       gameId: "BOS-PHI-20260430",
@@ -94,58 +94,51 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:23",
-          description: "Embiid dominates early with 8 points and 2 blocks, Sixers jump to 16-8 lead",
-          runScore: "12-2",
+          timestamp: "7:22",
+          description: "Embiid dominates early with 11 first-quarter points, establishing paint presence immediately",
+          runScore: "13-4",
           momentum: "home",
           keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "5:14",
-          description: "Tatum heats up with three consecutive threes, Celtics take 45-42 advantage",
-          runScore: "13-4",
+          timestamp: "5:18",
+          description: "Tatum heats up with three consecutive buckets to pull Celtics within striking distance",
+          runScore: "9-2",
           momentum: "away",
           keyPlayer: "Jayson Tatum",
           impact: "notable"
         },
         {
           quarter: "3rd",
-          timestamp: "2:47",
-          description: "Philadelphia responds with thunderous 18-5 run, Wells Fargo Center erupts",
-          runScore: "18-5",
+          timestamp: "2:45",
+          description: "Sixers defensive clamps trigger 14-2 run with Embiid protecting the rim and Harris hitting threes",
+          runScore: "14-2",
           momentum: "home",
-          keyPlayer: "Tyrese Maxey",
+          keyPlayer: "Joel Embiid",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "7:32",
-          description: "Embiid takes over with back-to-back blocks and scoring, seals elimination game victory",
-          runScore: "11-2",
+          timestamp: "6:30",
+          description: "Philadelphia closes with authority as Wells Fargo Center reaches fever pitch",
+          runScore: "12-5",
           momentum: "home",
-          keyPlayer: "Joel Embiid",
-          impact: "game-changing"
+          keyPlayer: "Tyrese Maxey",
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
           player: "Joel Embiid",
           team: "PHI",
-          description: "Massive block on Tatum followed by thunderous dunk on other end",
-          timeRemaining: "4:18",
-          winProbabilityShift: 18.4
-        },
-        {
-          player: "Tyrese Maxey",
-          team: "PHI",
-          description: "Clutch step-back three over Smart to push lead to 12",
-          timeRemaining: "2:51",
-          winProbabilityShift: 22.1
+          description: "Embiid scores on three straight possessions including a thunderous dunk to push lead to 12",
+          timeRemaining: "4:15",
+          winProbabilityShift: 18.5
         }
       ],
-      narrative: "Joel Embiid played like his legacy depended on it, and perhaps it did. With elimination staring the Sixers in the face, the big man delivered a masterclass in two-way dominance that reminded everyone why he's a former MVP. Wells Fargo Center became a cauldron of desperate energy as Philadelphia refused to let their season die. The Celtics, who looked poised to close out the series, instead got punched in the mouth by a team that remembered how to fight when it mattered most."
+      narrative: "Joel Embiid summoned playoff greatness when elimination loomed, turning Wells Fargo Center into a cathedral of championship dreams. The big man's vintage performance reminded everyone why he's a former MVP, dominating both ends with the kind of two-way brilliance that defines superstar moments. Philadelphia's suffocating defense held Boston's potent offense in check, proving the Sixers possess the heart of champions when their backs are against the wall. This victory doesn't just force a Game 5—it plants seeds of doubt in Boston's mind about their title aspirations."
     },
     {
       gameId: "DEN-MIN-20260430",
@@ -154,38 +147,38 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "1st",
-          timestamp: "8:41",
-          description: "Edwards opens with authority, scoring 9 early points as Wolves take 19-11 lead",
-          runScore: "11-2",
+          timestamp: "8:45",
+          description: "Edwards announces his arrival with 12 first-quarter points including two highlight dunks",
+          runScore: "16-6",
           momentum: "home",
           keyPlayer: "Anthony Edwards",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "6:33",
-          description: "Jokic finds his rhythm with 8 straight points, Nuggets tie game at 38",
-          runScore: "12-4",
-          momentum: "away",
-          keyPlayer: "Nikola Jokic",
           impact: "significant"
         },
         {
+          quarter: "2nd",
+          timestamp: "3:20",
+          description: "Jokic orchestrates Denver comeback with perfect passing, finding open shooters for 13-3 run",
+          runScore: "13-3",
+          momentum: "away",
+          keyPlayer: "Nikola Jokic",
+          impact: "notable"
+        },
+        {
           quarter: "3rd",
-          timestamp: "4:19",
-          description: "Minnesota's defense clamps down with 15-4 run, Edwards dunks send Target Center into frenzy",
-          runScore: "15-4",
+          timestamp: "6:10",
+          description: "Timberwolves defense suffocates Nuggets with McDaniels leading charge in 11-0 run",
+          runScore: "11-0",
           momentum: "home",
-          keyPlayer: "Anthony Edwards",
+          keyPlayer: "Jaden McDaniels",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "6:28",
-          description: "Timberwolves pull away for good with suffocating defense and transition buckets",
-          runScore: "13-3",
+          timestamp: "7:25",
+          description: "Edwards closes show with back-to-back threes as Target Center explodes in playoff euphoria",
+          runScore: "10-2",
           momentum: "home",
-          keyPlayer: "Jaden McDaniels",
+          keyPlayer: "Anthony Edwards",
           impact: "game-changing"
         }
       ],
@@ -193,12 +186,19 @@ export const momentumData: MomentumData = {
         {
           player: "Anthony Edwards",
           team: "MIN",
-          description: "Explosive drive and dunk through contact with and-one to ice the game",
+          description: "Edwards drills contested three-pointer over Aaron Gordon to extend lead to 9",
           timeRemaining: "3:42",
-          winProbabilityShift: 15.7
+          winProbabilityShift: 15.2
+        },
+        {
+          player: "Anthony Edwards",
+          team: "MIN",
+          description: "Edwards follows with another deep three off the dribble, sending crowd into frenzy",
+          timeRemaining: "2:58",
+          winProbabilityShift: 22.8
         }
       ],
-      narrative: "Anthony Edwards announced himself as a playoff star by putting the defending champions on the brink of elimination in the most shocking upset of the postseason. Target Center witnessed something special as Ant-Man soared through Denver's defense with the fearlessness of youth and the skill of a superstar. The Nuggets, who looked invincible just months ago, now face the unthinkable reality of a first-round exit. Minnesota's suffocating defense and Edwards' explosive scoring have turned this series into a changing of the guard moment that could reshape the Western Conference hierarchy."
+      narrative: "Anthony Edwards delivered a coming-of-age performance that may have just toppled a dynasty, outdueling the defending champions with the kind of clutch brilliance that defines playoff legends. The young superstar's fourth-quarter explosion silenced any doubts about his readiness for championship moments, while Minnesota's suffocating defense frustrated Denver's championship-caliber offense into submission. Target Center became a madhouse as the Timberwolves pushed the mighty Nuggets to the brink of elimination, proving that youth and hunger can overcome experience and pedigree. This victory represents more than a 3-1 series lead—it's the potential changing of the guard in the Western Conference."
     }
   ]
 };

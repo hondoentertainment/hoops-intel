@@ -46,12 +46,12 @@ export const watchGuideData: WatchGuideData = {
       time: "5/1 - 9:30 PM EDT",
       tv: "Prime Video",
       venue: "Toyota Center (Houston)",
-      entertainmentScore: 91,
-      starPower: 10,
+      entertainmentScore: 88,
+      starPower: 9,
       playoffImplications: 9,
       rivalry: 7,
-      storyline: "Two Western Conference heavyweights clash with identical records and massive playoff seeding implications in what could be a postseason preview between title contenders.",
-      keyMatchup: "Anthony Davis vs. Alperen Sengun",
+      storyline: "Two Western Conference powerhouses clash in a pivotal seeding battle that could determine home-court advantage in the playoffs. Both teams are locked in a tight race for positioning with identical talent levels.",
+      keyMatchup: "LeBron James vs. Alperen Sengun",
       mustWatch: true
     },
     {
@@ -65,11 +65,11 @@ export const watchGuideData: WatchGuideData = {
       time: "5/1 - 7:30 PM EDT",
       tv: "Prime Video",
       venue: "Scotiabank Arena",
-      entertainmentScore: 84,
-      starPower: 8,
+      entertainmentScore: 75,
+      starPower: 7,
       playoffImplications: 8,
       rivalry: 6,
-      storyline: "Cleveland looks to solidify their playoff positioning against a dangerous Raptors team fighting to maintain their postseason hopes in a crucial late-season matchup.",
+      storyline: "Cleveland visits Toronto in a crucial Eastern Conference matchup where the Cavaliers look to solidify their playoff seeding against a desperate Raptors squad fighting for postseason positioning. Both teams need this win badly.",
       keyMatchup: "Donovan Mitchell vs. Scottie Barnes",
       mustWatch: true
     },
@@ -84,15 +84,15 @@ export const watchGuideData: WatchGuideData = {
       time: "5/1 - 7:00 PM EDT",
       tv: "Prime Video",
       venue: "Kia Center",
-      entertainmentScore: 78,
-      starPower: 7,
+      entertainmentScore: 72,
+      starPower: 6,
       playoffImplications: 7,
-      rivalry: 4,
-      storyline: "The surprising Eastern Conference-leading Pistons face a Magic team desperate to lock up their playoff spot in what could determine Orlando's postseason fate.",
+      rivalry: 5,
+      storyline: "The surprising Pistons continue their remarkable turnaround season with a visit to Orlando, where the Magic desperately need a win to keep pace in the Eastern Conference playoff race. Detroit's young core looks to prove their legitimacy.",
       keyMatchup: "Cade Cunningham vs. Paolo Banchero",
       mustWatch: true
     }
   ],
-  topPick: "Lakers at Rockets delivers elite star power and massive playoff implications as two 53+ win teams battle for Western Conference supremacy",
-  nightOverview: "Tonight's slate features three compelling matchups with significant playoff implications, headlined by a Lakers-Rockets showdown between Western Conference titans. All three games carry postseason weight as teams jockey for final positioning with the playoffs approaching."
+  topPick: "Lakers-Rockets delivers elite star power and massive playoff seeding implications in a Western Conference battle between championship contenders",
+  nightOverview: "Three compelling Eastern and Western Conference matchups highlight playoff positioning battles. The Lakers-Rockets showdown caps off the night with championship-level talent and crucial seeding implications."
 };
