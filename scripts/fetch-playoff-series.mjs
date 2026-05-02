@@ -133,6 +133,53 @@ function upsertGame(series, game) {
   else series.games.push(game);
 }
 
+/** Pull box-score leader into `topPerformer` / `topLine`; removes ephemeral `espnEventId`. */
+async function hydrateTopLines(seriesMap) {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  for (const series of seriesMap.values()) {
+    for (const g of series.games) {
+      if (g.status !== "final" || !g.espnEventId) continue;
+      try {
+        const res = await fetch(
+          `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=${g.espnEventId}`,
+        );
+        if (!res.ok) continue;
+        const summary = await res.json();
+        let leader = null;
+        for (const side of summary.boxscore?.players ?? []) {
+          const lbls = side.statistics?.[0]?.labels ?? [];
+          const iPts = lbls.indexOf("PTS");
+          const iReb = lbls.indexOf("REB");
+          const iAst = lbls.indexOf("AST");
+          if (iPts < 0) continue;
+          for (const row of side.statistics?.[0]?.athletes ?? []) {
+            const stats = row.stats ?? [];
+            const pts = parseInt(stats[iPts], 10) || 0;
+            const reb = parseInt(stats[iReb], 10) || 0;
+            const ast = parseInt(stats[iAst], 10) || 0;
+            if (!leader || pts > leader.pts) {
+              leader = {
+                pts,
+                reb,
+                ast,
+                name: row.athlete?.displayName ?? row.athlete?.shortName ?? "Unknown",
+              };
+            }
+          }
+        }
+        if (leader) {
+          g.topPerformer = leader.name;
+          g.topLine = `${leader.pts} PTS · ${leader.reb} REB · ${leader.ast} AST`;
+        }
+      } catch (err) {
+        console.warn(`  [playoffs] top line event ${g.espnEventId}: ${err.message}`);
+      }
+      delete g.espnEventId;
+      await sleep(80);
+    }
+  }
+}
+
 function buildSummary(s) {
   if (s.status === "upcoming") return "Series tied 0-0";
   if (s.status === "complete") {
@@ -213,6 +260,7 @@ async function main() {
 
       upsertGame(series, {
         gameNumber,
+        ...(done ? { espnEventId: String(event.id) } : {}),
         date: espnDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"),
         homeTeam: homeAbbr,
         awayTeam: awayAbbr,
@@ -254,6 +302,13 @@ async function main() {
     series.eliminationGame = series.status !== "complete" && (higherWins === 3 || lowerWins === 3);
     series.summary = buildSummary(series);
     series.games.sort((a, b) => a.gameNumber - b.gameNumber);
+  }
+
+  console.log("  [playoffs] Hydrating top performers from box scores…");
+  await hydrateTopLines(seriesMap);
+
+  for (const s of seriesMap.values()) {
+    for (const g of s.games) delete g.espnEventId;
   }
 
   const snapshot = {
