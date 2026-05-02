@@ -31,12 +31,59 @@ function isPlayoffEvent(event) {
   return false;
 }
 
-function conferenceFromSeries(series) {
+/** ESPN abbreviations → conference when `series.title` omits Eastern/Western. */
+const TEAM_CONFERENCE = {
+  ATL: "east",
+  BOS: "east",
+  BKN: "east",
+  CHA: "east",
+  CHI: "east",
+  CLE: "east",
+  DET: "east",
+  IND: "east",
+  MIA: "east",
+  MIL: "east",
+  NY: "east",
+  NYK: "east",
+  ORL: "east",
+  PHI: "east",
+  TOR: "east",
+  WAS: "east",
+  DAL: "west",
+  DEN: "west",
+  GSW: "west",
+  HOU: "west",
+  LAC: "west",
+  LAL: "west",
+  MEM: "west",
+  MIN: "west",
+  NOP: "west",
+  OKC: "west",
+  PHX: "west",
+  POR: "west",
+  SAC: "west",
+  SA: "west",
+  SAS: "west",
+  UTA: "west",
+};
+
+function conferenceForTeam(abbr) {
+  if (!abbr || abbr === "TBD") return null;
+  return TEAM_CONFERENCE[String(abbr).toUpperCase()] ?? null;
+}
+
+function conferenceFromSeries(series, homeAbbr, awayAbbr) {
   const t = (series?.title ?? "").toLowerCase();
-  if (t.includes("east")) return "east";
-  if (t.includes("west")) return "west";
-  if (/nba finals|\bfinals\b/.test(t) && !t.includes("conference")) return "finals";
-  return "east";
+  if (t.includes("eastern")) return "east";
+  if (t.includes("western")) return "west";
+  if (/nba finals/.test(t) && !t.includes("conference")) return "finals";
+  const hc = conferenceForTeam(homeAbbr);
+  const ac = conferenceForTeam(awayAbbr);
+  if (hc && ac) {
+    if (hc === ac) return hc;
+    return "finals";
+  }
+  return hc ?? ac ?? "east";
 }
 
 function roundFromSeries(series) {
@@ -122,9 +169,10 @@ async function main() {
       const homeAbbr = home.team?.abbreviation ?? "";
       const awayAbbr = away.team?.abbreviation ?? "";
       if (!homeAbbr || !awayAbbr) continue;
+      if (homeAbbr === "TBD" || awayAbbr === "TBD") continue;
 
       const key = seriesKey(homeAbbr, awayAbbr);
-      const conference = conferenceFromSeries(comp.series);
+      const conference = conferenceFromSeries(comp.series, homeAbbr, awayAbbr);
       const round = roundFromSeries(comp.series);
 
       const hs = playoffSeed(home);

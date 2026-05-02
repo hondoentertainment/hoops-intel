@@ -13,6 +13,7 @@ This repository is **`hoops-intel/`**. Use this file alongside **[`CLAUDE.md`](.
 | [`NEXT-STEPS.md`](./NEXT-STEPS.md) | Current prioritized backlog |
 | [`PRODUCT-ENHANCEMENTS.md`](./PRODUCT-ENHANCEMENTS.md) | Competitive tracker & remaining enhancements |
 | [`references/data-schema.md`](./references/data-schema.md) | Edition & playoff TypeScript schemas for generators |
+| [`references/playoff-metrics-process.md`](./references/playoff-metrics-process.md) | Playoff metrics inventory & update cadence |
 
 ---
 
@@ -25,7 +26,7 @@ npm run build
 npm run test:unit       # Vitest
 npm run test            # validate-content + assembly (CI-style)
 npm run test:watch      # Vitest watch
-```
+npm run playoff:refresh # ESPN snapshot → playoffData.ts + test:drift (postseason upkeep)
 
 Pipeline scripts require **`ANTHROPIC_API_KEY`** in `.env` (see **`scripts/load-local-env.mjs`**).
 
@@ -45,7 +46,7 @@ Pipeline scripts require **`ANTHROPIC_API_KEY`** in `.env` (see **`scripts/load-
 |------|----------------|
 | Routing | `client/src/App.tsx` → `pages/*` |
 | Today’s edition | `client/src/lib/pulseData.ts` |
-| Playoffs data | `client/src/lib/playoffData.ts`; fetch `scripts/fetch-playoff-series.mjs` |
+| Playoffs data | `client/src/lib/playoffData.ts`; sync `npm run playoff:sync` / process [`references/playoff-metrics-process.md`](./references/playoff-metrics-process.md) |
 | Pick ’Em | `client/src/pages/PickEm.tsx`, `components/PickEm`, `BracketPicker` |
 | Ask | `api/ask.ts`, `client/src/pages/AskAI.tsx`, `components/AskHoopsIntel.tsx` |
 | Pro / Stripe | `pages/Pro.tsx`, `api/create-checkout.ts`, `api/stripe-webhook.ts` |
