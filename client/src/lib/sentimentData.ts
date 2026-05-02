@@ -47,142 +47,142 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-05-02",
   displayDate: "May 2, 2026",
-  overallMood: "Playoff chaos and vintage star power",
+  overallMood: "Veteran vindication and rookie reckoning",
   topics: [
     {
-      id: "lebron-vintage-dominance",
-      topic: "LeBron's Vintage Performance Silences Lakers Doubters",
+      id: "lebron-41-still-different",
+      topic: "LeBron at 41 Is Still the Playoff GOAT and Nobody Wants to Admit It",
       sentiment: "positive",
-      intensity: 94,
-      volume: 47320,
-      summary: "NBA Twitter exploded after LeBron's 31-point masterpiece evened the series, with fans declaring the King still owns playoff basketball at age 41.",
+      intensity: 97,
+      volume: 52480,
+      summary: "NBA Twitter completely lost its mind after LeBron's 31-point road masterpiece erased every single pre-series narrative about Lakers decline. The discourse is split between people crowning him eternal and people desperately searching for asterisks to dismiss the performance.",
       sampleTakes: [
-        "Y'all really thought Father Time caught up to LeBron? That man just dropped 31 to save the Lakers season 💀",
-        "LeBron James in elimination games is DIFFERENT. Most clutch player of all time and it's not even close",
-        "The audacity to count out LeBron in the playoffs... when will people learn? 👑",
-        "31-8-6 on the road when facing series deficit. LeBron really built different in May"
+        "LeBron James is 41 years old, playing on the road, facing elimination pressure, and just dropped 31-8-6 on 63% shooting. I don't want to hear ANYTHING about age catching up to this man ever again 👑",
+        "The way the entire media spent a week writing the Lakers' obituary after Game 1 only for LeBron to show up and cook Houston by 20... journalism is dead and LeBron killed it",
+        "Y'all really let one loss make you forget you're talking about LEBRON JAMES in MAY. This happens literally every single year and people never learn",
+        "31 points in an elimination-pressure road game at age 41. I'm not even a Lakers fan and I'm standing up. That's the greatest athlete in sports history doing what he does 🐐"
       ],
       relatedPlayers: ["LeBron James", "Anthony Davis"],
       relatedTeams: ["LAL", "HOU"],
       trending: true
     },
     {
-      id: "rockets-playoff-inexperience",
-      topic: "Rockets Fold Under Playoff Pressure",
+      id: "rockets-youth-reality-check",
+      topic: "Houston's Playoff Reality Check Is Brutal and Necessary",
       sentiment: "negative",
-      intensity: 87,
-      volume: 32140,
-      summary: "Houston's 20-point home collapse has fans questioning if the young Rockets are ready for playoff basketball, with brutal takes about their championship timeline.",
+      intensity: 88,
+      volume: 34920,
+      summary: "The Rockets' 20-point home collapse has social media ruthlessly diagnosing Houston's championship timeline, with takes ranging from 'two years away' to 'fundamentally flawed roster.' The 36.2% shooting line is being weaponized in every argument about whether Houston was ever a real contender.",
       sampleTakes: [
-        "The Rockets really thought regular season wins meant something in the playoffs 😂",
-        "Houston getting outplayed by 39-year-old LeBron at home is embarrassing. Not ready for this stage",
-        "All that regular season hype just to get dominated by the Lakers' B-team effort. Rockets are frauds",
-        "Sengun and the young guys getting a reality check about playoff basketball"
+        "Houston at home, 36.2% shooting, losing by 20 to a team you supposedly matched up against. The Rockets were never who we thought they were this season full stop",
+        "Sengun is incredible. Amen Thompson is exciting. But the Rockets have ZERO playoff DNA on that roster and it showed last night in the most embarrassing way possible",
+        "All that regular season noise about Houston being top 5 in the West and LeBron just came to their house and took their lunch money in front of their parents 💀",
+        "The Rockets won 52 games and got their souls removed on their own court. The West is not a democracy in the playoffs"
       ],
-      relatedPlayers: ["Alperen Sengun", "LeBron James"],
+      relatedPlayers: ["Alperen Sengun", "Amen Thompson", "LeBron James"],
       relatedTeams: ["HOU", "LAL"],
       trending: true
     },
     {
-      id: "raptors-overtime-shock",
-      topic: "Raptors Stun Cavaliers in OT Thriller",
+      id: "siakam-overtime-superstar",
+      topic: "Pascal Siakam Is a Certified Playoff Superstar and Cleveland Found Out",
       sentiment: "positive",
-      intensity: 89,
-      volume: 38650,
-      summary: "Pascal Siakam's clutch overtime performance has Toronto fans believing in another magical playoff run, while Cavs supporters are panicking about their title hopes.",
+      intensity: 91,
+      volume: 41630,
+      summary: "Toronto's overtime stunner has the NBA internet fully buying into Siakam's superstar credentials, with his clutch overtime execution drawing comparisons to the Raptors' greatest playoff moments. Cleveland fans are in full panic mode and the memes are genuinely hilarious.",
       sampleTakes: [
-        "PASCAL SIAKAM IS THAT GUY. 29 points in OT to steal home court from Cleveland!",
-        "Toronto in 7. Don't @ me. This Raptors team has that championship experience DNA",
-        "Siakam really just ended the Cavaliers season in overtime. What a performance 🔥",
-        "The Scotiabank Arena crowd was ELECTRIC. Playoff basketball in Toronto hits different"
+        "Pascal Siakam said 'overtime? bet' and proceeded to absolutely dismantle the Cavaliers in the extra period. 29 points, series lead, and Cleveland has no answers. This man is COLD",
+        "The Scotiabank Arena in overtime last night looked like the 2019 Finals. Toronto knows how to build a playoff atmosphere and Siakam knows how to perform in one",
+        "People keep sleeping on Pascal Siakam every single postseason and every single postseason he makes them look stupid. When does the respect tour start?",
+        "Siakam with 29 in OT to put the Raptors up 2-1 over a team that was supposed to waltz through the first round... Toronto is genuinely dangerous and nobody's ready to admit it 🔥"
       ],
-      relatedPlayers: ["Pascal Siakam", "Donovan Mitchell"],
+      relatedPlayers: ["Pascal Siakam", "Scottie Barnes", "Donovan Mitchell"],
       relatedTeams: ["TOR", "CLE"],
       trending: true
     },
     {
-      id: "magic-historic-upset-stalled",
-      topic: "Magic Blow Historic Upset Opportunity",
+      id: "cavaliers-road-identity-crisis",
+      topic: "Cleveland's Road Execution Problem Might Be Unfixable",
       sentiment: "negative",
-      intensity: 78,
-      volume: 24890,
-      summary: "Orlando's inability to close out Detroit has fans frustrated about missing the biggest upset in NBA history, with questions about their championship maturity.",
+      intensity: 74,
+      volume: 22410,
+      summary: "The Cavaliers' overtime loss in Toronto has exposed a recurring identity crisis that spans two full seasons of playoff basketball. Fans are pointing to the pattern with increasing alarm — Mitchell scores 33 and it still isn't enough because the supporting cast evaporates on the road.",
       sampleTakes: [
-        "Paolo struggling when it matters most. Not ready for the big stage yet",
-        "The Magic really had a chance to shock the world and choked it away at home",
-        "This was Orlando's moment to prove they're legit contenders. Epic fail.",
-        "Young teams gonna young team. Magic learning playoff basketball the hard way"
-      ],
-      relatedPlayers: ["Paolo Banchero", "Cade Cunningham"],
-      relatedTeams: ["ORL", "DET"],
-      trending: false
-    },
-    {
-      id: "pistons-championship-dna",
-      topic: "Pistons Show Championship Pedigree",
-      sentiment: "positive",
-      intensity: 72,
-      volume: 19340,
-      summary: "Detroit's elimination-game victory has fans praising their veteran leadership and championship experience, though they still face long odds in Game 6.",
-      sampleTakes: [
-        "Cade Cunningham in elimination games is automatic. Kid has ice in his veins",
-        "This is why you need championship experience. Pistons know how to win when it matters",
-        "28 points to avoid the biggest upset ever. Cade different in clutch time 🥶",
-        "Detroit's not going out without a fight. Game 6 in the Motor City gonna be crazy"
-      ],
-      relatedPlayers: ["Cade Cunningham", "Paolo Banchero"],
-      relatedTeams: ["DET", "ORL"],
-      trending: false
-    },
-    {
-      id: "cavaliers-road-struggles",
-      topic: "Cavaliers' Road Woes Continue",
-      sentiment: "negative",
-      intensity: 65,
-      volume: 18720,
-      summary: "Cleveland's overtime loss in Toronto has exposed their road execution problems, with fans worried about their championship credentials away from home.",
-      sampleTakes: [
-        "The Cavs are a completely different team on the road. Can't win a championship like that",
-        "Donovan Mitchell dropped 33 and they still lost in OT. Role players not showing up",
-        "Cleveland's road record gonna kill their playoff dreams. No championship DNA",
-        "How you gonna let Pascal Siakam dominate you in overtime? Embarrassing"
+        "Donovan Mitchell literally gave you 33 points in overtime and you STILL lost. The supporting cast has to be one of the most inconsistent in playoff history when they're away from home",
+        "The Cavs are a completely different team when they leave Cleveland and everyone acts surprised every single time it happens. This is a roster construction issue that starts at the front office",
+        "33 points from your best player in an overtime loss on the road. That's not a Donovan Mitchell problem. That's a Cleveland everything-else problem",
+        "I love the Cavaliers but watching them outside of Rocket Mortgage is genuinely painful. It's like watching a car that only starts in certain weather conditions 💀"
       ],
       relatedPlayers: ["Donovan Mitchell", "Pascal Siakam"],
       relatedTeams: ["CLE", "TOR"],
       trending: false
     },
     {
-      id: "playoff-veteran-excellence",
-      topic: "Playoff Veterans Taking Over",
-      sentiment: "positive",
-      intensity: 81,
-      volume: 28940,
-      summary: "The dominance of LeBron and Siakam has fans celebrating how veteran playoff experience separates stars from role players in crucial postseason moments.",
+      id: "magic-missed-historic-moment",
+      topic: "Orlando Let the Biggest Upset in NBA History Slip Through Their Fingers",
+      sentiment: "negative",
+      intensity: 82,
+      volume: 27850,
+      summary: "The basketball internet is equal parts frustrated and fascinated by Orlando's failure to close out Detroit at home. Banchero's poor shooting in the elimination game has become the centerpiece of a larger debate about Magic's readiness for championship-level pressure.",
       sampleTakes: [
-        "This is why playoff experience matters. LeBron and Siakam just different in May",
-        "Young teams learning that regular season don't mean nothing in the playoffs",
-        "Veteran stars showing up when it matters most. Championship DNA is real",
-        "The gap between playoff rookies and playoff vets is massive. Experience everything"
+        "Orlando had a chance to complete one of the greatest upsets in NBA history on their home floor and Paolo Banchero shot it into the ground. 18 points on bad shooting is unacceptable in that moment",
+        "I'm not panicking about Orlando yet but I am concerned. When the lights got brightest they went flat and that tells you something about where this team actually is in their development",
+        "The Magic are still up 3-2 and people acting like the series is over. Detroit still has to win in Detroit AND come back to Orlando. Calm down",
+        "Young team, road environment, elimination pressure on the other team — this is the exact scenario where experience always wins. Detroit knew what they were doing last night 💯"
       ],
-      relatedPlayers: ["LeBron James", "Pascal Siakam", "Paolo Banchero"],
-      relatedTeams: ["LAL", "TOR", "ORL", "HOU"],
+      relatedPlayers: ["Paolo Banchero", "Cade Cunningham", "Anthony Black"],
+      relatedTeams: ["ORL", "DET"],
+      trending: true
+    },
+    {
+      id: "cade-cunningham-clutch-gene",
+      topic: "Cade Cunningham Has the Clutch Gene and Game 6 Proves It",
+      sentiment: "positive",
+      intensity: 76,
+      volume: 21680,
+      summary: "Detroit's elimination-game survival has renewed discourse about Cade's ceiling, with fans pointing to his 28-point performance as proof that the Pistons' best player rises to the occasion rather than shrinking from it. The narrative is cautiously optimistic with the series still stacked against them.",
+      sampleTakes: [
+        "Cade Cunningham just went on the road in an elimination game and dropped 28 points to save his team's season. That's not luck, that's not a fluke — that is a FRANCHISE PLAYER doing franchise player things",
+        "Detroit down 3-1 against the team everyone said was the biggest upset in playoff history and Cade just went and handled business. Coming home for Game 6 is going to be absolutely insane",
+        "The Pistons have won 60 games this year and people still act like Cade isn't elite. Last night should end that conversation permanently",
+        "28 points, 7 assists, the road win. Cade Cunningham is built for these moments and I will not stop saying it until y'all start believing me 🥶"
+      ],
+      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Paolo Banchero"],
+      relatedTeams: ["DET", "ORL"],
       trending: false
     },
     {
-      id: "celtics-sixers-game-5-hype",
-      topic: "Celtics-Sixers Game 5 Winner-Take-All",
+      id: "celtics-sixers-game5-everything",
+      topic: "Tonight's Celtics-Sixers Game 5 Is the Most Important Game of the Playoffs So Far",
       sentiment: "mixed",
-      intensity: 92,
-      volume: 41280,
-      summary: "Tonight's Game 5 in Boston has fans divided on whether Embiid's dominance or Tatum's home court advantage will decide the series, with championship implications on the line.",
+      intensity: 93,
+      volume: 48920,
+      summary: "Game 5 anticipation is dominating Friday morning NBA discourse at levels that rival the actual results from Thursday. The debate between Embiid's mastery over Boston and Tatum's home court invincibility at TD Garden is generating genuine division across every NBA community online.",
       sampleTakes: [
-        "Embiid owns the Celtics. Philly in 6 and it won't be close 💪",
-        "Tatum at home in Game 5? That's automatic. Boston not losing at TD Garden",
-        "This series is 50/50. Both teams playing championship-level basketball",
-        "Winner of this game probably making the Finals. Stakes couldn't be higher"
+        "Joel Embiid at TD Garden tonight is the single scariest thing in basketball. Boston cannot guard him. Philly wins this game and takes a 3-2 lead and nobody is ready for that conversation",
+        "I respect the Embiid hype but Jayson Tatum in a Game 5 at home with his season on the line is automatic buckets. Boston wins by double digits and it won't be close",
+        "This series has been genuinely elite basketball and tonight could be a top 5 playoff game in the last decade. Both teams are playing at an insane level",
+        "Winner of BOS-PHI probably plays for the Finals. The stakes tonight are absolutely astronomical and the rest of the NBA is sweating watching this series unfold 👀"
       ],
-      relatedPlayers: ["Joel Embiid", "Jayson Tatum"],
+      relatedPlayers: ["Joel Embiid", "Jayson Tatum", "Jaylen Brown"],
       relatedTeams: ["BOS", "PHI"],
+      trending: true
+    },
+    {
+      id: "ad-defensive-masterpiece",
+      topic: "Anthony Davis Showed Why Elite Defense Wins Playoff Series",
+      sentiment: "positive",
+      intensity: 79,
+      volume: 18340,
+      summary: "Davis's 22-11-3 blocks performance is generating analytical praise about defensive impact in playoff basketball, with many pointing to his rim protection as the real difference-maker in the series-evening victory — and wondering if he gets enough credit for the Lakers' championship runs.",
+      sampleTakes: [
+        "People are talking about LeBron's 31 points and rightly so but Anthony Davis was the ACTUAL reason Houston shot 36% last night. His rim protection is genuinely terrifying and criminally underrated",
+        "AD with 22 and 11 and 3 blocks in a playoff win is the kind of performance that changes series. Lakers have the best big man defender in basketball and it shows up every May",
+        "The Davis-LeBron combination in the playoffs is still the most dominant 1-2 punch in the league. Last night was a reminder of why they keep running it back",
+        "22 points 11 rebounds 3 blocks on the road. Anthony Davis is healthy Anthony Davis again and that means nobody in the West is safe 😤"
+      ],
+      relatedPlayers: ["Anthony Davis", "LeBron James", "Alperen Sengun"],
+      relatedTeams: ["LAL", "HOU"],
       trending: false
     }
   ],
@@ -191,65 +191,81 @@ export const sentimentData: SentimentData = {
       team: "LAL",
       teamFull: "Los Angeles Lakers",
       sentiment: "positive",
-      score: 84,
-      buzzWords: ["championship DNA", "vintage LeBron", "playoff pedigree", "clutch", "veteran leadership"],
-      narrativeSummary: "Lakers silenced doubters with dominant road performance, proving their championship experience matters in playoff basketball"
+      score: 88,
+      buzzWords: ["LeBron eternal", "vindication", "championship DNA", "road warriors", "series tied"],
+      narrativeSummary: "Lakers fan sentiment went from quiet anxiety to full-throated vindication overnight. The 20-point road win has silenced the most aggressive doubters and restored belief that this roster has enough championship experience to make a real run. LeBron discourse is at peak volume and it's almost entirely positive."
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "positive",
-      score: 79,
-      buzzWords: ["overtime heroes", "Siakam clutch", "home court magic", "playoff experience", "championship DNA"],
-      narrativeSummary: "Raptors stunned Cleveland with vintage playoff execution, taking series control behind Siakam's overtime brilliance"
+      score: 82,
+      buzzWords: ["Siakam superstar", "overtime magic", "series control", "Scotiabank electric", "believers"],
+      narrativeSummary: "Raptors fans who spent the regular season quietly hoping are now loud and proud after the overtime stunner. The 2-1 series lead has transformed Toronto's fan base from cautiously optimistic to genuinely believing, with Siakam's performance validating every argument they've been making about his star power for two years."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 68,
-      buzzWords: ["elimination escape", "Cade clutch", "veteran poise", "championship experience", "survived"],
-      narrativeSummary: "Pistons avoided historic upset with veteran leadership, though still face elimination pressure in Game 6"
-    },
-    {
-      team: "HOU",
-      teamFull: "Houston Rockets",
-      sentiment: "negative",
-      score: -71,
-      buzzWords: ["playoff inexperience", "choked at home", "young team struggles", "reality check", "not ready"],
-      narrativeSummary: "Rockets' youth was exposed in brutal home collapse, raising questions about their playoff readiness against veteran competition"
-    },
-    {
-      team: "CLE",
-      teamFull: "Cleveland Cavaliers",
-      sentiment: "negative",
-      score: -58,
-      buzzWords: ["road struggles", "overtime collapse", "championship questions", "execution problems", "disappointing"],
-      narrativeSummary: "Cavaliers' road woes continued with overtime loss, exposing concerning execution problems away from home court"
-    },
-    {
-      team: "ORL",
-      teamFull: "Orlando Magic",
-      sentiment: "negative",
-      score: -52,
-      buzzWords: ["historic opportunity blown", "young team mistakes", "Paolo struggles", "championship maturity", "choked"],
-      narrativeSummary: "Magic squandered chance at historic upset, with rookie inconsistency preventing potential championship statement"
+      score: 71,
+      buzzWords: ["Cade clutch", "still alive", "Game 6 hype", "Motor City ready", "champion mentality"],
+      narrativeSummary: "Detroit's fan base exhaled collectively when the final buzzer sounded in Orlando. The relief is palpable but so is the excitement — Game 6 at home with the city rallied behind them is exactly the atmosphere Pistons fans dreamed about. The championship-level regular season record is finally being discussed with pride again."
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "mixed",
-      score: 15,
-      buzzWords: ["Game 5 pressure", "home court advantage", "Tatum time", "championship stakes", "winner-take-all"],
-      narrativeSummary: "Celtics face crucial Game 5 at home with championship implications, relying on Tatum's clutch gene"
+      score: 24,
+      buzzWords: ["Game 5 pressure", "Tatum moment", "Brown injury concern", "home fortress", "must win"],
+      narrativeSummary: "Celtics fans are in full game-day anxiety mode. The Jaylen Brown injury question is eating at everyone while the excitement of a winner-take-all home game creates conflicting emotional energy. TD Garden tonight better deliver because Boston needs Tatum to remind everyone why he's been considered a championship-caliber player."
     },
     {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
       sentiment: "mixed",
-      score: 22,
-      buzzWords: ["Embiid dominance", "series momentum", "upset potential", "veteran leadership", "championship window"],
-      narrativeSummary: "Sixers have seized momentum behind Embiid's vintage playoff performance, positioned for potential upset"
+      score: 48,
+      buzzWords: ["Embiid vintage", "upset incoming", "road warriors", "series momentum", "believe"],
+      narrativeSummary: "Sixers fans have gone from resigned pessimism to dangerous optimism after Embiid's vintage playoff performances flipped the series. The energy in Philadelphia right now is the cautious-but-electric variety — they've been burned before, but even the most jaded Philly fans are starting to type in the group chat again."
+    },
+    {
+      team: "HOU",
+      teamFull: "Houston Rockets",
+      sentiment: "negative",
+      score: -68,
+      buzzWords: ["fraud season", "not ready", "youth exposed", "home embarrassment", "reality check"],
+      narrativeSummary: "Houston fans are experiencing the specific disappointment of a team that overperformed its ceiling during the regular season and got exposed under playoff lights. The 36.2% shooting performance at home has people genuinely questioning the roster's construction and whether this group can ever compete against elite veteran opposition."
+    },
+    {
+      team: "CLE",
+      teamFull: "Cleveland Cavaliers",
+      sentiment: "negative",
+      score: -54,
+      buzzWords: ["road problems", "2-1 deficit panic", "wasted Mitchell performance", "championship questions", "concerning"],
+      narrativeSummary: "Cleveland fans are doing the thing where they tell themselves it's fine while their eyes say it is very much not fine. The road execution issue is chronic at this point and the fanbase knows it. Donovan Mitchell scoring 33 in a loss is a specific kind of torture that Cleveland supporters are unfortunately well-acquainted with."
+    },
+    {
+      team: "ORL",
+      teamFull: "Orlando Magic",
+      sentiment: "negative",
+      score: -41,
+      buzzWords: ["still up 3-2", "Paolo concerns", "blew the moment", "young team", "Game 6 or bust"],
+      narrativeSummary: "Magic fans are split between the rational camp — they still lead 3-2 — and the panic camp that watched Orlando fail to close out a historic upset at home and now fears the momentum has shifted permanently. Banchero's performance is the central discussion and the tone is more disappointed than angry, which might actually be worse."
+    },
+    {
+      team: "TOR",
+      teamFull: "Toronto Raptors",
+      sentiment: "positive",
+      score: 82,
+      buzzWords: ["Siakam superstar", "overtime magic", "series control", "Scotiabank electric", "believers"],
+      narrativeSummary: "Raptors fans who spent the regular season quietly hoping are now loud and proud after the overtime stunner. The 2-1 series lead has transformed Toronto's fan base from cautiously optimistic to genuinely believing in another magical playoff run."
+    },
+    {
+      team: "MIN",
+      teamFull: "Minnesota Timberwolves",
+      sentiment: "positive",
+      score: 61,
+      buzzWords: ["upset kings", "next round ready", "waiting game", "Ant time", "Western threat"],
+      narrativeSummary: "Timberwolves fans are in the enviable position of watching other series play out after pulling off their own stunning upset of Denver. The mood is confident and quietly menacing — Minnesota knows they're dangerous and the rest of the West is starting to realize it too."
     }
   ],
   playerSentiments: [
@@ -257,93 +273,138 @@ export const sentimentData: SentimentData = {
       player: "LeBron James",
       team: "LAL",
       sentiment: "positive",
-      score: 91,
-      mentions: 24680,
-      topTake: "LeBron really just reminded everyone why he's the playoff GOAT with that vintage 31-point masterpiece",
-      narrativeArc: "Vintage playoff dominance silences doubters and proves the King still owns elimination games at age 41"
+      score: 94,
+      mentions: 28640,
+      topTake: "LeBron James is 41 years old and just went on the road in an elimination-pressure game and dropped 31 points on 63% shooting. Father Time is scared of this man, not the other way around.",
+      narrativeArc: "King reclaims throne narrative is in full effect after the dominant road performance erased every premature retirement take from the past week. The discourse is at peak reverence and the doubters have gone completely silent — at least until the Lakers lose another game."
     },
     {
       player: "Pascal Siakam",
       team: "TOR",
       sentiment: "positive",
-      score: 87,
-      mentions: 18940,
-      topTake: "Pascal Siakam in overtime is DIFFERENT. 29 points to steal home court from Cleveland was pure magic",
-      narrativeArc: "Clutch overtime heroics showcase championship DNA and put Raptors in control of series momentum"
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      sentiment: "positive",
-      score: 76,
-      mentions: 14320,
-      topTake: "Cade Cunningham with 28 points in an elimination game shows he's built for the biggest moments",
-      narrativeArc: "Elimination-game excellence prevents historic upset and proves championship-level clutch gene"
-    },
-    {
-      player: "Paolo Banchero",
-      team: "ORL",
-      sentiment: "negative",
-      score: -48,
-      mentions: 12840,
-      topTake: "Paolo Banchero struggling when Orlando needed him most shows he's not ready for championship moments yet",
-      narrativeArc: "Rookie inconsistency in crucial moments raises questions about playoff readiness and championship maturity"
-    },
-    {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      sentiment: "mixed",
-      score: -12,
-      mentions: 11680,
-      topTake: "Donovan Mitchell dropped 33 points and still lost in overtime. Can't do everything by himself",
-      narrativeArc: "Individual brilliance overshadowed by team's road execution problems and overtime collapse"
-    },
-    {
-      player: "Anthony Davis",
-      team: "LAL",
-      sentiment: "positive",
-      score: 73,
-      mentions: 9450,
-      topTake: "AD's defensive dominance was the key to shutting down Houston's young core. Elite two-way impact",
-      narrativeArc: "Defensive excellence anchors Lakers' championship-level performance and series momentum shift"
+      score: 89,
+      mentions: 21380,
+      topTake: "Pascal Siakam in overtime is a different human being. 29 points, series lead, Cavaliers looking bewildered — this is what a certified playoff superstar looks like and people need to stop pretending otherwise.",
+      narrativeArc: "The annual Siakam respect conversation has finally graduated from debate to consensus after the overtime heroics. His clutch gene is no longer a question — it's a confirmed fact — and Toronto fans are riding this wave with the specific joy of people who were right when everyone else was wrong."
     },
     {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "positive",
-      score: 81,
-      mentions: 16720,
-      topTake: "Joel Embiid healthy for Game 5 is scary hours for Boston. This man owns the Celtics",
-      narrativeArc: "Vintage playoff dominance has Sixers positioned for upset, with championship implications at stake"
+      score: 86,
+      mentions: 19240,
+      topTake: "Joel Embiid healthy and locked in for a Game 5 road eliminator is the single most terrifying thing in basketball tonight. Boston's frontcourt has no answer and everyone in the league knows it.",
+      narrativeArc: "Embiid's vintage playoff form has transformed the pre-series narrative completely. The health questions that dominated discourse before the series have evaporated and now it's pure superstar hype heading into the biggest game of Philadelphia's season."
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      sentiment: "positive",
+      score: 78,
+      mentions: 16470,
+      topTake: "Cade Cunningham dropped 28 on the road in an elimination game to save his team's season. That's what a franchise player does. The Pistons live to fight another day because of him.",
+      narrativeArc: "Elimination-game clutch performance has elevated Cade's status from 'great regular season player' to 'proven playoff performer' in the court of public opinion. Detroit's 60-win season is finally getting the respect it deserved all along."
     },
     {
       player: "Jayson Tatum",
       team: "BOS",
       sentiment: "mixed",
-      score: 18,
-      mentions: 13290,
-      topTake: "Tatum at home in Game 5 better show up. This is his championship moment to prove he's that guy",
-      narrativeArc: "Faces crucial home performance pressure with series and championship aspirations on the line"
+      score: 21,
+      mentions: 17820,
+      topTake: "Tatum needs this Game 5 more than any game of his career. TD Garden, season on the line, the whole basketball world watching — either he proves he's a champion tonight or the narrative gets ugly fast.",
+      narrativeArc: "Facing the defining moment pressure test that has followed him throughout his career. The discourse is anticipatory rather than reactive — fans are reserving judgment until they see what he does tonight, which is either a sign of respect or a sign that people aren't fully convinced yet."
+    },
+    {
+      player: "Anthony Davis",
+      team: "LAL",
+      sentiment: "positive",
+      score: 76,
+      mentions: 11290,
+      topTake: "Everyone talking about LeBron's 31 and nobody talking about Anthony Davis holding Houston to 36% shooting. The man is the best interior defender in the playoffs and he's criminally underappreciated every single year.",
+      narrativeArc: "Quietly dominant performance generating genuine analytical appreciation rather than viral moments. Davis is in the phase of his career where his contributions are understood rather than celebrated loudly, which his most devoted fans find endlessly frustrating."
+    },
+    {
+      player: "Donovan Mitchell",
+      team: "CLE",
+      sentiment: "mixed",
+      score: -8,
+      mentions: 14560,
+      topTake: "Donovan Mitchell scored 33 points in an overtime playoff loss on the road. I don't know if that's impressive or heartbreaking but it's definitely both at the same time.",
+      narrativeArc: "Trapped in the 'franchise player doing everything while team underperforms' narrative that has defined his Cleveland tenure. The 33-point performance is simultaneously impressive and a referendum on roster construction — depending entirely on which side of the debate you were already on."
+    },
+    {
+      player: "Paolo Banchero",
+      team: "ORL",
+      sentiment: "negative",
+      score: -52,
+      mentions: 14890,
+      topTake: "Paolo Banchero had 18 points on bad shooting in a game Orlando needed to close out the series at home. That's a franchise player failing his franchise moment and there's no way to dress it up nicely.",
+      narrativeArc: "The narrative has shifted from 'exciting young star' to 'unproven under pressure' after the poor elimination-game showing. The shoulder soreness provides some cover but the basketball internet is not in a forgiving mood when historic upset opportunities get squandered."
     },
     {
       player: "Alperen Sengun",
       team: "HOU",
       sentiment: "negative",
-      score: -39,
-      mentions: 7680,
-      topTake: "Sengun getting dominated by the Lakers' frontcourt at home shows Houston's not ready for playoff basketball",
-      narrativeArc: "Struggles against veteran playoff execution expose youth and inexperience under elimination pressure"
+      score: -44,
+      mentions: 9130,
+      topTake: "Sengun looked completely lost against AD and the Lakers' veteran frontcourt. This is what happens when a young big man faces real playoff physicality for the first time. Welcome to the postseason, kid.",
+      narrativeArc: "Regular season brilliance meets playoff reality wall. The discourse has moved from excited prospect energy to sympathetic 'he'll learn from this' mode, which is a significant downshift from where Sengun's reputation was two weeks ago."
     },
     {
       player: "Scottie Barnes",
       team: "TOR",
       sentiment: "positive",
-      score: 64,
-      mentions: 8940,
-      topTake: "Scottie Barnes with that triple-double energy in the overtime win. Championship role player vibes",
-      narrativeArc: "Versatile playoff impact supports Siakam's heroics and showcases championship-level supporting cast"
+      score: 67,
+      mentions: 10840,
+      topTake: "Scottie Barnes with 19-12-8 in an overtime playoff win is the definition of a championship-caliber supporting star. The Raptors have the two best players in this series and Cleveland is slowly figuring that out.",
+      narrativeArc: "Quietly building a case as one of the most underrated contributors in the playoffs. The statistical line doesn't generate viral moments but the basketball community is starting to connect the dots between Barnes's performances and Toronto's wins."
+    },
+    {
+      player: "Jaylen Brown",
+      team: "BOS",
+      sentiment: "mixed",
+      score: 12,
+      mentions: 12380,
+      topTake: "Jaylen Brown's availability for Game 5 is the most important question in basketball tonight. Boston with a healthy JB is a completely different team than Boston without him — everyone knows it, including Philadelphia.",
+      narrativeArc: "Injury uncertainty has temporarily transformed his narrative from elite playoff wing to critical availability question mark. The discourse is almost entirely about whether he plays rather than what he'll do when he does, which tells you everything about how much Boston needs him."
+    },
+    {
+      player: "Isaiah Stewart",
+      team: "DET",
+      sentiment: "positive",
+      score: 58,
+      mentions: 7240,
+      topTake: "Isaiah Stewart with 16 and 11 and 2 blocks was the unsung hero of Detroit's road win. The Pistons are built differently from top to bottom and Stewart is exactly why they win games like last night.",
+      narrativeArc: "Consistent interior presence generating quiet appreciation from the analytically-minded basketball community. Stewart's games don't trend but Detroit fans know exactly what they have and last night was a perfect example."
+    },
+    {
+      player: "Austin Reaves",
+      team: "LAL",
+      sentiment: "positive",
+      score: 61,
+      mentions: 8970,
+      topTake: "Austin Reaves with 14 points and 5 assists while making every single right play in a 20-point road playoff win. This man is the most efficient role player in the league and the Lakers are built around having exactly one of him.",
+      narrativeArc: "Riding the wave of a team narrative rather than generating his own, which is exactly how Reaves prefers it. His quiet excellence gets appreciated more in wins like this than in any individual statistical breakout and the Lakers fan base loves him for it."
+    },
+    {
+      player: "Amen Thompson",
+      team: "HOU",
+      sentiment: "negative",
+      score: -31,
+      mentions: 6820,
+      topTake: "Amen Thompson's energy and athleticism weren't enough to change the game against Lakers veterans who've seen everything. The gap between athletic potential and playoff execution is a chasm right now.",
+      narrativeArc: "The promising young wing narrative has cooled considerably after the team's ugly home loss. Thompson's limitations against elite competition are being discussed more critically than they were during the regular season, when his ceiling was the only story anyone wanted to tell."
+    },
+    {
+      player: "Anthony Black",
+      team: "ORL",
+      sentiment: "neutral",
+      score: 8,
+      mentions: 5640,
+      topTake: "Anthony Black is the quiet glue guy keeping Orlando functional even when Banchero struggles. His basketball IQ at this stage of his career is genuinely impressive and he's the one Magic player who hasn't been criticized this week.",
+      narrativeArc: "Occupying the rare space of a player who exists outside the main narrative on his own team. While Banchero absorbs criticism and the Magic's result generates discourse, Black is quietly building a reputation as a cerebral playoff performer that will pay dividends for years."
     }
   ],
-  hottestTake: "LeBron James is 41 years old and still the best playoff performer in the NBA. The disrespect needs to stop immediately. That man just saved the Lakers season with vintage elimination-game dominance and y'all still questioning his GOAT status? Absolutely delusional.",
-  coldestTake: "The Houston Rockets are still the better team than the Lakers despite losing Game 2. One bad shooting night doesn't erase their entire regular season. They'll bounce back at home and close out this series in 6 games maximum."
+  hottestTake: "LeBron James is 41 years old, playing his 24th season, went on the road in an elimination-pressure game, dropped 31 points on 12-of-19 shooting, dished 8 assists, and the Lakers won by 20. I need everyone who wrote that 'Father Time wins eventually' column after Game 1 to hand in their press credentials. This man doesn't have a ceiling and pretending otherwise every single postseason is embarrassing for the entire sports media industry. The GOAT debate ended last night in Houston and LeBron won it. Again.",
+  coldestTake: "Houston's 20-point loss last night was actually a perfectly calibrated strategic decision to not show their full hand on their home court before the series returns to Los Angeles. The Rockets intentionally conserved their best plays for a road environment where they'll have zero pressure and maximum upside. Sengun was specifically holding back his post game because he wants to debut it in the Crypto.com Arena. The Lakers celebrating this win are walking directly into a trap that a 52-win team clearly set for them. Watch Game 3 and apologize to Houston afterward."
 };

@@ -50,11 +50,11 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline: "Classic Atlantic Division playoff battle as the 76ers look to upset the top-seeded Celtics at TD Garden in what promises to be an intense postseason atmosphere. Philadelphia enters desperate for road playoff magic while Boston aims to protect home court and advance deeper into their championship run.",
-      keyMatchup: "Joel Embiid vs. Jayson Tatum",
+      storyline: "Playoff atmosphere in Boston as the 76ers look to steal homecourt advantage against the top-seeded Celtics in this crucial Eastern Conference battle.",
+      keyMatchup: "Joel Embiid vs. Kristaps Porzingis",
       mustWatch: true
     }
   ],
-  topPick: "Sixers-Celtics playoff showdown at TD Garden delivers classic Eastern Conference drama with championship implications",
-  nightOverview: "Tonight features a single must-watch playoff clash as Philadelphia travels to Boston for a crucial Eastern Conference battle. The atmosphere at TD Garden will be electric for this Atlantic Division rivalry with major postseason implications on the line."
+  topPick: "Sixers-Celtics playoff intensity at TD Garden with homecourt advantage on the line",
+  nightOverview: "Single-game slate features maximum playoff drama as Philadelphia visits Boston in what promises to be a intense Eastern Conference showdown. The postseason atmosphere and championship implications make this essential viewing."
 };
