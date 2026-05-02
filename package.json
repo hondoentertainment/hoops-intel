@@ -15,7 +15,7 @@
     "playoff:fetch": "node scripts/fetch-playoff-series.mjs",
     "playoff:sync": "node scripts/fetch-playoff-series.mjs && node scripts/sync-playoff-data.mjs",
     "playoff:intel": "node scripts/generate-series-intel.mjs",
-    "playoff:refresh": "node scripts/fetch-playoff-series.mjs && node scripts/sync-playoff-data.mjs && node scripts/validate-playoff-pulse-drift.mjs",
+  "playoff:movers-lines": "node scripts/compute-playoff-mover-lines.mjs",
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",
     "social": "node scripts/post-social.mjs",
