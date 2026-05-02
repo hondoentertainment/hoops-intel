@@ -39,6 +39,7 @@ const AskAI = lazy(() => import("./pages/AskAI"));
 const MyPulse = lazy(() => import("./pages/MyPulse"));
 const Pro = lazy(() => import("./pages/Pro"));
 const Embed = lazy(() => import("./pages/Embed"));
+const Tools = lazy(() => import("./pages/Tools"));
 
 function PageLoader() {
   return (
@@ -56,10 +57,13 @@ function PageLoader() {
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider switchable={true}>
       <div
         className="min-h-screen"
-        style={{ background: "#050D1A", color: "rgba(255,255,255,0.85)" }}
+        style={{
+          background: "var(--hi-bg-page, #050d1a)",
+          color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
+        }}
       >
         <Suspense fallback={<PageLoader />}>
           <Switch>
@@ -93,6 +97,7 @@ export default function App() {
             <Route path="/ask" component={AskAI} />
             <Route path="/my-pulse" component={MyPulse} />
             <Route path="/pro" component={Pro} />
+            <Route path="/tools" component={Tools} />
             <Route path="/embed/:id" component={Embed} />
             <Route>
               <div className="container py-20 text-center">

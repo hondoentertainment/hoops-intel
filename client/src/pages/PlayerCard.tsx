@@ -18,7 +18,7 @@ export default function PlayerCard() {
 
   if (!player) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#050D1A" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Player Not Found</h1>
           <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
@@ -104,7 +104,7 @@ export default function PlayerCard() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center py-10 px-4"
-      style={{ background: "#050D1A" }}
+      style={{ background: "var(--hi-bg-page, #050D1A)" }}
     >
       {/* Print stylesheet injected inline */}
       <style>{`

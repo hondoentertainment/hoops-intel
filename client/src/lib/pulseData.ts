@@ -127,30 +127,12 @@ export const fantasyAlerts = [
 ];
 
 // ═══════════════════════════════════════════════════════════
-// PLAYOFF SERIES — Updated After Thursday's Games
+// PLAYOFF SERIES + MOVERS — canonical copy lives in ./playoffData (ESPN sync)
 // ═══════════════════════════════════════════════════════════
 
-export const playoffSeries = [
-  {seriesId:"E1-DET-ORL",conference:"east",round:"first-round",higherSeed:1,lowerSeed:8,higherTeam:"DET",lowerTeam:"ORL",higherWins:2,lowerWins:3,eliminationGame:true,status:"active",summary:"ORL leads 3-2",games:[{gameNumber:5,date:"2026-05-01",homeTeam:"ORL",awayTeam:"DET",homeScore:79,awayScore:93,status:"final",topPerformer:"Cade Cunningham",topLine:"28 PTS · 7 AST"},{gameNumber:6,date:"2026-05-03",homeTeam:"DET",awayTeam:"ORL",homeScore:null,awayScore:null,status:"scheduled",time:"8:00 PM ET",tv:"Prime Video"}]},
-  {seriesId:"E2-BOS-PHI",conference:"east",round:"first-round",higherSeed:2,lowerSeed:7,higherTeam:"BOS",lowerTeam:"PHI",higherWins:2,lowerWins:2,status:"active",summary:"Series tied 2-2",games:[{gameNumber:5,date:"2026-05-02",homeTeam:"BOS",awayTeam:"PHI",homeScore:null,awayScore:null,status:"scheduled",time:"7:30 PM ET",tv:"NBC"}]},
-  {seriesId:"E3-NYK-ATL",conference:"east",round:"first-round",higherSeed:3,lowerSeed:6,higherTeam:"NYK",lowerTeam:"ATL",higherWins:4,lowerWins:1,status:"complete",winner:"NYK",summary:"NYK wins 4-1",games:[]},
-  {seriesId:"E4-CLE-TOR",conference:"east",round:"first-round",higherSeed:4,lowerSeed:5,higherTeam:"CLE",lowerTeam:"TOR",higherWins:1,lowerWins:2,status:"active",summary:"TOR leads 2-1",games:[{gameNumber:3,date:"2026-05-01",homeTeam:"TOR",awayTeam:"CLE",homeScore:112,awayScore:110,status:"final",topPerformer:"Pascal Siakam",topLine:"29 PTS · 8 REB"}]},
-  {seriesId:"W4-LAL-HOU",conference:"west",round:"first-round",higherSeed:4,lowerSeed:5,higherTeam:"LAL",lowerTeam:"HOU",higherWins:1,lowerWins:1,status:"active",summary:"Series tied 1-1",games:[{gameNumber:2,date:"2026-05-01",homeTeam:"HOU",awayTeam:"LAL",homeScore:78,awayScore:98,status:"final",topPerformer:"LeBron James",topLine:"31 PTS · 8 AST"}]},
-  {seriesId:"W3-DEN-MIN",conference:"west",round:"first-round",higherSeed:3,lowerSeed:6,higherTeam:"DEN",lowerTeam:"MIN",higherWins:1,lowerWins:4,status:"complete",winner:"MIN",summary:"MIN wins 4-1",games:[]},
-  {seriesId:"W1-OKC-PHX",conference:"west",round:"first-round",higherSeed:1,lowerSeed:7,higherTeam:"OKC",lowerTeam:"PHX",higherWins:4,lowerWins:1,status:"complete",winner:"OKC",summary:"OKC wins 4-1",games:[]},
-  {seriesId:"W2-SAS-POR",conference:"west",round:"first-round",higherSeed:2,lowerSeed:8,higherTeam:"SAS",lowerTeam:"POR",higherWins:2,lowerWins:1,status:"active",summary:"SAS leads 2-1",games:[]}
-];
-
-// ═══════════════════════════════════════════════════════════
-// PLAYOFF PULSE MOVERS
-// ═══════════════════════════════════════════════════════════
-
-export const playoffPulseMovers = [
-  {player:"LeBron James",team:"LAL",direction:"riser",delta:42,playoffLine:"28.5 PPG · 7.5 APG",note:"LeBron's dominant 31-point road performance evened the Lakers' series and proved their championship pedigree under elimination pressure. His veteran playoff execution completely reversed the narrative after their shocking Game 1 defeat."},
-  {player:"Pascal Siakam",team:"TOR",direction:"riser",delta:31,playoffLine:"26.3 PPG · 7.8 RPG",note:"Siakam's clutch 29-point overtime performance put Toronto in series control with a 2-1 lead over Cleveland. His championship-level execution in crucial moments has the Raptors positioned for a potential upset victory."},
-  {player:"Cade Cunningham",team:"DET",direction:"riser",delta:18,playoffLine:"25.4 PPG · 6.8 APG",note:"Cunningham's 28-point elimination-game performance prevented Detroit from suffering one of the biggest upsets in NBA history. His playoff poise and leadership have given the Pistons life heading into Game 6."},
-  {player:"Paolo Banchero",team:"ORL",direction:"faller",delta:-15,playoffLine:"22.8 PPG · 7.2 RPG",note:"Banchero's struggles in Game 5 raised concerns about Orlando's ability to complete their historic upset against Detroit. His shoulder soreness and elimination pressure will test his rookie composure in Game 6."}
-];
+export { playoffSeries, playoffMovers } from "./playoffData";
+/** @deprecated Use `playoffMovers` from `./playoffData`; kept for legacy barrel imports */
+export { playoffMovers as playoffPulseMovers } from "./playoffData";
 
 // ═══════════════════════════════════════════════════════════
 // STANDINGS — Updated May 2, 2026

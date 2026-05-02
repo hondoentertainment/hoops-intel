@@ -4,6 +4,7 @@ import { archiveEditions } from "../lib/archiveData";
 import { pulseIndex, gameResults, injuryUpdates, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { useMetaTags } from "../lib/useMetaTags";
+import SiteHeader from "../components/SiteHeader";
 import ShareButton from "../components/ShareButton";
 
 function findPlayer(slug: string) {
@@ -25,8 +26,8 @@ export default function Player() {
 
   if (!player) {
     return (
-      <div className="min-h-screen" style={{ background: "#050D1A" }}>
-        <PageHeader />
+      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <SiteHeader subtitle="PLAYER" />
         <div className="container py-20 text-center">
           <h1 className="display-heading text-white text-2xl mb-4">Player Not Found</h1>
           <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
@@ -61,8 +62,8 @@ export default function Player() {
     : `${player.name} on Hoops Intel hoopsintel.net/player/${slug}`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <PageHeader />
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader subtitle="PLAYER" />
       <div className="container py-8">
         {/* Player Header */}
         <div
@@ -286,38 +287,5 @@ export default function Player() {
         </div>
       </div>
     </div>
-  );
-}
-
-function PageHeader() {
-  return (
-    <header
-      className="sticky top-0 z-50 border-b"
-      style={{
-        background: "rgba(5, 13, 26, 0.95)",
-        borderColor: "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(20px)",
-      }}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between h-14">
-          <a href="/" className="flex items-center gap-3">
-            <div
-              className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm"
-              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-            >
-              HI
-            </div>
-            <div>
-              <div className="display-heading text-white text-lg leading-none">HOOPS INTEL</div>
-              <div className="section-label" style={{ fontSize: "0.6rem" }}>PLAYER</div>
-            </div>
-          </a>
-          <a href="/" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>
-            ← Back to Today
-          </a>
-        </div>
-      </div>
-    </header>
   );
 }

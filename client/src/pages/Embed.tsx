@@ -40,7 +40,7 @@ export default function Embed() {
   }, []);
 
   const widgetId = params?.id;
-  const bg = theme === "dark" ? "#050D1A" : "#ffffff";
+  const bg = theme === "dark" ? "var(--hi-bg-page, #050D1A)" : "#ffffff";
 
   let content: ReactElement;
   switch (widgetId) {

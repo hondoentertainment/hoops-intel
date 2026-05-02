@@ -2,6 +2,7 @@
 // Streak tracking via localStorage key "hoops-iq-streak"
 
 import { useState, useEffect } from "react";
+import SiteHeader from "../components/SiteHeader";
 import { triviaQuestion } from "../lib/pulseData";
 
 // ═══════════════════════════════════════════════════════════
@@ -161,34 +162,8 @@ export default function Trivia() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A", color: "rgba(255,255,255,0.85)" }}>
-      {/* ── Header ── */}
-      <header
-        className="sticky top-0 z-30 flex items-center justify-between px-4 py-3"
-        style={{ background: "rgba(5,13,26,0.95)", borderBottom: "1px solid rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}
-      >
-        <a href="/" className="flex items-center gap-2.5 no-underline">
-          <div
-            className="w-8 h-8 rounded flex items-center justify-center text-xs font-black text-white"
-            style={{ background: "linear-gradient(135deg,#0EA5E9,#6366F1)" }}
-          >
-            HI
-          </div>
-          <div>
-            <div className="text-white text-sm font-bold leading-none tracking-widest uppercase">HOOPS INTEL</div>
-            <div className="text-[10px] uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Daily Intelligence</div>
-          </div>
-        </a>
-        <a
-          href="/"
-          className="text-xs transition-colors"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
-        >
-          ← Back to Home
-        </a>
-      </header>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)", color: "rgba(255,255,255,0.85)" }}>
+      <SiteHeader subtitle="HOOPS IQ" />
 
       {/* ── Main Content ── */}
       <main className="container mx-auto px-4 py-10 max-w-2xl">

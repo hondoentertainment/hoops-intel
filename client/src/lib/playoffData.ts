@@ -339,6 +339,29 @@ export const seriesIntel: Record<string, SeriesIntel> = {
 // DERIVED HELPERS
 // ═══════════════════════════════════════════════════════════
 
+/** Normalize ESPN/sync abbreviations to app standings codes (Knicks, Spurs). */
+function canonPlayoffTeamCode(t: string): string {
+  const u = t.toUpperCase();
+  if (u === "NY") return "NYK";
+  if (u === "SA") return "SAS";
+  return u;
+}
+
+export function playoffSeriesForMatchup(awayTeam: string, homeTeam: string): PlayoffSeries | undefined {
+  const a = canonPlayoffTeamCode(awayTeam);
+  const h = canonPlayoffTeamCode(homeTeam);
+  return playoffSeries.find(
+    (s) =>
+      (canonPlayoffTeamCode(s.higherTeam) === a && canonPlayoffTeamCode(s.lowerTeam) === h) ||
+      (canonPlayoffTeamCode(s.higherTeam) === h && canonPlayoffTeamCode(s.lowerTeam) === a),
+  );
+}
+
+export function playoffSeriesOpponent(series: PlayoffSeries, teamAbbr: string): string {
+  const t = canonPlayoffTeamCode(teamAbbr);
+  return canonPlayoffTeamCode(series.higherTeam) === t ? series.lowerTeam : series.higherTeam;
+}
+
 export const isPlayoffsActive = (): boolean => playoffSeries.length > 0;
 
 export function activeSeries(): PlayoffSeries[] {
@@ -353,8 +376,11 @@ export function eliminationSeries(): PlayoffSeries[] {
 }
 
 export function seriesForTeam(team: string): PlayoffSeries | undefined {
-  const t = team.toUpperCase();
+  const t = canonPlayoffTeamCode(team);
   return playoffSeries.find(
-    (s) => s.higherTeam === t || s.lowerTeam === t,
+    (s) =>
+      s.higherTeam !== "TBD" &&
+      s.lowerTeam !== "TBD" &&
+      (canonPlayoffTeamCode(s.higherTeam) === t || canonPlayoffTeamCode(s.lowerTeam) === t),
   );
 }

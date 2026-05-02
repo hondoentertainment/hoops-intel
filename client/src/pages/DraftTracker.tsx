@@ -32,7 +32,7 @@ export default function DraftTracker() {
   const [showTankWatch, setShowTankWatch] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">

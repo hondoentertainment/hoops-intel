@@ -1,6 +1,7 @@
 // Referee Tendency Reports — Know the Whistle
 
 import { useState } from "react";
+import SiteHeader from "../components/SiteHeader";
 import { refData } from "../lib/refData";
 import type { RefereeProfile, TonightRefAssignment } from "../lib/refData";
 
@@ -192,29 +193,8 @@ export default function RefReports() {
   );
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      {/* Breadcrumb */}
-      <div
-        className="border-b"
-        style={{ background: "rgba(5,13,26,0.95)", borderColor: "rgba(255,255,255,0.08)" }}
-      >
-        <div className="container py-4 flex items-center gap-4">
-          <a
-            href="/"
-            className="flex items-center gap-2 text-xs font-medium transition-colors hover:text-sky-400"
-            style={{ color: "rgba(255,255,255,0.4)" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-            Home
-          </a>
-          <span style={{ color: "rgba(255,255,255,0.15)" }}>&rsaquo;</span>
-          <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Referee Reports
-          </span>
-        </div>
-      </div>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader subtitle="REFEREE REPORTS" />
 
       <div className="container py-8">
         {/* Page header */}

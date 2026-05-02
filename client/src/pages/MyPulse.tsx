@@ -15,6 +15,7 @@ import { getTeamColor } from "../lib/teamColors";
 import { slugify } from "../lib/searchUtils";
 import PreferencesSetup from "../components/PreferencesSetup";
 import ShareButton from "../components/ShareButton";
+import SiteHeader from "../components/SiteHeader";
 
 // ═══════════════════════════════════════════════════════════
 // MY PULSE PAGE
@@ -59,7 +60,7 @@ export default function MyPulse() {
   // If no preferences, show setup directly
   if (!hasPrefs && !showSetup) {
     return (
-      <div className="min-h-screen" style={{ background: "#050D1A" }}>
+      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <MyPulseHeader onOpenSetup={() => setShowSetup(true)} prefs={prefs} />
         <div className="container py-20 text-center">
           <div className="max-w-md mx-auto">
@@ -97,7 +98,7 @@ export default function MyPulse() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <MyPulseHeader onOpenSetup={() => setShowSetup(true)} prefs={prefs} />
 
       {/* Your Teams Tonight */}
@@ -403,81 +404,48 @@ function MyPulseHeader({
   prefs: UserPreferences;
 }) {
   return (
-    <header
-      className="sticky top-0 z-50 border-b"
-      style={{
-        background: "rgba(5, 13, 26, 0.95)",
-        borderColor: "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(20px)",
-      }}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between h-14">
-          <div className="flex items-center gap-3">
-            <a href="/" className="flex items-center gap-3">
-              <div
-                className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-              >
-                HI
-              </div>
-              <div>
-                <div className="display-heading text-white text-lg leading-none">MY PULSE</div>
-                <div className="section-label" style={{ fontSize: "0.6rem" }}>PERSONALIZED EDITION</div>
-              </div>
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Favorite team badges */}
-            {prefs.favoriteTeams.length > 0 && (
-              <div className="hidden sm:flex items-center gap-1.5">
-                {prefs.favoriteTeams.map((team) => (
-                  <a
-                    key={team}
-                    href={`/team/${team.toLowerCase()}`}
-                    className="px-2 py-0.5 rounded text-xs font-bold tracking-wider transition-colors hover:bg-sky-500/20"
-                    style={{
-                      background: "rgba(14,165,233,0.15)",
-                      color: "#0EA5E9",
-                      border: "1px solid rgba(14,165,233,0.3)",
-                    }}
-                  >
-                    {team}
-                  </a>
-                ))}
-              </div>
-            )}
-
-            <button
-              onClick={onOpenSetup}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium transition-colors hover:bg-white/10"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.6)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
-              Edit Preferences
-            </button>
-
-            <div
-              className="px-3 py-1 rounded text-xs font-medium"
-              style={{
-                background: "rgba(14,165,233,0.15)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.3)",
-              }}
-            >
-              {pulseEdition.date}
+    <SiteHeader
+      brandTitle="MY PULSE"
+      subtitle="PERSONALIZED EDITION"
+      editionBadge={pulseEdition.date}
+      toolbarExtra={
+        <>
+          {prefs.favoriteTeams.length > 0 ? (
+            <div className="hidden lg:flex items-center gap-1.5 overflow-x-auto max-w-[min(52vw,18rem)] shrink">
+              {prefs.favoriteTeams.map((team) => (
+                <a
+                  key={team}
+                  href={`/team/${team.toLowerCase()}`}
+                  className="px-2 py-1 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-colors hover:bg-sky-500/25"
+                  style={{
+                    background: "rgba(14,165,233,0.15)",
+                    color: "#0EA5E9",
+                    border: "1px solid rgba(14,165,233,0.3)",
+                  }}
+                >
+                  {team}
+                </a>
+              ))}
             </div>
-          </div>
-        </div>
-      </div>
-    </header>
+          ) : null}
+          <button
+            type="button"
+            onClick={onOpenSetup}
+            className="flex items-center gap-1 min-h-[44px] lg:min-h-0 px-2 sm:px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              color: "rgba(255,255,255,0.6)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <span className="hidden sm:inline">Edit preferences</span>
+          </button>
+        </>
+      }
+    />
   );
 }

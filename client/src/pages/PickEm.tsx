@@ -5,7 +5,9 @@ import { useState, useEffect } from "react";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import PickEmWidget from "../components/PickEm";
 import BracketPicker from "../components/BracketPicker";
-import { isPlayoffsActive } from "../lib/playoffData";
+import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
+import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
+import SiteHeader from "../components/SiteHeader";
 
 // ═══════════════════════════════════════════════════════════
 // INLINE SUPABASE REST HELPER (leaderboard — read-only, anon)
@@ -523,57 +525,14 @@ function parseEditionDate(dateStr: string): string {
 
 export default function PickEmPage() {
   const editionDate = parseEditionDate(pulseEdition.date);
+  const playoffSnap = isPlayoffsActive()
+    ? playoffSnapshot(playoffSeries, todayISOLocal())
+    : null;
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       {/* Sticky Header */}
-      <header
-        className="sticky top-0 z-50 border-b"
-        style={{
-          background: "rgba(5,13,26,0.95)",
-          borderColor: "rgba(255,255,255,0.08)",
-          backdropFilter: "blur(20px)",
-        }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between h-14">
-            <a href="/" className="flex items-center gap-3">
-              <div
-                className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-              >
-                HI
-              </div>
-              <div>
-                <div
-                  className="text-white text-lg leading-none"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, letterSpacing: "0.04em" }}
-                >
-                  HOOPS INTEL
-                </div>
-                <div
-                  className="text-xs"
-                  style={{
-                    color: "rgba(255,255,255,0.35)",
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    letterSpacing: "0.08em",
-                    fontSize: "0.6rem",
-                  }}
-                >
-                  DAILY PICK&apos;EM
-                </div>
-              </div>
-            </a>
-            <a
-              href="/"
-              className="text-xs font-medium transition-colors"
-              style={{ color: "#0EA5E9", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              &larr; Back to Today
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader subtitle="PICK EM" />
 
       <div className="container py-8 max-w-3xl mx-auto">
         {/* Page Title */}
@@ -601,6 +560,27 @@ export default function PickEmPage() {
             {gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.
           </p>
         </div>
+
+        {playoffSnap && (
+          <div
+            className="mb-8 rounded-xl px-4 py-3 text-sm"
+            style={{
+              background: "rgba(14,165,233,0.06)",
+              border: "1px solid rgba(14,165,233,0.15)",
+              color: "rgba(255,255,255,0.55)",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            Playoff bracket picks use the same ESPN-synced series as the command center (
+            <span className="text-white/80">{playoffSeries.length}</span> series ·{" "}
+            <span className="text-white/80">{playoffSnap.seriesActive}</span> active ·{" "}
+            <span className="text-white/80">{playoffSnap.seriesComplete}</span> complete).{" "}
+            {playoffSnap.nextMilestone}.{" "}
+            <a href="/playoffs" style={{ color: "rgba(14,165,233,0.95)" }}>
+              Open playoff board →
+            </a>
+          </div>
+        )}
 
         {/* Bracket Picks (during playoffs) */}
         {isPlayoffsActive() && (

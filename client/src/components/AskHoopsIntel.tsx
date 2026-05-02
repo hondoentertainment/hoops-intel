@@ -363,9 +363,11 @@ export function ChatInput({
           disabled={isLoading}
         />
         <button
+          type="button"
           onClick={onSend}
           disabled={isLoading || !input.trim()}
-          className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all"
+          aria-label="Send message"
+          className="flex-shrink-0 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center transition-all"
           style={{
             background:
               isLoading || !input.trim()
@@ -406,13 +408,18 @@ export default function AskHoopsIntel() {
       {/* Floating Button */}
       {!isOpen && (
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
+          className="fixed z-50 flex items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02]"
           style={{
             background: "linear-gradient(135deg, #0EA5E9, #0284C7)",
             color: "white",
             boxShadow: "0 4px 20px rgba(14,165,233,0.4)",
+            bottom: "max(1.25rem, env(safe-area-inset-bottom))",
+            right: "max(1.25rem, env(safe-area-inset-right))",
           }}
+          aria-haspopup="dialog"
+          aria-label="Open Hoops Intel AI assistant"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -425,6 +432,9 @@ export default function AskHoopsIntel() {
       {isOpen && (
         <div
           className="fixed z-50 flex flex-col"
+          role="dialog"
+          aria-labelledby="floating-chat-title"
+          aria-modal="true"
           style={{
             /* Mobile: full width bottom sheet. Desktop: side panel */
             bottom: 0,
@@ -432,6 +442,7 @@ export default function AskHoopsIntel() {
             width: "100%",
             maxWidth: "420px",
             height: "min(600px, 85vh)",
+            paddingBottom: "env(safe-area-inset-bottom)",
             background: "#0A1628",
             border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: "16px 16px 0 0",
@@ -453,7 +464,9 @@ export default function AskHoopsIntel() {
                 </svg>
               </div>
               <div>
-                <div className="text-white text-xs font-semibold">Ask Hoops Intel</div>
+                <div id="floating-chat-title" className="text-white text-xs font-semibold">
+                  Ask Hoops Intel
+                </div>
                 <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.6rem" }}>
                   NBA AI Assistant
                 </div>
@@ -462,22 +475,21 @@ export default function AskHoopsIntel() {
             <div className="flex items-center gap-2">
               <a
                 href="/ask"
-                className="text-xs px-2 py-1 rounded transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+                className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-sky-400"
+                style={{ color: "rgba(255,255,255,0.55)", background: "rgba(255,255,255,0.05)" }}
                 title="Open full page"
+                aria-label="Open full Ask AI page"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
                 </svg>
               </a>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                className="text-xs p-1 rounded transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-xs transition-colors hover:bg-white/10"
+                style={{ color: "rgba(255,255,255,0.6)" }}
+                aria-label="Close assistant"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="18" y1="6" x2="6" y2="18" />

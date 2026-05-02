@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useSubscription, startCheckout } from "../lib/useSubscription";
+import SiteHeader from "../components/SiteHeader";
 
 const FEATURES = [
   {
@@ -106,24 +107,8 @@ export default function Pro() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <header
-        className="sticky top-0 z-50 border-b"
-        style={{ background: "rgba(5,13,26,0.95)", borderColor: "rgba(255,255,255,0.08)", backdropFilter: "blur(20px)" }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between h-14">
-            <a href="/" className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm" style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>HI</div>
-              <div>
-                <div className="display-heading text-white text-lg leading-none">HOOPS INTEL</div>
-                <div className="section-label" style={{ fontSize: "0.6rem" }}>PRO</div>
-              </div>
-            </a>
-            <a href="/" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>&larr; Back to Today</a>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader subtitle="PRO" />
 
       <div className="container py-12 max-w-4xl mx-auto">
         <div className="mb-10">

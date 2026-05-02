@@ -9,8 +9,11 @@ import {
   pulseIndex,
   pulseEdition,
 } from "../lib/pulseData";
+import { seriesForTeam, playoffSeriesOpponent } from "../lib/playoffData";
+import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
 import { getAllTeams, slugify } from "../lib/searchUtils";
+import SiteHeader from "../components/SiteHeader";
 
 const TEAM_NAMES: Record<string, string> = {
   ATL: "Atlanta Hawks", BOS: "Boston Celtics", BRK: "Brooklyn Nets",
@@ -32,8 +35,8 @@ export default function Team() {
 
   if (!fullName) {
     return (
-      <div className="min-h-screen" style={{ background: "#050D1A" }}>
-        <PageHeader abbr="" />
+      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <SiteHeader subtitle="TEAMS" />
         <div className="container py-20 text-center">
           <h1 className="display-heading text-white text-2xl mb-4">Team Not Found</h1>
           <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
@@ -55,10 +58,16 @@ export default function Team() {
   const teamEditions = archiveEditions.filter(
     (ed: any) => (ed.teams || []).includes(abbr)
   );
+  const playoffRow = seriesForTeam(abbr);
+  const playoffNext = playoffRow ? nextPendingGame(playoffRow) : undefined;
+  const playoffOppAbbr = playoffRow ? playoffSeriesOpponent(playoffRow, abbr) : "";
+  const oppStandingsKey =
+    playoffOppAbbr === "NY" ? "NYK" : playoffOppAbbr === "SA" ? "SAS" : playoffOppAbbr;
+  const playoffOppName = playoffOppAbbr ? TEAM_NAMES[oppStandingsKey] ?? playoffOppAbbr : "";
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <PageHeader abbr={abbr} />
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader subtitle={`TEAM · ${abbr}`} />
       <div className="container py-8">
         {/* Team Header */}
         <div
@@ -98,6 +107,42 @@ export default function Team() {
             )}
           </div>
         </div>
+
+        {playoffRow && (
+          <div
+            className="glass-card rounded-lg p-4 mb-6"
+            style={{
+              border: "1px solid rgba(14,165,233,0.2)",
+              background: "rgba(14,165,233,0.04)",
+            }}
+          >
+            <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
+              PLAYOFFS (SYNCED BOARD)
+            </div>
+            <p className="text-sm text-white font-semibold mb-1">
+              vs {playoffOppName} — {playoffRow.summary}
+            </p>
+            {playoffNext && (
+              <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.55)" }}>
+                Next: {playoffNext.awayTeam} @ {playoffNext.homeTeam}
+                {playoffNext.time ? ` · ${playoffNext.time}` : ""}
+                {playoffNext.tv ? ` · ${playoffNext.tv}` : ""}
+              </p>
+            )}
+            {!playoffNext && playoffRow.status === "complete" && (
+              <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+                Series complete.
+              </p>
+            )}
+            <a
+              href={`/playoffs#series-card-${playoffRow.seriesId}`}
+              className="text-xs font-medium"
+              style={{ color: "#38BDF8" }}
+            >
+              Open in playoff command center →
+            </a>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
@@ -319,52 +364,3 @@ export default function Team() {
     </div>
   );
 }
-
-function PageHeader({ abbr }: { abbr: string }) {
-  return (
-    <header
-      className="sticky top-0 z-50 border-b"
-      style={{
-        background: "rgba(5, 13, 26, 0.95)",
-        borderColor: "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(20px)",
-      }}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between h-14">
-          <a href="/" className="flex items-center gap-3">
-            <div
-              className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm"
-              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-            >
-              HI
-            </div>
-            <div>
-              <div className="display-heading text-white text-lg leading-none">HOOPS INTEL</div>
-              <div className="section-label" style={{ fontSize: "0.6rem" }}>
-                {abbr ? TEAM_NAMES[abbr] || "TEAM" : "TEAM"}
-              </div>
-            </div>
-          </a>
-          <a href="/" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>
-            ← Back to Today
-          </a>
-        </div>
-      </div>
-    </header>
-  );
-}
-
-// Need to re-export for PageHeader
-const TEAM_NAMES_EXPORT = {
-  ATL: "Atlanta Hawks", BOS: "Boston Celtics", BRK: "Brooklyn Nets",
-  CHA: "Charlotte Hornets", CHI: "Chicago Bulls", CLE: "Cleveland Cavaliers",
-  DAL: "Dallas Mavericks", DEN: "Denver Nuggets", DET: "Detroit Pistons",
-  GSW: "Golden State Warriors", HOU: "Houston Rockets", IND: "Indiana Pacers",
-  LAC: "Los Angeles Clippers", LAL: "Los Angeles Lakers", MEM: "Memphis Grizzlies",
-  MIA: "Miami Heat", MIL: "Milwaukee Bucks", MIN: "Minnesota Timberwolves",
-  NOP: "New Orleans Pelicans", NYK: "New York Knicks", OKC: "Oklahoma City Thunder",
-  ORL: "Orlando Magic", PHI: "Philadelphia 76ers", PHX: "Phoenix Suns",
-  POR: "Portland Trail Blazers", SAC: "Sacramento Kings", SAS: "San Antonio Spurs",
-  TOR: "Toronto Raptors", UTA: "Utah Jazz", WAS: "Washington Wizards",
-};

@@ -2,6 +2,7 @@
 // Tracks Hoops Intel's prediction accuracy across the entire 2025-26 NBA season
 
 import { useState } from "react";
+import SiteHeader from "../components/SiteHeader";
 // ═══════════════════════════════════════════════════════════
 // SEASON PERFORMANCE DATA
 // Aggregated prediction results across all editions
@@ -178,37 +179,8 @@ export default function SeasonPerformance() {
   const overallPct = parseFloat(pct(totalCorrect, totalGames));
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      {/* Header */}
-      <header
-        className="sticky top-0 z-50 backdrop-blur-xl"
-        style={{ background: "rgba(5,13,26,0.92)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
-      >
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <div
-                className="w-7 h-7 rounded flex items-center justify-center font-bold text-white text-xs"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-              >
-                HI
-              </div>
-              <span className="display-heading text-white text-sm" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                HOOPS INTEL
-              </span>
-            </a>
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>/</span>
-            <span className="text-xs font-semibold" style={{ color: "#0EA5E9" }}>Season Performance</span>
-          </div>
-          <a
-            href="/"
-            className="text-xs px-3 py-1.5 rounded transition-colors hover:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.1)" }}
-          >
-            &larr; Back
-          </a>
-        </div>
-      </header>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader subtitle="SEASON PERFORMANCE" />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Title */}

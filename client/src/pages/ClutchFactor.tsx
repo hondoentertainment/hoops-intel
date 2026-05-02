@@ -288,7 +288,7 @@ function WeeklyHighlight() {
 
 export default function ClutchFactor() {
   return (
-    <div style={{ minHeight: "100vh", background: "#050D1A", color: "#fff" }}>
+    <div style={{ minHeight: "100vh", background: "var(--hi-bg-page, #050D1A)", color: "#fff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px" }}>
         {/* Header */}
         <div style={{ marginBottom: 40 }}>

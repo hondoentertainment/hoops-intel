@@ -2,6 +2,7 @@
 // Route: /badges
 
 import { useState } from "react";
+import SiteHeader from "../components/SiteHeader";
 import { useBadges } from "../lib/useBadges";
 import { allBadges, getBadgeTierColor, getBadgeTierLabel, type Badge } from "../lib/badgesData";
 
@@ -213,31 +214,18 @@ export default function Badges() {
   });
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 backdrop-blur-md border-b"
-        style={{
-          background: "rgba(5,13,26,0.92)",
-          borderColor: "rgba(255,255,255,0.06)",
-        }}
-      >
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a
-            href="/"
-            className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-opacity"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            {"\u2190"} Hoops Intel
-          </a>
-          <div
-            className="text-xs tabular-nums font-bold"
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader
+        subtitle="BADGES & STREAKS"
+        toolbarExtra={
+          <span
+            className="text-xs tabular-nums font-bold whitespace-nowrap"
             style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}
           >
             {earnedCount}/{totalBadges} earned
-          </div>
-        </div>
-      </header>
+          </span>
+        }
+      />
 
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-8">
         {/* Title */}

@@ -16,25 +16,33 @@ import {
 } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { useLiveScores } from "../lib/useLiveScores";
-import { globalSearch, slugify, type SearchResult } from "../lib/searchUtils";
-import { useTheme } from "../contexts/ThemeContext";
+import { slugify } from "../lib/searchUtils";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
-import AuthModal from "../components/AuthModal";
+import SiteHeader from "../components/SiteHeader";
 import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
 import { hasPreferences, getPreferences } from "../lib/userPreferences";
-import { playoffSeries, playoffMovers, isPlayoffsActive, seriesIntel, type PlayoffSeries } from "../lib/playoffData";
+import {
+  playoffSeries,
+  playoffMovers,
+  isPlayoffsActive,
+  seriesIntel,
+  playoffSeriesForMatchup,
+  type PlayoffSeries,
+} from "../lib/playoffData";
 import { nextPendingGame, playoffSnapshot, scoringEdgeForSeries, todayISOLocal } from "../lib/playoffAnalytics";
 
-function findSeriesForTeams(away: string, home: string): PlayoffSeries | undefined {
-  const a = away.toUpperCase();
-  const h = home.toUpperCase();
-  return playoffSeries.find(
-    (s) =>
-      (s.higherTeam === a && s.lowerTeam === h) ||
-      (s.higherTeam === h && s.lowerTeam === a),
-  );
+function shortenPulsePreview(text: string, max = 110) {
+  const t = text.trim();
+  if (t.length <= max) return t;
+  return `${t.slice(0, max).trim()}…`;
+}
+
+function footerEmailOk(raw: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.trim());
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -124,352 +132,6 @@ function TickerBar() {
 }
 
 // ═══════════════════════════════════════════════════════════
-// GLOBAL SEARCH OVERLAY
-// ═══════════════════════════════════════════════════════════
-
-function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-      setQuery("");
-      setResults([]);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setResults(globalSearch(query));
-    }, 150);
-    return () => clearTimeout(timer);
-  }, [query]);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        onClose();
-      }
-    };
-    if (open) document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  const iconForType = (type: string) => {
-    switch (type) {
-      case "player": return "👤";
-      case "team": return "🏀";
-      case "game": return "📊";
-      case "injury": return "🏥";
-      case "story": return "📰";
-      default: return "📌";
-    }
-  };
-
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-start justify-center pt-20"
-      style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-lg mx-4 rounded-xl overflow-hidden"
-        style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input
-            ref={inputRef}
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search players, teams, stories..."
-            className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/30"
-          />
-          <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}>
-            ESC
-          </span>
-        </div>
-        <div className="max-h-80 overflow-y-auto">
-          {results.length === 0 && query.length >= 2 && (
-            <div className="px-4 py-8 text-center text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-              No results found
-            </div>
-          )}
-          {results.length === 0 && query.length < 2 && (
-            <div className="px-4 py-8 text-center text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-              Type to search players, teams, and stories
-            </div>
-          )}
-          {results.map((r, i) => (
-            <a
-              key={i}
-              href={r.link || "#"}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer"
-              onClick={() => { if (!r.link) onClose(); }}
-            >
-              <span className="text-base">{iconForType(r.type)}</span>
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-white truncate">{r.title}</div>
-                <div className="text-xs truncate" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  {r.subtitle}
-                </div>
-              </div>
-              {r.date && (
-                <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  {r.date}
-                </span>
-              )}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════
-// NOTIFICATION BELL
-// ═══════════════════════════════════════════════════════════
-
-function NotificationBell() {
-  const [showModal, setShowModal] = useState(false);
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(() =>
-    localStorage.getItem("hoopsintel-subscribed") === "true"
-  );
-  const [notifEnabled, setNotifEnabled] = useState(() =>
-    typeof Notification !== "undefined" && Notification.permission === "granted"
-  );
-
-  const enableNotifications = async () => {
-    if (typeof Notification === "undefined") return;
-    const perm = await Notification.requestPermission();
-    if (perm === "granted") {
-      setNotifEnabled(true);
-      new Notification("Hoops Intel", {
-        body: "You'll be notified when new editions drop!",
-        icon: "/assets/logo.png",
-      });
-    }
-  };
-
-  const handleSubscribe = () => {
-    if (email.includes("@")) {
-      localStorage.setItem("hoopsintel-subscribed", "true");
-      localStorage.setItem("hoopsintel-email", email);
-      setSubscribed(true);
-      setShowModal(false);
-    }
-  };
-
-  return (
-    <>
-      <button
-        onClick={() => setShowModal(!showModal)}
-        className="relative p-1.5 rounded transition-colors hover:bg-white/10"
-        title="Notifications"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: subscribed || notifEnabled ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-        </svg>
-        {(subscribed || notifEnabled) && (
-          <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400" />
-        )}
-      </button>
-      {showModal && (
-        <div
-          className="absolute right-0 top-full mt-2 w-72 rounded-lg overflow-hidden shadow-xl z-50"
-          style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
-        >
-          <div className="p-4">
-            <div className="section-label mb-3">NOTIFICATIONS</div>
-
-            {/* Browser Notifications */}
-            <div className="mb-4">
-              <button
-                onClick={enableNotifications}
-                disabled={notifEnabled}
-                className="w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors"
-                style={{
-                  background: notifEnabled ? "rgba(16,185,129,0.1)" : "rgba(14,165,233,0.1)",
-                  color: notifEnabled ? "#10B981" : "#0EA5E9",
-                  border: `1px solid ${notifEnabled ? "rgba(16,185,129,0.2)" : "rgba(14,165,233,0.2)"}`,
-                }}
-              >
-                {notifEnabled ? "✓ Browser notifications enabled" : "Enable browser notifications"}
-              </button>
-            </div>
-
-            {/* Email Digest */}
-            <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Daily email digest at 5 AM PST
-            </div>
-            {subscribed ? (
-              <div className="px-3 py-2 rounded text-xs" style={{ background: "rgba(16,185,129,0.1)", color: "#10B981" }}>
-                ✓ Subscribed to daily digest
-              </div>
-            ) : (
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  className="flex-1 px-2 py-1.5 rounded text-xs bg-white/5 text-white border border-white/10 outline-none"
-                />
-                <button
-                  onClick={handleSubscribe}
-                  className="px-3 py-1.5 rounded text-xs font-semibold text-white"
-                  style={{ background: "#0EA5E9" }}
-                >
-                  Go
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════
-// HEADER — With search, dark mode toggle, notifications
-// ═══════════════════════════════════════════════════════════
-
-function Header() {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [showAuth, setShowAuth] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
-  // Cmd+K / Ctrl+K to open search
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setSearchOpen(true);
-      }
-    };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, []);
-
-  return (
-    <>
-      <header
-        className="sticky top-0 z-50 border-b"
-        style={{
-          background: "rgba(5, 13, 26, 0.95)",
-          borderColor: "rgba(255,255,255,0.08)",
-          backdropFilter: "blur(20px)",
-        }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between h-14">
-            <div className="flex items-center gap-3">
-              <div
-                className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-              >
-                HI
-              </div>
-              <div>
-                <div className="display-heading text-white text-lg leading-none">HOOPS INTEL</div>
-                <div className="section-label" style={{ fontSize: "0.6rem" }}>DAILY INTELLIGENCE</div>
-              </div>
-            </div>
-            <nav className="hidden md:flex items-center gap-6">
-              {["Scores", "Pulse Index", "Injuries", "Tonight", "Playoffs", "Archive", "Performance", "Hoops IQ", "Ask AI"].map((label) => (
-                <a
-                  key={label}
-                  href={label === "Archive" ? "/archive" : label === "Playoffs" ? "/playoffs" : label === "Injuries" ? "/injuries" : label === "Hoops IQ" ? "/trivia" : label === "Performance" ? "/performance" : label === "Ask AI" ? "/ask" : `#${label.toLowerCase().replace(" ", "-")}`}
-                  className="text-xs font-medium transition-colors"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#0EA5E9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
-            <div className="flex items-center gap-2 relative">
-              {/* Search Button */}
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded text-xs transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span className="hidden sm:inline">Search</span>
-                <span className="hidden sm:inline px-1 py-0.5 rounded text-[10px]" style={{ background: "rgba(255,255,255,0.08)" }}>⌘K</span>
-              </button>
-
-              {/* Dark Mode Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="p-1.5 rounded transition-colors hover:bg-white/10"
-                title={theme === "dark" ? "Light mode" : "Dark mode"}
-              >
-                {theme === "dark" ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
-                    <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                    <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                  </svg>
-                ) : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                  </svg>
-                )}
-              </button>
-
-              {/* Notification Bell */}
-              <NotificationBell />
-
-              {/* Sign In */}
-              <button
-                onClick={() => setShowAuth(true)}
-                className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded text-xs font-medium transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-                </svg>
-                Sign In
-              </button>
-
-              {/* Edition Date */}
-              <div
-                className="px-3 py-1 rounded text-xs font-medium"
-                style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.3)" }}
-              >
-                {pulseEdition.date}
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-      {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={() => setShowAuth(false)} />}
-    </>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════
 // HERO SECTION
 // ═══════════════════════════════════════════════════════════
 
@@ -478,7 +140,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
     <section
       className="relative overflow-hidden"
       style={{
-        background: `linear-gradient(to bottom, rgba(5,13,26,0.3) 0%, rgba(5,13,26,0.85) 70%, #050D1A 100%), url('/assets/hero-bg.webp') center/cover no-repeat`,
+        background: `linear-gradient(to bottom, rgba(5,13,26,0.3) 0%, rgba(5,13,26,0.85) 70%, var(--hi-bg-page) 100%), url('/assets/hero-bg.webp') center/cover no-repeat`,
         minHeight: 380,
       }}
     >
@@ -510,42 +172,61 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
             <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Hoops Intel</span>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a href="/playoffs" className="px-5 py-2.5 rounded text-sm font-semibold text-white transition-all flex items-center gap-2" style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}>
-              🏆 Playoff Bracket
+          <div className="flex flex-wrap gap-3 items-center">
+            <a
+              href="/playoffs"
+              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
+              style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
+            >
+              🏆 Playoff bracket
             </a>
-            <a href="#scores" className="px-5 py-2.5 rounded text-sm font-semibold text-white transition-all" style={{ background: "#0EA5E9" }}>
-              View All Scores
+            <a
+              href="#scores"
+              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
+              style={{ background: "#0EA5E9" }}
+            >
+              Today’s scores
             </a>
             <a
               href="#tonight"
-              className="px-5 py-2.5 rounded text-sm font-semibold transition-all"
+              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
               style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.12)" }}
             >
-              Tonight's Games
-            </a>
-            {/* Share edition */}
-            <ShareButton
-              url="https://hoopsintel.net"
-              tweetText={`Today's Hoops Intel is live | ${pulseEdition.subtitle} hoopsintel.net`}
-              size="md"
-            />
-            {/* My Pulse link */}
-            <a
-              href="/my-pulse"
-              className="flex items-center gap-1.5 px-5 py-2.5 rounded text-sm font-semibold transition-all hover:opacity-90"
-              style={{
-                background: "linear-gradient(135deg, rgba(14,165,233,0.2), rgba(14,165,233,0.08))",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.3)",
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-              My Pulse
+              Tonight’s games
             </a>
           </div>
+          <details className="mt-4 max-w-xl rounded-lg border border-white/10 bg-black/25 open:bg-black/35 px-4 py-2">
+            <summary className="text-xs cursor-pointer select-none outline-none hover:text-sky-400 [&::-webkit-details-marker]:hidden [&::marker]:content-none flex items-center gap-2 justify-between py-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <span className="font-semibold uppercase tracking-wider section-label text-[10px]" style={{ color: "rgba(255,255,255,0.55)" }}>
+                More actions
+              </span>
+              <span className="mono-data text-[10px]">▼</span>
+            </summary>
+            <div className="flex flex-wrap gap-3 items-center pb-3 pt-1 border-t border-white/10">
+              <ShareButton
+                url="https://hoopsintel.net"
+                tweetText={`Today's Hoops Intel is live | ${pulseEdition.subtitle} hoopsintel.net`}
+                size="md"
+              />
+              <a
+                href="/my-pulse"
+                className="min-h-[48px] inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-semibold transition-all hover:opacity-90"
+                style={{
+                  background: "linear-gradient(135deg, rgba(14,165,233,0.2), rgba(14,165,233,0.08))",
+                  color: "#0EA5E9",
+                  border: "1px solid rgba(14,165,233,0.3)",
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                My Pulse
+              </a>
+              <a href="/tools" className="text-xs font-medium underline-offset-4 hover:text-sky-400" style={{ color: "rgba(255,255,255,0.5)" }}>
+                All tools →
+              </a>
+            </div>
+          </details>
           {/* Personalization banner */}
           {showMyPulse && (
             <a
@@ -750,9 +431,14 @@ function Sparkline({ trend }: { trend: string }) {
 
 // Modal showing the full editorial rationale for a Pulse Index ranking
 function PulseNoteModal({ note, playerName, onClose }: { note: string; playerName: string; onClose: () => void }) {
-  // Close on Escape key
+  const panelRef = useRef<HTMLDivElement>(null);
+  useBodyScrollLock(true);
+  useFocusTrap(true, panelRef);
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
@@ -764,37 +450,46 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-xl overflow-hidden shadow-2xl"
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pulse-note-title"
+        tabIndex={-1}
+        className="w-full max-w-lg rounded-xl overflow-hidden shadow-2xl outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
         style={{ background: "#0A1628", border: "1px solid rgba(14,165,233,0.25)" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div
-          className="flex items-center justify-between px-5 py-4 border-b"
-          style={{ borderColor: "rgba(255,255,255,0.08)" }}
-        >
+        <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <div>
-            <div className="section-label text-xs mb-0.5">WHY IS THIS PLAYER RANKED HERE?</div>
-            <div className="text-sm font-semibold text-white">{playerName}</div>
+            <div id="pulse-note-sub" className="section-label text-xs mb-0.5">
+              WHY THIS RANK · FULL NOTES
+            </div>
+            <div id="pulse-note-title" className="text-sm font-semibold text-white">
+              {playerName}
+            </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="w-7 h-7 rounded flex items-center justify-center transition-colors hover:bg-white/10"
+            className="min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center transition-colors hover:bg-white/10"
             style={{ color: "rgba(255,255,255,0.4)" }}
             aria-label="Close"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden>
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
-        {/* Body */}
-        <div className="px-5 py-4">
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{note}</p>
+        <div className="px-5 py-4 max-h-[min(65vh,24rem)] overflow-y-auto">
+          <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "rgba(255,255,255,0.8)" }}>
+            {note}
+          </p>
         </div>
-        {/* Footer hint */}
         <div className="px-5 pb-4">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Click outside or press Esc to dismiss</span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+            Outside click or Escape to dismiss
+          </span>
         </div>
       </div>
     </div>
@@ -838,7 +533,9 @@ function PulseIndexSection() {
                     <Sparkline trend={player.trend} />
                   </div>
                   <div className="mono-data text-xs mb-1" style={{ color: "#10B981" }}>{player.keyStats}</div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{player.note}</div>
+                  <div className="text-xs leading-snug" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    {shortenPulsePreview(String(player.note || ""))}
+                  </div>
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <div className="text-right">
@@ -848,8 +545,9 @@ function PulseIndexSection() {
                   <div className="flex items-center gap-1.5">
                     {/* "Why ranked here?" button */}
                     <button
+                      type="button"
                       onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
-                      className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/20"
+                      className="min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center px-3 sm:w-9 sm:h-9 sm:p-0 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/25"
                       style={{
                         background: "rgba(14,165,233,0.1)",
                         color: "#0EA5E9",
@@ -1174,7 +872,7 @@ function TonightSection() {
 
 function GamePreviewCard({ preview }: { preview: any }) {
   const [expanded, setExpanded] = useState(false);
-  const series = findSeriesForTeams(preview.awayTeam, preview.homeTeam);
+  const series = playoffSeriesForMatchup(preview.awayTeam, preview.homeTeam);
   const intel = series ? seriesIntel[series.seriesId] : undefined;
 
   return (
@@ -1241,17 +939,39 @@ function GamePreviewCard({ preview }: { preview: any }) {
             <div className="text-xs font-medium mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>PREDICTION</div>
             <p className="text-sm" style={{ color: "#10B981" }}>{preview.prediction}</p>
           </div>
-          {/* Betting Links */}
-          <div className="flex gap-2 pt-2">
-            <span className="text-xs px-2 py-1 rounded cursor-pointer hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              DraftKings
-            </span>
-            <span className="text-xs px-2 py-1 rounded cursor-pointer hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              FanDuel
-            </span>
-            <span className="text-xs px-2 py-1 rounded cursor-pointer hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              BetMGM
-            </span>
+          <div className="pt-2 space-y-1">
+            <div className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+              Sportsbook home (external) · 21+ where legal — gamble responsibly
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href="https://sportsbook.draftkings.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                DraftKings
+              </a>
+              <a
+                href="https://sportsbook.fanduel.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                FanDuel
+              </a>
+              <a
+                href="https://sports.betmgm.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                BetMGM
+              </a>
+            </div>
           </div>
         </div>
       )}
@@ -1357,11 +1077,14 @@ function StandingsSection() {
   };
 
   const SortHeader = ({ label, keyName, align = "center" }: { label: string; keyName: string; align?: string }) => (
-    <th
-      className={`text-${align} px-3 py-2 section-label cursor-pointer hover:text-sky-400 transition-colors select-none`}
-      onClick={() => handleSort(keyName)}
-    >
-      {label} {sortKey === keyName ? (sortAsc ? "↑" : "↓") : ""}
+    <th scope="col" className={`text-${align} px-1 py-2 sm:px-3`}>
+      <button
+        type="button"
+        onClick={() => handleSort(keyName)}
+        className="section-label w-full min-h-[44px] sm:min-h-0 flex items-center justify-center sm:inline cursor-pointer hover:text-sky-400 transition-colors select-none rounded-lg sm:rounded-none px-2 sm:px-0 focus-visible:outline focus-visible:ring-2 focus-visible:ring-sky-500"
+      >
+        {label} {sortKey === keyName ? (sortAsc ? "↑" : "↓") : ""}
+      </button>
     </th>
   );
 
@@ -1455,17 +1178,20 @@ function StandingsSection() {
 // ═══════════════════════════════════════════════════════════
 
 function Footer() {
+  const digestId = "footer-digest-email";
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(() =>
-    localStorage.getItem("hoopsintel-subscribed") === "true"
-  );
+  const [emailError, setEmailError] = useState("");
+  const [subscribed, setSubscribed] = useState(() => localStorage.getItem("hoopsintel-subscribed") === "true");
 
   const handleSubscribe = () => {
-    if (email.includes("@")) {
-      localStorage.setItem("hoopsintel-subscribed", "true");
-      localStorage.setItem("hoopsintel-email", email);
-      setSubscribed(true);
+    if (!footerEmailOk(email)) {
+      setEmailError("Enter a valid email.");
+      return;
     }
+    setEmailError("");
+    localStorage.setItem("hoopsintel-subscribed", "true");
+    localStorage.setItem("hoopsintel-email", email.trim());
+    setSubscribed(true);
   };
 
   return (
@@ -1499,21 +1225,39 @@ function Footer() {
                 ✓ You're subscribed to the daily digest
               </div>
             ) : (
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  className="flex-1 px-3 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus:border-sky-500/50"
-                />
-                <button
-                  onClick={handleSubscribe}
-                  className="px-4 py-2 rounded text-xs font-semibold text-white"
-                  style={{ background: "#0EA5E9" }}
-                >
-                  Subscribe
-                </button>
+              <div className="space-y-1">
+                <label htmlFor={digestId} className="sr-only">
+                  Email for daily Hoops Intel digest
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  <input
+                    id={digestId}
+                    type="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (emailError) setEmailError("");
+                    }}
+                    aria-invalid={emailError ? "true" : undefined}
+                    aria-describedby={emailError ? "footer-email-err" : undefined}
+                    placeholder="you@domain.com"
+                    className="flex-1 min-w-[min(100%,12rem)] min-h-[44px] px-3 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 sm:min-h-0"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSubscribe}
+                    className="min-h-[44px] px-4 py-2 rounded text-xs font-semibold text-white sm:min-h-0"
+                    style={{ background: "#0EA5E9" }}
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                {emailError ? (
+                  <p id="footer-email-err" className="text-xs text-rose-400" role="alert">
+                    {emailError}
+                  </p>
+                ) : null}
               </div>
             )}
           </div>
@@ -1529,7 +1273,7 @@ function Footer() {
               <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
               <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
               <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
-              <a href="/performance" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>AI Season Performance</a>
+              <a href="/tools" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tools directory</a>
             </div>
           </div>
         </div>
@@ -1571,8 +1315,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      <Header />
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader editionBadge={pulseEdition.date} />
       <LiveScorebar />
       <TickerBar />
       <HeroSection showMyPulse={showMyPulse} />

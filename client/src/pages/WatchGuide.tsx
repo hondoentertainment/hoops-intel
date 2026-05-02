@@ -2,6 +2,7 @@
 // Route: /watch-guide
 
 import { useState } from "react";
+import SiteHeader from "../components/SiteHeader";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -289,31 +290,18 @@ export default function WatchGuide() {
   const skipGame = data.games[data.skipIt.gameIndex];
 
   return (
-    <div className="min-h-screen" style={{ background: "#050D1A" }}>
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 backdrop-blur-md border-b"
-        style={{
-          background: "rgba(5,13,26,0.92)",
-          borderColor: "rgba(255,255,255,0.06)",
-        }}
-      >
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a
-            href="/"
-            className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-opacity"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            {"\u2190"} Hoops Intel
-          </a>
-          <div
-            className="text-xs"
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+      <SiteHeader
+        subtitle="WATCH GUIDE"
+        toolbarExtra={
+          <span
+            className="text-xs whitespace-nowrap"
             style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
           >
             {data.games.length} games tonight
-          </div>
-        </div>
-      </header>
+          </span>
+        }
+      />
 
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-8">
         {/* Title */}
