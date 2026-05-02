@@ -1,23 +1,17 @@
 import { useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import { archiveEditions } from "../lib/archiveData";
+import { editionSearchHaystack } from "../lib/archiveSearch";
 
 // ═══════════════════════════════════════════════════════════
 // ARCHIVE SEARCH — Filter and search past editions
 // ═══════════════════════════════════════════════════════════
 
-function matchesSearch(edition: any, query: string): boolean {
+function matchesSearch(edition: Record<string, unknown>, query: string): boolean {
   if (!query.trim()) return true;
   const q = query.toLowerCase().trim();
-  return (
-    edition.headline.toLowerCase().includes(q) ||
-    edition.subheadline.toLowerCase().includes(q) ||
-    edition.topStory.toLowerCase().includes(q) ||
-    edition.topPlayer.toLowerCase().includes(q) ||
-    edition.tags.some((t: string) => t.toLowerCase().includes(q)) ||
-    edition.players.some((p: string) => p.toLowerCase().includes(q)) ||
-    edition.teams.some((t: string) => t.toLowerCase().includes(q))
-  );
+  const hay = editionSearchHaystack(edition);
+  return hay.includes(q);
 }
 
 function ArchiveCard({ edition }: { edition: any }) {

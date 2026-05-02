@@ -38,3 +38,11 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           DIGEST_EMAILS: ${{ secrets.DIGEST_EMAILS }}
         run: node scripts/send-digest.mjs
+
+      - name: Fantasy watchlist pushes
+        env:
+          PUSH_API_URL: ${{ secrets.PUSH_API_URL }}
+          PUSH_API_SECRET: ${{ secrets.PUSH_API_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scripts/notify-fantasy-alerts.mjs

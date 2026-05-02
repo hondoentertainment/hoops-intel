@@ -335,6 +335,27 @@ export const seriesIntel: Record<string, SeriesIntel> = {
   },
 };
 
+export function fallbackSeriesIntel(
+  s: Pick<PlayoffSeries, "seriesId" | "higherTeam" | "lowerTeam" | "summary">,
+): SeriesIntel {
+  const a = s.higherTeam;
+  const b = s.lowerTeam;
+  return {
+    regularSeasonH2H:
+      "H₂H recap regenerates daily when keyed intel scripts run for this matchup; meanwhile the board mirrors live ESPN totals.",
+    playoffHistory: `${a} vs ${b} — follow the synced series ledger on /playoffs for scores and elimination context.`,
+    keyMatchup: `${s.summary} The next pivot is half-court efficiency, turnovers, and second-chance points.`,
+    narrative: `${s.summary} Fuller tape-room copy unlocks once \`seriesIntel['${s.seriesId}']\` is generated; you still get live Signals + summaries from the synced row.`,
+  };
+}
+
+/** Prefer Claude-generated keyed intel when present; never return undefined for UI surfaces. */
+export function resolveSeriesIntel(
+  series: Pick<PlayoffSeries, "seriesId" | "higherTeam" | "lowerTeam" | "summary">,
+): SeriesIntel {
+  return seriesIntel[series.seriesId] ?? fallbackSeriesIntel(series);
+}
+
 // ═══════════════════════════════════════════════════════════
 // DERIVED HELPERS
 // ═══════════════════════════════════════════════════════════

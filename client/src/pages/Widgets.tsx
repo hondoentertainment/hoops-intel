@@ -339,6 +339,68 @@ export default function Widgets() {
           ))}
         </div>
 
+        <div
+          className="mb-12 rounded-xl p-6 md:p-8"
+          style={{
+            background: "rgba(14,165,233,0.05)",
+            border: "1px solid rgba(14,165,233,0.15)",
+          }}
+        >
+          <h3 className="display-heading text-white text-lg mb-2">Publisher handbook</h3>
+          <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>
+            Hoops Intel serves embeds over HTTPS only. Prefer the script loader (<code className="mono-data text-[11px] text-sky-400/95">embed.js</code>) so iframe
+            height tracks content via <code className="mono-data text-[11px] text-sky-400/95">postMessage</code>; fall back to the static iframe if your CMS sanitizes scripts.
+          </p>
+          <div className="overflow-x-auto text-xs mono-data rounded-lg mb-4" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <table className="w-full text-left [&_td]:border-b [&_td]:border-white/5 [&_td]:py-2 [&_td]:px-3" style={{ color: "rgba(255,255,255,0.65)" }}>
+              <thead style={{ color: "#0EA5E9" }}>
+                <tr>
+                  <td className="font-bold">Widget ID</td>
+                  <td className="font-bold">Default width</td>
+                  <td className="font-bold">Notes</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>pulse</code></td>
+                  <td>360 px</td>
+                  <td>Top five Pulse movers + trending marks</td>
+                </tr>
+                <tr>
+                  <td><code>ticker</code></td>
+                  <td>480 × 42 px band</td>
+                  <td>Horizontal strip — pair with headline rail</td>
+                </tr>
+                <tr>
+                  <td><code>injury</code></td>
+                  <td>360 px</td>
+                  <td>Statuses sync with nightly injury snapshot</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre
+            className="rounded-lg p-4 text-xs overflow-x-auto mb-4 whitespace-pre-wrap"
+            style={{
+              background: "rgba(0,0,0,0.35)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              color: "rgba(255,255,255,0.55)",
+              fontFamily: "'JetBrains Mono','Fira Code',monospace",
+            }}
+          >
+            {`# Content Security Policy snippet (Relax additional hosts as needed)
+Content-Security-Policy: frame-src https://hoopsintel.net *.hoopsintel.net;
+script-src 'self' https://hoopsintel.net;
+
+# SPA re-mount helper after client-side navigations:
+window.HoopsIntel && HoopsIntel.mount();`}
+          </pre>
+          <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
+            The loader sandboxes injected iframes with <code>allow-scripts allow-same-origin allow-popups</code> — add{" "}
+            <code>allow-forms</code> locally if your integration needs in-widget forms (not shipped by Hoops Intel today).
+          </p>
+        </div>
+
         {/* Widget sections */}
         <div className="flex flex-col gap-8">
           {widgets.map((w) => (
@@ -370,7 +432,7 @@ export default function Widgets() {
               {
                 step: "3",
                 title: "Embed",
-                desc: "Copy the iframe code and paste it into your HTML. The widget updates automatically.",
+                desc: "Copy the script snippet (auto-resizes) or the iframe fallback below each preview.",
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-3">

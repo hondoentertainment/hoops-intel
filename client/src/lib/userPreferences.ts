@@ -4,19 +4,23 @@
 import { isSupabaseConfigured, getFavorites, toggleFavorite } from "./supabaseClient";
 
 export interface UserPreferences {
-  favoriteTeams: string[];      // Team abbreviations: ["OKC", "DEN", "SAS"]
-  favoritePlayers: string[];    // Full names: ["Nikola Jokić", "Shai Gilgeous-Alexander"]
+  favoriteTeams: string[]; // Team abbreviations: ["OKC", "DEN", "SAS"]
+  favoritePlayers: string[]; // Full names
   enablePersonalization: boolean;
+  /** Up to two pairings surfaced on Home when tonight’s slate includes both teams */
+  rivalPairs: Array<{ mine: string; rival: string }>;
 }
 
 const STORAGE_KEY = "hoops-intel-preferences";
 const MAX_TEAMS = 5;
 const MAX_PLAYERS = 10;
+const MAX_RIVAL_PAIRS = 2;
 
 const DEFAULT_PREFS: UserPreferences = {
   favoriteTeams: [],
   favoritePlayers: [],
   enablePersonalization: true,
+  rivalPairs: [],
 };
 
 export function getPreferences(): UserPreferences {
@@ -24,10 +28,25 @@ export function getPreferences(): UserPreferences {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { ...DEFAULT_PREFS };
     const parsed = JSON.parse(raw);
+    const pairsRaw = Array.isArray(parsed.rivalPairs) ? parsed.rivalPairs : [];
+    const rivalPairs = pairsRaw
+      .filter((p: unknown) => p && typeof p === "object" && "mine" in (p as object) && "rival" in (p as object))
+      .map((p: { mine?: string; rival?: string }) => ({
+        mine: String(p.mine ?? "")
+          .toUpperCase()
+          .slice(0, 8),
+        rival: String(p.rival ?? "")
+          .toUpperCase()
+          .slice(0, 8),
+      }))
+      .filter((p: { mine: string; rival: string }) => p.mine.length === 3 && p.rival.length === 3 && p.mine !== p.rival)
+      .slice(0, MAX_RIVAL_PAIRS);
+
     return {
       favoriteTeams: Array.isArray(parsed.favoriteTeams) ? parsed.favoriteTeams.slice(0, MAX_TEAMS) : [],
       favoritePlayers: Array.isArray(parsed.favoritePlayers) ? parsed.favoritePlayers.slice(0, MAX_PLAYERS) : [],
       enablePersonalization: parsed.enablePersonalization !== false,
+      rivalPairs,
     };
   } catch {
     return { ...DEFAULT_PREFS };
@@ -35,10 +54,20 @@ export function getPreferences(): UserPreferences {
 }
 
 export function setPreferences(prefs: UserPreferences): void {
+  const rivalPairs =
+    prefs.rivalPairs
+      ?.map((r) => ({
+        mine: r.mine.toUpperCase(),
+        rival: r.rival.toUpperCase(),
+      }))
+      .filter((r) => r.mine.length === 3 && r.rival.length === 3 && r.mine !== r.rival)
+      .slice(0, MAX_RIVAL_PAIRS) ?? [];
+
   const sanitized: UserPreferences = {
     favoriteTeams: prefs.favoriteTeams.slice(0, MAX_TEAMS),
     favoritePlayers: prefs.favoritePlayers.slice(0, MAX_PLAYERS),
     enablePersonalization: prefs.enablePersonalization,
+    rivalPairs,
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitized));
   // Best-effort Supabase sync
@@ -81,7 +110,11 @@ export function togglePersonalization(): void {
 
 export function hasPreferences(): boolean {
   const prefs = getPreferences();
-  return prefs.favoriteTeams.length > 0 || prefs.favoritePlayers.length > 0;
+  return (
+    prefs.favoriteTeams.length > 0 ||
+    prefs.favoritePlayers.length > 0 ||
+    prefs.rivalPairs.length > 0
+  );
 }
 
 // ═══════════════════════════════════════════════════════════

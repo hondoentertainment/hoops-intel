@@ -1,6 +1,7 @@
 # CLAUDE.md
 
 Guidance for Claude Code sessions working on Hoops Intel (`hoopsintel.net`).
+**Cursor:** see [`cursor.md`](./cursor.md) for parallel doc map and hotspots.
 
 ---
 
@@ -239,11 +240,9 @@ reads it).
   injury statuses. These come from the daily AI generator and get
   corrected during the next regeneration. CI treats this job as
   advisory.
-- `daily-update.yml` skips all of July–September. `season-mode.mjs`
-  defines the real content calendar — only late-July-through-August is
-  a true dead period. Update the workflow's season check to use
-  `generatorActive()` when you're ready to cover free-agency,
-  Summer League, and preseason.
+- `daily-update.yml` gates execution with `scripts/check-generator-active.mjs`
+  (`generatorActive()` from `season-mode.mjs`), so postseason / draft /
+  preseason windows run while only the **`dead-period`** slice is suppressed.
 - `public/` at the repo root is wired into `vite.config.ts` via
   `publicDir`. Files there ship verbatim to `dist/`. Do not create
   `client/public/`.
@@ -273,6 +272,6 @@ reads it).
 
 ## Current priorities
 
-See `NEXT-STEPS.md` for the live punch list. `ROADMAP.md` and
-`PRODUCT-ENHANCEMENTS.md` are historical — they track what's shipped and
-what's deferred to Q3/Q4.
+See **`NEXT-STEPS.md`** for the live punch list.
+
+**Planning docs:** `PRD.md` (requirements) → `ROADMAP.md` (shipped + horizons) → `NEXT-STEPS.md` → `PRODUCT-ENHANCEMENTS.md` (competitive tracker). **`cursor.md`** is the Cursor-specific entrypoint; this file carries full technical depth.

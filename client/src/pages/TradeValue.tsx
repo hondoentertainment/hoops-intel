@@ -1,4 +1,5 @@
 import SiteHeader from "../components/SiteHeader";
+import { useSubscription } from "../lib/useSubscription";
 // Trade Value Index Page
 // Weekly AI-scored ranking of the 30 most tradeable players
 
@@ -40,6 +41,8 @@ const TRADE_VALUE_DATA: TVIData = {
     { rank: 10, prevRank: 10, player: "Nikola Jokić", team: "DEN", age: 31, contract: "2 yrs / $90M remaining", tradeValue: 76, trend: "stable", rationale: "Still elite but age and two years remaining keep him out of the top 5. Denver won't move him and teams know it — suppressing his market value." },
   ],
 };
+
+const PRO_FREE_PREVIEW_RANKS = 6;
 
 // ═══════════════════════════════════════════════════════════
 // RANK CHANGE BADGE
@@ -221,7 +224,13 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
 // ═══════════════════════════════════════════════════════════
 
 export default function TradeValue() {
+  const sub = useSubscription();
   const { generatedDate, weekLabel, players } = TRADE_VALUE_DATA;
+  const gated = sub.loading ? false : !sub.isPro;
+  const preview =
+    gated && players.length > PRO_FREE_PREVIEW_RANKS
+      ? players.slice(0, PRO_FREE_PREVIEW_RANKS)
+      : players;
 
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
@@ -333,10 +342,42 @@ export default function TradeValue() {
 
         {/* Player list */}
         <div className="space-y-3 mb-10">
-          {players.map((p) => (
+          {preview.map((p) => (
             <PlayerCard key={p.player} p={p} />
           ))}
         </div>
+
+        {gated && players.length > PRO_FREE_PREVIEW_RANKS && (
+          <div
+            className="rounded-xl px-6 py-6 mb-10 text-center relative overflow-hidden"
+            style={{
+              background: "rgba(245,158,11,0.06)",
+              border: "1px solid rgba(245,158,11,0.18)",
+            }}
+          >
+            <div
+              className="display-heading text-amber-200 text-xs mb-2"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}
+            >
+              PRO PREVIEW GATE
+            </div>
+            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}>
+              Showing top {PRO_FREE_PREVIEW_RANKS} trade chips for signed-out / free readers. Hoops Intel Pro unlocks ranks{" "}
+              {PRO_FREE_PREVIEW_RANKS + 1}–{players.length}+ with full rationales and CSV export (roadmapped).
+            </p>
+            <a
+              href="/pro"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white hover:brightness-105 transition-all"
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                letterSpacing: "0.05em",
+                background: "linear-gradient(135deg, #F59E0B, #D97706)",
+              }}
+            >
+              Unlock full Trade Value tier →
+            </a>
+          </div>
+        )}
 
         {/* Divider */}
         <div

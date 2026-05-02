@@ -41,7 +41,8 @@ interface PushPayload {
     | 'buzzer-beater'
     | 'milestone'
     | 'elimination-game'
-    | 'series-clincher';
+    | 'series-clincher'
+    | 'fantasy';
   title: string;
   body: string;
   url?: string;         // deep link opened when user taps the notification

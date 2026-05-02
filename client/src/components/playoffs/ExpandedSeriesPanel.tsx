@@ -1,5 +1,6 @@
 import { nextPendingGame } from "../../lib/playoffAnalytics";
 import type { PlayoffSeries, SeriesIntel } from "../../lib/playoffData";
+import { resolveSeriesIntel } from "../../lib/playoffData";
 import {
   heroSentence,
   keyStatLabel,
@@ -15,9 +16,10 @@ interface ExpandedSeriesPanelProps {
 }
 
 export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps) {
+  const intelRow = intel ?? resolveSeriesIntel(series);
   const last = lastFinalGame(series);
   const nx = nextPendingGame(series);
-  const why = whyItMatters(series, intel?.narrative);
+  const why = whyItMatters(series, intelRow.narrative);
 
   return (
     <div className="border-t border-white/[0.06] mt-3 pt-3 space-y-3 animate-[fadeSlide_0.22s_ease-out]">
@@ -66,12 +68,11 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
         </div>
       </div>
 
-      {intel ? (
-        <div className="rounded-lg bg-sky-500/[0.06] px-3 py-2 border border-sky-500/20">
-          <div className="text-[9px] font-bold uppercase text-sky-400/90 mb-1">Tape room</div>
-          <p className="text-[11px] text-white/70 leading-relaxed">{intel.keyMatchup}</p>
-        </div>
-      ) : null}
+      <div className="rounded-lg bg-sky-500/[0.06] px-3 py-2 border border-sky-500/20">
+        <div className="text-[9px] font-bold uppercase text-sky-400/90 mb-1">Tape room</div>
+        <p className="text-[11px] text-white/70 leading-relaxed">{intelRow.keyMatchup}</p>
+        <p className="text-[10px] text-white/48 leading-snug mt-1.5 line-clamp-3">{intelRow.narrative}</p>
+      </div>
 
       <div className="flex items-center justify-between rounded-lg border border-dashed border-white/10 px-3 py-2 text-[10px] text-white/40">
         <span>Highlights ingest</span>

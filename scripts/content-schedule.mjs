@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // content-schedule.mjs — Displays the full recurring content update schedule.
 // Useful for debugging, documentation, and verifying all pipelines are configured.
-// Usage: node scripts/content-schedule.mjs [--check]
+// Usage: node scripts/content-schedule.mjs [--check | --verify-generators]
 
 import { readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
@@ -14,6 +14,7 @@ const ROOT = join(__dirname, "..");
 const WORKFLOWS_DIR = join(ROOT, ".github/workflows");
 
 const CHECK_MODE = process.argv.includes("--check");
+const VERIFY_GENERATORS_MODE = process.argv.includes("--verify-generators");
 
 // ── Full content update schedule ──────────────────────────────────────────
 
@@ -242,7 +243,46 @@ function checkWorkflows() {
   }
 }
 
+/** Ensure every seasonal mode resolves to an existing scripts/*.mjs generator. */
+function verifyGeneratorsForSeasonModes() {
+  const scriptDir = join(ROOT, "scripts");
+  const samples = [
+    ["regular-season", new Date(Date.UTC(2026, 0, 10))],
+    ["playoffs", new Date(Date.UTC(2026, 3, 25))],
+    ["finals", new Date(Date.UTC(2026, 5, 10))],
+    ["draft", new Date(Date.UTC(2026, 5, 25))],
+    ["free-agency", new Date(Date.UTC(2026, 6, 5))],
+    ["summer-league", new Date(Date.UTC(2026, 6, 15))],
+    ["dead-period", new Date(Date.UTC(2026, 6, 28))],
+    ["preseason", new Date(Date.UTC(2026, 8, 15))],
+  ];
+
+  for (const [label, d] of samples) {
+    const gen = primaryGenerator(d);
+    const p = join(scriptDir, gen);
+    if (!existsSync(p)) {
+      console.error(`[verify-generators] Mode "${label}" (${d.toISOString().slice(0, 10)}) → ${gen} — FILE MISSING`);
+      process.exit(1);
+    }
+    console.log(`[verify-generators] ${label} → ${gen} ✓`);
+  }
+
+  const requiredBaseline = ["generate-edition.mjs", "generate-draft.mjs", "generate-history.mjs"];
+  for (const g of requiredBaseline) {
+    const p = join(scriptDir, g);
+    if (!existsSync(p)) {
+      console.error(`[verify-generators] Required baseline file missing: ${g}`);
+      process.exit(1);
+    }
+  }
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────
+
+if (VERIFY_GENERATORS_MODE) {
+  verifyGeneratorsForSeasonModes();
+  process.exit(0);
+}
 
 printSchedule();
 if (CHECK_MODE) {

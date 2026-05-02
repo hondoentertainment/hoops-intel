@@ -14,6 +14,7 @@ import {
   eastStandings,
   westStandings,
 } from "../lib/pulseData";
+import { playoffTickerDerivedItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
 import { useLiveScores } from "../lib/useLiveScores";
 import { slugify } from "../lib/searchUtils";
@@ -22,6 +23,7 @@ import { useFocusTrap } from "../hooks/useFocusTrap";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
+import RivalTonightBanner from "../components/RivalTonightBanner";
 import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
 import { hasPreferences, getPreferences } from "../lib/userPreferences";
@@ -29,7 +31,7 @@ import {
   playoffSeries,
   playoffMovers,
   isPlayoffsActive,
-  seriesIntel,
+  resolveSeriesIntel,
   playoffSeriesForMatchup,
   type PlayoffSeries,
 } from "../lib/playoffData";
@@ -93,7 +95,9 @@ function LiveScorebar() {
 // ═══════════════════════════════════════════════════════════
 
 function TickerBar() {
-  const items = [...tickerItems, ...tickerItems];
+  const derived = playoffTickerDerivedItems();
+  const strip = derived.length ? [...derived, ...tickerItems] : tickerItems;
+  const items = [...strip, ...strip];
   const textColors: Record<string, string> = {
     score: "text-slate-300", injury: "text-amber-400",
     news: "text-sky-400", alert: "text-emerald-400",
@@ -873,7 +877,7 @@ function TonightSection() {
 function GamePreviewCard({ preview }: { preview: any }) {
   const [expanded, setExpanded] = useState(false);
   const series = playoffSeriesForMatchup(preview.awayTeam, preview.homeTeam);
-  const intel = series ? seriesIntel[series.seriesId] : undefined;
+  const intel = series ? resolveSeriesIntel(series) : undefined;
 
   return (
     <div className={`glass-card rounded-lg overflow-hidden ${preview.featured ? "ring-1 ring-sky-500/40" : ""}`}>
@@ -1317,6 +1321,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader editionBadge={pulseEdition.date} />
+      <RivalTonightBanner />
       <LiveScorebar />
       <TickerBar />
       <HeroSection showMyPulse={showMyPulse} />

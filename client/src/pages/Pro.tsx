@@ -4,6 +4,12 @@
 import { useState } from "react";
 import { useSubscription, startCheckout } from "../lib/useSubscription";
 import SiteHeader from "../components/SiteHeader";
+import AuthModal from "../components/AuthModal";
+
+function getStoredAuthToken(): string | null {
+  if (typeof localStorage === "undefined") return null;
+  return localStorage.getItem("hoops-intel-auth-token");
+}
 
 const FEATURES = [
   {
@@ -93,8 +99,14 @@ export default function Pro() {
   const sub = useSubscription();
   const [checkoutLoading, setCheckoutLoading] = useState<"monthly" | "annual" | null>(null);
   const [error, setError] = useState<string>("");
+  const [showAuth, setShowAuth] = useState(false);
 
   const handleCheckout = async (plan: "monthly" | "annual") => {
+    if (!getStoredAuthToken()) {
+      setShowAuth(true);
+      setError("Sign in once to subscribe — Stripe links your Hoops Intel account.");
+      return;
+    }
     setCheckoutLoading(plan);
     setError("");
     try {
@@ -172,9 +184,20 @@ export default function Pro() {
         </div>
 
         <div className="rounded-lg p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
-          Billing handled by Stripe. Cancel from your account page at any time. If Pro is temporarily unavailable the "Go Pro" button will surface the reason — leave us a note at hello@hoopsintel.net and we'll waive the first month.
+          Billing handled by Stripe. Cancel from your account page at any time. If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping hello@hoopsintel.net if you&apos;re blocked.
         </div>
       </div>
+
+      {showAuth && (
+        <AuthModal
+          onClose={() => setShowAuth(false)}
+          onAuth={() => {
+            setShowAuth(false);
+            sub.refreshSubscription();
+            setError("");
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-# NBA Pulse — Data Schema Reference
+# Hoops Intel — Data Schema Reference
 
 Full TypeScript interface definitions for `pulseData.ts`. Every field is required unless marked optional.
 

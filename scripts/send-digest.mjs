@@ -447,6 +447,26 @@ async function sendEmail(to, subject, html) {
   return true;
 }
 
+function pstHour(d = new Date()) {
+  return parseInt(
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles',
+      hour: 'numeric',
+      hour12: false,
+    }).format(d),
+    10,
+  );
+}
+
+function digestSendAllowedNow(now = new Date()) {
+  if (process.env.DIGEST_QUIET_OVERRIDE === '1') return true;
+  if (process.env.DIGEST_USE_QUIET_WINDOW !== '1') return true;
+  const start = Number(process.env.DIGEST_SEND_START_HOUR_PST ?? '6');
+  const end = Number(process.env.DIGEST_SEND_END_HOUR_PST ?? '11');
+  const hour = pstHour(now);
+  return hour >= start && hour <= end;
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -489,6 +509,15 @@ async function main() {
       return;
     }
     console.log(`[digest] Sending to ${recipients.length} subscriber(s)`);
+  }
+
+  if (!testEmail && !digestSendAllowedNow()) {
+    console.log(
+      `[digest] Skipping blast — PST hour ${pstHour()} outside configured morning window (${process.env.DIGEST_SEND_START_HOUR_PST ?? 6}-${
+        process.env.DIGEST_SEND_END_HOUR_PST ?? 11
+      }). DIGEST_QUIET_OVERRIDE=1 to force.`,
+    );
+    return;
   }
 
   let sent = 0;

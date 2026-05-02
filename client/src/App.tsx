@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import AskHoopsIntel from "./components/AskHoopsIntel";
@@ -40,6 +40,26 @@ const MyPulse = lazy(() => import("./pages/MyPulse"));
 const Pro = lazy(() => import("./pages/Pro"));
 const Embed = lazy(() => import("./pages/Embed"));
 const Tools = lazy(() => import("./pages/Tools"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const PlayerCompare = lazy(() => import("./pages/PlayerCompare"));
+const BettingIntel = lazy(() => import("./pages/BettingIntel"));
+const PrintEdition = lazy(() => import("./pages/PrintEdition"));
+const GuestPulse = lazy(() => import("./pages/GuestPulse"));
+const Rivals = lazy(() => import("./pages/Rivals"));
+
+function VercelAnalyticsScript() {
+  useEffect(() => {
+    if (!import.meta.env.PROD) return;
+    if (typeof document === "undefined") return;
+    if (document.querySelector('script[data-hi-vercel-insights="1"]')) return;
+    const s = document.createElement("script");
+    s.dataset.hiVercelInsights = "1";
+    s.src = "/_vercel/insights/script.js";
+    s.defer = true;
+    document.body.appendChild(s);
+  }, []);
+  return null;
+}
 
 function PageLoader() {
   return (
@@ -58,6 +78,7 @@ function PageLoader() {
 export default function App() {
   return (
     <ThemeProvider switchable={true}>
+      <VercelAnalyticsScript />
       <div
         className="min-h-screen"
         style={{
@@ -99,6 +120,12 @@ export default function App() {
             <Route path="/pro" component={Pro} />
             <Route path="/tools" component={Tools} />
             <Route path="/embed/:id" component={Embed} />
+            <Route path="/unsubscribe" component={Unsubscribe} />
+            <Route path="/compare-players" component={PlayerCompare} />
+            <Route path="/betting-intel" component={BettingIntel} />
+            <Route path="/print-edition" component={PrintEdition} />
+            <Route path="/guest-pulse" component={GuestPulse} />
+            <Route path="/rivals" component={Rivals} />
             <Route>
               <div className="container py-20 text-center">
                 <h1 className="text-2xl font-bold text-white mb-4">404</h1>

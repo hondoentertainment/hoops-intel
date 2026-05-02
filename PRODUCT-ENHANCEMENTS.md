@@ -1,6 +1,6 @@
 # Hoops Intel — Competitive Enhancement Recommendations
 
-> Authored: March 24, 2026 · Last review: April 20, 2026
+> Authored: March 24, 2026 · Last review: May 2, 2026
 >
 > **Status:** Most Tier 1 and Tier 2 items have shipped. See the "Status"
 > column. For current priorities, see [`NEXT-STEPS.md`](./NEXT-STEPS.md).
@@ -28,17 +28,17 @@ Core moat: **AI-generated narrative + real-time data + editorial curation in one
 | # | Enhancement | Status | Notes |
 |---|---|---|---|
 | 1.1 | Personalized Daily Edition | **Shipped** | `MyPulse` + client-side re-sort by `user.favorites` |
-| 1.2 | Prediction Accuracy Leaderboard | **Shipped** | `/pickem` with per-game picks + playoff bracket picks |
-| 1.3 | Smart Fantasy Alerts via Push | **Partial** | Infra exists (VAPID + injury diff); extend coverage to fantasy-only users |
+| 1.2 | Prediction Accuracy Leaderboard | **Shipped** | `/pick-em` + per-game picks + playoff bracket picks |
+| 1.3 | Smart Fantasy Alerts via Push | **Partial** | `scripts/notify-fantasy-alerts.mjs` + `topic: fantasy` in `push-notify` (team-targeted blast after digest); granular “fantasy-only” subs remain future migration |
 | 1.4 | Shareable Player Cards | **Shipped** | `@vercel/og` edge function + Share button component |
 | 2.1 | Hoops IQ Trivia & Quizzes | **Shipped** | `/trivia` + daily Hoops IQ questions in each edition |
 | 2.2 | Trade Value Index | **Shipped** | `/trade-value` + weekly regeneration |
 | 2.3 | Head-to-Head Intelligence | **Shipped** | `seriesIntel` map rendered inside playoff game previews |
-| 2.4 | Creator Program — Guest Pulse Index | **Not started** | P2 — defer until post-playoffs |
+| 2.4 | Creator Program — Guest Pulse Index | **Partial** | `/guest-pulse` intake + `api/contact-intake.ts` → Resend when env configured |
 | 3.1 | "Ask Hoops Intel" Conversational AI | **Shipped** | `/ask` backed by `api/ask.ts` with archive RAG |
-| 3.2 | Hoops Intel Embed Widgets | **Partial** | Widgets built (`/widgets`), but no embeddable `<script>` bundle yet |
+| 3.2 | Hoops Intel Embed Widgets | **Shipped (polish)** | Publisher handbook + CSP / widget matrix on `/widgets` |
 | 3.3 | Season-Long Player Trajectory | **Shipped** | Player pages render trajectory from `pulse_snapshots` |
-| 3.4 | Betting Intelligence Layer | **Not started** | Deferred; affiliate links only today |
+| 3.4 | Betting Intelligence Layer | **MVP shipped** | `/betting-intel` summarizes preview spreads + predictions; sharper price-tracking narrative still backlog |
 
 ---
 
@@ -47,27 +47,25 @@ Core moat: **AI-generated narrative + real-time data + editorial curation in one
 | Enhancement | Status |
 |---|---|
 | Edition timestamp | **Shipped** |
-| Player comparison tool | **Not started** — still a quick win |
+| Player comparison tool | **Shipped** (`/compare-players`) |
 | "This day in NBA history" | **Shipped** (in `pulseData.ts` + Home) |
 | Share to X button | **Shipped** |
 | Streak indicators on standings | **Shipped** |
-| Print/PDF edition | **Not started** |
+| Print/PDF edition | **Partial** (`/print-edition`) |
 | "Why is this player ranked here?" | **Shipped** — `rationale` field on each Pulse Index player |
-| Rival game alerts | **Not started** |
+| Rival game alerts | **Partial** (`/rivals` + Home banner) |
 
 ---
 
-## Remaining Opportunities
+## Remaining opportunities
 
-The items below from the original document have **not shipped** and remain the
-most valuable unfinished work:
+Deepest moats still evolving:
 
-1. **Hoops Intel Embed Widgets** — the product exists, but the embeddable
-   `<script>` tag bundle does not. Tracked as P2.8 in `NEXT-STEPS.md`.
-2. **Creator Program / Guest Pulse Index** — no submission flow.
-3. **Betting Intelligence Layer** — line tracking + sharp-vs-public narrative.
-4. **Player comparison tool** — a single quick-win still on the table.
-5. **Print/PDF edition** — nice-to-have for newsletter redistribution.
-6. **Rival game alerts** — natural extension of the playoff push infra.
+1. **Publisher analytics** — referrers / embed loads (no productized dashboard yet).
+2. **Creator moderation workflow** — pitches land via Resend but need queue + SLAs.
+3. **Betting depth** — automated line movement + sharp/public thesis (today: static preview snapshot at `/betting-intel`).
+4. **Fantasy-only push cohorts** — migrations to tag subscribers who want fantasy minus injury noise.
+5. **Richer print/PDF exports** — branded multi-page packet vs. single print sheet.
+6. **Rival-aware server pushes** — extend `push_subscriptions` metadata beyond team filters.
 
-Everything else in the original document has shipped in some form.
+Previously “embed docs / comparison / rivals / guest form” friction is now covered in-repo—see `/widgets`, `/compare-players`, `/rivals`, `/guest-pulse`.

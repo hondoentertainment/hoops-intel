@@ -110,6 +110,14 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           <div className="p-4">
             <div className="section-label mb-3">NOTIFICATIONS</div>
 
+            <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <span className="text-white/60 font-medium">Email digest:</span> morning drop at 5 AM PST.&nbsp;
+              <span className="text-white/60 font-medium">Browser permission:</span> optional — used for editions and, when you opt in via account + server rules, sparing playoff urgency alerts tied to elimination games (volume is capped; pipelines need VAPID + Supabase hooks).{" "}
+              <a href="/playoffs" className="underline text-sky-400/95">
+                Playoff board →
+              </a>
+            </p>
+
             <div className="mb-4">
               <button
                 type="button"

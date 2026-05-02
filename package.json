@@ -19,7 +19,7 @@
     "digest:preview": "node scripts/send-digest.mjs --preview"
   },
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.0",

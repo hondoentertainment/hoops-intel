@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getTeamColor } from "../../lib/teamColors";
 import type { PlayoffSeries } from "../../lib/playoffData";
-import { seriesIntel } from "../../lib/playoffData";
+import { resolveSeriesIntel } from "../../lib/playoffData";
 import { nextPendingGame } from "../../lib/playoffAnalytics";
 import { ExpandedSeriesPanel } from "./ExpandedSeriesPanel";
 import { IntelSignals } from "./IntelSignals";
@@ -44,7 +44,7 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
   const statusLabel =
     series.status === "complete" ? "Final" : series.status === "active" ? "In progress" : "Scheduled";
 
-  const intel = seriesIntel[series.seriesId];
+  const intel = resolveSeriesIntel(series);
 
   return (
     <article

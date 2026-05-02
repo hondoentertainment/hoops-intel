@@ -51,4 +51,10 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "My Pulse", href: "/my-pulse", description: "Personalized edition" },
   { label: "Hoops Intel Pro", href: "/pro", description: "Pro tier" },
   { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges" },
+  { label: "Player compare", href: "/compare-players", description: "Pulse Index side-by-side" },
+  { label: "Betting intel", href: "/betting-intel", description: "Lines + projections snapshot" },
+  { label: "Print edition", href: "/print-edition", description: "Clean PDF / print sheet" },
+  { label: "Rival alerts", href: "/rivals", description: "Headline banners for grudge games" },
+  { label: "Guest Pulse pitch", href: "/guest-pulse", description: "Submit a takeover idea" },
+  { label: "Unsubscribe digest", href: "/unsubscribe", description: "Email opt-out page" },
 ];

@@ -37,7 +37,8 @@ export interface SubscriptionState {
 
 const ACTIVE_STATUSES: SubscriptionStatus[] = ["trialing", "active", "past_due"];
 
-export function useSubscription(): SubscriptionState {
+export function useSubscription(): SubscriptionState & { refreshSubscription: () => void } {
+  const [nonce, setNonce] = useState(0);
   const [state, setState] = useState<SubscriptionState>({
     isPro: false,
     plan: null,
@@ -48,6 +49,7 @@ export function useSubscription(): SubscriptionState {
   });
 
   useEffect(() => {
+    setState((s) => ({ ...s, loading: true }));
     if (!SUPABASE_URL) {
       setState((s) => ({ ...s, loading: false }));
       return;
@@ -81,9 +83,12 @@ export function useSubscription(): SubscriptionState {
         });
       })
       .catch(() => setState((s) => ({ ...s, loading: false })));
-  }, []);
+  }, [nonce]);
 
-  return state;
+  return {
+    ...state,
+    refreshSubscription: () => setNonce((n) => n + 1),
+  };
 }
 
 export async function startCheckout(plan: "monthly" | "annual"): Promise<string> {
@@ -94,8 +99,14 @@ export async function startCheckout(plan: "monthly" | "annual"): Promise<string>
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify({ plan }),
   });
-  if (res.status === 503) throw new Error("Pro is not live yet — check back soon.");
-  if (!res.ok) throw new Error(`Checkout failed: ${res.status}`);
+  if (!res.ok) {
+    const raw = (await res.json().catch(() => null)) as { error?: string; code?: string } | null;
+    if (raw?.code === "stripe_not_configured") {
+      throw new Error(raw.error ?? "Stripe checkout is not wired for this deployment yet — see README § Environment variables.");
+    }
+    if (typeof raw?.error === "string") throw new Error(raw.error);
+    throw new Error(`Checkout failed (${res.status})`);
+  }
   const { url } = await res.json();
   return url;
 }
