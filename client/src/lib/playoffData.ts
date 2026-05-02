@@ -86,7 +86,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 7:30 PM EDT", tv: "NBC, Peacock" }
     ],
   },
   {
@@ -129,12 +129,12 @@ export const playoffSeries: PlayoffSeries[] = [
     lowerSeed: 99,
     higherTeam: "LAL",
     lowerTeam: "HOU",
-    higherWins: 0,
+    higherWins: 1,
     lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    status: "active",
+    summary: "LAL leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "LAL", awayTeam: "HOU", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "HOU", awayTeam: "LAL", homeScore: 78, awayScore: 98, status: "final", time: "Final", tv: "Prime Video" }
     ],
   },
   {
@@ -166,7 +166,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 3:30 PM EDT", tv: "ABC" }
     ],
   },
   {
@@ -214,7 +214,23 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-08", homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+      { gameNumber: 1, date: "2026-05-09", homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
+    ],
+  },
+  {
+    seriesId: "E1-OKC-LAL",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "OKC",
+    lowerTeam: "LAL",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-09", homeTeam: "LAL", awayTeam: "OKC", homeScore: null, awayScore: null, status: "scheduled", time: "TBD" }
     ],
   }
 ];

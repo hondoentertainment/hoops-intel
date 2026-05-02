@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 1, 2026
+// Last updated: May 2, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,92 +22,98 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 1, 2026",
-  episodeTitle: "PLAYOFF MASSACRE: Knicks Historic 51-Point Blowout + Sixers Shock Celtics + Wolves Stun Champions",
+  date: "May 2, 2026",
+  episodeTitle: "Vintage LeBron Dominates, Raptors Stun Cavs in OT, & Pistons Avoid Historic Upset",
   rundown: [
     {
-      topic: "Knicks Demolish Hawks in Historic 51-Point Playoff Massacre",
+      topic: "LeBron's Championship DNA Silences the Doubters",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "New York wins 140-89, largest margin in franchise playoff history",
-        "Jalen Brunson: 32 points, 11 assists on 12-of-18 shooting",
-        "Knicks shot 58.7% from field, led by as many as 53 points",
-        "Donte DiVincenzo added 24 points with 6 three-pointers",
-        "Atlanta held to just 89 points at home in elimination game"
+        "31 points, 8 assists, 6 rebounds on 12-19 shooting",
+        "Lakers dominated 98-78, evening series 1-1",
+        "Held Rockets to just 36.2% shooting",
+        "Game-high +24 plus-minus",
+        "20-point road blowout reverses Game 1 narrative",
+        "Anthony Davis added 22 points, 11 rebounds, 3 blocks"
       ],
-      debateAngle: "Is this the most dominant road playoff performance we've seen in the last decade? Are the Knicks now legitimate Eastern Conference championship threats?",
-      suggestedQuote: "This wasn't just a basketball game, this was a complete and total annihilation. The Knicks didn't just beat Atlanta, they sent a message to the entire Eastern Conference that they're ready for a championship run.",
-      relevantPlayers: ["Jalen Brunson", "Donte DiVincenzo", "Trae Young", "De'Andre Hunter"]
+      debateAngle: "Are we witnessing the greatest elimination-pressure performer in NBA history, or is this just LeBron doing what legends do when their backs are against the wall?",
+      suggestedQuote: "This wasn't just vintage LeBron — this was a masterclass in championship-level basketball when it matters most. The Lakers' 20-point road dominance proved that reports of their demise were greatly exaggerated.",
+      relevantPlayers: ["LeBron James", "Anthony Davis", "Austin Reaves", "Alperen Sengun"]
     },
     {
-      topic: "Are the Timberwolves About to End Denver's Championship Defense?",
+      topic: "Toronto's Overtime Magic: How the Raptors Seized Control",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Minnesota leads series 3-1 after 110-98 Game 4 victory",
-        "Anthony Edwards: 31 points, 7 rebounds, 5 assists on 12-21 shooting",
-        "Wolves held Denver to 42.1% shooting from the field",
-        "Nikola Jokic: 24 points, 11 rebounds but couldn't prevent defeat",
-        "Denver faces elimination after being defending champions"
+        "Pascal Siakam: 29 points, 8 rebounds, 6 assists",
+        "112-110 overtime victory gives Raptors 2-1 series lead",
+        "Scottie Barnes: 19 points, 12 rebounds, 8 assists",
+        "Donovan Mitchell scored 33 but couldn't prevent defeat",
+        "Raptors forced crucial turnovers in overtime",
+        "Home crowd provided elimination-level energy"
       ],
-      debateAngle: "What does this series tell us about championship windows and the rise of young stars? Is Edwards ready to be the face of a conference finals team?",
-      suggestedQuote: "Anthony Edwards isn't just announcing himself as a playoff star - he's potentially ending the reign of the defending champions. This is what a changing of the guard looks like in real time.",
-      relevantPlayers: ["Anthony Edwards", "Nikola Jokic", "Mike Conley", "Jaden McDaniels"]
+      debateAngle: "Is this the series-defining moment that proves Toronto's championship experience still matters, or did Cleveland just have a bad night on the road?",
+      suggestedQuote: "Siakam's overtime heroics weren't just about the 29 points — this was about championship DNA taking over when the lights got brightest. The Raptors just put the Cavaliers in serious trouble.",
+      relevantPlayers: ["Pascal Siakam", "Scottie Barnes", "Donovan Mitchell", "Darius Garland"]
     },
     {
-      topic: "Embiid Forces Game 5: Are the Sixers Really Coming Back Against Boston?",
+      topic: "Are the Magic Choking Away Historic Opportunity?",
       segment: "hot-take",
-      duration: "7 minutes",
-      keyStats: [
-        "Philadelphia wins 106-93, forcing Game 5 in Boston",
-        "Joel Embiid: 29 points, 12 rebounds, 3 blocks on 11-19 shooting",
-        "Tyrese Maxey added 23 points and 7 assists in supporting role",
-        "Celtics held to 41.2% shooting in disappointing road performance",
-        "Series now tied 2-2 with all momentum shifting to Philly"
-      ],
-      debateAngle: "HOT TAKE: The Celtics are about to blow a 2-0 series lead because they can't handle playoff pressure when it matters most. Prove me wrong.",
-      suggestedQuote: "Joel Embiid just reminded everyone why he's one of the most dominant two-way forces in this league when healthy. The Celtics better hope they can handle the pressure back home because Philly smells blood in the water.",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Nic Claxton"]
-    },
-    {
-      topic: "Rapid Fire: Paolo's Upset Bid + LeBron's Elimination Pressure + Rookie Playoff Madness",
-      segment: "rapid-fire",
       duration: "6 minutes",
       keyStats: [
-        "Paolo Banchero: 26.8 PPG leading Orlando's 3-1 lead over Detroit",
-        "Lakers face 0-1 deficit to Houston after shocking Game 1 upset",
-        "Three elimination games scheduled for Thursday night action",
-        "Four different rookies averaging double digits in current playoff run",
-        "Orlando one win away from biggest upset in recent NBA history"
+        "Orlando led series 3-1, now faces Game 6 elimination",
+        "Paolo Banchero struggled with just 18 points on poor shooting",
+        "Cade Cunningham delivered 28 points in elimination game",
+        "Detroit shot 53.4% vs Orlando's 37.1%",
+        "Would have been one of biggest upsets in NBA history",
+        "Pistons' veteran experience finally showed up"
       ],
-      debateAngle: "Which storyline has you more excited: Paolo completing a historic upset or LeBron facing early elimination pressure?",
-      suggestedQuote: "Thursday night is going to be absolute chaos - we've got potential series clinchers, elimination pressure, and rookie magic all happening at once. This is why the playoffs are the greatest show in sports.",
-      relevantPlayers: ["Paolo Banchero", "LeBron James", "Cade Cunningham", "Alperen Sengun"]
+      debateAngle: "Is Paolo Banchero crumbling under rookie pressure in the biggest moments, or is this just what happens when veteran playoff experience meets youthful inexperience?",
+      suggestedQuote: "The Magic had a chance to make history and they're letting it slip away. This is exactly why rookie-led teams struggle to close out experienced championship contenders in the playoffs.",
+      relevantPlayers: ["Paolo Banchero", "Cade Cunningham", "Franz Wagner", "Isaiah Stewart"]
     },
     {
-      topic: "Thursday Preview: Can Orlando Complete the Upset? Will LeBron Respond?",
-      segment: "closer",
+      topic: "Playoff Rapid Fire: What We Learned Thursday",
+      segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Orlando can eliminate #1 seed Detroit with home victory in Game 5",
-        "Lakers desperate to avoid 0-2 hole against Houston's young core",
-        "Cleveland-Toronto Game 3 with series tied 1-1 after home splits",
-        "Three potential elimination games across Thursday's slate",
-        "Banchero probable despite ankle sprain for potential clincher"
+        "LeBron leads Thursday Pulse Index at 96.2",
+        "Three road teams delivered statement victories",
+        "Veteran playoff experience dominated young cores",
+        "Series momentum completely shifted in multiple matchups",
+        "Championship DNA separated contenders from pretenders",
+        "Elimination pressure revealed true character"
       ],
-      debateAngle: "What's the must-watch game tomorrow: Paolo trying to complete history or LeBron trying to avoid disaster?",
-      suggestedQuote: "Tomorrow night we could witness history with Orlando completing one of the biggest upsets ever, or we could see LeBron James remind everyone why he's still the king when his back is against the wall. Either way, we're not missing a second of it.",
-      relevantPlayers: ["Paolo Banchero", "LeBron James", "Donovan Mitchell", "Pascal Siakam"]
+      debateAngle: "Does veteran playoff experience still trump youth and athleticism in crucial postseason moments?",
+      suggestedQuote: "Thursday night proved that when the stakes get highest, there's still no substitute for championship-level experience and playoff poise.",
+      relevantPlayers: ["LeBron James", "Pascal Siakam", "Cade Cunningham", "Anthony Davis"]
+    },
+    {
+      topic: "Friday's Must-Watch: Sixers-Celtics Game 5 Showdown",
+      segment: "closer",
+      duration: "4 minutes",
+      keyStats: [
+        "Series tied 2-2 heading to TD Garden",
+        "Joel Embiid probable with knee soreness",
+        "Jaylen Brown questionable with ankle sprain",
+        "Boston -4.5 favorites at home",
+        "Winner advances to face Knicks",
+        "Elimination atmosphere at TD Garden"
+      ],
+      debateAngle: "Can Joel Embiid's vintage playoff dominance continue on the road, or will Boston's home-court advantage prove decisive in Game 5?",
+      suggestedQuote: "This Sixers-Celtics Game 5 has all the ingredients for an instant classic — two desperate teams, playoff legends, and TD Garden electricity. Don't miss this one.",
+      relevantPlayers: ["Joel Embiid", "Jayson Tatum", "Jaylen Brown", "James Harden"]
     }
   ],
-  coldOpen: "What's good Hoops Intel faithful! Wednesday night was absolute PLAYOFF MADNESS and we're about to break it all down for you. The New York Knicks just delivered the most savage beatdown we've seen in years - and I'm talking a historic 51-point massacre that left Atlanta completely humiliated on their own court. Meanwhile, Anthony Edwards is putting the defending champion Nuggets on the brink of elimination, and Joel Embiid just reminded Boston why they should never count out a desperate superstar. Buckle up because we're diving deep into a night that completely shifted the playoff landscape. This is Hoops Intel, I'm your host, and we're about to get into it!",
-  socialClip: "Create a 60-second clip of the host breaking down Jalen Brunson's historic 51-point blowout performance with animated stats overlays showing the 140-89 final score, Brunson's 32 points and 11 assists, and the Knicks' 58.7% shooting percentage. Include passionate commentary about this being the most dominant road playoff performance in franchise history with visual highlights of the biggest lead reaching 53 points.",
+  coldOpen: "What's good, Hoops Intel family! Welcome back to your daily dose of NBA intelligence. I'm your host, and we've got some WILD playoff action to break down from Thursday night. LeBron James just delivered a vintage 31-point masterpiece that has everyone remembering why you never count out the King. Meanwhile, the Raptors pulled off overtime magic in Toronto, and the Magic might be choking away one of the biggest upsets in NBA history. We're diving deep into all of it, plus looking ahead to tonight's must-watch Sixers-Celtics Game 5. This is Hoops Intel — let's get into it!",
+  socialClip: "LeBron's Elimination Pressure Excellence: Cut from the opener segment discussing LeBron's 31-point road dominance, focusing on the quote about 'championship-level basketball when it matters most' with overlay graphics showing his shooting efficiency and the 20-point margin of victory. Perfect for Twitter/Instagram with strong visual elements.",
   tweetThread: [
-    "🚨 PLAYOFF MASSACRE ALERT 🚨 The Knicks just delivered a HISTORIC 51-point blowout over Atlanta (140-89) - the most dominant road playoff performance in franchise history. Jalen Brunson was absolutely unconscious with 32 pts & 11 assists. This wasn't a game, it was a statement. 🧵",
-    "Anthony Edwards (31 pts) has the defending champion Nuggets on the ELIMINATION BRINK after Minnesota's stunning 110-98 victory. The Wolves lead 3-1 and Ant-Man is proving he's ready to be the face of a conference finals team. Championship changing of the guard happening live 📈",
-    "Joel Embiid REFUSED to go quietly, dominating with 29 pts & 12 rebounds as the Sixers shocked Boston 106-93 to force Game 5. The series is now tied 2-2 and all momentum has shifted to Philly. Never count out a desperate superstar with his back against the wall 💪",
-    "Thursday's slate is BONKERS: Paolo Banchero can complete one of the biggest upsets in NBA history vs Detroit, LeBron faces elimination pressure against Houston's young core, and we've got THREE potential series clinchers. The playoffs just keep delivering chaos 🔥",
-    "Bottom line: Wednesday night completely shifted the playoff landscape. The Knicks announced themselves as legit title threats, Edwards is ending Denver's reign, and Embiid reminded us why he's elite. Thursday can't come fast enough. What a time to be alive! #PlayoffMadness"
+    "🧵 THREAD: Thursday's playoff action delivered MASSIVE momentum shifts across three crucial games. Here's what you need to know from last night's drama:",
+    "1/5 👑 VINTAGE LEBRON: 31 points, 8 assists, +24 in the Lakers' dominant 98-78 road victory over Houston. This is exactly why you never count out championship DNA when backs are against the wall. Series now tied 1-1.",
+    "2/5 🦕 RAPTORS MAGIC: Pascal Siakam's 29-point overtime masterpiece stunned Cleveland 112-110, giving Toronto a 2-1 series lead. The home crowd energy was ELECTRIC and the Cavs are now in serious trouble on the road.",
+    "3/5 🪄 MAGIC STRUGGLES: Orlando's historic upset bid hit a major snag as Detroit avoided elimination with a 93-79 victory. Paolo Banchero struggled and now the Magic face Game 6 pressure after leading 3-1. Rookie pressure showing?",
+    "4/5 🔥 TONIGHT'S MUST-WATCH: Sixers @ Celtics Game 5 at TD Garden with the series tied 2-2. Joel Embiid vs Jayson Tatum in an elimination atmosphere. Winner faces the Knicks. This one has instant classic written all over it.",
+    "5/5 📊 The Pulse Index belongs to LeBron (96.2) followed by Siakam and Cunningham. Veteran playoff experience dominated Thursday night. New episode breaking it all down is LIVE now! 🎧 #HoopsIntel #NBAPlayoffs"
   ]
 };

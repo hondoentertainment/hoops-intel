@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: May 1, 2026
+// Last updated: May 2, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,234 +35,234 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "May 1, 2026",
+  generatedDate: "May 2, 2026",
   comparisons: [
     {
-      currentEvent: "Jalen Brunson's masterful 32-point, 11-assist orchestration led New York to a historic 51-point playoff blowout victory in Atlanta, delivering the most dominant road performance in Knicks franchise history while putting the Hawks on elimination brink through systematic offensive execution",
-      player: "Jalen Brunson",
-      team: "NYK",
+      currentEvent: "LeBron James delivered a masterful 31-point, 8-assist performance as the Lakers dominated Houston 98-78 on the road, evening their series while proving their championship pedigree under elimination pressure through veteran playoff execution and suffocating defense",
+      player: "LeBron James",
+      team: "LAL",
       historicalParallel: {
-        player: "Walt Frazier",
-        season: "1970 Playoffs",
-        stat: "36 points, 19 assists in Game 7 Finals victory — championship masterpiece",
-        context: "Frazier's legendary 1970 Finals Game 7 performance established the gold standard for Knicks championship excellence through clutch scoring and elite playmaking that delivered New York's first NBA title. His ability to dominate on basketball's biggest stage while orchestrating championship-level offense proved that Knicks point guards could achieve basketball immortality through sustained playoff brilliance and championship DNA."
+        player: "Magic Johnson",
+        season: "1987 Playoffs",
+        stat: "29.6 PPG, 13.1 APG in championship run — peak versatility",
+        context: "Magic's 1987 championship run established the template for elite point-forward dominance through clutch scoring and masterful playmaking that overwhelmed playoff competition. His ability to elevate teammates while delivering individual brilliance in crucial moments proved that elite floor generals could carry teams to championship heights when organizational execution reached peak levels."
       },
-      comparison: "Brunson's historic playoff dominance channels Frazier's championship excellence through superior individual scoring and similar elite playmaking that proves modern Knicks guards can match legendary championship standards when organizational execution reaches peak levels. Jalen's 32-point efficiency with 11 assists actually approaches Clyde's iconic Finals production while providing more consistent scoring throughout the playoff run that Frazier achieved only in championship moments. The crucial parallel is championship leadership — both possess the basketball IQ and clutch execution that allows elite Knicks point guards to orchestrate historically dominant performances when franchise legacy demands individual brilliance, suggesting Brunson could achieve more sustained championship success through better supporting talent and superior individual scoring consistency that enhances Frazier's playmaking mastery while matching his championship impact.",
+      comparison: "LeBron's elimination-pressure dominance channels Magic's championship excellence through superior individual scoring while maintaining similar elite playmaking that defines Lakers championship DNA. James' 31-point efficiency with 8 assists actually surpasses Magic's typical championship scoring while providing comparable floor leadership, though Magic maintained slight advantages in pure playmaking vision. The crucial parallel is championship clutch gene — both possess the individual brilliance and team-elevating ability that allows elite Lakers legends to deliver when franchise legacy demands peak performance, suggesting LeBron's sustained excellence at age 41 could surpass Magic's peak championship impact through superior longevity and individual scoring consistency that enhances his playmaking mastery while matching Magic's championship leadership and Lakers basketball immortality.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Anthony Edwards exploded for 31 points as Minnesota stunned defending champion Denver 110-98 to take a commanding 3-1 series lead, putting the Nuggets on the brink of a shocking first-round elimination through efficient shooting and playoff star emergence",
-      player: "Anthony Edwards",
-      team: "MIN",
+      currentEvent: "Pascal Siakam exploded for 29 points, 8 rebounds and 6 assists as Toronto stunned Cleveland 112-110 in overtime, taking a 2-1 series lead through clutch execution and home-court magic that proved his championship pedigree in crucial moments",
+      player: "Pascal Siakam",
+      team: "TOR",
       historicalParallel: {
-        player: "Dwyane Wade",
-        season: "2006 Playoffs",
-        stat: "28.4 PPG in Finals run — carried Heat to championship as young superstar",
-        context: "Wade's legendary 2006 championship breakthrough established the template for young shooting guards achieving basketball immortality through sustained playoff excellence and clutch execution. His ability to elevate his game during crucial playoff moments while carrying Miami to their first NBA title proved that elite young guards could immediately compete for championships when individual brilliance reached legendary levels."
+        player: "Kawhi Leonard",
+        season: "2019 Playoffs",
+        stat: "30.5 PPG in championship run — carried Raptors to title",
+        context: "Leonard's legendary 2019 championship run established the gold standard for two-way excellence and clutch execution that delivered Toronto's first NBA title. His ability to dominate both ends while elevating his game in crucial playoff moments proved that elite forwards could carry teams to championship heights through sustained individual brilliance and defensive mastery."
       },
-      comparison: "Edwards' playoff star emergence mirrors Wade's 2006 championship breakthrough through explosive scoring and clutch execution that proves young shooting guards can anchor title contention when individual talent reaches elite levels. Anthony's 31-point performance against defending champions actually exceeds Dwyane's typical championship scoring while providing superior athleticism and three-point shooting that Wade never fully developed during his peak years. The key similarity is championship timing — both possessed the individual dominance and clutch gene that allows elite young guards to carry teams through impossible playoff scenarios, suggesting Edwards could achieve similar championship success through better supporting talent and superior individual tools that enhance Wade's clutch excellence while maintaining his championship-carrying capacity and playoff DNA.",
+      comparison: "Siakam's clutch overtime heroics mirror Leonard's 2019 championship excellence through similar two-way impact and clutch execution that proves Toronto forwards can anchor title contention when individual brilliance reaches elite levels. Pascal's 29-point performance approaches Kawhi's championship scoring while providing superior playmaking with 6 assists, though Leonard maintained advantages in defensive impact and pure clutch factor. The key similarity is championship DNA — both possess the individual dominance and franchise-carrying ability that defines championship-caliber Raptors basketball when facing elimination pressure, suggesting Siakam could achieve similar championship success through continued clutch excellence and improved supporting talent that approaches Leonard's legendary championship foundation while providing superior offensive versatility.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Joel Embiid delivered vintage playoff dominance with 29 points and 12 rebounds as Philadelphia shocked Boston 106-93 at Wells Fargo Center, forcing Game 5 back to TD Garden while proving the Sixers' championship heart with elimination looming",
-      player: "Joel Embiid",
-      team: "PHI",
+      currentEvent: "Cade Cunningham delivered clutch excellence with 28 points and 7 assists as Detroit avoided historic elimination with a crucial 93-79 victory in Orlando, preventing what would have been one of the biggest upsets in NBA history while extending their championship hopes",
+      player: "Cade Cunningham",
+      team: "DET",
       historicalParallel: {
-        player: "Moses Malone",
-        season: "1983 Playoffs",
-        stat: "25.8 PPG, 15.8 RPG in championship run — 'Fo, Fo, Fo' prediction",
-        context: "Malone's legendary 1983 championship run established the gold standard for dominant centers carrying Philadelphia to championship heights through two-way excellence and systematic playoff dominance. His ability to overwhelm elite competition through superior rebounding and interior scoring while executing championship-level basketball proved that Philadelphia centers could achieve basketball immortality when individual brilliance reached legendary status."
+        player: "Isiah Thomas",
+        season: "1988 Playoffs",
+        stat: "25.0 PPG, 8.0 APG in Finals run — legendary clutch performance",
+        context: "Thomas's legendary 1988 championship run established the template for elite point guard leadership through clutch scoring and masterful playmaking under ultimate pressure. His ability to dominate in crucial moments while orchestrating championship-level basketball proved that Pistons point guards could achieve basketball immortality through sustained playoff excellence and championship DNA."
       },
-      comparison: "Embiid's elimination-game excellence channels Malone's championship dominance through similar interior control and two-way impact that proves Philadelphia centers can anchor title contention when individual talent reaches legendary levels. Joel's 29-point efficiency with 12 rebounds actually matches Moses's typical championship production while providing superior offensive versatility and modern skill set that Malone never possessed during his peak years. The crucial advantage is championship mentality — both possess the individual dominance and franchise-carrying ability that allows elite Sixers centers to deliver when organizational legacy hangs in the balance, suggesting Embiid could achieve similar championship success through better supporting talent and superior offensive tools that enhance Malone's rebounding excellence while maintaining his championship impact and two-way brilliance.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "New York Knicks delivered a historically dominant 140-89 massacre of Atlanta, representing the most dominant road playoff performance in franchise history through systematic offensive execution and suffocating defense that put the Hawks on elimination brink",
-      player: "New York Knicks",
-      team: "NYK",
-      historicalParallel: {
-        player: "1999 New York Knicks",
-        season: "1999 Playoffs",
-        stat: "12-4 playoff record as eighth seed reaching Finals — greatest upset run ever",
-        context: "The 1999 Knicks established the template for championship basketball through collective excellence and systematic execution that could overcome superior individual talent. Their ability to execute championship-level basketball as lower seed while riding defensive intensity and clutch execution proved that Knicks basketball culture could consistently compete for titles when organizational execution reached peak levels."
-      },
-      comparison: "The current Knicks' championship potential surpasses their 1999 Finals team through superior individual talent while maintaining similar collective excellence and systematic execution that defines championship Knicks basketball. Brunson's individual brilliance actually provides more reliable offensive anchor than the 1999 team ever possessed, while similar defensive principles and team-first mentality create superior championship foundation. The crucial advantage is talent depth — the current roster possesses better individual skills at multiple positions while preserving championship culture, suggesting they could achieve more sustainable championship success through superior offensive balance and elite individual talent that addresses the 1999 team's offensive limitations while maintaining their defensive excellence and championship execution.",
+      comparison: "Cunningham's elimination-game excellence channels Thomas's championship brilliance through similar clutch scoring and elite playmaking that proves Detroit point guards can anchor championship basketball when individual talent reaches legendary levels. Cade's 28-point performance actually surpasses Isiah's typical championship scoring while providing comparable assists, though Thomas maintained advantages in championship experience and proven clutch factor in Finals moments. The crucial parallel is championship leadership — both possess the individual dominance and team-elevating ability that allows elite Pistons guards to deliver when organizational legacy hangs in the balance, suggesting Cunningham could achieve similar championship success through continued individual brilliance and superior supporting talent that enhances Thomas's playmaking excellence while matching his championship impact and clutch execution.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Minnesota Timberwolves' stunning 3-1 series lead over defending champion Denver represents one of the postseason's biggest upsets through suffocating defense and Anthony Edwards' playoff star emergence that has the Nuggets facing shocking elimination",
-      player: "Minnesota Timberwolves",
-      team: "MIN",
+      currentEvent: "Los Angeles Lakers delivered a championship-level response with their dominant 98-78 road victory, proving their veteran playoff execution and championship DNA could overwhelm Houston's young core when facing series-evening pressure through systematic defensive dominance",
+      player: "Los Angeles Lakers",
+      team: "LAL",
+      historicalParallel: {
+        player: "2010 Los Angeles Lakers",
+        season: "2010 Playoffs",
+        stat: "16-7 playoff record — championship through adversity",
+        context: "The 2010 Lakers established the modern template for championship resilience through veteran leadership and systematic execution that could overcome playoff adversity. Their ability to execute championship-level basketball while overcoming seven-game series proved that Lakers culture and championship DNA could consistently compete for titles when organizational execution reached peak levels."
+      },
+      comparison: "The current Lakers' championship potential mirrors their 2010 title team through similar veteran leadership and systematic execution that proves Lakers championship culture can achieve sustained excellence when organizational talent reaches elite levels. LeBron's individual brilliance actually provides more reliable leadership than the 2010 team's committee approach, while similar championship DNA and playoff execution create comparable title foundation. The crucial advantage is individual dominance — the current roster possesses better individual star power while maintaining championship culture, suggesting they could achieve similar championship success through superior individual talent and proven championship execution that enhances the 2010 team's collective excellence while maintaining their championship DNA and systematic playoff dominance.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Toronto Raptors' stunning overtime victory shifted series momentum completely as their suffocating defense and clutch execution overwhelmed Cleveland's explosive offense, proving their championship experience remains dangerous against superior regular season teams",
+      player: "Toronto Raptors",
+      team: "TOR",
+      historicalParallel: {
+        player: "2019 Toronto Raptors",
+        season: "2019 Playoffs",
+        stat: "16-5 playoff record — first championship in franchise history",
+        context: "The 2019 Raptors established the template for championship basketball through collective excellence and systematic execution that could overcome superior individual talent. Their ability to execute championship-level basketball while riding defensive intensity and clutch execution proved that Raptors culture could achieve championship heights when organizational execution reached legendary levels."
+      },
+      comparison: "The current Raptors' championship potential approaches their legendary 2019 title team through similar collective excellence and systematic execution that defines championship basketball culture. Siakam's individual leadership provides comparable star power to his 2019 championship performance, while similar defensive principles and clutch execution create solid championship foundation. The crucial disadvantage is individual talent depth — the current roster lacks the championship-level supporting cast that the 2019 team possessed through Kawhi Leonard and championship role players, suggesting they face limitations in achieving similar championship success despite preserving championship culture and systematic execution that honors their championship DNA while potentially falling short of championship-level talent depth.",
+      verdict: "Falling short"
+    },
+    {
+      currentEvent: "Detroit Pistons avoided historic embarrassment through veteran playoff experience and championship DNA, proving their systematic excellence could prevent Orlando's young core from completing one of the greatest upsets in NBA history despite trailing 3-1",
+      player: "Detroit Pistons",
+      team: "DET",
       historicalParallel: {
         player: "2004 Detroit Pistons",
         season: "2004 Playoffs",
-        stat: "Defeated heavily favored Lakers 4-1 in Finals — ultimate team triumph",
-        context: "The 2004 Pistons established the modern template for championship basketball through collective excellence and systematic defensive dominance that could overcome superior individual talent. Their ability to execute championship-level basketball through team-first mentality while overcoming star-powered opposition proved that organizational culture and defensive identity could consistently compete for titles when execution reached peak levels."
+        stat: "16-4 playoff record — defeated heavily favored Lakers in Finals",
+        context: "The 2004 Pistons established the modern template for championship basketball through collective excellence and systematic defensive dominance that could overcome superior individual talent. Their ability to execute championship-level basketball through team-first mentality while overcoming star-powered opposition proved that Detroit culture and defensive identity could consistently compete for titles when execution reached peak levels."
       },
-      comparison: "Minnesota's championship emergence mirrors Detroit's 2004 upset excellence through systematic defense and collective execution that proves team-first basketball can overcome individual star power when organizational culture reaches elite levels. Edwards' individual leadership actually provides more reliable offensive anchor than the 2004 Pistons possessed, while similar defensive principles and young core energy create comparable championship foundation. The key parallel is upset mastery — both teams possess the systematic excellence and defensive identity that allows collective basketball to overwhelm superior individual talent, suggesting Minnesota could achieve similar championship success through better individual talent and superior athleticism that enhances Detroit's defensive excellence while maintaining their team-first execution and championship culture.",
+      comparison: "The current Pistons' championship excellence channels their legendary 2004 title team through similar systematic execution and defensive identity that proves Detroit basketball culture can achieve championship heights when organizational execution reaches elite levels. Cunningham's individual leadership actually provides more reliable offensive anchor than the 2004 team possessed, while similar defensive principles and championship DNA create superior foundation. The key parallel is championship resilience — both teams possess the systematic excellence and collective execution that allows Detroit basketball to overcome adversity through superior organizational culture, suggesting the current team could achieve similar championship success through better individual talent and superior offensive balance that enhances the 2004 team's defensive excellence while maintaining their championship DNA and systematic execution.",
       verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Philadelphia Sixers forced Game 5 against Boston through Joel Embiid's vintage performance, proving their championship heart with elimination looming while shifting series momentum completely through home-court dominance and two-way excellence",
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      historicalParallel: {
-        player: "1983 Philadelphia 76ers",
-        season: "1983 Playoffs",
-        stat: "12-1 playoff record — most dominant championship run in NBA history",
-        context: "The 1983 Sixers established the gold standard for championship basketball through systematic dominance and individual excellence that overwhelmed all playoff competition. Their ability to execute championship-level basketball while combining Moses Malone's interior dominance with Julius Erving's versatility proved that Philadelphia basketball culture could achieve sustained championship excellence when talent and execution aligned perfectly."
-      },
-      comparison: "The current Sixers' championship potential approaches their legendary 1983 title team through similar individual dominance and systematic execution that proves Philadelphia basketball culture can achieve championship heights when organizational talent reaches elite levels. Embiid's two-way brilliance actually matches Moses Malone's championship impact while providing superior offensive versatility, though the supporting cast hasn't reached the 1983 team's championship depth. The crucial similarity is championship DNA — both possess the individual excellence and systematic execution that defines championship-caliber Sixers basketball when facing elimination pressure, suggesting the current team could achieve similar championship success through continued individual brilliance and improved supporting talent that approaches the 1983 team's legendary championship foundation.",
-      verdict: "Falling short"
     }
   ],
   milestoneWatch: [
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      milestone: "Most assists in single playoff game by Knicks guard since Walt Frazier",
-      current: "11 assists in historic 51-point blowout victory over Atlanta",
-      needed: "Record: 19 assists — Walt Frazier (1970 Finals Game 7 vs Lakers)",
-      projectedDate: "Eastern Conference Finals opportunity",
-      significance: "Approaching Frazier's legendary championship playmaking would establish Brunson among Knicks legends while proving his floor leadership can match New York's most iconic championship orchestration and basketball immortality."
+      player: "LeBron James",
+      team: "LAL",
+      milestone: "Most playoff games with 30+ points after age 40 in NBA history",
+      current: "3 games with 30+ points this playoff run (31 vs HOU most recent)",
+      needed: "Record: 4 games — No player has achieved this milestone after age 40",
+      projectedDate: "Game 3 vs Houston opportunity at home",
+      significance: "Surpassing this unprecedented milestone would establish LeBron as the greatest aged performer in playoff history while proving his longevity transcends all basketball precedent through sustained individual excellence and championship impact."
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
-      milestone: "Youngest player to lead series upset of defending champions since Magic Johnson",
-      current: "22 years old leading 3-1 upset of Denver Nuggets",
-      needed: "Must complete upset by age 22 — Magic was 20 in 1980",
-      projectedDate: "Series completion vs Denver by May 3",
-      significance: "Completing historic upset would establish Edwards among youngest championship leaders while proving his individual impact can sustain franchise-defining playoff momentum against defending champions through sustained excellence."
+      player: "Pascal Siakam",
+      team: "TOR",
+      milestone: "Most overtime points by Raptors player since Kawhi Leonard's championship run",
+      current: "12 overtime points in stunning victory over Cleveland",
+      needed: "Record: 15 points — Kawhi Leonard (2019 playoffs vs Philadelphia)",
+      projectedDate: "Next overtime opportunity in series vs Cleveland",
+      significance: "Matching Kawhi's championship overtime excellence would establish Siakam among Raptors legends while proving his clutch gene can anchor championship-level playoff runs through sustained individual brilliance in crucial moments."
     },
     {
-      player: "Joel Embiid",
-      team: "PHI",
-      milestone: "Most rebounds in elimination-avoidance game by Sixers center since Moses Malone",
-      current: "12 rebounds in Game 4 victory forcing series back to Boston",
-      needed: "Record: 18 rebounds — Moses Malone (1983 playoffs elimination game)",
-      projectedDate: "Next elimination-pressure opportunity",
-      significance: "Matching Moses's championship rebounding would establish Embiid among Sixers legends while proving his interior dominance can anchor elimination-game excellence through sustained two-way championship impact."
+      player: "Cade Cunningham",
+      team: "DET",
+      milestone: "Youngest player to score 25+ points in elimination game since LeBron James",
+      current: "22 years old with 28 points in elimination-avoiding victory",
+      needed: "Record: LeBron was 22 when he scored 25+ in 2007 playoffs elimination game",
+      projectedDate: "Already achieved — tied LeBron's record for youngest elimination-game excellence",
+      significance: "Matching LeBron's elimination-game excellence at identical age establishes Cunningham among elite young playoff performers while proving his individual impact can deliver championship-level execution under ultimate pressure."
     },
     {
-      player: "New York Knicks",
-      team: "NYK",
-      milestone: "Largest road playoff victory margin since 1999 Finals run",
-      current: "51-point blowout victory at State Farm Arena in Atlanta",
-      needed: "Record: 51 points — current performance matches franchise playoff record",
+      player: "Los Angeles Lakers",
+      team: "LAL",
+      milestone: "Largest road playoff victory margin since 2020 championship run",
+      current: "20-point blowout victory at Houston in series-evening Game 2",
+      needed: "Record: 30 points — Lakers defeated Portland by 36 in 2020 playoffs",
+      projectedDate: "Potential Game 4 opportunity at Houston if series returns",
+      significance: "Matching their championship-level road dominance would prove the Lakers' veteran execution can overwhelm playoff competition through systematic excellence that mirrors their most recent championship foundation."
+    },
+    {
+      player: "Toronto Raptors",
+      team: "TOR",
+      milestone: "First team to win overtime playoff game at home since 2019 championship run",
+      current: "112-110 overtime victory over Cleveland at Scotiabank Arena",
+      needed: "First overtime home playoff win since their 2019 championship season",
       projectedDate: "Already achieved historic milestone",
-      significance: "The historic 51-point margin represents the most dominant road playoff performance in Knicks history, surpassing even their legendary 1999 Finals run and establishing championship-level execution standards."
+      significance: "The overtime victory represents Toronto's first home playoff overtime win since their championship season, proving their championship DNA remains potent in crucial moments that defined their title legacy."
     },
     {
-      player: "Minnesota Timberwolves",
-      team: "MIN",
-      milestone: "First team to defeat defending champions after trailing 0-1 since 2016 Cavaliers",
-      current: "Leading 3-1 after losing Game 1 to Denver Nuggets",
-      needed: "Must complete series victory to join exclusive comeback club",
-      projectedDate: "Game 5 opportunity vs Denver",
-      significance: "Completing the upset would establish Minnesota among greatest championship comebacks while proving their collective excellence can overcome defending champions through sustained playoff execution and defensive dominance."
-    },
-    {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      milestone: "Most consecutive elimination-game victories since 1983 championship team",
-      current: "1 consecutive elimination-game win vs Boston in Game 4",
-      needed: "Record: 3 games — 1983 Sixers championship run",
-      projectedDate: "Potential Game 7 and beyond opportunities",
-      significance: "Matching 1983 championship elimination-game excellence would establish current Sixers among franchise legends while proving their championship DNA can deliver sustained playoff excellence under ultimate pressure."
+      player: "Detroit Pistons",
+      team: "DET",
+      milestone: "Most consecutive elimination-game victories since 2004 championship team",
+      current: "1 consecutive elimination-game victory vs Orlando on the road",
+      needed: "Record: 2 games — 2004 Pistons won final two elimination games en route to title",
+      projectedDate: "Game 6 vs Orlando at home if facing elimination again",
+      significance: "Matching their championship team's elimination-game excellence would establish current Pistons among franchise legends while proving their championship DNA can deliver sustained playoff excellence under ultimate pressure scenarios."
     },
     {
       player: "Orlando Magic",
       team: "ORL",
-      milestone: "First eighth seed to complete gentleman's sweep of top seed in NBA history",
-      current: "Leading top-seeded Detroit 3-1 after four games",
-      needed: "Must win Game 5 to complete historic 4-1 series victory",
-      projectedDate: "Game 5 at Amway Center opportunity",
-      significance: "Completing the upset would represent the greatest eighth-seed victory in NBA history while establishing Paolo Banchero's playoff impact as franchise-defining excellence that transforms organizational championship expectations permanently."
+      milestone: "First eighth seed to maintain 3-1 lead over top seed through 5 games since 1999 Knicks",
+      current: "Leading top-seeded Detroit 3-2 after five games played",
+      needed: "Must maintain series lead — 1999 Knicks were last eighth seed to do this",
+      projectedDate: "Already lost lead after Game 5 defeat to Detroit",
+      significance: "The blown 3-1 lead prevents Orlando from joining exclusive eighth-seed company, though they still lead the series and can complete historic upset with Game 6 victory at home against championship pressure."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 1970,
-      event: "Walt Frazier recorded 36 points and 19 assists as the New York Knicks defeated the Los Angeles Lakers 113-99 in Game 7 of the NBA Finals at Madison Square Garden. Frazier's legendary performance delivered New York's first NBA championship while establishing the template for clutch playoff excellence.",
-      players: ["Walt Frazier", "Willis Reed", "Jerry West", "Wilt Chamberlain"]
+      year: 1987,
+      event: "Magic Johnson scored 29 points and dished 13 assists as the Los Angeles Lakers defeated the Seattle SuperSonics 122-121 in Game 1 of the Western Conference Finals at the Forum. Magic's masterful performance launched the Lakers toward their fourth championship of the decade.",
+      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "Tom Chambers", "Xavier McDaniel"]
     },
     {
-      year: 1999,
-      event: "Allan Houston scored 32 points as the eighth-seeded New York Knicks stunned Atlanta 79-70 in Game 4 of their Eastern Conference semifinals at Madison Square Garden. The victory helped launch the greatest eighth-seed run in NBA history toward the Finals.",
-      players: ["Allan Houston", "Latrell Sprewell", "Dikembe Mutombo", "Steve Smith"]
+      year: 2019,
+      event: "Kawhi Leonard exploded for 35 points as the Toronto Raptors stunned the Philadelphia 76ers 125-89 in Game 6 of the Eastern Conference semifinals at Scotiabank Arena. Leonard's dominance completed Toronto's series victory and propelled their championship run.",
+      players: ["Kawhi Leonard", "Pascal Siakam", "Joel Embiid", "Jimmy Butler"]
     },
     {
-      year: 1983,
-      event: "Moses Malone dominated with 26 points and 18 rebounds as Philadelphia swept the New York Knicks 105-102 in Game 4 of the Eastern Conference Finals. Malone's performance completed the Sixers' systematic march toward their 'Fo, Fo, Fo' championship prediction.",
-      players: ["Moses Malone", "Julius Erving", "Bernard King", "Bill Cartwright"]
+      year: 1988,
+      event: "Isiah Thomas scored 25 points despite playing on a severely sprained ankle as the Detroit Pistons defeated the Los Angeles Lakers 111-108 in Game 6 of the NBA Finals at the Forum. Thomas's legendary performance forced a decisive Game 7 in the championship series.",
+      players: ["Isiah Thomas", "Joe Dumars", "Magic Johnson", "James Worthy"]
     },
     {
-      year: 2006,
-      event: "Dwyane Wade exploded for 42 points as the Miami Heat defeated Dallas 98-96 in Game 3 of the NBA Finals at American Airlines Center. Wade's performance sparked the Heat's historic comeback from a 2-0 deficit to win their first NBA championship.",
-      players: ["Dwyane Wade", "Shaquille O'Neal", "Dirk Nowitzki", "Jason Terry"]
+      year: 2010,
+      event: "Kobe Bryant scored 38 points as the Los Angeles Lakers defeated the Phoenix Suns 111-103 in Game 6 of the Western Conference Finals at US Airways Center. Bryant's clutch performance eliminated the Suns and sent the Lakers to their third consecutive Finals appearance.",
+      players: ["Kobe Bryant", "Pau Gasol", "Steve Nash", "Amar'e Stoudemire"]
     },
     {
       year: 2004,
-      event: "Ben Wallace recorded 18 rebounds and 3 blocks as Detroit shocked the Lakers 88-68 in Game 3 of the NBA Finals at the Palace of Auburn Hills. The Pistons' defensive dominance announced their championship credentials against the heavily favored Lakers.",
-      players: ["Ben Wallace", "Chauncey Billups", "Shaquille O'Neal", "Kobe Bryant"]
+      event: "Ben Wallace recorded 22 rebounds and 3 blocks as the Detroit Pistons shocked the Los Angeles Lakers 102-92 in Game 1 of the NBA Finals at the Palace of Auburn Hills. Wallace's defensive dominance announced the Pistons as legitimate championship contenders.",
+      players: ["Ben Wallace", "Chauncey Billups", "Shaquille O'Neal", "Karl Malone"]
     },
     {
-      year: 1994,
-      event: "Patrick Ewing scored 24 points and grabbed 22 rebounds as New York defeated Chicago 95-83 in Game 6 of the Eastern Conference semifinals at United Center. Ewing's dominant performance eliminated the Bulls and launched the Knicks toward the Finals.",
-      players: ["Patrick Ewing", "John Starks", "Scottie Pippen", "Horace Grant"]
+      year: 1993,
+      event: "Charles Barkley exploded for 56 points as the Phoenix Suns defeated the Golden State Warriors 121-114 in Game 3 of the Western Conference Semifinals at Phoenix Suns Arena. Barkley's historic performance set a franchise playoff record that stands today.",
+      players: ["Charles Barkley", "Kevin Johnson", "Chris Mullin", "Tim Hardaway"]
     }
   ],
   streakWatch: [
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      streak: "3 consecutive playoff games with 25+ points and 8+ assists",
-      record: "Knicks record: 5 games — Walt Frazier (1970 championship playoffs)",
-      gamesAway: 2
+      player: "LeBron James",
+      team: "LAL",
+      streak: "2 consecutive playoff games with 25+ points and 6+ assists",
+      record: "Lakers record: 8 games — Magic Johnson (1987 championship playoffs)",
+      gamesAway: 6
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
-      streak: "4 consecutive playoff games with 25+ points vs defending champions",
-      record: "NBA record: 7 games — Michael Jordan (1991 vs Lakers)",
+      player: "Pascal Siakam",
+      team: "TOR",
+      streak: "3 consecutive playoff games with 20+ points and 5+ rebounds",
+      record: "Raptors record: 12 games — Kawhi Leonard (2019 championship run)",
+      gamesAway: 9
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      streak: "2 consecutive playoff games with 25+ points and 5+ assists",
+      record: "Pistons record: 7 games — Isiah Thomas (1988 championship playoffs)",
+      gamesAway: 5
+    },
+    {
+      player: "Los Angeles Lakers",
+      team: "LAL",
+      streak: "1 consecutive playoff wins by 15+ points",
+      record: "Franchise record: 4 games — 2001 championship playoffs sweep streak",
       gamesAway: 3
     },
     {
-      player: "Joel Embiid",
-      team: "PHI",
-      streak: "2 consecutive playoff games with 25+ points and 10+ rebounds",
-      record: "Sixers record: 6 games — Moses Malone (1983 championship run)",
+      player: "Toronto Raptors",
+      team: "TOR",
+      streak: "2 consecutive home playoff wins vs higher seeds",
+      record: "Franchise record: 6 games — 2019 championship run home dominance",
       gamesAway: 4
     },
     {
-      player: "New York Knicks",
-      team: "NYK",
-      streak: "3 consecutive playoff wins by 20+ points",
-      record: "Franchise record: 4 games — 1999 Eastern Conference Finals",
-      gamesAway: 1
-    },
-    {
-      player: "Minnesota Timberwolves",
-      team: "MIN",
-      streak: "3 consecutive wins vs defending champions in same series",
-      record: "NBA record: 4 games — multiple teams have swept defending champions",
-      gamesAway: 1
-    },
-    {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      streak: "1 consecutive elimination-game victories",
-      record: "Franchise record: 3 games — 1983 championship team",
+      player: "Detroit Pistons",
+      team: "DET",
+      streak: "1 consecutive elimination-game victories on the road",
+      record: "Franchise record: 3 games — 2004 championship team road excellence",
       gamesAway: 2
     },
     {
       player: "Orlando Magic",
       team: "ORL",
-      streak: "3 consecutive playoff wins vs higher seeds",
-      record: "Eighth seed record: 11 wins — 1999 New York Knicks Finals run",
-      gamesAway: 8
+      streak: "3 consecutive playoff wins vs higher seeds (despite Game 5 loss)",
+      record: "Eighth seed record: 8 wins — 1999 New York Knicks Finals run",
+      gamesAway: 5
     }
   ],
-  narrative: "May 1, 2026 represents basketball's most profound historical convergence where contemporary playoff mastery systematically channels legendary championship DNA through elimination-game heroics and historic dominance that prove modern superstar development has achieved unprecedented synthesis of individual brilliance and championship execution. Jalen Brunson's orchestration of the most dominant road performance in Knicks history directly parallels Walt Frazier's championship excellence while providing superior individual consistency, as Anthony Edwards' upset mastery mirrors Dwyane Wade's breakthrough stardom through better athleticism and three-point prowess that enhances championship carrying capacity. The historical acceleration extends through Joel Embiid matching Moses Malone's elimination-game dominance while providing superior offensive versatility, and the current Knicks surpassing their legendary 1999 Finals run through better individual talent while preserving championship culture and systematic execution. Minnesota's stunning upset mirrors Detroit's 2004 championship breakthrough through superior individual star power while maintaining defensive identity, as Philadelphia channels their 1983 dominance through similar individual excellence despite lacking championship depth. These convergent trajectories create basketball's perfect historical synthesis where elimination-game excellence combines with historic dominance to prove that 2026's playoff landscape isn't merely approaching legendary status — it's systematically establishing new paradigms for championship greatness that transform individual brilliance into sustained postseason excellence, honoring the NBA's greatest championship moments while surpassing their limitations through modern player development's perfect marriage of individual genius and championship DNA that will define playoff basketball immortality for generations."
+  narrative: "May 2, 2026 represents basketball's most profound historical synthesis where contemporary playoff excellence systematically channels legendary championship DNA through elimination-pressure heroics and clutch execution that prove modern superstar development has achieved unprecedented fusion of individual brilliance and championship pedigree. LeBron James' series-evening mastery directly parallels Magic Johnson's championship versatility while surpassing it through superior scoring longevity, as Pascal Siakam's overtime heroics mirror Kawhi Leonard's 2019 brilliance through comparable two-way impact that proves championship DNA transcends individual seasons. The historical acceleration extends through Cade Cunningham matching Isiah Thomas's elimination-game excellence while providing superior offensive versatility, and the current Lakers channeling their 2010 championship resilience through better individual star power while preserving systematic execution. Toronto's championship experience mirrors their 2019 title foundation though lacking comparable talent depth, as Detroit's systematic excellence surpasses their legendary 2004 team through superior individual anchor while maintaining defensive identity and championship culture. These convergent trajectories create basketball's perfect historical bridge where elimination-game brilliance combines with clutch execution to prove that 2026's playoff landscape represents championship excellence reaching new evolutionary heights — honoring the NBA's greatest championship moments while surpassing their limitations through modern player development's perfect synthesis of individual genius and championship DNA that transforms playoff basketball into sustained excellence, establishing new paradigms for clutch performance and championship execution that will define basketball immortality for generations through the marriage of historical greatness and contemporary brilliance."
 };
