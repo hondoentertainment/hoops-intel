@@ -1,142 +1,142 @@
 # Hoops Intel — Daily NBA Intelligence
 
-**Live at:** [hoopsintel.net](https://hoopsintel.net) | [nbapulse-egx4nuuj.manus.space](https://nbapulse-egx4nuuj.manus.space)
+**Live at:** [hoopsintel.net](https://hoopsintel.net)
 
-A daily NBA intelligence dashboard delivering box scores, Pulse Index player rankings, injury wire, media reactions, fantasy alerts, tonight's game previews, and more — updated every morning.
+A daily NBA intelligence dashboard: ESPN-backed scores and schedules, AI-generated editions (Pulse Index, recaps, injury wire, previews, and companion sections), searchable archive, Pick ’Em, playoffs tooling, Ask Hoops Intel, embeddable widgets, and optional **Pro** (Stripe).
+
+---
+
+## Product & planning docs
+
+| Document | Role |
+|---------|------|
+| [`PRD.md`](./PRD.md) | Product requirements & scope |
+| [`ROADMAP.md`](./ROADMAP.md) | Shipped features & horizon |
+| [`NEXT-STEPS.md`](./NEXT-STEPS.md) | Current prioritized backlog |
+| [`PRODUCT-ENHANCEMENTS.md`](./PRODUCT-ENHANCEMENTS.md) | Competitive backlog & status |
+
+**Agents / contributors:** [`cursor.md`](./cursor.md) (Cursor) · [`CLAUDE.md`](./CLAUDE.md) (architecture, pipelines, conventions)
 
 ---
 
 ## Overview
 
-Hoops Intel is a modern, dark-themed NBA intelligence dashboard built with React, TypeScript, and TailwindCSS. It provides a comprehensive daily briefing for NBA fans, analysts, and fantasy players.
+Hoops Intel is a dark-themed, mobile-friendly NBA dashboard built with **React 19**, **TypeScript**, **Tailwind CSS**, and **Vite**. Data is regenerated on a schedule via **GitHub Actions**; **Vercel** builds and hosts the SPA plus `api/` serverless routes. **Supabase** powers auth, picks, reactions, snapshots, and subscriptions.
 
-### Features
+### Representative features
 
-- **Daily Scores & Recaps** — All game results with narrative recaps and top performers
-- **Pulse Index** — Top 10 player rankings by overall impact (editorial, not just stats)
-- **Stat Leaders** — Points, rebounds, assists, 3-pointers, blocks, and +/-
-- **Media Reactions** — 6 curated quotes from real journalists and analysts
-- **Injury Wire** — Notable injuries with status, timeline, and impact ratings
-- **Tonight's Games** — Previews with spreads, O/U, TV info, and predictions
-- **Rookie Watch** — Top 5 rookies with season averages and trend analysis
-- **Fantasy Alerts** — Actionable add/drop/hold/stream recommendations
-- **Standings** — East and West conference standings with play-in teams
-- **Archive** — Searchable history of all past editions
+- Daily scores, recaps, Pulse Index, stat leaders, media reactions, injury wire, tonight’s games, fantasy alerts, rookie watch
+- Playoffs: live series state, bracket UI, series intel, postseason-aware Pulse
+- Archive search, `/ask` RAG over history, RSS + sitemap, OG images
+- Pick ’Em (`/pick-em`), trivia, trade tools, momentum/clutch/lineups, widgets + `embed.js`
+- PWA installability, theme toggle, optional web push and email digest UI
 
 ---
 
-## Design System
+## Design system
 
 | Element | Value |
 |---------|-------|
 | Background | Navy `#050D1A` |
-| Primary Accent | Electric Blue `#0EA5E9` |
-| Success/Stats | Emerald `#10B981` |
-| Alert/Negative | Rose `#F43F5E` |
+| Primary accent | Sky `#0EA5E9` |
+| Success / stats | Emerald `#10B981` |
+| Alert / negative | Rose `#F43F5E` |
 | Warning | Amber `#F59E0B` |
-| Headers Font | Barlow Condensed |
-| Body Font | DM Sans |
-| Stats/Mono Font | JetBrains Mono |
+| Headers | Barlow Condensed |
+| Body | DM Sans |
+| Mono / stats | JetBrains Mono |
 
 ---
 
-## Tech Stack
+## Tech stack
 
-- **Framework:** React 19 + TypeScript
-- **Styling:** TailwindCSS + custom CSS
-- **Build Tool:** Vite
-- **Deployment:** Manus Space
-- **Routing:** Wouter (lightweight React router)
+| Layer | Choice |
+|-------|--------|
+| UI | React 19 + TypeScript + TailwindCSS |
+| Build | Vite · project root **`client/`** |
+| Routing | Wouter |
+| Backend | Vercel serverless `api/*` |
+| Auth & data | Supabase (REST from `supabaseClient.ts`) |
+| AI | Claude (Anthropic SDK) · daily generators in `scripts/` |
+| Scheduling | `.github/workflows/*` |
 
 ---
 
-## Project Structure
+## Repository layout (abbrev.)
 
 ```
 hoops-intel/
-├── client/src/
-│   ├── lib/
-│   │   ├── pulseData.ts        # Today's edition data (replaced daily)
-│   │   ├── archiveData.ts      # Cumulative archive (prepended daily)
-│   │   └── teamColors.ts       # NBA team color mapping
-│   ├── pages/
-│   │   ├── Home.tsx             # Main dashboard page
-│   │   └── Archive.tsx          # Archive/search page
-│   ├── contexts/
-│   │   └── ThemeContext.tsx      # Dark/light theme context
-│   ├── styles/
-│   │   └── index.css            # Global styles and animations
-│   ├── App.tsx                  # Root app with routing
-│   └── main.tsx                 # Entry point
-├── dist/                        # Production build output
-│   ├── index.html
-│   ├── sitemap.xml
-│   └── assets/
-│       ├── index-*.js           # Bundled JavaScript
-│       └── index-*.css          # Bundled CSS
-├── public/
-│   └── assets/
-│       ├── hero-bg.webp         # Hero section background
-│       └── logo.png             # Site logo/favicon
-├── references/
-│   ├── data-schema.md           # Full TypeScript interface definitions
-│   └── edition-examples.md      # Annotated writing examples
-└── README.md
+├── client/src/           # App, pages, components, lib/* domain data
+├── api/                   # ask, push, Stripe, OG, subscribe-digest …
+├── public/                # Static assets shipped to dist (embed.js, PWA …)
+├── scripts/               # fetch-espn-, generate-* , season-mode, CI helpers
+├── supabase/              # schema + migrations (apply in order)
+├── references/            # data-schema.md, edition-examples.md (generator context)
+├── PRD.md, ROADMAP.md, NEXT-STEPS.md …
+├── cursor.md, CLAUDE.md
+└── vite.config.ts         # Uses client/ + publicDir at repo root
 ```
 
----
-
-## Daily Update Workflow
-
-Each morning, two data files are updated:
-
-1. **`pulseData.ts`** — Replaced entirely with the new day's data
-2. **`archiveData.ts`** — New entry prepended to the archive array
-
-### Data Sources
-
-| Source | What to Collect |
-|--------|----------------|
-| Basketball-Reference | Game scores, box scores |
-| ESPN Recap | Narrative, key plays |
-| The Athletic / ESPN / BR | Media reaction quotes |
-| CBS Sports / ESPN | Injury reports |
-| CBS Sports / ESPN | Tonight's spreads, O/U, TV |
-
-### Edition Numbering
-
-- Format: `"Vol. 2026 · No. {N}"`
-- Increment `N` by 1 each day from the previous edition
+Detailed tree and quirks: [`CLAUDE.md`](./CLAUDE.md).
 
 ---
 
-## Data Schema
+## Local development
 
-See [`references/data-schema.md`](references/data-schema.md) for complete TypeScript interface definitions covering:
+```bash
+npm install
+npm run dev          # http://localhost:5173
+npm run build
+npx vitest run
+```
 
-- `PulseEdition` — Date and edition metadata
-- `TickerItem` — Live ticker items (scores, injuries, alerts)
-- `GameResult` — Final scores with recaps
-- `PulseIndexPlayer` — Top 10 player rankings
-- `MediaReaction` — Journalist quotes with sentiment
-- `InjuryUpdate` — Injury statuses and timelines
-- `GamePreview` — Tonight's games with predictions
-- `RookieWatch` — Top 5 rookies
-- `FantasyAlert` — Fantasy recommendations
-- `StandingsEntry` — Conference standings
+Pipeline scripts (`scripts/generate-*.mjs`, etc.) need **`ANTHROPIC_API_KEY`** in `.env` at repo root — see **`scripts/load-local-env.mjs`** and **`CLAUDE.md`**.
 
 ---
 
-## Writing Quality
+## Environment variables (reference)
 
-See [`references/edition-examples.md`](references/edition-examples.md) for annotated examples of well-written:
+Configure these on **Vercel** (Production + Preview where applicable) and/or **GitHub Actions secrets** (`Settings → Secrets and variables → Actions`).
 
-- Headlines and subtitles
-- Game recaps (narrative arc, specific numbers, context)
-- Pulse Index notes (explain WHY, not just WHAT)
-- Media reaction quotes (journalist voice, clear stance)
-- Archive entries (searchable tags and player arrays)
-- Fantasy alerts (specific, actionable, explains logic)
+| Scope | Variables |
+|-------|-----------|
+| **AI pipeline** | `ANTHROPIC_API_KEY` |
+| **Stripe / Pro** | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_ANNUAL`, `APP_BASE_URL` (canonical site URL); webhook signing secret mirrors [`api/stripe-webhook.ts`](./api/stripe-webhook.ts). |
+| **Supabase** | `SUPABASE_URL`, `SUPABASE_ANON_KEY` (prefixed **`VITE_`** when exposed to browser), `SUPABASE_SERVICE_KEY` (server/GitHub Actions only). |
+| **Web Push** | `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`, `PUSH_API_SECRET`, callers use `PUSH_API_URL` + secret in workflows. |
+| **Email digest** | `RESEND_API_KEY`, optionally `DIGEST_EMAILS`; optional quiet window **`DIGEST_USE_QUIET_WINDOW=1`** plus `DIGEST_SEND_START_HOUR_PST` / `DIGEST_SEND_END_HOUR_PST` (Pacific) and **`DIGEST_QUIET_OVERRIDE=1`** to force a blast. See [`scripts/send-digest.mjs`](./scripts/send-digest.mjs). |
+| **Guest / contact pitches** | `CONTACT_INBOUND_EMAIL` + `CONTACT_FORM_FROM_EMAIL` (`from` defaults to Resend onboarding domain). Routes via [`api/contact-intake.ts`](./api/contact-intake.ts). |
+| **Unsubscribe landing** | [`/unsubscribe`](./client/src/pages/Unsubscribe.tsx) calls [`api/unsubscribe-digest.ts`](./api/unsubscribe-digest.ts) (`PATCH digest_subscribers` with service role). |
+
+Copy [`.env.example`](./.env.example) when wiring **Vercel** (Production + Preview) and **GitHub Actions** secrets.
+
+---
+
+## GitHub & Vercel hosting checklist
+
+| Step | Where |
+|------|--------|
+| Connect repo | Vercel → Add New → Project → Import `hondoentertainment/hoops-intel` (or your fork) |
+| Production branch | Vercel → Project → Settings → Git → Production Branch = **`main`** |
+| Build | Defaults read `vercel.json`: `npm ci` + `npm run build` → static **`dist`** + `api/` serverless |
+| Preview deploys | Open PRs automatically get Preview URLs when Git integration is enabled |
+| CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml): Vitest, drift guard, generator resolution, archive validation, production build |
+| Dependabot | [`.github/dependabot.yml`](./.github/dependabot.yml) opens weekly grouped npm / Actions updates |
+
+---
+
+## Daily pipeline (summary)
+
+Morning jobs fetch ESPN payloads, assemble snapshots, invoke Claude generators, merge section outputs into `pulseData.ts` / `archiveData.ts`, and push to production. Playoff pulls update `playoffData.ts`; optional scripts snapshot series state and trigger push dispatch.
+
+Full workflow: **`CLAUDE.md`** § Daily generation pipeline.
+
+---
+
+## Data schema & writing guides
+
+- **Types & edition fields:** [`references/data-schema.md`](./references/data-schema.md)
+- **Voice / examples:** [`references/edition-examples.md`](./references/edition-examples.md)
 
 ---
 

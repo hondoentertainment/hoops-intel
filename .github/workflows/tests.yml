@@ -16,6 +16,9 @@ on:
   pull_request:
     branches: ["*"]
 
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -38,6 +41,12 @@ jobs:
 
       - name: Vitest
         run: npx vitest run
+
+      - name: Playoff ↔ pulse edition drift guard
+        run: node scripts/validate-playoff-pulse-drift.mjs
+
+      - name: Verify seasonal generator scripts resolve
+        run: node scripts/content-schedule.mjs --verify-generators
 
       - name: Validate archive duplicate ids
         run: node scripts/validate-archive-duplicates.mjs
