@@ -304,7 +304,7 @@ export const seriesIntel: Record<string, SeriesIntel> = {
     regularSeasonH2H: "SA won series 4-0; Wembanyama averaged 25.1 PPG and 4.6 BPG vs POR",
     playoffHistory: "First playoff meeting in franchise history",
     keyMatchup: "Victor Wembanyama vs. Deandre Ayton — size meets size, but Wemby's shot profile is in another universe",
-    narrative: "Wembanyama's 17-14-6 line (six blocks) wasn't huge scoring volume but the defensive geometry changed everything—Portland's paint attempts evaporated. Fox's playmaking (21-9) steadied the half-court; Portland needs Avdija's downhill pressure to translate on the road in Game 2.",
+    narrative: "Wembanyama dominated the paint in the opener (17 pts, 14 reb, 6 blk) even without a huge shot diet—Portland's interior looks vaporized. Fox's playmaking (21-9) steadied the half-court; Portland needs Avdija's downhill pressure to translate on the road in Game 2.",
   },
   "W1-DEN-MIN": {
     regularSeasonH2H: "Tied 2-2; final meeting (March 28) went to overtime",
