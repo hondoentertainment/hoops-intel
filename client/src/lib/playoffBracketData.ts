@@ -58,6 +58,7 @@ export interface PlayoffSeries {
   narrative?: string;
   keyMatchup?: string;
   seriesOdds?: string;
+  eliminationGame?: boolean;
 }
 
 export interface PlayoffPerformer {

@@ -1,6 +1,14 @@
-﻿import { useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { eastStandings, westStandings } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
+import {
+  buildLiveEliminationRows,
+  playoffSnapshot,
+  scoringEdgeForSeries,
+  sortedSeriesByCompetitiveness,
+  todayISOLocal,
+  type PlayoffSnapshot,
+} from "../lib/playoffAnalytics";
 import {
   playInGames,
   firstRoundSeries,
@@ -16,6 +24,20 @@ import {
   type EliminationWatch,
 } from "../lib/playoffBracketData";
 import { playoffSeries as livePlayoffSeries } from "../lib/playoffData";
+
+function legacyPlayoffSnapshot(): PlayoffSnapshot {
+  return {
+    teamsRemaining: bracketMeta.teamsRemaining,
+    teamsEliminated: bracketMeta.teamsEliminated,
+    gamesPlayed: bracketMeta.gamesPlayed,
+    seriesActive: 0,
+    seriesComplete: 0,
+    matchPointSeries: 0,
+    liveGames: 0,
+    scheduledToday: 0,
+    nextMilestone: bracketMeta.nextMilestone,
+  };
+}
 
 /** Overlay ESPN-synced series wins / games onto static bracket scaffolding. */
 function overlayBracketSeries(base: PlayoffSeries[]): PlayoffSeries[] {
@@ -49,6 +71,7 @@ function overlayBracketSeries(base: PlayoffSeries[]): PlayoffSeries[] {
         topPerformerLine: g.topLine,
       })),
       narrative: live.summary || s.narrative,
+      eliminationGame: live.eliminationGame,
     };
   });
 }
@@ -135,12 +158,23 @@ function PlayoffHeader() {
 
 // --- Playoff Status Bar ---
 
-function StatusBar() {
+function StatusBar({ snapshot }: { snapshot: PlayoffSnapshot }) {
   const stats = [
-    { label: "Teams Remaining", value: bracketMeta.teamsRemaining.toString(), color: "#10B981" },
-    { label: "Eliminated", value: bracketMeta.teamsEliminated.toString(), color: "#F43F5E" },
-    { label: "Games Played", value: bracketMeta.gamesPlayed.toString(), color: "#0EA5E9" },
-    { label: "Next", value: bracketMeta.nextMilestone, color: "#F59E0B" },
+    { label: "Teams Remaining", value: snapshot.teamsRemaining.toString(), color: "#10B981" },
+    { label: "Eliminated", value: snapshot.teamsEliminated.toString(), color: "#F43F5E" },
+    { label: "Games Played", value: snapshot.gamesPlayed.toString(), color: "#0EA5E9" },
+    {
+      label: snapshot.matchPointSeries > 0 ? "Match Point" : snapshot.scheduledToday > 0 ? "Today" : "Next",
+      value:
+        snapshot.matchPointSeries > 0
+          ? `${snapshot.matchPointSeries} series`
+          : snapshot.scheduledToday > 0
+            ? `${snapshot.scheduledToday} game${snapshot.scheduledToday === 1 ? "" : "s"}`
+            : snapshot.liveGames > 0
+              ? `${snapshot.liveGames} live`
+              : snapshot.nextMilestone,
+      color: "#F59E0B",
+    },
   ];
 
   return (
@@ -373,6 +407,11 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
             ({series.higherSeed}) vs ({series.lowerSeed})
           </span>
           <div className="flex items-center gap-2">
+            {series.eliminationGame && (
+              <span className="mono-data text-[10px] px-2 py-0.5 rounded font-bold uppercase" style={{ background: "rgba(245,158,11,0.12)", color: "#F59E0B" }}>
+                Match pt
+              </span>
+            )}
             {series.seriesOdds && (
               <span className="mono-data text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                 {series.seriesOdds}
@@ -479,7 +518,7 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
         </div>
       )}
 
-      {/* Expanded: narrative + games */}
+        {/* Expanded: narrative + games */}
       {expanded && (
         <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
           {series.narrative && (
@@ -487,6 +526,45 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
               <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{series.narrative}</p>
             </div>
           )}
+          {(() => {
+            const edge = scoringEdgeForSeries({
+              seriesId: series.seriesId,
+              higherTeam: series.higherTeam,
+              lowerTeam: series.lowerTeam,
+              games: series.games,
+            });
+            if (!edge) return null;
+            return (
+              <div className="px-4 py-3 border-t" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
+                <div className="section-label text-xs mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>SCORING (FINALS ONLY)</div>
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div className="font-bold text-white mb-1">{edge.higher.team}</div>
+                    <div className="mono-data" style={{ color: "rgba(255,255,255,0.55)" }}>
+                      {edge.higher.ppg} PPG · {edge.higher.oppPpg} opp
+                    </div>
+                    <div className="mt-0.5 font-semibold" style={{ color: edge.higher.margin >= 0 ? "#10B981" : "#F43F5E" }}>
+                      {edge.higher.margin >= 0 ? "+" : ""}
+                      {edge.higher.margin} / G margin
+                    </div>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div className="font-bold text-white mb-1">{edge.lower.team}</div>
+                    <div className="mono-data" style={{ color: "rgba(255,255,255,0.55)" }}>
+                      {edge.lower.ppg} PPG · {edge.lower.oppPpg} opp
+                    </div>
+                    <div className="mt-0.5 font-semibold" style={{ color: edge.lower.margin >= 0 ? "#10B981" : "#F43F5E" }}>
+                      {edge.lower.margin >= 0 ? "+" : ""}
+                      {edge.lower.margin} / G margin
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-2 mono-data text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>
+                  Avg combined {edge.avgTotalPoints} pts/game · avg spread {edge.avgMargin}
+                </div>
+              </div>
+            );
+          })()}
           {series.games.length > 0 && (
             <div className="px-4 pb-3">
               <div className="section-label text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>SCHEDULE</div>
@@ -812,9 +890,13 @@ function MvpTab() {
 // --- Elimination Tracker Tab ---
 
 function TrackerTab() {
-  const eliminated = eliminationWatch.filter((e) => e.urgency === "eliminated");
-  const atRisk = eliminationWatch.filter((e) => e.urgency === "elimination");
-  const others = eliminationWatch.filter((e) => e.urgency !== "eliminated" && e.urgency !== "elimination");
+  const useLiveTracker = livePlayoffSeries.length > 0;
+  const liveRows = useLiveTracker ? buildLiveEliminationRows(livePlayoffSeries) : [];
+  const trackerRows = useLiveTracker ? liveRows : eliminationWatch;
+
+  const atRisk = trackerRows.filter((e) => e.urgency === "elimination");
+  const eliminated = trackerRows.filter((e) => e.urgency === "eliminated");
+  const others = trackerRows.filter((e) => e.urgency !== "eliminated" && e.urgency !== "elimination");
 
   function TrackerCard({ item }: { item: EliminationWatch }) {
     const color = getStatusColor(item.urgency);
@@ -851,6 +933,56 @@ function TrackerTab() {
 
   return (
     <div>
+      {useLiveTracker && (
+        <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>
+          Pressure board is driven by synced playoff scoreboards ({livePlayoffSeries.length} active series snapshots).
+          Play-in narratives below stay as postseason context until the bracket file is regenerated.
+        </p>
+      )}
+
+      {/* Scoring competitiveness — finals only */}
+      {useLiveTracker && (
+        <div className="mb-8">
+          <div className="section-label mb-3" style={{ color: "#0EA5E9" }}>SCORING EDGES · TIGHTEST SERIES FIRST</div>
+          <div className="glass-card rounded-xl overflow-hidden mb-6">
+            <table className="w-full">
+              <thead>
+                <tr style={{ background: "rgba(255,255,255,0.03)" }}>
+                  <th className="text-left px-4 py-2 text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Series</th>
+                  <th className="text-center px-4 py-2 text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Avg pts</th>
+                  <th className="text-center px-4 py-2 text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Avg spread</th>
+                  <th className="text-right px-4 py-2 text-xs font-semibold hidden sm:table-cell" style={{ color: "rgba(255,255,255,0.4)" }}>Offense edge</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedSeriesByCompetitiveness(livePlayoffSeries).map((s) => {
+                  const edge = scoringEdgeForSeries(s);
+                  if (!edge) return null;
+                  const offAdv = edge.higher.margin - edge.lower.margin;
+                  return (
+                    <tr key={s.seriesId} className="border-t" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
+                      <td className="px-4 py-2 text-xs font-semibold text-white">
+                        {edge.higher.team} vs {edge.lower.team}
+                        <span className="font-normal ml-2" style={{ color: "rgba(255,255,255,0.35)" }}>{s.summary}</span>
+                      </td>
+                      <td className="text-center mono-data px-4 py-2 text-xs font-bold" style={{ color: "#0EA5E9" }}>
+                        {edge.avgTotalPoints}
+                      </td>
+                      <td className="text-center mono-data px-4 py-2 text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>
+                        {edge.avgMargin}
+                      </td>
+                      <td className="text-right px-4 py-2 text-xs hidden sm:table-cell mono-data" style={{ color: "rgba(255,255,255,0.55)" }}>
+                        {offAdv >= 0 ? `${edge.higher.team} +${offAdv.toFixed(1)}` : `${edge.lower.team} ${offAdv.toFixed(1)}`} pts/g
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       <div className="section-label mb-4" style={{ color: "#F43F5E" }}>ELIMINATION TRACKER</div>
 
       {/* Tonight's elimination games */}
@@ -862,7 +994,7 @@ function TrackerTab() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {atRisk.map((item) => (
-              <TrackerCard key={`${item.team}-${item.opponent}`} item={item} />
+              <TrackerCard key={`${item.team}-${item.opponent}-${item.gameInfo.slice(0, 24)}`} item={item} />
             ))}
           </div>
         </div>
@@ -874,7 +1006,7 @@ function TrackerTab() {
           <h3 className="text-sm font-bold mb-3" style={{ color: "#F43F5E" }}>Eliminated</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {eliminated.map((item) => (
-              <TrackerCard key={`${item.team}-${item.opponent}`} item={item} />
+              <TrackerCard key={`${item.team}-${item.opponent}-out`} item={item} />
             ))}
           </div>
         </div>
@@ -886,7 +1018,7 @@ function TrackerTab() {
           <h3 className="text-sm font-bold mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Series Status</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {others.map((item) => (
-              <TrackerCard key={`${item.team}-${item.opponent}`} item={item} />
+              <TrackerCard key={`${item.team}-${item.opponent}-${item.urgency}`} item={item} />
             ))}
           </div>
         </div>
@@ -942,6 +1074,12 @@ function TrackerTab() {
 export default function PlayoffBracket() {
   const [activeTab, setActiveTab] = useState<TabId>("bracket");
 
+  const statusSnapshot = useMemo(
+    () =>
+      livePlayoffSeries.length > 0 ? playoffSnapshot(livePlayoffSeries, todayISOLocal()) : legacyPlayoffSnapshot(),
+    [],
+  );
+
   return (
     <div className="min-h-screen" style={{ background: "#050D1A" }}>
       <PlayoffHeader />
@@ -961,7 +1099,7 @@ export default function PlayoffBracket() {
         </div>
 
         {/* Status bar */}
-        <StatusBar />
+        <StatusBar snapshot={statusSnapshot} />
 
         {/* Tabs */}
         <TabNav active={activeTab} onChange={setActiveTab} />

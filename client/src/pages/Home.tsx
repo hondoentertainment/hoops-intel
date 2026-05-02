@@ -25,6 +25,7 @@ import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
 import { hasPreferences, getPreferences } from "../lib/userPreferences";
 import { playoffSeries, playoffMovers, isPlayoffsActive, seriesIntel, type PlayoffSeries } from "../lib/playoffData";
+import { nextPendingGame, playoffSnapshot, scoringEdgeForSeries, todayISOLocal } from "../lib/playoffAnalytics";
 
 function findSeriesForTeams(away: string, home: string): PlayoffSeries | undefined {
   const a = away.toUpperCase();
@@ -983,8 +984,27 @@ function InjurySection() {
 function PlayoffSection() {
   if (!isPlayoffsActive()) return null;
 
+  const snap = playoffSnapshot(playoffSeries, todayISOLocal());
   const active = playoffSeries.filter((s) => s.status !== "complete");
-  const elimination = active.filter((s) => s.higherWins === 3 || s.lowerWins === 3);
+  const matchBridge = active.filter((s) => s.eliminationGame);
+
+  const statTiles = [
+    { label: "Teams left", value: String(snap.teamsRemaining), color: "#10B981" },
+    { label: "Eliminated", value: String(snap.teamsEliminated), color: "#F43F5E" },
+    { label: "Finals played", value: String(snap.gamesPlayed), color: "#0EA5E9" },
+    {
+      label: snap.matchPointSeries > 0 ? "Match point" : snap.scheduledToday > 0 ? "Today" : "Status",
+      value:
+        snap.matchPointSeries > 0
+          ? `${snap.matchPointSeries} series`
+          : snap.scheduledToday > 0
+            ? `${snap.scheduledToday} game${snap.scheduledToday === 1 ? "" : "s"}`
+            : snap.liveGames > 0
+              ? `${snap.liveGames} live`
+              : snap.nextMilestone,
+      color: "#F59E0B",
+    },
+  ];
 
   return (
     <section id="playoffs" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
@@ -994,18 +1014,35 @@ function PlayoffSection() {
           <a href="/playoffs" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>Full bracket &rarr;</a>
         </div>
         <h2 className="display-heading text-white text-2xl mb-2">Playoff Series</h2>
-        {elimination.length > 0 && (
-          <p className="text-xs mb-6" style={{ color: "#F43F5E" }}>
-            {elimination.length} elimination game{elimination.length > 1 ? "s" : ""} on deck — win or go home.
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
+          {statTiles.map((t) => (
+            <div key={t.label} className="glass-card rounded-lg p-2.5 text-center">
+              <div className="mono-data text-base font-bold" style={{ color: t.color }}>
+                {t.value}
+              </div>
+              <div className="text-[10px] mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
+                {t.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {matchBridge.length > 0 && (
+          <p className="text-xs mb-4" style={{ color: "#F59E0B" }}>
+            {matchBridge.length} series at match point — next win can end it (or force Game 7 pressure).
           </p>
         )}
-        {elimination.length === 0 && (
-          <p className="text-xs mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Round 1 in progress. {active.length} series alive.
+        {matchBridge.length === 0 && (
+          <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+            {snap.seriesActive} active · {snap.seriesComplete} decided · next: {snap.nextMilestone}
           </p>
         )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-          {active.map((s) => (<HomeSeriesCard key={s.seriesId} series={s} />))}
+          {active.map((s) => (
+            <HomeSeriesCard key={s.seriesId} series={s} />
+          ))}
         </div>
         {playoffMovers.length > 0 && <PlayoffMoversCard />}
       </div>
@@ -1014,19 +1051,23 @@ function PlayoffSection() {
 }
 
 function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
-  const elimination = series.higherWins === 3 || series.lowerWins === 3;
-  const nextGame = series.games.find((g) => g.status === "scheduled");
-  const accent = elimination ? "rgba(244,63,94,0.55)" : "rgba(14,165,233,0.4)";
+  const matchPoint = !!series.eliminationGame;
+  const nextGame = nextPendingGame(series);
+  const accent = matchPoint ? "rgba(245,158,11,0.75)" : "rgba(14,165,233,0.4)";
+  const edge = scoringEdgeForSeries(series);
+
+  const confLabel =
+    series.conference === "east" ? "East" : series.conference === "west" ? "West" : "NBA Finals";
 
   return (
     <div className="glass-card rounded-lg p-3" style={{ borderLeft: `3px solid ${accent}` }}>
       <div className="flex items-center justify-between mb-2">
         <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
-          {series.conference === "east" ? "East" : "West"} · ({series.higherSeed}) vs ({series.lowerSeed})
+          {confLabel} · ({series.higherSeed}) vs ({series.lowerSeed})
         </div>
-        {elimination && (
-          <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded" style={{ background: "rgba(244,63,94,0.15)", color: "#F43F5E" }}>
-            Elim
+        {matchPoint && (
+          <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.18)", color: "#F59E0B" }}>
+            Match pt
           </span>
         )}
       </div>
@@ -1037,9 +1078,20 @@ function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
       <div className="mt-2 text-xs font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>
         {series.summary}
       </div>
+      {edge && (
+        <div className="mt-2 text-[10px] leading-snug mono-data" style={{ color: "rgba(255,255,255,0.38)" }}>
+          Finals only: avg {edge.avgTotalPoints} pts · {edge.avgMargin} avg spread · {edge.higher.team}{" "}
+          {edge.higher.margin >= 0 ? "+" : ""}
+          {edge.higher.margin}/G vs {edge.lower.team}{" "}
+          {edge.lower.margin >= 0 ? "+" : ""}
+          {edge.lower.margin}/G
+        </div>
+      )}
       {nextGame && (
         <div className="mt-1 text-[11px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
-          Game {nextGame.gameNumber} · {nextGame.time ?? nextGame.date}{nextGame.tv ? ` · ${nextGame.tv}` : ""}
+          {nextGame.status === "live" ? "Live" : "Next"} Game {nextGame.gameNumber}
+          {(nextGame.status === "scheduled" || !nextGame.status) &&
+            ` · ${nextGame.time ?? nextGame.date}${nextGame.tv ? ` · ${nextGame.tv}` : ""}`}
         </div>
       )}
     </div>
