@@ -92,7 +92,7 @@ const SCHEDULE = {
       description: "Production URL fingerprints + Claude recommendations; opens an issue on failures or visible HTML changes",
       outputs: ["site-review-report.md (artifact)", "GitHub issue when notify"],
       apis: ["Hoops Intel production (HTTPS)", "Anthropic Claude"],
-      secrets: ["ANTHROPIC_API_KEY (optional; report still runs without)"],
+      secrets: ["ANTHROPIC_API_KEY"],
     },
   ],
   recurring: [

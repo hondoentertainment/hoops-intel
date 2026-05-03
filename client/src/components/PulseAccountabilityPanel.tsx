@@ -49,7 +49,7 @@ export default function PulseAccountabilityPanel() {
         />
         <MetricCard
           title="Market vs editorial lean"
-          caption="Tonight’s previews where favourite + projection text both readable."
+          caption="Tonight's previews where favourite + projection text both readable."
           value={slate.pct !== null ? `${slate.pct}%` : "—"}
           subtitle={
             slate.comparable === 0
