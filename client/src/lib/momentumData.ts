@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 2, 2026
+// Last updated: May 3, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,171 +33,90 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 2, 2026",
-  gameOfTheNight: "CLE-TOR-20260501",
+  date: "May 3, 2026",
+  gameOfTheNight: "PHI-BOS-20260502",
   topClutchPerformer: { 
-    player: "Pascal Siakam", 
-    team: "TOR", 
+    player: "Joel Embiid", 
+    team: "PHI", 
     clutchRating: 94, 
-    description: "Overtime masterclass with 8 points in the extra frame, including the game-sealing three-pointer with 47 seconds remaining"
+    description: "Delivered a masterclass in playoff basketball with 28 points on elite efficiency, seizing control in hostile territory when his team needed him most" 
   },
   games: [
     {
-      gameId: "LAL-HOU-20260501",
-      teams: { home: "HOU", away: "LAL" },
-      finalScore: { home: 78, away: 98 },
+      gameId: "PHI-BOS-20260502",
+      teams: { home: "BOS", away: "PHI" },
+      finalScore: { home: 100, away: 109 },
       swings: [
         {
           quarter: "1st",
-          timestamp: "6:42",
-          description: "LeBron James orchestrates 12-0 Lakers run with two three-pointers and a thunderous dunk",
-          runScore: "12-0 LAL",
+          timestamp: "8:42",
+          description: "Embiid establishes early dominance with back-to-back post scores and a steal",
+          runScore: "8-2 run",
           momentum: "away",
-          keyPlayer: "LeBron James",
+          keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
           quarter: "2nd",
           timestamp: "3:15",
-          description: "Alperen Sengun sparks brief Rockets rally with back-to-back buckets and assist to Green",
-          runScore: "8-2 HOU",
+          description: "Jayson Tatum erupts for 9 quick points, including two threes, to energize TD Garden",
+          runScore: "12-4 run",
           momentum: "home",
-          keyPlayer: "Alperen Sengun",
-          impact: "notable"
+          keyPlayer: "Jayson Tatum",
+          impact: "significant"
         },
         {
           quarter: "3rd",
-          timestamp: "8:30",
-          description: "Anthony Davis dominates the paint with 3 consecutive stops and putback slam",
-          runScore: "10-2 LAL",
+          timestamp: "6:30",
+          description: "Maxey catches fire with three consecutive buckets as Sixers seize control",
+          runScore: "10-2 run",
           momentum: "away",
-          keyPlayer: "Anthony Davis",
+          keyPlayer: "Tyrese Maxey",
           impact: "game-changing"
         },
         {
           quarter: "4th",
-          timestamp: "9:45",
-          description: "Lakers' suffocating defense forces 4 straight Houston turnovers to seal the blowout",
-          runScore: "14-4 LAL",
-          momentum: "away",
-          keyPlayer: "Austin Reaves",
-          impact: "game-changing"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The Lakers' championship pedigree was on full display as they systematically dismantled Houston's upset hopes with relentless defensive pressure and vintage LeBron brilliance. After falling behind in Game 1, Los Angeles responded with the kind of road playoff dominance that separates contenders from pretenders. The 20-point margin doesn't capture how thoroughly the Lakers controlled every aspect of this elimination response, turning Toyota Center into their personal playground. This was playoff basketball at its most ruthless—veteran savvy overwhelming youthful exuberance when the stakes demanded perfection."
-    },
-    {
-      gameId: "CLE-TOR-20260501",
-      teams: { home: "TOR", away: "CLE" },
-      finalScore: { home: 112, away: 110 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "4:20",
-          description: "Donovan Mitchell explodes for 11 quick points to give Cavaliers early double-digit lead",
-          runScore: "15-4 CLE",
-          momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "7:15",
-          description: "Pascal Siakam takes over with 9 straight Raptors points, silencing Scotiabank Arena",
-          runScore: "9-0 TOR",
+          timestamp: "4:45",
+          description: "Boston rallies within 5 points as the crowd reaches fever pitch",
+          runScore: "8-1 run",
           momentum: "home",
-          keyPlayer: "Pascal Siakam",
-          impact: "significant"
+          keyPlayer: "Derrick White",
+          impact: "notable"
         },
         {
           quarter: "4th",
-          timestamp: "2:30",
-          description: "Mitchell's step-back three ties the game and forces overtime in dramatic fashion",
-          runScore: "7-2 CLE",
+          timestamp: "1:28",
+          description: "Embiid delivers the dagger with a step-back three and emphatic block on Tatum",
+          runScore: "7-1 run",
           momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "game-changing"
-        },
-        {
-          quarter: "OT",
-          timestamp: "2:15",
-          description: "Siakam's clutch three-pointer caps 6-0 Raptors run in overtime to steal victory",
-          runScore: "6-0 TOR",
-          momentum: "home",
-          keyPlayer: "Pascal Siakam",
+          keyPlayer: "Joel Embiid",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Step-back three-pointer over Barnes to tie game at 103-103",
-          timeRemaining: "0:42",
-          winProbabilityShift: -15
+          player: "Joel Embiid",
+          team: "PHI",
+          description: "Step-back three over Al Horford to extend lead to 8",
+          timeRemaining: "1:28",
+          winProbabilityShift: 18.5
         },
         {
-          player: "Pascal Siakam",
-          team: "TOR",
-          description: "Contested three-pointer from the wing to put Raptors up 108-105",
-          timeRemaining: "0:47 OT",
-          winProbabilityShift: 22
+          player: "Tyrese Maxey",
+          team: "PHI",
+          description: "Driving layup through contact after Boston timeout",
+          timeRemaining: "2:47",
+          winProbabilityShift: 12.3
         },
         {
-          player: "Scottie Barnes",
-          team: "TOR",
-          description: "Crucial defensive stop and steal leading to game-sealing free throws",
-          timeRemaining: "0:18 OT",
-          winProbabilityShift: 18
+          player: "Joel Embiid",
+          team: "PHI",
+          description: "Rejection of Jayson Tatum's potential game-tying three attempt",
+          timeRemaining: "0:52",
+          winProbabilityShift: 24.7
         }
       ],
-      narrative: "This was playoff basketball poetry in motion—two elite talents trading haymakers in a heavyweight bout that lived up to every ounce of postseason hype. Mitchell and Siakam engaged in a masterful duel that showcased why these April and May battles define legacies, with each clutch shot answered by an even more impossible response. The overtime period was pure basketball theater, with Scotiabank Arena reaching decibel levels that haven't been heard since the championship days. When the smoke cleared, Toronto had stolen home-court advantage and potentially the entire series with one of the most dramatic victories in franchise playoff history."
-    },
-    {
-      gameId: "DET-ORL-20260501",
-      teams: { home: "ORL", away: "DET" },
-      finalScore: { home: 79, away: 93 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "8:15",
-          description: "Paolo Banchero scores 8 early points to give Magic initial momentum on home court",
-          runScore: "10-2 ORL",
-          momentum: "home",
-          keyPlayer: "Paolo Banchero",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "5:30",
-          description: "Cade Cunningham takes control with 12 points in final 6 minutes of first half",
-          runScore: "16-6 DET",
-          momentum: "away",
-          keyPlayer: "Cade Cunningham",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "4:45",
-          description: "Detroit's suffocating defense forces 6 Magic turnovers in devastating 18-4 run",
-          runScore: "18-4 DET",
-          momentum: "away",
-          keyPlayer: "Isaiah Stewart",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "7:20",
-          description: "Pistons' championship experience shows as they cruise to elimination game victory",
-          runScore: "12-5 DET",
-          momentum: "away",
-          keyPlayer: "Cade Cunningham",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "The basketball gods have a sense of humor, and Detroit's championship DNA proved too much for Orlando's Cinderella story to overcome in this crucial Game 5. Just when the Magic appeared ready to complete one of the most shocking upsets in playoff history, the Pistons reminded everyone why experience matters most in elimination games. Cunningham played like the franchise cornerstone he was drafted to be, methodically picking apart Orlando's defense with surgical precision while his supporting cast suffocated Paolo Banchero and the young Magic core. The series heads back to Detroit for Game 6, where the Pistons will look to complete their championship defense and Orlando will attempt to recapture their magical upset momentum."
+      narrative: "The basketball gods scripted pure theater at TD Garden as Joel Embiid delivered a virtuoso performance that may have saved Philadelphia's championship dreams. With the hostile Boston crowd reaching decibel levels that could shake the foundation, Embiid answered with the poise of a seasoned champion, methodically dismantling the Celtics' defense while his young co-star Tyrese Maxey provided the explosive scoring bursts. The stunning 109-100 road victory flipped the series narrative entirely—transforming the 76ers from desperate underdogs into confident aggressors who now smell blood in the water. As confetti preparations were quietly canceled and the Garden fell eerily silent, one truth echoed through the arena: this Philadelphia team refuses to surrender their season without an epic fight."
     }
   ]
 };
