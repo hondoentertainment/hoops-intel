@@ -33,7 +33,7 @@ export interface WatchGuideData {
 export const watchGuideData: WatchGuideData = {
   generatedDate: "2026-05-03",
   displayDate: "May 3, 2026",
-  gamesCount: 2,
+  gamesCount: 1,
   games: [
     {
       rank: 1,
@@ -46,34 +46,15 @@ export const watchGuideData: WatchGuideData = {
       time: "5/3 - 7:30 PM EDT",
       tv: "NBC, Peacock",
       venue: "Rocket Arena",
-      entertainmentScore: 95,
+      entertainmentScore: 97,
       starPower: 8,
       playoffImplications: 10,
-      rivalry: 7,
-      storyline: "Winner-take-all Game 7 after Toronto's dramatic overtime victory forced this decider. Scottie Barnes looks to complete the upset of Cleveland's higher-seeded squad.",
+      rivalry: 6,
+      storyline: "Winner-take-all Game 7 after Toronto's overtime heroics forced this decisive battle. Cleveland seeks to close at home after blowing their chance in Toronto.",
       keyMatchup: "Scottie Barnes vs. Donovan Mitchell",
-      mustWatch: true
-    },
-    {
-      rank: 2,
-      awayTeam: "ORL",
-      awayTeamFull: "Orlando Magic",
-      awayRecord: "45-37",
-      homeTeam: "DET",
-      homeTeamFull: "Detroit Pistons",
-      homeRecord: "60-22",
-      time: "5/3 - 3:30 PM EDT",
-      tv: "ABC",
-      venue: "Little Caesars Arena",
-      entertainmentScore: 92,
-      starPower: 7,
-      playoffImplications: 10,
-      rivalry: 5,
-      storyline: "Top-seeded Detroit hosts their first playoff Game 7 since 2008 after Orlando avoided elimination. Can Cade Cunningham prevent a massive upset on home court?",
-      keyMatchup: "Cade Cunningham vs. Paolo Banchero",
       mustWatch: true
     }
   ],
-  topPick: "Raptors-Cavaliers Game 7 after Toronto's clutch overtime victory forced this winner-take-all showdown",
-  nightOverview: "Two Eastern Conference Game 7s highlight an epic Sunday slate, with Detroit hosting their first playoff decider since 2008 while Toronto seeks to complete the upset in Cleveland. Both winners advance after dramatic series that went the distance.",
+  topPick: "TOR @ CLE Game 7 - The second of two Eastern Conference elimination games with everything on the line",
+  nightOverview: "Sunday's playoff slate concludes with a dramatic Game 7 in Cleveland, where the Cavaliers look to bounce back from their overtime loss and advance. This winner-take-all showdown caps a wild weekend that saw Philadelphia complete a historic 3-1 comeback."
 };
