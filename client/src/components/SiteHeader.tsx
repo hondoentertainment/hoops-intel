@@ -36,9 +36,6 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
   const [apiError, setApiError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [subscribed, setSubscribed] = useState(() => readDigestSignupHint());
-  const [notifEnabled, setNotifEnabled] = useState(
-    () => typeof Notification !== "undefined" && Notification.permission === "granted",
-  );
 
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -50,18 +47,6 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
     document.addEventListener("mousedown", onMouseDown);
     return () => document.removeEventListener("mousedown", onMouseDown);
   }, [showModal]);
-
-  const enableNotifications = async () => {
-    if (typeof Notification === "undefined") return;
-    const perm = await Notification.requestPermission();
-    if (perm === "granted") {
-      setNotifEnabled(true);
-      new Notification("Hoops Intel", {
-        body: "You'll be notified when new editions drop!",
-        icon: "/assets/logo.png",
-      });
-    }
-  };
 
   const handleSubscribe = async () => {
     if (!notificationEmailValid(email)) {
@@ -101,13 +86,13 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          style={{ color: subscribed || notifEnabled ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
+          style={{ color: subscribed ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
           aria-hidden
         >
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
           <path d="M13.73 21a2 2 0 0 1-3.46 0" />
         </svg>
-        {(subscribed || notifEnabled) && (
+        {subscribed && (
           <span className="absolute top-1 right-1 sm:top-0.5 sm:right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400" />
         )}
       </button>
@@ -123,31 +108,30 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
             <div className="section-label mb-3">NOTIFICATIONS</div>
 
             <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
-              <span className="text-white/60 font-medium">Email digest:</span> morning drop at 5 AM PST.&nbsp;
-              <span className="text-white/60 font-medium">Browser permission:</span> optional — enable on{" "}
-              <a href="/account" className="underline text-sky-400/95">
+              <span className="text-white/60 font-medium">Email digest:</span> morning drop at 5 AM PST (sign up below).
+              Push alerts use a separate flow:{" "}
+              <span className="text-white/60 font-medium">sign in</span>, then{" "}
+              <a href="/account#browser-push" className="underline text-sky-400/95">
                 Account → Browser push
               </a>{" "}
-              for playoff topic opt-in; header digest signup is email-only.&nbsp;
+              to register this device and choose topics (elimination, clinchers, injury wire, fantasy).&nbsp;
               <a href="/playoffs" className="underline text-sky-400/95">
                 Playoff board →
               </a>
             </p>
 
             <div className="mb-4">
-              <button
-                type="button"
-                onClick={enableNotifications}
-                disabled={notifEnabled}
-                className="w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] sm:min-h-0"
+              <a
+                href="/account#browser-push"
+                className="block w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] sm:min-h-0 flex items-center"
                 style={{
-                  background: notifEnabled ? "rgba(16,185,129,0.1)" : "rgba(14,165,233,0.1)",
-                  color: notifEnabled ? "#10B981" : "#0EA5E9",
-                  border: `1px solid ${notifEnabled ? "rgba(16,185,129,0.2)" : "rgba(14,165,233,0.2)"}`,
+                  background: "rgba(14,165,233,0.1)",
+                  color: "#0EA5E9",
+                  border: "1px solid rgba(14,165,233,0.2)",
                 }}
               >
-                {notifEnabled ? "✓ Browser notifications enabled" : "Enable browser notifications"}
-              </button>
+                Set up browser push & topics →
+              </a>
             </div>
 
             <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>

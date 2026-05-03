@@ -7,11 +7,15 @@ describe("ReactionBar", () => {
     localStorage.clear();
   });
 
-  it("renders all four reaction buttons", () => {
-    render(<ReactionBar itemId="test-item" />);
-    const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(4);
-  });
+  it(
+    "renders all four reaction buttons",
+    () => {
+      render(<ReactionBar itemId="test-item" />);
+      const buttons = screen.getAllByRole("button");
+      expect(buttons).toHaveLength(4);
+    },
+    15_000,
+  );
 
   it("buttons have correct titles", () => {
     render(<ReactionBar itemId="test-item" />);

@@ -47,124 +47,141 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-05-03",
   displayDate: "May 3, 2026",
-  overallMood: "Playoff chaos mode activated",
+  overallMood: "Game 7 madness and historic comebacks",
   topics: [
     {
-      id: "76ers-shock-celtics",
-      topic: "76ers Shock Celtics at TD Garden",
-      sentiment: "mixed",
-      intensity: 95,
+      id: "sixers-historic-comeback",
+      topic: "76ers Complete 3-1 Comeback vs Celtics",
+      sentiment: "positive",
+      intensity: 98,
       volume: 47500,
-      summary: "NBA Twitter is absolutely losing it over Philadelphia's stunning 109-100 victory at TD Garden. Embiid's dominance has everyone questioning if the Celtics are actually pretenders.",
+      summary: "NBA Twitter is going absolutely nuclear over Philadelphia's historic 3-1 comeback against Boston, with Embiid's 34-point Game 7 performance being called legendary",
       sampleTakes: [
-        "EMBIID JUST ENDED THE CELTICS SEASON AT TD GARDEN 😤😤😤",
-        "The Celtics really about to get gentleman swept by the 7th seed lmaooo",
-        "Joel Embiid is different in the playoffs when healthy. This man is unstoppable",
-        "Boston fans leaving early in Game 5... the second hand embarrassment is real"
+        "JOEL EMBIID JUST HAD THE MOST DOMINANT GAME 7 ROAD PERFORMANCE I'VE EVER SEEN 🔥🔥🔥",
+        "The Celtics really blew a 3-1 lead at home to the 76ers... this franchise is cursed",
+        "Maxey with 30 and rookie Edgecombe with 5 threes... this 76ers depth is DIFFERENT",
+        "Embiid just cemented himself as a playoff legend with that Game 7 masterpiece"
       ],
-      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum"],
+      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe"],
       relatedTeams: ["PHI", "BOS"],
       trending: true
     },
     {
-      id: "pistons-historic-comeback",
-      topic: "Pistons Historic Comeback",
+      id: "celtics-collapse-disaster",
+      topic: "Celtics Blow 3-1 Lead at Home",
+      sentiment: "negative",
+      intensity: 95,
+      volume: 42000,
+      summary: "Boston fans and NBA Twitter are roasting the Celtics for one of the most embarrassing playoff collapses in recent memory, losing Game 7 at TD Garden after leading 3-1",
+      sampleTakes: [
+        "The Celtics are the most mentally weak franchise in the league... 3-1 lead blown AT HOME",
+        "Tatum 8-24 in Game 7 elimination... sorry but that's not championship material",
+        "56 wins for NOTHING. This Celtics core will never win a championship",
+        "How do you have home court and blow a 3-1 lead??? Celtics are soft"
+      ],
+      relatedPlayers: ["Jayson Tatum", "Jaylen Brown"],
+      relatedTeams: ["BOS"],
+      trending: true
+    },
+    {
+      id: "double-game-7-sunday",
+      topic: "Two Game 7s Tonight",
+      sentiment: "positive",
+      intensity: 87,
+      volume: 35000,
+      summary: "Basketball fans are hyped for the double Game 7 slate with Detroit vs Orlando and Cleveland vs Toronto both fighting for their playoff lives",
+      sampleTakes: [
+        "Two Game 7s in one day??? This is why playoff basketball is the greatest sport on earth",
+        "Cade vs Paolo in Detroit and Mitchell vs Barnes in Cleveland... APPOINTMENT TELEVISION",
+        "Sunday Game 7s hit different... careers about to be made or broken",
+        "The basketball gods blessed us with twin elimination games today 🙏"
+      ],
+      relatedPlayers: ["Cade Cunningham", "Paolo Banchero", "Donovan Mitchell", "Scottie Barnes"],
+      relatedTeams: ["DET", "ORL", "CLE", "TOR"],
+      trending: true
+    },
+    {
+      id: "embiid-legendary-performance",
+      topic: "Embiid's 34-Point Game 7 Masterclass",
       sentiment: "positive",
       intensity: 92,
-      volume: 38200,
-      summary: "Detroit forcing Game 7 after being down 3-1 has everyone ready to crown them the kings of clutch. Cade Cunningham is being hailed as the next playoff legend.",
+      volume: 28000,
+      summary: "Joel Embiid is getting universal praise for his 34-point, 12-rebound Game 7 performance that eliminated the Celtics on the road",
       sampleTakes: [
-        "CADE CUNNINGHAM IS THAT DUDE. Two straight elimination games won 🔥",
-        "Pistons really bout to complete the greatest comeback in franchise history",
-        "Orlando choking away a 3-1 lead would be the most Magic thing ever",
-        "Detroit's championship DNA is just different. This team knows how to win"
+        "That's the Joel Embiid we've been waiting for his entire career... CLUTCH GENE ACTIVATED",
+        "34 points in a road Game 7 to complete a 3-1 comeback... Embiid just entered playoff legend status",
+        "The Process is COMPLETE. Embiid just delivered the defining moment of his career",
+        "This is what MVP-level play looks like when it matters most 👑"
       ],
-      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Paolo Banchero"],
-      relatedTeams: ["DET", "ORL"],
-      trending: true
-    },
-    {
-      id: "mitchell-explosion",
-      topic: "Donovan Mitchell's Road Eruption",
-      sentiment: "positive",
-      intensity: 88,
-      volume: 31800,
-      summary: "Spida's 35-point explosion in Toronto has everyone remembering why he's one of the most clutch playoff performers in the league. The series is completely flipped.",
-      sampleTakes: [
-        "Donovan Mitchell just dropped 35 in Toronto like it was a regular Tuesday",
-        "That's why they call him SPIDA 🕷️ web em up in the 6ix",
-        "Mitchell really said 'series over' and evened it up just like that",
-        "Cleveland got that championship energy back. This team is dangerous"
-      ],
-      relatedPlayers: ["Donovan Mitchell", "Scottie Barnes"],
-      relatedTeams: ["CLE", "TOR"],
-      trending: true
-    },
-    {
-      id: "celtics-collapse",
-      topic: "Celtics Championship Window Closing",
-      sentiment: "negative",
-      intensity: 79,
-      volume: 29400,
-      summary: "Boston fans are in full panic mode after losing at home to put their season on the brink. The championship expectations are looking like delusions.",
-      sampleTakes: [
-        "The Celtics are not built for playoff pressure. Same story every year",
-        "Tatum and Brown will never win a championship together. Trade one of them",
-        "Boston really got the #2 seed just to lose to the 76ers at home 💀",
-        "This Celtics team is mentally weak. No killer instinct whatsoever"
-      ],
-      relatedPlayers: ["Jayson Tatum", "Jaylen Brown", "Joel Embiid"],
-      relatedTeams: ["BOS", "PHI"],
+      relatedPlayers: ["Joel Embiid"],
+      relatedTeams: ["PHI"],
       trending: false
     },
     {
-      id: "magic-choking",
-      topic: "Magic Blowing 3-1 Lead",
-      sentiment: "negative",
-      intensity: 74,
-      volume: 23600,
-      summary: "Orlando's young core is getting torched for not being able to close out Detroit. The playoff inexperience is showing in the worst way possible.",
+      id: "vj-edgecombe-rookie-clutch",
+      topic: "VJ Edgecombe's Clutch Rookie Performance",
+      sentiment: "positive",
+      intensity: 84,
+      volume: 22000,
+      summary: "The rookie guard is getting major props for hitting five threes in Game 7, showing ice-cold composure in the biggest moment",
       sampleTakes: [
-        "Paolo and the Magic really bout to choke away a 3-1 lead to DETROIT",
-        "This is why young teams don't win in the playoffs. No clutch gene",
-        "Orlando had Detroit dead to rights and fumbled the bag completely",
-        "The Magic are cursed. How do you not close out a 3-1 lead???"
+        "VJ Edgecombe just hit 5 threes in a Game 7 as a ROOKIE... this kid is built different",
+        "Most rookies would crumble under Game 7 pressure but Edgecombe said 'not today' 🎯",
+        "The 76ers found their third star and he's 19 years old... scary hours",
+        "Edgecombe's clutch gene at his age is honestly terrifying for the league"
       ],
-      relatedPlayers: ["Paolo Banchero", "Franz Wagner", "Cade Cunningham"],
-      relatedTeams: ["ORL", "DET"],
+      relatedPlayers: ["VJ Edgecombe"],
+      relatedTeams: ["PHI"],
       trending: false
     },
     {
-      id: "game-7-madness",
-      topic: "Game 7 Anticipation",
-      sentiment: "positive",
-      intensity: 85,
-      volume: 35700,
-      summary: "The basketball world is hyped for Detroit vs Orlando Game 7. Winner-take-all games in the playoffs just hit different, and everyone knows it.",
+      id: "tatum-game-7-struggles",
+      topic: "Tatum's Game 7 Shooting Woes",
+      sentiment: "negative",
+      intensity: 89,
+      volume: 31000,
+      summary: "Jayson Tatum is getting heavily criticized for going 8-24 from the field in the elimination game, with fans questioning his clutch gene",
       sampleTakes: [
-        "GAME 7 AT THE LCA IS GONNA BE ELECTRIC ⚡⚡⚡",
-        "Nothing beats Game 7 energy. This is why we love playoff basketball",
-        "Pistons vs Magic Game 7... whoever survives is winning it all",
-        "Game 7 in Detroit with championship banners watching... PRESSURE 💎"
+        "Tatum 8-24 in the biggest game of the season... this dude is NOT that guy",
+        "How are you gonna shoot 33% in Game 7 at home with everything on the line???",
+        "Tatum disappeared when Boston needed him most... fake superstar energy",
+        "This is why Tatum will never be mentioned with the real elite players"
+      ],
+      relatedPlayers: ["Jayson Tatum"],
+      relatedTeams: ["BOS"],
+      trending: false
+    },
+    {
+      id: "pistons-magic-game-7",
+      topic: "Pistons-Magic Winner-Take-All",
+      sentiment: "mixed",
+      intensity: 81,
+      volume: 19000,
+      summary: "Fans are split on who wins the Detroit vs Orlando Game 7, with Paolo Banchero's struggles against Cade Cunningham's home court advantage",
+      sampleTakes: [
+        "Paolo struggling in the playoffs but Game 7s are where legends are born... Magic in 7",
+        "Detroit at home in Game 7??? Pistons culture is just different, they got this",
+        "Cade dropped 32 in Game 6... he's not letting this slip away at Little Caesars",
+        "Orlando's young but Game 7 road wins are a different beast entirely"
       ],
       relatedPlayers: ["Cade Cunningham", "Paolo Banchero"],
       relatedTeams: ["DET", "ORL"],
       trending: false
     },
     {
-      id: "raptors-momentum-lost",
-      topic: "Raptors Losing Home Court",
-      sentiment: "negative",
-      intensity: 68,
-      volume: 18900,
-      summary: "Toronto letting Cleveland steal home court advantage has fans questioning if this team has what it takes to make a deep playoff run.",
+      id: "raptors-cavs-game-7",
+      topic: "Raptors-Cavaliers Game 7 Drama",
+      sentiment: "mixed",
+      intensity: 78,
+      volume: 16500,
+      summary: "The Toronto-Cleveland Game 7 has fans debating whether Scottie Barnes can outduel Donovan Mitchell on the road in the winner-take-all",
       sampleTakes: [
-        "The Raptors really let Spida cook them at home. That's embarrassing",
-        "Toronto's defense disappeared when it mattered most. So disappointing",
-        "How do you give up 118 points at home in a playoff game???",
-        "Scottie Barnes needs to take over if the Raps want to win this series"
+        "Scottie Barnes with 25 and 14 assists in OT... this man is ascending at the perfect time",
+        "Mitchell at home in Game 7 is automatic... Cleveland's crowd will carry them",
+        "Toronto's been the better team all series, Game 7 road win incoming 🍁",
+        "Donovan Mitchell doesn't lose Game 7s at home, book it"
       ],
-      relatedPlayers: ["Scottie Barnes", "Pascal Siakam", "Donovan Mitchell"],
+      relatedPlayers: ["Scottie Barnes", "Donovan Mitchell"],
       relatedTeams: ["TOR", "CLE"],
       trending: false
     }
@@ -174,65 +191,65 @@ export const sentimentData: SentimentData = {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
       sentiment: "positive",
-      score: 87,
-      buzzWords: ["championship DNA", "veteran poise", "clutch", "unstoppable"],
-      narrativeSummary: "Sixers fans are over the moon after that TD Garden masterpiece. Embiid playing like an MVP and the team showing championship heart has everyone believing this could be the year."
+      score: 94,
+      buzzWords: ["historic", "comeback", "legendary", "clutch", "championship"],
+      narrativeSummary: "The Process reaches its peak with a historic 3-1 comeback and Game 7 road victory over Boston"
     },
     {
       team: "BOS",
       teamFull: "Boston Celtics",
       sentiment: "negative",
-      score: -74,
-      buzzWords: ["choke artists", "overrated", "pretenders", "disappointing"],
-      narrativeSummary: "Celtics nation is in full meltdown mode. Losing at home to put the season on the brink has exposed all the old wounds about this team's playoff struggles."
+      score: -87,
+      buzzWords: ["choke", "collapse", "embarrassing", "soft", "cursed"],
+      narrativeSummary: "Season ends in devastating fashion with a 3-1 blown lead and home Game 7 loss to Philadelphia"
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 82,
-      buzzWords: ["miracle run", "clutch gene", "championship blood", "resilient"],
-      narrativeSummary: "Motor City is buzzing like it's 2004 again. The historic comeback attempt has everyone believing this team has that special championship magic that can't be taught."
+      score: 72,
+      buzzWords: ["home-court", "dominant", "culture", "game-7", "cunningham"],
+      narrativeSummary: "Top seed gets home Game 7 advantage after dominating Orlando in Game 6 to force the decider"
     },
     {
       team: "ORL",
       teamFull: "Orlando Magic",
-      sentiment: "negative",
-      score: -59,
-      buzzWords: ["chokers", "inexperienced", "folding", "young"],
-      narrativeSummary: "Magic fans are sick to their stomachs watching a 3-1 lead evaporate. The young core is getting roasted for not being able to close the deal when it matters most."
-    },
-    {
-      team: "CLE",
-      teamFull: "Cleveland Cavaliers",
-      sentiment: "positive",
-      score: 71,
-      buzzWords: ["explosive", "clutch", "championship ready", "dangerous"],
-      narrativeSummary: "The Land is feeling good after Mitchell's road explosion. Evening up the series with that kind of performance has everyone thinking this team is built for a deep run."
+      sentiment: "mixed",
+      score: -34,
+      buzzWords: ["struggling", "elimination", "banchero", "young", "pressure"],
+      narrativeSummary: "Young Magic face their biggest test yet with Game 7 on the road against the top-seeded Pistons"
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
-      sentiment: "negative",
-      score: -48,
-      buzzWords: ["disappointing", "defensive struggles", "momentum lost", "concerning"],
-      narrativeSummary: "Raptors fans are frustrated after giving up home court. The defensive breakdowns and inability to handle Mitchell have people worried about this team's ceiling."
-    },
-    {
-      team: "HOU",
-      teamFull: "Houston Rockets",
-      sentiment: "neutral",
-      score: 15,
-      buzzWords: ["waiting", "prepared", "young core", "potential"],
-      narrativeSummary: "Rockets fans are patiently waiting for their next opponent while watching the chaos unfold. The young team's playoff run has exceeded expectations already."
-    },
-    {
-      team: "MIN",
-      teamFull: "Minnesota Timberwolves",
       sentiment: "positive",
-      score: 38,
-      buzzWords: ["giant killers", "upset masters", "rested", "dangerous"],
-      narrativeSummary: "Wolves fans are loving the extra rest after shocking Denver. This team proved they can beat anyone and now they're watching to see who's next."
+      score: 56,
+      buzzWords: ["barnes", "overtime", "clutch", "ascending", "road-warriors"],
+      narrativeSummary: "Scottie Barnes leads dramatic overtime victory to force Game 7, showing championship potential"
+    },
+    {
+      team: "CLE",
+      teamFull: "Cleveland Cavaliers",
+      sentiment: "mixed",
+      score: 23,
+      buzzWords: ["mitchell", "home-court", "automatic", "crowd", "closeout"],
+      narrativeSummary: "Return home for Game 7 with Donovan Mitchell looking to close out the resilient Raptors"
+    },
+    {
+      team: "GSW",
+      teamFull: "Golden State Warriors",
+      sentiment: "negative",
+      score: -45,
+      buzzWords: ["eliminated", "early", "dynasty-over", "disappointing", "tenth-seed"],
+      narrativeSummary: "Another disappointing season ends with a 10th seed finish and early playoff exit"
+    },
+    {
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "mixed",
+      score: 12,
+      buzzWords: ["fourth-seed", "lebron", "competitive", "aging", "questions"],
+      narrativeSummary: "Solid regular season but questions remain about championship potential with an aging core"
     }
   ],
   playerSentiments: [
@@ -240,75 +257,84 @@ export const sentimentData: SentimentData = {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "positive",
-      score: 92,
-      mentions: 18500,
-      topTake: "Embiid just reminded everyone why he's the most dominant center in the league when healthy",
-      narrativeArc: "From injury concerns to playoff dominance - Embiid is silencing all the doubters with championship-level performances when it matters most."
-    },
-    {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      sentiment: "positive",
-      score: 89,
-      mentions: 16200,
-      topTake: "Spida really dropped 35 in Toronto and said 'series reset' 🕷️",
-      narrativeArc: "Mitchell proving once again he's one of the most clutch playoff performers. That road explosion completely flipped the series momentum."
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      sentiment: "positive",
-      score: 84,
-      mentions: 14800,
-      topTake: "Cade Cunningham has that Kobe mentality. Two straight elimination games won is legendary",
-      narrativeArc: "The young star is growing up before our eyes. Two consecutive elimination game victories have established him as a future playoff legend."
-    },
-    {
-      player: "Jayson Tatum",
-      team: "BOS",
-      sentiment: "negative",
-      score: -67,
-      mentions: 13400,
-      topTake: "Tatum is never gonna win a championship. Dude disappears when it matters most",
-      narrativeArc: "The criticism is reaching fever pitch. Despite decent numbers, failing to prevent the home loss has fans questioning his championship ceiling."
-    },
-    {
-      player: "Paolo Banchero",
-      team: "ORL",
-      sentiment: "negative",
-      score: -41,
-      mentions: 11600,
-      topTake: "Paolo's rookie wall is showing up at the worst possible time",
-      narrativeArc: "The ROY is learning hard lessons about playoff pressure. Unable to close out Detroit despite a 3-1 lead has exposed his inexperience."
+      score: 96,
+      mentions: 24000,
+      topTake: "34 points in a road Game 7 to complete a 3-1 comeback... Embiid just entered playoff legend status",
+      narrativeArc: "Finally delivers the signature playoff performance his career needed"
     },
     {
       player: "Tyrese Maxey",
       team: "PHI",
       sentiment: "positive",
-      score: 76,
-      mentions: 9800,
-      topTake: "Maxey stepping up in the biggest moments. That's championship role player energy",
-      narrativeArc: "The young guard is proving he belongs on the big stage. His clutch shooting and improved playoff execution are key to Philly's success."
+      score: 89,
+      mentions: 18500,
+      topTake: "Maxey with 30 and 11 in Game 7... this dude just proved he's championship material",
+      narrativeArc: "Steps up as the perfect co-star in Philadelphia's historic comeback"
+    },
+    {
+      player: "VJ Edgecombe",
+      team: "PHI",
+      sentiment: "positive",
+      score: 87,
+      mentions: 15000,
+      topTake: "VJ Edgecombe just hit 5 threes in a Game 7 as a ROOKIE... this kid is built different",
+      narrativeArc: "Rookie sensation shows ice-cold composure in the biggest moments"
+    },
+    {
+      player: "Jayson Tatum",
+      team: "BOS",
+      sentiment: "negative",
+      score: -78,
+      mentions: 22000,
+      topTake: "Tatum 8-24 in the biggest game of the season... this dude is NOT that guy",
+      narrativeArc: "Struggles when it matters most, raising questions about his clutch gene"
+    },
+    {
+      player: "Jaylen Brown",
+      team: "BOS",
+      sentiment: "mixed",
+      score: 34,
+      mentions: 14000,
+      topTake: "Brown dropped 33 but it wasn't enough... at least somebody showed up for Boston",
+      narrativeArc: "Battles valiantly with 33 points but can't prevent elimination"
+    },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      sentiment: "positive",
+      score: 81,
+      mentions: 16000,
+      topTake: "Cade dropped 32 in Game 6... he's not letting this slip away at Little Caesars",
+      narrativeArc: "Dominant Game 6 performance sets up home Game 7 opportunity"
+    },
+    {
+      player: "Paolo Banchero",
+      team: "ORL",
+      sentiment: "mixed",
+      score: -23,
+      mentions: 13500,
+      topTake: "Paolo struggling in the playoffs but Game 7s are where legends are born",
+      narrativeArc: "Young star faces biggest test yet in elimination game on the road"
     },
     {
       player: "Scottie Barnes",
       team: "TOR",
-      sentiment: "mixed",
-      score: -12,
-      mentions: 8200,
-      topTake: "Scottie had a good game but couldn't stop the Cavs from stealing home court",
-      narrativeArc: "Barnes is showing flashes of brilliance but can't quite carry the team when needed. The potential is there but consistency remains an issue."
+      sentiment: "positive",
+      score: 74,
+      mentions: 12000,
+      topTake: "Scottie Barnes with 25 and 14 assists in OT... this man is ascending at the perfect time",
+      narrativeArc: "Clutch overtime performance forces Game 7 and shows superstar potential"
     },
     {
-      player: "Isaiah Stewart",
-      team: "DET",
+      player: "Donovan Mitchell",
+      team: "CLE",
       sentiment: "positive",
-      score: 58,
-      mentions: 7100,
-      topTake: "Isaiah Stewart's defense in elimination games has been ELITE",
-      narrativeArc: "The defensive anchor is proving his worth in the biggest moments. His rim protection and rebounding are crucial to Detroit's miracle run."
+      score: 67,
+      mentions: 11000,
+      topTake: "Donovan Mitchell doesn't lose Game 7s at home, book it",
+      narrativeArc: "Gets home court back for the decisive game with championship experience"
     }
   ],
-  hottestTake: "Joel Embiid just proved he's better than Jokic when healthy. That TD Garden performance was pure dominance and the 76ers are winning the championship 🏆",
-  coldestTake: "The Celtics are still gonna win this series easily. One bad game doesn't mean anything, they have too much talent"
+  hottestTake: "Joel Embiid just had a better Game 7 performance than any game MJ, Kobe, or LeBron ever had... 34 points on the road to complete a 3-1 comeback is GOAT-tier 🐐🔥",
+  coldestTake: "The Celtics will be fine, it's just one series loss and they still have the best young core in the East... this builds character 🤡"
 };

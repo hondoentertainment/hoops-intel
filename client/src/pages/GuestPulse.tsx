@@ -8,11 +8,13 @@ export default function GuestPulse() {
   const [pitch, setPitch] = useState("");
   const [busy, setBusy] = useState(false);
   const [success, setSuccess] = useState("");
+  const [queueRef, setQueueRef] = useState<{ display: string; full: string } | null>(null);
   const [fail, setFail] = useState("");
 
   const submit = async () => {
     setBusy(true);
     setSuccess("");
+    setQueueRef(null);
     setFail("");
     try {
       const res = await fetch("/api/contact-intake", {
@@ -27,7 +29,14 @@ export default function GuestPulse() {
       });
       const j = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error((j as { error?: string }).error ?? `Failed (${res.status})`);
-      setSuccess("Submitted — editors will reply if there’s fit.");
+
+      const sid = (j as { submissionId?: string }).submissionId;
+      if (typeof sid === "string" && sid.length > 0) {
+        const display = sid.length > 12 ? `${sid.slice(0, 8)}\u2026` : sid;
+        setQueueRef({ display, full: sid });
+      }
+
+      setSuccess("Submitted. Thanks—we received your pitch.");
       setPitch("");
     } catch (e) {
       setFail(e instanceof Error ? e.message : "Could not submit.");
@@ -95,7 +104,23 @@ export default function GuestPulse() {
           {busy ? "Sending…" : "Send pitch"}
         </button>
 
-        {success && <p className="mt-4 text-sm text-emerald-400/95">{success}</p>}
+        {success && (
+          <div className="mt-5 space-y-3 rounded-xl border px-4 py-4 text-sm leading-relaxed" style={{ borderColor: "rgba(16,185,129,0.35)", background: "rgba(16,185,129,0.06)" }}>
+            <p className="text-emerald-400/95 font-medium">{success}</p>
+            {queueRef && (
+              <p style={{ color: "rgba(255,255,255,0.7)" }}>
+                Queue reference{" "}
+                <code title={queueRef.full} className="mono-data text-emerald-200/95 text-[0.95em]">
+                  {queueRef.display}
+                </code>
+              </p>
+            )}
+            <p style={{ color: "rgba(255,255,255,0.5)" }}>
+              Our editors typically review Guest Pulse pitches within several business days. If there&apos;s a fit with the program,
+              someone will reach out using the email you provided.
+            </p>
+          </div>
+        )}
         {fail && <p className="mt-4 text-sm text-rose-400">{fail}</p>}
 
         <style>{`

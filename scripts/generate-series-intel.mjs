@@ -13,11 +13,21 @@
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { loadLocalEnv } from "./load-local-env.mjs";
 import { claudeGenerate } from "./lib/claude-client.mjs";
+
+loadLocalEnv();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+
+const rawMaxTokens = Number(process.env.SERIES_INTEL_MAX_TOKENS);
+const maxTokens =
+  Number.isFinite(rawMaxTokens) && rawMaxTokens >= 256
+    ? Math.min(Math.floor(rawMaxTokens), 4096)
+    : 1200;
+console.log(`[series-intel] max_tokens=${maxTokens}`);
 
 function loadSeries() {
   const path = join(ROOT, ".daily-data", "playoff-series.json");
@@ -28,8 +38,34 @@ function loadSeries() {
   }
 }
 
-async function generateIntelForSeries(s) {
-  const prompt = `You are the Hoops Intel editor. Produce a compact JSON object describing the H2H series intel for this NBA playoff matchup. Use factual basketball knowledge where verifiable; frame narrative with editorial voice.
+function parseIntelJson(text) {
+  const jsonStart = text.indexOf("{");
+  const jsonEnd = text.lastIndexOf("}");
+  if (jsonStart === -1 || jsonEnd === -1) throw new Error(`No JSON in response: ${text.slice(0, 200)}`);
+  return JSON.parse(text.slice(jsonStart, jsonEnd + 1));
+}
+
+/** Reject empty / junk fields so we retry or fall back to placeholders less often. */
+function validateIntelShape(obj) {
+  const keys = ["regularSeasonH2H", "playoffHistory", "keyMatchup", "narrative"];
+  for (const k of keys) {
+    const v = obj[k];
+    const minLen = k === "narrative" ? 48 : 20;
+    if (typeof v !== "string" || v.trim().length < minLen) return `${k} too short or missing`;
+    const lower = v.toLowerCase();
+    if (
+      lower.includes("i cannot") ||
+      lower.includes("as an ai") ||
+      lower.includes("json object")
+    ) {
+      return `${k} looks like refusal or meta-prose`;
+    }
+  }
+  return null;
+}
+
+async function generateIntelForSeries(s, maxTokens) {
+  const basePrompt = `You are the Hoops Intel editor. Produce a compact JSON object describing the H2H series intel for this NBA playoff matchup. Use factual basketball knowledge where verifiable; frame narrative with editorial voice.
 
 Series: ${s.higherTeam} (seed ${s.higherSeed}) vs ${s.lowerTeam} (seed ${s.lowerSeed}) — ${s.conference === "east" ? "Eastern" : s.conference === "west" ? "Western" : ""} ${s.round.replace(/-/g, " ")}
 Current state: ${s.summary}
@@ -43,15 +79,31 @@ Return ONLY a JSON object with this exact shape — no prose before or after:
   "narrative": "2-3 sentences of editorial framing — what has to happen for the underdog to win, or why the favorite is vulnerable"
 }`;
 
-  const msg = await claudeGenerate(`series-intel:${s.seriesId}`, {
-    max_tokens: 1024,
-    messages: [{ role: "user", content: prompt }],
-  });
-  const text = msg.content[0].text.trim();
-  const jsonStart = text.indexOf("{");
-  const jsonEnd = text.lastIndexOf("}");
-  if (jsonStart === -1 || jsonEnd === -1) throw new Error(`No JSON in response: ${text.slice(0, 200)}`);
-  return JSON.parse(text.slice(jsonStart, jsonEnd + 1));
+  const strictSuffix =
+    "\n\nAll string values must be substantive sentences (min ~15 words for narrative). No apologies, no preamble.";
+
+  let lastErr = "";
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const prompt = attempt === 0 ? basePrompt : `${basePrompt}${strictSuffix}`;
+    const msg = await claudeGenerate(`series-intel:${s.seriesId}`, {
+      max_tokens: maxTokens,
+      messages: [{ role: "user", content: prompt }],
+    });
+    const text = msg.content[0].text.trim();
+    let obj;
+    try {
+      obj = parseIntelJson(text);
+    } catch (e) {
+      lastErr = e.message;
+      console.warn(`  [intel] JSON parse attempt ${attempt + 1} for ${s.seriesId}: ${lastErr}`);
+      continue;
+    }
+    const bad = validateIntelShape(obj);
+    if (!bad) return obj;
+    lastErr = bad;
+    console.warn(`  [intel] quality attempt ${attempt + 1} for ${s.seriesId}: ${bad}`);
+  }
+  throw new Error(lastErr || "exhausted intel retries");
 }
 
 function rewriteIntelExport(sourcePath, intelMap) {
@@ -82,7 +134,7 @@ async function main() {
   for (const s of series) {
     try {
       console.log(`  [intel] ${s.seriesId}...`);
-      intel[s.seriesId] = await generateIntelForSeries(s);
+      intel[s.seriesId] = await generateIntelForSeries(s, maxTokens);
     } catch (err) {
       console.warn(`  [intel] failed for ${s.seriesId}: ${err.message}`);
     }

@@ -14,7 +14,7 @@ import {
   eastStandings,
   westStandings,
 } from "../lib/pulseData";
-import { playoffTickerDerivedItems } from "../lib/playoffTickerDerived";
+import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
 import { useLiveScores } from "../lib/useLiveScores";
 import { slugify } from "../lib/searchUtils";
@@ -143,7 +143,7 @@ function LiveScorebar() {
 // ═══════════════════════════════════════════════════════════
 
 function TickerBar() {
-  const derived = playoffTickerDerivedItems();
+  const derived = playoffTickerWireItems();
   const strip = derived.length ? [...derived, ...tickerItems] : tickerItems;
   const items = [...strip, ...strip];
   const textColors: Record<string, string> = {

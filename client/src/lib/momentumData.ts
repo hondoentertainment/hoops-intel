@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Joel Embiid", 
     team: "PHI", 
-    clutchRating: 94, 
-    description: "Delivered a masterclass in playoff basketball with 28 points on elite efficiency, seizing control in hostile territory when his team needed him most" 
+    clutchRating: 95, 
+    description: "Delivered in the ultimate pressure cooker with 12 fourth-quarter points to close out a historic Game 7 comeback" 
   },
   games: [
     {
@@ -48,75 +48,82 @@ export const momentumData: MomentumData = {
       finalScore: { home: 100, away: 109 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "8:42",
-          description: "Embiid establishes early dominance with back-to-back post scores and a steal",
-          runScore: "8-2 run",
+          quarter: "Q1",
+          timestamp: "8:34",
+          description: "Embiid dominates early with three straight post scores, silencing hostile TD Garden crowd",
+          runScore: "12-4 PHI",
           momentum: "away",
           keyPlayer: "Joel Embiid",
           impact: "significant"
         },
         {
-          quarter: "2nd",
-          timestamp: "3:15",
-          description: "Jayson Tatum erupts for 9 quick points, including two threes, to energize TD Garden",
-          runScore: "12-4 run",
+          quarter: "Q2",
+          timestamp: "4:12",
+          description: "Jayson Tatum erupts for 11 quick points, sparking massive Boston crowd as Celtics seize control",
+          runScore: "18-6 BOS",
           momentum: "home",
           keyPlayer: "Jayson Tatum",
-          impact: "significant"
+          impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "6:30",
-          description: "Maxey catches fire with three consecutive buckets as Sixers seize control",
-          runScore: "10-2 run",
+          quarter: "Q3",
+          timestamp: "2:45",
+          description: "VJ Edgecombe catches fire with back-to-back-to-back threes, rookie making Game 7 statement",
+          runScore: "11-2 PHI",
+          momentum: "away",
+          keyPlayer: "VJ Edgecombe",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:28",
+          description: "Maxey takes over with aggressive drives, putting 76ers in commanding position",
+          runScore: "10-3 PHI",
           momentum: "away",
           keyPlayer: "Tyrese Maxey",
           impact: "game-changing"
         },
         {
-          quarter: "4th",
-          timestamp: "4:45",
-          description: "Boston rallies within 5 points as the crowd reaches fever pitch",
-          runScore: "8-1 run",
-          momentum: "home",
-          keyPlayer: "Derrick White",
-          impact: "notable"
-        },
-        {
-          quarter: "4th",
-          timestamp: "1:28",
-          description: "Embiid delivers the dagger with a step-back three and emphatic block on Tatum",
-          runScore: "7-1 run",
+          quarter: "Q4",
+          timestamp: "1:15",
+          description: "Brown's desperate three-pointer keeps Boston breathing, but Embiid answers immediately",
+          runScore: "5-2 PHI",
           momentum: "away",
           keyPlayer: "Joel Embiid",
-          impact: "game-changing"
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
-          player: "Joel Embiid",
-          team: "PHI",
-          description: "Step-back three over Al Horford to extend lead to 8",
-          timeRemaining: "1:28",
-          winProbabilityShift: 18.5
-        },
-        {
           player: "Tyrese Maxey",
           team: "PHI",
-          description: "Driving layup through contact after Boston timeout",
-          timeRemaining: "2:47",
-          winProbabilityShift: 12.3
+          description: "Slashes to the rim for and-one with Celtics in desperation mode",
+          timeRemaining: "4:23",
+          winProbabilityShift: 12.4
         },
         {
           player: "Joel Embiid",
           team: "PHI",
-          description: "Rejection of Jayson Tatum's potential game-tying three attempt",
-          timeRemaining: "0:52",
-          winProbabilityShift: 24.7
+          description: "Buries turnaround jumper over Horford to essentially seal historic comeback",
+          timeRemaining: "2:48",
+          winProbabilityShift: 18.7
+        },
+        {
+          player: "Jaylen Brown",
+          team: "BOS",
+          description: "Drills contested three to cut deficit to six and ignite Garden one final time",
+          timeRemaining: "1:52",
+          winProbabilityShift: -8.3
+        },
+        {
+          player: "Joel Embiid",
+          team: "PHI",
+          description: "Ice-cold free throws after Brown technical foul, punctuating masterful Game 7 performance",
+          timeRemaining: "0:45",
+          winProbabilityShift: 15.2
         }
       ],
-      narrative: "The basketball gods scripted pure theater at TD Garden as Joel Embiid delivered a virtuoso performance that may have saved Philadelphia's championship dreams. With the hostile Boston crowd reaching decibel levels that could shake the foundation, Embiid answered with the poise of a seasoned champion, methodically dismantling the Celtics' defense while his young co-star Tyrese Maxey provided the explosive scoring bursts. The stunning 109-100 road victory flipped the series narrative entirely—transforming the 76ers from desperate underdogs into confident aggressors who now smell blood in the water. As confetti preparations were quietly canceled and the Garden fell eerily silent, one truth echoed through the arena: this Philadelphia team refuses to surrender their season without an epic fight."
+      narrative: "TD Garden witnessed basketball history as Joel Embiid authored one of the most dominant Game 7 performances in playoff lore, leading Philadelphia to a stunning series victory after trailing 3-1. The 76ers became just the sixth team since 2010 to complete such a comeback, doing so on the road against the favored Celtics in their own building. Tyrese Maxey was brilliant as the second star with 30 points and 11 rebounds, while rookie sensation VJ Edgecombe provided the dagger with five three-pointers that left Boston reeling. The Celtics' championship aspirations came crashing down in devastating fashion, as what seemed like a routine series win just days ago turned into one of the most shocking eliminations in franchise history."
     }
   ]
 };

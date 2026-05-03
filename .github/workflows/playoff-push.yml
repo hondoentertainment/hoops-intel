@@ -1,6 +1,8 @@
 # Runs every 30 minutes: refresh playoff snapshot from ESPN, dispatch elimination /
 # clincher pushes (scripts/check-playoff-series.mjs). Silently skips when env vars
 # are absent or there is no postseason data.
+#
+# Maintainer checklist (topics, VAPID, Supabase): references/push-notifications.md
 
 name: Playoff Push Alerts
 

@@ -100,9 +100,17 @@ export async function startCheckout(plan: "monthly" | "annual"): Promise<string>
     body: JSON.stringify({ plan }),
   });
   if (!res.ok) {
-    const raw = (await res.json().catch(() => null)) as { error?: string; code?: string } | null;
+    const raw = (await res.json().catch(() => null)) as {
+      error?: string;
+      code?: string;
+      expectedEnv?: string[];
+    } | null;
     if (raw?.code === "stripe_not_configured") {
-      throw new Error(raw.error ?? "Stripe checkout is not wired for this deployment yet — see README § Environment variables.");
+      const suffix =
+        Array.isArray(raw.expectedEnv) && raw.expectedEnv.length > 0
+          ? ` Required env: ${raw.expectedEnv.join(", ")}.`
+          : "";
+      throw new Error((raw.error ?? "Stripe checkout is not configured for this deployment.") + suffix);
     }
     if (typeof raw?.error === "string") throw new Error(raw.error);
     throw new Error(`Checkout failed (${res.status})`);
@@ -120,10 +128,18 @@ export async function openBillingPortal(): Promise<string> {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) {
-    const raw = (await res.json().catch(() => null)) as { error?: string; code?: string } | null;
+    const raw = (await res.json().catch(() => null)) as {
+      error?: string;
+      code?: string;
+      expectedEnv?: string[];
+    } | null;
     if (raw?.code === "stripe_not_configured") {
+      const suffix =
+        Array.isArray(raw.expectedEnv) && raw.expectedEnv.length > 0
+          ? ` Required env: ${raw.expectedEnv.join(", ")}.`
+          : "";
       throw new Error(
-        raw.error ?? "Stripe billing portal is not wired for this deployment yet — see README § Environment variables.",
+        (raw.error ?? "Stripe billing portal is not configured for this deployment.") + suffix,
       );
     }
     if (raw?.code === "supabase_misconfigured") {

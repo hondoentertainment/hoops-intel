@@ -21,12 +21,12 @@ const localStorageMock = (() => {
   };
 })();
 
-Object.defineProperty(window, "localStorage", { value: localStorageMock });
-
-// Reset localStorage before each test
-beforeEach(() => {
-  localStorage.clear();
-});
+if (typeof window !== "undefined") {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+  beforeEach(() => {
+    localStorageMock.clear();
+  });
+}
 
 // Mock import.meta.env
 (globalThis as any).import = { meta: { env: {} } };

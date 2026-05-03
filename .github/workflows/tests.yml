@@ -49,6 +49,9 @@ jobs:
       - name: Verify seasonal generator scripts resolve
         run: node scripts/content-schedule.mjs --verify-generators
 
+      - name: Verify generate-edition season-mode prompt alignment
+        run: node scripts/verify-edition-season-alignment.mjs
+
       - name: Validate archive duplicate ids
         run: node scripts/validate-archive-duplicates.mjs
 

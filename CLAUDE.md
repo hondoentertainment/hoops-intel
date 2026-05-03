@@ -66,7 +66,8 @@ scripts/                      Generation pipeline (see below)
   lib/                        Shared helpers (claude-client, espn-cache,
                               dates, section-runner, season-mode)
   tests/                      Pipeline tests (run in CI)
-.github/workflows/            11 workflows — CI + 10 content schedulers
+.github/workflows/            CI (`tests.yml`) + content/schedulers (daily, scores,
+                              playoffs, digest, weekly, injury, social, health, …)
 ```
 
 The Vite project root is `client/`, NOT the repo root. That matters when
@@ -114,8 +115,9 @@ npm install              # installs React, Vite, vitest, Anthropic SDK
 npm run dev              # Vite dev server at http://localhost:5173
 npm run build            # production build to ./dist
 npm run preview          # serve ./dist locally
-npx vitest run           # run unit tests (131 tests, ~10s)
-npx vitest               # watch mode
+npm run test:unit        # Vitest (blocking suite)
+npm run test:watch       # Vitest watch
+npm run test:ci          # mirrors Actions: npm ci + validators + build
 npx tsc --noEmit         # typecheck (see "Known quirks" below)
 
 # Pipeline scripts — set ANTHROPIC_API_KEY in .env first
@@ -124,8 +126,8 @@ node scripts/fetch-playoff-series.mjs
 node scripts/content-schedule.mjs        # prints full recurring schedule
 ```
 
-`npm test` runs the content validator + assembly tests (not vitest).
-Wire vitest in via `npm run test:unit`.
+`npm test` runs the content validator + assembly tests (not Vitest).
+Use `npm run test:unit` for Vitest and `npm run test:ci` to mirror Actions.
 
 ---
 

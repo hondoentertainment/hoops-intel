@@ -26,7 +26,10 @@ npm run build
 npm run test:unit       # Vitest
 npm run test            # validate-content + assembly (CI-style)
 npm run test:watch      # Vitest watch
-npm run playoff:refresh # ESPN snapshot → playoffData.ts + test:drift (postseason upkeep)
+npm run playoff:sync    # ESPN → playoffData.ts (fetch + sync; postseason upkeep)
+npm run test:drift      # pulse vs playoff edition guard (also in CI)
+npm run site-review     # Production URL review (optional ANTHROPIC_API_KEY for AI section)
+```
 
 Pipeline scripts require **`ANTHROPIC_API_KEY`** in `.env` (see **`scripts/load-local-env.mjs`**).
 

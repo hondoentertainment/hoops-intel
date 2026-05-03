@@ -68,6 +68,12 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Podcast companion", href: "/podcast-companion", description: "Show notes mode", category: "community" },
   { label: "Guest Pulse pitch", href: "/guest-pulse", description: "Submit a takeover idea", category: "community" },
   { label: "Widgets", href: "/widgets", description: "Embeddable widgets", category: "publishing" },
+  {
+    label: "Embed analytics",
+    href: "/embed-stats",
+    description: "Publisher dashboard — embed load trends and CSV export",
+    category: "publishing",
+  },
   { label: "Account", href: "/account", description: "Profile, Pro billing, shortcuts", category: "publishing" },
   { label: "Hoops Intel Pro", href: "/pro", description: "Pro tier", category: "publishing" },
   { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges", category: "publishing" },

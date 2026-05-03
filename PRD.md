@@ -1,6 +1,6 @@
 # Hoops Intel — Product Requirements Document (PRD)
 
-> Last updated: May 2, 2026  
+> Last updated: May 3, 2026  
 > Planning stack: **`PRD.md`** (requirements & scope) → **`ROADMAP.md`** (timeline & architecture) → **`NEXT-STEPS.md`** (near-term backlog) → **`PRODUCT-ENHANCEMENTS.md`** (competitive ideas & backlog hygiene)
 
 ---
@@ -41,8 +41,8 @@
 - **FR-1** Edition metadata: date, edition string, subtitle bullets, `editionContext` (`regular` \| `playoffs` \| `finals`).
 - **FR-2** Game results with narrative recap, stat leaders, box-level highlights.
 - **FR-3** Pulse Index — top movers with rationale, trends, playoff-aware context when postseason is active.
-- **FR-4** Supporting sections: ticker, injuries, tonight’s previews, rookie watch, fantasy alerts, media reactions, quizzes/Hoops IQ snippets as modeled in schema/generator.
-- **FR-5** Validation: content tests and schema alignment with [`references/data-schema.md`](./references/data-schema.md).
+- **FR-4** Supporting sections: ticker, injuries, tonight’s previews, rookie watch, fantasy alerts, media reactions, quizzes/Hoops IQ snippets as modeled in schema/generator. **During playoffs,** the home ticker **prepends** factual `FINAL:` lines derived from synced `playoffSeries` before editorial ticker items.
+- **FR-5** Validation: content tests and schema alignment with [`references/data-schema.md`](./references/data-schema.md); **CI** also enforces playoff/edition context drift (`validate-playoff-pulse-drift.mjs`), edition vs `season-mode` prompt alignment (`verify-edition-season-alignment.mjs`), and series-intel key coverage where applicable.
 
 ### 4.2 Playoffs
 

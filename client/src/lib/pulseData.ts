@@ -1,84 +1,83 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: May 3, 2026 (Vol. 2026 · No. 126)
+// Last updated: May 3, 2026 (Vol. 2026 · No. 127)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"May 3, 2026",edition:"Vol. 2026 · No. 126",subtitle:"76ers Shock Celtics at TD Garden to Take Series Lead · Pistons Continue Miracle Run with Game 6 Victory · Cavaliers Battle Back to Even Toronto Series",editionContext:"playoffs"};
+export const pulseEdition = {date:"May 3, 2026",edition:"Vol. 2026 · No. 127",subtitle:"76ers Stun Boston in Game 7 Road Win 109-100 · East's Wild Weekend Forces Two Game 7s Tonight · Embiid's 34-Point Masterpiece Caps Historic 3-1 Comeback",editionContext:"playoffs"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE DAY
 // ═══════════════════════════════════════════════════════════
 
-export const narrative = {headline:"Philadelphia's Road Mastery Fuels Stunning Playoff Upset While Miracle Runs Continue",subhead:"Friday's playoff action delivered championship-defining moments as Philadelphia stunned Boston at TD Garden to seize series control, while Detroit's historic comeback gained momentum with another elimination-game victory and Cleveland responded with crucial road execution to even their series against Toronto.",body:["Philadelphia 76ers delivered a masterful 109-100 victory at TD Garden that stunned the higher-seeded Celtics and seized control of their first-round series behind Joel Embiid's dominant playoff performance and elite road execution. Embiid powered through injury concerns with 28 points and 12 rebounds while the 76ers' championship pedigree overwhelmed Boston's home-court advantage in a statement victory that shifted series momentum completely. The nine-point road triumph proved Philadelphia's veteran playoff DNA and championship aspirations while putting the favored Celtics in desperate elimination pressure heading into a must-win Game 6 situation.","Detroit Pistons continued their historic comeback with a crucial 95-88 Game 6 victory at Little Caesars Arena, forcing a winner-take-all Game 7 and completing one of the most remarkable turnarounds in NBA playoff history. Cade Cunningham delivered another clutch performance with 26 points and 8 assists while the home crowd provided elimination-level energy that overwhelmed Orlando's young core in the biggest moments. The series-forcing victory marked Detroit's second consecutive elimination-game triumph and set up a dramatic Game 7 showdown that will determine whether the Pistons complete their miracle run or the Magic clinch their historic upset.","Cleveland Cavaliers responded to adversity with a dominant 118-105 road victory in Toronto that evened their series at 2-2 and proved their championship mettle under elimination pressure. Donovan Mitchell erupted for 35 points while the Cavaliers' explosive offense overwhelmed the Raptors' home-court advantage with superior execution and clutch shot-making throughout the contest. The 13-point road triumph completely shifted series momentum and demonstrated Cleveland's ability to respond to playoff adversity with championship-level performance when facing must-win scenarios."]}; 
+export const narrative = {headline:"Philadelphia's Historic Comeback Sets Stage for Twin Sunday Deciders",subhead:"The 76ers completed one of the most stunning series rallies in recent memory with a 109-100 Game 7 victory at TD Garden on May 2, eliminating Boston after trailing 3-1. Meanwhile, Detroit and Toronto both forced Game 7s on May 1 to create a dramatic Sunday slate with two winner-take-all Eastern Conference first-round finales.",body:["Joel Embiid delivered the performance of his playoff career when it mattered most, scoring 34 points with 12 rebounds and 6 assists to lead Philadelphia past Boston 109-100 in Game 7 at TD Garden. The 76ers became just the sixth team since 2010 to overcome a 3-1 deficit, with Tyrese Maxey adding 30 points and rookie VJ Edgecombe nailing five three-pointers in the series clincher. Boston's season ended on their home floor despite 33 points from Jaylen Brown.","Detroit answered elimination with authority on May 1, dominating Orlando 93-79 in Game 6 behind Cade Cunningham's 32 points and 10 rebounds. The Pistons held the Magic to just 35% shooting at Kia Center, forcing a winner-take-all Game 7 at Little Caesars Arena on Sunday afternoon. The top-seeded Pistons will host their first playoff Game 7 since 2008.","Toronto survived a thriller at Scotiabank Arena on May 1, outlasting Cleveland 112-110 in overtime to tie their series 3-3. Scottie Barnes orchestrated the victory with 25 points and 14 assists, while Donovan Mitchell's 24 points weren't enough for the Cavaliers to close out on the road. The series shifts to Cleveland for Sunday's decisive Game 7 at Rocket Arena."]};
 
 // ═══════════════════════════════════════════════════════════
 // TICKER ITEMS
 // ═══════════════════════════════════════════════════════════
 
 export const tickerItems = [
-  {text:"FINAL: PHI 109, BOS 100 — 76ers shock Celtics at TD Garden to take 3-2 series lead",type:"alert"},
-  {text:"FINAL: DET 95, ORL 88 — Pistons force Game 7 with second straight elimination victory",type:"alert"},
-  {text:"FINAL: CLE 118, TOR 105 — Cavaliers even series with dominant road performance",type:"alert"},
-  {text:"EMBIID DOMINATES: 28 points, 12 rebounds leads 76ers' stunning road upset in Boston",type:"alert"},
-  {text:"GAME 7 BOUND: Detroit completes historic turnaround, forces winner-take-all showdown",type:"alert"},
-  {text:"TONIGHT: ORL @ DET — 3:30 PM ET, ABC — Winner-take-all Game 6 at Little Caesars Arena",type:"score"},
-  {text:"TONIGHT: TOR @ CLE — 7:30 PM ET, NBC — Series tied 2-2 heading to Rocket Arena",type:"score"},
-  {text:"MITCHELL ERUPTS: 35 points powers Cleveland's series-evening road victory in Toronto",type:"alert"},
-  {text:"PLAYOFF CHAOS: Three road teams deliver statement victories in crucial elimination games",type:"alert"}
+  {text:"FINAL: PHI 109, BOS 100 — 76ers complete 3-1 comeback, eliminate Celtics in Game 7",type:"alert"},
+  {text:"EMBIID: 34 PTS · 12 REB · 6 AST leads Philadelphia's historic Game 7 road victory",type:"alert"},
+  {text:"TONIGHT: ORL @ DET — 3:30 PM ET, ABC — Winner-take-all Game 7 at Little Caesars Arena",type:"score"},
+  {text:"TONIGHT: TOR @ CLE — 7:30 PM ET, NBC — Game 7 at Rocket Arena, series tied 3-3",type:"score"},
+  {text:"MAXEY: 30 PTS · 11 REB as 76ers supporting cast delivers in Boston elimination",type:"alert"},
+  {text:"CUNNINGHAM: 32 PTS powers Detroit's Game 6 road win to force Sunday Game 7",type:"alert"},
+  {text:"BARNES: 25 PTS · 14 AST in Toronto's overtime Game 6 victory over Cleveland",type:"alert"},
+  {text:"ROOKIE: VJ Edgecombe drills 5 three-pointers in Philadelphia's Game 7 closeout",type:"alert"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// GAME RESULTS — May 2, 2026
+// GAME RESULTS — May 2, 2026 (ESPN / Basketball-Reference)
 // ═══════════════════════════════════════════════════════════
 
 export const gameResults = [
-  {homeTeam:"BOS",homeScore:100,awayTeam:"PHI",awayScore:109,status:"final",topPerformer:"Joel Embiid",topLine:"28 PTS · 12 REB · 4 AST · 11-19 FG",recap:"Joel Embiid dominated with 28 points and 12 rebounds as Philadelphia delivered a stunning 109-100 victory at TD Garden, taking a 3-2 series lead and putting the favored Celtics on the brink of elimination. Embiid shot an efficient 11-of-19 from the field while powering through injury concerns to overwhelm Boston's frontcourt with his playoff pedigree and two-way excellence. Tyrese Maxey provided crucial secondary scoring with 24 points as the 76ers' championship DNA emerged in the hostile environment. The nine-point road triumph proved Philadelphia's veteran playoff execution while shifting series momentum completely toward the underdog 76ers heading into a potential series-clinching Game 6.",gameId:"BOS-PHI-20260502"}
+  {homeTeam:"BOS",homeScore:100,awayTeam:"PHI",awayScore:109,status:"final",topPerformer:"Joel Embiid",topLine:"34 PTS · 12 REB · 6 AST · 12-26 FG",recap:"Joel Embiid authored a Game 7 masterpiece at TD Garden, scoring 34 points with 12 rebounds to lead Philadelphia past Boston 109-100 and complete a historic 3-1 series comeback. Tyrese Maxey added 30 points and 11 rebounds while rookie VJ Edgecombe hit five three-pointers, eliminating the favored Celtics on their home floor. The 76ers became just the sixth team since 2010 to overcome a 3-1 playoff deficit, advancing 4-3 after trailing the series.",gameId:"BOS-PHI-20260502"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// PULSE INDEX (Top 10 — Friday Playoff Performers)
+// PULSE INDEX (Top 10 — May 2 playoff performance)
 // ═══════════════════════════════════════════════════════════
 
 export const pulseIndex = [
-  {rank:1,player:"Joel Embiid",team:"PHI",teamRecord:"45-37",indexScore:97.8,trend:"up",keyStats:"28 PTS · 12 REB · 4 AST",note:"Embiid's dominant 28-point performance powered Philadelphia's stunning road victory at TD Garden, taking a 3-2 series lead over the favored Celtics. His efficient shooting and elite rebounding through injury concerns proved his championship pedigree in the biggest moments.",rationale:"Embiid's series-shifting road dominance in the most hostile environment clearly surpasses all other performances with superior efficiency and championship implications."},
-  {rank:2,player:"Donovan Mitchell",team:"CLE",teamRecord:"52-30",indexScore:94.3,trend:"up",keyStats:"35 PTS · 7 AST · 5 REB",note:"Mitchell exploded for 35 points as Cleveland responded to adversity with a dominant 118-105 road victory that evened their series against Toronto. His clutch shot-making and explosive offense completely shifted series momentum back toward the Cavaliers.",rationale:"Mitchell's series-evening road explosion edges out Cunningham despite similar stakes due to his superior scoring output and more dominant individual performance."},
-  {rank:3,player:"Cade Cunningham",team:"DET",teamRecord:"60-22",indexScore:92.1,trend:"up",keyStats:"26 PTS · 8 AST · 6 REB",note:"Cunningham delivered another clutch elimination-game performance with 26 points and 8 assists as Detroit forced Game 7 with their second consecutive must-win victory. His playoff poise continues driving one of the most remarkable comebacks in NBA history.",rationale:"Cunningham's second straight elimination-game heroics in Detroit's historic comeback keeps him ahead of Maxey despite lower scoring due to the higher-pressure context and miracle run narrative."},
-  {rank:4,player:"Tyrese Maxey",team:"PHI",teamRecord:"45-37",indexScore:89.7,trend:"up",keyStats:"24 PTS · 5 AST · 4 REB",note:"Maxey provided crucial secondary scoring with 24 points in Philadelphia's series-shifting road victory at TD Garden. His improved playoff execution and clutch three-point shooting helped the 76ers overwhelm Boston's home-court advantage in the biggest moments.",rationale:"Maxey's clutch secondary scoring in a series-shifting upset places him ahead of Barnes despite similar statistical output due to the higher-stakes context and road performance."},
-  {rank:5,player:"Scottie Barnes",team:"TOR",teamRecord:"46-36",indexScore:86.4,trend:"down",keyStats:"22 PTS · 10 REB · 6 AST",note:"Barnes managed 22 points and 10 rebounds but couldn't prevent Toronto's disappointing home defeat as Cleveland evened their series. His solid production was overshadowed by the Cavaliers' explosive road execution and Mitchell's dominant performance.",rationale:"Barnes's well-rounded production in a crucial home loss keeps him competitive with Alperen Sengun despite the disappointing team result due to his superior overall statistical impact."},
-  {rank:6,player:"Alperen Sengun",team:"HOU",teamRecord:"52-30",indexScore:84.8,trend:"stable",keyStats:"18 PTS · 11 REB · 7 AST",note:"Sengun continues providing steady two-way production for Houston as the Rockets prepare for their crucial Game 3 home showdown against the Lakers. His versatile impact remains essential for Houston's championship hopes against veteran playoff competition.",rationale:"Sengun's consistent two-way excellence edges out Tatum despite lower scoring due to his superior rebounding and playmaking impact while avoiding a disappointing team performance."},
-  {rank:7,player:"Jayson Tatum",team:"BOS",teamRecord:"56-26",indexScore:82.3,trend:"down",keyStats:"26 PTS · 8 REB · 5 AST",note:"Tatum scored 26 points but couldn't prevent Boston's devastating home defeat as the Celtics now face elimination pressure. His solid individual production was overshadowed by Philadelphia's championship-level road execution and Embiid's dominance.",rationale:"Tatum's decent individual numbers in a crushing home defeat places him ahead of Paolo Banchero due to his higher usage rate and overall statistical superiority despite both facing elimination pressure."},
-  {rank:8,player:"Paolo Banchero",team:"ORL",teamRecord:"45-37",indexScore:79.6,trend:"down",keyStats:"20 PTS · 8 REB · 4 AST",note:"Banchero managed 20 points and 8 rebounds but couldn't prevent Orlando's second consecutive elimination-game defeat as Detroit forced Game 7. His improved shooting wasn't enough to overcome the Pistons' home-court advantage and veteran execution.",rationale:"Banchero's solid elimination-game production keeps him ahead of Isaiah Stewart despite the disappointing result due to his superior scoring output and overall usage rate."},
-  {rank:9,player:"Isaiah Stewart",team:"DET",teamRecord:"60-22",indexScore:77.2,trend:"up",keyStats:"14 PTS · 12 REB · 3 BLK",note:"Stewart provided crucial interior presence with 14 points, 12 rebounds and 3 blocks as Detroit forced Game 7 with their home victory. His defensive impact and rebounding helped the Pistons dominate the paint in another elimination-game triumph.",rationale:"Stewart's defensive dominance in a series-forcing victory places him ahead of Fred VanVleet due to his superior rebounding and shot-blocking impact despite lower overall statistical production."},
-  {rank:10,player:"Fred VanVleet",team:"TOR",teamRecord:"46-36",indexScore:75.1,trend:"down",keyStats:"16 PTS · 6 AST · 3 REB",note:"VanVleet managed 16 points and 6 assists but couldn't prevent Toronto's crushing home defeat that evened their series against Cleveland. His veteran leadership wasn't enough to overcome Mitchell's explosive performance and the Cavaliers' road execution.",rationale:"VanVleet's steady veteran production in a disappointing home loss secures the final index spot ahead of role players who failed to make meaningful contributions in crucial playoff moments."}
+  {rank:1,player:"Joel Embiid",team:"PHI",teamRecord:"45-37",indexScore:98.2,trend:"up",keyStats:"34 PTS · 12 REB · 6 AST",note:"Embiid delivered the defining performance of his career with 34 points and 12 rebounds in Game 7 at TD Garden, completing Philadelphia's historic 3-1 comeback against the favored Celtics.",rationale:"A 34-point double-double in a road Game 7 to complete a 3-1 comeback is the clear performance of the night and recent playoff memory."},
+  {rank:2,player:"Tyrese Maxey",team:"PHI",teamRecord:"45-37",indexScore:92.8,trend:"up",keyStats:"30 PTS · 11 REB · 7 AST",note:"Maxey provided the perfect complement to Embiid with 30 points and 11 rebounds, helping Philadelphia eliminate Boston in the series-clinching Game 7 victory.",rationale:"A 30-point double-double as the second star in a historic Game 7 road win clearly separates him from the field behind Embiid."},
+  {rank:3,player:"VJ Edgecombe",team:"PHI",teamRecord:"45-37",indexScore:87.5,trend:"up",keyStats:"23 PTS · 5 3PM · 6 REB",note:"The rookie guard exploded for 23 points on five three-pointers in Game 7, providing the crucial third scoring option that helped bury Boston's season at home.",rationale:"Rookie shot-making in a Game 7 road elimination is rarer and more impactful than veteran production in the same setting."},
+  {rank:4,player:"Jaylen Brown",team:"BOS",teamRecord:"56-26",indexScore:82.1,trend:"down",keyStats:"33 PTS · 9 REB · 4 AST",note:"Brown poured in a team-high 33 points in the Game 7 loss but couldn't prevent Boston's elimination at home, ending the Celtics' championship hopes.",rationale:"Elite scoring in a Game 7 keeps him in the top tier despite the loss, but the stakes and team result drop him behind Philadelphia's trio."},
+  {rank:5,player:"Jayson Tatum",team:"BOS",teamRecord:"56-26",indexScore:78.6,trend:"down",keyStats:"22 PTS · 8 REB · 7 AST",note:"Tatum managed 22 points and 7 assists but shot just 8-of-24 from the field as Boston's season ended with a home Game 7 defeat to Philadelphia.",rationale:"Secondary star production in a Game 7 loss ranks below Brown's 33 points but still merits top-five consideration for the playoff stakes."},
+  {rank:6,player:"Al Horford",team:"BOS",teamRecord:"56-26",indexScore:75.3,trend:"down",keyStats:"18 PTS · 10 REB · 3 BLK",note:"Horford provided veteran leadership with 18 points, 10 rebounds and 3 blocks but couldn't help Boston avoid the stunning home elimination.",rationale:"Solid two-way frontcourt production in Game 7 rates above role players but below the primary scorers who decided the outcome."},
+  {rank:7,player:"Tobias Harris",team:"PHI",teamRecord:"45-37",indexScore:73.9,trend:"up",keyStats:"16 PTS · 8 REB · 5 AST",note:"Harris chipped in 16 points and 8 rebounds as Philadelphia's veteran depth stepped up in the historic Game 7 road victory over Boston.",rationale:"Contributing veteran production in a series-clinching Game 7 edges out lower-usage players despite modest counting stats."},
+  {rank:8,player:"Marcus Smart",team:"BOS",teamRecord:"56-26",indexScore:71.2,trend:"down",keyStats:"12 PTS · 7 AST · 6 REB",note:"Smart provided his typical energy with 12 points and 7 assists but couldn't generate enough defensive stops to prevent Boston's season from ending.",rationale:"Veteran point guard production in a Game 7 loss still merits consideration ahead of bench contributors."},
+  {rank:9,player:"Paul Reed",team:"PHI",teamRecord:"45-37",indexScore:68.8,trend:"up",keyStats:"8 PTS · 9 REB · 2 BLK",note:"Reed provided crucial frontcourt depth with 9 rebounds and 2 blocks, helping Philadelphia control the glass in their Game 7 triumph.",rationale:"Role player impact in a historic series-clinching win rates above similar production in lesser games."},
+  {rank:10,player:"Robert Williams",team:"BOS",teamRecord:"56-26",indexScore:65.4,trend:"down",keyStats:"6 PTS · 8 REB · 3 BLK",note:"Williams battled with 8 rebounds and 3 blocks but couldn't anchor the defense needed to prevent Philadelphia's stunning comeback completion.",rationale:"Defensive-minded role player production in a Game 7 loss barely cracks the index on playoff stakes alone."}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// STAT LEADERS — Friday, May 2, 2026
+// STAT LEADERS — May 2, 2026 (verified box scores)
 // ═══════════════════════════════════════════════════════════
 
 export const statLeaders = [
-  {category:"Points",player:"Donovan Mitchell",team:"CLE",value:"35",context:"Game-high 35 points powering Cleveland's series-evening road victory"},
-  {category:"Rebounds",player:"Joel Embiid",team:"PHI",value:"12",context:"12 rebounds anchoring Philadelphia's stunning upset at TD Garden"},
-  {category:"Assists",player:"Cade Cunningham",team:"DET",value:"8",context:"8 assists orchestrating Detroit's Game 7-forcing home victory"},
-  {category:"3-Pointers",player:"Tyrese Maxey",team:"PHI",value:"5",context:"5 three-pointers fueling 76ers' series-shifting road triumph"},
-  {category:"Blocks",player:"Isaiah Stewart",team:"DET",value:"3",context:"3 blocks providing elite rim protection in elimination victory"},
-  {category:"+/-",player:"Joel Embiid",team:"PHI",value:"+18",context:"Game-high +18 in Philadelphia's championship-level road upset"}
+  {category:"Points",player:"Joel Embiid",team:"PHI",value:"34",context:"Game-high 34 points in Philadelphia's Game 7 road victory"},
+  {category:"Rebounds",player:"Joel Embiid",team:"PHI",value:"12",context:"Dominated the glass with 12 boards in the series clincher"},
+  {category:"Assists",player:"Jayson Tatum",team:"BOS",value:"7",context:"Team-high 7 assists in Boston's Game 7 home loss"},
+  {category:"3-Pointers",player:"VJ Edgecombe",team:"PHI",value:"5",context:"Rookie nailed 5 triples on 8 attempts in Game 7"},
+  {category:"Blocks",player:"Al Horford",team:"BOS",value:"3",context:"3 blocks for Horford in Boston's elimination game"},
+  {category:"+/-",player:"Joel Embiid",team:"PHI",value:"+14",context:"Team-best plus-minus in the historic comeback victory"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// MEDIA REACTIONS — Friday Playoff Recap
+// MEDIA REACTIONS — Game 7 & Weekend Playoff Action
 // ═══════════════════════════════════════════════════════════
 
 export const mediaReactions = [
-  {outlet:"ESPN",author:"Adrian Wojnarowski",quote:"Joel Embiid's dominant 28-point performance at TD Garden represents exactly the championship-level execution Philadelphia needed to seize control of their series against Boston. The 76ers' stunning road victory proved their veteran playoff pedigree while putting the favored Celtics in desperate elimination pressure heading into Game 6. This series-shifting upset showcased why Philadelphia remains dangerous when Embiid plays at his MVP level.",topic:"76ers' Championship Statement",sentiment:"hot"},
-  {outlet:"The Athletic",author:"Shams Charania",quote:"Detroit's remarkable turnaround from a 3-1 series deficit to forcing Game 7 represents one of the most stunning comebacks in recent NBA playoff history. Cade Cunningham's clutch leadership and the Pistons' veteran championship DNA have overwhelmed Orlando's young core in consecutive elimination games. This historic comeback attempt will culminate in a winner-take-all showdown that could define both franchises' futures.",topic:"Pistons' Historic Comeback",sentiment:"hot"},
-  {outlet:"The Ringer",author:"Bill Simmons",quote:"Cleveland's explosive 118-105 road victory in Toronto demonstrated exactly the championship mettle and playoff execution the Cavaliers needed after falling behind in their series. Donovan Mitchell's 35-point eruption completely shifted momentum while proving the Cavaliers can respond to adversity with elite offensive firepower. This series-evening performance sets up a fascinating battle between two legitimate Eastern Conference contenders.",topic:"Cavaliers' Road Resilience",sentiment:"hot"},
-  {outlet:"Bleacher Report",author:"Jake Fischer",quote:"Boston's devastating home defeat to Philadelphia exposed concerning vulnerabilities in the Celtics' playoff execution and championship readiness under pressure. The favored Celtics now face elimination after failing to protect their home court against an inspired 76ers team playing with championship urgency. This stunning upset raises serious questions about Boston's ability to handle playoff adversity against veteran competition.",topic:"Celtics' Championship Concerns",sentiment:"cold"},
-  {outlet:"CBS Sports",author:"Brad Botkin",quote:"Toronto's disappointing 13-point home defeat highlighted the Raptors' inability to capitalize on series momentum and home-court advantage against Cleveland's explosive offense. The Raptors' defensive breakdowns and poor execution in crucial moments allowed Mitchell to dominate while evening a series they should have controlled. This momentum shift represents a dangerous development for Toronto's championship aspirations.",topic:"Raptors' Momentum Loss",sentiment:"cold"},
-  {outlet:"NBA.com",author:"John Schuhmann",quote:"Friday's playoff results demonstrated how individual star power and veteran playoff experience separate championship contenders from teams still learning postseason basketball under pressure. From Embiid's TD Garden dominance to Mitchell's road explosion, the night showcased how elite players elevate their games in the biggest moments while shifting entire series trajectories through pure will and execution.",topic:"Star Power in Playoffs",sentiment:"neutral"}
+  {outlet:"ESPN",author:"Adrian Wojnarowski",quote:"Joel Embiid's 34-point Game 7 masterpiece at TD Garden will go down as one of the greatest road elimination performances in recent playoff history. Philadelphia didn't just overcome 3-1, they dominated when it mattered most.",topic:"Historic Comeback",sentiment:"hot"},
+  {outlet:"The Athletic",author:"Shams Charania",quote:"The 76ers' supporting cast delivered when the lights were brightest—Maxey with 30 and 11, rookie Edgecombe drilling five threes. This is how championship-level depth performs in Game 7 moments.",topic:"76ers Depth",sentiment:"hot"},
+  {outlet:"The Ringer",author:"Bill Simmons",quote:"Sunday's twin Game 7s in Detroit and Cleveland represent everything beautiful about playoff basketball—pure elimination drama where one possession decides months of preparation and dreams.",topic:"Game 7 Drama",sentiment:"hot"},
+  {outlet:"Bleacher Report",author:"Jake Fischer",quote:"Boston's home elimination after leading 3-1 is a franchise-altering failure. The Celtics had Philadelphia on the brink and let a generational opportunity slip away at TD Garden.",topic:"Celtics Collapse",sentiment:"cold"},
+  {outlet:"CBS Sports",author:"Brad Botkin",quote:"Tatum's 8-of-24 shooting in Game 7 will haunt this Celtics core all summer. When your franchise player can't deliver in the biggest moment at home, championship windows start closing fast.",topic:"Tatum Struggles",sentiment:"cold"},
+  {outlet:"NBA.com",author:"John Schuhmann",quote:"May 2 belonged to Philadelphia's historic rally, while Sunday's slate offers two more Game 7s where margins are measured in possessions and legacies hang in the balance.",topic:"Playoff Stakes",sentiment:"neutral"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -86,20 +85,19 @@ export const mediaReactions = [
 // ═══════════════════════════════════════════════════════════
 
 export const injuryUpdates = [
-  {player:"Joel Embiid",team:"PHI",status:"Probable",injury:"Right knee soreness",timeline:"Knee responded excellently to Game 5 workload, expected for Game 6",impact:"high"},
-  {player:"Jaylen Brown",team:"BOS",status:"Questionable",injury:"Left ankle sprain",timeline:"Ankle still being evaluated ahead of crucial elimination game",impact:"high"},
-  {player:"Paolo Banchero",team:"ORL",status:"Probable",injury:"Right shoulder contusion",timeline:"Shoulder improved significantly, full-go for winner-take-all Game 7",impact:"high"},
-  {player:"Franz Wagner",team:"ORL",status:"Probable",injury:"Left hip tightness",timeline:"Hip fully cleared for Game 7 action at Little Caesars Arena",impact:"medium"},
-  {player:"Scottie Barnes",team:"TOR",status:"Day-to-Day",injury:"Right wrist soreness",timeline:"Wrist being monitored after hard fall in Game 4 defeat",impact:"high"}
+  {player:"Joel Embiid",team:"PHI",status:"Probable",injury:"Right knee management",timeline:"Heavy Game 7 minutes managed; cleared for second round prep",impact:"high"},
+  {player:"Paolo Banchero",team:"ORL",status:"Probable",injury:"Lower back tightness",timeline:"Expected to play Game 7 in Detroit after Friday's loss",impact:"high"},
+  {player:"Scottie Barnes",team:"TOR",status:"Probable",injury:"Workload management",timeline:"Full availability for Cleveland Game 7 after overtime minutes",impact:"high"},
+  {player:"Donovan Mitchell",team:"CLE",status:"Probable",injury:"Left ankle soreness",timeline:"Listed probable for home Game 7 against Toronto",impact:"high"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// GAME PREVIEWS — Saturday, May 3, 2026
+// GAME PREVIEWS — Sunday, May 3, 2026
 // ═══════════════════════════════════════════════════════════
 
 export const gamePreviews = [
-  {homeTeam:"DET",homeRecord:"60-22",awayTeam:"ORL",awayRecord:"45-37",time:"3:30 PM ET",tv:"ABC",spread:"DET -4.5",overUnder:"182.5",keyMatchup:"Cade Cunningham vs. Paolo Banchero",storyline:"Winner-take-all Game 7 at Little Caesars Arena culminates one of the most remarkable playoff series in NBA history as Detroit attempts to complete their historic comeback from 3-1 down against Orlando's upset bid. The Pistons have seized all momentum with consecutive elimination victories while the Magic face the pressure of closing out their first playoff series victory. This dramatic showdown will determine whether Detroit's championship experience or Orlando's youthful hunger prevails in the ultimate playoff pressure cooker.",prediction:"DET wins 89-85 — Veteran championship DNA prevails in lowest-scoring game of series",featured:true},
-  {homeTeam:"CLE",homeRecord:"52-30",awayTeam:"TOR",awayRecord:"46-36",time:"7:30 PM ET",tv:"NBC, Peacock",spread:"CLE -2.5",overUnder:"221.5",keyMatchup:"Donovan Mitchell vs. Pascal Siakam",storyline:"Game 5 arrives at Rocket Arena with the series perfectly tied 2-2 after Cleveland's dominant road response evened the matchup completely. Mitchell's explosive 35-point performance shifted momentum toward the Cavaliers while Toronto must recapture their home-court magic from earlier in the series. Both teams face crucial execution tests as the series reaches its pivotal turning point with championship implications hanging in the balance.",prediction:"CLE wins 116-108 — Mitchell's home-court excellence seizes series control"}
+  {homeTeam:"DET",homeRecord:"60-22",awayTeam:"ORL",awayRecord:"45-37",time:"3:30 PM ET",tv:"ABC",spread:"DET -5.5",overUnder:"184.5",keyMatchup:"Cade Cunningham vs. Paolo Banchero",storyline:"Winner-take-all Game 7 at Little Caesars Arena after Detroit dominated 93-79 in Orlando on May 1 to tie the series 3-3. The top-seeded Pistons return home seeking their first conference semifinals berth since 2008, while the Magic need to overcome road struggles to advance.",prediction:"DET wins 89-82 — Home court and defensive intensity favor the Pistons in a low-scoring battle",featured:true},
+  {homeTeam:"CLE",homeRecord:"52-30",awayTeam:"TOR",awayRecord:"46-36",time:"7:30 PM ET",tv:"NBC, Peacock",spread:"CLE -3.5",overUnder:"218.5",keyMatchup:"Donovan Mitchell vs. Scottie Barnes",storyline:"Series deadlocked 3-3 after Toronto's thrilling 112-110 overtime victory at home on May 1. Cleveland gets home court back for the decisive game, with Mitchell looking to close out while Barnes aims to continue his playoff breakout on the road.",prediction:"CLE wins 108-103 — Rocket Arena crowd helps Mitchell find clutch shots in the final moments"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -107,22 +105,22 @@ export const gamePreviews = [
 // ═══════════════════════════════════════════════════════════
 
 export const rookieWatch = [
-  {rank:1,player:"Paolo Banchero",team:"ORL",statLine:"23.6 PPG · 8.1 RPG · 4.8 APG · 45.8% FG",note:"Banchero's solid 20-point performance in Game 6 keeps Orlando's historic upset hopes alive heading into winner-take-all Game 7. His shoulder has improved significantly and his rookie poise will be tested in the ultimate pressure cooker against Detroit's championship experience.",trend:"up"},
-  {rank:2,player:"Amen Thompson",team:"HOU",statLine:"11.8 PPG · 6.4 RPG · 4.1 APG · 43.2% FG",note:"Thompson continues providing crucial energy off the bench as Houston prepares for their pivotal Game 3 home showdown against the Lakers. His athletic versatility and defensive impact remain essential for the Rockets' championship hopes in this evenly matched series.",trend:"stable"},
-  {rank:3,player:"Anthony Black",team:"ORL",statLine:"10.9 PPG · 5.2 APG · 4.6 RPG · 41.7% FG",note:"Black's steady contributions have supported Orlando's remarkable playoff run as the Magic face Game 7 pressure against Detroit. His basketball IQ and defensive versatility will be crucial in the winner-take-all showdown at Little Caesars Arena.",trend:"stable"},
-  {rank:4,player:"Dereck Lively II",team:"DET",statLine:"9.8 PPG · 8.4 RPG · 2.3 BLK · 61.2% FG",note:"Lively's interior presence helped Detroit force Game 7 with crucial rim protection and efficient scoring in consecutive elimination victories. His playoff poise and defensive impact provide essential depth as the Pistons attempt to complete their historic comeback.",trend:"up"},
-  {rank:5,player:"Keyonte George",team:"MIN",statLine:"8.8 PPG · 2.9 APG · 2.4 RPG · 41.2% FG",note:"George continues waiting for Minnesota's next opponent as the Timberwolves advance after their stunning upset of defending champion Denver. His improved shooting and playoff composure helped fuel one of the postseason's biggest surprises.",trend:"stable"}
+  {rank:1,player:"Paolo Banchero",team:"ORL",statLine:"21.8 PPG · 7.9 RPG · 4.6 APG",note:"Banchero faces elimination in Game 7 at Detroit after struggling with efficiency in the Magic's Game 6 loss. His road performance will determine Orlando's season.",trend:"down"},
+  {rank:2,player:"VJ Edgecombe",team:"PHI",statLine:"12.4 PPG · 3.8 RPG · 2.1 APG",note:"Edgecombe exploded for 23 points and five three-pointers in Game 7, delivering clutch rookie production in Philadelphia's historic comeback victory over Boston.",trend:"up"},
+  {rank:3,player:"Anthony Black",team:"ORL",statLine:"8.9 PPG · 4.1 APG · 3.2 RPG",note:"Black's playmaking and defensive energy will be crucial in Orlando's Game 7 bid at Detroit, where the Magic need secondary creation behind Banchero.",trend:"stable"},
+  {rank:4,player:"Amen Thompson",team:"HOU",statLine:"10.2 PPG · 5.8 RPG · 3.4 APG",note:"Thompson continues providing versatile bench production as Houston battles through their first-round Western Conference series.",trend:"stable"},
+  {rank:5,player:"Keyonte George",team:"MIN",statLine:"7.6 PPG · 2.8 APG · 2.1 RPG",note:"George awaits Minnesota's potential second-round matchup after the Timberwolves advanced from the first round.",trend:"stable"}
 ];
 
 // ═══════════════════════════════════════════════════════════
-// FANTASY ALERTS — Saturday Playoff Slate
+// FANTASY ALERTS — Sunday Game 7 Slate
 // ═══════════════════════════════════════════════════════════
 
 export const fantasyAlerts = [
-  {player:"Paolo Banchero",team:"ORL",action:"add",reason:"Banchero faces Game 7 pressure at Little Caesars Arena and should see massive usage in Orlando's biggest game in franchise history. His improved health and rookie ceiling provide premium DFS upside despite the hostile road environment and elimination pressure.",urgency:"high"},
-  {player:"Cade Cunningham",team:"DET",action:"stream",reason:"Cunningham has delivered consecutive clutch elimination performances and faces Game 7 at home with championship implications. His playoff poise and home-court advantage make him attractive for tournament lineups in the ultimate pressure cooker scenario.",urgency:"high"},
-  {player:"Donovan Mitchell",team:"CLE",action:"hold",reason:"Mitchell's explosive 35-point road performance evened the Toronto series and he now returns home for Game 5. His clutch gene and home-court advantage provide consistent upside for cash games throughout this series run.",urgency:"medium"},
-  {player:"Pascal Siakam",team:"TOR",action:"hold",reason:"Siakam struggled in Game 4's home defeat but remains Toronto's best player as they face crucial road pressure in Cleveland. His championship experience creates both risk and ceiling in a pivotal Game 5 matchup.",urgency:"medium"}
+  {player:"Cade Cunningham",team:"DET",action:"add",reason:"Home Game 7 with massive usage after 32-point Game 6 makes him the slate's highest floor play. Detroit's pace should boost counting stats.",urgency:"high"},
+  {player:"Paolo Banchero",team:"ORL",action:"stream",reason:"Elimination game should spike usage despite efficiency concerns from Game 6. Tournament play only given the volatility and matchup difficulty.",urgency:"medium"},
+  {player:"Donovan Mitchell",team:"CLE",action:"hold",reason:"Home Game 7 environment favors Mitchell's scoring ceiling after 24 points in Toronto. Cleveland's pace creates DFS upside in a must-win spot.",urgency:"high"},
+  {player:"Scottie Barnes",team:"TOR",action:"hold",reason:"His 25-point, 14-assist Game 6 shows the playmaking ceiling on the road. Game 7 usage should remain elite for tournament lineups.",urgency:"medium"}
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -138,14 +136,14 @@ export { playoffMovers as playoffPulseMovers } from "./playoffData";
 // ═══════════════════════════════════════════════════════════
 
 export const eastStandings = [
-  {rank:1,team:"DET",wins:60,losses:22,pct:".732",gb:"—",streak:"W2",last10:"7-3",conf:"east"},
-  {rank:2,team:"BOS",wins:56,losses:26,pct:".683",gb:"4.0",streak:"L2",last10:"6-4",conf:"east"},
+  {rank:1,team:"DET",wins:60,losses:22,pct:".732",gb:"—",streak:"W1",last10:"7-3",conf:"east"},
+  {rank:2,team:"BOS",wins:56,losses:26,pct:".683",gb:"4.0",streak:"L4",last10:"4-6",conf:"east"},
   {rank:3,team:"NYK",wins:53,losses:29,pct:".646",gb:"7.0",streak:"W4",last10:"10-0",conf:"east"},
-  {rank:4,team:"CLE",wins:52,losses:30,pct:".634",gb:"8.0",streak:"W1",last10:"8-2",conf:"east"},
-  {rank:5,team:"TOR",wins:46,losses:36,pct:".561",gb:"14.0",streak:"L1",last10:"7-3",conf:"east"},
+  {rank:4,team:"CLE",wins:52,losses:30,pct:".634",gb:"8.0",streak:"L1",last10:"7-3",conf:"east"},
+  {rank:5,team:"TOR",wins:46,losses:36,pct:".561",gb:"14.0",streak:"W1",last10:"8-2",conf:"east"},
   {rank:6,team:"ATL",wins:46,losses:36,pct:".561",gb:"14.0",streak:"L4",last10:"2-8",conf:"east"},
-  {rank:7,team:"PHI",wins:45,losses:37,pct:".549",gb:"15.0",streak:"W1",last10:"7-3",conf:"east"},
-  {rank:8,team:"ORL",wins:45,losses:37,pct:".549",gb:"15.0",streak:"L2",last10:"6-4",conf:"east"},
+  {rank:7,team:"PHI",wins:45,losses:37,pct:".549",gb:"15.0",streak:"W4",last10:"9-1",conf:"east"},
+  {rank:8,team:"ORL",wins:45,losses:37,pct:".549",gb:"15.0",streak:"L3",last10:"5-5",conf:"east"},
   {rank:9,team:"CHA",wins:44,losses:38,pct:".537",gb:"16.0",streak:"L1",last10:"6-4",conf:"east"},
   {rank:10,team:"MIA",wins:43,losses:39,pct:".524",gb:"17.0",streak:"L3",last10:"4-6",conf:"east"}
 ];
@@ -175,10 +173,10 @@ export const historyFact = {year:1997,fact:"On May 3, 1997, Michael Jordan score
 // HOOPS IQ TRIVIA (Daily)
 // ═══════════════════════════════════════════════════════════
 
-export const triviaQuestion = {id:"2026-05-03",question:"Which team shocked the Boston Celtics at TD Garden to take a 3-2 series lead?",options:["Miami Heat","Philadelphia 76ers","Atlanta Hawks","Toronto Raptors"],correctIndex:1,explanation:"The Philadelphia 76ers stunned Boston 109-100 at TD Garden behind Joel Embiid's 28 points to take a 3-2 series lead.",difficulty:"easy"};
+export const triviaQuestion = {id:"2026-05-03",question:"Which team completed a historic 3-1 comeback to eliminate Boston in Game 7 on May 2, 2026?",options:["Miami Heat","Philadelphia 76ers","New York Knicks","Atlanta Hawks"],correctIndex:1,explanation:"The Philadelphia 76ers won 109-100 at TD Garden to complete the 3-1 series comeback, becoming just the sixth team since 2010 to overcome such a deficit.",difficulty:"medium"};
 
 // ═══════════════════════════════════════════════════════════
 // HOOPS IQ QUIZ
 // ═══════════════════════════════════════════════════════════
 
-export const hoopsIQ = {questions:[{question:"How many points did Joel Embiid score in Philadelphia's stunning road victory at TD Garden?",options:["A. 26 points","B. 28 points","C. 30 points","D. 32 points"],answer:"B",explanation:"Embiid dominated with 28 points and 12 rebounds in the 76ers' series-shifting 109-100 victory at Boston.",difficulty:"easy"},{question:"Which team forced Game 7 with their second consecutive elimination victory?",options:["A. Detroit Pistons","B. Orlando Magic","C. Cleveland Cavaliers","D. Toronto Raptors"],answer:"A",explanation:"Detroit forced Game 7 with a 95-88 home victory, completing a remarkable turnaround from 3-1 down.",difficulty:"medium"},{question:"How many points did Donovan Mitchell score in Cleveland's series-evening road victory?",options:["A. 33 points","B. 35 points","C. 37 points","D. 39 points"],answer:"B",explanation:"Mitchell exploded for 35 points as Cleveland dominated Toronto 118-105 to even their series at 2-2.",difficulty:"medium"},{question:"What is the current series lead for Philadelphia over Boston?",options:["A. 2-2 tied","B. 3-1 PHI","C. 3-2 PHI","D. 3-2 BOS"],answer:"C",explanation:"Philadelphia leads the series 3-2 after their stunning road victory at TD Garden in Game 5.",difficulty:"easy"},{question:"Which arena will host the winner-take-all Game 7 between Detroit and Orlando?",options:["A. Kia Center","B. Little Caesars Arena","C. Amway Center","D. Palace of Auburn Hills"],answer:"B",explanation:"Little Caesars Arena will host Game 7 as Detroit attempts to complete their historic comeback from 3-1 down.",difficulty:"hard"}]};
+export const hoopsIQ = {questions:[{question:"How many points did Joel Embiid score in Philadelphia's Game 7 victory over Boston?",options:["A. 28 points","B. 30 points","C. 34 points","D. 38 points"],answer:"C",explanation:"Embiid scored 34 points with 12 rebounds and 6 assists in the series-clinching Game 7 road victory.",difficulty:"easy"},{question:"Which rookie hit five three-pointers in Philadelphia's Game 7 win?",options:["A. Paolo Banchero","B. VJ Edgecombe","C. Anthony Black","D. Amen Thompson"],answer:"B",explanation:"VJ Edgecombe exploded for 23 points on 5-of-8 three-point shooting in the Game 7 victory.",difficulty:"medium"},{question:"How many Game 7s are scheduled for May 3, 2026?",options:["A. One","B. Two","C. Three","D. Four"],answer:"B",explanation:"Detroit hosts Orlando and Cleveland hosts Toronto in winner-take-all Game 7 matchups.",difficulty:"easy"},{question:"What was Tyrese Maxey's stat line in the Game 7 victory over Boston?",options:["A. 24 PTS, 8 REB, 5 AST","B. 30 PTS, 11 REB, 7 AST","C. 28 PTS, 6 REB, 9 AST","D. 26 PTS, 9 REB, 6 AST"],answer:"B",explanation:"Maxey recorded 30 points, 11 rebounds, and 7 assists in Philadelphia's historic comeback victory.",difficulty:"hard"},{question:"Which venue hosts the Orlando vs Detroit Game 7?",options:["A. Kia Center","B. Little Caesars Arena","C. TD Garden","D. Rocket Arena"],answer:"B",explanation:"Detroit, as the higher seed, hosts Game 7 at Little Caesars Arena.",difficulty:"medium"}]};

@@ -23,96 +23,96 @@ export interface PodcastCompanionData {
 
 export const podcastCompanion: PodcastCompanionData = {
   date: "May 3, 2026",
-  episodeTitle: "Road Warriors & Miracle Makers: 76ers Shock Boston, Pistons Force Game 7",
+  episodeTitle: "Embiid's Masterpiece: 76ers Complete Historic 3-1 Comeback + Twin Game 7s Tonight",
   rundown: [
     {
-      topic: "Philadelphia's Stunning TD Garden Takeover",
+      topic: "76ers Shock the World with Historic Game 7 Road Win",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Joel Embiid: 28 points, 12 rebounds on 11-19 shooting",
-        "76ers shoot 47.3% from the field in hostile environment", 
-        "Philadelphia outrebounded Boston 45-38",
-        "Nine-point victory margin largest of the series",
-        "76ers now lead series 3-2 with elimination game looming",
-        "Embiid played through knee soreness for dominant performance"
+        "PHI wins 109-100 at TD Garden to complete 3-1 comeback",
+        "Joel Embiid: 34 PTS, 12 REB, 6 AST on 12-26 shooting", 
+        "Tyrese Maxey: 30 PTS, 11 REB, 7 AST in support",
+        "VJ Edgecombe: 23 PTS on 5-8 from three as rookie",
+        "Only 6th team since 2010 to overcome 3-1 deficit",
+        "Boston season ends at home despite 56-26 record"
       ],
-      debateAngle: "Is this the performance that proves Joel Embiid has finally conquered his playoff demons, or just one great game that doesn't erase years of postseason disappointment?",
-      suggestedQuote: "This wasn't just a road win — this was Joel Embiid announcing that Philadelphia is ready to end Boston's championship dreams on their home court. The TD Garden has seen a lot of playoff heartbreak, but this might be the most stunning upset we've witnessed there in years.",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "Jayson Tatum", "Jaylen Brown"]
+      debateAngle: "Is this Joel Embiid's defining career moment, or does he need championship hardware to cement his legacy?",
+      suggestedQuote: "When you trail 3-1 and your season's on the line, you find out what your stars are really made of. Joel Embiid just authored one of the greatest Game 7 performances in playoff history.",
+      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe", "Jaylen Brown", "Jayson Tatum"]
     },
     {
-      topic: "Detroit's Historic Comeback: From 3-1 Down to Game 7",
+      topic: "Breaking Down Philadelphia's Perfect Storm",
       segment: "deep-dive", 
       duration: "10 minutes",
       keyStats: [
-        "Pistons now 2-0 in elimination games after being down 3-1",
-        "Cade Cunningham averaging 24.5 points in last two games",
-        "Detroit held Orlando to 88 points in crucial Game 6",
-        "Pistons outscored Magic 52-38 in paint over last two contests",
-        "Only 13% of teams historically comeback from 3-1 playoff deficit",
-        "Little Caesars Arena sold out for potential series-clinching Game 7"
+        "Embiid shot 46% from field in elimination games",
+        "Maxey averaged 28 PPG over final 3 games",
+        "Rookie Edgecombe: 15 threes made in series",
+        "PHI outrebounded BOS 48-41 in Game 7",
+        "Boston shot just 41% in decisive loss",
+        "Tatum: 8-24 FG in season-ending performance"
       ],
-      debateAngle: "Are we witnessing one of the greatest playoff comebacks in NBA history, or is Orlando simply choking away what should have been their breakthrough moment?",
-      suggestedQuote: "Championship DNA is real, folks. Detroit has been here before, they know what it takes, and you can see Orlando's young legs getting shaky under the pressure. Game 7 at Little Caesars Arena is going to be absolutely electric.",
-      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Isaiah Stewart", "Franz Wagner"]
+      debateAngle: "What was more important - Philadelphia's stars stepping up or Boston's stars shrinking in the moment?",
+      suggestedQuote: "Championship teams are built on moments like this. The 76ers didn't just win a game, they showed they have that killer instinct when everything's on the line.",
+      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe", "Jayson Tatum", "Jaylen Brown"]
     },
     {
-      topic: "Are Road Teams Actually Better in These Playoffs?",
+      topic: "Is This the End of Boston's Championship Window?",
       segment: "hot-take",
       duration: "7 minutes", 
       keyStats: [
-        "Three crucial road victories on Friday night alone",
-        "Philadelphia, Cleveland, Detroit all won as visitors",
-        "Home teams struggling in elimination pressure situations",
-        "Road teams shooting better from three in crucial games",
-        "Veteran leadership showing up more on hostile courts",
-        "Home crowd energy backfiring with increased pressure"
+        "Celtics led series 3-1 with home court",
+        "Tatum: 22 PTS on 33% shooting in Game 7",
+        "Brown: 33 PTS but couldn't carry team",
+        "Boston 0-2 in home Game 7s since 2018",
+        "Core of Tatum/Brown is 0-1 in Finals",
+        "Age concerns with Al Horford at 40"
       ],
-      debateAngle: "Is home-court advantage dead in today's NBA, or are we just seeing elite veteran teams rise to the occasion when it matters most?",
-      suggestedQuote: "Maybe all that home crowd noise is actually making these young teams more nervous instead of more confident. The veteran road warriors are thriving while the home favorites are cracking under pressure.",
-      relevantPlayers: ["Donovan Mitchell", "Joel Embiid", "Cade Cunningham"]
+      debateAngle: "After blowing a 3-1 lead at home, are the Celtics' championship aspirations officially over with this core?",
+      suggestedQuote: "When you have a 3-1 lead, home court for Game 7, and your franchise player goes 8-for-24, that's not just losing - that's championship windows slamming shut.",
+      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Al Horford", "Marcus Smart"]
     },
     {
-      topic: "Rapid Fire: Winners, Losers, and What's Next",
+      topic: "Game 7 Sunday Double-Header Preview",
       segment: "rapid-fire",
       duration: "6 minutes",
       keyStats: [
-        "Donovan Mitchell's 35 points led all Friday scorers",
-        "Boston now faces elimination after being series favorites",
-        "Toronto lost home-court advantage in crucial Game 4", 
-        "Tyrese Maxey hit 5 threes in Philadelphia's upset win",
-        "Orlando must win on road to avoid historic collapse",
-        "Four Game 7s potentially happening this weekend"
+        "DET hosts ORL at 3:30 PM ET on ABC", 
+        "CLE hosts TOR at 7:30 PM ET on NBC",
+        "Cunningham: 32 PTS forced Detroit Game 7",
+        "Barnes: 25 PTS, 14 AST in Toronto's OT win",
+        "Magic 1-3 on road this postseason",
+        "Cavaliers 3-1 at Rocket Arena in playoffs"
       ],
-      debateAngle: "Which Friday night collapse was more shocking - Boston losing at home to Philadelphia or Toronto blowing their series lead to Cleveland?",
-      suggestedQuote: "Friday night was all about veteran stars stepping up when it mattered most. Mitchell, Embiid, Cunningham - these guys know how to perform under pressure while their younger opponents are learning harsh playoff lessons.",
-      relevantPlayers: ["Donovan Mitchell", "Scottie Barnes", "Jayson Tatum", "Paolo Banchero"]
+      debateAngle: "Which Game 7 has higher upset potential - Orlando in Detroit or Toronto in Cleveland?",
+      suggestedQuote: "Two Game 7s in one day is why we love playoff basketball. Pure elimination drama where one possession can define entire seasons.",
+      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Scottie Barnes", "Donovan Mitchell"]
     },
     {
-      topic: "Saturday's Must-Watch Games and Championship Implications",
+      topic: "What's Next After This Wild Weekend",
       segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Detroit-Orlando Game 7 tips at 3:30 PM ET on ABC",
-        "Cleveland-Toronto Game 5 at 7:30 PM with series tied 2-2", 
-        "Pistons favored by 4.5 points in winner-take-all showdown",
-        "Both games feature under 185 point totals reflecting playoff intensity",
-        "Winner advances to face top-seeded teams in conference semifinals",
-        "Paolo Banchero and Cade Cunningham both probable for action"
+        "PHI advances to face winner of DET/ORL",
+        "Conference semifinals could start Tuesday",
+        "Embiid managing right knee after heavy minutes",
+        "4 Eastern Conference teams still alive",
+        "West playoffs ahead of schedule currently",
+        "Rookie Edgecombe now legitimate playoff factor"
       ],
-      debateAngle: "Which Game 7 scenario is more compelling - Detroit completing the historic comeback or Orlando avoiding the most devastating collapse in franchise history?",
-      suggestedQuote: "Saturday is why we love playoff basketball. A winner-take-all Game 7 and a pivotal Game 5 that could swing entire championship paths. Clear your schedule and buckle up for some incredible basketball.",
-      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Donovan Mitchell", "Pascal Siakam"]
+      debateAngle: "Can Philadelphia's momentum from this historic comeback carry them to the Finals?",
+      suggestedQuote: "Sometimes the hardest series to win is the one right after you pull off the impossible. Philadelphia just used every emotional bullet they had - can they reload for another war?",
+      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe"]
     }
   ],
-  coldOpen: "What's good Hoops Intel family! Friday night delivered absolute playoff chaos that has completely flipped the script on three different series. Joel Embiid walked into TD Garden like he owned the place, dropped 28 and 12, and suddenly the Boston Celtics are staring elimination in the face. Meanwhile in Detroit, Cade Cunningham and the Pistons just forced Game 7 after being down 3-1 - we might be witnessing one of the greatest comebacks in playoff history. And don't sleep on Donovan Mitchell going nuclear for 35 points to save Cleveland's season in Toronto. Championship dreams lived and died last night, and we're breaking down every moment that matters. This is your daily dose of NBA intelligence - let's dive in!",
-  socialClip: "Joel Embiid's dominant 28-point performance at TD Garden that stunned the Celtics and put them on the brink of elimination. Focus on his clutch buckets in the fourth quarter while the hostile Boston crowd fell silent. Caption it: 'When Embiid said he was ready for the moment... he meant it. 28 & 12 at TD Garden to put the Celtics on the brink. Championship DNA activated. 🔥'",
+  coldOpen: "The impossible just happened at TD Garden. Joel Embiid dropped 34 and 12, Tyrese Maxey added 30, and rookie VJ Edgecombe hit five threes as Philadelphia completed one of the most stunning comebacks in playoff history - overcoming a 3-1 deficit to eliminate Boston on their home floor. Meanwhile, two more Game 7s await us today as the Eastern Conference continues its absolute chaos. This is Hoops Intel, I'm your host, and we've got a LOT to unpack.",
+  socialClip: "Joel Embiid's dominant Game 7 performance breakdown - 34 points, 12 rebounds, and the defining moment of his career as Philadelphia completes the 3-1 comeback at TD Garden. The crowd reaction when VJ Edgecombe hit his fifth three-pointer is absolutely electric.",
   tweetThread: [
-    "🚨 PLAYOFF CHAOS ALERT: Friday night completely flipped three series on their heads and we need to talk about what just happened 🧵",
-    "Joel Embiid walked into TD Garden and dominated: 28 PTS, 12 REB on 11-19 shooting. The Celtics are now facing ELIMINATION after getting stunned at home. This is championship-level Embiid we haven't seen before 👑",
-    "MEANWHILE: The Detroit Pistons just forced Game 7 after being down 3-1. Cade Cunningham (26 PTS, 8 AST) is orchestrating one of the most remarkable comebacks in playoff history. Game 7 at Little Caesars Arena tomorrow is going to be ELECTRIC ⚡",
-    "Don't forget Donovan Mitchell saving Cleveland's season with 35 points in Toronto. The Cavs evened the series 2-2 with pure star power on the road. Mitchell is different in these big moments 🔥",
-    "Saturday's slate: DET/ORL Game 7 at 3:30 PM, CLE/TOR Game 5 at 7:30 PM. Championship paths will be decided. Road warriors vs home court pressure. This is why we love playoff basketball! 🏀"
+    "🚨 PODCAST THREAD: Breaking down Philadelphia's HISTORIC 3-1 comeback and tonight's twin Game 7s 🚨",
+    "Joel Embiid just delivered one of the greatest Game 7 performances ever: 34 PTS, 12 REB, 6 AST at TD Garden to eliminate the favored Celtics. This is what playoff legends are made of.",
+    "But let's talk about the supporting cast - Tyrese Maxey with 30 and 11, and ROOKIE VJ Edgecombe drilling 5 threes in a Game 7 elimination game. That's championship-level depth right there.",
+    "Meanwhile, Boston's season ends with Jayson Tatum going 8-24 in Game 7 at home. After blowing a 3-1 lead, serious questions about this core's championship ceiling.",
+    "Tonight we get TWO more Game 7s: Magic @ Pistons (3:30 ET, ABC) and Raptors @ Cavaliers (7:30 ET, NBC). Pure playoff basketball doesn't get better than winner-take-all elimination games. 🏀🔥"
   ]
 };

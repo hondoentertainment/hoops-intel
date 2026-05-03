@@ -29,7 +29,7 @@ Computed at runtime from **`playoffSeries`**:
 
 ## Recommended ongoing process
 
-1. **Daily (aligned with edition):** run full pipeline or at least **`npm run playoff:refresh`** (fetch + sync TS + drift check). Equivalent is already **`generate-all-daily.mjs` preflight** for series sync before AI scripts.
+1. **Daily (aligned with edition):** run full pipeline or at least **`npm run playoff:sync`**, then **`npm run test:drift`** (or rely on **`generate-all-daily.mjs` preflight**, which syncs series before AI scripts).
 2. **After bracket / round changes:** rerun **`npm run playoff:intel`** so **`seriesIntel`** keys match new **`seriesId`** values from ESPN.
 3. **Editorial touches:** rotate **`playoffMovers`** to match Pulse; adjust **`pulseData.ts`** postseason context when the calendar phase changes.
 4. **Before merge / deploy:** **`npm run test:drift`** and **`npm run test:unit`** (includes `playoffAnalytics` tests).

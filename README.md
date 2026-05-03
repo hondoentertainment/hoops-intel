@@ -83,14 +83,19 @@ Detailed tree and quirks: [`CLAUDE.md`](./CLAUDE.md).
 
 ## Local development
 
+Requires **Node.js 24.x** (see `engines` in `package.json`).
+
 ```bash
 npm install
 npm run dev          # http://localhost:5173
 npm run build
-npx vitest run
+npm run test:unit    # Vitest
+npm run test:ci      # same blocking steps as GitHub Actions (install + validators + build)
 ```
 
-Pipeline scripts (`scripts/generate-*.mjs`, etc.) need **`ANTHROPIC_API_KEY`** in `.env` at repo root — see **`scripts/load-local-env.mjs`** and **`CLAUDE.md`**.
+**Lighter local check:** `npm run test` runs content validation plus assembly scripts (narrower than `test:ci`).
+
+Pipeline scripts (`scripts/generate-*.mjs`, etc.) need **`ANTHROPIC_API_KEY`** in `.env` at repo root — see **`scripts/load-local-env.mjs`** and **`CLAUDE.md`**. For playoff series intel (`npm run playoff:intel`, `scripts/generate-series-intel.mjs`), you can optionally set **`SERIES_INTEL_MAX_TOKENS`** (256–4096, default 1200) to tune Claude cost/latency.
 
 ---
 
@@ -100,7 +105,7 @@ Configure these on **Vercel** (Production + Preview where applicable) and/or **G
 
 | Scope | Variables |
 |-------|-----------|
-| **AI pipeline** | `ANTHROPIC_API_KEY` |
+| **AI pipeline** | `ANTHROPIC_API_KEY`; optional **`SERIES_INTEL_MAX_TOKENS`** for `playoff:intel` / `scripts/generate-series-intel.mjs` |
 | **Stripe / Pro** | `STRIPE_SECRET_KEY`, **`STRIPE_PRICE_MONTHLY`**, **`STRIPE_PRICE_ANNUAL`** (Dashboard → Products → Price IDs, e.g. `price_...`), `STRIPE_WEBHOOK_SECRET`, `APP_BASE_URL` (canonical site URL); webhook signing secret mirrors [`api/stripe-webhook.ts`](./api/stripe-webhook.ts). |
 | **Supabase** | `SUPABASE_URL`, `SUPABASE_ANON_KEY` (prefixed **`VITE_`** when exposed to browser), `SUPABASE_SERVICE_KEY` (server/GitHub Actions only). |
 | **Web Push** | `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`, **`VITE_VAPID_PUBLIC_KEY`** (browser push subscribe; must match the public key), `PUSH_API_SECRET`, callers use `PUSH_API_URL` + secret in workflows. |
@@ -120,7 +125,7 @@ Copy [`.env.example`](./.env.example) when wiring **Vercel** (Production + Previ
 | Production branch | Vercel → Project → Settings → Git → Production Branch = **`main`** |
 | Build | Defaults read `vercel.json`: `npm ci` + `npm run build` → static **`dist`** + `api/` serverless |
 | Preview deploys | Open PRs automatically get Preview URLs when Git integration is enabled |
-| CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml): Vitest, drift guard, generator resolution, archive validation, production build |
+| CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml); local parity is **`npm run test:ci`** (see `test:ci:tasks` in `package.json`) |
 | Dependabot | [`.github/dependabot.yml`](./.github/dependabot.yml) opens weekly grouped npm / Actions updates |
 
 ---

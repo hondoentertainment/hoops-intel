@@ -174,7 +174,14 @@ export default function Pro() {
               </a>
             </div>
             {portalError ? (
-              <p className="text-sm mt-3 text-rose-400" role="alert">{portalError}</p>
+              portalError.includes("not configured") || portalError.includes("STRIPE_") ? (
+                <p className="text-sm mt-3 text-amber-200" role="alert">
+                  {portalError} See README environment variables or{" "}
+                  <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
+                </p>
+              ) : (
+                <p className="text-sm mt-3 text-rose-400" role="alert">{portalError}</p>
+              )
             ) : null}
           </div>
         ) : (
@@ -198,7 +205,16 @@ export default function Pro() {
                 disabled={checkoutLoading !== null}
               />
             </div>
-            {error && (
+            {error.includes("not configured") || error.includes("STRIPE_") ? (
+              <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "rgba(253,224,71,0.95)" }}>
+                <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
+                <p className="text-sm opacity-90">{error}</p>
+                <p className="text-xs opacity-80">
+                  Production needs Stripe keys and price IDs (see repo README — Environment variables). Questions:{" "}
+                  <a href="mailto:hello@hoopsintel.net" className="underline text-amber-100">hello@hoopsintel.net</a>
+                </p>
+              </div>
+            ) : (
               <div className="rounded-lg p-4 mb-10 text-sm" style={{ background: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.2)", color: "rgba(244,63,94,0.9)" }}>
                 {error}
               </div>

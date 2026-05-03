@@ -151,7 +151,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
   if (!vapidConfigured()) {
     return (
       <div
-        className="rounded-xl p-6 mb-6"
+        id="browser-push"
+        className="rounded-xl p-6 mb-6 scroll-mt-24"
         style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
@@ -160,7 +161,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
           Web push is not configured in this build (set{" "}
           <code className="text-sky-400/90">VITE_VAPID_PUBLIC_KEY</code> to match server{" "}
-          <code className="text-sky-400/90">VAPID_PUBLIC_KEY</code>). Email digest in the header bell still works.
+          <code className="text-sky-400/90">VAPID_PUBLIC_KEY</code>). When enabled, alerts require HTTPS and browser
+          permission. Email digest in the header bell still works.
         </p>
       </div>
     );
@@ -168,18 +170,23 @@ function AccountPushAlerts({ userId }: { userId: string }) {
 
   return (
     <div
-      className="rounded-xl p-6 mb-6"
+      id="browser-push"
+      className="rounded-xl p-6 mb-6 scroll-mt-24"
       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
         BROWSER PUSH (PLAYOFFS)
       </div>
       <p className="text-sm mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-        Opt in to{" "}
-        <strong className="text-white/70 font-medium">urgency-tier</strong> topics (elimination / clinchers). Volume stays
-        capped.&nbsp;
-        Team targeting uses your first My Pulse favorite when present. Maintainer checklist:{" "}
-        <code className="text-sky-400/90 text-xs">references/push-notifications.md</code> in the repo.
+        Works on <strong className="text-white/70 font-medium">HTTPS</strong> only; your browser must allow notifications
+        for this site. Opt in to{" "}
+        <strong className="text-white/70 font-medium">urgency-tier</strong> topics (elimination / clinchers). Volume
+        stays capped. Team targeting uses your first My Pulse favorite when present.
+      </p>
+      <p className="text-xs mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.38)" }}>
+        Operators: configure VAPID + Supabase + push API per{" "}
+        <code className="text-sky-400/80">references/push-notifications.md</code> — see also{" "}
+        <code className="text-sky-400/80">.github/workflows/playoff-push.yml</code>.
       </p>
 
       <div className="space-y-3 mb-4">

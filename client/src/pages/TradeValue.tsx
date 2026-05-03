@@ -3,7 +3,10 @@ import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
 // Trade Value Index — data from `generate-trade-value.mjs` → tradeValueData.ts
 
-const PRO_FREE_PREVIEW_RANKS = 6;
+/** Free preview: 6 ranks by default; 10 once the weekly file lists a full board (see NEXT-STEPS.md). */
+function freePreviewRankCount(playerCount: number) {
+  return playerCount >= 30 ? 10 : 6;
+}
 
 // ═══════════════════════════════════════════════════════════
 // RANK CHANGE BADGE
@@ -188,7 +191,7 @@ export default function TradeValue() {
   const sub = useSubscription();
   const { generatedDate, weekLabel, players } = tradeValueData;
   const gated = sub.loading ? false : !sub.isPro;
-  const previewCount = Math.min(PRO_FREE_PREVIEW_RANKS, players.length);
+  const previewCount = Math.min(freePreviewRankCount(players.length), players.length);
   const preview =
     gated && players.length > previewCount
       ? players.slice(0, previewCount)

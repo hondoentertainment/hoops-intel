@@ -12,13 +12,13 @@ export default async function handler(req: Request): Promise<Response> {
   const supabaseUrl = process.env.SUPABASE_URL;
   const svc = process.env.SUPABASE_SERVICE_KEY;
   if (!supabaseUrl || !svc) {
-    return new Response(JSON.stringify({ counts: {}, days, unavailable: true }), {
+    return new Response(JSON.stringify({ series: [], days, unavailable: true }), {
       status: 200,
       headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=120" },
     });
   }
 
-  const rpc = await fetch(`${supabaseUrl}/rest/v1/rpc/embed_agg_last_days`, {
+  const rpc = await fetch(`${supabaseUrl}/rest/v1/rpc/embed_loads_timeseries`, {
     method: "POST",
     headers: {
       apikey: svc,
@@ -26,29 +26,29 @@ export default async function handler(req: Request): Promise<Response> {
       "Content-Type": "application/json",
       Prefer: "return=representation",
     },
-    body: JSON.stringify({ day_count: days }),
+    body: JSON.stringify({ p_day_count: days }),
   });
 
   if (!rpc.ok) {
     const txt = await rpc.text().catch(() => "");
-    console.warn("[embed-analytics-summary]", rpc.status, txt);
-    return new Response(JSON.stringify({ counts: {}, days, error: "rpc_failed" }), {
+    console.warn("[embed-analytics-timeseries]", rpc.status, txt);
+    return new Response(JSON.stringify({ series: [], days, error: "rpc_failed" }), {
       status: 200,
       headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=60" },
     });
   }
 
   const data: unknown = await rpc.json();
-  let counts: Record<string, unknown> = {};
+  let series: unknown[] = [];
   if (Array.isArray(data) && data.length > 0) {
     const row = data[0] as Record<string, unknown>;
-    const inner = row.embed_agg_last_days;
-    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
-      counts = inner as Record<string, unknown>;
+    const inner = row.embed_loads_timeseries;
+    if (Array.isArray(inner)) {
+      series = inner;
     }
   }
 
-  return new Response(JSON.stringify({ counts, days }), {
+  return new Response(JSON.stringify({ series, days }), {
     status: 200,
     headers: {
       "Content-Type": "application/json",

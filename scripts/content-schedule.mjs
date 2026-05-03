@@ -188,6 +188,7 @@ function printSchedule() {
   console.log("   5:05 AM   Social Media — post to Twitter/X + Bluesky");
   console.log("   5:15 AM   Email Digest — send to subscribers (15 min delay)");
   console.log("   5:10 AM   Auto-Retry — if edition failed (10 min delay)");
+  console.log("   6:30 AM   Site Review Agent — production fingerprints + Claude recommendations");
   console.log("   2:00 PM   Midday Refresh — sentiment, momentum, watch guide");
   console.log("   2:00 PM*  Injury Monitor starts (5 PM ET) — every 30 min");
   console.log("   9:00 PM*  Injury Monitor ends (midnight ET)");
@@ -268,6 +269,13 @@ function verifyGeneratorsForSeasonModes() {
   ];
 
   for (const [label, d] of samples) {
+    const actual = seasonMode(d);
+    if (actual !== label) {
+      console.error(
+        `[verify-generators] Date ${d.toISOString().slice(0, 10)} produced seasonMode "${actual}" but sample expects "${label}" — update season-mode.mjs or fix the sample.`,
+      );
+      process.exit(1);
+    }
     const gen = primaryGenerator(d);
     const p = join(scriptDir, gen);
     if (!existsSync(p)) {

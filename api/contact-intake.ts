@@ -97,6 +97,8 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
   }
 
+  let submissionId: string | undefined;
+
   if (kind === "guest-pulse-index") {
     const sbUrl = process.env.SUPABASE_URL;
     const sbKey = process.env.SUPABASE_SERVICE_KEY;
@@ -122,6 +124,16 @@ export default async function handler(req: Request): Promise<Response> {
         if (!ins.ok) {
           const t = await ins.text().catch(() => "");
           console.warn("[contact-intake] Guest Pulse queue:", ins.status, t);
+        } else {
+          try {
+            const rows = (await ins.json()) as unknown;
+            if (Array.isArray(rows) && rows.length > 0) {
+              const id = rows[0] as { id?: unknown };
+              if (typeof id.id === "string" && id.id.length > 0) submissionId = id.id;
+            }
+          } catch {
+            /* ignore malformed body */
+          }
         }
       } catch (e) {
         console.warn("[contact-intake] Guest Pulse queue failed:", e);
@@ -129,7 +141,10 @@ export default async function handler(req: Request): Promise<Response> {
     }
   }
 
-  return new Response(JSON.stringify({ ok: true }), {
+  const bodyOut =
+    submissionId !== undefined ? { ok: true as const, submissionId } : { ok: true as const };
+
+  return new Response(JSON.stringify(bodyOut), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });

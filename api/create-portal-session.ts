@@ -42,6 +42,7 @@ export default async function handler(req: Request): Promise<Response> {
       JSON.stringify({
         error: 'Stripe billing portal is not configured for this deployment.',
         code: 'stripe_not_configured',
+        expectedEnv: ['STRIPE_SECRET_KEY'],
       }),
       { status: 503, headers: { 'Content-Type': 'application/json' } },
     );

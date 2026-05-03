@@ -32,6 +32,7 @@ const Badges = lazy(() => import("./pages/Badges"));
 const CommunityPulse = lazy(() => import("./pages/CommunityPulse"));
 const WatchGuide = lazy(() => import("./pages/WatchGuide"));
 const Widgets = lazy(() => import("./pages/Widgets"));
+const EmbedPublisherStats = lazy(() => import("./pages/EmbedPublisherStats"));
 const PodcastCompanion = lazy(() => import("./pages/PodcastCompanion"));
 const HistoryEngine = lazy(() => import("./pages/HistoryEngine"));
 const RefReports = lazy(() => import("./pages/RefReports"));
@@ -114,6 +115,7 @@ export default function App() {
             <Route path="/community-pulse" component={CommunityPulse} />
             <Route path="/watch-guide" component={WatchGuide} />
             <Route path="/widgets" component={Widgets} />
+            <Route path="/embed-stats" component={EmbedPublisherStats} />
             <Route path="/podcast-companion" component={PodcastCompanion} />
             <Route path="/history" component={HistoryEngine} />
             <Route path="/refs" component={RefReports} />

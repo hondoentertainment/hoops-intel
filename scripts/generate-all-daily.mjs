@@ -50,6 +50,17 @@ async function main() {
     });
     const chk = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
     if (!chk.ok) console.warn(`⚠ playoffData.ts parse check: ${chk.reason} (left as-is if sync skipped)`);
+    try {
+      execSync(`node "${join(__dirname, "generate-series-intel.mjs")}"`, {
+        cwd: ROOT,
+        stdio: "inherit",
+        env: process.env,
+      });
+      const chkIntel = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
+      if (!chkIntel.ok) console.warn(`⚠ playoffData.ts after series intel: ${chkIntel.reason}`);
+    } catch (intelErr) {
+      console.warn(`⚠ Series intel (generate-series-intel.mjs): ${intelErr.message}`);
+    }
   } catch (err) {
     console.warn(`⚠ Preflight playoff sync: ${err.message}`);
   }

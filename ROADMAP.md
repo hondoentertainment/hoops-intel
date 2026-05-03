@@ -1,6 +1,6 @@
 # Hoops Intel — Feature Roadmap
 
-> Last updated: April 22, 2026
+> Last updated: May 3, 2026
 
 **Planning stack:** [`PRD.md`](./PRD.md) (requirements) → this file → [`NEXT-STEPS.md`](./NEXT-STEPS.md) (executable backlog).
 
@@ -32,6 +32,8 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 - Draft Tracker, Ref Reports, Coach Corner, Community Pulse, Projections
 - Watch Guide, History Engine, Season Performance, Podcast Companion
 - Widgets showcase (`/widgets`)
+- Player compare (`/compare-players`), Betting intel (`/betting-intel`), print-friendly edition (`/print-edition`), Rivals (`/rivals`), Guest Pulse (`/guest-pulse`)
+- Email digest unsubscribe landing (`/unsubscribe`) · optional fantasy-alert push passes after digest
 
 ### Data & Content
 - Full ESPN box scores
@@ -43,11 +45,16 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 - Head-to-Head Series Intel — Claude-generated per-series narrative + matchup
 - Playoff-mode Pulse Index — generation auto-switches context when playoff
   games are detected in the slate
+- **Home ticker —** `playoffTickerWireItems` prepends **ESPN-synced final scores**
+  from `playoffSeries` during playoffs; editorial `tickerItems` follow for tone
+- **CI quality gates —** `validate-playoff-pulse-drift.mjs`, `verify-edition-season-alignment.mjs`,
+  `verify-series-intel-keys.mjs`, expanded `season-mode.test.mjs`; same checks in `daily-update.yml`
 
 ### User Features
 - Supabase auth (email/password + Google OAuth)
 - Reactions system
 - Browser notification & email digest subscription UI
+- Pro subscription (Stripe) — checkout and webhooks when env configured; Trade Value and other surfaces use preview vs full depth gating
 - PWA — installable, offline shell
 
 ### Infrastructure
@@ -61,6 +68,8 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 - OG images, Twitter Cards, SEO meta
 - Vercel Analytics
 - Schema validation for daily generation
+- Archive search over full edition text (recursive haystack matching in `archiveSearch.ts`)
+- Scheduled site review agent (production diffs + optional AI notes): `scripts/site-review-agent.mjs`, `.github/workflows/site-review-agent.yml`
 
 ---
 
@@ -68,16 +77,15 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 
 Tracked in [`NEXT-STEPS.md`](./NEXT-STEPS.md). Highlights:
 
-- Pro tier hardening — Stripe checkout, webhooks, UI gating (code paths exist; env-dependent)
-- Embed growth — publisher UX on `/widgets` atop `embed.js`; analytics on adopt
-- Workflow vs `season-mode` alignment for offseason generators (daily job must not silently skip Jul–Sep)
+- **Pro / push ops** — Stripe + VAPID secrets in production (code + UX shipped; env-dependent)
+- **Embed growth** — publisher UX on `/widgets`; **embed analytics APIs** exist — productize reporting when adoption warrants
+- **Generator hygiene** — `season-mode` ↔ `generate-edition` prompt alignment **verified in CI**; daily workflow runs `content-schedule --verify-generators` + edition-align step
 
 ## Mid-term (Q3 2026)
 
-- Real email digest via Resend/SendGrid (transactional, unsubscribe, quiet hours)
-- Web Push wired for favorite-team game alerts (VAPID pipeline already exists)
-- Full-text search across historical editions
-- Creator program — Guest Pulse Index
+- Harden Resend digest (deliverability, quiet hours, operational runbooks) — unsubscribe + service routes exist
+- Web Push depth — favorite-team game alerts beyond playoff/fantasy/injury surfaces (VAPID pipeline exists)
+- Deeper archive search (indexing, ranking) if usage outgrows client-side haystack search
 - Twitter/X and Bluesky distribution bots
 
 ## Long-term (Q4 2026+)
