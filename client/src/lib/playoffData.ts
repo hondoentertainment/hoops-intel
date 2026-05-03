@@ -98,11 +98,11 @@ export const playoffSeries: PlayoffSeries[] = [
     higherTeam: "BOS",
     lowerTeam: "PHI",
     higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    lowerWins: 1,
+    status: "active",
+    summary: "PHI leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: null, awayScore: null, status: "scheduled", time: "5/2 - 7:30 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: 100, awayScore: 109, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Joel Embiid", topLine: "34 PTS · 12 REB · 6 AST" }
     ],
   },
   {
@@ -119,6 +119,22 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "Series tied 0-0",
     games: [
       { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 3:30 PM EDT", tv: "ABC" }
+    ],
+  },
+  {
+    seriesId: "E1-NY-PHI",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "NY",
+    lowerTeam: "PHI",
+    higherWins: 0,
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-10", homeTeam: "PHI", awayTeam: "NY", homeScore: null, awayScore: null, status: "scheduled", time: "5/10 - 3:30 PM EDT", tv: "ABC" }
     ],
   },
   {
@@ -198,7 +214,7 @@ export const playoffSeries: PlayoffSeries[] = [
     status: "upcoming",
     summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-08", homeTeam: "MIN", awayTeam: "SA", homeScore: null, awayScore: null, status: "scheduled", time: "5/8 - 9:30 PM EDT", tv: "Prime Video" }
+      { gameNumber: 1, date: "2026-05-10", homeTeam: "MIN", awayTeam: "SA", homeScore: null, awayScore: null, status: "scheduled", time: "5/10 - 7:30 PM EDT", tv: "NBC, Peacock" }
     ],
   },
   {
