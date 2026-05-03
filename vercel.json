@@ -34,14 +34,18 @@
     }
   ],
   "functions": {
-    "api/push-notify.ts": { "maxDuration": 60 },
-    "api/stripe-webhook.ts": { "maxDuration": 60 },
+    "api/ask.ts": { "maxDuration": 60 },
+    "api/contact-intake.ts": { "maxDuration": 30 },
     "api/create-checkout.ts": { "maxDuration": 30 },
     "api/create-portal-session.ts": { "maxDuration": 30 },
-    "api/contact-intake.ts": { "maxDuration": 30 },
-    "api/embed-analytics.ts": { "maxDuration": 30 },
-    "api/embed-analytics-summary.ts": { "maxDuration": 30 },
     "api/embed-analytics-timeseries.ts": { "maxDuration": 30 },
-    "api/guest-pulse-queue.ts": { "maxDuration": 30 }
+    "api/embed-analytics-summary.ts": { "maxDuration": 30 },
+    "api/embed-analytics.ts": { "maxDuration": 30 },
+    "api/guest-pulse-queue.ts": { "maxDuration": 30 },
+    "api/og.ts": { "maxDuration": 30 },
+    "api/push-notify.ts": { "maxDuration": 60 },
+    "api/stripe-webhook.ts": { "maxDuration": 60 },
+    "api/subscribe-digest.ts": { "maxDuration": 30 },
+    "api/unsubscribe-digest.ts": { "maxDuration": 30 }
   }
 }

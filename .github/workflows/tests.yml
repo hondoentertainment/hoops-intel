@@ -64,6 +64,9 @@ jobs:
       - name: Pulse structural content (blocking)
         run: node scripts/tests/validate-content.mjs --hard-only
 
+      - name: Deploy config (Vercel root + migrations on disk)
+        run: node scripts/verify-deploy-config.mjs
+
       - name: Season-mode calendar (node:test)
         run: node --test scripts/tests/season-mode.test.mjs
 

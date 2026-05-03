@@ -11,7 +11,7 @@
     "test:unit": "vitest run",
     "test:watch": "vitest",
     "test:ci": "npm ci --no-audit --no-fund && npm run test:ci:tasks",
-    "test:ci:tasks": "vitest run && node scripts/validate-playoff-pulse-drift.mjs && node scripts/content-schedule.mjs --verify-generators && node scripts/verify-edition-season-alignment.mjs && node scripts/validate-archive-duplicates.mjs && node scripts/validate-schema.mjs && node scripts/validate-generated-structure.mjs && node scripts/tests/validate-content.mjs --hard-only && vite build && node scripts/verify-dist-embed.mjs && node scripts/tests/test-assembly.mjs",
+    "test:ci:tasks": "vitest run && node scripts/validate-playoff-pulse-drift.mjs && node scripts/content-schedule.mjs --verify-generators && node scripts/verify-edition-season-alignment.mjs && node scripts/validate-archive-duplicates.mjs && node scripts/validate-schema.mjs && node scripts/validate-generated-structure.mjs && node scripts/tests/validate-content.mjs --hard-only && node scripts/verify-deploy-config.mjs && vite build && node scripts/verify-dist-embed.mjs && node scripts/tests/test-assembly.mjs",
     "test": "node scripts/tests/validate-content.mjs --hard-only && node scripts/tests/test-assembly.mjs",
     "test:content": "node scripts/tests/validate-content.mjs --hard-only",
     "test:content:advisory": "node scripts/tests/validate-content.mjs --advisory-only",
@@ -29,7 +29,8 @@
     "social": "node scripts/post-social.mjs",
     "digest": "node scripts/send-digest.mjs",
     "digest:preview": "node scripts/send-digest.mjs --preview",
-    "settle:picks": "node scripts/settle-picks.mjs"
+    "settle:picks": "node scripts/settle-picks.mjs",
+    "test:deploy": "node scripts/verify-deploy-config.mjs"
   },
   "engines": {
     "node": "24.x"

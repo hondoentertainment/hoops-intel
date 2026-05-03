@@ -90,6 +90,7 @@ npm install
 npm run dev          # http://localhost:5173
 npm run build
 npm run test:unit    # Vitest
+npm run test:deploy  # Vercel paths + migration files (no remote push)
 npm run test:ci      # same blocking steps as GitHub Actions (install + validators + build)
 ```
 
@@ -122,10 +123,12 @@ Copy [`.env.example`](./.env.example) when wiring **Vercel** (Production + Previ
 | Step | Where |
 |------|--------|
 | Connect repo | Vercel → Add New → Project → Import `hondoentertainment/hoops-intel` (or your fork) |
+| **Root Directory** | Vercel → Project → Settings → General: **"."** (repository root). Expect `package.json`, `vercel.json`, and `vite.config.ts` here — not the `client/` subfolder alone. |
 | Production branch | Vercel → Project → Settings → Git → Production Branch = **`main`** |
-| Build | Defaults read `vercel.json`: `npm ci` + `npm run build` → static **`dist`** + `api/` serverless |
+| Build | Reads `vercel.json`: `npm ci` + `npm run build` → static **`dist`** + `api/` serverless |
+| **Supabase migrations** | Files in `supabase/migrations/` are **not** auto-applied by Vercel/GitHub. Maintainer: `npx supabase login` → `npx supabase link --project-ref <ref>` → `npx supabase db push`. Local check: `npm run test:deploy` |
 | Preview deploys | Open PRs automatically get Preview URLs when Git integration is enabled |
-| CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml); local parity is **`npm run test:ci`** (see `test:ci:tasks` in `package.json`) |
+| CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml); local parity is **`npm run test:ci`** |
 | Dependabot | [`.github/dependabot.yml`](./.github/dependabot.yml) opens weekly grouped npm / Actions updates |
 
 ---
