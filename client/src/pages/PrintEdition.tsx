@@ -31,6 +31,15 @@ export default function PrintEdition() {
           <h1 className="display-heading text-4xl mt-4 text-slate-900">{narrative?.headline ?? "Hoops Intel"}</h1>
           <p className="mt-4 text-lg text-slate-600 leading-relaxed">{pulseEdition.date}</p>
           {narrative?.subhead && <p className="mt-6 text-base leading-relaxed text-slate-700">{narrative.subhead}</p>}
+          {Array.isArray(narrative?.body) && narrative.body.slice(0, 2).length > 0 ? (
+            <div className="mt-8 space-y-4">
+              {narrative.body.slice(0, 2).map((paragraph: string, i: number) => (
+                <p key={i} className="text-sm leading-relaxed text-slate-700">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ) : null}
         </header>
 
         <section className="mb-10">

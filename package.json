@@ -28,7 +28,8 @@
     "site-review": "node scripts/site-review-agent.mjs",
     "social": "node scripts/post-social.mjs",
     "digest": "node scripts/send-digest.mjs",
-    "digest:preview": "node scripts/send-digest.mjs --preview"
+    "digest:preview": "node scripts/send-digest.mjs --preview",
+    "settle:picks": "node scripts/settle-picks.mjs"
   },
   "engines": {
     "node": "24.x"

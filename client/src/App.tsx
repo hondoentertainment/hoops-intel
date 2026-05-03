@@ -49,6 +49,8 @@ const PrintEdition = lazy(() => import("./pages/PrintEdition"));
 const GuestPulse = lazy(() => import("./pages/GuestPulse"));
 const Rivals = lazy(() => import("./pages/Rivals"));
 const PulseMethodology = lazy(() => import("./pages/PulseMethodology"));
+const WidgetAnalytics = lazy(() => import("./pages/WidgetAnalytics"));
+const CreatorQueue = lazy(() => import("./pages/CreatorQueue"));
 
 function VercelAnalyticsScript() {
   useEffect(() => {
@@ -115,6 +117,7 @@ export default function App() {
             <Route path="/community-pulse" component={CommunityPulse} />
             <Route path="/watch-guide" component={WatchGuide} />
             <Route path="/widgets" component={Widgets} />
+            <Route path="/widgets/analytics" component={WidgetAnalytics} />
             <Route path="/embed-stats" component={EmbedPublisherStats} />
             <Route path="/podcast-companion" component={PodcastCompanion} />
             <Route path="/history" component={HistoryEngine} />
@@ -132,6 +135,7 @@ export default function App() {
             <Route path="/guest-pulse" component={GuestPulse} />
             <Route path="/pulse-methodology" component={PulseMethodology} />
             <Route path="/rivals" component={Rivals} />
+            <Route path="/creator-queue" component={CreatorQueue} />
             <Route>
               <main className="container py-20 text-center" lang="en">
                 <p className="section-label mb-3">NOT FOUND</p>

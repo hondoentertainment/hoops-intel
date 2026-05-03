@@ -101,6 +101,12 @@ jobs:
         if: always()
         run: node scripts/ci-append-es-quality.mjs
 
+      - name: Settle Pick'em (final scores → Supabase)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scripts/settle-picks.mjs
+
       - name: Check for changes
         id: changes
         run: |

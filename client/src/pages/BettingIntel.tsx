@@ -1,8 +1,11 @@
 import SiteHeader from "../components/SiteHeader";
 import { gamePreviews } from "../lib/pulseData";
+import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
 import { bettingDisclaimer, summarizeLineMovementEducation } from "../lib/bettingLineStory";
 
 export default function BettingIntel() {
+  const slate = slateMarketVsEditorialStats(gamePreviews);
+
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle="TOOLS" />
@@ -18,6 +21,19 @@ export default function BettingIntel() {
         <p className="text-xs mb-10 max-w-3xl rounded-lg px-4 py-3 leading-relaxed" style={{ border: "1px solid rgba(239,68,68,0.25)", background: "rgba(239,68,68,0.05)", color: "rgba(253,226,226,0.85)" }}>
           {bettingDisclaimer()}
         </p>
+
+        {slate.comparable > 0 && slate.pct !== null ? (
+          <p
+            className="text-sm mb-8 max-w-3xl rounded-lg px-4 py-3 leading-relaxed mono-data"
+            style={{ border: "1px solid rgba(148,251,223,0.22)", background: "rgba(6,148,148,0.08)", color: "rgba(220,251,239,0.92)" }}
+          >
+            Slate vs editorial: spread favorite matches Pulse pick copy on{' '}
+            <strong style={{ color: "#94F5D9" }}>
+              {slate.aligned}/{slate.comparable}
+            </strong>{' '}
+            games (<strong>{slate.pct}%</strong>). Markets and the desk diverge deliberately on some nights — audit game cards below for context.
+          </p>
+        ) : null}
 
         <div className="space-y-8">
           {!gamePreviews.length && (

@@ -10,11 +10,13 @@ import {
   getMyPushSubscriptions,
   getUser,
   isSupabaseConfigured,
+  patchMyPushSubscriptionFields,
   patchMyPushSubscriptionTopics,
   signOut,
   upsertMyPushSubscription,
   type User,
 } from "../lib/supabaseClient";
+import { getPreferences } from "../lib/userPreferences";
 import { useSubscription, openBillingPortal } from "../lib/useSubscription";
 import {
   DEFAULT_PUSH_TOPICS,
@@ -39,6 +41,13 @@ function AccountPushAlerts({ userId }: { userId: string }) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState("");
+
+  const rivalPairForPush = (): { a: string; b: string } | null => {
+    const p = getPreferences().rivalPairs[0];
+    if (!p || p.mine.length !== 3 || p.rival.length !== 3) return null;
+    const [a, b] = [p.mine.toUpperCase(), p.rival.toUpperCase()].sort();
+    return { a, b };
+  };
 
   const refreshLocal = async () => {
     const sub = await getDevicePushSubscription();
@@ -89,6 +98,15 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       if (team === "NY") team = "NYK";
       if (team === "SA") team = "SAS";
       const notify_topics = topicList.length ? topicList : [...DEFAULT_PUSH_TOPICS];
+      let rival_a: string | null = null;
+      let rival_b: string | null = null;
+      if (notify_topics.map((t) => t.toLowerCase()).includes("rival")) {
+        const rp = rivalPairForPush();
+        if (rp) {
+          rival_a = rp.a;
+          rival_b = rp.b;
+        }
+      }
       await upsertMyPushSubscription({
         user_id: userId,
         endpoint,
@@ -96,6 +114,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         auth_key,
         team_abbr: team,
         notify_topics,
+        rival_abbr_a: rival_a,
+        rival_abbr_b: rival_b,
       });
       setDeviceEndpoint(endpoint);
       setTopics(new Set(notify_topics));
@@ -130,6 +150,29 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     }
   };
 
+  const handleSyncRivalry = async () => {
+    if (!deviceEndpoint) {
+      setErr("Enable push on this device first.");
+      return;
+    }
+    const rp = rivalPairForPush();
+    if (!rp) {
+      setErr("Add a valid pairing on /rivals (two different 3-letter teams).");
+      return;
+    }
+    setErr("");
+    setMsg("");
+    setBusy(true);
+    try {
+      await patchMyPushSubscriptionFields(deviceEndpoint, { rival_abbr_a: rp.a, rival_abbr_b: rp.b });
+      setMsg("Rival pairing saved on this subscription.");
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "Could not sync rivalry");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleDisable = async () => {
     setErr("");
     setMsg("");
@@ -143,6 +186,24 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       setMsg("Push disabled on this device.");
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not disable push");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleClearRivalryPushFields = async () => {
+    if (!deviceEndpoint) {
+      setErr("Enable push on this device first.");
+      return;
+    }
+    setErr("");
+    setMsg("");
+    setBusy(true);
+    try {
+      await patchMyPushSubscriptionFields(deviceEndpoint, { rival_abbr_a: null, rival_abbr_b: null });
+      setMsg("Rival pairing fields cleared for this subscription (topics unchanged).");
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "Could not clear rivalry");
     } finally {
       setBusy(false);
     }
@@ -211,6 +272,15 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         ))}
       </div>
 
+      <p className="text-[11px] mb-4 leading-relaxed px-2" style={{ color: "rgba(255,255,255,0.38)" }}>
+        Fantasy-only cohort: leave <strong className="text-white/65">Fantasy</strong> checked and uncheck Injury if you don&apos;t want infirmary blasts.&nbsp;
+        Rival pings require enabling <strong className="text-white/65">Rival grudge alerts</strong> plus{" "}
+        <a href="/rivals" className="text-sky-400/95 underline">
+          /rivals
+        </a>{" "}
+        pairings — then tap sync below.
+      </p>
+
       <div className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
         Permission:{" "}
         <span className={perm === "granted" ? "text-emerald-400" : "text-amber-400"}>{perm}</span>
@@ -235,6 +305,24 @@ function AccountPushAlerts({ userId }: { userId: string }) {
           style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
         >
           SAVE TOPICS ONLY
+        </button>
+        <button
+          type="button"
+          disabled={busy || !deviceEndpoint}
+          onClick={() => void handleSyncRivalry()}
+          className="min-h-[44px] px-4 py-2 rounded-lg text-xs font-semibold text-white/90 disabled:opacity-50"
+          style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.25)" }}
+        >
+          SYNC RIVAL PAIR TO PUSH
+        </button>
+        <button
+          type="button"
+          disabled={busy || !deviceEndpoint}
+          onClick={() => void handleClearRivalryPushFields()}
+          className="min-h-[44px] px-4 py-2 rounded-lg text-xs font-semibold text-white/80 disabled:opacity-50"
+          style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          CLEAR RIVAL PAIR
         </button>
         <button
           type="button"

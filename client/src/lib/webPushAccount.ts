@@ -18,12 +18,17 @@ export const PUSH_TOPIC_OPTIONS: { id: string; label: string; hint: string }[] =
   {
     id: "fantasy",
     label: "Fantasy impact (digest runs)",
-    hint: "Team-targeted blasts after fantasy-relevant digests when enabled server-side.",
+    hint: "Team-targeted blasts after fantasy-relevant digests. Uncheck injury if you want fantasy-only noise control.",
   },
   {
     id: "injury",
     label: "Injury wire",
     hint: "High-signal injury deltas when the injury workflow fires.",
+  },
+  {
+    id: "rival",
+    label: "Rival grudge alerts",
+    hint: "Server must target tonight’s matchup; configure pairings under /rivals then sync below.",
   },
 ];
 

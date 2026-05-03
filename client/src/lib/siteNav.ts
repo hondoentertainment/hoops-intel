@@ -74,6 +74,18 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
     description: "Publisher dashboard — embed load trends and CSV export",
     category: "publishing",
   },
+  {
+    label: "Widget load timeline",
+    href: "/widgets/analytics",
+    description: "Stacked daily embed loads — pulse vs ticker vs injury",
+    category: "publishing",
+  },
+  {
+    label: "Guest Pulse queue",
+    href: "/creator-queue",
+    description: "Moderate Guest Pulse submissions (admin secret)",
+    category: "publishing",
+  },
   { label: "Account", href: "/account", description: "Profile, Pro billing, shortcuts", category: "publishing" },
   { label: "Hoops Intel Pro", href: "/pro", description: "Pro tier", category: "publishing" },
   { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges", category: "publishing" },

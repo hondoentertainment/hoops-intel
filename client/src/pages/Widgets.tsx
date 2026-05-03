@@ -319,12 +319,14 @@ function PublisherEmbedRollup() {
         <p className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "#6ee7b7" }}>
           Publisher analytics · iframe loads (~8d)
         </p>
-        <a
-          href="/embed-stats"
-          className="text-xs font-semibold text-sky-400 hover:text-sky-300 underline underline-offset-2 whitespace-nowrap"
-        >
-          Open full dashboard →
-        </a>
+        <span className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold">
+          <a href="/widgets/analytics" className="text-emerald-300/95 hover:text-emerald-200 underline underline-offset-2 whitespace-nowrap">
+            Load timeline →
+          </a>
+          <a href="/embed-stats" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 whitespace-nowrap">
+            CSV dashboard →
+          </a>
+        </span>
       </div>
       <p className="text-xs mb-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
         Counts ingest when Supabase exposes <span className="mono-data text-white/70">embed_analytics_events</span>. Silent zeroes usually mean telemetry migration pending — each iframe ping still forwards from production traffic.
