@@ -2,13 +2,12 @@ name: CI
 
 # Runs on every push and PR. Three jobs, all independent so they can run in
 # parallel and you can see exactly which slice is red:
-#   1. verify   — npm ci, vitest (unit tests), tsc scoped to my changes,
-#                 vite build. MUST pass.
-#   2. assembly — script pipeline integration tests. MUST pass.
-#   3. content  — validates pulseData.ts against business rules. Advisory
-#                 because the daily AI generator occasionally drifts from the
-#                 strict abbreviation rules and we fix those in-band rather
-#                 than blocking merges.
+#   1. verify   — npm ci, vitest, blocking pulse schema + structural content,
+#                 generated TS structure, vite build.
+#   2. assembly — script pipeline integration tests.
+#   3. content  — Advisory editorial checks against pulseData.ts (dates,
+#                 featured previews, postseason bracket polish). Notifications
+#                 only; never blocks merges.
 
 on:
   push:
@@ -51,6 +50,15 @@ jobs:
       - name: Validate archive duplicate ids
         run: node scripts/validate-archive-duplicates.mjs
 
+      - name: Pulse + phase 2 regex schema (pulseData.ts)
+        run: node scripts/validate-schema.mjs
+
+      - name: Playbook + generated TS structure
+        run: node scripts/validate-generated-structure.mjs
+
+      - name: Pulse structural content (blocking)
+        run: node scripts/tests/validate-content.mjs --hard-only
+
       - name: Vite build
         run: npx vite build
 
@@ -83,5 +91,25 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Validate pulseData.ts
-        run: node scripts/tests/validate-content.mjs
+      - name: Pulse editorial advisory checks (dates / featured game / playbook polish)
+        id: advisory
+        run: node scripts/tests/validate-content.mjs --advisory-only
+
+      - name: Annotate advisory failures in workflow summary
+        if: failure()
+        run: |
+          echo "### Advisory pulse validation" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Status:** FAILED (non-blocking). Review \`pulseData.ts\` / playbook sync consistency — see logs from the preceding step." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Notify Slack webhook (optional)
+        if: failure()
+        env:
+          SLACK_DATA_QUALITY_WEBHOOK: ${{ secrets.SLACK_DATA_QUALITY_WEBHOOK }}
+          WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -n "${SLACK_DATA_QUALITY_WEBHOOK:-}" ]; then
+            PAYLOAD="$(printf '{"text":"Advisory Hoops Intel pulse validation failed — %s"}' "$WORKFLOW_RUN_URL")"
+            curl -sS -X POST -H 'Content-type: application/json' \
+              --data "$PAYLOAD" "$SLACK_DATA_QUALITY_WEBHOOK" || true
+          fi

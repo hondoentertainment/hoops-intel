@@ -1,0 +1,89 @@
+{
+  "events": [
+    {
+      "id": "401585601",
+      "competitions": [
+        {
+          "competitors": [
+            {
+              "homeAway": "away",
+              "score": "102",
+              "team": {
+                "abbreviation": "BOS",
+                "displayName": "Boston Celtics"
+              },
+              "records": [{ "summary": "55-26" }]
+            },
+            {
+              "homeAway": "home",
+              "score": "98",
+              "team": {
+                "abbreviation": "MIA",
+                "displayName": "Miami Heat"
+              },
+              "records": [{ "summary": "44-37" }]
+            }
+          ],
+          "status": {
+            "displayClock": "0.0",
+            "period": 4,
+            "type": {
+              "completed": true,
+              "detail": "Final",
+              "shortDetail": "Final",
+              "state": "post"
+            }
+          },
+          "venue": {
+            "fullName": "Kaseya Center"
+          },
+          "broadcasts": [{ "names": ["ESPN"] }]
+        }
+      ]
+    },
+    {
+      "id": "401585602",
+      "competitions": [
+        {
+          "competitors": [
+            {
+              "homeAway": "away",
+              "score": "",
+              "team": {
+                "abbreviation": "LAL",
+                "displayName": "Los Angeles Lakers"
+              },
+              "records": [{ "summary": "50-31" }]
+            },
+            {
+              "homeAway": "home",
+              "score": "",
+              "team": {
+                "abbreviation": "DAL",
+                "displayName": "Dallas Mavericks"
+              },
+              "records": [{ "summary": "48-33" }]
+            }
+          ],
+          "status": {
+            "displayClock": "",
+            "period": 0,
+            "type": {
+              "completed": false,
+              "detail": "Thu, May 1st",
+              "shortDetail": "8:00 PM EDT",
+              "state": "pre"
+            }
+          },
+          "venue": {"fullName": "American Airlines Center"},
+          "broadcasts": [{"names": ["TNT"]}]
+        }
+      ]
+    },
+    {
+      "id": "401585699",
+      "competitions": []
+    },
+    {}
+  ]
+}

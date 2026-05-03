@@ -3,11 +3,11 @@
 // No API key needed. Runs in <10 seconds.
 // Usage: node scripts/fetch-espn-data.mjs
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, appendFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/dates.mjs";
-import { fetchESPNCached, parseGames } from "./lib/espn-cache.mjs";
+import { fetchESPNCachedWithMeta, parseGames } from "./lib/espn-cache.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -53,14 +53,16 @@ async function main() {
 
   let finalGames = [];
   let scheduledGames = [];
+  const fetchQuality = [];
 
   try {
-    const [yesterdayData, todayData] = await Promise.all([
-      fetchESPNCached(yesterdayESPN),
-      fetchESPNCached(todayESPN),
+    const [yesterdayResult, todayResult] = await Promise.all([
+      fetchESPNCachedWithMeta(yesterdayESPN),
+      fetchESPNCachedWithMeta(todayESPN),
     ]);
-    const yesterdayGames = parseGames(yesterdayData);
-    const todayGames = parseGames(todayData);
+    fetchQuality.push(yesterdayResult.meta, todayResult.meta);
+    const yesterdayGames = parseGames(yesterdayResult.data);
+    const todayGames = parseGames(todayResult.data);
     finalGames = yesterdayGames.filter((g) => g.status === "final");
     scheduledGames = todayGames.filter((g) => g.status !== "final");
   } catch (err) {
@@ -69,6 +71,10 @@ async function main() {
   }
 
   const standings = getCurrentStandings();
+
+  const emptySlate = finalGames.length === 0 && scheduledGames.length === 0;
+  const anyEmptyFallback = fetchQuality.some((m) => m.usedEmptyFallback);
+  const anyDiskFallback = fetchQuality.some((m) => m.usedDiskCacheFallback);
 
   const snapshot = {
     editionNo,
@@ -80,11 +86,51 @@ async function main() {
     scheduledGames,
     currentStandings: standings,
     fetchedAt: new Date().toISOString(),
+    dataQuality: {
+      fetchMeta: fetchQuality,
+      emptySlate,
+      anyEmptyFallback,
+      anyDiskFallback,
+    },
   };
 
   const outPath = join(DATA_DIR, "espn-snapshot.json");
   writeFileSync(outPath, JSON.stringify(snapshot, null, 2), "utf8");
   console.log(`✅ Snapshot written: ${finalGames.length} final, ${scheduledGames.length} scheduled`);
+
+  if (process.env.GITHUB_ACTIONS === "true") {
+    const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+    if (summaryPath) {
+      const lines = [
+        "### ESPN snapshot — data quality",
+        "",
+        "| Metric | Value |",
+        "| --- | --- |",
+        `| Final games (yesterday slate) | ${finalGames.length} |`,
+        `| Scheduled / live (today slate) | ${scheduledGames.length} |`,
+        `| Empty scoreboard fallback used | ${anyEmptyFallback ? "yes (review)" : "no"} |`,
+        `| Disk cache fallback | ${anyDiskFallback ? "yes" : "no"} |`,
+        `| Empty slate (both dates) | ${emptySlate ? "yes (verify calendar)" : "no"} |`,
+        "",
+      ];
+      appendFileSync(summaryPath, `${lines.join("\n")}\n`);
+    }
+
+    if (anyEmptyFallback) {
+      console.log(
+        "::warning::One or more ESPN dates used empty scoreboard fallback — inspect espn-snapshot.json dataQuality.fetchMeta.",
+      );
+    }
+    if (emptySlate && fetchQuality.length === 0) {
+      console.log(
+        "::warning::Snapshot has zero games after ESPN fetch threw — inspect workflow logs.",
+      );
+    } else if (emptySlate) {
+      console.log(
+        "::notice::Snapshot reports zero NBA games for both fetched dates — acceptable on off-days; verify NBA calendar.",
+      );
+    }
+  }
 }
 
 main().catch((err) => {

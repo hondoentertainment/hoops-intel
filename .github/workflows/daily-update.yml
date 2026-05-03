@@ -89,6 +89,10 @@ jobs:
           fi
         timeout-minutes: 20
 
+      - name: Append ESPN snapshot data quality (if artifact exists)
+        if: always()
+        run: node scripts/ci-append-es-quality.mjs
+
       - name: Check for changes
         id: changes
         run: |

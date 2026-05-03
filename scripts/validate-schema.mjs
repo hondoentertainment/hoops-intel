@@ -5,16 +5,49 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import {
+  TEAM_ABBR_SET,
+  VALID_INJURY_STATUSES,
+  PULSE_SENTIMENTS,
+  GAME_ID_PATTERN,
+} from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
-const TEAM_ABBRS = new Set([
-  "ATL","BOS","BRK","CHA","CHI","CLE","DAL","DEN","DET","GSW",
-  "HOU","IND","LAC","LAL","MEM","MIA","MIL","MIN","NOP","NYK",
-  "OKC","ORL","PHI","PHX","POR","SAC","SAS","TOR","UTA","WAS",
-]);
+/** @param {string} content @param {string} exportName @returns {string | null} */
+function extractConstArrayInner(content, exportName) {
+  const re = new RegExp(`export\\s+const\\s+${exportName}\\s*=\\s*\\[`);
+  const m = re.exec(content);
+  if (!m) return null;
+  const open = m.index + m[0].length - 1;
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  for (let i = open; i < content.length; i++) {
+    const ch = content[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (ch === "\\") {
+      escape = true;
+      continue;
+    }
+    if (ch === '"' && !escape) {
+      inString = !inString;
+      continue;
+    }
+    if (inString) continue;
+    if (ch === "[") depth++;
+    if (ch === "]") {
+      depth--;
+      if (depth === 0) return content.slice(open + 1, i);
+    }
+  }
+  return null;
+}
 
 function assert(condition, message) {
   if (!condition) throw new Error(`VALIDATION FAILED: ${message}`);
@@ -68,8 +101,16 @@ export function validate() {
   // Check team abbreviations are valid
   const teamRefs = content.matchAll(/team:\s*"([A-Z]{3})"/g);
   for (const m of teamRefs) {
-    if (!TEAM_ABBRS.has(m[1])) {
+    if (!TEAM_ABBR_SET.has(m[1])) {
       console.error(`Invalid team abbreviation: ${m[1]}`);
+      errors++;
+    }
+  }
+
+  const homeAwayRefs = [...content.matchAll(/(?:homeTeam|awayTeam):\s*"([A-Z]{3})"/g)];
+  for (const m of homeAwayRefs) {
+    if (!TEAM_ABBR_SET.has(m[1])) {
+      console.error(`Invalid home/away team abbreviation: ${m[1]}`);
       errors++;
     }
   }
@@ -78,7 +119,7 @@ export function validate() {
   const gameIdMatches = [...content.matchAll(/gameId:\s*"([^"]+)"/g)];
   for (const m of gameIdMatches) {
     const id = m[1];
-    if (!/^[A-Z]{3}-[A-Z]{3}-\d{8}$/.test(id)) {
+    if (!GAME_ID_PATTERN.test(id)) {
       console.error(`Invalid gameId format: ${id} (expected ABB-ABB-YYYYMMDD)`);
       errors++;
     }
@@ -91,23 +132,27 @@ export function validate() {
     console.warn(`WARNING: Found ${pulseRanks.length} pulse index ranks (expected 10+)`);
   }
 
-  // Check sentiment values
   const sentiments = [...content.matchAll(/sentiment:\s*"([^"]+)"/g)];
   for (const m of sentiments) {
-    if (!["hot", "cold", "neutral"].includes(m[1])) {
+    if (!PULSE_SENTIMENTS.has(m[1])) {
       console.error(`Invalid sentiment: ${m[1]}`);
       errors++;
     }
   }
 
-  // Check injury status values
-  const statuses = [...content.matchAll(/status:\s*"([^"]+)"/g)];
-  const validStatuses = new Set(["out", "questionable", "probable", "day-to-day", "returning", "final"]);
-  for (const m of statuses) {
-    if (!validStatuses.has(m[1])) {
-      console.error(`Invalid status: ${m[1]}`);
-      errors++;
+  // Injury statuses only inside injuryUpdates (game rows use status: "final", etc.)
+  const injuryInner = extractConstArrayInner(content, "injuryUpdates");
+  if (injuryInner) {
+    const injStatuses = [...injuryInner.matchAll(/status:\s*"([^"]+)"/g)];
+    for (const m of injStatuses) {
+      if (!VALID_INJURY_STATUSES.has(m[1])) {
+        console.error(`Invalid injury status in injuryUpdates: ${m[1]}`);
+        errors++;
+      }
     }
+  } else if (/\bexport\s+const\s+injuryUpdates\s*=/.test(content)) {
+    console.error("Could not parse injuryUpdates array for status validation");
+    errors++;
   }
 
   // Check file is valid TypeScript (no markdown fences)

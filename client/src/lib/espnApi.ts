@@ -24,7 +24,8 @@ export interface ESPNScoreboard {
   fetchedAt: number;
 }
 
-function parseGame(event: any): LiveGame {
+/** Exported for unit tests (ESPN response shape is untyped at runtime). */
+export function parseGame(event: any): LiveGame {
   const comp = event.competitions?.[0];
   const home = comp?.competitors?.find((c: any) => c.homeAway === "home");
   const away = comp?.competitors?.find((c: any) => c.homeAway === "away");
