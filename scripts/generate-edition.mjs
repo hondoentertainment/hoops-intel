@@ -171,6 +171,29 @@ async function main() {
 `
     : "";
 
+  const seasonWindowInstructions =
+    cal === "free-agency"
+      ? `
+
+## FREE AGENCY WINDOW (season-mode)
+- Lead with signings, cap implications, and rotation fit — not regular-season win totals
+- Tonight's Games: if the NBA slate is thin, pivot to market tiers + credible rumor framing (label speculation clearly)
+`
+      : cal === "summer-league"
+        ? `
+
+## SUMMER LEAGUE WINDOW (season-mode)
+- Prioritize rookies, two-way standouts, and rotation auditions — label everything as Summer League context
+- Avoid regular-season standings semantics; do not imply these games decide playoff seeding
+`
+        : cal === "preseason"
+          ? `
+
+## PRESEASON WINDOW (season-mode)
+- Rotation battles, minutes caps, injury cautions, and scheme teases — lighter analytical certainty than Opening Week
+`
+          : "";
+
   // ── Generate pulseData.ts ────────────────────────────────
   console.log("🤖 Calling Claude API to generate edition...");
 
@@ -193,7 +216,7 @@ ${schema}
 
 ## Current pulseData.ts (for format reference and standings continuity)
 ${currentPulse}
-${playoffInstructions}
+${playoffInstructions}${seasonWindowInstructions}
 ## Instructions
 1. Pick the night's best narrative — lead with the most dramatic/important game
 2. Feature 4–6 game results (most significant first)

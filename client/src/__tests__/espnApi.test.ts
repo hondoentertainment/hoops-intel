@@ -137,6 +137,8 @@ describe("espnApi", () => {
     expect(game.status).toBe("pre");
     expect(game.homeTeam).toBe("DEN");
     expect(game.awayTeam).toBe("LAL");
+    expect(game.homeScore).toBeNull();
+    expect(game.awayScore).toBeNull();
     expect(game.tv).toBe("TNT");
   });
 

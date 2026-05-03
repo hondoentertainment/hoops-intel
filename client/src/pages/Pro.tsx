@@ -2,7 +2,7 @@
 // Lives at /pro. Backed by useSubscription + api/create-checkout.
 
 import { useState } from "react";
-import { useSubscription, startCheckout } from "../lib/useSubscription";
+import { useSubscription, startCheckout, openBillingPortal } from "../lib/useSubscription";
 import SiteHeader from "../components/SiteHeader";
 import AuthModal from "../components/AuthModal";
 
@@ -99,6 +99,8 @@ export default function Pro() {
   const sub = useSubscription();
   const [checkoutLoading, setCheckoutLoading] = useState<"monthly" | "annual" | null>(null);
   const [error, setError] = useState<string>("");
+  const [portalLoading, setPortalLoading] = useState(false);
+  const [portalError, setPortalError] = useState("");
   const [showAuth, setShowAuth] = useState(false);
 
   const handleCheckout = async (plan: "monthly" | "annual") => {
@@ -115,6 +117,18 @@ export default function Pro() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Checkout failed");
       setCheckoutLoading(null);
+    }
+  };
+
+  const handlePortal = async () => {
+    setPortalError("");
+    setPortalLoading(true);
+    try {
+      const url = await openBillingPortal();
+      window.location.href = url;
+    } catch (err) {
+      setPortalError(err instanceof Error ? err.message : "Billing portal failed");
+      setPortalLoading(false);
     }
   };
 
@@ -136,11 +150,32 @@ export default function Pro() {
             <div className="section-label mb-2" style={{ color: "#10B981" }}>YOU'RE PRO</div>
             <div className="text-white text-lg mb-1">{sub.plan === "annual" ? "Annual plan" : "Monthly plan"}</div>
             {sub.renewsAt && (
-              <div className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <div className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
                 {sub.cancelAtPeriodEnd ? "Ends " : "Renews "}
                 {sub.renewsAt.toLocaleDateString()}
               </div>
             )}
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                disabled={portalLoading}
+                onClick={() => void handlePortal()}
+                className="min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
+                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING"}
+              </button>
+              <a
+                href="/account"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors hover:bg-white/10"
+                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)" }}
+              >
+                Account hub
+              </a>
+            </div>
+            {portalError ? (
+              <p className="text-sm mt-3 text-rose-400" role="alert">{portalError}</p>
+            ) : null}
           </div>
         ) : (
           <>
@@ -184,7 +219,12 @@ export default function Pro() {
         </div>
 
         <div className="rounded-lg p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
-          Billing handled by Stripe. Cancel from your account page at any time. If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping hello@hoopsintel.net if you&apos;re blocked.
+          Billing handled by Stripe. Manage or cancel anytime from{" "}
+          <a href="/account" className="text-sky-400 underline hover:text-sky-300">
+            your account
+          </a>
+          . If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping
+          hello@hoopsintel.net if you&apos;re blocked.
         </div>
       </div>
 

@@ -69,8 +69,12 @@ function rewriteIntelExport(sourcePath, intelMap) {
 }
 
 async function main() {
-  const series = loadSeries();
+  const seriesRaw = loadSeries();
+  const series = seriesRaw
+    .map((s) => ({ ...s, seriesId: String(s.seriesId ?? "").trim() }))
+    .filter((s) => s.seriesId);
   if (series.length === 0) {
+    if (seriesRaw.length) console.warn("[series-intel] All rows missing seriesId — check .daily-data/playoff-series.json");
     console.log("[series-intel] No active series — skipping.");
     return;
   }
@@ -83,9 +87,16 @@ async function main() {
       console.warn(`  [intel] failed for ${s.seriesId}: ${err.message}`);
     }
   }
-  if (Object.keys(intel).length === 0) {
-    console.log("[series-intel] No intel generated.");
-    return;
+  for (const s of series) {
+    if (!intel[s.seriesId]) {
+      console.warn(`  [intel] placeholder for ${s.seriesId} (generation failed)`);
+      intel[s.seriesId] = {
+        regularSeasonH2H: `${s.higherTeam} vs ${s.lowerTeam} — intel generation failed this run; re-run npm run playoff:intel.`,
+        playoffHistory: `${s.summary}`,
+        keyMatchup: `Watch ${s.higherTeam} vs ${s.lowerTeam} as the series shifts.`,
+        narrative: `${s.summary} (Placeholder — Claude pass failed for this seriesId.)`,
+      };
+    }
   }
   rewriteIntelExport(join(ROOT, "client/src/lib/playoffData.ts"), intel);
   console.log(`✅ Rewrote seriesIntel for ${Object.keys(intel).length} series`);

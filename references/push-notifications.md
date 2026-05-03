@@ -18,8 +18,8 @@ Use this runbook when debugging **no alerts**, **duplicate alerts**, or **digest
 
 ## Client expectations
 
-1. Visitor grants **browser permission** via header bell (notifications are capped; playbook copy explains email vs push).
-2. Logged-in users with **favorite teams** benefit first when server rules filter pushes (future tightening).
+1. Visitor grants **browser permission** and selects **topics** on **`/account`** (or quick enable from the header bell for digest-only email).
+2. Logged-in users with **favorite teams** benefit when server rules filter pushes by `team_abbr` (first My Pulse team when you register the device).
 
 ## Monitoring
 

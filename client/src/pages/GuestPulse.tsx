@@ -45,8 +45,8 @@ export default function GuestPulse() {
         <h1 className="display-heading text-2xl sm:text-3xl mb-4 text-white">Guest Pulse pitch</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
           Propose a Pulse Index takeover: who you&apos;d elevate, thesis, and credibility in ~150 words.
-          Operational review is manual — no SLA during playoffs — but pitches route straight to editorial when Resend inbox env
-          vars are configured.
+          Confirmed pitches also enqueue into <span className="mono-data text-white/70">guest_pulse_submissions</span> whenever Supabase is configured so ops can
+          moderate independently of inbound email spikes.
         </p>
 
         <div className="space-y-4">

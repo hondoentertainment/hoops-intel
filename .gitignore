@@ -8,7 +8,10 @@ Thumbs.db
 .claude/
 .vercel
 .env*.local
+scripts/.cache/
 .espn-cache/
 .daily-data/
 .generation-report.json
 .weekly-generation-report.json
+site-review-report.md
+site-review-meta.json

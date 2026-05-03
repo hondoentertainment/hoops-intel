@@ -37,6 +37,7 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({
       error: 'Stripe checkout is not configured for this deployment.',
       code: 'stripe_not_configured',
+      expectedEnv: ['STRIPE_SECRET_KEY', 'STRIPE_PRICE_MONTHLY', 'STRIPE_PRICE_ANNUAL'],
     }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' },

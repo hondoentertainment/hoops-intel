@@ -178,3 +178,82 @@ export async function updateDigestPrefs(prefs: { enabled: boolean; favoriteOnly:
   if (!token) return;
   await dbFetch("digest_preferences", { method: "POST", body: prefs, token });
 }
+
+// Web Push (see /account — topic prefs + device row in push_subscriptions)
+export interface PushSubscriptionRow {
+  endpoint: string;
+  notify_topics: string[] | null;
+  team_abbr: string | null;
+}
+
+export async function getMyPushSubscriptions(): Promise<PushSubscriptionRow[]> {
+  const token = getStoredToken();
+  if (!token) return [];
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,notify_topics,team_abbr`,
+    { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${token}` } },
+  );
+  if (!res.ok) return [];
+  return (await res.json()) as PushSubscriptionRow[];
+}
+
+export async function upsertMyPushSubscription(row: {
+  user_id: string;
+  endpoint: string;
+  p256dh: string;
+  auth_key: string;
+  team_abbr?: string | null;
+  notify_topics?: string[] | null;
+}): Promise<void> {
+  const token = getStoredToken();
+  if (!token) throw new Error("Not signed in");
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/push_subscriptions?on_conflict=endpoint`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Prefer: "resolution=merge-duplicates",
+    },
+    body: JSON.stringify(row),
+  });
+  if (!res.ok) {
+    const t = await res.text().catch(() => res.statusText);
+    throw new Error(t || `Push registration failed (${res.status})`);
+  }
+}
+
+export async function patchMyPushSubscriptionTopics(endpoint: string, notify_topics: string[]): Promise<void> {
+  const token = getStoredToken();
+  if (!token) throw new Error("Not signed in");
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/push_subscriptions?endpoint=eq.${encodeURIComponent(endpoint)}`,
+    {
+      method: "PATCH",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({ notify_topics }),
+    },
+  );
+  if (!res.ok) {
+    const t = await res.text().catch(() => res.statusText);
+    throw new Error(t || `Push prefs update failed (${res.status})`);
+  }
+}
+
+export async function deleteMyPushSubscription(endpoint: string): Promise<void> {
+  const token = getStoredToken();
+  if (!token) throw new Error("Not signed in");
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/push_subscriptions?endpoint=eq.${encodeURIComponent(endpoint)}`,
+    { method: "DELETE", headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${token}` } },
+  );
+  if (!res.ok && res.status !== 204) {
+    const t = await res.text().catch(() => res.statusText);
+    throw new Error(t || `Push remove failed (${res.status})`);
+  }
+}

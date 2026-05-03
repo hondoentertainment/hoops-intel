@@ -8,6 +8,7 @@ import BracketPicker from "../components/BracketPicker";
 import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
 import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import SiteHeader from "../components/SiteHeader";
+import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 
 // ═══════════════════════════════════════════════════════════
 // INLINE SUPABASE REST HELPER (leaderboard — read-only, anon)
@@ -619,6 +620,8 @@ export default function PickEmPage() {
           className="mb-10"
           style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
         />
+
+        <PulseAccountabilityPanel />
 
         {/* Leaderboard */}
         <LeaderboardSection />

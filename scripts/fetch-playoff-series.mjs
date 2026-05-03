@@ -5,6 +5,10 @@
 // We scan a window of dates, aggregate by matchup (pair of teams), derive
 // wins, elimination flags, and stable seriesIds compatible with BracketPicker + Series Intel.
 //
+// Dedupes phantom rows when ESPN exposes placeholder future-round games under the wrong round
+// label (same franchise in two simultaneous series). Resolved per conference+round by preferring
+// series with more finals on the board.
+//
 // Output: .daily-data/playoff-series.json
 // Next:   node scripts/sync-playoff-data.mjs
 
@@ -192,6 +196,51 @@ function buildSummary(s) {
   return `${leader} leads ${Math.max(s.higherWins, s.lowerWins)}-${Math.min(s.higherWins, s.lowerWins)}`;
 }
 
+function matchupMapKey(series) {
+  return [series.higherTeam, series.lowerTeam].sort().join("-");
+}
+
+/** Prefer series that already have final games over pure schedule placeholders sharing a team. */
+function seriesEvidenceScore(s) {
+  const finalN = s.games.filter((g) => g.status === "final").length;
+  let sc = finalN * 1000 + s.games.length * 10;
+  if (s.status === "complete") sc += 500;
+  if (s.status === "active") sc += 200;
+  const lastDate = [...s.games.map((g) => g.date)].sort().pop() ?? "";
+  sc += Number(lastDate.replace(/-/g, "")) || 0;
+  return sc;
+}
+
+/**
+ * @param {Map<string, object>} seriesMap
+ * @returns {Map<string, object>}
+ */
+function dedupeSeriesByConferenceRound(seriesMap) {
+  const byBucket = new Map();
+  for (const s of seriesMap.values()) {
+    const b = `${s.conference}::${s.round}`;
+    if (!byBucket.has(b)) byBucket.set(b, []);
+    byBucket.get(b).push(s);
+  }
+  const out = new Map();
+  for (const bucket of byBucket.values()) {
+    bucket.sort((a, b) => seriesEvidenceScore(b) - seriesEvidenceScore(a));
+    const usedTeams = new Set();
+    for (const s of bucket) {
+      const { higherTeam: t1, lowerTeam: t2 } = s;
+      if (!t1 || !t2) continue;
+      if (usedTeams.has(t1) || usedTeams.has(t2)) {
+        console.warn(`  [playoffs] skip phantom overlap ${s.seriesId} (${t1} vs ${t2})`);
+        continue;
+      }
+      usedTeams.add(t1);
+      usedTeams.add(t2);
+      out.set(matchupMapKey(s), s);
+    }
+  }
+  return out;
+}
+
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
   /** @type Map<string, object> */
@@ -304,17 +353,22 @@ async function main() {
     series.games.sort((a, b) => a.gameNumber - b.gameNumber);
   }
 
-  console.log("  [playoffs] Hydrating top performers from box scores…");
-  await hydrateTopLines(seriesMap);
+  // ESPN sometimes surfaces upcoming games for hypothetical later-round dates while still tagging
+  // rows as current round — that creates impossible overlaps (same team "twice"). Keep the
+  // highest-evidence series per team within each conference+round bucket.
+  const seriesDedupedMap = dedupeSeriesByConferenceRound(seriesMap);
 
-  for (const s of seriesMap.values()) {
+  console.log("  [playoffs] Hydrating top performers from box scores…");
+  await hydrateTopLines(seriesDedupedMap);
+
+  for (const s of seriesDedupedMap.values()) {
     for (const g of s.games) delete g.espnEventId;
   }
 
   const snapshot = {
     fetchedAt: new Date().toISOString(),
-    seriesCount: seriesMap.size,
-    series: [...seriesMap.values()].sort((a, b) => {
+    seriesCount: seriesDedupedMap.size,
+    series: [...seriesDedupedMap.values()].sort((a, b) => {
       if (a.conference !== b.conference) return String(a.conference).localeCompare(String(b.conference));
       return a.higherSeed - b.higherSeed;
     }),

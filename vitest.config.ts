@@ -13,7 +13,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./client/src/__tests__/setup.ts"],
-    include: ["client/src/**/*.test.{ts,tsx}", "scripts/**/*.vitest.mjs"],
+    include: ["client/src/**/*.test.{ts,tsx}", "shared/**/*.test.ts", "scripts/**/*.vitest.mjs"],
     css: false,
   },
 });

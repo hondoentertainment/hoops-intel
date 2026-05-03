@@ -1,46 +1,7 @@
 import SiteHeader from "../components/SiteHeader";
+import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
-// Trade Value Index Page
-// Weekly AI-scored ranking of the 30 most tradeable players
-
-// ═══════════════════════════════════════════════════════════
-// STATIC DATA (hardcoded — generate-trade-value.mjs replaces this)
-// ═══════════════════════════════════════════════════════════
-
-interface TVIPlayer {
-  rank: number;
-  prevRank: number;
-  player: string;
-  team: string;
-  age: number;
-  contract: string;
-  tradeValue: number;
-  trend: "up" | "down" | "stable";
-  rationale: string;
-}
-
-interface TVIData {
-  generatedDate: string;
-  weekLabel: string;
-  players: TVIPlayer[];
-}
-
-const TRADE_VALUE_DATA: TVIData = {
-  generatedDate: "March 24, 2026",
-  weekLabel: "Week of March 24–30, 2026",
-  players: [
-    { rank: 1, prevRank: 1, player: "Shai Gilgeous-Alexander", team: "OKC", age: 27, contract: "4 yrs / $243M remaining", tradeValue: 99, trend: "stable", rationale: "Untouchable. The MVP frontrunner with a historic scoring streak is the most valuable trade chip in the NBA — except OKC would never move him." },
-    { rank: 2, prevRank: 3, player: "Victor Wembanyama", team: "SAS", age: 22, contract: "3 yrs / $60M remaining (rookie)", tradeValue: 98, trend: "up", rationale: "The generational talent on a rookie deal with three years left. Every GM in the league would empty their roster for him. San Antonio holds all the cards." },
-    { rank: 3, prevRank: 2, player: "Luka Dončić", team: "LAL", age: 27, contract: "3 yrs / $165M remaining", tradeValue: 97, trend: "down", rationale: "Still top-3 but the Lakers' 6-game win streak means they have no reason to move him. His value is near its peak — a buyer's market hasn't materialized." },
-    { rank: 4, prevRank: 4, player: "Cade Cunningham", team: "DET", age: 24, contract: "4 yrs / $194M remaining", tradeValue: 95, trend: "stable", rationale: "The East's best team runs through him. Back spasms are concerning but if he's healthy this week, his value rebounds immediately." },
-    { rank: 5, prevRank: 6, player: "LaMelo Ball", team: "CHA", age: 24, contract: "3 yrs / $133M remaining", tradeValue: 90, trend: "up", rationale: "His last 12 games have been his best basketball. Charlotte's play-in surge is making rival GMs nervous — his value is rising fast." },
-    { rank: 6, prevRank: 5, player: "Evan Mobley", team: "CLE", age: 23, contract: "4 yrs / $166M remaining", tradeValue: 88, trend: "stable", rationale: "The two-way anchor Cleveland can build around for a decade. His season-high 15 rebounds last night underscores his value." },
-    { rank: 7, prevRank: 8, player: "Anthony Edwards", team: "MIN", age: 24, contract: "4 yrs / $204M remaining", tradeValue: 86, trend: "up", rationale: "Knee inflammation temporarily dips his value but this is a buy-low moment. At 24 on a max deal with playoff experience, he's exactly what contenders want." },
-    { rank: 8, prevRank: 7, player: "Jalen Brunson", team: "NYK", age: 28, contract: "2 yrs / $55M remaining", tradeValue: 83, trend: "down", rationale: "Age and contract length soften his value. Two years left is enough for contenders but not rebuilders. The Knicks need him more than they'd admit." },
-    { rank: 9, prevRank: 11, player: "Josh Hart", team: "NYK", age: 29, contract: "3 yrs / $51M remaining", tradeValue: 78, trend: "up", rationale: "His 12-for-13 shooting clinic elevated his market. At $17M/year with three years left, he's an affordable two-way piece any contender would covet." },
-    { rank: 10, prevRank: 10, player: "Nikola Jokić", team: "DEN", age: 31, contract: "2 yrs / $90M remaining", tradeValue: 76, trend: "stable", rationale: "Still elite but age and two years remaining keep him out of the top 5. Denver won't move him and teams know it — suppressing his market value." },
-  ],
-};
+// Trade Value Index — data from `generate-trade-value.mjs` → tradeValueData.ts
 
 const PRO_FREE_PREVIEW_RANKS = 6;
 
@@ -225,11 +186,12 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
 
 export default function TradeValue() {
   const sub = useSubscription();
-  const { generatedDate, weekLabel, players } = TRADE_VALUE_DATA;
+  const { generatedDate, weekLabel, players } = tradeValueData;
   const gated = sub.loading ? false : !sub.isPro;
+  const previewCount = Math.min(PRO_FREE_PREVIEW_RANKS, players.length);
   const preview =
-    gated && players.length > PRO_FREE_PREVIEW_RANKS
-      ? players.slice(0, PRO_FREE_PREVIEW_RANKS)
+    gated && players.length > previewCount
+      ? players.slice(0, previewCount)
       : players;
 
   return (
@@ -308,7 +270,7 @@ export default function TradeValue() {
             className="text-sm leading-relaxed"
             style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
           >
-            The TVI ranks the 30 most tradeable players by AI-assessed value. Inputs: recent performance trend, contract (years + salary), age, team&apos;s playoff position, injury history.
+            The TVI ranks the {players.length} most tradeable players this week by AI-assessed value. Inputs: recent performance trend, contract (years + salary), age, team&apos;s playoff position, injury history.
           </p>
         </div>
 
@@ -347,7 +309,7 @@ export default function TradeValue() {
           ))}
         </div>
 
-        {gated && players.length > PRO_FREE_PREVIEW_RANKS && (
+        {gated && players.length > previewCount && (
           <div
             className="rounded-xl px-6 py-6 mb-10 text-center relative overflow-hidden"
             style={{
@@ -362,8 +324,8 @@ export default function TradeValue() {
               PRO PREVIEW GATE
             </div>
             <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}>
-              Showing top {PRO_FREE_PREVIEW_RANKS} trade chips for signed-out / free readers. Hoops Intel Pro unlocks ranks{" "}
-              {PRO_FREE_PREVIEW_RANKS + 1}–{players.length}+ with full rationales and CSV export (roadmapped).
+              Showing top {previewCount} trade chips for signed-out / free readers. Hoops Intel Pro unlocks ranks{" "}
+              {previewCount + 1}–{players.length} with full rationales (weekly refresh via <code className="text-white/50">generate-trade-value.mjs</code>).
             </p>
             <a
               href="/pro"
@@ -379,37 +341,14 @@ export default function TradeValue() {
           </div>
         )}
 
-        {/* Divider */}
         <div
           className="mb-6"
           style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
         />
 
-        {/* Footer note */}
-        <div
-          className="rounded-lg px-5 py-4 text-center"
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
-          <div
-            className="text-xs font-semibold mb-1"
-            style={{
-              color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.08em",
-            }}
-          >
-            COMING NEXT WEEK
-          </div>
-          <p
-            className="text-sm"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Full top 30 ranking + biggest movers
-          </p>
-        </div>
+        <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}>
+          Rankings regenerate weekly from the latest ESPN slate + Hoops Intel prompts.
+        </p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 // Embeddable Widgets Page — Add Hoops Intel to Your Site
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import PulseWidget from "../components/widgets/PulseWidget";
 import TickerWidget from "../components/widgets/TickerWidget";
@@ -284,6 +284,55 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
   );
 }
 
+function PublisherEmbedRollup() {
+  const [counts, setCounts] = useState<Record<string, unknown>>({});
+
+  useEffect(() => {
+    let canceled = false;
+    fetch("/api/embed-analytics-summary")
+      .then((r) => r.json())
+      .then((j) => {
+        if (!canceled && j && typeof j === "object" && j !== null && "counts" in j) {
+          setCounts(j.counts as Record<string, unknown>);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      canceled = true;
+    };
+  }, []);
+
+  const ids = ["pulse", "ticker", "injury"] as const;
+  const totals = ids.map((id) => ({
+    id,
+    loads: typeof counts[id] === "number" ? (counts[id] as number) : 0,
+  }));
+
+  const anyData = totals.some((t) => t.loads > 0);
+
+  return (
+    <div
+      className="rounded-xl p-6 mb-10"
+      style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(148,251,223,0.12)" }}
+    >
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: "#6ee7b7" }}>
+        Publisher analytics · iframe loads (~8d)
+      </p>
+      <p className="text-xs mb-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+        Counts ingest when Supabase exposes <span className="mono-data text-white/70">embed_analytics_events</span>. Silent zeroes usually mean telemetry migration pending — each iframe ping still forwards from production traffic.
+      </p>
+      <div className="grid sm:grid-cols-3 gap-3">
+        {totals.map((t) => (
+          <div key={t.id} className="rounded-lg px-4 py-3 bg-black/20 border border-white/[0.06]">
+            <div className="text-[10px] uppercase tracking-wide text-white/40 mb-1">{t.id}</div>
+            <div className="text-3xl font-black text-emerald-300/95 mono-data">{anyData ? t.loads : "—"}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════
 // WIDGETS PAGE
 // ═══════════════════════════════════════════════════════════
@@ -407,6 +456,8 @@ window.HoopsIntel && HoopsIntel.mount();`}
             <WidgetSection key={w.id} widget={w} />
           ))}
         </div>
+
+        <PublisherEmbedRollup />
 
         {/* Help section */}
         <div

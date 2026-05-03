@@ -14,6 +14,7 @@ import { PlayoffsSkeleton } from "./PlayoffsSkeleton";
 import { SeriesCard, sortedSeriesCardsData } from "./SeriesCard";
 import { TakeawaysSection } from "./TakeawaysSection";
 import SiteHeader from "../../components/SiteHeader";
+import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
 
 function StickyRibbon() {
   const snap = playoffSnapshot(playoffSeries, todayISOLocal());
@@ -184,6 +185,7 @@ export function PlayoffsPage() {
           <>
             <SeriesHeroStrip pool={pool} heroIx={heroIx} onSelect={setHeroIx} />
             <TakeawaysSection data={takeaways} onMustWatch={jumpMustWatch} />
+            <PlayoffMoversDesk />
 
             <div className="flex items-baseline justify-between gap-4 mb-3">
               <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-white/55">Series grid</h2>

@@ -38,9 +38,15 @@ const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
 const REQUIRED = ["SUPABASE_URL", "SUPABASE_SERVICE_KEY", "PUSH_API_URL", "PUSH_API_SECRET"];
+const requireEnv = process.argv.includes("--require-env");
 const missing = REQUIRED.filter((k) => !process.env[k]);
 if (missing.length) {
-  console.log(`[check-playoff-series] Skipping — missing env: ${missing.join(", ")}`);
+  const msg = `[check-playoff-series] Missing env: ${missing.join(", ")}`;
+  if (requireEnv) {
+    console.error(`❌ ${msg} (fail — --require-env)`);
+    process.exit(1);
+  }
+  console.log(`[check-playoff-series] Skipping — ${msg}`);
   process.exit(0);
 }
 

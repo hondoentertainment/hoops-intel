@@ -110,3 +110,28 @@ export async function startCheckout(plan: "monthly" | "annual"): Promise<string>
   const { url } = await res.json();
   return url;
 }
+
+/** Stripe Customer Portal — manage plan, payment method, invoices, cancel. */
+export async function openBillingPortal(): Promise<string> {
+  const token = getStoredToken();
+  if (!token) throw new Error("Sign in required");
+  const res = await fetch("/api/create-portal-session", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const raw = (await res.json().catch(() => null)) as { error?: string; code?: string } | null;
+    if (raw?.code === "stripe_not_configured") {
+      throw new Error(
+        raw.error ?? "Stripe billing portal is not wired for this deployment yet — see README § Environment variables.",
+      );
+    }
+    if (raw?.code === "supabase_misconfigured") {
+      throw new Error(raw.error ?? "Account billing lookup is not configured on the server.");
+    }
+    if (typeof raw?.error === "string") throw new Error(raw.error);
+    throw new Error(`Billing portal failed (${res.status})`);
+  }
+  const { url } = await res.json();
+  return url as string;
+}

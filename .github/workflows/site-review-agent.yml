@@ -1,0 +1,120 @@
+name: Site Review Agent
+
+on:
+  schedule:
+    # 6:30 AM PST = 14:30 UTC — after daily edition (13:00 UTC) settles
+    - cron: "30 14 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site-review-agent
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Restore fingerprint cache
+        uses: actions/cache@v4
+        with:
+          path: scripts/.cache/site-review-state.json
+          key: site-review-fingerprints-v1-${{ github.repository }}
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run site review agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SITE_REVIEW_BASE_URL: https://hoopsintel.net
+        run: node scripts/site-review-agent.mjs
+
+      - name: Write job summary
+        run: |
+          echo "## Site review report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          head -n 80 site-review-report.md >> "$GITHUB_STEP_SUMMARY" || true
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "_Full report in workflow artifacts._" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-review-${{ github.run_id }}
+          path: site-review-report.md
+          if-no-files-found: warn
+
+      - name: Open issue on failures or production changes
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const metaPath = 'site-review-meta.json';
+            const reportPath = 'site-review-report.md';
+            if (!fs.existsSync(metaPath)) {
+              core.notice('site-review: no meta file — skip issue');
+              return;
+            }
+            const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+            if (!meta.notify) {
+              core.notice('site-review: notify=false — no issue');
+              return;
+            }
+            const body = fs.existsSync(reportPath)
+              ? fs.readFileSync(reportPath, 'utf8')
+              : '_Report missing — see workflow logs._';
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `Site review — ${meta.failedCount > 0 ? 'failures' : 'changes'} — ${today}`;
+            const labelFetch = await github.rest.issues.listLabelsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100,
+            });
+            const hasLabel = labelFetch.data.some(l => l.name === 'site-review');
+            if (!hasLabel) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: 'site-review',
+                  color: '0E8A16',
+                  description: 'Automated production site review',
+                });
+              } catch (e) {
+                core.info('Label create skipped: ' + (e.message || e));
+              }
+            }
+            const openIssues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'site-review',
+              state: 'open',
+              per_page: 30,
+            });
+            const dup = openIssues.data.find((i) => i.title.includes(today));
+            if (dup) {
+              core.notice('Issue already exists for ' + today + ' — skip');
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body: body.slice(0, 65000) + (body.length > 65000 ? '\n\n_(truncated)_' : '') +
+                `\n\n---\n**Workflow:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              labels: ['site-review', 'automated'],
+            });

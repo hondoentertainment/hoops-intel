@@ -97,6 +97,38 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
   }
 
+  if (kind === "guest-pulse-index") {
+    const sbUrl = process.env.SUPABASE_URL;
+    const sbKey = process.env.SUPABASE_SERVICE_KEY;
+    if (sbUrl && sbKey) {
+      try {
+        const ins = await fetch(`${sbUrl}/rest/v1/guest_pulse_submissions`, {
+          method: "POST",
+          headers: {
+            apikey: sbKey,
+            Authorization: `Bearer ${sbKey}`,
+            "Content-Type": "application/json",
+            Prefer: "return=representation",
+          },
+          body: JSON.stringify([
+            {
+              name: name || null,
+              email: email || null,
+              pitch: message,
+              status: "received",
+            },
+          ]),
+        });
+        if (!ins.ok) {
+          const t = await ins.text().catch(() => "");
+          console.warn("[contact-intake] Guest Pulse queue:", ins.status, t);
+        }
+      } catch (e) {
+        console.warn("[contact-intake] Guest Pulse queue failed:", e);
+      }
+    }
+  }
+
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
     headers: { "Content-Type": "application/json" },

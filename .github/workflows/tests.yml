@@ -1,19 +1,18 @@
 name: CI
 
-# Runs on every push and PR. Three jobs, all independent so they can run in
-# parallel and you can see exactly which slice is red:
+# Runs on every push and PR (including nested branch names like feature/foo).
+# Three jobs, all independent so they can run in parallel and you can see
+# exactly which slice is red:
 #   1. verify   — npm ci, vitest, blocking pulse schema + structural content,
 #                 generated TS structure, vite build.
 #   2. assembly — script pipeline integration tests.
 #   3. content  — Advisory editorial checks against pulseData.ts (dates,
 #                 featured previews, postseason bracket polish). Notifications
 #                 only; never blocks merges.
+#
+# Local parity with blocking CI: npm run test:ci
 
-on:
-  push:
-    branches: ["*"]
-  pull_request:
-    branches: ["*"]
+on: [push, pull_request]
 
 permissions:
   contents: read
@@ -44,6 +43,9 @@ jobs:
       - name: Playoff ↔ pulse edition drift guard
         run: node scripts/validate-playoff-pulse-drift.mjs
 
+      - name: Playoff seriesIntel keys cover playoffSeries
+        run: node scripts/verify-series-intel-keys.mjs
+
       - name: Verify seasonal generator scripts resolve
         run: node scripts/content-schedule.mjs --verify-generators
 
@@ -59,11 +61,14 @@ jobs:
       - name: Pulse structural content (blocking)
         run: node scripts/tests/validate-content.mjs --hard-only
 
+      - name: Season-mode calendar (node:test)
+        run: node --test scripts/tests/season-mode.test.mjs
+
       - name: Vite build
         run: npx vite build
 
       - name: Verify embed bundle shipped
-        run: test -f dist/embed.js
+        run: node scripts/verify-dist-embed.mjs
 
   assembly:
     name: Pipeline assembly tests

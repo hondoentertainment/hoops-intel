@@ -58,19 +58,19 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E1-CLE-TOR",
+    seriesId: "E1-BOS-PHI",
     conference: "east",
     round: "first-round",
     higherSeed: 99,
     lowerSeed: 99,
-    higherTeam: "CLE",
-    lowerTeam: "TOR",
+    higherTeam: "BOS",
+    lowerTeam: "PHI",
     higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    lowerWins: 1,
+    status: "active",
+    summary: "PHI leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 7:30 PM EDT", tv: "NBC, Peacock" }
+      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: 100, awayScore: 109, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Joel Embiid", topLine: "34 PTS · 12 REB · 6 AST" }
     ],
   },
   {
@@ -90,19 +90,19 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
-    seriesId: "E1-BOS-PHI",
+    seriesId: "E1-CLE-TOR",
     conference: "east",
     round: "first-round",
     higherSeed: 99,
     lowerSeed: 99,
-    higherTeam: "BOS",
-    lowerTeam: "PHI",
+    higherTeam: "CLE",
+    lowerTeam: "TOR",
     higherWins: 0,
-    lowerWins: 1,
-    status: "active",
-    summary: "PHI leads 1-0",
+    lowerWins: 0,
+    status: "upcoming",
+    summary: "Series tied 0-0",
     games: [
-      { gameNumber: 1, date: "2026-05-02", homeTeam: "BOS", awayTeam: "PHI", homeScore: 100, awayScore: 109, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Joel Embiid", topLine: "34 PTS · 12 REB · 6 AST" }
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 7:30 PM EDT", tv: "NBC, Peacock" }
     ],
   },
   {
@@ -122,35 +122,19 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
-    seriesId: "E1-NY-PHI",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "NY",
-    lowerTeam: "PHI",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-10", homeTeam: "PHI", awayTeam: "NY", homeScore: null, awayScore: null, status: "scheduled", time: "5/10 - 3:30 PM EDT", tv: "ABC" }
-    ],
-  },
-  {
-    seriesId: "W1-OKC-PHX",
+    seriesId: "W1-LAL-HOU",
     conference: "west",
     round: "first-round",
     higherSeed: 99,
     lowerSeed: 99,
-    higherTeam: "OKC",
-    lowerTeam: "PHX",
+    higherTeam: "LAL",
+    lowerTeam: "HOU",
     higherWins: 1,
     lowerWins: 0,
     status: "active",
-    summary: "OKC leads 1-0",
+    summary: "LAL leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-04-27", homeTeam: "PHX", awayTeam: "OKC", homeScore: 122, awayScore: 131, status: "final", time: "Final", tv: "NBCSN, Peacock", topPerformer: "Shai Gilgeous-Alexander", topLine: "31 PTS · 2 REB · 8 AST" }
+      { gameNumber: 1, date: "2026-05-01", homeTeam: "HOU", awayTeam: "LAL", homeScore: 78, awayScore: 98, status: "final", time: "Final", tv: "Prime Video", topPerformer: "LeBron James", topLine: "28 PTS · 7 REB · 8 AST" }
     ],
   },
   {
@@ -170,22 +154,6 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
-    seriesId: "W1-LAL-HOU",
-    conference: "west",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "LAL",
-    lowerTeam: "HOU",
-    higherWins: 1,
-    lowerWins: 0,
-    status: "active",
-    summary: "LAL leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-01", homeTeam: "HOU", awayTeam: "LAL", homeScore: 78, awayScore: 98, status: "final", time: "Final", tv: "Prime Video", topPerformer: "LeBron James", topLine: "28 PTS · 7 REB · 8 AST" }
-    ],
-  },
-  {
     seriesId: "W1-SA-POR",
     conference: "west",
     round: "first-round",
@@ -202,35 +170,19 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
-    seriesId: "W1-SA-MIN",
-    conference: "west",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "SA",
-    lowerTeam: "MIN",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-10", homeTeam: "MIN", awayTeam: "SA", homeScore: null, awayScore: null, status: "scheduled", time: "5/10 - 7:30 PM EDT", tv: "NBC, Peacock" }
-    ],
-  },
-  {
-    seriesId: "W1-OKC-LAL",
+    seriesId: "W1-OKC-PHX",
     conference: "west",
     round: "first-round",
     higherSeed: 99,
     lowerSeed: 99,
     higherTeam: "OKC",
-    lowerTeam: "LAL",
-    higherWins: 0,
+    lowerTeam: "PHX",
+    higherWins: 1,
     lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    status: "active",
+    summary: "OKC leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-09", homeTeam: "LAL", awayTeam: "OKC", homeScore: null, awayScore: null, status: "scheduled", time: "5/9 - 8:30 PM EDT", tv: "ABC" }
+      { gameNumber: 1, date: "2026-04-27", homeTeam: "PHX", awayTeam: "OKC", homeScore: 122, awayScore: 131, status: "final", time: "Final", tv: "NBCSN, Peacock", topPerformer: "Shai Gilgeous-Alexander", topLine: "31 PTS · 2 REB · 8 AST" }
     ],
   }
 ];
@@ -296,7 +248,7 @@ export const seriesIntel: Record<string, SeriesIntel> = {
     regularSeasonH2H: "Tied 2-2; both road teams won by double digits",
     playoffHistory: "Fifth postseason meeting since 2018; Boston leads the all-time series 3-1",
     keyMatchup: "Jayson Tatum vs. Joel Embiid — Tatum averaged 28.4 PPG over his last five including 31 in February's MSG matchup",
-    narrative: "Philadelphia is the most dangerous seven-seed the East has produced in years because Embiid still bends the floor the moment he gets the ball at the elbow. Boston's counter is depth — but if Tatum goes cold and Al Horford can't check Embiid one-on-one, this series gets extremely interesting.",
+    narrative: "Embiid authored a roaring road Game 1 in Boston behind 34-and-12 work, staking Philadelphia early control of home court. Boston's counters are spacing and matchup hunting — but Tatum cannot afford another stagnant night against a defense selling out to choke his step-backs.",
   },
   "E1-NY-ATL": {
     regularSeasonH2H: "NY won series 3-1; Brunson averaged 28.8 in those four games",

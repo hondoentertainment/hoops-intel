@@ -35,6 +35,11 @@ jobs:
           echo "active=$ACTIVE" >> $GITHUB_OUTPUT
           echo "generatorActive=$ACTIVE"
 
+      - name: Scheduled run — generator inactive (offseason)
+        if: github.event_name == 'schedule' && steps.season.outputs.active != 'true'
+        run: |
+          echo "::notice::Daily generator skipped — season-mode reports inactive (offseason / dead period). No commit or failure."
+
   generate-edition:
     needs: check-season
     if: needs.check-season.outputs.active == 'true' || github.event_name == 'workflow_dispatch'

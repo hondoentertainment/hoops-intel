@@ -101,9 +101,9 @@ Configure these on **Vercel** (Production + Preview where applicable) and/or **G
 | Scope | Variables |
 |-------|-----------|
 | **AI pipeline** | `ANTHROPIC_API_KEY` |
-| **Stripe / Pro** | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_ANNUAL`, `APP_BASE_URL` (canonical site URL); webhook signing secret mirrors [`api/stripe-webhook.ts`](./api/stripe-webhook.ts). |
+| **Stripe / Pro** | `STRIPE_SECRET_KEY`, **`STRIPE_PRICE_MONTHLY`**, **`STRIPE_PRICE_ANNUAL`** (Dashboard → Products → Price IDs, e.g. `price_...`), `STRIPE_WEBHOOK_SECRET`, `APP_BASE_URL` (canonical site URL); webhook signing secret mirrors [`api/stripe-webhook.ts`](./api/stripe-webhook.ts). |
 | **Supabase** | `SUPABASE_URL`, `SUPABASE_ANON_KEY` (prefixed **`VITE_`** when exposed to browser), `SUPABASE_SERVICE_KEY` (server/GitHub Actions only). |
-| **Web Push** | `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`, `PUSH_API_SECRET`, callers use `PUSH_API_URL` + secret in workflows. |
+| **Web Push** | `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`, **`VITE_VAPID_PUBLIC_KEY`** (browser push subscribe; must match the public key), `PUSH_API_SECRET`, callers use `PUSH_API_URL` + secret in workflows. |
 | **Email digest** | `RESEND_API_KEY`, optionally `DIGEST_EMAILS`; optional quiet window **`DIGEST_USE_QUIET_WINDOW=1`** plus `DIGEST_SEND_START_HOUR_PST` / `DIGEST_SEND_END_HOUR_PST` (Pacific) and **`DIGEST_QUIET_OVERRIDE=1`** to force a blast. See [`scripts/send-digest.mjs`](./scripts/send-digest.mjs). |
 | **Guest / contact pitches** | `CONTACT_INBOUND_EMAIL` + `CONTACT_FORM_FROM_EMAIL` (`from` defaults to Resend onboarding domain). Routes via [`api/contact-intake.ts`](./api/contact-intake.ts). |
 | **Unsubscribe landing** | [`/unsubscribe`](./client/src/pages/Unsubscribe.tsx) calls [`api/unsubscribe-digest.ts`](./api/unsubscribe-digest.ts) (`PATCH digest_subscribers` with service role). |

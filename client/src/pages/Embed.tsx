@@ -147,6 +147,21 @@ export default function Embed() {
     return () => ro.disconnect();
   }, [widgetId, mounted, theme, size]);
 
+  useEffect(() => {
+    if (!mounted || !widgetId) return;
+    if (widgetId !== "pulse" && widgetId !== "ticker" && widgetId !== "injury") return;
+    const payload = JSON.stringify({
+      widgetId,
+      referrer: typeof document !== "undefined" ? document.referrer ?? "" : "",
+    });
+    void fetch("/api/embed-analytics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true,
+    }).catch(() => {});
+  }, [mounted, widgetId]);
+
   const bgShell = theme === "dark" ? "var(--hi-bg-page, #050D1A)" : "#ffffff";
 
   if (!mounted) {

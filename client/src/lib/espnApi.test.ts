@@ -31,8 +31,8 @@ describe("parseGame", () => {
     expect(g.status).toBe("pre");
     expect(g.homeTeam).toBe("DAL");
     expect(g.awayTeam).toBe("LAL");
-    expect(g.homeScore).toBeNaN();
-    expect(g.awayScore).toBeNaN();
+    expect(g.homeScore).toBeNull();
+    expect(g.awayScore).toBeNull();
     expect(Number.isFinite(g.period)).toBe(true);
   });
 
@@ -45,7 +45,7 @@ describe("parseGame", () => {
 
     const bare = parseGame({} as any);
     expect(bare.homeTeam).toBe("");
-    expect(bare.homeScore).toBe(0);
-    expect(bare.awayScore).toBe(0);
+    expect(bare.homeScore).toBeNull();
+    expect(bare.awayScore).toBeNull();
   });
 });

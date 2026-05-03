@@ -84,6 +84,16 @@ const SCHEDULE = {
       apis: ["Anthropic Claude"],
       secrets: ["ANTHROPIC_API_KEY"],
     },
+    {
+      name: "Site Review Agent",
+      workflow: "site-review-agent.yml",
+      cron: "30 14 * * *",
+      time: "6:30 AM PST",
+      description: "Production URL fingerprints + Claude recommendations; opens an issue on failures or visible HTML changes",
+      outputs: ["site-review-report.md (artifact)", "GitHub issue when notify"],
+      apis: ["Hoops Intel production (HTTPS)", "Anthropic Claude"],
+      secrets: ["ANTHROPIC_API_KEY (optional; report still runs without)"],
+    },
   ],
   recurring: [
     {

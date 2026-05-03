@@ -4,8 +4,10 @@ import { useTheme } from "../contexts/ThemeContext";
 import { MAIN_NAV_LINKS } from "../lib/siteNav";
 import { globalSearch, type SearchResult } from "../lib/searchUtils";
 import AuthModal from "./AuthModal";
+import { getUser, type User } from "../lib/supabaseClient";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
+import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
 
 export type SiteHeaderProps = {
   /** Secondary line under brand (e.g. ARCHIVE, DAILY INTELLIGENCE). */
@@ -31,9 +33,9 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
   const emailId = `${idPrefix}-digest-email`;
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [subscribed, setSubscribed] = useState(
-    () => typeof localStorage !== "undefined" && localStorage.getItem("hoopsintel-subscribed") === "true",
-  );
+  const [apiError, setApiError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [subscribed, setSubscribed] = useState(() => readDigestSignupHint());
   const [notifEnabled, setNotifEnabled] = useState(
     () => typeof Notification !== "undefined" && Notification.permission === "granted",
   );
@@ -61,17 +63,27 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
     }
   };
 
-  const handleSubscribe = () => {
+  const handleSubscribe = async () => {
     if (!notificationEmailValid(email)) {
       setEmailError("Enter a valid email address.");
       return;
     }
     setEmailError("");
-    localStorage.setItem("hoopsintel-subscribed", "true");
-    localStorage.setItem("hoopsintel-email", email.trim());
-    setSubscribed(true);
-    setShowModal(false);
+    setApiError("");
+    setSubmitting(true);
+    const result = await subscribeDigestEmail(email);
+    setSubmitting(false);
+    if (result.ok) {
+      setSubscribed(true);
+      setShowModal(false);
+    } else {
+      setApiError(result.error);
+    }
   };
+
+  const digestDescribedBy = [emailError ? `${emailId}-err` : "", apiError ? `${emailId}-api` : "", `${emailId}-hint`]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className="relative" data-notification-bell-root="1" ref={wrapRef}>
@@ -112,7 +124,11 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
 
             <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
               <span className="text-white/60 font-medium">Email digest:</span> morning drop at 5 AM PST.&nbsp;
-              <span className="text-white/60 font-medium">Browser permission:</span> optional — used for editions and, when you opt in via account + server rules, sparing playoff urgency alerts tied to elimination games (volume is capped; pipelines need VAPID + Supabase hooks).{" "}
+              <span className="text-white/60 font-medium">Browser permission:</span> optional — enable on{" "}
+              <a href="/account" className="underline text-sky-400/95">
+                Account → Browser push
+              </a>{" "}
+              for playoff topic opt-in; header digest signup is email-only.&nbsp;
               <a href="/playoffs" className="underline text-sky-400/95">
                 Playoff board →
               </a>
@@ -155,30 +171,35 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
                     id={emailId}
                     type="email"
                     autoComplete="email"
-                    aria-invalid={emailError ? "true" : undefined}
-                    aria-describedby={
-                      emailError ? `${emailId}-err ${emailId}-hint` : `${emailId}-hint`
-                    }
+                    aria-invalid={emailError || apiError ? "true" : undefined}
+                    aria-describedby={digestDescribedBy}
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
                       if (emailError) setEmailError("");
+                      if (apiError) setApiError("");
                     }}
                     placeholder="you@domain.com"
                     className="min-h-[44px] flex-1 min-w-[8rem] px-2 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 sm:min-h-0 sm:py-1.5"
                   />
                   <button
                     type="button"
-                    onClick={handleSubscribe}
-                    className="min-h-[44px] px-3 py-2 rounded text-xs font-semibold text-white sm:min-h-0"
+                    onClick={() => void handleSubscribe()}
+                    disabled={submitting}
+                    className="min-h-[44px] px-3 py-2 rounded text-xs font-semibold text-white sm:min-h-0 disabled:opacity-50"
                     style={{ background: "#0EA5E9" }}
                   >
-                    Subscribe
+                    {submitting ? "…" : "Subscribe"}
                   </button>
                 </div>
                 {emailError ? (
                   <p id={`${emailId}-err`} className="text-xs text-rose-400" role="alert">
                     {emailError}
+                  </p>
+                ) : null}
+                {apiError ? (
+                  <p id={`${emailId}-api`} className="text-xs text-rose-400" role="alert">
+                    {apiError}
                   </p>
                 ) : null}
               </div>
@@ -371,11 +392,16 @@ export default function SiteHeader({
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [sessionUser, setSessionUser] = useState<User | null | undefined>(undefined);
   const { theme, toggleTheme } = useTheme();
   const [locationPath] = useLocation();
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(mobileOpen);
   useFocusTrap(mobileOpen, mobilePanelRef);
+
+  useEffect(() => {
+    void getUser().then(setSessionUser);
+  }, []);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -525,18 +551,38 @@ export default function SiteHeader({
 
               <NotificationBell idPrefix="nav-bell" />
 
-              <button
-                type="button"
-                onClick={() => setShowAuth(true)}
-                className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
-                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                Sign In
-              </button>
+              {sessionUser === undefined ? (
+                <span
+                  className="hidden sm:inline-block w-14 h-8 rounded-lg animate-pulse shrink-0"
+                  style={{ background: "rgba(255,255,255,0.06)" }}
+                  aria-hidden
+                />
+              ) : sessionUser ? (
+                <a
+                  href="/account"
+                  className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
+                  style={{ background: "rgba(14,165,233,0.12)", color: "#7dd3fc", border: "1px solid rgba(14,165,233,0.25)" }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Account
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowAuth(true)}
+                  className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
+                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Sign In
+                </button>
+              )}
 
               {editionBadge ? (
                 <div
@@ -588,16 +634,26 @@ export default function SiteHeader({
               >
                 All tools &amp; labs
               </a>
-              <button
-                type="button"
-                className="text-left py-3 px-3 rounded-lg text-sm text-white/85 hover:bg-white/5 min-h-[48px]"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setShowAuth(true);
-                }}
-              >
-                Sign in
-              </button>
+              {sessionUser ? (
+                <a
+                  href="/account"
+                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 text-sky-400 font-medium"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Account
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className="text-left py-3 px-3 rounded-lg text-sm text-white/85 hover:bg-white/5 min-h-[48px]"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setShowAuth(true);
+                  }}
+                >
+                  Sign in
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -605,7 +661,15 @@ export default function SiteHeader({
 
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
 
-      {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={() => setShowAuth(false)} />}
+      {showAuth && (
+        <AuthModal
+          onClose={() => setShowAuth(false)}
+          onAuth={() => {
+            setShowAuth(false);
+            void getUser().then(setSessionUser);
+          }}
+        />
+      )}
     </>
   );
 }

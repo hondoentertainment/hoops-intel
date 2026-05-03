@@ -10,17 +10,20 @@ export interface TickerPulseItem {
 
 const MAX_ROWS = 10;
 
-/** One row per real matchup (both teams known), capped for ticker length. */
+/** Finals-only ticker lines from synced `playoffSeries` (early rounds use pulseData ticker). */
 export function playoffTickerDerivedItems(): TickerPulseItem[] {
   if (!isPlayoffsActive()) return [];
 
-  const usable = playoffSeries.filter((s) => s.higherTeam !== "TBD" && s.lowerTeam !== "TBD");
+  const finalsRows = playoffSeries.filter((s) => s.round === "finals");
+  if (finalsRows.length === 0) return [];
+
+  const usable = finalsRows.filter((s) => s.higherTeam !== "TBD" && s.lowerTeam !== "TBD");
 
   const out: TickerPulseItem[] = [];
-  if (usable.length === 0 && playoffSeries.some((s) => s.higherTeam === "TBD" || s.lowerTeam === "TBD")) {
+  if (usable.length === 0 && finalsRows.some((s) => s.higherTeam === "TBD" || s.lowerTeam === "TBD")) {
     out.push({
       type: "news",
-      text: "PLAYOFF BOARD · ESPN sync in progress — TBD placeholders clear when matchups lock.",
+      text: "NBA FINALS · ESPN sync in progress — matchup placeholders clear when the series locks.",
     });
     return out;
   }

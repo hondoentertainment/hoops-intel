@@ -28,8 +28,10 @@ export default function Rivals() {
         <p className="section-label mb-2">MATCHUP WATCHLIST</p>
         <h1 className="display-heading text-2xl sm:text-3xl text-white mb-4">Rival alerts</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-          When tonight&apos;s preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker.
-          (Server push segmentation for rival-only subs is still backlog — injury + playoff pushes reuse the infrastructure.)
+          When tonight&apos;s preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker.&nbsp;
+          Server pushes can now target rivalry pairings encoded on <span className="mono-data text-white/70">push_subscriptions</span> (<code className="mono-data text-white/65">rival_abbr_a/b</code>) —
+          callers POST <code className="mono-data text-white/65">topic: &quot;rival&quot;</code> with{" "}
+          <code className="mono-data text-white/65">rivalAway</code>/<code className="mono-data text-white/65">rivalHome</code>.
         </p>
 
         <div className="space-y-8">

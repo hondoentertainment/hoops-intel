@@ -38,6 +38,7 @@ const RefReports = lazy(() => import("./pages/RefReports"));
 const AskAI = lazy(() => import("./pages/AskAI"));
 const MyPulse = lazy(() => import("./pages/MyPulse"));
 const Pro = lazy(() => import("./pages/Pro"));
+const Account = lazy(() => import("./pages/Account"));
 const Embed = lazy(() => import("./pages/Embed"));
 const Tools = lazy(() => import("./pages/Tools"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
@@ -46,6 +47,7 @@ const BettingIntel = lazy(() => import("./pages/BettingIntel"));
 const PrintEdition = lazy(() => import("./pages/PrintEdition"));
 const GuestPulse = lazy(() => import("./pages/GuestPulse"));
 const Rivals = lazy(() => import("./pages/Rivals"));
+const PulseMethodology = lazy(() => import("./pages/PulseMethodology"));
 
 function VercelAnalyticsScript() {
   useEffect(() => {
@@ -118,6 +120,7 @@ export default function App() {
             <Route path="/ask" component={AskAI} />
             <Route path="/my-pulse" component={MyPulse} />
             <Route path="/pro" component={Pro} />
+            <Route path="/account" component={Account} />
             <Route path="/tools" component={Tools} />
             <Route path="/embed/:id" component={Embed} />
             <Route path="/unsubscribe" component={Unsubscribe} />
@@ -125,15 +128,27 @@ export default function App() {
             <Route path="/betting-intel" component={BettingIntel} />
             <Route path="/print-edition" component={PrintEdition} />
             <Route path="/guest-pulse" component={GuestPulse} />
+            <Route path="/pulse-methodology" component={PulseMethodology} />
             <Route path="/rivals" component={Rivals} />
             <Route>
-              <div className="container py-20 text-center">
-                <h1 className="text-2xl font-bold text-white mb-4">404</h1>
-                <p>Page not found</p>
-                <a href="/" className="text-sky-400 underline mt-4 inline-block">
-                  Back to Hoops Intel
-                </a>
-              </div>
+              <main className="container py-20 text-center" lang="en">
+                <p className="section-label mb-3">NOT FOUND</p>
+                <h1 className="display-heading text-2xl font-bold text-white mb-4">404 — Page not found</h1>
+                <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+                  That route is not part of Hoops Intel. Try search (⌘K / Ctrl+K) from any page.
+                </p>
+                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+                  <a href="/" className="text-sky-400 underline">
+                    Today&apos;s desk
+                  </a>
+                  <a href="/tools" className="text-sky-400 underline">
+                    All tools
+                  </a>
+                  <a href="/archive" className="text-sky-400 underline">
+                    Archive
+                  </a>
+                </div>
+              </main>
             </Route>
           </Switch>
         </Suspense>

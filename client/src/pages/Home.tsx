@@ -20,6 +20,7 @@ import { useLiveScores } from "../lib/useLiveScores";
 import { slugify } from "../lib/searchUtils";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
+import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
@@ -51,43 +52,90 @@ function footerEmailOk(raw: string) {
 // LIVE SCOREBAR — Real-time ESPN scores
 // ═══════════════════════════════════════════════════════════
 
+function fmtLiveScore(value: number | null) {
+  return value != null && Number.isFinite(value) ? value : "—";
+}
+
 function LiveScorebar() {
-  const { data, loading } = useLiveScores();
+  const { data, error, refresh } = useLiveScores();
   const liveGames = data?.games.filter((g) => g.status === "in") ?? [];
 
-  if (loading || liveGames.length === 0) return null;
-
-  return (
-    <div
-      className="border-b overflow-hidden"
-      style={{ borderColor: "rgba(16,185,129,0.3)", background: "rgba(16,185,129,0.05)" }}
-    >
-      <div className="container">
-        <div className="flex items-center gap-4 py-2 overflow-x-auto">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="section-label text-emerald-400 text-xs">LIVE NOW</span>
-          </div>
-          {liveGames.map((g) => (
-            <div
-              key={g.id}
-              className="flex items-center gap-3 px-3 py-1 rounded flex-shrink-0"
-              style={{ background: "rgba(255,255,255,0.04)" }}
-            >
-              <span className="section-label text-xs" style={{ color: g.awayScore > g.homeScore ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
-                {g.awayTeam} <span className="mono-data font-bold">{g.awayScore}</span>
-              </span>
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>@</span>
-              <span className="section-label text-xs" style={{ color: g.homeScore > g.awayScore ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}>
-                {g.homeTeam} <span className="mono-data font-bold">{g.homeScore}</span>
-              </span>
-              <span className="mono-data text-xs text-emerald-400">{g.statusDetail}</span>
+  if (liveGames.length > 0) {
+    return (
+      <div
+        className="border-b overflow-hidden"
+        style={{ borderColor: "rgba(16,185,129,0.3)", background: "rgba(16,185,129,0.05)" }}
+      >
+        <div className="container">
+          <div className="flex items-center gap-4 py-2 overflow-x-auto">
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />
+              <span className="section-label text-emerald-400 text-xs">LIVE ESPN</span>
             </div>
-          ))}
+            {liveGames.map((g) => {
+              const hs = g.homeScore;
+              const as = g.awayScore;
+              const comparable = hs != null && as != null;
+              const awayAhead = comparable && as > hs;
+              const homeAhead = comparable && hs > as;
+              return (
+                <div
+                  key={g.id}
+                  className="flex items-center gap-3 px-3 py-1 rounded flex-shrink-0"
+                  style={{ background: "rgba(255,255,255,0.04)" }}
+                >
+                  <span
+                    className="section-label text-xs"
+                    style={{ color: awayAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
+                  >
+                    {g.awayTeam}{" "}
+                    <span className="mono-data font-bold">{fmtLiveScore(as)}</span>
+                  </span>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    @
+                  </span>
+                  <span
+                    className="section-label text-xs"
+                    style={{ color: homeAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
+                  >
+                    {g.homeTeam}{" "}
+                    <span className="mono-data font-bold">{fmtLiveScore(hs)}</span>
+                  </span>
+                  <span className="mono-data text-xs text-emerald-400">{g.statusDetail}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        className="border-b overflow-hidden"
+        style={{ borderColor: "rgba(244,63,94,0.35)", background: "rgba(244,63,94,0.06)" }}
+        role="status"
+      >
+        <div className="container flex flex-wrap items-center gap-3 py-2">
+          <span className="text-xs text-rose-300">
+            {/(network|fetch|failed)/i.test(error) ? "Live scores unreachable." : error}
+          </span>
+          <button
+            type="button"
+            onClick={() => void refresh()}
+            className="text-xs font-semibold px-3 py-1.5 rounded-md min-h-[44px] sm:min-h-0"
+            style={{ background: "rgba(14,165,233,0.2)", color: "#7dd3fc" }}
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -107,20 +155,28 @@ function TickerBar() {
     news: "bg-sky-400", alert: "bg-emerald-400",
   };
 
+  const stripLabel = strip.map((i) => i.text).join(" · ");
+
   return (
     <div
       className="relative overflow-hidden border-b"
       style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(0,0,0,0.4)" }}
+      aria-labelledby="desk-ticker-wire-label"
     >
+      <div id="desk-ticker-wire-label" className="sr-only">
+        Edition intel wire — editorial headlines and synced playoff notes ({strip.length}{" "}
+        items): {stripLabel}
+      </div>
       <div className="flex items-center">
         <div
           className="flex-shrink-0 px-3 py-1.5 z-10 flex items-center gap-1.5"
           style={{ background: "#0EA5E9", minWidth: 60 }}
+          aria-hidden
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span className="section-label text-white text-xs font-bold tracking-widest">LIVE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-white motion-safe:animate-pulse" />
+          <span className="section-label text-white text-xs font-bold tracking-widest">WIRE</span>
         </div>
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden" aria-hidden>
           <div className="ticker-track">
             {items.map((item, i) => (
               <span key={i} className="flex items-center gap-2 px-6 py-2.5 whitespace-nowrap">
@@ -1185,18 +1241,29 @@ function Footer() {
   const digestId = "footer-digest-email";
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [subscribed, setSubscribed] = useState(() => localStorage.getItem("hoopsintel-subscribed") === "true");
+  const [apiError, setApiError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [subscribed, setSubscribed] = useState(() => readDigestSignupHint());
 
-  const handleSubscribe = () => {
+  const handleSubscribe = async () => {
     if (!footerEmailOk(email)) {
       setEmailError("Enter a valid email.");
       return;
     }
     setEmailError("");
-    localStorage.setItem("hoopsintel-subscribed", "true");
-    localStorage.setItem("hoopsintel-email", email.trim());
-    setSubscribed(true);
+    setApiError("");
+    setSubmitting(true);
+    const result = await subscribeDigestEmail(email);
+    setSubmitting(false);
+    if (result.ok) {
+      setSubscribed(true);
+    } else {
+      setApiError(result.error);
+    }
   };
+
+  const digestDescribedBy =
+    [emailError ? "footer-email-err" : "", apiError ? "footer-digest-api-err" : ""].filter(Boolean).join(" ") || undefined;
 
   return (
     <footer className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
@@ -1242,24 +1309,31 @@ function Footer() {
                     onChange={(e) => {
                       setEmail(e.target.value);
                       if (emailError) setEmailError("");
+                      if (apiError) setApiError("");
                     }}
-                    aria-invalid={emailError ? "true" : undefined}
-                    aria-describedby={emailError ? "footer-email-err" : undefined}
+                    aria-invalid={emailError || apiError ? "true" : undefined}
+                    aria-describedby={digestDescribedBy}
                     placeholder="you@domain.com"
                     className="flex-1 min-w-[min(100%,12rem)] min-h-[44px] px-3 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 sm:min-h-0"
                   />
                   <button
                     type="button"
-                    onClick={handleSubscribe}
-                    className="min-h-[44px] px-4 py-2 rounded text-xs font-semibold text-white sm:min-h-0"
+                    onClick={() => void handleSubscribe()}
+                    disabled={submitting}
+                    className="min-h-[44px] px-4 py-2 rounded text-xs font-semibold text-white sm:min-h-0 disabled:opacity-50"
                     style={{ background: "#0EA5E9" }}
                   >
-                    Subscribe
+                    {submitting ? "Signing up…" : "Subscribe"}
                   </button>
                 </div>
                 {emailError ? (
                   <p id="footer-email-err" className="text-xs text-rose-400" role="alert">
                     {emailError}
+                  </p>
+                ) : null}
+                {apiError ? (
+                  <p id="footer-digest-api-err" className="text-xs text-rose-400" role="alert">
+                    {apiError}
                   </p>
                 ) : null}
               </div>
@@ -1275,6 +1349,7 @@ function Footer() {
               <a href="#injuries" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Injury Wire</a>
               <a href="#tonight" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tonight's Games</a>
               <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
+              <a href="/tools" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>All tools</a>
               <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
               <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
               <a href="/tools" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tools directory</a>

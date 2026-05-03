@@ -99,6 +99,9 @@ html.light body {
   .animate-spin {
     animation: none !important;
   }
+  .animate-pulse {
+    animation: none !important;
+  }
   .animate-bounce {
     animation: none !important;
   }
