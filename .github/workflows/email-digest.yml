@@ -19,7 +19,7 @@ jobs:
         run: sleep 900  # 15-minute delay after edition generation
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main  # always use latest main after daily-update push
 
