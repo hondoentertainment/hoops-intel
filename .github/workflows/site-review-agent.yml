@@ -50,7 +50,7 @@ jobs:
           echo "_Full report in workflow artifacts._" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload report artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: site-review-${{ github.run_id }}
