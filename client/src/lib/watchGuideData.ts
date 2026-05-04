@@ -50,7 +50,7 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline: "The 76ers, riding the momentum of their historic 3-1 comeback against Boston, face a Knicks team hungry to capitalize on home court advantage in this physical Eastern Conference Semifinals opener.",
+      storyline: "The 76ers bring their historic 3-1 comeback momentum from the Boston series into Madison Square Garden for a heated Eastern Conference Semifinals opener. Philadelphia's resilient postseason run meets New York's home-court advantage in what promises to be an electric atmosphere.",
       keyMatchup: "Joel Embiid vs. Julius Randle",
       mustWatch: true
     },
@@ -65,15 +65,15 @@ export const watchGuideData: WatchGuideData = {
       time: "5/4 - 9:30 PM EDT",
       tv: "NBCSN, Peacock",
       venue: "Frost Bank Center",
-      entertainmentScore: 86,
+      entertainmentScore: 87,
       starPower: 8,
       playoffImplications: 10,
       rivalry: 6,
-      storyline: "Victor Wembanyama leads the conference-leading Spurs against Anthony Edwards and a Timberwolves squad looking to prove they belong on the biggest stage.",
-      keyMatchup: "Victor Wembanyama vs. Anthony Edwards",
+      storyline: "The Western Conference's top-seeded Spurs host Minnesota in a fascinating clash of styles as San Antonio's championship experience meets the Timberwolves' youthful athleticism. Victor Wembanyama's playoff debut has the basketball world watching.",
+      keyMatchup: "Victor Wembanyama vs. Karl-Anthony Towns",
       mustWatch: true
     }
   ],
-  topPick: "76ers at Knicks features playoff basketball at its finest - Philadelphia's historic comeback momentum meets New York's home court intensity at MSG",
-  nightOverview: "Conference semifinals action dominates tonight's slate with two compelling matchups. The Eastern Conference spotlight shines on Philadelphia's stunning playoff run against New York's home court advantage, while the West features a generational talent showcase between Wembanyama's Spurs and Edwards' Timberwolves."
+  topPick: "76ers at Knicks - Philadelphia's stunning comeback magic meets MSG playoff intensity in Eastern Conference Semifinals opener",
+  nightOverview: "Two conference semifinal matchups headline tonight's slate, featuring Philadelphia's miraculous playoff run continuing at Madison Square Garden and Victor Wembanyama's championship-favorite Spurs hosting Minnesota in San Antonio. Both games carry massive postseason implications with contrasting storylines of veteran resilience versus emerging stardom."
 };

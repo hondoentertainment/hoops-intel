@@ -34,12 +34,12 @@ export interface MomentumData {
 
 export const momentumData: MomentumData = {
   date: "May 4, 2026",
-  gameOfTheNight: "TOR-CLE-20260503",
+  gameOfTheNight: "CLE-TOR-20260503",
   topClutchPerformer: { 
     player: "Donovan Mitchell", 
     team: "CLE", 
     clutchRating: 94, 
-    description: "Delivered the decisive blow in Game 7 with 12 fourth-quarter points including the dagger three-pointer that sealed Cleveland's semifinal berth"
+    description: "Torched Toronto with 11 fourth-quarter points during Cleveland's decisive 16-4 run, including two step-back threes that silenced the road crowd and sealed the Game 7 victory" 
   },
   games: [
     {
@@ -48,44 +48,44 @@ export const momentumData: MomentumData = {
       finalScore: { home: 116, away: 94 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "7:42",
-          description: "Orlando opens Game 7 with confidence, jumping to early 12-4 lead behind Paolo Banchero's quick 8 points",
-          runScore: "8-0",
+          quarter: "Q1",
+          timestamp: "5:42",
+          description: "Paolo Banchero's early aggression gives Orlando 18-12 lead with back-to-back drives",
+          runScore: "8-2",
           momentum: "away",
           keyPlayer: "Paolo Banchero",
           impact: "notable"
         },
         {
-          quarter: "1st",
-          timestamp: "2:15",
-          description: "Cade Cunningham answers emphatically with 10 points in final two minutes, capping 18-4 run to close first quarter",
-          runScore: "18-4",
+          quarter: "Q2",
+          timestamp: "8:15",
+          description: "Cade Cunningham orchestrates 14-3 run with three assists and a deep three to flip the script",
+          runScore: "14-3",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
           impact: "significant"
         },
         {
-          quarter: "2nd",
-          timestamp: "6:30",
-          description: "Isaiah Stewart dominates the paint with three consecutive and-ones, extending Detroit's lead to 15 points",
-          runScore: "11-2",
+          quarter: "Q3",
+          timestamp: "4:28",
+          description: "Isaiah Stewart dominates the paint with 8 straight points, extending Detroit's lead to 20",
+          runScore: "12-2",
           momentum: "home",
           keyPlayer: "Isaiah Stewart",
-          impact: "significant"
+          impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "4:45",
-          description: "Detroit's precision passing creates wide-open looks as Cunningham orchestrates 14-2 run that breaks Orlando's spirit",
-          runScore: "14-2",
+          quarter: "Q4",
+          timestamp: "9:41",
+          description: "Detroit's reserves extend the blowout with crisp ball movement and transition buckets",
+          runScore: "11-4",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
+          keyPlayer: "Detroit Bench",
+          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Detroit transformed Game 7 anxiety into pure dominance behind Cade Cunningham's masterclass performance. After Orlando's early punch, the Pistons responded with suffocating defense and surgical offense that methodically dismantled the Magic's playoff dreams. Little Caesars Arena erupted as Detroit's 16-year semifinal drought finally ended in emphatic fashion. The game was essentially decided by halftime, turning what should have been a nail-biter into a coronation celebration."
+      narrative: "Game 7 turned into a coronation for the Pistons as they steamrolled Orlando in their own building. What started as a tense elimination game became a vintage playoff beatdown, with Cade Cunningham conducting a symphony of precision passing while Isaiah Stewart bulldozed through the Magic's interior. Detroit's 52% shooting and complete fourth-quarter domination announced their arrival as legitimate Eastern Conference contenders. Orlando's magical season ended not with drama, but with the harsh reality of playoff inexperience against a battle-tested Pistons squad ready for their closeup."
     },
     {
       gameId: "TOR-CLE-20260503",
@@ -93,36 +93,36 @@ export const momentumData: MomentumData = {
       finalScore: { home: 114, away: 102 },
       swings: [
         {
-          quarter: "2nd",
-          timestamp: "8:15",
-          description: "Scottie Barnes sparks Toronto with aggressive drives to the rim, powering 12-3 run to tie the game",
-          runScore: "12-3",
+          quarter: "Q1",
+          timestamp: "7:23",
+          description: "Scottie Barnes ignites early with two steals and fast-break dunks for 12-5 Toronto advantage",
+          runScore: "8-2",
           momentum: "away",
           keyPlayer: "Scottie Barnes",
-          impact: "significant"
+          impact: "notable"
         },
         {
-          quarter: "3rd",
-          timestamp: "5:20",
-          description: "Donovan Mitchell catches fire with three consecutive threes, giving Cleveland their largest lead of the night",
-          runScore: "11-0",
+          quarter: "Q2",
+          timestamp: "3:45",
+          description: "Mitchell heats up with three consecutive buckets, but Cavaliers still trail at halftime",
+          runScore: "9-4",
           momentum: "home",
           keyPlayer: "Donovan Mitchell",
           impact: "significant"
         },
         {
-          quarter: "4th",
-          timestamp: "7:30",
-          description: "Toronto rallies behind Barnes and cuts deficit to just 4 points, forcing Cleveland timeout in tense Game 7 moment",
-          runScore: "9-2",
-          momentum: "away",
-          keyPlayer: "Scottie Barnes",
+          quarter: "Q3",
+          timestamp: "2:17",
+          description: "Evan Mobley's rim protection sparks 10-2 run to tie the game entering the fourth",
+          runScore: "10-2",
+          momentum: "home",
+          keyPlayer: "Evan Mobley",
           impact: "significant"
         },
         {
-          quarter: "4th",
-          timestamp: "6:45",
-          description: "Mitchell and Mobley combine for unstoppable 16-4 surge that finally breaks Toronto's resistance and seals the victory",
+          quarter: "Q4",
+          timestamp: "6:42",
+          description: "Mitchell explodes for 11 points during Cleveland's decisive 16-4 surge to break Toronto's heart",
           runScore: "16-4",
           momentum: "home",
           keyPlayer: "Donovan Mitchell",
@@ -133,26 +133,33 @@ export const momentumData: MomentumData = {
         {
           player: "Donovan Mitchell",
           team: "CLE",
-          description: "Step-back three-pointer over Barnes to extend lead to 7 points during decisive fourth-quarter run",
-          timeRemaining: "6:12",
-          winProbabilityShift: 18
+          description: "Step-back three over Barnes gives Cleveland 104-98 lead",
+          timeRemaining: "4:23",
+          winProbabilityShift: 24
         },
         {
           player: "Evan Mobley",
-          team: "CLE", 
-          description: "Rejection of Barnes' drive followed by immediate outlet pass to Mitchell for fast-break dunk",
-          timeRemaining: "5:35",
-          winProbabilityShift: 15
+          team: "CLE",
+          description: "Crushing block on Jakob Poeltl followed by assist to Mitchell",
+          timeRemaining: "3:15",
+          winProbabilityShift: 18
         },
         {
           player: "Scottie Barnes",
           team: "TOR",
-          description: "Tough and-one finish through contact to keep Toronto within striking distance",
-          timeRemaining: "4:28",
-          winProbabilityShift: -8
+          description: "Desperate three-pointer cuts deficit to 108-101 with hope remaining",
+          timeRemaining: "2:44",
+          winProbabilityShift: -12
+        },
+        {
+          player: "Donovan Mitchell",
+          team: "CLE",
+          description: "Dagger three from 28 feet seals Cleveland's semifinal berth",
+          timeRemaining: "1:52",
+          winProbabilityShift: 31
         }
       ],
-      narrative: "Game 7 lived up to its billing as Mitchell and Barnes traded haymakers in a heavyweight battle at Rocket Arena. The game swayed back and forth like a pendulum until Cleveland's championship mettle finally showed through in the decisive fourth quarter. Mitchell's clutch gene activated when it mattered most, while Mobley's defensive presence became the difference maker in crunch time. Toronto fought valiantly but ultimately fell just short of their first conference semifinal since 2016, as Cleveland advances with newfound confidence."
+      narrative: "Game 7 at its finest, where legends are born and seasons die. Donovan Mitchell channeled his inner playoff assassin when it mattered most, turning a nail-biting fourth quarter into his personal highlight reel with ruthless efficiency. Toronto fought valiantly behind Scottie Barnes' all-around brilliance, but Cleveland's championship-tested core proved superior in the crucible moment. The decisive 16-4 run felt inevitable once Mitchell entered his zone, each contested jumper finding twine as Rocket Arena transformed from hostile to stunned. This wasn't just a Game 7 victory—it was Mitchell's emphatic declaration that Cleveland's championship window remains wide open."
     }
   ]
 };

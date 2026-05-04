@@ -47,142 +47,176 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-05-04",
   displayDate: "May 4, 2026",
-  overallMood: "Game 7 euphoria meets conference semifinals anxiety",
+  overallMood: "Conference semifinals euphoria with a side of MSG madness — the internet cannot decide whether to crown Detroit or lose its mind over Philly-New York",
   topics: [
     {
-      id: "pistons-championship-mode",
-      topic: "Detroit Pistons Championship Buzz",
+      id: "pistons-first-semis-since-2008",
+      topic: "Detroit Pistons Return to Conference Semifinals",
       sentiment: "positive",
-      intensity: 94,
-      volume: 47200,
-      summary: "NBA Twitter is losing its mind over Detroit's 22-point Game 7 blowout, with fans declaring the Pistons legitimate title contenders after reaching their first conference semis since 2008",
+      intensity: 97,
+      volume: 54300,
+      summary: "NBA Twitter has fully entered Pistons stan mode after Detroit's 22-point Game 7 destruction of Orlando, with the 2004 championship comparisons flying and legitimate title talk drowning out every other conversation",
       sampleTakes: [
-        "CADE CUNNINGHAM IS THAT GUY. 28 and 11 in a Game 7??? Detroit about to shock the world",
-        "Pistons really went from rebuild to conference semis in one season. This team different 😤",
-        "Detroit just demolished Orlando like they were the 2004 championship squad. Motor City madness is BACK",
-        "60 wins, Game 7 blowout, Cade looking like prime CP3... y'all still sleeping on Detroit?"
+        "DETROIT IS BACK. 60 wins, Game 7 blowout, Cade playing like prime CP3. Motor City championship incoming I SAID WHAT I SAID",
+        "Pistons really went from lottery picks to conference semis in what feels like two seasons. This rebuild is the blueprint for the entire league",
+        "That game felt like watching the 2004 Pistons. Team basketball, interior dominance, no single superstar carrying. They are BUILT different",
+        "Anyone still sleeping on Detroit after a 22-point Game 7 win deserves to watch them hoist the trophy in shock 😤🏆"
       ],
-      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart"],
+      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Ausar Thompson"],
       relatedTeams: ["DET", "ORL"],
       trending: true
     },
     {
-      id: "mitchell-game-seven-king",
-      topic: "Donovan Mitchell's Game 7 Mastery",
+      id: "cade-cunningham-ascension",
+      topic: "Cade Cunningham Superstar Arrival",
       sentiment: "positive",
-      intensity: 91,
-      volume: 38900,
-      summary: "Mitchell's 35-point Game 7 performance has fans comparing him to playoff legends, cementing his reputation as one of the clutchest players in the league",
+      intensity: 95,
+      volume: 48700,
+      summary: "Cunningham's 28-point, 11-assist Game 7 masterpiece has the internet officially moving him into the superstar conversation, with CP3 and Magic Johnson comparisons trending and zero pushback from anyone who watched the game",
       sampleTakes: [
-        "35 POINTS IN GAME 7. Donovan Mitchell built different in elimination games 🔥🔥🔥",
-        "Mitchell really said 'not today' to Toronto's upset bid. Spida mode activated when it matters most",
-        "That's why Cleveland traded for Spida. Game 7s hit different when you got a certified bucket getter",
-        "Mitchell in elimination games is basically cheat code activated. 35 and 8 to send Toronto home"
+        "28 and 11 in a Game 7 elimination game and he never even looked nervous. Cade Cunningham is a SUPERSTAR. Period. End of discussion.",
+        "The way Cade controls a game without forcing anything reminds me of prime CP3 and I'm not backing down from that comparison",
+        "Cunningham dropped 11 assists in a Game 7 and still had time to defend. Point gods don't come around often. Detroit found one",
+        "Y'all gave up on Cade after injuries and he came back and turned into THIS??? Redemption arc of the decade 🙌"
       ],
-      relatedPlayers: ["Donovan Mitchell", "Scottie Barnes"],
+      relatedPlayers: ["Cade Cunningham", "Isaiah Stewart"],
+      relatedTeams: ["DET"],
+      trending: true
+    },
+    {
+      id: "mitchell-game-seven-elite",
+      topic: "Donovan Mitchell Cements Game 7 Legacy",
+      sentiment: "positive",
+      intensity: 92,
+      volume: 41200,
+      summary: "Mitchell's 35-point elimination game performance has pushed him firmly into the 'elite playoff performer' tier on every NBA platform, with the discourse focusing on whether he's now a top-five player in the East",
+      sampleTakes: [
+        "35 points in a Game 7 on 13-24 shooting with 5 threes. Donovan Mitchell is BUILT for these moments and I will not hear otherwise",
+        "Spida really looked Toronto in the face and said not today. That's why Cleveland gave up all those picks. Worth every single one",
+        "Mitchell in elimination games hits different. Man goes into another gear that most players don't even have access to 🕷️🔥",
+        "Top 5 in the East discussion needs to include Mitchell RIGHT NOW. 35 in a Game 7 to advance is not an accident it's a pattern"
+      ],
+      relatedPlayers: ["Donovan Mitchell", "Evan Mobley", "Scottie Barnes"],
       relatedTeams: ["CLE", "TOR"],
       trending: true
     },
     {
-      id: "sixers-knicks-hype",
-      topic: "76ers vs Knicks Conference Semis Drama",
+      id: "sixers-knicks-msg-war",
+      topic: "76ers vs Knicks at MSG — Eastern Semifinals Game 1",
       sentiment: "mixed",
-      intensity: 87,
-      volume: 41500,
-      summary: "Tonight's Philly-New York opener at MSG has fans hyped for playoff basketball theater, with Embiid's health and the Sixers' historic comeback momentum dominating discussion",
+      intensity: 91,
+      volume: 58900,
+      summary: "Tonight's opener at Madison Square Garden is generating the highest volume of any topic today, with Sixers fans riding historic comeback energy and Knicks fans screaming about home court — the internet is split almost exactly 50-50 on who wins this series",
       sampleTakes: [
-        "Sixers at MSG tonight after that HISTORIC 3-1 comeback??? This about to be ELECTRIC ⚡",
-        "Embiid vs Randle at Madison Square Garden in the playoffs... inject this into my veins",
-        "Philadelphia got that championship energy after Boston. Knicks better be ready for this smoke",
-        "MSG playoff atmosphere bout to be UNMATCHED. Sixers riding that momentum wave straight to the finals"
+        "Sixers walk into MSG with that 3-1 Boston comeback energy and Embiid healthy??? Knicks are cooked before tip-off",
+        "Madison Square Garden playoff atmosphere is a different planet. Randle and Brunson been waiting for THIS moment all season",
+        "Philadelphia momentum vs New York home court. My heart says Knicks, my brain says Embiid is too much. I hate this series already",
+        "The Knicks haven't seen anything like what Embiid is walking in with tonight. That man is playing for legacy right now 👀"
       ],
-      relatedPlayers: ["Joel Embiid", "Julius Randle"],
+      relatedPlayers: ["Joel Embiid", "Julius Randle", "Jalen Brunson"],
       relatedTeams: ["PHI", "NYK"],
       trending: true
     },
     {
-      id: "magic-disappointment",
-      topic: "Orlando's Game 7 Collapse",
-      sentiment: "negative",
-      intensity: 73,
-      volume: 22800,
-      summary: "Magic fans devastated by the 22-point Game 7 loss, questioning Paolo's playoff readiness and the team's depth after such a promising season",
+      id: "wemby-ant-generational-duel",
+      topic: "Wembanyama vs Edwards — The Generational Showdown",
+      sentiment: "positive",
+      intensity: 86,
+      volume: 37400,
+      summary: "The prospect of Wembanyama and Edwards going head-to-head tonight at Frost Bank Center is generating massive pre-game discourse about the future face of the league, with fans treating this like a heavyweight title fight between two eras",
       sampleTakes: [
-        "Paolo with 18 points on trash shooting in Game 7... rookie wall hit HARD at the worst time",
-        "Orlando really folded like lawn chairs when it mattered most. That's the difference between young and ready",
-        "Magic fans really thought they were bout to upset Detroit 😂 Game 7 showed the talent gap",
-        "Paolo needs to add 20 pounds and learn playoff basketball. Good learning experience tho"
+        "Wemby vs Ant tonight is genuinely must-watch television. Two different styles of greatness colliding in the playoffs. I live for this 🍿",
+        "Anthony Edwards is about to try to run through the most unguardable defender in the league. Road warrior mentality vs alien defense. LFG",
+        "Whoever wins this series probably wins the West. That's how good both these teams are. And we get to watch TONIGHT",
+        "Frost Bank Center about to witness a generational moment. In ten years we'll be talking about this series like Jordan vs Magic"
+      ],
+      relatedPlayers: ["Victor Wembanyama", "Anthony Edwards", "Keyonte George"],
+      relatedTeams: ["SAS", "MIN"],
+      trending: true
+    },
+    {
+      id: "mobley-two-way-monster",
+      topic: "Evan Mobley's Two-Way Dominance Goes Viral",
+      sentiment: "positive",
+      intensity: 78,
+      volume: 21600,
+      summary: "Mobley's 18-point, 12-rebound, 4-block Game 7 performance is getting serious appreciation on analytical Twitter and Reddit, with the growing consensus that he's quietly become one of the most impactful two-way players in the league",
+      sampleTakes: [
+        "18 points 12 rebounds 4 BLOCKS in a Game 7 and people still not giving Evan Mobley his flowers. The disrespect is criminal",
+        "Mobley is what happens when a unicorn actually develops. Rim protection, shot making, rebounding... he does everything at an elite level",
+        "Cleveland's frontcourt of Mobley and Allen might be the most underrated duo in these playoffs. Both dropped double-doubles in Game 7",
+        "In three years Mobley is going to be a top-5 player conversation and people are going to act like they saw it coming the whole time 🤦"
+      ],
+      relatedPlayers: ["Evan Mobley", "Jarrett Allen", "Donovan Mitchell"],
+      relatedTeams: ["CLE"],
+      trending: false
+    },
+    {
+      id: "orlando-magic-youth-exposed",
+      topic: "Orlando's Game 7 Collapse Sparks Hot Takes",
+      sentiment: "negative",
+      intensity: 74,
+      volume: 25300,
+      summary: "The 22-point Game 7 loss has Orlando fans and NBA Twitter divided between those calling it an embarrassing collapse and those arguing the Magic's youth made Game 7 appearance itself a win — Paolo's shooting struggles are taking the most heat",
+      sampleTakes: [
+        "Paolo Banchero shooting like that in a Game 7 is genuinely concerning. You can't be your team's best player and go cold when it matters most",
+        "Orlando lost by 22 in a Game 7. That's not a learning experience that's a beatdown. The talent gap between them and Detroit was enormous",
+        "Magic fans convincing themselves this was a successful season is cope. You let a 60-win team beat you without even making it close",
+        "Franz Wagner had 19 and still lost by 22... that tells you everything about where Orlando's depth is right now"
       ],
       relatedPlayers: ["Paolo Banchero", "Franz Wagner"],
       relatedTeams: ["ORL", "DET"],
       trending: false
     },
     {
-      id: "wemby-vs-ant",
-      topic: "Wembanyama vs Anthony Edwards Showdown",
-      sentiment: "positive",
-      intensity: 82,
-      volume: 31200,
-      summary: "Tonight's Spurs-Timberwolves matchup has fans excited for the Wembanyama vs Edwards duel, with both young stars ready to make statements",
-      sampleTakes: [
-        "Wemby vs Ant Man tonight... the future of the league on full display 🍿",
-        "Anthony Edwards bout to cook San Antonio. Wemby can't guard that speed and athleticism",
-        "Frost Bank Center about to witness greatness. Wembanyama's rim protection vs Edwards' explosion",
-        "Two generational talents going at it. Winner gets crowned next face of the league"
-      ],
-      relatedPlayers: ["Victor Wembanyama", "Anthony Edwards"],
-      relatedTeams: ["SAS", "MIN"],
-      trending: false
-    },
-    {
-      id: "raptors-crossroads",
-      topic: "Toronto's Season Ends in Question Marks",
+      id: "toronto-raptors-at-crossroads",
+      topic: "Toronto's Season Ends — What Comes Next",
       sentiment: "mixed",
-      intensity: 65,
-      volume: 18700,
-      summary: "Raptors fans split between pride in the playoff push and frustration with falling short, debating the team's ceiling with current core",
+      intensity: 62,
+      volume: 16800,
+      summary: "Raptors fans are in that uncomfortable post-elimination space between pride and frustration, with Scottie Barnes discourse dominating — is he a genuine star or a very good player on a team with a ceiling problem",
       sampleTakes: [
-        "Scottie Barnes really had 24 and 9 in Game 7 loss. He's not the problem, need more help around him",
-        "Toronto overachieved just making playoffs. Scottie development > wins this season anyway",
-        "Raptors got that good playoff experience. Barnes looked like a future star even in the loss",
-        "Time to blow it up in Toronto? Or run it back with Barnes as the centerpiece? Tough call"
+        "Scottie Barnes put up 24 and 9 in a Game 7 loss. He is NOT the problem in Toronto. Give that man some actual co-stars please",
+        "Raptors really pushed Cleveland to seven games with a roster that had no business being in the playoffs. Scottie development is the win",
+        "Toronto needs to make a decision this summer. Run it back hoping Barnes takes a leap or blow it up and start fresh. Stuck in the middle is death",
+        "Siakam with 21 and 8 in a Game 7 loss still shows he has something left. But is Toronto the right situation? Real question"
       ],
       relatedPlayers: ["Scottie Barnes", "Pascal Siakam"],
       relatedTeams: ["TOR", "CLE"],
       trending: false
     },
     {
-      id: "eastern-conference-chaos",
-      topic: "Eastern Conference Semifinals Chaos",
+      id: "eastern-conference-semifinals-bracket",
+      topic: "East Semifinals Bracket Is Absolutely Loaded",
       sentiment: "positive",
-      intensity: 79,
-      volume: 28400,
-      summary: "Fans hyped about the conference semifinals bracket, with Detroit's Cinderella story meeting Cleveland's grit and the Sixers' momentum hitting New York's home court",
+      intensity: 81,
+      volume: 33700,
+      summary: "With the Eastern bracket fully set — Detroit vs Cleveland and Philadelphia vs New York — NBA Twitter is declaring this the best conference semifinals in recent memory, and the discourse about potential Finals matchups has already started",
       sampleTakes: [
-        "East playoffs bout to be CINEMA. Detroit vs Cleveland, Philly vs New York... chef's kiss 👨‍🍳💋",
-        "From worst to first conference semis... Detroit's story got me believing in miracles again",
-        "Eastern Conference really wide open now. Any of these four teams could make the Finals",
-        "Cleveland survived, Detroit dominated, Philly got momentum, New York got home court. CHAOS"
+        "Detroit vs Cleveland and Philly vs New York??? The Eastern Conference came to PLAY this postseason. Four legitimate title threats in one bracket",
+        "Whoever comes out of the East is going to be battle-tested and hungry. This bracket is going to produce the champion watch what I say",
+        "East semis got more star power than most Finals. Cade, Mitchell, Embiid, Mobley, Brunson, Randle... this is just straight up cinema",
+        "The NBA schedule gods really said let's give the people Philly at MSG on a Sunday night. Bless this league honestly 🙏"
       ],
-      relatedPlayers: ["Cade Cunningham", "Donovan Mitchell", "Joel Embiid"],
+      relatedPlayers: ["Cade Cunningham", "Donovan Mitchell", "Joel Embiid", "Jalen Brunson"],
       relatedTeams: ["DET", "CLE", "PHI", "NYK"],
       trending: false
     },
     {
-      id: "isaiah-stewart-appreciation",
-      topic: "Isaiah Stewart's Breakout Performance",
+      id: "isaiah-stewart-emergence",
+      topic: "Isaiah Stewart Demands Respect After Game 7 Dominance",
       sentiment: "positive",
-      intensity: 68,
-      volume: 15600,
-      summary: "Stewart's 22-point, 14-rebound Game 7 domination has fans recognizing his growth into a legitimate two-way force for Detroit",
+      intensity: 71,
+      volume: 18200,
+      summary: "Stewart's 22-point, 14-rebound, 3-block Game 7 performance is generating a wave of 'I've been saying this' posts and forcing casual fans to acknowledge his growth into one of the better big men in the East",
       sampleTakes: [
-        "Isaiah Stewart really turned into prime Ben Wallace in Game 7. 22 and 14 with the energy 💪",
-        "Stewart development been underrated all season. Dude is a legitimate playoff performer now",
-        "Orlando had no answer for Stewart in the paint. That's championship level interior presence",
-        "Detroit got their enforcer AND their second option. Stewart bout to be a problem in conference semis"
+        "Isaiah Stewart said I'm the enforcer AND the second option in one game. 22 and 14 with the defensive presence. GIVE HIM HIS FLOWERS",
+        "Detroit Stewart vs Orlando's frontcourt was the most one-sided matchup in both games last night. He absolutely cooked them",
+        "The way Stewart plays reminds me of the best version of what Clint Capela could have been. Physical, relentless, never stops moving",
+        "22 PTS 14 REB 3 BLK in a Game 7 and Stewart still not getting top billing. The Cade effect is real but don't overlook this man 👊"
       ],
-      relatedPlayers: ["Isaiah Stewart", "Paolo Banchero"],
-      relatedTeams: ["DET", "ORL"],
+      relatedPlayers: ["Isaiah Stewart", "Cade Cunningham"],
+      relatedTeams: ["DET"],
       trending: false
     }
   ],
@@ -191,65 +225,81 @@ export const sentimentData: SentimentData = {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 94,
-      buzzWords: ["championship", "domination", "Cade", "historic", "Motor City"],
-      narrativeSummary: "Pistons fever at an all-time high after the 22-point Game 7 blowout sent them to first conference semis since 2008, with fans dreaming of championship runs"
+      score: 96,
+      buzzWords: ["championship", "Cade", "Motor City", "dominant", "2004 vibes", "blowout"],
+      narrativeSummary: "Detroit fan sentiment is at a generational high — the 22-point Game 7 win hasn't just made fans happy, it's made them believers. Championship talk is everywhere and for once it doesn't feel delusional. The 2004 comparisons are the dominant narrative and nobody is arguing against them."
     },
     {
       team: "PHI",
       teamFull: "Philadelphia 76ers",
       sentiment: "positive",
-      score: 87,
-      buzzWords: ["momentum", "historic", "comeback", "Embiid", "championship"],
-      narrativeSummary: "Sixers riding massive wave of optimism into MSG after their 3-1 Boston comeback, with fans believing this team has championship destiny"
+      score: 89,
+      buzzWords: ["momentum", "Embiid", "historic comeback", "MSG", "destiny", "healthy"],
+      narrativeSummary: "Sixers fans are riding the highest wave of optimism in years after the 3-1 Boston comeback, and Embiid being healthy for MSG is being treated as almost unfair to the Knicks. The rare combination of star power, momentum, and genuine belief that this is their year is pushing fan sentiment to near-peak levels."
     },
     {
       team: "CLE",
       teamFull: "Cleveland Cavaliers",
       sentiment: "positive",
-      score: 82,
-      buzzWords: ["Mitchell", "clutch", "survived", "Spida", "advance"],
-      narrativeSummary: "Cavaliers fans relieved and excited after Mitchell's heroics sent them through, praising the team's playoff mettle and veteran leadership"
+      score: 83,
+      buzzWords: ["Spida", "clutch", "two-way", "Mobley", "Game 7 warriors", "advanced"],
+      narrativeSummary: "Cleveland fans are in a relieved-but-energized state — they survived a brutal seven-game series and came out with Mitchell playing his best basketball of the season. Mobley's emergence as a true co-star is generating significant excitement about this team's ceiling in the second round."
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 78,
-      buzzWords: ["MSG", "home court", "playoff atmosphere", "Randle", "ready"],
-      narrativeSummary: "Knicks fans confident about home court advantage against Philadelphia, hyping up Madison Square Garden's playoff energy"
+      score: 80,
+      buzzWords: ["MSG", "home court", "Brunson", "physical", "playoff basketball", "believers"],
+      narrativeSummary: "Knicks fans are loud, confident, and treating tonight's MSG opener as a coronation waiting to happen. The home court advantage narrative is being amplified everywhere, with fans insisting no team can walk into the Garden with more pressure and survive. The slight underdog energy is fueling rather than deflating the fanbase."
     },
     {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "positive",
-      score: 75,
-      buzzWords: ["Wemby", "defense", "future", "elite", "potential"],
-      narrativeSummary: "Spurs fans excited to see Wembanyama's playoff defense against Minnesota's explosive offense in what could be a statement series"
+      score: 77,
+      buzzWords: ["Wemby", "defense", "elite", "Frost Bank", "generational", "untouchable"],
+      narrativeSummary: "Spurs fans are supremely confident going into tonight after watching Wembanyama dominate all season, and the home court advantage at Frost Bank Center feels like a genuine edge. The dominant sentiment is that Minnesota simply cannot score enough against this defense to win a series."
     },
     {
       team: "MIN",
       teamFull: "Minnesota Timberwolves",
       sentiment: "positive",
-      score: 71,
-      buzzWords: ["Ant Man", "explosive", "speed", "young", "hungry"],
-      narrativeSummary: "Timberwolves fans pumped for Edwards to showcase his talent against Wembanyama, viewing this as a chance to prove they belong"
-    },
-    {
-      team: "ORL",
-      teamFull: "Orlando Magic",
-      sentiment: "negative",
-      score: -68,
-      buzzWords: ["collapse", "young", "experience", "Paolo struggles", "disappointing"],
-      narrativeSummary: "Magic fans crushed by the Game 7 blowout, disappointed in Paolo's performance but trying to stay positive about future development"
+      score: 73,
+      buzzWords: ["Ant Man", "explosive", "hungry", "road warriors", "young guns", "believers"],
+      narrativeSummary: "Wolves fans are energized and defiant — they know Wembanyama is the obstacle but they fully believe Edwards can carry them past any defense in the league. The Edwards ankle health is the only dark cloud in what is otherwise a fanbase feeling genuinely good about their chances on the road."
     },
     {
       team: "TOR",
       teamFull: "Toronto Raptors",
       sentiment: "mixed",
-      score: -23,
-      buzzWords: ["Scottie", "future", "overachieved", "potential", "crossroads"],
-      narrativeSummary: "Raptors fans split between disappointment in falling short and pride in Barnes' development, debating team direction moving forward"
+      score: -18,
+      buzzWords: ["Barnes future", "crossroads", "overachieved", "next steps", "rebuild", "summer decisions"],
+      narrativeSummary: "Raptors fans are in the complicated post-elimination grief phase — proud of the playoff push, frustrated by the Game 7 result, and genuinely uncertain about what this roster should look like next year. Barnes appreciation is the one thing everyone agrees on."
+    },
+    {
+      team: "ORL",
+      teamFull: "Orlando Magic",
+      sentiment: "negative",
+      score: -62,
+      buzzWords: ["Paolo struggles", "youth exposed", "blowout", "depth questions", "development needed", "disappointed"],
+      narrativeSummary: "Magic fans are in genuine pain about the Game 7 blowout — a 22-point loss in a winner-take-all game stings differently than a close defeat, and the sense that they weren't ready for prime time is widespread. Paolo criticism is harsh but the underlying frustration is about depth and playoff experience."
+    },
+    {
+      team: "BOS",
+      teamFull: "Boston Celtics",
+      sentiment: "negative",
+      score: -54,
+      buzzWords: ["historic collapse", "3-1 lead", "blown", "accountability", "offseason questions", "embarrassment"],
+      narrativeSummary: "Celtics fans are still processing the 3-1 series collapse against Philadelphia and the dominant sentiment is a mixture of fury and embarrassment. The L4 streak heading into elimination and the historical nature of the failure are keeping this discourse extremely heated even a day later."
+    },
+    {
+      team: "HOU",
+      teamFull: "Houston Rockets",
+      sentiment: "positive",
+      score: 68,
+      buzzWords: ["young core", "Amen Thompson", "exciting", "future", "playoff experience", "building"],
+      narrativeSummary: "Rockets fans are quietly optimistic and building energy around their playoff run, with Amen Thompson's development drawing increasing praise. Houston is the team most NBA observers are watching as a future Western Conference power and the fanbase feels that momentum."
     }
   ],
   playerSentiments: [
@@ -257,75 +307,138 @@ export const sentimentData: SentimentData = {
       player: "Cade Cunningham",
       team: "DET",
       sentiment: "positive",
-      score: 96,
-      mentions: 24800,
-      topTake: "Cade really orchestrated a Game 7 masterpiece. 28 and 11 with that poise? He's READY for championship runs",
-      narrativeArc: "Solidifying his status as a franchise cornerstone and future superstar with clutch Game 7 leadership"
+      score: 97,
+      mentions: 31200,
+      topTake: "28 points 11 assists in a GAME SEVEN and he made it look easy. Cade Cunningham is a superstar and Detroit is going to the Finals.",
+      narrativeArc: "Officially arrived as a bonafide superstar in the internet's eyes — the CP3 comparisons are everywhere and the performance has moved him from 'very good' to 'elite' in the public conversation overnight"
     },
     {
       player: "Donovan Mitchell",
       team: "CLE",
       sentiment: "positive",
-      score: 93,
-      mentions: 22100,
-      topTake: "35 points in Game 7... Mitchell really built different when elimination games on the line. Spida mode activated 🕷️",
-      narrativeArc: "Cementing his reputation as one of the league's most clutch playoff performers with another elimination game masterclass"
+      score: 94,
+      mentions: 27600,
+      topTake: "35 points in a Game 7 is not a coincidence it's a PATTERN. Mitchell is one of the five best players in the East and it's not debatable anymore.",
+      narrativeArc: "Cementing his legacy as the premier elimination-game performer in the Eastern Conference, with fans moving him firmly into the 'cornerstone franchise player' tier after this performance"
     },
     {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "positive",
-      score: 85,
-      mentions: 19400,
-      topTake: "Embiid bout to terrorize MSG tonight. After that Boston comeback, man is playing with championship confidence",
-      narrativeArc: "Building championship momentum after historic comeback, with health questions overshadowed by playoff dominance"
+      score: 88,
+      mentions: 23400,
+      topTake: "Embiid healthy walking into MSG with 3-1 comeback momentum is genuinely unfair to the Knicks. This man is on a mission.",
+      narrativeArc: "Pre-game hype is at a fever pitch — the combination of health, momentum, and the MSG storyline has fans treating tonight's tip-off as the beginning of a championship coronation"
     },
     {
       player: "Isaiah Stewart",
       team: "DET",
       sentiment: "positive",
-      score: 81,
-      mentions: 12700,
-      topTake: "Stewart really became prime Ben Wallace in Game 7. 22 and 14 while locking down the paint? BEAST MODE",
-      narrativeArc: "Breaking out as Detroit's second option and interior force, proving he's a legitimate playoff performer"
+      score: 84,
+      mentions: 15800,
+      topTake: "22-14-3 in a Game 7 elimination game and we're STILL not talking about Isaiah Stewart enough. The most underappreciated big man in these playoffs.",
+      narrativeArc: "Breakout performance forcing a reassessment of his value — the internet spent last week debating whether he was a starter-caliber player and today the answer is emphatically yes"
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
+      player: "Evan Mobley",
+      team: "CLE",
       sentiment: "positive",
-      score: 77,
-      mentions: 16800,
-      topTake: "Ant Man bout to cook Wemby tonight. Speed and athleticism vs length... this matchup got me HYPED",
-      narrativeArc: "Poised for potential breakout performance against Wembanyama in what fans see as generational talent showcase"
+      score: 82,
+      mentions: 13900,
+      topTake: "18 points 12 rebounds 4 BLOCKS in a Game 7 and Mobley gets mentioned third in Cleveland's own highlights. The disrespect to this man is generational.",
+      narrativeArc: "The analytical crowd has been screaming about Mobley all season and Game 7 gave them the viral moment they needed — the 'most underrated player in the East' narrative is gaining significant traction"
     },
     {
       player: "Victor Wembanyama",
       team: "SAS",
       sentiment: "positive",
+      score: 78,
+      mentions: 19700,
+      topTake: "Wemby vs Ant tonight is the most exciting matchup in basketball right now. Two generational talents. Neither one backing down. I cannot wait.",
+      narrativeArc: "Pre-game discourse is treating tonight as a coming-out party for Wembanyama on the biggest stage, with the prevailing opinion being his rim protection makes Minnesota virtually impossible to beat"
+    },
+    {
+      player: "Anthony Edwards",
+      team: "MIN",
+      sentiment: "positive",
+      score: 76,
+      mentions: 21300,
+      topTake: "Ant Man on the road against the best defense in basketball is exactly the high-stakes moment he was built for. This man does not feel pressure he APPLIES it.",
+      narrativeArc: "The ankle health question is the only thing keeping sentiment from being higher — when healthy, fans see Edwards as one of the only players in the league capable of neutralizing Wembanyama's defensive impact"
+    },
+    {
+      player: "Jalen Brunson",
+      team: "NYK",
+      sentiment: "positive",
       score: 74,
-      mentions: 15900,
-      topTake: "Wemby's rim protection bout to shut down Minnesota's fast break. Defensive anchor mode activated 🛡️",
-      narrativeArc: "Ready to showcase elite defensive abilities in crucial playoff matchup, with fans expecting dominant performance"
+      mentions: 16400,
+      topTake: "MSG playoff Brunson is a different animal. Home crowd feeding him energy he turns into buckets. Knicks need him to go supernova tonight and I think he will.",
+      narrativeArc: "Quietly building a huge pre-game narrative as the player who could be the difference-maker in what most expect to be a close, physical series — the home court amplifier angle is resonating strongly"
+    },
+    {
+      player: "Julius Randle",
+      team: "NYK",
+      sentiment: "mixed",
+      score: 42,
+      mentions: 12800,
+      topTake: "Randle in a big playoff game at MSG feels like a coin flip but when it lands heads it LANDS HEADS. Tonight is a heads night I believe.",
+      narrativeArc: "The discourse is deeply split between fans who believe playoff Randle is a weapon and those who remember playoff Randle disappearing — listed probable adds an uncertainty layer that's keeping sentiment from going higher"
     },
     {
       player: "Scottie Barnes",
       team: "TOR",
       sentiment: "mixed",
-      score: 31,
-      mentions: 8600,
-      topTake: "Scottie had 24 and 9 in the Game 7 loss... he's not the problem. Future is still bright in Toronto",
-      narrativeArc: "Showing flashes of star potential in defeat, with fans optimistic about his development despite season ending"
+      score: 38,
+      mentions: 9400,
+      topTake: "24 and 9 in a Game 7 loss and Barnes still looks like a future All-Star. Toronto didn't lose because of him. They lost because he doesn't have enough around him.",
+      narrativeArc: "Functioning as the silver lining in a painful elimination — the internet has largely absolved him of blame and the conversation has pivoted to whether Toronto will give him the supporting cast he deserves"
     },
     {
       player: "Paolo Banchero",
       team: "ORL",
       sentiment: "negative",
-      score: -47,
-      mentions: 11300,
-      topTake: "Paolo really shot like Ben Simmons in Game 7... rookie wall hit HARD when it mattered most",
-      narrativeArc: "Facing harsh criticism for Game 7 struggles, with fans questioning his playoff readiness and clutch gene"
+      score: -51,
+      mentions: 14600,
+      topTake: "Paolo Banchero when the regular season is on the line: 28 points effortless. Paolo Banchero in Game 7 vs Detroit: 18 points and disappeared for entire quarters. Concerning.",
+      narrativeArc: "Taking significant heat for the Game 7 shooting struggles in a blowout loss — the 'not ready for prime time' and 'playoff wall' narratives are dominating, though a vocal minority is defending him as a 22-year-old still developing"
+    },
+    {
+      player: "Franz Wagner",
+      team: "ORL",
+      sentiment: "negative",
+      score: -29,
+      mentions: 8100,
+      topTake: "Franz Wagner putting up 19 in a 22-point loss is the most useless 19 points of the playoffs. Led the second unit and it still wasn't close.",
+      narrativeArc: "Collateral damage from the Magic's blowout — his numbers look decent in isolation but the context of the loss is dragging sentiment down considerably"
+    },
+    {
+      player: "Pascal Siakam",
+      team: "TOR",
+      sentiment: "mixed",
+      score: 24,
+      mentions: 7300,
+      topTake: "Siakam still had 21 and 8 in a Game 7 at 32 years old. Whatever Toronto decides to do this offseason, don't sleep on what he can still give you.",
+      narrativeArc: "Quiet appreciation for a veteran performance in defeat, with the bigger storyline being whether this was his last game in a Raptors uniform — the impending free agency discourse is just starting to bubble up"
+    },
+    {
+      player: "Jarrett Allen",
+      team: "CLE",
+      sentiment: "positive",
+      score: 67,
+      mentions: 7900,
+      topTake: "16 and 11 in a Game 7 from your starting center is exactly what contenders are built on. Allen is the most consistent piece Cleveland has and nobody talks about him enough.",
+      narrativeArc: "The steady veteran presence who rarely generates viral moments but accumulates a deep well of respect — Game 7 is another entry in the growing 'criminally underappreciated' ledger"
+    },
+    {
+      player: "Ausar Thompson",
+      team: "DET",
+      sentiment: "positive",
+      score: 63,
+      mentions: 6700,
+      topTake: "Ausar Thompson coming off the bench and immediately giving Detroit energy and defense in a Game 7. That's championship depth. That's why they have 60 wins.",
+      narrativeArc: "Generating warm appreciation as a role player who delivered when the moment was biggest — the 'championship depth' framing has fans feeling like Detroit has no weaknesses anywhere in their rotation"
     }
   ],
-  hottestTake: "Detroit Pistons are winning the championship this year. I'm not even joking. They just blew out a playoff team by 22 in Game 7 like it was a scrimmage. Cade looks like prime CP3, Stewart playing like prime Ben Wallace, and they got that 2004 championship DNA in the building. Book it.",
-  coldestTake: "Paolo Banchero is overrated and Orlando made a mistake picking him #1. Dude disappeared when it mattered most in Game 7. Give me Chet or Jabari any day over this soft euro ball stuff."
+  hottestTake: "The Detroit Pistons are going to win the 2026 NBA Championship and in ten years people are going to call it the greatest rebuild in league history. Cade Cunningham just dropped 28 and 11 in a Game 7 like it was a pickup game in October. Isaiah Stewart is playing like the second coming of Ben Wallace. They blew out a playoff team by TWENTY-TWO in an elimination game. This is the 2004 Pistons energy reborn and I will bet everything I own on it.",
+  coldestTake: "Paolo Banchero is the most overrated player in the league relative to his draft position and people are way too patient with his playoff disappearing acts. He scored 18 points on bad shooting in a Game 7 while his team got demolished by 22. At some point the 'he's only 22' excuse runs out and you have to ask whether Orlando made a catastrophic mistake going all-in on him as the cornerstone."
 };
