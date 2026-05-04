@@ -45,6 +45,18 @@ function parseIntelJson(text) {
   return JSON.parse(text.slice(jsonStart, jsonEnd + 1));
 }
 
+/** Log Claude token usage when the SDK attaches `usage` to the message object. */
+function logAnthropicUsage(seriesId, message) {
+  const u = message?.usage;
+  if (!u || typeof u !== "object") {
+    console.log(`  [intel] ${seriesId}: usage — not reported`);
+    return;
+  }
+  const inp = typeof u.input_tokens === "number" ? u.input_tokens : "?";
+  const out = typeof u.output_tokens === "number" ? u.output_tokens : "?";
+  console.log(`  [intel] ${seriesId}: tokens in=${inp} out=${out}`);
+}
+
 /** Reject empty / junk fields so we retry or fall back to placeholders less often. */
 function validateIntelShape(obj) {
   const keys = ["regularSeasonH2H", "playoffHistory", "keyMatchup", "narrative"];
@@ -89,6 +101,7 @@ Return ONLY a JSON object with this exact shape — no prose before or after:
       max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
     });
+    logAnthropicUsage(s.seriesId, msg);
     const text = msg.content[0].text.trim();
     let obj;
     try {

@@ -1,0 +1,11 @@
+# Supabase CLI project root — enables `supabase db push` (local + CI manual workflow).
+# Link remotes from GitHub with SUPABASE_ACCESS_TOKEN + SUPABASE_PROJECT_REF (see workflows).
+
+project_id = "hoops-intel"
+
+[api]
+enabled = true
+schemas = ["public"]
+
+[db]
+major_version = 15

@@ -37,11 +37,18 @@ const REQUIRED_ENV = [
   'PUSH_API_SECRET',
 ];
 
+const requireEnv = process.argv.includes('--require-env');
 const missing = REQUIRED_ENV.filter((k) => !process.env[k]);
 if (missing.length > 0) {
-  console.log(`[check-injuries] Skipping — missing env vars: ${missing.join(', ')}`);
-  console.log(`[check-injuries] Add these as GitHub repository secrets to enable this workflow.`);
-  process.exit(0); // exit cleanly so the GH Action doesn't report a failure
+  const msg = `[check-injuries] Missing env vars: ${missing.join(', ')}`;
+  if (requireEnv) {
+    console.error(`❌ ${msg} (fail — --require-env)`);
+    console.error('[check-injuries] Add secrets to enable workflows; see references/push-notifications.md');
+    process.exit(1);
+  }
+  console.log(`[check-injuries] Skipping — ${msg}`);
+  console.log('[check-injuries] Add these as GitHub repository secrets to enable this workflow.');
+  process.exit(0);
 }
 
 const SUPABASE_URL         = process.env.SUPABASE_URL;

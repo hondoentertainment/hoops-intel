@@ -209,6 +209,12 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     }
   };
 
+  const applyTopicPreset = (ids: readonly string[]) => {
+    setErr("");
+    setTopics(new Set(ids));
+    setMsg("Preset applied locally — SAVE TOPICS ONLY or re-sync to persist.");
+  };
+
   if (!vapidConfigured()) {
     return (
       <div
@@ -249,6 +255,36 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         <code className="text-sky-400/80">references/push-notifications.md</code> — see also{" "}
         <code className="text-sky-400/80">.github/workflows/playoff-push.yml</code>.
       </p>
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        <span className="w-full text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Quick presets
+        </span>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => applyTopicPreset(DEFAULT_PUSH_TOPICS)}
+          className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
+        >
+          Playoff urgency
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => applyTopicPreset(["fantasy"])}
+          className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
+        >
+          Fantasy-only
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => applyTopicPreset(PUSH_TOPIC_OPTIONS.map((o) => o.id))}
+          className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
+        >
+          All alerts
+        </button>
+      </div>
 
       <div className="space-y-3 mb-4">
         {PUSH_TOPIC_OPTIONS.map((opt) => (

@@ -25,6 +25,7 @@
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",
     "ops:preflight": "node scripts/ops-preflight.mjs",
+    "ops:preflight:strict": "node scripts/ops-preflight.mjs --strict",
     "site-review": "node scripts/site-review-agent.mjs",
     "social": "node scripts/post-social.mjs",
     "digest": "node scripts/send-digest.mjs",

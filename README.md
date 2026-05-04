@@ -126,7 +126,7 @@ Copy [`.env.example`](./.env.example) when wiring **Vercel** (Production + Previ
 | **Root Directory** | Vercel → Project → Settings → General: **"."** (repository root). Expect `package.json`, `vercel.json`, and `vite.config.ts` here — not the `client/` subfolder alone. |
 | Production branch | Vercel → Project → Settings → Git → Production Branch = **`main`** |
 | Build | Reads `vercel.json`: `npm ci` + `npm run build` → static **`dist`** + `api/` serverless |
-| **Supabase migrations** | Files in `supabase/migrations/` are **not** auto-applied by Vercel/GitHub. Maintainer: `npx supabase login` → `npx supabase link --project-ref <ref>` → `npx supabase db push`. Local check: `npm run test:deploy` |
+| **Supabase migrations** | Files in `supabase/migrations/` are **not** auto-applied by Vercel. Maintainer: `supabase/config.toml` + either run `npx supabase db push` locally after `link`, **or** Actions → **Supabase migrations** workflow (requires repo secrets `SUPABASE_ACCESS_TOKEN`, `SUPABASE_PROJECT_REF`). Local layout check: `npm run test:deploy` |
 | Preview deploys | Open PRs automatically get Preview URLs when Git integration is enabled |
 | CI | Every push runs [`.github/workflows/tests.yml`](./.github/workflows/tests.yml); local parity is **`npm run test:ci`** |
 | Dependabot | [`.github/dependabot.yml`](./.github/dependabot.yml) opens weekly grouped npm / Actions updates |

@@ -40,7 +40,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Check injury status changes
-        run: node scripts/check-injuries.mjs
+        run: |
+          ARGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then ARGS="--require-env"; fi
+          node scripts/check-injuries.mjs $ARGS
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}

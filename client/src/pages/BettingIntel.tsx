@@ -18,8 +18,12 @@ export default function BettingIntel() {
           transparent disclaimer.
         </p>
 
-        <p className="text-xs mb-10 max-w-3xl rounded-lg px-4 py-3 leading-relaxed" style={{ border: "1px solid rgba(239,68,68,0.25)", background: "rgba(239,68,68,0.05)", color: "rgba(253,226,226,0.85)" }}>
+        <p className="text-xs mb-4 max-w-3xl rounded-lg px-4 py-3 leading-relaxed" style={{ border: "1px solid rgba(239,68,68,0.25)", background: "rgba(239,68,68,0.05)", color: "rgba(253,226,226,0.85)" }}>
           {bettingDisclaimer()}
+        </p>
+
+        <p className="text-xs mb-10 max-w-3xl rounded-lg px-4 py-3 leading-relaxed" style={{ border: "1px solid rgba(148,163,184,0.2)", background: "rgba(148,163,184,0.06)", color: "rgba(226,232,240,0.9)" }}>
+          Open-to-close line histories need a normalized odds feed in archive. Until that pipeline exists, cards show the morning snapshot spread (and optional opening line when editors note it in storyline).
         </p>
 
         {slate.comparable > 0 && slate.pct !== null ? (

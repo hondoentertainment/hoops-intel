@@ -82,6 +82,10 @@ function main() {
 
   if (!existsSync(join(ROOT, "client", "index.html"))) die("missing client/index.html");
 
+  const supabaseConfig = join(ROOT, "supabase", "config.toml");
+  if (!existsSync(supabaseConfig)) warn("missing supabase/config.toml — Supabase CLI link/db push expects this file");
+  else ok("supabase/config.toml present (Supabase CLI project root)");
+
   const functions =
     vercel.functions && typeof vercel.functions === "object" ? Object.keys(vercel.functions) : [];
   const apis = new Set(apiFiles());
@@ -124,7 +128,7 @@ function main() {
     ok(`${migs.length} Supabase migration file(s) on disk — apply to hosted Supabase with CLI (see output above)`);
 
     console.log("");
-    console.log("[deploy-config] Hosted DB note: CI does not apply migrations. Maintainer flow:");
+    console.log("[deploy-config] Hosted DB: use GitHub Actions workflow \"Supabase migrations\" or locally:");
     console.log("        npx supabase login");
     console.log("        npx supabase link --project-ref <your-project-ref>");
     console.log("        npx supabase db push");

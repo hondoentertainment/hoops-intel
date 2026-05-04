@@ -13,6 +13,20 @@ type Row = {
   pitch: string;
 };
 
+function ageHours(iso: string): number {
+  const t = new Date(iso).getTime();
+  if (!Number.isFinite(t)) return 0;
+  return (Date.now() - t) / 36e5;
+}
+
+function backlogBadge(status: string, hours: number): { label: string; className: string } | null {
+  if (status !== "received" && status !== "reviewing") return null;
+  if (hours >= 72) return { label: "Stale (72h+)", className: "text-amber-300 bg-amber-500/15 border-amber-500/35" };
+  if (hours >= 48) return { label: "Backlog · 48h+", className: "text-white/70 bg-white/[0.04] border-white/14" };
+  if (hours >= 24 && status === "received") return { label: "24h+ in queue", className: "text-sky-200/90 bg-sky-500/10 border-sky-500/25" };
+  return null;
+}
+
 export default function CreatorQueue() {
   const stored = typeof sessionStorage !== "undefined" ? sessionStorage.getItem(TOKEN_KEY) ?? "" : "";
   const [token, setToken] = useState(() => (stored.startsWith("Bearer ") ? stored : stored ? `Bearer ${stored}` : ""));
@@ -120,10 +134,23 @@ export default function CreatorQueue() {
         {err ? <p className="text-sm text-rose-400">{err}</p> : null}
 
         <div className="space-y-4 mt-8">
-          {rows.map((r) => (
+          {rows.map((r) => {
+            const hrs = ageHours(r.created_at);
+            const sla = backlogBadge(r.status, hrs);
+            return (
             <article key={r.id} className="rounded-xl p-5 border border-white/[0.08] bg-white/[0.02]">
-              <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2" style={{ color: "rgba(255,255,255,0.45)" }}>
-                <span>{r.created_at.slice(0, 19)}</span>
+              <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2 items-center" style={{ color: "rgba(255,255,255,0.45)" }}>
+                <span className="flex flex-wrap items-center gap-2">
+                  <span>{r.created_at.slice(0, 19)}</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-white/50">
+                    {hrs < 1 ? "Under 1h" : `${Math.floor(hrs)}h old`}
+                  </span>
+                  {sla ? (
+                    <span className={`text-[10px] px-2 py-0.5 rounded border font-bold uppercase tracking-wider ${sla.className}`}>
+                      {sla.label}
+                    </span>
+                  ) : null}
+                </span>
                 <span className="uppercase tracking-[0.12em]" style={{ color: "#94F5D9" }}>
                   {r.status}
                 </span>
@@ -148,7 +175,8 @@ export default function CreatorQueue() {
                 ))}
               </div>
             </article>
-          ))}
+          );
+          })}
         </div>
 
         <style>{`
