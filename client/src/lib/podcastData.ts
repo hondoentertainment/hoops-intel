@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 3, 2026
+// Last updated: May 4, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,92 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 3, 2026",
-  episodeTitle: "Embiid's Masterpiece: 76ers Complete Historic 3-1 Comeback + Twin Game 7s Tonight",
+  date: "May 4, 2026",
+  episodeTitle: "Game 7 Magic: Detroit & Cleveland Punch Semifinal Tickets as East Heats Up",
   rundown: [
     {
-      topic: "76ers Shock the World with Historic Game 7 Road Win",
+      topic: "Detroit's Historic Game 7 Demolition Job",
       segment: "opener",
-      duration: "8 minutes",
-      keyStats: [
-        "PHI wins 109-100 at TD Garden to complete 3-1 comeback",
-        "Joel Embiid: 34 PTS, 12 REB, 6 AST on 12-26 shooting", 
-        "Tyrese Maxey: 30 PTS, 11 REB, 7 AST in support",
-        "VJ Edgecombe: 23 PTS on 5-8 from three as rookie",
-        "Only 6th team since 2010 to overcome 3-1 deficit",
-        "Boston season ends at home despite 56-26 record"
-      ],
-      debateAngle: "Is this Joel Embiid's defining career moment, or does he need championship hardware to cement his legacy?",
-      suggestedQuote: "When you trail 3-1 and your season's on the line, you find out what your stars are really made of. Joel Embiid just authored one of the greatest Game 7 performances in playoff history.",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe", "Jaylen Brown", "Jayson Tatum"]
-    },
-    {
-      topic: "Breaking Down Philadelphia's Perfect Storm",
-      segment: "deep-dive", 
-      duration: "10 minutes",
-      keyStats: [
-        "Embiid shot 46% from field in elimination games",
-        "Maxey averaged 28 PPG over final 3 games",
-        "Rookie Edgecombe: 15 threes made in series",
-        "PHI outrebounded BOS 48-41 in Game 7",
-        "Boston shot just 41% in decisive loss",
-        "Tatum: 8-24 FG in season-ending performance"
-      ],
-      debateAngle: "What was more important - Philadelphia's stars stepping up or Boston's stars shrinking in the moment?",
-      suggestedQuote: "Championship teams are built on moments like this. The 76ers didn't just win a game, they showed they have that killer instinct when everything's on the line.",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe", "Jayson Tatum", "Jaylen Brown"]
-    },
-    {
-      topic: "Is This the End of Boston's Championship Window?",
-      segment: "hot-take",
-      duration: "7 minutes", 
-      keyStats: [
-        "Celtics led series 3-1 with home court",
-        "Tatum: 22 PTS on 33% shooting in Game 7",
-        "Brown: 33 PTS but couldn't carry team",
-        "Boston 0-2 in home Game 7s since 2018",
-        "Core of Tatum/Brown is 0-1 in Finals",
-        "Age concerns with Al Horford at 40"
-      ],
-      debateAngle: "After blowing a 3-1 lead at home, are the Celtics' championship aspirations officially over with this core?",
-      suggestedQuote: "When you have a 3-1 lead, home court for Game 7, and your franchise player goes 8-for-24, that's not just losing - that's championship windows slamming shut.",
-      relevantPlayers: ["Jayson Tatum", "Jaylen Brown", "Al Horford", "Marcus Smart"]
-    },
-    {
-      topic: "Game 7 Sunday Double-Header Preview",
-      segment: "rapid-fire",
       duration: "6 minutes",
       keyStats: [
-        "DET hosts ORL at 3:30 PM ET on ABC", 
-        "CLE hosts TOR at 7:30 PM ET on NBC",
-        "Cunningham: 32 PTS forced Detroit Game 7",
-        "Barnes: 25 PTS, 14 AST in Toronto's OT win",
-        "Magic 1-3 on road this postseason",
-        "Cavaliers 3-1 at Rocket Arena in playoffs"
+        "DET 116, ORL 94 — 22-point blowout in winner-take-all game",
+        "Cade Cunningham: 28 PTS, 11 AST on 11-18 shooting",
+        "Isaiah Stewart: 22 PTS, 14 REB, dominated the paint",
+        "First conference semifinals since 2008 — 18-year drought ends",
+        "Pistons shot 52% from field, never trailed after Q1"
       ],
-      debateAngle: "Which Game 7 has higher upset potential - Orlando in Detroit or Toronto in Cleveland?",
-      suggestedQuote: "Two Game 7s in one day is why we love playoff basketball. Pure elimination drama where one possession can define entire seasons.",
-      relevantPlayers: ["Cade Cunningham", "Paolo Banchero", "Scottie Barnes", "Donovan Mitchell"]
+      debateAngle: "Is this Pistons team built for a deep playoff run or will experience catch up to them in the semifinals?",
+      suggestedQuote: "Cade Cunningham just delivered the performance Detroit has been waiting 18 years to see — that wasn't just a Game 7 win, that was a championship-level statement.",
+      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Paolo Banchero", "Ausar Thompson"]
     },
     {
-      topic: "What's Next After This Wild Weekend",
-      segment: "closer",
+      topic: "Donovan Mitchell's Clutch Gene on Full Display",
+      segment: "deep-dive",
+      duration: "8 minutes",
+      keyStats: [
+        "CLE 114, TOR 102 — survived tense Game 7 battle",
+        "Donovan Mitchell: 35 PTS, 8 AST, 5 threes on 13-24 shooting",
+        "Evan Mobley: 18 PTS, 12 REB, 4 BLK anchored defense",
+        "Decisive 16-4 run in fourth quarter broke Toronto's resistance",
+        "Mitchell averaging 28.4 PPG this playoff series"
+      ],
+      debateAngle: "How does Mitchell's Game 7 performance rank among the clutch playoff moments of his career, and what does it say about Cleveland's championship ceiling?",
+      suggestedQuote: "When the lights are brightest and the stakes are highest, Donovan Mitchell transforms into a completely different player — that 35-point Game 7 was pure playoff basketball poetry.",
+      relevantPlayers: ["Donovan Mitchell", "Evan Mobley", "Scottie Barnes", "Pascal Siakam", "Jarrett Allen"]
+    },
+    {
+      topic: "Are the 76ers Actually Built Different This Time?",
+      segment: "hot-take",
+      duration: "7 minutes",
+      keyStats: [
+        "PHI completed historic 3-1 comeback vs Boston",
+        "Tonight: PHI @ NYK, 8 PM ET at Madison Square Garden",
+        "Joel Embiid probable with knee management",
+        "VJ Edgecombe emerging as clutch rookie contributor",
+        "Knicks are 4.5-point home favorites"
+      ],
+      debateAngle: "Is Philadelphia's stunning Boston comeback proof they're finally mentally tough enough for a title run, or will the bright lights of MSG expose them again?",
+      suggestedQuote: "I've seen this movie before with Philadelphia — they get our hopes up, then crumble under pressure. But something feels different about this group after that Boston series.",
+      relevantPlayers: ["Joel Embiid", "VJ Edgecombe", "Jalen Brunson", "Julius Randle"]
+    },
+    {
+      topic: "Rapid Fire: West Coast Drama & Rookie Watch",
+      segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "PHI advances to face winner of DET/ORL",
-        "Conference semifinals could start Tuesday",
-        "Embiid managing right knee after heavy minutes",
-        "4 Eastern Conference teams still alive",
-        "West playoffs ahead of schedule currently",
-        "Rookie Edgecombe now legitimate playoff factor"
+        "MIN @ SAS tonight — Edwards vs Wembanyama clash",
+        "Victor Wembanyama probable with back tightness",
+        "Anthony Edwards questionable with ankle soreness",
+        "VJ Edgecombe leads rookie playoff scoring at 14.2 PPG",
+        "Spurs 6.5-point home favorites over Minnesota"
       ],
-      debateAngle: "Can Philadelphia's momentum from this historic comeback carry them to the Finals?",
-      suggestedQuote: "Sometimes the hardest series to win is the one right after you pull off the impossible. Philadelphia just used every emotional bullet they had - can they reload for another war?",
-      relevantPlayers: ["Joel Embiid", "Tyrese Maxey", "VJ Edgecombe"]
+      debateAngle: "Which tonight's Western Conference matchup has higher championship implications — the star power or the system basketball?",
+      suggestedQuote: "Tonight's Spurs-Timberwolves game is pure basketball porn — you've got Wembanyama's defensive brilliance against Edwards' explosive offense in a playoff atmosphere.",
+      relevantPlayers: ["Victor Wembanyama", "Anthony Edwards", "VJ Edgecombe", "Amen Thompson"]
+    },
+    {
+      topic: "Eastern Conference Semifinals: The Road Ahead",
+      segment: "closer",
+      duration: "4 minutes",
+      keyStats: [
+        "East semifinals bracket now set with four teams advancing",
+        "Detroit's first conference semis since 2008 championship window",
+        "Cleveland-Detroit eventual matchup promises contrasting styles",
+        "Philadelphia's momentum vs New York's home court advantage",
+        "Conference finals picture starting to crystallize"
+      ],
+      debateAngle: "Which Eastern Conference semifinal matchup is more likely to produce a legitimate championship contender?",
+      suggestedQuote: "The Eastern Conference just got infinitely more interesting — you've got Detroit's young hunger, Cleveland's veteran savvy, Philly's resilience, and New York's desperation all colliding in the semifinals.",
+      relevantPlayers: ["Cade Cunningham", "Donovan Mitchell", "Joel Embiid", "Jalen Brunson"]
     }
   ],
-  coldOpen: "The impossible just happened at TD Garden. Joel Embiid dropped 34 and 12, Tyrese Maxey added 30, and rookie VJ Edgecombe hit five threes as Philadelphia completed one of the most stunning comebacks in playoff history - overcoming a 3-1 deficit to eliminate Boston on their home floor. Meanwhile, two more Game 7s await us today as the Eastern Conference continues its absolute chaos. This is Hoops Intel, I'm your host, and we've got a LOT to unpack.",
-  socialClip: "Joel Embiid's dominant Game 7 performance breakdown - 34 points, 12 rebounds, and the defining moment of his career as Philadelphia completes the 3-1 comeback at TD Garden. The crowd reaction when VJ Edgecombe hit his fifth three-pointer is absolutely electric.",
+  coldOpen: "Game 7 magic happened twice last night, and the Eastern Conference playoff picture just got absolutely electric. Detroit ended an 18-year conference semifinal drought with a statement 22-point blowout of Orlando, while Donovan Mitchell went full superhero mode with 35 points to push Cleveland past Toronto. But here's the thing — tonight we get 76ers-Knicks at Madison Square Garden with Philly riding that historic Boston comeback momentum. Plus, the West Coast serves up Wembanyama versus Anthony Edwards in what might be the most aesthetically pleasing basketball game of the playoffs so far. I'm your host, this is Hoops Intel, and we're about to break down why last night's Game 7s were just the appetizer for tonight's main course.",
+  socialClip: "Cade Cunningham's 28-point, 11-assist masterclass in Detroit's historic Game 7 victory — breaking down how the young star orchestrated the Pistons' first conference semifinals berth since 2008 with surgical precision against Orlando's defense.",
   tweetThread: [
-    "🚨 PODCAST THREAD: Breaking down Philadelphia's HISTORIC 3-1 comeback and tonight's twin Game 7s 🚨",
-    "Joel Embiid just delivered one of the greatest Game 7 performances ever: 34 PTS, 12 REB, 6 AST at TD Garden to eliminate the favored Celtics. This is what playoff legends are made of.",
-    "But let's talk about the supporting cast - Tyrese Maxey with 30 and 11, and ROOKIE VJ Edgecombe drilling 5 threes in a Game 7 elimination game. That's championship-level depth right there.",
-    "Meanwhile, Boston's season ends with Jayson Tatum going 8-24 in Game 7 at home. After blowing a 3-1 lead, serious questions about this core's championship ceiling.",
-    "Tonight we get TWO more Game 7s: Magic @ Pistons (3:30 ET, ABC) and Raptors @ Cavaliers (7:30 ET, NBC). Pure playoff basketball doesn't get better than winner-take-all elimination games. 🏀🔥"
+    "🎧 NEW @HoopsIntel: Game 7 magic struck twice last night as Detroit & Cleveland punched semifinal tickets with dominant performances. Plus tonight's PHI-NYK thriller at MSG has title implications 🧵",
+    "Detroit's 116-94 Game 7 demolition of Orlando wasn't just a win — it was an 18-year drought-ending STATEMENT. Cade (28/11) and Stewart (22/14) showed this young core is built for playoff moments 🔥",
+    "Donovan Mitchell's 35-point Game 7 masterpiece proves he's built different in elimination games. That 16-4 fourth quarter run by Cleveland broke Toronto's hearts and showcased championship-level composure 💯",
+    "Tonight's 76ers-Knicks opener at MSG is must-watch basketball. Philly's riding that historic 3-1 Boston comeback momentum, but can they handle the bright lights and hostile crowd? Embiid vs Randle is appointment television 📺",
+    "The Eastern Conference semifinals just got SPICY. Detroit's youth vs Cleveland's experience. Philly's resilience vs New York's desperation. Four teams with legitimate title dreams — who survives? 🏆"
   ]
 };

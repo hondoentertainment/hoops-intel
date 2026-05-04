@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 3, 2026
+// Last updated: May 4, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,97 +33,126 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 3, 2026",
-  gameOfTheNight: "PHI-BOS-20260502",
+  date: "May 4, 2026",
+  gameOfTheNight: "TOR-CLE-20260503",
   topClutchPerformer: { 
-    player: "Joel Embiid", 
-    team: "PHI", 
-    clutchRating: 95, 
-    description: "Scored 12 points in the fourth quarter of Game 7, including a devastating 3-pointer with 2:47 remaining that silenced TD Garden and put Philadelphia ahead for good in their historic comeback series victory."
+    player: "Donovan Mitchell", 
+    team: "CLE", 
+    clutchRating: 94, 
+    description: "Delivered the decisive blow in Game 7 with 12 fourth-quarter points including the dagger three-pointer that sealed Cleveland's semifinal berth"
   },
   games: [
     {
-      gameId: "PHI-BOS-20260502",
-      teams: { home: "BOS", away: "PHI" },
-      finalScore: { home: 100, away: 109 },
+      gameId: "ORL-DET-20260503",
+      teams: { home: "DET", away: "ORL" },
+      finalScore: { home: 116, away: 94 },
       swings: [
         {
           quarter: "1st",
-          timestamp: "7:23",
-          description: "Jayson Tatum opens with 11 straight points, hitting three consecutive threes to ignite TD Garden and give Boston early control",
-          runScore: "11-0 BOS",
+          timestamp: "7:42",
+          description: "Orlando opens Game 7 with confidence, jumping to early 12-4 lead behind Paolo Banchero's quick 8 points",
+          runScore: "8-0",
+          momentum: "away",
+          keyPlayer: "Paolo Banchero",
+          impact: "notable"
+        },
+        {
+          quarter: "1st",
+          timestamp: "2:15",
+          description: "Cade Cunningham answers emphatically with 10 points in final two minutes, capping 18-4 run to close first quarter",
+          runScore: "18-4",
           momentum: "home",
-          keyPlayer: "Jayson Tatum",
+          keyPlayer: "Cade Cunningham",
           impact: "significant"
         },
         {
           quarter: "2nd",
-          timestamp: "4:15",
-          description: "VJ Edgecombe catches fire with four threes in 3 minutes, stunning the crowd and bringing Philadelphia back from 15 down",
-          runScore: "16-4 PHI",
-          momentum: "away",
-          keyPlayer: "VJ Edgecombe",
-          impact: "game-changing"
+          timestamp: "6:30",
+          description: "Isaiah Stewart dominates the paint with three consecutive and-ones, extending Detroit's lead to 15 points",
+          runScore: "11-2",
+          momentum: "home",
+          keyPlayer: "Isaiah Stewart",
+          impact: "significant"
         },
         {
           quarter: "3rd",
-          timestamp: "2:08",
-          description: "Embiid takes over with 8 straight points in the paint, punishing Boston's small lineup and seizing momentum",
-          runScore: "8-0 PHI",
+          timestamp: "4:45",
+          description: "Detroit's precision passing creates wide-open looks as Cunningham orchestrates 14-2 run that breaks Orlando's spirit",
+          runScore: "14-2",
+          momentum: "home",
+          keyPlayer: "Cade Cunningham",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "Detroit transformed Game 7 anxiety into pure dominance behind Cade Cunningham's masterclass performance. After Orlando's early punch, the Pistons responded with suffocating defense and surgical offense that methodically dismantled the Magic's playoff dreams. Little Caesars Arena erupted as Detroit's 16-year semifinal drought finally ended in emphatic fashion. The game was essentially decided by halftime, turning what should have been a nail-biter into a coronation celebration."
+    },
+    {
+      gameId: "TOR-CLE-20260503",
+      teams: { home: "CLE", away: "TOR" },
+      finalScore: { home: 114, away: 102 },
+      swings: [
+        {
+          quarter: "2nd",
+          timestamp: "8:15",
+          description: "Scottie Barnes sparks Toronto with aggressive drives to the rim, powering 12-3 run to tie the game",
+          runScore: "12-3",
           momentum: "away",
-          keyPlayer: "Joel Embiid",
+          keyPlayer: "Scottie Barnes",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "5:20",
+          description: "Donovan Mitchell catches fire with three consecutive threes, giving Cleveland their largest lead of the night",
+          runScore: "11-0",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
           impact: "significant"
         },
         {
           quarter: "4th",
-          timestamp: "6:42",
-          description: "Marcus Smart leads desperate Boston rally with two steals and layups, cutting deficit to 3 and giving Celtics life",
-          runScore: "6-0 BOS",
-          momentum: "home",
-          keyPlayer: "Marcus Smart",
-          impact: "notable"
+          timestamp: "7:30",
+          description: "Toronto rallies behind Barnes and cuts deficit to just 4 points, forcing Cleveland timeout in tense Game 7 moment",
+          runScore: "9-2",
+          momentum: "away",
+          keyPlayer: "Scottie Barnes",
+          impact: "significant"
         },
         {
           quarter: "4th",
-          timestamp: "2:47",
-          description: "Embiid drains clutch three-pointer over Al Horford, his first of the night, crushing Boston's comeback hopes",
-          runScore: "7-2 PHI",
-          momentum: "away",
-          keyPlayer: "Joel Embiid",
+          timestamp: "6:45",
+          description: "Mitchell and Mobley combine for unstoppable 16-4 surge that finally breaks Toronto's resistance and seals the victory",
+          runScore: "16-4",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Joel Embiid",
-          team: "PHI",
-          description: "Step-back three-pointer over Al Horford with shot clock winding down",
-          timeRemaining: "2:47",
-          winProbabilityShift: 23
-        },
-        {
-          player: "Tyrese Maxey",
-          team: "PHI",
-          description: "Drives through traffic for and-one layup to extend lead",
-          timeRemaining: "1:54",
+          player: "Donovan Mitchell",
+          team: "CLE",
+          description: "Step-back three-pointer over Barnes to extend lead to 7 points during decisive fourth-quarter run",
+          timeRemaining: "6:12",
           winProbabilityShift: 18
         },
         {
-          player: "Marcus Smart",
-          team: "BOS",
-          description: "Steal and fast-break three-pointer keeps Boston's hopes alive",
-          timeRemaining: "3:28",
-          winProbabilityShift: -12
+          player: "Evan Mobley",
+          team: "CLE", 
+          description: "Rejection of Barnes' drive followed by immediate outlet pass to Mitchell for fast-break dunk",
+          timeRemaining: "5:35",
+          winProbabilityShift: 15
         },
         {
-          player: "VJ Edgecombe",
-          team: "PHI",
-          description: "Corner three off Maxey assist with Boston closing the gap",
-          timeRemaining: "4:15",
-          winProbabilityShift: 15
+          player: "Scottie Barnes",
+          team: "TOR",
+          description: "Tough and-one finish through contact to keep Toronto within striking distance",
+          timeRemaining: "4:28",
+          winProbabilityShift: -8
         }
       ],
-      narrative: "In one of the most stunning Game 7 upsets in recent memory, Joel Embiid authored a masterclass performance to complete Philadelphia's historic 3-1 series comeback at the hostile TD Garden. The 76ers became just the sixth team since 2010 to overcome such a deficit, with rookie sensation VJ Edgecombe providing the spark that ignited their championship dreams. Boston's season ended in heartbreak as their championship window may have slammed shut, falling victim to one of the great playoff collapses in franchise history. Embiid's clutch three-pointer with 2:47 remaining will be remembered as the dagger that silenced Boston's faithful and announced Philadelphia's arrival as a legitimate championship contender."
+      narrative: "Game 7 lived up to its billing as Mitchell and Barnes traded haymakers in a heavyweight battle at Rocket Arena. The game swayed back and forth like a pendulum until Cleveland's championship mettle finally showed through in the decisive fourth quarter. Mitchell's clutch gene activated when it mattered most, while Mobley's defensive presence became the difference maker in crunch time. Toronto fought valiantly but ultimately fell just short of their first conference semifinal since 2016, as Cleveland advances with newfound confidence."
     }
   ]
 };

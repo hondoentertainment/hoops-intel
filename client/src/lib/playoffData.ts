@@ -58,6 +58,38 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
+    seriesId: "E1-CLE-TOR",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "CLE",
+    lowerTeam: "TOR",
+    higherWins: 1,
+    lowerWins: 0,
+    status: "active",
+    summary: "CLE leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: 114, awayScore: 102, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Scottie Barnes", topLine: "24 PTS · 9 REB · 6 AST" }
+    ],
+  },
+  {
+    seriesId: "E1-DET-ORL",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 99,
+    lowerSeed: 99,
+    higherTeam: "DET",
+    lowerTeam: "ORL",
+    higherWins: 1,
+    lowerWins: 0,
+    status: "active",
+    summary: "DET leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: 116, awayScore: 94, status: "final", time: "Final", tv: "ABC", topPerformer: "Paolo Banchero", topLine: "38 PTS · 9 REB · 6 AST" }
+    ],
+  },
+  {
     seriesId: "E1-BOS-PHI",
     conference: "east",
     round: "first-round",
@@ -87,38 +119,6 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "NY leads 1-0",
     games: [
       { gameNumber: 1, date: "2026-04-30", homeTeam: "ATL", awayTeam: "NY", homeScore: 89, awayScore: 140, status: "final", time: "Final", tv: "ESPN", topPerformer: "OG Anunoby", topLine: "29 PTS · 7 REB · 2 AST" }
-    ],
-  },
-  {
-    seriesId: "E1-CLE-TOR",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "CLE",
-    lowerTeam: "TOR",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 7:30 PM EDT", tv: "NBC, Peacock" }
-    ],
-  },
-  {
-    seriesId: "E1-DET-ORL",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "DET",
-    lowerTeam: "ORL",
-    higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: null, awayScore: null, status: "scheduled", time: "5/3 - 3:30 PM EDT", tv: "ABC" }
     ],
   },
   {
@@ -238,53 +238,53 @@ export interface SeriesIntel {
 
 /** Keys MUST match `seriesId` from synced `playoffSeries` (E1-/W1-/F… + round). */
 export const seriesIntel: Record<string, SeriesIntel> = {
-  "E1-BOS-PHI": {
-    regularSeasonH2H: "Boston dominated the regular season series against Philadelphia, winning 3 of 4 matchups with their superior depth and execution in clutch moments.",
-    playoffHistory: "These Eastern Conference rivals have met twice in recent playoff history, with Boston eliminating Philadelphia in both the 2018 and 2020 postseasons.",
-    keyMatchup: "Jayson Tatum versus Joel Embiid represents the series' defining battle, as Tatum's versatility and mobility could exploit Embiid's defensive positioning while Embiid's interior dominance threatens Boston's paint protection.",
-    narrative: "Philadelphia's Game 1 victory exposed Boston's vulnerability to physical playoff basketball and interior scoring dominance. For the Sixers to maintain control, Embiid must stay healthy and impose his will in the paint while role players like Tobias Harris continue stepping up. Boston's championship experience and deeper rotation should eventually surface, but they cannot afford to fall behind 2-0 at home.",
-  },
-  "E1-NY-ATL": {
-    regularSeasonH2H: "The Knicks dominated the season series against Atlanta, winning 3 of 4 meetings with their physical defense and improved depth proving problematic for the Hawks' offensive flow.",
-    playoffHistory: "These franchises have limited recent playoff history, with their most notable postseason encounter being the Hawks' first-round victory over New York in 2021.",
-    keyMatchup: "Jalen Brunson versus Trae Young will define this series, as Brunson's 28.7 PPG regular season average and clutch playoff performance must counter Young's explosive scoring ability and court vision.",
-    narrative: "Atlanta's path to victory runs through Trae Young's ability to create chaos and get to the free-throw line, while also finding consistent production from their supporting cast. The Knicks' suffocating defense and home-court advantage make them dangerous, but they're vulnerable if their offense stagnates and Young gets hot from deep.",
-  },
   "E1-CLE-TOR": {
-    regularSeasonH2H: "Cleveland and Toronto traded punches in the regular season—expect tight margins whenever two defense-minded East teams share the floor in the playoffs.",
-    playoffHistory: "Previous eras featured memorable LeBron-led Cavs runs against the Raptors; this edition is a new chapter built around Cleveland's balance vs. Toronto's length.",
-    keyMatchup: "Frontcourt rebounding and turnover battle—whoever wins the glass and limits live-ball mistakes likely controls pace in a low-possession series.",
-    narrative: "Both clubs open the postseason with something to prove. The Cavs need their stars to hit timely jumpers when the paint packs; the Raptors must turn defense into transition and avoid late-clock stalls. Game 1 in Cleveland sets the tone for how physical the refs will let this series get.",
+    regularSeasonH2H: "Cleveland and Toronto split their regular season series 2-2, with each team protecting home court in a preview of what would become a tightly contested playoff battle.",
+    playoffHistory: "The Cavaliers dominated this matchup during the LeBron era, sweeping Toronto in 2018 and winning series in 2016 and 2017, but this represents their first postseason meeting since LeBron's departure.",
+    keyMatchup: "Donovan Mitchell versus Scottie Barnes will define this series, as Mitchell's 28.3 PPG scoring punch faces off against Barnes' versatile two-way impact that anchors Toronto's identity.",
+    narrative: "For Toronto to recover from the 1-0 deficit, they must find consistent offensive execution beyond Pascal Siakam while Barnes locks down Mitchell's explosive scoring bursts. Cleveland's championship window hinges on Mitchell's playoff debut with the franchise, but their defensive inconsistencies give the Raptors multiple pathways back into this series.",
   },
   "E1-DET-ORL": {
-    regularSeasonH2H: "Detroit and Orlando mirrored each other in stretches during the regular season—young cores, defensive intensity, and streaky shooting from the perimeter.",
-    playoffHistory: "A fresh first-round pairing with limited shared postseason tape; the winner will lean on execution and depth when stars sit.",
-    keyMatchup: "Cade Cunningham versus Paolo Banchero shapes half-court shot quality—both need efficient nights when the defense loads to their strong hand.",
-    narrative: "This is a pace-and-paint series disguised as a guard showcase. The Pistons want downhill touches and second chances; the Magic lean on rotation length and rim protection. Whoever wins the first six minutes of each half usually holds the scoreboard when whistles tighten.",
+    regularSeasonH2H: "Detroit and Orlando split their regular season series 2-2, with each team protecting home court in tight, defense-first battles that averaged just 201 total points per game.",
+    playoffHistory: "These franchises have never met in the postseason, making this Eastern Conference first-round clash uncharted territory for both organizations.",
+    keyMatchup: "Cade Cunningham vs Paolo Banchero will determine this series, as both second-year stars are averaging over 22 points while shouldering massive offensive loads for their respective squads.",
+    narrative: "Orlando's youth could be their undoing against Detroit's playoff-tested core, but the Magic's length and athleticism have given the Pistons problems all season. Detroit stole Game 1 by controlling the paint, but Orlando's three-point shooting variance makes them dangerous in any single game. The team that can establish consistent halfcourt offense will advance.",
+  },
+  "E1-BOS-PHI": {
+    regularSeasonH2H: "Boston swept the season series 3-0, outscoring Philadelphia by an average of 12 points per game with Jayson Tatum averaging 28.7 points in those matchups.",
+    playoffHistory: "The Celtics have dominated this playoff rivalry, winning their last three postseason meetings including a 4-3 victory in the 2023 conference semifinals.",
+    keyMatchup: "Joel Embiid vs Boston's frontcourt rotation will define the series, as Embiid averaged 33.5 points on 58% shooting in his two healthy games against the Celtics this season.",
+    narrative: "Philadelphia's Game 1 victory proved they can execute when Embiid is healthy and Tyrese Maxey provides explosive secondary scoring. For the upset to materialize, the 76ers must continue getting vintage Embiid while hoping Boston's role players struggle with the playoff intensity. The Celtics remain vulnerable to teams that can match their physicality and exploit their tendency toward complacency.",
+  },
+  "E1-NY-ATL": {
+    regularSeasonH2H: "The Knicks dominated the season series 3-1, outscoring Atlanta by an average of 8.5 points per game with their defensive intensity consistently disrupting the Hawks' offensive flow.",
+    playoffHistory: "These franchises have limited recent playoff history, with their last meaningful postseason encounter dating back to the 1990s when the Knicks eliminated Atlanta in the first round.",
+    keyMatchup: "Jalen Brunson versus Trae Young will determine this series, as Brunson's 28.7 PPG regular season average faces off against Young's explosive 25.7 PPG and 10.8 APG playmaking ability.",
+    narrative: "Atlanta's path to survival runs through unleashing Trae Young's range and pace while exploiting New York's sometimes-stagnant halfcourt offense. The Knicks' suffocating defense and physical brand of basketball has historically given Young problems, but if the Hawks can turn this into a track meet and get hot from three, they have the offensive firepower to steal games at Madison Square Garden.",
   },
   "W1-LAL-HOU": {
-    regularSeasonH2H: "The Lakers and Rockets split their regular season series 2-2, with both teams showing they could exploit each other's weaknesses in different matchups.",
-    playoffHistory: "Houston holds a slight historical edge having eliminated the Lakers in their most recent playoff meeting, though these franchises have traded blows across multiple decades of postseason battles.",
-    keyMatchup: "LeBron James versus whoever Houston throws at him will define possessions, as the King averaged 25.7 PPG against the Rockets this season while Houston's switching defense tries to wear him down.",
-    narrative: "The Rockets' small-ball identity lives or dies by their three-point variance - they shot just 29% from deep in Game 1's loss. Houston needs to force pace and create transition chaos to steal games, because in half-court sets, the Lakers' size advantage becomes suffocating. This series hinges on whether the Rockets can recapture their regular season shooting touch before falling into an insurmountable hole.",
+    regularSeasonH2H: "The Lakers and Rockets split their regular season series 2-2, with each team winning their home games in what were closely contested matchups averaging just 4.5 points per game differential.",
+    playoffHistory: "Houston holds a slight edge in their playoff rivalry, having eliminated the Lakers in their most recent postseason meeting during the 2020 bubble playoffs.",
+    keyMatchup: "Anthony Davis versus Alperen Şengün will determine this series, as AD's ability to exploit Houston's young center on both ends—he averaged 28.5 points on 58% shooting against the Rockets this season—could be the difference maker.",
+    narrative: "For Houston to steal this series, they need Şengün to hold his own defensively while their perimeter shooters stay hot from three, where they shot 38.2% in their regular season wins against LA. The Lakers' championship experience gives them the edge, but their inconsistent three-point shooting (32.1% this season) keeps the door open for an upset if Houston can sustain their offensive rhythm.",
   },
   "W1-DEN-MIN": {
-    regularSeasonH2H: "Denver won the season series 3-1, but three of the four games were decided by single digits, suggesting a closer matchup than the record indicates.",
-    playoffHistory: "This marks the first playoff meeting between these franchises, adding extra intrigue to an already compelling first-round clash.",
-    keyMatchup: "Nikola Jokić versus Rudy Gobert in the paint will define the series, as the reigning MVP averaged 26.4 PPG and 12.4 RPG this season while Gobert anchored the league's third-best defense.",
-    narrative: "Minnesota's shocking Game 1 victory exposed Denver's road struggles and defensive vulnerabilities that plagued them all season. The Timberwolves must continue leveraging their elite defense and Anthony Edwards' explosive scoring to rattle a Nuggets team that looked championship-caliber at home but mortal away from Ball Arena. Denver's championship experience gives them the edge, but this young Minnesota core has the athleticism and defensive intensity to make this a grueling seven-game battle.",
+    regularSeasonH2H: "Denver took the season series 3-1, but three of the four games were decided by single digits, suggesting closer competition than the record indicates.",
+    playoffHistory: "These franchises have never met in the postseason, making this a fresh Western Conference rivalry with no historical baggage.",
+    keyMatchup: "Nikola Jokić versus Rudy Gobert in the paint will define possessions, as Jokić's playmaking genius clashes with Gobert's rim protection and Minnesota's defensive identity.",
+    narrative: "The defending champions looked surprisingly flat in Game 1, raising questions about their championship hunger versus Minnesota's desperate energy. Denver's championship experience should eventually surface, but the Timberwolves' length and defensive switching could frustrate Jokić's passing lanes enough to steal this series. Minnesota needs Anthony Edwards to stay aggressive while avoiding foul trouble against Denver's veteran savvy.",
   },
   "W1-SA-POR": {
-    regularSeasonH2H: "San Antonio and Portland traded wins in the regular season—each game exposed how much the outcome swung on three-point variance and transition defense.",
-    playoffHistory: "Spurs–Blazers playoff history is sparse in recent years; this first-round meeting is defined by Portland's shot-making vs. San Antonio's system and depth.",
-    keyMatchup: "Deni Avdija's creation against San Antonio's disciplined shell—if the Spurs keep him off the free-throw line and run him into help, the half court tilts their way.",
-    narrative: "Game 1 went San Antonio's way behind timely shot-making and control of the glass. Portland has to win the possession battle—extra possessions and fewer empty trips matter more than any one iso. A long series favors the team that sustains defensive energy through bench minutes.",
+    regularSeasonH2H: "The Spurs and Trail Blazers split their regular season series 2-2, with both teams showing they could execute their systems effectively against each other.",
+    playoffHistory: "These franchises have limited recent playoff history, making this a relatively fresh Western Conference first-round rivalry without deep postseason baggage.",
+    keyMatchup: "Damian Lillard's scoring explosiveness versus San Antonio's disciplined team defense will define possessions, as Lillard averaged 28+ points against the Spurs this season.",
+    narrative: "Portland's path to evening this series runs directly through Lillard's ability to create offense when San Antonio clamps down defensively. The Spurs' veteran savvy showed in Game 1, but they're vulnerable if their role players can't consistently knock down open looks created by ball movement. Portland has the individual talent to steal games, but San Antonio's system discipline gives them the edge in a grinding seven-game series.",
   },
   "W1-OKC-PHX": {
-    regularSeasonH2H: "The Thunder took 3 of 4 regular season meetings, including a dominant 128-103 victory in their final matchup that showcased their superior depth and defensive intensity.",
-    playoffHistory: "These franchises have no significant playoff history against each other, making this a fresh Western Conference clash between rising contenders.",
-    keyMatchup: "Shai Gilgeous-Alexander versus Devin Booker will determine offensive pace and efficiency, with SGA averaging 30.1 PPG on superior shooting splits compared to Booker's 27.1 PPG this season.",
-    narrative: "Phoenix has to keep pace with OKC's ball pressure and depth. Game 1 showed the Thunder can win the late-game shot-quality battle if the Suns' half-court offense stalls. Booker and Phoenix need cleaner two-man actions and fewer empty possessions when SGA is on the floor.",
+    regularSeasonH2H: "Oklahoma City took 3 of 4 regular season meetings against Phoenix, with the Thunder's balanced scoring and defensive intensity consistently overwhelming the Suns' inconsistent roster.",
+    playoffHistory: "These franchises have limited playoff history, with their most notable postseason connection being the Thunder's dominant 2012 first-round sweep when Phoenix was still rebuilding.",
+    keyMatchup: "Shai Gilgeous-Alexander versus Devin Booker will determine offensive rhythm, as both guards averaged 30+ points this season but SGA's two-way impact gives him the edge in clutch scenarios.",
+    narrative: "Phoenix desperately needs Kevin Durant to assert himself as the series' best player while hoping their veteran experience can counteract OKC's youth and depth. The Thunder's suffocating defense and balanced attack make them dangerous, but the Suns have championship-level talent that could flip this series if they find consistent chemistry between their Big Three.",
   },
 };
 
