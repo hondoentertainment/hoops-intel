@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 4, 2026
+// Last updated: May 5, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,133 +33,133 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 4, 2026",
-  gameOfTheNight: "CLE-TOR-20260503",
+  date: "May 5, 2026",
+  gameOfTheNight: "MIN-SAS-20260504",
   topClutchPerformer: { 
-    player: "Donovan Mitchell", 
-    team: "CLE", 
+    player: "Anthony Edwards", 
+    team: "MIN", 
     clutchRating: 94, 
-    description: "Torched Toronto with 11 fourth-quarter points during Cleveland's decisive 16-4 run, including two step-back threes that silenced the road crowd and sealed the Game 7 victory" 
+    description: "32 second-half points including 18 in the fourth quarter to complete a stunning road comeback victory" 
   },
   games: [
     {
-      gameId: "ORL-DET-20260503",
-      teams: { home: "DET", away: "ORL" },
-      finalScore: { home: 116, away: 94 },
+      gameId: "PHI-NYK-20260504",
+      teams: { home: "NYK", away: "PHI" },
+      finalScore: { home: 137, away: 98 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "5:42",
-          description: "Paolo Banchero's early aggression gives Orlando 18-12 lead with back-to-back drives",
-          runScore: "8-2",
-          momentum: "away",
-          keyPlayer: "Paolo Banchero",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "8:15",
-          description: "Cade Cunningham orchestrates 14-3 run with three assists and a deep three to flip the script",
-          runScore: "14-3",
+          quarter: "1st",
+          timestamp: "8:34",
+          description: "Brunson catches fire with three straight threes as Knicks open 18-7",
+          runScore: "15-2 run",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
+          keyPlayer: "Jalen Brunson",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "4:28",
-          description: "Isaiah Stewart dominates the paint with 8 straight points, extending Detroit's lead to 20",
-          runScore: "12-2",
+          quarter: "2nd",
+          timestamp: "3:21",
+          description: "Randle dominates the paint with 12 quick points, extending the lead to 22",
+          runScore: "16-4 run",
           momentum: "home",
-          keyPlayer: "Isaiah Stewart",
+          keyPlayer: "Julius Randle",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "9:41",
-          description: "Detroit's reserves extend the blowout with crisp ball movement and transition buckets",
-          runScore: "11-4",
-          momentum: "home",
-          keyPlayer: "Detroit Bench",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Game 7 turned into a coronation for the Pistons as they steamrolled Orlando in their own building. What started as a tense elimination game became a vintage playoff beatdown, with Cade Cunningham conducting a symphony of precision passing while Isaiah Stewart bulldozed through the Magic's interior. Detroit's 52% shooting and complete fourth-quarter domination announced their arrival as legitimate Eastern Conference contenders. Orlando's magical season ended not with drama, but with the harsh reality of playoff inexperience against a battle-tested Pistons squad ready for their closeup."
-    },
-    {
-      gameId: "TOR-CLE-20260503",
-      teams: { home: "CLE", away: "TOR" },
-      finalScore: { home: 114, away: 102 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "7:23",
-          description: "Scottie Barnes ignites early with two steals and fast-break dunks for 12-5 Toronto advantage",
-          runScore: "8-2",
+          quarter: "3rd",
+          timestamp: "9:15",
+          description: "76ers attempt a comeback with Embiid finding rhythm, cutting deficit to 16",
+          runScore: "11-3 run",
           momentum: "away",
-          keyPlayer: "Scottie Barnes",
+          keyPlayer: "Joel Embiid",
           impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "3:45",
-          description: "Mitchell heats up with three consecutive buckets, but Cavaliers still trail at halftime",
-          runScore: "9-4",
+          quarter: "3rd",
+          timestamp: "4:07",
+          description: "Knicks answer immediately with suffocating defense and transition buckets",
+          runScore: "13-2 run",
           momentum: "home",
-          keyPlayer: "Donovan Mitchell",
-          impact: "significant"
-        },
+          keyPlayer: "Jalen Brunson",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "The Garden witnessed a playoff massacre as the Knicks delivered their most dominant postseason performance in franchise history. Jalen Brunson was unconscious from the opening tip, setting the tone for a wire-to-wire destruction of Philadelphia. The 76ers' championship hopes took a devastating blow as their offense completely collapsed under New York's relentless pressure. This wasn't just a Game 1 victory—it was a statement that the Knicks are ready to make a serious title run."
+    },
+    {
+      gameId: "MIN-SAS-20260504",
+      teams: { home: "SAS", away: "MIN" },
+      finalScore: { home: 102, away: 104 },
+      swings: [
         {
-          quarter: "Q3",
-          timestamp: "2:17",
-          description: "Evan Mobley's rim protection sparks 10-2 run to tie the game entering the fourth",
-          runScore: "10-2",
-          momentum: "home",
-          keyPlayer: "Evan Mobley",
-          impact: "significant"
-        },
-        {
-          quarter: "Q4",
+          quarter: "2nd",
           timestamp: "6:42",
-          description: "Mitchell explodes for 11 points during Cleveland's decisive 16-4 surge to break Toronto's heart",
-          runScore: "16-4",
+          description: "Wembanyama showcases his full arsenal with blocks and threes, building 12-point lead",
+          runScore: "18-6 run",
           momentum: "home",
-          keyPlayer: "Donovan Mitchell",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "4:18",
+          description: "Edwards begins his takeover with explosive drives and contested threes",
+          runScore: "14-3 run",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
+          impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "8:29",
+          description: "Towns provides crucial support, hitting key shots to keep pace with Spurs",
+          runScore: "10-6 run",
+          momentum: "away",
+          keyPlayer: "Karl-Anthony Towns",
+          impact: "significant"
+        },
+        {
+          quarter: "4th",
+          timestamp: "2:14",
+          description: "Edwards goes into supernova mode with back-to-back impossible shots",
+          runScore: "8-2 run",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Step-back three over Barnes gives Cleveland 104-98 lead",
-          timeRemaining: "4:23",
-          winProbabilityShift: 24
+          player: "Anthony Edwards",
+          team: "MIN",
+          description: "Step-back three over Wembanyama from 28 feet",
+          timeRemaining: "2:47",
+          winProbabilityShift: 18.5
         },
         {
-          player: "Evan Mobley",
-          team: "CLE",
-          description: "Crushing block on Jakob Poeltl followed by assist to Mitchell",
-          timeRemaining: "3:15",
-          winProbabilityShift: 18
+          player: "Victor Wembanyama",
+          team: "SAS",
+          description: "Turnaround fadeaway jumper to tie the game",
+          timeRemaining: "1:33",
+          winProbabilityShift: -12.3
         },
         {
-          player: "Scottie Barnes",
-          team: "TOR",
-          description: "Desperate three-pointer cuts deficit to 108-101 with hope remaining",
-          timeRemaining: "2:44",
-          winProbabilityShift: -12
+          player: "Anthony Edwards",
+          team: "MIN",
+          description: "Driving layup through contact with perfect body control",
+          timeRemaining: "0:52",
+          winProbabilityShift: 22.7
         },
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Dagger three from 28 feet seals Cleveland's semifinal berth",
-          timeRemaining: "1:52",
-          winProbabilityShift: 31
+          player: "Karl-Anthony Towns",
+          team: "MIN",
+          description: "Defensive rebound and ice-cold free throws to seal victory",
+          timeRemaining: "0:18",
+          winProbabilityShift: 15.2
         }
       ],
-      narrative: "Game 7 at its finest, where legends are born and seasons die. Donovan Mitchell channeled his inner playoff assassin when it mattered most, turning a nail-biting fourth quarter into his personal highlight reel with ruthless efficiency. Toronto fought valiantly behind Scottie Barnes' all-around brilliance, but Cleveland's championship-tested core proved superior in the crucible moment. The decisive 16-4 run felt inevitable once Mitchell entered his zone, each contested jumper finding twine as Rocket Arena transformed from hostile to stunned. This wasn't just a Game 7 victory—it was Mitchell's emphatic declaration that Cleveland's championship window remains wide open."
+      narrative: "Anthony Edwards announced himself as a bonafide superstar with one of the most electrifying playoff performances in recent memory. After San Antonio built a commanding lead behind Wembanyama's otherworldly play, Edwards single-handedly willed Minnesota back with 32 second-half points that defied physics and logic. The young Timberwolves showed championship-level composure in a hostile environment, stealing Game 1 and serving notice that they're ready to make noise in these playoffs. This instant classic featured two generational talents going toe-to-toe, with Edwards edging the battle in the most crucial moments."
     }
   ]
 };
