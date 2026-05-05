@@ -46,11 +46,11 @@ export const watchGuideData: WatchGuideData = {
       time: "5/5 - 8:30 PM EDT",
       tv: "NBC, Peacock",
       venue: "Paycom Center",
-      entertainmentScore: 94,
-      starPower: 10,
+      entertainmentScore: 92,
+      starPower: 9,
       playoffImplications: 10,
-      rivalry: 6,
-      storyline: "LeBron James and the Lakers face the league's best record Thunder in a potential Conference Finals preview. Oklahoma City's home court advantage meets championship experience in primetime.",
+      rivalry: 7,
+      storyline: "LeBron James and the Lakers face the Thunder's championship-caliber team in what could be a defining Western Conference semifinals battle.",
       keyMatchup: "LeBron James vs. Shai Gilgeous-Alexander",
       mustWatch: true
     },
@@ -65,15 +65,15 @@ export const watchGuideData: WatchGuideData = {
       time: "5/5 - 7:00 PM EDT",
       tv: "NBCSN, Peacock",
       venue: "Little Caesars Arena",
-      entertainmentScore: 86,
-      starPower: 8,
+      entertainmentScore: 88,
+      starPower: 7,
       playoffImplications: 10,
-      rivalry: 7,
-      storyline: "Eastern Conference semifinals clash between two teams coming off grueling seven-game first-round battles. Detroit's dominant season meets Cleveland's playoff-tested resilience.",
+      rivalry: 8,
+      storyline: "Eastern Conference semifinals clash between Central Division rivals, with Detroit's remarkable turnaround season meeting Cleveland's playoff experience.",
       keyMatchup: "Cade Cunningham vs. Donovan Mitchell",
       mustWatch: true
     }
   ],
-  topPick: "Lakers at Thunder features LeBron's championship experience against the league's best record in a potential Conference Finals preview",
-  nightOverview: "Conference semifinals action continues with two elite matchups as Detroit hosts Cleveland in an Eastern slugfest before Lakers-Thunder delivers a primetime West showdown. Both games feature championship implications and star power worthy of must-watch status."
+  topPick: "Lakers-Thunder features LeBron's playoff mastery against Oklahoma City's championship aspirations in primetime Western Conference semifinals action",
+  nightOverview: "Conference semifinals continue with two must-watch matchups featuring championship contenders and playoff intensity. Both games carry massive implications as the second round heats up with star power and division rivalries."
 };
