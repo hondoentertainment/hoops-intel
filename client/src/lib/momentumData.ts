@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 5, 2026
+// Last updated: May 6, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,133 +33,135 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 5, 2026",
-  gameOfTheNight: "MIN-SAS-20260504",
+  date: "May 6, 2026",
+  gameOfTheNight: "CLE-DET-20260505",
   topClutchPerformer: { 
-    player: "Anthony Edwards", 
-    team: "MIN", 
-    clutchRating: 97, 
-    description: "32 second-half points including three straight threes in the final quarter to silence the Frost Bank Center and steal Game 1 on the road"
+    player: "Cade Cunningham", 
+    team: "DET", 
+    clutchRating: 89, 
+    description: "Cunningham's fourth-quarter masterpiece sealed Detroit's playoff statement with 11 points and 3 assists in the final frame"
   },
   games: [
     {
-      gameId: "PHI-NYK-20260504",
-      teams: { home: "NYK", away: "PHI" },
-      finalScore: { home: 137, away: 98 },
+      gameId: "CLE-DET-20260505",
+      teams: { home: "DET", away: "CLE" },
+      finalScore: { home: 111, away: 101 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "8:42",
-          description: "Brunson scores 11 straight points to start the game, MSG erupts as Knicks take early command",
-          runScore: "15-4",
-          momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          quarter: "1Q",
+          timestamp: "7:42",
+          description: "Mitchell opens with three consecutive triples as Cavaliers storm to early lead",
+          runScore: "11-2 CLE",
+          momentum: "away",
+          keyPlayer: "Donovan Mitchell",
           impact: "significant"
         },
         {
-          quarter: "2nd",
-          timestamp: "4:17",
-          description: "Randle dominates inside with 12 points in 3 minutes, Sixers call desperate timeout",
-          runScore: "18-5",
+          quarter: "2Q",
+          timestamp: "4:15",
+          description: "Cunningham orchestrates 16-4 run with pinpoint passing and transition buckets",
+          runScore: "16-4 DET",
           momentum: "home",
-          keyPlayer: "Julius Randle",
+          keyPlayer: "Cade Cunningham",
           impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "9:31",
-          description: "Embiid briefly awakens with back-to-back threes, but Knicks answer immediately",
-          runScore: "8-12",
-          momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "notable"
+          quarter: "3Q",
+          timestamp: "8:30",
+          description: "Stewart dominates the paint with back-to-back offensive rebounds and putbacks",
+          runScore: "10-2 DET",
+          momentum: "home",
+          keyPlayer: "Isaiah Stewart",
+          impact: "significant"
         },
         {
-          quarter: "4th",
+          quarter: "4Q",
           timestamp: "6:45",
-          description: "Knicks empty the bench as MSG celebrates their biggest playoff win ever",
-          runScore: "22-8",
-          momentum: "home",
-          keyPlayer: "Team Effort",
+          description: "Mitchell keeps Cleveland alive with clutch three-pointer and steal",
+          runScore: "7-0 CLE",
+          momentum: "away",
+          keyPlayer: "Donovan Mitchell",
           impact: "notable"
-        }
-      ],
-      clutchPlays: [],
-      narrative: "Madison Square Garden witnessed basketball poetry in motion as Jalen Brunson conducted a 41-point symphony that left Philadelphia shell-shocked. The Knicks' 39-point demolition was less a basketball game than a statement of championship intent, with every possession flowing like clockwork from the opening tip. Julius Randle bulldozed through Philly's defense like a man possessed, while the crowd's electricity reached fever pitch with each thunderous dunk. This wasn't just a Game 1 victory—it was a psychological massacre that may have broken the Sixers' spirit before the series truly began."
-    },
-    {
-      gameId: "MIN-SAS-20260504",
-      teams: { home: "SAS", away: "MIN" },
-      finalScore: { home: 102, away: 104 },
-      swings: [
+        },
         {
-          quarter: "1st",
-          timestamp: "7:23",
-          description: "Wembanyama blocks three straight shots, Spurs crowd roars as San Antonio takes early lead",
-          runScore: "12-4",
+          quarter: "4Q",
+          timestamp: "2:18",
+          description: "Cunningham delivers dagger three and assist to Duren for emphatic dunk",
+          runScore: "8-2 DET",
           momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "2:45",
-          description: "Spurs extend lead to 15 behind Wemby's dominance, Timberwolves look overwhelmed",
-          runScore: "15-6",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3rd",
-          timestamp: "0:33",
-          description: "Edwards explodes for 8 points in final minute, suddenly it's a game again",
-          runScore: "2-11",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "4:12",
-          description: "Edwards hits three straight threes, Frost Bank Center falls silent as Minnesota takes lead",
-          runScore: "6-18",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
+          keyPlayer: "Cade Cunningham",
           impact: "game-changing"
         }
       ],
       clutchPlays: [
         {
-          player: "Anthony Edwards",
-          team: "MIN",
-          description: "Step-back three over Wembanyama to tie the game",
-          timeRemaining: "2:47",
-          winProbabilityShift: 28
+          player: "Donovan Mitchell",
+          team: "CLE",
+          description: "Step-back three over defender cuts deficit to 8",
+          timeRemaining: "4:33",
+          winProbabilityShift: -12
         },
         {
-          player: "Karl-Anthony Towns",
-          team: "MIN",
-          description: "Clutch offensive rebound and putback for the lead",
-          timeRemaining: "1:33",
-          winProbabilityShift: 35
+          player: "Cade Cunningham",
+          team: "DET",
+          description: "Pull-up three from 28 feet with shot clock winding down",
+          timeRemaining: "2:18",
+          winProbabilityShift: 18
         },
         {
-          player: "Anthony Edwards",
-          team: "MIN",
-          description: "Steal and fast-break dunk to seal the victory",
-          timeRemaining: "0:41",
-          winProbabilityShift: 42
-        },
-        {
-          player: "Victor Wembanyama",
-          team: "SAS",
-          description: "Desperation three-pointer misses, Spurs season on brink",
-          timeRemaining: "0:08",
-          winProbabilityShift: -15
+          player: "Isaiah Stewart",
+          team: "DET",
+          description: "And-one finish through contact seals the victory",
+          timeRemaining: "1:42",
+          winProbabilityShift: 15
         }
       ],
-      narrative: "Anthony Edwards authored one of the great playoff heists in recent memory, transforming from invisible to unstoppable in the span of 20 breathtaking minutes. Down 15 in the third quarter with the Frost Bank Center rocking, Edwards channeled his inner assassin and systematically dismantled the league's best defense with a barrage of impossible shots. Victor Wembanyama's early dominance became a footnote as Ant-Man took over the building, hitting three straight threes that sucked the life out of 19,000 stunned Spurs fans. This wasn't just a road victory—it was a star-making performance that announced Edwards as a legitimate championship catalyst, capable of stealing games in the most hostile environments."
+      narrative: "The Little Caesars Arena crowd witnessed a coming-of-age performance from Cade Cunningham, who dissected Cleveland's defense with surgical precision in his playoff debut. After Mitchell's early barrage threatened to silence the home crowd, Detroit's young core responded with the poise of seasoned veterans. The Pistons' balanced attack and suffocating defense in the final frame turned what looked like a potential upset into a statement victory. This wasn't just a win—it was Detroit announcing their arrival as legitimate championship contenders."
+    },
+    {
+      gameId: "LAL-OKC-20260505",
+      teams: { home: "OKC", away: "LAL" },
+      finalScore: { home: 108, away: 90 },
+      swings: [
+        {
+          quarter: "1Q",
+          timestamp: "5:20",
+          description: "LeBron and Davis connect for back-to-back alley-oops to energize Lakers",
+          runScore: "8-0 LAL",
+          momentum: "away",
+          keyPlayer: "LeBron James",
+          impact: "notable"
+        },
+        {
+          quarter: "2Q",
+          timestamp: "9:15",
+          description: "Thunder's defensive pressure forces five consecutive Lakers turnovers",
+          runScore: "15-3 OKC",
+          momentum: "home",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "game-changing"
+        },
+        {
+          quarter: "3Q",
+          timestamp: "3:42",
+          description: "Williams explodes for 12 points in quarter-closing run",
+          runScore: "18-6 OKC",
+          momentum: "home",
+          keyPlayer: "Jalen Williams",
+          impact: "game-changing"
+        },
+        {
+          quarter: "4Q",
+          timestamp: "8:30",
+          description: "Paycom Center erupts as Thunder push lead to 25 with dominant paint presence",
+          runScore: "12-2 OKC",
+          momentum: "home",
+          keyPlayer: "Chet Holmgren",
+          impact: "significant"
+        }
+      ],
+      clutchPlays: [],
+      narrative: "The Thunder's defensive symphony reached crescendo levels as they methodically dismantled the Lakers' championship dreams. What began as a competitive playoff battle devolved into a masterclass in team defense, with Oklahoma City's young wolves hunting in perfect harmony. LeBron and Davis, two future Hall of Famers, looked their age for the first time all season as relentless defensive pressure forced uncharacteristic mistakes. The Paycom Center became a house of horrors for Los Angeles, where every possession felt like swimming upstream against an Oklahoma City tsunami that never relented."
     }
   ]
 };

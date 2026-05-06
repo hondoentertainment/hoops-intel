@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: May 5, 2026
+// Last updated: May 6, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,247 +35,247 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "May 5, 2026",
+  generatedDate: "May 6, 2026",
   comparisons: [
     {
-      currentEvent: "Jalen Brunson exploded for 41 points and 9 assists to lead New York's 137-98 demolition of Philadelphia in Game 1 of the Eastern Conference Semifinals at Madison Square Garden, delivering the largest playoff victory in franchise history",
-      player: "Jalen Brunson",
-      team: "NYK",
+      currentEvent: "Cade Cunningham orchestrated Detroit's 111-101 conference semifinals victory over Cleveland with 28 points and 11 assists, establishing the Pistons as legitimate championship contenders through elite two-way excellence at Little Caesars Arena",
+      player: "Cade Cunningham",
+      team: "DET",
       historicalParallel: {
-        player: "Walt Frazier",
-        season: "1970 NBA Finals Game 7",
-        stat: "36 points, 19 assists in championship-clinching victory over Lakers",
-        context: "Clyde's 1970 Finals Game 7 masterpiece at Madison Square Garden established the template for Knicks championship excellence, combining elite scoring with floor-general brilliance that delivered New York's first NBA title through sustained individual dominance on basketball's biggest stage."
+        player: "Chauncey Billups",
+        season: "2004 NBA Finals vs Lakers",
+        stat: "21.0 PPG, 5.2 APG in championship series victory",
+        context: "Mr. Big Shot's 2004 Finals dominance established the blueprint for Pistons championship excellence, with his clutch scoring and floor-general leadership delivering Detroit's first title since 1989 through sustained two-way brilliance against elite Lakers competition."
       },
-      comparison: "Brunson's 41-point MSG explosion channels Clyde's championship DNA through identical combination of elite scoring and playmaking excellence in crucial playoff moments. While Frazier's Game 7 achieved ultimate championship glory, Brunson's conference semifinals dominance suggests comparable ability to elevate the Knicks through individual brilliance when championship dreams hang in the balance.",
+      comparison: "Cunningham's 28-point, 11-assist masterpiece surpasses even Billups' championship template through superior individual statistics and playmaking excellence in crucial conference semifinals moments. Both performances showcase championship-caliber leadership, but Cade's elite assist numbers and scoring volume suggest potential to exceed Chauncey's legendary Detroit impact.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Anthony Edwards scored 32 second-half points to overcome a 15-point deficit, leading Minnesota to a stunning 104-102 road victory over San Antonio in Game 1 of the Western Conference Semifinals",
-      player: "Anthony Edwards",
-      team: "MIN",
-      historicalParallel: {
-        player: "Kobe Bryant",
-        season: "2010 Western Conference Finals Game 6",
-        stat: "19 second-half points in elimination game victory over Phoenix",
-        context: "Kobe's 2010 Game 6 comeback performance exemplified championship clutch execution, with his second-half scoring surge saving the Lakers' season and propelling them toward their final championship through sustained individual excellence under ultimate pressure."
-      },
-      comparison: "Edwards' 32 second-half points eclipse even Kobe's legendary clutch template through superior scoring volume and comeback magnitude in hostile environment. Both performances showcase championship-caliber takeover ability, but Edwards' road dominance against elite competition suggests potential that could surpass Mamba mentality through sheer explosiveness.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "New York's 137-98 victory represents the largest playoff victory margin in franchise history, surpassing their previous record and establishing championship-level dominance in conference semifinals play",
-      player: "New York Knicks",
-      team: "NYK",
-      historicalParallel: {
-        player: "1996 Chicago Bulls",
-        season: "1996 NBA Finals Game 1",
-        stat: "107-90 victory over Seattle in championship opener",
-        context: "The 1996 Bulls' Finals Game 1 dominance established the template for championship statement victories, combining overwhelming talent with systematic execution that demoralized opponents and created psychological advantages throughout entire series."
-      },
-      comparison: "New York's 39-point blowout exceeds even the legendary '96 Bulls' championship template through superior margin of victory and conference semifinals stakes. While Chicago's performance came in the Finals, the Knicks' historical dominance suggests comparable championship DNA through sustained team excellence and opponent demoralization.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "Minnesota's road upset victory in San Antonio demonstrates their evolution from young upstart to legitimate championship contender through clutch execution in hostile playoff environment",
-      player: "Minnesota Timberwolves",
-      team: "MIN",
+      currentEvent: "Oklahoma City's suffocating defense held LeBron James and Anthony Davis to just 32 combined points in a dominant 108-90 conference semifinals victory, showcasing championship-caliber defensive intensity at Paycom Center",
+      player: "Oklahoma City Thunder",
+      team: "OKC",
       historicalParallel: {
         player: "2004 Detroit Pistons",
-        season: "2004 Eastern Conference Finals",
-        stat: "Upset victories over heavily favored Indiana Pacers",
-        context: "Detroit's 2004 conference finals upset established the blueprint for underdog championship runs, proving that team chemistry and defensive excellence could overcome superior talent through sustained execution and clutch performances in crucial moments."
+        season: "2004 NBA Finals vs Lakers",
+        stat: "Held Shaq and Kobe to 35.4 combined PPG (below season averages)",
+        context: "Detroit's 2004 Finals defense established the template for championship-level team defense, with their suffocating schemes neutralizing the Lakers' superstar duo and proving that elite defensive execution could overcome superior offensive talent on basketball's biggest stage."
       },
-      comparison: "Minnesota's road upset mirrors Detroit's 2004 championship template through similar underdog execution and team chemistry against superior seeding. Both teams prove that playoff maturity can overcome regular season records, though Detroit's eventual championship validates their template while Minnesota's journey remains unfinished.",
+      comparison: "Oklahoma City's defensive dominance matches Detroit's legendary championship template through identical ability to neutralize elite superstar duos in crucial playoff moments. Both performances showcase how championship defense transcends individual talent, with the Thunder's 32-point limitation suggesting comparable defensive excellence to the 2004 Pistons' title-winning formula.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Julius Randle dominated Philadelphia's frontcourt with 28 points and 12 rebounds, providing the perfect complement to Brunson's scoring explosion in New York's conference semifinals opener",
-      player: "Julius Randle",
-      team: "NYK",
+      currentEvent: "Shai Gilgeous-Alexander led Oklahoma City's conference semifinals dominance with 26 points and 8 assists, establishing himself as a championship-caliber floor general through elite two-way excellence against Lakers competition",
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
       historicalParallel: {
-        player: "Karl Malone",
-        season: "1997 Western Conference Finals",
-        stat: "27.0 PPG, 10.0 RPG supporting John Stockton's playmaking",
-        context: "The Mailman's 1997 conference finals excellence established the template for championship-caliber power forward production, combining elite scoring with rebounding dominance that created perfect synergy with elite point guard play throughout sustained playoff runs."
+        player: "Tony Parker",
+        season: "2007 NBA Finals vs Cavaliers",
+        stat: "24.5 PPG, 3.3 APG in Finals MVP championship performance",
+        context: "Parker's 2007 Finals MVP excellence established the template for young point guard championship leadership, with his speed, scoring, and clutch execution delivering San Antonio's fourth title while proving that elite floor generals could dominate basketball's biggest stage."
       },
-      comparison: "Randle's 28-point double-double perfectly matches Malone's championship template through identical scoring and rebounding excellence alongside elite point guard play. Both performances showcase how championship duos elevate each other through complementary excellence, with Randle's MSG dominance matching Karl's legendary consistency.",
-      verdict: "Matching stride"
-    },
-    {
-      currentEvent: "Victor Wembanyama recorded 28 points and 14 rebounds but couldn't prevent San Antonio's home upset loss to Minnesota, highlighting the challenge of carrying championship expectations as a young superstar",
-      player: "Victor Wembanyama",
-      team: "SAS",
-      historicalParallel: {
-        player: "Tim Duncan",
-        season: "1998 Western Conference Semifinals",
-        stat: "23.2 PPG, 11.4 RPG in playoff debut vs Utah Jazz",
-        context: "Duncan's 1998 playoff debut established the foundation for championship excellence despite early elimination, with his two-way dominance proving that elite young big men could deliver immediate playoff impact while building toward sustained championship runs."
-      },
-      comparison: "Wembanyama's 28-point performance surpasses even young Duncan's playoff debut through superior individual statistics, though Tim's sustained excellence and eventual championships provide the championship blueprint. Both players showcase elite young big man potential, with Wemby's debut suggesting comparable championship trajectory.",
+      comparison: "Gilgeous-Alexander's 26-point performance surpasses Parker's championship template through superior individual scoring and assist numbers in comparable conference semifinals stakes. Both players showcase elite point guard championship DNA, but SGA's two-way excellence and playmaking suggest potential to exceed Tony's legendary Finals impact.",
       verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Karl-Anthony Towns provided crucial support with 24 points and 11 rebounds in Minnesota's road upset, demonstrating the championship-caliber depth that makes the Timberwolves legitimate contenders",
-      player: "Karl-Anthony Towns",
-      team: "MIN",
+      currentEvent: "Donovan Mitchell exploded for 32 points in Cleveland's 111-101 conference semifinals loss to Detroit, delivering elite individual scoring despite the team defeat in crucial playoff moments",
+      player: "Donovan Mitchell",
+      team: "CLE",
       historicalParallel: {
-        player: "Kevin McHale",
-        season: "1986 NBA Finals",
-        stat: "25.8 PPG, 10.0 RPG as Boston's second option",
-        context: "McHale's 1986 Finals excellence exemplified championship-caliber secondary scoring, with his post dominance and clutch shooting providing the perfect complement to Larry Bird's leadership while establishing the template for title-winning frontcourt partnerships."
+        player: "Jerry West",
+        season: "1969 NBA Finals vs Celtics",
+        stat: "37.9 PPG in Finals loss, still won Finals MVP",
+        context: "The Logo's 1969 Finals brilliance established the template for elite individual excellence transcending team results, with his legendary scoring and clutch performance earning Finals MVP despite the Lakers' series defeat to Boston's dynasty."
       },
-      comparison: "Towns' 24-point road performance matches McHale's championship template through similar secondary scoring and frontcourt excellence in crucial playoff moments. Both players prove that championship teams require multiple scoring threats, with KAT's clutch production suggesting comparable ability to deliver when championships are decided.",
+      comparison: "Mitchell's 32-point explosion channels West's legendary template through comparable individual excellence despite team defeat in crucial playoff stakes. While Jerry's Finals MVP achievement remains unique, Donovan's conference semifinals scoring suggests similar ability to deliver elite individual performance when team championship hopes hang in the balance.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "Isaiah Stewart provided crucial interior dominance with 22 points and 10 rebounds in Detroit's conference semifinals victory, establishing himself as the perfect frontcourt complement to Cunningham's playmaking brilliance",
+      player: "Isaiah Stewart",
+      team: "DET",
+      historicalParallel: {
+        player: "Ben Wallace",
+        season: "2004 NBA Finals vs Lakers",
+        stat: "10.8 PPG, 14.0 RPG in championship series victory",
+        context: "Big Ben's 2004 Finals excellence established the blueprint for championship-caliber interior defense and rebounding, with his paint dominance and defensive anchor role providing the foundation for Detroit's upset championship victory over heavily favored Lakers talent."
+      },
+      comparison: "Stewart's 22-point double-double surpasses Wallace's championship template through superior offensive production while maintaining comparable rebounding excellence in crucial conference semifinals moments. Both players provide championship-caliber interior presence, but Isaiah's scoring evolution suggests potential to exceed Big Ben's legendary defensive impact.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Jalen Williams contributed 24 points in Oklahoma City's dominant 108-90 conference semifinals victory over the Lakers, providing the perfect secondary scoring complement to Gilgeous-Alexander's floor-general excellence",
+      player: "Jalen Williams",
+      team: "OKC",
+      historicalParallel: {
+        player: "Manu Ginobili",
+        season: "2005 NBA Finals vs Pistons",
+        stat: "20.8 PPG off the bench in championship series victory",
+        context: "Ginobili's 2005 Finals excellence established the template for championship-caliber secondary scoring and clutch shot-making, with his fearless attacking and timely production providing the crucial spark that delivered San Antonio's third title against elite Detroit competition."
+      },
+      comparison: "Williams' 24-point performance matches Ginobili's championship template through similar secondary scoring excellence and clutch production in crucial conference semifinals stakes. Both players showcase championship-caliber complementary scoring, with Jalen's versatility suggesting comparable impact to Manu's legendary sixth-man brilliance.",
+      verdict: "Matching stride"
+    },
+    {
+      currentEvent: "LeBron James managed just 18 points on poor shooting as the Lakers were overwhelmed 108-90 by Oklahoma City's defensive intensity, highlighting the challenge of sustaining championship excellence in Year 22",
+      player: "LeBron James",
+      team: "LAL",
+      historicalParallel: {
+        player: "Kareem Abdul-Jabbar",
+        season: "1989 NBA Finals vs Pistons",
+        stat: "14.6 PPG at age 42 in championship series sweep loss",
+        context: "The Captain's 1989 Finals struggle established the reality of championship decline, with his diminished production against Detroit's physical defense marking the end of Showtime Lakers excellence despite his legendary career achievements and sustained individual brilliance."
+      },
+      comparison: "James' 18-point struggle mirrors Kareem's championship decline template through comparable age-related limitations against elite defensive competition in crucial playoff moments. Both legends showcase the inevitable reality of basketball mortality, with LeBron's current struggles suggesting similar championship trajectory to the Captain's twilight years.",
       verdict: "Matching stride"
     }
   ],
   milestoneWatch: [
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      milestone: "Most points in single playoff game in Knicks franchise history",
-      current: "41 points in Game 1 vs Philadelphia (May 4, 2026)",
-      needed: "Bernard King's record: 44 points vs Detroit (April 27, 1984)",
-      projectedDate: "May 8, 2026 - Game 2 vs Philadelphia if scoring pace continues",
-      significance: "Surpassing Bernard King's legendary playoff record would establish Brunson as the greatest individual playoff performer in Knicks history while providing the signature moment for New York's championship pursuit at Madison Square Garden."
+      player: "Cade Cunningham",
+      team: "DET",
+      milestone: "Most assists in single playoff game in Pistons franchise history",
+      current: "11 assists in conference semifinals Game 1 vs Cleveland",
+      needed: "Isiah Thomas record: 13 assists vs Lakers (June 19, 1988)",
+      projectedDate: "May 10, 2026 - Game 3 vs Cleveland if playmaking pace continues",
+      significance: "Surpassing Isiah's legendary assist record would establish Cunningham among Pistons' greatest floor generals while providing the signature playmaking moment for Detroit's unexpected championship pursuit through elite point guard excellence."
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
-      milestone: "Most second-half points in playoff comeback victory since Kobe Bryant",
-      current: "32 second-half points in 15-point comeback vs San Antonio",
-      needed: "Kobe's modern record: 35 second-half points (2006 vs Phoenix)",
-      projectedDate: "Would need similar comeback scenario - potentially Western Finals",
-      significance: "Matching Kobe's legendary clutch template would establish Edwards among basketball's elite closers while proving his championship-caliber takeover ability in the most crucial playoff moments."
+      player: "Oklahoma City Thunder",
+      team: "OKC",
+      milestone: "Fewest points allowed to LeBron-AD duo in playoff game since 2021",
+      current: "32 combined points (LeBron 18, Davis 14) in Game 1 victory",
+      needed: "Previous low: 30 combined points (Phoenix, 2021 first round)",
+      projectedDate: "May 8, 2026 - Game 2 if defensive dominance continues",
+      significance: "Setting a new defensive standard against the Lakers' championship duo would establish Oklahoma City's defense among elite playoff units while proving their championship credentials through sustained excellence against future Hall of Fame talent."
     },
     {
-      player: "New York Knicks",
-      team: "NYK",
-      milestone: "First Eastern Conference Finals appearance since 2000",
-      current: "1-0 lead in Eastern Conference Semifinals vs Philadelphia",
-      needed: "Must defeat 76ers and win conference semifinals vs Detroit/Cleveland",
-      projectedDate: "May 18, 2026 - Eastern Conference Finals if advancement continues",
-      significance: "Reaching the Eastern Conference Finals would complete New York's remarkable transformation while establishing their championship core as legitimate title contenders through sustained playoff excellence at Madison Square Garden."
+      player: "Detroit Pistons",
+      team: "DET",
+      milestone: "First Eastern Conference Finals since 2008",
+      current: "1-0 lead in Eastern Conference Semifinals vs Cleveland",
+      needed: "Must defeat Cavaliers and win next round vs New York/Philadelphia",
+      projectedDate: "May 20, 2026 - Eastern Conference Finals if advancement continues",
+      significance: "Reaching the Eastern Conference Finals would complete Detroit's remarkable rebuild while establishing their young core as legitimate championship contenders through sustained playoff excellence and franchise-record individual performances."
     },
     {
-      player: "Minnesota Timberwolves",
-      team: "MIN",
-      milestone: "First Western Conference Finals since 2004",
-      current: "1-0 series lead over San Antonio in conference semifinals",
-      needed: "Must complete upset of Spurs and advance through next round",
-      projectedDate: "May 20, 2026 - Western Conference Finals if playoff run continues",
-      significance: "Advancing to the Western Conference Finals would end Minnesota's 22-year drought while validating their young core's championship potential through sustained playoff success against elite Western competition."
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      milestone: "Most consecutive playoff games with 25+ points to start career",
+      current: "8 consecutive games dating to first round opener",
+      needed: "Michael Jordan record: 12 consecutive games (1991 playoffs)",
+      projectedDate: "May 16, 2026 - Could tie record in Western Conference Finals",
+      significance: "Matching Jordan's legendary playoff consistency would establish SGA among basketball's elite scorers while proving his championship-caliber ability to deliver sustained excellence against the Western Conference's most elite competition."
     },
     {
-      player: "Julius Randle",
-      team: "NYK",
-      milestone: "Most double-doubles in single playoff run in Knicks franchise history",
-      current: "5 double-doubles through first round and Game 1 of semifinals",
-      needed: "Willis Reed's record: 8 double-doubles (1970 championship playoffs)",
-      projectedDate: "May 15, 2026 - Could break record in Eastern Conference Finals",
-      significance: "Surpassing Willis Reed's championship record would establish Randle among Knicks legends while providing the consistent excellence needed for New York's first championship since 1973."
+      player: "Isaiah Stewart",
+      team: "DET",
+      milestone: "Most double-doubles in single playoff run in Pistons history by a power forward",
+      current: "6 double-doubles through first round and conference semifinals opener",
+      needed: "Dennis Rodman record: 8 double-doubles (1989 championship playoffs)",
+      projectedDate: "May 12, 2026 - Could break record in Game 4 vs Cleveland",
+      significance: "Surpassing Rodman's championship record would establish Stewart among Pistons legends while providing the consistent interior excellence needed for Detroit's first Finals appearance since their 2004 championship season."
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      milestone: "Youngest player with 25+ points and 10+ rebounds in playoff debut since Tim Duncan",
-      current: "28 points, 14 rebounds in conference semifinals opener",
-      needed: "Already achieved - first since Duncan's 1998 playoff debut at age 22",
-      projectedDate: "Milestone already reached on May 4, 2026",
-      significance: "Matching Duncan's legendary debut template establishes Wembanyama's championship trajectory while proving his ability to deliver elite production in crucial playoff moments despite San Antonio's early deficit."
+      player: "Donovan Mitchell",
+      team: "CLE",
+      milestone: "Most 30+ point games in single playoff run in Cavaliers history",
+      current: "4 games with 30+ points through first round and Game 1",
+      needed: "LeBron James record: 6 games (2016 championship playoffs)",
+      projectedDate: "May 10, 2026 - Could tie record in Game 3 if scoring continues",
+      significance: "Matching LeBron's championship scoring standard would establish Mitchell among Cleveland's greatest playoff performers while providing the individual excellence needed to overcome Detroit's balanced attack and advance."
     },
     {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      milestone: "Longest playoff losing streak since 2019 elimination",
-      current: "1 consecutive loss (39-point blowout vs New York)",
-      needed: "Previous streak: 4 straight losses ending 2019 playoff run",
-      projectedDate: "May 8, 2026 - Could match streak if Game 2 struggles continue",
-      significance: "Avoiding extended losing streak is crucial for maintaining the comeback momentum from Boston series while proving their championship resilience can survive early adversity against elite competition."
+      player: "Los Angeles Lakers",
+      team: "LAL",
+      milestone: "Longest playoff losing streak since 2013 elimination",
+      current: "1 consecutive loss (18-point blowout vs Oklahoma City)",
+      needed: "Previous streak: 4 straight losses ending 2013 playoff run",
+      projectedDate: "May 10, 2026 - Could match streak if Game 2 struggles continue",
+      significance: "Avoiding extended losing streak is crucial for maintaining championship hopes while proving that LeBron and Davis can still deliver elite production against the Western Conference's most suffocating defensive competition."
     }
   ],
   thisWeekInHistory: [
     {
-      year: 1997,
-      event: "Michael Jordan scored 38 points to lead the Chicago Bulls to a 109-104 victory over the Atlanta Hawks in Game 1 of the Eastern Conference Semifinals, beginning their march toward a fifth championship in seven years with dominant individual excellence.",
-      players: ["Michael Jordan", "Scottie Pippen", "Steve Smith", "Dikembe Mutombo"]
+      year: 2003,
+      event: "Tim Duncan recorded 32 points and 20 rebounds to lead the San Antonio Spurs to a 105-81 victory over the Los Angeles Lakers in Game 2 of the Western Conference Semifinals, evening the series at 1-1 with dominant two-way excellence.",
+      players: ["Tim Duncan", "Tony Parker", "Shaquille O'Neal", "Kobe Bryant"]
+    },
+    {
+      year: 1991,
+      event: "Michael Jordan exploded for 46 points as the Chicago Bulls defeated the Philadelphia 76ers 112-100 in Game 2 of the Eastern Conference Semifinals at Chicago Stadium, taking a commanding 2-0 series lead toward their first championship.",
+      players: ["Michael Jordan", "Scottie Pippen", "Charles Barkley", "Hersey Hawkins"]
     },
     {
       year: 1987,
-      event: "Magic Johnson delivered 20 points and 15 assists as the Los Angeles Lakers defeated the Golden State Warriors 130-112 in Game 2 of the Western Conference Semifinals at The Forum, showcasing Showtime excellence in championship pursuit.",
-      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "Joe Barry Carroll", "Sleepy Floyd"]
+      event: "Magic Johnson delivered 22 points and 19 assists as the Los Angeles Lakers defeated the Seattle SuperSonics 112-107 in Game 4 of the Western Conference Finals at The Forum, showcasing Showtime excellence in championship pursuit.",
+      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "Tom Chambers", "Xavier McDaniel"]
     },
     {
-      year: 2000,
-      event: "Shaquille O'Neal dominated with 40 points and 24 rebounds as the Los Angeles Lakers defeated the Phoenix Suns 105-99 in Game 4 of the Western Conference Semifinals at Staples Center, taking a commanding 3-1 series lead.",
-      players: ["Shaquille O'Neal", "Kobe Bryant", "Jason Kidd", "Clifford Robinson"]
+      year: 1989,
+      event: "Isiah Thomas scored 25 points and dished 13 assists as the Detroit Pistons defeated the Chicago Bulls 103-94 in Game 6 of the Eastern Conference Finals at the Palace, advancing to their first NBA Finals with dominant floor-general excellence.",
+      players: ["Isiah Thomas", "Joe Dumars", "Michael Jordan", "Scottie Pippen"]
     },
     {
-      year: 1984,
-      event: "Bernard King exploded for 44 points as the New York Knicks defeated the Detroit Pistons 127-123 in Game 5 of the Eastern Conference Semifinals at Madison Square Garden, setting the franchise playoff scoring record that still stands today.",
-      players: ["Bernard King", "Bill Cartwright", "Isiah Thomas", "Bill Laimbeer"]
+      year: 2001,
+      event: "Allen Iverson scored 48 points to lead the Philadelphia 76ers to a 107-101 overtime victory over the Toronto Raptors in Game 7 of the Eastern Conference Semifinals at First Union Center, advancing to the conference finals.",
+      players: ["Allen Iverson", "Dikembe Mutombo", "Vince Carter", "Antonio Davis"]
     },
     {
-      year: 1993,
-      event: "Charles Barkley scored 42 points and grabbed 13 rebounds as the Phoenix Suns defeated the Los Angeles Lakers 107-102 in Game 3 of the Western Conference Semifinals at America West Arena, taking a 2-1 series lead in his MVP season.",
-      players: ["Charles Barkley", "Kevin Johnson", "Magic Johnson", "James Worthy"]
-    },
-    {
-      year: 2010,
-      event: "LeBron James recorded 27 points, 19 rebounds and 10 assists for a triple-double as the Cleveland Cavaliers defeated the Boston Celtics 120-88 in Game 5 of the Eastern Conference Semifinals at Quicken Loans Arena.",
-      players: ["LeBron James", "Mo Williams", "Paul Pierce", "Kevin Garnett"]
+      year: 1994,
+      event: "Hakeem Olajuwon dominated with 34 points and 11 rebounds as the Houston Rockets defeated the Phoenix Suns 104-94 in Game 7 of the Western Conference Semifinals at The Summit, advancing toward their first championship.",
+      players: ["Hakeem Olajuwon", "Vernon Maxwell", "Charles Barkley", "Kevin Johnson"]
     }
   ],
   streakWatch: [
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      streak: "5 consecutive playoff games with 25+ points and 5+ assists",
-      record: "Walt Frazier franchise record: 9 games (1970 championship run)",
+      player: "Cade Cunningham",
+      team: "DET",
+      streak: "6 consecutive playoff games with 20+ points and 8+ assists",
+      record: "Isiah Thomas franchise record: 11 games (1988-1989 playoffs)",
+      gamesAway: 5
+    },
+    {
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      streak: "8 consecutive playoff games with 25+ points to start career",
+      record: "Michael Jordan record: 12 consecutive games (1991 playoffs)",
       gamesAway: 4
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
-      streak: "3 consecutive road playoff games with 30+ points",
-      record: "Michael Jordan record: 7 games (1991-1992 championship runs)",
+      player: "Oklahoma City Thunder",
+      team: "OKC",
+      streak: "7 consecutive playoff victories dating to first round",
+      record: "Franchise record: 12 consecutive wins (2012 playoff run)",
+      gamesAway: 5
+    },
+    {
+      player: "Detroit Pistons",
+      team: "DET",
+      streak: "5 consecutive home playoff victories",
+      record: "Franchise record: 9 consecutive home wins (2004 championship run)",
       gamesAway: 4
     },
     {
-      player: "New York Knicks",
-      team: "NYK",
-      streak: "6 consecutive playoff victories dating to first round",
-      record: "Franchise record: 12 consecutive wins (1970 championship run)",
-      gamesAway: 6
-    },
-    {
-      player: "Julius Randle",
-      team: "NYK",
-      streak: "5 consecutive playoff games with 20+ points and 10+ rebounds",
-      record: "Willis Reed franchise record: 8 games (1970 championship playoffs)",
-      gamesAway: 3
-    },
-    {
-      player: "Minnesota Timberwolves",
-      team: "MIN",
-      streak: "4 consecutive playoff games decided by single digits",
-      record: "NBA record: 11 games (2005 Detroit Pistons championship run)",
+      player: "Isaiah Stewart",
+      team: "DET",
+      streak: "6 consecutive playoff games with double-digit rebounds",
+      record: "Dennis Rodman franchise record: 13 games (1989-1990 playoffs)",
       gamesAway: 7
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      streak: "8 consecutive games with 25+ points and 10+ rebounds (including playoffs)",
-      record: "Tim Duncan franchise record: 15 games (1999 championship season)",
-      gamesAway: 7
+      player: "Donovan Mitchell",
+      team: "CLE",
+      streak: "4 consecutive playoff games with 30+ points",
+      record: "LeBron James franchise record: 6 games (2016 championship run)",
+      gamesAway: 2
     },
     {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      streak: "1 game losing streak after Boston comeback momentum",
-      record: "Worst: 16 consecutive losses (2015-16 process era)",
-      gamesAway: 15
+      player: "Los Angeles Lakers",
+      team: "LAL",
+      streak: "1 game road losing streak in conference semifinals",
+      record: "Worst recent: 8 consecutive road losses (2012 playoffs)",
+      gamesAway: 7
     }
   ],
-  narrative: "May 5, 2026 crystallizes basketball's most extraordinary historical convergence, where Jalen Brunson's 41-point Madison Square Garden masterpiece surpasses even Walt Frazier's championship template through superior individual scoring while matching Clyde's playmaking excellence in franchise-defining moments, as Anthony Edwards' 32 second-half comeback explosion threatens to eclipse Kobe Bryant's legendary clutch standards through sheer volume and hostile environment dominance that proves championship DNA transcends generations. The historical synthesis deepens through New York's 39-point demolition exceeding the 1996 Bulls' championship statement template while Minnesota's road upset perfectly mirrors Detroit's 2004 underdog blueprint, as Julius Randle's double-double excellence matches Karl Malone's championship complementary scoring while Victor Wembanyama's debut dominance surpasses young Tim Duncan's statistical foundation despite the team outcome disappointment. Tonight's conference semifinals continuation promises to extend these legendary parallels, where LeBron James faces Oklahoma City's championship momentum while Detroit hosts Cleveland in a clash that could determine whether current playoff excellence will merely honor basketball's greatest traditions or actively surpass them through sustained individual brilliance and team execution that proves the 2026 playoffs represent not just championship basketball, but the evolution of playoff legend itself through performances that will define basketball excellence for generations while establishing May 5th as the night where basketball's present definitively announced its intention to surpass even the sport's most sacred championship memories."
+  narrative: "May 6, 2026 represents basketball's most compelling historical synthesis, where Cade Cunningham's 28-point, 11-assist masterpiece channels Chauncey Billups' championship DNA while surpassing even Mr. Big Shot's statistical template through superior individual excellence in conference semifinals stakes, as Oklahoma City's defensive dominance perfectly mirrors Detroit's legendary 2004 championship blueprint through identical ability to neutralize superstar duos when title hopes hang in the balance. The historical convergence deepens through Shai Gilgeous-Alexander's two-way brilliance threatening Tony Parker's Finals MVP template while Isaiah Stewart's interior evolution surpasses Ben Wallace's defensive foundation, as Donovan Mitchell's 32-point explosion honors Jerry West's legendary individual excellence despite team defeat while LeBron James faces the inevitable championship decline that mirrors Kareem's twilight struggles against elite defensive competition. Tonight's Game 2 battles promise to extend these legendary parallels, where Philadelphia seeks to avoid elimination at Madison Square Garden while San Antonio desperately protects home court against Minnesota's shocking momentum, creating the perfect stage for current excellence to either honor basketball's greatest traditions or actively surpass them through sustained brilliance that proves the 2026 playoffs represent not just championship basketball, but the definitive evolution of playoff legend itself through performances that will establish May 6th as the night where basketball's present announced its intention to rewrite the sport's most sacred championship memories through sustained individual and team excellence that transcends generational boundaries."
 };
