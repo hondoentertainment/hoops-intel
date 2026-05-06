@@ -46,12 +46,12 @@ export const watchGuideData: WatchGuideData = {
       time: "5/6 - 9:30 PM EDT",
       tv: "ESPN",
       venue: "Frost Bank Center",
-      entertainmentScore: 92,
+      entertainmentScore: 94,
       starPower: 9,
       playoffImplications: 10,
       rivalry: 6,
-      storyline: "The Timberwolves look to maintain their shocking series advantage against the 62-win Spurs in a crucial Game 2 swing game. San Antonio desperately needs a response at home after a disappointing playoff opener.",
-      keyMatchup: "Anthony Edwards vs. Victor Wembanyama",
+      storyline: "The Timberwolves shocked San Antonio in Game 1 and now the 62-win Spurs face desperation mode at home. Victor Wembanyama must dominate to avoid falling into a massive 2-0 hole against Anthony Edwards and the resilient Wolves.",
+      keyMatchup: "Victor Wembanyama vs. Anthony Edwards",
       mustWatch: true
     },
     {
@@ -65,15 +65,15 @@ export const watchGuideData: WatchGuideData = {
       time: "5/6 - 7:00 PM EDT",
       tv: "ESPN",
       venue: "Madison Square Garden",
-      entertainmentScore: 89,
+      entertainmentScore: 87,
       starPower: 8,
-      playoffImplications: 10,
+      playoffImplications: 9,
       rivalry: 8,
-      storyline: "The Knicks seek a commanding 2-0 series lead at Madison Square Garden in this heated Eastern Conference semifinal battle. Philadelphia faces elimination territory with another road loss in this bitter rivalry.",
-      keyMatchup: "Joel Embiid vs. Jalen Brunson",
+      storyline: "The Knicks dominated Game 1 at Madison Square Garden and look to take a commanding 2-0 series lead. Philadelphia desperately needs Joel Embiid to be healthy and dominant to steal home court advantage in this pivotal swing game.",
+      keyMatchup: "Jalen Brunson vs. Tyrese Maxey",
       mustWatch: true
     }
   ],
-  topPick: "Timberwolves at Spurs - Minnesota looks to shock the basketball world by taking a 2-0 lead over the 62-win Spurs in San Antonio",
-  nightOverview: "Two massive conference semifinals swing games highlight tonight's slate, with both visiting teams looking to take commanding 2-0 series leads. The playoff intensity reaches fever pitch as championship dreams hang in the balance."
+  topPick: "Minnesota at San Antonio - The upset-minded Timberwolves can put the 62-win Spurs on the brink with a road victory behind Anthony Edwards' explosive scoring",
+  nightOverview: "Two crucial Game 2 conference semifinals matchups highlight Tuesday's playoff action. Both home teams face must-win scenarios after disappointing Game 1 performances, with championship aspirations hanging in the balance."
 };

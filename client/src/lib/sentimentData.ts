@@ -47,142 +47,186 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-05-06",
   displayDate: "May 6, 2026",
-  overallMood: "Conference semifinals intensity with championship contenders emerging",
+  overallMood: "Young stars ascending while aging Lakers face existential playoff reckoning — championship geography is shifting in real time",
   topics: [
     {
-      id: "cade-playoff-superstar",
-      topic: "Cade Cunningham's Playoff Ascension",
+      id: "cade-cunningham-playoff-superstar",
+      topic: "Cade Cunningham Is a Legitimate Playoff Superstar",
       sentiment: "positive",
-      intensity: 94,
-      volume: 28400,
-      summary: "NBA Twitter is going absolutely wild over Cade's 28-point, 11-assist masterclass against Cleveland, with fans declaring him a legitimate championship floor general",
+      intensity: 96,
+      volume: 31400,
+      summary: "NBA Twitter and Reddit are in full coronation mode after Cade's 28-point, 11-assist masterclass dismantled Cleveland in Game 1. The discourse has shifted overnight from 'promising young star' to 'generational playoff floor general' and nobody is pumping the brakes.",
       sampleTakes: [
-        "CADE CUNNINGHAM IS A PLAYOFF SUPERSTAR AND I'M NOT HEARING OTHERWISE 28 AND 11 IN A CONFERENCE SEMIS 🔥",
-        "Remember when people said Cade was a bust??? This man just orchestrated a CLINIC against Cleveland",
-        "Cade really turned into Chris Paul with Ja Morant athleticism overnight",
-        "Detroit bout to shock the world with Cade leading this championship run"
+        "CADE CUNNINGHAM 28 AND 11 IN A CONFERENCE SEMIFINAL AND YALL STILL WANNA TALK ABOUT REBUILDS??? DETROIT IS BUILT 🏆",
+        "Cade tonight looked like CP3 in his prime but with actual athleticism. That's a terrifying combination for everyone left in these playoffs",
+        "The Pistons drafted right, developed right, and now Cade is cashing the check in May. This is how you build a champion the RIGHT way",
+        "bro went 11-19 from the field AND had 11 dimes. efficiency AND volume AND playmaking. Cade is the full package no debate",
+        "Remember the 'Cunningham bust' takes from 2022? Those accounts have been very quiet tonight lmaooo"
       ],
       relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jalen Duren"],
       relatedTeams: ["DET", "CLE"],
       trending: true
     },
     {
-      id: "thunder-championship-statement",
-      topic: "Thunder's Title Statement Game",
+      id: "thunder-defensive-masterpiece",
+      topic: "OKC's Defense Is Historically Suffocating",
       sentiment: "positive",
-      intensity: 91,
-      volume: 24800,
-      summary: "Oklahoma City's 18-point demolition of the Lakers has NBA Twitter convinced they're the Western Conference favorites, with their defense looking historically dominant",
+      intensity: 93,
+      volume: 27600,
+      summary: "The Thunder's 19-turnover clinic against the Lakers has social media declaring Oklahoma City the best defensive team in basketball, with clips of their ball pressure and rotations going viral all night. 108-90 felt like it wasn't even that close.",
       sampleTakes: [
-        "THUNDER JUST ENDED THE LAKERS SEASON IN ONE GAME 108-90 WAS A MURDER SCENE",
-        "SGA and this OKC defense is different different... Lakers looked like a play-in team",
-        "19 turnovers forced??? Thunder defense is championship level RIGHT NOW",
-        "Paycom Center was ELECTRIC tonight... this Thunder team built for June basketball"
+        "19 TURNOVERS FORCED. NINETEEN. OKC defense is not of this earth right now",
+        "The Thunder just turned the Los Angeles Lakers into a JV squad. Paint possession 52-34. That's not basketball that's a hostage situation",
+        "SGA orchestrating this offense while Dort is out here making LeBron look like he's running through wet concrete. Different team different planet",
+        "Oklahoma City moved the ball like a well-oiled machine while the Lakers looked confused the entire second half. Championship pedigree vs championship pretenders",
+        "Paycom Center noise level tonight sounded like a Game 7. OKC is READY for this moment and it shows"
       ],
       relatedPlayers: ["Shai Gilgeous-Alexander", "Jalen Williams", "Luguentz Dort"],
       relatedTeams: ["OKC", "LAL"],
       trending: true
     },
     {
-      id: "lebron-ad-playoff-decline",
-      topic: "LeBron and AD's Concerning Performance",
+      id: "lebron-father-time-debate",
+      topic: "Has Father Time Finally Caught LeBron James?",
       sentiment: "negative",
-      intensity: 87,
-      volume: 31200,
-      summary: "Social media is roasting the Lakers duo for their combined 32 points, questioning if Father Time has finally caught LeBron and if AD can still show up in big moments",
+      intensity: 91,
+      volume: 38700,
+      summary: "6-of-16 shooting from LeBron in a conference semifinals game has broken the internet. The discourse ranges from measured concern to full-scale retirement suggestions, and the Father Time crowd is the loudest they have been in years. This is the single most-discussed topic online today.",
       sampleTakes: [
-        "32 COMBINED POINTS FROM LEBRON AND AD IN A CONFERENCE SEMIS??? PACK IT UP",
-        "LeBron really shot 6-16 in the biggest game of the season... Father Time undefeated",
-        "AD disappearing in the playoffs again... some things never change",
-        "Lakers championship window slammed shut tonight... this is over"
+        "6-16 from LeBron in a conference semis game. FATHER TIME IS UNDEFEATED AND HE JUST WENT ON A 15-0 RUN",
+        "I'm not saying LeBron is done I'm just saying the version that can carry a team past elite defenses might be retired already and his body just hasn't got the memo yet",
+        "LeBron getting locked up by Dort in crunch time is not something I had on my 2026 bingo card and yet here we are",
+        "32 combined points from the two highest paid players on the Lakers roster. In a playoff game. Against the team they were supposed to beat. I cannot.",
+        "Bron still doing Bron things statistically but the efficiency cliff is real. 6-16 ain't old man river, that's a guy who OKC has fully scouted and solved"
       ],
       relatedPlayers: ["LeBron James", "Anthony Davis"],
       relatedTeams: ["LAL", "OKC"],
       trending: true
     },
     {
-      id: "pistons-championship-believers",
-      topic: "Detroit's Title Dark Horse Status",
-      sentiment: "positive",
-      intensity: 82,
-      volume: 19600,
-      summary: "The Pistons' balanced attack and home court dominance has fans believing they could make a Finals run, with four players scoring 15+ creating championship buzz",
+      id: "anthony-davis-playoff-ghost",
+      topic: "Anthony Davis Vanishing Act in Big Games",
+      sentiment: "negative",
+      intensity: 88,
+      volume: 24900,
+      summary: "14 points and 9 rebounds from Anthony Davis in a conference semifinals loss has reignited the most exhausting debate in NBA Twitter history — is AD fundamentally unable to be the guy when it matters? The dunks-on-Davis ratio in the timeline tonight is astronomical.",
       sampleTakes: [
-        "Y'all sleeping on Detroit... they got DEPTH and Cade is ready for the moment",
-        "Pistons really about to shock the East... Stewart and Duren looking like title pieces",
-        "Little Caesars Arena was ROCKING tonight... Detroit built different in the playoffs",
-        "This Pistons team reminds me of the 04 squad... defense and team basketball"
+        "14 POINTS FROM AD IN A CONFERENCE SEMIS GAME. We've been running this same episode since 2019 and I'm tired",
+        "Anthony Davis is a top-5 talent who plays like a top-25 player in the games that define legacies. This is canon at this point",
+        "OKC just assigned their bigs to front AD every possession and he had no answer. Zero counter moves. A top-3 center with no counter moves in 2026",
+        "AD had 9 rebounds in a game the Lakers lost by 18. Nine. That's a second-round pick performance in a conference semis",
+        "The 'AD just needs the right situation' people have been very silent since about the third quarter tonight"
+      ],
+      relatedPlayers: ["Anthony Davis", "LeBron James"],
+      relatedTeams: ["LAL", "OKC"],
+      trending: true
+    },
+    {
+      id: "pistons-2004-comparisons",
+      topic: "Detroit Pistons Drawing 2004 Championship Comparisons",
+      sentiment: "positive",
+      intensity: 84,
+      volume: 21200,
+      summary: "Four Pistons in double figures has the basketball internet making the inevitable 2004 comparisons, and for once the hyperbole feels at least partially earned. The Pistons' balanced depth and defensive identity is genuinely reminiscent of that championship team and NBA Twitter is eating it up.",
+      sampleTakes: [
+        "Four guys in double figures for Detroit. FOUR. This is 2004 energy and I will not be calming down",
+        "Cade is Chauncey. Stewart is Ben Wallace. Duren is Rasheed. I know it's too early but the vibes are identical",
+        "Detroit basketball is BACK and I mean actually back not just 'they're young and improving' back. CONFERENCE SEMIS DOMINANT back",
+        "Little Caesars Arena was as loud as I've heard any building in years. That city has been waiting for this moment for two decades",
+        "The Pistons don't have a superstar problem, an age problem, a cap problem, or a chemistry problem. They just have basketball and it's beautiful"
       ],
       relatedPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jalen Duren"],
       relatedTeams: ["DET", "CLE"],
       trending: false
     },
     {
-      id: "cavaliers-road-struggles",
-      topic: "Cleveland's Playoff Road Woes",
+      id: "cavaliers-mitchell-isolation-problem",
+      topic: "Donovan Mitchell Can't Win Alone in Cleveland",
       sentiment: "negative",
-      intensity: 74,
-      volume: 16800,
-      summary: "Cavs fans and NBA Twitter are concerned about Cleveland's inability to steal road games, despite Mitchell's 32-point effort in the Game 1 loss",
+      intensity: 76,
+      volume: 17800,
+      summary: "Mitchell's 32-point effort in a 10-point loss has crystallized the central Cleveland debate: is this roster built to actually win a series against elite teams? The discourse is sympathetic toward Mitchell personally but increasingly brutal about the organization around him.",
       sampleTakes: [
-        "Mitchell dropped 32 and we still lost by 10... this supporting cast ain't it",
-        "Cavaliers can't win on the road when it matters... same story every year",
-        "Don was cooking but nobody else showed up... gonna be a long series",
-        "Detroit's crowd completely took us out of our game... mental toughness concerns"
+        "Donovan Mitchell is playing out of his mind and Cleveland is still losing by double digits. That supporting cast needs a serious conversation",
+        "Spida dropped 32 WITH five threes and the Pistons didn't even panic. That tells you everything about how seriously Detroit takes Cleveland's supporting cast",
+        "Jarrett Allen had a fine game. Everybody else had a quiet game. In a conference semifinal. Against Detroit's backup unit. That's a problem.",
+        "Cleveland's formula of 'Mitchell goes nuclear and everyone else does just enough' works in the regular season and gets exposed every single May",
+        "The Cavs front office has had three offseasons to build Mitchell a real second star and they keep coming up short. That's on the organization not the player"
       ],
       relatedPlayers: ["Donovan Mitchell", "Jarrett Allen"],
       relatedTeams: ["CLE", "DET"],
       trending: false
     },
     {
-      id: "game-2-elimination-vibes",
-      topic: "Tonight's Must-Win Game 2 Stakes",
+      id: "game2-elimination-stakes",
+      topic: "Tonight's Game 2s Are Essentially Elimination Games",
       sentiment: "mixed",
-      intensity: 79,
-      volume: 22100,
-      summary: "Fans are hyping tonight's games as potential series-deciding moments, with Philly facing near-elimination and San Antonio needing to protect home court",
+      intensity: 81,
+      volume: 26300,
+      summary: "Both tonight's matchups — Philly in New York and Minnesota in San Antonio — are generating massive pre-game discourse because 0-2 holes in the second round are historically almost impossible to escape. The stakes feel seismic and the internet knows it.",
       sampleTakes: [
-        "Sixers down 0-2 at MSG??? That's a wrap for Embiid's championship dreams",
-        "If Minnesota goes up 2-0 in San Antonio... Spurs might actually be frauds",
-        "Game 2s hit different... tonight decides who's going home early",
-        "Both these games tonight are elimination games disguised as Game 2s"
+        "If Philly goes 0-2 at MSG this is over. No team comes back from 0-2 against a healthy Knicks squad in a building that loud. Close the casket.",
+        "San Antonio CANNOT go down 0-2 at home. Wemby and a healthy roster losing at the Frost Bank Center twice would be the biggest upset in modern playoff history",
+        "Both underdogs tonight are playing with their seasons on the line in hostile buildings. This is the best slate of games we've had all playoffs",
+        "Embiid hobbling to shootaround this morning and then playing 38 minutes tonight is very on-brand for 76ers championship campaigns",
+        "Minnesota going to San Antonio and taking a 2-0 lead would be the most chaotic thing to happen in the Western playoffs since... well since yesterday when OKC demolished the Lakers"
       ],
       relatedPlayers: ["Joel Embiid", "Victor Wembanyama", "Jalen Brunson", "Anthony Edwards"],
       relatedTeams: ["PHI", "NYK", "MIN", "SAS"],
-      trending: false
+      trending: true
     },
     {
-      id: "young-teams-playoff-surge",
-      topic: "Youth Movement Taking Over Playoffs",
-      sentiment: "positive",
-      intensity: 71,
+      id: "wembanyama-series-survival-test",
+      topic: "Wembanyama's Championship Credibility on the Line",
+      sentiment: "mixed",
+      intensity: 79,
+      volume: 19100,
+      summary: "After Minnesota's Game 1 upset at the Frost Bank Center, the pressure narrative on Victor Wembanyama has shifted dramatically. Tonight's Game 2 is being framed as a Wemby credibility test — can the most hyped young player in a generation actually deliver when everything is on the line?",
+      sampleTakes: [
+        "Wemby is incredible but tonight is his first real 'put up or shut up' moment in the playoffs. Minnesota is not afraid of him and the whole league is watching",
+        "If San Antonio loses at home twice to Minnesota I'm sorry but we have to reconsider the 'instant championship contender' narrative around Wembanyama",
+        "Wemby getting a true adversity test for the first time in his career tonight. How he responds will tell us everything about his ceiling as a winner",
+        "The Spurs built everything around Wembanyama being unguardable. Rudy Gobert being probable tonight is a direct challenge to that entire theory",
+        "I believe in Wemby but that crowd better be deafening tonight because San Antonio desperately needs every edge they can get in this building"
+      ],
+      relatedPlayers: ["Victor Wembanyama", "Anthony Edwards", "Rudy Gobert"],
+      relatedTeams: ["SAS", "MIN"],
+      trending: true
+    },
+    {
+      id: "embiid-health-sixers-destiny",
+      topic: "Embiid's Knee and Philly's Championship Window",
+      sentiment: "negative",
+      intensity: 77,
       volume: 18400,
-      summary: "NBA Twitter is celebrating how young stars like Cade, SGA, and Edwards are outperforming aging superstars in crucial playoff moments",
+      summary: "Joel Embiid listed probable with right knee soreness before a must-not-lose Game 2 is generating the specific brand of 76ers anxiety that only Philadelphia fans truly understand. The discourse is equal parts hopeful and resigned.",
       sampleTakes: [
-        "New generation taking over... Cade, SGA, Ant showing these old heads how it's done",
-        "Young legs matter in May basketball... these kids got that championship hunger",
-        "Passing of the torch happening in real time... old guard looking cooked",
-        "Detroit and OKC proving young teams can win championships RIGHT NOW"
+        "Embiid probable for Game 2 at MSG with knee soreness is the most 76ers sentence ever constructed in the English language",
+        "Even a healthy Embiid is a massive ask against New York's size and depth at MSG. A hobbled Embiid in a must-win situation is a nightmare scenario",
+        "Philly's entire championship viability runs through Joel's right knee and that's been true for three years running now. Nothing has changed.",
+        "Trust the Process? More like Trust the Injury Report at this point. I love Joel but the timing of these ailments is cosmically cursed",
+        "If Embiid drops 35 and 15 tonight in a Sixers win I will personally apologize to every 76ers fan I have ever doubted. I'm willing to take that bet."
       ],
-      relatedPlayers: ["Cade Cunningham", "Shai Gilgeous-Alexander", "Anthony Edwards"],
-      relatedTeams: ["DET", "OKC", "MIN"],
+      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jalen Brunson"],
+      relatedTeams: ["PHI", "NYK"],
       trending: false
     },
     {
-      id: "playoff-atmosphere-electric",
-      topic: "Playoff Crowd Energy and Atmosphere",
+      id: "young-generation-takeover",
+      topic: "New Generation Officially Running the NBA",
       sentiment: "positive",
-      intensity: 68,
-      volume: 14700,
-      summary: "Social media is praising the incredible playoff atmosphere at Little Caesars Arena and Paycom Center, with home crowds creating championship energy",
+      intensity: 72,
+      volume: 16700,
+      summary: "The broader meta-narrative emerging from last night's games and tonight's previews is that the league's power center has decisively shifted. Cade, SGA, Wemby, Ant Edwards — these are the faces of May basketball now and NBA Twitter is here for the handoff.",
       sampleTakes: [
-        "Playoff atmosphere in Detroit was INSANE... Little Caesars was rocking all night",
-        "Paycom Center sounded like a college arena... OKC crowd is championship level",
-        "Home court advantage is REAL in these conference semifinals",
-        "These crowds tonight showing why playoff basketball hits different"
+        "Cade and SGA both going off last night while LeBron and AD struggled is not a coincidence. It's a torch being passed in real time",
+        "The conference semifinals are being dominated by guys under 28. The league has officially entered a new era and it's ELECTRIC",
+        "Old NBA: Carry your team to a ring. New NBA: Build a balanced system around a superstar who elevates everyone. Detroit and OKC are the blueprint",
+        "LeBron's generation gave us the superteam era. SGA and Cade's generation is giving us the sustainable build era. I know which one I prefer to watch",
+        "Five years from now we'll look back at May 2026 as the week the transition became official. New stars, new teams, new energy."
       ],
-      relatedPlayers: ["Cade Cunningham", "Shai Gilgeous-Alexander"],
-      relatedTeams: ["DET", "OKC"],
+      relatedPlayers: ["Cade Cunningham", "Shai Gilgeous-Alexander", "Victor Wembanyama", "Anthony Edwards"],
+      relatedTeams: ["DET", "OKC", "SAS", "MIN"],
       trending: false
     }
   ],
@@ -191,65 +235,81 @@ export const sentimentData: SentimentData = {
       team: "OKC",
       teamFull: "Oklahoma City Thunder",
       sentiment: "positive",
-      score: 92,
-      buzzWords: ["dominant", "defense", "championship", "statement", "title favorites"],
-      narrativeSummary: "Thunder Twitter is in complete celebration mode after the 18-point demolition of the Lakers, with fans convinced this defensive masterpiece proved they're the Western Conference champions"
+      score: 94,
+      buzzWords: ["unstoppable", "historically dominant", "SGA era", "championship bound", "defense is elite", "Paycom electric"],
+      narrativeSummary: "Thunder Twitter is operating at maximum decibel levels after a statement 18-point demolition of the Lakers. The fanbase has fully graduated from 'legitimate contender' discourse to 'clear title favorite' energy, and after watching 19 turnovers forced and the Lakers' offense completely dismantled, it's hard to argue they haven't earned it. The sentiment is pure euphoria with championship inevitability baked in."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 89,
-      buzzWords: ["balanced", "depth", "Cade's team", "championship dark horse", "home court"],
-      narrativeSummary: "Pistons fans are ecstatic about their Game 1 dominance and Cade's emergence, with Motor City believing this could be their first championship run since 2004"
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "negative",
-      score: -78,
-      buzzWords: ["exposed", "aged", "Father Time", "championship over", "disappointing"],
-      narrativeSummary: "Lakers Twitter is in complete meltdown mode after the Thunder blowout, with fans questioning if LeBron and AD can still compete at championship level"
-    },
-    {
-      team: "CLE",
-      teamFull: "Cleveland Cavaliers",
-      sentiment: "negative",
-      score: -62,
-      buzzWords: ["road struggles", "supporting cast", "Mitchell alone", "concerning", "uphill battle"],
-      narrativeSummary: "Cavs fans are frustrated despite Mitchell's 32 points, concerned that Cleveland's road woes and lack of depth will doom their championship aspirations"
-    },
-    {
-      team: "PHI",
-      teamFull: "Philadelphia 76ers",
-      sentiment: "negative",
-      score: -71,
-      buzzWords: ["must-win", "elimination", "Embiid's health", "desperation", "season on the line"],
-      narrativeSummary: "Sixers Twitter is in panic mode facing a potential 0-2 hole at MSG, with fans desperately hoping Embiid's knee allows him to save their championship dreams"
+      score: 91,
+      buzzWords: ["Cade's team", "balanced attack", "2004 vibes", "Motor City rising", "depth wins championships", "home court fortress"],
+      narrativeSummary: "Pistons fans are experiencing something they haven't felt in two decades: genuine, credible, earned championship optimism. Cade's performance has elevated the discourse from 'fun young team' to 'legitimate Finals contender' overnight, and the balanced four-player scoring night has the fanbase fully convinced this isn't a Cinderella story — it's a dynasty in formation. Little Caesars Arena energy is being called the best in the playoffs."
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 84,
-      buzzWords: ["MSG magic", "Brunson brilliance", "championship run", "dominant", "built different"],
-      narrativeSummary: "Knicks fans are riding high on championship energy, believing Brunson's playoff excellence and Madison Square Garden atmosphere can carry them to the Finals"
+      score: 86,
+      buzzWords: ["MSG fortress", "Brunson for MVP", "championship window wide open", "Philly can't handle this", "ten straight wins"],
+      narrativeSummary: "Knicks Twitter is riding the highest wave of sustained optimism in recent memory, buoyed by a 10-game winning streak and Brunson's historic Game 1 performance. The fanbase is firmly in 'don't wake me up' territory, already half-planning a Finals run while trying to project calm in the face of a must-win Game 2 tonight. The only anxiety present is about Anunoby's hamstring."
     },
     {
-      team: "MIN",
-      teamFull: "Minnesota Timberwolves",
-      sentiment: "positive",
-      score: 76,
-      buzzWords: ["upset artists", "Edwards' time", "shocking Spurs", "momentum", "young legs"],
-      narrativeSummary: "Timberwolves Twitter is buzzing with championship confidence after stunning San Antonio, believing Edwards and company are ready for their breakthrough moment"
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "negative",
+      score: -81,
+      buzzWords: ["embarrassing", "Father Time wins", "series over", "AD cooked", "road problems terminal", "championship window closed"],
+      narrativeSummary: "Lakers Twitter is in full crisis mode and the hot takes are coming at industrial speed. The LeBron Father Time takes are back louder than ever, the AD playoff-disappearing-act narrative has been fully reactivated, and the general consensus is that this team is not built to compete with Oklahoma City's defensive intensity over a seven-game series. The ratio of doomer posts to optimistic takes is roughly ten to one."
+    },
+    {
+      team: "CLE",
+      teamFull: "Cleveland Cavaliers",
+      sentiment: "negative",
+      score: -58,
+      buzzWords: ["Mitchell deserves better", "road curse", "depth exposed", "supporting cast concern", "same story every year"],
+      narrativeSummary: "Cavs fans are caught between sincere appreciation for Mitchell's Herculean 32-point effort and growing dread that the roster surrounding him simply isn't built to go four rounds. The frustration is targeted at the front office more than the players, with the dominant sentiment being that Cleveland keeps getting to the second round and then running into the same wall of superior team depth."
+    },
+    {
+      team: "PHI",
+      teamFull: "Philadelphia 76ers",
+      sentiment: "negative",
+      score: -74,
+      buzzWords: ["cursed franchise", "Embiid's knee again", "must-win tonight", "trust the process exhausted", "0-2 means done"],
+      narrativeSummary: "76ers Twitter is operating at the specific frequency of Philadelphia sports suffering — not pure despair, but the weary pre-emptive grief of a fanbase that has been here before and knows exactly how these stories tend to end. Embiid's knee soreness before a road must-win at MSG has activated every dormant anxiety the fanbase has been managing since the postseason began."
     },
     {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "negative",
-      score: -58,
-      buzzWords: ["home court pressure", "Wemby expectations", "upset alert", "must respond", "championship questions"],
-      narrativeSummary: "Spurs fans are nervous after the Game 1 home loss, with questions mounting about whether Wembanyama and company are truly ready for championship moments"
+      score: -54,
+      buzzWords: ["Wemby pressure test", "home court endangered", "Minnesota shock", "must-win tonight", "championship readiness questioned"],
+      narrativeSummary: "Spurs fans are experiencing genuine alarm after Minnesota's Game 1 upset, a result that felt genuinely unthinkable heading into the series. The discourse has pivoted sharply from championship inevitability to urgent questions about whether this team is psychologically and tactically ready for a grind-it-out second-round series. Tonight's game carries franchise-defining weight and the fanbase knows it."
+    },
+    {
+      team: "MIN",
+      teamFull: "Minnesota Timberwolves",
+      sentiment: "positive",
+      score: 78,
+      buzzWords: ["biggest upset brewing", "Edwards time", "nobody believed us", "hungry wolves", "momentum unstoppable"],
+      narrativeSummary: "Timberwolves Twitter is running on the purest fuel in sports: the joy of the underdog who actually pulled it off. Stunning San Antonio on their home floor in Game 1 has given this fanbase a confidence it hasn't carried in years, and the belief that Edwards is ready for his transcendent playoff moment is almost universally shared. The vibe is giddy, slightly disbelieving, and completely ready for more."
+    },
+    {
+      team: "BOS",
+      teamFull: "Boston Celtics",
+      sentiment: "neutral",
+      score: 14,
+      buzzWords: ["watching and waiting", "four-game slide", "concerning", "resting before next round"],
+      narrativeSummary: "Celtics Twitter is in an uncomfortable waiting mode — not panicked, but unsettled by a four-game losing streak that ended the regular season. The fanbase is split between those insisting the skid was strategic load management and those genuinely worried the team hasn't found its best basketball heading into what they assumed would be a deep playoff run."
+    },
+    {
+      team: "DEN",
+      teamFull: "Denver Nuggets",
+      sentiment: "negative",
+      score: -44,
+      buzzWords: ["Jokic aging", "five-game skid", "concerning timing", "dynasty ending"],
+      narrativeSummary: "Nuggets fans are quietly stressed about the team's five-game losing streak heading into the postseason, with questions about Jokic's playoff workload and whether the supporting cast has regressed enough to end Denver's championship window. The energy is subdued and worried rather than loud and panicked."
     }
   ],
   playerSentiments: [
@@ -257,75 +317,142 @@ export const sentimentData: SentimentData = {
       player: "Cade Cunningham",
       team: "DET",
       sentiment: "positive",
-      score: 95,
-      mentions: 24800,
-      topTake: "CADE CUNNINGHAM IS A PLAYOFF SUPERSTAR AND I'M NOT HEARING OTHERWISE 28 AND 11 IN A CONFERENCE SEMIS 🔥",
-      narrativeArc: "From questioned draft pick to legitimate championship floor general in one playoff performance"
+      score: 97,
+      mentions: 29400,
+      topTake: "CADE CUNNINGHAM IS A PLAYOFF SUPERSTAR. 28 points. 11 assists. 11-19 from the field. In a CONFERENCE SEMIFINAL. I don't want to hear another word about this man's ceiling.",
+      narrativeArc: "The internet completed Cade's full redemption arc in a single game — from injury-plagued former top pick with question marks to legitimate May superstar and championship floor general. The coronation is happening in real time."
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       sentiment: "positive",
-      score: 91,
-      mentions: 22400,
-      topTake: "SGA and this OKC defense is different different... Lakers looked like a play-in team",
-      narrativeArc: "Ascending to championship superstar status with dominant two-way playoff excellence"
+      score: 93,
+      mentions: 26100,
+      topTake: "SGA is playing chess while everyone else is playing checkers. 26 and 8 while your defense forces 19 turnovers. That's not just good basketball, that's championship orchestration.",
+      narrativeArc: "SGA has fully crossed over from 'elite scorer' to 'complete two-way superstar who makes his team better on both ends.' The Thunder's win validated every claim his supporters have been making for three seasons."
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "negative",
-      score: -74,
-      mentions: 31200,
-      topTake: "LeBron really shot 6-16 in the biggest game of the season... Father Time undefeated",
-      narrativeArc: "Facing harsh reality that age may finally be catching up in crucial playoff moments"
-    },
-    {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      sentiment: "mixed",
-      score: 12,
-      mentions: 18600,
-      topTake: "Mitchell dropped 32 and we still lost by 10... this supporting cast ain't it",
-      narrativeArc: "Playing at superstar level but unable to carry Cleveland past superior depth and home court"
+      score: -72,
+      mentions: 41300,
+      topTake: "LeBron shot 6-16 against a team that was READY for him, in a game his team desperately needed. Father Time doesn't lose. He's never lost. And tonight he went nuclear.",
+      narrativeArc: "Every LeBron narrative thread converges tonight — the age debate, the playoff efficiency questions, the 'can he still be the guy' discourse. This single game has reactivated four years of dormant takes simultaneously."
     },
     {
       player: "Anthony Davis",
       team: "LAL",
       sentiment: "negative",
-      score: -68,
-      mentions: 19800,
-      topTake: "AD disappearing in the playoffs again... some things never change",
-      narrativeArc: "Continuing concerning pattern of underwhelming performances in biggest playoff moments"
+      score: -71,
+      mentions: 22800,
+      topTake: "AD had 14 points and 9 rebounds in a conference semifinals game his team lost by 18. He is a generational talent who consistently produces junior partner numbers when his team needs a franchise player. This is who he is.",
+      narrativeArc: "The perpetual AD cycle has completed another rotation. Dominant regular season, quietly diminished when playoff stakes peak. The internet has fully given up waiting for a different outcome and is instead cataloguing the pattern."
+    },
+    {
+      player: "Donovan Mitchell",
+      team: "CLE",
+      sentiment: "mixed",
+      score: 18,
+      mentions: 19700,
+      topTake: "Mitchell put up 32 with five threes and his team still lost by ten. That is the most perfect encapsulation of Cleveland's roster problem that has ever existed. He deserves so much better.",
+      narrativeArc: "Simultaneously the night's most sympathetic figure and most frustrating storyline. Playing at an elite level, generating genuine admiration, and completely unable to overcome the structural limitations around him."
     },
     {
       player: "Isaiah Stewart",
       team: "DET",
       sentiment: "positive",
-      score: 82,
-      mentions: 14200,
-      topTake: "Stewart and Duren looking like title pieces... Pistons really built different",
-      narrativeArc: "Emerging as crucial championship-level two-way force in Detroit's playoff surge"
+      score: 84,
+      mentions: 15600,
+      topTake: "22 and 10 from Isaiah Stewart in a conference semis opener while guarding multiple positions. He is not a role player anymore. He is a championship piece and everybody better update their takes.",
+      narrativeArc: "Stewart's performance is quietly reshaping how the broader NBA audience views Detroit's roster construction. He's no longer the gritty complementary piece — he's being recognized as a genuine two-way force."
     },
     {
       player: "Jalen Williams",
       team: "OKC",
       sentiment: "positive",
+      score: 81,
+      mentions: 13900,
+      topTake: "Jalen Williams is the perfect second star. 24 points, doesn't need the ball, makes winning plays, doesn't care about his narrative. Every contender wishes they had this man.",
+      narrativeArc: "Williams is benefiting from the Thunder's broader championship narrative wave. He's being recognized as the ideal supporting superstar — talented enough to take over games, selfless enough to let SGA lead."
+    },
+    {
+      player: "Jalen Duren",
+      team: "DET",
+      sentiment: "positive",
       score: 79,
-      mentions: 12800,
-      topTake: "Jalen Williams the perfect Batman to SGA's Superman... championship duo right there",
-      narrativeArc: "Proving to be the ideal secondary star alongside SGA in Thunder's title pursuit"
+      mentions: 12400,
+      topTake: "16 points, 12 rebounds, 3 blocks from Jalen Duren in a conference semis game. He's 22 years old. The Detroit frontcourt combination of Duren and Stewart might be the best in the entire playoffs.",
+      narrativeArc: "Duren is being talked about with genuine championship-level respect for the first time, his development arc cited as evidence that the Pistons' player development system is among the best in the league."
     },
     {
       player: "Joel Embiid",
       team: "PHI",
       sentiment: "mixed",
-      score: -23,
-      mentions: 16400,
-      topTake: "Embiid's knee concerns got me worried... Sixers need him healthy for any championship hope",
-      narrativeArc: "Championship dreams hanging in balance of knee health and must-win Game 2 performance"
-    }
-  ],
-  hottestTake: "Thunder just proved they're championship favorites by making LeBron and AD look like role players... OKC defense is historically dominant and SGA is ready for his Finals MVP moment",
-  coldestTake: "Lakers still got this series... one bad shooting night doesn't erase LeBron's playoff experience and AD's dominance when healthy"
-};
+      score: -19,
+      mentions: 18200,
+      topTake: "The fact that we're discussing Embiid's knee the day before a must-win Game 2 at Madison Square Garden is the most 76ers thing that has ever happened and I say this with deep personal sadness.",
+      narrativeArc: "Embiid enters tonight's game carrying the full weight of Philadelphia's championship dreams and a narrative of health fragility that has defined his postseason existence. Probable is not the same as dominant and the internet knows the difference."
+    },
+    {
+      player: "Victor Wembanyama",
+      team: "SAS",
+      sentiment: "mixed",
+      score: -8,
+      mentions: 17400,
+      topTake: "Tonight is the first real test of Wembanyama's championship character. Not a regular season showcase, not a first-round cupcake — a road-tested, hungry Minnesota team that already beat him once at home. Who is he tonight?",
+      narrativeArc: "Wemby exists in a fascinating narrative space — too good to doubt long-term, too young to be immune from a credibility test. The Game 1 loss has introduced genuine uncertainty into the previously unshakeable belief in his championship ceiling."
+    },
+    {
+      player: "Anthony Edwards",
+      team: "MIN",
+      sentiment: "positive",
+      score: 82,
+      mentions: 16800,
+      topTake: "Anthony Edwards going into San Antonio for Game 2 knowing his team already stole Game 1? That man is going to be UNPLAYABLE tonight. The Spurs have no idea what's coming.",
+      narrativeArc: "Edwards has been elevated by Minnesota's upset from 'exciting young scorer' to 'potential series-winner carrying an underdog' and the internet has embraced that evolution completely. He's the neutral fan favorite in this series."
+    },
+    {
+      player: "Jalen Brunson",
+      team: "NYK",
+      sentiment: "positive",
+      score: 88,
+      mentions: 16300,
+      topTake: "Jalen Brunson's playoff résumé is becoming legitimately historic. Another 41-point Game 1 performance, MSG at full volume, and tonight the Knicks could go up 2-0. He plays big when big is required every single time.",
+      narrativeArc: "Brunson's sustained playoff excellence has generated the specific type of internet reverence reserved for players who prove doubters wrong repeatedly. Every big game extends a narrative that has become its own kind of legend."
+    },
+    {
+      player: "Luguentz Dort",
+      team: "OKC",
+      sentiment: "positive",
+      score: 74,
+      mentions: 11200,
+      topTake: "Luguentz Dort guarding LeBron James and making him look uncomfortable is the most underrated subplot in the entire playoffs. 12 points and 3 steals while the internet focuses on SGA. The Thunder are loaded.",
+      narrativeArc: "Dort is receiving the specific appreciation reserved for players whose defensive excellence only fully registers on film. The combination of his individual clips going viral and Oklahoma City's team defense numbers is building his legend."
+    },
+    {
+      player: "Rudy Gobert",
+      team: "MIN",
+      sentiment: "neutral",
+      score: 31,
+      mentions: 9800,
+      topTake: "Gobert listed probable tonight and suddenly the Wembanyama matchup becomes an actual chess match instead of a showcase. If he plays 30+ minutes in San Antonio, Minnesota might not need another miracle.",
+      narrativeArc: "Gobert occupies a quietly important narrative position in this series — healthy Gobert changes the Wembanyama equation dramatically, and the probability report before Game 2 has generated genuine tactical discussion."
+    },
+    {
+      player: "Jarrett Allen",
+      team: "CLE",
+      sentiment: "mixed",
+      score: 22,
+      mentions: 8600,
+      topTake: "Jarrett Allen had 15 and 8 and was probably Cleveland's second best player last night. Which tells you everything about why the Cavs lost by ten despite Mitchell going for 32.",
+      narrativeArc: "Allen functions as an inadvertent symbol of Cleveland's roster problem — a solid, dependable player whose ceiling as the second option is the exact ceiling that keeps the Cavaliers from being a genuine championship threat."
+    },
+    {
+      player: "Tyrese Maxey",
+      team: "PHI",
+      sentiment: "mixed",
+      score: -14,
+      mentions: 11700,
+      topTake: "Maxey needs to be THE GUY tonight if Embiid is compromised. Not a co-star, not a running mate — the primary engine of everything Philadelphia does offensively in a hostile building. Is he ready for that?",
+      narrativeArc: "The pressure on Maxey has quietly become enormous. His development from complementary scorer

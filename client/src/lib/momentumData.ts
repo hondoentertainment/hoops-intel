@@ -39,7 +39,7 @@ export const momentumData: MomentumData = {
     player: "Cade Cunningham", 
     team: "DET", 
     clutchRating: 89, 
-    description: "Cunningham's fourth-quarter masterpiece sealed Detroit's playoff statement with 11 points and 3 assists in the final frame"
+    description: "Connected on back-to-back threes in the fourth quarter and sealed the win with a clutch assist to Stewart with 1:42 remaining" 
   },
   games: [
     {
@@ -48,75 +48,59 @@ export const momentumData: MomentumData = {
       finalScore: { home: 111, away: 101 },
       swings: [
         {
-          quarter: "1Q",
-          timestamp: "7:42",
-          description: "Mitchell opens with three consecutive triples as Cavaliers storm to early lead",
-          runScore: "11-2 CLE",
-          momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "significant"
-        },
-        {
-          quarter: "2Q",
-          timestamp: "4:15",
-          description: "Cunningham orchestrates 16-4 run with pinpoint passing and transition buckets",
-          runScore: "16-4 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing"
-        },
-        {
-          quarter: "3Q",
-          timestamp: "8:30",
-          description: "Stewart dominates the paint with back-to-back offensive rebounds and putbacks",
-          runScore: "10-2 DET",
-          momentum: "home",
-          keyPlayer: "Isaiah Stewart",
-          impact: "significant"
-        },
-        {
-          quarter: "4Q",
-          timestamp: "6:45",
-          description: "Mitchell keeps Cleveland alive with clutch three-pointer and steal",
-          runScore: "7-0 CLE",
+          quarter: "1st",
+          timestamp: "6:23",
+          description: "Mitchell opens with 9 straight points, giving Cavaliers early command",
+          runScore: "CLE 9-0 run",
           momentum: "away",
           keyPlayer: "Donovan Mitchell",
           impact: "notable"
         },
         {
-          quarter: "4Q",
-          timestamp: "2:18",
-          description: "Cunningham delivers dagger three and assist to Duren for emphatic dunk",
-          runScore: "8-2 DET",
+          quarter: "2nd",
+          timestamp: "3:47",
+          description: "Cunningham finds his rhythm with 11 points in 4 minutes, Pistons surge ahead",
+          runScore: "DET 15-4 run",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "8:12",
+          description: "Stewart dominates inside while Duren controls the glass, Detroit pulls away",
+          runScore: "DET 12-2 run",
+          momentum: "home",
+          keyPlayer: "Isaiah Stewart",
           impact: "game-changing"
+        },
+        {
+          quarter: "4th",
+          timestamp: "4:23",
+          description: "Cleveland makes final push as Mitchell hits consecutive threes",
+          runScore: "CLE 8-0 run",
+          momentum: "away",
+          keyPlayer: "Donovan Mitchell",
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
-          player: "Donovan Mitchell",
-          team: "CLE",
-          description: "Step-back three over defender cuts deficit to 8",
-          timeRemaining: "4:33",
-          winProbabilityShift: -12
-        },
-        {
           player: "Cade Cunningham",
           team: "DET",
-          description: "Pull-up three from 28 feet with shot clock winding down",
-          timeRemaining: "2:18",
-          winProbabilityShift: 18
+          description: "Drilled contested three-pointer to answer Mitchell's rally",
+          timeRemaining: "3:14",
+          winProbabilityShift: 18.2
         },
         {
           player: "Isaiah Stewart",
           team: "DET",
-          description: "And-one finish through contact seals the victory",
+          description: "Powerful dunk off Cunningham assist to ice the game",
           timeRemaining: "1:42",
-          winProbabilityShift: 15
+          winProbabilityShift: 22.7
         }
       ],
-      narrative: "The Little Caesars Arena crowd witnessed a coming-of-age performance from Cade Cunningham, who dissected Cleveland's defense with surgical precision in his playoff debut. After Mitchell's early barrage threatened to silence the home crowd, Detroit's young core responded with the poise of seasoned veterans. The Pistons' balanced attack and suffocating defense in the final frame turned what looked like a potential upset into a statement victory. This wasn't just a win—it was Detroit announcing their arrival as legitimate championship contenders."
+      narrative: "The Little Caesars Arena was electric as Cade Cunningham orchestrated a playoff symphony that announced Detroit's championship intentions. After Cleveland's early surge behind Mitchell's hot shooting, the Pistons' young core responded with poise beyond their years. Stewart and Duren's interior dominance in the third quarter broke Cleveland's spirit, while Cunningham's clutch shooting sealed a statement victory. This wasn't just a Game 1 win—it was a declaration that Detroit's rebuild has reached championship-level maturity."
     },
     {
       gameId: "LAL-OKC-20260505",
@@ -124,44 +108,35 @@ export const momentumData: MomentumData = {
       finalScore: { home: 108, away: 90 },
       swings: [
         {
-          quarter: "1Q",
-          timestamp: "5:20",
-          description: "LeBron and Davis connect for back-to-back alley-oops to energize Lakers",
-          runScore: "8-0 LAL",
+          quarter: "1st",
+          timestamp: "4:18",
+          description: "Lakers jump out early as Davis dominates inside for quick 8-0 lead",
+          runScore: "LAL 8-0 run",
           momentum: "away",
-          keyPlayer: "LeBron James",
+          keyPlayer: "Anthony Davis",
           impact: "notable"
         },
         {
-          quarter: "2Q",
-          timestamp: "9:15",
-          description: "Thunder's defensive pressure forces five consecutive Lakers turnovers",
-          runScore: "15-3 OKC",
+          quarter: "2nd",
+          timestamp: "9:31",
+          description: "Thunder defense locks in, forcing 7 turnovers in devastating stretch",
+          runScore: "OKC 16-2 run",
           momentum: "home",
           keyPlayer: "Shai Gilgeous-Alexander",
           impact: "game-changing"
         },
         {
-          quarter: "3Q",
-          timestamp: "3:42",
-          description: "Williams explodes for 12 points in quarter-closing run",
-          runScore: "18-6 OKC",
+          quarter: "3rd",
+          timestamp: "5:44",
+          description: "Williams catches fire with 14 third-quarter points, crowd erupts",
+          runScore: "OKC 18-6 run",
           momentum: "home",
           keyPlayer: "Jalen Williams",
           impact: "game-changing"
-        },
-        {
-          quarter: "4Q",
-          timestamp: "8:30",
-          description: "Paycom Center erupts as Thunder push lead to 25 with dominant paint presence",
-          runScore: "12-2 OKC",
-          momentum: "home",
-          keyPlayer: "Chet Holmgren",
-          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "The Thunder's defensive symphony reached crescendo levels as they methodically dismantled the Lakers' championship dreams. What began as a competitive playoff battle devolved into a masterclass in team defense, with Oklahoma City's young wolves hunting in perfect harmony. LeBron and Davis, two future Hall of Famers, looked their age for the first time all season as relentless defensive pressure forced uncharacteristic mistakes. The Paycom Center became a house of horrors for Los Angeles, where every possession felt like swimming upstream against an Oklahoma City tsunami that never relented."
+      narrative: "What was supposed to be a heavyweight playoff battle turned into a defensive clinic that left the Lakers looking like shell-shocked veterans. Oklahoma City's swarming defense made LeBron and Davis look mortal, forcing turnovers and contested shots all night long. The Paycom Center became a house of horrors for Los Angeles as the Thunder's young legs and fresh energy overwhelmed the Lakers' championship experience. By the fourth quarter, this wasn't a game—it was a changing of the guard announcement from the NBA's next dynasty."
     }
   ]
 };
