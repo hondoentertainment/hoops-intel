@@ -47,142 +47,159 @@ export interface SentimentData {
 export const sentimentData: SentimentData = {
   generatedDate: "2026-05-07",
   displayDate: "May 7, 2026",
-  overallMood: "Conference semifinals madness",
+  overallMood: "Playoff earthquake — Wemby just rewrote the script and the internet cannot cope",
   topics: [
     {
-      id: "wemby-historic-dominance",
-      topic: "Wembanyama's Historic 38-Point Masterpiece",
+      id: "wemby-38-point-masterpiece",
+      topic: "Wembanyama's 38-Point Franchise-Record Demolition",
       sentiment: "positive",
-      intensity: 98,
-      volume: 47500,
-      summary: "NBA Twitter is absolutely losing their minds over Wembanyama's playoff career-high 38 points and 15 rebounds in the Spurs' historic 38-point blowout. Fans are calling it a generational coming-of-age moment that announced San Antonio as title contenders.",
+      intensity: 99,
+      volume: 52400,
+      summary: "NBA social media has completely melted down over Wembanyama's 38-point, 15-rebound, 4-block annihilation of the Timberwolves. The discourse has moved well past 'playoff performance' into full generational-talent mythology-building. Clips of Wemby's mid-range pull-ups, rim-rattling dunks, and shot-swatting sequences are being stitched together with MJ and KD comparisons at an industrial rate. The 38-point margin matching his point total has sent the numerology crowd into overdrive.",
       sampleTakes: [
-        "WEMBY JUST DROPPED 38 AND 15 IN A 38-POINT PLAYOFF BLOWOUT. THIS IS NOT A DRILL 🚨",
-        "That wasn't a basketball game, that was Wembanyama announcing himself to the world. Spurs championship window is WIDE OPEN",
-        "Minnesota really thought they could upset the Spurs after Game 1 💀 Wemby said sit down little boy",
-        "38 points, 15 rebounds, franchise playoff record margin. Wembanyama is inevitable."
+        "38 points AND a 38-point margin. Wemby literally IS the game. He's the score and the scoreline 😭",
+        "Minnesota tried to celebrate a fluke Game 1 win and Victor Wembanyama looked them dead in the eyes and scored 38 points and 15 boards. This man is COLD-BLOODED",
+        "Stop comparing him to anyone. Wembanyama is a new species. 7'4\" with guard skills, a 10-foot wingspan, and 38 playoff points. The league is not prepared",
+        "The Spurs just won the championship fight tonight. That wasn't a basketball game, that was Wembanyama filing the paperwork for his first ring"
       ],
       relatedPlayers: ["Victor Wembanyama", "Chris Paul", "Anthony Edwards"],
       relatedTeams: ["SAS", "MIN"],
       trending: true
     },
     {
-      id: "sixers-championship-window-closing",
-      topic: "76ers' Championship Window Slamming Shut",
+      id: "sixers-0-2-crisis",
+      topic: "Philadelphia's 0-2 Nightmare and Championship Window Panic",
       sentiment: "negative",
-      intensity: 89,
-      volume: 38200,
-      summary: "Sixers fans are in panic mode after falling into an 0-2 hole despite Embiid's heroic 29-point effort through injury. The discourse around their aging core and missed championship opportunities is reaching fever pitch.",
+      intensity: 91,
+      volume: 41300,
+      summary: "Sixers Twitter has entered full existential meltdown. The 0-2 hole after Embiid played through knee pain for 29 points and 12 rebounds has cracked the fanbase wide open — one faction is calling for a complete rebuild, another is still defending Daryl Morey's roster construction, and a third is just lighting digital torches at anyone in a front-office capacity. The Process discourse has officially come full circle and it is not pretty.",
       sampleTakes: [
-        "This 76ers core is DONE. Embiid giving everything he has and we're still down 0-2. Time to blow it up",
-        "Joel Embiid deserves better than this. 29 and 12 on a bum knee and still can't get help smh",
-        "The Process died in Madison Square Garden tonight. This was our year and we're choking it away",
-        "Maxey had 26, Embiid had 29, and we STILL lost? This roster construction is broken"
+        "Joel Embiid plays through knee surgery on one leg for 29 and 12 and we're DOWN 0-2. This front office owes him an apology, a trade request, and a sincere note of condolence",
+        "THE PROCESS ENDED IN MADISON SQUARE GARDEN IN MAY OF 2026 AND I NEED A MOMENT",
+        "0-2 to the Knicks. Let that sink in. THE KNICKS. We gave up prime years for this roster and this is what we get",
+        "Maxey had 26, Embiid had 29, and the Knicks still won comfortably. That's not bad luck, that's a structural problem. Blow. It. Up."
       ],
-      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jalen Brunson"],
+      relatedPlayers: ["Joel Embiid", "Tyrese Maxey", "Jalen Brunson", "Josh Hart"],
       relatedTeams: ["PHI", "NYK"],
       trending: true
     },
     {
-      id: "knicks-championship-belief",
-      topic: "Knicks Championship Hype Train",
+      id: "brunson-playoff-ascension",
+      topic: "Brunson Cements Playoff Superstar Status at MSG",
       sentiment: "positive",
-      intensity: 85,
-      volume: 32800,
-      summary: "Madison Square Garden euphoria has spilled over to social media as Knicks fans are allowing themselves to dream big after Brunson's clutch 31-point performance secured a commanding 2-0 series lead.",
+      intensity: 87,
+      volume: 34700,
+      summary: "Jalen Brunson's 31-point clutch masterpiece at Madison Square Garden has the basketball internet firmly in his corner as a legitimate playoff superstar. The takes range from measured appreciation to full religious conversion. People who doubted whether Brunson was a true star are getting buried in ratio hell, and the 'he's just a good regular season player' crowd has gone completely silent. MSG atmosphere clips are pulling millions of views and making the rest of the league look mundane.",
       sampleTakes: [
-        "JALEN BRUNSON IS HIM. 31 points at MSG in the playoffs. This is what championship DNA looks like",
-        "I don't want to get ahead of myself but... THE KNICKS ARE GOING TO WIN THE CHAMPIONSHIP",
-        "MSG was electric tonight. Haven't felt energy like this since the 90s. Brunson is special",
-        "Josh Hart, OG, Brunson... this team has that IT factor. Something magical happening in NY"
+        "I was wrong about Jalen Brunson. I will say it clearly and without shame. He is a PLAYOFF SUPERSTAR and I am a changed person",
+        "31 points, 8 assists, Knicks up 2-0. Brunson didn't just win a game, he won the narrative. Madison Square Garden belongs to him now",
+        "The Sixers threw literally everything at Brunson tonight — double teams, physicality, trash talk — and he gave them 31 points with a smile. This is a different level",
+        "Jalen Brunson is the most underrated superstar in the NBA and every single one of you know it. He's carrying New York to the Finals"
+      ],
+      relatedPlayers: ["Jalen Brunson", "Josh Hart", "OG Anunoby", "Joel Embiid"],
+      relatedTeams: ["NYK", "PHI"],
+      trending: true
+    },
+    {
+      id: "knicks-championship-freight-train",
+      topic: "Knicks Championship Train Has No Brakes",
+      sentiment: "positive",
+      intensity: 84,
+      volume: 29800,
+      summary: "New York basketball Twitter, long accustomed to suffering, has fully given itself permission to believe. The 2-0 series lead, the MSG atmosphere, the balanced roster, the Brunson clutch gene — all of it is combining into a championship narrative that is genuinely gaining mainstream traction. Non-Knicks fans are starting to nod along, which is the most dangerous sign of all.",
+      sampleTakes: [
+        "I'm a neutral fan and the Knicks are the most fun team in these playoffs. Brunson, Hart, OG, the crowd — this feels like destiny",
+        "2-0 series lead. W7 streak. MSG absolutely rocking. The Knicks are not a fluke. They are a championship team and everyone outside New York is just now figuring it out",
+        "Hart going for 18, OG playing through a hamstring, Brunson clutching it out — this team has CHARACTER. You cannot buy that in free agency",
+        "The garden was so loud my speakers were vibrating. New York is BACK and Philadelphia better figure something out fast"
       ],
       relatedPlayers: ["Jalen Brunson", "Josh Hart", "OG Anunoby"],
       relatedTeams: ["NYK", "PHI"],
       trending: true
     },
     {
-      id: "timberwolves-playoff-inexperience",
-      topic: "Minnesota's Shocking Collapse",
+      id: "timberwolves-historic-collapse",
+      topic: "Minnesota's Stunning Free-Fall from Game 1 Heroes to Blowout Victims",
       sentiment: "negative",
-      intensity: 78,
-      volume: 24300,
-      summary: "The Timberwolves went from Game 1 heroes to historic losers, with fans questioning their playoff maturity and Anthony Edwards' struggles in the spotlight.",
+      intensity: 82,
+      volume: 27600,
+      summary: "The internet is merciless and the Timberwolves are experiencing its full wrath. Going from stunning Game 1 upset darlings to getting historically blown out by 38 points in 48 hours is the kind of whiplash that generates massive engagement — mostly at Minnesota's expense. Anthony Edwards, who was being coronated 24 hours ago, is now getting compared to every prior Minnesota sports heartbreak simultaneously.",
       sampleTakes: [
-        "From upset kings to getting blown out by 38 points. Peak Minnesota sports right there",
-        "Anthony Edwards was supposed to be THAT GUY and he's getting completely outplayed by a rookie center",
-        "This is why experience matters in the playoffs. Wolves looked completely overwhelmed tonight",
-        "One good game and we thought we had the Spurs figured out 🤡"
+        "Minnesota sports is a rare chronic illness and I say this with nothing but love and understanding",
+        "Ant went from 'next face of the NBA' to 'guarded out of the game by a guy who was a teenager last year' in 48 hours. Peak Minnesota",
+        "The Timberwolves genuinely thought they figured out the Spurs. THEY GAVE UP 133 POINTS. Wembanyama was right there the whole time",
+        "From upsetting the favorites to being on the wrong end of a franchise-record blowout in ONE series. Only in Minnesota"
       ],
-      relatedPlayers: ["Anthony Edwards", "Victor Wembanyama"],
+      relatedPlayers: ["Anthony Edwards", "Victor Wembanyama", "Jaden McDaniels"],
       relatedTeams: ["MIN", "SAS"],
-      trending: false
+      trending: true
     },
     {
-      id: "lakers-championship-hopes-fading",
-      topic: "Lakers' Title Hopes Crumbling",
-      sentiment: "negative",
-      intensity: 72,
-      volume: 28700,
-      summary: "With Anthony Davis questionable and facing a potential 0-2 hole against the Thunder, Lakers fans are watching their championship dreams slip away.",
-      sampleTakes: [
-        "AD's back is cooked, LeBron's 41, and we're about to be down 0-2 to OKC. Season's over",
-        "This Lakers team is too old and too injury-prone to compete with young teams like the Thunder",
-        "LeBron carrying this corpse of a roster one more time. Front office failed him again",
-        "If we go down 0-2 tonight it's over. No team has ever come back from that against a team this good"
-      ],
-      relatedPlayers: ["LeBron James", "Anthony Davis", "Shai Gilgeous-Alexander"],
-      relatedTeams: ["LAL", "OKC"],
-      trending: false
-    },
-    {
-      id: "cp3-veteran-excellence",
-      topic: "Chris Paul's Playoff Mastery",
+      id: "cp3-championship-window",
+      topic: "Chris Paul's Final Championship Shot Gaining Believers",
       sentiment: "positive",
-      intensity: 68,
-      volume: 18900,
-      summary: "CP3's 14 assists in the historic blowout has fans celebrating his playoff IQ and leadership in orchestrating the Spurs' championship run.",
+      intensity: 74,
+      volume: 21200,
+      summary: "CP3's 14-assist performance in the historic blowout has renewed the narrative around his championship quest. At 41, orchestrating a franchise-record playoff blowout is the kind of thing that makes people genuinely root for a story. The 'Point God getting his ring' arc is trending upward and even long-time Paul skeptics are softening.",
       sampleTakes: [
-        "14 assists in a 38-point playoff blowout. Chris Paul is still the Point God at 41 years old",
-        "CP3 and Wemby might be the perfect playoff combination. Veteran savvy meets generational talent",
-        "This is why the Spurs traded for Chris Paul. Playoff moments like this are what he lives for",
-        "Point God teaching young Spurs how to play championship basketball"
+        "14 assists in a 38-point playoff blowout at 41 years old. Chris Paul is still the smartest basketball player on the planet and I will not be taking questions",
+        "CP3 and Wemby might be the greatest mentor-prodigy pairing since Stockton and Malone but even better because this time they're actually going to WIN",
+        "Point God just orchestrated the biggest playoff blowout in Spurs franchise history. At 41. Let him have this ring, universe. You owe him",
+        "The Spurs running Paul's system through Wembanyama is genuinely unstoppable. Pop built something special one more time"
       ],
       relatedPlayers: ["Chris Paul", "Victor Wembanyama"],
       relatedTeams: ["SAS"],
       trending: false
     },
     {
-      id: "msg-playoff-atmosphere",
-      topic: "Madison Square Garden Electric",
-      sentiment: "positive",
-      intensity: 75,
-      volume: 21400,
-      summary: "The legendary playoff atmosphere at MSG during the Knicks' clutch victory has everyone talking about New York basketball being back in a big way.",
+      id: "lakers-okc-dread",
+      topic: "Lakers' Championship Hopes Crumbling Before Game 2",
+      sentiment: "negative",
+      intensity: 76,
+      volume: 31500,
+      summary: "Anthony Davis' back listing has ignited a full Lakers-doom news cycle. The combination of AD's health uncertainty, the Thunder's 64-win dominance, and LeBron's age has fans processing grief before the game even tips off. LeBron content is always high-volume regardless, but tonight the tone is distinctly elegiac — fans already composing their postmortems.",
       sampleTakes: [
-        "MSG was absolutely ROCKING tonight. Playoff basketball in New York just hits different",
-        "That crowd energy pushed the Knicks over the finish line. Home court advantage is real",
-        "Haven't seen MSG this electric since the 90s. New York basketball is officially back",
-        "The Garden was a mad house. Philly never had a chance with that crowd behind the Knicks"
+        "AD's back is acting up, LeBron is 41, and we're going into OKC. I have made my peace. See everyone at the draft lottery",
+        "This front office had one job — build a real contender around LeBron before he physically cannot do it anymore. They failed. This is the autopsy",
+        "LeBron James will go down as the greatest to ever play and he deserved so much better than this Lakers organization in the back half of his career",
+        "OKC is 64-18 and healthy. The Lakers are banged up and old. I'm not watching tonight. Wake me up when it's over"
       ],
-      relatedPlayers: ["Jalen Brunson"],
-      relatedTeams: ["NYK"],
+      relatedPlayers: ["LeBron James", "Anthony Davis", "Shai Gilgeous-Alexander"],
+      relatedTeams: ["LAL", "OKC"],
+      trending: true
+    },
+    {
+      id: "sga-mvc-coronation",
+      topic: "SGA's MVP-Level Playoff Arrival",
+      sentiment: "positive",
+      intensity: 79,
+      volume: 22900,
+      summary: "Shai Gilgeous-Alexander's anticipated performance against a vulnerable Lakers squad has pre-game discourse buzzing. After dominating the regular season and a dominant Game 1, tonight feels like an SGA coronation moment and the internet is getting positioned ahead of it. The MVP-to-champion narrative is building momentum.",
+      sampleTakes: [
+        "Shai Gilgeous-Alexander is about to win a championship at 28 years old with a team he built himself. The blueprint. The standard. The guy.",
+        "OKC minus-12.5 feels disrespectful until you remember they're 64-18 and the Lakers have a guy who can't bend over to tie his shoes right now",
+        "SGA has been the best player in basketball all season and tonight he's going to remind everyone who's still watching",
+        "The Thunder are what the 2016 Warriors were — a year away. Except I think they get there THIS year"
+      ],
+      relatedPlayers: ["Shai Gilgeous-Alexander", "LeBron James", "Anthony Davis"],
+      relatedTeams: ["OKC", "LAL"],
       trending: false
     },
     {
-      id: "thunder-championship-favorites",
-      topic: "OKC's Title Favorite Status",
+      id: "pistons-cunningham-home-court",
+      topic: "Detroit Rising: Cade's Pistons Eye 2-0 Stranglehold",
       sentiment: "positive",
-      intensity: 81,
-      volume: 26500,
-      summary: "The Thunder's dominance has fans anointing them as the new championship favorites, with SGA leading a young core that looks unstoppable.",
+      intensity: 71,
+      volume: 16800,
+      summary: "Detroit's momentum is building quietly while the bigger stories dominate. Cade Cunningham's home court mastery and the Pistons' 60-win season have the basketball-analytical crowd very bullish, even if national attention has been elsewhere. Little Caesars Arena is expected to be rocking tonight and fans are genuinely believing in this group.",
       sampleTakes: [
-        "OKC is the team to beat in the West. This young core is scary good and hungry",
-        "Shai Gilgeous-Alexander is about to put the Lakers out of their misery tonight. Championship time",
-        "The Thunder are what the Lakers used to be. Young, hungry, and absolutely relentless",
-        "If OKC goes up 2-0 tonight, they're winning the championship. Book it."
+        "Everyone is sleeping on Cade Cunningham and I am begging you to pay attention. Detroit is a PROBLEM in these playoffs",
+        "60 wins during the regular season and nobody wants to talk about the Pistons? Fine. We'll just keep winning quietly",
+        "If Detroit goes 2-0 tonight and OKC goes 2-0 and San Antonio is rolling — the West Finals is going to be absolutely FILTHY basketball",
+        "Cade at home in the playoffs is a cheat code. Cleveland has no answer for him in this building"
       ],
-      relatedPlayers: ["Shai Gilgeous-Alexander"],
-      relatedTeams: ["OKC", "LAL"],
+      relatedPlayers: ["Cade Cunningham", "Donovan Mitchell"],
+      relatedTeams: ["DET", "CLE"],
       trending: false
     }
   ],
@@ -191,65 +208,65 @@ export const sentimentData: SentimentData = {
       team: "SAS",
       teamFull: "San Antonio Spurs",
       sentiment: "positive",
-      score: 94,
-      buzzWords: ["historic", "dominant", "championship", "Wemby", "statement"],
-      narrativeSummary: "Spurs fever is at an all-time high after Wembanyama's historic performance and the franchise-record playoff blowout that announced their championship credentials to the world."
+      score: 96,
+      buzzWords: ["historic", "inevitable", "Wemby", "championship", "Pop's masterpiece", "generational"],
+      narrativeSummary: "Spurs social media is operating at a frequency normally reserved for championship celebrations and it's only Game 2. Wembanyama's historic performance combined with CP3's orchestration has the fanbase and neutral observers alike treating San Antonio as the prohibitive title favorite. The discourse has officially shifted from 'rising contender' to 'who can stop them.'"
     },
     {
       team: "NYK",
       teamFull: "New York Knicks",
       sentiment: "positive",
-      score: 88,
-      buzzWords: ["clutch", "MSG", "Brunson", "championship", "electric"],
-      narrativeSummary: "Knicks fans are riding an incredible high after Brunson's clutch performance secured a commanding 2-0 series lead, with championship dreams feeling more real than ever."
-    },
-    {
-      team: "PHI",
-      teamFull: "Philadelphia 76ers",
-      sentiment: "negative",
-      score: -76,
-      buzzWords: ["desperate", "window closing", "0-2", "elimination", "disappointment"],
-      narrativeSummary: "Sixers nation is in crisis mode despite Embiid's heroic effort, with fans questioning if their championship window has slammed shut after falling into an 0-2 hole."
-    },
-    {
-      team: "MIN",
-      teamFull: "Minnesota Timberwolves",
-      sentiment: "negative",
-      score: -72,
-      buzzWords: ["collapse", "inexperience", "overwhelmed", "38-point loss", "reality check"],
-      narrativeSummary: "The Timberwolves went from upset darlings to playoff punching bag in one historic night, with fans questioning their team's championship maturity."
+      score: 90,
+      buzzWords: ["MSG magic", "Brunson", "2-0", "championship DNA", "destiny", "W7"],
+      narrativeSummary: "Knicks fans are in a state of carefully managed euphoria — they've been burned too many times to fully exhale, but the 2-0 lead, the Brunson star turn, and the MSG electricity has even the most battle-scarred New York fan tentatively reaching for the word 'championship.' The energy is real and it's spreading beyond the fanbase."
     },
     {
       team: "OKC",
       teamFull: "Oklahoma City Thunder",
       sentiment: "positive",
-      score: 85,
-      buzzWords: ["dominant", "young", "hungry", "championship favorites", "unstoppable"],
-      narrativeSummary: "Thunder fans are confident their young core is ready to steamroll the Lakers and make a serious championship run behind SGA's brilliance."
-    },
-    {
-      team: "LAL",
-      teamFull: "Los Angeles Lakers",
-      sentiment: "negative",
-      score: -68,
-      buzzWords: ["aging", "injured", "desperate", "championship hopes fading", "AD questionable"],
-      narrativeSummary: "Lakers fans are watching their title hopes slip away with AD's injury concerns and the looming threat of falling into an 0-2 hole against the Thunder."
+      score: 87,
+      buzzWords: ["SGA", "64 wins", "unstoppable", "young and hungry", "dominant", "championship bound"],
+      narrativeSummary: "Thunder fans are supremely confident, bordering on foregone-conclusion energy. Sixty-four regular season wins, an eight-game winning streak, and a dominant Game 1 has OKC's fanbase treating tonight's game as a formality. The only real debate is whether they match up better against San Antonio or New York in the Finals."
     },
     {
       team: "DET",
       teamFull: "Detroit Pistons",
       sentiment: "positive",
-      score: 78,
-      buzzWords: ["dominant", "home court", "Cade", "commanding", "championship contender"],
-      narrativeSummary: "Pistons fans are confident about extending their series lead tonight at home, with Cade's leadership and their balanced roster looking championship-ready."
+      score: 80,
+      buzzWords: ["Cade", "60 wins", "home court", "balanced roster", "under the radar", "dangerous"],
+      narrativeSummary: "Pistons fans are operating with a chip-on-shoulder energy that suits a 60-win team that still feels overlooked nationally. There's genuine belief in Cade's leadership and a sense that tonight's game could shift national perception in a major way. Detroit is quietly building a legitimate championship narrative."
+    },
+    {
+      team: "PHI",
+      teamFull: "Philadelphia 76ers",
+      sentiment: "negative",
+      score: -79,
+      buzzWords: ["0-2", "championship window closed", "Embiid deserves better", "Process over", "rebuild"],
+      narrativeSummary: "Sixers Twitter is in the bargaining stage of grief, rapidly cycling between 'fire everyone,' 'trade Embiid,' 'Embiid is the problem,' and 'Morey lied to us.' Despite Embiid's heroic effort, the 0-2 hole has cracked the fanbase's foundation. The debate between die-hard loyalists and the torch-carrying contingent is burning hotter than ever."
+    },
+    {
+      team: "MIN",
+      teamFull: "Minnesota Timberwolves",
+      sentiment: "negative",
+      score: -75,
+      buzzWords: ["collapse", "38-point blowout", "inexperienced", "Edwards struggles", "Minnesota curse"],
+      narrativeSummary: "Wolves fans are cycling through grief at championship speed. From upset euphoria to historically humiliated in 48 hours — the whiplash is real and the memes are brutal. There's a painful conversation emerging about whether this roster has enough playoff maturity and whether Edwards is ready to lead a team this deep into a series against elite competition."
+    },
+    {
+      team: "LAL",
+      teamFull: "Los Angeles Lakers",
+      sentiment: "negative",
+      score: -71,
+      buzzWords: ["AD injured", "LeBron aging", "front office failure", "0-2 incoming", "end of an era"],
+      narrativeSummary: "Lakers fans are writing pre-emptive eulogies. The AD injury report, the Thunder's imposing record, and the uncomfortable math of LeBron's age have created a fatalistic energy before a single minute has been played tonight. The loudest discourse is directed squarely at the front office for what feels like a wasted final chapter."
     },
     {
       team: "CLE",
       teamFull: "Cleveland Cavaliers",
       sentiment: "mixed",
-      score: -24,
-      buzzWords: ["must-win", "Mitchell explosion", "road struggles", "desperate"],
-      narrativeSummary: "Cavaliers fans are hoping Mitchell's 32-point Game 1 outburst can translate to stealing home court in Detroit before facing elimination pressure."
+      score: -21,
+      buzzWords: ["must-win", "Mitchell carries", "road struggles", "desperate", "steal one"],
+      narrativeSummary: "Cavaliers fans are holding on to the thread of Mitchell's 32-point Game 1 explosion while quietly terrified of Detroit's home court advantage. The mood is anxious and tactical — less about winning the series and more about not coming home down 0-2. There's respect for what Detroit has built and genuine uncertainty about whether Cleveland can handle this environment."
     }
   ],
   playerSentiments: [
@@ -257,93 +274,129 @@ export const sentimentData: SentimentData = {
       player: "Victor Wembanyama",
       team: "SAS",
       sentiment: "positive",
-      score: 98,
-      mentions: 24800,
-      topTake: "WEMBY JUST ANNOUNCED HIMSELF TO THE WORLD. 38 POINTS AND THE SPURS ARE TITLE CONTENDERS",
-      narrativeArc: "Generational talent having his coming-of-age playoff moment that shifts championship conversations"
+      score: 99,
+      mentions: 28600,
+      topTake: "38 points. 15 rebounds. 38-point margin. Wembanyama IS the sport right now. Every era has its player and we are watching ours in real time. The league is simply not equipped for this.",
+      narrativeArc: "Full generational-talent mythology-building mode — the internet is writing his legend in real time after the most dominant individual playoff performance in recent memory"
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
       sentiment: "positive",
-      score: 91,
-      mentions: 18500,
-      topTake: "Brunson is proving he's a legitimate playoff star. 31 points at MSG with championship energy",
-      narrativeArc: "Ascending to playoff stardom and leading the Knicks' deepest championship run in decades"
-    },
-    {
-      player: "Joel Embiid",
-      team: "PHI",
-      sentiment: "mixed",
-      score: 34,
-      mentions: 16200,
-      topTake: "Embiid is giving everything he has on a bum knee and STILL can't get help. He deserves better",
-      narrativeArc: "Heroic individual effort being overshadowed by team's championship hopes slipping away"
-    },
-    {
-      player: "Chris Paul",
-      team: "SAS",
-      sentiment: "positive",
-      score: 83,
-      mentions: 12300,
-      topTake: "CP3 with 14 assists in a playoff blowout. Point God teaching Wemby championship basketball",
-      narrativeArc: "Veteran maestro orchestrating what might be his best shot at a championship ring"
-    },
-    {
-      player: "Anthony Edwards",
-      team: "MIN",
-      sentiment: "negative",
-      score: -58,
-      mentions: 14700,
-      topTake: "Ant was supposed to be THAT GUY and he's getting completely schooled by Wembanyama",
-      narrativeArc: "Rising star facing playoff reality check after Game 1 heroics turned into historic collapse"
+      score: 93,
+      mentions: 19700,
+      topTake: "Brunson is a legitimate playoff superstar and I will not be accepting debates. 31 points and 8 assists at MSG in a must-win game. He's not a good player who got hot — he IS the guy.",
+      narrativeArc: "Completing his transformation from doubted max-contract signing to undeniable playoff star — the narrative has fully flipped and his detractors are in hiding"
     },
     {
       player: "Shai Gilgeous-Alexander",
       team: "OKC",
       sentiment: "positive",
-      score: 89,
-      mentions: 15600,
-      topTake: "SGA is about to end the Lakers' season tonight. This Thunder team is inevitable",
-      narrativeArc: "Emerging superstar leading young Thunder core toward championship breakthrough"
+      score: 91,
+      mentions: 17200,
+      topTake: "SGA is the best player in basketball and tonight against the Lakers he's going to prove it to the people still somehow unconvinced. Most complete two-way guard in the league. This is his time.",
+      narrativeArc: "Pre-game coronation energy building as he positions himself for a potential series-clinching statement against an aging Lakers squad"
+    },
+    {
+      player: "Joel Embiid",
+      team: "PHI",
+      sentiment: "mixed",
+      score: 31,
+      mentions: 17800,
+      topTake: "Embiid gave everything — 29 and 12 on a compromised knee in a playoff game at MSG. He deserves better teammates, better roster construction, and honestly a better franchise. This man is carrying dead weight.",
+      narrativeArc: "Tragic hero arc intensifying — individual excellence colliding with organizational dysfunction, generating both sympathy and frustration in equal measure"
+    },
+    {
+      player: "Joel Embiid",
+      team: "PHI",
+      sentiment: "mixed",
+      score: 31,
+      mentions: 17800,
+      topTake: "Embiid gave everything — 29 and 12 on a compromised knee in a playoff game at MSG. He deserves better teammates, better roster construction, and honestly a better franchise. This man is carrying dead weight.",
+      narrativeArc: "Tragic hero arc intensifying — individual excellence colliding with organizational dysfunction, generating sympathy and frustration simultaneously"
+    },
+    {
+      player: "Chris Paul",
+      team: "SAS",
+      sentiment: "positive",
+      score: 85,
+      mentions: 13400,
+      topTake: "14 assists at 41 years old in a franchise-record playoff blowout. Point God is running the Spurs' championship orchestra and every single dish was a masterclass. Let this man get his ring already.",
+      narrativeArc: "The championship redemption arc is cresting — skeptics are becoming believers and the 'CP3 finally gets his ring' narrative has genuine emotional momentum"
+    },
+    {
+      player: "Anthony Edwards",
+      team: "MIN",
+      sentiment: "negative",
+      score: -54,
+      mentions: 15900,
+      topTake: "Ant was being coronated 24 hours ago and now he's posting 19 points on bad shooting in a 38-point blowout. The superstar ceiling question is back on the table and Minnesota sports is doing what Minnesota sports does.",
+      narrativeArc: "Rapid reversal from playoff hero to cautionary tale — the back-to-back narrative swing has his ceiling as a franchise player firmly back under scrutiny"
     },
     {
       player: "LeBron James",
       team: "LAL",
       sentiment: "mixed",
-      score: 12,
-      mentions: 19400,
-      topTake: "LeBron at 41 still carrying this Lakers team. Front office wasted another year of greatness",
-      narrativeArc: "Aging king making heroic effort while championship window appears to be closing"
+      score: 14,
+      mentions: 21300,
+      topTake: "LeBron at 41 is still somehow trying to save a franchise that doesn't deserve him. Whatever happens tonight, history will be kind to him and absolutely brutal to every executive decision made around him for the last four years.",
+      narrativeArc: "The 'GOAT being failed by his organization' narrative is reaching its emotional peak — admiration for his effort at 41 running directly into grief about wasted prime years"
     },
     {
       player: "Tyrese Maxey",
       team: "PHI",
       sentiment: "mixed",
-      score: 28,
-      mentions: 8900,
-      topTake: "Maxey dropped 26 and it wasn't enough. This 76ers roster construction is fundamentally broken",
-      narrativeArc: "Young guard stepping up in crucial moments but unable to prevent team's championship collapse"
+      score: 26,
+      mentions: 9600,
+      topTake: "Maxey had 26 points in a road playoff game and it wasn't close to enough. Not his fault — you can't ask a 25-year-old to close the gap when the roster architecture is fundamentally broken around him and Embiid.",
+      narrativeArc: "Sympathetic individual performance trapped inside a team-level crisis — his ceiling is drawing real admiration but the 0-2 context is suffocating any positive narrative"
     },
     {
       player: "Josh Hart",
       team: "NYK",
       sentiment: "positive",
-      score: 76,
-      mentions: 7200,
-      topTake: "Hart's 18 points and hustle plays are exactly what championship teams need. Perfect role player",
-      narrativeArc: "Gritty veteran providing the perfect complement to Brunson's star power in playoff run"
+      score: 78,
+      mentions: 7800,
+      topTake: "18 points, 7 boards, zero bad shots, maximum hustle, MSG crowd went insane every time he touched it. Josh Hart is exactly what championship depth looks like. Non-negotiable piece of this run.",
+      narrativeArc: "Beloved role player cement — Hart's brand of relentless complementary excellence is perfectly suited for this playoff moment and the fanbase adores him for it"
     },
     {
       player: "Cade Cunningham",
       team: "DET",
       sentiment: "positive",
-      score: 82,
-      mentions: 11800,
-      topTake: "Cade's home dominance tonight could put Detroit in championship position. This kid is special",
-      narrativeArc: "Young franchise cornerstone ready to take next step in potential championship breakthrough season"
+      score: 83,
+      mentions: 12100,
+      topTake: "Cade at home in the playoffs is a walking bucket with point guard vision attached. Detroit quietly built the most complete team in the East and he's the engine. 60 wins wasn't an accident.",
+      narrativeArc: "The quietly dominant franchise star narrative — national recognition is slowly catching up to what Detroit fans have known all season, and tonight feels like another coming-out game"
+    },
+    {
+      player: "OG Anunoby",
+      team: "NYK",
+      sentiment: "positive",
+      score: 74,
+      mentions: 7100,
+      topTake: "OG played through a hamstring issue and still posted 3 steals and timely buckets. That's the kind of toughness that wins championships. Knicks fans know what they have in him.",
+      narrativeArc: "Warrior-with-injury arc gaining respect — his willingness to play through physical adversity is adding a layer of grit to the Knicks' championship narrative"
+    },
+    {
+      player: "Donovan Mitchell",
+      team: "CLE",
+      sentiment: "mixed",
+      score: 38,
+      mentions: 10300,
+      topTake: "Mitchell dropped 32 in Game 1 and still lost. Cleveland needs him to be Superman tonight in hostile territory or this series is effectively over before it starts. All-Star talent, must-win moment.",
+      narrativeArc: "High-stakes singular-star burden — the pressure of needing a repeat heroic effort on the road after a Game 1 loss has the narrative teetering between star validation and elimination anxiety"
+    },
+    {
+      player: "Devin Vassell",
+      team: "SAS",
+      sentiment: "positive",
+      score: 72,
+      mentions: 6400,
+      topTake: "22 points in a blowout while Wemby was eating the Timberwolves alive. Vassell is the most important secondary scorer on a potential championship team and he doesn't get nearly enough credit for it.",
+      narrativeArc: "Quietly essential role on a dominant team — his consistency and scoring punch in the blowout is earning him recognition among the analytical crowd as San Antonio's critical third option"
     }
   ],
-  hottestTake: "Wembanyama just had his Michael Jordan flu game moment. The Spurs are winning the championship and it's not even close. 38 points, 15 rebounds, 38-point blowout - this is generational dominance announcing itself to the world. The league is cooked.",
-  coldestTake: "The Lakers can still come back from 0-2 against the Thunder. LeBron has done it before and this OKC team is too young for the big moment. AD will be healthy and they'll win 4 straight. Experience beats youth in the playoffs."
+  hottestTake: "Wembanyama dropped 38 points AND the margin was 38 points. He IS the number. He IS the game. The Spurs are winning the championship and Victor Wembanyama is going to be mentioned in the same breath as Jordan and LeBron before he's 25. The era has begun. Everything before tonight was prologue.",
+  coldestTake: "The Lakers are not done. Anthony Davis plays through back pain all the time and LeBron has beaten a 2-0 deficit before — literally invented coming back from 3-1. OKC is young and this is their first deep playoff run. When the moment gets real and LeBron stares SGA down in Paycom Center with everything on the line, experience wins. Trust the process. Not that Process. The actual one."
 };

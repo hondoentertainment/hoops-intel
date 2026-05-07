@@ -38,8 +38,8 @@ export const momentumData: MomentumData = {
   topClutchPerformer: { 
     player: "Jalen Brunson", 
     team: "NYK", 
-    clutchRating: 94, 
-    description: "Ice-cold killer with 12 clutch points in the final five minutes, hitting contested shots that silenced Philly's comeback dreams" 
+    clutchRating: 92, 
+    description: "Ice-cold execution in the final minutes, hitting the dagger three and managing the offense to perfection under playoff pressure" 
   },
   games: [
     {
@@ -48,44 +48,44 @@ export const momentumData: MomentumData = {
       finalScore: { home: 133, away: 95 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "7:42",
-          description: "Wembanyama's rim protection ignites fast break surge",
-          runScore: "17-5",
+          quarter: "1st",
+          timestamp: "8:23",
+          description: "Wembanyama announces his presence with three straight blocks and a thunderous dunk",
+          runScore: "11-2 SAS",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "significant"
         },
         {
-          quarter: "Q1",
-          timestamp: "2:15",
-          description: "Edwards responds with three straight buckets",
-          runScore: "8-2",
+          quarter: "2nd",
+          timestamp: "6:45",
+          description: "Edwards tries to rally Minnesota with back-to-back threes and a steal",
+          runScore: "8-0 MIN",
           momentum: "away",
           keyPlayer: "Anthony Edwards",
           impact: "notable"
         },
         {
-          quarter: "Q2",
-          timestamp: "8:30",
-          description: "Chris Paul masterclass begins - 5 assists in 3 minutes",
-          runScore: "15-4",
+          quarter: "2nd",
+          timestamp: "2:18",
+          description: "Chris Paul orchestrates perfection with 7 straight assists as Spurs blow the game open",
+          runScore: "18-4 SAS",
           momentum: "home",
           keyPlayer: "Chris Paul",
           impact: "game-changing"
         },
         {
-          quarter: "Q3",
-          timestamp: "4:07",
-          description: "Wembanyama unleashes 13-point explosion to break it wide open",
-          runScore: "20-6",
+          quarter: "3rd",
+          timestamp: "9:12",
+          description: "Wembanyama's dominant stretch: 14 points in 4 minutes with impossible shots over helpless defenders",
+          runScore: "20-7 SAS",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "This wasn't just a victory - it was a statement etched in playoff history. After Minnesota stunned them in Game 1, the Spurs unleashed their young superstar like never before, with Wembanyama delivering a postseason masterpiece that had Frost Bank Center erupting. Chris Paul turned back the clock with vintage floor generalship, conducting a symphony of ball movement that left the Timberwolves dizzy. The 38-point demolition served notice that this Spurs team, led by their otherworldly French phenom, isn't going quietly into any good night."
+      narrative: "Victor Wembanyama authored a playoff masterpiece that will be replayed for generations, completely dismantling Minnesota with surgical precision and athletic dominance. The French phenom turned Game 2 into his personal highlight reel, erasing memories of the shocking Game 1 upset with the most dominant performance of these playoffs. Chris Paul's veteran brilliance provided the perfect complement, orchestrating an offensive symphony that left the Timberwolves shell-shocked and searching for answers. The 38-point demolition job announced that the Spurs are very much alive in this series, with Wembanyama looking every bit the generational talent capable of carrying San Antonio deep into May."
     },
     {
       gameId: "PHI-NYK-20260506",
@@ -93,73 +93,66 @@ export const momentumData: MomentumData = {
       finalScore: { home: 108, away: 102 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "5:23",
-          description: "Embiid dominates the paint early with 8 straight points",
-          runScore: "8-0",
+          quarter: "1st",
+          timestamp: "5:34",
+          description: "Embiid dominates early with three straight post scores, silencing MSG crowd",
+          runScore: "9-2 PHI",
           momentum: "away",
           keyPlayer: "Joel Embiid",
-          impact: "notable"
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:15",
-          description: "Madison Square Garden erupts as Hart ignites 12-0 run",
-          runScore: "12-0",
-          momentum: "home",
-          keyPlayer: "Josh Hart",
           impact: "significant"
         },
         {
-          quarter: "Q3",
-          timestamp: "6:42",
-          description: "Maxey catches fire from three - four triples in five minutes",
-          runScore: "14-4",
+          quarter: "2nd",
+          timestamp: "7:21",
+          description: "Brunson heats up with pull-up magic as Knicks find their rhythm at home",
+          runScore: "12-3 NYK",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
+          impact: "significant"
+        },
+        {
+          quarter: "3rd",
+          timestamp: "4:45",
+          description: "Maxey explodes for 11 straight points, giving Sixers their biggest lead",
+          runScore: "13-2 PHI",
           momentum: "away",
           keyPlayer: "Tyrese Maxey",
           impact: "game-changing"
         },
         {
-          quarter: "Q4",
-          timestamp: "3:18",
-          description: "Brunson takes over with clutch scoring barrage",
-          runScore: "10-2",
+          quarter: "4th",
+          timestamp: "6:18",
+          description: "Hart sparks crucial run with hustle plays and timely threes",
+          runScore: "10-2 NYK",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
-          impact: "game-changing"
+          keyPlayer: "Josh Hart",
+          impact: "significant"
         }
       ],
       clutchPlays: [
         {
           player: "Jalen Brunson",
           team: "NYK",
-          description: "Step-back three over Maxey with shot clock winding down",
-          timeRemaining: "4:47",
+          description: "Step-back three over Maxey with ice in his veins",
+          timeRemaining: "3:42",
           winProbabilityShift: 18
         },
         {
           player: "Joel Embiid",
-          team: "PHI", 
-          description: "Thunderous dunk plus foul cuts deficit to 4",
-          timeRemaining: "3:52",
+          team: "PHI",
+          description: "Fadeaway jumper to keep Sixers within striking distance",
+          timeRemaining: "2:51",
           winProbabilityShift: -12
-        },
-        {
-          player: "Jalen Brunson",
-          team: "NYK",
-          description: "Driving layup through contact with Embiid in drop coverage",
-          timeRemaining: "2:31",
-          winProbabilityShift: 15
         },
         {
           player: "OG Anunoby",
           team: "NYK",
-          description: "Steal and transition dunk seals the victory",
-          timeRemaining: "1:08",
+          description: "Steal and slam to essentially seal the victory",
+          timeRemaining: "1:23",
           winProbabilityShift: 22
         }
       ],
-      narrative: "The Garden was electric and Jalen Brunson fed off every decibel, delivering clutch bucket after clutch bucket when Philadelphia mounted their desperate fourth-quarter charge. Despite Joel Embiid's herculean effort and Tyrese Maxey's explosive shooting, the Knicks refused to buckle under playoff pressure. Brunson's late-game composure was the difference - each shot more audacious than the last, each make sending the crowd into delirium. Now the Sixers return home facing an 0-2 deficit that feels more like a mountain than a molehill."
+      narrative: "Madison Square Garden witnessed playoff basketball at its finest as Jalen Brunson outdueled Joel Embiid and Tyrese Maxey in a heavyweight battle that lived up to every ounce of hype. The Knicks' composed execution in crunch time showcased their championship maturity, with Brunson delivering dagger after dagger while the crowd reached deafening levels. Philadelphia fought valiantly behind Embiid's warrior performance, but their championship window is rapidly closing as they face a daunting 0-2 deficit. This was playoff basketball poetry in motion, with every possession carrying the weight of season-defining consequences."
     }
   ]
 };

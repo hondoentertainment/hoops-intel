@@ -49,8 +49,8 @@ export const watchGuideData: WatchGuideData = {
       entertainmentScore: 94,
       starPower: 9,
       playoffImplications: 10,
-      rivalry: 7,
-      storyline: "The Thunder's dominant 64-win season meets LeBron and the Lakers in a high-stakes conference semifinals showdown. Oklahoma City seeks to capitalize on home court advantage against a veteran Lakers squad fighting to extend their championship window.",
+      rivalry: 8,
+      storyline: "Thunder look to capitalize on home court against struggling Lakers in pivotal Game 2 of conference semifinals. LeBron's championship window meets Oklahoma City's championship ascension in a generational clash.",
       keyMatchup: "Shai Gilgeous-Alexander vs. LeBron James",
       mustWatch: true
     },
@@ -67,13 +67,13 @@ export const watchGuideData: WatchGuideData = {
       venue: "Little Caesars Arena",
       entertainmentScore: 87,
       starPower: 8,
-      playoffImplications: 10,
-      rivalry: 6,
-      storyline: "Detroit's stunning 60-win campaign meets Cleveland's seasoned playoff experience in Game 2 of their conference semifinals series. The Pistons look to take command at home while the Cavaliers aim to steal crucial road momentum.",
+      playoffImplications: 9,
+      rivalry: 7,
+      storyline: "Detroit aims to take commanding 2-0 series lead at home against Cleveland in conference semifinals Game 2. The Pistons' remarkable turnaround season continues as they seek playoff dominance.",
       keyMatchup: "Cade Cunningham vs. Donovan Mitchell",
       mustWatch: true
     }
   ],
-  topPick: "Thunder-Lakers primetime battle featuring Shai vs. LeBron in a conference semifinals clash",
-  nightOverview: "Two pivotal Game 2 conference semifinals matchups highlight tonight's playoff slate. The Thunder host LeBron's Lakers in a star-studded Western Conference battle, while Detroit seeks to take control against Cleveland in the East."
+  topPick: "Thunder-Lakers primetime showdown features championship implications and generational star power in OKC",
+  nightOverview: "Conference semifinals action continues with two pivotal Game 2 matchups on Prime Video. Both home teams look to seize commanding series leads in championship-defining battles."
 };
