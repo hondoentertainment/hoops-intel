@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 6, 2026
+// Last updated: May 7, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,97 +22,100 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 6, 2026",
-  episodeTitle: "Thunder and Pistons Drop Championship Statements | Conference Semifinals Chaos",
+  date: "May 7, 2026",
+  episodeTitle: "Wemby's Historic Night & Brunson's MSG Magic: Series Momentum Shifts",
+  
   rundown: [
     {
-      topic: "Cade Cunningham's Playoff Masterpiece Powers Detroit Past Cleveland",
+      topic: "Wembanyama's 38-Point Masterpiece Evens the Series",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Cunningham: 28 points, 11 assists, 11-19 FG in Game 1 win",
-        "Detroit shot 52% from field, controlled boards 48-39",
-        "Four Pistons scored 15+: balanced attack overwhelmed Cleveland",
-        "Mitchell's 32 points not enough as Cavs fall 111-101 at Little Caesars Arena",
-        "Pistons take 1-0 series lead in Eastern Conference Semifinals",
-        "Detroit's home court advantage proving decisive early"
+        "38 points, 15 rebounds, 4 blocks on 15-22 shooting",
+        "Largest playoff margin in Spurs franchise history (38 points)",
+        "Chris Paul's 14 assists orchestrated the blowout",
+        "Minnesota shot just 37.2% from the field",
+        "Anthony Edwards held to 19 points on poor efficiency"
       ],
-      debateAngle: "Is Cade Cunningham already a top-5 point guard in the league after this playoff performance?",
-      suggestedQuote: "This wasn't just a good game—this was Cade Cunningham announcing himself as a championship-caliber floor general. The way he controlled tempo, found open teammates, and took over when Detroit needed buckets? That's All-NBA level impact right there.",
-      relevantPlayers: ["Cade Cunningham", "Donovan Mitchell", "Isaiah Stewart", "Jalen Duren", "Jarrett Allen"]
+      debateAngle: "Is this the moment we realized Wembanyama is ready to carry a championship team, or was this just Minnesota cracking under playoff pressure?",
+      suggestedQuote: "When you watch a 20-year-old completely dismantle a conference semifinals opponent like that, you're not just seeing a bounce-back game — you're witnessing the birth of a playoff legend.",
+      relevantPlayers: ["Victor Wembanyama", "Chris Paul", "Anthony Edwards", "Jaden McDaniels"]
     },
+    
     {
-      topic: "Oklahoma City's Defensive Clinic Exposes Lakers' Championship Flaws",
+      topic: "The Anatomy of Championship Defense: How San Antonio Flipped the Script",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Thunder held LeBron-AD to 32 combined points—lowest since 2021",
-        "OKC forced 19 turnovers, dominated paint 52-34",
-        "SGA efficient 26 points on 10-17 shooting with 8 assists",
-        "Lakers shot just 39% from field in 108-90 blowout loss",
-        "Thunder's home court energy at Paycom Center was suffocating",
-        "Jalen Williams added 24 points as secondary scorer"
+        "Spurs held Minnesota to 95 points after allowing 112 in Game 1",
+        "Forced 18 turnovers compared to just 9 in Game 1",
+        "Outrebounded the Timberwolves 52-38",
+        "Limited Minnesota's fast break points to just 8",
+        "Held Edwards 8 points below his playoff average"
       ],
-      debateAngle: "Are the Lakers' championship window officially closed after this defensive demolition?",
-      suggestedQuote: "When you hold LeBron James and Anthony Davis to 32 combined points in a playoff game, you're not just playing good defense—you're making a statement that echoes throughout the entire league. This Thunder defense is built for June basketball.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "LeBron James", "Anthony Davis", "Jalen Williams", "Luguentz Dort"]
+      debateAngle: "What adjustments did Gregg Popovich make defensively that completely neutralized Minnesota's Game 1 game plan?",
+      suggestedQuote: "This wasn't just about Wemby's offense — San Antonio's defensive adjustments were surgical. They turned Minnesota's strength into their biggest weakness overnight.",
+      relevantPlayers: ["Victor Wembanyama", "Devin Vassell", "Jeremy Sochan", "Chris Paul"]
     },
+    
     {
-      topic: "Are the Detroit Pistons Actually Championship Contenders?",
+      topic: "Are the 76ers Already Cooked? The 0-2 Hole Reality Check",
       segment: "hot-take",
       duration: "7 minutes",
       keyStats: [
-        "Detroit finished 60-22, best record in franchise since 2006",
-        "Pistons have four players averaging 15+ in playoffs",
-        "Young core led by 22-year-old Cunningham showing playoff maturity",
-        "Detroit's depth advantage clear—bench outscored Cleveland 34-18",
-        "Home court through East finals if they advance",
-        "Balanced scoring attack makes them matchup nightmare"
+        "Teams down 0-2 in playoffs win series just 6.8% of the time",
+        "Joel Embiid's 29 points despite knee issues",
+        "Brunson's 31 points marked his 4th 30+ game this playoffs",
+        "Knicks shot 47.8% from three in the fourth quarter",
+        "Philadelphia's bench was outscored 28-15"
       ],
-      debateAngle: "Is Detroit's championship window opening faster than anyone expected, or are they still a year away?",
-      suggestedQuote: "Look, I know it sounds crazy to talk about the Pistons as title contenders, but watch that Game 1 performance again. That's not a young team learning—that's a championship-caliber squad announcing their arrival.",
-      relevantPlayers: ["Cade Cunningham", "Isaiah Stewart", "Jalen Duren"]
+      debateAngle: "With Embiid clearly compromised and their championship window closing, should Philadelphia consider this season a wrap or can they pull off a historic comeback?",
+      suggestedQuote: "I hate to say it, but this feels like the end of an era in Philadelphia. When your MVP is playing on one leg and still giving you 29 and 12, but it's not enough, that tells you everything.",
+      relevantPlayers: ["Joel Embiid", "Jalen Brunson", "Tyrese Maxey", "Josh Hart"]
     },
+    
     {
-      topic: "Tonight's Game 2 Swing Games Could Define Championship Race",
+      topic: "Playoff Rapid Fire: Injuries, Tonight's Games, and Series Swings",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "76ers face elimination down 0-1 at Madison Square Garden",
-        "Knicks favored by 8.5 after 39-point Game 1 blowout",
-        "Embiid listed probable with knee soreness—must-win scenario",
-        "Spurs desperate to protect home court vs surging Timberwolves",
-        "Minnesota seeks commanding 2-0 lead on road in San Antonio",
-        "Edwards vs Wembanyama matchup could swing series momentum"
+        "Anthony Davis questionable with back stiffness for tonight",
+        "Detroit favored by 6.5 points in potential 2-0 series clincher",
+        "OKC laying 12.5 points against the Lakers at home",
+        "OG Anunoby played through hamstring issues in Game 2",
+        "Thunder could take commanding control of the West bracket"
       ],
-      debateAngle: "Which Game 2 carries more championship implications—Knicks-76ers or Spurs-Timberwolves?",
-      suggestedQuote: "These aren't just Game 2s—these are potential series-defining moments. Philadelphia and San Antonio both facing 0-2 holes that could end their championship dreams before June even arrives.",
-      relevantPlayers: ["Joel Embiid", "Jalen Brunson", "Victor Wembanyama", "Anthony Edwards"]
+      debateAngle: "Which of tonight's games has bigger championship implications — Detroit potentially going up 2-0 on Cleveland or OKC dominating the Lakers again?",
+      suggestedQuote: "Tonight could be the night we see two more series slip away. Cleveland and the Lakers both face potential elimination scenarios, and that desperation creates must-see TV.",
+      relevantPlayers: ["Anthony Davis", "Cade Cunningham", "Donovan Mitchell", "Shai Gilgeous-Alexander"]
     },
+    
     {
-      topic: "Championship Contender Power Rankings After Night 1",
+      topic: "Looking Ahead: Championship Contenders and Pretenders Taking Shape",
       segment: "closer",
       duration: "6 minutes",
       keyStats: [
-        "Thunder look dominant with 64-18 record and elite defense",
-        "Pistons proving depth and home court advantage matter",
-        "Lakers championship hopes fading after defensive struggles",
-        "Knicks building momentum with historic playoff performances",
-        "Conference semifinals already delivering must-watch basketball",
-        "Home court proving decisive in early games"
+        "San Antonio and New York both showing championship-level execution",
+        "Four teams could be facing elimination by Thursday",
+        "Victor Wembanyama averaging 28.5 PPG in the playoffs",
+        "Jalen Brunson has transformed into a legitimate playoff star",
+        "Home court advantage proving decisive across the board"
       ],
-      debateAngle: "Who emerges as the new championship favorite after these Game 1 statements?",
-      suggestedQuote: "After watching Oklahoma City dismantle the Lakers and Detroit control Cleveland, we might need to completely recalibrate our championship expectations. The youth movement is real, and it's happening right now.",
-      relevantPlayers: ["Shai Gilgeous-Alexander", "Cade Cunningham", "Jalen Brunson", "Victor Wembanyama"]
+      debateAngle: "After tonight's performances, who are your top three championship favorites and why?",
+      suggestedQuote: "We're starting to separate the championship wheat from the chaff. Some teams are rising to the moment, others are wilting under the pressure — and that's what makes the playoffs beautiful.",
+      relevantPlayers: ["Victor Wembanyama", "Jalen Brunson", "Shai Gilgeous-Alexander", "Cade Cunningham"]
     }
   ],
-  coldOpen: "What's good, Hoops Intel family! Last night wasn't just playoff basketball—it was a seismic shift in the championship landscape. Cade Cunningham put on a clinic with 28 and 11 to power Detroit past Cleveland, while Shai Gilgeous-Alexander and the Thunder absolutely demolished LeBron and the Lakers in Oklahoma City. We're talking about holding the King and AD to just 32 combined points in a playoff game. Tonight, we've got must-win Game 2s that could define legacies. Buckle up—this is about to get wild.",
-  socialClip: "Cade Cunningham masterclass discussion from the opener segment, focusing on his 28-point, 11-assist performance and whether he's already a top-5 point guard. Cut to the quote about announcing himself as a championship-caliber floor general. Perfect for Twitter/TikTok with playoff highlights overlay.",
+  
+  coldOpen: "What's good, basketball junkies! Last night was UNREAL. Victor Wembanyama just dropped 38 and 15 in the most dominant playoff performance we've seen all postseason, absolutely demolishing Minnesota in a 38-point blowout that tied their series. Meanwhile, Jalen Brunson was clutch incarnate at MSG, dropping 31 to put the Knicks up 2-0 on Philly. We've got championship momentum shifts, historic performances, and tonight's games could decide the entire playoff landscape. I'm your host, and this is Hoops Intel — let's break it all down!",
+  
+  socialClip: "Animated highlight reel of Wembanyama's dominant sequences from the 38-point game, overlaid with his final stats (38 PTS, 15 REB, 4 BLK) and the text 'HISTORIC PLAYOFF PERFORMANCE' with the caption: 'When Wemby responds, he responds LOUD 🔥 This is what championship-level dominance looks like #NBAPlayoffs'",
+  
   tweetThread: [
-    "🚨 NEW HOOPS INTEL POD: Thunder & Pistons drop CHAMPIONSHIP STATEMENTS in Conference Semifinals openers! Cade's masterpiece, OKC's defensive clinic, and tonight's must-win Game 2s 🎧⬇️",
-    "Cade Cunningham: 28 PTS, 11 AST on 58% shooting. This wasn't just a good game—this was a 22-year-old announcing himself as a championship-level floor general. Detroit's window is opening FAST 🔥",
-    "Oklahoma City held LeBron + AD to 32 COMBINED points. When's the last time you saw that in a playoff game? This Thunder defense is built for June basketball, and the Lakers' title hopes are fading ⚡",
-    "Tonight's Game 2s are MASSIVE: 76ers face elimination at MSG, Spurs need to protect home court vs Minnesota. These aren't just games—they're potential series-defining moments 🎯",
-    "After last night: Are we looking at OKC vs Detroit as a potential conference finals matchup? The youth movement in the NBA is REAL and it's happening right now. Full breakdown in today's pod! 🏆"
+    "🎧 NEW EPISODE: Wemby's Historic Night & Brunson's MSG Magic — We're breaking down the most dominant playoff performances of the postseason so far",
+    "Victor Wembanyama: 38 PTS, 15 REB, 4 BLK in a 38-POINT blowout. The largest playoff margin in Spurs franchise history. This wasn't just a bounce-back — this was a statement.",
+    "Meanwhile Jalen Brunson continues his playoff transformation: 31 PTS, 8 AST at Madison Square Garden to put the Knicks up 2-0. Championship-level execution when it mattered most.",
+    "Tonight's games are MASSIVE: Detroit can go up 2-0 on Cleveland, OKC can dominate the Lakers again. We could see two more series slip away by 11 PM ET.",
+    "Full breakdown of the championship contenders taking shape, plus why the 76ers might already be cooked despite Embiid's heroic effort. Link in bio! 🏀"
   ]
 };

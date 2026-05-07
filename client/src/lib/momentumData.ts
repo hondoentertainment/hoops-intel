@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 6, 2026
+// Last updated: May 7, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,110 +33,133 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 6, 2026",
-  gameOfTheNight: "CLE-DET-20260505",
+  date: "May 7, 2026",
+  gameOfTheNight: "PHI-NYK-20260506",
   topClutchPerformer: { 
-    player: "Cade Cunningham", 
-    team: "DET", 
-    clutchRating: 89, 
-    description: "Connected on back-to-back threes in the fourth quarter and sealed the win with a clutch assist to Stewart with 1:42 remaining" 
+    player: "Jalen Brunson", 
+    team: "NYK", 
+    clutchRating: 94, 
+    description: "Ice-cold killer with 12 clutch points in the final five minutes, hitting contested shots that silenced Philly's comeback dreams" 
   },
   games: [
     {
-      gameId: "CLE-DET-20260505",
-      teams: { home: "DET", away: "CLE" },
-      finalScore: { home: 111, away: 101 },
+      gameId: "MIN-SAS-20260506",
+      teams: { home: "SAS", away: "MIN" },
+      finalScore: { home: 133, away: 95 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "6:23",
-          description: "Mitchell opens with 9 straight points, giving Cavaliers early command",
-          runScore: "CLE 9-0 run",
-          momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "notable"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "3:47",
-          description: "Cunningham finds his rhythm with 11 points in 4 minutes, Pistons surge ahead",
-          runScore: "DET 15-4 run",
+          quarter: "Q1",
+          timestamp: "7:42",
+          description: "Wembanyama's rim protection ignites fast break surge",
+          runScore: "17-5",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
+          keyPlayer: "Victor Wembanyama",
           impact: "significant"
         },
         {
-          quarter: "3rd",
-          timestamp: "8:12",
-          description: "Stewart dominates inside while Duren controls the glass, Detroit pulls away",
-          runScore: "DET 12-2 run",
-          momentum: "home",
-          keyPlayer: "Isaiah Stewart",
-          impact: "game-changing"
-        },
-        {
-          quarter: "4th",
-          timestamp: "4:23",
-          description: "Cleveland makes final push as Mitchell hits consecutive threes",
-          runScore: "CLE 8-0 run",
+          quarter: "Q1",
+          timestamp: "2:15",
+          description: "Edwards responds with three straight buckets",
+          runScore: "8-2",
           momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "significant"
-        }
-      ],
-      clutchPlays: [
-        {
-          player: "Cade Cunningham",
-          team: "DET",
-          description: "Drilled contested three-pointer to answer Mitchell's rally",
-          timeRemaining: "3:14",
-          winProbabilityShift: 18.2
-        },
-        {
-          player: "Isaiah Stewart",
-          team: "DET",
-          description: "Powerful dunk off Cunningham assist to ice the game",
-          timeRemaining: "1:42",
-          winProbabilityShift: 22.7
-        }
-      ],
-      narrative: "The Little Caesars Arena was electric as Cade Cunningham orchestrated a playoff symphony that announced Detroit's championship intentions. After Cleveland's early surge behind Mitchell's hot shooting, the Pistons' young core responded with poise beyond their years. Stewart and Duren's interior dominance in the third quarter broke Cleveland's spirit, while Cunningham's clutch shooting sealed a statement victory. This wasn't just a Game 1 win—it was a declaration that Detroit's rebuild has reached championship-level maturity."
-    },
-    {
-      gameId: "LAL-OKC-20260505",
-      teams: { home: "OKC", away: "LAL" },
-      finalScore: { home: 108, away: 90 },
-      swings: [
-        {
-          quarter: "1st",
-          timestamp: "4:18",
-          description: "Lakers jump out early as Davis dominates inside for quick 8-0 lead",
-          runScore: "LAL 8-0 run",
-          momentum: "away",
-          keyPlayer: "Anthony Davis",
+          keyPlayer: "Anthony Edwards",
           impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "9:31",
-          description: "Thunder defense locks in, forcing 7 turnovers in devastating stretch",
-          runScore: "OKC 16-2 run",
+          quarter: "Q2",
+          timestamp: "8:30",
+          description: "Chris Paul masterclass begins - 5 assists in 3 minutes",
+          runScore: "15-4",
           momentum: "home",
-          keyPlayer: "Shai Gilgeous-Alexander",
+          keyPlayer: "Chris Paul",
           impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "5:44",
-          description: "Williams catches fire with 14 third-quarter points, crowd erupts",
-          runScore: "OKC 18-6 run",
+          quarter: "Q3",
+          timestamp: "4:07",
+          description: "Wembanyama unleashes 13-point explosion to break it wide open",
+          runScore: "20-6",
           momentum: "home",
-          keyPlayer: "Jalen Williams",
+          keyPlayer: "Victor Wembanyama",
           impact: "game-changing"
         }
       ],
       clutchPlays: [],
-      narrative: "What was supposed to be a heavyweight playoff battle turned into a defensive clinic that left the Lakers looking like shell-shocked veterans. Oklahoma City's swarming defense made LeBron and Davis look mortal, forcing turnovers and contested shots all night long. The Paycom Center became a house of horrors for Los Angeles as the Thunder's young legs and fresh energy overwhelmed the Lakers' championship experience. By the fourth quarter, this wasn't a game—it was a changing of the guard announcement from the NBA's next dynasty."
+      narrative: "This wasn't just a victory - it was a statement etched in playoff history. After Minnesota stunned them in Game 1, the Spurs unleashed their young superstar like never before, with Wembanyama delivering a postseason masterpiece that had Frost Bank Center erupting. Chris Paul turned back the clock with vintage floor generalship, conducting a symphony of ball movement that left the Timberwolves dizzy. The 38-point demolition served notice that this Spurs team, led by their otherworldly French phenom, isn't going quietly into any good night."
+    },
+    {
+      gameId: "PHI-NYK-20260506",
+      teams: { home: "NYK", away: "PHI" },
+      finalScore: { home: 108, away: 102 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "5:23",
+          description: "Embiid dominates the paint early with 8 straight points",
+          runScore: "8-0",
+          momentum: "away",
+          keyPlayer: "Joel Embiid",
+          impact: "notable"
+        },
+        {
+          quarter: "Q2",
+          timestamp: "9:15",
+          description: "Madison Square Garden erupts as Hart ignites 12-0 run",
+          runScore: "12-0",
+          momentum: "home",
+          keyPlayer: "Josh Hart",
+          impact: "significant"
+        },
+        {
+          quarter: "Q3",
+          timestamp: "6:42",
+          description: "Maxey catches fire from three - four triples in five minutes",
+          runScore: "14-4",
+          momentum: "away",
+          keyPlayer: "Tyrese Maxey",
+          impact: "game-changing"
+        },
+        {
+          quarter: "Q4",
+          timestamp: "3:18",
+          description: "Brunson takes over with clutch scoring barrage",
+          runScore: "10-2",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
+          impact: "game-changing"
+        }
+      ],
+      clutchPlays: [
+        {
+          player: "Jalen Brunson",
+          team: "NYK",
+          description: "Step-back three over Maxey with shot clock winding down",
+          timeRemaining: "4:47",
+          winProbabilityShift: 18
+        },
+        {
+          player: "Joel Embiid",
+          team: "PHI", 
+          description: "Thunderous dunk plus foul cuts deficit to 4",
+          timeRemaining: "3:52",
+          winProbabilityShift: -12
+        },
+        {
+          player: "Jalen Brunson",
+          team: "NYK",
+          description: "Driving layup through contact with Embiid in drop coverage",
+          timeRemaining: "2:31",
+          winProbabilityShift: 15
+        },
+        {
+          player: "OG Anunoby",
+          team: "NYK",
+          description: "Steal and transition dunk seals the victory",
+          timeRemaining: "1:08",
+          winProbabilityShift: 22
+        }
+      ],
+      narrative: "The Garden was electric and Jalen Brunson fed off every decibel, delivering clutch bucket after clutch bucket when Philadelphia mounted their desperate fourth-quarter charge. Despite Joel Embiid's herculean effort and Tyrese Maxey's explosive shooting, the Knicks refused to buckle under playoff pressure. Brunson's late-game composure was the difference - each shot more audacious than the last, each make sending the crowd into delirium. Now the Sixers return home facing an 0-2 deficit that feels more like a mountain than a molehill."
     }
   ]
 };
