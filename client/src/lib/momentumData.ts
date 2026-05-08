@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 7, 2026
+// Last updated: May 8, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,126 +33,104 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 7, 2026",
-  gameOfTheNight: "PHI-NYK-20260506",
+  date: "May 8, 2026",
+  gameOfTheNight: "LAL-OKC-20260507",
   topClutchPerformer: { 
-    player: "Jalen Brunson", 
-    team: "NYK", 
-    clutchRating: 92, 
-    description: "Ice-cold execution in the final minutes, hitting the dagger three and managing the offense to perfection under playoff pressure" 
+    player: "Shai Gilgeous-Alexander", 
+    team: "OKC", 
+    clutchRating: 94, 
+    description: "Delivered a masterful third quarter performance with 15 points in 8 minutes, turning a competitive contest into a Thunder rout and effectively ending the Lakers' championship hopes." 
   },
   games: [
     {
-      gameId: "MIN-SAS-20260506",
-      teams: { home: "SAS", away: "MIN" },
-      finalScore: { home: 133, away: 95 },
+      gameId: "LAL-OKC-20260507",
+      teams: { home: "OKC", away: "LAL" },
+      finalScore: { home: 125, away: 107 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "8:23",
-          description: "Wembanyama announces his presence with three straight blocks and a thunderous dunk",
-          runScore: "11-2 SAS",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant"
-        },
-        {
-          quarter: "2nd",
-          timestamp: "6:45",
-          description: "Edwards tries to rally Minnesota with back-to-back threes and a steal",
-          runScore: "8-0 MIN",
+          quarter: "1Q",
+          timestamp: "6:32",
+          description: "LeBron James scored 8 straight points to give Lakers early 18-12 advantage",
+          runScore: "8-0",
           momentum: "away",
-          keyPlayer: "Anthony Edwards",
+          keyPlayer: "LeBron James",
           impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "2:18",
-          description: "Chris Paul orchestrates perfection with 7 straight assists as Spurs blow the game open",
-          runScore: "18-4 SAS",
+          quarter: "2Q",
+          timestamp: "3:45",
+          description: "Thunder responded with suffocating defense, forcing 5 turnovers in a 14-2 run",
+          runScore: "14-2",
           momentum: "home",
-          keyPlayer: "Chris Paul",
+          keyPlayer: "Jalen Williams",
+          impact: "significant"
+        },
+        {
+          quarter: "3Q",
+          timestamp: "8:15",
+          description: "Shai Gilgeous-Alexander erupted for 15 points in 8 minutes, turning 6-point halftime deficit into commanding 15-point lead",
+          runScore: "21-0",
+          momentum: "home",
+          keyPlayer: "Shai Gilgeous-Alexander",
           impact: "game-changing"
         },
         {
-          quarter: "3rd",
-          timestamp: "9:12",
-          description: "Wembanyama's dominant stretch: 14 points in 4 minutes with impossible shots over helpless defenders",
-          runScore: "20-7 SAS",
+          quarter: "4Q",
+          timestamp: "9:20",
+          description: "Thunder's bench unit extended lead with pristine ball movement, outscoring Lakers reserves 18-7",
+          runScore: "18-7",
           momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing"
+          keyPlayer: "Isaiah Joe",
+          impact: "significant"
         }
       ],
       clutchPlays: [],
-      narrative: "Victor Wembanyama authored a playoff masterpiece that will be replayed for generations, completely dismantling Minnesota with surgical precision and athletic dominance. The French phenom turned Game 2 into his personal highlight reel, erasing memories of the shocking Game 1 upset with the most dominant performance of these playoffs. Chris Paul's veteran brilliance provided the perfect complement, orchestrating an offensive symphony that left the Timberwolves shell-shocked and searching for answers. The 38-point demolition job announced that the Spurs are very much alive in this series, with Wembanyama looking every bit the generational talent capable of carrying San Antonio deep into May."
+      narrative: "The Thunder delivered a championship-caliber beatdown that exposed every weakness in the Lakers' aging roster. Shai Gilgeous-Alexander's third-quarter explosion was poetry in motion, systematically dismantling LA's defense with an unstoppable blend of drives and pull-up jumpers. The 18-point margin doesn't tell the full story of Oklahoma City's suffocating dominance on both ends. With a 2-0 stranglehold, the Thunder have positioned themselves as legitimate title contenders while the Lakers face potential elimination and uncomfortable questions about their championship window."
     },
     {
-      gameId: "PHI-NYK-20260506",
-      teams: { home: "NYK", away: "PHI" },
-      finalScore: { home: 108, away: 102 },
+      gameId: "CLE-DET-20260507",
+      teams: { home: "DET", away: "CLE" },
+      finalScore: { home: 107, away: 97 },
       swings: [
         {
-          quarter: "1st",
-          timestamp: "5:34",
-          description: "Embiid dominates early with three straight post scores, silencing MSG crowd",
-          runScore: "9-2 PHI",
+          quarter: "1Q",
+          timestamp: "4:18",
+          description: "Donovan Mitchell connected on three consecutive threes to put Cavaliers up 19-11",
+          runScore: "9-2",
           momentum: "away",
-          keyPlayer: "Joel Embiid",
-          impact: "significant"
+          keyPlayer: "Donovan Mitchell",
+          impact: "notable"
         },
         {
-          quarter: "2nd",
-          timestamp: "7:21",
-          description: "Brunson heats up with pull-up magic as Knicks find their rhythm at home",
-          runScore: "12-3 NYK",
+          quarter: "2Q",
+          timestamp: "7:30",
+          description: "Cade Cunningham orchestrated 16-4 run with perfect playmaking and mid-range shooting",
+          runScore: "16-4",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Cade Cunningham",
           impact: "significant"
         },
         {
-          quarter: "3rd",
-          timestamp: "4:45",
-          description: "Maxey explodes for 11 straight points, giving Sixers their biggest lead",
-          runScore: "13-2 PHI",
-          momentum: "away",
-          keyPlayer: "Tyrese Maxey",
+          quarter: "3Q",
+          timestamp: "5:45",
+          description: "Isaiah Stewart dominated the paint on both ends, scoring 10 points and grabbing 6 rebounds in decisive stretch",
+          runScore: "12-3",
+          momentum: "home",
+          keyPlayer: "Isaiah Stewart",
           impact: "game-changing"
         },
         {
-          quarter: "4th",
-          timestamp: "6:18",
-          description: "Hart sparks crucial run with hustle plays and timely threes",
-          runScore: "10-2 NYK",
+          quarter: "4Q",
+          timestamp: "6:12",
+          description: "Pistons defense clamped down, forcing Cleveland into 1-of-8 shooting during crucial final minutes",
+          runScore: "8-1",
           momentum: "home",
-          keyPlayer: "Josh Hart",
+          keyPlayer: "Ausar Thompson",
           impact: "significant"
         }
       ],
-      clutchPlays: [
-        {
-          player: "Jalen Brunson",
-          team: "NYK",
-          description: "Step-back three over Maxey with ice in his veins",
-          timeRemaining: "3:42",
-          winProbabilityShift: 18
-        },
-        {
-          player: "Joel Embiid",
-          team: "PHI",
-          description: "Fadeaway jumper to keep Sixers within striking distance",
-          timeRemaining: "2:51",
-          winProbabilityShift: -12
-        },
-        {
-          player: "OG Anunoby",
-          team: "NYK",
-          description: "Steal and slam to essentially seal the victory",
-          timeRemaining: "1:23",
-          winProbabilityShift: 22
-        }
-      ],
-      narrative: "Madison Square Garden witnessed playoff basketball at its finest as Jalen Brunson outdueled Joel Embiid and Tyrese Maxey in a heavyweight battle that lived up to every ounce of hype. The Knicks' composed execution in crunch time showcased their championship maturity, with Brunson delivering dagger after dagger while the crowd reached deafening levels. Philadelphia fought valiantly behind Embiid's warrior performance, but their championship window is rapidly closing as they face a daunting 0-2 deficit. This was playoff basketball poetry in motion, with every possession carrying the weight of season-defining consequences."
+      clutchPlays: [],
+      narrative: "Detroit's suffocating defense and balanced offensive attack has completely neutralized Cleveland's playoff aspirations through two masterful home performances. Cade Cunningham's evolution into a true floor general was on full display, conducting the Pistons' symphony with surgical precision. The Cavaliers' road struggles have been magnified by Detroit's championship-level execution and Little Caesars Arena's electric atmosphere. Cleveland now faces the daunting task of winning four straight against a Pistons team that looks destined for deeper playoff glory."
     }
   ]
 };
