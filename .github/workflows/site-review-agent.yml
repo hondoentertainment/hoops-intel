@@ -27,7 +27,7 @@ jobs:
           node-version: "24"
 
       - name: Restore fingerprint cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: scripts/.cache/site-review-state.json
           key: site-review-fingerprints-v1-${{ github.repository }}
