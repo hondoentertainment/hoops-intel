@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: scripts/.cache/site-review-state.json
-          key: site-review-fingerprints-v1-${{ github.repository }}
+          key: site-review-fingerprints-v2-${{ github.repository }}
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund

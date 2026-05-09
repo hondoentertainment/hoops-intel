@@ -42,5 +42,10 @@ describe("searchUtils", () => {
     it("normalizes unicode combining characters", () => {
       expect(slugify("José Alvarado")).toBe("jose-alvarado");
     });
+
+    it("handles Turkish and Serbian Latin letters like production sitemap", () => {
+      expect(slugify("Alperen Şengün")).toBe("alperen-sengun");
+      expect(slugify("Nikola Jokić")).toBe("nikola-jokic");
+    });
   });
 });

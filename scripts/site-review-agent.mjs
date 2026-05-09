@@ -52,8 +52,12 @@ function parsePaths() {
   return raw.split(",").map((p) => p.trim()).filter(Boolean);
 }
 
-function stripForHash(html) {
-  let s = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+function stripForHash(html, path) {
+  let raw = html;
+  if (path === "/sitemap.xml" || path.endsWith("/sitemap.xml")) {
+    raw = raw.replace(/\s*<lastmod>[^<]*<\/lastmod>\s*/gi, "");
+  }
+  let s = raw.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
   s = s.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "");
   s = s.replace(/<!--[\s\S]*?-->/g, "");
   s = s.replace(/<[^>]+>/g, " ");
@@ -70,8 +74,8 @@ function htmlToExcerpt(html) {
   return s.length > MAX_EXCERPT ? `${s.slice(0, MAX_EXCERPT)}…` : s;
 }
 
-function fingerprint(html) {
-  return createHash("sha256").update(stripForHash(html)).digest("hex");
+function fingerprint(html, path) {
+  return createHash("sha256").update(stripForHash(html, path)).digest("hex");
 }
 
 async function fetchPath(base, path) {
@@ -119,7 +123,7 @@ async function runRecommendations({ base, results, previous, changedPaths, faile
   }
 
   const lines = results.map((r) => {
-    const fp = r.html ? fingerprint(r.html) : "(no body)";
+    const fp = r.html ? fingerprint(r.html, r.path) : "(no body)";
     const prev = previous?.fingerprints?.[r.path];
     const ch = prev && prev !== fp && r.ok ? "CHANGED" : prev && prev === fp && r.ok ? "same" : "—";
     return `- ${r.path} — HTTP ${r.status || "ERR"} — ${r.ok ? "ok" : "fail"} — vs last: ${ch}`;
@@ -180,7 +184,7 @@ async function main() {
   const fingerprints = {};
   const failed = [];
   for (const r of results) {
-    if (r.ok && r.html) fingerprints[r.path] = fingerprint(r.html);
+    if (r.ok && r.html) fingerprints[r.path] = fingerprint(r.html, r.path);
     if (!r.ok) failed.push(r);
   }
 
@@ -201,7 +205,12 @@ async function main() {
   try {
     aiSection = await runRecommendations({ base, results, previous, changedPaths, failed });
   } catch (err) {
-    aiSection = `## AI recommendations failed\n\`\`\`\n${err?.stack || err?.message || err}\n\`\`\`\n`;
+    const msg = err?.message || String(err);
+    const billing =
+      /credit balance|too low to access|billing|payment_required/i.test(msg);
+    aiSection = billing
+      ? "## AI recommendations skipped\n_Anthropic API rejected the request (billing or credits). Add credits or set `SITE_REVIEW_SKIP_AI=1` in Actions to silence this section._\n"
+      : `## AI recommendations failed\n\`\`\`\n${err?.stack || msg}\n\`\`\`\n`;
     console.error(err);
   }
 
