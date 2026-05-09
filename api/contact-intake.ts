@@ -51,7 +51,7 @@ export default async function handler(req: Request): Promise<Response> {
   const fromAddr = process.env.CONTACT_FORM_FROM_EMAIL ?? "Hoops Intel <onboarding@resend.dev>";
   let body: { kind?: string; name?: string; email?: string; message?: string };
   try {
-    body = await req.json();
+    body = (await req.json()) as { kind?: string; name?: string; email?: string; message?: string };
   } catch {
     return new Response(JSON.stringify({ error: "Invalid JSON" }), { status: 400 });
   }

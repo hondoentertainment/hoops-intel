@@ -13,7 +13,7 @@ async function supabaseUserFromToken(token: string): Promise<{ id: string; email
     headers: { Authorization: `Bearer ${token}`, apikey: key },
   });
   if (!res.ok) return null;
-  return res.json();
+  return (await res.json()) as { id: string; email: string };
 }
 
 async function fetchStripeCustomerId(userId: string): Promise<string | null> {

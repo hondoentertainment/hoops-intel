@@ -170,7 +170,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   let payload: PushPayload;
   try {
-    payload = await req.json();
+    payload = (await req.json()) as PushPayload;
   } catch {
     return new Response(JSON.stringify({ error: "Invalid JSON body" }), {
       status: 400,

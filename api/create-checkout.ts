@@ -18,7 +18,7 @@ async function supabaseUserFromToken(token: string): Promise<{ id: string; email
     headers: { Authorization: `Bearer ${token}`, apikey: key },
   });
   if (!res.ok) return null;
-  return res.json();
+  return (await res.json()) as { id: string; email: string };
 }
 
 export default async function handler(req: Request): Promise<Response> {
@@ -46,7 +46,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   let body: { plan?: 'monthly' | 'annual' };
   try {
-    body = await req.json();
+    body = (await req.json()) as { plan?: "monthly" | "annual" };
   } catch {
     return new Response('Invalid body', { status: 400 });
   }
@@ -88,7 +88,7 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(`Stripe error: ${text}`, { status: 502 });
   }
 
-  const session = await res.json();
+  const session = (await res.json()) as { url?: string };
   return new Response(JSON.stringify({ url: session.url }), {
     status: 200,
     headers: { 'Content-Type': 'application/json' },

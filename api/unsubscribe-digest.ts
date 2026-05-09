@@ -25,7 +25,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   let email = '';
   try {
-    const b = await req.json();
+    const b = (await req.json()) as { email?: unknown };
     email = typeof b.email === 'string' ? b.email.trim().toLowerCase() : '';
   } catch {
     return json({ error: 'Invalid body' }, 400);

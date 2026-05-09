@@ -48,7 +48,7 @@ export default async function handler(req: Request): Promise<Response> {
   if (req.method === "PATCH") {
     let body: { id?: string; status?: string; notes?: string };
     try {
-      body = await req.json();
+      body = (await req.json()) as { id?: string; status?: string; notes?: string };
     } catch {
       return new Response(JSON.stringify({ error: "Invalid JSON" }), { status: 400 });
     }

@@ -4,6 +4,7 @@ import { pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 
 export default function PlayerCompare() {
+  const [aIdx, setAIdx] = useState(0);
   const [bIdx, setBIdx] = useState(Math.min(1, pulseIndex.length - 1));
 
   const a = pulseIndex[aIdx];

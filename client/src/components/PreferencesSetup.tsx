@@ -98,6 +98,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
       favoriteTeams: teams,
       favoritePlayers: players,
       enablePersonalization: enabled,
+      rivalPairs: getPreferences().rivalPairs,
     };
     setPreferences(prefs);
     onSave?.(prefs);

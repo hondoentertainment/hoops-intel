@@ -65,7 +65,6 @@ export const watchGuideData: WatchGuideData = {
       time: "5/8 - 7:00 PM EDT",
       tv: "Prime Video",
       venue: "Xfinity Mobile Arena",
-      time: "5/8 - 7:00 PM EDT",
       entertainmentScore: 89,
       starPower: 8,
       playoffImplications: 10,

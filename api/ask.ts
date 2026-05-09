@@ -43,9 +43,12 @@ export default async function handler(req: Request) {
   let question: string;
   let context: string;
   try {
-    const body = await req.json();
-    question = body.question;
-    context = body.context || "";
+    const body = (await req.json()) as {
+      question?: string;
+      context?: string;
+    };
+    question = body.question ?? "";
+    context = body.context ?? "";
   } catch {
     return new Response(JSON.stringify({ error: "Invalid JSON body" }), {
       status: 400,

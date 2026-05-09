@@ -1,6 +1,6 @@
 // Embeddable Widgets Page — Add Hoops Intel to Your Site
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import SiteHeader from "../components/SiteHeader";
 import PulseWidget from "../components/widgets/PulseWidget";
 import TickerWidget from "../components/widgets/TickerWidget";
@@ -17,7 +17,7 @@ interface WidgetConfig {
   id: string;
   name: string;
   description: string;
-  component: (props: { theme: WidgetTheme; size: WidgetSize }) => JSX.Element;
+  component: (props: { theme: WidgetTheme; size: WidgetSize }) => ReactElement;
   sizes: Record<WidgetSize, { width: number; height: number }>;
 }
 

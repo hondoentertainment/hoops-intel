@@ -47,7 +47,7 @@ export default async function handler(req: Request): Promise<Response> {
   // Parse request body
   let body: { email?: string };
   try {
-    body = await req.json();
+    body = (await req.json()) as { email?: string };
   } catch {
     return jsonResponse({ error: 'Invalid JSON body' }, 400);
   }
