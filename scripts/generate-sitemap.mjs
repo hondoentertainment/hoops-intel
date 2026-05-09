@@ -9,8 +9,14 @@ const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 const BASE = "https://hoopsintel.net";
 
+/** Match `slugify` in `client/src/lib/searchUtils.ts` so /player/:slug URLs align. */
 function slugify(name) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 export function generate() {
