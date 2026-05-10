@@ -28,7 +28,7 @@ export interface GamePreviewLike {
   homeTeam: string;
   awayTeam: string;
   spread: string;
-  prediction: string;
+  prediction?: string;
 }
 
 /** Standalone opener/closing string "BOS -4" → BOS favoured (negative attaches to listed team). */
@@ -43,7 +43,7 @@ export function parseFavoriteFromSpreadString(spread: string): string | null {
 
 export function spreadMatchesEditorialWinner(preview: GamePreviewLike): boolean | null {
   const fav = spreadFavoriteAbbrev(preview);
-  const ed = parseWinnerFromPrediction(preview.prediction);
+  const ed = parseWinnerFromPrediction(preview.prediction ?? "");
   if (!fav || !ed) return null;
   return fav === ed;
 }

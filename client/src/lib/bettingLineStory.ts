@@ -14,13 +14,13 @@ export interface BettingPreviewSlice {
 
 export function summarizeLineMovementEducation(preview: BettingPreviewSlice): string[] {
   const lines: string[] = [];
-  const closeFav = spreadFavoriteAbbrev(preview);
+  const forSpread = { ...preview, prediction: preview.prediction ?? "" };
+  const closeFav = spreadFavoriteAbbrev(forSpread);
   const openSpread = preview.openingSpread?.trim();
   const openFav = openSpread
     ? spreadFavoriteAbbrev({
-        ...preview,
+        ...forSpread,
         spread: openSpread,
-        prediction: preview.prediction ?? "",
       })
     : null;
 
