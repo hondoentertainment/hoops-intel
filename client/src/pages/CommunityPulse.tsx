@@ -3,7 +3,7 @@
 
 import { useState, useCallback } from "react";
 import SiteHeader from "../components/SiteHeader";
-import { communityPulseData } from "../lib/communityPulseData";
+import { communityPulseData } from "../lib/communityPulseView";
 import { ratablePlayers } from "../lib/communityRatablePlayers";
 
 // ═══════════════════════════════════════════════════════════

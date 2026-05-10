@@ -415,7 +415,7 @@ export const communityPulseData: CommunityPulseData = {
       weekSummary: "Alperen Şengün is legitimately one of the most skilled big men in the league and yet Houston hasn't taken the next step. The community loves Şengün personally but questions whether the Rockets have enough around him to matter anytime soon.",
       hotTopic: "Is Alperen Şengün being wasted in Houston's current system?",
     },
-  ]),
+  ]) as CommunityTeamRanking[],
 
   mvpRankings: [
     {

@@ -2,7 +2,7 @@
 // What the Internet Thinks — daily social sentiment analysis
 
 import { useState } from "react";
-import { sentimentData, type PlayerSentiment, type TeamSentiment } from "../lib/sentimentData";
+import { sentimentPulseData, type PlayerSentiment, type TeamSentiment } from "../lib/sentimentPulseView";
 import SiteHeader from "../components/SiteHeader";
 
 // ═══════════════════════════════════════════════════════════
@@ -409,7 +409,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
 // ═══════════════════════════════════════════════════════════
 
 export default function SentimentPulse() {
-  const data = sentimentData;
+  const data = sentimentPulseData;
 
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>

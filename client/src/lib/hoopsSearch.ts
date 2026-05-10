@@ -130,11 +130,12 @@ function buildDocuments(): SearchDocument[] {
 
   // Game previews
   for (const preview of gamePreviews) {
+    const matchup = `${preview.awayTeam} @ ${preview.homeTeam}`;
     docs.push({
       id: `preview-${preview.homeTeam}-${preview.awayTeam}`,
       type: "preview",
-      title: `${preview.matchup} Preview`,
-      content: [preview.matchup, preview.storyline, preview.prediction, preview.time, preview.spread].join(" "),
+      title: `${matchup} Preview`,
+      content: [matchup, preview.storyline, preview.prediction ?? "", preview.time, preview.spread].join(" "),
       tags: ["preview", "tonight", "upcoming", "matchup"],
       players: [],
       teams: [preview.homeTeam, preview.awayTeam],
@@ -156,10 +157,12 @@ function buildDocuments(): SearchDocument[] {
 
   // Media reactions
   for (const m of mediaReactions) {
+    const outlet = m.outlet;
+    const topicSlug = m.topic.replace(/\s/g, "-").toLowerCase();
     docs.push({
-      id: `media-${m.source}-${m.topic.replace(/\s/g, "-").toLowerCase()}`,
+      id: `media-${outlet}-${topicSlug}`,
       type: "media",
-      title: `${m.source}: ${m.topic}`,
+      title: `${outlet}: ${m.topic}`,
       content: [m.quote, m.topic, m.author].join(" "),
       tags: ["media", "reaction", "analysis", "opinion"],
       players: [],
