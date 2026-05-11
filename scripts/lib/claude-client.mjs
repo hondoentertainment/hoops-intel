@@ -7,8 +7,8 @@ import { loadLocalEnv } from "../load-local-env.mjs";
 loadLocalEnv();
 
 const MODEL_CHAIN = [
-  "claude-sonnet-4-20250514",
   "claude-sonnet-4-6",
+  "claude-sonnet-4-20250514",
   "claude-3-5-sonnet-20241022",
 ];
 

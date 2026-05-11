@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-export const config = { runtime: "edge" };
+export const config = { runtime: "nodejs" };
 
 const SYSTEM_PROMPT = `You are the Hoops Intel AI assistant — an expert NBA analyst with the editorial voice of ESPN meets The Athletic. Answer questions using the provided context from Hoops Intel's daily editions. Be concise, opinionated, and data-driven. If the context doesn't contain enough info to answer, say so honestly. Never make up stats or game results.`;
 
