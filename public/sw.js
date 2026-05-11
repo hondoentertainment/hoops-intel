@@ -1,6 +1,7 @@
-// Hoops Intel Service Worker — Cache-first for static assets, network-first for data
-const CACHE_NAME = "hoops-intel-v2";
-const STATIC_ASSETS = ["/", "/manifest.json", "/assets/logo.png"];
+// Hoops Intel Service Worker — Cache-first for static assets, network-first for navigation
+// Do not precache "/" — deploys change hashed bundle names; a stale shell breaks loads when offline fallback runs.
+const CACHE_NAME = "hoops-intel-v3";
+const STATIC_ASSETS = ["/manifest.json", "/assets/logo.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -23,7 +24,12 @@ self.addEventListener("fetch", (event) => {
   // Network-first for API calls and navigation
   if (request.url.includes("espn.com") || request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(() => caches.match(request).then((r) => r || caches.match("/")))
+      fetch(request).catch(async () => {
+        const cached = await caches.match(request);
+        if (cached) return cached;
+        const shell = await caches.match("/");
+        return shell || Response.error();
+      })
     );
     return;
   }
