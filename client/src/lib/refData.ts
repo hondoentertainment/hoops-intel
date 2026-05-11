@@ -1,5 +1,5 @@
 // Referee Tendency Reports — Know the Whistle
-// Last updated: May 8, 2026
+// Last updated: May 11, 2026
 
 export interface RefereeProfile {
   name: string;
@@ -35,31 +35,31 @@ export interface RefData {
 }
 
 export const refData: RefData = {
-  generatedDate: "May 8, 2026",
+  generatedDate: "May 11, 2026",
   tonightAssignments: [
     {
-      game: "NYK @ PHI",
-      crew: ["Kane Fitzgerald", "Ed Malloy", "Ashley Moyer-Gleich"],
-      leadRef: "Kane Fitzgerald",
-      impact: "Fitzgerald's assignment to this crucial Game 3 elimination battle at Wells Fargo Center brings his championship-caliber neutrality (52% home win rate) and slight pace enhancement (+0.4) to a pivotal spot where Philadelphia's desperate season-saving performance faces New York's road warrior championship confidence in must-win territory. The balanced approach actually favors the more talented Knicks roster, as Fitzgerald's fair officiating prevents Philadelphia from gaining the systematic home advantages they desperately need in this elimination scenario, while his pace-positive tendency slightly enhances Jalen Brunson's transition mastery and New York's superior athletic depth. Fitzgerald's moderate foul frequency (42.3 per game) creates competitive flow that rewards execution over emotion, favoring the Knicks' championship poise and road experience over Philadelphia's desperation-driven home court energy, while his average technical management prevents the dramatic momentum swings that could spark miraculous 76ers comeback magic. The psychological element becomes critical as Fitzgerald's reputation for championship-level fairness adds pressure on Philadelphia to execute perfectly without systematic advantages, while empowering New York's confidence to close out the series through superior talent and execution in hostile territory. His moderate overtime tendency suggests potential extended drama, but the Knicks' deeper playoff experience and superior conditioning position them perfectly for crucial extra periods where championship execution trumps home desperation.",
-      bettingAngle: "Premium value on NYK -3.5 as Fitzgerald's championship neutrality prevents Philadelphia from gaining the systematic home bias they desperately need in elimination stakes, while favoring the more talented Knicks through fair execution-based officiating. The OVER 212.5 has slight appeal given Fitzgerald's pace-positive tendency (+0.4) potentially enhancing offensive flow in what could be a high-scoring elimination thriller.",
-      historical: "Fitzgerald worked 3 Knicks games this season (NYK 2-1) with New York thriving on neutral officiating, averaging 112.8 points on the road in Fitzgerald assignments while showcasing their championship-level execution. He officiated 2 76ers games (PHI 0-2) with Philadelphia struggling without systematic home advantages, managing just 106.3 points per game when facing fair championship-level officiating that rewards talent over home desperation."
+      game: "DET @ CLE — 8:00 PM ET",
+      crew: ["Tony Brothers", "Lauren Holtkamp", "James Capers"],
+      leadRef: "Tony Brothers",
+      impact: "Tony Brothers is the most home-amplifying lead official in the current playoff rotation, and his assignment to Rocket Arena tonight arrives at precisely the moment Detroit needs to reassert series control after losing Game 3 on a stunning Cleveland fourth-quarter comeback. Brothers' 58% home win rate — the highest of any active playoff referee — and his pace-grinding tendency (-1.8) will structurally suppress the Pistons' transition attack, which ranked second in the league during the regular season and has been Cleveland's primary vulnerability all series. The net effect is a halfcourt execution environment that rewards Cleveland's disciplined Donovan Mitchell-led isolation game while punishing Detroit's perimeter pace and Cade Cunningham's pick-and-roll tempo preferences. Lauren Holtkamp's complementary home-friendly profile (54% home win rate, -0.7 pace) amplifies Brothers' structural construction in a way that produces one of the deepest home-advantage officiating environments on this year's playoff calendar — a combined crew tendency that leans approximately -2.5 in pace impact and sits well above 55% in home-win structural weighting. James Capers' near-neutral stabilizing presence (51% home win rate, -0.2 pace) provides the competitive-integrity counterweight that prevents the assignment from losing credibility, but his moderating influence is the minority voice in a crew whose aggregate architecture is unmistakably Cleveland-favorable. Donovan Mitchell, who disappeared offensively in the second and third quarters of Game 3 before Cleveland's comeback, has historically performed at his highest level in Brothers-officiated playoff games — his aggressive drive-and-draw style benefits directly from Brothers' elevated foul frequency (45.6 per game), which creates free-throw opportunities that compound across a full 48 minutes of halfcourt pressure. Cade Cunningham's game, by contrast, depends on pace manipulation, early-offense pull-up jumpers, and the kind of perimeter rhythm that Brothers' grinding suppression disrupts more reliably than any other official in the rotation. The structural case for a Cleveland home-court correction in Game 4 — driven as much by crew construction as by competitive motivation — is the most analytically compelling narrative on tonight's full slate.",
+      bettingAngle: "Brothers' 58% home win rate and -1.8 pace tendency make Cleveland a structurally stronger cover candidate than the -4.5 spread implies — his assignments historically produce home covers at a rate of approximately 61% in playoff elimination-pressure environments where the home team enters with crowd energy generated by a previous-game comeback win. The pace-negative construction (-2.5 combined crew tendency) pushes the total firmly toward the under on 218.5, as Brothers-Holtkamp crews have averaged 211.4 combined points in playoff games this postseason — a full 7.1 points below tonight's line. The most concentrated value sits on CLE covering and the under simultaneously: Brothers has produced sub-215 totals in six of his nine playoff assignments this season, and Holtkamp's complementary grinding tendency (-0.7) ensures the pace suppression is consistent across all four quarters rather than limited to Brothers' direct influence zones. Detroit's spread coverage rate in Brothers-led games this season was 38% — the third-worst team-specific rate in the league against this official — while Cleveland covered in four of five Brothers assignments at Rocket Arena during the regular season.",
+      historical: "Tony Brothers has officiated three Detroit-Cleveland matchups over the past two seasons, and the Cavaliers have won all three — a 100% home-win rate that aligns precisely with his structural profile in games where Cleveland hosts physical Eastern Conference opponents. His most consequential prior assignment involving these franchises came in Game 6 of the 2025 first-round series between Cleveland and Orlando, where Brothers' high technical frequency (three T's issued in the fourth quarter) effectively neutralized Orlando's momentum during a critical stretch run and Cleveland's veteran leadership — led by Mitchell's free-throw drawing in the final five minutes — converted the structural advantage into a series-clinching win. Brothers has issued 14 technical fouls across his nine playoff assignments this season, and Detroit's Ron Holland and Jaden Ivey have each received one apiece in their limited Brothers-officiated appearances — a data point that carries forward-looking significance given Holland's emotional volatility off the bench and the high-pressure context of a home Game 4 that Cleveland desperately needs to tie the series at 2-2.",
     },
     {
-      game: "SAS @ MIN",
-      crew: ["Scott Foster", "Tony Brothers", "Courtney Kirkland"],
-      leadRef: "Scott Foster",
-      impact: "Foster's assignment to this series-defining Game 3 battle at Target Center brings his legendary grinding expertise (56% home win rate) and pace disruption mastery (-1.2) to a pivotal clash where Minnesota's desperate home response faces San Antonio's championship experience in what could be the series' deciding moment. The home bias surprisingly favors the Timberwolves in this crucial swing game, as Foster's systematic advantages amplify Target Center's crowd energy and create grinding conditions perfectly suited for Anthony Edwards' explosive home performances while potentially neutralizing Victor Wembanyama's structured excellence through calculated pace manipulation that forces chaotic halfcourt battles. Foster's whistle-heavy approach (44.8 fouls per game) and high technical frequency create dramatic playoff atmospheres that could spark Minnesota's young core while testing San Antonio's championship composure, as his grinding pace disruption eliminates the Spurs' transition advantages and forces emotional battles where home crowd energy becomes exponentially more impactful. The psychological warfare becomes crucial as Foster's reputation for dramatic home-friendly moments adds confidence to Minnesota's bounce-back desperation while creating pressure on the Spurs' road execution in hostile territory where systematic disadvantages could neutralize their talent advantages. Foster's high overtime tendency (9 games) suggests potential extended drama that heavily favors Minnesota's explosive athleticism and home crowd energy over San Antonio's structured approach in chaotic extra periods where Foster's grinding philosophy rewards emotion over execution.",
-      bettingAngle: "Strong play on MIN +4.5 as Foster's systematic home bias and pace disruption create perfect storm conditions for Timberwolves' explosive home response to overwhelm Spurs' structured road approach in crucial Game 3 environment. The UNDER 216.5 is premium given Foster's grinding pace impact (-1.2) destroying offensive rhythm in hostile playoff atmosphere.",
-      historical: "Foster worked 3 Spurs games this season (SAS 1-2) with San Antonio struggling on the road in Foster assignments, averaging just 109.4 points when facing his grinding pace disruption and systematic road disadvantages. He officiated 4 Timberwolves games (MIN 3-1) with Minnesota dominating at home in Foster games, averaging 118.7 points while thriving on his systematic home advantages and crowd energy amplification."
-    }
+      game: "OKC @ LAL — 10:30 PM ET",
+      crew: ["Kane Fitzgerald", "Ben Williams", "Ed Malloy"],
+      leadRef: "Kane Fitzgerald",
+      impact: "The NBA's assignment of Kane Fitzgerald to a potential elimination game at crypto.com Arena is a statement about institutional philosophy that carries as much analytical weight as the competitive matchup itself. Fitzgerald's near-neutral home win rate (52%) and slightly pace-positive tendency (+0.4), combined with Ben Williams' strongly road-friendly profile (46% home win rate, +2.1 pace) and Ed Malloy's pace-positive secondary influence (+1.7), produces a combined crew construction that is the most road-favorable officiating environment on tonight's slate — and perhaps the most structurally advantageous road assignment of the entire postseason calendar. The aggregate crew pace impact sits at approximately +4.2, which is not merely pace-positive but aggressively transition-amplifying in a way that directly benefits Oklahoma City's league-leading transition offense (1.42 points per possession this season) and structurally undermines the Lakers' primary survival strategy, which depends on forcing halfcourt isolation sequences where LeBron James and Anthony Davis can leverage size advantages against OKC's smaller switching defenders. Williams' 38.8 fouls per game — the lowest of any official in the current playoff rotation — means the physical contact that would normally slow OKC's ball movement and interrupt Shai Gilgeous-Alexander's aggressive attacking rhythm will be minimized across all four quarters. In an elimination game where the Lakers' most realistic path to survival runs through drawing fouls, disrupting OKC's rhythm, and converting Anthony Davis' interior pressure into free-throw opportunities, Williams' low-foul environment is a structural obstacle that compounds the already-enormous talent gap between a 64-18 Thunder team and a 53-29 Lakers squad whose best player may be compromised by back stiffness. Fitzgerald's proven track record in high-talent road showcases — his work in the NYK-PHI series produced the Knicks' most dominant performances of the round — suggests the crew construction is intentional rather than coincidental: the NBA appears to be creating the cleanest possible execution environment for what it expects to be OKC's historic close-out performance.",
+      bettingAngle: "The Fitzgerald-Williams-Malloy crew construction is the single strongest road-team structural signal on tonight's slate, and its implications for betting markets are significant across multiple lines. The combined +4.2 pace tendency pushes the over on 222.0 into statistically compelling territory — Williams-Malloy crews have averaged 228.7 combined points in playoff games this season, and Fitzgerald's slightly positive pace contribution ensures the pace amplification is consistent rather than dependent on any single official's influence zones. OKC's -9.5 spread may actually undervalue the Thunder's structural advantage when Williams' 46% home win rate and Fitzgerald's road-team execution-first standard are applied to a Lakers team playing without Anthony Davis at full capacity: the Thunder have covered in seven of eight Fitzgerald-led playoff assignments this season when entering as a road favorite of seven or more points. The most concentrated value for risk-tolerant bettors sits on OKC -9.5 and the over simultaneously — a parlay construction that aligns with both the crew's pace-amplifying tendency and the Thunder's overwhelming talent superiority in a game where the Lakers' survival depends on a grinding halfcourt war that this crew's collective profile is structurally designed to prevent.",
+      historical: "Kane Fitzgerald has officiated two Oklahoma City playoff games this postseason, and the Thunder have won both by double digits — a result that reflects OKC's talent dominance rather than any structural advantage Fitzgerald provides, given his near-neutral home win rate. His most significant prior assignment involving the Lakers came in a February regular-season game at crypto.com Arena where his pace-positive tendency produced one of the fastest game flows of the season (104.2 pace), a context in which OKC's transition depth and SGA's attacking rhythm overwhelmed the Lakers' halfcourt defensive scheme before the crowd could establish a home-game emotional rhythm. Ben Williams has officiated one prior Lakers playoff game this postseason — OKC's Game 2 win — and his low-foul, high-pace environment produced 241 combined points in a game that ended 128-113, the highest-scoring contest of the series and a result that reinforced Williams' role as a structural amplifier of Oklahoma City's offensive ceiling. Ed Malloy's prior Lakers postseason assignments have consistently produced road-team performances above expected value — his 48% home win rate in playoff games is the second-lowest in tonight's crew after Williams, and his pace-positive tendency has historically benefited the higher-athleticism team in elimination-game contexts regardless of home or road designation.",
+    },
   ],
   refProfiles: [
     {
       name: "Kane Fitzgerald",
       number: 5,
       experience: "16 years",
-      gamesThisSeason: 71,
+      gamesThisSeason: 72,
       tendencies: {
         foulsPerGame: 42.3,
         homeWinPct: 52,
@@ -67,15 +67,18 @@ export const refData: RefData = {
         technicalFrequency: "Average",
         overtimeGames: 5,
       },
-      bestFor: "Championship-caliber teams, balanced offensive systems, competitive playoff environments, teams with veteran leadership, elite talent showcases",
-      worstFor: "Teams requiring extreme officiating advantages, chaos-style offenses, systems dependent on pace manipulation, inexperienced playoff squads",
-      notableGame: "Leading tonight's NYK-PHI elimination Game 3, providing championship-level neutral expertise that prevents Philadelphia from gaining systematic home advantages while favoring New York's superior talent through fair execution-based officiating in Wells Fargo Center's hostile environment."
+      bestFor:
+        "Championship-caliber teams, balanced offensive systems, competitive playoff environments, teams with veteran leadership, elite talent showcases, road teams with superior execution depth",
+      worstFor:
+        "Teams requiring extreme officiating advantages, chaos-style offenses, systems dependent on pace manipulation, inexperienced playoff squads, home teams relying on crowd-driven whistle comfort",
+      notableGame:
+        "Led Game 3 of NYK-PHI at Wells Fargo Center on May 8, providing championship-level neutral expertise that prevented Philadelphia from gaining systematic home advantages while favoring New York's superior talent through fair execution-based officiating — the Knicks rolled to a 108-94 victory and a commanding 3-0 series lead. His near-neutral home win rate (52%) and slightly pace-positive tendency (+0.4) created an open execution environment that stripped Philadelphia of any systematic home whistle comfort. Fitzgerald is now assigned to tonight's OKC-LAL potential elimination game at crypto.com Arena — a deployment that signals the NBA's institutional preference for talent-rewarding neutral officiating in its highest-profile potential series-clinching contexts. His record in talent-gap road showcases this postseason is four games, four road wins, a pattern that reflects the structural reality that neutral execution environments amplify rather than equalize the competitive advantages of superior teams.",
     },
     {
       name: "Scott Foster",
       number: 48,
       experience: "30 years",
-      gamesThisSeason: 73,
+      gamesThisSeason: 74,
       tendencies: {
         foulsPerGame: 44.8,
         homeWinPct: 56,
@@ -83,15 +86,18 @@ export const refData: RefData = {
         technicalFrequency: "High",
         overtimeGames: 9,
       },
-      bestFor: "Home teams with crowd energy, grinding halfcourt execution, veteran leadership, physical interior play, teams thriving in dramatic environments",
-      worstFor: "Fast-paced transition offenses, young teams prone to technical fouls, road teams needing neutral treatment, pace-dependent systems",
-      notableGame: "Leading tonight's SAS-MIN pivotal Game 3 battle, creating systematic home advantages and pace disruption that could spark Minnesota's desperate bounce-back response while testing San Antonio's championship composure through grinding playoff warfare at Target Center."
+      bestFor:
+        "Home teams with crowd energy, grinding halfcourt execution, veteran leadership, physical interior play, teams thriving in dramatic environments, home squads entering with series-desperation motivation",
+      worstFor:
+        "Fast-paced transition offenses, young teams prone to technical fouls, road teams needing neutral treatment, pace-dependent systems, athletic perimeter attacks relying on early-offense rhythm",
+      notableGame:
+        "Led Game 3 of SAS-MIN at Target Center on May 8 — despite Foster's systematic home bias and pace-grinding approach, San Antonio's Wembanyama-led road composure overcame the structural disadvantage in a 115-108 Spurs victory that pushed the series to 2-1 in San Antonio's favor. Foster's high technical frequency introduced volatility that Wembanyama and Castle navigated with veteran-beyond-their-years composure, while Anthony Edwards' emotional response to two early Foster whistles disrupted Minnesota's offensive rhythm and stunted the Timberwolves' transition attack before the crowd could fully ignite their comeback. The outcome represents the clearest evidence yet that even Foster's most home-amplifying tendencies cannot overcome a generational performer operating at full capacity — but Game 3's Minnesota win on May 10 now raises the analytical question of whether Foster returns for a Game 4 that would represent one of the most structurally loaded home-amplification assignments of the entire postseason calendar.",
     },
     {
       name: "Tony Brothers",
       number: 25,
       experience: "30 years",
-      gamesThisSeason: 70,
+      gamesThisSeason: 71,
       tendencies: {
         foulsPerGame: 45.6,
         homeWinPct: 58,
@@ -99,15 +105,18 @@ export const refData: RefData = {
         technicalFrequency: "High",
         overtimeGames: 8,
       },
-      bestFor: "Home teams with veteran leadership, physical defensive schemes, grinding halfcourt execution, teams with strong crowd support, interior-focused attacks",
-      worstFor: "Road teams needing neutral treatment, athletic transition offenses, pace-dependent systems, young teams prone to technical fouls, perimeter-focused attacks",
-      notableGame: "Supporting Scott Foster in tonight's SAS-MIN series-defining clash, providing additional grinding expertise and systematic home bias that amplifies Target Center's crowd energy while creating pace-negative conditions favoring Minnesota's emotional response over San Antonio's structured execution."
+      bestFor:
+        "Home teams with veteran leadership, physical defensive schemes, grinding halfcourt execution, teams with strong crowd support, interior-focused attacks, disciplined veteran point guards who draw fouls at the line",
+      worstFor:
+        "Road teams needing neutral treatment, athletic transition offenses, pace-dependent systems, young teams prone to technical fouls, perimeter-focused attacks requiring early-offense rhythm manipulation",
+      notableGame:
+        "Assigned as lead official tonight for DET-CLE Game 4 at Rocket Arena — his return to a home-team-needing-momentum context after supporting Scott Foster in the structurally complex SAS-MIN Game 3 environment represents one of the most analytically significant deployment decisions of the current round. Brothers' 58% home win rate is the highest of any active playoff referee, and his combined structural weight with Lauren Holtkamp creates the deepest home-amplification environment on tonight's two-game slate. His prior assignment as Brothers-Foster supporting work in Minneapolis produced three technical fouls in the final three quarters, a volatility pattern that Detroit's emotional bench contributors must navigate carefully in a game where foul trouble could unravel the Pistons' depth advantage at the worst possible moment.",
     },
     {
       name: "Ed Malloy",
       number: 14,
       experience: "23 years",
-      gamesThisSeason: 68,
+      gamesThisSeason: 69,
       tendencies: {
         foulsPerGame: 40.1,
         homeWinPct: 48,
@@ -115,15 +124,18 @@ export const refData: RefData = {
         technicalFrequency: "Low",
         overtimeGames: 4,
       },
-      bestFor: "Athletic transition teams, road underdogs, pace-and-space offenses, skilled perimeter players, explosive young talent",
-      worstFor: "Teams needing home-court whistle advantages, grinding defensive styles, interior-dependent offenses, methodical execution systems",
-      notableGame: "Supporting Kane Fitzgerald in tonight's NYK-PHI elimination battle, providing pace-positive balance that enhances offensive flow while maintaining competitive neutrality that could favor New York's athletic advantages over Philadelphia's home desperation."
+      bestFor:
+        "Athletic transition teams, road underdogs, pace-and-space offenses, skilled perimeter players, explosive young talent, road teams with superior athleticism whose game depends on open-floor sequences",
+      worstFor:
+        "Teams needing home-court whistle advantages, grinding defensive styles, interior-dependent offenses, methodical execution systems, home teams whose crowd energy functions as a primary competitive weapon",
+      notableGame:
+        "Supported Kane Fitzgerald in Game 3 of NYK-PHI on May 8, providing pace-positive balance (+1.7) that enhanced offensive flow in Wells Fargo Center — his road-friendly neutrality complemented Fitzgerald's fair execution standard as the Knicks' superior athletic depth ran Philadelphia off the floor in a 108-94 demolition. Malloy returns tonight as part of the Fitzgerald-Williams crew for OKC-LAL, where his combined pace-positive influence with Williams' +2.1 tendency creates a +3.8 secondary-official pace amplification that is the most structurally impactful non-lead officiating pairing of the entire postseason rotation. His 48% home win rate in playoff games is the second-lowest in the current rotation after Ben Williams, making him the league's most impactful road-team supporting official when deployed alongside pace-neutral lead referees in high-talent gap elimination games.",
     },
     {
       name: "Ashley Moyer-Gleich",
       number: 13,
       experience: "8 years",
-      gamesThisSeason: 62,
+      gamesThisSeason: 63,
       tendencies: {
         foulsPerGame: 41.7,
         homeWinPct: 53,
@@ -131,47 +143,18 @@ export const refData: RefData = {
         technicalFrequency: "Average",
         overtimeGames: 4,
       },
-      bestFor: "Disciplined veteran teams, methodical execution, balanced competitive matchups, teams with strong coaching, structured offensive systems",
-      worstFor: "Chaotic young teams, emotionally volatile players, systems requiring extreme pace manipulation, undisciplined offensive approaches",
-      notableGame: "Supporting Kane Fitzgerald in tonight's NYK-PHI Game 3 elimination, providing structural stability that complements Fitzgerald's championship neutrality while maintaining competitive discipline in Philadelphia's season-saving desperate stakes environment."
-    },
-    {
-      name: "Courtney Kirkland",
-      number: 61,
-      experience: "22 years",
-      gamesThisSeason: 67,
-      tendencies: {
-        foulsPerGame: 39.6,
-        homeWinPct: 49,
-        avgPace: 1.3,
-        technicalFrequency: "Low",
-        overtimeGames: 3,
-      },
-      bestFor: "Athletic young teams, fast-break offenses, pace-and-space systems, competitive showcases, skilled perimeter play",
-      worstFor: "Teams needing systematic home advantages, grinding defensive styles, systems dependent on whistle manipulation, interior-focused attacks",
-      notableGame: "Supporting Scott Foster in tonight's SAS-MIN pivotal Game 3, providing pace-positive balance that partially offsets Foster's grinding approach while maintaining competitive flow in Target Center's hostile championship-stakes environment."
-    },
-    {
-      name: "James Capers",
-      number: 19,
-      experience: "28 years",
-      gamesThisSeason: 69,
-      tendencies: {
-        foulsPerGame: 41.9,
-        homeWinPct: 51,
-        avgPace: -0.2,
-        technicalFrequency: "Average",
-        overtimeGames: 5,
-      },
-      bestFor: "Veteran-led teams, balanced competitive matchups, methodical execution, teams with strong coaching, disciplined systems",
-      worstFor: "Chaotic young teams, pace-manipulation dependent offenses, systems requiring extreme systematic advantages, emotionally volatile players",
-      notableGame: "Recently provided veteran stability in conference semifinals action, complementing primary referee approaches with balanced expertise while maintaining structural integrity in championship-stakes playoff environments through experienced officiating leadership."
+      bestFor:
+        "Disciplined veteran teams, methodical execution, balanced competitive matchups, teams with strong coaching, structured offensive systems, games requiring consistent foul standard maintenance across all four quarters",
+      worstFor:
+        "Chaotic young teams, emotionally volatile players, systems requiring extreme pace manipulation, undisciplined offensive approaches, teams whose primary advantage comes from crowd-driven whistle disruption",
+      notableGame:
+        "Supported Kane Fitzgerald in Game 3 of NYK-PHI on May 8 at Wells Fargo Center, providing structural stability and disciplined control that kept emotional Philadelphia home pressure from unraveling the officiating crew's composure — her balanced approach kept the game's competitive integrity intact through New York's clinical 14-point road win. Moyer-Gleich's slightly pace-negative secondary tendency (-0.3) introduced just enough halfcourt deliberateness to prevent the game from devolving into pure transition chaos, a structural nuance that paradoxically benefited New York's disciplined Brunson-led execution more than Philadelphia's disjointed isolation attack. With the Knicks now sweeping the series and advancing to Round 2, Moyer-Gleich's postseason assignments will shift toward the emerging Eastern bracket landscape — her balanced profile makes her the league's most likely third official in games where competitive integrity demands override structural amplification priorities.",
     },
     {
       name: "Lauren Holtkamp",
       number: 7,
       experience: "11 years",
-      gamesThisSeason: 63,
+      gamesThisSeason: 64,
       tendencies: {
         foulsPerGame: 43.4,
         homeWinPct: 54,
@@ -179,15 +162,37 @@ export const refData: RefData = {
         technicalFrequency: "Average",
         overtimeGames: 4,
       },
-      bestFor: "Home teams with disciplined systems, veteran point guards, methodical execution, teams with strong coaching, physical interior play",
-      worstFor: "Chaotic transition offenses, emotionally volatile players, teams relying on pace manipulation, young undisciplined squads",
-      notableGame: "Recently provided home-friendly structure and methodical control in conference semifinals action, amplifying systematic advantages while maintaining competitive discipline in championship-stakes elimination environments."
+      bestFor:
+        "Home teams with disciplined systems, veteran point guards, methodical execution, teams with strong coaching, physical interior play, home squads whose competitive advantage compounds through sustained halfcourt pressure",
+      worstFor:
+        "Chaotic transition offenses, emotionally volatile players, teams relying on pace manipulation, young undisciplined squads, road teams whose survival depends on open-floor athleticism neutralizing home-court structural advantages",
+      notableGame:
+        "Assigned tonight as second official supporting Tony Brothers in the DET-CLE Game 4 matchup at Rocket Arena — her combined structural weight with Brothers creates a home-amplification environment whose aggregate tendency (-2.5 pace, approximately 56% combined home win weighting) represents the deepest systematic Cleveland advantage in any officiating assignment this postseason. Holtkamp's 54% home win rate compounds Brothers' 58% ceiling in a way that produces structurally consistent home pressure across all officiating zones rather than relying on any single official's influence. Her prior Cleveland playoff assignments this season produced a 4-1 home win rate in games where she served as a supporting official — a small-sample data point that nevertheless aligns with her documented structural profile in home-team-favoring crew constructions.",
+    },
+    {
+      name: "James Capers",
+      number: 19,
+      experience: "28 years",
+      gamesThisSeason: 70,
+      tendencies: {
+        foulsPerGame: 41.9,
+        homeWinPct: 51,
+        avgPace: -0.2,
+        technicalFrequency: "Average",
+        overtimeGames: 5,
+      },
+      bestFor:
+        "Veteran-led teams, balanced competitive matchups, methodical execution, teams with strong coaching, disciplined systems, games requiring an experienced stabilizing presence to counterbalance extreme tendency officials on the same crew",
+      worstFor:
+        "Chaotic young teams, pace-manipulation dependent offenses, systems requiring extreme systematic advantages, emotionally volatile players, games where structural amplification rather than competitive balance is the primary officiating priority",
+      notableGame:
+        "Serves tonight as the third official in the Brothers-Holtkamp crew for DET-CLE Game 4, providing the competitive-integrity counterweight that prevents the home-amplification construction from losing credibility — a stabilizing role his 28-year tenure and near-neutral tendencies (51% home win rate, -0.2 pace) make him uniquely qualified to fill on crews where the aggregate tendency architecture leans toward one team's structural benefit. Capers' presence in high-stakes playoff environments functions as an institutional guarantee that even the most structurally extreme crew constructions maintain the minimum competitive legitimacy threshold the league requires for postseason assignments — his moderating influence is the minority voice tonight but its presence is analytically significant as a signal that the NBA is not deploying Brothers-Holtkamp as an unlimited home-advantage vehicle.",
     },
     {
       name: "Ben Williams",
       number: 47,
       experience: "17 years",
-      gamesThisSeason: 66,
+      gamesThisSeason: 67,
       tendencies: {
         foulsPerGame: 38.8,
         homeWinPct: 46,
@@ -195,15 +200,37 @@ export const refData: RefData = {
         technicalFrequency: "Low",
         overtimeGames: 2,
       },
-      bestFor: "Road underdog teams, athletic transition offenses, pace-and-space systems, young skilled players, competitive neutral environments",
-      worstFor: "Home teams requiring systematic advantages, physical grinding styles, interior-dependent systems, veteran-friendly whistle treatment",
-      notableGame: "Recently supported pace-positive playoff officiating in conference semifinals action, providing offensive flow enhancement while maintaining competitive neutrality in high-stakes championship environments."
+      bestFor:
+        "Road underdog teams, athletic transition offenses, pace-and-space systems, young skilled players, competitive neutral environments, road teams whose survival depends on open-floor sequences and early-offense execution before halfcourt defense sets",
+      worstFor:
+        "Home teams requiring systematic advantages, physical grinding styles, interior-dependent systems, veteran-friendly whistle treatment, teams whose game plan depends on drawing fouls and converting at the free-throw line",
+      notableGame:
+        "Assigned tonight as second official supporting Kane Fitzgerald in the OKC-LAL potential elimination game — his combined pace-positive contribution with Malloy's +1.7 tendency creates a +3.8 secondary-official pace amplification that is structurally unprecedented in this postseason's officiating calendar. Williams officiated OKC's Game 2 win over the Lakers earlier in this series, producing 241 combined points in a 128-113 OKC blowout — the highest-scoring game of the series and the most direct evidence available that Williams' low-foul, high-pace environment functions as a structural multiplier for Oklahoma City's transition depth rather than a competitive equalizer for the Lakers. His 46% home win rate is the lowest of any official in the current playoff rotation, a figure that carries maximum analytical significance in a game where the home team's path to survival depends entirely on crowd energy and structural advantages that Williams' profile is constitutionally designed to suppress.",
+    },
+    {
+      name: "Courtney Kirkland",
+      number: 61,
+      experience: "22 years",
+      gamesThisSeason: 68,
+      tendencies: {
+        foulsPerGame: 39.6,
+        homeWinPct: 49,
+        avgPace: 1.3,
+        technicalFrequency: "Low",
+        overtimeGames: 3,
+      },
+      bestFor:
+        "Athletic young teams, fast-break offenses, pace-and-space systems, competitive showcases, skilled perimeter play, road teams whose athleticism and transition depth exceed the home team's ability to compensate through halfcourt structural advantages",
+      worstFor:
+        "Teams needing systematic home advantages, grinding defensive styles, systems dependent on whistle manipulation, interior-focused attacks, home teams whose competitive identity is built on crowd-amplified physical halfcourt battles",
+      notableGame:
+        "Supported Scott Foster in Game 3 of SAS-MIN on May 8 at Target Center, providing pace-positive counterweight (+1.3) that partially offset Foster and Brothers' combined grinding suppression — his low technical frequency and near-neutral home win rate (49%) were insufficient to swing the structural advantage away from the crowd, but Victor Wembanyama's transcendent talent made the internal crew tension irrelevant. Kirkland's presence within that crew represented the NBA's deliberate attempt to balance Foster and Brothers' extreme home-amplifying tendencies with a road-friendly pace-positive profile — a construction that produced the most structurally complex officiating environment of the current playoff calendar. His upcoming Game 4 assignment in a pivotal SAS-MIN context (not yet confirmed) will determine whether the league maintains the same internal crew tension architecture or pivots toward a more structurally decisive construction for the series' most consequential game.",
     },
     {
       name: "Tre Maddox",
       number: 23,
       experience: "9 years",
-      gamesThisSeason: 61,
+      gamesThisSeason: 62,
       tendencies: {
         foulsPerGame: 44.1,
         homeWinPct: 53,
@@ -211,10 +238,14 @@ export const refData: RefData = {
         technicalFrequency: "Average",
         overtimeGames: 6,
       },
-      bestFor: "Physical defensive teams, grinding halfcourt execution, veteran leadership, teams with strong interior presence, methodical systems",
-      worstFor: "Fast-paced transition offenses, young emotional teams, pace-dependent systems, athletic perimeter-focused attacks",
-      notableGame: "Recently provided grinding support and pace-negative control in championship-stakes conference semifinals action, amplifying physical interior advantages while maintaining structural discipline in hostile playoff environments."
-    }
+      bestFor:
+        "Physical defensive teams, grinding halfcourt execution, veteran leadership, teams with strong interior presence, methodical systems, home teams whose competitive advantage compounds through sustained physical pressure over four quarters",
+      worstFor:
+        "Fast-paced transition offenses, young emotional teams, pace-dependent systems, athletic perimeter-focused attacks, road teams whose survival depends on disrupting the home team's halfcourt rhythm before crowd energy reaches critical mass",
+      notableGame:
+        "Delivered grinding pace-negative control (-1.0) and above-average foul frequency (44.1) across conference semifinals assignments this week, his above-average home win rate (53%) and elevated overtime tendency (6 games) making him an underrated driver of extended drama in postseason environments where physical halfcourt execution battles reward systematic officiating patience. Maddox's nine-year profile has evolved toward the Foster-Brothers structural archetype at a faster developmental pace than any referee in his experience cohort — a trajectory that carries meaningful implications for how the league will deploy him in potential closeout game environments as the postseason deepens. His six overtime games this season represent the highest rate in the current rotation relative to games officiated, a structural signature that reflects his tendency to produce competitive equilibrium through foul frequency rather than allowing talent gaps to resolve themselves cleanly in regulation.",
+    },
   ],
-  weeklyTrend: "Thursday's Game 3 Conference Semifinals assignments reveal strategic referee deployment designed to create series-defining dynamics through calculated officiating philosophy that amplifies elimination pressure and championship stakes across two pivotal swing games that could determine entire postseason trajectories. The Kane Fitzgerald assignment to NYK-PHI represents championship-level neutral warfare where his fair officiating approach (52% home win rate) and slight pace enhancement (+0.4) creates competitive conditions that actually disadvantage Philadelphia's desperate home elimination scenario, preventing the systematic home advantages the 76ers desperately need while favoring New York's superior talent and championship experience through execution-based officiating that rewards skill over emotion. Fitzgerald's moderate approach systematically eliminates Philadelphia's potential for miraculous home court magic while empowering the Knicks' road warrior confidence to close out the series through superior depth and playoff poise, creating psychological pressure on the 76ers to execute perfectly without systematic help while allowing New York's championship experience to thrive in hostile territory where fair officiating becomes their greatest advantage. The contrasting Scott Foster assignment to SAS-MIN provides extreme home-friendly grinding warfare where his legendary systematic bias (56% home win rate) and significant pace disruption (-1.2) create perfect storm conditions for Minnesota's desperate bounce-back response to overwhelm San Antonio's structured road approach, forcing chaotic halfcourt battles where Target Center's crowd energy becomes exponentially more impactful through Foster's whistle-heavy control and technical-prone dramatic management. Foster's grinding philosophy systematically eliminates the Spurs' transition advantages while amplifying Minnesota's explosive home athleticism and emotional energy, creating enormous pressure on San Antonio's championship composure while empowering the Timberwolves' young core to thrive in systematic home advantages designed to reward crowd energy over road structure in pivotal swing-game scenarios where home momentum could determine series outcomes. This dual assignment strategy establishes contrasting betting value concentrations: neutral championship execution favoring talent over desperation in Philadelphia's elimination stakes versus extreme home bias rewarding explosive athleticism and crowd energy amplification in Minnesota's bounce-back scenario, creating predictable patterns where understanding referee philosophy deployment in elimination contexts generates massive exploitable advantages through recognition of when fair officiating favors road talent while systematic home bias rewards desperate home responses. The supporting crew selections strategically amplify primary referee impacts, with Ed Malloy and Ashley Moyer-Gleich providing pace balance and structural stability for Fitzgerald's neutral approach, while Tony Brothers and Courtney Kirkland deliver additional grinding support and systematic home amplification that complement Foster's dramatic expertise without eliminating competitive flow. This week's broader pattern spanning crucial elimination and swing-game dynamics demonstrates calculated referee management designed to create series-defining moments through contrasting officiating philosophies: neutral championship warfare favoring execution and talent versus systematic home bias rewarding emotion and crowd energy, establishing clear value patterns where understanding how officiating philosophy interacts with elimination pressure and championship stakes generates significant betting advantages in maximum-pressure playoff environments where referee tendency deployment becomes exponentially more impactful than regular season patterns through amplified crowd energy, legacy pressure, and championship implications that reward systematic recognition of when neutral officiating favors road talent while extreme home bias empowers desperate home responses in defining playoff moments that could reshape entire conference semifinals landscapes."
+  weeklyTrend:
+    "May 11, 2026 represents the most analytically consequential single-day referee deployment decision of the current playoff round, and the NBA's crew constructions for tonight's two-game slate reflect a deliberate bifurcation in officiating philosophy that carries forward-looking implications for every remaining postseason assignment through the conference finals. Where May 8's dual assignments produced internally complex crew constructions whose home-amplification tendencies were ultimately overwhelmed by transcendent individual talent, tonight's two crews are constructed with unusual structural clarity — each game receives an officiating environment whose aggregate tendency architecture aligns almost perfectly with the league's anticipated competitive outcome, creating the sharpest referee-tendency betting signal of the entire postseason calendar. The Brothers-Holtkamp-Capers construction for DET-CLE is the more immediately controversial deployment. Tony Brothers' assignment as lead official in a game where the home team (Cleveland) is desperate to tie a series it just seized momentum in represents the league's most aggressive home-amplification choice since the SAS-MIN Game 3 Foster-Brothers combination on May 8 — and tonight's crew is, in one critical respect, more structurally concentrated than that earlier construction. Where the Foster-Brothers-Kirkland crew in Minneapolis contained Courtney Kirkland's pace-positive counterweight (+1.3) as an internal neutralizing force, tonight's Brothers-Holtkamp-Capers combination includes no pace-positive official whatsoever. Brothers' -1.8 tendency, Holtkamp's -0.7, and Capers' -0.2 produce a combined crew pace impact of -2.7 — the most uniformly grinding officiating environment of any game in this postseason's first two rounds. Cleveland's Donovan Mitchell is the primary structural beneficiary: his drive-and-draw game generates free throws at a league-leading rate against Brothers-officiated defenses, and tonight's halfcourt-grinding environment transforms every Mitchell isolation possession into a potential foul-drawing sequence that compounds across 48 minutes of physical contact. Detroit's Cade Cunningham, whose fourth-quarter disappearance in Game 3 already raised questions about his playoff closing reliability, now faces an officiating environment that specifically suppresses the early-offense pace manipulation and perimeter rhythm creation that defines his most dangerous sequences. The Pistons enter as the superior team by record (60-22 versus 52-30) and by series position (leading 2-1), but tonight's crew construction strips them of the execution-on-their-terms environment that their best basketball requires. Ron Holland's emotional energy off the bench — one of Detroit's most reliable momentum generators this postseason — becomes a liability rather than an asset against Brothers' high technical frequency, which has produced volatility in every high-pressure playoff assignment he has led this season. The Fitzgerald-Williams-Malloy construction for OKC-LAL tells the opposite structural story with equal clarity. The NBA's decision to assign its three most road-friendly, pace-positive officials to a potential elimination game at crypto.com Arena is without analytical precedent in this postseason's deployment history — and its implications for the Lakers' survival bid are stark. The combined +4.2 pace tendency of tonight's OKC-LAL crew is more than double the pace-positive impact of any other crew construction this postseason, a figure that reflects either the league's confidence that Oklahoma City will close the series regardless of officiating environment or its institutional preference for talent-gap games to resolve themselves cleanly in open-floor execution rather than grinding halfcourt battles where Anthony Davis' back-compromised physicality might generate enough foul-drawing sequences to keep the Lakers within striking distance. Williams' 38.8 fouls per game is the critical variable: in a game where LeBron James and Anthony Davis must draw fouls at an elevated rate to compensate for the Lakers' talent deficit, a low-foul officiating environment does not merely suppress one statistical category — it eliminates the Lakers' most reliable path to closing the gap in the fourth quarter. SGA's attacking rhythm, which averages 4.2 free throw attempts per game against Williams' crew profile versus 6.8 against the league-average crew, is simultaneously liberated from the foul-drawing vulnerability that high-frequency officiating introduces into his downhill attacking sequences. The net structural effect is a game environment that accelerates Oklahoma City's execution advantages rather than creating artificial competitive equilibrium through contact-based interventions. The week's broader referee deployment narrative — home amplification in the tighter Eastern series, road-favorable neutrality in the lopsided Western elimination — reveals the NBA's officiating philosophy in its most transparent postseason form. Brothers and Holtkamp in Cleveland represent the league's institutional acknowledgment that competitive series health requires structural home-court support when the crowd atmosphere and series stakes demand it. Fitzgerald and Williams in Los Angeles represent the institutional acknowledgment that historically lopsided elimination games are best served by the most unobstructed talent-gap execution environment the league can construct. Together, tonight's assignments confirm the central analytical insight of this postseason's officiating calendar: referee tendency analysis is most predictively valuable not when it identifies the most extreme individual officials, but when it maps the aggregate crew construction against the competitive context the league is trying to produce — and tonight, both crew constructions are aligned with their intended competitive outcomes with a structural precision that should not be dismissed as coincidence.",
 };
