@@ -367,4 +367,38 @@ export const sentimentData: SentimentData = {
       score: -82,
       mentions: 41600,
       topTake: "7 points and a -35 in a sweep-clinching loss. Paul George's Philadelphia chapter is over and it will be remembered as one of the most expensive disappointments in NBA free agency history. That is not a hot take. That is the scoreboard.",
-      narrativeArc: "George's -35 finale is the single worst individual
+      narrativeArc: "George's -35 finale is the single worst individual plus-minus in a sweep-clinching loss in recent memory. The discourse around him has turned from disappointment into full eulogy mode — the Philadelphia experiment is being declared dead on arrival and George's legacy is taking irreparable damage. His max contract is the centerpiece of every 'worst free agency signing' discussion happening right now.",
+    },
+    {
+      player: "Karl-Anthony Towns",
+      team: "NYK",
+      sentiment: "positive",
+      score: 86,
+      mentions: 13600,
+      topTake: "KAT was a monster all series — 28 and 11 in the sweep clincher with 3 blocks. The Knicks have TWO unstoppable forces and nobody in the East has an answer for both of them simultaneously.",
+      narrativeArc: "Towns' sweep-clinching double-double has him riding the wave of New York's collective ascension. The discourse around him is increasingly framed around the 'two-man wrecking crew' narrative with Brunson — his individual ceiling is being re-evaluated upward in real time.",
+    },
+    {
+      player: "LeBron James",
+      team: "LAL",
+      sentiment: "mixed",
+      score: -19,
+      mentions: 19900,
+      topTake: "LeBron going for 40 tonight in a loss and people acting like the Lakers almost did something historic is the most predictable NBA Twitter moment of the year. Don't let the narrative fool you.",
+      narrativeArc: "LeBron's elimination game has produced the most complicated discourse of the night — a mix of eulogy, respect, and flat-out trolling. His sentiment is mixed because the reverence for his career is fighting the 'this is finally over' energy in equal measure. He remains the most mentioned name on social media regardless of outcome.",
+    },
+    {
+      player: "Ajay Mitchell",
+      team: "OKC",
+      sentiment: "positive",
+      score: 88,
+      mentions: 26800,
+      topTake: "24 points and 10 assists off the bench in a Conference Semifinal blowout. Ajay Mitchell just dropped the most terrifying 'you haven't even seen our final form' game in Thunder history. This team is unfair.",
+      narrativeArc: "Mitchell's career-high performance in OKC's Game 3 demolition has made him the poster child for the Thunder's terrifying depth. The discourse is equal parts celebration of his individual explosion and existential dread from the rest of the league about what it means that OKC's BENCH can do this.",
+    },
+  ],
+
+  hottestTake: "The Knicks are going to the Finals and it won't be close. Brunson, KAT, Deuce, OG — they just set a PLAYOFF RECORD and swept a team by 30. Name one team in the East stopping this group. I'll wait. 🗽🔥",
+
+  coldestTake: "Wembanyama getting ejected is actually GOOD for San Antonio. Now the Spurs know they can compete without him, the role players got confidence, and Wemby will come back in Game 5 with the angriest motivation of his career. Spurs in 6 was always the plan.",
+};
