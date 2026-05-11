@@ -38,8 +38,9 @@ export const momentumData: MomentumData = {
   topClutchPerformer: {
     player: "Anthony Edwards",
     team: "MIN",
-    clutchRating: 96,
-    description: "With the Wolves' season on the line in a tied series, Edwards was a force of nature in the fourth quarter — 16 points on pure will, turning a 2-point deficit into a 5-point victory after Wembanyama's ejection threatened to give San Antonio an insurmountable psychological edge.",
+    clutchRating: 97,
+    description:
+      "With the series knotted and Wembanyama gone, Edwards willed Minnesota to a win with 16 fourth-quarter points — including back-to-back buckets to break a tie with 3:20 remaining. He finished 36-6 on 13-of-22 and dedicated every point to his late mother.",
   },
   games: [
     {
@@ -49,43 +50,58 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:21",
-          description: "New York opened the floodgates early, drilling 11 three-pointers in the first quarter alone. Deuce McBride hit 4 consecutive triples in a 6-minute stretch that had Philadelphia's bench visibly rattled and Xfinity Mobile Arena eerily silent.",
-          runScore: "15-2 NYK run",
+          timestamp: "3:41 remaining",
+          description:
+            "Miles McBride drains his fourth three-pointer of the quarter as the Knicks go on an 11-0 run. New York has already hit 11 threes in the first quarter — a postseason record — and Philadelphia's defense looks shattered.",
+          runScore: "11-0 NYK",
           momentum: "away",
           keyPlayer: "Miles McBride",
           impact: "game-changing",
         },
         {
           quarter: "Q2",
-          timestamp: "8:44",
-          description: "Joel Embiid briefly steadied Philadelphia with back-to-back buckets inside to cut the deficit to 14, but Jalen Brunson answered immediately with a pull-up three to push it back to 17. The window closed before it ever truly opened.",
-          runScore: "7-2 PHI run answered by 5-0 NYK",
+          timestamp: "6:02 remaining",
+          description:
+            "Joel Embiid converts back-to-back mid-range jumpers and the Wells Fargo crowd briefly stirs, trimming the deficit to 14. Philadelphia shows a pulse for the only time all night.",
+          runScore: "7-2 PHI",
+          momentum: "home",
+          keyPlayer: "Joel Embiid",
+          impact: "notable",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "1:28 remaining",
+          description:
+            "Jalen Brunson answers immediately with a stepback three and an assist to Karl-Anthony Towns for a corner three, extending the lead back to 22 at the half. The brief Philly flicker is extinguished entirely.",
+          runScore: "9-2 NYK",
           momentum: "away",
           keyPlayer: "Jalen Brunson",
           impact: "significant",
         },
         {
           quarter: "Q3",
-          timestamp: "5:10",
-          description: "Karl-Anthony Towns orchestrated a surgical 12-2 third-quarter run, dishing four assists in under three minutes as New York buried any lingering Philadelphia hope. The lead ballooned past 30 and the game entered garbage time with the Knicks still firing from deep.",
-          runScore: "12-2 NYK run",
+          timestamp: "4:55 remaining",
+          description:
+            "McBride hits consecutive threes 40 seconds apart to push the lead to 35. Paul George hasn't scored and his body language has gone completely dark — the arena is already half-empty.",
+          runScore: "12-3 NYK",
           momentum: "away",
-          keyPlayer: "Karl-Anthony Towns",
-          impact: "significant",
+          keyPlayer: "Miles McBride",
+          impact: "game-changing",
         },
         {
           quarter: "Q4",
-          timestamp: "9:00",
-          description: "Paul George, finishing with a -35 plus-minus, exited to a cascade of boos from the home crowd as the Knicks bench celebrated freely. The final quarter was a formality — New York coasted to 144, tying the NBA postseason record for three-pointers in a single game.",
-          runScore: "Final margin: 30",
+          timestamp: "8:00 remaining",
+          description:
+            "Bench units take over with the game decided. Embiid finishes an 8-of-8 shooting night but it registers as nothing more than a footnote in a historic blowout. The Knicks tie the NBA postseason record with their 25th three-pointer.",
+          runScore: "Final run: 18-8 NYK",
           momentum: "away",
-          keyPlayer: "Miles McBride",
+          keyPlayer: "Karl-Anthony Towns",
           impact: "notable",
         },
       ],
       clutchPlays: [],
-      narrative: "This was not a basketball game — it was a coronation. The New York Knicks made history on Philadelphia's floor, tying the all-time postseason record with 25 three-pointers while sweeping a 76ers team that never found an answer for New York's perimeter assault. Deuce McBride, a last-minute replacement for the injured OG Anunoby, delivered the performance of his career at the perfect moment, going 7-of-9 from deep as if the stage meant nothing. Joel Embiid was flawless and irrelevant — a perfect 8-of-8, 24 points, and a 30-point loss — a fitting and cruel encapsulation of this era of Sixers basketball. The Knicks are headed to the Eastern Conference Finals riding the hottest shooting display in playoff history.",
+      narrative:
+        "There was no drama here — only demolition. From the moment McBride's fourth triple rattled in at the end of the first quarter, the only question was how historic the margin would become. New York matched the all-time postseason record with 25 made threes, and Philadelphia's +35 Paul George experiment ended in silence. Joel Embiid shot a flawless 8-of-8 in a game that never mattered, a stat line that somehow made the loss feel lonelier. The Knicks didn't just sweep the Sixers — they erased them.",
     },
     {
       gameId: "SAS-MIN-20260510",
@@ -94,36 +110,50 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "7:48",
-          description: "Victor Wembanyama picked up his second foul just four minutes in, and with his franchise cornerstone on the bench, San Antonio's defensive structure unraveled. Anthony Edwards immediately attacked the paint, scoring 8 quick points to give Minnesota the early edge.",
-          runScore: "10-4 MIN run",
+          timestamp: "5:12 remaining",
+          description:
+            "Victor Wembanyama is assessed a flagrant-2 foul and ejected after just 12 minutes of play. The 7-foot-4 centerpiece of San Antonio's season walks to the tunnel with 4 points and 4 rebounds, and the entire Target Center crowd rises — sensing blood in the water.",
+          runScore: "N/A — momentum shift via ejection",
           momentum: "home",
-          keyPlayer: "Anthony Edwards",
-          impact: "significant",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "2:15",
-          description: "Wembanyama was ejected for a flagrant-2 foul with 12 minutes elapsed in the game. The arena erupted and the psychological shift was immediate — the Spurs' entire identity walked to the locker room early. Dylan Harper responded defiantly off the bench, scoring 8 second-quarter points to keep San Antonio within 3 at the half.",
-          runScore: "8-3 SAS bench run",
-          momentum: "away",
-          keyPlayer: "Dylan Harper",
+          keyPlayer: "Victor Wembanyama",
           impact: "game-changing",
         },
         {
+          quarter: "Q2",
+          timestamp: "7:33 remaining",
+          description:
+            "Dylan Harper — the rookie — steps into the vacuum and goes on a personal 8-2 run, hitting three consecutive mid-range jumpers with a poise that belies his age. San Antonio refuses to fold, and suddenly the Spurs lead by 7 despite losing their best player.",
+          runScore: "8-2 SAS",
+          momentum: "away",
+          keyPlayer: "Dylan Harper",
+          impact: "significant",
+        },
+        {
           quarter: "Q3",
-          timestamp: "4:30",
-          description: "De'Aaron Fox and Stephon Castle traded buckets with Edwards through a ferocious third quarter that saw six lead changes. The Spurs, playing with relentless pride without Wemby, held a 4-point lead entering the final frame — the moment demanded a closer, and Minnesota had one.",
-          runScore: "Tied at 89 entering Q4",
+          timestamp: "3:18 remaining",
+          description:
+            "Anthony Edwards erupts for 8 straight Minnesota points — a pull-up three, a hammer dunk, and a floater — to swing a 6-point deficit into a 2-point Wolves lead. The crowd at Target Center is shaking. Edwards is locked in, and everyone in the building can feel it.",
+          runScore: "10-2 MIN",
+          momentum: "home",
+          keyPlayer: "Anthony Edwards",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "6:44 remaining",
+          description:
+            "De'Aaron Fox and Stephon Castle combine for 7 straight Spurs points to knot the game at 96. San Antonio's collective resilience — playing without their franchise cornerstone — is becoming one of the stories of this playoff run.",
+          runScore: "7-2 SAS",
           momentum: "away",
           keyPlayer: "De'Aaron Fox",
           impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "6:02",
-          description: "Anthony Edwards took the game over completely, scoring 16 fourth-quarter points in a performance he dedicated to his late mother. A ferocious reverse layup through contact with 2:18 remaining gave Minnesota the lead for good, and Edwards sealed it at the free-throw line with ice in his veins.",
-          runScore: "34-25 MIN Q4",
+          timestamp: "3:20 remaining",
+          description:
+            "Edwards scores back-to-back buckets out of a timeout — a mid-range pull-up, then a coast-to-coast finish through contact — to break a tie and put Minnesota up 4. This is the decisive swing. He is playing on a different plane and the Spurs have no answer.",
+          runScore: "6-1 MIN",
           momentum: "home",
           keyPlayer: "Anthony Edwards",
           impact: "game-changing",
@@ -133,26 +163,38 @@ export const momentumData: MomentumData = {
         {
           player: "Anthony Edwards",
           team: "MIN",
-          description: "Driving reverse layup through contact over Castle — and-one — to give Minnesota its first lead since the third quarter, sending Target Center into pandemonium.",
-          timeRemaining: "2:18",
-          winProbabilityShift: 34,
-        },
-        {
-          player: "Dylan Harper",
-          team: "SAS",
-          description: "Fearless pull-up mid-range jumper over Jaden McDaniels to cut the deficit to 2 with under 90 seconds left — a 21-year-old rookie refusing to let the Spurs die.",
-          timeRemaining: "1:24",
-          winProbabilityShift: -18,
+          description:
+            "Pull-up mid-range jumper off the dribble to break a 96-96 tie — the shot that decisively shifted the game, delivered with ice in his veins and a crowd roaring behind him.",
+          timeRemaining: "3:20",
+          winProbabilityShift: 28,
         },
         {
           player: "Anthony Edwards",
           team: "MIN",
-          description: "Two clutch free throws after Harper's bucket to restore a 4-point lead and effectively seal the series-evening victory.",
+          description:
+            "Coast-to-coast drive through contact for the and-one, extending the lead to 5 and functionally sealing the game. Edwards screamed toward the rafters — the crowd erupted.",
+          timeRemaining: "3:04",
+          winProbabilityShift: 19,
+        },
+        {
+          player: "Dylan Harper",
+          team: "SAS",
+          description:
+            "Step-back three-pointer cuts the Minnesota lead to 2 with 1:44 left, refusing to let San Antonio die quietly. A stunning moment for a rookie on the road in a must-win game.",
+          timeRemaining: "1:44",
+          winProbabilityShift: -14,
+        },
+        {
+          player: "De'Aaron Fox",
+          team: "SAS",
+          description:
+            "Drives baseline for a layup to make it a 1-possession game with 58 seconds left. Last genuine Spurs lifeline — Minnesota's free throws would close the door.",
           timeRemaining: "0:58",
-          winProbabilityShift: 22,
+          winProbabilityShift: -9,
         },
       ],
-      narrative: "This game had everything: an ejection that changed history, a rookie refusing to be awed, and a superstar delivering his best performance when the stakes were highest. When Victor Wembanyama walked off the Target Center floor in the first half, it should have been over — but the San Antonio Spurs, built deep and tough, actually took a fourth-quarter lead and forced Anthony Edwards to prove himself without the luxury of a defining advantage. Edwards answered in the most personal way possible, dedicating each of his 16 fourth-quarter points to his late mother in a sequence that felt bigger than basketball. Dylan Harper's fearlessness in the clutch was the series' best subplot — but tonight belonged entirely to Ant. The series is tied 2-2 and heading back to San Antonio.",
+      narrative:
+        "Wembanyama's ejection rewrote the entire script, but the Spurs didn't blink — Dylan Harper and De'Aaron Fox spent three quarters proving San Antonio was more than one man. Then Anthony Edwards reminded everyone why he is the most electrifying player on the planet, pouring in 16 fourth-quarter points in a performance he dedicated to his late mother. The moment he screamed at the Target Center crowd after the and-one — arms wide, eyes blazing — will be the defining image of this series. Series tied 2-2, and everything ahead of us.",
     },
   ],
 };
