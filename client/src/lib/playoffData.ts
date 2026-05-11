@@ -322,6 +322,54 @@ export interface SeriesIntel {
 
 /** Keys MUST match `seriesId` from synced `playoffSeries` (E1-/W1-/F… + round). */
 export const seriesIntel: Record<string, SeriesIntel> = {
+  "E1-DET-ORL": {
+    regularSeasonH2H: "Detroit won the regular-season series behind Cade Cunningham's playmaking and a defense that held Orlando's offense below its season average in three of four meetings.",
+    playoffHistory: "First playoff meeting between these franchises since the 2008 first round, when the Pistons dispatched the Magic in five games during the final year of Detroit's mid-2000s dynasty.",
+    keyMatchup: "Cade Cunningham vs. Paolo Banchero headlined the series, with Cunningham's all-around play ultimately wearing down Orlando's defense across seven games.",
+    narrative: "Detroit completed one of the most dramatic comebacks in recent playoff history, rallying from a 3-1 deficit to win Games 5, 6, and 7 and eliminate Orlando. The Pistons' resilience proved prophetic — a team forged in comeback fire entered the second round with a confidence few opponents can match.",
+  },
+  "E1-BOS-PHI": {
+    regularSeasonH2H: "Boston held the regular-season edge as the East's No. 2 seed, but Philadelphia's inconsistency masked a playoff ceiling that proved dangerously high when Embiid, Maxey, and George all hit form simultaneously.",
+    playoffHistory: "A rivalry renewed — Boston and Philadelphia have a deep playoff history stretching from the Bird-Erving era to the Tatum-Embiid clashes of the 2020s. The Sixers stunned the NBA world by coming back from 1-3.",
+    keyMatchup: "Joel Embiid's two-way dominance and Tyrese Maxey's scoring explosiveness eventually overwhelmed Boston's defensive schemes, as the Celtics' historic 3-1 collapse became the defining upset of Round 1.",
+    narrative: "Philadelphia pulled off the biggest upset of the first round, coming back from a 3-1 series deficit to eliminate the defending-era Celtics. The Sixers rode Embiid's dominant interior play and Maxey's fearless shot-making to win three consecutive elimination games — only to run into the Knicks buzzsaw in the second round.",
+  },
+  "E1-NYK-TOR": {
+    regularSeasonH2H: "New York controlled the regular-season series with superior depth and Brunson's consistent scoring, setting the tone for a playoff matchup the Knicks entered as heavy favorites.",
+    playoffHistory: "New York and Toronto have limited direct playoff history, making this a relatively fresh first-round matchup without the emotional baggage of deeper rivalries.",
+    keyMatchup: "Jalen Brunson's scoring versatility proved too much for Toronto's defensive schemes as the Knicks dispatched the Raptors efficiently to set up their dominant second-round sweep.",
+    narrative: "The Knicks handled Toronto with the clinical efficiency of a team built for deeper playoff runs. New York's balanced attack and suffocating defense dismissed the Raptors and advanced to face Philadelphia in a second-round matchup they would dominate even more completely.",
+  },
+  "E1-CLE-ATL": {
+    regularSeasonH2H: "Cleveland's home-court advantage proved decisive in the regular season, with the Cavaliers winning three of four meetings behind Donovan Mitchell's scoring and Evan Mobley's defensive versatility.",
+    playoffHistory: "A first-round matchup between two teams seeking deeper playoff runs — Cleveland's 2024 second-round exit and Atlanta's inconsistent postseason history gave both franchises something to prove.",
+    keyMatchup: "Donovan Mitchell's scoring explosiveness overwhelmed Trae Young's offense-first approach, as Cleveland's defensive structure neutralized Atlanta's pick-and-roll attack.",
+    narrative: "Cleveland advanced through Atlanta with Mitchell leading the way, setting up a second-round collision with Detroit that has produced one of the most compelling series in the East. The Cavaliers' balanced approach worked against the Hawks but faces a sterner test against the Pistons' comeback mentality.",
+  },
+  "W1-OKC-PHX": {
+    regularSeasonH2H: "OKC dominated the regular-season series with their league-best defense holding Phoenix's trio of stars below their scoring averages in every meeting.",
+    playoffHistory: "Oklahoma City and Phoenix met in the 2024 first round where the Thunder's young core gained invaluable experience. The 2026 edition was even more lopsided in OKC's favor.",
+    keyMatchup: "SGA's two-way dominance rendered Kevin Durant, Devin Booker, and Bradley Beal ineffective — the Thunder's defensive system turned Phoenix's star power into a liability.",
+    narrative: "The Thunder's first-round dismissal of Phoenix was a statement of intent — the league's best regular-season team validated their credentials against a star-laden Suns roster that never found its footing. OKC's depth and defensive excellence carried seamlessly into the postseason.",
+  },
+  "W1-SAS-POR": {
+    regularSeasonH2H: "San Antonio's 62-win season included convincing regular-season victories over Portland, with Wembanyama's two-way impact proving insurmountable for the Trail Blazers' young roster.",
+    playoffHistory: "A classic franchise matchup revived — the Spurs and Trail Blazers have deep playoff history from the Duncan-era West, but the 2026 edition featured Wembanyama establishing his own postseason legacy.",
+    keyMatchup: "Victor Wembanyama's combination of scoring, shot-blocking, and playmaking overwhelmed Portland's frontcourt — a preview of the dominance he would display even more spectacularly in Round 2.",
+    narrative: "San Antonio dispatched Portland efficiently behind Wembanyama's generational talent, advancing to face Minnesota in a second-round series that has become the most dramatic matchup in the West. The Trail Blazers' young core gained experience but was simply overmatched.",
+  },
+  "W1-DEN-MIN": {
+    regularSeasonH2H: "Denver held the regular-season series advantage as the West's No. 3 seed, but Minnesota's late-season surge and defensive identity made them a dangerous first-round opponent.",
+    playoffHistory: "Minnesota and Denver met in the 2024 Western Conference Semifinals where the Timberwolves won in seven. That experience proved decisive as Minnesota pulled off the first-round upset.",
+    keyMatchup: "Rudy Gobert's interior defense and Anthony Edwards' scoring explosiveness overwhelmed Nikola Jokic's playmaking — Denver's MVP couldn't overcome Minnesota's collective defensive effort.",
+    narrative: "Minnesota pulled off the West's biggest first-round upset, eliminating the third-seeded Nuggets behind Edwards' scoring and Gobert's rim protection. The Timberwolves' playoff experience from their 2024 run proved invaluable, and they carried that momentum into a second-round battle with San Antonio that is now tied 2-2.",
+  },
+  "W1-LAL-HOU": {
+    regularSeasonH2H: "The Lakers held the regular-season edge behind LeBron and Luka's combined star power, though Houston's young roster pushed Los Angeles in multiple competitive meetings.",
+    playoffHistory: "The Lakers and Rockets have deep playoff history from the Kobe-era and the 2020 bubble. The 2026 edition was a passing-of-the-torch moment as LA's veterans outlasted Houston's rebuilding core.",
+    keyMatchup: "LeBron James and Luka Doncic's combined playmaking proved too much for Houston's young defense, though the Rockets' competitive effort signaled a franchise on the rise.",
+    narrative: "The Lakers advanced past Houston behind their veteran star power, but the series took a physical toll. Doncic's hamstring issues that surfaced during the Rockets series have lingered into the second round against OKC, where the Thunder's 3-0 lead suggests the Lakers' run is nearly over.",
+  },
   "E2-NYK-PHI": {
     regularSeasonH2H: "The Knicks and 76ers met four times in the regular season with New York holding the overall edge in competitive games decided by tight margins.",
     playoffHistory: "New York eliminated Philadelphia in the 2023 second round in six games. The Knicks have now swept the Sixers in the 2026 Conference Semifinals 4-0, their most dominant playoff series performance in decades.",
