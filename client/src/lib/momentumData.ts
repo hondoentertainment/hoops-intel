@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 11, 2026
+// Last updated: May 12, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,168 +33,167 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 11, 2026",
-  gameOfTheNight: "SAS-MIN-20260510",
+  date: "May 12, 2026",
+  gameOfTheNight: "DET-CLE-20260511",
   topClutchPerformer: {
-    player: "Anthony Edwards",
-    team: "MIN",
-    clutchRating: 97,
+    player: "Donovan Mitchell",
+    team: "CLE",
+    clutchRating: 98,
     description:
-      "With the series knotted and Wembanyama gone, Edwards willed Minnesota to a win with 16 fourth-quarter points — including back-to-back buckets to break a tie with 3:20 remaining. He finished 36-6 on 13-of-22 and dedicated every point to his late mother.",
+      "39 second-half points — tying an NBA playoff record — including five consecutive buckets during the decisive third-quarter run that snapped Detroit's spine. Mitchell was ice in crunch time: pull-up daggers, mid-range runners off the shot clock, and 13-of-15 from the stripe. Cleveland doesn't win this game, or possibly this series, without his singular eruption.",
   },
   games: [
     {
-      gameId: "NYK-PHI-20260510",
-      teams: { home: "PHI", away: "NYK" },
-      finalScore: { home: 114, away: 144 },
+      gameId: "DET-CLE-20260511",
+      teams: { home: "CLE", away: "DET" },
+      finalScore: { home: 112, away: 103 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:41 remaining",
+          timestamp: "3:41",
           description:
-            "Miles McBride drains his fourth three-pointer of the quarter as the Knicks go on an 11-0 run. New York has already hit 11 threes in the first quarter — a postseason record — and Philadelphia's defense looks shattered.",
-          runScore: "11-0 NYK",
+            "Detroit opened on a 14-4 tear, forcing Cleveland into early timeouts. Cade Cunningham orchestrated pick-and-roll after pick-and-roll, and the Pistons' defensive intensity smothered Mitchell into a scoreless first quarter.",
+          runScore: "14-4 DET",
           momentum: "away",
-          keyPlayer: "Miles McBride",
-          impact: "game-changing",
+          keyPlayer: "Cade Cunningham",
+          impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "6:02 remaining",
+          timestamp: "6:22",
           description:
-            "Joel Embiid converts back-to-back mid-range jumpers and the Wells Fargo crowd briefly stirs, trimming the deficit to 14. Philadelphia shows a pulse for the only time all night.",
-          runScore: "7-2 PHI",
+            "James Harden steadied Cleveland with a 9-for-9 free-throw clinic and slick playmaking, trimming the deficit to six at halftime. Harden's composure kept the Cavs' season alive long enough for Mitchell to wake up.",
+          runScore: "18-10 CLE",
           momentum: "home",
-          keyPlayer: "Joel Embiid",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "1:28 remaining",
-          description:
-            "Jalen Brunson answers immediately with a stepback three and an assist to Karl-Anthony Towns for a corner three, extending the lead back to 22 at the half. The brief Philly flicker is extinguished entirely.",
-          runScore: "9-2 NYK",
-          momentum: "away",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "James Harden",
           impact: "significant",
         },
         {
           quarter: "Q3",
-          timestamp: "4:55 remaining",
+          timestamp: "5:08",
           description:
-            "McBride hits consecutive threes 40 seconds apart to push the lead to 35. Paul George hasn't scored and his body language has gone completely dark — the arena is already half-empty.",
-          runScore: "12-3 NYK",
-          momentum: "away",
-          keyPlayer: "Miles McBride",
+            "The Donovan Mitchell detonation. Cleveland erupted 38-21 in the third — a 17-0 run within that stretch punctuated by five straight Mitchell buckets: pull-up triple, floater, step-back two, and-one, pull-up two. The arena lifted off the floor. Detroit never recovered its footing.",
+          runScore: "38-21 CLE",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
           impact: "game-changing",
         },
         {
           quarter: "Q4",
-          timestamp: "8:00 remaining",
+          timestamp: "8:15",
           description:
-            "Bench units take over with the game decided. Embiid finishes an 8-of-8 shooting night but it registers as nothing more than a footnote in a historic blowout. The Knicks tie the NBA postseason record with their 25th three-pointer.",
-          runScore: "Final run: 18-8 NYK",
+            "Detroit mounted a brief 9-3 answer to open the fourth, cutting the lead to 11 and quieting Rocket Arena momentarily. Cunningham found his pull-up and Evan Mobley picked up his fourth foul — Cleveland's margin of error narrowed.",
+          runScore: "9-3 DET",
           momentum: "away",
-          keyPlayer: "Karl-Anthony Towns",
+          keyPlayer: "Cade Cunningham",
           impact: "notable",
         },
-      ],
-      clutchPlays: [],
-      narrative:
-        "There was no drama here — only demolition. From the moment McBride's fourth triple rattled in at the end of the first quarter, the only question was how historic the margin would become. New York matched the all-time postseason record with 25 made threes, and Philadelphia's +35 Paul George experiment ended in silence. Joel Embiid shot a flawless 8-of-8 in a game that never mattered, a stat line that somehow made the loss feel lonelier. The Knicks didn't just sweep the Sixers — they erased them.",
-    },
-    {
-      gameId: "SAS-MIN-20260510",
-      teams: { home: "MIN", away: "SAS" },
-      finalScore: { home: 114, away: 109 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "5:12 remaining",
-          description:
-            "Victor Wembanyama is assessed a flagrant-2 foul and ejected after just 12 minutes of play. The 7-foot-4 centerpiece of San Antonio's season walks to the tunnel with 4 points and 4 rebounds, and the entire Target Center crowd rises — sensing blood in the water.",
-          runScore: "N/A — momentum shift via ejection",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "7:33 remaining",
-          description:
-            "Dylan Harper — the rookie — steps into the vacuum and goes on a personal 8-2 run, hitting three consecutive mid-range jumpers with a poise that belies his age. San Antonio refuses to fold, and suddenly the Spurs lead by 7 despite losing their best player.",
-          runScore: "8-2 SAS",
-          momentum: "away",
-          keyPlayer: "Dylan Harper",
-          impact: "significant",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:18 remaining",
-          description:
-            "Anthony Edwards erupts for 8 straight Minnesota points — a pull-up three, a hammer dunk, and a floater — to swing a 6-point deficit into a 2-point Wolves lead. The crowd at Target Center is shaking. Edwards is locked in, and everyone in the building can feel it.",
-          runScore: "10-2 MIN",
-          momentum: "home",
-          keyPlayer: "Anthony Edwards",
-          impact: "game-changing",
-        },
         {
           quarter: "Q4",
-          timestamp: "6:44 remaining",
+          timestamp: "2:30",
           description:
-            "De'Aaron Fox and Stephon Castle combine for 7 straight Spurs points to knot the game at 96. San Antonio's collective resilience — playing without their franchise cornerstone — is becoming one of the stories of this playoff run.",
-          runScore: "7-2 SAS",
-          momentum: "away",
-          keyPlayer: "De'Aaron Fox",
-          impact: "significant",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "3:20 remaining",
-          description:
-            "Edwards scores back-to-back buckets out of a timeout — a mid-range pull-up, then a coast-to-coast finish through contact — to break a tie and put Minnesota up 4. This is the decisive swing. He is playing on a different plane and the Spurs have no answer.",
-          runScore: "6-1 MIN",
+            "Evan Mobley answered Detroit's surge with back-to-back blocks — swatting a Monté Morris floater into the third row and rejecting a Cunningham drive — then converted the other end. The Mobley sequence killed any remaining Detroit hope and sealed Cleveland's series-tying victory.",
+          runScore: "8-2 CLE",
           momentum: "home",
-          keyPlayer: "Anthony Edwards",
+          keyPlayer: "Evan Mobley",
           impact: "game-changing",
         },
       ],
       clutchPlays: [
         {
-          player: "Anthony Edwards",
-          team: "MIN",
+          player: "Donovan Mitchell",
+          team: "CLE",
           description:
-            "Pull-up mid-range jumper off the dribble to break a 96-96 tie — the shot that decisively shifted the game, delivered with ice in his veins and a crowd roaring behind him.",
-          timeRemaining: "3:20",
-          winProbabilityShift: 28,
+            "Step-back pull-up two over Cunningham's outstretched hand with the shot clock at 2 seconds — extending the lead to 16 with 4:12 remaining and slamming the door on any Detroit comeback.",
+          timeRemaining: "4:12",
+          winProbabilityShift: 22,
         },
         {
-          player: "Anthony Edwards",
-          team: "MIN",
+          player: "Evan Mobley",
+          team: "CLE",
           description:
-            "Coast-to-coast drive through contact for the and-one, extending the lead to 5 and functionally sealing the game. Edwards screamed toward the rafters — the crowd erupted.",
-          timeRemaining: "3:04",
-          winProbabilityShift: 19,
+            "Chase-down block on Cunningham's drive, tipping the ball to Harden who pushed in transition for an and-one layup — a 5-point swing that extinguished Detroit's final rally.",
+          timeRemaining: "2:28",
+          winProbabilityShift: 18,
         },
         {
-          player: "Dylan Harper",
-          team: "SAS",
+          player: "James Harden",
+          team: "CLE",
           description:
-            "Step-back three-pointer cuts the Minnesota lead to 2 with 1:44 left, refusing to let San Antonio die quietly. A stunning moment for a rookie on the road in a must-win game.",
-          timeRemaining: "1:44",
-          winProbabilityShift: -14,
-        },
-        {
-          player: "De'Aaron Fox",
-          team: "SAS",
-          description:
-            "Drives baseline for a layup to make it a 1-possession game with 58 seconds left. Last genuine Spurs lifeline — Minnesota's free throws would close the door.",
-          timeRemaining: "0:58",
-          winProbabilityShift: -9,
+            "Split a trap in the corner, found Mobley cutting baseline for a dunk off the glass — his 11th assist of the night — pushing the lead back to 14 after Detroit had trimmed it to nine.",
+          timeRemaining: "3:44",
+          winProbabilityShift: 14,
         },
       ],
       narrative:
-        "Wembanyama's ejection rewrote the entire script, but the Spurs didn't blink — Dylan Harper and De'Aaron Fox spent three quarters proving San Antonio was more than one man. Then Anthony Edwards reminded everyone why he is the most electrifying player on the planet, pouring in 16 fourth-quarter points in a performance he dedicated to his late mother. The moment he screamed at the Target Center crowd after the and-one — arms wide, eyes blazing — will be the defining image of this series. Series tied 2-2, and everything ahead of us.",
+        "This game had two completely different identities separated by a locker room halftime speech nobody will ever hear. For twenty-four minutes, Cleveland looked like a team staring down elimination — passive, deferential, and overmatched by a 60-win Detroit squad that smelled blood. Then Donovan Mitchell walked back out of the tunnel and rewrote the script entirely. His 39 second-half points weren't just a stat line; they were a statement of refusal, a one-man siege that reduced Detroit's defense to rubble and turned Rocket Arena into a pressure cooker. With Mobley posting a supernatural two-way performance and Harden running the offense like a Swiss watch, Cleveland didn't just survive — they seized the series' emotional momentum heading into Game 5 on Detroit's floor.",
+    },
+    {
+      gameId: "LAL-OKC-20260511",
+      teams: { home: "LAL", away: "OKC" },
+      finalScore: { home: 110, away: 115 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "4:55",
+          description:
+            "SGA opened the game with three consecutive isolation buckets and two dimes in transition, pushing OKC to a 16-7 lead before Los Angeles steadied. The Thunder's pace and switching defense had the Lakers scrambling from the opening tip.",
+          runScore: "16-7 OKC",
+          momentum: "away",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "significant",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "7:10",
+          description:
+            "LeBron James took over the second quarter with a masterclass in veteran shot-creation — posting, driving, and orchestrating the break — to close a 13-point gap. The Lakers went on a 22-9 run, taking their only lead of the game at 44-42 behind LeBron's 14-point quarter.",
+          runScore: "22-9 LAL",
+          momentum: "home",
+          keyPlayer: "LeBron James",
+          impact: "significant",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:33",
+          description:
+            "Ajay Mitchell exploded off the OKC bench with 14 third-quarter points — four steals turned into transition buckets — single-handedly swinging the quarter 33-22 Thunder. The Lakers had no answer for his length and read-passing ability, and eight Austin Reaves turnovers compounded the damage.",
+          runScore: "33-22 OKC",
+          momentum: "away",
+          keyPlayer: "Ajay Mitchell",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "3:15",
+          description:
+            "Reaves (27 points) and Hachimura (25) kept the Lakers breathing with a late 12-6 push, trimming the deficit to five with under three minutes left. The crowd at Crypto.com dared to dream — but OKC's composure never cracked.",
+          runScore: "12-6 LAL",
+          momentum: "home",
+          keyPlayer: "Austin Reaves",
+          impact: "notable",
+        },
+      ],
+      clutchPlays: [
+        {
+          player: "Chet Holmgren",
+          team: "OKC",
+          description:
+            "Caught a lob from SGA on the left side of the rim and flushed a go-ahead dunk with 32.8 seconds remaining, putting OKC up five and effectively ending any Lakers comeback hope.",
+          timeRemaining: "0:32.8",
+          winProbabilityShift: 31,
+        },
+        {
+          player: "Shai Gilgeous-Alexander",
+          team: "OKC",
+          description:
+            "Drew a double-team in the corner, pump-faked LeBron into the air, and converted two free throws to push the lead to seven — his 12th and 13th free throws of the night — with 1:14 left.",
+          timeRemaining: "1:14",
+          winProbabilityShift: 19,
+        },
+      ],
+      narrative:
+        "The Thunder didn't win this game — they collected it, the way a seasoned closer collects the ball in the ninth. OKC is 8-0 in these playoffs and it hasn't been luck; it's been the systematic suffocation of opponents by a roster with no gaps and no wasted possessions. LeBron James gave everything he had — 24 points, 12 rebounds, 40 exhausting minutes — but it wasn't enough, and the manner of this loss, a clean five-point defeat to a team that was never truly threatened, may be the hardest part to process. Ajay Mitchell's eruption off the bench was the killshot, and Holmgren's dunk with 32 seconds left was just punctuation. The question hanging over Crypto.com Arena after the final buzzer wasn't about this series — it was about whether anyone is built to stop Oklahoma City before a title is theirs.",
     },
   ],
 };

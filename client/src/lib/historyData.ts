@@ -1,5 +1,5 @@
 // Historical Context Engine — Past Meets Present
-// Last updated: May 11, 2026
+// Last updated: May 13, 2026
 
 export interface HistoricalComparison {
   currentEvent: string;
@@ -35,247 +35,227 @@ export interface HistoryData {
 }
 
 export const historyData: HistoryData = {
-  generatedDate: "May 11, 2026",
+  generatedDate: "May 13, 2026",
   comparisons: [
     {
-      currentEvent: "Jalen Brunson delivered 38 points and 9 assists as the New York Knicks completed a first-round sweep of the Philadelphia 76ers with a 144-114 demolition at Xfinity Mobile Arena — a series-clinching performance of sustained, merciless efficiency that never relented after the opening tip and announced New York's arrival as a legitimate Eastern Conference Finals contender with a force that left no room for counterargument",
-      player: "Jalen Brunson",
-      team: "NYK",
+      currentEvent: "Donovan Mitchell erupted for 39 second-half points in Cleveland's 112-103 Game 4 win over Detroit, tying an NBA postseason record and rescuing the Cavaliers from a near-certain 3-1 series deficit. Mitchell finished with 43 points on 13-of-26 shooting and 13-of-15 from the free-throw line — the most individually decisive performance of the 2026 postseason and a half of basketball that will be referenced for decades when the conversation turns to what players are capable of under the specific pressure of season-altering moments.",
+      player: "Donovan Mitchell",
+      team: "CLE",
       historicalParallel: {
-        player: "Isiah Thomas",
-        season: "1987 NBA Playoffs — Detroit Pistons first-round sweep of Washington Bullets",
-        stat: "Series-clinching performance: 34 points, 11 assists in Game 3 closeout; averaged 27.3 PPG across the sweep as Detroit signaled its arrival as the East's next dynasty",
-        context: "Isiah Thomas's 1987 postseason served as the formal announcement that the Bad Boys era had fully arrived — a small, undersized point guard with no business scoring 34 points against veteran NBA defenses doing exactly that through sheer competitive will, impeccable mid-range execution, and a playmaking intelligence that transformed every defensive scheme into an opportunity rather than an obstacle. Detroit swept Washington and pushed Boston to five games in the semifinals, establishing Thomas as the most dangerous point guard engine in the Eastern Conference at a moment when the conference title still ran through Larry Bird and the Celtics."
+        player: "LeBron James",
+        season: "2007 NBA Playoffs — Cleveland Cavaliers vs Detroit Pistons, Eastern Conference Finals Game 5",
+        stat: "48 points on 18-of-35 shooting including Cleveland's final 25 consecutive points — a performance that included back-to-back overtime sessions and a game-winning bank shot that forced a Game 6 and eventually a series win for the Cavaliers",
+        context: "LeBron's 48-point double-overtime masterpiece on May 13, 2007 — this exact calendar date nineteen years earlier — is the single-game individual playoff performance most deeply embedded in Cleveland franchise identity, a night when a 22-year-old in only his fourth NBA season refused the arithmetic of a close game on the road against the East's most physical defense and delivered not just the win but the image: LeBron standing in the corner of the Palace of Auburn Hills, arms wide, as Detroit's crowd absorbed what had just happened. The game confirmed that Cleveland had found its franchise-defining talent and that the Eastern Conference's competitive center of gravity had relocated to northeast Ohio, at least temporarily. It remains the most replayed playoff moment in franchise history and the specific performance against which every subsequent Cavalier postseason contribution is measured."
       },
-      comparison: "Brunson's 38-point sweep-clinching masterpiece occupies the same historical register as Thomas's 1987 emergence — not through stylistic mimicry, since Thomas attacked primarily through penetration and Thomas-era passing geometry while Brunson operates through mid-range pull-ups and pick-and-roll reads that belong to a different generation's vocabulary entirely, but through the identical competitive function both performances serve: a point guard of supposedly insufficient physical dimensions announcing to an entire conference that the calendar has changed and the team that was previously considered an aspirant is now the standard. Thomas's 1987 Pistons swept Washington before eventually losing to Boston; Brunson's 2026 Knicks swept Philadelphia before heading toward a Round 2 matchup that will further define the Eastern Conference's hierarchy. The 38 points are four more than Thomas scored in his 1987 sweep-clincher; the 9 assists represent a playmaking dimension that elevated the performance from individual brilliance to team multiplication. The comparison flatters both players in different directions — Thomas had a championship destination that season's Pistons would reach in 1989; Brunson's destination remains unwritten.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "The New York Knicks completed a four-game sweep of the Philadelphia 76ers by a combined margin of 97 points across the series — averaging a 24.25-point winning margin per game in what amounts to the most dominant first-round performance by a New York Knicks team in franchise history, producing 144 points in the series-clinching blowout and demonstrating an offensive ceiling that no Eastern Conference opponent has yet shown the capacity to suppress",
-      player: "New York Knicks",
-      team: "NYK",
-      historicalParallel: {
-        player: "1994 New York Knicks",
-        season: "1994 NBA Playoffs — New York Knicks defeated New Jersey Nets 3-1 in first round, advanced to NBA Finals",
-        stat: "First-round series margin: 14.3 PPG average winning margin; Knicks averaged 102.5 PPG in series victories — the franchise's previous benchmark for first-round playoff dominance before their eventual Finals appearance against Houston",
-        context: "The 1994 Knicks remain the franchise's only Finals-era team in the modern salary-cap period, a defensive juggernaut led by Patrick Ewing and coached by Pat Riley whose path to the championship series required dismantling New Jersey, Chicago, and Indiana across three increasingly brutal rounds before losing to Hakeem Olajuwon's Rockets in seven games. Their first-round efficiency established the standard against which all subsequent Knicks playoff entries have been measured — a franchise that has spent three decades searching for the organizational coherence and individual engine capable of replicating what Ewing and Riley built in the summer of 1994."
-      },
-      comparison: "The 2026 Knicks' first-round sweep obliterates the 1994 franchise benchmark for playoff opening-round dominance in almost every measurable dimension — their 24.25-point average winning margin more than doubles the 1994 team's 14.3-point figure, their 144-point series-clincher represents a scoring output that the defensive-minded 1994 team would have considered structurally impossible, and their sweep completion eliminates the minor series vulnerability that even the 1994 powerhouse occasionally displayed. What the comparison most honestly illuminates is how differently the two eras constructed their playoff identities: the 1994 Knicks won through defensive attrition and Ewing's post dominance, grinding opponents into submission across seven-game series; the 2026 version wins through offensive pace, Brunson's playmaking, and a supporting cast depth that the salary-cap constraints of 1994 could never have assembled. The 1994 Knicks reached the Finals; whether the 2026 version matches that destination is the question that Round 2 will begin to answer. The sweep says they are capable. The 1994 precedent says capability is not sufficient.",
-      verdict: "On pace to surpass"
-    },
-    {
-      currentEvent: "Anthony Edwards authored a 31-point, 8-rebound, 5-assist performance that included 14 points in the fourth quarter as Minnesota gutted out a 114-109 home win over the San Antonio Spurs to cut the series to 2-1 — a clutch takeover performance in a must-win environment against the West's second seed that confirmed Edwards as the most dangerous individual weapon on any underdog team remaining in the playoffs and injected genuine uncertainty into what had appeared to be a straightforward Spurs first-round march",
-      player: "Anthony Edwards",
-      team: "MIN",
-      historicalParallel: {
-        player: "Allen Iverson",
-        season: "2001 NBA Playoffs — Philadelphia 76ers vs Milwaukee Bucks, Eastern Conference Finals",
-        stat: "Averaged 29.3 PPG in ECF against Milwaukee; multiple fourth-quarter takeovers including 35 points in Game 3 victory as the underdog Sixers pushed the higher-seeded Bucks to seven games",
-        context: "Iverson's 2001 postseason represents the most sustained individual playoff performance by an undersized guard in service of an underdog team's survival bid — his ability to take over fourth quarters against opponents with superior rosters and conventional physical advantages defined a competitive archetype that the game had not previously seen in such concentrated form. The Sixers entered the 2001 playoffs as a first seed but faced Eastern Conference opponents who possessed more depth; Iverson's answer in every high-leverage moment was to refuse the statistical reality of the matchup and produce outcomes through individual force of will that his supporting cast could not have generated independently."
-      },
-      comparison: "Edwards' 14-point fourth-quarter takeover against the Spurs' best defenders channels Iverson's 2001 clutch gene through a body that belongs to a completely different physical universe — where Iverson navigated sixth-man-sized gaps in defenses at 165 pounds through sheer elusiveness and change of pace, Edwards attacks the same fourth-quarter moments through a combination of explosive athleticism, improved shot creation, and the specific kind of competitive fearlessness that cannot be coached into a player but only discovered through the pressure of elimination environments. The 31-point line is modest by Iverson's 2001 standards; the context is identical. What separates the comparison's ceiling is destination: Iverson's 2001 run reached the Finals before losing to the Lakers; Edwards is in the first round against a 62-win team that has the organizational depth to recover. The fourth-quarter dimension is real. The series distance remaining is enormous.",
+      comparison: "Mitchell's 39-point second half lands on May 13, 2026 — the nineteenth anniversary of LeBron's 48-point double-overtime performance against the same Detroit franchise, and the historical symmetry demands acknowledgment not as coincidence but as the kind of calendar recursion that the sport occasionally produces to remind observers that its largest individual moments cluster around franchises and opponents with unfinished business. The structural comparison between the two performances is more interesting than the statistical one: LeBron's 48 points were built across 53 minutes of regulation and overtime against a Detroit team that was then the East's most experienced playoff organization; Mitchell's 39 second-half points were built in 24 minutes against a Detroit team that is currently the East's most regular-season-dominant franchise. LeBron scored his final 25 consecutively; Mitchell scored his 39 on relentless pull-ups, free-throw-line runners, and stolen possessions that left Detroit's defense appearing not merely outplayed but philosophically defeated. The 2007 LeBron performance arrived in the Conference Finals against a team Cleveland would need to beat to reach the Finals; the 2026 Mitchell performance arrived in the second round against a team Cleveland must beat to reach the Conference Finals. The historical stakes are different, the competitive register is identical, and the franchise's emotional debt to this kind of individual playoff heroism — on this date, in this building, against this opponent — is real and fully acknowledged by anyone who has watched Cleveland basketball long enough to understand what May 13 means in the Cavaliers' calendar.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Victor Wembanyama posted 29 points, 10 rebounds, and 3 blocks in a 114-109 road loss to the Minnesota Timberwolves in Game 3 — a performance of extraordinary individual quality in a losing context that raises the specific question plaguing every generational talent's early playoff career: whether individual brilliance at age 22 can bend a series toward its destination when a home crowd has energized an opponent's physical commitment beyond the level that individual quality alone can overcome",
+      currentEvent: "The Oklahoma City Thunder completed their second consecutive sweep of the 2026 playoffs by defeating the Los Angeles Lakers 115-110 in Game 4, advancing to the Western Conference Finals with a perfect 8-0 record. Shai Gilgeous-Alexander has orchestrated every game with surgical efficiency, Chet Holmgren delivered the sweep-clinching dagger, and Ajay Mitchell's 28-point bench explosion confirmed that Oklahoma City's organizational depth extends well beyond their two franchise cornerstones. No team has seriously threatened the Thunder in any of their eight playoff games.",
+      player: "Oklahoma City Thunder",
+      team: "OKC",
+      historicalParallel: {
+        player: "2001 Los Angeles Lakers",
+        season: "2001 NBA Playoffs — Los Angeles Lakers went 15-1 across four rounds, sweeping their first three opponents before losing Game 1 of the NBA Finals to Philadelphia",
+        stat: "15-1 postseason record — the most dominant single-postseason record in NBA history; Shaquille O'Neal averaged 30.4 points and 15.4 rebounds per game while Kobe Bryant averaged 29.4 in what remains the gold standard for team playoff dominance in the modern era",
+        context: "The 2001 Lakers arrived in the playoffs as the defending champions with O'Neal and Bryant operating at the precise intersection of their individual peaks and their collective chemistry, a combination that produced the most efficient four-round sweep sequence in league history. Their only postseason loss came in Game 1 of the Finals against Allen Iverson's remarkable Philadelphia 76ers, after which they won four consecutive to claim the title. Phil Jackson's triangle offense had been fully internalized by a roster that understood its championship function, and the result was a postseason performance so dominant that it has served as the reference point for every team's playoff efficiency since — the 15-1 record a standard that has not been matched in the quarter-century since Shaq and Kobe produced it."
+      },
+      comparison: "Oklahoma City's 8-0 start positions them on the outer edge of the 2001 Lakers' historical gravitational field — not yet within it, but close enough that the conversation has become legitimate rather than premature. To match the 2001 record of 15-1, the Thunder would need to win their next seven games with no more than one loss across the Western Conference Finals and the NBA Finals, a requirement that asks the question of whether SGA-era Oklahoma City has assembled the specific combination of individual dominance and organizational depth that O'Neal and Bryant carried through April and May of 2001. The comparison's most instructive dimension is not the win-loss record but the competitive texture: the 2001 Lakers never trailed in a series, never appeared genuinely threatened, and produced a collective performance in which every significant game moment felt not like a crisis survived but like a predetermined outcome patiently awaited. Oklahoma City's 8-0 run carries the same quality — Holmgren's dunk with 32.8 seconds was not a moment of desperation but a moment of confirmation, the Thunder doing exactly what they do in exactly the moment they were expected to do it. The 2001 Lakers had Shaq and Kobe; OKC has SGA and a supporting cast that the 2001 roster, for all its championship credentials, did not possess in equivalent depth. Whether that depth translates to a Finals appearance and a championship is the question remaining. The 2001 precedent says it can be done. Eight wins say it is being done.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Shai Gilgeous-Alexander posted 35 points, 8 assists, and 6 rebounds in OKC's sweep-clinching win over Los Angeles, going 12-of-15 from the free-throw line and never appearing anything other than completely in control of the game's largest moments. His playoff scoring average across eight games sits above 31 points per game on elite efficiency, and his combination of clutch-moment production, playmaking, and defensive versatility has produced the most compelling individual Playoff MVP case of the 2026 postseason with the West Finals still to come.",
+      player: "Shai Gilgeous-Alexander",
+      team: "OKC",
+      historicalParallel: {
+        player: "Hakeem Olajuwon",
+        season: "1994 NBA Playoffs — Houston Rockets, all four rounds",
+        stat: "27.3 PPG, 9.1 RPG, 3.9 BPG, 3.5 APG across 23 playoff games — Hakeem averaged 28.9 points in the Finals against the Knicks and was named Playoff MVP in what many historians consider the single most dominant individual playoff performance by a center in league history",
+        context: "Olajuwon's 1994 postseason arrived in the specific context that makes it the most instructive historical parallel for a franchise player carrying a team through an entire postseason without the supporting star that conventional championship wisdom has always required: Houston had no second All-Star on their roster in the modern sense, no complementary superstar whose presence redistributed defensive attention and created the open looks that supporting casts depend on for their contributions. Olajuwon was the entire offensive architecture, the primary defensive anchor, the clutch-moment producer, and the organizational identity simultaneously — a combination of functions that the modern game's positional evolution has redistributed across rosters rather than consolidated in a single player. His 1994 Playoff MVP is the historical benchmark for what an individual player can accomplish when the team's championship ambition runs entirely through him."
+      },
+      comparison: "SGA's 2026 playoff run is not Olajuwon's 1994 in terms of individual statistical dominance — Hakeem's rebounding and shot-blocking dimensions belong to a physical profile that Gilgeous-Alexander does not occupy and was never designed to occupy. What connects the two performances is the organizational function each player serves: both are the complete and sufficient answer to every competitive question their team faces in high-leverage playoff moments, the player who absorbs the opponent's best preparation and produces outcomes that the preparation could not prevent. Olajuwon's 1994 Finals performance against the Knicks — 27.3 points in the most defensive series of the decade — required him to score in environments specifically engineered to deny him the ball; SGA's 35-point sweep-clincher against the Lakers required him to score in environments specifically engineered to limit his free-throw attempts and force him into contested pull-ups. Both players answered the defensive challenge by producing through it rather than around it. The 1994 Rockets won the championship with Olajuwon as their singular engine; whether the 2026 Thunder win the championship with SGA as theirs is the question that the Western Conference Finals will begin to resolve. The 8-0 record says the architecture is correct. The historical precedent says the architecture is sufficient.",
+      verdict: "On pace to surpass"
+    },
+    {
+      currentEvent: "Victor Wembanyama's Game 4 ejection after just 12 minutes — tossed following a technical foul accumulation that ended his night before he could meaningfully affect the outcome — handed Minnesota a 2-2 series tie and introduced the specific question that no generational talent's early career fully escapes: whether composure under the game's most provocative competitive pressures can be developed quickly enough to prevent individual emotional responses from costing teams the series control that talent alone should provide. San Antonio lost the game by five without him. Wembanyama returns tonight in Game 5.",
       player: "Victor Wembanyama",
       team: "SAS",
       historicalParallel: {
-        player: "Hakeem Olajuwon",
-        season: "1987 NBA Playoffs — Houston Rockets vs Seattle SuperSonics, Western Conference Semifinals",
-        stat: "29.3 PPG, 11.7 RPG in first-round series loss to Seattle; Rockets eliminated despite Olajuwon's dominant individual production as a 24-year-old in only his third season",
-        context: "Olajuwon's early playoff career included multiple first and second-round exits in which his individual production was genuinely dominant by any historical standard while his surrounding team lacked the organizational depth required to translate that dominance into series victories — a developmental reality that every generational center eventually confronts in the early playoff years before the roster construction catches up with the individual ceiling. Houston's 1987 exit against Seattle was the specific moment in which the gap between Olajuwon's talent and his team's collective limitations was most painfully visible, a preview of the championship machine he would eventually lead rather than a ceiling for what he could become."
+        player: "Kevin Garnett",
+        season: "2000 NBA Playoffs — Minnesota Timberwolves vs Portland Trail Blazers, Western Conference Semifinals",
+        stat: "Garnett fouled out in Game 5 of the series with 7 minutes remaining and the Timberwolves leading by 4 — Minnesota lost that game and ultimately the series in five, with Garnett's absence in the critical stretch cited as the series-turning moment in a pattern of early playoff exits that defined his pre-Boston career",
+        context: "Garnett's Minnesota playoff career was defined in part by the specific inability to fully suppress the competitive intensity that made him the most fearsome defensive player of his generation — a quality that produced multiple foul trouble sequences and at least one ejection in critical postseason moments, costing the Timberwolves games they should have won and series control they could not afford to surrender against Western Conference opponents with more playoff-hardened rosters. The 2000 Portland series was the most painful expression of this pattern, a series in which Garnett's individual talent was unquestionable and his availability in the game's most consequential minutes was not. He eventually resolved the composure question — with Boston, with championship infrastructure around him — but the resolution came too late for the Timberwolves franchise that most needed it."
       },
-      comparison: "Wembanyama's 29-10-3 in a road loss maps onto Olajuwon's 1987 early-playoff-career developmental arc with a precision that is simultaneously reassuring for San Antonio's long-term outlook and clarifying about the immediate competitive gap that Minnesota's home intensity exposed. Olajuwon was putting up dominant numbers in playoff losses at 24; Wembanyama is doing the equivalent at 22, which accelerates the historical timeline rather than casting doubt on its destination. The comparison's most important dimension is not the current losing context but the eventual trajectory: Olajuwon's early playoff exits were not predictive of his ceiling, they were simply the organizational reality of the period before Houston assembled the championship infrastructure his talent required. San Antonio's 62-win regular season suggests their infrastructure is considerably more advanced than Houston's 1987 version; the Game 3 loss to Minnesota is the bump in the road, not the road itself. Wembanyama will be fine. The Spurs need to close this series out.",
+      comparison: "Wembanyama's Game 4 ejection maps onto the Garnett composure arc with a precision that is uncomfortable for San Antonio's immediate interests while simultaneously clarifying about the developmental trajectory every historically great player must navigate. Garnett's foul trouble and ejection patterns in Minnesota were not predictive of his ceiling — they were the developmental cost of a competitive intensity that, properly channeled, eventually produced the most complete two-way player of his generation. Wembanyama's 12-minute Game 4 ejection is not predictive of his ceiling either; it is the specific moment in his early career when the gap between his talent and his emotional regulation was measured in public and found to be real. The comparison's most important dimension is not the similarity between the two moments but the distance between their eventual resolutions: Garnett needed an organizational reconstruction and a franchise change to fully channel his competitive intensity; Wembanyama has a 62-win team, a Hall of Fame front office, and the specific crucible of a tied series on his home floor tonight to begin that resolution much earlier in his career than Garnett managed. The ejection was a cost. Tonight's Game 5 is the payment.",
       verdict: "Matching stride"
     },
     {
-      currentEvent: "Joel Embiid's season ends with a first-round sweep loss to the New York Knicks — his right knee brought his playoff participation to a premature conclusion again, in a pattern that has now defined five consecutive postseasons in which Philadelphia's championship window has either been shut by injury to its franchise cornerstone or by the organizational inability to construct a roster capable of absorbing those injury realities while remaining competitive enough to advance past the first or second round",
-      player: "Joel Embiid",
-      team: "PHI",
+      currentEvent: "LeBron James played 40 minutes and posted 24 points and 12 rebounds in the Lakers' 115-110 sweep-clinching loss to Oklahoma City — a performance that was quietly magnificent in the way that only a 41-year-old playing his final playoff game can be, the body still delivering what the body was always asked to deliver while the team around him could not deliver the structural competitiveness that winning requires. Luka Doncic missed the entire series with a hamstring strain. Austin Reaves scored 27 points and committed 8 turnovers. The gap between the Lakers and the Thunder was real, and LeBron spent 40 minutes inside it.",
+      player: "LeBron James",
+      team: "LAL",
       historicalParallel: {
-        player: "Bill Walton",
-        season: "1978–1985 — Portland Trail Blazers and subsequent seasons",
-        stat: "Following 1977 championship, played in only 169 regular season games across the next seven seasons due to foot injuries; multiple promising championship windows collapsed before Walton found health with Boston in 1986",
-        context: "Walton's post-championship injury saga represents the most sustained and painful collision between transcendent individual talent and physical fragility in NBA history — a player whose 1977 championship performance established him as potentially the most complete center the game had seen whose subsequent inability to maintain health across full seasons robbed the sport of the dynasty his talent deserved to anchor. Portland dismantled championship-contending rosters waiting for a health that ultimately never returned in a form sufficient to mount another title run, a franchise wound that took decades to heal."
+        player: "Kareem Abdul-Jabbar",
+        season: "1989 NBA Playoffs — Los Angeles Lakers vs Phoenix Suns, Western Conference Semifinals",
+        stat: "Kareem played his final playoff series at age 41, averaging 17.3 points and 7.3 rebounds across three games in a sweep loss to Phoenix — his final NBA appearance came in Game 3 of that series, a 101-86 loss at the Forum that ended a career in which he had won six championships and established the most comprehensive statistical record in league history",
+        context: "Kareem's final playoff series arrived in 1989 as a postscript to the Showtime era's competitive peak — the Lakers had won back-to-back championships in 1987 and 1988, and his supporting cast had aged alongside him in ways that the front office's roster construction had not adequately addressed. Phoenix swept them in four games with Kevin Johnson and Tom Chambers providing the athletic energy that Los Angeles could no longer match at a team-wide level despite Kareem's individual production remaining respectable for a 41-year-old center. His final game was a loss by 15 points, a quiet conclusion to the most statistically dominant career the sport had known, ending not with the championship punctuation his legacy deserved but with the honest arithmetic of organizational aging meeting a young team's rising athleticism."
       },
-      comparison: "The Embiid-Walton parallel is not a comfortable one to draw for Philadelphia, but the structural pattern demands honest historical acknowledgment: a franchise-cornerstone center of genuine all-time talent whose physical availability in playoff environments has proven insufficient to deliver the championship his individual ceiling would theoretically guarantee, producing a cycle of roster construction, dissolution, and reconstruction around a player whose durability record has consistently undermined the organizational investment his talent justified. Walton's injuries were foot-related and ultimately career-altering; Embiid's right knee has become the recurring variable that Philadelphia cannot control or plan around. The difference in the comparison's mercy is that Walton eventually found health — briefly, brilliantly — with Boston in 1986 and contributed to a championship from a secondary role. Whether Embiid finds an equivalent third act depends on the offseason evaluation that now awaits him and on a front office that must finally make the hardest organizational decision in their franchise's modern history.",
+      comparison: "LeBron's 24-12 in a sweep loss at 41 is Kareem's final playoff series filtered through a different positional profile, a different organizational context, and a different era's athletic vocabulary — but arriving at the same structural destination: a player whose individual production remains genuinely admirable at an age when the sport's physical demands should have ended his participation, embedded in a team that the rest of the postseason has conclusively passed. Kareem's 1989 exit was dignified and insufficient simultaneously; LeBron's 2026 exit is the equivalent. The 40 minutes of availability, the 12 rebounds, the 24 points — none of it masked the gap between the Lakers and the Thunder, just as Kareem's 17 points per game in 1989 did not mask the gap between the aging Showtime Lakers and Kevin Johnson's ascending Phoenix team. What separates the comparison's texture is the specific grief each exit carries: Kareem concluded a career that had delivered everything the sport could offer; LeBron concludes a playoff run in which his supporting cast's limitations — Doncic's hamstring, Reaves' turnovers, a roster not built to challenge an 8-0 juggernaut — prevented the individual from having a meaningful say in the series' outcome. Both players deserved better endings. The sport does not guarantee them.",
       verdict: "Falling short"
     },
     {
-      currentEvent: "The Minnesota Timberwolves held San Antonio to 41 second-half points after allowing 68 in the first half of Game 3, manufacturing a 114-109 victory at Target Center through an in-game defensive adjustment of such statistical magnitude that it represents one of the most dramatic halftime-to-halftime defensive transformations in recent playoff history — a collective performance that reflects the specific coaching quality required to beat a 62-win team on the road after being outplayed through the first 24 minutes",
-      player: "Minnesota Timberwolves",
-      team: "MIN",
+      currentEvent: "Ajay Mitchell, undrafted out of UC Santa Barbara in the 2025 draft, averaged 20-plus points off the bench across the Los Angeles sweep, posting 28 points on 12-of-19 shooting with 4 steals in the clincher — an individual breakout of such unexpected scope that the league-wide conversation has shifted from curiosity to acknowledgment that Oklahoma City's player development infrastructure has produced the most productive undrafted bench performer in recent playoff history, a player whose two-way contribution is expanding OKC's winning margins in ways that no opponent has yet demonstrated the ability to contain.",
+      player: "Ajay Mitchell",
+      team: "OKC",
       historicalParallel: {
-        player: "2004 Detroit Pistons",
-        season: "2004 NBA Finals — Detroit Pistons vs Los Angeles Lakers, Game 1",
-        stat: "Held Los Angeles to 75 points after Lakers averaged 104.7 PPG during regular season; defensive adjustment across first half of the series produced the most statistically improbable Finals outcome of the decade",
-        context: "The 2004 Pistons' defensive performance against the star-laden Lakers represented the purest expression of collective defensive scheme overwhelming individual talent in championship history — Detroit's switching, their willingness to take charges, their complete organizational commitment to limiting Shaquille O'Neal's catch points and forcing Kobe Bryant into pull-up jumpers rather than penetration created a defensive architecture that the Lakers' coaching staff could not adequately counter across five games. It remains the definitive historical template for how a team without a transcendent individual star can defeat a team that has several."
+        player: "Cedric Maxwell",
+        season: "1981 NBA Playoffs — Boston Celtics, all four rounds",
+        stat: "Maxwell was the 1981 Finals MVP after averaging 17.7 points and 9.5 rebounds across six games against Houston — he had been a second-round pick out of UNC Charlotte who became the most essential complementary player on a Celtics team that already had Larry Bird, Robert Parish, and Kevin McHale, his interior finishing and free-throw drawing providing the offensive dimension that Boston's perimeter stars alone could not supply",
+        context: "Maxwell's 1981 playoff emergence represents the canonical example of a secondary player whose draft pedigree and pre-playoff reputation dramatically understated his competitive function — Boston had three Hall of Fame players and Maxwell was the fourth option who became the Finals MVP, a result that the sport's conventional star-driven narrative had not prepared observers to process. His ability to score efficiently in high-leverage postseason environments against opponents who were specifically prepared to stop Bird, Parish, and McHale provided Boston with the structural advantage that championship teams require: a player whose contributions exceed his billing by a margin large enough to change the series' competitive geometry."
       },
-      comparison: "Minnesota's halftime defensive transformation in Game 3 — from 68 allowed in the first half to 41 in the second — channels the 2004 Pistons' defensive adjustment blueprint on a smaller but structurally identical canvas. The Timberwolves did not simply play harder in the second half; they reconfigured their defensive positioning around Rudy Gobert's rim presence in a way that turned San Antonio's paint access from a functional offensive pillar into a contested dead end, while simultaneously tightening their perimeter closeouts on Victor Wembanyama's shooting windows in ways that forced the Spurs into lower-percentage half-court possessions. The 2004 Pistons changed a Finals; Minnesota's adjustment changed a single playoff game. The distance between those two outcomes is enormous, and the Spurs remain the series favorites. But the coaching quality the Timberwolves demonstrated in manufacturing a 27-point second-half defensive improvement against a 62-win team earns the comparison's respect regardless of how the series concludes.",
-      verdict: "Matching stride"
+      comparison: "Ajay Mitchell's 2026 postseason maps onto the Maxwell archetype with the specific modification that Maxwell was a second-round pick while Mitchell was undrafted — a distinction that makes the 2026 version of the story more extreme in its departure from conventional expectation rather than less. Maxwell had a draft slot; Mitchell had nothing, only an undrafted free agent contract with an organization whose player development staff identified something in him that thirty NBA teams had decided was insufficient to warrant a selection. His 28-point sweep-clincher, his 4 steals, his 12-of-19 shooting efficiency in an elimination game against a Lakers defense that spent its entire preparation on SGA and Holmgren — these are not the statistical artifacts of role expansion in a blowout, they are the sustained output of a player who has found the playoff environment more comfortable than the opponents who are supposed to contain him. Maxwell won a Finals MVP; whether Mitchell follows that specific trajectory depends on how far OKC advances and whether the West Finals opponent can construct a defensive answer that the Lakers never managed to build. The Thunder's organizational depth is not a coincidence. It is a system. And Ajay Mitchell is its most surprising current product.",
+      verdict: "On pace to surpass"
     },
     {
-      currentEvent: "Rudy Gobert posted 18 points, 14 rebounds, and 4 blocks as the structural anchor of Minnesota's Game 3 survival win over San Antonio — a performance that neutralized the Spurs' paint scoring, supplied Anthony Edwards with the physical platform his fourth-quarter scoring runs required, and demonstrated the specific two-way interior dominance that makes Gobert the most essential complementary player on any team for which he has won a championship or sustained a playoff run",
-      player: "Rudy Gobert",
-      team: "MIN",
+      currentEvent: "Evan Mobley posted 17 points, 8 rebounds, 5 blocks, 3 steals, and a plus-minus of +30 in Cleveland's Game 4 series-evening win over Detroit — the most statistically complete two-way performance of the 2026 postseason, a game in which Detroit's offense was not merely contained but structurally dismantled by a center whose defensive versatility, rim protection, and transition engagement have given the Cavaliers a defensive architecture that no East opponent has yet found the vocabulary to describe, let alone exploit.",
+      player: "Evan Mobley",
+      team: "CLE",
       historicalParallel: {
-        player: "Dikembe Mutombo",
-        season: "1994 NBA Playoffs — Denver Nuggets vs Seattle SuperSonics, first round",
-        stat: "14.2 RPG, 3.9 BPG in first-round upset victory as the eighth-seeded Nuggets defeated the top-seeded Sonics — the first time an eight seed had ever defeated a one seed in NBA history; Mutombo's defensive anchor made the improbable possible",
-        context: "Mutombo's 1994 performance with the Denver Nuggets against Seattle represents the canonical example of defensive interior dominance enabling an underdog playoff run that would have been arithmetically impossible without his specific physical contributions — the Nuggets had no business defeating the 63-win Sonics, and the fact that they did owed everything to Mutombo's ability to neutralize Seattle's paint attack and generate second-chance possessions through offensive rebounding that converted narrow scoring margins into series-altering momentum swings. His finger-wag became the defining image of one of the most improbable first-round results in the sport's history."
+        player: "Ben Wallace",
+        season: "2004 NBA Playoffs — Detroit Pistons vs Los Angeles Lakers, NBA Finals",
+        stat: "Wallace averaged 12.0 rebounds, 2.9 blocks, and 1.7 steals in the five-game Finals upset of the Lakers — his defensive anchor on Shaquille O'Neal, widely considered the most physically dominant player in the sport, was the structural reason that Detroit's three-guard lineup could generate the switching defense that dismantled Los Angeles's offensive system and produced the most improbable championship outcome of the decade",
+        context: "Wallace's 2004 Finals performance is the historical standard for defensive-anchor impact in a championship context — a player whose offensive limitations were understood and accepted by his coaching staff because his defensive contributions were so comprehensively irreplaceable that the team's championship architecture depended on his specific physical presence in ways that no available alternative could replicate. Detroit did not win the 2004 championship despite Wallace's offensive constraints; they won it because his defensive dominance made those constraints irrelevant, a reminder that the game's most valuable individual contributions are not always the ones that appear in the scoring column."
       },
-      comparison: "Gobert's 18-14-4 against San Antonio inhabits the same historical category as Mutombo's 1994 upset-enabling interior dominance — a defensive big man whose contributions are most accurately measured not in the points he scores but in the possessions he eliminates, the drives he discourages before they begin, and the offensive rebounding opportunities he converts into the additional possession margins that separate a home team's survival win from a close road loss. Mutombo was 27 in 1994 and anchoring an underdog team nobody believed in; Gobert is 33 in 2026 and doing the equivalent for a Minnesota team that the 62-win Spurs were expected to dismiss in four or five games. The comparison captures what box scores cannot: the degree to which Edwards' fourth-quarter freedom was purchased by Gobert's defensive credibility in the paint, in precisely the same way that Mutombo's presence freed Denver's guards to attack the perimeter. The 1994 Nuggets won that series in five games; whether Minnesota can replicate the upset from a 2-1 deficit is the question that now travels to San Antonio.",
-      verdict: "Matching stride"
+      comparison: "Mobley's +30 and five-block performance channels Ben Wallace's 2004 defensive-anchor function through a considerably expanded offensive profile — where Wallace's scoring in that championship run was incidental to his defensive value, Mobley's 17 points are not incidental but integral, giving Cleveland the two-way complete game that Wallace's era never asked of its defensive centers. The comparison's most honest dimension is the structural one: both players exist on championship-contending rosters whose offensive engines are sufficiently established that the center's defensive contribution is the variable that determines whether the team's defensive ceiling is good or historically great. Mitchell is Cleveland's offensive engine in the way that Chauncey Billups was Detroit's; Harden is the playmaking anchor in the way that Richard Hamilton was the scoring complement; and Mobley is the defensive structure that makes everything else viable in the way that Wallace's rim protection made Detroit's switching defense architecturally credible. The 2004 Pistons won the championship. Whether the 2026 Cavaliers reach the Finals and win it is the question that Mitchell's series against Detroit will answer first. Mobley's +30 says the defensive architecture is ready for the answer.",
+      verdict: "On pace to surpass"
     }
   ],
   milestoneWatch: [
     {
-      player: "Jalen Brunson",
-      team: "NYK",
-      milestone: "Most points scored by a New York Knicks player in a single playoff series sweep",
-      current: "Brunson averaged 34.5 PPG across the four-game sweep of Philadelphia — 138 total points in the series including the 38-point closeout",
-      needed: "Knicks franchise record for single-series scoring average: Walt Frazier's 37.1 PPG in the 1970 NBA Finals — Brunson's sweep average of 34.5 falls short of the Finals record but represents the highest average in a first-round series in franchise history",
-      projectedDate: "Series complete — milestone confirmed; Brunson owns the Knicks' first-round single-series scoring record outright heading into Round 2",
-      significance: "Establishing the franchise's first-round single-series scoring record in the context of a sweep — without a Game 5 or 6 to inflate counting totals — places Brunson's playoff identity alongside Walt Frazier and Patrick Ewing in the franchise's historical scoring hierarchy at the postseason's most critical stage, validating the organizational decision to build the team's championship identity around a point guard that conventional wisdom consistently underestimated based on his physical dimensions."
-    },
-    {
-      player: "New York Knicks",
-      team: "NYK",
-      milestone: "Longest winning streak in New York Knicks franchise history combining regular season and playoffs",
-      current: "10 consecutive wins entering Round 2 — swept Philadelphia 4-0 after winning 6 consecutive regular-season games to close the year; franchise record for combined streak is 15 games (1970 championship season)",
-      needed: "Win 5 more consecutive games to tie the 1970 franchise record of 15; win 6 more to set a new franchise record of 16 consecutive wins",
-      projectedDate: "Round 2 ongoing — franchise record streak achievable by approximately May 21-23, 2026 if New York wins Games 1 through 5 of their next series",
-      significance: "Matching or surpassing the 1970 championship team's combined winning streak would provide the 2026 Knicks with their most direct historical connection to the franchise's only championship era — a credential that would reframe the team's current run not as a pleasant surprise but as a legitimate dynasty in formation, with the organizational depth and individual engine that the 1970 version possessed in different but structurally equivalent forms."
-    },
-    {
-      player: "Anthony Edwards",
-      team: "MIN",
-      milestone: "Most fourth-quarter points scored by a Timberwolves player in a single playoff game",
-      current: "14 fourth-quarter points in Game 3 survival win over San Antonio — the most clutch-period points by a Minnesota player in a playoff game since Kevin Garnett's 16-point fourth quarter in the 2004 Western Conference Semifinals against Sacramento",
-      needed: "Garnett's franchise record: 16 fourth-quarter points in a single playoff game (2004 WCF, Game 5 vs Sacramento) — Edwards needs 3 more fourth-quarter points in a single game to surpass the franchise record",
-      projectedDate: "Series ongoing — record achievable in Game 4 or 5 in San Antonio if Edwards repeats his Game 3 fourth-quarter engagement with equivalent or greater scoring volume",
-      significance: "Surpassing Garnett's franchise fourth-quarter playoff record would provide Edwards with his most direct historical connection to the greatest individual performer in Timberwolves history, establishing a competitive lineage between the two players that franchise fans have wanted to draw since Edwards was drafted and confirming that Minnesota's current playoff identity is not contingent on the Wolves finding another Garnett — because they may have already found the successor."
-    },
-    {
       player: "Oklahoma City Thunder",
       team: "OKC",
-      milestone: "First team in Thunder/SuperSonics history to reach the NBA Finals without losing a series",
-      current: "7-0 in these playoffs after three consecutive wins over the Lakers — eliminated first-round opponent and hold a 3-0 series lead in the second round; potential close-out Game 4 tonight",
-      needed: "Win Game 4 tonight to complete Lakers sweep, then advance through Western Conference Finals without dropping a series; WCF opponent and schedule TBD",
-      projectedDate: "Game 4 close-out projected for tonight, May 11, 2026 at crypto.com Arena; WCF path begins late May",
-      significance: "A run to the Finals without dropping a single series would give Oklahoma City the most dominant single-postseason record since the 2001 Lakers went 15-1, establishing the 2026 Thunder not merely as championship contenders but as the organizational standard-bearer for the entire post-Durant era of Thunder basketball — a franchise that rebuilt correctly, developed its young core, and delivered the championship run that the 2012 Durant-Westbrook version came within two wins of achieving before falling to Miami."
+      milestone: "Longest undefeated playoff run in NBA history through the Conference Finals",
+      current: "8-0 in the 2026 playoffs after sweeping Phoenix in Round 1 and the Lakers in Round 2 — the deepest an unbeaten run has extended in the postseason since the 2001 Lakers began 11-0 before their first loss in Game 1 of the Finals",
+      needed: "Win 4 consecutive Western Conference Finals games without a loss to reach 12-0 and surpass the 2001 Lakers' 11-0 start to the postseason — the gold standard opening unbeaten run in the modern era; win all 4 WCF games plus NBA Finals Game 1 to reach 13-0 and establish a new record for consecutive wins to open a postseason",
+      projectedDate: "Western Conference Finals begin approximately May 17-19, 2026 — record in range by late May if OKC sweeps the SAS/MIN winner",
+      significance: "An undefeated run through the Conference Finals would give the 2026 Thunder the most dominant individual postseason record since the 2001 Lakers, establishing SGA's team as the generational successor to the Shaq-Kobe standard for single-postseason dominance and providing the franchise with a playoff identity that the Kevin Durant era, for all its regular-season excellence, never fully produced before Durant's departure for Golden State."
     },
     {
-      player: "Victor Wembanyama",
-      team: "SAS",
-      milestone: "Youngest player in NBA history to average 30+ points and 10+ rebounds in a single playoff series",
-      current: "27.3 PPG and 9.7 RPG through three games vs Minnesota — averaging just below 30 points and just below 10 rebounds per game at age 22",
-      needed: "Score 30+ points in Game 4 and maintain rebounding average above 10.0 to reach the threshold; current trajectory requires approximately 35 points in next game to push series average above 30.0",
-      projectedDate: "Game 4 in San Antonio — achievable if Wembanyama produces a dominant home performance to restore Spurs' series control",
-      significance: "Averaging 30 points and 10 rebounds in a playoff series at age 22 would place Wembanyama in historical company that includes only Kareem Abdul-Jabbar, Shaquille O'Neal, and LeBron James as players who achieved equivalent combined scoring and rebounding averages before their 23rd birthday in a playoff series — a credential that would validate the generational talent assessment that followed him from his French league debut through his first three NBA seasons and into his first real playoff crucible."
-    },
-    {
-      player: "Cade Cunningham",
-      team: "DET",
-      milestone: "First Detroit Pistons point guard to average 25+ points and 8+ assists across a playoff series since Isiah Thomas in the 1988 NBA Finals",
-      current: "25.3 PPG and 7.7 APG through three games vs Cleveland — one assist per game short of the 8.0 threshold needed to match Thomas's 1988 Finals statistical tier",
-      needed: "Average 8+ assists in Game 4 tonight and maintain scoring above 25 PPG — requires improved fourth-quarter execution after his disappearance in Cleveland's decisive run",
-      projectedDate: "Series ongoing — achievable across Games 4 and 5 if Cunningham addresses the fourth-quarter decision-making gap that Mitchell exposed in Game 3",
-      significance: "Joining Thomas's 1988 Finals statistical tier would provide Cunningham's breakout postseason with the franchise's most loaded historical credential — a direct numerical connection to the greatest point guard in Pistons history at the moment when the 2026 team's championship ceiling is being publicly debated and when Cunningham's fourth-quarter struggles have invited the exact kind of historical comparison that either validates or complicates his legacy depending on how he responds tonight."
+      player: "Donovan Mitchell",
+      team: "CLE",
+      milestone: "First player in NBA history to score 39+ points in a single playoff half twice in a postseason",
+      current: "Mitchell tied the NBA postseason record with 39 second-half points in Game 4 vs Detroit — the record has been set but not yet surpassed; no player in NBA history has reached the 39-point half threshold twice in a single postseason",
+      needed: "Score 39+ points in a single half in any remaining playoff game this postseason to become the first player in NBA history to achieve the feat twice — requires a performance of equivalent or greater magnitude in Games 5 through a potential championship run",
+      projectedDate: "Series with Detroit ongoing — Games 5 through potential Finals remaining; historical opportunity exists across approximately 10-15 remaining potential games",
+      significance: "Becoming the first player to reach the 39-point playoff half threshold twice in a single postseason would give Mitchell a record entirely his own — one that no player in the sport's history has yet thought to claim, separating his 2026 postseason identity from the shared record he currently holds and establishing a historical credential specific enough to define his playoff legacy independent of any team outcome."
     },
     {
       player: "Donovan Mitchell",
       team: "CLE",
       milestone: "Most consecutive playoff games with 30+ points in Cleveland Cavaliers franchise history",
-      current: "Back-to-back 30-point games in Games 2 and 3 vs Detroit — 2 consecutive games at or above 30 points in this series",
-      needed: "LeBron James franchise record: 4 consecutive 30-point playoff games (2018 Eastern Conference Finals) — Mitchell needs 30+ in Game 4 tonight to extend streak to three and approach the franchise record",
-      projectedDate: "Game 4 tonight in Detroit at Little Caesars Arena — Mitchell averaging 31.0 PPG in this series heading in",
-      significance: "Matching or exceeding LeBron's consecutive 30-point game franchise record would deliver Mitchell's playoff identity its most powerful Cleveland credential — a statistical line connecting him directly to the franchise's greatest individual performer in the postseason context that matters most, while simultaneously answering the question that has followed Mitchell since his arrival in Cleveland: whether he is the kind of playoff engine who makes a city believe in the same way LeBron once did, and whether the answer is yes in ways that neither his regular-season excellence nor his regular-season contract have fully settled."
-    }
-  ],
-  thisWeekInHistory: [
-    {
-      year: 1997,
-      event: "On May 11, 1997, Michael Jordan scored 30 points and Scottie Pippen added 22 as the Chicago Bulls defeated the Miami Heat 100-87 in Game 2 of the Eastern Conference Semifinals at the United Center, taking a 2-0 series lead on their way to a fifth championship. The win extended Chicago's postseason dominance over Pat Riley's Heat — a team built specifically to disrupt the Bulls' championship machine — and confirmed that Jordan and Pippen's sixth-season partnership had lost none of its playoff efficiency despite the escalating roster churn around them. Chicago would close out Miami in five games before defeating Indiana and Utah to win their fifth title in seven years.",
-      players: ["Michael Jordan", "Scottie Pippen", "Alonzo Mourning", "Tim Hardaway", "Pat Riley"]
+      current: "Back-to-back 30-point games in Games 2 and 3 vs Detroit — now a third 30-point game with his 43-point Game 4 performance extends the streak to 3 consecutive games in this series",
+      needed: "LeBron James franchise record: 4 consecutive 30-point playoff games (2018 Eastern Conference Finals) — Mitchell needs one more 30-point game in Game 5 to tie LeBron's franchise record in that specific tier; his 43-point Game 4 pushed the current streak to 3",
+      projectedDate: "Game 5 at Detroit on Wednesday, May 15, 2026 — franchise record tie achievable in a single performance",
+      significance: "Tying LeBron's consecutive 30-point game franchise record on May 13, 2026 — the nineteen-year anniversary of LeBron's own 48-point masterpiece against the same Detroit franchise — and then surpassing it would provide Mitchell's playoff identity with the most direct and symbolically loaded credential available in Cleveland's organizational history, drawing a line between the franchise's two defining individual playoff performers through the statistical threshold that matters most to the city's basketball memory."
     },
     {
-      year: 1984,
-      event: "On May 11, 1984, Magic Johnson orchestrated a 12-assist performance as the Los Angeles Lakers defeated the Boston Celtics 137-104 in Game 2 of the NBA Finals at the Boston Garden — the most lopsided Finals game in the series that would ultimately go seven games and define the decade's greatest rivalry. The blowout was deceptive; Boston won four of the remaining five games to claim the championship, with Larry Bird averaging 27.4 points and 14 rebounds across the seven games. Magic's 12-assist Game 2 performance became a footnote to the series' eventual outcome, but it represented the high-water mark of Los Angeles's efficiency before Boston's physicality dismantled their finesse in the series' decisive stretch.",
-      players: ["Magic Johnson", "Kareem Abdul-Jabbar", "Larry Bird", "Kevin McHale", "Robert Parish"]
-    },
-    {
-      year: 2003,
-      event: "On May 11, 2003, Tim Duncan scored 28 points and grabbed 17 rebounds as the San Antonio Spurs defeated the Dallas Mavericks 113-91 in Game 4 of the Western Conference Semifinals, taking a commanding 3-1 series lead on their way to the NBA championship. Duncan's interior dominance over Dirk Nowitzki's Mavericks — a team that had entered the series as heavy favorites after their 60-win regular season — established the 2003 Spurs as the West's most complete organization and provided Duncan with the individual showcase that confirmed his status as the era's most valuable two-way big man. San Antonio won the series in six and the championship in six against New Jersey.",
-      players: ["Tim Duncan", "Tony Parker", "Steve Kerr", "Dirk Nowitzki", "Steve Nash"]
-    },
-    {
-      year: 2009,
-      event: "On May 12, 2009, LeBron James scored 35 points with 9 assists and 7 rebounds as the Cleveland Cavaliers defeated the Atlanta Hawks 97-82 in Game 4 of the Eastern Conference Semifinals to complete a sweep, the first time LeBron had swept a playoff opponent and a performance that demonstrated the full offensive range of a 24-year-old at the peak of his athletic powers. Cleveland's sweep of Atlanta advanced them to the Eastern Conference Finals against Orlando, where the Magic would defeat them in six games and prevent what many had projected as an inevitable first Finals appearance for James's Cavaliers. The sweep was the prelude to the heartbreak that accelerated James's eventual departure from Cleveland the following summer.",
-      players: ["LeBron James", "Mo Williams", "Dwight Howard", "Joe Johnson", "Josh Smith"]
-    },
-    {
-      year: 1989,
-      event: "On May 10, 1989, Isiah Thomas scored 33 points and handed out 8 assists as the Detroit Pistons defeated the Milwaukee Bucks 96-94 in Game 4 of the Eastern Conference Semifinals at the Palace of Auburn Hills, completing a sweep that advanced the Bad Boys to the conference finals against Chicago and positioned them for the championship run that would deliver Detroit its first title. Thomas's performance — including a decisive fourth-quarter scoring sequence that neutralized Milwaukee's final push — was the defining individual moment of the Pistons' path through the bracket and the specific game that established Thomas as the East's most dangerous playoff point guard in the post-Bird era.",
-      players: ["Isiah Thomas", "Joe Dumars", "Bill Laimbeer", "Terry Cummings", "Ricky Pierce"]
-    },
-    {
-      year: 2016,
-      event: "On May 11, 2016, LeBron James scored 30 points with 11 assists and 8 rebounds as the Cleveland Cavaliers defeated the Atlanta Hawks 123-98 in a dominant first-round closeout performance that showcased the full maturity of LeBron's third season back in Cleveland and announced the team's championship intentions with a clarity that the Eastern Conference could not have missed. The Cavaliers swept Atlanta and advanced to the conference finals against Toronto, beginning the path to the 3-1 comeback championship against Golden State that remains the most celebrated single-postseason performance in franchise history. LeBron's closeout line — 30 points, 11 assists, 8 rebounds — provided the blueprint for what Donovan Mitchell is currently attempting to replicate a decade later in the same uniform.",
-      players: ["LeBron James", "Kyrie Irving", "Kevin Love", "Paul Millsap", "Al Horford"]
-    }
-  ],
-  streakWatch: [
-    {
-      player: "New York Knicks",
-      team: "NYK",
-      streak: "10 consecutive wins combining regular season close and first-round sweep — have not lost since late April 2026; swept Philadelphia without a close game, with winning margins of 14, 21, 32, and 30 points",
-      record: "New York Knicks franchise record for combined regular season and playoff winning streak: 15 games (1970 championship season) — the 2026 team needs 5 more consecutive wins to tie and 6 to surpass the franchise record set by the only Knicks team to win a championship",
-      gamesAway: 5
+      player: "Victor Wembanyama",
+      team: "SAS",
+      milestone: "Youngest player in NBA history to average 30+ points and 12+ rebounds in a single playoff series",
+      current: "Through four games vs Minnesota: 31.3 PPG and 11.8 RPG — averaging above 30 points per game and just below 12 rebounds per game at age 22, with the series tied 2-2 heading into tonight's Game 5",
+      needed: "Grab 12+ rebounds in Game 5 tonight to push his series rebounding average above 12.0, maintaining his scoring above 30 PPG — the combined threshold at age 22 would place him ahead of any comparable historical benchmark by margin of years",
+      projectedDate: "Game 5 tonight at Frost Bank Center, May 13, 2026 — milestone achievable in a single dominant home performance",
+      significance: "Averaging 30 points and 12 rebounds in a playoff series at 22 years old would create a statistical credential with no legitimate historical precedent at that age, separating Wembanyama's early-career postseason production from the Kareem, Shaq, and Duncan comparisons that have followed him since his French league debut and establishing a new reference point for what generational big men are capable of before their 23rd birthday."
     },
     {
       player: "Jalen Brunson",
       team: "NYK",
-      streak: "4 consecutive playoff games with 30+ points — has not scored below 30 in any game of the first-round series against Philadelphia; series scoring average of 34.5 PPG represents his highest single-series average in a Knicks uniform",
-      record: "New York Knicks franchise record for consecutive playoff games with 30+ points: Bernard King's 5 consecutive 30-point playoff games in 1984 Eastern Conference Semifinals vs Detroit — Brunson needs one more 30-point game in Round 2 Game 1 to match King's franchise record",
-      gamesAway: 1
+      milestone: "First New York Knicks player to score 30+ points in 5 consecutive playoff games since Bernard King in 1984",
+      current: "4 consecutive 30-point games across the Philadelphia sweep — averaged 34.5 PPG in the series, the highest single-series average for a Knicks player in a first-round sweep in franchise history; currently resting with the East Finals awaiting",
+      needed: "Score 30+ points in East Finals Game 1 to match Bernard King's franchise record of 5 consecutive 30-point playoff games — King set the benchmark in the 1984 ECF against the Celtics and it has stood for 42 years",
+      projectedDate: "East Finals Game 1 approximately May 20-22, 2026 depending on DET-CLE series conclusion — record tie achievable in the opening game of the next series",
+      significance: "Matching Bernard King's 1984 franchise record would connect Brunson's 2026 playoff identity directly to the most celebrated individual scoring run in Knicks history, a credential that King established against Larry Bird's Celtics in a series New York ultimately lost — giving Brunson not only the franchise record tie but the specific historical obligation to extend the run further than King managed in a result the franchise has spent four decades waiting to improve upon."
     },
+    {
+      player: "Cade Cunningham",
+      team: "DET",
+      milestone: "First Detroit Pistons player to average 25+ points and 9+ assists across a playoff series since Isiah Thomas in the 1988 NBA Finals",
+      current: "Through four games vs Cleveland: 24.8 PPG and 8.3 APG — averaging just below 25 points per game and just below 9 assists per game, with the series tied 2-2 and Game 5 in Detroit on Wednesday",
+      needed: "Score 25+ points with 9+ assists in Game 5 to push his series averages above both thresholds simultaneously — requires the kind of complete performance that his -23 Game 4 suggested he had not yet located in this series",
+      projectedDate: "Game 5 at Little Caesars Arena, Detroit, Wednesday May 15, 2026 — milestone achievable in a single must-win performance",
+      significance: "Joining Isiah Thomas's 1988 Finals statistical tier would provide Cunningham's postseason with the franchise's most historically loaded credential — a direct numerical connection to the greatest point guard in Pistons history in the most important series of the Bad Boys era, confirming that Detroit's decision to build their 60-win franchise around Cunningham was the correct organizational answer to the question of what kind of player the next great Pistons team required."
+    },
+    {
+      player: "Evan Mobley",
+      team: "CLE",
+      milestone: "Most blocks in a single NBA playoff series for a Cleveland Cavaliers player",
+      current: "Through four games vs Detroit: 14 blocks — averaging 3.5 blocks per game in the series, which on a per-game basis already surpasses any comparable stretch in Cavaliers franchise postseason history; his 5-block Game 4 performance was the single-game series high",
+      needed: "Add 2 or more blocks in Game 5 to push his series total above 16 and establish an unambiguous franchise series record — the current unofficial benchmark for a single Cleveland playoff series is approximately 14-15 blocks across equivalent game counts",
+      projectedDate: "Game 5 at Detroit on Wednesday May 15, 2026 — milestone achievable with any meaningful defensive contribution",
+      significance: "Setting the franchise playoff series block record in the specific series where Mitchell is simultaneously threatening LeBron's consecutive 30-point game record would give Cleveland's 2026 second-round run a dual historical dimension — the offensive engine and the defensive anchor both writing new chapters in the franchise's postseason record book simultaneously, confirming that this Cavaliers team's championship potential is not dependent on a single player's heroism but on the structural completeness of an organization that has built correctly."
+    }
+  ],
+  thisWeekInHistory: [
+    {
+      year: 2007,
+      event: "On May 13, 2007, LeBron James scored 48 points — including Cleveland's final 25 consecutive points across regulation and two overtime periods — to defeat the Detroit Pistons 109-107 in double overtime in Game 5 of the Eastern Conference Finals at the Palace of Auburn Hills. LeBron was 22 years old and in his fourth NBA season. The performance is considered one of the three or four greatest individual games in playoff history, and it forced a Game 6 that Cleveland won before defeating Detroit in the series and advancing to the NBA Finals for the first time in franchise history. His final basket — a running bank shot over Chauncey Billups and Tayshaun Prince — became the defining image of his Cleveland first chapter.",
+      players: ["LeBron James", "Chauncey Billups", "Tayshaun Prince", "Richard Hamilton", "Dwyane Wade"]
+    },
+    {
+      year: 1994,
+      event: "On May 13, 1994, Hakeem Olajuwon scored 34 points and grabbed 10 rebounds as the Houston Rockets defeated the Phoenix Suns 88-85 in Game 3 of the Western Conference Semifinals to take a 2-1 series lead. Olajuwon's Dream Shake was utterly unguardable by Phoenix's frontcourt in the series, and his performance in these games established the specific offensive vocabulary — the pivot, the pump fake, the turnaround over the left shoulder — that the sport has been teaching post players for the three decades since. Houston won the series in seven and defeated the New York Knicks in seven to win the championship.",
+      players: ["Hakeem Olajuwon", "Clyde Drexler", "Charles Barkley", "Kevin Johnson", "Dan Majerle"]
+    },
+    {
+      year: 2000,
+      event: "On May 13, 2000, Kobe Bryant scored 32 points and Shaquille O'Neal added 30 points and 14 rebounds as the Los Angeles Lakers defeated the Portland Trail Blazers 109-94 in Game 3 of the Western Conference Finals at Staples Center. The game gave Los Angeles a 2-1 series lead that they would eventually extend to a 4-3 series victory after the most famous comeback in Conference Finals history — the fourth-quarter eruption in Game 7 in which the Lakers trailed by 15 before Shaq and Kobe combined for an otherworldly final period that the sport has not fully processed in the 26 years since.",
+      players: ["Shaquille O'Neal", "Kobe Bryant", "Scottie Pippen", "Rasheed Wallace", "Steve Smith"]
+    },
+    {
+      year: 2013,
+      event: "On May 13, 2013, LeBron James scored 32 points with 10 assists and 8 rebounds as the Miami Heat defeated the Chicago Bulls 115-78 in Game 5 of the Eastern Conference Semifinals, completing a 4-1 series victory in what was essentially a statement tour through a Bulls team that had upset the first-seeded Brooklyn Nets but had no structural answer for Miami's combination of LeBron, Dwyane Wade, and Chris Bosh playing in the specific complementary rhythm they had developed across their second Heat season together. The win advanced Miami to the Eastern Conference Finals against Indiana.",
+      players: ["LeBron James", "Dwyane Wade", "Chris Bosh", "Carlos Boozer", "Joakim Noah"]
+    },
+    {
+      year: 1997,
+      event: "On May 14, 1997, Michael Jordan scored 23 points and Karl Malone made both free throws to put Utah ahead by one with 9.5 seconds remaining — but Jordan stripped Malone on the ensuing possession and hit the series-winning jumper over Bryon Russell with 5.3 seconds left, completing a 90-88 Chicago Bulls victory in Game 6 of the NBA Finals. The shot is one of the two or three most replayed moments in the sport's history, the image of Jordan releasing over Russell's outstretched hand and following through while the Chicago Stadium crowd rose to its feet serving as the definitive visual representation of his sixth and final championship.",
+      players: ["Michael Jordan", "Karl Malone", "John Stockton", "Scottie Pippen", "Bryon Russell"]
+    },
+    {
+      year: 1987,
+      event: "On May 15, 1987, Magic Johnson hit a running hook shot over Kevin McHale and Robert Parish with two seconds remaining to give the Los Angeles Lakers a 107-106 victory over the Boston Celtics in Game 4 of the NBA Finals. The shot — which Magic later called the most important of his career — gave Los Angeles a 3-1 series lead that they extended to a 4-2 championship two games later. The basket is the single moment most responsible for the phrase 'Junior, Junior Skyhook' entering the sport's permanent vocabulary, and it occurred at the intersection of the decade's greatest rivalry at the precise moment when the shot's magnitude was at its maximum.",
+      players: ["Magic Johnson", "Kevin McHale", "Robert Parish", "Kareem Abdul-Jabbar", "Larry Bird"]
+    }
+  ],
+  streakWatch: [
     {
       player: "Oklahoma City Thunder",
       team: "OKC",
-      streak: "7 consecutive playoff wins — undefeated in these playoffs after sweeping their first-round opponent and winning three straight over the Lakers; tonight's Game 4 is a potential close-out at crypto.com Arena",
-      record: "2001 Los Angeles Lakers: 15-1 record in a single postseason — the gold standard for single-postseason dominance; the 2012 Miami Heat went 16-7 en route to a championship; OKC needs 8 more wins without a loss to match the 2001 Lakers' 15-win undefeated-through-four-rounds threshold",
-      gamesAway: 8
+      streak: "8 consecutive playoff wins to open the 2026 postseason — swept Phoenix in Round 1 and the Lakers in Round 2 without dropping a single game; have not trailed in a series at any point in these playoffs and have won each of the eight games by an average of 9.4 points",
+      record: "2001 Los Angeles Lakers: 11-0 start to the postseason before losing Game 1 of the NBA Finals to Philadelphia — the deepest unbeaten run to open a postseason in NBA history; the Thunder need 3 more consecutive wins to tie the 2001 record opening unbeaten sequence",
+      gamesAway: 3
     },
     {
-      player: "Anthony Edwards",
-      team: "MIN",
-      streak: "3 consecutive playoff games with 25+ points in this series — has scored 26, 28, and 31 points in Games 1, 2, and 3 respectively against San Antonio despite the Timberwolves trailing the series 2-1",
-      record: "Minnesota Timberwolves franchise record for consecutive playoff games with 25+ points: Kevin Garnett's 7 consecutive 25-point playoff games in the 2004 Western Conference first and second rounds — Edwards needs 4 more 25-point games to match Garnett's franchise record for sustained playoff scoring",
+      player: "Jalen Brunson",
+      team: "NYK",
+      streak: "4 consecutive playoff games with 30+ points — has not scored below 30 in any game of the first-round series against Philadelphia; currently resting as the Knicks await the East Finals opponent",
+      record: "Bernard King's New York Knicks franchise record: 5 consecutive playoff games with 30+ points in the 1984 Eastern Conference Semifinals vs Detroit — Brunson needs one 30-point game in East Finals Game 1 to tie King's 42-year-old franchise record",
+      gamesAway: 1
+    },
+    {
+      player: "Donovan Mitchell",
+      team: "CLE",
+      streak: "3 consecutive playoff games with 30+ points in this series vs Detroit — scored 31, 34, and 43 points in Games 2, 3, and 4 respectively; his 43-point Game 4 extended the streak with the most individual production of the three performances",
+      record: "LeBron James Cleveland Cavaliers franchise record: 4 consecutive playoff games with 30+ points in the 2018 Eastern Conference Finals vs Boston — Mitchell needs one more 30-point game in Game 5 to tie LeBron's franchise benchmark, which has stood for eight years",
+      gamesAway: 1
+    },
+    {
+      player: "New York Knicks",
+      team: "NYK",
+      streak: "11 consecutive wins combining regular season close and first-round sweep — swept Philadelphia 4-0 after winning 7 consecutive regular-season games to close the year; have not lost since late April 2026",
+      record: "New York Knicks franchise record for combined regular season and playoff winning streak: 15 games in the 1970 championship season — the 2026 team needs 4 more consecutive wins to tie the franchise record set by the only Knicks team to win a championship in the modern era",
       gamesAway: 4
     },
     {
       player: "Victor Wembanyama",
       team: "SAS",
-      streak: "3 consecutive playoff games with 25+ points and 9+ rebounds in this series against Minnesota — producing arguably the most statistically complete performances of any player in these playoffs in a losing series context",
-      record: "Tim Duncan San Antonio franchise record for consecutive playoff games with 25+ points and 9+ rebounds: 5 consecutive games in 2003 Western Conference Semifinals and Finals — Wembanyama needs 2 more such games to match the franchise benchmark established by the player whose position and two-way template he was compared to from the moment he arrived in the league",
-      gamesAway: 2
-    },
-    {
-      player: "Donovan Mitchell",
-      team: "CLE",
-      streak: "5 consecutive playoff games with 25+ points including back-to-back 30-point performances in Games 2 and 3 vs Detroit — the most sustained individual scoring contribution in Cleveland's postseason since LeBron James's 2018 Eastern Conference Finals run",
-      record: "LeBron James Cleveland Cavaliers franchise record: 4 consecutive playoff games with 30+ points (2018 Eastern Conference Finals vs Boston) — Mitchell has 2 consecutive 30-point games in this series and needs 2 more to match LeBron's franchise record in that specific tier; his 5 consecutive 25-point games already ties LeBron's 2016 first-round consistency benchmark",
-      gamesAway: 2
-    },
-    {
-      player: "Philadelphia 76ers",
-      team: "PHI",
-      streak: "Eliminated in the first round for the second time in three seasons — the franchise has now lost 8 consecutive playoff games dating back to their Game 6 second-round exit in 2024, the longest losing streak in the 76ers' modern era",
-      record: "Philadelphia 76ers longest postseason losing streak in the franchise's modern era (post-1976): 9 consecutive playoff losses during the 2012-2013 rebuilding period — the current 8-game playoff losing streak approaches but has not yet matched that franchise low-water mark; an offseason without a playoff appearance in 2027 would continue the streak's accumulation",
-      gamesAway: 0
-    }
-  ],
-  narrative: "May 11, 2026 arrives on the morning after two playoff results that resist simple summary and demand instead the kind of historical triangulation that the game's richest moments have always required. The New York Knicks' sweep completion — 144 points in the closeout, Jalen Brunson's 38-point orchestration, a combined series margin that renders Philadelphia's season a footnote rather than a narrative — is the Eastern Conference's definitive first-round statement, a performance that draws its most honest historical line not to the Knicks teams of LeBron or Patrick Ewing's era but to Isiah Thomas's 1987 arrival announcement: a point guard of insufficient conventional dimensions declaring through the specific brutality of his playoff efficiency that the conference's competitive calendar has changed and that New York is now the team everyone else must plan around. Brunson's sweep average of 34.5 PPG is not Isiah Thomas's 1988 Finals production, but it belongs to the same structural category of individual playoff will reshaping organizational expectations, and the franchise's combined win streak of ten games now requires only five more victories to surpass the 1970 championship team's record — a credential that would transform the 2026 Knicks from a very good team into something the franchise has not possessed in more than five decades. In San Antonio, the more complicated story unfolds: Victor Wembanyama's 29-10-3 in a road loss is the performance of a generational talent encountering the specific developmental obstacle that Hakeem Olajuwon encountered in 1987 and that every great center has eventually had to navigate — the moment when individual excellence meets collective resistance and discovers that brilliance is not the same as invincibility. Minnesota's halftime defensive transformation, holding San Antonio to 41 second-half points after surrendering 68 in the first, channels the 2004 Pistons' defensive adjustment blueprint on a smaller canvas and confirms that the Timberwolves' upset bid is not accidental but coached, structured, and anchored by Rudy Gobert's interior dominance in a way that Dikembe Mutombo's 1994 upset-enabling performance for Denver would have recognized as its own spiritual descendant. Anthony Edwards' 14-point fourth-quarter takeover is the individual heartbeat of Minnesota's survival — an Iverson-register performance in terms of its refusal to acknowledge the matchup's arithmetic, delivered through a body and athletic vocabulary that Iverson himself would have envied. The calendar's own insistence on historical continuity provides the morning's final frame: the 1997 Bulls won Game 2 in Chicago on this date; the 1984 Lakers blew out Boston in Game 2 of the Finals on this date; and the thread connecting those moments to the 2026 results is not the specific outcomes but the underlying competitive grammar — the way that playoff basketball in May has always compressed the sport's largest questions into single performances, single quarters, single possessions that the historians must then spend years unpacking. New York is ten wins from a championship, San Antonio is one pivotal Game 5 from regaining control, and the 2026 playoffs have arrived at the crossroads where individual brilliance meets collective destiny."
-};
+      streak: "4 consecutive playoff games with 25+ points and 9+ rebounds in this series against Minnesota — the streak includes his 39-point Game 3 masterpiece and was interrupted only by his Game 4 ejection after 12 minutes
