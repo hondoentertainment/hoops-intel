@@ -49,16 +49,16 @@ export const gameResults = [
 // ═══════════════════════════════════════════════════════════
 
 export const pulseIndex = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",score:98,trend:"up",analysis:"8-0 in the playoffs. Two series sweeps. Averaging 30+ PPG with elite efficiency. The Playoff MVP frontrunner isn't even breaking a sweat."},
-  {rank:2,player:"Donovan Mitchell",team:"CLE",score:96,trend:"up",analysis:"43 points with 39 in the second half — a record-tying performance that saved Cleveland's season. His playoff scoring average continues to climb."},
-  {rank:3,player:"Jalen Brunson",team:"NYK",score:94,trend:"steady",analysis:"Led the Knicks to a sweep of Philadelphia. Resting and waiting for the East Finals with 27+ PPG and surgical efficiency throughout."},
-  {rank:4,player:"Anthony Edwards",team:"MIN",score:93,trend:"up",analysis:"36-point tribute game tied the series 2-2. His resilience through a hyperextended knee and without DiVincenzo has been extraordinary."},
-  {rank:5,player:"Victor Wembanyama",team:"SAS",score:90,trend:"down",analysis:"The 39-point Game 3 masterpiece was legendary. The Game 4 ejection after 12 minutes was baffling. Tonight's Game 5 defines his playoff narrative."},
-  {rank:6,player:"Ajay Mitchell",team:"OKC",score:88,trend:"up",analysis:"28 points on 12-19 FG in the sweep-clincher. The undrafted guard is averaging 20+ off the bench in these playoffs — a revelation."},
-  {rank:7,player:"James Harden",team:"CLE",score:87,trend:"up",analysis:"24 points, 11 assists, 9-9 FT in the series-evening win. The Beard is delivering vintage playoff performances at the perfect time."},
-  {rank:8,player:"Evan Mobley",team:"CLE",score:86,trend:"up",analysis:"17/8/5 with 5 blocks, 3 steals, and a +30 in Game 4. His two-way dominance is the engine behind Cleveland's series comeback."},
-  {rank:9,player:"Cade Cunningham",team:"DET",score:85,trend:"down",analysis:"19 points with a -23 in the Game 4 loss, but 25+ PPG and 9+ APG for the series. Detroit needs him to respond in Game 5."},
-  {rank:10,player:"Chet Holmgren",team:"OKC",score:83,trend:"up",analysis:"Tiebreaking dunk with 32.8 seconds left. 16/9 in the sweep-clincher. His rim protection and clutch moments are championship-caliber."}
+  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",indexScore:98,trend:"up",analysis:"8-0 in the playoffs. Two series sweeps. Averaging 30+ PPG with elite efficiency. The Playoff MVP frontrunner isn't even breaking a sweat."},
+  {rank:2,player:"Donovan Mitchell",team:"CLE",indexScore:96,trend:"up",analysis:"43 points with 39 in the second half — a record-tying performance that saved Cleveland's season. His playoff scoring average continues to climb."},
+  {rank:3,player:"Jalen Brunson",team:"NYK",indexScore:94,trend:"stable",analysis:"Led the Knicks to a sweep of Philadelphia. Resting and waiting for the East Finals with 27+ PPG and surgical efficiency throughout."},
+  {rank:4,player:"Anthony Edwards",team:"MIN",indexScore:93,trend:"up",analysis:"36-point tribute game tied the series 2-2. His resilience through a hyperextended knee and without DiVincenzo has been extraordinary."},
+  {rank:5,player:"Victor Wembanyama",team:"SAS",indexScore:90,trend:"down",analysis:"The 39-point Game 3 masterpiece was legendary. The Game 4 ejection after 12 minutes was baffling. Tonight's Game 5 defines his playoff narrative."},
+  {rank:6,player:"Ajay Mitchell",team:"OKC",indexScore:88,trend:"up",analysis:"28 points on 12-19 FG in the sweep-clincher. The undrafted guard is averaging 20+ off the bench in these playoffs — a revelation."},
+  {rank:7,player:"James Harden",team:"CLE",indexScore:87,trend:"up",analysis:"24 points, 11 assists, 9-9 FT in the series-evening win. The Beard is delivering vintage playoff performances at the perfect time."},
+  {rank:8,player:"Evan Mobley",team:"CLE",indexScore:86,trend:"up",analysis:"17/8/5 with 5 blocks, 3 steals, and a +30 in Game 4. His two-way dominance is the engine behind Cleveland's series comeback."},
+  {rank:9,player:"Cade Cunningham",team:"DET",indexScore:85,trend:"down",analysis:"19 points with a -23 in the Game 4 loss, but 25+ PPG and 9+ APG for the series. Detroit needs him to respond in Game 5."},
+  {rank:10,player:"Chet Holmgren",team:"OKC",indexScore:83,trend:"up",analysis:"Tiebreaking dunk with 32.8 seconds left. 16/9 in the sweep-clincher. His rim protection and clutch moments are championship-caliber."}
 ];
 
 // ═══════════════════════════════════════════════════════════
