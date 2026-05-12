@@ -70,7 +70,7 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline: "Victor Wembanyama returns to Frost Bank Center after his jarring Game 4 ejection, looking to reclaim command of a series that has suddenly slipped into genuine danger. Anthony Edwards and Minnesota arrive riding back-to-back wins with a battered but unbroken belief that they can send the West's best regular-season team to the brink — and that the winner punches a ticket to face a Thunder squad that just went 8-0 through two rounds.",
+      storyline: "Victor Wembanyama makes his highly anticipated return to Frost Bank Center after a stunning ejection ended his Game 4 in just 12 minutes — the Spurs' 62-win season now rides on how quickly he can recapture his Game 3 masterpiece. Anthony Edwards arrives with back-to-back wins, a hyperextended knee, and a team-wide conviction that Minnesota is on the verge of something historic.",
       keyMatchup: "Victor Wembanyama vs. Anthony Edwards",
       mustWatch: true,
       factors: {
@@ -86,15 +86,15 @@ export const watchGuideData: WatchGuideData = {
   ],
   topPick: {
     gameIndex: 0,
-    reason: "This is the only game on the slate tonight, and it happens to be one of the most compelling matchups of the entire second round. Wembanyama's return from ejection, Edwards nursing a hyperextended knee yet still closing out games, a 2-2 series tied at the pivot point, and the West Finals berth against OKC waiting on the other side — every element of must-watch playoff basketball is present.",
+    reason: "Wembanyama's return from ejection, a winner-takes-command Game 5 stakes frame, Edwards nursing a knee but operating at full throttle, and the West Finals berth against the unbeaten Thunder dangling as the prize — this is the only game on the slate and it demands every minute of your attention.",
   },
   sleeper: {
     gameIndex: 0,
-    reason: "With just one game tonight there is no sleeper in the traditional sense, but do not underestimate how much Minnesota's role players — particularly Edwards' supporting cast playing shorthanded without DiVincenzo — could turn this into a chaotic, unpredictable game that outperforms even the lofty expectations.",
+    reason: "With only one game tonight there's no hiding it — but the sleeper angle is real: if Wembanyama takes time to shake off the rust after his abrupt Game 4 exit, Minnesota's supporting cast (Karl-Anthony Towns, Rudy Gobert anchoring the paint) could quietly dictate the tempo before anyone realizes how close this one is.",
   },
   skipIt: {
     gameIndex: 0,
-    reason: "There is nothing to skip tonight — the slate is a single game and it carries a 94 entertainment score. If you only watch one game all week, make it this one.",
+    reason: "There is nothing to skip tonight — one game, one enormous stage. If you must step away, do it before tipoff and not after, because once Wembanyama and Edwards are locked in, this one will not let you go.",
   },
-  nightOverview: "Tonight's slate is a single game, but it carries the weight of an entire playoff slate on its shoulders. Wembanyama returns to a rocking Frost Bank Center for a winner-takes-command Game 5 against Anthony Edwards and a Timberwolves team that has refused to fold, with the West Finals matchup against an undefeated Oklahoma City Thunder squad serving as the ultimate prize.",
+  nightOverview: "Tonight's entire NBA universe collapses into a single, seismic Game 5 at Frost Bank Center as Victor Wembanyama returns from ejection to face an Anthony Edwards-led Timberwolves squad riding back-to-back wins and genuine belief. The winner seizes series control with a date against the 8-0 Oklahoma City Thunder waiting on the other side — making every possession in San Antonio feel like it carries postseason history.",
 };
