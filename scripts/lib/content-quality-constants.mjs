@@ -37,6 +37,10 @@ export const VALID_INJURY_STATUSES = new Set([
   "Questionable",
   "Probable",
   "Doubtful",
+  "Available",
+  "Out — Season Over",
+  "Out for Postseason",
+  "Playing Through Injury",
 ]);
 
 export const PULSE_SENTIMENTS = new Set(["hot", "cold", "neutral"]);
