@@ -122,6 +122,7 @@ export function globalSearch(query: string, limit = 20): SearchResult[] {
 }
 
 export function slugify(name: string): string {
+  if (!name) return "";
   return name
     .toLowerCase()
     .normalize("NFD")
