@@ -258,4 +258,10 @@ export const historyData: HistoryData = {
     {
       player: "Victor Wembanyama",
       team: "SAS",
-      streak: "4 consecutive playoff games with 25+ points and 9+ rebounds in this series against Minnesota — the streak includes his 39-point Game 3 masterpiece and was interrupted only by his Game 4 ejection after 12 minutes
+      streak: "4 consecutive playoff games with 25+ points and 9+ rebounds in this series against Minnesota — the streak includes his 39-point Game 3 masterpiece and was interrupted only by his Game 4 ejection after 12 minutes; his Game 5 bounce-back of 27 points and 17 rebounds extended the streak emphatically",
+      record: "Tim Duncan San Antonio Spurs franchise record: 7 consecutive playoff games with 25+ points and 10+ rebounds in the 2003 championship run — Wembanyama needs 3 more such performances to tie Duncan's franchise benchmark from the Spurs' first title season",
+      gamesAway: 3
+    },
+  ],
+  narrative: "May 13, 2026 dawns on the aftermath of Victor Wembanyama's most complete answer yet — 27 points, 17 rebounds, and 3 blocks in a Game 5 victory that gave San Antonio a 3-2 series lead over Minnesota, just two days after his first career ejection threatened to define his playoff narrative. The bounce-back performance channels the structural resilience that defined Tim Duncan's earliest postseason moments: the refusal to let a single emotional rupture become a defining limitation. Meanwhile, Detroit and Cleveland prepare for a Game 5 that will determine whether Donovan Mitchell's record-tying 39 second-half points in Game 4 was a series-saving inflection point or merely a delay of the inevitable. The Thunder's perfect 8-0 record looms over the Western Conference like the 2001 Lakers' historic unbeaten start, awaiting whatever emerges from the San Antonio-Minnesota crucible. The 2026 playoffs have reached the phase where individual brilliance must translate into collective advancement, and the next 48 hours will determine which performances become chapters and which become footnotes."
+};
