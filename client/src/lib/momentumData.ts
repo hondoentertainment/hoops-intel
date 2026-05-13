@@ -37,53 +37,53 @@ export const momentumData: MomentumData = {
   gameOfTheNight: "MIN-SAS-20260512",
   topClutchPerformer: {
     player: "Victor Wembanyama",
-    team: "SAS",
+    team: "San Antonio Spurs",
     clutchRating: 94,
     description:
-      "Wembanyama didn't just respond to his Game 4 ejection — he buried it. Twenty-seven points, 17 rebounds, 3 blocks, and a +24 in 34 minutes of surgical, composed basketball. He controlled every possession that mattered, finished at the rim over Minnesota's helpless rotations, and kept his emotions surgically contained in a game where the Spurs needed a statement, not a spectacle.",
+      "Wembanyama authored the most emphatic personal redemption arc of the 2026 playoffs — turning a Game 4 ejection into a 27-point, 17-rebound, 3-block masterpiece that suffocated Minnesota's offense and gave San Antonio a 3-2 series lead. His +24 plus/minus was the loudest stat on the sheet.",
   },
   games: [
     {
       gameId: "MIN-SAS-20260512",
-      teams: { home: "SAS", away: "MIN" },
+      teams: { home: "San Antonio Spurs", away: "Minnesota Timberwolves" },
       finalScore: { home: 126, away: 97 },
       swings: [
         {
           quarter: "Q1",
           timestamp: "4:31",
           description:
-            "Wembanyama opens the game with back-to-back bucket-and-foul sequences, punctuated by a rejection of Edwards at the rim on Minnesota's first real scoring attempt. The AT&T Center crowd reaches full roar inside three minutes. San Antonio's defensive identity is established immediately — this is not a team rattled by Game 4's chaos.",
-          runScore: "14-4 SAS",
+            "Wembanyama opened the scoring with back-to-back mid-range jumpers, then swatted a Rudy Gobert put-back attempt into the third row. The Frost Bank Center crowd ignited immediately — the message from the Spurs' franchise centerpiece was unmistakable after his Game 4 ejection.",
+          runScore: "14-6 SAS",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "7:15",
+          timestamp: "7:14",
           description:
-            "Minnesota strings together an 11-2 run fueled by Edwards mid-range pull-ups and a pair of Randle post conversions, briefly trimming the deficit to single digits and quieting the Frost Bank crowd. For a four-minute stretch the Timberwolves look like the team that pushed this series to five games, and Edwards finds some of his early-series rhythm.",
-          runScore: "11-2 MIN",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "2:08",
-          description:
-            "Keldon Johnson explodes off the bench with five consecutive points — a transition dunk off a Wembanyama block outlet and a step-back three — immediately neutralizing Minnesota's run and pushing the lead back to 16 at the half. Johnson's energy resets San Antonio's identity as a deep, dangerous team rather than a one-star show.",
-          runScore: "12-3 SAS",
+            "Keldon Johnson exploded off the bench with 9 unanswered points in under two minutes — a corner three, a transition dunk off a Wembanyama block outlet, and a pull-up mid-range — turning a manageable 8-point Spurs lead into a suffocating 17-point advantage. Minnesota called timeout but had no answer.",
+          runScore: "42-25 SAS",
           momentum: "home",
           keyPlayer: "Keldon Johnson",
           impact: "game-changing",
         },
         {
-          quarter: "Q3",
-          timestamp: "5:44",
+          quarter: "Q2",
+          timestamp: "1:58",
           description:
-            "Stephon Castle orchestrates a devastating 18-5 third-quarter run that effectively ends the competitive portion of the game. Castle knifes through Minnesota's scrambled rotations for two floaters, dishes a no-look lob to Wembanyama, and forces two turnovers in transition. The lead swells to 29 and the Target Center crowd goes silent on the road feed.",
-          runScore: "18-5 SAS",
+            "Anthony Edwards strung together 7 straight points — a step-back three and two aggressive drives — to briefly remind the building that Minnesota's engine was still running. The Wolves trimmed the lead to 13 heading into halftime, offering a faint pulse.",
+          runScore: "49-36 SAS",
+          momentum: "away",
+          keyPlayer: "Anthony Edwards",
+          impact: "notable",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:50",
+          description:
+            "Stephon Castle orchestrated a 16-4 third-quarter blitz in six minutes of game time — dishing three assists, scoring 7 himself, and converting two consecutive steals into fast-break layups. Julius Randle picked up his fourth foul trying to keep pace, and Minnesota's offense fractured completely. The lead ballooned to 29 and the series outcome felt inevitable.",
+          runScore: "79-50 SAS",
           momentum: "home",
           keyPlayer: "Stephon Castle",
           impact: "game-changing",
@@ -92,8 +92,8 @@ export const momentumData: MomentumData = {
           quarter: "Q4",
           timestamp: "9:02",
           description:
-            "Dylan Harper posts his double-double with a putback slam and two free throws in the fourth quarter's opening minutes, a symbolic coda confirming that San Antonio's rebuild has depth beyond its franchise cornerstone. The Spurs empty the bench minutes later with the outcome never in doubt.",
-          runScore: "10-4 SAS",
+            "With reserves on the floor and the game already decided, Dylan Harper rattled off 8 points on efficient shooting to post his double-double, cementing the depth advantage San Antonio has built across this series. Eight Spurs in double figures underscored that this roster requires no single hero — only Wembanyama leading the way.",
+          runScore: "110-76 SAS",
           momentum: "home",
           keyPlayer: "Dylan Harper",
           impact: "notable",
@@ -101,7 +101,7 @@ export const momentumData: MomentumData = {
       ],
       clutchPlays: [],
       narrative:
-        "This was less a basketball game than a public reckoning. Wembanyama walked into Frost Bank Center carrying the weight of a Game 4 ejection and the narrative that his emotions might be his ceiling — and he systematically dismantled every version of that story. Minnesota had no answer defensively for his length and no coherent offensive identity once Edwards went cold in the second quarter, with Randle's -22 night encapsulating the Timberwolves' supporting cast collapse. Eight Spurs in double figures wasn't a fluke; it was the architecture of a 62-win team executing at its highest level on its biggest stage. San Antonio is one win away from advancing, and after tonight, it feels less like a question of if and more like a question of when.",
+        "This was never a game — it was a statement. Victor Wembanyama treated Game 5 as personal penance for his Game 4 ejection, delivering 27 points, 17 rebounds, and 3 blocks with the composure of a ten-year veteran and zero technical fouls. The supporting cast piled on in waves: Keldon Johnson's second-quarter eruption cracked Minnesota's spirit, Stephon Castle's third-quarter blitz buried it, and eight Spurs in double figures ensured there was no path back. Anthony Edwards' 20 points on 6-of-13 shooting represented Minnesota's ceiling on a night their role players were invisible and Julius Randle's -22 encapsulated a team running on fumes. San Antonio travels to Target Center for Game 6 holding a 3-2 series lead — and the psychological edge couldn't be larger.",
     },
   ],
 };

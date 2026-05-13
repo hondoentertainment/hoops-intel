@@ -70,7 +70,8 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 7,
-      storyline: "Cade Cunningham absorbed a brutal -23 in Game 4 as Donovan Mitchell's record-tying 43-point second half flipped the series back to even. Tonight Cunningham gets the Detroit crowd and a chance to reclaim the narrative in his own building — with the rested Knicks watching from the East Finals couch.",
+      storyline:
+        "Donovan Mitchell torched Detroit for a record-tying 43-point second half in Game 4 to even the series; now Cade Cunningham — who posted a dismal -23 in that loss — must respond forcefully on his home floor or watch the Pistons' best season in decades slip away.",
       keyMatchup: "Cade Cunningham vs. Donovan Mitchell",
       mustWatch: true,
       factors: {
@@ -81,20 +82,24 @@ export const watchGuideData: WatchGuideData = {
         storyline: 19,
       },
       watchScore: 91,
-      headline: "Cade Needs a Statement. Mitchell Needs a Knockout.",
+      headline: "Cunningham Must Answer — Detroit's Season on the Line in Game 5",
     },
   ],
   topPick: {
     gameIndex: 0,
-    reason: "The only game on the slate is a must-watch in its own right — a tied 2-2 second-round series, a scorned superstar seeking redemption on his home floor, and a Mitchell who just dropped a record-tying second half. Game 5s with series parity are historically the most volatile and compelling of any playoff round, and this one has every ingredient.",
+    reason:
+      "The only game on the slate and it earns every bit of a 91 watch score: a tied 2-2 playoff series, a Donovan Mitchell moment that has to be answered, Cade Cunningham's bounce-back pride on the line at Little Caesars Arena, and the rested Knicks watching from the East Finals waiting room. This is appointment television.",
   },
   sleeper: {
     gameIndex: 0,
-    reason: "With just one game tonight there's no hiding from it — but if you expect a blowout given Cunningham's Game 4 struggles, think again. Detroit's home crowd at Little Caesars Arena has been a difference-maker all postseason, and a cornered Pistons squad with the East Finals on the line is precisely the situation where sleeper upsets and unexpected heroes emerge.",
+    reason:
+      "With only one game tonight, the 'sleeper' label flips into a bonus angle — if Detroit's crowd is as loud as it was in Games 1-2, the atmosphere alone could elevate this into one of the best single-game nights of the second round. Don't sleep on the home-crowd factor.",
   },
   skipIt: {
     gameIndex: 0,
-    reason: "There is no skip-it option tonight — this is the only game on the board and it scores a 91. Clear your schedule.",
+    reason:
+      "There is no skippable game tonight — one playoff Game 5 with a series knotted 2-2 is mandatory viewing. If you only have 90 minutes, at minimum tune in for the fourth quarter; Detroit-Cleveland has gone to crunch time in three of the first four games.",
   },
-  nightOverview: "One game. No filler. Detroit hosts Cleveland in a winner-takes-the-series-momentum Game 5 with everything knotted at 2-2, a wounded but dangerous Donovan Mitchell rolling in off one of the great individual playoff halves in recent memory, and Cade Cunningham desperate to remind the basketball world who runs Little Caesars Arena. The East Finals berth inches closer for whichever team wins tonight.",
+  nightOverview:
+    "Tonight's slate is a single-game spotlight: Detroit hosts Cleveland in a pivotal Game 5 with the second-round series locked at 2-2. Donovan Mitchell's record-tying 43-point second half in Game 4 flipped the narrative, and now Cade Cunningham needs a statement performance in front of a Little Caesars Arena crowd desperate to see the Pistons' historic 60-win season translate into a deep playoff run.",
 };
