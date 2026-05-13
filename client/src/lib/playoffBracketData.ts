@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════
 // HOOPS INTEL — Playoff Bracket Data
 // Updated daily alongside pulseData.ts by the hoops-intel cron
-// Last updated: May 12, 2026
+// Last updated: May 13, 2026
 // ═══════════════════════════════════════════════════════════
 
 // --- Types ---
@@ -131,7 +131,7 @@ export const confSemisSeries: PlayoffSeries[] = [
   {seriesId:"east-r2-3v7",conference:"east",round:2,higherSeed:3,lowerSeed:7,higherTeam:"NYK",lowerTeam:"PHI",higherWins:4,lowerWins:0,status:"complete",winner:"NYK",games:[{gameNumber:1,date:"May 5",homeTeam:"NYK",awayTeam:"PHI",homeScore:108,awayScore:94,status:"final",topPerformer:"Jalen Brunson",topPerformerLine:"29 PTS, 7 AST"},{gameNumber:2,date:"May 7",homeTeam:"NYK",awayTeam:"PHI",homeScore:112,awayScore:101,status:"final",topPerformer:"Karl-Anthony Towns",topPerformerLine:"26 PTS, 12 REB"},{gameNumber:3,date:"May 9",homeTeam:"PHI",awayTeam:"NYK",homeScore:94,awayScore:108,status:"final",topPerformer:"Jalen Brunson",topPerformerLine:"33 PTS, 11-22 FG"},{gameNumber:4,date:"May 11",homeTeam:"PHI",awayTeam:"NYK",homeScore:114,awayScore:144,status:"final",topPerformer:"Miles McBride",topPerformerLine:"25 PTS, 7-9 3PT"}],narrative:"The Knicks authored the most dominant sweep of the 2026 playoffs. Game 4's 144-114 demolition featured a record-tying 25 three-pointers. New York awaits the East Finals.",keyMatchup:"Brunson orchestrated the entire series — PHI had no answers"},
   // WEST
   {seriesId:"west-r2-1v4",conference:"west",round:2,higherSeed:1,lowerSeed:4,higherTeam:"OKC",lowerTeam:"LAL",higherWins:4,lowerWins:0,status:"complete",winner:"OKC",games:[{gameNumber:1,date:"May 5",homeTeam:"OKC",awayTeam:"LAL",homeScore:118,awayScore:102,status:"final",topPerformer:"Shai Gilgeous-Alexander",topPerformerLine:"30 PTS, 7 AST"},{gameNumber:2,date:"May 7",homeTeam:"OKC",awayTeam:"LAL",homeScore:122,awayScore:108,status:"final",topPerformer:"Shai Gilgeous-Alexander",topPerformerLine:"28 PTS, 6 AST"},{gameNumber:3,date:"May 9",homeTeam:"LAL",awayTeam:"OKC",homeScore:108,awayScore:131,status:"final",topPerformer:"Ajay Mitchell",topPerformerLine:"24 PTS, 10 AST career highs"},{gameNumber:4,date:"May 11",homeTeam:"LAL",awayTeam:"OKC",homeScore:110,awayScore:115,status:"final",topPerformer:"Shai Gilgeous-Alexander",topPerformerLine:"35 PTS, 8 AST"}],narrative:"OKC's second consecutive sweep. The Thunder are 8-0 in the 2026 playoffs and haven't been seriously threatened. Chet's clutch dunk sealed Game 4. They now await the West Finals opponent.",keyMatchup:"SGA vs the Lakers' entire roster — it was never close"},
-  {seriesId:"west-r2-2v6",conference:"west",round:2,higherSeed:2,lowerSeed:6,higherTeam:"SAS",lowerTeam:"MIN",higherWins:2,lowerWins:2,status:"active",games:[{gameNumber:1,date:"May 5",homeTeam:"SAS",awayTeam:"MIN",homeScore:108,awayScore:99,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"28 PTS, 12 REB, 4 BLK"},{gameNumber:2,date:"May 7",homeTeam:"SAS",awayTeam:"MIN",homeScore:104,awayScore:110,status:"final",topPerformer:"Anthony Edwards",topPerformerLine:"32 PTS, 7 REB"},{gameNumber:3,date:"May 9",homeTeam:"MIN",awayTeam:"SAS",homeScore:108,awayScore:115,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"39 PTS, 15 REB, 5 BLK"},{gameNumber:4,date:"May 11",homeTeam:"MIN",awayTeam:"SAS",homeScore:114,awayScore:109,status:"final",topPerformer:"Anthony Edwards",topPerformerLine:"36 PTS, 6 REB (Wemby ejected)"},{gameNumber:5,date:"May 12",time:"8:00 PM ET",tv:"NBC, Peacock",homeTeam:"SAS",awayTeam:"MIN",homeScore:null,awayScore:null,status:"scheduled"}],narrative:"The most dramatic series of the 2026 playoffs. Wembanyama's 39-point Game 3 masterpiece, followed by his ejection after 12 minutes in Game 4, followed by Edwards' emotional 36-point response. Tonight's Game 5 in San Antonio is the biggest game of the second round.",keyMatchup:"Wembanyama vs Edwards — generational talent clash",seriesOdds:"SAS -160"},
+  {seriesId:"west-r2-2v6",conference:"west",round:2,higherSeed:2,lowerSeed:6,higherTeam:"SAS",lowerTeam:"MIN",higherWins:3,lowerWins:2,status:"active",games:[{gameNumber:1,date:"May 5",homeTeam:"SAS",awayTeam:"MIN",homeScore:108,awayScore:99,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"28 PTS, 12 REB, 4 BLK"},{gameNumber:2,date:"May 7",homeTeam:"SAS",awayTeam:"MIN",homeScore:104,awayScore:110,status:"final",topPerformer:"Anthony Edwards",topPerformerLine:"32 PTS, 7 REB"},{gameNumber:3,date:"May 9",homeTeam:"MIN",awayTeam:"SAS",homeScore:108,awayScore:115,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"39 PTS, 15 REB, 5 BLK"},{gameNumber:4,date:"May 11",homeTeam:"MIN",awayTeam:"SAS",homeScore:114,awayScore:109,status:"final",topPerformer:"Anthony Edwards",topPerformerLine:"36 PTS, 6 REB (Wemby ejected)"},{gameNumber:5,date:"May 12",tv:"NBC, Peacock",homeTeam:"SAS",awayTeam:"MIN",homeScore:126,awayScore:97,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"27 PTS, 17 REB, 3 BLK"},{gameNumber:6,date:"May 15",time:"8:00 PM ET",tv:"TBD",homeTeam:"MIN",awayTeam:"SAS",homeScore:null,awayScore:null,status:"scheduled"}],narrative:"Wembanyama's redemption game — 27/17/3BLK in a 29-point blowout two days after his ejection — gave San Antonio a 3-2 series lead. The Spurs can clinch a trip to the West Finals in Game 6 at Minnesota. Edwards was held to 20 points in his quietest game of the series.",keyMatchup:"Wembanyama vs Edwards — generational talent clash, SAS one win away",seriesOdds:"SAS -220",eliminationGame:true},
 ];
 
 // --- Conference Finals Series (Pending) ---
@@ -144,52 +144,52 @@ export const confFinalsSeries: PlayoffSeries[] = [
 // --- Playoff Performers ---
 
 export const playoffPerformers: PlayoffPerformer[] = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",ppg:30.1,rpg:6.2,apg:6.5,statLine:"30.1 PPG, 6.2 RPG, 6.5 APG (8-0)",trend:"up",highlight:"8-0 with two sweeps — 35/8 in the sweep-clinching Game 4 vs LAL. The Playoff MVP frontrunner."},
-  {rank:2,player:"Donovan Mitchell",team:"CLE",ppg:33.5,rpg:5.3,apg:4.8,statLine:"33.5 PPG in East Semis",trend:"up",highlight:"43 points with 39 in the second half — tying an NBA postseason record — to even the series 2-2."},
-  {rank:3,player:"Anthony Edwards",team:"MIN",ppg:29.4,rpg:5.8,apg:4.2,statLine:"29.4 PPG through 10 playoff games",trend:"up",highlight:"36-point tribute game in Game 4 after Wemby's ejection, playing through a hyperextended knee."},
-  {rank:4,player:"Victor Wembanyama",team:"SAS",ppg:24.8,rpg:11.5,apg:2.2,statLine:"24.8 PPG, 11.5 RPG, 3.5 BPG",trend:"down",highlight:"39/15/5 in Game 3 was a masterpiece. Ejected after 12 min in Game 4. Tonight's Game 5 is everything."},
-  {rank:5,player:"Jalen Brunson",team:"NYK",ppg:27.8,rpg:3.8,apg:6.3,statLine:"27.8 PPG, 6.3 APG across 4-game sweep",trend:"steady",highlight:"Led the most dominant sweep of the 2026 playoffs. Now resting before the East Finals."},
-  {rank:6,player:"Ajay Mitchell",team:"OKC",ppg:20.5,rpg:2.8,apg:5.2,statLine:"20.5 PPG off bench in playoffs",trend:"up",highlight:"28/3/4 with 4 STL in the sweep-clincher. The undrafted guard has become OKC's lethal secondary weapon."},
-  {rank:7,player:"Cade Cunningham",team:"DET",ppg:25.8,rpg:5.4,apg:9.1,statLine:"25.8 PPG, 9.1 APG in East Semis",trend:"down",highlight:"Near triple-doubles throughout but -23 in the Game 4 loss. Needs a response in Game 5."},
-  {rank:8,player:"Evan Mobley",team:"CLE",ppg:16.5,rpg:8.2,apg:4.0,statLine:"16.5 PPG, 8.2 RPG, 3.8 BPG",trend:"up",highlight:"17/8/5/5BLK/3STL and +30 in Game 4. The most impactful two-way player in the playoffs."},
-  {rank:9,player:"James Harden",team:"CLE",ppg:21.3,rpg:3.5,apg:9.8,statLine:"21.3 PPG, 9.8 APG in playoffs",trend:"up",highlight:"24/11 with 9-9 FT and 5 threes in the series-evening Game 4. Vintage Beard when it matters most."},
-  {rank:10,player:"Chet Holmgren",team:"OKC",ppg:15.2,rpg:8.5,apg:1.8,statLine:"15.2 PPG, 8.5 RPG, 2.4 BPG",trend:"up",highlight:"Tiebreaking dunk with 32.8 seconds left to seal the sweep. His rim protection anchors OKC's defense."},
+  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",ppg:30.1,rpg:6.2,apg:6.5,statLine:"30.1 PPG, 6.2 RPG, 6.5 APG (8-0)",trend:"steady",highlight:"8-0 with two sweeps — the Playoff MVP frontrunner is resting and waiting for the West Finals."},
+  {rank:2,player:"Victor Wembanyama",team:"SAS",ppg:25.2,rpg:12.4,apg:2.8,statLine:"25.2 PPG, 12.4 RPG, 3.4 BPG",trend:"up",highlight:"Redemption Game 5: 27/17/5/3BLK in a 29-point rout. Two days after ejection, delivered the most composed game of his career. SAS leads 3-2."},
+  {rank:3,player:"Donovan Mitchell",team:"CLE",ppg:33.5,rpg:5.3,apg:4.8,statLine:"33.5 PPG in East Semis",trend:"steady",highlight:"Record-tying 43-point Game 4 with 39 in the second half. Tonight's Game 5 at Detroit determines everything."},
+  {rank:4,player:"Anthony Edwards",team:"MIN",ppg:28.0,rpg:5.4,apg:3.8,statLine:"28.0 PPG through 11 playoff games",trend:"down",highlight:"Held to 20 points on 6-13 in Game 5 blowout. After back-to-back heroics, Edwards' quietest night handed SAS a 3-2 lead. Now facing elimination."},
+  {rank:5,player:"Jalen Brunson",team:"NYK",ppg:27.8,rpg:3.8,apg:6.3,statLine:"27.8 PPG, 6.3 APG across 4-game sweep",trend:"steady",highlight:"Led the most dominant sweep of the 2026 playoffs. Resting with extended time before the East Finals — freshness could be decisive."},
+  {rank:6,player:"Ajay Mitchell",team:"OKC",ppg:20.5,rpg:2.8,apg:5.2,statLine:"20.5 PPG off bench in playoffs",trend:"steady",highlight:"28/3/4 with 4 STL in the sweep-clincher. Undrafted guard averaging 20+ off the bench in the playoffs — an unprecedented run."},
+  {rank:7,player:"Evan Mobley",team:"CLE",ppg:16.5,rpg:8.2,apg:4.0,statLine:"16.5 PPG, 8.2 RPG, 3.8 BPG",trend:"steady",highlight:"+30 with 5 blocks in Game 4 was the best two-way performance of the 2026 postseason. Tonight's Game 5 at Detroit is the stage."},
+  {rank:8,player:"James Harden",team:"CLE",ppg:21.3,rpg:3.5,apg:9.8,statLine:"21.3 PPG, 9.8 APG in playoffs",trend:"steady",highlight:"Vintage 24/11 with 9-9 FT in Game 4. The steady engine behind Cleveland's series comeback. Game 5 tonight."},
+  {rank:9,player:"Cade Cunningham",team:"DET",ppg:25.8,rpg:5.4,apg:9.1,statLine:"25.8 PPG, 9.1 APG in East Semis",trend:"down",highlight:"Elite averages but -23 in Game 4 loss. Detroit's franchise player needs a bounce-back tonight at home."},
+  {rank:10,player:"Stephon Castle",team:"SAS",ppg:14.6,rpg:3.8,apg:4.5,statLine:"14.6 PPG, 4.5 APG in playoffs",trend:"up",highlight:"17 PTS, 6 AST on 8-11 FG in Game 5. The sophomore guard is emerging as SAS's third star behind Wemby and Fox."},
 ];
 
 // --- MVP Candidates ---
 
 export const mvpCandidates: MvpCandidate[] = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",odds:"-150",playoffAvg:"30.1 PPG, 6.2 RPG, 6.5 APG",record:"8-0 (two sweeps)",signatureMoment:"35-point, 8-assist sweep-clincher against the Lakers — never trailed in a single series",trend:"up"},
-  {rank:2,player:"Donovan Mitchell",team:"CLE",odds:"+600",playoffAvg:"33.5 PPG, 5.3 RPG, 4.8 APG",record:"6-4 (advancing)",signatureMoment:"43-point Game 4 with 39 in the second half — tying the NBA postseason record for points in a half",trend:"up"},
-  {rank:3,player:"Jalen Brunson",team:"NYK",odds:"+500",playoffAvg:"27.8 PPG, 6.3 APG, 3.8 RPG",record:"8-2 (swept PHI in R2)",signatureMoment:"Led the Knicks to a dominant sweep — 33-point Game 3 put Philadelphia on the brink",trend:"steady"},
-  {rank:4,player:"Anthony Edwards",team:"MIN",odds:"+1200",playoffAvg:"29.4 PPG, 5.8 RPG, 4.2 APG",record:"6-4 (alive in R2)",signatureMoment:"36-point tribute game to his late mother after Wembanyama's ejection evened the series 2-2",trend:"up"},
-  {rank:5,player:"Victor Wembanyama",team:"SAS",odds:"+1500",playoffAvg:"24.8 PPG, 11.5 RPG, 3.5 BPG",record:"6-3 (series tied 2-2)",signatureMoment:"39/15/5 in Game 3 — but the ejection in Game 4 is a stain. Tonight determines everything.",trend:"down"},
+  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",odds:"-160",playoffAvg:"30.1 PPG, 6.2 RPG, 6.5 APG",record:"8-0 (two sweeps)",signatureMoment:"35-point, 8-assist sweep-clincher against the Lakers — 8-0 and the clear frontrunner",trend:"steady"},
+  {rank:2,player:"Victor Wembanyama",team:"SAS",odds:"+500",playoffAvg:"25.2 PPG, 12.4 RPG, 3.4 BPG",record:"7-3 (leads MIN 3-2)",signatureMoment:"27/17/3BLK redemption game after ejection — composed, dominant, one win from WCF",trend:"up"},
+  {rank:3,player:"Jalen Brunson",team:"NYK",odds:"+450",playoffAvg:"27.8 PPG, 6.3 APG, 3.8 RPG",record:"8-2 (swept PHI in R2)",signatureMoment:"Led the Knicks to a dominant sweep — 33-point Game 3 put Philadelphia on the brink",trend:"steady"},
+  {rank:4,player:"Donovan Mitchell",team:"CLE",odds:"+700",playoffAvg:"33.5 PPG, 5.3 RPG, 4.8 APG",record:"6-4 (tied 2-2 in R2)",signatureMoment:"43-point Game 4 with record-tying 39 in the second half saved Cleveland's season",trend:"steady"},
+  {rank:5,player:"Anthony Edwards",team:"MIN",odds:"+2500",playoffAvg:"28.0 PPG, 5.4 RPG, 3.8 APG",record:"6-5 (trailing 2-3)",signatureMoment:"36-point tribute game in Game 4 — but 20-point quiet Game 5 and a 2-3 deficit hurt his case",trend:"down"},
 ];
 
 // --- Elimination Watch ---
 
 export const eliminationWatch: EliminationWatch[] = [
+  {team:"MIN",opponent:"SAS",situation:"Facing elimination — trailing 2-3, must win Game 6 at home",gameInfo:"SAS @ MIN, May 15, TBD — Edwards needs his best game to extend the series",urgency:"elimination"},
+  {team:"DET",opponent:"CLE",situation:"Series tied 2-2 — Game 5 tonight at home",gameInfo:"CLE @ DET, May 13, 8:00 PM ET, ESPN — Cunningham must respond after -23 in Game 4",urgency:"tied"},
+  {team:"CLE",opponent:"DET",situation:"Series tied 2-2 — Game 5 tonight on the road",gameInfo:"CLE @ DET, May 13, 8:00 PM ET, ESPN — Mitchell riding 43-point momentum",urgency:"tied"},
+  {team:"SAS",opponent:"MIN",situation:"Leading 3-2 — can clinch West Finals in Game 6 at Minnesota",gameInfo:"SAS @ MIN, May 15, TBD — Wemby's redemption game shifted the series",urgency:"leading"},
+  {team:"OKC",opponent:"TBD",situation:"Advancing — 8-0, awaiting West Finals opponent (SAS or MIN)",gameInfo:"West Finals begins after SAS-MIN concludes",urgency:"advancing"},
+  {team:"NYK",opponent:"TBD",situation:"Advancing — Awaiting East Finals opponent (DET or CLE)",gameInfo:"East Finals begins after DET-CLE concludes",urgency:"advancing"},
   {team:"LAL",opponent:"OKC",situation:"Eliminated — Swept 4-0 in West Semis",gameInfo:"OKC 115, LAL 110 (May 11) — Season over",urgency:"eliminated"},
   {team:"PHI",opponent:"NYK",situation:"Eliminated — Swept 4-0 in East Semis",gameInfo:"NYK 144, PHI 114 (May 11) — Season over",urgency:"eliminated"},
   {team:"BOS",opponent:"PHI",situation:"Eliminated — Lost 3-4 in East R1 (blew 3-1 lead)",gameInfo:"PHI 104, BOS 98 in Game 7 — Season over",urgency:"eliminated"},
   {team:"DEN",opponent:"MIN",situation:"Eliminated — Lost 2-4 in West R1",gameInfo:"MIN 116, DEN 108 in Game 6 — Season over",urgency:"eliminated"},
-  {team:"SAS",opponent:"MIN",situation:"Series tied 2-2 — Game 5 tonight at home",gameInfo:"MIN @ SAS, 8:00 PM ET, NBC — Wembanyama returns after ejection",urgency:"tied"},
-  {team:"MIN",opponent:"SAS",situation:"Series tied 2-2 — Game 5 tonight on the road",gameInfo:"MIN @ SAS, 8:00 PM ET, NBC — Edwards riding 36-point momentum",urgency:"tied"},
-  {team:"DET",opponent:"CLE",situation:"Series tied 2-2 — Game 5 Wednesday at home",gameInfo:"DET vs CLE, May 13, 8:00 PM ET, ESPN",urgency:"tied"},
-  {team:"CLE",opponent:"DET",situation:"Series tied 2-2 — Game 5 Wednesday on the road",gameInfo:"CLE @ DET, May 13, 8:00 PM ET, ESPN — Mitchell riding 43-point high",urgency:"tied"},
-  {team:"OKC",opponent:"TBD",situation:"Advancing — 8-0, awaiting West Finals opponent",gameInfo:"West Finals begins after SAS-MIN concludes",urgency:"advancing"},
-  {team:"NYK",opponent:"TBD",situation:"Advancing — Awaiting East Finals opponent",gameInfo:"East Finals begins after DET-CLE concludes",urgency:"advancing"},
 ];
 
 // --- Bracket Meta ---
 
 export const bracketMeta = {
-  lastUpdated: "May 12, 2026",
+  lastUpdated: "May 13, 2026",
   currentRound: "Conference Semifinals",
-  nextMilestone: "Conference Finals — East: NYK vs DET/CLE, West: OKC vs SAS/MIN",
+  nextMilestone: "Conference Finals — East: NYK vs DET/CLE, West: OKC vs SAS/MIN. SAS can clinch in Game 6.",
   teamsRemaining: 6,
   teamsEliminated: 14,
-  gamesPlayed: 42,
+  gamesPlayed: 43,
   playInComplete: true,
   firstRoundStarts: "April 18",
   confFinalsProjected: "May 18-19",
