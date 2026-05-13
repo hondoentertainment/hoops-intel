@@ -366,4 +366,11 @@ export const sentimentData: SentimentData = {
       sentiment: "positive",
       score: 88,
       mentions: 19400,
-      topTake: "17 points, 8 rebounds, 5 blocks, 3 steals, and a +30 in
+      topTake: "17 points, 8 rebounds, 5 blocks, 3 steals, and a +30 in a must-win game. Evan Mobley just delivered the most complete two-way performance of the 2026 postseason and Detroit had absolutely no answer for him.",
+      narrativeArc: "Mobley's Game 4 masterclass has elevated him from 'elite defensive prospect' to 'genuine two-way superstar' in the eyes of the basketball internet. The +30 plus-minus and 5-block performance is being treated as a coming-out party, and the discourse has shifted from whether he can be a championship-caliber second option to whether he might actually be Cleveland's most important player in the playoffs.",
+    },
+  ],
+
+  hottestTake: "Donovan Mitchell tied an NBA postseason record with 39 second-half points and the Cavaliers looked like a completely different team once he decided the game was his. If he plays like this the rest of the series, Detroit has no answer.",
+  coldestTake: "The Lakers should blow it up and trade everyone not named LeBron — as if a team that lost to the 8-0 defending champions needed a roster autopsy rather than an acknowledgment that Oklahoma City is simply operating on a different plane of basketball existence.",
+};
