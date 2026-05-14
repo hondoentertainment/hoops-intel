@@ -24,154 +24,151 @@ export interface PodcastCompanionData {
 export const podcastCompanion: PodcastCompanionData = {
   date: "May 14, 2026",
 
-  episodeTitle: "Wemby Answered. Loudly. | Hoops Intel Ep. 140",
+  episodeTitle: "The Beard Is Back: Harden's 30-Point OT Masterpiece and the Chaos of Elimination Friday",
 
   coldOpen:
-    "Forty-eight hours ago we were asking whether a 21-year-old had the composure to handle adversity on the biggest stage of his career. Last night, Victor Wembanyama walked into the Frost Bank Center and gave us the most complete individual performance of the 2026 playoffs — 27 points, 17 rebounds, 5 assists, 3 blocks, and not a single technical foul. The Spurs won by 29. Ant was quiet. Minnesota is desperate. And tonight, Cunningham and Mitchell meet in a Game 5 that could flip the entire East bracket. Let's get into it — this is Hoops Intel, Vol. 2026, No. 140.",
+    "Nine points down. Under four minutes left. On the road. Against a sixty-win team. Most nights, that's a wrap — you take the loss, you go home, you start packing. But James Harden? James Harden went to the free-throw line, and he just. kept. going. Eleven-of-fourteen. Three blocks. A six-assist OT performance that had all of us eating every single 'washed' take we ever made. Cleveland is one win from the Eastern Conference Finals, Detroit is staring down the barrel of elimination, and Friday night might be the most consequential evening of the entire 2026 playoffs. Two series. Two elimination games. Two Conference Finals berths decided in a single night. Strap in — this is Hoops Intel, and the NBA is doing what it always does: absolutely refusing to be boring.",
 
   rundown: [
     {
-      topic: "Wembanyama's Redemption Game — The Most Complete Performance of the 2026 Playoffs",
+      topic: "Harden's Masterpiece: The Comeback, the OT, and What It All Means for Cleveland",
       segment: "opener",
       duration: "8 min",
       keyStats: [
-        "27 PTS on 9-of-16 FG (56.3%)",
-        "17 REB — 15 defensive",
-        "5 AST · 3 BLK · 0 technical fouls",
-        "+24 plus-minus in a 29-point blowout",
-        "8 Spurs players scored in double figures",
-        "Keldon Johnson: 21 PTS on 8-of-11 off the bench"
+        "Harden: 30 PTS, 8 REB, 6 AST, 3 BLK — playoff-best performance at age 36",
+        "Harden went 11-of-14 from the line — the clutch free-throw barrage that swung the game",
+        "Cleveland trailed by nine with under four minutes left in regulation",
+        "CLE outscored DET 14-10 in overtime to seal the 117-113 final",
+        "Max Strus: 6-of-8 from three (75%), 20 PTS — best long-range efficiency of the 2026 playoffs",
+        "Evan Mobley: 19 PTS, 8 REB, 8 AST, 3 BLK — one assist shy of a playoff triple-double on the road",
       ],
       debateAngle:
-        "Is the 'maturity question' surrounding Wembanyama officially dead after this performance — or does one composure game not erase the legitimate concern his Game 4 ejection raised about handling playoff pressure?",
+        "Is this the single most important game in James Harden's post-Houston career — and does a championship run in Cleveland officially rewrite his playoff legacy? The 'disappears in big moments' narrative has followed him for a decade. Wednesday night in Detroit was the loudest possible rebuttal. But one game doesn't erase the history. Does it need to?",
       suggestedQuote:
-        "We spent 48 hours psychoanalyzing a 21-year-old's composure and he responded with the most dominant, controlled, complete game of this entire playoff season. The kid didn't flinch. He didn't jaw back. He just played 40 minutes of perfect basketball. SEVENTEEN rebounds. He had more boards than four Minnesota players combined. I feel appropriately humbled. — Bill Simmons, The Ringer",
+        "At 36 years old, James Harden just walked into a 60-win team's building, down nine in the fourth quarter, and personally dragged Cleveland back from the ledge. If you still want to call him a playoff ghost after last night, you've got to ask yourself — what does it take? What does the man have to do?",
       relevantPlayers: [
-        "Victor Wembanyama",
-        "Keldon Johnson",
-        "Stephon Castle",
-        "Dylan Harper",
-        "De'Aaron Fox"
-      ]
+        "James Harden",
+        "Donovan Mitchell",
+        "Evan Mobley",
+        "Max Strus",
+        "Jarrett Allen",
+        "Cade Cunningham",
+      ],
     },
     {
-      topic: "The Spurs Depth Machine — How San Antonio Suffocated Minnesota's Star-Driven Offense",
+      topic: "Cade Cunningham and the Cruelty of Being Great on a Team That Isn't Enough",
       segment: "deep-dive",
-      duration: "10 min",
+      duration: "9 min",
       keyStats: [
-        "8 Spurs players in double figures — a 2026 playoff record",
-        "Stephon Castle: 17 PTS · 6 AST · 8-of-11 FG",
-        "Dylan Harper: 12 PTS · 10 REB double-double (+13)",
-        "De'Aaron Fox: 18 PTS · 5 AST · +24",
-        "Keldon Johnson: 21 PTS off bench on 8-of-11",
-        "Julius Randle: -22 on 17 PTS and 10 REB for MIN"
+        "Cunningham: 39 PTS, 7 REB, 9 AST, 6-of-10 from three in 48 minutes — best losing line of the 2026 playoffs",
+        "Cunningham finished the game at -4 despite his historic stat line",
+        "Detroit's supporting cast shot 22-of-57 around him",
+        "Tobias Harris went 6-of-19 from the field",
+        "Daniss Jenkins added 19 points but the Pistons managed just 10 in overtime",
+        "Detroit has not won a road game since Game 2 of the first-round series vs. Orlando",
       ],
       debateAngle:
-        "Minnesota can conceivably match Wembanyama with Anthony Edwards on a great night — but can any team in the West actually replicate the Spurs' bench depth? Is San Antonio's roster construction the true competitive advantage over OKC, or does SGA's ceiling make that irrelevant in the West Finals?",
+        "Cade Cunningham did everything a franchise player is supposed to do and his team still lost. Is this a Damian Lillard in Portland situation — a generational player trapped on a team that just isn't built to win? Or is Detroit's supporting cast good enough, and this is simply a one-game failure that doesn't define the roster? How long does a franchise give a player this gifted before the construction around him needs a total rethink?",
       suggestedQuote:
-        "Minnesota can match the Spurs' stars. They simply cannot match the Spurs' roster. Eight players in double figures is not a fluke — it's a system. And that system right now is the deepest unit in the NBA playoffs. — Shams Charania, The Athletic",
+        "Thirty-nine points. Nine assists. Six threes. Forty-eight minutes. And they lost. I don't know what else Cade Cunningham is supposed to do. You can't manufacture a supporting cast in the middle of an overtime playoff game. Tobias Harris shot six-of-nineteen. That's not a Cade problem. That's a roster problem.",
       relevantPlayers: [
-        "Victor Wembanyama",
-        "Stephon Castle",
-        "Dylan Harper",
-        "Keldon Johnson",
-        "De'Aaron Fox",
-        "Anthony Edwards",
-        "Julius Randle"
-      ]
+        "Cade Cunningham",
+        "Tobias Harris",
+        "Daniss Jenkins",
+        "Ausar Thompson",
+        "James Harden",
+        "Donovan Mitchell",
+      ],
     },
     {
-      topic: "HOT TAKE: Anthony Edwards Is Not Winning This Series — And Minnesota Shouldn't Come Back If He Plays Like This",
+      topic: "Hot Take: The Knicks Are Secretly the Most Dangerous Team Left in the East",
       segment: "hot-take",
       duration: "6 min",
       keyStats: [
-        "Edwards: 20 PTS on 6-of-13 FG in a 29-point blowout",
-        "Anthony Edwards averaging 6-of-13 in Game 5 — quietest outing of the series",
-        "Edwards playing through hyperextended left knee — Game 6 status TBD",
-        "Donte DiVincenzo out for postseason with torn right Achilles",
-        "Minnesota must win two straight — at least one in San Antonio",
-        "Randle: -22 on a 17/10 night — the supporting cast is crumbling"
+        "Knicks swept Philadelphia — most dominant sweep of the 2026 playoffs",
+        "Jalen Brunson averaging 27.8 PPG and 6.3 APG across the postseason",
+        "NYK fully rested with extended preparation time for the East Finals",
+        "Cleveland playing on short rest after a grueling 48-minute OT road game",
+        "OG Anunoby questionable — Knicks won the sweep without him, meaning his return is a net add",
+        "CLE went 2-0 at home in the series vs. DET — but Brunson has the experience of deep playoff runs",
       ],
       debateAngle:
-        "The hot take: Minnesota SHOULD NOT advance past a 3-2 deficit against this Spurs team if their best player can only give them 20 on 13 shots. Edwards has been elite in this series — Games 1 through 3 were monster performances — but a team that needs historic heroism from their star every single night to stay alive is not built to beat the Thunder in the West Finals. If Ant can't go nuclear in Game 6, this series is exactly where it should end.",
+        "Everyone's focused on Harden's comeback and Wembanyama's greatness, but the most dangerous team in the East right now is the team nobody's talking about. New York swept Philadelphia without OG Anunoby, Brunson is healthy, and the Knicks are sitting on a couch watching Cleveland and Detroit beat each other up in overtime. Fresh legs in a Conference Finals series is a legitimate, underrated advantage. Fight us.",
       suggestedQuote:
-        "Anthony Edwards at 20 points on 13 shots is not the version of Ant that wins on the road against a 62-win team. Minnesota needed 35-point Edwards in Game 5. They got Role Player Edwards, and the margin was 29 points. The window is not closed — but it requires something historic from him in Game 6. — Sam Quinn, CBS Sports",
+        "While Cleveland is grinding through overtime road games and Detroit is living on Cade Cunningham's back, the Knicks are resting. Fully rested. OG Anunoby might actually come back for the East Finals. Brunson has done this before. I'm not saying New York wins — I'm saying the basketball world is sleeping on them right now, and that's exactly how they like it.",
       relevantPlayers: [
-        "Anthony Edwards",
-        "Julius Randle",
-        "Donte DiVincenzo",
-        "Victor Wembanyama"
-      ]
+        "Jalen Brunson",
+        "OG Anunoby",
+        "James Harden",
+        "Donovan Mitchell",
+        "Evan Mobley",
+        "Cade Cunningham",
+      ],
     },
     {
-      topic: "Rapid Fire — Tonight's DET-CLE Game 5, Cunningham Must-Bounce-Back, Mitchell Momentum, Playoff Movers",
+      topic: "Rapid Fire: Elimination Friday Preview, Wembanyama's Redemption, OKC's Patience, and the Injury Watch",
       segment: "rapid-fire",
       duration: "5 min",
       keyStats: [
-        "DET-CLE series: tied 2-2 — winner holds 3-2 lead with path to East Finals",
-        "Donovan Mitchell: 33.5 PPG in East Semis · record-tying 43-pt second half in Game 4",
-        "Cade Cunningham: -23 in Game 4 · playing at home tonight where DET went 2-0 to start",
-        "Evan Mobley: +30 and 5 blocks in Game 4 — best two-way game of the 2026 postseason",
-        "James Harden: 24 PTS · 11 AST · 9-of-9 from the stripe in series-evening Game 4",
-        "OKC: perfect 8-0 in 2026 playoffs · +12.1 net rating · resting for West Finals",
-        "Rested Knicks await the DET-CLE winner in the East Finals",
-        "This Date in History: LeBron dropped 48 on these same Pistons in Game 5 ECF, May 13, 2007"
+        "SAS leads MIN 3-2 — Wembanyama posted 27 PTS, 17 REB, 3 BLK in Game 5 rout",
+        "Anthony Edwards had a quiet 20-point Game 5 but is Probable for Game 6 despite hyperextended knee",
+        "Donte DiVincenzo is OUT for the remainder of Minnesota's postseason — torn right Achilles",
+        "OKC is a perfect 8-0, having swept both PHX and LAL — fully rested for the West Finals",
+        "Luka Doncic's season is over (hamstring), eliminating LAL's wildcard factor",
+        "Dylan Harper posted a 12-PTS, 10-REB double-double in SAS's Game 5 rout as a rookie",
       ],
       debateAngle:
-        "Cunningham vs. Mitchell: whose performance tonight matters more for their franchise's long-term narrative — the 1-seed's star who needs to erase a -23 nightmare at home, or the perennial question mark who put up a series-defining 43 in Game 4 and needs to prove it wasn't a peak?",
+        "Can Anthony Edwards deliver a 40-point legacy game to force a Game 7, or is Wembanyama simply too dominant right now for a banged-up, DiVincenzo-less Wolves team to handle? And on the other side — is Oklahoma City's rest advantage over both SAS and MIN so significant that whoever comes out of that series is already at a deficit before tip-off of the West Finals?",
       suggestedQuote:
-        "Tonight's Game 5 between Detroit and Cleveland is the last true toss-up in the second round. On this date in 2007, LeBron scored 48 against these same Pistons in double overtime. The stage is set for somebody to write their own chapter tonight. — Jake Fischer, Bleacher Report",
-      relevantPlayers: [
-        "Cade Cunningham",
-        "Donovan Mitchell",
-        "Evan Mobley",
-        "James Harden",
-        "Shai Gilgeous-Alexander",
-        "Jalen Brunson"
-      ]
-    },
-    {
-      topic: "Looking Ahead — West Finals Preview, Wemby vs. SGA, and What a Generational Showdown Would Mean for the NBA",
-      segment: "closer",
-      duration: "7 min",
-      keyStats: [
-        "OKC: 8-0 in 2026 playoffs · +12.1 net rating · SGA averaging 30.1 PPG · 6.5 APG · 6.2 RPG",
-        "SAS: 7-3 in playoffs at +8.4 net rating · can clinch Game 6 at Target Center",
-        "Pulse Index: SGA 98.5 · Wembanyama 96.9 — the two highest-rated players in the West",
-        "Stephon Castle: 80.5 Pulse Index, trending up — the emerging third star SAS needs in a West Finals",
-        "OG Anunoby: Questionable for Knicks in East Finals — missed entire PHI sweep",
-        "Luka Doncic: Out for season with hamstring — Lakers swept by OKC in West Semis",
-        "Wembanyama is 21 years old — SGA is 27 — a West Finals matchup would be the most anticipated conference final in a generation"
-      ],
-      debateAngle:
-        "If San Antonio closes this series in Game 6 and faces OKC in the West Finals, is this the most important series for the NBA's future in the last decade? Wembanyama vs. SGA — the incumbent two-time MVP versus the alien who might eventually take the throne — is the kind of generational collision the league has been building toward. And the question we have to ask: does OKC's perfect 8-0 record mean the Spurs depth doesn't matter, or is San Antonio actually built differently enough to be the first team to slow the Thunder?",
-      suggestedQuote:
-        "If the Spurs close this in Game 6, they'll face an OKC team that's 8-0 with a +12.1 net rating. That West Finals matchup — Wembanyama versus SGA — would be the most anticipated conference final in a generation. I'm not sure we've had a series with this much historical weight since Shaq and Kobe faced Duncan in 2003. — John Schuhmann, NBA.com",
+        "Friday night is everything. Detroit needs a road win they haven't been able to get. Minnesota needs the performance of Anthony Edwards's life. Wembanyama is on a freight train. Oklahoma City hasn't played in what feels like two weeks. The Conference Finals could be completely set by Friday at midnight. Tell me another sport that does this.",
       relevantPlayers: [
         "Victor Wembanyama",
+        "Anthony Edwards",
+        "Dylan Harper",
         "Shai Gilgeous-Alexander",
-        "Stephon Castle",
-        "Ajay Mitchell",
+        "Donte DiVincenzo",
+        "Luka Doncic",
+      ],
+    },
+    {
+      topic: "Looking Ahead: What a Dream Conference Finals Weekend Looks Like and Who's Holding the Trophy in June",
+      segment: "closer",
+      duration: "5 min",
+      keyStats: [
+        "OKC -170 Finals favorites entering Thursday per latest odds update",
+        "SAS +340 — best odds among non-OKC remaining teams",
+        "NYK shortened after PHI sweep, seen as legitimate contender",
+        "If both higher seeds close out Friday: OKC-SAS West Finals, NYK-CLE East Finals",
+        "Ajay Mitchell averaging 20.5 PPG off bench in OKC's 8-0 run — historic bench production",
+        "CLE is 2-0 at home vs. DET with double-digit wins in Games 3 and 4",
+      ],
+      debateAngle:
+        "If it's OKC versus SAS in the West, we get Shai Gilgeous-Alexander against Victor Wembanyama — the two best players in the league playing for the right to go to the Finals. That's the series the NBA deserves. But is the dream scenario also the one that ends with an OKC championship so inevitable it takes the drama out of June? Or does Wembanyama's ceiling make San Antonio the one team that can actually push back?",
+      suggestedQuote:
+        "Imagine waking up Saturday morning and the bracket is set: Thunder versus Spurs in the West, Knicks versus Cavaliers in the East. SGA against Wemby. Brunson against Harden or Cunningham. That's the best possible outcome for the sport. Friday night could deliver exactly that. Don't you dare make other plans.",
+      relevantPlayers: [
+        "Shai Gilgeous-Alexander",
+        "Victor Wembanyama",
         "Jalen Brunson",
-        "OG Anunoby"
-      ]
-    }
+        "James Harden",
+        "Donovan Mitchell",
+        "Ajay Mitchell",
+      ],
+    },
   ],
 
   socialClip:
-    "CLIP BRIEF — 'Wemby Grew Up On National Television' (Target length: 60–90 seconds for Instagram Reels / TikTok / X). Open on the graphic: 27 PTS · 17 REB · 5 AST · 3 BLK. Host reads the Tim Bontemps ESPN quote verbatim: 'Two days ago the biggest question in the NBA was whether Wembanyama had the composure to handle adversity. Tonight he answered with 27 points, 17 rebounds, and 3 blocks without a single complaint. He didn't just play well — he grew up in front of us.' Cut to the Bill Simmons kicker: 'SEVENTEEN rebounds. He had more boards than four Minnesota players combined. I feel appropriately humbled.' Close with the episode title card and tonight's DET-CLE Game 5 tease. This clip captures the dominant emotional arc of the episode — the vindication story — and the Simmons quote gives it a shareable, self-aware ending that will clip well across all platforms.",
+    "CLIP DESCRIPTION — 'The Comeback Sequence' (approx. 90 seconds): Begin with the host reading Harden's final stat line cold — no intro, no context, just '30 points. 8 rebounds. 6 assists. 3 blocks. Eleven-of-fourteen from the line. Thirty-six years old.' Then cut to the debate angle: 'Cleveland was down nine with four minutes left. On the road. Against the one-seed. And James Harden just refused.' Close with the Cade contrast — 'Cunningham scored 39 and still lost. The NBA is genuinely unhinged right now and I would not have it any other way.' Ideal for Instagram Reels, TikTok, and YouTube Shorts. Thumbnail: split-screen of Harden at the line vs. Cunningham's dejected bench reaction. Caption: 'The Beard silenced every doubter. 🔥 #HoopsIntel #NBAPlayoffs'",
 
   tweetThread: [
-    "🎙️ HOOPS INTEL EP. 140 IS LIVE — 'Wemby Answered. Loudly.' Victor Wembanyama delivered 27 PTS, 17 REB, 5 AST, and 3 BLK in the most complete individual performance of the 2026 playoffs. Spurs lead 3-2. Full breakdown below. 🧵⬇️",
+    "🎙️ NEW EPISODE — Hoops Intel Vol. 2026 · No. 141\n\n'The Beard Is Back: Harden's 30-Point OT Masterpiece and the Chaos of Elimination Friday'\n\nCleveland is ONE WIN from the East Finals. Friday is going to be chaos. Let's go. 🧵",
 
-    "1/ We spent 48 hours asking if a 21-year-old had the composure to handle adversity. He responded with the best game of the playoff season — controlled, dominant, zero technicals, +24 in a 29-point win. The maturity question? Answered. Loudly. #Spurs #Wembanyama",
+    "James Harden at 36 years old:\n\n30 PTS · 8 REB · 6 AST · 3 BLK\n11-of-14 from the line\nCleveland down 9 with under 4 minutes left\n\nHe went to the free-throw line and just WILLED them back.\n\nThe playoff ghost narrative is done. We're retiring it. [2/5]",
 
-    "2/ The real story is the DEPTH. Eight Spurs in double figures. Keldon Johnson: 21 off the bench on 8-of-11. Stephon Castle: 17 PTS, 6 AST, 8-of-11. Dylan Harper: 12/10 double-double. De'Aaron Fox: 18 and 5 at +24. Minnesota can't match that roster. Nobody in the West can. #SAS",
+    "Cade Cunningham scored 39 points, dished 9 assists, hit 6 threes, played 48 minutes.\n\nAnd lost.\n\nTobias Harris: 6-of-19.\nDetroit's supporting cast: 22-of-57.\n\nYou can't win an overtime playoff game if only one guy shows up. This is a roster problem, not a Cade problem. [3/5]",
 
-    "3/ HOT TAKE OF THE DAY: Anthony Edwards at 20 points on 13 shots doesn't deserve to beat this Spurs team. Minnesota needs historic heroics in Game 6. The knee is a factor. DiVincenzo is gone. And Randle went -22 on a 17/10 night. The window is closing fast. #Timberwolves",
+    "ELIMINATION FRIDAY is here:\n\n🏀 DET @ CLE — 1-seed needs a road win (hasn't happened this series)\n🏀 SAS @ MIN — Wemby going for the close-out, Edwards fighting for his playoff life\n\nBoth Conference Finals berths decided Friday night.\n\nDon't make other plans. [4/5]",
 
-    "4/ TONIGHT: Cunningham vs. Mitchell, Game 5, 8 PM ET on ESPN. Series tied 2-2. Cade needs to erase a -23 nightmare. Mitchell needs to prove his record-tying 43-pt Game 4 was a turning point, not a peak. And yes — LeBron dropped 48 on these same Pistons on this exact date in 2007. Big stage. Somebody step up. #Pistons #Cavaliers",
-
-    "5/ LOOKING AHEAD: If SAS closes in Game 6, Wembanyama vs. SGA in the West Finals is the most anticipated conference final in a generation. Two MVP-tier talents, generational stakes, and OKC is a perfect 8-0. That's the series the NBA has been building toward. Don't sleep. 🔗 Full episode at hoopsintel.net | #HoopsIntel #NBAPlayoffs"
-  ]
+    "The dream scenario:\n\n⚡ OKC vs. SAS — West Finals (SGA vs. Wembanyama)\n🗽 NYK vs. CLE — East Finals (Brunson vs. Harden/Mitchell)\n\nFriday night could deliver exactly that bracket.\n\nFull breakdown on today's episode 🎧 → hoopsintel.net\n\n#NBAPlayoffs #HoopsIntel [5/5]",
+  ],
 };
