@@ -40,7 +40,7 @@ export const momentumData: MomentumData = {
     team: "CLE",
     clutchRating: 94,
     description:
-      "Harden was the cool hand that steadied Cleveland's ship when it was taking on water. Going 11-of-14 from the free-throw line and delivering 3 blocks in his 30-point masterpiece, he authored the key sequences of the fourth-quarter comeback and overtime push — proving his playoff resurrection is no fluke.",
+      "Harden refused to let Cleveland's season slip away. Down nine with under four minutes left in regulation, he orchestrated the entire comeback — drawing fouls, making reads, and going a ruthless 11-of-14 from the line when the game was on the line. In overtime, he was the steadying force that Detroit simply had no answer for.",
   },
   games: [
     {
@@ -49,51 +49,51 @@ export const momentumData: MomentumData = {
       finalScore: { home: 113, away: 117 },
       swings: [
         {
-          quarter: "Q2",
-          timestamp: "6:22",
+          quarter: "Q1",
+          timestamp: "4:32",
           description:
-            "Cade Cunningham caught fire with back-to-back pull-up jumpers and a step-back three, igniting a 14-4 Detroit run that silenced the Cleveland bench and built an early double-digit cushion. The Pistons' home crowd erupted as Detroit's supporting cast briefly looked the part.",
-          runScore: "14-4 DET",
+            "Cade Cunningham ignites Little Caesars Arena with back-to-back pull-up threes, putting Detroit up 18-9 and setting the tone with early aggression. The Pistons' crowd is electric and Cleveland looks flat off the jump.",
+          runScore: "9-0 DET run",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
           impact: "significant",
         },
         {
-          quarter: "Q3",
-          timestamp: "4:45",
+          quarter: "Q2",
+          timestamp: "7:15",
           description:
-            "Max Strus answered a quiet Cleveland half with three consecutive three-pointers, slicing the deficit and forcing a Detroit timeout. Strus's shooting — 4-of-5 from deep at that point — began shifting the floor spacing calculus dramatically in Cleveland's favor.",
-          runScore: "11-3 CLE",
+            "Max Strus catches fire from deep, draining three consecutive corner threes to swing a 12-point deficit into a two-possession game. Cleveland's bench erupts and the Cavaliers suddenly look like a team that belongs on the floor.",
+          runScore: "15-4 CLE run",
           momentum: "away",
           keyPlayer: "Max Strus",
           impact: "significant",
         },
         {
-          quarter: "Q4",
-          timestamp: "3:51",
+          quarter: "Q3",
+          timestamp: "3:48",
           description:
-            "Detroit pushed the lead back to nine with a Cunningham-led burst — a driving floater, an and-one, and a feed to Ausar Thompson for a dunk. The arena felt like a celebration with Little Caesars Arena buzzing at full throttle. Cleveland's season teetered on the edge.",
-          runScore: "10-2 DET",
+            "Detroit reasserts control behind a ferocious Cunningham-led push, pushing the lead back to double digits. The Pistons are getting whatever they want in the midrange and Cleveland's defensive rotations are breaking down at the worst time.",
+          runScore: "14-5 DET run",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
-          impact: "game-changing",
+          impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "1:14",
+          timestamp: "3:54",
           description:
-            "James Harden orchestrated a stunning 9-0 Cleveland run in the final 2:30 of regulation, including a step-back mid-range to tie the game at 107. The Pistons' supporting cast went stone cold — four straight missed field goal attempts — as Cleveland's veteran poise took over the building.",
-          runScore: "9-0 CLE",
+            "James Harden engineers a stunning nine-point Cleveland comeback in under four minutes — attacking the rim, drawing fouls, and calmly converting free throws while Evan Mobley locks down Detroit's interior and erases two shots at the rim. The Cavaliers tie it at 107 with 38 seconds left and the building goes silent.",
+          runScore: "12-3 CLE run",
           momentum: "away",
           keyPlayer: "James Harden",
           impact: "game-changing",
         },
         {
           quarter: "OT",
-          timestamp: "2:08",
+          timestamp: "1:10",
           description:
-            "Evan Mobley's emphatic put-back dunk off a Harden miss gave Cleveland a 4-point OT lead and broke Detroit's spirit. The Pistons managed just 10 points in the extra period as their legs and composure abandoned them simultaneously, and Cleveland closed it out with Harden free throws.",
-          runScore: "8-2 CLE",
+            "Cleveland outscores Detroit 10-6 in overtime as Harden and Mobley systematically dismantle the Pistons' half-court sets. Detroit, exhausted and turnover-prone, manages just 10 points in the extra period as the Cavaliers seize a 3-2 series lead.",
+          runScore: "10-6 CLE in OT",
           momentum: "away",
           keyPlayer: "Evan Mobley",
           impact: "game-changing",
@@ -104,45 +104,45 @@ export const momentumData: MomentumData = {
           player: "James Harden",
           team: "CLE",
           description:
-            "Step-back mid-range jumper with 1:14 remaining in regulation tied the game at 107 and capped a personal 5-0 run, stunning a Little Caesars Arena crowd that had been celebrating seconds earlier.",
-          timeRemaining: "1:14 Q4",
-          winProbabilityShift: 31,
-        },
-        {
-          player: "Cade Cunningham",
-          team: "DET",
-          description:
-            "Driving and-one conversion with 3:20 left extended Detroit's lead to nine and appeared to be the dagger, briefly pushing Detroit's win probability to its peak of the evening.",
-          timeRemaining: "3:20 Q4",
-          winProbabilityShift: -24,
-        },
-        {
-          player: "Max Strus",
-          team: "CLE",
-          description:
-            "Corner three off a Harden drive-and-kick with 2:05 remaining in regulation cut Detroit's lead to four and drew a frantic Detroit timeout as the Cavaliers' shooters began finding rhythm.",
-          timeRemaining: "2:05 Q4",
-          winProbabilityShift: 18,
-        },
-        {
-          player: "James Harden",
-          team: "CLE",
-          description:
-            "Pair of clutch free throws with 38 seconds left in overtime sealed a 117-111 Cleveland lead, going 4-of-4 from the line in OT to personally outscore Detroit's entire team 6-10 in the extra period.",
-          timeRemaining: "0:38 OT",
-          winProbabilityShift: 22,
+            "With Cleveland down 107-98 and 3:54 remaining, Harden draws a shooting foul on a step-back attempt and calmly knocks down both free throws — the first of a relentless string of trips to the line that fueled the entire comeback.",
+          timeRemaining: "3:54 Q4",
+          winProbabilityShift: 14,
         },
         {
           player: "Evan Mobley",
           team: "CLE",
           description:
-            "Thunderous put-back dunk with 2:08 left in OT gave Cleveland a 4-point lead and sent a wave of deflation through the Detroit bench — the decisive play of the overtime period.",
+            "Back-to-back chase-down block rejections in the final two minutes of regulation — first on Isaiah Stewart's drive, then a stunning swat of Cunningham's floater — preserving the tie and sending the building into stunned silence.",
+          timeRemaining: "1:47 Q4",
+          winProbabilityShift: 21,
+        },
+        {
+          player: "Max Strus",
+          team: "CLE",
+          description:
+            "With the score knotted at 107 in the final seconds of regulation, Strus sprinted into a corner catch-and-shoot opportunity but Detroit's closeout arrived in time — forcing overtime and setting the stage for Cleveland's clutch execution.",
+          timeRemaining: "0:12 Q4",
+          winProbabilityShift: 8,
+        },
+        {
+          player: "Cade Cunningham",
+          team: "DET",
+          description:
+            "A brilliant one-on-one isolation bucket against Darius Garland in overtime — Cunningham's 39th and final point — briefly cut the deficit to two and gave Detroit one last gasp, but the Cavaliers answered immediately on the other end.",
           timeRemaining: "2:08 OT",
+          winProbabilityShift: -11,
+        },
+        {
+          player: "James Harden",
+          team: "CLE",
+          description:
+            "Harden seals the win by converting an and-one opportunity with 58 seconds left in overtime — his fourth and-one of the fourth quarter and overtime combined — pushing the lead to five and functionally ending Detroit's night.",
+          timeRemaining: "0:58 OT",
           winProbabilityShift: 27,
         },
       ],
       narrative:
-        "This was a game about two teams occupying completely different emotional universes for stretches of 48 minutes — and then Cleveland burning Detroit's universe to the ground in overtime. The Pistons had every reason to believe: home court, a nine-point lead with under four minutes to play, Cade Cunningham at his absolute transcendent best with 39 points and 9 assists across 48 minutes. But the Cavaliers never stopped trusting their system, and James Harden — the player everyone spent a decade doubting in moments exactly like this — was simply unshakeable. Detroit's supporting cast shooting 22-of-57 was the quiet catastrophe lurking beneath Cade's brilliance, and when the pressure peaked, those misses compounded into a collapse. Cleveland now controls the series 3-2, and Harden's playoff resurrection has officially become the story of this postseason.",
+        "This game had everything a playoff series could ask for: a superstar going supernova in defeat, a veteran proving his clutch gene is very much intact, and a comeback so implausible it'll be replayed in Cleveland highlight reels for years. Cade Cunningham was transcendent — 39 points, 6 threes, 48 exhausting minutes — yet it still wasn't enough because James Harden decided the Cavaliers weren't done. Down nine with under four minutes left, Harden didn't panic; he simply worked the refs, worked the rim, and worked Detroit's defense into submission, going 11-of-14 from the stripe in the moments that mattered most. Evan Mobley's two consecutive blocks in the final two minutes were the defensive play of the playoffs so far, the kind of sequence that shifts a series. Cleveland heads home for Game 6 holding a 3-2 lead and the unmistakable feeling of a team that has found its identity at exactly the right time.",
     },
   ],
 };
