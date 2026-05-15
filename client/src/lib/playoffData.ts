@@ -163,7 +163,15 @@ export const playoffMovers: PlayoffPulseMover[] = [
     direction: "riser",
     delta: 14,
     playoffLine: "30.0 PPG · 8.0 RPG · 6.0 APG · 3 BLK (Game 5)",
-    note: "Playoff-best 30 points with 11-14 FT and 3 blocks drove Cleveland's 9-point comeback in the final minutes. The Beard's best game in two years puts CLE one win from the East Finals.",
+    note: "Playoff-best 30 points with 11-14 FT and 3 blocks drove Cleveland's 9-point comeback. Can clinch the East Finals tonight at home.",
+  },
+  {
+    player: "Victor Wembanyama",
+    team: "SAS",
+    direction: "riser",
+    delta: 10,
+    playoffLine: "25.2 PPG · 12.4 RPG · 3.4 BPG (West Semis)",
+    note: "27/17/3BLK redemption game after ejection in a 29-point blowout. Can clinch the West Finals tonight at Minnesota.",
   },
   {
     player: "Max Strus",
@@ -171,23 +179,7 @@ export const playoffMovers: PlayoffPulseMover[] = [
     direction: "riser",
     delta: 12,
     playoffLine: "20.0 PPG · 8.0 RPG · 6-8 3PT (Game 5)",
-    note: "6-of-8 from three (75%) for 20 points in the OT win — the most efficient three-point shooting performance of the 2026 playoffs. CLE's X-factor.",
-  },
-  {
-    player: "Cade Cunningham",
-    team: "DET",
-    direction: "riser",
-    delta: 8,
-    playoffLine: "39.0 PPG · 7.0 RPG · 9.0 APG (Game 5)",
-    note: "39/7/9 with 6 threes in 48 minutes — the best individual performance by a losing player in the 2026 playoffs. Facing elimination despite his brilliance.",
-  },
-  {
-    player: "Tobias Harris",
-    team: "DET",
-    direction: "faller",
-    delta: -10,
-    playoffLine: "13.0 PPG · 6.0 RPG · 6-19 FG (Game 5)",
-    note: "Shot 6-of-19 (31.6%) including 1-of-7 from three while Cunningham scored 39. Detroit's second option disappeared when it mattered most.",
+    note: "6-of-8 from three (75%) for 20 points in the OT win — CLE's X-factor heading into the potential clincher tonight.",
   },
   {
     player: "Anthony Edwards",
@@ -195,7 +187,15 @@ export const playoffMovers: PlayoffPulseMover[] = [
     direction: "faller",
     delta: -8,
     playoffLine: "20.0 PPG · 6-13 FG (Game 5)",
-    note: "Quietest game of the series in a 29-point blowout loss. Faces elimination Friday at home — needs a legacy-defining response.",
+    note: "Quietest game of the series in a 29-point blowout loss. Faces elimination tonight at home — needs a legacy-defining response.",
+  },
+  {
+    player: "Tobias Harris",
+    team: "DET",
+    direction: "faller",
+    delta: -10,
+    playoffLine: "13.0 PPG · 6.0 RPG · 6-19 FG (Game 5)",
+    note: "Shot 6-of-19 while Cunningham scored 39. Detroit's second option must deliver tonight or the 1-seed's season ends.",
   },
 ];
 
