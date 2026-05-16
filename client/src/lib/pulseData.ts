@@ -136,9 +136,9 @@ export const fantasyAlerts = [
 // PLAYOFF SERIES + MOVERS — canonical copy lives in ./playoffData (ESPN sync)
 // ═══════════════════════════════════════════════════════════
 
-export { playoffSeries, playoffMovers } from "./playoffData";
+export { playoffSeries, playoffMovers } from "./playoffData.js";
 /** @deprecated Use `playoffMovers` from `./playoffData`; kept for legacy barrel imports */
-export { playoffMovers as playoffPulseMovers } from "./playoffData";
+export { playoffMovers as playoffPulseMovers } from "./playoffData.js";
 
 // ═══════════════════════════════════════════════════════════
 // STANDINGS — Final 2025-26 Regular Season
