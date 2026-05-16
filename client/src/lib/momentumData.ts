@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 14, 2026
+// Last updated: May 16, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,116 +33,113 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 14, 2026",
-  gameOfTheNight: "CLE-DET-20260513",
+  date: "May 16, 2026",
+  gameOfTheNight: "DET-CLE-20260515",
   topClutchPerformer: {
-    player: "James Harden",
-    team: "CLE",
-    clutchRating: 94,
-    description:
-      "Harden refused to let Cleveland's season slip away. Down nine with under four minutes left in regulation, he orchestrated the entire comeback — drawing fouls, making reads, and going a ruthless 11-of-14 from the line when the game was on the line. In overtime, he was the steadying force that Detroit simply had no answer for.",
+    player: "Paul Reed",
+    team: "DET",
+    clutchRating: 91,
+    description: "Coming off the bench with Cleveland's crowd primed for a closeout, Reed didn't flinch — 7-of-9 from the field, a relentless physical presence in the paint, and the kind of energy-setting performance that flipped the entire emotional weight of a potential elimination game inside the first half.",
   },
   games: [
     {
-      gameId: "CLE-DET-20260513",
-      teams: { home: "DET", away: "CLE" },
-      finalScore: { home: 113, away: 117 },
+      gameId: "DET-CLE-20260515",
+      teams: { home: "CLE", away: "DET" },
+      finalScore: { home: 94, away: 115 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "4:32",
-          description:
-            "Cade Cunningham ignites Little Caesars Arena with back-to-back pull-up threes, putting Detroit up 18-9 and setting the tone with early aggression. The Pistons' crowd is electric and Cleveland looks flat off the jump.",
-          runScore: "9-0 DET run",
+          timestamp: "4:22",
+          description: "Cleveland opened on a 9-2 burst, riding the closeout-game energy at Rocket Arena. Darius Garland found Mobley in transition twice and the crowd smelled blood — briefly.",
+          runScore: "9-2 CLE",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
+          keyPlayer: "Darius Garland",
+          impact: "notable",
+        },
+        {
+          quarter: "Q1",
+          timestamp: "1:08",
+          description: "Paul Reed ignited Detroit's bench unit with back-to-back buckets in the paint, capped by a thunderous putback slam that silenced Rocket Arena and tied the game at 14. The crowd shift was immediate and audible.",
+          runScore: "12-3 DET",
+          momentum: "away",
+          keyPlayer: "Paul Reed",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "7:15",
-          description:
-            "Max Strus catches fire from deep, draining three consecutive corner threes to swing a 12-point deficit into a two-possession game. Cleveland's bench erupts and the Cavaliers suddenly look like a team that belongs on the floor.",
-          runScore: "15-4 CLE run",
+          timestamp: "7:45",
+          description: "Cade Cunningham took over the second quarter, orchestrating a 16-4 Detroit run that turned a one-point game into a double-digit lead. Three consecutive Pistons possessions ended in layups or open threes while Cleveland's half-court offense stagnated badly.",
+          runScore: "16-4 DET",
           momentum: "away",
-          keyPlayer: "Max Strus",
-          impact: "significant",
+          keyPlayer: "Cade Cunningham",
+          impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "3:48",
-          description:
-            "Detroit reasserts control behind a ferocious Cunningham-led push, pushing the lead back to double digits. The Pistons are getting whatever they want in the midrange and Cleveland's defensive rotations are breaking down at the worst time.",
-          runScore: "14-5 DET run",
+          timestamp: "5:30",
+          description: "Cleveland trimmed it to 13 on a Donovan Mitchell pull-up and an Evan Mobley mid-range jumper, offering the home crowd a fleeting lifeline. Timeout Detroit — J.B. Bickerstaff's Pistons held firm.",
+          runScore: "8-2 CLE",
           momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "significant",
+          keyPlayer: "Donovan Mitchell",
+          impact: "notable",
         },
         {
           quarter: "Q4",
-          timestamp: "3:54",
-          description:
-            "James Harden engineers a stunning nine-point Cleveland comeback in under four minutes — attacking the rim, drawing fouls, and calmly converting free throws while Evan Mobley locks down Detroit's interior and erases two shots at the rim. The Cavaliers tie it at 107 with 38 seconds left and the building goes silent.",
-          runScore: "12-3 CLE run",
+          timestamp: "9:14",
+          description: "Daniss Jenkins buried consecutive threes to open the fourth quarter, pushing the lead to 24 and triggering the first wave of early exits from Cleveland fans. Mitchell's three-shot foul only momentarily interrupted Detroit's execution. The game was effectively over.",
+          runScore: "10-3 DET",
           momentum: "away",
-          keyPlayer: "James Harden",
-          impact: "game-changing",
-        },
-        {
-          quarter: "OT",
-          timestamp: "1:10",
-          description:
-            "Cleveland outscores Detroit 10-6 in overtime as Harden and Mobley systematically dismantle the Pistons' half-court sets. Detroit, exhausted and turnover-prone, manages just 10 points in the extra period as the Cavaliers seize a 3-2 series lead.",
-          runScore: "10-6 CLE in OT",
-          momentum: "away",
-          keyPlayer: "Evan Mobley",
+          keyPlayer: "Daniss Jenkins",
           impact: "game-changing",
         },
       ],
-      clutchPlays: [
+      clutchPlays: [],
+      narrative: "Cleveland arrived at Rocket Arena expecting a closeout coronation. Detroit arrived with a different script entirely. From the moment Paul Reed's first putback rattled the rim in Q1, the Pistons played with a loose, physical confidence that Cleveland never matched — not from their stars, not from their bench, not from the crowd that eventually fell silent. Mitchell's minus-25 and Harden's eight giveaways told the real story: the 1-seed looked like a team playing tight while the road team played free. Game 7 at Little Caesars Arena now looms, and the pressure has completely inverted.",
+    },
+    {
+      gameId: "SAS-MIN-20260515",
+      teams: { home: "MIN", away: "SAS" },
+      finalScore: { home: 109, away: 139 },
+      swings: [
         {
-          player: "James Harden",
-          team: "CLE",
-          description:
-            "With Cleveland down 107-98 and 3:54 remaining, Harden draws a shooting foul on a step-back attempt and calmly knocks down both free throws — the first of a relentless string of trips to the line that fueled the entire comeback.",
-          timeRemaining: "3:54 Q4",
-          winProbabilityShift: 14,
+          quarter: "Q1",
+          timestamp: "6:10",
+          description: "Minnesota leaned on Anthony Edwards early, and for a stretch it worked — back-to-back transition buckets had the Wolves up 8-4 and Target Center buzzing with series-saving energy. Then San Antonio simply turned it on.",
+          runScore: "8-4 MIN",
+          momentum: "home",
+          keyPlayer: "Anthony Edwards",
+          impact: "notable",
         },
         {
-          player: "Evan Mobley",
-          team: "CLE",
-          description:
-            "Back-to-back chase-down block rejections in the final two minutes of regulation — first on Isaiah Stewart's drive, then a stunning swat of Cunningham's floater — preserving the tie and sending the building into stunned silence.",
-          timeRemaining: "1:47 Q4",
-          winProbabilityShift: 21,
+          quarter: "Q1",
+          timestamp: "1:55",
+          description: "Stephon Castle announced the tone of his evening with three consecutive buckets — a pull-up two, a corner three, and a coast-to-coast layup through contact. The 11-2 Spurs run that followed erased Minnesota's lead and shifted the entire psychological posture of the series finale.",
+          runScore: "15-4 SAS",
+          momentum: "away",
+          keyPlayer: "Stephon Castle",
+          impact: "game-changing",
         },
         {
-          player: "Max Strus",
-          team: "CLE",
-          description:
-            "With the score knotted at 107 in the final seconds of regulation, Strus sprinted into a corner catch-and-shoot opportunity but Detroit's closeout arrived in time — forcing overtime and setting the stage for Cleveland's clutch execution.",
-          timeRemaining: "0:12 Q4",
-          winProbabilityShift: 8,
+          quarter: "Q2",
+          timestamp: "8:30",
+          description: "De'Aaron Fox dismantled Minnesota's scrambling defense in the second quarter, turning three Wolves turnovers into seven fast-break points. San Antonio's lead ballooned past 20 as Randle missed his fourth consecutive shot and Target Center grew noticeably quiet.",
+          runScore: "18-6 SAS",
+          momentum: "away",
+          keyPlayer: "De'Aaron Fox",
+          impact: "game-changing",
         },
         {
-          player: "Cade Cunningham",
-          team: "DET",
-          description:
-            "A brilliant one-on-one isolation bucket against Darius Garland in overtime — Cunningham's 39th and final point — briefly cut the deficit to two and gave Detroit one last gasp, but the Cavaliers answered immediately on the other end.",
-          timeRemaining: "2:08 OT",
-          winProbabilityShift: -11,
-        },
-        {
-          player: "James Harden",
-          team: "CLE",
-          description:
-            "Harden seals the win by converting an and-one opportunity with 58 seconds left in overtime — his fourth and-one of the fourth quarter and overtime combined — pushing the lead to five and functionally ending Detroit's night.",
-          timeRemaining: "0:58 OT",
-          winProbabilityShift: 27,
+          quarter: "Q3",
+          timestamp: "4:00",
+          description: "Wembanyama added a punctuation mark to any remaining Minnesota hope with a mid-range fadeaway followed by a one-handed swat on Edwards — the kind of sequence that reminded everyone that the Spurs were never truly threatened in this series.",
+          runScore: "12-5 SAS",
+          momentum: "away",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant",
         },
       ],
-      narrative:
-        "This game had everything a playoff series could ask for: a superstar going supernova in defeat, a veteran proving his clutch gene is very much intact, and a comeback so implausible it'll be replayed in Cleveland highlight reels for years. Cade Cunningham was transcendent — 39 points, 6 threes, 48 exhausting minutes — yet it still wasn't enough because James Harden decided the Cavaliers weren't done. Down nine with under four minutes left, Harden didn't panic; he simply worked the refs, worked the rim, and worked Detroit's defense into submission, going 11-of-14 from the stripe in the moments that mattered most. Evan Mobley's two consecutive blocks in the final two minutes were the defensive play of the playoffs so far, the kind of sequence that shifts a series. Cleveland heads home for Game 6 holding a 3-2 lead and the unmistakable feeling of a team that has found its identity at exactly the right time.",
+      clutchPlays: [],
+      narrative: "This was never a game — it was a statement. Stephon Castle's 32-point, 11-rebound, 6-assist masterpiece on 69% shooting wasn't just the best individual performance of this postseason; it was the clearest sign yet that San Antonio has a new superstar who rises specifically when the stakes are highest. Julian Champagnie's absurd +35 underscored that this Spurs team goes nine deep with purpose. Minnesota's stars — Edwards, Randle, Gobert — were swallowed whole by a San Antonio defensive scheme that never wavered. The Spurs advance to the West Finals against Oklahoma City, and they are arriving with momentum that looks genuinely dangerous.",
     },
   ],
 };
