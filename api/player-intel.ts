@@ -1,5 +1,3 @@
-import { getPlayerIntelBySlug, topPlayerIntelSlugs } from "../client/src/lib/playerIntel.js";
-
 export const config = { runtime: "nodejs" };
 
 function json(body: unknown, init: ResponseInit = {}) {
@@ -23,11 +21,12 @@ export default async function handler(req: Request): Promise<Response> {
     const slug = url.searchParams.get("slug");
     if (!slug) {
       return json({
-        data: { slugs: topPlayerIntelSlugs() },
-        meta: { generatedAt: new Date().toISOString(), contractVersion: 1, fallbackUsed: true },
+        data: { slugs: [] },
+        meta: { generatedAt: new Date().toISOString(), contractVersion: 1, fallbackUsed: true, listTruncated: true },
       });
     }
 
+    const { getPlayerIntelBySlug } = await import("../client/src/lib/playerIntel.js");
     const profile = getPlayerIntelBySlug(slug);
     if (!profile) {
       return json({ error: "player_not_found", slug }, { status: 404 });

@@ -1,5 +1,3 @@
-import { getAllGameCenterGames, getGameCenterById } from "../client/src/lib/gameCenter.js";
-
 export const config = { runtime: "nodejs" };
 
 function json(body: unknown, init: ResponseInit = {}) {
@@ -23,11 +21,12 @@ export default async function handler(req: Request): Promise<Response> {
     const gameId = url.searchParams.get("gameId") || url.searchParams.get("id");
     if (!gameId) {
       return json({
-        data: getAllGameCenterGames(),
-        meta: { generatedAt: new Date().toISOString(), contractVersion: 1, fallbackUsed: true },
+        data: [],
+        meta: { generatedAt: new Date().toISOString(), contractVersion: 1, fallbackUsed: true, listTruncated: true },
       });
     }
 
+    const { getGameCenterById } = await import("../client/src/lib/gameCenter.js");
     const game = getGameCenterById(gameId);
     if (!game) {
       return json({ error: "game_not_found", gameId }, { status: 404 });
