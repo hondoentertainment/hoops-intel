@@ -48,7 +48,7 @@ jobs:
           node-version: "24"
 
       - name: Install dependencies
-        run: npm install --production
+        run: npm ci --no-audit --no-fund
 
       - name: Run optimized weekly generation
         id: generate

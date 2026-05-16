@@ -19,6 +19,20 @@ function slugify(name) {
     .replace(/^-|-$/g, "");
 }
 
+const CANONICAL_PLAYER_NAMES = new Map([
+  ["brandin-podziemski", "Brandin Podziemski"],
+  ["brandon-podziemski", "Brandin Podziemski"],
+  ["cam-thomas", "Cam Thomas"],
+  ["cameron-thomas", "Cam Thomas"],
+  ["alperen-eng-n", "Alperen Sengun"],
+  ["alperen-sengun", "Alperen Sengun"],
+]);
+
+function canonicalPlayerName(name) {
+  const slug = slugify(name);
+  return CANONICAL_PLAYER_NAMES.get(slug) ?? name;
+}
+
 export function generate() {
   const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
 
@@ -44,8 +58,13 @@ export function generate() {
     { loc: "/playoffs", priority: "0.7", changefreq: "daily" },
   ];
 
+  const playerSlugs = new Map();
   for (const player of players) {
-    urls.push({ loc: `/player/${slugify(player)}`, priority: "0.6", changefreq: "daily" });
+    const canonical = canonicalPlayerName(player);
+    const slug = slugify(canonical);
+    if (!slug || playerSlugs.has(slug)) continue;
+    playerSlugs.set(slug, canonical);
+    urls.push({ loc: `/player/${slug}`, priority: "0.6", changefreq: "daily" });
   }
   for (const team of teams) {
     urls.push({ loc: `/team/${team}`, priority: "0.6", changefreq: "daily" });

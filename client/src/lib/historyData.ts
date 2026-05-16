@@ -207,4 +207,9 @@ export const historyData: HistoryData = {
     },
     {
       year: 2003,
-      event: "On May 12-14, 2003, Tim Duncan scored 28 points and grabbed 17 rebounds as the San Antonio Spurs defeated the Dallas Mavericks 113-91 in Game 6 of the Western Conference Finals, advancing to the NBA Finals for the second time in franchise history. Duncan's 17-rebound performance was his fourth consecutive double-double in the series with 14-plus rebounds — a standard of sustained big-man dominance that established the specific statistical benchmark against which Wembanyama's 2026 postseason rebounding is now being measured. San
+      event: "On May 12-14, 2003, Tim Duncan led the San Antonio Spurs past the Dallas Mavericks in the Western Conference Finals, establishing the rebounding standard against which Wembanyama's 2026 postseason performance is now measured.",
+      players: ["Tim Duncan", "David Robinson", "Tony Parker", "Dirk Nowitzki", "Steve Nash"]
+    }
+  ],
+  streakWatch: [],
+};

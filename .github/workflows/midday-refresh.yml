@@ -48,8 +48,8 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Install Anthropic SDK
-        run: npm install @anthropic-ai/sdk --no-save
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
 
       - name: Refresh sentiment data
         env:

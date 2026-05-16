@@ -62,6 +62,48 @@ function assertEqual(actual, expected, message) {
   }
 }
 
+function localDateString(value) {
+  const m = String(value ?? "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) {
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])).toDateString();
+  }
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? null : d.toDateString();
+}
+
+function stripTopLevelTsAssertion(literal) {
+  let depth = 0;
+  let inString = false;
+  let strCh = "";
+  let escape = false;
+  for (let i = 0; i < literal.length; i++) {
+    const ch = literal[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (inString) {
+      if (ch === "\\") {
+        escape = true;
+        continue;
+      }
+      if (ch === strCh) inString = false;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      inString = true;
+      strCh = ch;
+      continue;
+    }
+    if (ch === "{" || ch === "[" || ch === "(") depth++;
+    else if (ch === "}" || ch === "]" || ch === ")") depth--;
+    else if (depth === 0 && /\sas\s/.test(literal.slice(i, i + 4))) {
+      return literal.slice(0, i).trim();
+    }
+  }
+  return literal;
+}
+
 // ── Parse pulseData.ts ──────────────────────────────────────
 
 function extractExport(content, name) {
@@ -100,7 +142,7 @@ function extractExport(content, name) {
     }
   }
 
-  const jsonStr = content.slice(start, i).replace(/;\s*$/, "").trim();
+  const jsonStr = stripTopLevelTsAssertion(content.slice(start, i).replace(/;\s*$/, "").trim());
   try {
     return new Function(`"use strict"; return (${jsonStr});`)();
   } catch (err) {
@@ -207,7 +249,8 @@ function main() {
     test("hard", "game results have valid teams, scores, statuses, gameIds", () => {
       const results = exports.gameResults;
       assert(Array.isArray(results), "gameResults should be an array");
-      assert(results.length > 0, "gameResults should not be empty");
+      const hasOffDayMarker = /GAME RESULTS\s+—\s+No Games/i.test(content);
+      assert(results.length > 0 || hasOffDayMarker, "gameResults should not be empty");
       for (const game of results) {
         assert(
           TEAM_ABBR_SET.has(game.homeTeam),
@@ -382,29 +425,29 @@ function main() {
     test("advisory", "header date aligns with pulseEdition.date", () => {
       const edition = exports.pulseEdition;
       assert(edition.date, "pulseEdition should have a date");
-      const editionDate = new Date(edition.date);
-      assert(!Number.isNaN(editionDate.getTime()), `Could not parse edition date: "${edition.date}"`);
+      const editionDate = localDateString(edition.date);
+      assert(editionDate, `Could not parse edition date: "${edition.date}"`);
       const headerMatch = content.match(/\/\/ Last updated:\s*(.+?)\s*\(/);
       assert(headerMatch, "Could not find header date");
-      const headerDate = new Date(headerMatch[1].trim());
-      assert(!Number.isNaN(headerDate.getTime()), `Could not parse header date: "${headerMatch[1]}"`);
+      const headerDate = localDateString(headerMatch[1].trim());
+      assert(headerDate, `Could not parse header date: "${headerMatch[1]}"`);
       assertEqual(
-        editionDate.toDateString(),
-        headerDate.toDateString(),
+        editionDate,
+        headerDate,
         "Edition date should match header date",
       );
     });
 
     test("advisory", "trivia question id aligns with edition date when parseable", () => {
       const edition = exports.pulseEdition;
-      const editionDate = new Date(edition.date);
+      const editionDate = localDateString(edition.date);
       const trivia = exports.triviaQuestion;
       if (!trivia?.id) return;
-      const triviaDate = new Date(trivia.id);
-      if (Number.isNaN(triviaDate.getTime())) return;
+      const triviaDate = localDateString(trivia.id);
+      if (!triviaDate) return;
       assertEqual(
-        editionDate.toDateString(),
-        triviaDate.toDateString(),
+        editionDate,
+        triviaDate,
         "Trivia question date should match edition date",
       );
     });

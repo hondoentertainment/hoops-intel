@@ -82,7 +82,7 @@ function extractExportLiteral(src, name, scope = {}) {
   }
   if (end < 0) throw new Error("could not find terminating ;");
 
-  const literal = src.slice(start, end).trim();
+  const literal = stripTopLevelTsAssertion(src.slice(start, end).trim());
   try {
     const keys = Object.keys(scope);
     const values = keys.map((k) => scope[k]);
@@ -90,6 +90,26 @@ function extractExportLiteral(src, name, scope = {}) {
   } catch (err) {
     throw new Error(`literal eval failed: ${err.message}`);
   }
+}
+
+function stripTopLevelTsAssertion(literal) {
+  let depth = 0, inStr = false, strCh = "", esc = false;
+  for (let i = 0; i < literal.length; i++) {
+    const ch = literal[i];
+    if (esc) { esc = false; continue; }
+    if (inStr) {
+      if (ch === "\\") { esc = true; continue; }
+      if (ch === strCh) inStr = false;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") { inStr = true; strCh = ch; continue; }
+    if (ch === "{" || ch === "[" || ch === "(") depth++;
+    else if (ch === "}" || ch === "]" || ch === ")") depth--;
+    else if (depth === 0 && /\sas\s/.test(literal.slice(i, i + 4))) {
+      return literal.slice(0, i).trim();
+    }
+  }
+  return literal;
 }
 
 // ── Read current edition number ────────────────────────────

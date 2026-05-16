@@ -58,47 +58,15 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E1-NY-PHI",
+    seriesId: "E1-DET-ORL",
     conference: "east",
     round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "NY",
-    lowerTeam: "PHI",
+    higherSeed: 1,
+    lowerSeed: 8,
+    higherTeam: "DET",
+    lowerTeam: "ORL",
     higherWins: 1,
     lowerWins: 0,
-    status: "active",
-    summary: "NY leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-10", homeTeam: "PHI", awayTeam: "NY", homeScore: 114, awayScore: 144, status: "final", time: "Final", tv: "ABC", topPerformer: "Miles McBride", topLine: "25 PTS · 4 REB · 0 AST" }
-    ],
-  },
-  {
-    seriesId: "E1-TOR-CLE",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "TOR",
-    lowerTeam: "CLE",
-    higherWins: 0,
-    lowerWins: 1,
-    status: "active",
-    summary: "CLE leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: 114, awayScore: 102, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Scottie Barnes", topLine: "24 PTS · 9 REB · 6 AST" }
-    ],
-  },
-  {
-    seriesId: "E1-ORL-DET",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "ORL",
-    lowerTeam: "DET",
-    higherWins: 0,
-    lowerWins: 1,
     status: "active",
     summary: "DET leads 1-0",
     games: [
@@ -106,11 +74,43 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
+    seriesId: "E1-NYK-PHI",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 3,
+    lowerSeed: 7,
+    higherTeam: "NYK",
+    lowerTeam: "PHI",
+    higherWins: 1,
+    lowerWins: 0,
+    status: "active",
+    summary: "NYK leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-10", homeTeam: "PHI", awayTeam: "NYK", homeScore: 114, awayScore: 144, status: "final", time: "Final", tv: "ABC", topPerformer: "Miles McBride", topLine: "25 PTS · 4 REB · 0 AST" }
+    ],
+  },
+  {
+    seriesId: "E1-CLE-TOR",
+    conference: "east",
+    round: "first-round",
+    higherSeed: 4,
+    lowerSeed: 6,
+    higherTeam: "CLE",
+    lowerTeam: "TOR",
+    higherWins: 1,
+    lowerWins: 0,
+    status: "active",
+    summary: "CLE leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: 114, awayScore: 102, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Scottie Barnes", topLine: "24 PTS · 9 REB · 6 AST" }
+    ],
+  },
+  {
     seriesId: "W1-OKC-LAL",
     conference: "west",
     round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
+    higherSeed: 1,
+    lowerSeed: 4,
     higherTeam: "OKC",
     lowerTeam: "LAL",
     higherWins: 1,
@@ -122,35 +122,35 @@ export const playoffSeries: PlayoffSeries[] = [
     ],
   },
   {
-    seriesId: "W1-MIN-DEN",
+    seriesId: "W1-SAS-POR",
     conference: "west",
     round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "MIN",
-    lowerTeam: "DEN",
+    higherSeed: 2,
+    lowerSeed: 8,
+    higherTeam: "SAS",
+    lowerTeam: "POR",
     higherWins: 1,
     lowerWins: 0,
+    status: "active",
+    summary: "SAS leads 1-0",
+    games: [
+      { gameNumber: 1, date: "2026-04-28", homeTeam: "SAS", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN", topPerformer: "Deni Avdija", topLine: "22 PTS · 3 REB · 3 AST" }
+    ],
+  },
+  {
+    seriesId: "W1-DEN-MIN",
+    conference: "west",
+    round: "first-round",
+    higherSeed: 3,
+    lowerSeed: 6,
+    higherTeam: "DEN",
+    lowerTeam: "MIN",
+    higherWins: 0,
+    lowerWins: 1,
     status: "active",
     summary: "MIN leads 1-0",
     games: [
       { gameNumber: 1, date: "2026-04-30", homeTeam: "MIN", awayTeam: "DEN", homeScore: 110, awayScore: 98, status: "final", time: "Final", tv: "ESPN", topPerformer: "Jaden McDaniels", topLine: "32 PTS · 10 REB · 3 AST" }
-    ],
-  },
-  {
-    seriesId: "W1-POR-SA",
-    conference: "west",
-    round: "first-round",
-    higherSeed: 99,
-    lowerSeed: 99,
-    higherTeam: "POR",
-    lowerTeam: "SA",
-    higherWins: 0,
-    lowerWins: 1,
-    status: "active",
-    summary: "SA leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-04-28", homeTeam: "SA", awayTeam: "POR", homeScore: 114, awayScore: 95, status: "final", time: "Final", tv: "ESPN", topPerformer: "Deni Avdija", topLine: "22 PTS · 3 REB · 3 AST" }
     ],
   }
 ];

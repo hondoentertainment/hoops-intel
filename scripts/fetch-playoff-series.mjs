@@ -71,9 +71,48 @@ const TEAM_CONFERENCE = {
   UTA: "west",
 };
 
+const TEAM_ABBR_ALIASES = {
+  BKN: "BRK",
+  NY: "NYK",
+  SA: "SAS",
+  NO: "NOP",
+  GS: "GSW",
+};
+
+const FALLBACK_SEEDS = {
+  // 2026 East playoff bracket
+  DET: 1,
+  BOS: 2,
+  NYK: 3,
+  CLE: 4,
+  ATL: 5,
+  TOR: 6,
+  PHI: 7,
+  ORL: 8,
+  CHA: 9,
+  MIA: 10,
+  // 2026 West playoff bracket
+  OKC: 1,
+  SAS: 2,
+  DEN: 3,
+  LAL: 4,
+  HOU: 5,
+  MIN: 6,
+  PHX: 7,
+  POR: 8,
+  LAC: 9,
+  GSW: 10,
+};
+
+function canonicalTeamAbbr(abbr) {
+  if (!abbr) return abbr;
+  const up = String(abbr).toUpperCase();
+  return TEAM_ABBR_ALIASES[up] ?? up;
+}
+
 function conferenceForTeam(abbr) {
   if (!abbr || abbr === "TBD") return null;
-  return TEAM_CONFERENCE[String(abbr).toUpperCase()] ?? null;
+  return TEAM_CONFERENCE[String(abbr).toUpperCase()] ?? TEAM_CONFERENCE[canonicalTeamAbbr(abbr)] ?? null;
 }
 
 function conferenceFromSeries(series, homeAbbr, awayAbbr) {
@@ -118,7 +157,9 @@ function roundRank(round) {
 function playoffSeed(c) {
   const raw = c?.curatedRank?.current ?? c?.rank ?? c?.seed ?? c?.team?.seed;
   const n = parseInt(String(raw ?? "").replace(/\D/g, "") || "99", 10);
-  return Number.isFinite(n) && n > 0 && n < 99 ? n : 99;
+  if (Number.isFinite(n) && n > 0 && n < 99) return n;
+  const abbr = canonicalTeamAbbr(c?.team?.abbreviation ?? "");
+  return FALLBACK_SEEDS[abbr] ?? 99;
 }
 
 function seriesKey(homeAbbr, awayAbbr) {
@@ -262,8 +303,8 @@ async function main() {
       const away = comp.competitors.find((c) => c.homeAway === "away");
       if (!home || !away) continue;
 
-      const homeAbbr = home.team?.abbreviation ?? "";
-      const awayAbbr = away.team?.abbreviation ?? "";
+      const homeAbbr = canonicalTeamAbbr(home.team?.abbreviation ?? "");
+      const awayAbbr = canonicalTeamAbbr(away.team?.abbreviation ?? "");
       if (!homeAbbr || !awayAbbr) continue;
       if (homeAbbr === "TBD" || awayAbbr === "TBD") continue;
 

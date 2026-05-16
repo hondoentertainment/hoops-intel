@@ -317,4 +317,11 @@ export const sentimentData: SentimentData = {
       teamFull: "Philadelphia 76ers",
       sentiment: "negative",
       score: -74,
-      buzzWords: ["swept by Knicks", "existential crisis", "Em
+      buzzWords: ["swept by Knicks", "existential crisis", "Embiid uncertainty"],
+      narrativeSummary: "Philadelphia's season ended with a sweep at the hands of the Knicks, and the fanbase is processing an existential crisis about the future of the franchise."
+    },
+  ],
+  playerSentiments: [],
+  hottestTake: "Wembanyama is already the best player in the playoff bracket and he has not reached his ceiling yet.",
+  coldestTake: "The regular season is becoming increasingly meaningless for predicting playoff success.",
+};

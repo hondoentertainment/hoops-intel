@@ -53,10 +53,43 @@ export function extractPulseExport(exportName) {
     i = src.indexOf(";", start);
     if (i === -1) return null;
   }
-  const raw = src.slice(start, i).trim();
+  const raw = stripTopLevelTsAssertion(src.slice(start, i).trim());
   try {
     return new Function(`"use strict"; return (${raw});`)();
   } catch {
     return null;
   }
+}
+
+function stripTopLevelTsAssertion(literal) {
+  let depth = 0;
+  let inString = false;
+  let strCh = "";
+  let escape = false;
+  for (let i = 0; i < literal.length; i++) {
+    const ch = literal[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (inString) {
+      if (ch === "\\") {
+        escape = true;
+        continue;
+      }
+      if (ch === strCh) inString = false;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      inString = true;
+      strCh = ch;
+      continue;
+    }
+    if (ch === "{" || ch === "[" || ch === "(") depth++;
+    else if (ch === "}" || ch === "]" || ch === ")") depth--;
+    else if (depth === 0 && /\sas\s/.test(literal.slice(i, i + 4))) {
+      return literal.slice(0, i).trim();
+    }
+  }
+  return literal;
 }

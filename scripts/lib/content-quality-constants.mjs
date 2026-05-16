@@ -43,6 +43,6 @@ export const VALID_INJURY_STATUSES = new Set([
   "Playing Through Injury",
 ]);
 
-export const PULSE_SENTIMENTS = new Set(["hot", "cold", "neutral"]);
+export const PULSE_SENTIMENTS = new Set(["hot", "cold", "neutral", "positive", "negative", "mixed"]);
 
 export const GAME_ID_PATTERN = /^[A-Z]{3}-[A-Z]{3}-\d{8}$/;

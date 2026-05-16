@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Install social SDK dependencies
-        run: npm install twitter-api-v2 @atproto/api --no-save
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
 
       - name: Post to social platforms
         env:

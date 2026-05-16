@@ -50,7 +50,7 @@ function parsePulseData() {
     }
     if (end < 0) throw new Error(`Could not find end of export "${name}"`);
 
-    const raw = src.slice(start, end).trim();
+    const raw = stripTopLevelTsAssertion(src.slice(start, end).trim());
     try {
       // Generated pulseData.ts uses JS object literal syntax (unquoted keys),
       // so JSON.parse cannot be used. Evaluate as a JS expression in an
@@ -59,6 +59,29 @@ function parsePulseData() {
     } catch (err) {
       throw new Error(`Failed to parse "${name}": ${err.message ?? err}`);
     }
+  }
+
+  function stripTopLevelTsAssertion(literal) {
+    let depth = 0;
+    let inStr = false;
+    let strCh = "";
+    let escape = false;
+    for (let i = 0; i < literal.length; i++) {
+      const ch = literal[i];
+      if (escape) { escape = false; continue; }
+      if (inStr) {
+        if (ch === "\\") { escape = true; continue; }
+        if (ch === strCh) inStr = false;
+        continue;
+      }
+      if (ch === "\"" || ch === "'" || ch === "`") { inStr = true; strCh = ch; continue; }
+      if (ch === "{" || ch === "[" || ch === "(") depth++;
+      else if (ch === "}" || ch === "]" || ch === ")") depth--;
+      else if (depth === 0 && /\sas\s/.test(literal.slice(i, i + 4))) {
+        return literal.slice(0, i).trim();
+      }
+    }
+    return literal;
   }
 
   return {

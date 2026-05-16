@@ -40,7 +40,7 @@ export const tickerItems = [
 // GAME RESULTS — No Games May 14, 2026 (Off Day)
 // ═══════════════════════════════════════════════════════════
 
-export const gameResults = [] as {homeTeam:string;homeScore:number;awayTeam:string;awayScore:number;status:string;topPerformer:string;topLine:string;recap:string;gameId:string}[];
+export const gameResults = [];
 
 // ═══════════════════════════════════════════════════════════
 // PULSE INDEX — Playoff Performer Rankings
