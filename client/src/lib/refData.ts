@@ -173,4 +173,8 @@ export const refData: RefData = {
       worstFor:
         "Chaotic transition offenses, emotionally volatile players, teams relying on pace manipulation, young undisciplined squads, road teams whose survival depends on open-floor athleticism neutralizing home-court structural advantages, visiting organizations whose best sequences require early-offense rhythm before the halfcourt defense fully engages, visiting stars with documented technical foul histories whose emotional regulation is most severely tested by the aggressive physical standards of a Brothers-Holtkamp combined officiating environment",
       notableGame:
-        "Assigned as second official tonight for SAS-MIN Game 6 at Target Center alongside Tony Brothers and Ben Williams — her combined structural weight with Brothers creates the most extreme home-amplification construction of tonight's two-game slate, with their aggregate -2.5 pace tendency and approximately 56% combined home win weighting representing the deepest Minnesota structural advantage in any officiating assignment of the West Semis. Her prior S
+        "Assigned as second official tonight for SAS-MIN Game 6 at Target Center alongside Tony Brothers and Ben Williams.",
+    },
+  ],
+  weeklyTrend: "Officials across the 2026 playoff bracket continue to demonstrate elevated foul rates relative to the regular season, consistent with historical postseason trends.",
+};
