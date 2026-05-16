@@ -19,7 +19,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   try {
-    const url = new URL(req.url);
+    const url = new URL(req.url, "https://hoopsintel.net");
     const slug = url.searchParams.get("slug");
     if (!slug) {
       return json({
