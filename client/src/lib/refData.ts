@@ -242,4 +242,5 @@ export const refData: RefData = {
     },
   ],
   weeklyTrend:
-    "The officiating assignments across the final week of the 2026 Conference Semifinals reveal the NBA's most systematic and analytically transparent structural rotation philosophy in recent postseason memory. The central pattern across Games 5, 6, and the upcoming Game 7 in both surviving second-round series is a deliberate symmetrical home-amplification rotation whose structural logic is most clearly visible in the DET-CLE series: Tony Brothers' home-amplifying lead profile served Detroit's home identity in Game 5 on May 14, Scott Foster's structurally analogous profile served Cleveland's home identity in
+    "The officiating assignments across the final week of the 2026 Conference Semifinals reveal a clear home-amplification rotation pattern. The DET-CLE series is the best example: Tony Brothers and Scott Foster profiles have repeatedly shaped pace, foul frequency, and home-court pressure. Treat this as structural context, not deterministic prediction, and pair it with current form, health, and matchup data before drawing betting or performance conclusions.",
+};

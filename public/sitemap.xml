@@ -1399,6 +1399,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/game/DET-CLE-20260515</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/game/SAS-MIN-20260515</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/game/ORL-DET-20260503</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
@@ -1418,18 +1430,6 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/game/OKC-LAL-20260511</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/POR-SAS-20260428</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/DEN-MIN-20260430</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>

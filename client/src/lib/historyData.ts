@@ -184,4 +184,19 @@ export const historyData: HistoryData = {
       team: "SAS",
       milestone: "Youngest player in NBA history to average 24+ points, 10+ rebounds, and 3+ blocks across a complete Conference Semifinals series of five or more games",
       current: "Wembanyama finished the Minnesota series averaging 24.3 PPG, 10.8 RPG, and 3.2 BPG across six games — production that, at age 22, has no historical precedent at equivalent youth from any center in the modern era. Tim Duncan's equivalent age-adjusted Conference Semifinals averages were 20.7 points, 11.4 rebounds, and 2.9 blocks in his 2000 postseason at age 23. Shaquille O'Neal's equivalent Conference Semifinals at age 22 produced 23.6 points, 10.1 rebounds, and 2.8 blocks in 1994. Wembanyama's block average exceeds both historical benchmarks at equivalent age.",
-      needed: "The milestone
+      needed: "The milestone is complete for this series and now needs historical verification against equivalent Conference Semifinals performances.",
+      projectedDate: "Established May 15, 2026 after San Antonio's series-clinching win over Minnesota.",
+      significance: "Wembanyama's two-way production places the Spurs' 2026 run into a rare historical class for young franchise centers, turning the West Finals into a direct test of whether this profile is already championship-level."
+    }
+  ],
+
+  thisWeekInHistory: [
+    { year: 1994, event: "Denver completed one of the defining underdog playoff moments against Seattle, a useful historical frame for modern lower-seed survival stories.", players: ["Dikembe Mutombo"] },
+    { year: 2001, event: "The Lakers' unbeaten postseason opening became the modern benchmark for playoff dominance.", players: ["Shaquille O'Neal", "Kobe Bryant"] }
+  ],
+
+  streakWatch: [
+    { player: "Shai Gilgeous-Alexander", team: "OKC", streak: "8-0 postseason start", record: "2001 Lakers opened 11-0", gamesAway: 3 },
+    { player: "Victor Wembanyama", team: "SAS", streak: "24+ PPG / 10+ RPG / 3+ BPG series", record: "Young-center playoff benchmark", gamesAway: 0 }
+  ]
+};

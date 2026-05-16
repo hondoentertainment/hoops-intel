@@ -331,4 +331,11 @@ export const sentimentData: SentimentData = {
       score: 95,
       mentions: 21900,
       topTake: "Wemby coasted in 27 minutes while the Spurs won by 30 and STILL posted 19/6/3 blocks. He is 21 years old. He hasn't even needed to be his best self this postseason. OKC fans saying they're not scared are the least credible people on the internet right now.",
-      narrativeArc: "Wembanyama's narrative after the closeout is one of the most uniquely terrifying in recent playoff memory — the fear is generated not by
+      narrativeArc: "Wembanyama's narrative after the closeout is one of the most uniquely terrifying in recent playoff memory: the fear is generated not by projection, but by the fact that San Antonio just advanced without needing his absolute ceiling. The West Finals now becomes the first full national stress test of the Wembanyama era.",
+    },
+  ],
+  hottestTake:
+    "San Antonio advancing while Wembanyama still has another gear is the most important development of the postseason.",
+  coldestTake:
+    "The Thunder's 8-0 start still makes Oklahoma City the favorite until someone proves they can drag them into a real fourth-quarter series.",
+};
