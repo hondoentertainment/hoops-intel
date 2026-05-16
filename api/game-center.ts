@@ -1,4 +1,4 @@
-export const config = { runtime: "nodejs" };
+export const config = { runtime: "edge" };
 
 function json(body: unknown, init: ResponseInit = {}) {
   return new Response(JSON.stringify(body), {
