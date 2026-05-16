@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { useParams } from "wouter";
 import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
 import { pulseIndex, gameResults, injuryUpdates, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { useMetaTags } from "../lib/useMetaTags";
+import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
 import SiteHeader from "../components/SiteHeader";
 import ShareButton from "../components/ShareButton";
 
@@ -22,7 +24,32 @@ function getPlayerEditions(playerName: string) {
 
 export default function Player() {
   const params = useParams<{ slug: string }>();
-  const player = findPlayer(params.slug || "");
+  const requestedSlug = params.slug || "";
+  const player = findPlayer(requestedSlug);
+  const [intel, setIntel] = useState<PlayerIntelResponse | null>(() => getPlayerIntelBySlug(requestedSlug));
+  const [intelUnavailable, setIntelUnavailable] = useState(false);
+
+  useEffect(() => {
+    if (!requestedSlug) return;
+    let active = true;
+    fetch(`/api/player-intel?slug=${encodeURIComponent(requestedSlug)}`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`player-intel ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (active && !data.error) setIntel(data.data ?? data);
+      })
+      .catch(() => {
+        if (active) {
+          setIntel(getPlayerIntelBySlug(requestedSlug));
+          setIntelUnavailable(true);
+        }
+      });
+    return () => {
+      active = false;
+    };
+  }, [requestedSlug]);
 
   if (!player) {
     return (
@@ -54,6 +81,15 @@ export default function Player() {
       : `Player profile for ${player.name} on Hoops Intel.`,
     ogImage: `https://hoopsintel.net/api/og?player=${slug}`,
     ogUrl: `https://hoopsintel.net/player/${slug}`,
+    canonicalUrl: `https://hoopsintel.net/player/${slug}`,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: player.name,
+      description: currentPulse?.note || `Player intelligence profile for ${player.name}.`,
+      url: `https://hoopsintel.net/player/${slug}`,
+      affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
+    },
   });
 
   const shareUrl = `https://hoopsintel.net/player/${slug}`;
@@ -65,6 +101,11 @@ export default function Player() {
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle="PLAYER" />
       <div className="container py-8">
+        {intelUnavailable && (
+          <div className="mb-4 rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-xs text-amber-200">
+            Live player intelligence unavailable. Showing static generated fallback.
+          </div>
+        )}
         {/* Player Header */}
         <div
           className="glass-card rounded-lg p-6 mb-6 relative"
@@ -157,6 +198,32 @@ export default function Player() {
               </div>
             )}
 
+            {intel?.sentiment && (
+              <div className="glass-card rounded-lg p-4">
+                <div className="section-label mb-2">SENTIMENT PROFILE</div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-semibold text-white capitalize">{intel.sentiment.sentiment}</span>
+                  <span className="mono-data text-lg" style={{ color: "#0EA5E9" }}>{intel.sentiment.score}</span>
+                </div>
+                <p className="text-sm mb-2" style={{ color: "rgba(255,255,255,0.65)" }}>{intel.sentiment.topTake}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{intel.sentiment.narrativeArc}</p>
+              </div>
+            )}
+
+            {intel?.recentGames && intel.recentGames.length > 0 && (
+              <div className="glass-card rounded-lg p-4">
+                <div className="section-label mb-3">RELATED GAMES</div>
+                <div className="space-y-2">
+                  {intel.recentGames.map((g) => (
+                    <a key={g.gameId} href={g.link} className="block rounded p-2 bg-white/[0.03] hover:bg-white/[0.06]">
+                      <div className="text-sm font-semibold text-white">{g.title}</div>
+                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{g.line || g.status}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Current Game */}
             {currentGame && (
               <div className="glass-card rounded-lg p-4">
@@ -241,6 +308,24 @@ export default function Player() {
               </div>
             )}
 
+            {intel?.playoff && (intel.playoff.mover || intel.playoff.series.length > 0) && (
+              <div className="glass-card rounded-lg p-4">
+                <div className="section-label mb-3">PLAYOFF CONTEXT</div>
+                {intel.playoff.mover && (
+                  <div className="mb-3">
+                    <div className="text-sm font-semibold text-white capitalize">{intel.playoff.mover.direction} {intel.playoff.mover.delta > 0 ? "+" : ""}{intel.playoff.mover.delta}</div>
+                    <div className="mono-data text-xs mb-1" style={{ color: "#10B981" }}>{intel.playoff.mover.line}</div>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{intel.playoff.mover.note}</p>
+                  </div>
+                )}
+                {intel.playoff.series.map((s) => (
+                  <a key={s.seriesId} href={`/playoffs#series-card-${s.seriesId}`} className="block text-xs text-sky-300 hover:text-sky-200">
+                    vs {s.opponent} · {s.summary}
+                  </a>
+                ))}
+              </div>
+            )}
+
             {/* Quick Stats */}
             <div className="glass-card rounded-lg p-4">
               <div className="section-label mb-3">QUICK FACTS</div>
@@ -283,6 +368,13 @@ export default function Player() {
                 )}
               </div>
             </div>
+
+            <a
+              href="/compare-players"
+              className="block glass-card rounded-lg p-4 text-sm font-semibold text-sky-300 hover:text-sky-200"
+            >
+              Compare {player.name} in Player Compare →
+            </a>
           </div>
         </div>
       </div>

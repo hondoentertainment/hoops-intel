@@ -13,6 +13,7 @@ import { getPreferences, hasPreferences, type UserPreferences } from "../lib/use
 import { personalizeEdition } from "../lib/personalizeEdition";
 import { getTeamColor } from "../lib/teamColors";
 import { slugify } from "../lib/searchUtils";
+import { makeGameId } from "../lib/gameCenter";
 import PreferencesSetup from "../components/PreferencesSetup";
 import ShareButton from "../components/ShareButton";
 import SiteHeader from "../components/SiteHeader";
@@ -142,6 +143,12 @@ export default function MyPulse() {
                       {preview.storyline}
                     </p>
                   )}
+                  <a
+                    href={`/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, preview.time || pulseEdition.date)}`}
+                    className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200"
+                  >
+                    Open personalized Game Center →
+                  </a>
                 </div>
               ))}
             </div>
@@ -237,6 +244,12 @@ export default function MyPulse() {
                       </a>
                       <span className="text-xs mono-data" style={{ color: "#10B981" }}>{game.topLine}</span>
                     </div>
+                    <a
+                      href={`/game/${game.gameId || makeGameId(game.awayTeam, game.homeTeam, pulseEdition.date)}`}
+                      className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200"
+                    >
+                      Open personalized Game Center →
+                    </a>
                   </div>
                 );
               })}

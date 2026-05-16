@@ -9,6 +9,8 @@ interface MetaTags {
   description?: string;
   ogImage?: string;
   ogUrl?: string;
+  canonicalUrl?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 const DEFAULTS = {
@@ -34,9 +36,31 @@ function setMeta(property: string, content: string) {
   }
 }
 
-export function useMetaTags({ title, description, ogImage, ogUrl }: MetaTags) {
+function setCanonical(href: string) {
+  let el = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!el) {
+    el = document.createElement("link");
+    el.rel = "canonical";
+    document.head.appendChild(el);
+  }
+  el.href = href;
+}
+
+function setJsonLd(jsonLd: Record<string, unknown>) {
+  let el = document.querySelector('script[data-hi-json-ld="page"]') as HTMLScriptElement | null;
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.dataset.hiJsonLd = "page";
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(jsonLd);
+}
+
+export function useMetaTags({ title, description, ogImage, ogUrl, canonicalUrl, jsonLd }: MetaTags) {
   useEffect(() => {
     const prevTitle = document.title;
+    const prevCanonical = (document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null)?.href;
 
     if (title) {
       document.title = title;
@@ -55,6 +79,12 @@ export function useMetaTags({ title, description, ogImage, ogUrl }: MetaTags) {
     if (ogUrl) {
       setMeta("og:url", ogUrl);
     }
+    if (canonicalUrl || ogUrl) {
+      setCanonical(canonicalUrl || ogUrl || DEFAULTS.ogUrl);
+    }
+    if (jsonLd) {
+      setJsonLd(jsonLd);
+    }
 
     // Restore defaults on unmount
     return () => {
@@ -66,6 +96,8 @@ export function useMetaTags({ title, description, ogImage, ogUrl }: MetaTags) {
       setMeta("twitter:title", DEFAULTS.title);
       setMeta("twitter:description", DEFAULTS.description);
       setMeta("twitter:image", DEFAULTS.ogImage);
+      setCanonical(prevCanonical || DEFAULTS.ogUrl);
+      document.querySelector('script[data-hi-json-ld="page"]')?.remove();
     };
-  }, [title, description, ogImage, ogUrl]);
+  }, [title, description, ogImage, ogUrl, canonicalUrl, jsonLd]);
 }

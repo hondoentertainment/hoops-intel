@@ -37,6 +37,7 @@ import {
   type PlayoffSeries,
 } from "../lib/playoffData";
 import { nextPendingGame, playoffSnapshot, scoringEdgeForSeries, todayISOLocal } from "../lib/playoffAnalytics";
+import { makeGameId, topDeskGames, gameCenterTrustSignals } from "../lib/gameCenter";
 
 function shortenPulsePreview(text: string, max = 110) {
   const t = text.trim();
@@ -314,6 +315,59 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   );
 }
 
+function TodayDeskSection() {
+  const deskGames = topDeskGames(3);
+  const trust = gameCenterTrustSignals();
+  const urgentItems = [...playoffTickerWireItems(), ...tickerItems].slice(0, 4);
+
+  return (
+    <section className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr] gap-5">
+          <div className="glass-card rounded-xl p-5">
+            <div className="section-label mb-2">MORNING BRIEFING</div>
+            <h2 id="today-desk-title" className="display-heading text-white text-2xl mb-3">{narrative.headline}</h2>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.68)" }}>{narrative.subhead}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {deskGames.map((game) => (
+                <a key={game.gameId} href={`/game/${game.gameId}`} className="rounded-lg p-3 bg-white/[0.04] hover:bg-white/[0.07] transition-colors">
+                  <div className="section-label mb-1">{game.status} · {game.source.replace(/-/g, " ")}</div>
+                  <div className="text-sm font-semibold text-white">{game.away.abbr} at {game.home.abbr}</div>
+                  <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{shortenPulsePreview(game.subtitle || game.whyItMatters, 86)}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="glass-card rounded-xl p-4">
+              <div className="section-label mb-3">WHAT CHANGED</div>
+              <div className="space-y-2">
+                {urgentItems.map((item, i) => (
+                  <div key={`${item.text}-${i}`} className="text-xs rounded p-2 bg-white/[0.035]" style={{ color: "rgba(255,255,255,0.65)" }}>
+                    <span className="font-semibold text-sky-300 uppercase">{item.type}</span> · {item.text}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="glass-card rounded-xl p-4">
+              <div className="section-label mb-3">HOW THIS EDITION WAS BUILT</div>
+              <div className="grid grid-cols-1 gap-2">
+                {trust.map((signal) => (
+                  <div key={signal.label} className="flex justify-between gap-3 text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{signal.label}</span>
+                    <span className="text-right text-white/75">{signal.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════
 // GAME CARD — With clickable player/team links
 // ═══════════════════════════════════════════════════════════
@@ -322,35 +376,43 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
   const [expanded, setExpanded] = useState(false);
   const homeWin = game.homeScore > game.awayScore;
   const awayWin = game.awayScore > game.homeScore;
+  const gameHref = `/game/${game.gameId || makeGameId(game.awayTeam, game.homeTeam, pulseEdition.date)}`;
 
   return (
     <div
-      className="glass-card rounded-lg overflow-hidden transition-all duration-200 cursor-pointer"
-      onClick={() => setExpanded(!expanded)}
+      className="glass-card rounded-lg overflow-hidden transition-all duration-200"
       style={{ borderLeft: `3px solid ${getTeamColor(homeWin ? game.homeTeam : game.awayTeam)}` }}
     >
       <div className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3 flex-1">
-            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12">
               <div className="section-label mb-0.5" style={{ color: awayWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
               <div className={`mono-data font-bold text-2xl ${awayWin ? "pulse-glow-blue" : ""}`} style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
             </a>
             <div className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
-            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12">
               <div className="section-label mb-0.5" style={{ color: homeWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
               <div className={`mono-data font-bold text-2xl ${homeWin ? "pulse-glow-blue" : ""}`} style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
             </a>
           </div>
-          <div className="text-right">
+          <button
+            type="button"
+            className="text-right rounded tap-target px-2"
+            aria-expanded={expanded}
+            onClick={() => setExpanded(!expanded)}
+          >
             <div className="text-xs font-medium px-2 py-0.5 rounded mb-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>FINAL</div>
             <div className="text-xs" style={{ color: "#0EA5E9" }}>{expanded ? "▲ Less" : "▼ More"}</div>
-          </div>
+          </button>
         </div>
+        <a href={gameHref} className="mb-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
+          Open Game Center →
+        </a>
         <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
           <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#0EA5E9" }} />
           <div>
-            <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors" onClick={(e) => e.stopPropagation()}>
+            <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors">
               {game.topPerformer}
             </a>
             <span className="text-xs ml-2 mono-data" style={{ color: "#10B981" }}>{game.topLine}</span>
@@ -360,7 +422,7 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
       {expanded && (
         <div className="px-4 pb-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="pt-3">{game.recap}</p>
-          <div onClick={(e) => e.stopPropagation()}>
+          <div>
             <BoxScoreCard espnGameId={game.gameId} homeTeam={game.homeTeam} awayTeam={game.awayTeam} />
             <ReactionBar itemId={`game-${game.gameId}`} />
           </div>
@@ -443,7 +505,7 @@ function NarrativeSection() {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <div className="section-label mb-2">NARRATIVE OF THE NIGHT</div>
+            <div className="section-label mb-2">THE LEAD</div>
             <h3 className="display-heading text-white text-xl mb-4">{narrative.headline}</h3>
             {narrative.body.map((paragraph: string, i: number) => (
               <p key={i} className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{paragraph}</p>
@@ -657,8 +719,11 @@ function MediaReactionsSection() {
   return (
     <section className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
-        <div className="section-label mb-2">AROUND THE LEAGUE</div>
-        <h2 className="display-heading text-white text-2xl mb-6">Media Reactions</h2>
+        <div className="section-label mb-2">AROUND THE CONVERSATION</div>
+        <h2 className="display-heading text-white text-2xl mb-2">Desk Read</h2>
+        <p className="text-xs mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+          Generated conversation summary, not attributed reporting or direct quotes.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {mediaReactions.map((reaction: any, i: number) => {
             const sc = sentimentColors[reaction.sentiment] || sentimentColors.neutral;
@@ -668,7 +733,7 @@ function MediaReactionsSection() {
                   <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: sc.bg, color: sc.color }}>{reaction.sentiment.toUpperCase()}</span>
                   <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{reaction.topic}</span>
                 </div>
-                <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.7)" }}>"{reaction.quote}"</p>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.7)" }}>{reaction.quote}</p>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold text-white">{reaction.author}</span>
                   <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{reaction.outlet}</span>
@@ -934,18 +999,19 @@ function GamePreviewCard({ preview }: { preview: any }) {
   const [expanded, setExpanded] = useState(false);
   const series = playoffSeriesForMatchup(preview.awayTeam, preview.homeTeam);
   const intel = series ? resolveSeriesIntel(series) : undefined;
+  const gameHref = `/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, pulseEdition.date)}`;
 
   return (
     <div className={`glass-card rounded-lg overflow-hidden ${preview.featured ? "ring-1 ring-sky-500/40" : ""}`}>
-      <div className="p-4 cursor-pointer" onClick={() => setExpanded(!expanded)}>
+      <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="text-center" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="text-center">
               <div className="section-label">{preview.awayTeam}</div>
               <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.awayRecord}</div>
             </a>
             <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
-            <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="text-center" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="text-center">
               <div className="section-label">{preview.homeTeam}</div>
               <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.homeRecord}</div>
             </a>
@@ -958,6 +1024,14 @@ function GamePreviewCard({ preview }: { preview: any }) {
             <div className="mono-data text-xs" style={{ color: "#0EA5E9" }} title="Vegas point spread — negative means favored">{preview.spread}</div>
             <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }} title="Over/Under — projected combined total points">Total {preview.overUnder}</div>
           </div>
+          <button
+            type="button"
+            className="ml-2 rounded tap-target px-2 text-xs font-semibold text-sky-300"
+            aria-expanded={expanded}
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "▲ Less" : "▼ More"}
+          </button>
         </div>
         {preview.featured && (
           <div className="mt-2 text-xs font-semibold px-2 py-0.5 rounded inline-block" style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9" }}>
@@ -969,6 +1043,9 @@ function GamePreviewCard({ preview }: { preview: any }) {
             {series.summary}
           </div>
         )}
+        <a href={gameHref} className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
+          Open Game Center →
+        </a>
       </div>
       {expanded && (
         <div className="px-4 pb-4 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -1151,8 +1228,8 @@ function StandingsSection() {
   const renderConference = (title: string, standings: any[]) => (
     <div>
       <h3 className="display-heading text-white text-lg mb-3">{title}</h3>
-      <div className="glass-card rounded-lg overflow-hidden">
-        <table className="w-full text-xs">
+      <div className="glass-card rounded-lg overflow-x-auto">
+        <table className="w-full min-w-[620px] text-xs">
           <thead>
             <tr style={{ background: "rgba(255,255,255,0.04)" }}>
               <SortHeader label="#" keyName="rank" align="left" />
@@ -1400,6 +1477,7 @@ export default function Home() {
       <LiveScorebar />
       <TickerBar />
       <HeroSection showMyPulse={showMyPulse} />
+      <TodayDeskSection />
       <ScoresSection favoriteTeams={favoriteTeams} />
       <NarrativeSection />
       <PulseIndexSection />

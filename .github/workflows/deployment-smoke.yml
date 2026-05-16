@@ -1,0 +1,26 @@
+name: Deployment Smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Base URL to smoke test"
+        required: false
+        default: "https://hoopsintel.net"
+  schedule:
+    - cron: "17 13 * * *"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Smoke test deployment
+        env:
+          SMOKE_BASE_URL: ${{ inputs.base_url || 'https://hoopsintel.net' }}
+        run: npm run smoke:deploy

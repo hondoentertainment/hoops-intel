@@ -13,6 +13,18 @@ function getStoredAuthToken(): string | null {
 
 const FEATURES = [
   {
+    title: "My Pulse alerts",
+    body: "Favorite-team and favorite-player alerts collect the games, injuries, and Pulse moves that matter to you first.",
+  },
+  {
+    title: "Shareable intelligence cards",
+    body: "Game Center and player profile cards are built for social sharing with richer metadata and cleaner story framing.",
+  },
+  {
+    title: "Prediction accountability",
+    body: "Track where Hoops Intel was right, wrong, and early using the existing Pulse Accountability model.",
+  },
+  {
     title: "Early morning delivery",
     body: "Daily edition drops at 6 AM PST for Pro subscribers — two hours ahead of the free edition.",
   },

@@ -1219,393 +1219,219 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/SAS</loc>
+    <loc>https://hoopsintel.net/team/sas</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/San Antonio Spurs</loc>
+    <loc>https://hoopsintel.net/team/min</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/MIN</loc>
+    <loc>https://hoopsintel.net/team/nyk</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Minnesota Timberwolves</loc>
+    <loc>https://hoopsintel.net/team/phi</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/NYK</loc>
+    <loc>https://hoopsintel.net/team/okc</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/New York Knicks</loc>
+    <loc>https://hoopsintel.net/team/lal</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/PHI</loc>
+    <loc>https://hoopsintel.net/team/det</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Philadelphia 76ers</loc>
+    <loc>https://hoopsintel.net/team/cle</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/OKC</loc>
+    <loc>https://hoopsintel.net/team/hou</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Oklahoma City Thunder</loc>
+    <loc>https://hoopsintel.net/team/mia</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/LAL</loc>
+    <loc>https://hoopsintel.net/team/dal</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Los Angeles Lakers</loc>
+    <loc>https://hoopsintel.net/team/bos</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/DET</loc>
+    <loc>https://hoopsintel.net/team/tor</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Detroit Pistons</loc>
+    <loc>https://hoopsintel.net/team/atl</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/CLE</loc>
+    <loc>https://hoopsintel.net/team/orl</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Cleveland Cavaliers</loc>
+    <loc>https://hoopsintel.net/team/cha</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/HOU</loc>
+    <loc>https://hoopsintel.net/team/den</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Houston Rockets</loc>
+    <loc>https://hoopsintel.net/team/phx</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/MIA</loc>
+    <loc>https://hoopsintel.net/team/por</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Miami Heat</loc>
+    <loc>https://hoopsintel.net/team/lac</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/DAL</loc>
+    <loc>https://hoopsintel.net/team/gsw</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Dallas Mavericks</loc>
+    <loc>https://hoopsintel.net/team/chi</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/BOS</loc>
+    <loc>https://hoopsintel.net/team/uta</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Boston Celtics</loc>
+    <loc>https://hoopsintel.net/team/nop</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/TOR</loc>
+    <loc>https://hoopsintel.net/team/was</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Toronto Raptors</loc>
+    <loc>https://hoopsintel.net/team/mem</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/ATL</loc>
+    <loc>https://hoopsintel.net/team/ind</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Atlanta Hawks</loc>
+    <loc>https://hoopsintel.net/team/brk</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/ORL</loc>
+    <loc>https://hoopsintel.net/team/sac</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Orlando Magic</loc>
+    <loc>https://hoopsintel.net/team/mil</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/CHA</loc>
+    <loc>https://hoopsintel.net/game/ORL-DET-20260503</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Charlotte Hornets</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/DEN</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Denver Nuggets</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/PHX</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Phoenix Suns</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/POR</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Portland Trail Blazers</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/LAC</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Los Angeles Clippers</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/GSW</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Golden State Warriors</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/CHI</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Chicago Bulls</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/UTA</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Utah Jazz</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/NOP</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/New Orleans Pelicans</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/WSH</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Washington Wizards</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/LA Clippers</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/MEM</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Memphis Grizzlies</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/IND</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Indiana Pacers</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/WAS</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/BRK</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/Brooklyn Nets</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/SAC</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Sacramento Kings</loc>
+    <loc>https://hoopsintel.net/game/NYK-PHI-20260510</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/team/NO</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/UTAH</loc>
+    <loc>https://hoopsintel.net/game/TOR-CLE-20260503</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/BKN</loc>
+    <loc>https://hoopsintel.net/game/OKC-LAL-20260511</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/MIL</loc>
+    <loc>https://hoopsintel.net/game/POR-SAS-20260428</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/team/Milwaukee Bucks</loc>
+    <loc>https://hoopsintel.net/game/DEN-MIN-20260430</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.55</priority>
   </url>
 </urlset>

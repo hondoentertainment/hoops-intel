@@ -11,7 +11,7 @@ import { readFileSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { validateOutput } from "./lib/validate-output.mjs";
-import { isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
+import { GAME_ID_PATTERN, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -94,6 +94,56 @@ function assertCond(c, msg) {
   if (!c) throw new Error(msg);
 }
 
+export function validateWorldClassRoutes() {
+  const requiredFiles = [
+    "client/src/lib/gameCenter.ts",
+    "client/src/lib/playerIntel.ts",
+    "client/src/pages/GameCenter.tsx",
+    "client/src/components/MobileBottomNav.tsx",
+    "api/game-center.ts",
+    "api/player-intel.ts",
+  ];
+  for (const rel of requiredFiles) {
+    assertCond(existsSync(join(ROOT, rel)), `missing world-class route contract file: ${rel}`);
+  }
+
+  const app = readFileSync(join(ROOT, "client/src/App.tsx"), "utf8");
+  assertCond(app.includes('path="/game/:gameId"'), "App.tsx missing /game/:gameId route");
+
+  const pulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  const gameIds = [...pulse.matchAll(/gameId:\s*"([^"]+)"/g)].map((m) => m[1]);
+  for (const id of gameIds) {
+    assertCond(GAME_ID_PATTERN.test(id), `invalid canonical gameId for Game Center: ${id}`);
+  }
+
+  const gameCenter = readFileSync(join(ROOT, "client/src/lib/gameCenter.ts"), "utf8");
+  for (const symbol of ["getGameCenterById", "getAllGameCenterGames", "makeGameId"]) {
+    assertCond(gameCenter.includes(`function ${symbol}`) || gameCenter.includes(`const ${symbol}`), `gameCenter.ts missing ${symbol}`);
+  }
+
+  const playerIntel = readFileSync(join(ROOT, "client/src/lib/playerIntel.ts"), "utf8");
+  assertCond(playerIntel.includes("getPlayerIntelBySlug"), "playerIntel.ts missing getPlayerIntelBySlug");
+
+  const sitemap = existsSync(join(ROOT, "public/sitemap.xml"))
+    ? readFileSync(join(ROOT, "public/sitemap.xml"), "utf8")
+    : "";
+  if (sitemap) {
+    const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const seen = new Set();
+    for (const loc of locs) {
+      assertCond(!seen.has(loc), `duplicate sitemap URL: ${loc}`);
+      seen.add(loc);
+      assertCond(!/%20|\s/.test(loc), `sitemap URL contains whitespace: ${loc}`);
+      const team = loc.match(/\/team\/([^/?#]+)/)?.[1];
+      if (team) assertCond(/^[a-z]{3}$/.test(team), `sitemap team URL is not lowercase 3-letter code: ${loc}`);
+      const game = loc.match(/\/game\/([^/?#]+)/)?.[1];
+      if (game) assertCond(GAME_ID_PATTERN.test(game), `sitemap game URL has invalid gameId: ${loc}`);
+    }
+  }
+
+  return { ok: true };
+}
+
 async function main() {
   const errors = [];
 
@@ -103,6 +153,14 @@ async function main() {
   } catch (e) {
     errors.push(String(e.message || e));
     console.error("❌ playbook sync:", e.message || e);
+  }
+
+  try {
+    validateWorldClassRoutes();
+    console.log("✅ world-class route contracts OK");
+  } catch (e) {
+    errors.push(String(e.message || e));
+    console.error("❌ world-class route contracts:", e.message || e);
   }
 
   const phase2Ts = [

@@ -13,25 +13,33 @@ import { seriesForTeam, playoffSeriesOpponent } from "../lib/playoffData";
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
 import { getAllTeams, slugify } from "../lib/searchUtils";
+import { useMetaTags } from "../lib/useMetaTags";
+import { TEAM_NAMES, canonicalizeTeamCode } from "../lib/identity";
 import SiteHeader from "../components/SiteHeader";
-
-const TEAM_NAMES: Record<string, string> = {
-  ATL: "Atlanta Hawks", BOS: "Boston Celtics", BRK: "Brooklyn Nets",
-  CHA: "Charlotte Hornets", CHI: "Chicago Bulls", CLE: "Cleveland Cavaliers",
-  DAL: "Dallas Mavericks", DEN: "Denver Nuggets", DET: "Detroit Pistons",
-  GSW: "Golden State Warriors", HOU: "Houston Rockets", IND: "Indiana Pacers",
-  LAC: "Los Angeles Clippers", LAL: "Los Angeles Lakers", MEM: "Memphis Grizzlies",
-  MIA: "Miami Heat", MIL: "Milwaukee Bucks", MIN: "Minnesota Timberwolves",
-  NOP: "New Orleans Pelicans", NYK: "New York Knicks", OKC: "Oklahoma City Thunder",
-  ORL: "Orlando Magic", PHI: "Philadelphia 76ers", PHX: "Phoenix Suns",
-  POR: "Portland Trail Blazers", SAC: "Sacramento Kings", SAS: "San Antonio Spurs",
-  TOR: "Toronto Raptors", UTA: "Utah Jazz", WAS: "Washington Wizards",
-};
 
 export default function Team() {
   const params = useParams<{ abbr: string }>();
-  const abbr = (params.abbr || "").toUpperCase();
+  const abbr = canonicalizeTeamCode(params.abbr || "");
   const fullName = TEAM_NAMES[abbr];
+
+  useMetaTags({
+    title: fullName ? `${fullName} Team Intel | Hoops Intel` : "Team Intel | Hoops Intel",
+    description: fullName
+      ? `${fullName} scores, injuries, playoff context, Pulse Index players, and archive storylines on Hoops Intel.`
+      : "Team profile on Hoops Intel.",
+    ogImage: `https://hoopsintel.net/api/og?type=team&team=${abbr}`,
+    ogUrl: `https://hoopsintel.net/team/${abbr.toLowerCase()}`,
+    canonicalUrl: `https://hoopsintel.net/team/${abbr.toLowerCase()}`,
+    jsonLd: fullName
+      ? {
+          "@context": "https://schema.org",
+          "@type": "SportsTeam",
+          name: fullName,
+          sport: "Basketball",
+          url: `https://hoopsintel.net/team/${abbr.toLowerCase()}`,
+        }
+      : undefined,
+  });
 
   if (!fullName) {
     return (

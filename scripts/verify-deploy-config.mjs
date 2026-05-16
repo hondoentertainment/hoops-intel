@@ -81,6 +81,10 @@ function main() {
   } else ok("vercel.json build targets production bundle");
 
   if (!existsSync(join(ROOT, "client", "index.html"))) die("missing client/index.html");
+  if (!existsSync(join(ROOT, "public", "robots.txt"))) die("missing public/robots.txt");
+  else ok("robots.txt present");
+  if (!existsSync(join(ROOT, "scripts", "deployment-smoke.mjs"))) die("missing deployment smoke script");
+  else ok("deployment smoke script present");
 
   const supabaseConfig = join(ROOT, "supabase", "config.toml");
   if (!existsSync(supabaseConfig)) warn("missing supabase/config.toml — Supabase CLI link/db push expects this file");

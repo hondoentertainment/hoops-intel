@@ -244,13 +244,13 @@ ${playoffInstructions}${seasonWindowInstructions}
 4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates)
 6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
-7. Media reactions: write 6 quotes in the authentic voice of each journalist/outlet
+7. Conversation read: write 6 clearly synthetic, paraphrased conversation summaries. Do NOT impersonate real journalists, invent direct quotes, or attribute reporting. Use author/outlet fields only as broad source-category labels such as "Hoops Intel Desk" / "Generated conversation read".
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
 9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style
 10. Also generate a "This Day in NBA History" fact for ${editionDate}. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
 11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
 12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
-13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep media quotes to 2-3 sentences max. Keep recap text concise. The file MUST stay under 15000 tokens total.
+13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep conversation summaries to 2-3 sentences max and do not wrap them in quotation marks. Keep recap text concise. The file MUST stay under 15000 tokens total.
 14. CRITICAL — team abbreviations MUST be exactly one of: ATL, BOS, BRK, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS. NEVER use "NY" (use "NYK"), "SA" (use "SAS"), "BKN" (use "BRK"), "NO" (use "NOP"), or "GS" (use "GSW"). Anything else will fail validation.
 15. CRITICAL — injury status field MUST be exactly one of (case sensitive): "Out", "Day-to-Day", "Questionable", "Probable", "Doubtful". Never lowercase.
 16. CRITICAL — every \`{\` must be matched by \`}\` and every \`[\` must be matched by \`]\` in every export. Special attention to the \`narrative.body\` array — it MUST be wrapped in \`[\` and \`]\` and end with \`]}\` before the trailing semicolon.

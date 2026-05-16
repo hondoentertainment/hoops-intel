@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-sitemap.mjs && vite build",
     "preview": "vite preview",
     "test:unit": "vitest run",
     "typecheck:api": "tsc --noEmit -p api/tsconfig.json",
@@ -25,6 +25,7 @@
     "test:series-intel-keys": "node scripts/verify-series-intel-keys.mjs",
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",
+    "smoke:deploy": "node scripts/deployment-smoke.mjs",
     "ops:preflight": "node scripts/ops-preflight.mjs",
     "ops:preflight:strict": "node scripts/ops-preflight.mjs --strict",
     "site-review": "node scripts/site-review-agent.mjs",

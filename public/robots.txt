@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /account
+Disallow: /creator-queue
+Disallow: /unsubscribe
+Disallow: /widgets/analytics
+
+Sitemap: https://hoopsintel.net/sitemap.xml

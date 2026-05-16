@@ -17,6 +17,14 @@ export const MAIN_NAV_LINKS: MainNavLink[] = [
   { label: "Ask AI", href: "/ask" },
 ];
 
+export const MOBILE_BOTTOM_NAV_LINKS: MainNavLink[] = [
+  { label: "Today", href: "/" },
+  { label: "Scores", href: "/#scores" },
+  { label: "Playoffs", href: "/playoffs" },
+  { label: "Players", href: "/compare-players" },
+  { label: "Tools", href: "/tools" },
+];
+
 /** All feature routes — Tools directory */
 export type ToolCategory = "desk" | "postseason" | "analysis" | "community" | "publishing";
 

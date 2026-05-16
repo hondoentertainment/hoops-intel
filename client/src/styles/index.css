@@ -61,6 +61,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a,
+button {
+  touch-action: manipulation;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+  border-radius: 0.375rem;
+}
+
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (pointer: coarse) {
+  a,
+  button {
+    min-height: 44px;
+  }
+}
+
 html.light .glass-card {
   background: rgba(255, 255, 255, 0.78);
   border-color: rgba(15, 23, 42, 0.1);

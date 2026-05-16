@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import AskHoopsIntel from "./components/AskHoopsIntel";
+import MobileBottomNav from "./components/MobileBottomNav";
 
 // Eager load Home (critical path)
 import Home from "./pages/Home";
@@ -10,6 +11,7 @@ import Home from "./pages/Home";
 const Archive = lazy(() => import("./pages/Archive"));
 const Player = lazy(() => import("./pages/Player"));
 const Team = lazy(() => import("./pages/Team"));
+const GameCenter = lazy(() => import("./pages/GameCenter"));
 const PulseHistory = lazy(() => import("./pages/PulseHistory"));
 const PlayoffBracket = lazy(() => import("./pages/PlayoffBracket"));
 const PickEm = lazy(() => import("./pages/PickEm"));
@@ -85,7 +87,7 @@ export default function App() {
     <ThemeProvider switchable={true}>
       <VercelAnalyticsScript />
       <div
-        className="min-h-screen"
+        className="min-h-screen pb-16 md:pb-0"
         style={{
           background: "var(--hi-bg-page, #050d1a)",
           color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
@@ -95,6 +97,7 @@ export default function App() {
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/archive" component={Archive} />
+            <Route path="/game/:gameId" component={GameCenter} />
             <Route path="/player/:slug" component={Player} />
             <Route path="/team/:abbr" component={Team} />
             <Route path="/pulse-history" component={PulseHistory} />
@@ -159,6 +162,7 @@ export default function App() {
           </Switch>
         </Suspense>
         <AskHoopsIntel />
+        <MobileBottomNav />
       </div>
     </ThemeProvider>
   );
