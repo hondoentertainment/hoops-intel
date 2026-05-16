@@ -1,4 +1,4 @@
-import { getAllGameCenterGames, getGameCenterById } from "../client/src/lib/gameCenter";
+import { getAllGameCenterGames, getGameCenterById } from "../client/src/lib/gameCenter.js";
 
 export const config = { runtime: "nodejs" };
 

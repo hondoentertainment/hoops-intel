@@ -1,9 +1,9 @@
-import { archiveEditions } from "./archiveData";
-import { playoffSeries, type PlayoffSeries, type PlayoffSeriesGame } from "./playoffData";
-import { gamePreviews, gameResults, injuryUpdates, mediaReactions, narrative, pulseEdition, statLeaders, tickerItems } from "./pulseData";
-import { refData } from "./refData";
-import { watchGuideData } from "./watchGuideData";
-import { canonicalizeTeamCode } from "./identity";
+import { archiveEditions } from "./archiveData.js";
+import { playoffSeries, type PlayoffSeries, type PlayoffSeriesGame } from "./playoffData.js";
+import { gamePreviews, gameResults, injuryUpdates, mediaReactions, narrative, pulseEdition, statLeaders, tickerItems } from "./pulseData.js";
+import { refData } from "./refData.js";
+import { watchGuideData } from "./watchGuideData.js";
+import { canonicalizeTeamCode } from "./identity.js";
 
 export type GameCenterStatus = "final" | "live" | "scheduled" | "preview";
 

@@ -1,4 +1,4 @@
-import { getPlayerIntelBySlug, topPlayerIntelSlugs } from "../client/src/lib/playerIntel";
+import { getPlayerIntelBySlug, topPlayerIntelSlugs } from "../client/src/lib/playerIntel.js";
 
 export const config = { runtime: "nodejs" };
 

@@ -1,10 +1,10 @@
-import { archiveEditions } from "./archiveData";
-import { gameResults, gamePreviews, injuryUpdates, pulseEdition, pulseIndex, statLeaders } from "./pulseData";
-import { playoffMovers, playoffSeries } from "./playoffData";
-import { sentimentData } from "./sentimentData";
-import { getAllPlayers } from "./searchUtils";
-import { getAllGameCenterGames, makeGameId } from "./gameCenter";
-import { canonicalizePlayerName, playerSlug } from "./identity";
+import { archiveEditions } from "./archiveData.js";
+import { gameResults, gamePreviews, injuryUpdates, pulseEdition, pulseIndex, statLeaders } from "./pulseData.js";
+import { playoffMovers, playoffSeries } from "./playoffData.js";
+import { sentimentData } from "./sentimentData.js";
+import { getAllPlayers } from "./searchUtils.js";
+import { getAllGameCenterGames, makeGameId } from "./gameCenter.js";
+import { canonicalizePlayerName, playerSlug } from "./identity.js";
 
 export interface PlayerIntelResponse {
   slug: string;

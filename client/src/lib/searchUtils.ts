@@ -6,11 +6,11 @@ import {
   gamePreviews,
   pulseEdition,
   narrative,
-} from "./pulseData";
-import { archiveEditions } from "./archiveData";
-import { makeGameId } from "./gameCenter";
-import { canonicalizePlayerName, canonicalizeTeamCode, playerSlug, slugifyName, teamName } from "./identity";
-import { playoffSeries } from "./playoffData";
+} from "./pulseData.js";
+import { archiveEditions } from "./archiveData.js";
+import { makeGameId } from "./gameCenter.js";
+import { canonicalizePlayerName, canonicalizeTeamCode, playerSlug, slugifyName, teamName } from "./identity.js";
+import { playoffSeries } from "./playoffData.js";
 
 export interface SearchResult {
   type: "player" | "team" | "game" | "story" | "injury";
