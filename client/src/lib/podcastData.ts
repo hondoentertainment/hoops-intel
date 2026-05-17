@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 16, 2026
+// Last updated: May 18, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,163 +22,151 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 16, 2026",
+  date: "May 18, 2026",
 
-  episodeTitle:
-    "Game 7 Sunday, Castle's Coronation, and the West Finals We've All Been Waiting For",
+  episodeTitle: "Game 7 Night in Detroit — One Dream Dies at Little Caesars Arena",
 
   coldOpen:
-    "Friday night handed us two of the most consequential playoff results of the entire 2026 postseason — and neither one went according to script. In Cleveland, the Cavaliers threw a closeout party and the Detroit Pistons crashed it and burned the place down, 115-94. Game 7. Sunday. Little Caesars Arena. And in Minneapolis, Stephon Castle walked into Target Center and dropped 32 points, 11 rebounds, and 6 assists on 69 percent shooting to personally escort the San Antonio Spurs into a West Finals date with Oklahoma City. SGA versus Wembanyama. The matchup that defines the next decade. It is official. It is happening. And we have a lot to get into — let's go.",
+    "It's Sunday night, May 18th, and the NBA just hit its crescendo. One ticket left in the East. One building. One game. Little Caesars Arena is about to get LOUD — and Cade Cunningham is about to tell us exactly who he is. Meanwhile, twenty-four hours from right now, Shai Gilgeous-Alexander and Victor Wembanyama tip off in the most anticipated series of the 2026 playoffs. The next 48 hours might be the best two-day stretch in basketball this decade. You're locked in to Hoops Intel. Let's get into it.",
 
   rundown: [
     {
-      topic: "Detroit Forces Game 7: The Pistons Crash Cleveland's Closeout Party",
+      topic: "Game 7: Detroit vs. Cleveland — The Last East Ticket Gets Punched Tonight",
       segment: "opener",
+      duration: "9 min",
+      keyStats: [
+        "Series tied 3-3 — Detroit forced Game 7 with a 115-94 road blowout in Game 6, tying a 66-year-old NBA record for largest road win by a trailing team",
+        "Cade Cunningham averaging 27.0 PPG and 8.5 APG across the series — rated the best player on either roster by every major metric",
+        "Detroit is 31-9 at home this season — the second-best home record in the East",
+        "Donovan Mitchell: 43 points in Game 4, then 6-of-20 for 18 points with a minus-25 in Game 6",
+        "Larry Nance Jr. (illness) is DOUBTFUL, Caris LeVert (heel) is QUESTIONABLE — Cleveland's bench is thinning out at the worst possible moment",
+        "Detroit is a 4.5-point favorite; over/under sits at 206.5 — 8:00 PM ET on Prime Video"
+      ],
+      debateAngle:
+        "Is this series already Cade Cunningham's defining moment — regardless of tonight's outcome? He's been the best player in this series over six games, outplaying both Mitchell AND Harden on the biggest stages. If Detroit wins tonight, do we officially start talking about him as a top-5 player in the league?",
+      suggestedQuote:
+        "Cade Cunningham has been the best player in this series, full stop. Not Mitchell on his best night, not Harden in overtime — Cade, consistently, across six games, in both directions on the floor. Tonight is his coronation or his crucible. There is no middle ground at Little Caesars Arena.",
+      relevantPlayers: [
+        "Cade Cunningham",
+        "Donovan Mitchell",
+        "James Harden",
+        "Larry Nance Jr.",
+        "Caris LeVert",
+        "Paul Reed"
+      ]
+    },
+    {
+      topic: "The Harden Paradox — Legacy Milestone, Turnover Disaster, and One Last Road Game 7",
+      segment: "deep-dive",
       duration: "8 min",
       keyStats: [
-        "DET 115, CLE 94 — 21-point road demolition in a would-be clinch game",
-        "Cade Cunningham: 21 PTS, 8 AST — the best player in this series, full stop",
-        "Paul Reed: 17 PTS on 7-of-9 shooting off the bench — bench catalyst of the playoffs",
-        "Donovan Mitchell: 6-of-20 FG, minus-25 — worst performance of his series",
-        "James Harden: 23 PTS but 8 turnovers — the good and the catastrophic in one box score",
-        "Evan Mobley: minus-24 — Cleveland's entire starting unit was a disaster",
+        "James Harden passed Stephen Curry for 10th on the NBA all-time playoff scoring list during this series",
+        "Harden posted 30 points and 3 blocks in Game 5 triple overtime — one of the great individual playoff performances of the 2026 postseason",
+        "Harden then committed 8 turnovers in Game 6's 21-point collapse — the single biggest driver of Cleveland's blowout loss",
+        "Series averages: 22.5 PPG, 7.0 APG, 5.8 RPG — genuinely strong across the board",
+        "Harden is 36 years old playing a road Game 7 in a building with one of the loudest crowds in the East",
+        "Mitchell went 6-of-20 in Game 6 — if Cleveland loses tonight, the Harden collapse shoulders enormous blame"
       ],
       debateAngle:
-        "Is Cade Cunningham now the single most important player in the Eastern Conference playoff picture? He has been the best player on the floor in six straight games against a team with three All-Star-caliber players — and he's doing it on both ends. Meanwhile, Mitchell, Harden, and Mobley collectively imploded in a must-win situation at home. Do the Cavaliers have a real shot in Game 7, or has Cade just broken this team psychologically?",
+        "Does the 8-turnover Game 6 meltdown permanently overshadow the milestone of passing Curry on the all-time playoff scoring list? Or is playoff longevity and durability — across Houston, Brooklyn, Philly, and Cleveland — its own form of greatness that the basketball world has consistently undervalued when it comes to Harden?",
       suggestedQuote:
-        "Look — Cleveland had home court, they had the crowd, they had the moment. And the Pistons walked in and treated it like a regular-season back-to-back. That's not a fluke. That's Cade Cunningham telling the world exactly who he is.",
+        "Here's the thing about James Harden passing Stephen Curry on the all-time playoff scoring list — it's a genuinely remarkable achievement that speaks to longevity, durability, and decades of postseason relevance. But the basketball internet doesn't care about that right now. They saw 8 turnovers. They saw minus-whatever in a blowout. That's the version of Harden that lives in the highlight reel tonight. Unless he answers the bell in Detroit.",
       relevantPlayers: [
-        "Cade Cunningham",
-        "Paul Reed",
-        "Donovan Mitchell",
         "James Harden",
-        "Evan Mobley",
-        "Jalen Duren",
-        "Daniss Jenkins",
-      ],
+        "Donovan Mitchell",
+        "Cade Cunningham",
+        "Stephen Curry"
+      ]
     },
     {
-      topic:
-        "Stephon Castle's Coronation: The 32-Point Masterpiece That Changed Everything",
-      segment: "deep-dive",
-      duration: "10 min",
-      keyStats: [
-        "Castle: 32 PTS, 11 REB, 6 AST — 11-of-16 FG, 5-of-7 from three (69% overall)",
-        "De'Aaron Fox: 21 PTS, 9 AST on 8-of-10 shooting — surgical doesn't cover it",
-        "Wembanyama: 19 PTS, 6 REB, 3 BLK in just 27 minutes — resting while winning by 30",
-        "Julian Champagnie: +35 in 26 bench minutes — the postseason's single best plus-minus",
-        "SAS won their four series victories by an average of 25.5 points",
-        "Minnesota's Anthony Edwards: 9-of-26, minus-31 — a brutal, season-ending night",
-      ],
-      debateAngle:
-        "Here's the real question after Friday night: is Stephon Castle already the second-best player on the San Antonio Spurs — and does it even matter who the second-best player is when they have three legitimate stars under 24 and a fourth in De'Aaron Fox? Castle's 32-point closeout was described as the best sophomore playoff game since Jayson Tatum in 2018. But is this a comp that actually holds, or is Castle doing something even more unusual — redefining his own ceiling in real time while Wembanyama barely breaks a sweat?",
-      suggestedQuote:
-        "The most alarming thing about Friday's game wasn't that Castle went for 32. It's that Wembanyama played 27 minutes, coasted, and the Spurs still won by 30. Pop has three nuclear options and he didn't even need to fully arm one of them. OKC, you have been warned.",
-      relevantPlayers: [
-        "Stephon Castle",
-        "Victor Wembanyama",
-        "De'Aaron Fox",
-        "Julian Champagnie",
-        "Dylan Harper",
-        "Anthony Edwards",
-        "Karl-Anthony Towns",
-        "Rudy Gobert",
-      ],
-    },
-    {
-      topic:
-        "Hot Take: Mitchell's Game 6 Collapse Is the Most Damaging Star Performance of the 2026 Playoffs",
+      topic: "SGA vs. Wembanyama — Is This the Greatest WCF Matchup in a Generation?",
       segment: "hot-take",
-      duration: "6 min",
+      duration: "7 min",
       keyStats: [
-        "Mitchell: 6-of-20 from the floor, 18 PTS, minus-25 — failed closeout on home court",
-        "Just two games earlier, Mitchell dropped 43 points in Game 4 to retake the series lead",
-        "Harden had 30 points in Game 5 then 8 turnovers in Game 6 — the duality is real",
-        "Cleveland outscored Detroit by just 1 point total across Games 4 and 5 combined before Friday's collapse",
-        "DET -3.5 favorites for Game 7 — the betting market agrees this was a psychological shift",
-        "History: Road teams are just 38% in Game 7s over the last decade — Sunday's math is brutal for CLE",
+        "Shai Gilgeous-Alexander: 30.1 PPG, 6.5 APG, 6.2 RPG — leads all remaining players in playoff scoring, 8-0 record, back-to-back sweeps",
+        "Victor Wembanyama: 24.3 PPG, 10.8 RPG, 3.2 BPG — 21 years old, coasted through the clincher in just 27 minutes",
+        "OKC is 8-0 in the 2026 playoffs and WITHOUT Jalen Williams (hamstring, no timeline) — they've been statistically fine without their second-best player",
+        "San Antonio demolished Minnesota by 30 in a road clincher — Stephon Castle's 32/11/6 on 11-of-16 announced him as a genuine WCF factor",
+        "OKC opened as a 6.5-point favorite with the over/under at 218.5 — tips tomorrow at 8:30 PM ET",
+        "Finals odds: OKC -165, San Antonio +320 — the market respects the Spurs more than the casual conversation does"
       ],
       debateAngle:
-        "Take the other side of this if you can: Donovan Mitchell's 6-of-20, minus-25 game in a must-win clinch situation at home is the single most damaging star performance of the entire 2026 playoffs. Not because it was the worst statistically — it wasn't. But because of the context. You had home court. You had the moment. You had the crowd. And your best player shot 30 percent and finished minus-25. Can Cleveland's stars actually be trusted in Game 7, or has this franchise's ceiling just been permanently exposed?",
+        "Hot take incoming: Oklahoma City losing Jalen Williams might actually HELP them in this series. Here's why — without Williams, every offensive possession flows through SGA. There's no ball-movement ambiguity, no defensive rotations to exploit. It's pure SGA isolation basketball against the best individual defender in the world. San Antonio has to choose: guard Wembanyama's man or send him at SGA. Either way, something breaks.",
       suggestedQuote:
-        "I'm not here to bury Donovan Mitchell. The man dropped 43 two games ago. But there is something genuinely alarming about a star player who can go from one of the best games of the playoffs to one of the worst in 48 hours — especially when his team needs him to be a rock, not a roller coaster.",
+        "I'm going to say something that sounds crazy but I actually believe it: the most dangerous version of Oklahoma City is the one where SGA is the only option. When every possession ends with Shai, when every late-clock moment is his, when San Antonio can't shade their coverage because there's only one guy who absolutely must have the ball — that is terrifying. Williams being out might have accidentally unlocked the purest possible version of SGA basketball. And Wembanyama has to solve it.",
       relevantPlayers: [
-        "Donovan Mitchell",
-        "James Harden",
-        "Cade Cunningham",
-        "Evan Mobley",
-        "Paul Reed",
-      ],
+        "Shai Gilgeous-Alexander",
+        "Victor Wembanyama",
+        "Stephon Castle",
+        "De'Aaron Fox",
+        "Jalen Williams",
+        "Ajay Mitchell"
+      ]
     },
     {
-      topic: "Rapid Fire: West Finals Set, Injury Watch, Knicks Waiting, and the Rookie Explosion",
+      topic: "Rapid Fire — Knicks Lurking, Paul Reed X-Factor, Anunoby Update, and Castle's Breakout",
       segment: "rapid-fire",
       duration: "5 min",
       keyStats: [
-        "OKC vs SAS West Finals — likely starts Wednesday, May 20",
-        "OKC 8-0, rested since May 11 — they haven't played in nearly a week",
-        "Jalen Williams: still out with hamstring strain, no return timeline for the WCF",
-        "NYK resting since May 11 — Brunson and company at maximum freshness for East Finals",
-        "Ajay Mitchell: 20.5 PPG, 3.4 SPG off bench — most productive undrafted rookie in playoff history",
-        "OG Anunoby: Questionable for East Finals with an undisclosed injury — critical subplot for NYK",
+        "New York Knicks haven't played since May 11 — seven full days of rest heading into the East Finals, regardless of tonight's winner",
+        "OG Anunoby practiced Saturday and called his hamstring 'not as bad as 2024' — trending toward availability for the East Finals opener",
+        "Paul Reed went 7-of-9 for 17 points off the bench in Game 6's blowout — the unsung hero of Detroit's series-saving road win",
+        "Stephon Castle's 32/11/6 in the Minnesota clincher pushed him to +1200 for Finals MVP — those odds will not last if he opens the WCF hot",
+        "Knicks are +550 to win the title — the analytical community is circling this number as genuine value",
+        "Miles McBride made 7-of-9 threes in the Knicks' 144-114 Game 4 demolition of Philadelphia — the best single-game 3PM performance of the 2026 playoffs"
       ],
       debateAngle:
-        "Does Jalen Williams' hamstring status flip the West Finals odds entirely? OKC went 8-0 without him, which is both remarkable and potentially misleading — none of those opponents were the San Antonio Spurs. And is the Knicks' week-plus of rest actually an advantage or a curse? Teams with long layoffs between rounds have historically struggled with rhythm. These are the subplots that will define the next two weeks.",
+        "Is New York the most dangerous team nobody is talking about? They swept Philly, they've been resting for a WEEK, their two best players are fully healthy, and they get to face a team that just survived a seven-game war with a two-day turnaround. The Knicks are sitting in the cut and everyone is focused on SGA and Wemby.",
       suggestedQuote:
-        "OKC has been perfect without Jalen Williams. Eight wins, zero losses. But perfect against who? The Spurs are a completely different organism than anything the Thunder faced in the first two rounds, and that hamstring question is going to shadow every single game of this series.",
+        "Knicks fans are sitting at home tonight watching Game 7 knowing that whoever wins is staggering into a fully rested buzzsaw. Brunson hasn't played in seven days. KAT is fresh. Anunoby is practicing. New York at plus-five-fifty is the number everyone is whispering about, and by Tuesday morning the basketball world might finally start paying attention.",
       relevantPlayers: [
-        "Shai Gilgeous-Alexander",
-        "Jalen Williams",
-        "Victor Wembanyama",
-        "Stephon Castle",
         "Jalen Brunson",
+        "Karl-Anthony Towns",
         "OG Anunoby",
-        "Ajay Mitchell",
-      ],
+        "Miles McBride",
+        "Paul Reed",
+        "Stephon Castle"
+      ]
     },
     {
-      topic: "Looking Ahead: Game 7 Sunday, the West Finals Preview, and What We're Watching",
+      topic: "Looking Ahead — The Road to the June 3rd Finals Is Almost Fully Mapped",
       segment: "closer",
-      duration: "7 min",
+      duration: "4 min",
       keyStats: [
-        "Game 7: DET vs CLE — Sunday at Little Caesars Arena, DET favored at -3.5",
-        "Prediction: DET 109, CLE 103 — Cunningham delivers 30 and 10 on home court",
-        "West Finals OKC vs SAS: SGA (30.1 PPG, 8-0) vs Wembanyama (24.3 PPG, 3.2 BPG in semis)",
-        "This Day in NBA History: May 16, 2024 — Luka's Mavs eliminated the Thunder 117-116 in Game 6; two years later SGA's OKC is 8-0",
-        "Hoops IQ Answer: Castle's 32-point closeout is the correct answer — medium difficulty",
-        "Fantasy priority adds: Castle and Wemby for WCF, Cunningham for Game 7 — all rated urgent",
+        "By midnight tonight, all four conference finalists will be locked — the bracket is set, the road to June 3rd is clear",
+        "Western Conference Finals Game 1: San Antonio at Oklahoma City — 8:30 PM ET tomorrow night",
+        "Eastern Conference Finals opponent for New York is decided tonight — either Detroit (60-22) or Cleveland (52-30) with two days of rest",
+        "OKC sits at -165 to win the title; New York is the second-favorite at +550; San Antonio is +320",
+        "Detroit's path if they win tonight: face NYK in the East Finals with massive crowd momentum but a short turnaround",
+        "This Day in NBA History: May 18, 1997 — Michael Jordan scored 29 points as the Bulls beat Miami 96-90 in Game 1 of the Eastern Conference Finals en route to their fifth championship"
       ],
       debateAngle:
-        "Here's the question we're leaving you with heading into Sunday: who has the higher ceiling in the West Finals — SGA operating in the system that made him MVP, or Wembanyama at 21 years old on the sport's biggest remaining stage with Castle, Fox, and a Popovich-built machine around him? We're about to find out. And in the East, is a Cade Cunningham Game 7 at home the most bankable bet in the 2026 playoffs? History says the 1-seed at home in Game 7 wins roughly 62 percent of the time. Cade's been the series' best player. Little Caesars Arena will be shaking. Make your pick.",
+        "After tonight, who do you actually fear most heading into the conference finals? OKC is the logical pick at -165, but is the Wembanyama factor enough to genuinely threaten a perfect 8-0 machine? And can the Knicks, rested and healthy, actually pull off what nobody expects? Set your conference finals power rankings right now.",
       suggestedQuote:
-        "Two years ago on this exact date, Luka Doncic dropped 36 to eliminate a young OKC team that had no idea what was coming. Today, that same OKC team is 8-0 and about to face a Spurs squad that just won by 30 on the road. The kids grew up. Both sets of them. And this weekend, we find out which generation takes over.",
+        "By the time you wake up tomorrow morning, the 2026 playoff bracket is complete. SGA and Wemby tip off in less than 24 hours. The Knicks know their opponent. And whatever happens tonight in Detroit — whether it's Cade Cunningham's coronation or Donovan Mitchell's resurrection — the NBA Finals is six weeks away and the field is almost set. This is why we watch. See you on the other side.",
       relevantPlayers: [
-        "Cade Cunningham",
-        "Donovan Mitchell",
         "Shai Gilgeous-Alexander",
         "Victor Wembanyama",
-        "Stephon Castle",
         "Jalen Brunson",
-        "Paul Reed",
-        "De'Aaron Fox",
-      ],
-    },
+        "Cade Cunningham",
+        "Donovan Mitchell",
+        "Karl-Anthony Towns"
+      ]
+    }
   ],
 
   socialClip:
-    "CLIP: Deep-dive segment, 2:15–3:45 — Host breaks down how Victor Wembanyama played just 27 minutes, coasted to 19/6/3 blocks, and the Spurs still won by 30. Overlay Castle's 32/11/6 stat line with the slow-motion highlight reel of his five three-pointers. End on the line: 'Pop has three nuclear options and he didn't even need to fully arm one of them. OKC, you have been warned.' Perfect 90-second cut for Twitter, Instagram Reels, and TikTok. Tag: #WestFinals #SpursUp #CastleTime",
+    "CLIP DESCRIPTION — Hot-Take Segment, approx. 45 seconds: Pull the moment where the host makes the case that OKC losing Jalen Williams might actually be an advantage — starting from 'I'm going to say something that sounds crazy but I actually believe it' through 'that is terrifying.' Pair with a split-screen graphic of SGA iso clips on the left and Wembanyama block highlights on the right. Caption: 'What if losing Jalen Williams accidentally unlocked the most dangerous version of SGA basketball? 👀 #WCF #HoopsIntel' — target Instagram Reels and TikTok, estimated high shareability due to the counterintuitive argument and WCF anticipation.",
 
   tweetThread: [
-    "🎙️ NEW EPISODE — Hoops Intel Podcast | May 16, 2026\n\n'Game 7 Sunday, Castle's Coronation, and the West Finals We've All Been Waiting For'\n\nFriday gave us two of the wildest playoff results of the year. We break all of it down. 🧵",
+    "🏀 HOOPS INTEL PODCAST — May 18, 2026 🏀\n\nGame 7 Night in Detroit. One East Finals ticket. One building. 20,000 people ready to shake the walls at Little Caesars Arena.\n\nHere's everything you need to know before tip-off. 🧵 (1/5)",
 
-    "1/ DETROIT CRASHES THE PARTY 🔥\n\nPistons go into Cleveland — where CLE expected to close it out — and WIN BY 21.\n\nCade: 21/8 AST\nPaul Reed: 17 PTS on 7-9 FG off the bench\nMitchell: 6-20, minus-25\nHarden: 8 turnovers\n\nGAME 7. SUNDAY. LITTLE CAESARS ARENA.\n\n#DetroitBasketball #NBAPlayoffs",
+    "Cade Cunningham has been the BEST player in the DET-CLE series across all six games. Not Mitchell. Not Harden. Cade — 27.0 PPG, 8.5 APG, two-way impact that has bent Cleveland's defense all series.\n\nTonight is his coronation or his crucible. There is no middle ground.\n\nDetector -4.5. 8 PM ET. Prime Video. (2/5)",
 
-    "2/ STEPHON CASTLE IS A STAR 👑\n\n32 PTS · 11 REB · 6 AST\n11-of-16 FG · 5-of-7 from three\n69% shooting in a SERIES-CLINCHING road blowout\n\nBest sophomore playoff game since Tatum in 2018.\n\nAnd Wembanyama played 27 EASY minutes and still had 19/6/3 blocks.\n\nOKC, start preparing. #Spurs",
+    "James Harden passed Stephen Curry for 10th on the all-time NBA playoff scoring list this postseason.\n\nAlso: 8 turnovers in a 21-point Game 6 blowout.\n\nTwo truths, one complicated legacy. Tonight's road Game 7 in Detroit writes the next chapter — one way or another. (3/5)",
 
-    "3/ THE WEST FINALS ARE SET 🏆\n\nOKC vs SAS. SGA vs Wembanyama.\n\nThe reigning MVP against the reigning DPOY. 8-0 Thunder vs a Spurs team that won by 25+ four times this postseason.\n\nJalen Williams' hamstring = the biggest injury subplot in basketball.\n\nThis series will define the next decade. #OKCThunder #GoSpursGo",
+    "HOT TAKE: Oklahoma City losing Jalen Williams might actually HELP them in the WCF.\n\nNo ball-movement ambiguity. Every possession through SGA. Pure isolation basketball against the best individual defender in the world.\n\nWembanyama has to solve it alone. Tomorrow night. 8:30 PM ET.\n\nThis is the matchup we've been waiting for. (4/5)",
 
-    "4/ GAME 7 SUNDAY — OUR PICK 🎯\n\nDET -3.5 at home. Cade has been the best player in this series all six games.\n\nWe're taking Detroit 109-103. Cunningham goes for 30 and 10 in front of a deafening Little Caesars crowd.\n\nMitchell's ceiling is real. So is Detroit's depth. The 1-seed at home wins Game 7. #NBAPlayoffs",
-
-    "5/ BOTTOM LINE 📊\n\nFriday night proved two things:\n\n① Detroit's collective depth is more dangerous than Cleveland's star power\n② San Antonio doesn't need Wembanyama to go nuclear to win by 30\n\nBoth facts should terrify the rest of the field.\n\n🎙️ Full episode at hoopsintel.net | #HoopsIntel",
-  ],
+    "By midnight tonight, the 2026 playoff bracket is COMPLETE.\n\n• WCF Game 1: SAS @ OKC — Monday 8:30 PM\n• ECF: NYK vs DET or CLE — two-day turnaround for the winner\n• Finals odds: OKC -165 | SAS +320 | NYK +550\n\nThe road to June 3rd is almost fully mapped. 🏆\n\nFull episode on all platforms now. #HoopsIntel #NBA #Playoffs (5/5)"
+  ]
 };
