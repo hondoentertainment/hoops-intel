@@ -58,19 +58,19 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E1-DET-ORL",
+    seriesId: "E1-DET-CLE",
     conference: "east",
     round: "first-round",
     higherSeed: 1,
-    lowerSeed: 8,
+    lowerSeed: 4,
     higherTeam: "DET",
-    lowerTeam: "ORL",
-    higherWins: 1,
-    lowerWins: 0,
+    lowerTeam: "CLE",
+    higherWins: 0,
+    lowerWins: 1,
     status: "active",
-    summary: "DET leads 1-0",
+    summary: "CLE leads 1-0",
     games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "DET", awayTeam: "ORL", homeScore: 116, awayScore: 94, status: "final", time: "Final", tv: "ABC", topPerformer: "Paolo Banchero", topLine: "38 PTS · 9 REB · 6 AST" }
+      { gameNumber: 1, date: "2026-05-17", homeTeam: "DET", awayTeam: "CLE", homeScore: 94, awayScore: 125, status: "final", time: "Final", tv: "Prime Video", topPerformer: "Donovan Mitchell", topLine: "26 PTS · 6 REB · 8 AST" }
     ],
   },
   {
@@ -87,22 +87,6 @@ export const playoffSeries: PlayoffSeries[] = [
     summary: "NYK leads 1-0",
     games: [
       { gameNumber: 1, date: "2026-05-10", homeTeam: "PHI", awayTeam: "NYK", homeScore: 114, awayScore: 144, status: "final", time: "Final", tv: "ABC", topPerformer: "Miles McBride", topLine: "25 PTS · 4 REB · 0 AST" }
-    ],
-  },
-  {
-    seriesId: "E1-CLE-TOR",
-    conference: "east",
-    round: "first-round",
-    higherSeed: 4,
-    lowerSeed: 6,
-    higherTeam: "CLE",
-    lowerTeam: "TOR",
-    higherWins: 1,
-    lowerWins: 0,
-    status: "active",
-    summary: "CLE leads 1-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-03", homeTeam: "CLE", awayTeam: "TOR", homeScore: 114, awayScore: 102, status: "final", time: "Final", tv: "NBC, Peacock", topPerformer: "Scottie Barnes", topLine: "24 PTS · 9 REB · 6 AST" }
     ],
   },
   {
@@ -198,35 +182,29 @@ export interface SeriesIntel {
 
 /** Keys MUST match `seriesId` from synced `playoffSeries` (E1-/W1-/E2-/W2-/E3-/W3-… + round). */
 export const seriesIntel: Record<string, SeriesIntel> = {
-  "E1-DET-ORL": {
-    regularSeasonH2H: "Detroit held the edge over Orlando in their 2024-25 regular-season meetings, consistent with the Pistons' resurgent identity as the East's top seed after their historic rebuild.",
-    playoffHistory: "These franchises have no significant shared postseason history in the modern era, making this a relatively fresh playoff rivalry with no psychological baggage from prior series.",
-    keyMatchup: "Cade Cunningham versus Franz Wagner is the series-defining duel — Cunningham averaged 26+ points and 9 assists this season while Wagner emerged as Orlando's most complete two-way creator, and whoever dominates this matchup will likely dictate series flow.",
-    narrative: "For Orlando to steal this series, Wagner and Paolo Banchero must both go supernova simultaneously, forcing Detroit's defense to make impossible choices, while the Magic's switching scheme clogs driving lanes enough to disrupt Cunningham's rhythm. The Pistons are vulnerable if their young roster — playoff-inexperienced despite the No. 1 seed — tightens up at home in close-game moments, allowing a composed Magic team to chip away at a lead. Detroit's depth and home-court advantage make them rightful favorites, but Orlando's ceiling is high enough that a full seven games would surprise no one.",
+  "E1-DET-CLE": {
+    regularSeasonH2H: "Cleveland won three of four regular-season meetings against Detroit in 2024-25, establishing early dominance over a Pistons squad still finding its identity as a surprise top seed.",
+    playoffHistory: "These franchises have met twice in the playoffs, most notably the Cavaliers' 2006 first-round sweep of Detroit's rival era, though direct postseason clashes between these specific rosters carry no recent precedent.",
+    keyMatchup: "Darius Garland versus Cade Cunningham is the series-defining battle, with Cunningham averaging roughly 23 points and 8 assists per game this season against Cleveland's perimeter defense that surrendered the fourth-most points to opposing point guards.",
+    narrative: "Detroit, despite owning the one-seed, enters as a team many analysts view as an overachiever in a weakened East, and Cleveland's experience — anchored by Garland and a Donovan Mitchell-led offense — gives the Cavaliers a clear playmaking edge in crunch time. For the Pistons to steal this series, Cunningham must force Garland into defensive commitments that open driving lanes, while Detroit's bench needs to neutralize Cleveland's second-unit scoring that exploited them in Game 1. The Cavaliers are vulnerable if their perimeter shooting cools and Evan Mobley struggles to contain Detroit's bruising interior attack, but right now momentum and execution both favor Cleveland.",
   },
   "E1-NYK-PHI": {
-    regularSeasonH2H: "The Knicks owned the season series against Philadelphia in 2024-25, reinforcing their status as the clear favorite heading into this first-round matchup.",
-    playoffHistory: "These franchises have a storied postseason rivalry dating back decades, with the Knicks and Sixers meeting multiple times in the 1990s, though New York has generally held the edge in recent playoff encounters including their 2023 first-round series win.",
-    keyMatchup: "Jalen Brunson versus Tyrese Maxey is the series' defining duel, with both guards capable of erupting for 30-plus points, but Brunson's playoff pedigree — including his 2023 and 2024 postseason runs — gives New York a measurable edge in high-leverage moments.",
-    narrative: "For Philadelphia to pull off the upset, Maxey must dominate and Joel Embiid — if available and healthy — needs to be a true force rather than a game-time question mark, because the Sixers cannot afford to bleed possessions to a Knicks defense that suffocates in the half-court. New York is vulnerable if their bench depth falters or Brunson is neutralized by foul trouble, but the Knicks' home-court advantage and cohesion under Tom Thibodeau make a Philadelphia comeback a steep climb after falling behind 1-0.",
-  },
-  "E1-CLE-TOR": {
-    regularSeasonH2H: "Cleveland won the season series over Toronto in 2024-25, demonstrating their edge in the paint and defensive versatility that has carried into the postseason.",
-    playoffHistory: "Cleveland and Toronto have met in the playoffs previously, most notably in the LeBron-era Cavaliers' dominance of the Raptors in the 2016 and 2018 Eastern Conference playoffs, series the Cavaliers swept en route to Finals appearances.",
-    keyMatchup: "Donovan Mitchell vs. Immanuel Quickley is the series' defining battle, with Mitchell averaging over 25 points per game this season and Quickley needing to both contain him and generate enough offense to keep Toronto competitive.",
-    narrative: "Toronto enters as the underdog and must turn this into a grind — slowing Cleveland's transition offense, protecting the paint against Evan Mobley, and forcing Mitchell into inefficient shot selection through disciplined help defense. The Raptors' youth and lack of a genuine star-level closer makes a series upset a steep climb, particularly after dropping Game 1 and surrendering home-court advantage they never possessed. If Scottie Barnes can assert himself as a genuine two-way force and Quickley catches fire from three, Toronto has the defensive culture to steal games — but sustaining that over six or seven is a different ask entirely.",
+    regularSeasonH2H: "The Knicks won three of four meetings against the 76ers in the 2024-25 regular season, asserting physical dominance in a rivalry defined by grit and guard play.",
+    playoffHistory: "These franchises have a storied postseason rivalry dating back to the 1990s, with New York holding the historical edge but Philadelphia having eliminated the Knicks in the first round as recently as 2012.",
+    keyMatchup: "Jalen Brunson against Philadelphia's primary ball-handler defender is the series' fulcrum — Brunson averaged over 28 points per game in the regular season and has repeatedly broken down Philly's defensive schemes in clutch moments.",
+    narrative: "For the 76ers to claw back into this series, they need Paul George and Joel Embiid — if healthy — to assert dominance in the paint and force New York into half-court possessions where shot creation becomes labored. The Knicks are vulnerable when their transition offense is neutralized and opponents force turnovers off their aggressive pick-and-roll sets, so Philly's path to an upset runs directly through disrupting Brunson's rhythm early in possessions. If Embiid's availability remains questionable, however, the size and physicality advantage New York holds in the frontcourt may simply be too steep an obstacle for the road team to overcome.",
   },
   "W1-OKC-LAL": {
-    regularSeasonH2H: "OKC dominated the 2024-25 regular-season series against the Lakers, winning three of four meetings behind Shai Gilgeous-Alexander's consistent scoring and the Thunder's suffocating defense.",
-    playoffHistory: "These franchises have met in the playoffs most notably in the 2012 Western Conference Finals, when Kevin Durant's Thunder eliminated Kobe Bryant's Lakers in five games on their way to the NBA Finals.",
-    keyMatchup: "Shai Gilgeous-Alexander vs. LeBron James is the series' defining individual battle, with SGA averaging 32+ points per game this season against a Lakers defense that struggled to contain elite one-on-one scorers all year.",
-    narrative: "For the Lakers to steal this series, LeBron James must deliver historic, ageless performances while Anthony Davis dominates the interior enough to neutralize OKC's length and athleticism — a tall order against the West's most balanced roster. The Thunder are vulnerable only if their relative playoff inexperience compounds under the weight of a hostile Crypto.com Arena crowd and LeBron's singular ability to elevate the moment. OKC's margin for error is wide, but one cold shooting stretch from their role players could hand the Lakers the foothold they desperately need to make this competitive.",
+    regularSeasonH2H: "OKC dominated the 2024-25 regular-season series against the Lakers, winning three of four matchups and outscoring them by double digits in multiple games.",
+    playoffHistory: "These franchises have met in the playoffs most memorably during the Kevin Durant era, when OKC defeated the Lakers in the 2012 Western Conference Finals 4-1, with the Thunder holding a commanding all-time postseason edge.",
+    keyMatchup: "Shai Gilgeous-Alexander vs. LeBron James is the series-defining clash — SGA averaged 32.7 PPG this season and torched the Lakers' defense in Game 1, while LeBron must impose his will as a primary initiator to keep LA's offense from stagnating.",
+    narrative: "For the Lakers to pull off this upset, LeBron and Anthony Davis must both operate at peak efficiency simultaneously — a combination that has proven maddeningly inconsistent throughout the season. OKC's suffocating defensive system, league-best net rating, and Gilgeous-Alexander's ability to get to the line at will make the Thunder deeply difficult to rattle over a seven-game series. LA's path runs through grinding the pace, winning the glass battle with Davis, and hoping OKC's young core shows enough playoff inexperience to crack under pressure.",
   },
   "W1-SAS-MIN": {
-    regularSeasonH2H: "San Antonio and Minnesota split their two regular-season meetings in 2024-25, with each team winning on the other's floor, offering little clarity on a true edge heading into the postseason.",
-    playoffHistory: "These franchises have no significant shared playoff history in the modern era, making this a largely fresh postseason rivalry without the weight of prior series baggage.",
-    keyMatchup: "Victor Wembanyama vs. Karl-Anthony Towns — now a Knick — is no longer the centerpiece, so the defining matchup becomes Wembanyama's two-way dominance against Anthony Edwards, who must carry Minnesota's offense while also accepting the challenge of guarding or occupying Wembanyama's attention on both ends.",
-    narrative: "Minnesota's path back into this series runs entirely through Anthony Edwards elevating to a genuine closer who can manufacture offense in the half-court against San Antonio's length and scheme, while the Wolves' defense must find a way to limit Wembanyama in the paint and as a pick-and-roll finisher — a task that exposed most teams all season. San Antonio is quietly vulnerable if Minnesota can push pace and exploit the Spurs' relative youth in high-leverage late-game moments, where inexperience can turn close games into losses. The Wolves stole home court from a better seed before; they have the talent to claw back, but it requires Edwards answering every Wembanyama statement shot with one of his own.",
+    regularSeasonH2H: "San Antonio and Minnesota split their two regular-season meetings in 2024-25, with each team winning on the other's floor, offering little clarity on which squad holds a true edge.",
+    playoffHistory: "These franchises have no significant postseason history against one another, making this a largely uncharted rivalry on the playoff stage.",
+    keyMatchup: "Victor Wembanyama against Rudy Gobert is the series' defining chess match — Wembanyama's ability to operate as a floor-spacing big (averaging 24+ points and 3+ blocks per game this season) forces Gobert into impossible positioning decisions on both ends.",
+    narrative: "Minnesota's path back into this series runs squarely through Anthony Edwards, who must impose his will early and force the Spurs to collapse into the paint, opening kick-out opportunities for a Wolves perimeter that has gone cold at the wrong moments. San Antonio's youth is its greatest asset and its greatest liability — Wembanyama has looked transcendent, but if the Timberwolves can slow the pace, grind possessions, and leverage their veteran experience to make games ugly in the fourth quarter, the Spurs' inexperience in high-pressure moments could crack. Minnesota cannot afford to fall behind 2-0; a second loss would make their lack of playoff-tested depth nearly impossible to overcome against a Spurs group playing with nothing to lose.",
   },
 };
 

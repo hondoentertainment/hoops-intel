@@ -24,149 +24,216 @@ export interface PodcastCompanionData {
 export const podcastCompanion: PodcastCompanionData = {
   date: "May 18, 2026",
 
-  episodeTitle: "Game 7 Night in Detroit — One Dream Dies at Little Caesars Arena",
+  episodeTitle:
+    "The Blowout Heard Round the Playoffs: Cleveland's Road Game 7 Massacre, the ECF Is Set, and SGA vs. Wemby Tips Tonight",
 
   coldOpen:
-    "It's Sunday night, May 18th, and the NBA just hit its crescendo. One ticket left in the East. One building. One game. Little Caesars Arena is about to get LOUD — and Cade Cunningham is about to tell us exactly who he is. Meanwhile, twenty-four hours from right now, Shai Gilgeous-Alexander and Victor Wembanyama tip off in the most anticipated series of the 2026 playoffs. The next 48 hours might be the best two-day stretch in basketball this decade. You're locked in to Hoops Intel. Let's get into it.",
+    "Thirty-one points. On the road. In a Game 7. Let that breathe for a second. " +
+    "Cleveland walked into Little Caesars Arena on Saturday night — a building that was supposed to be a fortress — " +
+    "and they didn't just win, they obliterated Detroit by thirty-one points in front of a crowd that went silent by halftime. " +
+    "Evan Mobley dropped a 21-12-6 masterpiece. Sam Merrill — yes, SAM MERRILL — came off the bench and hit five threes. " +
+    "And Cade Cunningham, who averaged 27 points through the first six games of this series, " +
+    "went zero-for-seven from three and minus-32 while his season died in front of his home fans. " +
+    "The Eastern Conference Finals are set: New York versus Cleveland. " +
+    "And tonight? Tonight the Western Conference Finals begin — SGA against Wembanyama, Oklahoma City against San Antonio, " +
+    "eight-thirty Eastern on NBC. The conference finals are fully locked in, people. " +
+    "This is Hoops Intel. Let's get into it.",
 
   rundown: [
     {
-      topic: "Game 7: Detroit vs. Cleveland — The Last East Ticket Gets Punched Tonight",
+      topic:
+        "Cleveland's 31-Point Road Game 7 — The Most Dominant Elimination Statement of the 2026 Playoffs",
       segment: "opener",
-      duration: "9 min",
+      duration: "9 minutes",
       keyStats: [
-        "Series tied 3-3 — Detroit forced Game 7 with a 115-94 road blowout in Game 6, tying a 66-year-old NBA record for largest road win by a trailing team",
-        "Cade Cunningham averaging 27.0 PPG and 8.5 APG across the series — rated the best player on either roster by every major metric",
-        "Detroit is 31-9 at home this season — the second-best home record in the East",
-        "Donovan Mitchell: 43 points in Game 4, then 6-of-20 for 18 points with a minus-25 in Game 6",
-        "Larry Nance Jr. (illness) is DOUBTFUL, Caris LeVert (heel) is QUESTIONABLE — Cleveland's bench is thinning out at the worst possible moment",
-        "Detroit is a 4.5-point favorite; over/under sits at 206.5 — 8:00 PM ET on Prime Video"
+        "CLE 125, DET 94 — 31-point margin, one of the most dominant road Game 7 wins in modern playoff history",
+        "Evan Mobley: 21 PTS (7-of-10 FG), 12 REB, 6 AST, +31 — game-high plus-minus",
+        "Sam Merrill: 23 PTS off bench, 5-of-8 from three, +22 — series-high reserve performance",
+        "Donovan Mitchell: 26 PTS, 8 AST, 0 TO — bounced back from a 6-of-20 Game 6 disaster",
+        "Jarrett Allen: 23 PTS on 8-of-14 — dominant interior presence all night",
+        "Cade Cunningham: 13 PTS on 5-of-16, 0-of-7 from three, -32 — series average was 27.0 PPG through Game 6",
       ],
       debateAngle:
-        "Is this series already Cade Cunningham's defining moment — regardless of tonight's outcome? He's been the best player in this series over six games, outplaying both Mitchell AND Harden on the biggest stages. If Detroit wins tonight, do we officially start talking about him as a top-5 player in the league?",
+        "Is this the moment we officially flip the Cleveland hierarchy? Mobley had the highest-impact Game 7 performance of any player this postseason — does he wake up Monday as the Cavaliers' best player, ahead of Donovan Mitchell?",
       suggestedQuote:
-        "Cade Cunningham has been the best player in this series, full stop. Not Mitchell on his best night, not Harden in overtime — Cade, consistently, across six games, in both directions on the floor. Tonight is his coronation or his crucible. There is no middle ground at Little Caesars Arena.",
+        "Here's the thing that gets me about this game — the box score almost undersells how complete a performance this was. " +
+        "Mobley was unstoppable on the interior, he was facilitating from the high post, and he anchored a defense that held a 94-win regular-season team to 94 points in an elimination game on their own floor. " +
+        "He is 24 years old. Twenty-four. This was a coming-of-age moment that we are going to be referencing for years.",
       relevantPlayers: [
-        "Cade Cunningham",
+        "Evan Mobley",
         "Donovan Mitchell",
+        "Sam Merrill",
+        "Jarrett Allen",
         "James Harden",
-        "Larry Nance Jr.",
-        "Caris LeVert",
-        "Paul Reed"
-      ]
+        "Cade Cunningham",
+      ],
     },
+
     {
-      topic: "The Harden Paradox — Legacy Milestone, Turnover Disaster, and One Last Road Game 7",
+      topic:
+        "The Sam Merrill Paradox and James Harden's Invisible Genius — Cleveland's Supporting Cast Carried the Moment",
       segment: "deep-dive",
-      duration: "8 min",
+      duration: "8 minutes",
       keyStats: [
-        "James Harden passed Stephen Curry for 10th on the NBA all-time playoff scoring list during this series",
-        "Harden posted 30 points and 3 blocks in Game 5 triple overtime — one of the great individual playoff performances of the 2026 postseason",
-        "Harden then committed 8 turnovers in Game 6's 21-point collapse — the single biggest driver of Cleveland's blowout loss",
-        "Series averages: 22.5 PPG, 7.0 APG, 5.8 RPG — genuinely strong across the board",
-        "Harden is 36 years old playing a road Game 7 in a building with one of the loudest crowds in the East",
-        "Mitchell went 6-of-20 in Game 6 — if Cleveland loses tonight, the Harden collapse shoulders enormous blame"
+        "Sam Merrill entered Game 7 averaging just 7.4 PPG in the 2026 postseason — exploded for 23 on 5-of-8 from three",
+        "Merrill's 5-of-8 three-point game: highest single-game three-point total by any reserve in a Game 7 this postseason",
+        "James Harden: 9 PTS on 2-of-10 FG, 6 AST — but finished +31, the same as Mobley",
+        "Harden's plus-31 on 2-of-10 shooting is among the most impactful bad-shooting nights in recent postseason memory",
+        "No Piston starter finished with a positive plus-minus — Cunningham at -32 was the worst on the floor",
+        "Cleveland's bench outscored Detroit's bench 38-14 — the reserve differential decided the margin",
       ],
       debateAngle:
-        "Does the 8-turnover Game 6 meltdown permanently overshadow the milestone of passing Curry on the all-time playoff scoring list? Or is playoff longevity and durability — across Houston, Brooklyn, Philly, and Cleveland — its own form of greatness that the basketball world has consistently undervalued when it comes to Harden?",
+        "James Harden scored 9 points and finished plus-31. Is that the most useful a bad-shooting-night has ever been in a playoff game, or does it just confirm that the modern Harden's floor-general identity is more sustainable — and more dangerous — than the volume-scoring version Detroit was preparing for?",
       suggestedQuote:
-        "Here's the thing about James Harden passing Stephen Curry on the all-time playoff scoring list — it's a genuinely remarkable achievement that speaks to longevity, durability, and decades of postseason relevance. But the basketball internet doesn't care about that right now. They saw 8 turnovers. They saw minus-whatever in a blowout. That's the version of Harden that lives in the highlight reel tonight. Unless he answers the bell in Detroit.",
-      relevantPlayers: [
-        "James Harden",
-        "Donovan Mitchell",
-        "Cade Cunningham",
-        "Stephen Curry"
-      ]
+        "Harden's line is the kind of thing that breaks box-score brains. " +
+        "Two-of-ten. Nine points. Plus-31. How? He controlled the tempo, he freed up Mobley and Mitchell in pick-and-roll actions, " +
+        "he made Detroit defend him on the perimeter even when he wasn't scoring, and he essentially ran a perfectly executed game plan " +
+        "without needing to be the guy who executed it. That's mastery. That's a different kind of brilliant. " +
+        "And Merrill? Five threes off the bench in a road Game 7? That's the kind of thing you tell your kids about.",
+      relevantPlayers: ["James Harden", "Sam Merrill", "Evan Mobley", "Donovan Mitchell"],
     },
+
     {
-      topic: "SGA vs. Wembanyama — Is This the Greatest WCF Matchup in a Generation?",
+      topic:
+        "Hot Take: New York is the Favorite to Reach the NBA Finals — And It's Not Even Close",
       segment: "hot-take",
-      duration: "7 min",
+      duration: "6 minutes",
       keyStats: [
-        "Shai Gilgeous-Alexander: 30.1 PPG, 6.5 APG, 6.2 RPG — leads all remaining players in playoff scoring, 8-0 record, back-to-back sweeps",
-        "Victor Wembanyama: 24.3 PPG, 10.8 RPG, 3.2 BPG — 21 years old, coasted through the clincher in just 27 minutes",
-        "OKC is 8-0 in the 2026 playoffs and WITHOUT Jalen Williams (hamstring, no timeline) — they've been statistically fine without their second-best player",
-        "San Antonio demolished Minnesota by 30 in a road clincher — Stephon Castle's 32/11/6 on 11-of-16 announced him as a genuine WCF factor",
-        "OKC opened as a 6.5-point favorite with the over/under at 218.5 — tips tomorrow at 8:30 PM ET",
-        "Finals odds: OKC -165, San Antonio +320 — the market respects the Spurs more than the casual conversation does"
+        "NYK odds: +500 to win the Finals (post-Game 7 update) — third-best odds despite the most rest",
+        "Knicks have been resting since May 11 — a full seven days off entering the ECF",
+        "CLE survived a brutal seven-game series; Mitchell and Allen are both carrying minutes loads",
+        "OG Anunoby trending toward ECF availability — day-to-day with hamstring",
+        "Jalen Brunson: 27.8 PPG, 6.3 APG in the playoffs — the most well-rested superstar remaining",
+        "NYK swept Philadelphia; CLE needed seven games and a historic collapse by Cunningham just to survive",
       ],
       debateAngle:
-        "Hot take incoming: Oklahoma City losing Jalen Williams might actually HELP them in this series. Here's why — without Williams, every offensive possession flows through SGA. There's no ball-movement ambiguity, no defensive rotations to exploit. It's pure SGA isolation basketball against the best individual defender in the world. San Antonio has to choose: guard Wembanyama's man or send him at SGA. Either way, something breaks.",
+        "The betting market has Cleveland at +900 and New York at +500, but the matchup analysis suggests the gap should be even wider. A fully rested Brunson, a potentially returning Anunoby, and Towns going against a Cleveland frontcourt that just played 40 combined minutes in a war game — is New York not only the ECF favorite but the most likely team in the East to reach the Finals?",
       suggestedQuote:
-        "I'm going to say something that sounds crazy but I actually believe it: the most dangerous version of Oklahoma City is the one where SGA is the only option. When every possession ends with Shai, when every late-clock moment is his, when San Antonio can't shade their coverage because there's only one guy who absolutely must have the ball — that is terrifying. Williams being out might have accidentally unlocked the purest possible version of SGA basketball. And Wembanyama has to solve it.",
+        "I'm going to say something that I think the market is still underreacting to: " +
+        "New York is the favorite to reach the NBA Finals, and it's not a coin flip. " +
+        "Brunson hasn't played a game in a week. Anunoby is coming back. Towns gets to feast on a Cleveland frontcourt " +
+        "that just played seven brutal games. And home court belongs to the Knicks. " +
+        "Cleveland's Game 7 performance was magnificent — but magnificent and fresh are two very different things " +
+        "when you tip again in four days.",
+      relevantPlayers: [
+        "Jalen Brunson",
+        "Karl-Anthony Towns",
+        "OG Anunoby",
+        "Donovan Mitchell",
+        "Evan Mobley",
+        "Jarrett Allen",
+      ],
+    },
+
+    {
+      topic:
+        "Rapid Fire: WCF Game 1 Preview, Cunningham's Legacy, Injury Updates, and Finals Odds",
+      segment: "rapid-fire",
+      duration: "5 minutes",
+      keyStats: [
+        "OKC vs SAS tips tonight at 8:30 PM ET on NBC/Peacock — spread: OKC -6.5, O/U 218.5",
+        "SGA: 30.1 PPG, 6.5 APG, 6.2 RPG in the playoffs — 25+ points in every game of an 8-0 run",
+        "Wembanyama: 24.3 PPG, 10.8 RPG, 3.2 BPG — SGA and Wemby split their regular-season meetings 2-2",
+        "Jalen Williams (OKC): Out for WCF Game 1 with hamstring — no return timeline",
+        "Finals odds post-Game 7: OKC -165, SAS +350, NYK +500, CLE +900",
+        "Detroit's miracle run: rallied from 3-1 vs Orlando, won a 21-point road game in Game 6 — ends at 4-3 loss in the Semis",
+      ],
+      debateAngle:
+        "San Antonio just demolished Minnesota by 30 on the road to close that series — they arrive in OKC fresher, healthier, and arguably more dangerous than any team the Thunder have faced. Does OKC's home-court advantage and six days of rest actually matter tonight, or does San Antonio's three-headed attack make this the closest Game 1 of the entire postseason?",
+      suggestedQuote:
+        "Let me do this fast because we have a game tonight and I don't want you missing tip-off. " +
+        "SGA versus Wembanyama. The reigning MVP against the reigning DPOY. " +
+        "OKC is eight-and-oh and hasn't been tested. San Antonio just won by thirty on the road. " +
+        "Something has to give. Williams is out. Anunoby is day-to-day. " +
+        "And Cade Cunningham — man, he led Detroit back from three-one against Orlando, " +
+        "won a road game by twenty-one in Game 6, and then went zero-for-seven from three at home in Game 7. " +
+        "The NBA doesn't do narrative justice. It just doesn't.",
       relevantPlayers: [
         "Shai Gilgeous-Alexander",
         "Victor Wembanyama",
         "Stephon Castle",
         "De'Aaron Fox",
         "Jalen Williams",
-        "Ajay Mitchell"
-      ]
-    },
-    {
-      topic: "Rapid Fire — Knicks Lurking, Paul Reed X-Factor, Anunoby Update, and Castle's Breakout",
-      segment: "rapid-fire",
-      duration: "5 min",
-      keyStats: [
-        "New York Knicks haven't played since May 11 — seven full days of rest heading into the East Finals, regardless of tonight's winner",
-        "OG Anunoby practiced Saturday and called his hamstring 'not as bad as 2024' — trending toward availability for the East Finals opener",
-        "Paul Reed went 7-of-9 for 17 points off the bench in Game 6's blowout — the unsung hero of Detroit's series-saving road win",
-        "Stephon Castle's 32/11/6 in the Minnesota clincher pushed him to +1200 for Finals MVP — those odds will not last if he opens the WCF hot",
-        "Knicks are +550 to win the title — the analytical community is circling this number as genuine value",
-        "Miles McBride made 7-of-9 threes in the Knicks' 144-114 Game 4 demolition of Philadelphia — the best single-game 3PM performance of the 2026 playoffs"
+        "Cade Cunningham",
       ],
-      debateAngle:
-        "Is New York the most dangerous team nobody is talking about? They swept Philly, they've been resting for a WEEK, their two best players are fully healthy, and they get to face a team that just survived a seven-game war with a two-day turnaround. The Knicks are sitting in the cut and everyone is focused on SGA and Wemby.",
-      suggestedQuote:
-        "Knicks fans are sitting at home tonight watching Game 7 knowing that whoever wins is staggering into a fully rested buzzsaw. Brunson hasn't played in seven days. KAT is fresh. Anunoby is practicing. New York at plus-five-fifty is the number everyone is whispering about, and by Tuesday morning the basketball world might finally start paying attention.",
-      relevantPlayers: [
-        "Jalen Brunson",
-        "Karl-Anthony Towns",
-        "OG Anunoby",
-        "Miles McBride",
-        "Paul Reed",
-        "Stephon Castle"
-      ]
     },
+
     {
-      topic: "Looking Ahead — The Road to the June 3rd Finals Is Almost Fully Mapped",
+      topic:
+        "Looking Ahead: WCF Game 1 Sets the Tone Tonight — And the ECF Begins Later This Week",
       segment: "closer",
-      duration: "4 min",
+      duration: "4 minutes",
       keyStats: [
-        "By midnight tonight, all four conference finalists will be locked — the bracket is set, the road to June 3rd is clear",
-        "Western Conference Finals Game 1: San Antonio at Oklahoma City — 8:30 PM ET tomorrow night",
-        "Eastern Conference Finals opponent for New York is decided tonight — either Detroit (60-22) or Cleveland (52-30) with two days of rest",
-        "OKC sits at -165 to win the title; New York is the second-favorite at +550; San Antonio is +320",
-        "Detroit's path if they win tonight: face NYK in the East Finals with massive crowd momentum but a short turnaround",
-        "This Day in NBA History: May 18, 1997 — Michael Jordan scored 29 points as the Bulls beat Miami 96-90 in Game 1 of the Eastern Conference Finals en route to their fifth championship"
+        "WCF Game 1: SAS @ OKC, 8:30 PM ET tonight — the marquee individual matchup of the postseason",
+        "ECF: NYK vs CLE — series begins later this week; Knicks hold home court as the 3-seed",
+        "OKC enters tonight 8-0 — a perfect postseason run that has never truly been tested",
+        "SGA Finals MVP odds: -150 (runaway favorite); Wembanyama at +350 is the only realistic challenger",
+        "Mobley (25-1) and Brunson (+600) are the dark-horse Finals MVP candidates after this weekend",
+        "This day in NBA history: May 18, 1997 — Michael Jordan's Bulls opened ECF with a win over Miami en route to their fifth title",
       ],
       debateAngle:
-        "After tonight, who do you actually fear most heading into the conference finals? OKC is the logical pick at -165, but is the Wembanyama factor enough to genuinely threaten a perfect 8-0 machine? And can the Knicks, rested and healthy, actually pull off what nobody expects? Set your conference finals power rankings right now.",
+        "By midnight tonight we will know whether OKC's unbeaten run has a genuine challenger or whether the Thunder are simply the class of the 2026 playoffs. If Wembanyama drops 30 and San Antonio steals Game 1 on the road, does every Finals prediction get rewritten before the Eastern Conference Finals even tips?",
       suggestedQuote:
-        "By the time you wake up tomorrow morning, the 2026 playoff bracket is complete. SGA and Wemby tip off in less than 24 hours. The Knicks know their opponent. And whatever happens tonight in Detroit — whether it's Cade Cunningham's coronation or Donovan Mitchell's resurrection — the NBA Finals is six weeks away and the field is almost set. This is why we watch. See you on the other side.",
+        "Here's where we are on May 18th: the conference finals are fully set, " +
+        "the most dominant road Game 7 in recent playoff memory just happened last night, " +
+        "and in about twelve hours we'll know whether OKC's perfect postseason gets its first real scar. " +
+        "SGA versus Wembanyama. Tonight. NBC. Eight-thirty Eastern. " +
+        "Do yourself a favor — clear the schedule. " +
+        "And twenty-nine years ago today, Michael Jordan opened the Eastern Conference Finals in Chicago. " +
+        "History has a way of repeating itself in this league. " +
+        "That's all from Hoops Intel. We'll have full WCF Game 1 reaction tomorrow morning. Stay locked in.",
       relevantPlayers: [
         "Shai Gilgeous-Alexander",
         "Victor Wembanyama",
+        "Evan Mobley",
         "Jalen Brunson",
-        "Cade Cunningham",
         "Donovan Mitchell",
-        "Karl-Anthony Towns"
-      ]
-    }
+        "Stephon Castle",
+      ],
+    },
   ],
 
   socialClip:
-    "CLIP DESCRIPTION — Hot-Take Segment, approx. 45 seconds: Pull the moment where the host makes the case that OKC losing Jalen Williams might actually be an advantage — starting from 'I'm going to say something that sounds crazy but I actually believe it' through 'that is terrifying.' Pair with a split-screen graphic of SGA iso clips on the left and Wembanyama block highlights on the right. Caption: 'What if losing Jalen Williams accidentally unlocked the most dangerous version of SGA basketball? 👀 #WCF #HoopsIntel' — target Instagram Reels and TikTok, estimated high shareability due to the counterintuitive argument and WCF anticipation.",
+    "CLIP DESCRIPTION — 'The Merrill Moment' (Shareable Segment, ~60 seconds): " +
+    "Pull the section from the deep-dive where the host walks through Sam Merrill's Game 7 explosion — " +
+    "open on the stat drop ('he was averaging SEVEN POINT FOUR points per game in these playoffs'), " +
+    "build through the five-of-eight three-point line, and land on the punchline about Harden's plus-31 " +
+    "on two-of-ten shooting. The contrast between Merrill going nuclear and Harden being invisible-but-dominant " +
+    "is the single most shareable analytical moment of this episode. " +
+    "Suggested on-screen text overlay: 'SAM MERRILL. 23 PTS. 5-8 FROM 3. OFF THE BENCH. GAME 7. ON THE ROAD.' " +
+    "Caption copy: 'Sam Merrill just had one of the most unexpected Game 7 performances in playoff history. " +
+    "Hoops Intel breaks down how Cleveland's most unlikely hero buried Detroit. 🎙️🔥 #NBAPlayoffs #Cavaliers'",
 
   tweetThread: [
-    "🏀 HOOPS INTEL PODCAST — May 18, 2026 🏀\n\nGame 7 Night in Detroit. One East Finals ticket. One building. 20,000 people ready to shake the walls at Little Caesars Arena.\n\nHere's everything you need to know before tip-off. 🧵 (1/5)",
+    "🎙️ NEW EPISODE — Hoops Intel, May 18 | " +
+      "Cleveland just delivered the most dominant road Game 7 in recent playoff history. " +
+      "ECF is set: NYK vs CLE. And SGA vs Wembanyama tips TONIGHT. " +
+      "Full breakdown 🧵👇 #NBAPlayoffs #HoopsIntel",
 
-    "Cade Cunningham has been the BEST player in the DET-CLE series across all six games. Not Mitchell. Not Harden. Cade — 27.0 PPG, 8.5 APG, two-way impact that has bent Cleveland's defense all series.\n\nTonight is his coronation or his crucible. There is no middle ground.\n\nDetector -4.5. 8 PM ET. Prime Video. (2/5)",
+    "1/ MOBLEY'S MASTERPIECE 🏔️ | " +
+      "21 PTS (7-10 FG) · 12 REB · 6 AST · +31 on the road in a Game 7. " +
+      "That is the most complete single-game performance of the 2026 playoffs. " +
+      "He's 24 years old. The Cleveland hierarchy may have permanently shifted Saturday night. " +
+      "#Cavaliers #EvanMobley",
 
-    "James Harden passed Stephen Curry for 10th on the all-time NBA playoff scoring list this postseason.\n\nAlso: 8 turnovers in a 21-point Game 6 blowout.\n\nTwo truths, one complicated legacy. Tonight's road Game 7 in Detroit writes the next chapter — one way or another. (3/5)",
+    "2/ THE MERRILL GAME 🤯 | " +
+      "Sam Merrill entered Game 7 averaging 7.4 PPG in these playoffs. " +
+      "He left with 23 points on 5-of-8 from three off the bench. " +
+      "PLUS-22. In a road Game 7. " +
+      "James Harden scored 9 on 2-of-10 and finished +31. " +
+      "Cleveland is built different. #NBAPlayoffs",
 
-    "HOT TAKE: Oklahoma City losing Jalen Williams might actually HELP them in the WCF.\n\nNo ball-movement ambiguity. Every possession through SGA. Pure isolation basketball against the best individual defender in the world.\n\nWembanyama has to solve it alone. Tomorrow night. 8:30 PM ET.\n\nThis is the matchup we've been waiting for. (4/5)",
+    "3/ ECF WATCH 🗽⚔️🏀 | " +
+      "NYK vs CLE — and the Knicks are the pick. " +
+      "Brunson hasn't played since May 11. Anunoby trending toward return. " +
+      "Towns vs Mobley/Allen is the matchup of the round. " +
+      "Cleveland won by 31 last night — but they also just played seven wars. " +
+      "Rest matters. Home court matters. NYK +500 feels light. #Knicks #Cavaliers",
 
-    "By midnight tonight, the 2026 playoff bracket is COMPLETE.\n\n• WCF Game 1: SAS @ OKC — Monday 8:30 PM\n• ECF: NYK vs DET or CLE — two-day turnaround for the winner\n• Finals odds: OKC -165 | SAS +320 | NYK +550\n\nThe road to June 3rd is almost fully mapped. 🏆\n\nFull episode on all platforms now. #HoopsIntel #NBA #Playoffs (5/5)"
-  ]
+    "4/ TONIGHT 🌩️ | " +
+      "SGA vs Wembanyama. WCF Game 1. 8:30 PM ET on NBC. " +
+      "OKC is 8-0 and hasn't been tested. SAN ANTONIO just won by 30 on the road to close out Minnesota. " +
+      "Castle. Fox. Wemby. At full strength. " +
+      "Something has to give tonight. Don't miss it. 🔥 #Thunder #Spurs #NBAPlayoffs",
+  ],
 };
