@@ -36,11 +36,10 @@ export const momentumData: MomentumData = {
   date: "May 18, 2026",
   gameOfTheNight: "CLE-DET-20260517",
   topClutchPerformer: {
-    player: "Donovan Mitchell",
+    player: "Evan Mobley",
     team: "CLE",
-    clutchRating: 91,
-    description:
-      "After a brutal 6-of-20 collapse in Game 6 that nearly handed Detroit the series, Mitchell answered every whisper of doubt with 26 points, 8 assists, and zero turnovers in a Game 7 road blowout. His back-to-back midrange daggers to open the third quarter — the sequence that officially broke Detroit's spirit — underscored why Cleveland refused to go home without him firing.",
+    clutchRating: 96,
+    description: "Mobley was everywhere in Game 7 — a 21-point, 12-rebound, 6-assist masterpiece on 70% shooting that dismantled Detroit's last hopes systematically and without mercy. His +31 was the loudest number on the box score, but it was his composure, his switchability, and his willingness to initiate offense that truly broke the Pistons. This was the performance that announced Evan Mobley as a cornerstone of the next NBA dynasty.",
   },
   games: [
     {
@@ -50,58 +49,52 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "4:22",
-          description:
-            "Detroit opened with crowd-fueled aggression, riding a 9-2 run to grab an early 16-9 lead. Cade Cunningham attacked the rim twice in succession, and Little Caesars Arena was shaking. For a brief, electric window, the Pistons looked like the team that had won Game 6 two nights earlier.",
-          runScore: "9-2 DET",
+          timestamp: "3:42",
+          description: "Detroit opened hot with a 9-2 run capped by a Cade Cunningham mid-range jumper, silencing the early Cleveland chants and igniting Little Caesars Arena. The Pistons looked sharp, composed, and ready to defend home court one final time.",
+          runScore: "DET 16–9",
           momentum: "home",
           keyPlayer: "Cade Cunningham",
           impact: "notable",
         },
         {
-          quarter: "Q1",
-          timestamp: "0:38",
-          description:
-            "Cleveland answered Detroit's early surge with a suffocating 14-3 run to close the quarter. Evan Mobley anchored the response with two mid-range jumpers and a chase-down block that ricocheted into a Darius Garland transition layup. The Cavaliers ended the first quarter leading 23-19, and the energy inside the arena had already shifted.",
-          runScore: "14-3 CLE",
+          quarter: "Q2",
+          timestamp: "8:51",
+          description: "Donovan Mitchell, responding to his Game 6 nightmare, erupted for 11 straight Cleveland points including back-to-back pull-up threes that completely erased Detroit's lead and flipped the emotional current of the building. The crowd went silent. The Cavs bench erupted.",
+          runScore: "CLE 30–22",
           momentum: "away",
-          keyPlayer: "Evan Mobley",
-          impact: "significant",
+          keyPlayer: "Donovan Mitchell",
+          impact: "game-changing",
         },
         {
           quarter: "Q2",
-          timestamp: "6:51",
-          description:
-            "Sam Merrill detonated. Three consecutive three-pointers in a 97-second stretch — each colder and more audacious than the last — turned a 4-point Cleveland lead into a 15-point canyon. The bench erupted, Detroit's coach burned both timeouts, and Merrill calmly jogged back on defense each time as if he were shooting around in an empty gym.",
-          runScore: "15-4 CLE",
+          timestamp: "2:14",
+          description: "Sam Merrill entered and immediately detonated — three consecutive corner threes in less than ninety seconds extended Cleveland's advantage to 18 at the half. Detroit's bench unit had no answer, and the deficit felt structurally insurmountable given Cleveland's defensive discipline.",
+          runScore: "CLE 58–37",
           momentum: "away",
           keyPlayer: "Sam Merrill",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "9:14",
-          description:
-            "Donovan Mitchell opened the second half with back-to-back pull-up midrange jumpers on Cleveland's first two possessions, answering any lingering questions about his Game 6 ghost. The Cavaliers pushed their lead to 27, and Detroit's body language — slumped shoulders, broken defensive rotations — telegraphed what the final score would eventually confirm.",
-          runScore: "12-3 CLE",
-          momentum: "away",
-          keyPlayer: "Donovan Mitchell",
-          impact: "game-changing",
+          timestamp: "6:30",
+          description: "Detroit attempted a desperate third-quarter rally, cutting the lead to 14 on a pair of Ausar Thompson buckets and a Cunningham drive. The crowd found its voice again briefly — a fleeting, painful reminder of how close this series had been.",
+          runScore: "DET 55–72",
+          momentum: "home",
+          keyPlayer: "Ausar Thompson",
+          impact: "significant",
         },
         {
-          quarter: "Q4",
-          timestamp: "7:00",
-          description:
-            "With the game long decided, Cleveland continued to execute flawlessly while Detroit's starters were pulled. Cade Cunningham — who had dominated this series through six games — sat on the bench in street clothes by the 7-minute mark, watching reserves play out the clock on what had been a miracle season. The 31-point final margin was a number Detroit will spend the entire summer trying to forget.",
-          runScore: "18-9 CLE",
+          quarter: "Q3",
+          timestamp: "1:05",
+          description: "Evan Mobley authored the killing blow — a mid-post spin, a lob finish, and a chase-down block on Detroit's ensuing possession, all within forty seconds. The Pistons' shoulders visibly dropped. Cleveland's lead ballooned back to 25, and the game — the series — was over.",
+          runScore: "CLE 92–63",
           momentum: "away",
           keyPlayer: "Evan Mobley",
-          impact: "notable",
+          impact: "game-changing",
         },
       ],
       clutchPlays: [],
-      narrative:
-        "This was not a game — it was a coronation. Cleveland arrived at Little Caesars Arena in the business of erasing doubt, and they did so with a ruthlessness that made the 125-94 final look almost merciful. Evan Mobley was the structural backbone, Donovan Mitchell was the redemption arc, and Sam Merrill was the wildfire that burned Detroit's game plan to the ground in the second quarter. Cade Cunningham, who had carried this franchise on his back for six games and an entire franchise resurrection, went 5-of-16 and finished with a minus-32 that will haunt highlight reels for years. Cleveland punched their ticket to the Eastern Conference Finals, and they did it in a way that sent an unmistakable message to the waiting Knicks.",
+      narrative: "This was not a Game 7 — it was a coronation. Cleveland arrived at Little Caesars Arena with the collective memory of six brutal games and left with a 31-point road demolition that will echo through franchise history. Donovan Mitchell silenced every doubt with 26 points of surgical precision, but the story of the night was Evan Mobley conducting a complete two-way symphony that Detroit simply had no instrument to match. Sam Merrill's bench explosion in the second quarter was the dagger wrapped in a bow — five threes from the reserve who was barely on the radar entering the playoffs. Cade Cunningham's collapse, 5-of-16 with seven missed threes after a six-game tour de force, will haunt Detroit's offseason, but it cannot diminish what Cleveland built. The Cavaliers advance to face the rested Knicks, and they arrive carrying genuine title momentum.",
     },
   ],
 };

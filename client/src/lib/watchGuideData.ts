@@ -69,37 +69,32 @@ export const watchGuideData: WatchGuideData = {
       entertainmentScore: 97,
       starPower: 10,
       playoffImplications: 10,
-      rivalry: 9,
-      storyline:
-        "The Western Conference Finals open tonight as the two best regular-season records in the NBA collide — Shai Gilgeous-Alexander, the reigning scoring champion and MVP frontrunner, squares off against Victor Wembanyama, the generational alien whose defensive gravity and offensive brilliance have redefined what a 22-year-old can be in this league. Game 1 sets the tone: whoever controls the pace of this series controls the path to the Finals.",
+      rivalry: 8,
+      storyline: "The Western Conference Finals open with the most anticipated individual duel of the 2026 postseason: Shai Gilgeous-Alexander, the league's premier scorer and orchestrator, against Victor Wembanyama, the generational alien who has evolved into the most terrifying two-way force the sport has ever seen. Two 60-win juggernauts collide at Paycom Center in what could be a series that defines this entire era of basketball.",
       keyMatchup: "Shai Gilgeous-Alexander vs. Victor Wembanyama",
       mustWatch: true,
       factors: {
         starPower: 20,
         playoffImplications: 20,
-        rivalry: 18,
+        rivalry: 17,
         entertainment: 20,
-        storyline: 19,
+        storyline: 20,
       },
       watchScore: 97,
-      headline: "WCF Game 1: SGA vs. Wembanyama — The West's Crown Is on the Line at Paycom Center",
+      headline: "WCF Game 1: SGA vs. Wembanyama — The Duel the Whole Playoffs Have Been Building Toward",
     },
   ],
   topPick: {
     gameIndex: 0,
-    reason:
-      "This is the only game on the slate tonight and it happens to be an all-time matchup — the two most dominant teams in the Western Conference, each with 60-plus wins, meeting in Game 1 of the Western Conference Finals. SGA vs. Wembanyama is the individual duel the entire basketball world has been waiting for since Wemby entered the league. Paycom Center will be electric, the stakes are Finals-level, and neither team has played since clinching their second-round series. Everyone is rested, healthy, and hungry. Clear your schedule.",
+    reason: "This is the only game on the slate and it happens to be the most compelling matchup of the entire 2026 postseason. Two 60-win teams. The league's best scorer against the league's most transformative defensive force. Western Conference Finals Game 1 at Paycom Center — clear your schedule, silence your phone, and watch every possession.",
   },
   sleeper: {
     gameIndex: 0,
-    reason:
-      "With only one game on the board, there's no under-the-radar option tonight — but if anything about this matchup is underappreciated, it's San Antonio's interior depth around Wembanyama. The Spurs' supporting cast quietly went 62-20 and could expose OKC's second unit in ways the betting market hasn't fully priced in, making a Spurs Game 1 road win a genuine sleeper outcome worth watching for.",
+    reason: "With only one game tonight, the 'sleeper' angle is SAS on the road: the Spurs arrive as slight underdogs in OKC but Wembanyama's ability to single-handedly neutralize SGA's pull-up game could make San Antonio's upset potential far more real than the betting market suggests. If Wemby drops a 30-15-8 block performance in Game 1, nobody will be calling them an underdog by Game 2.",
   },
   skipIt: {
     gameIndex: 0,
-    reason:
-      "There is no skip-it game tonight — this is a single-game slate and that game scores a 97. If you only watch one NBA game all postseason, make it this one. The only reason to skip is if you plan to watch the replay without spoilers, which is entirely valid given the 8:30 PM EDT tip.",
+    reason: "There is no game worth skipping tonight — the slate is a single Western Conference Finals opener between two of the three best teams in basketball. If you only have 30 minutes, at minimum catch the fourth quarter; but honestly, this is a full-game commitment night.",
   },
-  nightOverview:
-    "Tonight's slate is a one-game masterpiece: Western Conference Finals Game 1 between the 64-win Oklahoma City Thunder and the 62-win San Antonio Spurs tips at 8:30 PM ET on NBC and Peacock. With the Eastern Conference Finals already set — New York against Cleveland — all eyes shift west for the most anticipated individual duel of the 2026 playoffs: Shai Gilgeous-Alexander versus Victor Wembanyama, two franchise cornerstones at the absolute peak of their powers competing for the right to represent the West on the Finals stage.",
+  nightOverview: "Tonight's slate is lean in quantity but stratospheric in quality: one game, one stage, one unmissable showdown. The Western Conference Finals open at Paycom Center as Shai Gilgeous-Alexander and the 64-win Oklahoma City Thunder host Victor Wembanyama and the 62-win San Antonio Spurs in what is already being framed as the defining series of the 2026 NBA playoffs. With the Eastern Conference Finals already set between New York and Cleveland, all eyes turn west for Game 1 of what promises to be a generational clash.",
 };
