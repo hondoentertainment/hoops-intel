@@ -40,7 +40,7 @@ export const momentumData: MomentumData = {
     team: "San Antonio Spurs",
     clutchRating: 99,
     description:
-      "Wembanyama was simply from another dimension in 49 minutes of double-overtime warfare — 41 points, 24 rebounds, and a stranglehold on both extra periods that left OKC's sellout crowd in stunned silence. He scored or assisted on 14 of San Antonio's final 18 points across the two overtime frames, and his +16 plus-minus in a game where SGA finished -15 tells the whole story of who owned Paycom Center on Monday night.",
+      "Wembanyama was the axis around which both overtime periods rotated — scoring 11 of San Antonio's 17 OT points, grabbing 6 of his 24 rebounds in the extra frames, and defending SGA into a 1-of-6 shooting night in the fourth quarter and OT combined. In 49 suffocating minutes, he never flinched.",
   },
   games: [
     {
@@ -50,50 +50,50 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "4:31",
+          timestamp: "3:41",
           description:
-            "OKC opened the game with an 11-2 blitz, riding SGA back-to-back pull-up jumpers and a Jalen Williams transition dunk to seize immediate home control. Paycom Center was electric and the Thunder looked every bit like the No. 1 seed that hadn't lost a playoff game all spring.",
-          runScore: "11-2 OKC",
+            "OKC stormed out with a 14-4 opening run, SGA and Jalen Williams attacking a Spurs defense still finding its footing without De'Aaron Fox. The Paycom Center crowd was already thundering at full roar.",
+          runScore: "14-4 OKC",
           momentum: "home",
           keyPlayer: "Shai Gilgeous-Alexander",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "7:14",
+          timestamp: "6:18",
           description:
-            "Wembanyama answered with a dominant seven-minute stretch that turned the game on its head — four blocks, a pair of mid-post scoring possessions, and two pull-up threes that silenced the crowd and swung the lead to San Antonio by nine. Dylan Harper added a pair of steals that converted directly into fastbreak layups, and suddenly the road team looked completely at home.",
-          runScore: "18-4 SAS",
+            "Wembanyama single-handedly erased the deficit with a 16-5 Spurs surge — two rim-rattling dunks, a pull-up three over the outstretched hand of Chet Holmgren, and two consecutive blocked shots that ignited the San Antonio bench. The road crowd found its voice.",
+          runScore: "16-5 SAS",
           momentum: "away",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "5:02",
+          timestamp: "4:55",
           description:
-            "Alex Caruso came off the bench and detonated — four three-pointers in a six-minute span, igniting a 19-7 OKC run that clawed the deficit back to two and sent the building into a frenzy. Caruso's 18 third-quarter points were the most by any OKC reserve in franchise postseason history, and it felt like the Thunder's relentless depth was finally swallowing the shorthanded Spurs.",
-          runScore: "19-7 OKC",
+            "Dylan Harper's historic steal-and-score binge — three consecutive takeaways converted into fastbreak points — swung momentum violently toward San Antonio. OKC's halfcourt offense went stagnant for a five-minute stretch, mustering just 4 points as the Spurs pushed the lead to 11.",
+          runScore: "15-4 SAS",
+          momentum: "away",
+          keyPlayer: "Dylan Harper",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "7:02",
+          description:
+            "Alex Caruso came off the bench and detonated — three consecutive three-pointers in under two minutes, slicing an 11-point Spurs lead to 2 and sending the Paycom Center into a frenzy. Caruso's 18-point fourth quarter alone felt like the performance of a lifetime.",
+          runScore: "13-4 OKC",
           momentum: "home",
           keyPlayer: "Alex Caruso",
           impact: "game-changing",
         },
         {
-          quarter: "Q4",
-          timestamp: "2:48",
-          description:
-            "Stephon Castle's back-breaking pull-up three with 2:48 remaining — his fourth clutch-time bucket of the fourth quarter — pushed San Antonio back ahead by five and forced OKC into a frantic foul-hunt. Castle's composure at 20 years old in a WCF road game was jaw-dropping, and his 11 assists showed a court vision that made San Antonio nearly impossible to guard.",
-          runScore: "9-3 SAS",
-          momentum: "away",
-          keyPlayer: "Stephon Castle",
-          impact: "significant",
-        },
-        {
           quarter: "OT2",
-          timestamp: "1:10",
+          timestamp: "1:28",
           description:
-            "With the second overtime knotted at 113, Wembanyama caught a post feed, pump-faked Jalen Williams into the air, and drew the foul while converting the and-one — a three-point swing that gave San Antonio a lead they would never relinquish. His ensuing defensive possession, a contest that forced SGA into a desperate off-balance miss, sealed one of the most extraordinary individual playoff performances in modern NBA history.",
-          runScore: "6-2 SAS",
+            "Wembanyama dropped back-to-back buckets in the final 90 seconds of the second overtime — a mid-post fadeaway over Holmgren and a thunderous put-back off his own miss — to seal the road victory and end OKC's unblemished postseason record.",
+          runScore: "7-2 SAS",
           momentum: "away",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing",
@@ -104,45 +104,45 @@ export const momentumData: MomentumData = {
           player: "Victor Wembanyama",
           team: "San Antonio Spurs",
           description:
-            "And-one post conversion at 113-113 in the second overtime — caught, pump-fake, foul drawn, three-point play — giving San Antonio a lead they would protect through the final 70 seconds.",
-          timeRemaining: "1:10 OT2",
-          winProbabilityShift: 31,
-        },
-        {
-          player: "Dylan Harper",
-          team: "San Antonio Spurs",
-          description:
-            "Playoff-record-tying 7th steal of the game with 38 seconds left in OT1, intercepting a SGA entry pass and converting the fastbreak layup to tie the game at 108 and force a second overtime.",
-          timeRemaining: "0:38 OT1",
-          winProbabilityShift: 27,
-        },
-        {
-          player: "Stephon Castle",
-          team: "San Antonio Spurs",
-          description:
-            "Pull-up three off the dribble handoff — his fourth clutch-time score — to push the lead to five with under three minutes in regulation, forcing OKC to abandon their half-court sets and begin fouling.",
-          timeRemaining: "2:48 Q4",
-          winProbabilityShift: 22,
+            "With 34.1 seconds left in regulation and the game tied at 105, Wembanyama caught a lob at the short corner, pump-faked Holmgren into the air, and drew the foul — converting both free throws to give San Antonio a lead that OKC answered at the buzzer to force first overtime.",
+          timeRemaining: "0:34 — 4Q",
+          winProbabilityShift: 18,
         },
         {
           player: "Alex Caruso",
           team: "Oklahoma City Thunder",
           description:
-            "Back-to-back threes in the final minute of the third quarter to pull OKC within two — the second coming off a Wembanyama contest that Caruso released so quickly it was through the net before Wemby could fully elevate.",
-          timeRemaining: "0:44 Q3",
-          winProbabilityShift: -18,
+            "Caruso drilled a corner three off a SGA drive-and-kick with 1:12 left in the first overtime to tie the game at 112 — his fifth three of the night and his most consequential, forcing a second extra period and keeping OKC's season alive.",
+          timeRemaining: "1:12 — OT1",
+          winProbabilityShift: 22,
+        },
+        {
+          player: "Dylan Harper",
+          team: "San Antonio Spurs",
+          description:
+            "Harper picked SGA's pocket at halfcourt with 3:04 left in the second overtime — his seventh steal of the game, tying the playoff record — and finished the and-one layup through contact to push the Spurs' lead to 5 and effectively end the Thunder's comeback hopes.",
+          timeRemaining: "3:04 — OT2",
+          winProbabilityShift: 31,
+        },
+        {
+          player: "Stephon Castle",
+          team: "San Antonio Spurs",
+          description:
+            "Castle calmly threaded a no-look bounce pass through three OKC defenders to a cutting Wembanyama for a dunk with 2:01 left in OT2, extending the lead to 7 and demonstrating the poise of a veteran in just his second playoff run.",
+          timeRemaining: "2:01 — OT2",
+          winProbabilityShift: 16,
         },
         {
           player: "Shai Gilgeous-Alexander",
           team: "Oklahoma City Thunder",
           description:
-            "Driving floater to tie the game at 108 with 12 seconds left in the first overtime, after shaking Dylan Harper on a hesitation crossover — temporarily making OKC's path to survival feel possible despite his brutal shooting night.",
-          timeRemaining: "0:12 OT1",
+            "SGA drove baseline and floated an impossible left-handed scoop over Wembanyama's 8-foot wingspan with 4:21 left in OT1 to pull OKC within one — a moment of elite improvisation that briefly suggested the Thunder would survive the night.",
+          timeRemaining: "4:21 — OT1",
           winProbabilityShift: -14,
         },
       ],
       narrative:
-        "This was not a basketball game — it was a consecration. Victor Wembanyama walked into the loudest building in the Western Conference, stripped of his All-Star backcourt partner, and proceeded to author a 49-minute, double-overtime masterwork that will be replayed on highlight reels for a generation. OKC had every reason to win: home court, a fully healthy roster, and a postseason résumé built on 64 regular-season wins and zero playoff losses entering the night. What they didn't have was anyone capable of matching Wembanyama's combination of offensive creation and defensive annihilation — his 24 rebounds were a Conference Finals record for a center in the shot-clock era, and his command of both overtime periods felt less like a 22-year-old seizing a moment and more like a veteran erasing all doubt about who the next cornerstone of this league belongs to. Dylan Harper's record-tying steal performance and Stephon Castle's point-guard poise merely underlined the depth of what San Antonio has built; for OKC, Caruso's 31-point detonation and SGA's gutsy OT tying floater are footnotes to a night that belonged entirely to one alien in silver and black.",
+        "This was not a basketball game — it was a referendum on generational greatness played out over 49 harrowing minutes in the loudest arena in the Western Conference. San Antonio arrived in Oklahoma City without their second-best player, faced the league's most complete team, fell behind by double digits in the first quarter, and still walked out of Paycom Center with the win because one 22-year-old alien refused to let them lose. Wembanyama's 41-24 line is the kind of stat that stops conversations cold, but the number that matters most is the one at the final buzzer: 122-115, Spurs. OKC's aura of postseason invincibility is gone. The WCF has a new story, and its author is 7-foot-4 and just getting started.",
     },
   ],
 };
