@@ -215,4 +215,13 @@ export const refData: RefData = {
         overtimeGames: 3,
       },
       bestFor:
-        "Athletic perimeter teams whose best basketball is generated in open-floor sequences before halfcourt defenses engage, pace-and-space offenses whose spacing and off-ball movement create the kick-out three-point opportunities that Mott's pace-positive standard most consistently generates, emotionally volatile stars whose competitive fire is best managed in a Low-technical-frequency environment that provides maximum individual latitude before the technical foul threshold is crossed, road teams whose survival depends on transition sequence accessibility and open-floor efficiency rather than the halfcourt grinding execution that low-
+        "Athletic perimeter teams whose best basketball is generated in open-floor sequences before halfcourt defenses engage, pace-and-space offenses whose spacing and off-ball movement create the kick-out three-point opportunities that Mott's pace-positive standard most consistently generates, emotionally volatile stars whose competitive fire is best managed in a Low-technical-frequency environment that provides maximum individual latitude before the technical foul threshold is crossed, road teams whose survival depends on transition sequence accessibility and open-floor efficiency rather than the halfcourt grinding execution that low-pace officials produce",
+      worstFor:
+        "Home teams whose competitive identity depends on halfcourt grinding execution and sustained interior physicality, teams with primary creators whose foul-drawing mechanics require the elevated whistle frequency that higher-tendency officials produce, defensive-oriented squads whose competitive advantage is maximized in low-pace environments where transition opportunities are structurally suppressed",
+      notableGame:
+        "Assigned as third official for WCF Game 1 at Paycom Center on May 18, 2026 alongside Scott Foster and Ed Malloy, contributing his +1.4 pace tendency and Low technical frequency standard to the crew's aggregate structural profile in the Western Conference Finals opener.",
+    },
+  ],
+  weeklyTrend:
+    "Conference Finals officiating assignments reflect the NBA's highest-stakes crew construction philosophy, with Scott Foster's WCF Game 1 lead assignment and Tony Brothers' ECF Game 7 deployment representing the most structurally significant individual referee deployments of the 2026 postseason to date.",
+};
