@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════
 // HOOPS INTEL — Playoff Bracket Data
 // Updated daily alongside pulseData.ts by the hoops-intel cron
-// Last updated: May 18, 2026
+// Last updated: May 19, 2026
 // ═══════════════════════════════════════════════════════════
 
 // --- Types ---
@@ -137,59 +137,59 @@ export const confSemisSeries: PlayoffSeries[] = [
 // --- Conference Finals Series ---
 
 export const confFinalsSeries: PlayoffSeries[] = [
-  {seriesId:"east-r3",conference:"east",round:3,higherSeed:3,lowerSeed:4,higherTeam:"NYK",lowerTeam:"CLE",higherWins:0,lowerWins:0,status:"scheduled",games:[],narrative:"The Eastern Conference Finals are set after Cleveland's stunning 125-94 Game 7 road demolition of Detroit. The Knicks have home-court advantage as the 3-seed and have been resting since their May 11 sweep of Philadelphia — a full week of recovery while the Cavaliers ground through the most physical series of the 2026 postseason. Brunson, Towns, and a potentially returning OG Anunoby will host a Cleveland team riding the adrenaline of the most dominant Game 7 road win in modern history but battered from the war. The contrast is stark: rest vs momentum, depth vs firepower, Brunson vs Mitchell.",keyMatchup:"Brunson vs Mitchell — the ECF's central duel. Mobley vs Towns in the frontcourt is the series' X-factor.",seriesOdds:"NYK -180"},
-  {seriesId:"west-r3",conference:"west",round:3,higherSeed:1,lowerSeed:2,higherTeam:"OKC",lowerTeam:"SAS",higherWins:0,lowerWins:0,status:"active",games:[{gameNumber:1,date:"May 18",time:"8:30 PM ET",tv:"NBC, Peacock",homeTeam:"OKC",awayTeam:"SAS",homeScore:null,awayScore:null,status:"scheduled"}],narrative:"THE DREAM MATCHUP TIPS OFF TONIGHT. SGA vs Wembanyama. The reigning MVP vs the reigning DPOY. The defending champions (8-0, back-to-back sweeps) vs the franchise that just demolished Minnesota by 30 in a road clincher. OKC has home-court advantage and six days of rest. San Antonio has Castle's breakout, Fox's surgical precision, and a 21-year-old generational talent at center. The Jalen Williams hamstring question looms — OKC is 8-0 without him but San Antonio's three-headed attack may be the first roster to truly test that absence. Series odds: OKC -260, SAS +210.",keyMatchup:"SGA vs Wembanyama — the generational showdown the basketball world has been waiting for",seriesOdds:"OKC -260"},
+  {seriesId:"east-r3",conference:"east",round:3,higherSeed:3,lowerSeed:4,higherTeam:"NYK",lowerTeam:"CLE",higherWins:0,lowerWins:0,status:"active",games:[{gameNumber:1,date:"May 19",time:"8:00 PM ET",tv:"ESPN",homeTeam:"NYK",awayTeam:"CLE",homeScore:null,awayScore:null,status:"scheduled"}],narrative:"The Eastern Conference Finals tip off tonight at Madison Square Garden. The Knicks have been resting since their May 11 sweep of Philadelphia — eight full days of recovery — while the Cavaliers ground through a seven-game war against Detroit, winning Game 7 by 31 on the road just two days ago. New York has home-court advantage as the 3-seed, and OG Anunoby is trending toward availability. Cleveland counters with the most dangerous playoff frontcourt remaining in Mobley and Allen, plus Harden's veteran orchestration and the adrenaline of the most dominant Game 7 in recent memory. Rest vs momentum. Brunson vs Mitchell. The most fascinating ECF matchup in years.",keyMatchup:"Brunson vs Mitchell — the ECF's central duel. Mobley vs Towns in the frontcourt is the series' X-factor.",seriesOdds:"NYK -180"},
+  {seriesId:"west-r3",conference:"west",round:3,higherSeed:1,lowerSeed:2,higherTeam:"OKC",lowerTeam:"SAS",higherWins:0,lowerWins:1,status:"active",games:[{gameNumber:1,date:"May 18",time:"8:30 PM ET",tv:"NBC, Peacock",homeTeam:"OKC",awayTeam:"SAS",homeScore:115,awayScore:122,status:"final",topPerformer:"Victor Wembanyama",topPerformerLine:"41 PTS, 24 REB, 3 AST, +16 (2OT)"}],narrative:"Wembanyama authored the greatest Conference Finals Game 1 in modern history — 41 points, 24 rebounds in double overtime on the road WITHOUT De'Aaron Fox (ankle). Dylan Harper added 24/11/6 with a playoff-record-tying 7 steals. Castle ran the point with 17/6/11. SGA struggled at 8-24 FG with a -15, admitting postgame 'I have to be better.' Alex Caruso's shocking 31 points and Jalen Williams' 26/7 couldn't save OKC. The Thunder's 8-0 run is over. San Antonio leads 1-0. Game 2 Wednesday in OKC.",keyMatchup:"Wembanyama vs the entire Thunder roster — his 41/24 in 2OT was the most dominant individual performance of the 2026 postseason",seriesOdds:"OKC -130"},
 ];
 
 // --- Playoff Performers ---
 
 export const playoffPerformers: PlayoffPerformer[] = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",ppg:30.1,rpg:6.2,apg:6.5,statLine:"30.1 PPG, 6.2 RPG, 6.5 APG (8-0)",trend:"steady",highlight:"WCF Game 1 tonight against San Antonio — the first true test of OKC's perfect postseason. 25+ in every game."},
-  {rank:2,player:"Evan Mobley",team:"CLE",ppg:18.5,rpg:9.8,apg:4.2,statLine:"21 PTS (7-10 FG), 12 REB, 6 AST, +31 in Game 7",trend:"up",highlight:"The most complete Game 7 performance of the 2026 playoffs. Mobley carried Cleveland to the ECF with a road masterpiece."},
-  {rank:3,player:"Victor Wembanyama",team:"SAS",ppg:24.3,rpg:10.8,apg:2.8,statLine:"24.3 PPG, 10.8 RPG, 3.2 BPG",trend:"steady",highlight:"The most terrifying two-way presence in playoff basketball faces his biggest test tonight vs OKC. Age 21."},
-  {rank:4,player:"Donovan Mitchell",team:"CLE",ppg:27.7,rpg:5.3,apg:5.4,statLine:"26 PTS, 8 AST, 0 TO in Game 7 road blowout",trend:"up",highlight:"Game 7 redemption after 6-of-20 Game 6 disaster. Mitchell's 27.7 PPG across 7 games carried Cleveland."},
-  {rank:5,player:"Stephon Castle",team:"SAS",ppg:18.5,rpg:6.2,apg:3.8,statLine:"32 PTS, 11 REB, 6 AST in clincher",trend:"up",highlight:"The 32/11/6 series clincher announced Castle as a legitimate star. WCF debut tonight."},
-  {rank:6,player:"De'Aaron Fox",team:"SAS",ppg:19.5,rpg:3.8,apg:7.2,statLine:"21 PTS, 9 AST, 8-10 FG in clincher",trend:"steady",highlight:"Surgical 8-of-10 efficiency in the close-out. The steady hand that makes San Antonio's explosiveness sustainable."},
-  {rank:7,player:"Jalen Brunson",team:"NYK",ppg:27.8,rpg:3.8,apg:6.3,statLine:"27.8 PPG, 6.3 APG across 4-game sweep",trend:"steady",highlight:"Most rested star remaining — resting since May 11. Now knows his ECF opponent: Cleveland."},
-  {rank:8,player:"James Harden",team:"CLE",ppg:21.5,rpg:5.8,apg:7.0,statLine:"9 PTS, +31 in Game 7 — controlled without scoring",trend:"up",highlight:"The most confounding Game 7 stat line: 2-10 FG but +31. Harden's invisible hand guided Cleveland to the ECF."},
-  {rank:9,player:"Sam Merrill",team:"CLE",ppg:9.2,rpg:1.8,apg:1.2,statLine:"23 PTS (5-8 3PT), +22 off bench in Game 7",trend:"up",highlight:"The most unexpected Game 7 hero of the 2026 playoffs. 23 points off the bench broke Detroit's season."},
-  {rank:10,player:"Karl-Anthony Towns",team:"NYK",ppg:24.5,rpg:10.2,apg:2.5,statLine:"24.5 PPG, 10.2 RPG across 8-2 playoff run",trend:"steady",highlight:"Enters the ECF against Cleveland's elite Mobley-Allen frontcourt — the most intriguing big-man matchup remaining."},
+  {rank:1,player:"Victor Wembanyama",team:"SAS",ppg:25.7,rpg:11.9,apg:2.8,statLine:"41 PTS, 24 REB, 3 AST, +16 in WCF Game 1 (2OT)",trend:"up",highlight:"The greatest Conference Finals Game 1 in modern history — 41/24 on the road in 2OT without Fox. The 2026 postseason's defining performance."},
+  {rank:2,player:"Shai Gilgeous-Alexander",team:"OKC",ppg:29.4,rpg:5.8,apg:7.1,statLine:"24 PTS, 12 AST, 8-24 FG, -15 in WCF Game 1",trend:"down",highlight:"Worst game of his 2026 postseason — 33% FG with a -15. 'I have to be better.' OKC's perfect run ends at 8-1."},
+  {rank:3,player:"Dylan Harper",team:"SAS",ppg:15.8,rpg:6.5,apg:4.2,statLine:"24 PTS, 11 REB, 6 AST, 7 STL in WCF Game 1",trend:"up",highlight:"Playoff-record-tying 7 steals in a Conference Finals road win. The most impactful second-year player in the 2026 postseason."},
+  {rank:4,player:"Stephon Castle",team:"SAS",ppg:18.2,rpg:6.1,apg:4.5,statLine:"17 PTS, 6 REB, 11 AST in 49 MIN (WCF Game 1)",trend:"up",highlight:"Ran San Antonio's offense in Fox's absence with 11 assists vs OKC's elite defense. Poise of a ten-year veteran."},
+  {rank:5,player:"Donovan Mitchell",team:"CLE",ppg:27.7,rpg:5.3,apg:5.4,statLine:"27.7 PPG across 7-game war with DET",trend:"steady",highlight:"ECF Game 1 tonight at MSG. Game 7 redemption (26/8/0 TO) proved he can deliver. Now faces rested Brunson."},
+  {rank:6,player:"Evan Mobley",team:"CLE",ppg:18.5,rpg:9.8,apg:4.2,statLine:"21 PTS (7-10 FG), 12 REB, 6 AST, +31 in Game 7",trend:"steady",highlight:"Game 7 masterpiece remains the second-best individual playoff performance of 2026. Faces Towns tonight."},
+  {rank:7,player:"Jalen Brunson",team:"NYK",ppg:27.8,rpg:3.8,apg:6.3,statLine:"27.8 PPG, 6.3 APG across 8-2 playoff run",trend:"steady",highlight:"ECF Game 1 tonight. Eight days rest, home court at MSG. The most favorable setup for any star this postseason."},
+  {rank:8,player:"Alex Caruso",team:"OKC",ppg:12.5,rpg:2.8,apg:2.2,statLine:"31 PTS in WCF Game 1 — most by any Thunder reserve in 2026",trend:"up",highlight:"Erupted for 31 off the bench in the WCF. Heroic but likely unsustainable without Jalen Williams."},
+  {rank:9,player:"James Harden",team:"CLE",ppg:21.5,rpg:5.8,apg:7.0,statLine:"9 PTS, +31 in Game 7 — controlled without scoring",trend:"steady",highlight:"The invisible Game 7 hand. Cleveland needs his orchestration tonight against NYK's defense."},
+  {rank:10,player:"Karl-Anthony Towns",team:"NYK",ppg:24.5,rpg:10.2,apg:2.5,statLine:"24.5 PPG, 10.2 RPG across 8-2 playoff run",trend:"steady",highlight:"ECF Game 1 tonight vs Mobley-Allen frontcourt — the most intriguing positional battle remaining."},
 ];
 
 // --- MVP Candidates ---
 
 export const mvpCandidates: MvpCandidate[] = [
-  {rank:1,player:"Shai Gilgeous-Alexander",team:"OKC",odds:"-150",playoffAvg:"30.1 PPG, 6.2 RPG, 6.5 APG",record:"8-0 (two sweeps)",signatureMoment:"35-point, 8-assist sweep-clincher against the Lakers — 8-0 with the WCF tipping off tonight",trend:"steady"},
-  {rank:2,player:"Victor Wembanyama",team:"SAS",odds:"+350",playoffAvg:"24.3 PPG, 10.8 RPG, 3.2 BPG",record:"8-3 (WCF begins tonight)",signatureMoment:"39/15/5 Game 3 masterpiece and 27/17/3BLK Game 5 bounce-back — the most dominant two-way force in the postseason",trend:"steady"},
-  {rank:3,player:"Jalen Brunson",team:"NYK",odds:"+600",playoffAvg:"27.8 PPG, 6.3 APG, 3.8 RPG",record:"8-2 (swept PHI, awaiting ECF vs CLE)",signatureMoment:"33-point Game 3 road clincher — most dominant sweep of the 2026 playoffs. A week of rest before facing a war-weary Cleveland.",trend:"up"},
-  {rank:4,player:"Donovan Mitchell",team:"CLE",odds:"+1500",playoffAvg:"27.7 PPG, 5.3 RPG, 5.4 APG",record:"8-5 (ECF vs NYK)",signatureMoment:"Game 7 redemption: 26/8/0 TO on the road — erased the 6-20 Game 6 disaster and led Cleveland to the conference finals",trend:"up"},
-  {rank:5,player:"Evan Mobley",team:"CLE",odds:"25-1",playoffAvg:"18.5 PPG, 9.8 RPG, 4.2 APG",record:"8-5 (ECF vs NYK)",signatureMoment:"Game 7 masterpiece: 21/12/6 on 7-10 FG with a +31 in a road elimination game — the defining performance of the 2026 Conference Semifinals",trend:"up"},
+  {rank:1,player:"Victor Wembanyama",team:"SAS",odds:"+180",playoffAvg:"25.7 PPG, 11.9 RPG, 3.1 BPG",record:"9-3 (leads WCF 1-0)",signatureMoment:"41 PTS, 24 REB in a double-OT road win at OKC WITHOUT De'Aaron Fox — the greatest Conference Finals Game 1 in modern history",trend:"up"},
+  {rank:2,player:"Shai Gilgeous-Alexander",team:"OKC",odds:"+150",playoffAvg:"29.4 PPG, 5.8 RPG, 7.1 APG",record:"8-1 (trails WCF 0-1)",signatureMoment:"Perfect 8-0 run through two rounds with back-to-back sweeps — but Game 1's 8-24 FG and -15 was his worst performance of the postseason",trend:"down"},
+  {rank:3,player:"Jalen Brunson",team:"NYK",odds:"+500",playoffAvg:"27.8 PPG, 6.3 APG, 3.8 RPG",record:"8-2 (ECF Game 1 tonight vs CLE)",signatureMoment:"33-point road clincher to sweep Philadelphia — eight days of rest, home court, and MSG under the lights for ECF Game 1 tonight",trend:"steady"},
+  {rank:4,player:"Donovan Mitchell",team:"CLE",odds:"+1800",playoffAvg:"27.7 PPG, 5.3 RPG, 5.4 APG",record:"8-5 (ECF Game 1 tonight @ NYK)",signatureMoment:"Game 7 redemption: 26/8/0 TO in a 31-point road blowout to reach the ECF — the most dramatic bounce-back of the 2026 playoffs",trend:"steady"},
+  {rank:5,player:"Dylan Harper",team:"SAS",odds:"50-1",playoffAvg:"15.8 PPG, 6.5 RPG, 4.2 APG",record:"9-3 (leads WCF 1-0)",signatureMoment:"24/11/6/7 STL in WCF Game 1 — the most impactful second-year Conference Finals performance in modern history",trend:"up"},
 ];
 
 // --- Elimination Watch ---
 
 export const eliminationWatch: EliminationWatch[] = [
-  {team:"DET",opponent:"CLE",situation:"ELIMINATED — Lost Game 7 at home 94-125. The 31-point home Game 7 loss ends Detroit's magical season.",gameInfo:"CLE 125, DET 94 (May 17) — Cunningham 13 PTS, 0-7 3PT, -32. Season over.",urgency:"eliminated"},
-  {team:"CLE",opponent:"NYK",situation:"ADVANCING to ECF vs NYK. Won Game 7 on the road by 31 — the most dominant Game 7 of the 2026 postseason.",gameInfo:"ECF begins later this week. Knicks have home court. Cleveland comes off a 7-game war.",urgency:"advancing"},
-  {team:"NYK",opponent:"CLE",situation:"ADVANCING — ECF opponent confirmed: Cleveland. Rested since May 11 with home-court advantage.",gameInfo:"ECF begins later this week. Anunoby trending toward availability. Most rested team remaining.",urgency:"advancing"},
-  {team:"OKC",opponent:"SAS",situation:"WCF Game 1 TONIGHT — 8-0, home-court advantage. Six days of rest.",gameInfo:"SAS @ OKC, May 18, 8:30 PM ET, NBC/Peacock — J. Williams out (hamstring)",urgency:"advancing"},
-  {team:"SAS",opponent:"OKC",situation:"WCF Game 1 TONIGHT — Clinched West Finals with 139-109 road blowout of MIN.",gameInfo:"SAS @ OKC, May 18, 8:30 PM ET, NBC/Peacock — Castle/Fox/Wemby at full strength",urgency:"advancing"},
-  {team:"MIN",opponent:"SAS",situation:"Eliminated — Lost 2-4 in West Semis. Outscored by 97 points in four losses.",gameInfo:"SAS 139, MIN 109 (May 15) — Season over",urgency:"eliminated"},
-  {team:"LAL",opponent:"OKC",situation:"Eliminated — Swept 4-0 in West Semis",gameInfo:"OKC 115, LAL 110 (May 11) — Season over",urgency:"eliminated"},
-  {team:"PHI",opponent:"NYK",situation:"Eliminated — Swept 4-0 in East Semis",gameInfo:"NYK 144, PHI 114 (May 11) — Season over",urgency:"eliminated"},
-  {team:"BOS",opponent:"PHI",situation:"Eliminated — Lost 3-4 in East R1 (blew 3-1 lead)",gameInfo:"PHI 104, BOS 98 in Game 7 — Season over",urgency:"eliminated"},
-  {team:"DEN",opponent:"MIN",situation:"Eliminated — Lost 2-4 in West R1",gameInfo:"MIN 116, DEN 108 in Game 6 — Season over",urgency:"eliminated"},
+  {team:"OKC",opponent:"SAS",situation:"TRAILING 0-1 after double-OT Game 1 loss at home. Wembanyama's 41/24 ended OKC's perfect 8-0 run. SGA shot 8-24. Must respond in Game 2 Wednesday.",gameInfo:"SAS 122, OKC 115 (2OT, May 18) — Game 2: Wed at OKC. J. Williams still out (hamstring).",urgency:"trailing"},
+  {team:"SAS",opponent:"OKC",situation:"LEADING 1-0 after stunning double-OT road win. Wembanyama 41/24, Harper 24/11/6/7STL, Castle 17/6/11. Won without Fox (ankle).",gameInfo:"SAS 122, OKC 115 (2OT, May 18) — Game 2: Wed at OKC. Fox status TBD.",urgency:"leading"},
+  {team:"CLE",opponent:"NYK",situation:"ECF Game 1 TONIGHT at MSG. Two days rest after 7-game war vs DET. Battle-tested but fatigued.",gameInfo:"CLE @ NYK, May 19, 8:00 PM ET, ESPN — Anunoby may return for NYK.",urgency:"tied"},
+  {team:"NYK",opponent:"CLE",situation:"ECF Game 1 TONIGHT. Eight days rest, home court at MSG. Anunoby trending toward availability.",gameInfo:"CLE @ NYK, May 19, 8:00 PM ET, ESPN — Most rested team remaining.",urgency:"tied"},
+  {team:"DET",opponent:"CLE",situation:"ELIMINATED — Lost Game 7 at home 94-125.",gameInfo:"CLE 125, DET 94 (May 17) — Season over.",urgency:"eliminated"},
+  {team:"MIN",opponent:"SAS",situation:"Eliminated — Lost 2-4 in West Semis.",gameInfo:"SAS 139, MIN 109 (May 15) — Season over.",urgency:"eliminated"},
+  {team:"LAL",opponent:"OKC",situation:"Eliminated — Swept 4-0 in West Semis.",gameInfo:"OKC 115, LAL 110 (May 11) — Season over.",urgency:"eliminated"},
+  {team:"PHI",opponent:"NYK",situation:"Eliminated — Swept 4-0 in East Semis.",gameInfo:"NYK 144, PHI 114 (May 11) — Season over.",urgency:"eliminated"},
+  {team:"BOS",opponent:"PHI",situation:"Eliminated — Lost 3-4 in East R1 (blew 3-1 lead).",gameInfo:"PHI 104, BOS 98 in Game 7 — Season over.",urgency:"eliminated"},
+  {team:"DEN",opponent:"MIN",situation:"Eliminated — Lost 2-4 in West R1.",gameInfo:"MIN 116, DEN 108 in Game 6 — Season over.",urgency:"eliminated"},
 ];
 
 // --- Bracket Meta ---
 
 export const bracketMeta = {
-  lastUpdated: "May 18, 2026",
-  currentRound: "Conference Finals — WCF Game 1 tonight (SAS @ OKC), ECF (NYK vs CLE) begins later this week",
-  nextMilestone: "TONIGHT 8:30 PM ET — WCF Game 1: SAS @ OKC on NBC/Peacock. ECF Game 1 (NYK vs CLE) later this week.",
+  lastUpdated: "May 19, 2026",
+  currentRound: "Conference Finals — WCF: SAS leads OKC 1-0, ECF Game 1 tonight (CLE @ NYK)",
+  nextMilestone: "TONIGHT 8:00 PM ET — ECF Game 1: CLE @ NYK on ESPN. WCF Game 2: Wed at OKC.",
   teamsRemaining: 4,
   teamsEliminated: 16,
-  gamesPlayed: 47,
+  gamesPlayed: 48,
   playInComplete: true,
   firstRoundStarts: "April 18",
   confFinalsProjected: "May 18-20",
