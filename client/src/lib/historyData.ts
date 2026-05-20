@@ -159,4 +159,19 @@ export const historyData: HistoryData = {
       current: "8-1 in the 2026 NBA Playoffs after WCF Game 1 loss to San Antonio. OKC's unbeaten run ended at 8-0 — the second-longest undefeated opening sequence in playoff history, trailing only the 2001 Lakers' 11-0. SGA averaged 30.1 points across the unbeaten run. The single loss came through Wembanyama's historic 41/24 performance, the most individually dominant game of the 2026 postseason. OKC's net rating of plus-12.1 across their 8-0 run fell below the 2001 Lakers' plus-15.3 benchmark but was produced against higher opponent quality.",
       needed: "Win WCF Games 2, 3, and 4 against San Antonio to reach 11-1 — short of the all-time perfect-run record but still within range of the most dominant single-postseason win total in the 16-team era. A WCF sweep (winning Games 2 through 4) would give OKC a 11-1 record entering the Finals, positioning them to match the 2017 Warriors' all-time 16-1 record if they win the first three Finals games. The path requires containing Wembanyama — a challenge that no defensive system has solved — and SGA's documented bounce-back pattern after poor shooting performances.",
       projectedDate: "OKC's path to the 2001 Lakers' all-time record is now closed after the Game 1 loss. The Thunder's next milestone — most wins in a single postseason at 15 wins — is achievable if they win the WCF and advance to the Finals. The 2017 Warriors' 16-1 record remains the benchmark OKC can still realistically target if they win the series and reach the Finals.",
-      significance: "The end of OKC's unbeaten run at 8-0 is historically significant as the second-longest undefeated postseason opening in NBA history — a record that confirms the Thunder's organizational legitimacy as a championship-caliber construct while simultaneously establishing that Wembanyama's WCF Game 1 performance represented the specific individual ceiling that Oklahoma City's defensive system had no structural answer for. SGA's response in Game 2 at home, having never lost back-to-back playoff games in his career, is the most anticipated individual storyline of the 2026 WCF
+      significance: "The end of OKC's unbeaten run at 8-0 is historically significant as the second-longest undefeated postseason opening in NBA history. SGA's response in Game 2 at home is now the defining Thunder storyline of the 2026 WCF."
+    }
+  ],
+
+  thisWeekInHistory: [
+    { year: 2000, event: "Shaquille O'Neal produced the modern playoff benchmark for overwhelming Finals interior dominance.", players: ["Shaquille O'Neal"] },
+    { year: 2001, event: "The Lakers opened the postseason 11-0, the standard Oklahoma City's 2026 run was chasing.", players: ["Shaquille O'Neal", "Kobe Bryant"] },
+    { year: 2003, event: "San Antonio converted rest and organizational control into a title run, a useful analog for New York's ECF opener.", players: ["Tim Duncan", "Tony Parker"] }
+  ],
+
+  streakWatch: [
+    { player: "Victor Wembanyama", team: "SAS", streak: "Historic WCF Game 1", record: "Youngest 40-point, 20-rebound conference finals road performance", gamesAway: 0 },
+    { player: "Shai Gilgeous-Alexander", team: "OKC", streak: "8-1 postseason start", record: "2017 Warriors 16-1 postseason record", gamesAway: 7 },
+    { player: "Jalen Brunson", team: "NYK", streak: "MSG playoff scoring surge", record: "Knicks postseason scoring lore", gamesAway: 4 }
+  ]
+};

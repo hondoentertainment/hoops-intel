@@ -196,4 +196,13 @@ export const refData: RefData = {
         overtimeGames: 5,
       },
       bestFor:
-        "Veteran-led teams with strong coaching staffs whose strategic sophistication generates competitive advantages in near-neutral officiating environments, balanced competitive matchups where execution quality rather than structural officiating architecture determines outcomes, methodical halfcourt offensive
+        "Veteran-led teams with strong coaching staffs whose strategic sophistication generates competitive advantages in near-neutral officiating environments, balanced competitive matchups where execution quality rather than structural officiating architecture determines outcomes, and methodical halfcourt offenses that can win without extreme whistle leverage.",
+      worstFor:
+        "Teams that rely on transition chaos, emotional volatility, or repeated whistle leverage to tilt possessions away from halfcourt execution.",
+      notableGame:
+        "Projected as a stabilizing playoff profile whose value is highest when the league wants the game decided by execution quality rather than an extreme crew tendency."
+    }
+  ],
+  weeklyTrend:
+    "The May 19 officiating slate leans toward controlled home-court amplification at Madison Square Garden while preserving enough secondary neutrality to keep Cleveland's competitive path open. Treat the crew data as context for pace, contact, and technical risk rather than as a deterministic prediction.",
+};

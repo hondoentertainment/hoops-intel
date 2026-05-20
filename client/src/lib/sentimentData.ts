@@ -334,4 +334,11 @@ export const sentimentData: SentimentData = {
       score: 31,
       mentions: 11900,
       topTake: "Mitchell is showing up at MSG 48 hours after a 40-minute Game 7 and everyone is sleeping on the fact that he's been one of the three best scorers in the entire playoffs. He doesn't need his legs. He runs on pure will and spite.",
-      narrativeArc: "Mitchell is the ultimate split-decision player of the day — simultaneously celebrated for his Game 7 resilience and doubted because of the rest gap. The 'he's going to drop 40 at MSG out of pure competitive fury' crowd is fighting the 'his legs are dead and Brunson is at home after eight days off' crowd in real time. His playoff scoring ceiling makes him impossible to dismiss, which is why the 48-hour rest narrative feels
+      narrativeArc: "Mitchell is the ultimate split-decision player of the day: celebrated for his Game 7 resilience and doubted because of the rest gap. His playoff scoring ceiling makes him impossible to dismiss, but the 48-hour turnaround keeps the skepticism loud.",
+    },
+  ],
+  hottestTake:
+    "Wembanyama's 41/24 double-overtime road masterpiece has become the defining social conversation of the 2026 postseason.",
+  coldestTake:
+    "Cleveland's rest disadvantage at MSG is real, but Donovan Mitchell's shot-making ceiling keeps the opener from becoming a clean Knicks coronation narrative.",
+};
