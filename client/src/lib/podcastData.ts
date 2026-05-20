@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 19, 2026
+// Last updated: May 21, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,157 +22,115 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 19, 2026",
+  date: "May 21, 2026",
 
-  episodeTitle:
-    "41 and 24: Wembanyama Rewrites History in Double OT — Plus ECF Game 1 Preview at the Garden",
+  episodeTitle: "Brunson 38, History Made: The Greatest Conference Finals Comeback Ever — Plus WCF Game 2 Preview",
 
   coldOpen:
-    "Forty-one points. Twenty-four rebounds. Forty-nine minutes. Double overtime. On the road. Against the defending champions. Without his co-star. Victor Wembanyama is twenty-one years old — and last night in Oklahoma City, he produced the most dominant single-game playoff performance of 2026. The Thunder's perfect postseason run? Gone. The Western Conference Finals? San Antonio leads one-nothing. And tonight — tonight — the Eastern Conference Finals ignite at Madison Square Garden. Eight days of rest for New York. Forty-eight hours of survival for Cleveland. Jalen Brunson versus Donovan Mitchell. MSG is going to be deafening. Buckle in. This is Hoops Intel. Let's get into it.",
-
-  socialClip:
-    "BEST CLIP FOR SOCIAL — 'The 41/24 Reality Check' (90 seconds): Open with the final buzzer graphic from SAS 122, OKC 115 in double OT, then cut to the host reading Wembanyama's full stat line cold — no music, no buildup, just the numbers in silence. Follow immediately with the line: 'He did that without De'Aaron Fox. On the road. Against a team that had won eight straight playoff games. At twenty-one years old.' Pause. Then: 'Tell me who stops this man in June.' Hard cut to the Hoops Intel logo. Post to all platforms with caption: 'The stat line that broke the internet — and the case for the most dominant playoff performance of 2026.' Tag Wembanyama, SAS, and use #WCF #NBAPlayoffs #HoopsIntel.",
+    "Twenty-two points down. Third quarter. Madison Square Garden going quiet. Cleveland looking every bit like the team that just demolished Detroit on the road to get here. And then — Jalen Brunson decided he wasn't done. Thirty-eight points. Forty-six minutes. A 44-11 run that nobody who was watching will ever forget. The Knicks just authored the largest comeback in Conference Finals history, and tonight, the Western Conference Finals are back on the floor in Oklahoma City. This is Hoops Intel. Let's get into it.",
 
   rundown: [
     {
-      topic:
-        "Wembanyama's 41/24: The Greatest Conference Finals Game 1 of the Modern Era",
+      topic: "Jalen Brunson's 38-Point Masterpiece and the Greatest Conference Finals Comeback Ever",
       segment: "opener",
+      duration: "8 min",
+      keyStats: [
+        "Brunson: 38 PTS, 15-29 FG, 46 MIN — scored 24 in Q4 and OT combined",
+        "Knicks trailed by 22 points in Q3 — largest deficit overcome in Conference Finals history",
+        "New York's closing run: 44-11 from the moment they began their surge",
+        "Cleveland scored just 3 points in the entire overtime period, making 1 field goal",
+        "Final score: NYK 115, CLE 104 (OT) — Knicks lead ECF 1-0",
+        "Brunson's Playoff MVP odds shortened overnight to +350 after the performance"
+      ],
+      debateAngle:
+        "Is Jalen Brunson's ECF Game 1 the single greatest individual clutch performance in Knicks playoff history — and does this one night make him the frontrunner for Playoff MVP over Wembanyama, whose 41/24 came in a win but without this level of stakes and drama?",
+      suggestedQuote:
+        "There is a version of Tuesday night where the Knicks are down 0-1, the Garden is deflated, and Cleveland is talking about stealing home court. Instead, Brunson played 46 minutes, scored 38, and turned a quiet arena into the loudest building in basketball. That's not just a great playoff game — that is a defining moment for a franchise.",
+      relevantPlayers: ["Jalen Brunson", "Donovan Mitchell", "OG Anunoby", "Mikal Bridges", "Karl-Anthony Towns"]
+    },
+    {
+      topic: "Cleveland's Blueprint Collapse: How the Cavaliers Blew 22 and What It Means for the Series",
+      segment: "deep-dive",
       duration: "9 min",
       keyStats: [
-        "41 PTS · 24 REB · 3 AST · +16 in 49 minutes of double-overtime play",
-        "Most points and most rebounds in any single 2026 playoff game — both records set on the same night",
-        "Wembanyama played without De'Aaron Fox, who sat with an ankle sprain",
-        "OKC entered the game 8-0 in the 2026 playoffs — their unbeaten run ended here",
-        "San Antonio won 122-115 in 2OT on the road — controlled both overtime periods",
-        "Wembanyama's Finals odds shifted from +350 to +180 overnight after this performance",
+        "James Harden: 3 assists in 42 minutes — entire Cleveland offensive system built on his playmaking",
+        "Donovan Mitchell: 29 PTS but shot 4-of-11 from three and finished minus-13",
+        "Evan Mobley: 15 PTS, 14 REB — faded in Q4 as the Knicks' run accelerated",
+        "Cleveland led 83-69 heading into the fourth quarter",
+        "OG Anunoby returned from injury: 13 PTS, 5 REB, plus-15 in 34 minutes",
+        "Cavaliers have never trailed 0-2 in a Conference Finals and advanced"
       ],
       debateAngle:
-        "Is this the single greatest Conference Finals Game 1 performance in the modern era — and does it already make Wembanyama the Playoff MVP frontrunner, or is one game too small a sample to knock SGA off the throne?",
+        "The alarming number from Cleveland's meltdown isn't the 22-point lead they gave back — it's Harden's 3 assists in 42 minutes. Is Harden's role as floor general simply unsolvable against New York's switching defense with a healthy Anunoby, and if so, does Cleveland have any realistic path to winning this series?",
       suggestedQuote:
-        "Look, we can debate the greatest playoff performances of all time all we want — but in the context of 2026, in the context of this postseason, what Wembanyama did last night is untouchable. Forty-one and twenty-four on the road in double overtime without your co-star against the defending champions. That's not a stat line. That's a statement. The kind that echoes for twenty years.",
-      relevantPlayers: [
-        "Victor Wembanyama",
-        "De'Aaron Fox",
-        "Shai Gilgeous-Alexander",
-      ],
+        "Harden controlling tempo was the engine that drove Cleveland through the Detroit series. Three assists in forty-two minutes tells you everything about how New York suffocated that engine in Game 1. OG Anunoby playing thirty-four minutes is a cheat code for Tom Thibodeau — and Cleveland has no answer for it right now.",
+      relevantPlayers: ["James Harden", "Donovan Mitchell", "Evan Mobley", "OG Anunoby", "Jalen Brunson", "Landry Shamet"]
     },
     {
-      topic:
-        "San Antonio's Depth Exposed OKC's Ceiling — Harper's Record Steals, Castle's Quiet Masterpiece, and What It All Means for the Series",
-      segment: "deep-dive",
-      duration: "10 min",
-      keyStats: [
-        "Dylan Harper: 24 PTS · 11 REB · 6 AST · 7 STL — tied the NBA playoff single-game steals record",
-        "Stephon Castle: 17 PTS · 6 REB · 11 AST in 49 minutes — ran the offense with Fox-level composure",
-        "SGA shot 8-of-24 from the field, finished minus-15 — worst efficiency game of his 2026 postseason",
-        "Alex Caruso exploded for 31 points off the bench — most by any OKC reserve in the 2026 playoffs",
-        "Jalen Williams remains out with a hamstring strain — no return timeline for the WCF",
-        "OKC shot just 41% inside the arc with Wembanyama altering shots from the drop-back",
-      ],
-      debateAngle:
-        "The real story buried under Wembanyama's headline is this: San Antonio beat a nearly full-strength OKC roster with three players — a second-year guard, a third-year point guard, and a twenty-one-year-old alien — while their best player sat in a suit. Is this the moment we realize the Spurs' depth makes them more dangerous than OKC's two-star system, especially with Williams already out?",
-      suggestedQuote:
-        "Dylan Harper posting 24, 11, 6, and seven steals in a Conference Finals road win is one of the most extraordinary second-year performances in playoff history. But here's the part nobody is talking about: he didn't fill in for De'Aaron Fox. He made you forget Fox existed. And Stephon Castle ran a half-court offense against OKC's elite defense for forty-nine minutes without panicking once. The Spurs aren't a one-man show. They're a machine — and Oklahoma City is just now realizing how well-built that machine is.",
-      relevantPlayers: [
-        "Dylan Harper",
-        "Stephon Castle",
-        "Alex Caruso",
-        "Jalen Williams",
-        "Shai Gilgeous-Alexander",
-        "Victor Wembanyama",
-      ],
-    },
-    {
-      topic:
-        "Hot Take: SGA Is Not the Playoff MVP Frontrunner Anymore — and OKC Is in Real Trouble Without Williams",
+      topic: "Hot Take: Road Teams Are Running Both Conference Finals — Are We Watching the Biggest Upset Double of the Decade?",
       segment: "hot-take",
-      duration: "7 min",
+      duration: "6 min",
       keyStats: [
-        "SGA's Playoff MVP odds shifted from -150 to +150 after Game 1 — Wembanyama now at +180",
-        "SGA: 8-of-24 FG, minus-15 — the worst shooting game by a Playoff MVP frontrunner in a Conference Finals opener this decade",
-        "OKC is still favored at -130 in the series despite losing Game 1 at home",
-        "Jalen Williams has missed every playoff game since May 3 with no return timeline",
-        "Caruso's 31-point explosion is almost certainly unsustainable over a seven-game series",
-        "Wembanyama has averaged 25.7 PPG, 11.9 RPG, and 3.1 BPG across 12 playoff games",
+        "Road teams are 2-0 in the 2026 Conference Finals — last time that happened was 2018",
+        "Both of those 2018 series went seven games",
+        "OKC (64-18, best record in the West) lost at home in double overtime to San Antonio",
+        "NYK (53-29, third seed) leads the ECF 1-0 after winning at home as the home team — wait, Brunson's team IS at home — Cleveland (fourth seed) blew Game 1 on the road at MSG",
+        "No defending champion has ever rallied from 0-2 in the Conference Finals",
+        "SGA shot 8-of-24 in WCF Game 1; Harden posted 3 assists in 42 minutes in ECF Game 1 — both top seeds' stars were neutralized"
       ],
       debateAngle:
-        "The hot take that everyone is dancing around but won't say directly: SGA is no longer the favorite to win this series, let alone the championship. One brutal shooting night doesn't erase eight great games — we all know that. But the structural problem for OKC is Jalen Williams. Caruso at thirty-one points is a miracle, not a plan. If Williams doesn't come back, can SGA carry a depleted Thunder roster against the most dominant player in the 2026 postseason?",
+        "Both number-one seeds in their respective conferences — OKC and Cleveland — lost Game 1 at or away from home in the Conference Finals. The two road teams, San Antonio and New York, control momentum in their series. Hot take: we are watching San Antonio and New York advance to the Finals, and the OKC and Cleveland 'favorites' narratives are already crumbling after one game each.",
       suggestedQuote:
-        "I'll say it plainly: the MVP race is over if Wembanyama's Spurs win the Finals. You can't watch what happened last night and hand it to anyone else. SGA is great. He's generational. But Wembanyama just did something on the road, in double overtime, without his second-best player, against the defending champions, at twenty-one years old — that no one in the conversation can match right now. The burden of proof has shifted entirely onto Oklahoma City.",
-      relevantPlayers: [
-        "Shai Gilgeous-Alexander",
-        "Victor Wembanyama",
-        "Jalen Williams",
-        "Alex Caruso",
-      ],
+        "I'll say it plainly — if you told me before these playoffs that both Conference Finals home teams would lose Game 1, I'd have laughed. Now I'm sitting here looking at SGA going eight-for-twenty-four and Harden putting up three assists and thinking: do OKC and Cleveland actually have a problem? Because Wembanyama and Brunson are playing at a completely different level right now.",
+      relevantPlayers: ["Victor Wembanyama", "Jalen Brunson", "Shai Gilgeous-Alexander", "James Harden", "Dylan Harper", "Stephon Castle"]
     },
     {
-      topic:
-        "Rapid Fire: ECF Game 1 Preview, Injury Updates, Fantasy Alerts, and Tonight's Must-Knows",
+      topic: "Rapid Fire: Shamet's Plus-25, Fox's Ankle, Williams Still Out, Caruso's Five Threes, and Tonight's WCF Game 2 Keys",
       segment: "rapid-fire",
       duration: "5 min",
       keyStats: [
-        "CLE @ NYK — 8:00 PM ET on ESPN, ECF Game 1 — series tied 0-0",
-        "New York has been off since May 11 — eight full days of rest after sweeping Philadelphia",
-        "Cleveland won Game 7 vs Detroit by 31 on the road just 48 hours ago — minimum recovery time",
-        "OG Anunoby is trending toward availability for New York tonight — practiced fully",
-        "Spread: NYK -5.5 · Over/Under: 214.5 — Knicks are comfortable home favorites",
-        "De'Aaron Fox's ankle sprain status for WCF Game 2 on Wednesday is TBD — evaluation Tuesday",
+        "Landry Shamet: plus-25 in just 17 bench minutes — game-best plus-minus in ECF Game 1",
+        "De'Aaron Fox upgraded to Questionable for WCF Game 2 tonight after Tuesday shootaround — game-time decision",
+        "Jalen Williams (OKC): still out indefinitely with hamstring strain, no return timeline for WCF",
+        "Alex Caruso: 5 threes, 31 PTS off the bench — most threes by any player in the 2026 Conference Finals so far",
+        "Dylan Harper WCF Game 1 line: 24 PTS, 11 REB, 6 AST, 7 STL — one of the defining rookie postseason games in NBA history",
+        "OKC spread tonight: -4.5, over/under 222.5 — tip-off 8:30 PM ET on NBC and Peacock"
       ],
       debateAngle:
-        "Rest versus momentum — the oldest debate in playoff basketball. History favors the rested team in this exact spot. But Cleveland just won a Game 7 by thirty-one points on the road forty-eight hours ago. Do the Cavaliers ride that wave straight into Madison Square Garden, or do their legs give out in the fourth quarter against a fresh, hungry Brunson?",
+        "Rapid fire debate: Is Landry Shamet's plus-25 in 17 minutes the most underrated contribution of the entire 2026 playoffs so far? And does De'Aaron Fox returning for WCF Game 2 tonight actually flip the entire series dynamic against OKC — or is this Spurs team so deep it almost doesn't matter at this point?",
       suggestedQuote:
-        "Real quick hits before tonight — OG Anunoby is trending toward playing, which is massive for New York's switching defense against Mitchell. Fox is a true question mark for Wednesday, which means Dylan Harper and Castle need to be ready to run it back. And on the fantasy side: if you don't have Wembanyama locked in your lineup for Game 2, that's on you. The man just posted forty-one and twenty-four. Sit him at your own risk.",
-      relevantPlayers: [
-        "Jalen Brunson",
-        "Donovan Mitchell",
-        "OG Anunoby",
-        "Evan Mobley",
-        "De'Aaron Fox",
-        "James Harden",
-        "Karl-Anthony Towns",
-      ],
+        "Nobody is talking about Landry Shamet right now and they should be. Plus twenty-five in seventeen minutes. The Knicks didn't just win on Brunson heroics — Thibodeau found lineup combinations that Cleveland simply couldn't solve, and Shamet was the x-factor nobody saw coming. That's how you win playoff series — in the margins.",
+      relevantPlayers: ["Landry Shamet", "De'Aaron Fox", "Jalen Williams", "Alex Caruso", "Dylan Harper", "Stephon Castle"]
     },
     {
-      topic:
-        "Looking Ahead: Four Teams, Two Series, One Trophy — What We're Watching Before June 3",
+      topic: "Looking Ahead: SGA Must Respond Tonight — WCF Game 2 Preview and the Road to June 3",
       segment: "closer",
-      duration: "4 min",
+      duration: "7 min",
       keyStats: [
-        "NBA Finals begin June 3 — four teams remain: SAS, OKC, NYK, CLE",
-        "WCF Game 2: SAS @ OKC — Wednesday night, Paycom Center",
-        "ECF Game 1 tonight: CLE @ NYK, 8 PM ET — ESPN",
-        "Prediction: NYK 108, CLE 102 — Brunson's rest edge and MSG energy decide the opener",
-        "SGA has never lost back-to-back playoff games — Game 2 bounce-back is the WCF's next great storyline",
-        "This Day in NBA History: May 19, 2002 — Shaq's 36/12 in Game 7 vs Sacramento, now echoed by Wembanyama's 41/24",
+        "SGA's admission postgame: 'I have to be better' — shot 8-of-24 in WCF Game 1 loss",
+        "SGA has never lost back-to-back playoff games in his career",
+        "OKC prediction: 119-113 win in Game 2 — SGA projected for 35+ at home with crowd behind him",
+        "NBA Finals begin June 3 on ABC — final four teams: SAS, OKC, NYK, CLE",
+        "Wembanyama's playoff averages: 25.7 PPG, 11.9 RPG, 3.1 BPG — Playoff MVP frontrunner at 98.8 index score",
+        "ECF Game 2: Thursday at MSG — Cleveland has never been down 0-2 in a Conference Finals and advanced"
       ],
       debateAngle:
-        "The biggest question heading into the rest of this week isn't whether Wembanyama can sustain this level — it's whether anyone left in these two series can match it. Mitchell against Brunson tonight is a legitimate duel for Eastern supremacy. SGA's bounce-back game at home Wednesday is the most anticipated performance of the WCF. And lurking beneath all of it: what happens when De'Aaron Fox returns to a Spurs team that just won without him?",
+        "Tonight is the most important game of Shai Gilgeous-Alexander's career. A loss puts OKC down 0-2 against a Spurs team that may have Fox back and already proved it can win at Paycom Center. Does SGA have the kind of bounce-back performance in him that erases Game 1 and resets the series — or has Wembanyama genuinely exposed a length problem that OKC cannot solve regardless of how well SGA plays?",
       suggestedQuote:
-        "Here's where we land tonight. Wembanyama just authored the most dominant Conference Finals Game 1 of the modern era. The East is about to answer. By midnight we'll know if Cleveland's momentum is real or if New York's rest is the great equalizer at Madison Square Garden. Either way — this is the best four teams left in the playoffs that we've seen in years. The Finals are two weeks away. Enjoy every single minute of it. We'll be back tomorrow with the ECF Game 1 reaction you need. See you then.",
-      relevantPlayers: [
-        "Victor Wembanyama",
-        "Shai Gilgeous-Alexander",
-        "Jalen Brunson",
-        "Donovan Mitchell",
-        "De'Aaron Fox",
-        "Evan Mobley",
-      ],
-    },
+        "SGA has never dropped back-to-back playoff games. That streak gets tested tonight at Paycom Center, and it's the most compelling individual storyline in basketball right now. He's the defending champion, he's the best player on the best regular-season team in the West, and he was outplayed in Game 1. How he responds in the next forty-eight minutes tells us everything about whether OKC is actually a championship team — or just a great regular-season one.",
+      relevantPlayers: ["Shai Gilgeous-Alexander", "Victor Wembanyama", "De'Aaron Fox", "Dylan Harper", "Stephon Castle", "Alex Caruso"]
+    }
   ],
+
+  socialClip:
+    "CLIP DESCRIPTION — 'The Moment the Garden Erupted': Isolate Jalen Brunson's final 90 seconds of regulation and full overtime sequence from ECF Game 1. Open on the score graphic showing NYK down 22 in Q3, then cut directly to Brunson's go-ahead bucket in OT with the Garden crowd at peak volume. Overlay the stat crawl: '38 PTS · 46 MIN · 22 points erased · Largest comeback in Conference Finals history.' Close on Brunson's calm postgame face and the words: 'He just rewrote history.' Ideal for Instagram Reels, TikTok, and Twitter/X clip format — 60-90 seconds, vertical crop for mobile. This is the most shareable individual moment of the 2026 playoff run to date.",
 
   tweetThread: [
-    "🧵 HOOPS INTEL DAILY — May 19, 2026 // Today's episode in five tweets. Wembanyama just rewrote history. The East ignites tonight. Let's go. 👇 #NBAPlayoffs #HoopsIntel",
-
-    "1/ Victor Wembanyama: 41 PTS · 24 REB · 3 AST · +16 in 49 MIN of double overtime. On the road. Without De'Aaron Fox. Against the defending champions. At 21 years old. The most dominant Conference Finals Game 1 performance of the modern era. San Antonio leads the WCF 1-0. 🕷️ #WCF",
-
-    "2/ The Spurs' supporting cast was just as stunning. Dylan Harper: 24/11/6 + SEVEN STEALS — tying the NBA playoff single-game record. Stephon Castle: 17/6/11 in 49 minutes running the offense with Fox-level composure. OKC's depth problem is real. Caruso's 31 won't happen again. 📊 #NBAPlayoffs",
-
-    "3/ SGA finished 8-of-24 with a minus-15 — his worst game of the 2026 postseason. His Finals odds flipped from -150 to +150. Wembanyama is now the Playoff MVP frontrunner at +180. SGA has NEVER lost back-to-back playoff games. Wednesday at Paycom Center is must-watch television. ⚡ #WCF #OKC",
-
-    "4/ TONIGHT — ECF Game 1. CLE @ NYK. 8 PM ET. ESPN. 🏟️ Eight days of rest for New York. Forty-eight hours for Cleveland. OG Anunoby trending toward available. Brunson is rested, at home, and hungry. Mitchell is battle-tested and dangerous. MSG is going to be LOUD. Our prediction: NYK 108, CLE 102. 🗽",
-
-    "5/ Four teams left. Finals start June 3. The West belongs to a 21-year-old who just posted 41 and 24 in double overtime. The East determines its champion starting tonight. 🏆 Full breakdown on today's episode of Hoops Intel — link in bio. Subscribe, share, and we'll see you tomorrow. #HoopsIntel #NBAPlayoffs",
-  ],
+    "🎙️ NEW EPISODE — Hoops Intel Vol. 2026 · No. 151 | Brunson 38. History made. The Knicks erased 22. Cleveland scored THREE points in overtime. And tonight, SGA has to answer at Paycom Center. Full breakdown 🧵👇",
+    "1/ Jalen Brunson scored 38 in 46 minutes, orchestrated a 44-11 run from 22 down, and dragged the Knicks past Cleveland 115-104 in overtime. It is the largest comeback in Conference Finals history. He scored 24 points in the fourth quarter and overtime alone. +350 Playoff MVP odds. He's earned every bit of it.",
+    "2/ The most haunting number from Cleveland's collapse: James Harden's 3 assists in 42 minutes. The entire Cavaliers offensive system ran through his playmaking. Against New York's switching defense with OG Anunoby healthy — he was neutralized. If Harden can't function as a floor general, Cleveland cannot reach the Finals. Game 2 Thursday at MSG is a series-defining moment.",
+    "3/ OG Anunoby played his first game in 12 days and was a +15 in 34 minutes. Landry Shamet posted a game-best +25 in just 17 bench minutes. This Knicks comeback wasn't solely Brunson heroics — Thibodeau found lineup combinations Cleveland couldn't solve. Playoff series are won in the margins. Right now, New York owns them.",
+    "4/ Tonight: SAS @ OKC, 8:30 PM ET on NBC. De'Aaron Fox is Questionable after shootaround. SGA shot 8-of-24 in Game 1 and said 'I have to be better.' He's never dropped back-to-back playoff games. That streak gets tested tonight. Our prediction: OKC 119, SAS 113 — SGA erupts for 35+ and forces the series back to San Antonio tied 1-1.",
+    "5/ Both Conference Finals home teams lost Game 1. Road teams are 2-0. Last time that happened was 2018 — both series went seven games. Wembanyama is at 98.8 on our Pulse Index. Brunson is at 97.4 and rising. The NBA Finals start June 3. We may be watching the two best stories in playoff basketball happening simultaneously. Don't sleep on a single game. 🏀 | hoopsintel.net"
+  ]
 };

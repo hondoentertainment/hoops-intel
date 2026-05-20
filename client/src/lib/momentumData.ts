@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 19, 2026
+// Last updated: May 20, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,116 +33,116 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 19, 2026",
-  gameOfTheNight: "SAS-OKC-20260518",
+  date: "May 20, 2026",
+  gameOfTheNight: "CLE-NYK-20260519",
   topClutchPerformer: {
-    player: "Victor Wembanyama",
-    team: "San Antonio Spurs",
-    clutchRating: 99,
+    player: "Jalen Brunson",
+    team: "NYK",
+    clutchRating: 98,
     description:
-      "Wembanyama was the axis around which both overtime periods rotated — scoring 11 of San Antonio's 17 OT points, grabbing 6 of his 24 rebounds in the extra frames, and defending SGA into a 1-of-6 shooting night in the fourth quarter and OT combined. In 49 suffocating minutes, he never flinched.",
+      "Brunson authored one of the great clutch performances in Conference Finals history — 24 points in the fourth quarter and overtime alone, including back-to-back pull-up jumpers to ignite the comeback and a steal-and-layup that iced Cleveland for good in OT. With MSG shaking and the Knicks staring down a 22-point hole, he refused to let the deficit become a verdict.",
   },
   games: [
     {
-      gameId: "SAS-OKC-20260518",
-      teams: { home: "OKC", away: "SAS" },
-      finalScore: { home: 115, away: 122 },
+      gameId: "CLE-NYK-20260519",
+      teams: { home: "NYK", away: "CLE" },
+      finalScore: { home: 115, away: 104 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "3:41",
+          quarter: "Q2",
+          timestamp: "5:14",
           description:
-            "OKC stormed out with a 14-4 opening run, SGA and Jalen Williams attacking a Spurs defense still finding its footing without De'Aaron Fox. The Paycom Center crowd was already thundering at full roar.",
-          runScore: "14-4 OKC",
-          momentum: "home",
-          keyPlayer: "Shai Gilgeous-Alexander",
+            "Cleveland runs away from a competitive first quarter, stringing together a 17-4 burst fueled by transition buckets and three consecutive Knicks turnovers. The Cavaliers' defense smothered every Knicks ball-screen and the Garden crowd went eerily quiet. CLE led 51-32 at the peak of the run, setting the stage for what seemed like an impending blowout.",
+          runScore: "17-4 CLE",
+          momentum: "away",
+          keyPlayer: "Darius Garland",
           impact: "significant",
         },
         {
-          quarter: "Q2",
-          timestamp: "6:18",
-          description:
-            "Wembanyama single-handedly erased the deficit with a 16-5 Spurs surge — two rim-rattling dunks, a pull-up three over the outstretched hand of Chet Holmgren, and two consecutive blocked shots that ignited the San Antonio bench. The road crowd found its voice.",
-          runScore: "16-5 SAS",
-          momentum: "away",
-          keyPlayer: "Victor Wembanyama",
-          impact: "game-changing",
-        },
-        {
           quarter: "Q3",
-          timestamp: "4:55",
+          timestamp: "8:02",
           description:
-            "Dylan Harper's historic steal-and-score binge — three consecutive takeaways converted into fastbreak points — swung momentum violently toward San Antonio. OKC's halfcourt offense went stagnant for a five-minute stretch, mustering just 4 points as the Spurs pushed the lead to 11.",
-          runScore: "15-4 SAS",
+            "Cleveland extended its lead to 22 points on a Mobley tip-in to open the third, reaching the game's high-water mark at 75-53. The Cavaliers were operating at peak efficiency, converting 58% from the field and limiting New York to contested mid-range looks. MSG was half-empty in spirit if not in seats.",
+          runScore: "8-2 CLE",
           momentum: "away",
-          keyPlayer: "Dylan Harper",
+          keyPlayer: "Evan Mobley",
           impact: "game-changing",
         },
         {
           quarter: "Q4",
-          timestamp: "7:02",
+          timestamp: "9:31",
           description:
-            "Alex Caruso came off the bench and detonated — three consecutive three-pointers in under two minutes, slicing an 11-point Spurs lead to 2 and sending the Paycom Center into a frenzy. Caruso's 18-point fourth quarter alone felt like the performance of a lifetime.",
-          runScore: "13-4 OKC",
+            "Brunson erupted. Three consecutive scoring possessions — a step-back three, a floater, and a pull-up off the pick-and-roll — ignited the Knicks and reignited 19,812 fans who had never left. OG Anunoby's return gave New York a second perimeter weapon Cleveland had not game-planned for, and suddenly a 22-point lead looked fragile. The Knicks went on a 20-6 run to cut the deficit to single digits for the first time since the first quarter.",
+          runScore: "20-6 NYK",
           momentum: "home",
-          keyPlayer: "Alex Caruso",
+          keyPlayer: "Jalen Brunson",
           impact: "game-changing",
         },
         {
-          quarter: "OT2",
-          timestamp: "1:28",
+          quarter: "Q4",
+          timestamp: "2:17",
           description:
-            "Wembanyama dropped back-to-back buckets in the final 90 seconds of the second overtime — a mid-post fadeaway over Holmgren and a thunderous put-back off his own miss — to seal the road victory and end OKC's unblemished postseason record.",
-          runScore: "7-2 SAS",
-          momentum: "away",
-          keyPlayer: "Victor Wembanyama",
+            "Anunoby converted back-to-back defensive possessions into transition points — a chase-down strip followed by a corner three off Brunson's drive-and-kick — to tie the game at 94. Cleveland called timeout but the crowd noise made communication impossible. The Cavaliers had now scored just 3 field goals in the final seven minutes of regulation.",
+          runScore: "12-3 NYK",
+          momentum: "home",
+          keyPlayer: "OG Anunoby",
+          impact: "game-changing",
+        },
+        {
+          quarter: "OT",
+          timestamp: "3:00",
+          description:
+            "New York outscored Cleveland 21-3 in overtime, completing the largest comeback in Conference Finals history. Brunson was unstoppable — three trips to the line, a mid-range dagger with 90 seconds left, and a steal that sealed it. Cleveland appeared emotionally spent after the late-game collapse and could not generate a single clean look against the Knicks' suddenly suffocating defense.",
+          runScore: "21-3 NYK",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
           impact: "game-changing",
         },
       ],
       clutchPlays: [
         {
-          player: "Victor Wembanyama",
-          team: "San Antonio Spurs",
+          player: "Jalen Brunson",
+          team: "NYK",
           description:
-            "With 34.1 seconds left in regulation and the game tied at 105, Wembanyama caught a lob at the short corner, pump-faked Holmgren into the air, and drew the foul — converting both free throws to give San Antonio a lead that OKC answered at the buzzer to force first overtime.",
-          timeRemaining: "0:34 — 4Q",
-          winProbabilityShift: 18,
+            "Step-back pull-up jumper from the elbow with the shot clock expiring, cutting the Cleveland lead to 7 with 4:22 left in regulation. The shot silenced every remaining doubt in the building and forced Cleveland into a desperate timeout.",
+          timeRemaining: "4:22 Q4",
+          winProbabilityShift: 14,
         },
         {
-          player: "Alex Caruso",
-          team: "Oklahoma City Thunder",
+          player: "OG Anunoby",
+          team: "NYK",
           description:
-            "Caruso drilled a corner three off a SGA drive-and-kick with 1:12 left in the first overtime to tie the game at 112 — his fifth three of the night and his most consequential, forcing a second extra period and keeping OKC's season alive.",
-          timeRemaining: "1:12 — OT1",
+            "Corner three off a Brunson drive-and-kick tied the game at 94 with 2:05 remaining in regulation. Anunoby's first signature play since returning from injury, and the shot that confirmed MSG's belief that the impossible was happening.",
+          timeRemaining: "2:05 Q4",
           winProbabilityShift: 22,
         },
         {
-          player: "Dylan Harper",
-          team: "San Antonio Spurs",
+          player: "Jalen Brunson",
+          team: "NYK",
           description:
-            "Harper picked SGA's pocket at halfcourt with 3:04 left in the second overtime — his seventh steal of the game, tying the playoff record — and finished the and-one layup through contact to push the Spurs' lead to 5 and effectively end the Thunder's comeback hopes.",
-          timeRemaining: "3:04 — OT2",
+            "Mid-range baseline jumper over a closing Mobley with 1:31 left in OT pushed the Knicks lead to 9 and effectively ended Cleveland's night. Brunson had scored 8 straight New York points in overtime at that point.",
+          timeRemaining: "1:31 OT",
           winProbabilityShift: 31,
         },
         {
-          player: "Stephon Castle",
-          team: "San Antonio Spurs",
+          player: "Jalen Brunson",
+          team: "NYK",
           description:
-            "Castle calmly threaded a no-look bounce pass through three OKC defenders to a cutting Wembanyama for a dunk with 2:01 left in OT2, extending the lead to 7 and demonstrating the poise of a veteran in just his second playoff run.",
-          timeRemaining: "2:01 — OT2",
-          winProbabilityShift: 16,
+            "Reach-in steal on a Garland isolation with 48 seconds left in OT, converting the takeaway into two free throws that made it an 11-point game and triggered Cleveland's bench to begin accepting the outcome.",
+          timeRemaining: "0:48 OT",
+          winProbabilityShift: 18,
         },
         {
-          player: "Shai Gilgeous-Alexander",
-          team: "Oklahoma City Thunder",
+          player: "Darius Garland",
+          team: "CLE",
           description:
-            "SGA drove baseline and floated an impossible left-handed scoop over Wembanyama's 8-foot wingspan with 4:21 left in OT1 to pull OKC within one — a moment of elite improvisation that briefly suggested the Thunder would survive the night.",
-          timeRemaining: "4:21 — OT1",
-          winProbabilityShift: -14,
+            "Garland's missed pull-up three with Cleveland trailing by 8 and 1:10 remaining in OT — after a strong drive that could have been a foul drawing attempt — proved to be Cleveland's last real chance to mount a counter-run. The shot came up short and the rebound went to New York.",
+          timeRemaining: "1:10 OT",
+          winProbabilityShift: -19,
         },
       ],
       narrative:
-        "This was not a basketball game — it was a referendum on generational greatness played out over 49 harrowing minutes in the loudest arena in the Western Conference. San Antonio arrived in Oklahoma City without their second-best player, faced the league's most complete team, fell behind by double digits in the first quarter, and still walked out of Paycom Center with the win because one 22-year-old alien refused to let them lose. Wembanyama's 41-24 line is the kind of stat that stops conversations cold, but the number that matters most is the one at the final buzzer: 122-115, Spurs. OKC's aura of postseason invincibility is gone. The WCF has a new story, and its author is 7-foot-4 and just getting started.",
+        "This was not a game — it was a resurrection. Cleveland came to Madison Square Garden and built a 22-point lead that felt, by every reasonable measure, insurmountable in a Conference Finals setting. Then Jalen Brunson decided that reasonable measures did not apply to him. His fourth-quarter eruption, amplified by OG Anunoby's emotionally charged return from injury, triggered a 44-11 run that swallowed the Cavaliers whole and left them scoreless for the final three minutes of regulation and most of overtime. The Garden did not just celebrate a win — it witnessed a moment, the kind that gets replayed at the start of championship documentaries. Cleveland now faces the most dangerous opponent in sports: a city that was almost broken and now believes it cannot be.",
     },
   ],
 };
