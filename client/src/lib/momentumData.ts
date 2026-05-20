@@ -37,10 +37,10 @@ export const momentumData: MomentumData = {
   gameOfTheNight: "CLE-NYK-20260519",
   topClutchPerformer: {
     player: "Jalen Brunson",
-    team: "NYK",
+    team: "New York Knicks",
     clutchRating: 98,
     description:
-      "Brunson authored one of the great clutch performances in Conference Finals history — 24 points in the fourth quarter and overtime alone, including back-to-back pull-up jumpers to ignite the comeback and a steal-and-layup that iced Cleveland for good in OT. With MSG shaking and the Knicks staring down a 22-point hole, he refused to let the deficit become a verdict.",
+      "Brunson was supernatural when it mattered most — scoring 24 of his 38 points in the fourth quarter and overtime alone, personally orchestrating a 44-11 run that erased a 22-point deficit and rewrote Conference Finals history. His pull-up mid-range jumpers, back-to-back drives through Cleveland's collapsing defense, and ice-blooded free-throw shooting in OT were the acts of a player fully immune to pressure.",
   },
   games: [
     {
@@ -49,21 +49,21 @@ export const momentumData: MomentumData = {
       finalScore: { home: 115, away: 104 },
       swings: [
         {
-          quarter: "Q2",
-          timestamp: "5:14",
+          quarter: "Q1",
+          timestamp: "4:12",
           description:
-            "Cleveland runs away from a competitive first quarter, stringing together a 17-4 burst fueled by transition buckets and three consecutive Knicks turnovers. The Cavaliers' defense smothered every Knicks ball-screen and the Garden crowd went eerily quiet. CLE led 51-32 at the peak of the run, setting the stage for what seemed like an impending blowout.",
-          runScore: "17-4 CLE",
+            "Cleveland raced out of the gate with relentless transition offense and suffocating half-court defense, building an early 18-8 lead and silencing a typically raucous MSG crowd before Brunson could find any rhythm.",
+          runScore: "18-8 CLE",
           momentum: "away",
           keyPlayer: "Darius Garland",
           impact: "significant",
         },
         {
-          quarter: "Q3",
-          timestamp: "8:02",
+          quarter: "Q2",
+          timestamp: "2:47",
           description:
-            "Cleveland extended its lead to 22 points on a Mobley tip-in to open the third, reaching the game's high-water mark at 75-53. The Cavaliers were operating at peak efficiency, converting 58% from the field and limiting New York to contested mid-range looks. MSG was half-empty in spirit if not in seats.",
-          runScore: "8-2 CLE",
+            "The Cavaliers extended their dominance through a second quarter that was essentially a clinic — ball movement, offensive rebounding, and an 11-2 closing run sent Cleveland into the locker room with a commanding 22-point halftime cushion and New York looking completely overwhelmed.",
+          runScore: "61-39 CLE",
           momentum: "away",
           keyPlayer: "Evan Mobley",
           impact: "game-changing",
@@ -72,28 +72,28 @@ export const momentumData: MomentumData = {
           quarter: "Q4",
           timestamp: "9:31",
           description:
-            "Brunson erupted. Three consecutive scoring possessions — a step-back three, a floater, and a pull-up off the pick-and-roll — ignited the Knicks and reignited 19,812 fans who had never left. OG Anunoby's return gave New York a second perimeter weapon Cleveland had not game-planned for, and suddenly a 22-point lead looked fragile. The Knicks went on a 20-6 run to cut the deficit to single digits for the first time since the first quarter.",
-          runScore: "20-6 NYK",
+            "Brunson erupted. Back-to-back mid-range daggers, a pull-up three, and two forced-and-converted free throw sequences ignited the Garden and sparked what would become a historic 44-11 New York run — the crowd noise registering as a physical force as Cleveland's lead began bleeding out in real time.",
+          runScore: "79-73 NYK run in progress",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
           impact: "game-changing",
         },
         {
           quarter: "Q4",
-          timestamp: "2:17",
+          timestamp: "1:08",
           description:
-            "Anunoby converted back-to-back defensive possessions into transition points — a chase-down strip followed by a corner three off Brunson's drive-and-kick — to tie the game at 94. Cleveland called timeout but the crowd noise made communication impossible. The Cavaliers had now scored just 3 field goals in the final seven minutes of regulation.",
-          runScore: "12-3 NYK",
+            "OG Anunoby, playing in his first postseason game since his injury, delivered a dagger corner three off a Brunson drive-and-kick that tied the game at 93 and officially completed one of the most stunning collapses in Conference Finals history, sending MSG into an all-out delirium.",
+          runScore: "93-93 TIED",
           momentum: "home",
           keyPlayer: "OG Anunoby",
           impact: "game-changing",
         },
         {
           quarter: "OT",
-          timestamp: "3:00",
+          timestamp: "3:22",
           description:
-            "New York outscored Cleveland 21-3 in overtime, completing the largest comeback in Conference Finals history. Brunson was unstoppable — three trips to the line, a mid-range dagger with 90 seconds left, and a steal that sealed it. Cleveland appeared emotionally spent after the late-game collapse and could not generate a single clean look against the Knicks' suddenly suffocating defense.",
-          runScore: "21-3 NYK",
+            "Cleveland went ice cold in overtime — scoring just 3 points on 1-of-9 shooting — while Brunson and Anunoby methodically dismantled whatever resolve the Cavaliers had left, turning a breathless tie game into a comfortable 11-point final margin that felt like a knockout blow.",
+          runScore: "115-104 NYK",
           momentum: "home",
           keyPlayer: "Jalen Brunson",
           impact: "game-changing",
@@ -102,47 +102,47 @@ export const momentumData: MomentumData = {
       clutchPlays: [
         {
           player: "Jalen Brunson",
-          team: "NYK",
+          team: "New York Knicks",
           description:
-            "Step-back pull-up jumper from the elbow with the shot clock expiring, cutting the Cleveland lead to 7 with 4:22 left in regulation. The shot silenced every remaining doubt in the building and forced Cleveland into a desperate timeout.",
-          timeRemaining: "4:22 Q4",
-          winProbabilityShift: 14,
-        },
-        {
-          player: "OG Anunoby",
-          team: "NYK",
-          description:
-            "Corner three off a Brunson drive-and-kick tied the game at 94 with 2:05 remaining in regulation. Anunoby's first signature play since returning from injury, and the shot that confirmed MSG's belief that the impossible was happening.",
-          timeRemaining: "2:05 Q4",
-          winProbabilityShift: 22,
-        },
-        {
-          player: "Jalen Brunson",
-          team: "NYK",
-          description:
-            "Mid-range baseline jumper over a closing Mobley with 1:31 left in OT pushed the Knicks lead to 9 and effectively ended Cleveland's night. Brunson had scored 8 straight New York points in overtime at that point.",
-          timeRemaining: "1:31 OT",
-          winProbabilityShift: 31,
-        },
-        {
-          player: "Jalen Brunson",
-          team: "NYK",
-          description:
-            "Reach-in steal on a Garland isolation with 48 seconds left in OT, converting the takeaway into two free throws that made it an 11-point game and triggered Cleveland's bench to begin accepting the outcome.",
-          timeRemaining: "0:48 OT",
+            "Brunson hit a step-back mid-range jumper over Garland with 3:44 left in regulation to cut the deficit to 6 — the shot that convinced MSG the comeback was real and triggered a full-building belief shift.",
+          timeRemaining: "3:44 Q4",
           winProbabilityShift: 18,
         },
         {
-          player: "Darius Garland",
-          team: "CLE",
+          player: "Jalen Brunson",
+          team: "New York Knicks",
           description:
-            "Garland's missed pull-up three with Cleveland trailing by 8 and 1:10 remaining in OT — after a strong drive that could have been a foul drawing attempt — proved to be Cleveland's last real chance to mount a counter-run. The shot came up short and the rebound went to New York.",
-          timeRemaining: "1:10 OT",
-          winProbabilityShift: -19,
+            "Drove baseline on Mitchell Robinson's screen, absorbed contact from Mobley, and converted the and-one to tie the game at 88 with 2:11 remaining — MSG erupted so loudly play was temporarily delayed.",
+          timeRemaining: "2:11 Q4",
+          winProbabilityShift: 24,
+        },
+        {
+          player: "OG Anunoby",
+          team: "New York Knicks",
+          description:
+            "Catch-and-shoot corner three off a Brunson penetration kick — perfectly placed over a late-closing defender — tied the game at 93 and sent the game to overtime, completing the largest comeback in ECF history.",
+          timeRemaining: "1:08 Q4",
+          winProbabilityShift: 31,
+        },
+        {
+          player: "Darius Garland",
+          team: "Cleveland Cavaliers",
+          description:
+            "Garland converted a tough floater in OT to cut the Knicks lead to 2 with 2:55 remaining — the Cavaliers' last genuine attempt to re-seize control before the game slipped permanently away.",
+          timeRemaining: "2:55 OT",
+          winProbabilityShift: -11,
+        },
+        {
+          player: "Jalen Brunson",
+          team: "New York Knicks",
+          description:
+            "Two clutch free throws with 1:44 left in OT pushed the Knicks lead to 6 and effectively ended Cleveland's comeback attempt — Brunson burying both with the calm of a player who had already done the impossible once that night.",
+          timeRemaining: "1:44 OT",
+          winProbabilityShift: 22,
         },
       ],
       narrative:
-        "This was not a game — it was a resurrection. Cleveland came to Madison Square Garden and built a 22-point lead that felt, by every reasonable measure, insurmountable in a Conference Finals setting. Then Jalen Brunson decided that reasonable measures did not apply to him. His fourth-quarter eruption, amplified by OG Anunoby's emotionally charged return from injury, triggered a 44-11 run that swallowed the Cavaliers whole and left them scoreless for the final three minutes of regulation and most of overtime. The Garden did not just celebrate a win — it witnessed a moment, the kind that gets replayed at the start of championship documentaries. Cleveland now faces the most dangerous opponent in sports: a city that was almost broken and now believes it cannot be.",
+        "This was not a basketball game — it was a conversion. For three quarters, Cleveland was the better team by every measurable standard, and Madison Square Garden sat in stunned, uncomfortable silence as a 22-point deficit ballooned into what looked like a series-opening statement from the Cavaliers. Then Jalen Brunson decided the story needed a different ending. What followed was 12 minutes of the purest clutch basketball the Conference Finals has seen in years — a 44-11 run fueled by Brunson's supernatural shot-making, OG Anunoby's triumphant return from injury, and a crowd that went from funeral-quiet to deafening within the span of four possessions. Cleveland's overtime collapse — 3 points, 1-of-9 shooting, no answers — wasn't just a loss; it was a psychological wound that the Cavaliers will carry into Game 2 on Thursday, facing a Knicks team that now knows, with absolute certainty, that no deficit is too large at MSG.",
     },
   ],
 };

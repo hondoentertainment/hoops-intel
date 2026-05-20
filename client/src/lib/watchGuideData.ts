@@ -66,35 +66,40 @@ export const watchGuideData: WatchGuideData = {
       time: "5/20 - 8:30 PM EDT",
       tv: "NBC, Peacock",
       venue: "Paycom Center",
-      entertainmentScore: 94,
+      entertainmentScore: 93,
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline: "With De'Aaron Fox listed as questionable with an ankle injury, San Antonio must decide whether to risk their engine or protect him for the long haul — while OKC and a raucous Paycom Center crowd sense blood in the water. Game 2 of the WCF could be a series-defining moment: a Spurs win without Fox would be a statement for the ages; a Thunder blowout could reset the tone entirely.",
+      storyline:
+        "De'Aaron Fox is listed as questionable with an ankle injury, casting a massive shadow over San Antonio's bid to seize a 2-0 series lead on the road — if he suits up, the Spurs have the personnel to suffocate OKC's youth; if he doesn't, Paycom Center becomes a coronation. The Thunder, carrying the league's best regular-season record and the deafening energy of a city starved for a championship, need a win here to avoid the kind of early psychological hole the Cavs found themselves in last night.",
       keyMatchup: "Shai Gilgeous-Alexander vs. De'Aaron Fox",
       mustWatch: true,
       factors: {
         starPower: 19,
         playoffImplications: 20,
-        rivalry: 17,
+        rivalry: 16,
         entertainment: 19,
         storyline: 19,
       },
-      watchScore: 94,
-      headline: "Fox Questionable, Series on the Line — WCF Game 2 Could Swing Everything",
+      watchScore: 93,
+      headline: "Fox Questionable, Series on the Line — OKC Needs a Statement at Home",
     },
   ],
   topPick: {
     gameIndex: 0,
-    reason: "The only game on the slate is the best game on the slate — WCF Game 2 between two 60-win juggernauts, a superstar injury cloud hanging over De'Aaron Fox, and Shai Gilgeous-Alexander hunting a 2-0 series lead on his home floor. This is must-see basketball.",
+    reason:
+      "This is the only game on the slate and it doesn't need company to justify appointment viewing — WCF Game 2 between two 60-win teams, a superstar injury cloud over De'Aaron Fox, and a Paycom Center crowd that will be at an absolute fever pitch after OKC dropped Game 1. If the Spurs go up 2-0 with or without Fox, this series is effectively over. If OKC responds, we have a genuine war. Either outcome reshapes the Western Conference Finals narrative entirely.",
   },
   sleeper: {
     gameIndex: 0,
-    reason: "If Fox is ruled out, don't sleep on the Spurs' supporting cast stepping up in a hostile environment — a short-handed San Antonio squad stealing Game 2 in OKC would be the night's biggest story and a genuine upset for the ages.",
+    reason:
+      "With only one game on the board, there's no traditional sleeper — but the hidden intrigue is the Spurs' supporting cast stepping up if Fox is ruled out. Watch for Victor Wembanyama to carry an even heavier offensive burden, which could produce one of the most compelling individual performances of these playoffs regardless of the final score.",
   },
   skipIt: {
     gameIndex: 0,
-    reason: "There is no game to skip tonight — one Western Conference Finals game is all we've got, and at 94 entertainment, there's no excuse to miss it.",
+    reason:
+      "There is no game to skip tonight — the slate is a single WCF Game 2 at 8:30 PM ET. If you have one game to watch all season, this is a reasonable candidate. The only reason to tap out early is if Fox is confirmed out pregame and OKC blows this open in the third quarter, at which point the series story becomes tomorrow's conversation.",
   },
-  nightOverview: "Tonight's slate is a one-game night, but what a one game it is: WCF Game 2 sends the San Antonio Spurs into Paycom Center with De'Aaron Fox's availability uncertain after a Game 1 ankle injury, while Shai Gilgeous-Alexander and the Thunder faithful look to seize a commanding 2-0 series lead. Coming off Jalen Brunson's historic comeback performance in New York last night, the 2026 playoff stage is set — and the West could deliver its own defining moment before midnight.",
+  nightOverview:
+    "Tonight's NBA slate is a one-game, must-see affair: Western Conference Finals Game 2, San Antonio at Oklahoma City, 8:30 PM ET on NBC and Peacock. The Spurs (62-20) hold a 1-0 series lead but De'Aaron Fox's ankle status threatens to redraw the entire tactical picture, while Shai Gilgeous-Alexander and a raucous Paycom Center crowd look to level the series and reclaim home-court advantage for the Thunder (64-18). Coming off Jalen Brunson's historic comeback in the East last night, the NBA's conference finals are delivering exactly what the sport promised — and tonight's game is the centerpiece.",
 };
