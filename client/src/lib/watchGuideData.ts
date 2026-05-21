@@ -70,9 +70,8 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline:
-        "Cleveland arrives at Madison Square Garden down 0-1 in the Eastern Conference Finals, knowing a second road loss would put them in a near-impossible hole against a Knicks squad feeding off the most electric crowd in basketball. The Cavaliers must solve MSG or watch New York seize control of this series before it ever truly breathes.",
-      keyMatchup: "Jalen Brunson vs. Donovan Mitchell",
+      storyline: "Cleveland arrives at Madison Square Garden in a must-win situation after dropping Game 1 on the road — a second consecutive loss would put the Cavaliers in a near-impossible 0-2 hole against a Garden crowd that is already at a fever pitch. The Knicks are one dominant home performance away from seizing complete series control and punching their ticket toward an NBA Finals berth that New York has dreamed about for decades.",
+      keyMatchup: "Donovan Mitchell vs. Jalen Brunson",
       mustWatch: true,
       factors: {
         starPower: 19,
@@ -82,24 +81,20 @@ export const watchGuideData: WatchGuideData = {
         storyline: 19,
       },
       watchScore: 94,
-      headline: "ECF Game 2: Cavs Face Elimination Pressure Early at a Deafening MSG",
+      headline: "Garden on the Brink — CLE Must Win or Face a Series Abyss",
     },
   ],
   topPick: {
     gameIndex: 0,
-    reason:
-      "It's a Conference Finals elimination-pressure game at Madison Square Garden — the loudest building in the league. Jalen Brunson against Donovan Mitchell, a 0-1 Cleveland team that cannot afford to go home down two, and an MSG crowd that has been a legitimate home-court weapon all postseason. There is no better basketball to watch tonight.",
+    reason: "ECF Game 2 at Madison Square Garden is the only game on the slate and it needs no company — a desperate Cavaliers squad facing elimination pressure visits the loudest building in basketball, with Donovan Mitchell needing a vintage performance to keep Cleveland's title hopes alive against a Knicks team that is one win away from strangling this series.",
   },
   sleeper: {
     gameIndex: 0,
-    reason:
-      "With only one game on the slate, this is also tonight's sleeper — don't underestimate how much Cleveland's desperation could make this a tighter, grittier chess match than the lopsided Game 1 suggested. The Cavs' back-against-the-wall identity has produced some of the best defensive basketball of the playoffs.",
+    reason: "With only one game tonight, this is both the headliner and the hidden gem — if the Cavaliers' role players catch fire the way OKC's depth did in Game 2 of the WCF, this could evolve into a classic back-and-forth battle that nobody outside New York saw coming.",
   },
   skipIt: {
     gameIndex: 0,
-    reason:
-      "One game on the schedule means there is nothing to skip — this ECF Game 2 is your only option, and with a 94 entertainment score, that is no hardship whatsoever.",
+    reason: "There is no game to skip tonight — ECF Game 2 is the only contest on the schedule, and with series momentum, MSG electricity, and two evenly matched 50-win teams on the line, walking away is simply not an option.",
   },
-  nightOverview:
-    "Tonight's NBA slate is a single-game spotlight: Eastern Conference Finals Game 2, Cleveland Cavaliers at New York Knicks, 8 PM ET on ESPN at Madison Square Garden. Cleveland is down 0-1 and facing the full force of an MSG crowd that has turned Knicks home games into a hostile environment all postseason, while Jalen Brunson looks to tighten his grip on the series against a Donovan Mitchell-led Cavs team that has its back against the wall far earlier than anticipated.",
+  nightOverview: "Tonight's slate is a single-game spotlight shining directly on Madison Square Garden, where the Eastern Conference Finals resume with Cleveland desperately needing to even the series before returning to Rocket Mortgage FieldHouse. The Knicks have home-court advantage, a roaring crowd, and momentum from Game 1 — the Cavaliers have Donovan Mitchell and an obligation to respond.",
 };

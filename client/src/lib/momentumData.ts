@@ -40,7 +40,7 @@ export const momentumData: MomentumData = {
     team: "OKC",
     clutchRating: 91,
     description:
-      "SGA authored a complete redemption arc in Game 2, orchestrating OKC's offense with ice-cold precision after his Game 1 struggles. His ability to find floater territory against Wembanyama — threading the needle between rim protection and pull-up range — neutralized San Antonio's most dangerous weapon and set the tone for a series-leveling statement win.",
+      "SGA authored a complete response game after his Game 1 struggles — 30 points on a surgical mid-range diet, attacking Wembanyama in floater territory to neutralize the rim-protection advantage. His +14 was the clearest margin of dominance on the floor, and he delivered his biggest possessions precisely when San Antonio threatened to claw back in the third.",
   },
   games: [
     {
@@ -50,58 +50,58 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "4:12",
+          timestamp: "4:31",
           description:
-            "Wembanyama imposed his will early, stringing together back-to-back blocks and converting on the other end to give San Antonio a 7-point edge. Paycom Center fell briefly quiet as Spurs fans traveling loud found their voice. OKC looked tentative attacking the rim — a carryover from Game 1 ghosts.",
-          runScore: "SAS 18–11",
+            "Wembanyama orchestrates a 9-2 Spurs run with back-to-back pull-up threes and a soaring block on Holmgren, silencing Paycom Center and staking San Antonio to an early eight-point lead. Castle's aggression in transition is creating chaos and OKC's half-court sets look rattled.",
+          runScore: "9-2 SAS",
           momentum: "away",
           keyPlayer: "Victor Wembanyama",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "11:03",
+          timestamp: "7:03",
           description:
-            "SGA recalibrated the OKC attack entirely, abandoning rim attempts in favor of a relentless floater clinic in the middle of the lane. Three consecutive mid-range conversions over outstretched Wembanyama fingers ignited an 11-2 Thunder run and flipped the scoreboard. The adjustment was so surgical it felt like a halftime coaching tweak deployed eight minutes early.",
-          runScore: "OKC 32–27",
-          momentum: "home",
-          keyPlayer: "Shai Gilgeous-Alexander",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "7:00",
-          description:
-            "Jalen Williams checked in for the first time since May 3, and Paycom Center erupted before he even touched the ball. Williams played seven fluid minutes — two assists, a pull-up jumper, one emphatic take-foul drawn — and visibly rattled San Antonio's defensive scheme, which had been calibrated for a two-man OKC operation. The psychological shift was instant and seismic.",
-          runScore: "OKC 43–34",
+            "Jalen Williams checks in for the first time since May 3 and the building erupts. In his first seven minutes back, Williams drains a mid-range jumper, draws two fouls, and dishes two assists — OKC immediately rips off an 11-3 run that flips the lead. The psychological weight of his return visibly deflates the Spurs' bench.",
+          runScore: "11-3 OKC",
           momentum: "home",
           keyPlayer: "Jalen Williams",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "6:28",
+          timestamp: "6:17",
           description:
-            "Tre Jones and Jeremy Sochan ripped off a 9-2 Spurs mini-run to cut the deficit to single digits, with Castle's two steals fueling transition buckets that hushed the Paycom crowd. San Antonio smelled a path back into the game and the Thunder's ball movement briefly devolved into hero-ball territory.",
-          runScore: "SAS 71–78",
-          momentum: "away",
-          keyPlayer: "Stephon Castle",
-          impact: "significant",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "9:45",
-          description:
-            "Alex Caruso detonated any remaining Spurs hope with back-to-back threes off SGA drive-and-kicks, pushing OKC's lead to 16 and forcing San Antonio into desperate isolation ball. Caruso finished the night at +18 with 17 points on 5-of-7 shooting — the kind of bench performance that reshapes a series. The game was effectively over before the fourth quarter hit the eight-minute mark.",
-          runScore: "OKC 102–86",
+            "Castle's turnover parade — three giveaways in four possessions — fuels an OKC transition blitz. Caruso converts two push-ahead layups, SGA buries a pull-up off a live-ball steal, and the Thunder extend the lead to 16. OKC's press-break reads are shredding San Antonio's ball-handlers at every level.",
+          runScore: "14-4 OKC",
           momentum: "home",
           keyPlayer: "Alex Caruso",
           impact: "game-changing",
         },
+        {
+          quarter: "Q3",
+          timestamp: "1:44",
+          description:
+            "Wembanyama refuses to let the Spurs die — a thunderous baseline dunk over Holmgren followed by a Stephon Castle three-pointer trims the deficit back to nine heading into the fourth. The crowd's energy dims slightly and OKC calls timeout to reset.",
+          runScore: "8-2 SAS",
+          momentum: "away",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "9:02",
+          description:
+            "SGA responds to Wembanyama's third-quarter surge immediately — a silky floater in the lane, a step-back mid-ranger over the outstretched arm, and a find to Caruso cutting baseline reestablishes a 15-point OKC cushion. The game's outcome is no longer in doubt; it's a coronation lap for Thunder depth.",
+          runScore: "10-3 OKC",
+          momentum: "home",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "significant",
+        },
       ],
       clutchPlays: [],
       narrative:
-        "Game 2 of the WCF will be remembered in two chapters: the return of Jalen Williams and the reinvention of SGA as a floater assassin. Oklahoma City came into Paycom Center carrying the weight of a Game 1 collapse and answered with their most complete playoff performance of the season — seven players in double figures, a lockdown transition defense that turned Castle's nine turnovers into 14 fast-break points, and a tactical offensive overhaul that rendered Wembanyama's rim protection largely irrelevant. Wembanyama was genuinely brilliant in defeat — 21 points, 17 rebounds, 6 assists, 4 blocks — but brilliance wasn't enough when OKC's depth swallowed the Spurs whole. The series heads to San Antonio knotted at 1-1, and the defining question is no longer whether OKC can win without Williams — it's how dangerous this team becomes with him.",
+        "Game 2 of the Western Conference Finals was less a basketball game than a statement — OKC dismantled San Antonio's belief system with depth, discipline, and the most emotionally charged seven-minute cameo of the postseason. Jalen Williams' return didn't just change the scoreboard; it rewired the psychological circuitry of an already-confident Thunder squad. SGA's mid-range clinic against Wembanyama answered every skeptic who questioned his Game 1 passivity, and Caruso's +18 off the bench was the kind of contribution that defines championship rosters. Wembanyama was genuinely brilliant in defeat — 21 points, 17 rebounds, 6 assists, 4 blocks — and San Antonio's 62-win season still earns them respect, but OKC's ceiling just got visibly higher the moment Williams stepped back onto the floor. The series heads to San Antonio knotted at 1-1, but the Thunder hold every meaningful edge.",
     },
   ],
 };
