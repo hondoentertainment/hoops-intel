@@ -1,17 +1,16 @@
-import SiteHeader from "../components/SiteHeader";
-import { gamePreviews } from "../lib/pulseData";
+import ToolPageLayout from "../components/ToolPageLayout";
+import { gamePreviews, pulseEdition } from "../lib/pulseData";
+import { lineMovementForMatchup } from "../lib/lineMovement";
 import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
 import { bettingDisclaimer, summarizeLineMovementEducation } from "../lib/bettingLineStory";
+import { makeGameId } from "../lib/gameCenter";
 
 export default function BettingIntel() {
   const slate = slateMarketVsEditorialStats(gamePreviews);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="TOOLS" />
-
-      <div className="container py-10 max-w-5xl">
-        <p className="section-label mb-2">MARKET CONTEXT</p>
+    <ToolPageLayout subtitle="TOOLS">
+<p className="section-label mb-2">MARKET CONTEXT</p>
         <h1 className="display-heading text-white text-2xl sm:text-3xl mb-2">Betting intel</h1>
         <p className="text-sm mb-6 max-w-3xl leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
           Lines ship with each morning edition snapshot. Sections below emphasize how professional bettors interpret movement, totals, and closing numbers — plus a
@@ -44,9 +43,14 @@ export default function BettingIntel() {
             <p className="text-white/60 text-sm">No slate rows in today’s edition yet.</p>
           )}
           {gamePreviews.map((g, i) => {
+            const lm = lineMovementForMatchup(g.awayTeam, g.homeTeam);
+            const openingSpread =
+              ("openingSpread" in g ? (g as { openingSpread?: string }).openingSpread : undefined) ||
+              lm?.openingSpread;
             const edu = summarizeLineMovementEducation({
               ...g,
-              openingSpread: "openingSpread" in g ? (g as { openingSpread?: string }).openingSpread : undefined,
+              spread: lm?.closingSpread || g.spread,
+              openingSpread,
             });
             return (
               <article
@@ -92,6 +96,17 @@ export default function BettingIntel() {
                     {g.spread}
                   </div>
                 ) : null}
+                {"marketThesis" in g && typeof (g as { marketThesis?: unknown }).marketThesis === "string" ? (
+                  <div
+                    className="mb-4 rounded-lg px-4 py-3 text-xs leading-relaxed"
+                    style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.18)" }}
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400/90 mb-1">
+                      Sharp / public read
+                    </div>
+                    {(g as { marketThesis: string }).marketThesis}
+                  </div>
+                ) : null}
                 <div
                   className="rounded-lg p-4 text-xs leading-relaxed space-y-2"
                   style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}
@@ -103,11 +118,21 @@ export default function BettingIntel() {
                     </p>
                   ))}
                 </div>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href={`/game/${makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`}
+                    className="text-xs font-semibold text-sky-300 hover:text-sky-200 min-h-[44px] inline-flex items-center"
+                  >
+                    Game Center →
+                  </a>
+                  <a href="/pick-em" className="text-xs font-semibold text-emerald-300 hover:text-emerald-200 min-h-[44px] inline-flex items-center">
+                    Lock pick →
+                  </a>
+                </div>
               </article>
             );
           })}
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

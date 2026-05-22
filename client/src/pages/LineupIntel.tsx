@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { lineupData } from "../lib/lineupData";
 import type { LineupUnit, TeamLineupIntel } from "../lib/lineupData";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // NET RATING BAR
@@ -489,12 +489,8 @@ export default function LineupIntel() {
   const { generatedDate, weekLabel, teams, biggestSurprise } = lineupData;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="LINEUP INTEL" />
-
-      <div className="container py-8 max-w-4xl mx-auto">
-        {/* Page header */}
+    <ToolPageLayout subtitle="LINEUP INTEL">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -663,7 +659,6 @@ export default function LineupIntel() {
             Lineup intelligence is regenerated every Monday with the latest rotation data
           </p>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

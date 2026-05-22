@@ -40,6 +40,11 @@ export default async function handler(req: Request): Promise<Response> {
     },
     emailDigest: {
       resendReady: configured(process.env.RESEND_API_KEY),
+      intakeInboxReady:
+        configured(process.env.RESEND_API_KEY) && configured(process.env.CONTACT_INBOUND_EMAIL),
+    },
+    pushDispatch: {
+      apiUrlConfigured: configured(process.env.PUSH_API_URL),
     },
     llm: {
       anthropicSeriesIntelReady: configured(process.env.ANTHROPIC_API_KEY),

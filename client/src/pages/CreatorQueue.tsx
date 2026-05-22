@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 const TOKEN_KEY = "hi-creator-queue-bearer";
 
@@ -90,11 +90,8 @@ export default function CreatorQueue() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="CREATOR OPS" />
-
-      <div className="container py-10 max-w-4xl space-y-6">
-        <p className="section-label mb-1">guest pulse moderation</p>
+    <ToolPageLayout subtitle="CREATOR OPS">
+<p className="section-label mb-1">guest pulse moderation</p>
         <h1 className="display-heading text-white text-2xl sm:text-3xl mb-2">Creator queue</h1>
         <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
           Requires <strong className="text-white/80">GUEST_PULSE_ADMIN_SECRET</strong> on the server. Paste the secret
@@ -203,7 +200,6 @@ export default function CreatorQueue() {
           }
           .btn-primary:disabled, .btn-soft:disabled { opacity: .45 }
         `}</style>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

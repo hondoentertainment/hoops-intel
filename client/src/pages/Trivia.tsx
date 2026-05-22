@@ -2,7 +2,7 @@
 // Streak tracking via localStorage key "hoops-iq-streak"
 
 import { useState, useEffect } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { triviaQuestion } from "../lib/pulseData";
 
 // ═══════════════════════════════════════════════════════════
@@ -162,11 +162,8 @@ export default function Trivia() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)", color: "rgba(255,255,255,0.85)" }}>
-      <SiteHeader subtitle="HOOPS IQ" />
-
-      {/* ── Main Content ── */}
-      <main className="container mx-auto px-4 py-10 max-w-2xl">
+    <ToolPageLayout subtitle="HOOPS IQ" maxWidth="lg">
+      <div>
         {/* Page Title */}
         <div className="mb-8 text-center">
           <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(14,165,233,0.12)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.25)" }}>
@@ -355,7 +352,7 @@ export default function Trivia() {
             Select an answer above — no take-backs!
           </p>
         )}
-      </main>
-    </div>
+      </div>
+    </ToolPageLayout>
   );
 }

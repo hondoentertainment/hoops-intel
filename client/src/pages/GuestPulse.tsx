@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 export default function GuestPulse() {
   const [name, setName] = useState("");
@@ -46,11 +46,8 @@ export default function GuestPulse() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PROGRAM" />
-
-      <div className="container py-10 max-w-xl">
-        <p className="section-label mb-2">CREATOR EXPERIMENT</p>
+    <ToolPageLayout subtitle="PROGRAM">
+<p className="section-label mb-2">CREATOR EXPERIMENT</p>
         <h1 className="display-heading text-2xl sm:text-3xl mb-4 text-white">Guest Pulse pitch</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
           Propose a Pulse Index takeover: who you&apos;d elevate, thesis, and credibility in ~150 words.
@@ -132,8 +129,7 @@ export default function GuestPulse() {
             outline: none;
           }
         `}</style>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }
 

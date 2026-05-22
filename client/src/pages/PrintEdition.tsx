@@ -1,5 +1,13 @@
 import { useEffect } from "react";
-import { narrative, pulseEdition, pulseIndex, tickerItems } from "../lib/pulseData";
+import {
+  narrative,
+  pulseEdition,
+  pulseIndex,
+  tickerItems,
+  gamePreviews,
+} from "../lib/pulseData";
+import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
+import { lineMovementRows } from "../lib/lineMovementData";
 import SiteHeader from "../components/SiteHeader";
 
 export default function PrintEdition() {
@@ -10,6 +18,7 @@ export default function PrintEdition() {
 
   const pulseTop = pulseIndex.slice(0, 5);
   const tick = tickerItems.slice(0, 8);
+  const activeSeries = playoffSeries.filter((s) => s.status !== "complete").slice(0, 6);
 
   return (
     <div className="print-edition-shell min-h-screen bg-white text-slate-900 print:bg-white">
@@ -50,6 +59,62 @@ export default function PrintEdition() {
             ))}
           </ul>
         </section>
+
+        {gamePreviews.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Tonight&apos;s slate</h2>
+            <table className="w-full border-collapse text-xs">
+              <thead>
+                <tr className="text-left border-b border-slate-300 text-slate-600">
+                  <th className="py-2 pr-2 font-semibold">Matchup</th>
+                  <th className="py-2 pr-2 font-semibold">Time</th>
+                  <th className="py-2 pr-2 font-semibold">Line</th>
+                  <th className="py-2 font-semibold">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gamePreviews.map((g, i) => {
+                  const lm = lineMovementRows.find(
+                    (r) =>
+                      (r.awayTeam === g.awayTeam && r.homeTeam === g.homeTeam) ||
+                      (r.awayTeam === g.homeTeam && r.homeTeam === g.awayTeam),
+                  );
+                  const line =
+                    lm && lm.openingSpread !== lm.closingSpread
+                      ? `${lm.openingSpread} → ${lm.closingSpread}`
+                      : g.spread;
+                  return (
+                    <tr key={i} className="border-b border-slate-100">
+                      <td className="py-2 pr-2">
+                        {g.awayTeam} @ {g.homeTeam}
+                      </td>
+                      <td className="py-2 pr-2">{g.time}</td>
+                      <td className="py-2 pr-2 font-mono">{line}</td>
+                      <td className="py-2 font-mono">{g.overUnder}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </section>
+        )}
+
+        {isPlayoffsActive() && activeSeries.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Playoff board</h2>
+            <ul className="space-y-2 text-xs text-slate-700">
+              {activeSeries.map((s) => (
+                <li key={s.seriesId}>
+                  <strong>
+                    {s.higherTeam} vs {s.lowerTeam}
+                  </strong>
+                  {" — "}
+                  {s.summary}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="mb-10">
           <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Pulse Index — spotlight</h2>

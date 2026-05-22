@@ -1,7 +1,7 @@
 // Podcast Companion Page — Today's Episode Blueprint
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { podcastCompanion } from "../lib/podcastData";
 import type { TalkingPoint } from "../lib/podcastData";
 
@@ -154,11 +154,8 @@ export default function PodcastCompanion() {
   const data = podcastCompanion;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PODCAST COMPANION" />
-
-      <div className="container py-8">
-        {/* Page header */}
+    <ToolPageLayout subtitle="PODCAST COMPANION">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-[10px] font-bold tracking-widest uppercase mb-1"
@@ -295,7 +292,6 @@ export default function PodcastCompanion() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

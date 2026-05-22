@@ -147,4 +147,31 @@ export const historyData: HistoryData = {
       player: "Jalen Brunson",
       team: "NYK",
       milestone: "Consecutive 30-point playoff scoring games to surpass Bernard King's New York Knicks franchise record of five consecutive 30-point playoff performances (1984, averaging 42.6 points per game against Boston across the Eastern Conference Semifinals, including a 44-point Game 7 at Boston Garden) — the most celebrated individual playoff scoring sequence in franchise history — and to establish the outright franchise record of six or more consecutive 30-point playoff games.",
-      current: "Brunson's ECF Game 1 performance of 38 points was his fifth consecutive 30-point playoff game, tying King's 1984 franchise record. His five-game consecutive scoring streak has averaged 32.1 points per game on efficient shooting. He has scored 30 or more points in five straight playoff games for the first time in Knicks franchise history since King's 1984 run. His Playoff MVP odds stand at +350 following Tuesday's
+      current: "Brunson's ECF Game 1 performance of 38 points was his fifth consecutive 30-point playoff game, tying King's 1984 franchise record. His five-game streak has averaged 32.1 points per game. He enters ECF Game 2 at MSG with the franchise record within one 30-point game.",
+      needed: "Score 30+ in ECF Game 2 tonight to break King's 42-year-old Knicks franchise record outright.",
+      projectedDate: "Outright record available May 21, 2026 at Madison Square Garden.",
+      significance: "Surpassing King's mark would cement Brunson among the greatest Knicks playoff scorers and validate New York's rest advantage after the historic Game 1 comeback.",
+    },
+    {
+      player: "Oklahoma City Thunder",
+      team: "OKC",
+      milestone: "Rebound from first postseason loss to avoid a 0-2 WCF hole against San Antonio.",
+      current: "OKC fell to 8-1 after WCF Game 1; SGA responded with 30/9 in Game 2 and Jalen Williams returned for seven minutes.",
+      needed: "Win Game 3 in San Antonio to reclaim series control before Fox potentially returns.",
+      projectedDate: "WCF Game 3, late May 2026.",
+      significance: "Williams' health and SGA's mid-range adjustment are the structural variables that determine whether OKC's depth advantage reasserts itself.",
+    },
+  ],
+
+  thisWeekInHistory: [
+    { year: 2000, event: "Shaquille O'Neal set the modern WCF interior dominance benchmark.", players: ["Shaquille O'Neal"] },
+    { year: 2001, event: "The Lakers opened the postseason 11-0 — the record OKC chased before WCF Game 1.", players: ["Shaquille O'Neal", "Kobe Bryant"] },
+    { year: 2016, event: "Dual-bracket historic comebacks reshaped the Conference Finals narrative.", players: ["LeBron James", "Stephen Curry"] },
+  ],
+
+  streakWatch: [
+    { player: "Victor Wembanyama", team: "SAS", streak: "51.5 combined PPG+RPG WCF average", record: "Shaq 2000 WCF series benchmark", gamesAway: 0 },
+    { player: "Jalen Brunson", team: "NYK", streak: "Five straight 30+ playoff games", record: "Bernard King 1984 (5)", gamesAway: 1 },
+    { player: "Shai Gilgeous-Alexander", team: "OKC", streak: "Post-loss bounce-back", record: "SGA Game 2 after poor shooting", gamesAway: 0 },
+  ],
+};

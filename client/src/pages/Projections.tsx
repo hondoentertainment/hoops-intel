@@ -1,7 +1,7 @@
 // Rest-of-Season Projections Page
 import { useState } from "react";
 import { projectionsData, type TeamProjection, type PlayoffMatchup } from "../lib/projectionsData";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // CONFERENCE TABLE
@@ -364,12 +364,8 @@ export default function Projections() {
   const westCF = projectedBracket.west.filter((m) => m.round === "Conference Finals");
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="PROJECTIONS" />
-
-      <div className="container py-8 max-w-6xl mx-auto px-4">
-        {/* Page header */}
+    <ToolPageLayout subtitle="PROJECTIONS">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -640,7 +636,6 @@ export default function Projections() {
 
         {/* Key Stretches */}
         <KeyStretches teams={teams} />
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

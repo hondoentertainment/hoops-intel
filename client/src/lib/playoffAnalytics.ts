@@ -184,6 +184,30 @@ export function nextPendingGame(s: PlayoffSeries): PlayoffSeriesGame | undefined
   return pending[0];
 }
 
+/** Earliest pending game across active series (live games win immediately). */
+export function nextPlayoffGameAcross(
+  series: PlayoffSeries[],
+): { series: PlayoffSeries; game: PlayoffSeriesGame } | undefined {
+  let best: { series: PlayoffSeries; game: PlayoffSeriesGame } | undefined;
+
+  for (const s of series) {
+    if (s.status === "complete") continue;
+    const g = nextPendingGame(s);
+    if (!g) continue;
+    if (g.status === "live") return { series: s, game: g };
+
+    if (!best) {
+      best = { series: s, game: g };
+      continue;
+    }
+    if (g.date < best.game.date || (g.date === best.game.date && g.gameNumber < best.game.gameNumber)) {
+      best = { series: s, game: g };
+    }
+  }
+
+  return best;
+}
+
 function formatShortDate(iso: string): string {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
   if (!m) return iso;

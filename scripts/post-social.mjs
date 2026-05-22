@@ -84,11 +84,19 @@ function parsePulseData() {
     return literal;
   }
 
+  let playoffMovers = [];
+  try {
+    playoffMovers = extractExport("playoffMovers");
+  } catch {
+    /* optional during regular season */
+  }
+
   return {
     pulseEdition: extractExport("pulseEdition"),
     narrative: extractExport("narrative"),
     pulseIndex: extractExport("pulseIndex"),
     tickerItems: extractExport("tickerItems"),
+    playoffMovers,
   };
 }
 
@@ -100,7 +108,7 @@ function truncate(text, max) {
 }
 
 function buildTwitterThread(data) {
-  const { pulseEdition, narrative, pulseIndex, tickerItems } = data;
+  const { pulseEdition, narrative, pulseIndex, tickerItems, playoffMovers } = data;
 
   // Tweet 1: Edition headline + top story
   const headline = narrative.headline.split(" \u2014 ")[0]; // first headline segment
@@ -117,12 +125,17 @@ function buildTwitterThread(data) {
   const tweet2Header = `\ud83d\udcca Pulse Index Top 3 \u2014 ${pulseEdition.edition}\n`;
   const tweet2 = truncate(tweet2Header + lines.join("\n"), 280);
 
-  // Tweet 3: Tonight's featured game + link
+  // Tweet 3: Playoff pulse or tonight + link
+  const pm = playoffMovers?.[0];
   const tonightItems = tickerItems.filter(
     (t) => t.type === "alert" && /tonight/i.test(t.text)
   );
   let tweet3;
-  if (tonightItems.length > 0) {
+  if (pm && pulseEdition.editionContext === "playoffs") {
+    const line = `${pm.player} (${pm.team}) ${pm.direction === "riser" ? "\u2191" : "\u2193"} \u2014 ${truncate(pm.note, 120)}`;
+    const linkSuffix = `\n${SITE_URL}/playoffs`;
+    tweet3 = "\ud83c\udfc6 " + truncate(line, 280 - linkSuffix.length - 3) + linkSuffix;
+  } else if (tonightItems.length > 0) {
     const game = tonightItems[0].text.replace(/^TONIGHT:\s*/, "");
     const linkSuffix = `\n${SITE_URL}`;
     tweet3 = "\ud83d\udcfa " + truncate(game, 280 - linkSuffix.length - 3) + linkSuffix;

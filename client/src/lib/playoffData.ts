@@ -258,6 +258,11 @@ export function playoffSeriesOpponent(series: PlayoffSeries, teamAbbr: string): 
 
 export const isPlayoffsActive = (): boolean => playoffSeries.length > 0;
 
+/** True when the synced board has only NBA Finals series (or at least one finals-round matchup). */
+export function isFinalsActive(): boolean {
+  return playoffSeries.some((s) => s.round === "finals");
+}
+
 export function activeSeries(): PlayoffSeries[] {
   return playoffSeries.filter((s) => s.status !== "complete");
 }

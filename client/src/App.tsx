@@ -1,8 +1,15 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { ToastProvider } from "./contexts/ToastContext";
 import AskHoopsIntel from "./components/AskHoopsIntel";
 import MobileBottomNav from "./components/MobileBottomNav";
+import SkipToContent from "./components/SkipToContent";
+import BackToTop from "./components/BackToTop";
+import PwaInstallPrompt from "./components/PwaInstallPrompt";
+import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
+import RouteSeo from "./components/RouteSeo";
+import { incrementVisitCount } from "./lib/visitCount";
 
 // Eager load Home (critical path)
 import Home from "./pages/Home";
@@ -14,6 +21,7 @@ const Team = lazy(() => import("./pages/Team"));
 const GameCenter = lazy(() => import("./pages/GameCenter"));
 const PulseHistory = lazy(() => import("./pages/PulseHistory"));
 const PlayoffBracket = lazy(() => import("./pages/PlayoffBracket"));
+const PlayoffSeriesRedirect = lazy(() => import("./pages/PlayoffSeriesRedirect"));
 const PickEm = lazy(() => import("./pages/PickEm"));
 const TradeValue = lazy(() => import("./pages/TradeValue"));
 const InjuryReport = lazy(() => import("./pages/InjuryReport"));
@@ -70,21 +78,38 @@ function VercelAnalyticsScript() {
 
 function PageLoader() {
   return (
-    <div className="flex items-center justify-center min-h-[50vh]">
-      <div className="text-center">
-        <div
-          className="w-8 h-8 rounded border-2 border-t-transparent animate-spin mx-auto mb-3"
-          style={{ borderColor: "#0EA5E9", borderTopColor: "transparent" }}
-        />
-        <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Loading...</div>
+    <div className="flex items-center justify-center min-h-[50vh] px-4" role="status" aria-live="polite">
+      <div className="w-full max-w-md space-y-4">
+        <div className="flex items-center gap-3">
+          <div
+            className="w-8 h-8 rounded border-2 border-t-transparent animate-spin shrink-0"
+            style={{ borderColor: "#0EA5E9", borderTopColor: "transparent" }}
+            aria-hidden
+          />
+          <div className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
+            Loading page…
+          </div>
+        </div>
+        <div className="space-y-2" aria-hidden>
+          <div className="h-3 rounded bg-white/10 animate-pulse" />
+          <div className="h-3 rounded bg-white/10 animate-pulse w-4/5" />
+          <div className="h-24 rounded-lg bg-white/5 animate-pulse mt-4" />
+        </div>
       </div>
     </div>
   );
 }
 
 export default function App() {
+  useEffect(() => {
+    incrementVisitCount();
+  }, []);
+
   return (
     <ThemeProvider switchable={true}>
+      <ToastProvider>
+      <RouteSeo />
+      <SkipToContent />
       <VercelAnalyticsScript />
       <div
         className="min-h-screen pb-16 md:pb-0"
@@ -102,6 +127,7 @@ export default function App() {
             <Route path="/team/:abbr" component={Team} />
             <Route path="/pulse-history" component={PulseHistory} />
             <Route path="/playoffs" component={PlayoffBracket} />
+            <Route path="/playoffs/series/:seriesId" component={PlayoffSeriesRedirect} />
             <Route path="/pick-em" component={PickEm} />
             <Route path="/trade-value" component={TradeValue} />
             <Route path="/injuries" component={InjuryReport} />
@@ -163,7 +189,11 @@ export default function App() {
         </Suspense>
         <AskHoopsIntel />
         <MobileBottomNav />
+        <BackToTop />
+        <PwaInstallPrompt />
+        <KeyboardShortcutsHelp />
       </div>
+      </ToastProvider>
     </ThemeProvider>
   );
 }

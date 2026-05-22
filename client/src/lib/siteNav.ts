@@ -1,9 +1,29 @@
+import { isPlayoffsActive } from "./playoffData";
+
+export const PLAYOFFS_NAV_HREF = "/playoffs";
+
+/** Header + mobile bottom nav label during synced postseason. */
+export function playoffsNavLabel(): string {
+  return isPlayoffsActive() ? "Playoff bracket" : "Playoffs";
+}
+
 /** Primary desk navigation — hashes resolve on home */
 export interface MainNavLink {
   label: string;
   href: string;
 }
 
+/** Compact header links (desktop) */
+export const HEADER_NAV_LINKS: MainNavLink[] = [
+  { label: "Scores", href: "/#scores" },
+  { label: "Pulse", href: "/#pulse-index" },
+  { label: "Injuries", href: "/injuries" },
+  { label: "Tonight", href: "/#tonight" },
+  { label: "Playoffs", href: "/playoffs" },
+  { label: "Tools", href: "/tools" },
+];
+
+/** Full drawer navigation (mobile menu + overflow) */
 export const MAIN_NAV_LINKS: MainNavLink[] = [
   { label: "Scores", href: "/#scores" },
   { label: "Pulse Index", href: "/#pulse-index" },
@@ -17,12 +37,22 @@ export const MAIN_NAV_LINKS: MainNavLink[] = [
   { label: "Ask AI", href: "/ask" },
 ];
 
+/** Sticky in-page section jumps on today's desk */
+export const DESK_SECTION_LINKS: MainNavLink[] = [
+  { label: "Briefing", href: "#today-desk" },
+  { label: "Scores", href: "#scores" },
+  { label: "Pulse", href: "#pulse-index" },
+  { label: "Injuries", href: "#injuries" },
+  { label: "Tonight", href: "#tonight" },
+  { label: "Standings", href: "#standings" },
+];
+
 export const MOBILE_BOTTOM_NAV_LINKS: MainNavLink[] = [
   { label: "Today", href: "/" },
-  { label: "Scores", href: "/#scores" },
-  { label: "Playoffs", href: "/playoffs" },
-  { label: "Players", href: "/compare-players" },
-  { label: "Tools", href: "/tools" },
+  { label: "Live", href: "/#scores" },
+  { label: "Playoffs", href: PLAYOFFS_NAV_HREF },
+  { label: "My Pulse", href: "/my-pulse" },
+  { label: "Picks", href: "/pick-em" },
 ];
 
 /** All feature routes — Tools directory */
@@ -99,3 +129,11 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges", category: "publishing" },
   { label: "Unsubscribe digest", href: "/unsubscribe", description: "Email opt-out page", category: "publishing" },
 ];
+
+/** Related tools in the same category (excluding current route). */
+export function relatedToolsForHref(href: string, limit = 4) {
+  const path = href.split("#")[0] || href;
+  const current = TOOLS_DIRECTORY.find((t) => t.href === path || path.startsWith(`${t.href}/`));
+  const category = current?.category ?? "analysis";
+  return TOOLS_DIRECTORY.filter((t) => t.href !== path && t.category === category).slice(0, limit);
+}

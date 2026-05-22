@@ -40,11 +40,17 @@ jobs:
       - name: Vitest
         run: npx vitest run
 
+      - name: API TypeScript (serverless handlers)
+        run: npm run typecheck:api
+
       - name: Playoff ↔ pulse edition drift guard
         run: node scripts/validate-playoff-pulse-drift.mjs
 
       - name: Playoff seriesIntel keys cover playoffSeries
         run: node scripts/verify-series-intel-keys.mjs
+
+      - name: Line movement data sync (structure)
+        run: node scripts/sync-line-movement.mjs sync
 
       - name: Verify seasonal generator scripts resolve
         run: node scripts/content-schedule.mjs --verify-generators
@@ -69,6 +75,9 @@ jobs:
 
       - name: Season-mode calendar (node:test)
         run: node --test scripts/tests/season-mode.test.mjs
+
+      - name: Push tip-window helpers (node:test)
+        run: node --test scripts/tests/tip-window.test.mjs scripts/tests/fetch-odds-api.test.mjs
 
       - name: Vite build
         run: npx vite build

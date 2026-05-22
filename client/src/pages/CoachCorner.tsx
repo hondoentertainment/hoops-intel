@@ -1,7 +1,7 @@
 // Coach's Corner — Weekly Tactical Breakdowns
 import { useState } from "react";
 import { tacticsData, type TacticalBreakdown } from "../lib/tacticsData";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // SCHEME GRADE BADGE
@@ -314,12 +314,8 @@ export default function CoachCorner() {
   } = tacticsData;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="COACH CORNER" />
-
-      <div className="container py-8 max-w-5xl mx-auto px-4">
-        {/* Page header */}
+    <ToolPageLayout subtitle="COACH CORNER">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -522,7 +518,6 @@ export default function CoachCorner() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

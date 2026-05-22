@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { teamColors } from "../lib/teamColors";
 import { getPreferences, setPreferences } from "../lib/userPreferences";
 
@@ -21,11 +21,8 @@ export default function Rivals() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="SETTINGS" />
-
-      <div className="container py-10 max-w-lg">
-        <p className="section-label mb-2">MATCHUP WATCHLIST</p>
+    <ToolPageLayout subtitle="SETTINGS">
+<p className="section-label mb-2">MATCHUP WATCHLIST</p>
         <h1 className="display-heading text-2xl sm:text-3xl text-white mb-4">Rival alerts</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
           When tonight&apos;s preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker.&nbsp;
@@ -77,8 +74,7 @@ export default function Rivals() {
             Reset
           </button>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }
 

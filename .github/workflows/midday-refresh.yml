@@ -69,6 +69,13 @@ jobs:
         run: node scripts/generate-watch-guide.mjs || true
         timeout-minutes: 3
 
+      - name: Refresh line movement (open → close)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          node scripts/fetch-line-odds.mjs || true
+          node scripts/sync-line-movement.mjs sync || true
+
       - name: Check for changes
         id: changes
         run: |
@@ -79,7 +86,7 @@ jobs:
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/sentimentData.ts client/src/lib/momentumData.ts client/src/lib/watchGuideData.ts
+          git add client/src/lib/sentimentData.ts client/src/lib/momentumData.ts client/src/lib/watchGuideData.ts client/src/lib/lineMovementData.ts
           git commit -m "Midday refresh: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 

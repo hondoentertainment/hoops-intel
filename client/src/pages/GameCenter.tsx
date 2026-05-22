@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "wouter";
 import SiteHeader from "../components/SiteHeader";
+import Breadcrumbs from "../components/Breadcrumbs";
+import ErrorBlock from "../components/ErrorBlock";
 import ShareButton from "../components/ShareButton";
 import { getGameCenterById, type GameCenterResponse } from "../lib/gameCenter";
+import { playoffSeriesForMatchup, resolveSeriesIntel } from "../lib/playoffData";
+import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
@@ -117,14 +121,35 @@ export default function GameCenter() {
 
   const shareUrl = `https://hoopsintel.net/game/${game.gameId}`;
   const shareTweet = `${game.title} | ${game.subtitle} hoopsintel.net/game/${game.gameId}`;
+  const previewPlayoffSeries =
+    (game.status === "preview" || game.status === "scheduled")
+      ? playoffSeriesForMatchup(game.away.abbr, game.home.abbr)
+      : undefined;
+  const activePlayoffSeries =
+    previewPlayoffSeries && previewPlayoffSeries.status !== "complete"
+      ? previewPlayoffSeries
+      : undefined;
+  const playoffIntel = activePlayoffSeries ? resolveSeriesIntel(activePlayoffSeries) : undefined;
+  const playoffNext = activePlayoffSeries ? nextPendingGame(activePlayoffSeries) : undefined;
 
   return (
     <div className="min-h-screen pb-20" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle="GAME CENTER" />
-      <main className="container py-8">
+      <main id="main-content" tabIndex={-1} className="container py-8">
+        <Breadcrumbs
+          items={[
+            { label: "Today's desk", href: "/" },
+            { label: "Scores", href: "/#scores" },
+            { label: game ? `${game.away.abbr} at ${game.home.abbr}` : "Game" },
+          ]}
+        />
         {error && (
-          <div className="mb-4 rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-xs text-amber-200">
-            Live API unavailable. Showing static generated fallback.
+          <div className="mb-4">
+            <ErrorBlock
+              message="Live Game Center API unavailable. Showing cached edition data."
+              fallbackHref="/#scores"
+              fallbackLabel="Back to scores"
+            />
           </div>
         )}
 
@@ -151,6 +176,37 @@ export default function GameCenter() {
             {game.statusDetail && <span className="rounded-full bg-emerald-400/10 px-3 py-1.5 text-emerald-300">{game.statusDetail}</span>}
           </div>
         </section>
+
+        {activePlayoffSeries && playoffIntel && (
+          <section
+            className="glass-card rounded-lg p-4 md:p-5 mb-6"
+            style={{
+              border: "1px solid rgba(244,63,94,0.22)",
+              background: "rgba(244,63,94,0.04)",
+            }}
+          >
+            <div className="section-label mb-2" style={{ color: "#F43F5E" }}>
+              PLAYOFF INTEL
+            </div>
+            <p className="text-sm font-semibold text-white mb-2">{activePlayoffSeries.summary}</p>
+            {playoffNext && (
+              <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.55)" }}>
+                Next: {playoffNext.awayTeam} @ {playoffNext.homeTeam}
+                {playoffNext.time ? ` · ${playoffNext.time}` : ""}
+                {playoffNext.tv ? ` · ${playoffNext.tv}` : ""}
+              </p>
+            )}
+            <p className="text-xs leading-relaxed mb-3 line-clamp-3" style={{ color: "rgba(255,255,255,0.65)" }}>
+              {playoffIntel.keyMatchup}
+            </p>
+            <a
+              href={`/playoffs#series-card-${activePlayoffSeries.seriesId}`}
+              className="text-xs font-semibold text-sky-300 hover:text-sky-200"
+            >
+              Full series board →
+            </a>
+          </section>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <section className="lg:col-span-2 space-y-4">
@@ -188,12 +244,22 @@ export default function GameCenter() {
                   <div className="rounded bg-white/[0.04] p-3">
                     <div className="text-xs text-white/40">Spread</div>
                     <div className="mono-data text-white">{game.betting.spread || "TBD"}</div>
+                    {game.betting.openingSpread ? (
+                      <div className="text-[10px] mono-data text-emerald-300/80 mt-1">
+                        Opener {game.betting.openingSpread}
+                      </div>
+                    ) : null}
                   </div>
                   <div className="rounded bg-white/[0.04] p-3">
                     <div className="text-xs text-white/40">Total</div>
                     <div className="mono-data text-white">{game.betting.overUnder || "TBD"}</div>
                   </div>
                 </div>
+                {game.betting.lineMovement?.map((line, i) => (
+                  <p key={i} className="text-xs leading-relaxed mb-2 last:mb-0" style={{ color: "rgba(255,255,255,0.62)" }}>
+                    {line}
+                  </p>
+                ))}
                 {game.betting.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "rgba(255,255,255,0.62)" }}>{game.betting.angle}</p>}
               </div>
             )}
@@ -202,6 +268,14 @@ export default function GameCenter() {
           <aside className="space-y-4">
             <div className="glass-card rounded-lg p-4 sticky top-4">
               <div className="section-label mb-3">KEY FACTS</div>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <a href="/pick-em" className="text-[10px] font-bold uppercase tracking-wider px-2 py-1.5 rounded bg-emerald-500/15 text-emerald-300">
+                  Pick &apos;Em
+                </a>
+                <a href="/betting-intel" className="text-[10px] font-bold uppercase tracking-wider px-2 py-1.5 rounded bg-white/[0.06] text-white/55">
+                  Lines
+                </a>
+              </div>
               <div className="space-y-2">
                 {game.insights.map((insight) => (
                   <div key={insight.label} className="flex justify-between gap-3 text-xs">

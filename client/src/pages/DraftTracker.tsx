@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { draftData } from "../lib/draftData";
 
 function TrendArrow({ trend }: { trend: "rising" | "falling" | "stable" }) {
@@ -32,9 +33,7 @@ export default function DraftTracker() {
   const [showTankWatch, setShowTankWatch] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
+    <ToolPageLayout subtitle="DRAFT TRACKER" maxWidth="2xl" showBreadcrumbs={false}>
         <div className="mb-8">
           <div className="text-xs tracking-widest mb-1" style={{ color: "#0EA5E9" }}>HOOPS INTEL</div>
           <h1 className="text-3xl font-bold text-white">DRAFT STOCK TRACKER</h1>
@@ -184,7 +183,6 @@ export default function DraftTracker() {
         <div className="mt-8 text-center">
           <a href="/" className="text-xs" style={{ color: "#0EA5E9" }}>&larr; Back to Hoops Intel</a>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

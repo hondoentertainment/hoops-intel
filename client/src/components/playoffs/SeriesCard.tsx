@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getTeamColor } from "../../lib/teamColors";
 import type { PlayoffSeries } from "../../lib/playoffData";
 import { resolveSeriesIntel } from "../../lib/playoffData";
 import { nextPendingGame } from "../../lib/playoffAnalytics";
 import { ExpandedSeriesPanel } from "./ExpandedSeriesPanel";
+import { GameScoreboardStrip } from "./GameScoreboardStrip";
 import { IntelSignals } from "./IntelSignals";
 import {
   heroSentence,
   lastFinalGame,
   lastFinalGameFromGames,
   momentumLabel,
+  seriesPressureBadges,
   sortSeries,
 } from "./dashboardDerive";
 import { SeriesTracker } from "./SeriesTracker";
+
+const BADGE_STYLES = {
+  amber: "bg-amber-500/15 text-amber-300 border-amber-500/35",
+  rose: "bg-rose-500/15 text-rose-300 border-rose-500/35",
+  emerald: "bg-emerald-500/15 text-emerald-300 border-emerald-500/35",
+  sky: "bg-sky-500/15 text-sky-300 border-sky-500/35",
+} as const;
 
 function TeamMark({ team }: { team: string }) {
   const c = getTeamColor(team);
@@ -38,6 +47,10 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
   const [open, setOpen] = useState(defaultExpanded);
   const [focusedGame, setFocusedGame] = useState<number | undefined>(undefined);
 
+  useEffect(() => {
+    if (defaultExpanded) setOpen(true);
+  }, [defaultExpanded, series.seriesId]);
+
   const last = lastFinalGame(series);
   const nx = nextPendingGame(series);
   const momentum = momentumLabel(series);
@@ -45,6 +58,8 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
     series.status === "complete" ? "Final" : series.status === "active" ? "In progress" : "Scheduled";
 
   const intel = resolveSeriesIntel(series);
+  const pressureBadges = seriesPressureBadges(series);
+  const expandLabel = `${series.higherTeam} vs ${series.lowerTeam} series intel`;
 
   return (
     <article
@@ -57,8 +72,10 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="w-full text-left p-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
+        className="w-full text-left p-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101c]"
         aria-expanded={open}
+        aria-controls={`series-panel-${series.seriesId}`}
+        aria-label={open ? `Collapse ${expandLabel}` : `Expand ${expandLabel}`}
       >
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex items-center gap-3 min-w-0">
@@ -69,8 +86,17 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
                   {series.higherTeam} vs {series.lowerTeam}
                 </span>
                 <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.06] text-white/50 border border-white/[0.08]">
-                  {series.round.replace("-", " ")}
+                  {series.round.replace(/-/g, " ")}
                 </span>
+                {pressureBadges.map((b) => (
+                  <span
+                    key={b.label}
+                    title={b.title}
+                    className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${BADGE_STYLES[b.tone]}`}
+                  >
+                    {b.label}
+                  </span>
+                ))}
               </div>
               <div className="flex flex-wrap gap-2 mt-1.5 items-center">
                 <span className="mono-data text-xl sm:text-2xl font-black text-white">
@@ -85,8 +111,8 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
                 >
                   {statusLabel}
                 </span>
-                <span className="text-lg" title="Momentum tilt">
-                  {momentum === "hot" ? "🔥" : momentum === "split" ? "⚡️" : "❄️"}
+                <span className="text-lg" aria-label={`Momentum: ${momentum === "hot" ? "hot run" : momentum === "split" ? "split" : "cold edge"}`}>
+                  <span aria-hidden>{momentum === "hot" ? "🔥" : momentum === "split" ? "⚡️" : "❄️"}</span>
                 </span>
               </div>
             </div>
@@ -104,6 +130,8 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
             setOpen(true);
           }}
         />
+
+        <GameScoreboardStrip games={series.games} higherTeam={series.higherTeam} lowerTeam={series.lowerTeam} />
 
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
           <div className="rounded-lg bg-white/[0.04] px-2 py-1.5 border border-white/[0.05]">
@@ -132,7 +160,10 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
         </div>
       </button>
 
-      <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+      <div
+        id={`series-panel-${series.seriesId}`}
+        className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+      >
         <div className="overflow-hidden min-h-0">
           <div className="px-4 pb-4">
             <IntelSignals series={series} />

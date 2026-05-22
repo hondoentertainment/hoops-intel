@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 
@@ -311,14 +311,11 @@ export default function InjuryReport() {
     out: sorted.filter((i) => i.status.toLowerCase() === "out").length,
     questionable: sorted.filter((i) => i.status.toLowerCase() === "questionable").length,
     "high-impact": sorted.filter((i) => impactRating(i.impact) >= 8).length,
-  };
+  }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="INJURY REPORT" />
-
-      <div className="container py-8">
-        {/* ── Section label + title ── */}
+    <ToolPageLayout subtitle="INJURY REPORT">
+{/* ── Section label + title ── */}
         <div className="mb-2">
           <div
             className="text-[10px] font-bold tracking-widest uppercase mb-1"
@@ -402,7 +399,6 @@ export default function InjuryReport() {
             ))}
           </div>
         )}
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

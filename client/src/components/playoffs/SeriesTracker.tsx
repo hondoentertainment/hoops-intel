@@ -39,9 +39,16 @@ export function SeriesTracker({ games, higherTeam, lowerTeam, highlightedGame, o
               e.stopPropagation();
               if (g && (isFinal || isLive)) onHighlight?.(n);
             }}
+            aria-label={
+              isFinal && g
+                ? `Game ${n}, final: ${g.awayTeam} ${g.awayScore} at ${g.homeTeam} ${g.homeScore}`
+                : isLive
+                  ? `Game ${n}, live`
+                  : `Game ${n}, ${muted ? "not started" : "scheduled"}`
+            }
             className={[
-              "flex-1 min-w-0 rounded px-0.5 py-2 text-[10px] sm:text-xs font-bold transition-all duration-200",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60",
+              "tap-target flex-1 min-w-0 rounded px-0.5 py-2 text-[10px] sm:text-xs font-bold transition-all duration-200",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-[#07101c]",
               muted ? "bg-white/[0.04] text-white/30" : "",
               isFinal && isHi ? "ring-1 shadow-sm" : "",
               isFinal && isLo ? "ring-1 shadow-sm" : "",

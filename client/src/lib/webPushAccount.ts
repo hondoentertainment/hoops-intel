@@ -2,7 +2,10 @@
 
 const VAPID_PUBLIC = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined;
 
-export const DEFAULT_PUSH_TOPICS = ["elimination-game", "series-clincher"] as const;
+export const DEFAULT_PUSH_TOPICS = ["elimination-game", "series-clincher", "playoff-tip"] as const;
+
+/** Fantasy-focused subscribers: playoff moments + fantasy digest blasts, no injury wire. */
+export const FANTASY_ONLY_PUSH_TOPICS = ["fantasy", "playoff-tip", "series-clincher"] as const;
 
 export const PUSH_TOPIC_OPTIONS: { id: string; label: string; hint: string }[] = [
   {
@@ -14,6 +17,16 @@ export const PUSH_TOPIC_OPTIONS: { id: string; label: string; hint: string }[] =
     id: "series-clincher",
     label: "Series clinchers",
     hint: "Immediate ping when a series ends.",
+  },
+  {
+    id: "playoff-tip",
+    label: "Playoff tip-off (2h window)",
+    hint: "Sparse alert before conference finals / elimination games tip.",
+  },
+  {
+    id: "playoff-close",
+    label: "Playoff crunch time",
+    hint: "Live series games within one possession late.",
   },
   {
     id: "fantasy",

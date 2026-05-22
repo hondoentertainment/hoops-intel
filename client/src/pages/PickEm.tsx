@@ -3,11 +3,13 @@
 
 import { useState, useEffect } from "react";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
+import PickEmShareCard from "../components/PickEmShareCard";
+import { getPickWinLoss, localPickWinLoss, type PickWinLoss } from "../lib/pickEmEngagement";
 import PickEmWidget from "../components/PickEm";
 import BracketPicker from "../components/BracketPicker";
 import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
 import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 
 // ═══════════════════════════════════════════════════════════
@@ -526,17 +528,24 @@ function parseEditionDate(dateStr: string): string {
 
 export default function PickEmPage() {
   const editionDate = parseEditionDate(pulseEdition.date);
+  const [pickStats, setPickStats] = useState<PickWinLoss>(() => localPickWinLoss());
   const playoffSnap = isPlayoffsActive()
     ? playoffSnapshot(playoffSeries, todayISOLocal())
     : null;
 
-  return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="PICK EM" />
+  useEffect(() => {
+    let cancelled = false;
+    getPickWinLoss().then((stats) => {
+      if (!cancelled) setPickStats(stats);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-      <div className="container py-8 max-w-3xl mx-auto">
-        {/* Page Title */}
+  return (
+    <ToolPageLayout subtitle="PICK EM">
+{/* Page Title */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -561,6 +570,15 @@ export default function PickEmPage() {
             {gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.
           </p>
         </div>
+
+        {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0) && (
+          <PickEmShareCard
+            wins={pickStats.wins}
+            losses={pickStats.losses}
+            streak={pickStats.streak}
+            seasonRecord={pickStats.source === "server"}
+          />
+        )}
 
         {playoffSnap && (
           <div
@@ -645,7 +663,6 @@ export default function PickEmPage() {
 
         {/* How It Works */}
         <HowItWorksSection />
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

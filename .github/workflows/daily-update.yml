@@ -83,6 +83,7 @@ jobs:
         id: generate
         env:
           ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key || secrets.ANTHROPIC_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           set +e
           node scripts/generate-all-daily.mjs 2>&1 | tee generation.log
@@ -107,19 +108,33 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scripts/settle-picks.mjs
 
+      - name: Stage daily edition files
+        run: node scripts/stage-daily-edition.mjs
+
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Pre-push CI gate (schema + build)
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run test:pre-push
 
       - name: Commit and push edition
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/ public/feed.xml public/sitemap.xml public/og/
           git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
+
+      - name: Post-push note
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "::notice::Edition pushed — deployment-smoke workflow will verify production after Vercel deploy."
+          echo "### Daily edition pushed" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Production verification runs automatically via **Deployment Smoke**." >> "$GITHUB_STEP_SUMMARY"
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'

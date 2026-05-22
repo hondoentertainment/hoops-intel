@@ -2,7 +2,7 @@
 // Route: /community-pulse
 
 import { useState, useCallback } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { communityPulseData } from "../lib/communityPulseView";
 import { ratablePlayers } from "../lib/communityRatablePlayers";
 
@@ -292,21 +292,19 @@ export default function CommunityPulse() {
   const sortedByAI = [...data.votes].sort((a, b) => b.aiScore - a.aiScore);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader
-        subtitle="COMMUNITY PULSE"
-        toolbarExtra={
-          <span
-            className="text-xs whitespace-nowrap"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            {data.weekLabel}
-          </span>
-        }
-      />
-
-      <main className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-        {/* Title */}
+    <ToolPageLayout
+      subtitle="COMMUNITY PULSE"
+      maxWidth="md"
+      headerToolbarExtra={
+        <span
+          className="text-xs whitespace-nowrap"
+          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+        >
+          {data.weekLabel}
+        </span>
+      }
+    >
+{/* Title */}
         <div className="text-center">
           <h1
             className="text-2xl font-black uppercase tracking-wider mb-2"
@@ -498,7 +496,6 @@ export default function CommunityPulse() {
 
         {/* Footer spacer */}
         <div className="h-12" />
-      </main>
-    </div>
+    </ToolPageLayout>
   );
 }

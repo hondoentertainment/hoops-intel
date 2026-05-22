@@ -1,17 +1,22 @@
-import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import { useMemo, useState } from "react";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { archiveEditions } from "../lib/archiveData";
 import { editionSearchHaystack } from "../lib/archiveSearch";
-
-// ═══════════════════════════════════════════════════════════
-// ARCHIVE SEARCH — Filter and search past editions
-// ═══════════════════════════════════════════════════════════
 
 function matchesSearch(edition: Record<string, unknown>, query: string): boolean {
   if (!query.trim()) return true;
   const q = query.toLowerCase().trim();
-  const hay = editionSearchHaystack(edition);
-  return hay.includes(q);
+  return editionSearchHaystack(edition).includes(q);
+}
+
+function matchesTag(edition: any, tag: string): boolean {
+  if (!tag) return true;
+  return (edition.tags || []).some((t: string) => t.toLowerCase() === tag.toLowerCase());
+}
+
+function matchesMonth(edition: any, month: string): boolean {
+  if (!month) return true;
+  return String(edition.date || "").startsWith(month);
 }
 
 function ArchiveCard({ edition }: { edition: any }) {
@@ -19,64 +24,16 @@ function ArchiveCard({ edition }: { edition: any }) {
     <div className="glass-card rounded-lg p-5 transition-all hover:border-sky-500/30">
       <div className="flex items-center justify-between mb-3">
         <div className="section-label">{edition.displayDate}</div>
-        <div
-          className="mono-data text-xs px-2 py-0.5 rounded"
-          style={{
-            background: "rgba(14,165,233,0.1)",
-            color: "#0EA5E9",
-          }}
-        >
+        <div className="mono-data text-xs px-2 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>
           {edition.gamesCount} GAMES
         </div>
       </div>
-      <h3 className="display-heading text-white text-lg mb-2">
-        {edition.headline}
-      </h3>
-      <p
-        className="text-sm mb-3"
-        style={{ color: "rgba(255,255,255,0.5)" }}
-      >
-        {edition.subheadline}
-      </p>
-      <p
-        className="text-sm leading-relaxed mb-4"
-        style={{ color: "rgba(255,255,255,0.65)" }}
-      >
-        {edition.topStory}
-      </p>
-      <div className="flex items-center gap-3 mb-3">
-        <div
-          className="flex items-center gap-2 px-3 py-1.5 rounded"
-          style={{ background: "rgba(255,255,255,0.04)" }}
-        >
-          <span
-            className="text-xs"
-            style={{ color: "rgba(255,255,255,0.4)" }}
-          >
-            TOP PLAYER
-          </span>
-          <span className="text-xs font-semibold text-white">
-            {edition.topPlayer}
-          </span>
-          <span
-            className="mono-data text-xs"
-            style={{ color: "#10B981" }}
-          >
-            {edition.topStatLine}
-          </span>
-        </div>
-      </div>
+      <h3 className="display-heading text-white text-lg mb-2">{edition.headline}</h3>
+      <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{edition.subheadline}</p>
+      <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{edition.topStory}</p>
       <div className="flex flex-wrap gap-1.5">
-        {edition.tags.map((tag: string) => (
-          <span
-            key={tag}
-            className="text-xs px-2 py-0.5 rounded"
-            style={{
-              background: "rgba(14,165,233,0.08)",
-              color: "rgba(14,165,233,0.7)",
-              border: "1px solid rgba(14,165,233,0.15)",
-            }}
-          >
+        {(edition.tags || []).map((tag: string) => (
+          <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.08)", color: "rgba(14,165,233,0.7)", border: "1px solid rgba(14,165,233,0.15)" }}>
             {tag}
           </span>
         ))}
@@ -85,61 +42,91 @@ function ArchiveCard({ edition }: { edition: any }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// ARCHIVE PAGE — Main export
-// ═══════════════════════════════════════════════════════════
-
 const PAGE_SIZE = 12;
+
+const ALL_TAGS = Array.from(
+  new Set(archiveEditions.flatMap((e: any) => e.tags || [])),
+).slice(0, 12);
+
+const ALL_MONTHS = Array.from(
+  new Set(archiveEditions.map((e: any) => String(e.date || "").slice(0, 7)).filter(Boolean)),
+).sort().reverse();
 
 export default function Archive() {
   const [search, setSearch] = useState("");
+  const [tag, setTag] = useState("");
+  const [month, setMonth] = useState("");
   const [page, setPage] = useState(1);
-  const filtered = archiveEditions.filter((e: any) => matchesSearch(e, search));
+
+  const filtered = useMemo(
+    () => archiveEditions.filter((e: any) => matchesSearch(e, search) && matchesTag(e, tag) && matchesMonth(e, month)),
+    [search, tag, month],
+  );
+
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const paged = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
-  // Reset to page 1 when search changes
   const handleSearch = (val: string) => {
     setSearch(val);
     setPage(1);
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="ARCHIVE" />
-
-      {/* Search */}
-      <div className="container py-8">
+    <ToolPageLayout subtitle="ARCHIVE" showRelated={false}>
         <div className="section-label mb-2">PAST EDITIONS</div>
         <h1 className="display-heading text-white text-3xl mb-6">Archive</h1>
-        <div className="mb-6">
-          <label htmlFor="archive-search" className="sr-only">
-          Search editions
-        </label>
-        <input
-            id="archive-search"
-            type="search"
-            placeholder="Search players, teams, stories..."
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="w-full max-w-md px-4 py-2.5 rounded-lg text-sm outline-none"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              color: "white",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          />
+
+        <div className="mb-4 flex flex-wrap gap-2">
+          <button type="button" className="desk-section-pill" data-active={!tag ? "true" : undefined} onClick={() => { setTag(""); setPage(1); }}>
+            All topics
+          </button>
+          {ALL_TAGS.map((t) => (
+            <button
+              key={t}
+              type="button"
+              className="desk-section-pill"
+              data-active={tag === t ? "true" : undefined}
+              onClick={() => { setTag(t === tag ? "" : t); setPage(1); }}
+            >
+              {t}
+            </button>
+          ))}
         </div>
-        <div
-          className="text-xs mb-4"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-        >
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          <div>
+            <label htmlFor="archive-search" className="sr-only">Search editions</label>
+            <input
+              id="archive-search"
+              type="search"
+              placeholder="Search players, teams, stories..."
+              value={search}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="w-full min-h-[48px] px-4 py-2.5 rounded-lg text-base sm:text-sm outline-none bg-white/5 text-white border border-white/10 focus-visible:ring-2 focus-visible:ring-sky-500/50"
+            />
+          </div>
+          <div>
+            <label htmlFor="archive-month" className="sr-only">Filter by month</label>
+            <select
+              id="archive-month"
+              value={month}
+              onChange={(e) => { setMonth(e.target.value); setPage(1); }}
+              className="w-full min-h-[48px] px-4 py-2.5 rounded-lg text-base sm:text-sm outline-none bg-white/5 text-white border border-white/10"
+            >
+              <option value="">All months</option>
+              {ALL_MONTHS.map((m) => (
+                <option key={m} value={m}>{m}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
           {filtered.length} edition{filtered.length !== 1 ? "s" : ""} found
           {totalPages > 1 && ` · Page ${currentPage} of ${totalPages}`}
         </div>
 
-        {/* Edition Cards */}
         <div className="space-y-4">
           {paged.map((edition: any) => (
             <ArchiveCard key={edition.id} edition={edition} />
@@ -147,68 +134,34 @@ export default function Archive() {
         </div>
 
         {filtered.length === 0 && (
-          <div
-            className="text-center py-12 text-sm"
-            style={{ color: "rgba(255,255,255,0.4)" }}
-          >
-            No editions match your search.
+          <div className="text-center py-12 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+            No editions match. <button type="button" className="text-sky-400 underline" onClick={() => { setSearch(""); setTag(""); setMonth(""); }}>Clear filters</button>
           </div>
         )}
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-8">
             <button
+              type="button"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={currentPage <= 1}
-              className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
-              style={{
-                background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)",
-                color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "#0EA5E9",
-                cursor: currentPage <= 1 ? "default" : "pointer",
-              }}
+              className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
+              style={{ background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)", color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "#0EA5E9" }}
             >
               Previous
             </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1)
-              .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
-              .reduce<(number | "...")[]>((acc, p, idx, arr) => {
-                if (idx > 0 && p - (arr[idx - 1] ?? 0) > 1) acc.push("...");
-                acc.push(p);
-                return acc;
-              }, [])
-              .map((p, i) =>
-                p === "..." ? (
-                  <span key={`ellipsis-${i}`} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>...</span>
-                ) : (
-                  <button
-                    key={p}
-                    onClick={() => setPage(p)}
-                    className="w-8 h-8 rounded text-xs font-medium transition-colors"
-                    style={{
-                      background: p === currentPage ? "#0EA5E9" : "rgba(255,255,255,0.05)",
-                      color: p === currentPage ? "white" : "rgba(255,255,255,0.5)",
-                    }}
-                  >
-                    {p}
-                  </button>
-                )
-              )}
+            <span className="text-xs mono-data" style={{ color: "rgba(255,255,255,0.45)" }}>{currentPage} / {totalPages}</span>
             <button
+              type="button"
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage >= totalPages}
-              className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
-              style={{
-                background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)",
-                color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "#0EA5E9",
-                cursor: currentPage >= totalPages ? "default" : "pointer",
-              }}
+              className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
+              style={{ background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)", color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "#0EA5E9" }}
             >
               Next
             </button>
           </div>
         )}
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

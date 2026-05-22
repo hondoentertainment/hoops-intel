@@ -2,7 +2,7 @@
 // Visualizes game momentum swings, clutch plays, and AI-generated narratives
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { momentumData } from "../lib/momentumData";
 import type { MomentumSwing } from "../lib/momentumData";
 
@@ -477,11 +477,8 @@ export default function Momentum() {
   const otherGames = games.filter((g) => g.gameId !== gameOfTheNight);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="MOMENTUM ENGINE" />
-
-      <div className="container py-8 max-w-4xl mx-auto">
-        {/* Page header */}
+    <ToolPageLayout subtitle="MOMENTUM ENGINE">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -658,7 +655,6 @@ export default function Momentum() {
             Momentum analysis is generated after all games complete each night
           </p>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

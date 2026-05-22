@@ -2,7 +2,7 @@
 // Route: /watch-guide
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -290,21 +290,19 @@ export default function WatchGuide() {
   const skipGame = data.games[data.skipIt.gameIndex];
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader
-        subtitle="WATCH GUIDE"
-        toolbarExtra={
-          <span
-            className="text-xs whitespace-nowrap"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            {data.games.length} games tonight
-          </span>
-        }
-      />
-
-      <main className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-        {/* Title */}
+    <ToolPageLayout
+      subtitle="WATCH GUIDE"
+      maxWidth="md"
+      headerToolbarExtra={
+        <span
+          className="text-xs whitespace-nowrap"
+          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+        >
+          {data.games.length} games tonight
+        </span>
+      }
+    >
+{/* Title */}
         <div className="text-center">
           <h1
             className="text-2xl font-black uppercase tracking-wider mb-2"
@@ -395,7 +393,6 @@ export default function WatchGuide() {
 
         {/* Footer spacer */}
         <div className="h-12" />
-      </main>
-    </div>
+    </ToolPageLayout>
   );
 }

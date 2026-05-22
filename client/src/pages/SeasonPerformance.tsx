@@ -2,7 +2,7 @@
 // Tracks Hoops Intel's prediction accuracy across the entire 2025-26 NBA season
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 // ═══════════════════════════════════════════════════════════
 // SEASON PERFORMANCE DATA
 // Aggregated prediction results across all editions
@@ -179,10 +179,7 @@ export default function SeasonPerformance() {
   const overallPct = parseFloat(pct(totalCorrect, totalGames));
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="SEASON PERFORMANCE" />
-
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <ToolPageLayout subtitle="SEASON PERFORMANCE" maxWidth="2xl" showBreadcrumbs={false}>
         {/* Title */}
         <div className="mb-8">
           <h1
@@ -535,7 +532,6 @@ export default function SeasonPerformance() {
             <a href="/pick-em" className="text-xs" style={{ color: "#0EA5E9" }}>Pick&apos;Em</a>
           </div>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

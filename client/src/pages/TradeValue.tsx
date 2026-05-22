@@ -1,4 +1,4 @@
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
 // Trade Value Index — data from `generate-trade-value.mjs` → tradeValueData.ts
@@ -198,12 +198,8 @@ export default function TradeValue() {
       : players;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="TRADE VALUE" />
-
-      <div className="container py-8 max-w-3xl mx-auto">
-        {/* Page header */}
+    <ToolPageLayout subtitle="TRADE VALUE">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -352,7 +348,6 @@ export default function TradeValue() {
         <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}>
           Rankings regenerate weekly from the latest ESPN slate + Hoops Intel prompts.
         </p>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useToast } from "../contexts/ToastContext";
 
 // ═══════════════════════════════════════════════════════════
 // ShareButton — Reusable share dropdown for Hoops Intel
@@ -22,7 +23,7 @@ export default function ShareButton({
   className = "",
 }: ShareButtonProps) {
   const [open, setOpen] = useState(false);
-  const [toastVisible, setToastVisible] = useState(false);
+  const { toast } = useToast();
   const ref = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
@@ -51,8 +52,7 @@ export default function ShareButton({
       document.body.removeChild(el);
     }
     setOpen(false);
-    setToastVisible(true);
-    setTimeout(() => setToastVisible(false), 2500);
+    toast("Link copied to clipboard");
   };
 
   const handleTweetShare = () => {
@@ -185,20 +185,6 @@ export default function ShareButton({
               More options...
             </button>
           )}
-        </div>
-      )}
-
-      {/* Toast notification */}
-      {toastVisible && (
-        <div
-          className="absolute -top-10 right-0 px-3 py-1.5 rounded text-xs font-semibold whitespace-nowrap z-20"
-          style={{
-            background: "#10B981",
-            color: "#fff",
-            boxShadow: "0 4px 12px rgba(16,185,129,0.3)",
-          }}
-        >
-          Link copied!
         </div>
       )}
     </div>

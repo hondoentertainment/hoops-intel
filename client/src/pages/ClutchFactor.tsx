@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { clutchData, ClutchPlayer } from "../lib/clutchData";
 
 function getMedalStyle(rank: number): React.CSSProperties | null {
@@ -288,9 +289,7 @@ function WeeklyHighlight() {
 
 export default function ClutchFactor() {
   return (
-    <div style={{ minHeight: "100vh", background: "var(--hi-bg-page, #050D1A)", color: "#fff" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px" }}>
-        {/* Header */}
+    <ToolPageLayout subtitle="CLUTCH FACTOR" maxWidth="2xl" showBreadcrumbs={false}>
         <div style={{ marginBottom: 40 }}>
           <h1
             style={{
@@ -310,18 +309,10 @@ export default function ClutchFactor() {
           </div>
         </div>
 
-        {/* Clutch King */}
         <ClutchKingCard />
-
-        {/* Rankings Table */}
         <RankingsTable />
-
-        {/* Ice Cold */}
         <IceColdCard />
-
-        {/* Weekly Highlight */}
         <WeeklyHighlight />
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

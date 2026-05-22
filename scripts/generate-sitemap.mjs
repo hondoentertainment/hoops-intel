@@ -93,12 +93,52 @@ export function generate() {
 
   const now = new Date().toISOString().split("T")[0];
 
+  // Keep in sync with STATIC_SITEMAP_PATHS in client/src/lib/seoConfig.ts
+  const staticToolPaths = [
+    "/tools",
+    "/injuries",
+    "/pick-em",
+    "/trade-value",
+    "/trivia",
+    "/performance",
+    "/momentum",
+    "/lineups",
+    "/trade-simulator",
+    "/clutch",
+    "/draft",
+    "/sentiment",
+    "/tactics",
+    "/projections",
+    "/badges",
+    "/community-pulse",
+    "/watch-guide",
+    "/podcast-companion",
+    "/history",
+    "/refs",
+    "/ask",
+    "/compare-players",
+    "/pulse-methodology",
+    "/rivals",
+    "/my-pulse",
+    "/print-edition",
+    "/widgets",
+    "/pro",
+    "/betting-intel",
+    "/guest-pulse",
+  ];
+
   let urls = [
     { loc: "/", priority: "1.0", changefreq: "daily" },
     { loc: "/archive", priority: "0.8", changefreq: "daily" },
     { loc: "/pulse-history", priority: "0.7", changefreq: "daily" },
     { loc: "/playoffs", priority: "0.7", changefreq: "daily" },
+    ...staticToolPaths.map((loc) => ({ loc, priority: "0.65", changefreq: "weekly" })),
   ];
+
+  const seriesIds = new Set([...playoffFile.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => m[1]));
+  for (const id of seriesIds) {
+    urls.push({ loc: `/playoffs/series/${id}`, priority: "0.68", changefreq: "daily" });
+  }
 
   const playerSlugs = new Map();
   for (const player of players) {

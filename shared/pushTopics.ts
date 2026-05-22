@@ -10,6 +10,8 @@ export type PushTopicKind =
   | "milestone"
   | "elimination-game"
   | "series-clincher"
+  | "playoff-tip"
+  | "playoff-close"
   | "fantasy"
   | "rival";
 

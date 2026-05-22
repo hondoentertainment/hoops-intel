@@ -78,6 +78,16 @@ function parsePulseData() {
     }
   }
 
+  let lineMovement = [];
+  try {
+    const lmPath = resolve(__dirname, '../client/src/lib/lineMovementData.ts');
+    const lmSrc = readFileSync(lmPath, 'utf-8');
+    const m = /export const lineMovementRows[^=]*=\s*(\[[\s\S]*?\]);/.exec(lmSrc);
+    if (m) lineMovement = new Function(`"use strict"; return (${m[1]});`)();
+  } catch {
+    lineMovement = [];
+  }
+
   return {
     pulseEdition: extractJSON('pulseEdition'),
     narrative: extractJSON('narrative'),
@@ -86,13 +96,14 @@ function parsePulseData() {
     gamePreviews: extractJSON('gamePreviews'),
     fantasyAlerts: extractJSON('fantasyAlerts'),
     tickerItems: extractJSON('tickerItems'),
+    lineMovement,
   };
 }
 
 // ── HTML email template ───────────────────────────────────────────────────
 
 function generateEmailHTML(data) {
-  const { pulseEdition, narrative, pulseIndex, gameResults, gamePreviews, fantasyAlerts } = data;
+  const { pulseEdition, narrative, pulseIndex, gameResults, gamePreviews, fantasyAlerts, lineMovement } = data;
 
   const edition = pulseEdition || { date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }), edition: '' };
   const topPlayers = (pulseIndex || []).slice(0, 3);
@@ -178,6 +189,22 @@ function generateEmailHTML(data) {
       </td>
     </tr>
   `).join('');
+
+  const lineMoveHTML =
+    Array.isArray(lineMovement) && lineMovement.length > 0
+      ? `
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:16px;">
+      <tr><td style="padding:12px 16px;background:#1e293b;border-radius:8px;">
+        <div style="font-size:12px;color:#fbbf24;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Line movement</div>
+        ${lineMovement
+          .map(
+            (r) =>
+              `<div style="font-size:13px;color:#cbd5e1;margin-bottom:6px;"><strong>${r.awayTeam} @ ${r.homeTeam}</strong> — ${r.openingSpread} → ${r.closingSpread}</div>`,
+          )
+          .join("")}
+      </td></tr>
+    </table>`
+      : "";
 
   // Featured preview section
   const previewHTML = featuredPreview ? `
@@ -324,6 +351,7 @@ function generateEmailHTML(data) {
               <div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">
                 Tonight's Featured Game
               </div>
+              ${lineMoveHTML}
               ${previewHTML}
             </td>
           </tr>

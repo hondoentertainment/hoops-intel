@@ -32,6 +32,9 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { pushAlreadySent, pushMarkSent } from "./lib/push-dispatch-log.mjs";
+import { tipWithinHours } from "./lib/tip-window.mjs";
+import { firePushNotify, isPushDryRun } from "./lib/push-fire.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -72,14 +75,12 @@ async function supabaseFetch(table, opts = {}) {
   return res.status === 204 ? null : res.json();
 }
 
-async function firePush({ topic, title, body, teamAbbr, url }) {
-  const res = await fetch(PUSH_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ secret: PUSH_API_SECRET, topic, title, body, teamAbbr, url }),
+async function firePush(payload) {
+  return firePushNotify({
+    pushApiUrl: PUSH_API_URL,
+    pushApiSecret: PUSH_API_SECRET,
+    payload,
   });
-  if (!res.ok) throw new Error(`push-notify ${res.status}: ${await res.text().catch(() => "")}`);
-  return res.json();
 }
 
 function loadSnapshot() {
@@ -97,6 +98,18 @@ function isEliminationImminent(series) {
   const next = series.games.find((g) => g.status === "scheduled");
   if (!next) return false;
   return series.higherWins === 3 || series.lowerWins === 3;
+}
+
+function isCloseLiveGame(g) {
+  if (g.status !== "live") return false;
+  const hs = g.homeScore ?? 0;
+  const as = g.awayScore ?? 0;
+  if (hs <= 0 && as <= 0) return false;
+  return Math.abs(hs - as) <= 8;
+}
+
+function scheduledTipGame(series) {
+  return series.games.find((g) => g.status === "scheduled" && (g.time || g.date));
 }
 
 async function main() {
@@ -132,6 +145,55 @@ async function main() {
       }
     }
 
+    // ── Playoff tip: next scheduled game (once per game number) ──
+    const tipCandidate = s.status === "active" ? scheduledTipGame(s) : null;
+    const tipGame = tipCandidate && tipWithinHours(tipCandidate, 2) ? tipCandidate : null;
+    const tipKey = tipGame ? `playoff-tip:${s.seriesId}:g${tipGame.gameNumber}` : null;
+    if (tipKey && !(await pushAlreadySent(SUPABASE_URL, SUPABASE_SERVICE_KEY, tipKey))) {
+      const home = tipGame.homeTeam;
+      const away = tipGame.awayTeam;
+      for (const team of [home, away]) {
+        try {
+          await firePush({
+            topic: "playoff-tip",
+            title: `🏀 ${away} @ ${home} tips soon`,
+            body: `${s.summary} · Game ${tipGame.gameNumber}${tipGame.time ? ` · ${tipGame.time}` : ""}`,
+            teamAbbr: team,
+            url: `https://hoopsintel.net/playoffs#series-card-${s.seriesId}`,
+          });
+        } catch (err) {
+          console.error(`[tip] push failed for ${team}:`, err.message);
+        }
+      }
+      await pushMarkSent(SUPABASE_URL, SUPABASE_SERVICE_KEY, tipKey);
+      console.log(`[tip] ${s.seriesId} — Game ${tipGame.gameNumber}`);
+    }
+
+    // ── Close game: live within 8 pts (once per game number) ──
+    const closeGame = s.games.find(isCloseLiveGame);
+    const closeKey = closeGame ? `playoff-close:${s.seriesId}:g${closeGame.gameNumber}` : null;
+    if (closeKey && !(await pushAlreadySent(SUPABASE_URL, SUPABASE_SERVICE_KEY, closeKey))) {
+      const home = closeGame.homeTeam;
+      const away = closeGame.awayTeam;
+      const hs = closeGame.homeScore ?? 0;
+      const as = closeGame.awayScore ?? 0;
+      for (const team of [home, away]) {
+        try {
+          await firePush({
+            topic: "playoff-close",
+            title: `🔥 Crunch time: ${away} ${as} – ${home} ${hs}`,
+            body: `${s.higherTeam} ${s.higherWins}–${s.lowerWins} ${s.lowerTeam} · Live on the playoff board`,
+            teamAbbr: team,
+            url: `https://hoopsintel.net/playoffs#series-card-${s.seriesId}`,
+          });
+        } catch (err) {
+          console.error(`[close] push failed for ${team}:`, err.message);
+        }
+      }
+      await pushMarkSent(SUPABASE_URL, SUPABASE_SERVICE_KEY, closeKey);
+      console.log(`[close] ${s.seriesId} — Game ${closeGame.gameNumber}`);
+    }
+
     // ── Elimination: one side at 3 wins, next game scheduled ──
     const elimGame = isEliminationImminent(s) ? s.games.find((g) => g.status === "scheduled") : null;
     const alreadyNotified = prev?.elimination_notified_game === elimGame?.gameNumber;
@@ -165,6 +227,8 @@ async function main() {
           lower_wins: s.lowerWins,
           status: s.status,
           elimination_notified_game: elimGame?.gameNumber ?? prev?.elimination_notified_game ?? null,
+          tip_notified_game: tipGame?.gameNumber ?? prev?.tip_notified_game ?? null,
+          close_notified_game: closeGame?.gameNumber ?? prev?.close_notified_game ?? null,
           clincher_notified: s.status === "complete" ? true : (prev?.clincher_notified ?? false),
           updated_at: new Date().toISOString(),
         },

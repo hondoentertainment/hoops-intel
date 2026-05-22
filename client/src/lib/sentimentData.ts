@@ -361,5 +361,9 @@ export const sentimentData: SentimentData = {
       topTake: "De'Aaron Fox has missed two Conference Finals games and the Spurs are 0-2. He comes back Friday in San Antonio and this series might actually become a series again. They need him like they need oxygen and everyone knows it.",
       narrativeArc: "A player generating among the highest sentiment volume in the playoffs despite not playing a single minute. Fox's absence is the defining structural narrative of the WCF and his potential return has become the most anticipated injury update of the entire 2026 postseason. The discourse has taken on a mythological quality — Fox as the missing piece who transforms Castle from liability to weapon and makes OKC's depth advantage less decisive.",
     },
-    {
-      player
+  ],
+  hottestTake:
+    "SGA's 30/9 Game 2 redemption and Jalen Williams' seven-minute return have OKC Twitter convinced this roster is unfair — while Cleveland walks into MSG tonight carrying the weight of the blown 22-point lead.",
+  coldestTake:
+    "The Knicks' rest edge and home crowd are real, but Donovan Mitchell's playoff shot-making keeps ECF Game 2 from being a pre-written MSG coronation.",
+};

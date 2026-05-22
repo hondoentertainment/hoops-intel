@@ -1,7 +1,94 @@
 // Client-side derivation for playoff dashboard UX (insights, momentum, ordering).
 
-import type { PlayoffSeries, PlayoffSeriesGame } from "../../lib/playoffData";
+import type { PlayoffRound, PlayoffSeries, PlayoffSeriesGame } from "../../lib/playoffData";
 import { nextPendingGame, scoringEdgeForSeries } from "../../lib/playoffAnalytics";
+
+const ROUND_LABELS: Record<PlayoffRound, string> = {
+  "first-round": "First round",
+  "conference-semifinals": "Conference semifinals",
+  "conference-finals": "Conference finals",
+  finals: "NBA Finals",
+};
+
+export type PressureBadgeTone = "amber" | "rose" | "emerald" | "sky";
+
+export interface PressureBadge {
+  label: string;
+  tone: PressureBadgeTone;
+  title?: string;
+}
+
+export interface RoundSnapshot {
+  headline: string;
+  detail: string;
+}
+
+/** Match-point / elimination / final badges for series card headers. */
+export function seriesPressureBadges(series: PlayoffSeries): PressureBadge[] {
+  const badges: PressureBadge[] = [];
+  const leaderW = Math.max(series.higherWins, series.lowerWins);
+  const trailerW = Math.min(series.higherWins, series.lowerWins);
+  const leader = series.higherWins >= series.lowerWins ? series.higherTeam : series.lowerTeam;
+  const trailer = leader === series.higherTeam ? series.lowerTeam : series.higherTeam;
+
+  if (series.status === "complete") {
+    if (series.winner) {
+      badges.push({
+        label: `${series.winner} advances`,
+        tone: "emerald",
+        title: "Series complete",
+      });
+    } else {
+      badges.push({ label: "Series final", tone: "emerald" });
+    }
+    return badges;
+  }
+
+  const matchPoint = Boolean(series.eliminationGame) || (leaderW === 3 && trailerW < 3);
+  if (matchPoint) {
+    badges.push({
+      label: "Match point",
+      tone: "amber",
+      title: `${leader} can clinch with the next win`,
+    });
+    badges.push({
+      label: "Elimination",
+      tone: "rose",
+      title: `${trailer} must win to extend the series`,
+    });
+  }
+  return badges;
+}
+
+/** Context banner when the synced board is a partial round (≤4 series). */
+export function roundSnapshotContext(series: PlayoffSeries[]): RoundSnapshot | null {
+  const usable = usableSeries(series);
+  if (usable.length === 0 || usable.length > 4) return null;
+
+  const rounds = [...new Set(usable.map((s) => s.round))];
+  const roundPart = rounds.length === 1 ? ROUND_LABELS[rounds[0]!] ?? rounds[0]! : "Mixed rounds";
+
+  const east = usable.filter((s) => s.conference === "east").length;
+  const west = usable.filter((s) => s.conference === "west").length;
+  const finals = usable.filter((s) => s.conference === "finals").length;
+  const confParts: string[] = [];
+  if (east) confParts.push(`${east} East`);
+  if (west) confParts.push(`${west} West`);
+  if (finals) confParts.push(`${finals} Finals`);
+
+  const gamesPlayed = usable.reduce((n, s) => n + s.games.filter((g) => g.status === "final").length, 0);
+
+  return {
+    headline: `Round snapshot · ${roundPart}`,
+    detail: `${usable.length} series on file${confParts.length ? ` (${confParts.join(" · ")})` : ""} · ${gamesPlayed} final${gamesPlayed === 1 ? "" : "s"} logged — full bracket fills in as ESPN sync adds matchups.`,
+  };
+}
+
+export function completedFinalGames(games: PlayoffSeriesGame[]): PlayoffSeriesGame[] {
+  return games
+    .filter((g) => g.status === "final" && g.homeScore != null && g.awayScore != null && g.homeScore !== g.awayScore)
+    .sort((a, b) => a.gameNumber - b.gameNumber);
+}
 
 export interface TakeawaysModel {
   bullets: string[];

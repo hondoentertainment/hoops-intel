@@ -4,6 +4,7 @@ import { gamePreviews, gameResults, injuryUpdates, mediaReactions, narrative, pu
 import { refData } from "./refData.js";
 import { watchGuideData } from "./watchGuideData.js";
 import { canonicalizeTeamCode } from "./identity.js";
+import { summarizeLineMovementEducation } from "./bettingLineStory.js";
 
 export type GameCenterStatus = "final" | "live" | "scheduled" | "preview";
 
@@ -50,8 +51,10 @@ export interface GameCenterResponse {
   };
   betting?: {
     spread?: string;
+    openingSpread?: string;
     overUnder?: string;
     angle?: string;
+    lineMovement?: string[];
   };
   refs?: {
     crew?: string[];
@@ -260,7 +263,20 @@ function previewResponse(g: any): GameCenterResponse {
     title: titleFor(g.awayTeam, g.homeTeam, "preview"),
     subtitle: g.keyMatchup || g.storyline,
     whyItMatters: g.storyline || g.prediction || narrative.subhead,
-    betting: { spread: g.spread, overUnder: g.overUnder, angle: ref?.bettingAngle },
+    betting: {
+      spread: g.spread,
+      openingSpread: g.openingSpread,
+      overUnder: g.overUnder,
+      angle: ref?.bettingAngle,
+      lineMovement: summarizeLineMovementEducation({
+        homeTeam: g.homeTeam,
+        awayTeam: g.awayTeam,
+        spread: g.spread,
+        overUnder: g.overUnder,
+        openingSpread: g.openingSpread,
+        prediction: g.prediction,
+      }),
+    },
     refs: ref ? { crew: ref.crew, leadRef: ref.leadRef, impact: ref.impact } : undefined,
     injuries: gameInjuries(teams),
     relatedPlayers: statLeaders.filter((s: any) => teams.includes(s.team)).map((s: any) => s.player).slice(0, 6),

@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { getPlayerTrends, getBiggestMovers, type PlayerTrend } from "../lib/pulseHistory";
 import { slugify } from "../lib/searchUtils";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // TREND CHART — SVG sparkline with labels
@@ -115,11 +115,8 @@ export default function PulseHistory() {
   }, [trends, sortBy]);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PULSE INDEX HISTORY" />
-
-      <div className="container py-8">
-        <div className="section-label mb-2">RANKINGS OVER TIME</div>
+    <ToolPageLayout subtitle="PULSE INDEX HISTORY">
+<div className="section-label mb-2">RANKINGS OVER TIME</div>
         <h1 className="display-heading text-white text-3xl mb-2">Pulse Index History</h1>
         <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
           Track how player rankings shift day to day. Trends based on recent edition data.
@@ -198,7 +195,6 @@ export default function PulseHistory() {
             </div>
           ))}
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

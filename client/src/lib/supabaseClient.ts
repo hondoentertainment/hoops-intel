@@ -277,3 +277,52 @@ export async function deleteMyPushSubscription(endpoint: string): Promise<void> 
     throw new Error(t || `Push remove failed (${res.status})`);
   }
 }
+
+// Pick'em settled season record (from pick_leaderboard view)
+export interface PickEmStats {
+  wins: number;
+  losses: number;
+  streak: number;
+  totalSettled: number;
+  accuracyPct: number | null;
+}
+
+interface PickLeaderboardRow {
+  total_settled: number;
+  correct_picks: number;
+  accuracy_pct: number | null;
+  current_streak: number;
+}
+
+/** Settled W/L for the signed-in user from Supabase pick_leaderboard. */
+export async function getMyPickStats(): Promise<PickEmStats | null> {
+  const token = getStoredToken();
+  if (!token || !isSupabaseConfigured) return null;
+
+  const user = await getUser();
+  if (!user) return null;
+
+  try {
+    const data = (await dbFetch("pick_leaderboard", {
+      query: `user_id=eq.${encodeURIComponent(user.id)}&select=total_settled,correct_picks,accuracy_pct,current_streak`,
+      token,
+    })) as PickLeaderboardRow[];
+
+    const row = data[0];
+    if (!row) {
+      return { wins: 0, losses: 0, streak: 0, totalSettled: 0, accuracyPct: null };
+    }
+
+    const wins = row.correct_picks ?? 0;
+    const totalSettled = row.total_settled ?? 0;
+    return {
+      wins,
+      losses: Math.max(0, totalSettled - wins),
+      streak: row.current_streak ?? 0,
+      totalSettled,
+      accuracyPct: row.accuracy_pct ?? null,
+    };
+  } catch {
+    return null;
+  }
+}

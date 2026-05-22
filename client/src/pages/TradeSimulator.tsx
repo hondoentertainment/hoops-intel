@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { tradeSimData, type TradeProposal, type TradeablePlayer } from "../lib/tradeSimData";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // NBA TEAMS (all 30)
@@ -832,12 +832,8 @@ export default function TradeSimulator() {
   const { generatedDate, players, featuredTrades, hottest } = tradeSimData;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="TRADE SIMULATOR" />
-
-      <div className="container py-8 max-w-4xl mx-auto">
-        {/* Page header */}
+    <ToolPageLayout subtitle="TRADE SIMULATOR">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -946,7 +942,6 @@ export default function TradeSimulator() {
             Salary figures are approximate. All trades subject to league approval.
           </p>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

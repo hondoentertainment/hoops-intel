@@ -102,6 +102,8 @@ export function validateWorldClassRoutes() {
     "client/src/components/MobileBottomNav.tsx",
     "api/game-center.ts",
     "api/player-intel.ts",
+    "api/team-intel.ts",
+    "client/src/lib/teamIntel.ts",
   ];
   for (const rel of requiredFiles) {
     assertCond(existsSync(join(ROOT, rel)), `missing world-class route contract file: ${rel}`);

@@ -410,16 +410,17 @@ export default function AskHoopsIntel() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed z-50 flex items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02]"
+          className="fixed z-50 flex items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02] md:bottom-6"
           style={{
             background: "linear-gradient(135deg, #0EA5E9, #0284C7)",
             color: "white",
             boxShadow: "0 4px 20px rgba(14,165,233,0.4)",
-            bottom: "max(1.25rem, env(safe-area-inset-bottom))",
+            bottom: "calc(4.75rem + env(safe-area-inset-bottom))",
             right: "max(1.25rem, env(safe-area-inset-right))",
           }}
           aria-haspopup="dialog"
           aria-label="Open Hoops Intel AI assistant"
+          data-ask-ai-fab="1"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 type DayBucket = { day: string; pulse: number; ticker: number; injury: number };
 
@@ -60,10 +60,7 @@ export default function WidgetAnalytics() {
   }, [series, days]);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PUBLISHER ANALYTICS" />
-
-      <div className="container py-10 max-w-5xl">
+    <ToolPageLayout subtitle="PUBLISHER ANALYTICS" maxWidth="xl">
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
           <div>
             <p className="section-label mb-2">EMBED LOADS</p>
@@ -175,7 +172,6 @@ export default function WidgetAnalytics() {
             <span className="inline-block w-3 h-3 rounded-sm bg-fuchsia-500/70" /> Injury
           </span>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

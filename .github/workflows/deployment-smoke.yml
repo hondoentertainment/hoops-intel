@@ -1,26 +1,125 @@
 name: Deployment Smoke
 
+# Verifies production after content workflows push to main:
+#   1. Poll until feed.xml / sitemap.xml fingerprint matches checkout (Vercel deploy landed)
+#   2. Run HTTP smoke checks (routes + API handlers)
+#
+# Also runs on a daily schedule as a safety net and supports manual base URL override.
+
 on:
+  workflow_run:
+    workflows:
+      - Daily Edition Update
+      - Auto-Retry Failed Edition
+      - Post-Game Scores Refresh
+      - Midday Content Refresh
+      - Playoff Nightly Sync
+    types: [completed]
   workflow_dispatch:
     inputs:
       base_url:
         description: "Base URL to smoke test"
         required: false
         default: "https://hoopsintel.net"
+      skip_wait:
+        description: "Skip Vercel deploy poll (smoke only)"
+        required: false
+        type: boolean
+        default: false
   schedule:
-    - cron: "17 13 * * *"
+    # Safety net ~30 min after daily edition (13:00 UTC)
+    - cron: "30 13 * * *"
+
+concurrency:
+  group: deployment-smoke
+  cancel-in-progress: true
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    # Chained runs only after upstream success; schedule/dispatch always run.
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    permissions:
+      contents: read
+      issues: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.ref }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: npm
+
       - run: npm ci --no-audit --no-fund
+
+      - name: Wait for Vercel production deploy
+        if: github.event_name != 'workflow_dispatch' || inputs.skip_wait != true
+        env:
+          SMOKE_BASE_URL: ${{ inputs.base_url || 'https://hoopsintel.net' }}
+        run: npm run wait:deploy
+
       - name: Smoke test deployment
+        id: smoke
         env:
           SMOKE_BASE_URL: ${{ inputs.base_url || 'https://hoopsintel.net' }}
         run: npm run smoke:deploy
+
+      - name: Write workflow summary
+        if: always()
+        run: |
+          echo "### Deployment smoke" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Target:** ${SMOKE_BASE_URL:-https://hoopsintel.net}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Trigger:** ${{ github.event_name }}" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "- **Upstream:** ${{ github.event.workflow_run.name }} (#${{ github.event.workflow_run.id }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        env:
+          SMOKE_BASE_URL: ${{ inputs.base_url || 'https://hoopsintel.net' }}
+
+      - name: Create issue on smoke failure
+        if: failure()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `Production smoke failed — ${today}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'deployment-failure',
+              per_page: 5,
+            });
+            const alreadyExists = existing.data.some(i => i.title === title);
+            if (!alreadyExists) {
+              const upstream = context.payload.workflow_run
+                ? `\n**Upstream workflow:** ${context.payload.workflow_run.name} (${context.payload.workflow_run.html_url})`
+                : '';
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: `## Production Smoke Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}${upstream}\n\nDeployment smoke checks failed after a content push or scheduled verification. Review logs for HTTP errors, missing routes, or API handler failures.\n\nThis issue was auto-created by the deployment-smoke workflow.`,
+                labels: ['deployment-failure', 'automated'],
+              });
+            }
+
+      - name: Notify Slack webhook (optional)
+        if: failure()
+        env:
+          SLACK_DATA_QUALITY_WEBHOOK: ${{ secrets.SLACK_DATA_QUALITY_WEBHOOK }}
+          WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -n "${SLACK_DATA_QUALITY_WEBHOOK:-}" ]; then
+            PAYLOAD="$(printf '{"text":"Hoops Intel production smoke failed — %s"}' "$WORKFLOW_RUN_URL")"
+            curl -sS -X POST -H 'Content-type: application/json' \
+              --data "$PAYLOAD" "$SLACK_DATA_QUALITY_WEBHOOK" || true
+          fi

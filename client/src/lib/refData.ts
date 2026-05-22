@@ -236,4 +236,11 @@ export const refData: RefData = {
       bestFor:
         "Home teams with strong interior presences whose physical halfcourt execution receives Kirkland's moderate home-amplification in interior adjudications, veteran perimeter players whose foul-drawing mechanics are rewarded by Kirkland's above-average frequency in halfcourt isolation environments, teams with established offensive systems whose execution consistency generates the most efficient utilization of Kirkland's moderate home-win-rate tendency, and crew constructions where his moderately elevated foul frequency and Average technical standard function as the pace-anchoring secondary voice alongside more extreme-tendency lead officials whose individual profiles require institutional moderating in high-profile playoff environments.",
       worstFor:
-        "Athletic road teams whose competitive ceiling is defined by pace-dependent transition attacking that Kirkland's -0.5 pace tendency modestly suppresses without producing the extreme halfcourt grinding that the most pace-suppressive lead officials in the active rotation generate, visiting primary big men whose shot-contesting mechanics generate blocking foul risk in Kirkland's moderately home-amplified interior standard, and teams whose competitive survival requires either extreme home-amplification or extreme road-counterweight rather than the
+        "Athletic road teams whose competitive ceiling is defined by pace-dependent transition attacking that Kirkland's -0.5 pace tendency modestly suppresses without producing the extreme halfcourt grinding that the most pace-suppressive lead officials in the active rotation generate, visiting primary big men whose shot-contesting mechanics generate blocking foul risk in Kirkland's moderately home-amplified interior standard, and teams whose competitive survival requires either extreme home-amplification or extreme road-counterweight rather than the moderate institutional balance Kirkland's profile typically produces.",
+      notableGame:
+        "Secondary official for CLE-NYK ECF Game 2 at Madison Square Garden on May 21, 2026 — his -0.5 pace tendency and Average technical standard anchored the crew alongside Marc Davis's high-intensity lead profile.",
+    },
+  ],
+  weeklyTrend:
+    "ECF Game 2 at MSG pairs Marc Davis's consecutive-venue lead assignment with a moderate home-amplification crew — watch Brunson free-throw volume and Cleveland's early emotional composure under High technical risk.",
+};

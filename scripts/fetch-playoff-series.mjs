@@ -129,13 +129,38 @@ function conferenceFromSeries(series, homeAbbr, awayAbbr) {
   return hc ?? ac ?? "east";
 }
 
-function roundFromSeries(series) {
-  const t = (series?.title ?? "").toLowerCase();
-  if (t.includes("first round")) return "first-round";
-  if (t.includes("semifinal")) return "conference-semifinals";
-  if (t.includes("conference finals")) return "conference-finals";
-  if (t.includes("nba finals")) return "finals";
+/** ESPN often leaves `series.title` as "Playoff Series"; round lives in notes + comp type. */
+function roundFromCompetition(comp) {
+  const note = (comp.notes?.[0]?.headline ?? "").toLowerCase();
+  const seriesTitle = (comp.series?.title ?? "").toLowerCase();
+  const typ = String(comp.type?.abbreviation ?? "").toUpperCase();
+  const blob = `${note} ${seriesTitle}`;
+
+  if (/nba finals/.test(blob) && !/conference|east|west/.test(blob)) return "finals";
+  if (
+    /conference finals|conf\.?\s*finals|east finals|west finals/.test(blob) ||
+    (/\bfinals\b/.test(blob) && !/first|1st|semifinal/.test(blob))
+  ) {
+    return "conference-finals";
+  }
+  if (/semifinal/.test(blob) || typ === "QTR") return "conference-semifinals";
+  if (/first round|1st round/.test(blob) || typ === "RD16") return "first-round";
+
+  if (seriesTitle.includes("first round")) return "first-round";
+  if (seriesTitle.includes("semifinal")) return "conference-semifinals";
+  if (seriesTitle.includes("conference finals")) return "conference-finals";
+  if (seriesTitle.includes("nba finals")) return "finals";
   return "first-round";
+}
+
+function gameNumberFromCompetition(comp) {
+  const note = comp.notes?.[0]?.headline ?? comp.series?.summary ?? "";
+  const m = String(note).match(/Game\s*(\d+)/i);
+  if (m) return parseInt(m[1], 10);
+  const gm = comp.series?.summary?.match(/Game\s*(\d+)/i);
+  if (gm) return parseInt(gm[1], 10);
+  if (comp.series?.gameNumber) return comp.series.gameNumber;
+  return 1;
 }
 
 function roundRank(round) {
@@ -282,6 +307,37 @@ function dedupeSeriesByConferenceRound(seriesMap) {
   return out;
 }
 
+const ROUND_RANK = {
+  "first-round": 1,
+  "conference-semifinals": 2,
+  "conference-finals": 3,
+  finals: 4,
+};
+
+/** Drop stale "active" first-round rows when both teams appear in a later round. */
+function pruneSupersededActiveSeries(seriesMap) {
+  const list = [...seriesMap.values()];
+  const teamPeak = new Map();
+  for (const s of list) {
+    const r = ROUND_RANK[s.round] ?? 1;
+    for (const t of [s.higherTeam, s.lowerTeam]) {
+      teamPeak.set(t, Math.max(teamPeak.get(t) ?? 0, r));
+    }
+  }
+  let pruned = 0;
+  for (const s of list) {
+    if (s.status === "complete") continue;
+    if (s.games.some((g) => g.status === "live")) continue;
+    const r = ROUND_RANK[s.round] ?? 1;
+    const peak = Math.max(teamPeak.get(s.higherTeam) ?? 0, teamPeak.get(s.lowerTeam) ?? 0);
+    if (peak > r) {
+      seriesMap.delete(matchupMapKey(s));
+      pruned++;
+    }
+  }
+  if (pruned > 0) console.log(`  [playoffs] Pruned ${pruned} superseded active series`);
+}
+
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
   /** @type Map<string, object> */
@@ -310,7 +366,7 @@ async function main() {
 
       const key = seriesKey(homeAbbr, awayAbbr);
       const conference = conferenceFromSeries(comp.series, homeAbbr, awayAbbr);
-      const round = roundFromSeries(comp.series);
+      const round = roundFromCompetition(comp);
 
       const hs = playoffSeed(home);
       const as = playoffSeed(away);
@@ -321,8 +377,7 @@ async function main() {
       const higherSeed = homeHigher ? hs : as;
       const lowerSeed = homeHigher ? as : hs;
 
-      const gm = comp.series?.summary?.match(/Game\s*(\d+)/i);
-      const gameNumber = comp.series?.gameNumber ?? (gm ? parseInt(gm[1], 10) : 1);
+      const gameNumber = gameNumberFromCompetition(comp);
       const done = comp.status?.type?.completed ?? false;
       const live = comp.status?.type?.state === "in";
 
@@ -398,6 +453,7 @@ async function main() {
   // rows as current round — that creates impossible overlaps (same team "twice"). Keep the
   // highest-evidence series per team within each conference+round bucket.
   const seriesDedupedMap = dedupeSeriesByConferenceRound(seriesMap);
+  pruneSupersededActiveSeries(seriesDedupedMap);
 
   console.log("  [playoffs] Hydrating top performers from box scores…");
   await hydrateTopLines(seriesDedupedMap);

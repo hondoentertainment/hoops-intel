@@ -1,7 +1,7 @@
 // Referee Tendency Reports — Know the Whistle
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { refData } from "../lib/refData";
 import type { RefereeProfile, TonightRefAssignment } from "../lib/refData";
 
@@ -193,11 +193,8 @@ export default function RefReports() {
   );
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="REFEREE REPORTS" />
-
-      <div className="container py-8">
-        {/* Page header */}
+    <ToolPageLayout subtitle="REFEREE REPORTS">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-[10px] font-bold tracking-widest uppercase mb-1"
@@ -393,7 +390,6 @@ export default function RefReports() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

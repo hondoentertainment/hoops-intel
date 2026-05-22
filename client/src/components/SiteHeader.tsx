@@ -1,13 +1,19 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { useTheme } from "../contexts/ThemeContext";
-import { MAIN_NAV_LINKS } from "../lib/siteNav";
+import { MAIN_NAV_LINKS, HEADER_NAV_LINKS, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
 import { globalSearch, type SearchResult } from "../lib/searchUtils";
 import AuthModal from "./AuthModal";
 import { getUser, type User } from "../lib/supabaseClient";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
+import { useToast } from "../contexts/ToastContext";
+import {
+  pushRecentSearch,
+  readRecentSearches,
+  POPULAR_SEARCH_DESTINATIONS,
+} from "../lib/searchHistory";
 
 export type SiteHeaderProps = {
   /** Secondary line under brand (e.g. ARCHIVE, DAILY INTELLIGENCE). */
@@ -29,6 +35,7 @@ function notificationEmailValid(raw: string) {
 }
 
 function NotificationBell({ idPrefix }: { idPrefix: string }) {
+  const { toast } = useToast();
   const [showModal, setShowModal] = useState(false);
   const emailId = `${idPrefix}-digest-email`;
   const [email, setEmail] = useState("");
@@ -38,14 +45,23 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
   const [subscribed, setSubscribed] = useState(() => readDigestSignupHint());
 
   const wrapRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(showModal, panelRef);
 
   useEffect(() => {
     if (!showModal) return;
     function onMouseDown(e: MouseEvent) {
       if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setShowModal(false);
     }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowModal(false);
+    }
     document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("keydown", onKey);
+    };
   }, [showModal]);
 
   const handleSubscribe = async () => {
@@ -61,6 +77,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
     if (result.ok) {
       setSubscribed(true);
       setShowModal(false);
+      toast("Subscribed — morning digest at 5 AM PST");
     } else {
       setApiError(result.error);
     }
@@ -99,9 +116,11 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
 
       {showModal && (
         <div
+          ref={panelRef}
           className="absolute right-0 top-full mt-2 w-[min(100vw-1.5rem,18rem)] rounded-lg overflow-hidden shadow-xl z-[60]"
           style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
           role="dialog"
+          aria-modal="true"
           aria-label="Notifications"
         >
           <div className="p-4">
@@ -204,6 +223,8 @@ function SearchDialog({
 }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(open);
@@ -214,12 +235,15 @@ function SearchDialog({
       queueMicrotask(() => inputRef.current?.focus());
       setQuery("");
       setResults([]);
+      setSelectedIndex(0);
+      setRecentSearches(readRecentSearches());
     }
   }, [open]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setResults(globalSearch(query));
+      setSelectedIndex(0);
     }, 150);
     return () => clearTimeout(timer);
   }, [query]);
@@ -230,15 +254,32 @@ function SearchDialog({
       if (e.key === "Escape") {
         e.preventDefault();
         onClose();
+        return;
       }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
+        onClose();
+        return;
+      }
+      if (results.length === 0) return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((i) => Math.min(i + 1, results.length - 1));
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((i) => Math.max(i - 1, 0));
+      }
+      if (e.key === "Enter" && results[selectedIndex]?.link) {
+        e.preventDefault();
+        pushRecentSearch(query);
+        window.location.href = results[selectedIndex].link!;
         onClose();
       }
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [open, onClose]);
+  }, [open, onClose, results, selectedIndex, query]);
 
   if (!open) return null;
 
@@ -257,6 +298,11 @@ function SearchDialog({
       default:
         return "📌";
     }
+  };
+
+  const openRecent = (term: string) => {
+    setQuery(term);
+    inputRef.current?.focus();
   };
 
   return (
@@ -297,7 +343,7 @@ function SearchDialog({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search players, teams, stories..."
-            className="flex-1 min-w-[40%] min-h-[44px] bg-transparent text-white text-sm outline-none placeholder-white/30 sm:min-h-0"
+            className="flex-1 min-w-[40%] min-h-[44px] bg-transparent text-white text-base sm:text-sm outline-none placeholder-white/30 sm:min-h-0"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}
@@ -306,7 +352,7 @@ function SearchDialog({
             className="text-xs px-1.5 py-1 rounded whitespace-nowrap"
             style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}
           >
-            Esc
+            ↑↓ · Esc
           </span>
         </div>
         <div className="max-h-[min(20rem,50vh)] overflow-y-auto overscroll-contain">
@@ -316,8 +362,48 @@ function SearchDialog({
             </div>
           )}
           {results.length === 0 && query.length < 2 && (
-            <div className="px-4 py-8 text-center text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-              Type at least two characters to search players, teams, and stories
+            <div className="px-4 py-4 space-y-4">
+              <div>
+                <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  Popular
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {POPULAR_SEARCH_DESTINATIONS.map((d) => (
+                    <a
+                      key={d.href}
+                      href={d.href}
+                      className="text-xs px-3 py-2 rounded-lg min-h-[36px] inline-flex items-center"
+                      style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
+                      onClick={() => onClose()}
+                    >
+                      {d.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              {recentSearches.length > 0 && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                    Recent
+                  </div>
+                  <div className="space-y-1">
+                    {recentSearches.map((term) => (
+                      <button
+                        key={term}
+                        type="button"
+                        className="block w-full text-left text-xs px-3 py-2 rounded-lg min-h-[40px] hover:bg-white/5"
+                        style={{ color: "rgba(255,255,255,0.65)" }}
+                        onClick={() => openRecent(term)}
+                      >
+                        {term}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <p className="text-xs text-center pt-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+                Type at least two characters to search
+              </p>
             </div>
           )}
           {results.map((r, i) => (
@@ -325,8 +411,12 @@ function SearchDialog({
               key={i}
               href={r.link || "#"}
               className="flex items-center gap-3 px-4 py-3 min-h-[48px] hover:bg-white/5 transition-colors cursor-pointer"
+              style={{ background: i === selectedIndex ? "rgba(14,165,233,0.12)" : undefined }}
               onClick={() => {
-                if (r.link) onClose();
+                if (r.link) {
+                  pushRecentSearch(query);
+                  onClose();
+                }
               }}
             >
               <span className="text-base" aria-hidden>
@@ -378,6 +468,7 @@ export default function SiteHeader({
   const [showAuth, setShowAuth] = useState(false);
   const [sessionUser, setSessionUser] = useState<User | null | undefined>(undefined);
   const { theme, toggleTheme } = useTheme();
+  const { toast } = useToast();
   const [locationPath] = useLocation();
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(mobileOpen);
@@ -389,7 +480,13 @@ export default function SiteHeader({
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (e.target as HTMLElement)?.isContentEditable;
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (!typing && e.key === "/" && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         setSearchOpen(true);
       }
@@ -397,8 +494,13 @@ export default function SiteHeader({
         setMobileOpen(false);
       }
     };
+    const openSearch = () => setSearchOpen(true);
     document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
+    window.addEventListener("hi-open-search", openSearch);
+    return () => {
+      document.removeEventListener("keydown", handler);
+      window.removeEventListener("hi-open-search", openSearch);
+    };
   }, [mobileOpen]);
 
   const navLinkClass =
@@ -461,8 +563,10 @@ export default function SiteHeader({
               </a>
             </div>
 
-            <nav className="hidden md:flex items-center gap-4 xl:gap-6" aria-label="Primary">
-              {MAIN_NAV_LINKS.map(({ label, href }) => (
+            <nav className="hidden md:flex items-center gap-3 xl:gap-5" aria-label="Primary">
+              {HEADER_NAV_LINKS.map(({ label, href }) => {
+                const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
+                return (
                 <a
                   key={label}
                   href={href}
@@ -472,19 +576,36 @@ export default function SiteHeader({
                   }}
                   {...navAriaCurrent(href, locationPath)}
                 >
-                  {label}
+                  {navLabel}
                 </a>
-              ))}
-              <a
-                href="/tools"
-                className={navLinkClass}
-                style={{
-                  color: locationPath.startsWith("/tools") ? "#0EA5E9" : "rgba(255,255,255,0.5)",
-                }}
-                {...(locationPath.startsWith("/tools") ? ({ "aria-current": "page" } as const) : {})}
-              >
-                Tools
-              </a>
+                );
+              })}
+              <details className="relative group">
+                <summary
+                  className={`${navLinkClass} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
+                  More
+                </summary>
+                <div
+                  className="absolute right-0 top-full mt-2 min-w-[11rem] rounded-lg py-2 shadow-xl z-[60]"
+                  style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
+                >
+                  {MAIN_NAV_LINKS.filter((l) => !HEADER_NAV_LINKS.some((h) => h.href === l.href)).map(({ label, href }) => (
+                    <a
+                      key={`more-${label}`}
+                      href={href}
+                      className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-white/5 hover:text-sky-400"
+                      style={{
+                        color: navRouteMatches(href, locationPath) ? "#0EA5E9" : "rgba(255,255,255,0.75)",
+                      }}
+                      {...navAriaCurrent(href, locationPath)}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </details>
             </nav>
 
             <div className="flex items-center gap-1 sm:gap-2 shrink-0">
@@ -600,24 +721,22 @@ export default function SiteHeader({
               <a href="/" className="text-sm font-semibold text-sky-400 py-3 px-3 rounded-lg hover:bg-white/5" onClick={() => setMobileOpen(false)}>
                 Today’s desk →
               </a>
-              {MAIN_NAV_LINKS.map(({ label, href }) => (
-                <a
-                  key={`m-${label}`}
-                  href={href}
-                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5"
-                  style={{ color: "rgba(255,255,255,0.85)" }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {label}
-                </a>
-              ))}
-              <a
-                href="/tools"
-                className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 text-sky-400 font-medium"
-                onClick={() => setMobileOpen(false)}
-              >
-                All tools &amp; labs
-              </a>
+              {MAIN_NAV_LINKS.map(({ label, href }) => {
+                const active = navRouteMatches(href, locationPath);
+                const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
+                return (
+                  <a
+                    key={`m-${label}`}
+                    href={href}
+                    className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-[48px] flex items-center"
+                    style={{ color: active ? "#38BDF8" : "rgba(255,255,255,0.85)" }}
+                    aria-current={active ? "page" : undefined}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {navLabel}
+                  </a>
+                );
+              })}
               {sessionUser ? (
                 <a
                   href="/account"
@@ -627,16 +746,21 @@ export default function SiteHeader({
                   Account
                 </a>
               ) : (
-                <button
-                  type="button"
-                  className="text-left py-3 px-3 rounded-lg text-sm text-white/85 hover:bg-white/5 min-h-[48px]"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    setShowAuth(true);
-                  }}
-                >
-                  Sign in
-                </button>
+                <div className="mt-2 pt-3 border-t border-white/10">
+                  <p className="px-3 pb-2 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
+                    Sync favorites, reactions, and push alerts across devices.
+                  </p>
+                  <button
+                    type="button"
+                    className="w-full text-left py-3 px-3 rounded-lg text-sm font-semibold text-sky-400 hover:bg-white/5 min-h-[48px]"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setShowAuth(true);
+                    }}
+                  >
+                    Sign in →
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -650,6 +774,7 @@ export default function SiteHeader({
           onClose={() => setShowAuth(false)}
           onAuth={() => {
             setShowAuth(false);
+            toast("Signed in successfully");
             void getUser().then(setSessionUser);
           }}
         />

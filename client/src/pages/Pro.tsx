@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useSubscription, startCheckout, openBillingPortal } from "../lib/useSubscription";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
 
 function getStoredAuthToken(): string | null {
@@ -13,40 +13,36 @@ function getStoredAuthToken(): string | null {
 
 const FEATURES = [
   {
+    title: "Full Pulse Index + rationales",
+    body: "Every ranked player with editorial rationale, trends, and playoff context — not just the free preview.",
+  },
+  {
     title: "My Pulse alerts",
-    body: "Favorite-team and favorite-player alerts collect the games, injuries, and Pulse moves that matter to you first.",
+    body: "Favorite-team and favorite-player alerts surface games, injuries, and Pulse moves that matter to you first.",
   },
   {
-    title: "Shareable intelligence cards",
-    body: "Game Center and player profile cards are built for social sharing with richer metadata and cleaner story framing.",
-  },
-  {
-    title: "Prediction accountability",
-    body: "Track where Hoops Intel was right, wrong, and early using the existing Pulse Accountability model.",
-  },
-  {
-    title: "Early morning delivery",
-    body: "Daily edition drops at 6 AM PST for Pro subscribers — two hours ahead of the free edition.",
-  },
-  {
-    title: "Ad-free experience",
-    body: "No sportsbook promos, no affiliate rails, no 'sponsored' rows. Just the basketball.",
-  },
-  {
-    title: "Trade Value Index deep dives",
-    body: "Full weekly Trade Value Index including tier narratives and historical rank changes.",
-  },
-  {
-    title: "Full-season exports",
-    body: "Download every edition, box score, and Pulse Index snapshot as CSV or JSON.",
-  },
-  {
-    title: "Playoff DFS optimizer (coming May)",
-    body: "Suggested lineups for DraftKings and FanDuel across the remaining playoff slate.",
+    title: "Trade Value Index (full list)",
+    body: "Complete weekly trade board with tier narratives and historical rank changes.",
   },
   {
     title: "Priority Ask Hoops Intel",
-    body: "Pro queries run with a longer context window for deeper analytical answers.",
+    body: "Longer context window for deeper analytical answers over the full archive.",
+  },
+  {
+    title: "Print & export packet",
+    body: "Branded multi-section exports: edition, Pulse snapshots, and box scores as CSV or JSON.",
+  },
+  {
+    title: "Ad-free desk",
+    body: "No sportsbook promo rails in your daily scroll — just basketball intelligence.",
+  },
+  {
+    title: "Early morning delivery",
+    body: "Edition at 6 AM PST when push/digest is configured — ahead of the public desk drop.",
+  },
+  {
+    title: "Pick ’Em accountability",
+    body: "Advanced pick stats and streak history tied to the Pulse Accountability model.",
   },
 ];
 
@@ -145,10 +141,7 @@ export default function Pro() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PRO" />
-
-      <div className="container py-12 max-w-4xl mx-auto">
+    <ToolPageLayout subtitle="PRO" maxWidth="xl" showRelated={false}>
         <div className="mb-10">
           <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>HOOPS INTEL PRO</div>
           <h1 className="display-heading text-white text-4xl mb-3">Sharper basketball, earlier and ad-free.</h1>
@@ -254,7 +247,6 @@ export default function Pro() {
           . If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping
           hello@hoopsintel.net if you&apos;re blocked.
         </div>
-      </div>
 
       {showAuth && (
         <AuthModal
@@ -266,6 +258,6 @@ export default function Pro() {
           }}
         />
       )}
-    </div>
+    </ToolPageLayout>
   );
 }

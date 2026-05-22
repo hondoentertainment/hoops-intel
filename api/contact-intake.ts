@@ -97,6 +97,20 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
   }
 
+  const adminNotify = process.env.ADMIN_NOTIFY_EMAIL?.trim();
+  if (adminNotify && kind === "guest-pulse-index") {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: fromAddr,
+        to: [adminNotify],
+        subject: `[Queue] New Guest Pulse pitch — ${name || email || "anonymous"}`,
+        html: `<p>New pitch in <strong>guest_pulse_submissions</strong>. Review at <a href="https://hoopsintel.net/creator-queue">/creator-queue</a>.</p><p><strong>From:</strong> ${name || "—"} (${email || "no email"})</p><pre style="white-space:pre-wrap">${message.slice(0, 500).replace(/</g, "&lt;")}</pre>`,
+      }),
+    }).catch((e) => console.warn("[contact-intake] admin notify:", e));
+  }
+
   let submissionId: string | undefined;
 
   if (kind === "guest-pulse-index") {

@@ -46,7 +46,9 @@
     "api/ops-readiness.ts": { "maxDuration": 10 },
     "api/og.ts": { "maxDuration": 30 },
     "api/player-intel.ts": { "maxDuration": 10 },
+    "api/team-intel.ts": { "maxDuration": 10 },
     "api/push-notify.ts": { "maxDuration": 60 },
+    "api/push-alert-history.ts": { "maxDuration": 10 },
     "api/stripe-webhook.ts": { "maxDuration": 60 },
     "api/subscribe-digest.ts": { "maxDuration": 30 },
     "api/unsubscribe-digest.ts": { "maxDuration": 30 }

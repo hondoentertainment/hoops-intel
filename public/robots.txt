@@ -4,5 +4,7 @@ Disallow: /account
 Disallow: /creator-queue
 Disallow: /unsubscribe
 Disallow: /widgets/analytics
+Disallow: /embed/
+Disallow: /card/
 
 Sitemap: https://hoopsintel.net/sitemap.xml

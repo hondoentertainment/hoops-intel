@@ -160,6 +160,40 @@ function rowsToSubscriptions(rows: PushPrefsRow[]): PushSubscription[] {
     .filter(Boolean) as PushSubscription[];
 }
 
+async function insertPushAlertHistory(
+  supabaseUrl: string,
+  serviceKey: string,
+  row: {
+    topic: string;
+    title: string;
+    body: string;
+    url?: string;
+    teamAbbr?: string;
+  },
+): Promise<void> {
+  const res = await fetch(`${supabaseUrl}/rest/v1/push_alert_history`, {
+    method: "POST",
+    headers: {
+      apikey: serviceKey,
+      Authorization: `Bearer ${serviceKey}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({
+      topic: row.topic,
+      title: row.title,
+      body: row.body,
+      url: row.url ?? null,
+      team_abbr: row.teamAbbr ?? null,
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    console.warn(`[push-notify] Failed to log push_alert_history: ${res.status} ${text}`);
+  }
+}
+
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
@@ -258,6 +292,16 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   console.log(`[push-notify] Done — sent: ${sent}, failed: ${failed}`);
+
+  if (sent > 0 && supabaseUrl && serviceKey) {
+    await insertPushAlertHistory(supabaseUrl, serviceKey, {
+      topic: payload.topic,
+      title: payload.title,
+      body: payload.body,
+      url: payload.url,
+      teamAbbr: payload.teamAbbr,
+    });
+  }
 
   return new Response(JSON.stringify({ sent, failed }), {
     status: 200,

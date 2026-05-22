@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
 import {
   deleteMyPushSubscription,
@@ -20,12 +20,16 @@ import { getPreferences } from "../lib/userPreferences";
 import { useSubscription, openBillingPortal } from "../lib/useSubscription";
 import {
   DEFAULT_PUSH_TOPICS,
+  FANTASY_ONLY_PUSH_TOPICS,
   PUSH_TOPIC_OPTIONS,
   getDevicePushSubscription,
   subscribeDevicePush,
   unsubscribeDevicePush,
   vapidConfigured,
 } from "../lib/webPushAccount";
+import OpsReadinessPanel from "../components/OpsReadinessPanel";
+import PushAlertGuide from "../components/PushAlertGuide";
+import PushAlertHistory from "../components/PushAlertHistory";
 
 function getStoredAuthToken(): string | null {
   if (typeof localStorage === "undefined") return null;
@@ -41,6 +45,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState("");
+  const [favoriteTeams, setFavoriteTeams] = useState<string[]>(() => getPreferences().favoriteTeams);
 
   const rivalPairForPush = (): { a: string; b: string } | null => {
     const p = getPreferences().rivalPairs[0];
@@ -66,6 +71,17 @@ function AccountPushAlerts({ userId }: { userId: string }) {
 
   useEffect(() => {
     void refreshLocal();
+    void (async () => {
+      const local = getPreferences().favoriteTeams;
+      if (local.length) setFavoriteTeams(local);
+      try {
+        const fav = await getFavorites();
+        const merged = [...new Set([...local, ...fav.teams.map((t) => t.toUpperCase())])];
+        if (merged.length) setFavoriteTeams(merged);
+      } catch {
+        /* local prefs only */
+      }
+    })();
   }, [userId]);
 
   const topicList = [...topics].sort();
@@ -271,7 +287,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         <button
           type="button"
           disabled={busy}
-          onClick={() => applyTopicPreset(["fantasy"])}
+          onClick={() => applyTopicPreset(FANTASY_ONLY_PUSH_TOPICS)}
           className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
         >
           Fantasy-only
@@ -371,6 +387,9 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         </button>
       </div>
 
+      <PushAlertGuide />
+      <PushAlertHistory favoriteTeams={favoriteTeams} />
+
       {msg ? (
         <p className="text-sm mt-3 text-emerald-400" role="status">
           {msg}
@@ -422,46 +441,42 @@ export default function Account() {
 
   if (user === undefined) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="ACCOUNT" />
-        <div className="container py-20 flex justify-center">
+      <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
+        <div className="py-12 flex justify-center">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin"
             style={{ borderColor: "#0EA5E9", borderTopColor: "transparent" }}
           />
         </div>
-      </div>
+      </ToolPageLayout>
     );
   }
 
   if (!user || !getStoredAuthToken()) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="ACCOUNT" />
-        <div className="container py-12 max-w-lg mx-auto px-4">
-          <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
-            ACCOUNT
-          </div>
-          <h1 className="display-heading text-white text-3xl mb-3">Sign in to manage your desk</h1>
-          <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-            Hoops Intel accounts power Pro billing, synced favorites, and optional digest settings. Nothing here is required to
-            read the free edition.
-          </p>
-          {!isSupabaseConfigured ? (
-            <div className="rounded-xl p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)" }}>
-              Accounts are not configured in this environment (missing Supabase keys).
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setShowAuth(true)}
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold text-white"
-              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
-              SIGN IN OR CREATE ACCOUNT
-            </button>
-          )}
+      <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
+        <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
+          ACCOUNT
         </div>
+        <h1 className="display-heading text-white text-3xl mb-3">Sign in to manage your desk</h1>
+        <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+          Hoops Intel accounts power Pro billing, synced favorites, and optional digest settings. Nothing here is required to
+          read the free edition.
+        </p>
+        {!isSupabaseConfigured ? (
+          <div className="rounded-xl p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)" }}>
+            Accounts are not configured in this environment (missing Supabase keys).
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setShowAuth(true)}
+            className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold text-white"
+            style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            SIGN IN OR CREATE ACCOUNT
+          </button>
+        )}
         {showAuth && (
           <AuthModal
             onClose={() => setShowAuth(false)}
@@ -472,123 +487,121 @@ export default function Account() {
             }}
           />
         )}
-      </div>
+      </ToolPageLayout>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="ACCOUNT" />
-
-      <div className="container py-12 max-w-2xl mx-auto px-4">
-        <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
-          YOUR ACCOUNT
-        </div>
-        <h1 className="display-heading text-white text-3xl mb-8">Settings &amp; billing</h1>
-
-        <div
-          className="rounded-xl p-6 mb-6"
-          style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
-        >
-          <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
-            SIGNED IN AS
-          </div>
-          <div className="text-white font-medium mb-1">{user.email}</div>
-          {user.user_metadata?.display_name && (
-            <div className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
-              {user.user_metadata.display_name}
-            </div>
-          )}
-          <button
-            type="button"
-            onClick={() => void handleSignOut()}
-            className="mt-4 text-xs font-semibold px-3 py-2 rounded-lg min-h-[44px] sm:min-h-0 transition-colors hover:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)" }}
-          >
-            Sign out
-          </button>
-        </div>
-
-        <div
-          className="rounded-xl p-6 mb-6"
-          style={{
-            background: sub.isPro ? "rgba(16,185,129,0.06)" : "rgba(255,255,255,0.02)",
-            border: `1px solid ${sub.isPro ? "rgba(16,185,129,0.25)" : "rgba(255,255,255,0.08)"}`,
-          }}
-        >
-          <div className="section-label mb-2" style={{ color: sub.isPro ? "#10B981" : "rgba(255,255,255,0.4)" }}>
-            HOOPS INTEL PRO
-          </div>
-          {sub.loading ? (
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Checking subscription…
-            </p>
-          ) : sub.isPro ? (
-            <>
-              <p className="text-white font-medium mb-1">{sub.plan === "annual" ? "Annual plan" : "Monthly plan"}</p>
-              {sub.renewsAt && (
-                <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  {sub.cancelAtPeriodEnd ? "Access ends " : "Renews "}
-                  {sub.renewsAt.toLocaleDateString(undefined, { dateStyle: "medium" })}
-                  {sub.cancelAtPeriodEnd ? " (cancel at period end)" : ""}
-                </p>
-              )}
-              <button
-                type="button"
-                disabled={portalLoading}
-                onClick={() => void handlePortal()}
-                className="w-full sm:w-auto min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
-                {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
-              </button>
-              {portalError && (
-                <p className="text-sm mt-3 text-rose-400" role="alert">
-                  {portalError}
-                </p>
-              )}
-            </>
-          ) : (
-            <>
-              <p className="text-sm mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                Upgrade for early drops, ad-free reading, full Trade Value ranks, and deeper Ask Hoops Intel context.
-              </p>
-              <a
-                href="/pro"
-                className="inline-flex min-h-[48px] items-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
-                VIEW PRO
-              </a>
-            </>
-          )}
-        </div>
-
-        {isSupabaseConfigured ? <AccountPushAlerts userId={user.id} /> : null}
-
-        <div className="section-label mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
-          SHORTCUTS
-        </div>
-        <ul className="space-y-2 text-sm">
-          <li>
-            <a href="/my-pulse" className="text-sky-400 underline hover:text-sky-300">
-              My Pulse
-            </a>
-            <span style={{ color: "rgba(255,255,255,0.4)" }}> — favorites &amp; personalized edition</span>
-          </li>
-          <li>
-            <a href="/unsubscribe" className="text-sky-400 underline hover:text-sky-300">
-              Unsubscribe from digest
-            </a>
-            <span style={{ color: "rgba(255,255,255,0.4)" }}> — morning email opt-out</span>
-          </li>
-          <li>
-            <a href="/" className="text-sky-400 underline hover:text-sky-300">
-              Today&apos;s desk
-            </a>
-          </li>
-        </ul>
+    <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
+      <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
+        YOUR ACCOUNT
       </div>
-    </div>
+      <h1 className="display-heading text-white text-3xl mb-8">Settings &amp; billing</h1>
+
+      <OpsReadinessPanel />
+
+      <div
+        className="rounded-xl p-6 mb-6"
+        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
+      >
+        <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+          SIGNED IN AS
+        </div>
+        <div className="text-white font-medium mb-1">{user.email}</div>
+        {user.user_metadata?.display_name && (
+          <div className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
+            {user.user_metadata.display_name}
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={() => void handleSignOut()}
+          className="mt-4 text-xs font-semibold px-3 py-2 rounded-lg min-h-[44px] sm:min-h-0 transition-colors hover:bg-white/10"
+          style={{ color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)" }}
+        >
+          Sign out
+        </button>
+      </div>
+
+      <div
+        className="rounded-xl p-6 mb-6"
+        style={{
+          background: sub.isPro ? "rgba(16,185,129,0.06)" : "rgba(255,255,255,0.02)",
+          border: `1px solid ${sub.isPro ? "rgba(16,185,129,0.25)" : "rgba(255,255,255,0.08)"}`,
+        }}
+      >
+        <div className="section-label mb-2" style={{ color: sub.isPro ? "#10B981" : "rgba(255,255,255,0.4)" }}>
+          HOOPS INTEL PRO
+        </div>
+        {sub.loading ? (
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
+            Checking subscription…
+          </p>
+        ) : sub.isPro ? (
+          <>
+            <p className="text-white font-medium mb-1">{sub.plan === "annual" ? "Annual plan" : "Monthly plan"}</p>
+            {sub.renewsAt && (
+              <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+                {sub.cancelAtPeriodEnd ? "Access ends " : "Renews "}
+                {sub.renewsAt.toLocaleDateString(undefined, { dateStyle: "medium" })}
+                {sub.cancelAtPeriodEnd ? " (cancel at period end)" : ""}
+              </p>
+            )}
+            <button
+              type="button"
+              disabled={portalLoading}
+              onClick={() => void handlePortal()}
+              className="w-full sm:w-auto min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
+            </button>
+            {portalError && (
+              <p className="text-sm mt-3 text-rose-400" role="alert">
+                {portalError}
+              </p>
+            )}
+          </>
+        ) : (
+          <>
+            <p className="text-sm mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+              Upgrade for early drops, ad-free reading, full Trade Value ranks, and deeper Ask Hoops Intel context.
+            </p>
+            <a
+              href="/pro"
+              className="inline-flex min-h-[48px] items-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              VIEW PRO
+            </a>
+          </>
+        )}
+      </div>
+
+      {isSupabaseConfigured ? <AccountPushAlerts userId={user.id} /> : null}
+
+      <div className="section-label mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+        SHORTCUTS
+      </div>
+      <ul className="space-y-2 text-sm">
+        <li>
+          <a href="/my-pulse" className="text-sky-400 underline hover:text-sky-300">
+            My Pulse
+          </a>
+          <span style={{ color: "rgba(255,255,255,0.4)" }}> — favorites &amp; personalized edition</span>
+        </li>
+        <li>
+          <a href="/unsubscribe" className="text-sky-400 underline hover:text-sky-300">
+            Unsubscribe from digest
+          </a>
+          <span style={{ color: "rgba(255,255,255,0.4)" }}> — morning email opt-out</span>
+        </li>
+        <li>
+          <a href="/" className="text-sky-400 underline hover:text-sky-300">
+            Today&apos;s desk
+          </a>
+        </li>
+      </ul>
+    </ToolPageLayout>
   );
 }

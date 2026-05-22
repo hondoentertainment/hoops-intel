@@ -61,6 +61,15 @@ async function main() {
     } catch (intelErr) {
       console.warn(`⚠ Series intel (generate-series-intel.mjs): ${intelErr.message}`);
     }
+    try {
+      execSync(`node "${join(__dirname, "verify-series-intel-keys.mjs")}"`, {
+        cwd: ROOT,
+        stdio: "inherit",
+        env: process.env,
+      });
+    } catch {
+      console.warn("⚠ seriesIntel keys drift — run npm run playoff:intel when ANTHROPIC_API_KEY is set");
+    }
   } catch (err) {
     console.warn(`⚠ Preflight playoff sync: ${err.message}`);
   }
@@ -113,6 +122,31 @@ async function main() {
       failed++;
       if (critical) criticalFailed = true;
       console.error(`❌ ${name} — FAILED: ${err.message}\n`);
+    }
+  }
+
+  if (passed > 0) {
+    try {
+      execSync(`node "${join(__dirname, "sync-line-movement.mjs")}" snapshot`, {
+        cwd: ROOT,
+        stdio: "inherit",
+        env: process.env,
+      });
+      if (process.env.ODDS_API_KEY?.trim()) {
+        execSync(`node "${join(__dirname, "fetch-line-odds.mjs")}"`, {
+          cwd: ROOT,
+          stdio: "inherit",
+          env: process.env,
+        });
+      } else {
+        execSync(`node "${join(__dirname, "sync-line-movement.mjs")}" sync`, {
+          cwd: ROOT,
+          stdio: "inherit",
+          env: process.env,
+        });
+      }
+    } catch (lineErr) {
+      console.warn(`⚠ Line movement sync: ${lineErr.message}`);
     }
   }
 

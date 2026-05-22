@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import {
   pulseEdition,
   narrative,
@@ -24,6 +24,11 @@ import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDige
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
+import DeskSectionNav from "../components/DeskSectionNav";
+import MyPulseBanner from "../components/MyPulseBanner";
+import PreferencesSetup from "../components/PreferencesSetup";
+import { LiveScoreSkeleton } from "../components/PageSkeletons";
+import { useToast } from "../contexts/ToastContext";
 import RivalTonightBanner from "../components/RivalTonightBanner";
 import ShareButton from "../components/ShareButton";
 import { getFavorites } from "../lib/supabaseClient";
@@ -36,8 +41,20 @@ import {
   playoffSeriesForMatchup,
   type PlayoffSeries,
 } from "../lib/playoffData";
-import { nextPendingGame, playoffSnapshot, scoringEdgeForSeries, todayISOLocal } from "../lib/playoffAnalytics";
+import {
+  nextPendingGame,
+  nextPlayoffGameAcross,
+  playoffSnapshot,
+  scoringEdgeForSeries,
+  todayISOLocal,
+} from "../lib/playoffAnalytics";
 import { makeGameId, topDeskGames, gameCenterTrustSignals } from "../lib/gameCenter";
+import DataTrustBadge from "../components/DataTrustBadge";
+import SixtySecondBriefing from "../components/SixtySecondBriefing";
+import PickEmHomeBanner from "../components/PickEmHomeBanner";
+import { liveScoresTrustLabel } from "../lib/dataTrust";
+import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
+import { formatLineMovementBadge } from "../lib/spreadMovement";
 
 function shortenPulsePreview(text: string, max = 110) {
   const t = text.trim();
@@ -58,8 +75,12 @@ function fmtLiveScore(value: number | null) {
 }
 
 function LiveScorebar() {
-  const { data, error, refresh } = useLiveScores();
+  const { data, error, refresh, loading } = useLiveScores();
   const liveGames = data?.games.filter((g) => g.status === "in") ?? [];
+
+  if (loading && !data) {
+    return <LiveScoreSkeleton />;
+  }
 
   if (liveGames.length > 0) {
     return (
@@ -72,6 +93,11 @@ function LiveScorebar() {
             <div className="flex items-center gap-2 flex-shrink-0">
               <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />
               <span className="section-label text-emerald-400 text-xs">LIVE ESPN</span>
+              {data?.fetchedAt ? (
+                <span className="text-[10px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  {liveScoresTrustLabel(data.fetchedAt)}
+                </span>
+              ) : null}
             </div>
             {liveGames.map((g) => {
               const hs = g.homeScore;
@@ -144,6 +170,7 @@ function LiveScorebar() {
 // ═══════════════════════════════════════════════════════════
 
 function TickerBar() {
+  const [paused, setPaused] = useState(false);
   const derived = playoffTickerWireItems();
   const strip = derived.length ? [...derived, ...tickerItems] : tickerItems;
   const items = [...strip, ...strip];
@@ -177,8 +204,18 @@ function TickerBar() {
           <span className="w-1.5 h-1.5 rounded-full bg-white motion-safe:animate-pulse" />
           <span className="section-label text-white text-xs font-bold tracking-widest">WIRE</span>
         </div>
+        <button
+          type="button"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 text-[10px] px-2 py-1 rounded min-h-[32px] sm:min-h-0"
+          style={{ background: "rgba(0,0,0,0.45)", color: "rgba(255,255,255,0.7)" }}
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          aria-label={paused ? "Resume ticker" : "Pause ticker"}
+        >
+          {paused ? "▶" : "❚❚"}
+        </button>
         <div className="flex-1 overflow-hidden" aria-hidden>
-          <div className="ticker-track">
+          <div className={`ticker-track${paused ? " ticker-track--paused" : ""}`}>
             {items.map((item, i) => (
               <span key={i} className="flex items-center gap-2 px-6 py-2.5 whitespace-nowrap">
                 <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dotColors[item.type]}`} />
@@ -196,7 +233,31 @@ function TickerBar() {
 // HERO SECTION
 // ═══════════════════════════════════════════════════════════
 
+function PlayoffHeroCta() {
+  const snap = playoffSnapshot(playoffSeries, todayISOLocal());
+  const activeCount = playoffSeries.filter((s) => s.status !== "complete").length;
+  const next = nextPlayoffGameAcross(playoffSeries);
+  const nextLabel = next
+    ? next.game.status === "live"
+      ? `Live: ${next.game.awayTeam} @ ${next.game.homeTeam}`
+      : `Next: ${next.game.time ?? next.game.date}${next.game.tv ? ` · ${next.game.tv}` : ""}`
+    : snap.nextMilestone;
+
+  return (
+    <a
+      href="/playoffs"
+      className="min-h-[48px] inline-flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
+      style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
+    >
+      <span>🏆 Playoffs live · {activeCount} active series</span>
+      <span className="text-xs font-medium opacity-90 mono-data">{nextLabel}</span>
+    </a>
+  );
+}
+
 function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
+  const playoffsOn = isPlayoffsActive();
+
   return (
     <section
       className="relative overflow-hidden"
@@ -209,17 +270,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
         <div className="max-w-4xl animate-fade-up">
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <div className="section-label">{pulseEdition.edition}</div>
-            {/* Updated timestamp badge */}
-            <div
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
-              style={{ background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.25)" }}
-            >
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              Updated 5:03 AM PST
-            </div>
+            <DataTrustBadge variant="edition" />
           </div>
           <h1 className="display-heading text-white mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
             {narrative.headline}
@@ -232,15 +283,32 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
             <span className="text-xs font-semibold tracking-wide" style={{ color: "rgba(255,255,255,0.6)" }}>WILL HENDERSON</span>
             <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
             <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Hoops Intel</span>
+            <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+            <a href="/pulse-methodology" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
+              How Pulse works
+            </a>
           </div>
           <div className="flex flex-wrap gap-3 items-center">
-            <a
-              href="/playoffs"
-              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
-              style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
-            >
-              🏆 Playoff bracket
-            </a>
+            {showMyPulse ? (
+              <a
+                href="/my-pulse"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
+                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
+              >
+                Your desk →
+              </a>
+            ) : null}
+            {playoffsOn ? (
+              <PlayoffHeroCta />
+            ) : (
+              <a
+                href="/playoffs"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
+                style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
+              >
+                🏆 Playoff bracket
+              </a>
+            )}
             <a
               href="#scores"
               className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
@@ -321,8 +389,11 @@ function TodayDeskSection() {
   const urgentItems = [...playoffTickerWireItems(), ...tickerItems].slice(0, 4);
 
   return (
-    <section className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
+    <section id="today-desk" className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
       <div className="container">
+        <div className="mb-5">
+          <SixtySecondBriefing />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr] gap-5">
           <div className="glass-card rounded-xl p-5">
             <div className="section-label mb-2">MORNING BRIEFING</div>
@@ -374,6 +445,7 @@ function TodayDeskSection() {
 
 function GameCard({ game }: { game: (typeof gameResults)[0] }) {
   const [expanded, setExpanded] = useState(false);
+  const [tab, setTab] = useState<"recap" | "box" | "reactions">("recap");
   const homeWin = game.homeScore > game.awayScore;
   const awayWin = game.awayScore > game.homeScore;
   const gameHref = `/game/${game.gameId || makeGameId(game.awayTeam, game.homeTeam, pulseEdition.date)}`;
@@ -383,49 +455,74 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
       className="glass-card rounded-lg overflow-hidden transition-all duration-200"
       style={{ borderLeft: `3px solid ${getTeamColor(homeWin ? game.homeTeam : game.awayTeam)}` }}
     >
-      <div className="p-4">
+      <button
+        type="button"
+        className="w-full p-4 text-left hover:bg-white/[0.02] transition-colors"
+        aria-expanded={expanded}
+        onClick={() => setExpanded(!expanded)}
+      >
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3 flex-1">
-            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12">
+            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
               <div className="section-label mb-0.5" style={{ color: awayWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
               <div className={`mono-data font-bold text-2xl ${awayWin ? "pulse-glow-blue" : ""}`} style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
             </a>
             <div className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
-            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12">
+            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
               <div className="section-label mb-0.5" style={{ color: homeWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
               <div className={`mono-data font-bold text-2xl ${homeWin ? "pulse-glow-blue" : ""}`} style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
             </a>
           </div>
-          <button
-            type="button"
-            className="text-right rounded tap-target px-2"
-            aria-expanded={expanded}
-            onClick={() => setExpanded(!expanded)}
-          >
-            <div className="text-xs font-medium px-2 py-0.5 rounded mb-1" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>FINAL</div>
-            <div className="text-xs" style={{ color: "#0EA5E9" }}>{expanded ? "▲ Less" : "▼ More"}</div>
-          </button>
+          <div className="text-right">
+            <div className="text-xs font-medium px-2 py-0.5 rounded mb-1 inline-block" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>FINAL</div>
+            <div className="text-xs" style={{ color: "#0EA5E9" }}>{expanded ? "▲ Collapse" : "▼ Expand"}</div>
+          </div>
         </div>
-        <a href={gameHref} className="mb-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
-          Open Game Center →
-        </a>
         <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
           <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#0EA5E9" }} />
           <div>
-            <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors">
+            <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors" onClick={(e) => e.stopPropagation()}>
               {game.topPerformer}
             </a>
             <span className="text-xs ml-2 mono-data" style={{ color: "#10B981" }}>{game.topLine}</span>
           </div>
         </div>
+      </button>
+      <div className="px-4 pb-3">
+        <a href={gameHref} className="inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
+          Open Game Center →
+        </a>
       </div>
       {expanded && (
-        <div className="px-4 pb-4 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <p className="pt-3">{game.recap}</p>
-          <div>
-            <BoxScoreCard espnGameId={game.gameId} homeTeam={game.homeTeam} awayTeam={game.awayTeam} />
-            <ReactionBar itemId={`game-${game.gameId}`} />
+        <div className="px-4 pb-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="flex gap-1 pt-3 pb-2" role="tablist" aria-label="Game details">
+            {(["recap", "box", "reactions"] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                role="tab"
+                aria-selected={tab === t}
+                className="desk-section-pill !min-h-[36px]"
+                data-active={tab === t ? "true" : undefined}
+                onClick={() => setTab(t)}
+              >
+                {t === "recap" ? "Recap" : t === "box" ? "Box score" : "Reactions"}
+              </button>
+            ))}
           </div>
+          {tab === "recap" && (
+            <p className="text-sm leading-relaxed pt-2" style={{ color: "rgba(255,255,255,0.65)" }}>{game.recap}</p>
+          )}
+          {tab === "box" && (
+            <div className="pt-2">
+              <BoxScoreCard espnGameId={game.gameId} homeTeam={game.homeTeam} awayTeam={game.awayTeam} />
+            </div>
+          )}
+          {tab === "reactions" && (
+            <div className="pt-2">
+              <ReactionBar itemId={`game-${game.gameId}`} />
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -461,11 +558,12 @@ function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
   return (
     <section id="scores" className="py-10">
       <div className="container">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <div>
             <div className="section-label mb-1">LAST NIGHT</div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <h2 className="display-heading text-white text-2xl">Scores</h2>
+              <DataTrustBadge variant="espn" />
               {isPersonalized && (
                 <div
                   className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
@@ -495,9 +593,43 @@ function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// NARRATIVE SECTION
-// ═══════════════════════════════════════════════════════════
+// Collapsible secondary edition blocks
+function CollapsibleEditionExtras({
+  narrative,
+  media,
+  rookieFantasy,
+}: {
+  narrative: ReactNode;
+  media: ReactNode;
+  rookieFantasy: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="py-6 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+      <div className="container">
+        <button
+          type="button"
+          className="w-full flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-4 min-h-[56px] hover:bg-white/[0.05] transition-colors"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <div className="text-left">
+            <div className="section-label mb-1">FULL EDITION</div>
+            <div className="text-sm font-semibold text-white">Lead story, desk read, rookies &amp; fantasy</div>
+          </div>
+          <span className="text-sky-400 text-sm font-semibold">{open ? "Hide ▲" : "Show ▼"}</span>
+        </button>
+        {open && (
+          <div className="mt-4 space-y-0">
+            {narrative}
+            {media}
+            {rookieFantasy}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function NarrativeSection() {
   return (
@@ -837,6 +969,16 @@ function PlayoffSection() {
           <a href="/playoffs" className="text-xs font-medium" style={{ color: "#0EA5E9" }}>Full bracket &rarr;</a>
         </div>
         <h2 className="display-heading text-white text-2xl mb-2">Playoff Series</h2>
+        <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+          {active.length} active series
+          {(() => {
+            const nx = nextPlayoffGameAcross(playoffSeries);
+            if (!nx) return null;
+            return nx.game.status === "live"
+              ? " · Live now"
+              : ` · Next tip: ${nx.game.time ?? nx.game.date}`;
+          })()}
+        </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
           {statTiles.map((t) => (
@@ -1000,6 +1142,11 @@ function GamePreviewCard({ preview }: { preview: any }) {
   const series = playoffSeriesForMatchup(preview.awayTeam, preview.homeTeam);
   const intel = series ? resolveSeriesIntel(series) : undefined;
   const gameHref = `/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, pulseEdition.date)}`;
+  const lineMove = lineMovementForMatchup(preview.awayTeam, preview.homeTeam);
+  const opener = preview.openingSpread || lineMove?.openingSpread;
+  const closer = preview.spread || lineMove?.closingSpread;
+  const moved = opener && closer && spreadMoved(opener, closer);
+  const moveBadge = opener && closer ? formatLineMovementBadge(opener, closer) : null;
 
   return (
     <div className={`glass-card rounded-lg overflow-hidden ${preview.featured ? "ring-1 ring-sky-500/40" : ""}`}>
@@ -1021,7 +1168,18 @@ function GamePreviewCard({ preview }: { preview: any }) {
             <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.tv}</div>
           </div>
           <div className="text-right ml-4">
-            <div className="mono-data text-xs" style={{ color: "#0EA5E9" }} title="Vegas point spread — negative means favored">{preview.spread}</div>
+            <div className="mono-data text-xs" style={{ color: "#0EA5E9" }} title="Vegas point spread — negative means favored">
+              {closer}
+            </div>
+            {moveBadge ? (
+              <div className="text-[10px] font-semibold text-amber-300/95" title="Morning opener → current board">
+                {moveBadge}
+              </div>
+            ) : moved ? (
+              <div className="mono-data text-[10px] text-emerald-300/90">
+                {opener} → {closer}
+              </div>
+            ) : null}
             <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }} title="Over/Under — projected combined total points">Total {preview.overUnder}</div>
           </div>
           <button
@@ -1043,9 +1201,17 @@ function GamePreviewCard({ preview }: { preview: any }) {
             {series.summary}
           </div>
         )}
-        <a href={gameHref} className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
-          Open Game Center →
-        </a>
+        <div className="mt-3 flex flex-wrap gap-3">
+          <a href={gameHref} className="inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200">
+            Game Center →
+          </a>
+          <a href="/pick-em" className="inline-flex min-h-[44px] items-center text-xs font-semibold text-emerald-300 hover:text-emerald-200">
+            Pick &apos;Em →
+          </a>
+          <a href="/betting-intel" className="inline-flex min-h-[44px] items-center text-xs font-semibold text-white/50 hover:text-white/70">
+            Lines →
+          </a>
+        </div>
       </div>
       {expanded && (
         <div className="px-4 pb-4 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -1297,7 +1463,7 @@ function StandingsSection() {
   );
 
   return (
-    <section className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="standings" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
         <div className="section-label mb-2">CONFERENCE STANDINGS</div>
         <h2 className="display-heading text-white text-2xl mb-6">Standings</h2>
@@ -1315,6 +1481,7 @@ function StandingsSection() {
 // ═══════════════════════════════════════════════════════════
 
 function Footer() {
+  const { toast } = useToast();
   const digestId = "footer-digest-email";
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -1334,6 +1501,7 @@ function Footer() {
     setSubmitting(false);
     if (result.ok) {
       setSubscribed(true);
+      toast("Subscribed — morning digest at 5 AM PST");
     } else {
       setApiError(result.error);
     }
@@ -1420,16 +1588,16 @@ function Footer() {
           {/* Quick Links */}
           <div>
             <div className="section-label mb-2">QUICK LINKS</div>
-            <div className="space-y-2">
-              <a href="#scores" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Last Night's Scores</a>
-              <a href="#pulse-index" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index Rankings</a>
-              <a href="#injuries" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Injury Wire</a>
-              <a href="#tonight" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tonight's Games</a>
-              <a href="/archive" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Full Archive</a>
-              <a href="/tools" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>All tools</a>
-              <a href="/pulse-history" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index History</a>
-              <a href="/playoffs" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Bracket</a>
-              <a href="/tools" className="block text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tools directory</a>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <a href="#scores" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Scores</a>
+              <a href="#pulse-index" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index</a>
+              <a href="#injuries" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Injuries</a>
+              <a href="#tonight" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tonight</a>
+              <a href="/archive" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Archive</a>
+              <a href="/tools" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>All tools</a>
+              <a href="/playoffs" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoffs</a>
+              <a href="/pulse-methodology" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>How Pulse works</a>
+              <a href="/feed.xml" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>RSS</a>
             </div>
           </div>
         </div>
@@ -1449,8 +1617,10 @@ function Footer() {
 // ═══════════════════════════════════════════════════════════
 
 export default function Home() {
+  const { toast } = useToast();
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([]);
   const [showMyPulse, setShowMyPulse] = useState(false);
+  const [showPrefsSetup, setShowPrefsSetup] = useState(false);
 
   // Fetch user favorites on mount for client-side personalization
   useEffect(() => {
@@ -1476,18 +1646,36 @@ export default function Home() {
       <RivalTonightBanner />
       <LiveScorebar />
       <TickerBar />
-      <HeroSection showMyPulse={showMyPulse} />
-      <TodayDeskSection />
-      <ScoresSection favoriteTeams={favoriteTeams} />
-      <NarrativeSection />
-      <PulseIndexSection />
-      <MediaReactionsSection />
-      <InjurySection />
-      <PlayoffSection />
-      <TonightSection />
-      <RookieAndFantasySection />
-      <StandingsSection />
+      <main id="main-content" tabIndex={-1}>
+        <HeroSection showMyPulse={showMyPulse} />
+        <DeskSectionNav />
+        <TodayDeskSection />
+        <PickEmHomeBanner />
+        {!showMyPulse ? <MyPulseBanner onSetup={() => setShowPrefsSetup(true)} /> : null}
+        {isPlayoffsActive() ? <PlayoffSection /> : null}
+        <ScoresSection favoriteTeams={favoriteTeams} />
+        <PulseIndexSection />
+        <InjurySection />
+        <TonightSection />
+        <CollapsibleEditionExtras
+          narrative={<NarrativeSection />}
+          media={<MediaReactionsSection />}
+          rookieFantasy={<RookieAndFantasySection />}
+        />
+        <StandingsSection />
+      </main>
       <Footer />
+      {showPrefsSetup && (
+        <PreferencesSetup
+          onClose={() => setShowPrefsSetup(false)}
+          onSave={() => {
+            setShowPrefsSetup(false);
+            setShowMyPulse(true);
+            setFavoriteTeams(getPreferences().favoriteTeams);
+            toast("My Pulse preferences saved");
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   buildPlayoffFinalScoreTickerItems,
+  buildPlayoffLiveTickerItems,
   playoffTickerWireItems,
 } from "../lib/playoffTickerDerived";
 import type { PlayoffSeries } from "../lib/playoffData";
@@ -20,6 +21,7 @@ describe("playoffTickerDerived", () => {
         lowerWins: 4,
         status: "complete",
         summary: "PHI wins 4-3",
+        winner: "PHI",
         games: [
           {
             gameNumber: 7,
@@ -43,6 +45,42 @@ describe("playoffTickerDerived", () => {
     expect(rows[0].text).toContain("PHI 109");
     expect(rows[0].text).toContain("BOS 100");
     expect(rows[0].text).toContain("Joel Embiid");
+    expect(rows[0].text).toContain("PHI wins");
+  });
+
+  it("buildPlayoffLiveTickerItems surfaces live games first", () => {
+    const series: PlayoffSeries[] = [
+      {
+        seriesId: "LIVE",
+        conference: "west",
+        round: "conference-finals",
+        higherSeed: 1,
+        lowerSeed: 2,
+        higherTeam: "OKC",
+        lowerTeam: "SAS",
+        higherWins: 0,
+        lowerWins: 1,
+        status: "active",
+        summary: "SAS leads 1-0",
+        games: [
+          {
+            gameNumber: 2,
+            date: "2026-05-21",
+            homeTeam: "OKC",
+            awayTeam: "SAS",
+            homeScore: 88,
+            awayScore: 91,
+            status: "live",
+            time: "Q3 4:12",
+          },
+        ],
+      },
+    ];
+    const live = buildPlayoffLiveTickerItems(series);
+    expect(live).toHaveLength(1);
+    expect(live[0].type).toBe("alert");
+    expect(live[0].text).toContain("LIVE:");
+    expect(live[0].text).toContain("SAS leads 1-0");
   });
 
   it("playoffTickerWireItems returns items when playoff board is active", () => {

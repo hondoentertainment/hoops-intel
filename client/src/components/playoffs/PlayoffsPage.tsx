@@ -1,12 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import { playoffSeries, playoffMovers } from "../../lib/playoffData";
 import { nextPendingGame, playoffSnapshot, todayISOLocal } from "../../lib/playoffAnalytics";
+import { filterPlayoffBoard, playoffBoardCounts, sortPlayoffBoard, type PlayoffBoardMode } from "../../lib/playoffBoardFilter";
+import { mergePlayoffSeriesWithLive } from "../../lib/playoffLiveMerge";
+import { useLiveScores } from "../../lib/useLiveScores";
+import DataTrustBadge from "../DataTrustBadge";
 import {
   buildTakeaways,
   formatShortDate,
   heroSentence,
   lastFinalGame,
   pickHeroPool,
+  roundSnapshotContext,
   usableSeries,
 } from "./dashboardDerive";
 import { getTeamColor } from "../../lib/teamColors";
@@ -15,9 +20,10 @@ import { SeriesCard, sortedSeriesCardsData } from "./SeriesCard";
 import { TakeawaysSection } from "./TakeawaysSection";
 import SiteHeader from "../../components/SiteHeader";
 import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
+import { PlayoffBracketBoard } from "./PlayoffBracketBoard";
 
-function StickyRibbon() {
-  const snap = playoffSnapshot(playoffSeries, todayISOLocal());
+function StickyRibbon({ series }: { series: typeof playoffSeries }) {
+  const snap = playoffSnapshot(series, todayISOLocal());
   return (
     <div
       className="sticky top-14 z-30 border-b border-white/[0.06] backdrop-blur-xl sm:top-14"
@@ -80,11 +86,16 @@ function SeriesHeroStrip({
             <button
               key={i}
               type="button"
-              aria-label={`Highlight series ${i + 1}`}
-              aria-current={mod === i}
+              aria-label={`Highlight series ${i + 1} of ${pool.length}`}
+              aria-current={mod === i ? "true" : undefined}
               onClick={() => onSelect(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${mod === i ? "w-8 bg-sky-500 shadow-[0_0_12px_rgba(14,165,233,0.45)]" : "w-1.5 bg-white/25 hover:bg-white/40"}`}
-            />
+              className="tap-target inline-flex items-center justify-center rounded-full p-2 -m-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+            >
+              <span
+                className={`block rounded-full transition-all duration-300 ${mod === i ? "h-1.5 w-8 bg-sky-500 shadow-[0_0_12px_rgba(14,165,233,0.45)]" : "h-1.5 w-1.5 bg-white/25"}`}
+                aria-hidden
+              />
+            </button>
           ))}
         </div>
       </div>
@@ -144,17 +155,45 @@ function SeriesHeroStrip({
 export function PlayoffsPage() {
   const [heroIx, setHeroIx] = useState(0);
   const [hydrated, setHydrated] = useState(false);
-  const dataKey = playoffSeries.map((s) => `${s.seriesId}-${s.higherWins}-${s.lowerWins}`).join("|");
+  const [boardMode, setBoardMode] = useState<PlayoffBoardMode>("active");
+  const [expandSeriesId, setExpandSeriesId] = useState<string | undefined>();
+  const { data: liveData } = useLiveScores();
+
+  const mergedSeries = useMemo(
+    () => mergePlayoffSeriesWithLive(playoffSeries, liveData?.games),
+    [liveData?.games, playoffSeries],
+  );
+
+  const dataKey = mergedSeries.map((s) => `${s.seriesId}-${s.higherWins}-${s.lowerWins}-${s.games.map((g) => g.status + g.homeScore + g.awayScore).join("")}`).join("|");
 
   useEffect(() => {
     const id = window.requestAnimationFrame(() => setHydrated(true));
     return () => window.cancelAnimationFrame(id);
   }, [dataKey]);
 
-  const usable = useMemo(() => usableSeries(playoffSeries), [dataKey]);
-  const pool = useMemo(() => pickHeroPool(playoffSeries), [dataKey]);
-  const takeaways = useMemo(() => buildTakeaways(playoffSeries, playoffMovers), [dataKey]);
-  const gridSeries = useMemo(() => sortedSeriesCardsData(usable.length ? usable : playoffSeries), [usable, dataKey]);
+  useEffect(() => {
+    const readHash = () => {
+      const h = window.location.hash.replace(/^#/, "");
+      if (h.startsWith("series-card-")) {
+        setExpandSeriesId(h.slice("series-card-".length));
+      }
+    };
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    return () => window.removeEventListener("hashchange", readHash);
+  }, []);
+
+  const boardCounts = useMemo(() => playoffBoardCounts(mergedSeries), [dataKey]);
+  const filtered = useMemo(
+    () => sortPlayoffBoard(filterPlayoffBoard(mergedSeries, boardMode)),
+    [boardMode, dataKey],
+  );
+
+  const usable = useMemo(() => usableSeries(filtered), [filtered, dataKey]);
+  const pool = useMemo(() => pickHeroPool(filtered), [filtered, dataKey]);
+  const takeaways = useMemo(() => buildTakeaways(filtered, playoffMovers), [filtered, dataKey]);
+  const gridSeries = useMemo(() => sortedSeriesCardsData(usable.length ? usable : filtered), [usable, filtered, dataKey]);
+  const roundSnapshot = useMemo(() => roundSnapshotContext(filtered), [filtered, dataKey]);
 
   const jumpMustWatch = () => {
     const id = takeaways.mustWatch?.seriesId;
@@ -164,14 +203,36 @@ export function PlayoffsPage() {
     });
   };
 
-  const hasBoard = playoffSeries.length > 0;
+  const hasBoard = mergedSeries.length > 0;
+  const hasLive = boardCounts.live > 0;
 
   return (
     <div className="min-h-screen pb-14" style={{ background: "var(--hi-bg-page, #050d12)" }}>
       <DashboardHeader />
-      <StickyRibbon />
+      <StickyRibbon series={mergedSeries} />
 
       <main className="container px-4 py-6 max-w-[1400px] mx-auto">
+        {hasBoard && (
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <DataTrustBadge variant={hasLive ? "live" : "espn"} fetchedAt={liveData?.fetchedAt} />
+            <div className="flex rounded-lg border border-white/10 overflow-hidden text-[10px] font-bold uppercase tracking-wider">
+              <button
+                type="button"
+                className={`px-3 py-2 min-h-[44px] ${boardMode === "active" ? "bg-sky-500/20 text-sky-300" : "text-white/45"}`}
+                onClick={() => setBoardMode("active")}
+              >
+                Live round ({boardCounts.active})
+              </button>
+              <button
+                type="button"
+                className={`px-3 py-2 min-h-[44px] ${boardMode === "all" ? "bg-sky-500/20 text-sky-300" : "text-white/45"}`}
+                onClick={() => setBoardMode("all")}
+              >
+                Full bracket ({boardCounts.all})
+              </button>
+            </div>
+          </div>
+        )}
         {!hydrated ? (
           <PlayoffsSkeleton />
         ) : !hasBoard ? (
@@ -184,6 +245,15 @@ export function PlayoffsPage() {
         ) : (
           <>
             <SeriesHeroStrip pool={pool} heroIx={heroIx} onSelect={setHeroIx} />
+            {roundSnapshot ? (
+              <section className="mb-6 rounded-2xl border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.06] to-transparent px-4 py-3" aria-labelledby="round-snapshot-heading">
+                <h2 id="round-snapshot-heading" className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-300/95">
+                  {roundSnapshot.headline}
+                </h2>
+                <p className="text-[11px] text-white/60 mt-1.5 leading-relaxed">{roundSnapshot.detail}</p>
+              </section>
+            ) : null}
+            <PlayoffBracketBoard />
             <TakeawaysSection data={takeaways} onMustWatch={jumpMustWatch} />
             <PlayoffMoversDesk />
 
@@ -194,7 +264,7 @@ export function PlayoffsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {gridSeries.map((s) => (
                 <div key={s.seriesId} id={`series-card-${s.seriesId}`} className="scroll-mt-28">
-                  <SeriesCard series={s} />
+                  <SeriesCard series={s} defaultExpanded={expandSeriesId === s.seriesId} />
                 </div>
               ))}
             </div>

@@ -162,11 +162,15 @@ async function main() {
     return text.includes("playoff") || text.includes("game 1") || text.includes("game 2") || text.includes("game 3") || text.includes("game 4") || text.includes("game 5") || text.includes("game 6") || text.includes("game 7");
   });
   let snapPlayoffs = false;
+  let snapshotFinalsOnly = false;
   try {
     const pj = join(ROOT, ".daily-data/playoff-series.json");
     if (existsSync(pj)) {
       const j = JSON.parse(readFileSync(pj, "utf8"));
-      snapPlayoffs = (j.series?.length ?? 0) > 0;
+      const series = j.series ?? [];
+      snapPlayoffs = series.length > 0;
+      const rounds = series.map((s) => s.round).filter(Boolean);
+      snapshotFinalsOnly = rounds.length > 0 && rounds.every((r) => r === "finals");
     }
   } catch {
     /* ignore */
@@ -175,7 +179,11 @@ async function main() {
   const calendarPlayoff = cal === "playoffs" || cal === "finals";
   const isPlayoffMode = calendarPlayoff || snapPlayoffs || playoffIndicators.length > 0;
   const editionContext =
-    cal === "finals" ? "finals" : isPlayoffMode ? "playoffs" : "regular";
+    cal === "finals" || snapshotFinalsOnly
+      ? "finals"
+      : isPlayoffMode
+        ? "playoffs"
+        : "regular";
   if (isPlayoffMode) console.log("🏆 Playoff/finals mode — Pulse Index scopes to postseason context.");
   const playoffInstructions = isPlayoffMode
     ? `
@@ -242,7 +250,7 @@ ${playoffInstructions}${seasonWindowInstructions}
 2. Feature 4–6 game results (most significant first)
 3. Write crisp, sharp copy — not a box score recitation; actual insights
 4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
-5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates)
+5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates). For each gamePreviews row include **openingSpread** (morning opener, e.g. "NYK -4.5") and **spread** (current/closing board number). When movement is expected, opener and spread should differ by roughly 0.5–1.5 points — never omit openingSpread on playoff or featured slates. Add **marketThesis** (1–2 sentences: sharp/public read on why the line moved or held).
 6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
 7. Conversation read: write 6 clearly synthetic, paraphrased conversation summaries. Do NOT impersonate real journalists, invent direct quotes, or attribute reporting. Use author/outlet fields only as broad source-category labels such as "Hoops Intel Desk" / "Generated conversation read".
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones

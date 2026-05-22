@@ -1,35 +1,64 @@
+import { useEffect, useState } from "react";
 import { useParams } from "wouter";
-import { archiveEditions } from "../lib/archiveData";
 import {
-  eastStandings,
-  westStandings,
-  gameResults,
-  gamePreviews,
-  injuryUpdates,
-  pulseIndex,
-  pulseEdition,
-} from "../lib/pulseData";
-import { seriesForTeam, playoffSeriesOpponent } from "../lib/playoffData";
+  seriesForTeam, playoffSeriesOpponent, playoffSeriesForMatchup } from "../lib/playoffData";
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
-import { getAllTeams, slugify } from "../lib/searchUtils";
+import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { TEAM_NAMES, canonicalizeTeamCode } from "../lib/identity";
 import SiteHeader from "../components/SiteHeader";
+import Breadcrumbs from "../components/Breadcrumbs";
+import ErrorBlock from "../components/ErrorBlock";
+import { TeamPageSkeleton } from "../components/PageSkeletons";
+import { getTeamIntelByAbbr, type TeamIntelResponse } from "../lib/teamIntel";
 
 export default function Team() {
   const params = useParams<{ abbr: string }>();
   const abbr = canonicalizeTeamCode(params.abbr || "");
   const fullName = TEAM_NAMES[abbr];
+  const [teamIntel, setTeamIntel] = useState<TeamIntelResponse | null>(() => getTeamIntelByAbbr(abbr));
+  const [intelLoading, setIntelLoading] = useState(true);
+  const [intelUnavailable, setIntelUnavailable] = useState(false);
+
+  useEffect(() => {
+    if (!abbr || !fullName) {
+      setIntelLoading(false);
+      return;
+    }
+    let active = true;
+    setIntelLoading(true);
+    fetch(`/api/team-intel?abbr=${encodeURIComponent(abbr.toLowerCase())}`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`team-intel ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (active && !data.error) setTeamIntel(data.data ?? data);
+      })
+      .catch(() => {
+        if (active) {
+          setTeamIntel(getTeamIntelByAbbr(abbr));
+          setIntelUnavailable(true);
+        }
+      })
+      .finally(() => {
+        if (active) setIntelLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [abbr, fullName]);
 
   useMetaTags({
-    title: fullName ? `${fullName} Team Intel | Hoops Intel` : "Team Intel | Hoops Intel",
+    title: fullName ? `${fullName} Team Intel | Hoops Intel` : "Team Not Found | Hoops Intel",
     description: fullName
       ? `${fullName} scores, injuries, playoff context, Pulse Index players, and archive storylines on Hoops Intel.`
-      : "Team profile on Hoops Intel.",
-    ogImage: `https://hoopsintel.net/api/og?type=team&team=${abbr}`,
+      : "This team profile is not available on Hoops Intel.",
+    ogImage: fullName ? `https://hoopsintel.net/api/og?type=team&team=${abbr}` : undefined,
     ogUrl: `https://hoopsintel.net/team/${abbr.toLowerCase()}`,
     canonicalUrl: `https://hoopsintel.net/team/${abbr.toLowerCase()}`,
+    noindex: !fullName,
     jsonLd: fullName
       ? {
           "@context": "https://schema.org",
@@ -53,19 +82,22 @@ export default function Team() {
     );
   }
 
+  if (intelLoading || !teamIntel) {
+    return (
+      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <SiteHeader subtitle={`TEAM · ${abbr}`} />
+        <TeamPageSkeleton />
+      </div>
+    );
+  }
+
   const teamColor = getTeamColor(abbr);
-  const standing = [...eastStandings, ...westStandings].find((s: any) => s.team === abbr);
-  const teamGames = gameResults.filter(
-    (g: any) => g.homeTeam === abbr || g.awayTeam === abbr
-  );
-  const teamPreviews = gamePreviews.filter(
-    (g: any) => g.homeTeam === abbr || g.awayTeam === abbr
-  );
-  const teamInjuries = injuryUpdates.filter((inj: any) => inj.team === abbr);
-  const teamPlayers = pulseIndex.filter((p: any) => p.team === abbr);
-  const teamEditions = archiveEditions.filter(
-    (ed: any) => (ed.teams || []).includes(abbr)
-  );
+  const standing = teamIntel.standing;
+  const teamGames = teamIntel.recentGames;
+  const teamPreviews = teamIntel.previews;
+  const teamInjuries = teamIntel.injuries;
+  const teamPlayers = teamIntel.pulsePlayers;
+  const teamEditions = teamIntel.editions;
   const playoffRow = seriesForTeam(abbr);
   const playoffNext = playoffRow ? nextPendingGame(playoffRow) : undefined;
   const playoffOppAbbr = playoffRow ? playoffSeriesOpponent(playoffRow, abbr) : "";
@@ -76,7 +108,17 @@ export default function Team() {
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle={`TEAM · ${abbr}`} />
-      <div className="container py-8">
+      <main id="main-content" tabIndex={-1} className="container py-8">
+        <Breadcrumbs items={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: abbr }]} />
+        {intelUnavailable && (
+          <div className="mb-4">
+            <ErrorBlock
+              message="Live team intelligence unavailable. Showing cached edition data."
+              fallbackHref={`/team/${abbr.toLowerCase()}`}
+              fallbackLabel="Reload team page"
+            />
+          </div>
+        )}
         {/* Team Header */}
         <div
           className="glass-card rounded-lg p-6 mb-6"
@@ -142,13 +184,22 @@ export default function Team() {
                 Series complete.
               </p>
             )}
-            <a
-              href={`/playoffs#series-card-${playoffRow.seriesId}`}
-              className="text-xs font-medium"
-              style={{ color: "#38BDF8" }}
-            >
-              Open in playoff command center →
-            </a>
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              <a
+                href={`/team/${playoffOppAbbr.toLowerCase()}`}
+                className="text-xs font-medium"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                {playoffOppName} team intel →
+              </a>
+              <a
+                href={`/playoffs#series-card-${playoffRow.seriesId}`}
+                className="text-xs font-medium"
+                style={{ color: "#38BDF8" }}
+              >
+                {playoffOppAbbr} series on playoff board →
+              </a>
+            </div>
           </div>
         )}
 
@@ -195,7 +246,9 @@ export default function Team() {
             {teamPreviews.length > 0 && (
               <div>
                 <div className="section-label mb-3">TONIGHT</div>
-                {teamPreviews.map((p: any, i: number) => (
+                {teamPreviews.map((p: any, i: number) => {
+                  const previewSeries = playoffSeriesForMatchup(p.awayTeam, p.homeTeam);
+                  return (
                   <div key={i} className="glass-card rounded-lg p-4 mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold text-white">
@@ -206,11 +259,21 @@ export default function Team() {
                     <div className="mono-data text-xs mb-2" style={{ color: "#0EA5E9" }}>
                       {p.spread} · O/U {p.overUnder} · {p.tv}
                     </div>
+                    {previewSeries && previewSeries.status !== "complete" && (
+                      <a
+                        href={`/playoffs#series-card-${previewSeries.seriesId}`}
+                        className="inline-block text-xs font-semibold mb-2"
+                        style={{ color: "#F43F5E" }}
+                      >
+                        Playoff series · {previewSeries.summary} →
+                      </a>
+                    )}
                     <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
                       {p.storyline}
                     </p>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 
@@ -368,7 +431,7 @@ export default function Team() {
             )}
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

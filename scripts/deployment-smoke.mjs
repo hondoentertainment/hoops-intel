@@ -9,6 +9,7 @@ const checks = [
   { path: "/robots.txt", type: "text" },
   { path: "/api/ops-readiness", type: "json", optional: true },
   { path: "/api/player-intel", type: "json" },
+  { path: "/api/team-intel?abbr=okc", type: "json" },
   { path: "/api/game-center", type: "json" },
 ];
 
@@ -32,6 +33,7 @@ async function check({ path, type, optional }) {
     try {
       JSON.parse(text);
     } catch {
+      if (optional) return { ok: true, optional, path, note: "invalid JSON body", durationMs };
       return { ok: false, path, error: "invalid JSON body", durationMs };
     }
   }

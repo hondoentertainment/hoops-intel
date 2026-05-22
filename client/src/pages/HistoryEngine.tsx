@@ -1,6 +1,6 @@
 // Historical Context Engine — Past Meets Present
 
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { historyData } from "../lib/historyData";
 import type { HistoricalComparison, MilestoneWatch as MilestoneWatchType } from "../lib/historyData";
 
@@ -172,11 +172,8 @@ export default function HistoryEngine() {
   const data = historyData;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="HISTORICAL CONTEXT ENGINE" />
-
-      <div className="container py-8">
-        {/* Page header */}
+    <ToolPageLayout subtitle="HISTORICAL CONTEXT ENGINE">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-[10px] font-bold tracking-widest uppercase mb-1"
@@ -372,7 +369,6 @@ export default function HistoryEngine() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

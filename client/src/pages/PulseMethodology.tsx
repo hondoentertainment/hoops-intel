@@ -1,13 +1,10 @@
 import type { ReactNode } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 export default function PulseMethodology() {
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="REFERENCE" />
-
-      <div className="container py-12 max-w-3xl space-y-10">
-        <div>
+    <ToolPageLayout subtitle="REFERENCE">
+<div>
           <p className="section-label mb-2">HOW WE SCORE PLAYERS</p>
           <h1 className="display-heading text-white text-3xl sm:text-4xl mb-4">Pulse Index methodology</h1>
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
@@ -64,8 +61,7 @@ export default function PulseMethodology() {
           <strong>Fine print:</strong>&nbsp; Hoops Intel is editorial AI plus human QA. Futures change fast—always corroborate with official league data before
           making decisions with money or roster exposure on the line.
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }
 

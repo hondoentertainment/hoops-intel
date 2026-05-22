@@ -16,6 +16,9 @@ const KEYS = [
   "SUPABASE_SERVICE_KEY",
   "RESEND_API_KEY",
   "ANTHROPIC_API_KEY",
+  "CONTACT_INBOUND_EMAIL",
+  "GUEST_PULSE_ADMIN_SECRET",
+  "ODDS_API_KEY",
 ];
 
 const strict = process.argv.includes("--strict");

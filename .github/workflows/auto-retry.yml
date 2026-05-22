@@ -67,17 +67,23 @@ jobs:
           fi
         timeout-minutes: 12
 
+      - name: Stage daily edition files
+        run: node scripts/stage-daily-edition.mjs
+
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Pre-push CI gate (schema + build)
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run test:pre-push
 
       - name: Commit and push edition (retry)
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/pulseData.ts client/src/lib/archiveData.ts public/feed.xml public/sitemap.xml client/src/lib/watchGuideData.ts client/src/lib/sentimentData.ts client/src/lib/podcastData.ts client/src/lib/historyData.ts client/src/lib/refData.ts client/src/lib/momentumData.ts
           git commit -m "Daily edition (retry): $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 

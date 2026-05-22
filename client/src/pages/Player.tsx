@@ -7,6 +7,9 @@ import { getTeamColor } from "../lib/teamColors";
 import { useMetaTags } from "../lib/useMetaTags";
 import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
 import SiteHeader from "../components/SiteHeader";
+import Breadcrumbs from "../components/Breadcrumbs";
+import ErrorBlock from "../components/ErrorBlock";
+import { PlayerPageSkeleton } from "../components/PageSkeletons";
 import ShareButton from "../components/ShareButton";
 
 function findPlayer(slug: string) {
@@ -27,11 +30,17 @@ export default function Player() {
   const requestedSlug = params.slug || "";
   const player = findPlayer(requestedSlug);
   const [intel, setIntel] = useState<PlayerIntelResponse | null>(() => getPlayerIntelBySlug(requestedSlug));
+  const [intelLoading, setIntelLoading] = useState(true);
   const [intelUnavailable, setIntelUnavailable] = useState(false);
 
   useEffect(() => {
-    if (!requestedSlug) return;
+    if (!requestedSlug) {
+      setIntelLoading(false);
+      return;
+    }
     let active = true;
+    setIntelLoading(true);
+    setIntelUnavailable(false);
     fetch(`/api/player-intel?slug=${encodeURIComponent(requestedSlug)}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`player-intel ${res.status}`);
@@ -45,11 +54,45 @@ export default function Player() {
           setIntel(getPlayerIntelBySlug(requestedSlug));
           setIntelUnavailable(true);
         }
+      })
+      .finally(() => {
+        if (active) setIntelLoading(false);
       });
     return () => {
       active = false;
     };
   }, [requestedSlug]);
+
+  const slug = params.slug || "";
+  const currentPulse = player ? pulseIndex.find((p: any) => p.player === player.name) : undefined;
+
+  useMetaTags({
+    enabled: Boolean(slug),
+    title: !player
+      ? "Player Not Found | Hoops Intel"
+      : currentPulse
+        ? `${player.name} — Pulse Index #${currentPulse.rank} | Hoops Intel`
+        : `${player.name} | Hoops Intel`,
+    description: !player
+      ? "This player profile is not available on Hoops Intel."
+      : currentPulse
+        ? `${currentPulse.keyStats} — ${currentPulse.note}`
+        : `Player profile for ${player.name} on Hoops Intel.`,
+    ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
+    ogUrl: `https://hoopsintel.net/player/${slug}`,
+    canonicalUrl: `https://hoopsintel.net/player/${slug}`,
+    noindex: !player,
+    jsonLd: player
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: player.name,
+          description: currentPulse?.note || `Player intelligence profile for ${player.name}.`,
+          url: `https://hoopsintel.net/player/${slug}`,
+          affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
+        }
+      : undefined,
+  });
 
   if (!player) {
     return (
@@ -63,34 +106,19 @@ export default function Player() {
     );
   }
 
-  const currentPulse = pulseIndex.find((p: any) => p.player === player.name);
+  if (intelLoading) {
+    return (
+      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <SiteHeader subtitle="PLAYER" />
+        <PlayerPageSkeleton />
+      </div>
+    );
+  }
+
   const currentInjury = injuryUpdates.find((inj: any) => inj.player === player.name);
   const currentGame = gameResults.find((g: any) => g.topPerformer === player.name);
   const editions = getPlayerEditions(player.name);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
-
-  const slug = params.slug || "";
-
-  // Dynamic OG meta tags for this player page
-  useMetaTags({
-    title: currentPulse
-      ? `${player.name} — Pulse Index #${currentPulse.rank} | Hoops Intel`
-      : `${player.name} | Hoops Intel`,
-    description: currentPulse
-      ? `${currentPulse.keyStats} — ${currentPulse.note}`
-      : `Player profile for ${player.name} on Hoops Intel.`,
-    ogImage: `https://hoopsintel.net/api/og?player=${slug}`,
-    ogUrl: `https://hoopsintel.net/player/${slug}`,
-    canonicalUrl: `https://hoopsintel.net/player/${slug}`,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: player.name,
-      description: currentPulse?.note || `Player intelligence profile for ${player.name}.`,
-      url: `https://hoopsintel.net/player/${slug}`,
-      affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
-    },
-  });
 
   const shareUrl = `https://hoopsintel.net/player/${slug}`;
   const shareTweet = currentPulse
@@ -100,10 +128,21 @@ export default function Player() {
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle="PLAYER" />
-      <div className="container py-8">
+      <main id="main-content" tabIndex={-1} className="container py-8">
+        <Breadcrumbs
+          items={[
+            { label: "Today's desk", href: "/" },
+            { label: "Pulse Index", href: "/#pulse-index" },
+            { label: player.name },
+          ]}
+        />
         {intelUnavailable && (
-          <div className="mb-4 rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-xs text-amber-200">
-            Live player intelligence unavailable. Showing static generated fallback.
+          <div className="mb-4">
+            <ErrorBlock
+              message="Live player intelligence unavailable. Showing static generated fallback."
+              fallbackHref={`/player/${slug}`}
+              fallbackLabel="Reload profile"
+            />
           </div>
         )}
         {/* Player Header */}
@@ -377,7 +416,7 @@ export default function Player() {
             </a>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

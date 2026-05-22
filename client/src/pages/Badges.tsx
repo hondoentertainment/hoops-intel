@@ -2,7 +2,7 @@
 // Route: /badges
 
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import { useBadges } from "../lib/useBadges";
 import { allBadges, getBadgeTierColor, getBadgeTierLabel, type Badge } from "../lib/badgesData";
 
@@ -214,21 +214,19 @@ export default function Badges() {
   });
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader
-        subtitle="BADGES & STREAKS"
-        toolbarExtra={
-          <span
-            className="text-xs tabular-nums font-bold whitespace-nowrap"
-            style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}
-          >
-            {earnedCount}/{totalBadges} earned
-          </span>
-        }
-      />
-
-      <main className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-        {/* Title */}
+    <ToolPageLayout
+      subtitle="BADGES & STREAKS"
+      maxWidth="md"
+      headerToolbarExtra={
+        <span
+          className="text-xs tabular-nums font-bold whitespace-nowrap"
+          style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          {earnedCount}/{totalBadges} earned
+        </span>
+      }
+    >
+{/* Title */}
         <div className="text-center">
           <h1
             className="text-2xl font-black uppercase tracking-wider mb-2"
@@ -334,7 +332,6 @@ export default function Badges() {
 
         {/* Footer spacer */}
         <div className="h-12" />
-      </main>
-    </div>
+    </ToolPageLayout>
   );
 }

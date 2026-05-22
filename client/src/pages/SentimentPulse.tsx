@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { sentimentPulseData, type PlayerSentiment, type TeamSentiment } from "../lib/sentimentPulseView";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 
 // ═══════════════════════════════════════════════════════════
 // HELPERS
@@ -412,12 +412,8 @@ export default function SentimentPulse() {
   const data = sentimentPulseData;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      {/* Sticky Header */}
-      <SiteHeader subtitle="SENTIMENT PULSE" />
-
-      <div className="container py-8 max-w-4xl mx-auto">
-        {/* Page header */}
+    <ToolPageLayout subtitle="SENTIMENT PULSE">
+{/* Page header */}
         <div className="mb-8">
           <div
             className="text-xs font-semibold mb-2"
@@ -727,7 +723,6 @@ export default function SentimentPulse() {
             All takes are aggregated from public discourse for entertainment purposes.
           </p>
         </div>
-      </div>
-    </div>
+    </ToolPageLayout>
   );
 }

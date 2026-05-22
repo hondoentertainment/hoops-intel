@@ -34,7 +34,8 @@ export function TakeawaysSection({ data, onMustWatch }: { data: TakeawaysModel; 
                   <button
                     type="button"
                     onClick={onMustWatch}
-                    className="mt-3 text-xs font-semibold text-rose-300 hover:text-rose-200 transition-colors text-left"
+                    className="tap-target mt-3 text-xs font-semibold text-rose-300 hover:text-rose-200 transition-colors text-left rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400/60"
+                    aria-label={`Locate ${data.mustWatch.label} in series grid`}
                   >
                     Locate in grid ▸
                   </button>

@@ -195,3 +195,8 @@ export const bracketMeta = {
   confFinalsProjected: "May 18-20",
   finalsStart: "June 3",
 };
+
+/** All bracket series in postseason order (R1 → semis → finals). */
+export function allBracketSeries(): PlayoffSeries[] {
+  return [...firstRoundSeries, ...confSemisSeries, ...confFinalsSeries];
+}

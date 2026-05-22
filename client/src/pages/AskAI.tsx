@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import SiteHeader from "../components/SiteHeader";
+import ToolPageLayout from "../components/ToolPageLayout";
 import {
   useChatEngine,
   ChatMessages,
@@ -15,12 +15,13 @@ export default function AskAI() {
   }, []);
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ background: "var(--hi-bg-page, #050D1A)" }}
+    <ToolPageLayout
+      subtitle="ASK HOOPS INTEL"
+      contentOnly
+      shellClassName="flex flex-col"
+      showBreadcrumbs={false}
+      showRelated={false}
     >
-      <SiteHeader subtitle="ASK HOOPS INTEL" />
-
       <div
         className="border-b flex-shrink-0"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
@@ -66,7 +67,6 @@ export default function AskAI() {
         </div>
       </div>
 
-      {/* Chat Area */}
       <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto" style={{ minHeight: 0 }}>
         <div className="flex-1 flex flex-col" style={{ minHeight: "50vh" }}>
           <ChatMessages
@@ -76,7 +76,6 @@ export default function AskAI() {
           />
         </div>
 
-        {/* Input at bottom */}
         <div className="sticky bottom-0" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
           <ChatInput
             input={input}
@@ -86,6 +85,6 @@ export default function AskAI() {
           />
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }
