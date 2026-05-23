@@ -11,14 +11,18 @@ vi.mock("../lib/pulseData", () => ({
 vi.mock("../lib/playoffData", () => ({
   isPlayoffsActive: () => true,
   playoffMovers: [{ player: "Victor Wembanyama", direction: "riser", note: "Playoff MVP odds shortened overnight." }],
+  playoffSeries: [],
 }));
 
 vi.mock("../lib/playoffAnalytics", () => ({
   nextPlayoffGameAcross: () => ({
-    homeTeam: "NYK",
-    awayTeam: "CLE",
-    date: "2026-05-19",
-    time: "8:00 PM ET",
+    series: { seriesId: "E1-1" },
+    game: {
+      awayTeam: "CLE",
+      homeTeam: "NYK",
+      date: "2026-05-19",
+      time: "8:00 PM ET",
+    },
   }),
 }));
 
