@@ -38,8 +38,9 @@ Pipeline scripts require **`ANTHROPIC_API_KEY`** in `.env` (see **`scripts/load-
 ## Cursor-specific hints
 
 1. **Vite root:** `client/` is the frontend root; imports cannot escape above it casually.
-2. **Generated domains:** Prefer editing **`scripts/`** + **`references/`** for persistent changes to **`pulseData.ts`**, **`archiveData.ts`**, and section payloads — daily automation overwrites handwritten edits inside generated blobs.
-3. **Keep docs in sync** when adding routes, Stripe/Pro gates, playoff models, or push topics — touch **`references/data-schema.md`**, **`PRD.md`** (if scope changes), and **`NEXT-STEPS.md`** as appropriate.
+2. **Production deploy:** Use Vercel project **`hoops-intel`** only (GitHub → prod + `hoopsintel.net`). Run `npx vercel link` and pick `hoops-intel` if CLI targets `hoops-intel-1`. After push: `npm run smoke:deploy`.
+3. **Generated domains:** Prefer editing **`scripts/`** + **`references/`** for persistent changes to **`pulseData.ts`**, **`archiveData.ts`**, and section payloads — daily automation overwrites handwritten edits inside generated blobs.
+4. **Keep docs in sync** when adding routes, Stripe/Pro gates, playoff models, or push topics — touch **`references/data-schema.md`**, **`PRD.md`** (if scope changes), and **`NEXT-STEPS.md`** as appropriate.
 
 ---
 

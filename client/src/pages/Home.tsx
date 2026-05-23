@@ -53,6 +53,7 @@ import {
 import { makeGameId, topDeskGames, gameCenterTrustSignals } from "../lib/gameCenter";
 import DataTrustBadge from "../components/DataTrustBadge";
 import SixtySecondBriefing from "../components/SixtySecondBriefing";
+import SectionErrorBoundary from "../components/SectionErrorBoundary";
 import { AskPromptChips } from "../components/AskHoopsIntel";
 import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { rationaleToBullets } from "../lib/pulseRationale";
@@ -418,7 +419,9 @@ function TodayDeskSection() {
     <section id="today-desk" className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
       <div className="container">
         <div className="mb-5 space-y-4">
-          <SixtySecondBriefing />
+          <SectionErrorBoundary section="60-second read">
+            <SixtySecondBriefing />
+          </SectionErrorBoundary>
           <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
             <div className="section-label mb-2">ASK HOOPS INTEL</div>
             <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
