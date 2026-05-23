@@ -156,7 +156,16 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
 
         <div className="flex items-center justify-between mt-2 text-[10px] text-white/40">
           <span className="group-hover:text-sky-400/80 transition-colors">{open ? "Collapse" : "Tap for intel layer"}</span>
-          <span className="mono-data">{open ? "▴" : "▾"}</span>
+          <span className="flex items-center gap-3">
+            <a
+              href={`/playoffs/series/${series.seriesId}`}
+              onClick={(e) => e.stopPropagation()}
+              className="font-semibold text-sky-400/80 hover:text-sky-300"
+            >
+              Series hub →
+            </a>
+            <span className="mono-data">{open ? "▴" : "▾"}</span>
+          </span>
         </div>
       </button>
 

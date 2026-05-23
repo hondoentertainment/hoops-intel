@@ -11,7 +11,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { loadLocalEnv } from "./load-local-env.mjs";
 import { extractPulseExport } from "./lib/read-pulse-exports.mjs";
-import { fetchOddsApiSpreads } from "./lib/fetch-odds-api.mjs";
+import { appendOddsQuotaSummary, fetchOddsApiSpreads } from "./lib/fetch-odds-api.mjs";
 import { syncLineClosers } from "./sync-line-movement.mjs";
 
 loadLocalEnv();
@@ -45,9 +45,19 @@ async function main() {
       }
     } catch (err) {
       console.warn(`[fetch-line-odds] Odds API failed: ${err.message}`);
+      if (process.env.GITHUB_ACTIONS === "true") {
+        appendOddsQuotaSummary({
+          note: `_Odds API fetch failed: ${err.message}_`,
+        });
+      }
     }
   } else {
     console.log("[fetch-line-odds] ODDS_API_KEY not set — skipping live sportsbook fetch.");
+    if (process.env.GITHUB_ACTIONS === "true") {
+      appendOddsQuotaSummary({
+        note: "_`ODDS_API_KEY` not set — live sportsbook fetch skipped; pulse spreads used as closers._",
+      });
+    }
   }
 
   if (!payload?.games?.length && existsSync(EXTERNAL_ODDS)) {

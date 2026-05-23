@@ -263,6 +263,21 @@ export function isFinalsActive(): boolean {
   return playoffSeries.some((s) => s.round === "finals");
 }
 
+/** Team codes still playing in the NBA Finals (when `isFinalsActive()`). */
+export function finalistTeams(): string[] {
+  const teams = new Set<string>();
+  for (const s of playoffSeries) {
+    if (s.round !== "finals") continue;
+    if (s.higherTeam !== "TBD") teams.add(canonPlayoffTeamCode(s.higherTeam));
+    if (s.lowerTeam !== "TBD") teams.add(canonPlayoffTeamCode(s.lowerTeam));
+  }
+  return [...teams];
+}
+
+export function seriesById(seriesId: string): PlayoffSeries | undefined {
+  return playoffSeries.find((s) => s.seriesId === seriesId);
+}
+
 export function activeSeries(): PlayoffSeries[] {
   return playoffSeries.filter((s) => s.status !== "complete");
 }

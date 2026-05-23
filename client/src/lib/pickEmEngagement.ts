@@ -47,9 +47,25 @@ export function getPickEmEngagement(todayIso: string): PickEmEngagement {
 }
 
 /** Guest percentile placeholder until leaderboard rank is wired on home. */
-export function guestPickPercentile(streak: number): number | null {
-  if (streak <= 0) return null;
-  return Math.min(95, 40 + streak * 8);
+export function guestPickPercentile(streak: number, accuracyPct: number | null = null): number | null {
+  if (streak <= 0 && accuracyPct === null) return null;
+  const fromStreak = streak > 0 ? Math.min(95, 40 + streak * 8) : 0;
+  const fromAcc = accuracyPct !== null ? Math.min(95, Math.round(accuracyPct * 0.9)) : 0;
+  const pct = Math.max(fromStreak, fromAcc);
+  return pct > 0 ? pct : null;
+}
+
+/** Parse pulseEdition.date ("March 18, 2026") → YYYY-MM-DD. */
+export function editionDateFromPulse(dateStr: string): string {
+  try {
+    const d = new Date(dateStr);
+    if (!Number.isNaN(d.getTime())) {
+      return d.toISOString().slice(0, 10);
+    }
+  } catch {
+    // fall through
+  }
+  return new Date().toISOString().slice(0, 10);
 }
 
 export interface PickWinLoss {

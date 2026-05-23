@@ -10,6 +10,7 @@ import PwaInstallPrompt from "./components/PwaInstallPrompt";
 import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
 import RouteSeo from "./components/RouteSeo";
 import { incrementVisitCount } from "./lib/visitCount";
+import { syncEngagementBadges } from "./lib/badgeChecks";
 
 // Eager load Home (critical path)
 import Home from "./pages/Home";
@@ -103,6 +104,7 @@ function PageLoader() {
 export default function App() {
   useEffect(() => {
     incrementVisitCount();
+    syncEngagementBadges();
   }, []);
 
   return (

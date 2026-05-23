@@ -4,12 +4,14 @@ import SiteHeader from "../components/SiteHeader";
 import Breadcrumbs from "../components/Breadcrumbs";
 import ErrorBlock from "../components/ErrorBlock";
 import ShareButton from "../components/ShareButton";
-import { getGameCenterById, type GameCenterResponse } from "../lib/gameCenter";
+import { getGameCenterById, gameCenterLineMovement, gameCenterShareMeta, mergeLiveIntoGameCenter, matchLiveScoreboardGame, type GameCenterResponse } from "../lib/gameCenter";
 import { playoffSeriesForMatchup, resolveSeriesIntel } from "../lib/playoffData";
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
+import { useLiveScores } from "../lib/useLiveScores";
+import { liveScoresTrustLabel } from "../lib/dataTrust";
 
 function useGameCenter(gameId: string) {
   const fallback = useMemo(() => getGameCenterById(gameId), [gameId]);
@@ -74,14 +76,25 @@ function Skeleton() {
 export default function GameCenter() {
   const params = useParams<{ gameId: string }>();
   const gameId = params.gameId || "";
-  const { game, loading, error } = useGameCenter(gameId);
+  const { game: baseGame, loading, error } = useGameCenter(gameId);
+  const { data: liveData } = useLiveScores();
+
+  const game = useMemo(() => {
+    if (!baseGame) return null;
+    const live = matchLiveScoreboardGame(baseGame.away.abbr, baseGame.home.abbr, liveData?.games);
+    return mergeLiveIntoGameCenter(baseGame, live);
+  }, [baseGame, liveData?.games]);
+
+  const share = game ? gameCenterShareMeta(game) : null;
+  const lineMove = game ? gameCenterLineMovement(game.away.abbr, game.home.abbr, game.betting) : null;
+  const isLiveOverlay = game?.status === "live";
 
   useMetaTags({
     title: game ? `${game.away.abbr} at ${game.home.abbr} | Game Center | Hoops Intel` : "Game Center | Hoops Intel",
     description: game?.whyItMatters || "Live game intelligence, score context, injuries, refs, and related Hoops Intel links.",
-    ogImage: `https://hoopsintel.net/api/og?type=game&gameId=${encodeURIComponent(gameId)}`,
-    ogUrl: `https://hoopsintel.net/game/${gameId}`,
-    canonicalUrl: `https://hoopsintel.net/game/${gameId}`,
+    ogImage: share?.ogImage ?? `https://hoopsintel.net/api/og?type=game&gameId=${encodeURIComponent(gameId)}`,
+    ogUrl: share?.url ?? `https://hoopsintel.net/game/${gameId}`,
+    canonicalUrl: share?.url ?? `https://hoopsintel.net/game/${gameId}`,
     jsonLd: game
       ? {
           "@context": "https://schema.org",
@@ -119,8 +132,8 @@ export default function GameCenter() {
     );
   }
 
-  const shareUrl = `https://hoopsintel.net/game/${game.gameId}`;
-  const shareTweet = `${game.title} | ${game.subtitle} hoopsintel.net/game/${game.gameId}`;
+  const shareUrl = share?.url ?? `https://hoopsintel.net/game/${game.gameId}`;
+  const shareTweet = share?.tweetText ?? `${game.title} | ${game.subtitle} hoopsintel.net/game/${game.gameId}`;
   const previewPlayoffSeries =
     (game.status === "preview" || game.status === "scheduled")
       ? playoffSeriesForMatchup(game.away.abbr, game.home.abbr)
@@ -156,7 +169,15 @@ export default function GameCenter() {
         <section className="glass-card rounded-xl p-5 md:p-6 mb-6" style={{ borderTop: `3px solid ${getTeamColor(game.home.abbr)}` }}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
-              <div className="section-label mb-2">{game.source.replace(/-/g, " ")} · {game.status}</div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <div className="section-label">{game.source.replace(/-/g, " ")} · {game.status}</div>
+                {isLiveOverlay && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />
+                    Live ESPN
+                  </span>
+                )}
+              </div>
               <h1 className="display-heading text-white text-3xl mb-2">{game.title}</h1>
               <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
                 {game.date}{game.time ? ` · ${game.time}` : ""}{game.tv ? ` · ${game.tv}` : ""}{game.venue ? ` · ${game.venue}` : ""}
@@ -173,7 +194,17 @@ export default function GameCenter() {
           <div className="mt-4 flex flex-wrap gap-2 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
             <span className="rounded-full bg-white/[0.06] px-3 py-1.5">Source: {game.meta.sourceLabel}</span>
             <span className="rounded-full bg-white/[0.06] px-3 py-1.5">Updated: {game.updatedAt}</span>
+            {liveData?.fetchedAt && isLiveOverlay ? (
+              <span className="rounded-full bg-emerald-400/10 px-3 py-1.5 text-emerald-300">
+                {liveScoresTrustLabel(liveData.fetchedAt)}
+              </span>
+            ) : null}
             {game.statusDetail && <span className="rounded-full bg-emerald-400/10 px-3 py-1.5 text-emerald-300">{game.statusDetail}</span>}
+            {game.period && game.clock ? (
+              <span className="rounded-full bg-white/[0.06] px-3 py-1.5 mono-data">
+                Q{game.period} · {game.clock}
+              </span>
+            ) : null}
           </div>
         </section>
 
@@ -200,10 +231,10 @@ export default function GameCenter() {
               {playoffIntel.keyMatchup}
             </p>
             <a
-              href={`/playoffs#series-card-${activePlayoffSeries.seriesId}`}
+              href={`/playoffs/series/${activePlayoffSeries.seriesId}`}
               className="text-xs font-semibold text-sky-300 hover:text-sky-200"
             >
-              Full series board →
+              Full series timeline →
             </a>
           </section>
         )}
@@ -237,16 +268,23 @@ export default function GameCenter() {
               </div>
             )}
 
-            {(game.betting?.spread || game.betting?.overUnder || game.betting?.angle) && (
+            {(game.betting?.spread || game.betting?.overUnder || game.betting?.angle || lineMove?.moveBadge) && (
               <div className="glass-card rounded-lg p-5">
                 <div className="section-label mb-2">MARKET CONTEXT</div>
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   <div className="rounded bg-white/[0.04] p-3">
                     <div className="text-xs text-white/40">Spread</div>
-                    <div className="mono-data text-white">{game.betting.spread || "TBD"}</div>
-                    {game.betting.openingSpread ? (
+                    <div className="mono-data text-white">{lineMove?.closingSpread || game.betting?.spread || "TBD"}</div>
+                    {lineMove?.openingSpread ? (
                       <div className="text-[10px] mono-data text-emerald-300/80 mt-1">
-                        Opener {game.betting.openingSpread}
+                        Opener {lineMove.openingSpread}
+                      </div>
+                    ) : null}
+                    {lineMove?.moveBadge ? (
+                      <div className="text-[10px] font-semibold text-amber-300/95 mt-1">{lineMove.moveBadge}</div>
+                    ) : lineMove?.moved && lineMove.openingSpread && lineMove.closingSpread ? (
+                      <div className="text-[10px] mono-data text-emerald-300/90 mt-1">
+                        {lineMove.openingSpread} → {lineMove.closingSpread}
                       </div>
                     ) : null}
                   </div>
@@ -255,12 +293,12 @@ export default function GameCenter() {
                     <div className="mono-data text-white">{game.betting.overUnder || "TBD"}</div>
                   </div>
                 </div>
-                {game.betting.lineMovement?.map((line, i) => (
+                {(lineMove?.education ?? game.betting?.lineMovement ?? []).map((line, i) => (
                   <p key={i} className="text-xs leading-relaxed mb-2 last:mb-0" style={{ color: "rgba(255,255,255,0.62)" }}>
                     {line}
                   </p>
                 ))}
-                {game.betting.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "rgba(255,255,255,0.62)" }}>{game.betting.angle}</p>}
+                {game.betting?.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "rgba(255,255,255,0.62)" }}>{game.betting.angle}</p>}
               </div>
             )}
           </section>
@@ -284,8 +322,8 @@ export default function GameCenter() {
                   </div>
                 ))}
                 {game.series && (
-                  <a href={`/playoffs#series-card-${game.series.seriesId}`} className="block pt-2 text-xs font-semibold text-sky-300 hover:text-sky-200">
-                    Open series board →
+                  <a href={`/playoffs/series/${game.series.seriesId}`} className="block pt-2 text-xs font-semibold text-sky-300 hover:text-sky-200">
+                    Open series timeline →
                   </a>
                 )}
               </div>

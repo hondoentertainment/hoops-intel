@@ -1,11 +1,47 @@
-// Hoops Intel Service Worker — Cache-first for static assets, network-first for navigation
-// Do not precache "/" — deploys change hashed bundle names; a stale shell breaks loads when offline fallback runs.
-const CACHE_NAME = "hoops-intel-v3";
+// Hoops Intel Service Worker — offline edition with cache-first static + pulse bundles
+const CACHE_NAME = "hoops-intel-v4";
 const STATIC_ASSETS = ["/manifest.json", "/assets/logo.png"];
+
+/** Edition data chunks — hashed filenames still match these prefixes after build. */
+const EDITION_CHUNK =
+  /\/assets\/(pulseData|archiveData|playoffData|lineMovementData|sentimentData|watchGuideData|communityPulseData|historyData)-/;
+
+const STATIC_EXT = /\.(js|css|woff2?|png|webp|svg|json|ico)$/;
+
+function isSameOrigin(url) {
+  return url.origin === self.location.origin;
+}
+
+async function cacheFirst(request) {
+  const cached = await caches.match(request);
+  if (cached) return cached;
+  const response = await fetch(request);
+  if (response.ok) {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, response.clone());
+  }
+  return response;
+}
+
+async function networkFirstNavigate(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      await cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    const shell = await caches.match("/");
+    return shell || Response.error();
+  }
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)),
   );
   self.skipWaiting();
 });
@@ -13,30 +49,38 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))),
+    ),
   );
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  // Network-first for API calls and navigation
-  if (request.url.includes("espn.com") || request.mode === "navigate") {
-    event.respondWith(
-      fetch(request).catch(async () => {
-        const cached = await caches.match(request);
-        if (cached) return cached;
-        const shell = await caches.match("/");
-        return shell || Response.error();
-      })
-    );
+  const url = new URL(request.url);
+
+  if (!isSameOrigin(url)) {
+    if (url.hostname.includes("espn.com")) {
+      event.respondWith(fetch(request));
+    }
     return;
   }
-  // Cache-first for static assets
-  event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request))
-  );
+
+  const path = url.pathname;
+
+  if (
+    path === "/" ||
+    path === "/index.html" ||
+    EDITION_CHUNK.test(path) ||
+    STATIC_EXT.test(path)
+  ) {
+    event.respondWith(cacheFirst(request));
+    return;
+  }
+
+  if (request.mode === "navigate") {
+    event.respondWith(networkFirstNavigate(request));
+  }
 });
 
 // ═══════════════════════════════════════════════════════════
@@ -81,6 +125,6 @@ self.addEventListener("notificationclick", (event) => {
         }
       }
       return clients.openWindow(url);
-    })
+    }),
   );
 });

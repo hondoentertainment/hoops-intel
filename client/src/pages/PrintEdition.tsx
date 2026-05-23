@@ -6,7 +6,7 @@ import {
   tickerItems,
   gamePreviews,
 } from "../lib/pulseData";
-import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
+import { isPlayoffsActive, isFinalsActive, finalistTeams, playoffSeries } from "../lib/playoffData";
 import { lineMovementRows } from "../lib/lineMovementData";
 import SiteHeader from "../components/SiteHeader";
 
@@ -16,9 +16,16 @@ export default function PrintEdition() {
     return () => clearTimeout(t);
   }, []);
 
-  const pulseTop = pulseIndex.slice(0, 5);
+  const pulseTop = (isFinalsActive()
+    ? pulseIndex.filter((row) => finalistTeams().includes(row.team.toUpperCase()))
+    : pulseIndex
+  ).slice(0, 5);
   const tick = tickerItems.slice(0, 8);
-  const activeSeries = playoffSeries.filter((s) => s.status !== "complete").slice(0, 6);
+  const finalsOn = isFinalsActive();
+  const activeSeries = (finalsOn
+    ? playoffSeries.filter((s) => s.round === "finals" && s.status !== "complete")
+    : playoffSeries.filter((s) => s.status !== "complete")
+  ).slice(0, 6);
 
   return (
     <div className="print-edition-shell min-h-screen bg-white text-slate-900 print:bg-white">
@@ -36,8 +43,12 @@ export default function PrintEdition() {
 
       <article className="max-w-[720px] mx-auto px-6 py-16 print:py-6">
         <header className="border-b border-slate-200 pb-6 mb-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-sky-600 font-bold">{pulseEdition.edition}</p>
-          <h1 className="display-heading text-4xl mt-4 text-slate-900">{narrative?.headline ?? "Hoops Intel"}</h1>
+          <p className="text-xs uppercase tracking-[0.2em] text-sky-600 font-bold">
+            {finalsOn ? "NBA Finals Print Edition" : pulseEdition.edition}
+          </p>
+          <h1 className="display-heading text-4xl mt-4 text-slate-900">
+            {finalsOn ? "NBA Finals Desk" : narrative?.headline ?? "Hoops Intel"}
+          </h1>
           <p className="mt-4 text-lg text-slate-600 leading-relaxed">{pulseEdition.date}</p>
           {narrative?.subhead && <p className="mt-6 text-base leading-relaxed text-slate-700">{narrative.subhead}</p>}
           {Array.isArray(narrative?.body) && narrative.body.slice(0, 2).length > 0 ? (
@@ -101,7 +112,9 @@ export default function PrintEdition() {
 
         {isPlayoffsActive() && activeSeries.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Playoff board</h2>
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">
+              {finalsOn ? "NBA Finals board" : "Playoff board"}
+            </h2>
             <ul className="space-y-2 text-xs text-slate-700">
               {activeSeries.map((s) => (
                 <li key={s.seriesId}>

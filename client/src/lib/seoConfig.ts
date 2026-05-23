@@ -265,10 +265,11 @@ function homePageSeo(): PageSeo {
     description,
     canonicalPath: "/",
     ogType: "article",
+    ogImage: finalsDesk ? `${SITE_ORIGIN}/api/og?type=edition` : DEFAULT_OG_IMAGE,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      headline: narrative.headline,
+      headline: finalsDesk ? `NBA Finals — ${narrative.headline}` : narrative.headline,
       description,
       datePublished: published,
       dateModified: published,
@@ -335,6 +336,7 @@ function playoffsPageSeo(_path: "/playoffs" | "/playoff-bracket"): PageSeo {
       : `NBA Playoffs — ${roundPhrase.split(" — ")[0]} | Hoops Intel`,
     description,
     canonicalPath,
+    ogImage: roundPhrase.startsWith("NBA Finals") ? `${SITE_ORIGIN}/api/og?type=edition` : base.ogImage,
   };
 }
 

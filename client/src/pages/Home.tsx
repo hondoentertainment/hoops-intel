@@ -37,6 +37,8 @@ import {
   playoffSeries,
   playoffMovers,
   isPlayoffsActive,
+  isFinalsActive,
+  finalistTeams,
   resolveSeriesIntel,
   playoffSeriesForMatchup,
   type PlayoffSeries,
@@ -51,7 +53,12 @@ import {
 import { makeGameId, topDeskGames, gameCenterTrustSignals } from "../lib/gameCenter";
 import DataTrustBadge from "../components/DataTrustBadge";
 import SixtySecondBriefing from "../components/SixtySecondBriefing";
+import { AskPromptChips } from "../components/AskHoopsIntel";
+import { dispatchAskPrompt } from "../lib/askShortcuts";
+import { rationaleToBullets } from "../lib/pulseRationale";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
+import OffseasonDeskStrip from "../components/OffseasonDeskStrip";
+import { isOffseasonDesk, offseasonPrimaryCta, activeEditionContext, editionContextDeskLabel } from "../lib/deskMode";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
@@ -234,6 +241,7 @@ function TickerBar() {
 // ═══════════════════════════════════════════════════════════
 
 function PlayoffHeroCta() {
+  const finalsOn = isFinalsActive();
   const snap = playoffSnapshot(playoffSeries, todayISOLocal());
   const activeCount = playoffSeries.filter((s) => s.status !== "complete").length;
   const next = nextPlayoffGameAcross(playoffSeries);
@@ -247,9 +255,13 @@ function PlayoffHeroCta() {
     <a
       href="/playoffs"
       className="min-h-[48px] inline-flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
-      style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
+      style={{
+        background: finalsOn
+          ? "linear-gradient(135deg, #F43F5E, #BE123C)"
+          : "linear-gradient(135deg, #F59E0B, #D97706)",
+      }}
     >
-      <span>🏆 Playoffs live · {activeCount} active series</span>
+      <span>{finalsOn ? "🏆 NBA Finals desk" : `🏆 Playoffs live · ${activeCount} active series`}</span>
       <span className="text-xs font-medium opacity-90 mono-data">{nextLabel}</span>
     </a>
   );
@@ -257,26 +269,31 @@ function PlayoffHeroCta() {
 
 function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   const playoffsOn = isPlayoffsActive();
+  const finalsOn = isFinalsActive();
 
   return (
     <section
       className="relative overflow-hidden"
       style={{
-        background: `linear-gradient(to bottom, rgba(5,13,26,0.3) 0%, rgba(5,13,26,0.85) 70%, var(--hi-bg-page) 100%), url('/assets/hero-bg.webp') center/cover no-repeat`,
+        background: finalsOn
+          ? `linear-gradient(to bottom, rgba(190,18,60,0.35) 0%, rgba(5,13,26,0.88) 65%, var(--hi-bg-page) 100%), url('/assets/hero-bg.webp') center/cover no-repeat`
+          : `linear-gradient(to bottom, rgba(5,13,26,0.3) 0%, rgba(5,13,26,0.85) 70%, var(--hi-bg-page) 100%), url('/assets/hero-bg.webp') center/cover no-repeat`,
         minHeight: 380,
       }}
     >
       <div className="container py-12 md:py-16">
         <div className="max-w-4xl animate-fade-up">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <div className="section-label">{pulseEdition.edition}</div>
+            <div className="section-label">{finalsOn ? "NBA Finals Desk" : pulseEdition.edition}</div>
             <DataTrustBadge variant="edition" />
           </div>
           <h1 className="display-heading text-white mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
             {narrative.headline}
           </h1>
           <p className="text-base mb-4 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-            {narrative.subhead}
+            {finalsOn
+              ? `${narrative.subhead} Follow the championship series on the Finals desk — live scores, series intel, and Pulse scoped to the last two teams standing.`
+              : narrative.subhead}
           </p>
           <div className="flex items-center gap-2 mb-6">
             <span className="text-xs font-semibold tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>BY</span>
@@ -309,6 +326,15 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
                 🏆 Playoff bracket
               </a>
             )}
+            {finalsOn ? (
+              <a
+                href="/print-edition"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
+                style={{ background: "rgba(244,63,94,0.15)", color: "#FDA4AF", border: "1px solid rgba(244,63,94,0.35)" }}
+              >
+                Finals print edition
+              </a>
+            ) : null}
             <a
               href="#scores"
               className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
@@ -391,8 +417,15 @@ function TodayDeskSection() {
   return (
     <section id="today-desk" className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
       <div className="container">
-        <div className="mb-5">
+        <div className="mb-5 space-y-4">
           <SixtySecondBriefing />
+          <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+            <div className="section-label mb-2">ASK HOOPS INTEL</div>
+            <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+              Tap a shortcut — opens the AI assistant with today&apos;s edition context
+            </p>
+            <AskPromptChips onSelect={dispatchAskPrompt} />
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr] gap-5">
           <div className="glass-card rounded-xl p-5">
@@ -683,8 +716,18 @@ function Sparkline({ trend }: { trend: string }) {
   );
 }
 
-// Modal showing the full editorial rationale for a Pulse Index ranking
-function PulseNoteModal({ note, playerName, onClose }: { note: string; playerName: string; onClose: () => void }) {
+// Modal showing editorial rationale bullets for a Pulse Index ranking
+function PulseNoteModal({
+  bullets,
+  playerName,
+  playerSlug,
+  onClose,
+}: {
+  bullets: string[];
+  playerName: string;
+  playerSlug: string;
+  onClose: () => void;
+}) {
   const panelRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(true);
   useFocusTrap(true, panelRef);
@@ -716,7 +759,7 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
         <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <div>
             <div id="pulse-note-sub" className="section-label text-xs mb-0.5">
-              WHY THIS RANK · FULL NOTES
+              EXPLAIN THIS RANK
             </div>
             <div id="pulse-note-title" className="text-sm font-semibold text-white">
               {playerName}
@@ -736,13 +779,26 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
           </button>
         </div>
         <div className="px-5 py-4 max-h-[min(65vh,24rem)] overflow-y-auto">
-          <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "rgba(255,255,255,0.8)" }}>
-            {note}
-          </p>
+          <ul className="space-y-3">
+            {bullets.map((bullet, i) => (
+              <li key={i} className="flex gap-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+                <span className="text-sky-400 font-bold shrink-0" aria-hidden>
+                  {i + 1}.
+                </span>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="px-5 pb-4">
+        <div className="px-5 pb-4 flex items-center justify-between gap-3">
+          <a
+            href={`/player/${playerSlug}`}
+            className="text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors"
+          >
+            View {playerName} profile &rarr;
+          </a>
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-            Outside click or Escape to dismiss
+            Escape to dismiss
           </span>
         </div>
       </div>
@@ -751,21 +807,43 @@ function PulseNoteModal({ note, playerName, onClose }: { note: string; playerNam
 }
 
 function PulseIndexSection() {
-  const [activeNote, setActiveNote] = useState<{ playerName: string; note: string } | null>(null);
+  const [activeNote, setActiveNote] = useState<{
+    playerName: string;
+    playerSlug: string;
+    bullets: string[];
+  } | null>(null);
   const prefs = getPreferences();
   const favPlayers = prefs.favoritePlayers.map((p) => p.toLowerCase());
   const favTeams = prefs.favoriteTeams.map((t) => t.toUpperCase());
+  const finalsOn = isFinalsActive();
+  const finalists = finalistTeams();
+  const finalistSet = new Set(finalists.map((t) => t.toUpperCase()));
+  const pulseRows = finalsOn
+    ? pulseIndex.filter((player: { team: string }) => finalistSet.has(player.team.toUpperCase()))
+    : pulseIndex;
 
   return (
     <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
         <div className="flex items-center justify-between mb-2">
-          <div className="section-label">DAILY RANKINGS</div>
+          <div className="section-label">{finalsOn ? "FINALS PULSE" : "DAILY RANKINGS"}</div>
           <a href="/pulse-history" className="text-xs font-medium hover:underline" style={{ color: "#0EA5E9" }}>View History &rarr;</a>
         </div>
-        <h2 className="display-heading text-white text-2xl mb-6">Pulse Index</h2>
+        <h2 className="display-heading text-white text-2xl mb-2">Pulse Index</h2>
+        {finalsOn ? (
+          <p className="text-xs mb-6 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+            Scoped to finalist teams{finalists.length ? ` (${finalists.join(" · ")})` : ""} while the NBA Finals desk is active.
+          </p>
+        ) : (
+          <div className="mb-6" />
+        )}
+        {finalsOn && pulseRows.length === 0 ? (
+          <p className="text-sm rounded-lg px-4 py-3 mb-4" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)" }}>
+            No Pulse rows match the synced finalist teams yet — check back after the next edition refresh.
+          </p>
+        ) : null}
         <div className="space-y-2">
-          {pulseIndex.map((player: any) => {
+          {pulseRows.map((player: any) => {
             const isUp = player.trend === "up";
             const isDown = player.trend === "down";
             const isFavorite = favPlayers.includes(player.player.toLowerCase()) || favTeams.includes(player.team.toUpperCase());
@@ -800,15 +878,24 @@ function PulseIndexSection() {
                     {/* "Why ranked here?" button */}
                     <button
                       type="button"
-                      onClick={() => setActiveNote({ playerName: player.player, note: player.note })}
+                      onClick={() =>
+                        setActiveNote({
+                          playerName: player.player,
+                          playerSlug: slugify(player.player),
+                          bullets: rationaleToBullets(
+                            String(player.rationale || ""),
+                            String(player.note || ""),
+                          ),
+                        })
+                      }
                       className="min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center px-3 sm:w-9 sm:h-9 sm:p-0 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/25"
                       style={{
                         background: "rgba(14,165,233,0.1)",
                         color: "#0EA5E9",
                         border: "1px solid rgba(14,165,233,0.25)",
                       }}
-                      title="Why is this player ranked here?"
-                      aria-label={`Why is ${player.player} ranked here?`}
+                      title="Explain this rank"
+                      aria-label={`Explain why ${player.player} is ranked #${player.rank}`}
                     >
                       ?
                     </button>
@@ -828,8 +915,9 @@ function PulseIndexSection() {
       {/* Note modal */}
       {activeNote && (
         <PulseNoteModal
-          note={activeNote.note}
+          bullets={activeNote.bullets}
           playerName={activeNote.playerName}
+          playerSlug={activeNote.playerSlug}
           onClose={() => setActiveNote(null)}
         />
       )}

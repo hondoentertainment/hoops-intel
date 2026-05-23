@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, type ReactElement } from "react";
-import { searchContext, getSuggestedQuestions } from "../lib/hoopsSearch";
+import { searchContext } from "../lib/hoopsSearch";
+import { contextualAskChips } from "../lib/askShortcuts";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -199,6 +200,38 @@ export function useChatEngine() {
 // CHAT MESSAGES UI
 // ═══════════════════════════════════════════════════════════
 
+export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) {
+  const suggestions = contextualAskChips();
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {suggestions.map((q) => (
+        <button
+          key={q}
+          type="button"
+          onClick={() => onSelect(q)}
+          className="text-left px-3 py-2 rounded-full text-xs transition-all hover:scale-[1.01]"
+          style={{
+            background: "rgba(14,165,233,0.08)",
+            border: "1px solid rgba(14,165,233,0.15)",
+            color: "rgba(255,255,255,0.6)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(14,165,233,0.15)";
+            e.currentTarget.style.color = "#0EA5E9";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(14,165,233,0.08)";
+            e.currentTarget.style.color = "rgba(255,255,255,0.6)";
+          }}
+        >
+          {q}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function ChatMessages({
   messages,
   isLoading,
@@ -215,8 +248,6 @@ export function ChatMessages({
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
-
-  const suggestions = getSuggestedQuestions();
 
   return (
     <div
@@ -241,29 +272,8 @@ export function ChatMessages({
               Ask anything about NBA games, players, standings, and more
             </p>
           </div>
-          <div className="w-full max-w-sm space-y-2">
-            {suggestions.map((q) => (
-              <button
-                key={q}
-                onClick={() => onSuggestion(q)}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs transition-all hover:scale-[1.01]"
-                style={{
-                  background: "rgba(14,165,233,0.08)",
-                  border: "1px solid rgba(14,165,233,0.15)",
-                  color: "rgba(255,255,255,0.6)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(14,165,233,0.15)";
-                  e.currentTarget.style.color = "#0EA5E9";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(14,165,233,0.08)";
-                  e.currentTarget.style.color = "rgba(255,255,255,0.6)";
-                }}
-              >
-                {q}
-              </button>
-            ))}
+          <div className="w-full max-w-sm">
+            <AskPromptChips onSelect={onSuggestion} />
           </div>
         </div>
       ) : (
@@ -402,6 +412,17 @@ export function ChatInput({
 export default function AskHoopsIntel() {
   const [isOpen, setIsOpen] = useState(false);
   const { messages, input, setInput, isLoading, sendMessage } = useChatEngine();
+
+  useEffect(() => {
+    const handler = (event: Event) => {
+      const question = (event as CustomEvent<{ question?: string }>).detail?.question;
+      if (!question?.trim()) return;
+      setIsOpen(true);
+      void sendMessage(question.trim());
+    };
+    window.addEventListener("hoops-intel:ask", handler);
+    return () => window.removeEventListener("hoops-intel:ask", handler);
+  }, [sendMessage]);
 
   return (
     <>

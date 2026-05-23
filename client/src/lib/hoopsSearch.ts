@@ -2,6 +2,7 @@
 // Uses TF-IDF-like scoring across archive + current pulse data
 
 import { archiveEditions } from "./archiveData";
+import { contextualAskChips } from "./askShortcuts";
 import {
   pulseEdition,
   narrative,
@@ -295,10 +296,5 @@ export function searchContext(query: string): string {
 }
 
 export function getSuggestedQuestions(): string[] {
-  return [
-    "Who's the MVP frontrunner?",
-    "What happened in the Nuggets-Thunder game?",
-    "Compare Knueppel vs Flagg for ROY",
-    "Which teams are in the play-in race?",
-  ];
+  return contextualAskChips();
 }

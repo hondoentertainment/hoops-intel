@@ -24,6 +24,16 @@ export const PUSH_TOPIC_OPTIONS: { id: string; label: string; hint: string }[] =
     hint: "Sparse alert before conference finals / elimination games tip.",
   },
   {
+    id: "game-start",
+    label: "Game start (30 min)",
+    hint: "Alert ~30 minutes before your team's scheduled tip.",
+  },
+  {
+    id: "clincher-preview",
+    label: "Clincher preview",
+    hint: "Daytime heads-up when a team can close out a series tonight.",
+  },
+  {
     id: "playoff-close",
     label: "Playoff crunch time",
     hint: "Live series games within one possession late.",

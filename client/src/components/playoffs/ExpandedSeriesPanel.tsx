@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import ShareButton from "../ShareButton";
 import { nextPendingGame } from "../../lib/playoffAnalytics";
 import type { PlayoffSeries, SeriesIntel } from "../../lib/playoffData";
 import { resolveSeriesIntel } from "../../lib/playoffData";
@@ -17,8 +18,8 @@ interface ExpandedSeriesPanelProps {
 }
 
 function seriesShareSnippet(series: PlayoffSeries): { text: string; url: string } {
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
-  const url = `${origin}/playoffs#series-card-${series.seriesId}`;
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://hoopsintel.net";
+  const url = `${origin}/playoffs/series/${series.seriesId}`;
   const text = `${series.higherTeam} ${series.higherWins}–${series.lowerWins} ${series.lowerTeam} · ${series.summary}\n${url}`;
   return { text, url };
 }
@@ -106,19 +107,26 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
 
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-dashed border-white/10 px-3 py-2">
         <div className="min-w-0 flex-1">
-          <div className="text-[9px] font-bold uppercase text-white/40 mb-0.5">Share series</div>
-          <p className="text-[10px] text-white/50 mono-data truncate" title={share.url}>
+          <div className="text-[9px] font-bold uppercase text-white/40 mb-0.5">Series timeline</div>
+          <a
+            href={`/playoffs/series/${series.seriesId}`}
+            className="text-[10px] text-sky-300 hover:text-sky-200 mono-data truncate block"
+            title={share.url}
+          >
             {share.url.replace(/^https?:\/\//, "")}
-          </p>
+          </a>
         </div>
-        <button
-          type="button"
-          onClick={copyShare}
-          className="tap-target shrink-0 rounded-lg border border-sky-500/35 bg-sky-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-sky-300 hover:bg-sky-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
-          aria-label={copied ? "Series link copied" : `Copy share link for ${series.higherTeam} vs ${series.lowerTeam}`}
-        >
-          {copied ? "Copied ✓" : "Copy link"}
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <ShareButton url={share.url} tweetText={share.text} size="sm" />
+          <button
+            type="button"
+            onClick={copyShare}
+            className="tap-target shrink-0 rounded-lg border border-sky-500/35 bg-sky-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-sky-300 hover:bg-sky-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+            aria-label={copied ? "Series link copied" : `Copy share link for ${series.higherTeam} vs ${series.lowerTeam}`}
+          >
+            {copied ? "Copied ✓" : "Copy"}
+          </button>
+        </div>
       </div>
 
       <div className="flex items-center justify-between rounded-lg border border-dashed border-white/10 px-3 py-2 text-[10px] text-white/40">

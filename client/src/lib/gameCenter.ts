@@ -5,6 +5,9 @@ import { refData } from "./refData.js";
 import { watchGuideData } from "./watchGuideData.js";
 import { canonicalizeTeamCode } from "./identity.js";
 import { summarizeLineMovementEducation } from "./bettingLineStory.js";
+import { lineMovementForMatchup, spreadMoved } from "./lineMovement.js";
+import { formatLineMovementBadge } from "./spreadMovement.js";
+import type { LiveGame } from "./espnApi.js";
 
 export type GameCenterStatus = "final" | "live" | "scheduled" | "preview";
 
@@ -133,6 +136,98 @@ function matchRefAssignment(awayTeam: string, homeTeam: string) {
   });
 }
 
+export function matchLiveScoreboardGame(
+  awayTeam: string,
+  homeTeam: string,
+  games: LiveGame[] | undefined,
+): LiveGame | undefined {
+  if (!games?.length) return undefined;
+  const away = canonicalizeTeamCode(awayTeam);
+  const home = canonicalizeTeamCode(homeTeam);
+  return games.find((g) => {
+    const gAway = canonicalizeTeamCode(g.awayTeam);
+    const gHome = canonicalizeTeamCode(g.homeTeam);
+    return (gAway === away && gHome === home) || (gAway === home && gHome === away);
+  });
+}
+
+export interface GameCenterLineMovementView {
+  openingSpread?: string;
+  closingSpread?: string;
+  moveBadge: string | null;
+  moved: boolean;
+  education: string[];
+}
+
+export function gameCenterLineMovement(
+  awayTeam: string,
+  homeTeam: string,
+  betting?: GameCenterResponse["betting"],
+): GameCenterLineMovementView {
+  const lm = lineMovementForMatchup(awayTeam, homeTeam);
+  const openingSpread = betting?.openingSpread || lm?.openingSpread;
+  const closingSpread = betting?.spread || lm?.closingSpread;
+  const moveBadge =
+    openingSpread && closingSpread ? formatLineMovementBadge(openingSpread, closingSpread) : null;
+  const moved = Boolean(openingSpread && closingSpread && spreadMoved(openingSpread, closingSpread));
+  const education =
+    betting?.lineMovement ??
+    (closingSpread
+      ? summarizeLineMovementEducation({
+          homeTeam,
+          awayTeam,
+          spread: closingSpread,
+          openingSpread,
+          overUnder: betting?.overUnder,
+        })
+      : betting?.lineMovement ?? []);
+  return { openingSpread, closingSpread, moveBadge, moved, education };
+}
+
+/** Overlay ESPN live/post scores onto a Game Center payload when teams match. */
+export function mergeLiveIntoGameCenter(game: GameCenterResponse, live?: LiveGame): GameCenterResponse {
+  if (!live || (live.status !== "in" && live.status !== "post")) return game;
+  const status: GameCenterStatus = live.status === "in" ? "live" : "final";
+  return {
+    ...game,
+    espnGameId: live.id || game.espnGameId,
+    status,
+    statusDetail: live.statusDetail,
+    period: live.period,
+    clock: live.clock,
+    tv: live.tv || game.tv,
+    venue: live.venue || game.venue,
+    home: {
+      ...game.home,
+      abbr: canonicalizeTeamCode(live.homeTeam),
+      score: live.homeScore,
+      record: live.homeRecord || game.home.record,
+    },
+    away: {
+      ...game.away,
+      abbr: canonicalizeTeamCode(live.awayTeam),
+      score: live.awayScore,
+      record: live.awayRecord || game.away.record,
+    },
+    title: titleFor(canonicalizeTeamCode(live.awayTeam), canonicalizeTeamCode(live.homeTeam), status),
+    updatedAt: new Date().toISOString(),
+    meta: {
+      ...game.meta,
+      sourceLabel: `${game.meta.sourceLabel} · ESPN live overlay`,
+      stale: false,
+    },
+  };
+}
+
+export function gameCenterShareMeta(game: Pick<GameCenterResponse, "gameId" | "title" | "subtitle" | "away" | "home">) {
+  const origin = "https://hoopsintel.net";
+  return {
+    url: `${origin}/game/${game.gameId}`,
+    ogImage: `${origin}/api/og?type=game&gameId=${encodeURIComponent(game.gameId)}`,
+    tweetText: `${game.title} | ${game.subtitle} ${origin.replace(/^https?:\/\//, "")}/game/${game.gameId}`,
+  };
+}
+
 function relatedStoriesFor(teams: string[], players: string[]) {
   return archiveEditions
     .filter((ed: any) => {
@@ -250,6 +345,11 @@ function previewResponse(g: any): GameCenterResponse {
   const teams = [g.awayTeam, g.homeTeam];
   const ref = matchRefAssignment(g.awayTeam, g.homeTeam);
   const watch = watchGuideData.games?.find((wg) => wg.awayTeam === g.awayTeam && wg.homeTeam === g.homeTeam);
+  const lineMove = gameCenterLineMovement(g.awayTeam, g.homeTeam, {
+    spread: g.spread,
+    openingSpread: g.openingSpread,
+    overUnder: g.overUnder,
+  });
   return {
     gameId: g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date),
     source: "preview",
@@ -264,18 +364,11 @@ function previewResponse(g: any): GameCenterResponse {
     subtitle: g.keyMatchup || g.storyline,
     whyItMatters: g.storyline || g.prediction || narrative.subhead,
     betting: {
-      spread: g.spread,
-      openingSpread: g.openingSpread,
+      spread: lineMove.closingSpread || g.spread,
+      openingSpread: lineMove.openingSpread || g.openingSpread,
       overUnder: g.overUnder,
       angle: ref?.bettingAngle,
-      lineMovement: summarizeLineMovementEducation({
-        homeTeam: g.homeTeam,
-        awayTeam: g.awayTeam,
-        spread: g.spread,
-        overUnder: g.overUnder,
-        openingSpread: g.openingSpread,
-        prediction: g.prediction,
-      }),
+      lineMovement: lineMove.education,
     },
     refs: ref ? { crew: ref.crew, leadRef: ref.leadRef, impact: ref.impact } : undefined,
     injuries: gameInjuries(teams),

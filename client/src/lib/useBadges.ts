@@ -2,6 +2,12 @@
 // Persists to localStorage (no Supabase required for MVP)
 
 import { useState, useEffect, useCallback } from "react";
+import {
+  bracketRoundPerfectProgress,
+  evaluateEngagementBadgeIds,
+  pickEmStreakProgress,
+  visitSevenProgress,
+} from "./badgeChecks";
 import { allBadges, type Badge } from "./badgesData";
 
 // ═══════════════════════════════════════════════════════════
@@ -86,6 +92,9 @@ export function useBadges() {
     if (!earned.find((b) => b.id === "day-one")) {
       earnBadge("day-one");
     }
+    for (const id of evaluateEngagementBadgeIds()) {
+      earnBadge(id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -157,6 +166,15 @@ export function useBadges() {
       if (!earned && badge.category === "streak") {
         const target = badge.id === "streak-3" ? 3 : badge.id === "streak-7" ? 7 : badge.id === "streak-30" ? 30 : 100;
         progress = Math.min(100, Math.round((state.streak.currentStreak / target) * 100));
+      }
+      if (!earned && badge.id === "pickem-streak-7") {
+        progress = pickEmStreakProgress();
+      }
+      if (!earned && badge.id === "visit-seven") {
+        progress = visitSevenProgress();
+      }
+      if (!earned && badge.id === "bracket-round-perfect") {
+        progress = bracketRoundPerfectProgress();
       }
       return {
         ...badge,

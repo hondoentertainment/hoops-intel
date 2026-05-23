@@ -1,10 +1,12 @@
 // Hoops Intel Pro — premium tier marketing + checkout page.
 // Lives at /pro. Backed by useSubscription + api/create-checkout.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSubscription, startCheckout, openBillingPortal } from "../lib/useSubscription";
 import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
+
+type OpsStripe = { checkoutReady?: boolean; webhookReady?: boolean };
 
 function getStoredAuthToken(): string | null {
   if (typeof localStorage === "undefined") return null;
@@ -46,6 +48,10 @@ const FEATURES = [
   },
 ];
 
+function isStripeConfigError(message: string): boolean {
+  return message.includes("not configured") || message.includes("STRIPE_") || message.includes("Required env:");
+}
+
 function PlanCard({
   title,
   price,
@@ -54,6 +60,7 @@ function PlanCard({
   onSelect,
   loading,
   disabled,
+  checkoutReady,
 }: {
   title: string;
   price: string;
@@ -62,6 +69,7 @@ function PlanCard({
   onSelect: () => void;
   loading: boolean;
   disabled: boolean;
+  checkoutReady: boolean | null;
 }) {
   return (
     <div
@@ -97,7 +105,11 @@ function PlanCard({
           letterSpacing: "0.06em",
         }}
       >
-        {loading ? "OPENING CHECKOUT..." : `GO PRO ${cadence.toUpperCase()}`}
+        {loading
+          ? "OPENING CHECKOUT..."
+          : checkoutReady === false
+            ? "CHECKOUT PENDING OPS"
+            : `GO PRO ${cadence.toUpperCase()}`}
       </button>
     </div>
   );
@@ -110,8 +122,24 @@ export default function Pro() {
   const [portalLoading, setPortalLoading] = useState(false);
   const [portalError, setPortalError] = useState("");
   const [showAuth, setShowAuth] = useState(false);
+  const [stripeOps, setStripeOps] = useState<OpsStripe | null>(null);
+
+  useEffect(() => {
+    fetch("/api/ops-readiness")
+      .then((r) => r.json())
+      .then((b: { stripe?: OpsStripe }) => setStripeOps(b.stripe ?? null))
+      .catch(() => setStripeOps(null));
+  }, []);
+
+  const checkoutReady = stripeOps?.checkoutReady ?? null;
 
   const handleCheckout = async (plan: "monthly" | "annual") => {
+    if (checkoutReady === false) {
+      setError(
+        "Stripe checkout is not configured on this deployment. Required: STRIPE_SECRET_KEY, STRIPE_PRICE_MONTHLY, STRIPE_PRICE_ANNUAL.",
+      );
+      return;
+    }
     if (!getStoredAuthToken()) {
       setShowAuth(true);
       setError("Sign in once to subscribe — Stripe links your Hoops Intel account.");
@@ -152,14 +180,23 @@ export default function Pro() {
 
         {sub.isPro ? (
           <div className="rounded-xl p-6 mb-10" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.3)" }}>
-            <div className="section-label mb-2" style={{ color: "#10B981" }}>YOU'RE PRO</div>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <div className="section-label" style={{ color: "#10B981" }}>PRO ACTIVE</div>
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border border-emerald-500/40 text-emerald-200 bg-emerald-500/10">
+                Subscribed
+              </span>
+            </div>
             <div className="text-white text-lg mb-1">{sub.plan === "annual" ? "Annual plan" : "Monthly plan"}</div>
             {sub.renewsAt && (
               <div className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
-                {sub.cancelAtPeriodEnd ? "Ends " : "Renews "}
-                {sub.renewsAt.toLocaleDateString()}
+                {sub.cancelAtPeriodEnd ? "Access ends " : "Renews "}
+                {sub.renewsAt.toLocaleDateString(undefined, { dateStyle: "medium" })}
+                {sub.cancelAtPeriodEnd ? " (cancel at period end)" : ""}
               </div>
             )}
+            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Full Pulse ranks, ad-free desk, and Pro-only tools are unlocked on this account.
+            </p>
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
@@ -179,9 +216,9 @@ export default function Pro() {
               </a>
             </div>
             {portalError ? (
-              portalError.includes("not configured") || portalError.includes("STRIPE_") ? (
+              isStripeConfigError(portalError) ? (
                 <p className="text-sm mt-3 text-amber-200" role="alert">
-                  {portalError} See README environment variables or{" "}
+                  Billing portal isn&apos;t wired yet ({portalError}). See README env vars or{" "}
                   <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
                 </p>
               ) : (
@@ -191,6 +228,36 @@ export default function Pro() {
           </div>
         ) : (
           <>
+            {checkoutReady === false && (
+              <div
+                className="rounded-lg p-4 mb-6 space-y-2"
+                style={{
+                  background: "rgba(245,158,11,0.08)",
+                  border: "1px solid rgba(245,158,11,0.25)",
+                  color: "rgba(253,224,71,0.95)",
+                }}
+                role="status"
+              >
+                <p className="text-sm font-semibold">Upgrade available — checkout pending ops</p>
+                <p className="text-xs opacity-90">
+                  <code className="text-amber-100/90">/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
+                  STRIPE_SECRET_KEY + price IDs in Vercel before go-live.
+                </p>
+              </div>
+            )}
+            {checkoutReady === true && (
+              <div
+                className="rounded-lg px-4 py-3 mb-6 text-xs"
+                style={{
+                  background: "rgba(16,185,129,0.06)",
+                  border: "1px solid rgba(16,185,129,0.22)",
+                  color: "rgba(167,243,208,0.95)",
+                }}
+                role="status"
+              >
+                Checkout is live — pick a plan below. Sign in first so Stripe links to your Hoops Intel account.
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
               <PlanCard
                 title="Monthly"
@@ -198,7 +265,8 @@ export default function Pro() {
                 cadence="month"
                 onSelect={() => handleCheckout("monthly")}
                 loading={checkoutLoading === "monthly"}
-                disabled={checkoutLoading !== null}
+                disabled={checkoutLoading !== null || checkoutReady === false}
+                checkoutReady={checkoutReady}
               />
               <PlanCard
                 title="Annual (33% off)"
@@ -207,23 +275,26 @@ export default function Pro() {
                 highlighted
                 onSelect={() => handleCheckout("annual")}
                 loading={checkoutLoading === "annual"}
-                disabled={checkoutLoading !== null}
+                disabled={checkoutLoading !== null || checkoutReady === false}
+                checkoutReady={checkoutReady}
               />
             </div>
-            {error.includes("not configured") || error.includes("STRIPE_") ? (
-              <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "rgba(253,224,71,0.95)" }}>
-                <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
-                <p className="text-sm opacity-90">{error}</p>
-                <p className="text-xs opacity-80">
-                  Production needs Stripe keys and price IDs (see repo README — Environment variables). Questions:{" "}
-                  <a href="mailto:hello@hoopsintel.net" className="underline text-amber-100">hello@hoopsintel.net</a>
-                </p>
-              </div>
-            ) : (
-              <div className="rounded-lg p-4 mb-10 text-sm" style={{ background: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.2)", color: "rgba(244,63,94,0.9)" }}>
-                {error}
-              </div>
-            )}
+            {error ? (
+              isStripeConfigError(error) ? (
+                <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "rgba(253,224,71,0.95)" }}>
+                  <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
+                  <p className="text-sm opacity-90">{error}</p>
+                  <p className="text-xs opacity-80">
+                    Production needs Stripe keys and price IDs (see repo README — Environment variables). Questions:{" "}
+                    <a href="mailto:hello@hoopsintel.net" className="underline text-amber-100">hello@hoopsintel.net</a>
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-lg p-4 mb-10 text-sm" style={{ background: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.2)", color: "rgba(244,63,94,0.9)" }}>
+                  {error}
+                </div>
+              )
+            ) : null}
           </>
         )}
 

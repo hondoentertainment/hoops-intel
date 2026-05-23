@@ -1,4 +1,5 @@
 import { isPlayoffsActive } from "./playoffData";
+import { isOffseasonDesk, offseasonPrimaryHref } from "./deskMode";
 
 export const PLAYOFFS_NAV_HREF = "/playoffs";
 

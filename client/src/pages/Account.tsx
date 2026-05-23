@@ -36,6 +36,10 @@ function getStoredAuthToken(): string | null {
   return localStorage.getItem("hoops-intel-auth-token");
 }
 
+function isStripeConfigError(message: string): boolean {
+  return message.includes("not configured") || message.includes("STRIPE_") || message.includes("Required env:");
+}
+
 function AccountPushAlerts({ userId }: { userId: string }) {
   const [topics, setTopics] = useState(() => new Set<string>(DEFAULT_PUSH_TOPICS));
   const [deviceEndpoint, setDeviceEndpoint] = useState<string | null>(null);
@@ -411,9 +415,19 @@ export default function Account() {
   const [showAuth, setShowAuth] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
   const [portalError, setPortalError] = useState("");
+  const [stripeCheckoutReady, setStripeCheckoutReady] = useState<boolean | null>(null);
 
   useEffect(() => {
     void getUser().then(setUser);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/ops-readiness")
+      .then((r) => r.json())
+      .then((b: { stripe?: { checkoutReady?: boolean } }) =>
+        setStripeCheckoutReady(typeof b.stripe?.checkoutReady === "boolean" ? b.stripe.checkoutReady : null),
+      )
+      .catch(() => setStripeCheckoutReady(null));
   }, []);
 
   const refreshUser = () => {
@@ -526,12 +540,25 @@ export default function Account() {
       <div
         className="rounded-xl p-6 mb-6"
         style={{
-          background: sub.isPro ? "rgba(16,185,129,0.06)" : "rgba(255,255,255,0.02)",
-          border: `1px solid ${sub.isPro ? "rgba(16,185,129,0.25)" : "rgba(255,255,255,0.08)"}`,
+          background: sub.isPro ? "rgba(16,185,129,0.06)" : "rgba(14,165,233,0.04)",
+          border: `1px solid ${sub.isPro ? "rgba(16,185,129,0.25)" : "rgba(14,165,233,0.2)"}`,
         }}
       >
-        <div className="section-label mb-2" style={{ color: sub.isPro ? "#10B981" : "rgba(255,255,255,0.4)" }}>
-          HOOPS INTEL PRO
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="section-label" style={{ color: sub.isPro ? "#10B981" : "#0EA5E9" }}>
+            HOOPS INTEL PRO
+          </div>
+          {!sub.loading && (
+            <span
+              className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
+                sub.isPro
+                  ? "border-emerald-500/40 text-emerald-200 bg-emerald-500/10"
+                  : "border-sky-500/35 text-sky-200 bg-sky-500/10"
+              }`}
+            >
+              {sub.isPro ? "Active" : "Free tier"}
+            </span>
+          )}
         </div>
         {sub.loading ? (
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -547,6 +574,9 @@ export default function Account() {
                 {sub.cancelAtPeriodEnd ? " (cancel at period end)" : ""}
               </p>
             )}
+            <p className="text-sm mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Pro perks are active — manage payment method, invoices, or cancellation in Stripe.
+            </p>
             <button
               type="button"
               disabled={portalLoading}
@@ -557,22 +587,38 @@ export default function Account() {
               {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
             </button>
             {portalError && (
-              <p className="text-sm mt-3 text-rose-400" role="alert">
-                {portalError}
-              </p>
+              isStripeConfigError(portalError) ? (
+                <p className="text-sm mt-3 text-amber-200" role="alert">
+                  Billing portal isn&apos;t configured ({portalError}). Ops: set STRIPE_SECRET_KEY in production.
+                </p>
+              ) : (
+                <p className="text-sm mt-3 text-rose-400" role="alert">
+                  {portalError}
+                </p>
+              )
             )}
           </>
         ) : (
           <>
-            <p className="text-sm mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="text-sm mb-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
               Upgrade for early drops, ad-free reading, full Trade Value ranks, and deeper Ask Hoops Intel context.
             </p>
+            {stripeCheckoutReady === false && (
+              <p className="text-xs mb-4 px-3 py-2 rounded-lg text-amber-200/95" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                Stripe checkout is pending ops on this deployment — upgrade buttons on /pro will stay disabled until env is wired.
+              </p>
+            )}
+            {stripeCheckoutReady === true && (
+              <p className="text-xs mb-4 px-3 py-2 rounded-lg text-emerald-200/95" style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.2)" }}>
+                Checkout is ready — subscribe from the Pro page when you&apos;re ready to upgrade.
+              </p>
+            )}
             <a
               href="/pro"
               className="inline-flex min-h-[48px] items-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white"
               style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              VIEW PRO
+              {stripeCheckoutReady === false ? "VIEW PRO (OPS PENDING)" : "UPGRADE TO PRO"}
             </a>
           </>
         )}

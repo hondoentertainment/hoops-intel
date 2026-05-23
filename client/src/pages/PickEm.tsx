@@ -2,9 +2,22 @@
 // Layout follows PulseHistory pattern: sticky header, container, navy background
 
 import { useState, useEffect } from "react";
-import { gamePreviews, pulseEdition } from "../lib/pulseData";
+import { gamePreviews, gameResults, pulseEdition } from "../lib/pulseData";
 import PickEmShareCard from "../components/PickEmShareCard";
-import { getPickWinLoss, localPickWinLoss, type PickWinLoss } from "../lib/pickEmEngagement";
+import BeatTheDeskPanel from "../components/BeatTheDeskPanel";
+import { computeBeatTheDesk } from "../lib/beatTheDesk";
+import {
+  editionDateFromPulse,
+  getPickWinLoss,
+  localPickWinLoss,
+  type PickWinLoss,
+} from "../lib/pickEmEngagement";
+import {
+  fetchPickLeaderboard,
+  leaderboardAccuracyColor,
+  truncateLeaderboardUserId,
+  type PickLeaderboardRow,
+} from "../lib/pickLeaderboard";
 import PickEmWidget from "../components/PickEm";
 import BracketPicker from "../components/BracketPicker";
 import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
@@ -13,38 +26,8 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 
 // ═══════════════════════════════════════════════════════════
-// INLINE SUPABASE REST HELPER (leaderboard — read-only, anon)
-// ═══════════════════════════════════════════════════════════
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
-
-async function anonDbFetch(table: string, query: string): Promise<unknown> {
-  if (!SUPABASE_URL) return [];
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/${table}?${query}`,
-    {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (!res.ok) throw new Error(`Leaderboard fetch failed: ${res.statusText}`);
-  return res.json();
-}
-
-// ═══════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════
-
-interface LeaderboardRow {
-  user_id: string;
-  total_settled: number;
-  correct_picks: number;
-  accuracy_pct: number | null;
-  current_streak: number;
-}
 
 interface BracketLbRow {
   user_id: string;
@@ -57,9 +40,16 @@ interface BracketLbRow {
 // LEADERBOARD SECTION
 // ═══════════════════════════════════════════════════════════
 
-function truncateUserId(id: string): string {
-  // Show first 8 chars of UUID for privacy
-  return id.slice(0, 8).toUpperCase() + "...";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
+
+async function anonDbFetch(table: string, query: string): Promise<unknown> {
+  if (!SUPABASE_URL) return [];
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
+    headers: { apikey: SUPABASE_ANON_KEY, "Content-Type": "application/json" },
+  });
+  if (!res.ok) throw new Error(`Leaderboard fetch failed: ${res.statusText}`);
+  return res.json();
 }
 
 function LeaderboardSkeleton() {
@@ -81,7 +71,7 @@ function LeaderboardSkeleton() {
   );
 }
 
-function LeaderboardTable({ rows }: { rows: LeaderboardRow[] }) {
+function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
   if (rows.length === 0) {
     return (
       <div
@@ -114,8 +104,9 @@ function LeaderboardTable({ rows }: { rows: LeaderboardRow[] }) {
         }}
       >
         <div className="col-span-1">#</div>
-        <div className="col-span-4">USER</div>
-        <div className="col-span-3 text-right">ACCURACY</div>
+        <div className="col-span-3">USER</div>
+        <div className="col-span-2 text-right">ACCURACY</div>
+        <div className="col-span-2 text-right">STREAK</div>
         <div className="col-span-2 text-right">CORRECT</div>
         <div className="col-span-2 text-right">TOTAL</div>
       </div>
@@ -145,7 +136,7 @@ function LeaderboardTable({ rows }: { rows: LeaderboardRow[] }) {
             </div>
 
             {/* User ID */}
-            <div className="col-span-4 flex items-center gap-2">
+            <div className="col-span-3 flex items-center gap-2">
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
                 style={{
@@ -156,38 +147,42 @@ function LeaderboardTable({ rows }: { rows: LeaderboardRow[] }) {
                   fontFamily: "'Barlow Condensed', sans-serif",
                 }}
               >
-                {truncateUserId(row.user_id).slice(0, 1)}
+                {truncateLeaderboardUserId(row.user_id).slice(0, 1)}
               </div>
               <span
-                className="text-xs font-medium"
+                className="text-xs font-medium truncate"
                 style={{
                   color: "rgba(255,255,255,0.7)",
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.7rem",
                 }}
               >
-                {truncateUserId(row.user_id)}
+                {truncateLeaderboardUserId(row.user_id)}
               </span>
             </div>
 
             {/* Accuracy */}
-            <div className="col-span-3 text-right">
+            <div className="col-span-2 text-right">
               <span
                 className="text-sm font-bold"
                 style={{
-                  color:
-                    row.accuracy_pct === null
-                      ? "rgba(255,255,255,0.3)"
-                      : row.accuracy_pct >= 60
-                      ? "#10B981"
-                      : row.accuracy_pct >= 45
-                      ? "#F59E0B"
-                      : "#F43F5E",
+                  color: leaderboardAccuracyColor(row.accuracy_pct),
                   fontFamily: "'JetBrains Mono', monospace",
                 }}
               >
                 {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
               </span>
+            </div>
+
+            {/* Streak */}
+            <div
+              className="col-span-2 text-right text-sm font-semibold"
+              style={{
+                color: row.current_streak > 0 ? "#F59E0B" : "rgba(255,255,255,0.3)",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
+            >
+              {row.current_streak > 0 ? `${row.current_streak}W` : "—"}
             </div>
 
             {/* Correct */}
@@ -321,7 +316,7 @@ function BracketLeaderboardSection() {
                   {rank}
                 </div>
                 <div className="col-span-5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem" }}>
-                  {truncateUserId(row.user_id)}
+                  {truncateLeaderboardUserId(row.user_id)}
                 </div>
                 <div className="col-span-3 text-right">
                   <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}>
@@ -341,16 +336,13 @@ function BracketLeaderboardSection() {
 }
 
 function LeaderboardSection() {
-  const [rows, setRows] = useState<LeaderboardRow[]>([]);
+  const [rows, setRows] = useState<PickLeaderboardRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    anonDbFetch(
-      "pick_leaderboard",
-      "select=user_id,total_settled,correct_picks,accuracy_pct,current_streak&order=accuracy_pct.desc.nullslast,correct_picks.desc&limit=10"
-    )
-      .then((data) => setRows(data as LeaderboardRow[]))
+    fetchPickLeaderboard(10)
+      .then(setRows)
       .catch((err: unknown) => {
         const msg = err instanceof Error ? err.message : "Failed to load leaderboard";
         setError(msg);
@@ -511,24 +503,15 @@ function HowItWorksSection() {
 // ═══════════════════════════════════════════════════════════
 
 // Derive today's edition date string (YYYY-MM-DD) from pulseEdition
-// pulseEdition.date is "March 18, 2026" — parse it
 function parseEditionDate(dateStr: string): string {
-  try {
-    const d = new Date(dateStr);
-    if (!isNaN(d.getTime())) {
-      // Format as YYYY-MM-DD
-      return d.toISOString().slice(0, 10);
-    }
-  } catch {
-    // Fall through
-  }
-  // Fallback to today
-  return new Date().toISOString().slice(0, 10);
+  return editionDateFromPulse(dateStr);
 }
 
 export default function PickEmPage() {
   const editionDate = parseEditionDate(pulseEdition.date);
   const [pickStats, setPickStats] = useState<PickWinLoss>(() => localPickWinLoss());
+  const beatDesk = computeBeatTheDesk(gamePreviews, editionDate, gameResults);
+  const slateSettled = beatDesk.userWins + beatDesk.userLosses;
   const playoffSnap = isPlayoffsActive()
     ? playoffSnapshot(playoffSeries, todayISOLocal())
     : null;
@@ -571,12 +554,18 @@ export default function PickEmPage() {
           </p>
         </div>
 
-        {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0) && (
+        {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0 || slateSettled > 0) && (
           <PickEmShareCard
             wins={pickStats.wins}
             losses={pickStats.losses}
             streak={pickStats.streak}
             seasonRecord={pickStats.source === "server"}
+            slateWins={beatDesk.userWins}
+            slateLosses={beatDesk.userLosses}
+            beatDesk={{
+              userBeatDesk: beatDesk.userBeatDesk,
+              deskBeatUser: beatDesk.deskBeatUser,
+            }}
           />
         )}
 
@@ -640,6 +629,8 @@ export default function PickEmPage() {
         />
 
         <PulseAccountabilityPanel />
+
+        <BeatTheDeskPanel games={gamePreviews} editionDate={editionDate} results={gameResults} />
 
         {/* Leaderboard */}
         <LeaderboardSection />

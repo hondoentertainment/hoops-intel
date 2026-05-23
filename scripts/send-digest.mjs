@@ -88,6 +88,18 @@ function parsePulseData() {
     lineMovement = [];
   }
 
+  let playoffSeries = [];
+  let playoffMovers = [];
+  try {
+    const poPath = resolve(__dirname, '../client/src/lib/playoffData.ts');
+    const poSrc = readFileSync(poPath, 'utf-8');
+    playoffSeries = extractJSONFromSource(poSrc, 'playoffSeries') || [];
+    playoffMovers = extractJSONFromSource(poSrc, 'playoffMovers') || [];
+  } catch {
+    playoffSeries = [];
+    playoffMovers = [];
+  }
+
   return {
     pulseEdition: extractJSON('pulseEdition'),
     narrative: extractJSON('narrative'),
@@ -97,7 +109,98 @@ function parsePulseData() {
     fantasyAlerts: extractJSON('fantasyAlerts'),
     tickerItems: extractJSON('tickerItems'),
     lineMovement,
+    playoffSeries,
+    playoffMovers,
   };
+}
+
+function extractJSONFromSource(src, name) {
+  const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*`);
+  const match = re.exec(src);
+  if (!match) return null;
+  const start = match.index + match[0].length;
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  let i = start;
+  const firstChar = src[i];
+  if (firstChar === '[' || firstChar === '{') {
+    for (; i < src.length; i++) {
+      const ch = src[i];
+      if (escape) { escape = false; continue; }
+      if (ch === '\\') { escape = true; continue; }
+      if (ch === '"') { inString = !inString; continue; }
+      if (inString) continue;
+      if (ch === '{' || ch === '[') depth++;
+      if (ch === '}' || ch === ']') { depth--; if (depth === 0) { i++; break; } }
+    }
+  } else {
+    i = src.indexOf(';', start);
+  }
+  const raw = src.slice(start, i).trim();
+  try {
+    return new Function(`"use strict"; return (${raw});`)();
+  } catch {
+    return null;
+  }
+}
+
+/** Mirrors client/src/lib/deskBriefing.ts buildSixtySecondBullets for Morning Brief v2. */
+function buildSixtySecondBullets(data) {
+  const { pulseEdition, narrative, pulseIndex, gamePreviews, tickerItems, playoffSeries, playoffMovers } = data;
+
+  const fromSubtitle = pulseEdition?.subtitle
+    ? pulseEdition.subtitle.split('·').map((s) => s.trim()).filter(Boolean)
+    : [];
+
+  const bullets = [...fromSubtitle];
+
+  if (bullets.length < 3 && narrative?.subhead) {
+    bullets.push(narrative.subhead.trim());
+  }
+
+  const topMover = (pulseIndex || [])[0];
+  if (topMover && bullets.length < 5) {
+    const rationale = topMover.rationale ? topMover.rationale.slice(0, 100) : 'Pulse Index leader today';
+    bullets.push(`${topMover.player} (${topMover.team}) — ${rationale}`);
+  }
+
+  const playoffsActive = Array.isArray(playoffSeries) && playoffSeries.length > 0;
+  if (playoffsActive && bullets.length < 5) {
+    const pm = (playoffMovers || [])[0];
+    if (pm) {
+      const arrow = pm.direction === 'riser' ? '↑' : '↓';
+      bullets.push(`Playoff pulse: ${pm.player} ${arrow} — ${String(pm.note || '').slice(0, 90)}`);
+    }
+  }
+
+  if (playoffsActive && bullets.length < 5) {
+    const pending = (playoffSeries || [])
+      .flatMap((s) => (s.games || []).filter((g) => g.status === 'scheduled'))
+      .sort((a, b) => `${a.date}${a.time || ''}`.localeCompare(`${b.date}${b.time || ''}`))[0];
+    if (pending) {
+      bullets.push(`Next tip: ${pending.awayTeam} @ ${pending.homeTeam} · ${pending.time || pending.date}`);
+    }
+  }
+
+  if ((gamePreviews || []).length > 0 && bullets.length < 5) {
+    const count = gamePreviews.length;
+    bullets.push(`${count} game${count === 1 ? '' : 's'} on tonight's slate`);
+  }
+
+  const wire = (tickerItems || [])[0];
+  if (wire && bullets.length < 5) {
+    bullets.push(String(wire.text || '').slice(0, 120));
+  }
+
+  return bullets.slice(0, 5);
+}
+
+function editionContextLabel(pulseEdition) {
+  const ctx = pulseEdition?.editionContext ?? 'regular';
+  if (ctx === 'finals') return 'NBA Finals desk';
+  if (ctx === 'playoffs') return 'Playoffs desk';
+  return 'Regular season desk';
 }
 
 // ── HTML email template ───────────────────────────────────────────────────
@@ -110,6 +213,28 @@ function generateEmailHTML(data) {
   const topGames = (gameResults || []).slice(0, 3);
   const featuredPreview = (gamePreviews || []).find(g => g.featured) || (gamePreviews || [])[0];
   const topFantasy = (fantasyAlerts || []).find(a => a.urgency === 'high') || (fantasyAlerts || [])[0];
+  const sixtySecondBullets = buildSixtySecondBullets(data);
+  const deskLabel = editionContextLabel(pulseEdition);
+
+  const sixtySecondHTML = sixtySecondBullets.length > 0 ? `
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:linear-gradient(135deg,rgba(14,165,233,0.12),rgba(14,165,233,0.02));border:1px solid rgba(14,165,233,0.25);border-radius:8px;overflow:hidden;">
+      <tr>
+        <td style="padding:16px 20px;">
+          <div style="font-size:11px;font-weight:700;color:#38bdf8;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">
+            60-Second Read
+          </div>
+          <div style="font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">
+            ${deskLabel}
+          </div>
+          <ul style="margin:0;padding:0 0 0 18px;">
+            ${sixtySecondBullets.map((b) => `
+              <li style="font-size:14px;color:#cbd5e1;line-height:1.55;margin-bottom:8px;">${b}</li>
+            `).join('')}
+          </ul>
+        </td>
+      </tr>
+    </table>
+  ` : '';
 
   // Team abbreviation to emoji-like colored dots for visual flair
   const trendIcon = (trend) => {
@@ -284,13 +409,22 @@ function generateEmailHTML(data) {
                 <span style="color:#3b82f6;">HOOPS</span> INTEL
               </div>
               <div style="font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-top:6px;">
-                Daily Digest
+                Morning Brief
               </div>
               <div style="font-size:14px;color:#94a3b8;margin-top:8px;">
                 ${edition.date} &middot; ${edition.edition}
               </div>
             </td>
           </tr>
+
+          <!-- 60-SECOND READ -->
+          ${sixtySecondHTML ? `
+          <tr>
+            <td style="padding:24px 24px 0;">
+              ${sixtySecondHTML}
+            </td>
+          </tr>
+          ` : ''}
 
           <!-- NARRATIVE OF THE NIGHT -->
           <tr>

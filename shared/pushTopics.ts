@@ -9,6 +9,7 @@ export type PushTopicKind =
   | "buzzer-beater"
   | "milestone"
   | "elimination-game"
+  | "clincher-preview"
   | "series-clincher"
   | "playoff-tip"
   | "playoff-close"

@@ -4,7 +4,9 @@ import {
   useChatEngine,
   ChatMessages,
   ChatInput,
+  AskPromptChips,
 } from "../components/AskHoopsIntel";
+import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { pulseEdition, narrative } from "../lib/pulseData";
 
 export default function AskAI() {
@@ -63,6 +65,12 @@ export default function AskAI() {
                 ? narrative.subhead.slice(0, 200) + "..."
                 : narrative.subhead}
             </p>
+            <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(14,165,233,0.12)" }}>
+              <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                Quick prompts
+              </p>
+              <AskPromptChips onSelect={dispatchAskPrompt} />
+            </div>
           </div>
         </div>
       </div>

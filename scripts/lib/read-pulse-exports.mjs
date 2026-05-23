@@ -7,12 +7,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "../..");
 
 /**
- * Read pulseData.ts and evaluate a named `export const name = …` initializer.
- * @param {string} exportName - e.g. 'fantasyAlerts'
+ * Read a client lib `.ts` file and evaluate a named `export const name = …` initializer.
+ * @param {string} relativePath - e.g. 'client/src/lib/pulseData.ts'
+ * @param {string} exportName
  * @returns {unknown}
  */
-export function extractPulseExport(exportName) {
-  const filePath = resolve(ROOT, "client/src/lib/pulseData.ts");
+export function extractLibExport(relativePath, exportName) {
+  const filePath = resolve(ROOT, relativePath);
   const src = readFileSync(filePath, "utf-8");
   const re = new RegExp(`export\\s+const\\s+${exportName}\\s*=\\s*`);
   const match = re.exec(src);
@@ -59,6 +60,16 @@ export function extractPulseExport(exportName) {
   } catch {
     return null;
   }
+}
+
+/** @param {string} exportName - e.g. 'gamePreviews' */
+export function extractPulseExport(exportName) {
+  return extractLibExport("client/src/lib/pulseData.ts", exportName);
+}
+
+/** @param {string} exportName - e.g. 'playoffSeries' */
+export function extractPlayoffExport(exportName) {
+  return extractLibExport("client/src/lib/playoffData.ts", exportName);
 }
 
 function stripTopLevelTsAssertion(literal) {

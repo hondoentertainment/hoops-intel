@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// smoke-push.mjs — Dry-run playoff + rival push dispatchers (no notifications sent).
+// smoke-push.mjs — Dry-run playoff + slate push dispatchers (no notifications sent).
 //
 //   node scripts/smoke-push.mjs
 //   PUSH_DRY_RUN=1 node scripts/check-playoff-series.mjs
@@ -13,6 +13,8 @@ const ROOT = join(__dirname, "..");
 
 const scripts = [
   ["check-playoff-series.mjs", "--dry-run"],
+  ["check-clincher-preview.mjs"],
+  ["check-tip-off-push.mjs"],
   ["check-rival-tonight.mjs"],
 ];
 

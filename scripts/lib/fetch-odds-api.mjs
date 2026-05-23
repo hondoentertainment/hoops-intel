@@ -3,10 +3,30 @@
 // Requires ODDS_API_KEY. Returns { games: [{ awayTeam, homeTeam, closingSpread }] }
 // compatible with sync-line-movement.mjs mergeExternalSpreads.
 
+import { appendFileSync } from "fs";
 import { fetchWithRetry } from "./retry.mjs";
 import { abbrFromFullName } from "./team-names.mjs";
 
 const ODDS_API = "https://api.the-odds-api.com/v4/sports/basketball_nba/odds";
+
+/** Append Odds API quota to GITHUB_STEP_SUMMARY when running in CI. */
+export function appendOddsQuotaSummary({ remainingRequests, gamesCount, note } = {}) {
+  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+  if (!summaryPath) return;
+
+  const lines = [
+    "",
+    "### The Odds API — quota",
+    "",
+    "| Metric | Value |",
+    "| --- | --- |",
+    `| Requests remaining | ${remainingRequests ?? "n/a"} |`,
+    `| Spreads parsed | ${gamesCount ?? "n/a"} |`,
+  ];
+  if (note) lines.push("", note);
+  lines.push("");
+  appendFileSync(summaryPath, lines.join("\n"));
+}
 
 /**
  * Pick consensus closing spread from first US bookmaker with spreads market.
@@ -66,10 +86,19 @@ export async function fetchOddsApiSpreads(apiKey) {
     if (row) games.push(row);
   }
 
-  return {
+  const payload = {
     games,
     source: "the-odds-api",
     fetchedAt: new Date().toISOString(),
     remainingRequests: remaining,
   };
+
+  if (process.env.GITHUB_ACTIONS === "true") {
+    appendOddsQuotaSummary({
+      remainingRequests: remaining,
+      gamesCount: games.length,
+    });
+  }
+
+  return payload;
 }

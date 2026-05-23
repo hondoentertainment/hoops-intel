@@ -1,37 +1,37 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: May 21, 2026_
+_Last revised: May 22, 2026_
 
 ### P0 — Ops (manual: Supabase + Vercel/GitHub secrets)
 
 | Step | Action | Status |
 |------|--------|--------|
-| Migrations | Actions → **Supabase migrations** (or `supabase db push`) — `20260519` … `20260521` | **Run in dashboard** |
-| Secrets | Stripe, VAPID, `PUSH_API_*`, Supabase, Resend, `CONTACT_INBOUND_EMAIL`, `GUEST_PULSE_ADMIN_SECRET`, optional `ODDS_API_KEY`, `ADMIN_NOTIFY_EMAIL` | **Set in Vercel + GitHub** |
-| Preflight | `npm run ops:preflight:strict` with prod env pulled locally | Verify before flip |
-| Push smoke | `npm run smoke:push` then workflow_dispatch **Playoff Push Alerts** | After secrets live |
-| Deploy smoke | Push to `main` → **Deployment Smoke** waits for Vercel + HTTP checks | Automated |
+| Migrations | Actions → **Supabase migrations** — `20260519` … `20260521` | **Run in dashboard** |
+| Secrets | Stripe, VAPID, `PUSH_API_*`, Supabase, Resend, `ODDS_API_KEY`, admin secrets | **Set in Vercel + GitHub** |
+| Preflight | `npm run ops:preflight:strict` with prod env | Verify before flip |
+| Push smoke | `npm run smoke:push` → **Playoff Push Alerts** (15-min cron) | After secrets live |
 
-### Shipped (code complete — May 21)
+### Shipped (May 22 — multi-agent pass)
 
 | Area | Status |
 |------|--------|
-| CI pre-push gate + deployment wait/smoke chain | Shipped |
-| The Odds API ingest (`ODDS_API_KEY` → `fetch-line-odds.mjs`) | Shipped |
-| Per-user push history filter (`?teams=` + Account “My teams”) | Shipped |
-| `/api/team-intel` + blocking deploy smoke | Shipped |
-| Push history inbox + Account panel | Shipped |
-| Publisher v2, Pick'em W/L, line movement, playoff nightly | Shipped |
-| Finals `isFinalsActive()` + home OG | Shipped |
+| Live Game Desk (Game Center live scores, lines, share OG) | Shipped |
+| Finals Command Mode (hero, Pulse scope, print, SEO) | Shipped (activates when `round: "finals"`) |
+| Series timeline hub (`/playoffs/series/:id`) | Shipped |
+| Pick'Em leaderboard + Beat the desk + share card v2 | Shipped |
+| Badges v2 (streak, visits, bracket round) | Shipped |
+| Betting Intel v2 (opener/closer/current + movement) | Shipped |
+| Odds API quota in CI step summary | Shipped |
+| Push: tip-off, clincher-preview, rival pair automation | Shipped |
+| Creator queue admin + publisher CSV export | Shipped |
+| Pro/Account ops-readiness UX | Shipped |
+| Morning Brief HTML v2 + Ask shortcuts + Pulse explain modal | Shipped |
+| PWA offline edition cache (sw v4) | Shipped |
 
-### P1 — Remaining product
+### P1 — Remaining
 
 - SSR/SEO only if Lighthouse regresses
-- The Odds API quota monitoring (log `x-requests-remaining` in workflow summary)
-
-### P2 — Offseason
-
-- Draft/FA/Summer League desk via `season-mode`
+- Draft desk via `season-mode` (offseason)
 
 ### Non-goals
 
