@@ -3,6 +3,13 @@
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import {
+  SITEMAP_GAME_META,
+  SITEMAP_PLAYER_META,
+  SITEMAP_SERIES_META,
+  SITEMAP_STATIC_ROUTES,
+  SITEMAP_TEAM_META,
+} from "./lib/public-routes.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -93,51 +100,20 @@ export function generate() {
 
   const now = new Date().toISOString().split("T")[0];
 
-  // Keep in sync with STATIC_SITEMAP_PATHS in client/src/lib/seoConfig.ts
-  const staticToolPaths = [
-    "/tools",
-    "/injuries",
-    "/pick-em",
-    "/trade-value",
-    "/trivia",
-    "/performance",
-    "/momentum",
-    "/lineups",
-    "/trade-simulator",
-    "/clutch",
-    "/draft",
-    "/sentiment",
-    "/tactics",
-    "/projections",
-    "/badges",
-    "/community-pulse",
-    "/watch-guide",
-    "/podcast-companion",
-    "/history",
-    "/refs",
-    "/ask",
-    "/compare-players",
-    "/pulse-methodology",
-    "/rivals",
-    "/my-pulse",
-    "/print-edition",
-    "/widgets",
-    "/pro",
-    "/betting-intel",
-    "/guest-pulse",
-  ];
+  // Keep in sync with STATIC_SITEMAP_PATHS in client/src/lib/seoConfig.ts (verified in CI)
+  const staticToolPaths = SITEMAP_STATIC_ROUTES;
 
   let urls = [
     { loc: "/", priority: "1.0", changefreq: "daily" },
     { loc: "/archive", priority: "0.8", changefreq: "daily" },
     { loc: "/pulse-history", priority: "0.7", changefreq: "daily" },
     { loc: "/playoffs", priority: "0.7", changefreq: "daily" },
-    ...staticToolPaths.map((loc) => ({ loc, priority: "0.65", changefreq: "weekly" })),
+    ...staticToolPaths.map(({ loc, priority, changefreq }) => ({ loc, priority, changefreq })),
   ];
 
   const seriesIds = new Set([...playoffFile.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => m[1]));
   for (const id of seriesIds) {
-    urls.push({ loc: `/playoffs/series/${id}`, priority: "0.68", changefreq: "daily" });
+    urls.push({ loc: `/playoffs/series/${id}`, ...SITEMAP_SERIES_META });
   }
 
   const playerSlugs = new Map();
@@ -146,18 +122,18 @@ export function generate() {
     const slug = slugify(canonical);
     if (!slug || playerSlugs.has(slug)) continue;
     playerSlugs.set(slug, canonical);
-    urls.push({ loc: `/player/${slug}`, priority: "0.6", changefreq: "daily" });
+    urls.push({ loc: `/player/${slug}`, ...SITEMAP_PLAYER_META });
   }
   const teamSlugs = new Set();
   for (const team of teams) {
     const code = canonicalTeamCode(team);
     if (!code || teamSlugs.has(code)) continue;
     teamSlugs.add(code);
-    urls.push({ loc: `/team/${code.toLowerCase()}`, priority: "0.6", changefreq: "daily" });
+    urls.push({ loc: `/team/${code.toLowerCase()}`, ...SITEMAP_TEAM_META });
   }
   for (const game of games) {
     if (/^[A-Z]{3}-[A-Z]{3}-\d{8}$/.test(String(game))) {
-      urls.push({ loc: `/game/${game}`, priority: "0.55", changefreq: "daily" });
+      urls.push({ loc: `/game/${game}`, ...SITEMAP_GAME_META });
     }
   }
 

@@ -241,6 +241,7 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/my-pulse",
   "/print-edition",
   "/widgets",
+  "/embed-stats",
   "/pro",
   "/betting-intel",
   "/guest-pulse",

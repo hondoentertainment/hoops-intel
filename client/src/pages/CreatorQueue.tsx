@@ -148,6 +148,25 @@ export default function CreatorQueue() {
     return c;
   }, [rows]);
 
+  const exportCsv = () => {
+    const header = ["id", "created_at", "name", "email", "status", "notes", "pitch"];
+    const esc = (v: string) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const lines = [
+      header.join(","),
+      ...rows.map((r) =>
+        [r.id, r.created_at, r.name, r.email, r.status, r.notes, r.pitch].map((c) => esc(c ?? "")).join(","),
+      ),
+    ];
+    const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `guest-pulse-queue-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setMsg(`Exported ${rows.length} row(s) to CSV.`);
+  };
+
   return (
     <ToolPageLayout subtitle="CREATOR OPS">
       <p className="section-label mb-1">guest pulse moderation</p>
@@ -189,6 +208,9 @@ export default function CreatorQueue() {
           </span>
           <button type="button" disabled={busy} onClick={() => void load()} className="btn-primary">
             Refresh
+          </button>
+          <button type="button" disabled={busy || rows.length === 0} onClick={exportCsv} className="btn-soft">
+            Export CSV
           </button>
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as typeof filterStatus)} className="inp w-44 text-xs">
             <option value="pending">Pending (new + review)</option>

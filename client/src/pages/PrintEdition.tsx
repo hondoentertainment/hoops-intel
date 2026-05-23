@@ -8,6 +8,8 @@ import {
 } from "../lib/pulseData";
 import { isPlayoffsActive, isFinalsActive, finalistTeams, playoffSeries } from "../lib/playoffData";
 import { lineMovementRows } from "../lib/lineMovementData";
+import { buildSixtySecondBullets } from "../lib/deskBriefing";
+import { bettingDisclaimer } from "../lib/bettingLineStory";
 import SiteHeader from "../components/SiteHeader";
 
 export default function PrintEdition() {
@@ -21,6 +23,7 @@ export default function PrintEdition() {
     : pulseIndex
   ).slice(0, 5);
   const tick = tickerItems.slice(0, 8);
+  const sixtySec = buildSixtySecondBullets();
   const finalsOn = isFinalsActive();
   const activeSeries = (finalsOn
     ? playoffSeries.filter((s) => s.round === "finals" && s.status !== "complete")
@@ -34,6 +37,7 @@ export default function PrintEdition() {
           .no-print-header { display: none !important; }
           .print-edition-shell { background: white !important; color: #0f172a !important; }
           a { color: #0369a1 !important; text-decoration: underline; }
+          .print-page-break { page-break-before: always; break-before: page; }
         }
       `}</style>
 
@@ -61,6 +65,15 @@ export default function PrintEdition() {
             </div>
           ) : null}
         </header>
+
+        <section className="mb-10">
+          <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">60-second read</h2>
+          <ul className="list-disc ml-6 space-y-1 text-xs text-slate-700 leading-relaxed">
+            {sixtySec.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        </section>
 
         <section className="mb-10">
           <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Morning ticker</h2>
@@ -111,7 +124,7 @@ export default function PrintEdition() {
         )}
 
         {isPlayoffsActive() && activeSeries.length > 0 && (
-          <section className="mb-10">
+          <section className="mb-10 print-page-break">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">
               {finalsOn ? "NBA Finals board" : "Playoff board"}
             </h2>
@@ -129,7 +142,7 @@ export default function PrintEdition() {
           </section>
         )}
 
-        <section className="mb-10">
+        <section className="mb-10 print-page-break">
           <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Pulse Index — spotlight</h2>
           <table className="w-full border-collapse text-xs">
             <thead>
@@ -156,6 +169,8 @@ export default function PrintEdition() {
             <a href="https://hoopsintel.net/pulse-methodology">hoopsintel.net/pulse-methodology</a>
           </p>
         </section>
+
+        <p className="text-[10px] text-slate-500 leading-relaxed mb-6 border-t border-slate-200 pt-4">{bettingDisclaimer()}</p>
 
         <p className="text-xs text-slate-500 mono-data mb-10">
           Generated pack for desks + newsletter paste-in. Canonical interactive desk remains at hoopsintel.net

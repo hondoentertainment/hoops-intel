@@ -9,6 +9,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { claudeGenerate } from "./lib/claude-client.mjs";
+import { validateOutput } from "./lib/validate-output.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,38 +19,34 @@ const STATE_PATH = join(CACHE_DIR, "site-review-state.json");
 const REPORT_MD = join(ROOT, "site-review-report.md");
 const META_JSON = join(ROOT, "site-review-meta.json");
 
+import { SITE_REVIEW_PATHS } from "./lib/public-routes.mjs";
+
 const DEFAULT_BASE = "https://hoopsintel.net";
-/** Representative routes aligned with `client/src/lib/siteNav.ts` — adjust when shipping major IA changes */
-const DEFAULT_PATHS = [
-  "/",
-  "/tools",
-  "/archive",
-  "/playoffs",
-  "/injuries",
-  "/performance",
-  "/pulse-history",
-  "/my-pulse",
-  "/print-edition",
-  "/momentum",
-  "/lineups",
-  "/trade-value",
-  "/ask",
-  "/betting-intel",
-  "/community-pulse",
-  "/widgets",
-  "/account",
-  "/pro",
-  "/trivia",
-  "/sitemap.xml",
-];
+/** Production smoke routes — sourced from scripts/lib/public-routes.mjs (+ dynamic series below). */
+const DEFAULT_PATHS = SITE_REVIEW_PATHS;
 
 const FETCH_TIMEOUT_MS = 25_000;
 const MAX_EXCERPT = 3200;
 
 function parsePaths() {
   const raw = process.env.SITE_REVIEW_PATHS?.trim();
-  if (!raw) return DEFAULT_PATHS;
-  return raw.split(",").map((p) => p.trim()).filter(Boolean);
+  if (raw) return raw.split(",").map((p) => p.trim()).filter(Boolean);
+  return resolveReviewPaths();
+}
+
+/** Static manifest + active playoff series pages from playoffData.ts */
+function resolveReviewPaths() {
+  const paths = [...DEFAULT_PATHS];
+  try {
+    const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
+    for (const m of playoffFile.matchAll(/seriesId:\s*"([^"]+)"/g)) {
+      const loc = `/playoffs/series/${m[1]}`;
+      if (!paths.includes(loc)) paths.push(loc);
+    }
+  } catch {
+    /* playoff data optional in local runs */
+  }
+  return paths;
 }
 
 function stripForHash(html, path) {

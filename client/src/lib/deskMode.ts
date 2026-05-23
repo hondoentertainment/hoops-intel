@@ -138,3 +138,18 @@ export function editionContextDeskLabel(ctx: EditionContext = activeEditionConte
       return "Regular season desk";
   }
 }
+
+/** Primary daily generator script for the active calendar window (mirrors season-mode.mjs). */
+export function activeGeneratorScript(date = new Date()): string {
+  switch (clientSeasonMode(date)) {
+    case "draft":
+      return "generate-draft.mjs";
+    case "free-agency":
+    case "summer-league":
+    case "preseason":
+    case "dead-period":
+      return "generate-edition.mjs";
+    default:
+      return "generate-edition.mjs";
+  }
+}

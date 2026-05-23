@@ -64,6 +64,9 @@ jobs:
       - name: Pulse + phase 2 regex schema (pulseData.ts)
         run: node scripts/validate-schema.mjs
 
+      - name: Verify route manifest (sitemap ↔ seoConfig)
+        run: node scripts/verify-route-manifest.mjs
+
       - name: Playbook + generated TS structure
         run: node scripts/validate-generated-structure.mjs
 

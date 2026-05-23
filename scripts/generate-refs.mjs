@@ -4,7 +4,8 @@
 // Run daily after generate-edition.mjs completes
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
-import { readFileSync, writeFileSync } from "fs";
+import { validateOutput } from "./lib/validate-output.mjs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toDisplayDate } from "./lib/daily-dates.mjs";
@@ -108,9 +109,14 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
   // Clean up any markdown fences
   let cleaned = content.replace(/^```(?:typescript|ts)?\n?/gm, "").replace(/```$/gm, "").trim();
 
-  // Write the file
   const outPath = join(ROOT, "client/src/lib/refData.ts");
+  const previous = existsSync(outPath) ? readFileSync(outPath, "utf8") : null;
   writeFileSync(outPath, cleaned + "\n", "utf8");
+  const chk = await validateOutput(outPath);
+  if (!chk.ok) {
+    if (previous) writeFileSync(outPath, previous);
+    throw new Error(`Generated refData.ts failed validation: ${chk.reason}`);
+  }
 
   console.log(`✅ Wrote ${outPath}`);
   console.log(`   Content length: ${cleaned.length} chars`);

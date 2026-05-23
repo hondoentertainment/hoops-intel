@@ -2,7 +2,7 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
-import { bettingDisclaimer, summarizeLineMovementEducation } from "../lib/bettingLineStory";
+import { bettingDisclaimer, summarizeLineMovementEducation, slateLineMovementSummary } from "../lib/bettingLineStory";
 import { makeGameId } from "../lib/gameCenter";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
 
@@ -15,6 +15,10 @@ function lineLadder(opener?: string, closer?: string, current?: string): string 
 
 export default function BettingIntel() {
   const slate = slateMarketVsEditorialStats(gamePreviews);
+  const movement = slateLineMovementSummary(gamePreviews, (away, home) => {
+    const lm = lineMovementForMatchup(away, home);
+    return lm ? { openingSpread: lm.openingSpread, closingSpread: lm.closingSpread } : undefined;
+  });
 
   return (
     <ToolPageLayout subtitle="TOOLS">
@@ -31,6 +35,30 @@ export default function BettingIntel() {
       >
         {bettingDisclaimer()}
       </p>
+
+      {movement.comparable > 0 ? (
+        <div
+          className="text-sm mb-8 max-w-3xl rounded-lg px-4 py-3 leading-relaxed"
+          style={{ border: "1px solid rgba(251,191,36,0.22)", background: "rgba(251,191,36,0.06)", color: "rgba(254,243,199,0.92)" }}
+        >
+          <strong className="text-amber-200">Slate movement:</strong> {movement.moved}/{movement.comparable} matchups moved opener → current (
+          {movement.comparable ? Math.round((movement.moved / movement.comparable) * 100) : 0}%).
+          {movement.rows.filter((r) => r.moved).length > 0 ? (
+            <ul className="mt-2 space-y-1 text-xs mono-data list-disc ml-5">
+              {movement.rows
+                .filter((r) => r.moved)
+                .slice(0, 4)
+                .map((r) => (
+                  <li key={r.matchup}>
+                    {r.matchup}: {r.opener} → {r.current}
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <span className="block mt-1 text-xs">Board held steady overnight — injury or rest news is the main catalyst to watch.</span>
+          )}
+        </div>
+      ) : null}
 
       {slate.comparable > 0 && slate.pct !== null ? (
         <p

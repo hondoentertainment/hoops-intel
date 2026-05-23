@@ -1,6 +1,7 @@
 import { draftData } from "../lib/draftData";
 import {
   activeEditionContext,
+  activeGeneratorScript,
   editionContextDeskLabel,
   isOffseasonDesk,
   offseasonPrimaryCta,
@@ -92,6 +93,9 @@ export default function OffseasonDeskStrip() {
             {topRiser.reason}
           </p>
         ) : null}
+        <p className="text-[10px] mt-4 text-white/30 mono-data">
+          Pipeline: {activeGeneratorScript()} · desk label synced with season-mode
+        </p>
       </div>
     </section>
   );

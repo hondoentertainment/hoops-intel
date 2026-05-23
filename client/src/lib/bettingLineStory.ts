@@ -52,5 +52,46 @@ export function summarizeLineMovementEducation(preview: BettingPreviewSlice): st
 }
 
 export function bettingDisclaimer(): string {
-  return "Gambling regulated by jurisdiction. Hoops Intel shows editorial snapshots and narratives — never bet advice. Bet responsibly.";
+  return "Gambling regulated by jurisdiction. Hoops Intel shows editorial snapshots and narratives — never bet advice. Bet responsibly. If you or someone you know has a gambling problem, call 1-800-GAMBLER (US) or your local helpline.";
+}
+
+export interface SlateMovementRow {
+  matchup: string;
+  opener?: string;
+  closer?: string;
+  current?: string;
+  moved: boolean;
+}
+
+/** Aggregate open→current movement for the nightly slate card grid. */
+export function slateLineMovementSummary(
+  previews: BettingPreviewSlice[],
+  lookup: (away: string, home: string) => { openingSpread?: string; closingSpread?: string } | undefined,
+): { comparable: number; moved: number; rows: SlateMovementRow[] } {
+  const rows: SlateMovementRow[] = [];
+  let comparable = 0;
+  let moved = 0;
+
+  for (const g of previews) {
+    const lm = lookup(g.awayTeam, g.homeTeam);
+    const opener = lm?.openingSpread ?? g.openingSpread?.trim();
+    const current = lm?.closingSpread ?? g.spread;
+    if (!opener || !current) continue;
+    comparable += 1;
+    const didMove = spreadMovedLocal(opener, current);
+    if (didMove) moved += 1;
+    rows.push({
+      matchup: `${g.awayTeam} @ ${g.homeTeam}`,
+      opener,
+      closer: g.spread,
+      current,
+      moved: didMove,
+    });
+  }
+
+  return { comparable, moved, rows };
+}
+
+function spreadMovedLocal(opening: string, closing: string): boolean {
+  return opening.replace(/\s+/g, " ").trim() !== closing.replace(/\s+/g, " ").trim();
 }
