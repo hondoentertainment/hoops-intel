@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 23, 2026
+// Last updated: May 24, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,75 +33,75 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 23, 2026",
-  gameOfTheNight: "OKC-SAS-20260522",
+  date: "May 24, 2026",
+  gameOfTheNight: "NYK-CLE-20260523",
   topClutchPerformer: {
-    player: "Shai Gilgeous-Alexander",
-    team: "OKC",
+    player: "Mikal Bridges",
+    team: "NYK",
     clutchRating: 91,
     description:
-      "SGA orchestrated OKC's series-defining third quarter with surgical precision — a perfect 12-of-12 from the stripe, 12 assists without a turnover, and a +11 that understates how thoroughly he controlled the Frost Bank Center. When San Antonio needed a stop, he found the crack in the defense every time.",
+      "Bridges was a scalpel in a game that demanded a sledgehammer. His 73.3% shooting (11-of-15) dismantled Cleveland's defensive rotations systematically, and his back-breaking 9-0 personal run bridging the third and fourth quarters erased every flicker of a Cavaliers comeback. In a series where the Knicks needed surgical efficiency more than individual heroics, Bridges delivered both.",
   },
   games: [
     {
-      gameId: "OKC-SAS-20260522",
-      teams: { home: "SAS", away: "OKC" },
-      finalScore: { home: 108, away: 123 },
+      gameId: "NYK-CLE-20260523",
+      teams: { home: "CLE", away: "NYK" },
+      finalScore: { home: 108, away: 121 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:41",
+          timestamp: "4:31",
           description:
-            "San Antonio opened with energy on their home floor, riding Wembanyama's early activity — two buckets, a block, and a drawn foul — to build an 8-point cushion. The Frost Bank Center was electric and OKC looked momentarily unsettled, committing back-to-back shot-clock violations.",
-          runScore: "SAS 22–14",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+            "Jalen Brunson attacks a sagging Cavaliers zone with three consecutive mid-range pull-ups, capping a 12-2 Knicks opening run that silenced Rocket Arena inside the first four minutes. Cleveland's pick-and-roll coverage looked lost, and New York punished every seam.",
+          runScore: "12-2 NYK",
+          momentum: "away",
+          keyPlayer: "Jalen Brunson",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "6:12",
+          timestamp: "7:14",
           description:
-            "SGA took over the second quarter with back-to-back pull-up midrangers and a no-look dime to Jaylin Williams in the corner for three, erasing the Spurs' lead and flipping the game. OKC closed the half on a 16-6 run to take a 5-point lead into the locker room, a seismic shift that stole the crowd's voice entirely.",
-          runScore: "OKC 55–50",
-          momentum: "away",
-          keyPlayer: "Shai Gilgeous-Alexander",
+            "Donovan Mitchell ignites a Cleveland answer with back-to-back pull-up threes and an and-one drive, fueling a 14-4 Cavaliers run that knotted the game at 38. The crowd roared back to life and it briefly looked like the home team had found a formula to disrupt New York's rhythm.",
+          runScore: "14-4 CLE",
+          momentum: "home",
+          keyPlayer: "Donovan Mitchell",
           impact: "significant",
         },
         {
-          quarter: "Q3",
-          timestamp: "8:55",
+          quarter: "Q2",
+          timestamp: "1:58",
           description:
-            "The Thunder came out of halftime as if they had spent the break watching San Antonio's weaknesses on a loop. Jared McCain scored 11 points in the first four minutes of the third — two threes, a floater, and a thunderous put-back — while Jaylin Williams dropped in three consecutive triples from the wing. OKC's bench outscored San Antonio's entire roster in the quarter, 24-11.",
-          runScore: "OKC 92–71",
+            "Landry Shamet drills consecutive corner threes off pinpoint Brunson kick-outs, and OG Anunoby converts a steal into a transition slam to push the Knicks back ahead by 11 at the half. Shamet's 10-point second-quarter burst off the bench was a gut punch Cleveland never fully recovered from.",
+          runScore: "17-4 NYK",
           momentum: "away",
-          keyPlayer: "Jared McCain",
+          keyPlayer: "Landry Shamet",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "1:18",
+          timestamp: "5:47",
           description:
-            "Alex Caruso's two consecutive steals — one converted into a fast-break layup, one kicking out to SGA for a free-throw-line jumper — put an exclamation mark on OKC's 37-point quarter and officially turned a competitive Western Conference Finals game into a coronation. The Spurs bench sat slumped, the arena murmuring disbelief.",
-          runScore: "OKC 97–71",
-          momentum: "away",
-          keyPlayer: "Alex Caruso",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "9:02",
-          description:
-            "San Antonio's reserves mounted a brief face-saving run — seven unanswered points capped by a Castle drive — but OKC's starters returned within 90 seconds, promptly restoring a 20-plus margin. The Spurs never threatened and the game settled into garbage time, with both benches clearing in the final two minutes.",
-          runScore: "SAS 88–108",
+            "Evan Mobley strings together six straight points — a mid-post jumper, an offensive rebound putback, and a floater — trimming the deficit to 7 and forcing a Tom Thibodeau timeout. For two possessions, Cleveland's length problem felt solvable, and the building dared to believe.",
+          runScore: "8-2 CLE",
           momentum: "home",
-          keyPlayer: "Stephon Castle",
+          keyPlayer: "Evan Mobley",
           impact: "notable",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "2:09",
+          description:
+            "Mikal Bridges answers the Mobley surge with a personal 9-0 run — a catch-and-shoot three, a pull-up two, a backdoor layup off a perfect Brunson lob — extending the lead back to 18 and draining every ounce of oxygen from the arena. The Cavaliers never got closer than 11 points the rest of the night.",
+          runScore: "9-0 NYK",
+          momentum: "away",
+          keyPlayer: "Mikal Bridges",
+          impact: "game-changing",
         },
       ],
       clutchPlays: [],
       narrative:
-        "This was a game that felt even for exactly one half before Oklahoma City detonated the most punishing third quarter of these playoffs — 37 points, a 21-point swing, and a series of individual performances that will linger in the Spurs' film sessions for days. SGA was the composer, McCain and Williams were the hammers, and Caruso was the exclamation point. San Antonio showed flashes — Wembanyama's 26 points were elite, and Castle's grit at the line kept the final margin from being historic — but Fox's limited mobility exposed just how much the Spurs rely on his two-way burst to stabilize them in critical stretches. OKC now holds a 2-1 series lead with a road win in hand, and the Thunder look every bit like the team that won 64 games: deep, disciplined, and absolutely merciless once they smell blood.",
+        "This was not a game decided by desperation heaves or last-second stops — it was decided by the Knicks' relentless, suffocating competence. New York executed Tom Thibodeau's game plan with the cold precision of a team that has no interest in allowing drama to enter the building, building their lead methodically through surgical ball movement and ferocious defensive rotations. Mikal Bridges was the quiet executioner, collecting his 22 points on barely 15 field-goal attempts while Cleveland scrambled to find an answer that simply did not exist. Donovan Mitchell's minus-22 encapsulates Cleveland's series in a single number — the Cavaliers' best player has been swallowed whole by a defense that has scouted every hesitation, every stepback angle, every isolation tendency. The Knicks stand one win from the NBA Finals, and nothing about Game 3 suggests Game 4 will be any different.",
     },
   ],
 };
