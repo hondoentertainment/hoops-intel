@@ -79,14 +79,13 @@ jobs:
       - name: Check for cache changes
         id: changes
         run: |
-          git add -N .espn-cache/ .daily-data/ 2>/dev/null || true
-          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet -- client/src/lib/lineMovementData.ts && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit ESPN cache update
+      - name: Commit line movement update
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add .espn-cache/ .daily-data/ client/src/lib/lineMovementData.ts
+          git add client/src/lib/lineMovementData.ts
           git commit -m "Scores refresh: $(date +'%B %-d, %Y %l:%M %p ET' --date='TZ="America/New_York" now')"
           git push origin ${{ github.ref_name }}

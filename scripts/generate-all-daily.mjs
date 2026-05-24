@@ -14,6 +14,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
+function revertOutput(relPath) {
+  try {
+    execSync(`git checkout -- "${relPath}"`, { cwd: ROOT, stdio: "pipe" });
+    console.warn(`   ↩ Reverted ${relPath} to last committed version`);
+  } catch {
+    console.warn(`   ↩ Could not revert ${relPath} (not tracked or no prior version)`);
+  }
+}
+
 // Scripts marked critical=true will abort the run (exit 1) if they fail.
 // Secondary scripts (critical=false) produce exit code 2 (partial failure).
 //
@@ -107,6 +116,7 @@ async function main() {
         const check = await validateOutput(join(ROOT, output));
         if (!check.ok) {
           const reason = `invalid output (${check.reason})`;
+          revertOutput(output);
           results.push({ name, status: "failed", error: reason });
           failed++;
           if (critical) criticalFailed = true;
