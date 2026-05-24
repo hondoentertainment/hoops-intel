@@ -5,6 +5,8 @@ import {
   pulseIndex,
   tickerItems,
   gamePreviews,
+  injuryUpdates,
+  fantasyAlerts,
 } from "../lib/pulseData";
 import { isPlayoffsActive, isFinalsActive, finalistTeams, playoffSeries } from "../lib/playoffData";
 import { lineMovementRows } from "../lib/lineMovementData";
@@ -59,6 +61,15 @@ export default function PrintEdition() {
             <div className="mt-8 space-y-4">
               {narrative.body.slice(0, 2).map((paragraph: string, i: number) => (
                 <p key={i} className="text-sm leading-relaxed text-slate-700">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ) : null}
+          {Array.isArray(narrative?.body) && narrative.body.length > 2 ? (
+            <div className="mt-6 space-y-4 print-page-break">
+              {narrative.body.slice(2).map((paragraph: string, i: number) => (
+                <p key={`body-${i}`} className="text-sm leading-relaxed text-slate-700">
                   {paragraph}
                 </p>
               ))}
@@ -120,6 +131,36 @@ export default function PrintEdition() {
                 })}
               </tbody>
             </table>
+          </section>
+        )}
+
+        {injuryUpdates.length > 0 && (
+          <section className="mb-10 print-page-break">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Injury wire</h2>
+            <ul className="space-y-2 text-xs text-slate-700">
+              {injuryUpdates.slice(0, 6).map((u, i) => (
+                <li key={i}>
+                  <strong>
+                    {u.player} ({u.team})
+                  </strong>
+                  {" — "}
+                  {u.status}: {u.injury}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {fantasyAlerts.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Fantasy desk</h2>
+            <ul className="space-y-2 text-xs text-slate-700">
+              {fantasyAlerts.slice(0, 5).map((a, i) => (
+                <li key={i}>
+                  <strong>{a.player}</strong> ({a.action}) — {a.reason}
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 

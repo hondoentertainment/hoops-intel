@@ -109,12 +109,14 @@ function truncate(text, max) {
 
 function buildTwitterThread(data) {
   const { pulseEdition, narrative, pulseIndex, tickerItems, playoffMovers } = data;
+  const ctx = pulseEdition.editionContext ?? "regular";
+  const finalsTag = ctx === "finals" ? " 🏆 NBA Finals" : ctx === "playoffs" ? " 🏀 Playoffs" : "";
 
   // Tweet 1: Edition headline + top story
   const headline = narrative.headline.split(" \u2014 ")[0]; // first headline segment
   const hashTags = " #NBA #HoopsIntel";
   const ball = " \ud83c\udfc0";
-  const t1Suffix = ball + hashTags;
+  const t1Suffix = ball + finalsTag + hashTags;
   const tweet1 = truncate(headline, 280 - t1Suffix.length) + t1Suffix;
 
   // Tweet 2: Pulse Index top 3
@@ -262,6 +264,8 @@ async function postToBluesky(text) {
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 async function main() {
+  const dryRun = process.argv.includes("--dry-run") || process.env.SOCIAL_DRY_RUN === "1";
+
   console.log("[social] Reading pulseData.ts...");
   const data = parsePulseData();
   console.log(`[social] Edition: ${data.pulseEdition.edition} \u2014 ${data.pulseEdition.date}`);
@@ -273,6 +277,11 @@ async function main() {
   twitterThread.forEach((t, i) => console.log(`Tweet ${i + 1} (${t.length} chars):\n${t}\n`));
   console.log("--- Bluesky Post ---");
   console.log(`(${bskyPost.length} chars):\n${bskyPost}\n`);
+
+  if (dryRun) {
+    console.log("[social] Dry run — skipping platform posts.");
+    return;
+  }
 
   const errors = [];
 

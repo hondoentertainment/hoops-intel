@@ -117,6 +117,7 @@ export default function EmbedPublisherStats() {
   const [series, setSeries] = useState<TimeseriesRow[]>([]);
   const [flags, setFlags] = useState<FetchFlags>({});
   const [hosts, setHosts] = useState<{ host: string; loads: number }[]>([]);
+  const [hostQuery, setHostQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -190,7 +191,12 @@ export default function EmbedPublisherStats() {
     >;
   }, [chronSeries]);
 
-  const displayHosts = useMemo(() => hosts.slice(0, 15), [hosts]);
+  const displayHosts = useMemo(() => {
+    const q = hostQuery.trim().toLowerCase();
+    const list = hosts.slice(0, 50);
+    if (!q) return list.slice(0, 15);
+    return list.filter((h) => h.host.toLowerCase().includes(q)).slice(0, 20);
+  }, [hosts, hostQuery]);
   const hostTotal = useMemo(() => hosts.reduce((n, h) => n + h.loads, 0), [hosts]);
 
   const totalLoads = useMemo(() => {
@@ -438,10 +444,22 @@ export default function EmbedPublisherStats() {
               border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="px-5 py-4 flex flex-wrap items-center justify-between gap-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
               <span className="text-xs font-semibold uppercase tracking-wider text-white/40">
                 Referrer / host breakdown ({days}d)
               </span>
+              <input
+                type="search"
+                value={hostQuery}
+                onChange={(e) => setHostQuery(e.target.value)}
+                placeholder="Filter hosts…"
+                className="px-3 py-1.5 rounded-lg text-xs max-w-[200px]"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  color: "rgba(255,255,255,0.75)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              />
             </div>
             {flags.domainsUnavailable ? (
               <div className="px-5 py-10 text-center text-xs text-amber-200/80">

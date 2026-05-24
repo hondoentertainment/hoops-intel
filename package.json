@@ -37,6 +37,7 @@
     "smoke:push": "node scripts/smoke-push.mjs",
     "site-review": "node scripts/site-review-agent.mjs",
     "social": "node scripts/post-social.mjs",
+    "social:preview": "node scripts/post-social.mjs --dry-run",
     "digest": "node scripts/send-digest.mjs",
     "digest:preview": "node scripts/send-digest.mjs --preview",
     "settle:picks": "node scripts/settle-picks.mjs",

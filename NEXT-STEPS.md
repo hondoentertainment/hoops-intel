@@ -1,33 +1,29 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: May 23, 2026 (post next-steps implementation batch)_
+_Last revised: May 23, 2026 (post ops + playoff QA batch)_
 
 ### Deploy & reliability
 
 | Phase | Action | Status |
 |-------|--------|--------|
-| P0 | Home crash fix (`nextPlayoffGameAcross` + `deskMode.ts`) | **Done** |
-| P1 | Single prod project: **`hoops-intel`** | **Done** — CLI linked; use `npx vercel deploy --prod` on `hoops-intel` |
-| P2 | Desk/offseason WIP batch | **Done** |
-| P3 | Route manifest + site-review expansion | **Done** — `scripts/lib/public-routes.mjs`, CI `verify-route-manifest.mjs` |
-| P3 | Sitemap SEO tuning (player weekly, print/widgets daily, `/embed-stats`) | **Done** |
-| P3 | `generate-refs.mjs` parse guard before commit | **Done** |
-| P4 | `SectionErrorBoundary` on 60-second read | **Done** |
-| P4 | Post-deploy smoke | Run `npm run smoke:deploy` after each prod push |
+| P0–P4 | CI, deskMode, route manifest, sitemap, refData guard | **Done** |
+| P5 | Expanded deployment smoke (series pages + key tools) | **Done** |
+| P5 | Finals Command Mode vitest + print injury/fantasy sections | **Done** |
+| P5 | Social bot dry-run (`npm run social:preview`) | **Done** |
+| P5 | Embed analytics host filter on `/embed-stats` | **Done** |
+| Post-deploy | `npm run smoke:deploy` after each prod push | **Ongoing ritual** |
 
-**DNS (manual — still required):** `hoopsintel.net` nameservers point to GoDaddy. Switch to Vercel DNS or match A/CNAME in Vercel Domains panel.
+**DNS:** Production deploys alias to `hoopsintel.net` — confirm registrar records stay synced with Vercel Domains panel.
 
-### P0 — Ops (manual: Supabase + Vercel/GitHub secrets)
+### P0 — Ops (manual)
 
 | Step | Action | Status |
 |------|--------|--------|
-| Migrations | Actions → **Supabase migrations** — `20260519` … `20260521` | **Run in dashboard** |
-| Secrets | Stripe, VAPID, `PUSH_API_*`, Supabase, Resend, `ODDS_API_KEY`, admin secrets | **Set in Vercel + GitHub** |
-| Preflight | `vercel env pull` → `npm run ops:preflight:strict` | Verify before monetization flip |
+| Migrations | Supabase `20260519` … `20260521` | **Run in dashboard** |
+| Secrets | Stripe, VAPID, Supabase, Resend, push, odds keys | **Set in Vercel + GitHub** |
+| Preflight | `vercel env pull` → `npm run ops:preflight:strict` | Before monetization flip |
 | Push smoke | `npm run smoke:push` | After secrets live |
-| Decommission | Archive Vercel projects `hoops-intel-1`, `hoops-intel-2` | Manual in Vercel dashboard |
-
-Quick checklist:
+| Decommission | Archive `hoops-intel-1`, `hoops-intel-2` | Vercel dashboard |
 
 ```bash
 vercel env pull .env.production.local
@@ -37,27 +33,12 @@ npm run smoke:deploy
 npx vercel deploy --prod --yes
 ```
 
-### Shipped (May 22–23 + next-steps batch)
-
-| Area | Status |
-|------|--------|
-| Live Game Desk, Finals Command Mode, series timeline hub | Shipped |
-| Pick'Em leaderboard, Beat the Desk, badges v2, betting v2 | Shipped |
-| Push tip-off / clincher / rival automation | Shipped |
-| Creator queue admin + CSV export | Shipped |
-| Embed publisher analytics (`/embed-stats`, `/widgets/analytics`) | Shipped |
-| Fantasy-only push preset on Account | Shipped |
-| Offseason desk + season-mode generator hint | Shipped |
-| Betting slate movement summary + RG disclaimer | Shipped |
-| Print edition: 60-second read, page breaks, disclaimer | Shipped |
-| Unified public route manifest + expanded site review | Shipped |
-
 ### P1 — Remaining (product)
 
-- SSR/SEO migration only if Lighthouse regresses
-- Embed analytics: first-class filtered dashboard polish (APIs exist)
+- SSR/SEO only if Lighthouse regresses
 - Richer multi-page PDF export beyond print sheet
-- Social distribution bots (Q3 roadmap)
+- Live social posting once Twitter/Bluesky credentials are in GitHub secrets
+- Merge Dependabot PRs (Vitest, Anthropic SDK, Vite/React)
 
 ### Non-goals
 

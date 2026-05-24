@@ -1,9 +1,28 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const base = (process.env.SMOKE_BASE_URL || process.argv[2] || "https://hoopsintel.net").replace(/\/+$/, "");
 
-const checks = [
+function playoffSeriesPaths() {
+  try {
+    const raw = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
+    return [...raw.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => `/playoffs/series/${m[1]}`);
+  } catch {
+    return [];
+  }
+}
+
+const staticChecks = [
   { path: "/", type: "html" },
   { path: "/playoffs", type: "html" },
+  { path: "/pick-em", type: "html" },
+  { path: "/betting-intel", type: "html" },
+  { path: "/embed-stats", type: "html" },
+  { path: "/print-edition", type: "html" },
+  { path: "/widgets", type: "html" },
   { path: "/sitemap.xml", type: "xml" },
   { path: "/feed.xml", type: "xml", optional: true },
   { path: "/robots.txt", type: "text" },
@@ -11,6 +30,12 @@ const checks = [
   { path: "/api/player-intel", type: "json" },
   { path: "/api/team-intel?abbr=okc", type: "json" },
   { path: "/api/game-center", type: "json" },
+  { path: "/api/embed-analytics-summary?days=7", type: "json", optional: true },
+];
+
+const checks = [
+  ...staticChecks,
+  ...playoffSeriesPaths().map((path) => ({ path, type: "html" })),
 ];
 
 async function check({ path, type, optional }) {
@@ -55,4 +80,4 @@ if (failed) {
   console.error(`[smoke] ${failed} check(s) failed for ${base}`);
   process.exit(1);
 }
-console.log(`[smoke] all checks passed for ${base}`);
+console.log(`[smoke] all ${checks.length} checks passed for ${base}`);
