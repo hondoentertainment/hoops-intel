@@ -36,11 +36,10 @@ function parseTipDateTime(game) {
   return new Date(Date.UTC(y, mo, d, hr + ET_OFFSET_HOURS, min, 0));
 }
 
-export function tipWithinHours(game, hours = 2) {
+export function tipWithinHours(game, hours = 2, nowMs = Date.now()) {
   const tip = parseTipDateTime(game);
   if (!tip) return false;
-  const now = Date.now();
-  const diffMs = tip.getTime() - now;
+  const diffMs = tip.getTime() - nowMs;
   const windowMs = hours * 3600 * 1000;
   return diffMs > 0 && diffMs <= windowMs;
 }
