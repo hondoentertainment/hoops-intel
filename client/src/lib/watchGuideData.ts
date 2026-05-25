@@ -70,7 +70,8 @@ export const watchGuideData: WatchGuideData = {
       starPower: 9,
       playoffImplications: 10,
       rivalry: 8,
-      storyline: "New York arrives in Cleveland with a chance to sweep into the NBA Finals — one win away from ending the Cavaliers' season in four games. Cleveland's back is against the wall at home, desperate to extend their postseason, while the Knicks are playing with the quiet confidence of a team that believes this is their year.",
+      storyline:
+        "New York arrives in Cleveland with a 3-0 series lead and the chance to sweep into the NBA Finals tonight — the Cavaliers must win or go home, making Rocket Arena an absolute pressure cooker. Can Cleveland force a Game 5 miracle, or do the Knicks punch their Finals ticket on the road?",
       keyMatchup: "Jalen Brunson vs. Donovan Mitchell",
       mustWatch: true,
       factors: {
@@ -81,20 +82,24 @@ export const watchGuideData: WatchGuideData = {
         storyline: 19,
       },
       watchScore: 94,
-      headline: "Knicks Eye the Sweep — New York One Win From the Finals as Cleveland Fights for Survival",
+      headline: "Knicks One Win Away — Cleveland's Season Ends Tonight or They Fight Back",
     },
   ],
   topPick: {
     gameIndex: 0,
-    reason: "This is the only game on the slate and it doesn't need company — a potential series-clinching ECF Game 4 with New York one win from the NBA Finals and Cleveland playing its season, on home floor, in front of a desperate crowd. Brunson vs. Mitchell in a closeout atmosphere is must-see playoff basketball.",
+    reason:
+      "This is must-see playoff television: the Knicks are one win from the NBA Finals, Cleveland is facing elimination at home, and the Brunson-Mitchell duel promises to be electric from tip-off. With the WCF already even at 2-2 after San Antonio's stunner, the East needs to send its own finalist — and tonight we find out who it is.",
   },
   sleeper: {
     gameIndex: 0,
-    reason: "With the WCF freshly even at 2-2 after San Antonio's stunning blowout of OKC, the stakes in the East feel even larger tonight — if New York closes it out, the Knicks will have had days of rest to prep for whoever emerges from a suddenly wide-open Western Conference Finals. The deeper storyline running beneath this game may be more layered than the scoreboard suggests.",
+    reason:
+      "With only one game on the slate there is no traditional sleeper, but do not underestimate Cleveland's desperation factor — elimination games at home have a way of producing the kind of gritty, chaotic basketball that outperforms every expectation, and the Cavs are too talented to go quietly.",
   },
   skipIt: {
     gameIndex: 0,
-    reason: "There is no skipping tonight — it's the only game on the board and it's a potential conference finals sweep. If you only watch one thing all week, make it this.",
+    reason:
+      "There is no game to skip tonight — one ECF elimination showdown is the entire slate, and it scores a 94. Clear your schedule.",
   },
-  nightOverview: "One game, one massive stage: the New York Knicks visit Cleveland in ECF Game 4 with a chance to sweep into the NBA Finals. After San Antonio leveled the WCF at 2-2 in stunning fashion last night, the Eastern Conference has an opportunity to crown its finalist tonight — and Madison Square Garden's faithful will be watching every possession from afar.",
+  nightOverview:
+    "Tonight's NBA slate is a single-game playoff spotlight: the New York Knicks travel to Rocket Arena for ECF Game 4, holding a 3-0 series lead and chasing a sweep into the NBA Finals. Cleveland, backed by a desperate home crowd, must win or watch their season end — setting the stage for the most high-stakes Monday night basketball of the spring. After San Antonio leveled the WCF at 2-2 with a dominant Game 4 blowout yesterday, the basketball world now turns its full attention to finding out which Eastern team will be waiting for the Spurs or Thunder in the Finals.",
 };
