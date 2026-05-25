@@ -882,4 +882,57 @@ export const tradeSimData: TradeSimData = {
         offense: -7,
         defense: +5,
         chemistry: +1,
-        future: +9
+        future: +9,
+      },
+      team2Impact: {
+        offense: +9,
+        defense: +2,
+        chemistry: +3,
+        future: -6,
+      },
+      winProjectionChange: {
+        team1: "-10.0 wins",
+        team2: "+7.0 wins",
+      },
+    },
+  ],
+
+  hottest: [
+    {
+      player: "Giannis Antetokounmpo",
+      team: "MIL",
+      reason:
+        "Milwaukee's early playoff exit has accelerated trade speculation around Giannis, with the Lakers and multiple cap-space teams monitoring whether the Bucks will entertain a franchise-reset package before his $55.8M extension years become immovable.",
+    },
+    {
+      player: "Kevin Durant",
+      team: "PHX",
+      reason:
+        "Phoenix's lottery positioning and Beal contract fallout have made Durant the league's most discussed summer blockbuster chip, with Boston and several West contenders exploring multi-team frameworks to absorb his remaining $103M.",
+    },
+    {
+      player: "Devin Booker",
+      team: "PHX",
+      reason:
+        "Booker remains the cleanest star-level return Phoenix could extract in a teardown, and OKC's rejected overtures this week only underscored how many contenders view him as the missing secondary creator in a Finals build.",
+    },
+    {
+      player: "Trae Young",
+      team: "ATL",
+      reason:
+        "Atlanta's play-in ceiling has reopened Trae trade conversations, with Cleveland and other East teams weighing whether his shot creation is worth the defensive and usage compromises that come with building around him.",
+    },
+    {
+      player: "Stephen Curry",
+      team: "GSW",
+      reason:
+        "Curry's final-contract window and Golden State's play-in miss have fueled blockbuster chatter linking him to Memphis and other teams willing to mortgage young assets for one last championship push with the greatest shooter ever.",
+    },
+    {
+      player: "Darius Garland",
+      team: "CLE",
+      reason:
+        "Garland's reduced playoff role alongside Mitchell and Harden has made him Cleveland's most logical summer trade candidate, with multiple teams expecting the Cavaliers to consolidate backcourt minutes before Mobley's max extension.",
+    },
+  ],
+};
