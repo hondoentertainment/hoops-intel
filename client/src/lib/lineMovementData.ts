@@ -8,14 +8,14 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "May 24, 2026";
+export const lineMovementEditionDate = "May 25, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "OKC",
-    homeTeam: "SAS",
-    openingSpread: "SAS -2.5",
-    closingSpread: "SAS -2.5",
-    updatedAt: "2026-05-25T09:32:59.737Z",
+    awayTeam: "NYK",
+    homeTeam: "CLE",
+    openingSpread: "NYK -3.0",
+    closingSpread: "NYK -3.5",
+    updatedAt: "2026-05-25T14:18:46.733Z",
   }
 ];

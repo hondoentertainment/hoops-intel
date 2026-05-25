@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: May 24, 2026
+// Last updated: May 25, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,75 +33,68 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "May 24, 2026",
-  gameOfTheNight: "NYK-CLE-20260523",
+  date: "May 25, 2026",
+  gameOfTheNight: "OKC-SAS-20260524",
   topClutchPerformer: {
-    player: "Mikal Bridges",
-    team: "NYK",
-    clutchRating: 91,
-    description:
-      "Bridges was a scalpel in a game that demanded a sledgehammer. His 73.3% shooting (11-of-15) dismantled Cleveland's defensive rotations systematically, and his back-breaking 9-0 personal run bridging the third and fourth quarters erased every flicker of a Cavaliers comeback. In a series where the Knicks needed surgical efficiency more than individual heroics, Bridges delivered both.",
+    player: "Victor Wembanyama",
+    team: "SAS",
+    clutchRating: 94,
+    description: "Wembanyama didn't just play well — he suffocated a Thunder offense that had been on a two-game tear, posting 31 points, 18 rebounds, and 5 blocks while finishing a dominant +24. Every time Oklahoma City sniffed a run, Wembanyama was the wall that ended it.",
   },
   games: [
     {
-      gameId: "NYK-CLE-20260523",
-      teams: { home: "CLE", away: "NYK" },
-      finalScore: { home: 108, away: 121 },
+      gameId: "OKC-SAS-20260524",
+      teams: { home: "SAS", away: "OKC" },
+      finalScore: { home: 103, away: 82 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "4:31",
-          description:
-            "Jalen Brunson attacks a sagging Cavaliers zone with three consecutive mid-range pull-ups, capping a 12-2 Knicks opening run that silenced Rocket Arena inside the first four minutes. Cleveland's pick-and-roll coverage looked lost, and New York punished every seam.",
-          runScore: "12-2 NYK",
-          momentum: "away",
-          keyPlayer: "Jalen Brunson",
-          impact: "significant",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "7:14",
-          description:
-            "Donovan Mitchell ignites a Cleveland answer with back-to-back pull-up threes and an and-one drive, fueling a 14-4 Cavaliers run that knotted the game at 38. The crowd roared back to life and it briefly looked like the home team had found a formula to disrupt New York's rhythm.",
-          runScore: "14-4 CLE",
+          timestamp: "4:32",
+          description: "Wembanyama opens the tone with back-to-back blocks on SGA — once at the rim, once from the mid-post — triggering a San Antonio fast break that pushes the lead to 9. The Frost Bank Center erupts and OKC's offense goes visibly hesitant.",
+          runScore: "14-5",
           momentum: "home",
-          keyPlayer: "Donovan Mitchell",
+          keyPlayer: "Victor Wembanyama",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "1:58",
-          description:
-            "Landry Shamet drills consecutive corner threes off pinpoint Brunson kick-outs, and OG Anunoby converts a steal into a transition slam to push the Knicks back ahead by 11 at the half. Shamet's 10-point second-quarter burst off the bench was a gut punch Cleveland never fully recovered from.",
-          runScore: "17-4 NYK",
+          timestamp: "7:15",
+          description: "SGA strings together seven consecutive points — a pull-up three, a floater, and a pair of free throws — to cut the San Antonio lead to four. Oklahoma City senses a lifeline as the Spurs' switching scheme briefly loses its shape.",
+          runScore: "7-0",
           momentum: "away",
-          keyPlayer: "Landry Shamet",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "significant",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "1:48",
+          description: "Stephon Castle answers OKC's mini-run with an aggressive baseline drive, draws the foul, and converts the and-one. De'Aaron Fox follows with a pull-up jumper on the very next possession. The Spurs close the half on an 11-2 run, going into the break up 57-40 and functionally ending the game as a contest.",
+          runScore: "11-2",
+          momentum: "home",
+          keyPlayer: "Stephon Castle",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "5:47",
-          description:
-            "Evan Mobley strings together six straight points — a mid-post jumper, an offensive rebound putback, and a floater — trimming the deficit to 7 and forcing a Tom Thibodeau timeout. For two possessions, Cleveland's length problem felt solvable, and the building dared to believe.",
-          runScore: "8-2 CLE",
+          timestamp: "5:20",
+          description: "Any residual Thunder hope dissolves when Wembanyama catches a lob, draws the foul mid-air, and completes the three-point play to push the lead to 22. The San Antonio bench erupts. Oklahoma City calls timeout but the body language tells the whole story — heads down, no fire.",
+          runScore: "9-2",
           momentum: "home",
-          keyPlayer: "Evan Mobley",
+          keyPlayer: "Victor Wembanyama",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "8:05",
+          description: "With the outcome decided, San Antonio's reserves maintain the margin. OKC's bench unit briefly trims the deficit to 17 with a flurry of threes, but the Spurs' starters return briefly to re-establish the final margin and close out with composure.",
+          runScore: "6-3",
+          momentum: "home",
+          keyPlayer: "De'Aaron Fox",
           impact: "notable",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "2:09",
-          description:
-            "Mikal Bridges answers the Mobley surge with a personal 9-0 run — a catch-and-shoot three, a pull-up two, a backdoor layup off a perfect Brunson lob — extending the lead back to 18 and draining every ounce of oxygen from the arena. The Cavaliers never got closer than 11 points the rest of the night.",
-          runScore: "9-0 NYK",
-          momentum: "away",
-          keyPlayer: "Mikal Bridges",
-          impact: "game-changing",
         },
       ],
       clutchPlays: [],
-      narrative:
-        "This was not a game decided by desperation heaves or last-second stops — it was decided by the Knicks' relentless, suffocating competence. New York executed Tom Thibodeau's game plan with the cold precision of a team that has no interest in allowing drama to enter the building, building their lead methodically through surgical ball movement and ferocious defensive rotations. Mikal Bridges was the quiet executioner, collecting his 22 points on barely 15 field-goal attempts while Cleveland scrambled to find an answer that simply did not exist. Donovan Mitchell's minus-22 encapsulates Cleveland's series in a single number — the Cavaliers' best player has been swallowed whole by a defense that has scouted every hesitation, every stepback angle, every isolation tendency. The Knicks stand one win from the NBA Finals, and nothing about Game 3 suggests Game 4 will be any different.",
+      narrative: "This was a statement game that rewrote the entire series narrative in 48 minutes. San Antonio didn't just win — they dismantled the Thunder's offensive identity, holding them to 82 points, their lowest output of the 2026 postseason. Wembanyama was the gravitational center of everything: his blocks weren't simply defensive plays, they were psychological events that froze OKC's decision-making every time they approached the paint. Castle's redemption arc after his 1-of-8 nightmare in Game 3 added a crucial subplot, as his aggression and foul-drawing loosened the defense that Fox then exploited with pull-up precision. Without Jalen Williams as a secondary creator, SGA had nowhere to go when the Spurs' switching scheme closed every angle — and this Spurs team had no mercy in exploiting it. The Western Conference Finals is now a best-of-three, and suddenly it's Oklahoma City with the questions to answer.",
     },
   ],
 };

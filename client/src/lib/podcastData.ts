@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 21, 2026
+// Last updated: May 25, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,156 +22,157 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 21, 2026",
+  date: "May 25, 2026",
 
   episodeTitle:
-    "SGA Answers the Bell · Seven in Double Figures · Jalen Williams Changes Everything",
+    "Wemby Wakes Up, the WCF Is Alive, and New York Is One Win From the Finals — Memorial Day NBA",
 
   coldOpen:
-    "After Game 1, people were writing Shai Gilgeous-Alexander off. Eight for twenty-four. Wembanyama in his head. The Thunder on the ropes. And then last night happened. Thirty points. Nine assists. Plus-fourteen. A mid-range clinic so precise, so deliberate, so completely different from Game 1 that it looked like a different player wearing the same jersey. Oklahoma City wins one twenty-two to one thirteen. The Western Conference Finals is tied at one. But here is the thing — the biggest story in Oklahoma City last night wasn't SGA. It was a guy who played seven minutes. Seven. Minutes. Welcome to Hoops Intel. Let's get into it.",
+    "Twenty-one points. That is the margin by which San Antonio dismantled the best team in the NBA last night. Oklahoma City — sixty-four wins, the top seed in the West, the team everyone had penciled into the Finals — came into the Frost Bank Center and got outplayed in every single category for forty-eight minutes straight. Victor Wembanyama had THIRTY-ONE points, EIGHTEEN rebounds, and FIVE blocks. After a four-rebound Game Three that had all of San Antonio holding its breath, Wemby came back out and reminded the basketball world exactly what he is. The Western Conference Finals is tied two-two. It is a best-of-three with the NBA Finals on the line. And tonight — TONIGHT — the New York Knicks walk into Cleveland with a chance to end a twenty-seven-year drought and sweep into the NBA Finals. Happy Memorial Day. Welcome to Hoops Intel.",
 
   rundown: [
     {
-      topic: "SGA's 30-Point Redemption and the WCF Reset",
+      topic:
+        "San Antonio Stuns OKC 103-82 — Wembanyama Delivers a Series-Saving Performance to Even the WCF at 2-2",
       segment: "opener",
-      duration: "7 min",
+      duration: "8 minutes",
       keyStats: [
-        "SGA: 30 PTS, 9 AST, 4 REB, 2 BLK, 2 STL, 12-24 FG, +14 (WCF G2)",
-        "SGA went 8-for-24 in Game 1 — his worst shooting game of the 2026 playoffs",
-        "OKC won 122-113 — series now tied 1-1",
-        "SGA controlled Q3 as OKC outscored SAS by 12 in the period",
-        "He abandoned rim pressure vs. Wembanyama entirely — lived at 15 feet and in floater range",
-        "Seven Thunder players scored in double figures: SGA 30, Caruso 17, Holmgren 13, McCain 12, Wallace 12, Hartenstein 10, A. Mitchell 10",
+        "Wembanyama: 31 PTS · 18 REB · 5 BLK · +24 in 21-point win",
+        "OKC held to 82 points — lowest postseason total of the entire 2026 season",
+        "San Antonio won by 21 after losing Game 3 by 15 — a 36-point swing in 48 hours",
+        "Stephon Castle bounced back from 1-of-8 in Game 3 with an aggressive, foul-drawing performance",
+        "De'Aaron Fox noticeably sharper in Game 4 — second game back on the ankle",
+        "WCF is now a best-of-three: Game 5 Tuesday at San Antonio, then Paycom Center if necessary"
       ],
       debateAngle:
-        "Is SGA's Game 2 adaptation — completely restructuring his attack against Wembanyama in 48 hours — the most impressive in-series adjustment by a star player we have seen in this postseason? Or does it actually expose something about his ceiling: that he needs a safety valve game plan and can't simply impose his will against elite shot-blockers?",
+        "Is Wembanyama's Game 4 the single greatest individual performance of the 2026 postseason — and does one historic night mean San Antonio is now the favorite to win the WCF, or does OKC's talent ceiling still make them the team to beat in a Game 5 environment?",
       suggestedQuote:
-        "He didn't just bounce back — he solved a chess problem at thirty thousand feet. Wembanyama took away the rim in Game 1 and SGA said, fine, I'll play an entirely different game. That is not stubbornness. That is elite adaptability. The back-to-back MVP just looked like the best player alive again.",
+        "Look, after four rebounds in Game Three, everyone in San Antonio was asking whether the moment had gotten too big for Wemby. And then he goes out and posts eighteen rebounds and five blocks in a twenty-one-point win. That is not a response — that is a statement. That is a franchise player telling an entire city: I heard you, and here is my answer.",
       relevantPlayers: [
-        "Shai Gilgeous-Alexander",
         "Victor Wembanyama",
-        "Alex Caruso",
-        "Cason Wallace",
-        "Isaiah Hartenstein",
-      ],
+        "Stephon Castle",
+        "De'Aaron Fox",
+        "Shai Gilgeous-Alexander",
+        "Jalen Williams"
+      ]
     },
     {
       topic:
-        "The Seven-Minute Earthquake: What Jalen Williams' Return Means for the WCF",
+        "Popovich's Masterplan: How San Antonio's Switching Defense Completely Neutralized OKC Without Jalen Williams",
       segment: "deep-dive",
-      duration: "9 min",
+      duration: "9 minutes",
       keyStats: [
-        "Williams played 7 minutes — first action since May 3 (hamstring strain)",
-        "Stat line: 4 PTS, 2 STL, no visible restriction in movement",
-        "OKC already had 7 players in double figures without Williams contributing meaningfully",
-        "SAS is playing a shortened rotation without De'Aaron Fox (ankle sprain, 0 minutes in Games 1 and 2)",
-        "If Williams ramps to 15-20 minutes by Game 3, OKC's depth advantage becomes historically unprecedented",
-        "OKC championship odds moved to +125 — best of the four remaining teams — after Game 2",
+        "OKC bench held in check after posting four players at +20 or better in Game 3",
+        "Jared McCain went from 24 points and +28 in Game 3 to a quiet, hounded Game 4",
+        "SGA contested all night — finished well below his WCF series average",
+        "Jalen Williams missed his fourth consecutive WCF game with a right hamstring strain",
+        "OKC scored just 82 without Williams — the halfcourt execution problem is critical",
+        "Popovich's Game 4 scheme: limit transition, force OKC into halfcourt sets, switch everything on the perimeter"
       ],
       debateAngle:
-        "Seven minutes in a playoff box score is almost statistically invisible. But contextually, does Jalen Williams' return make OKC the most unstoppable team in the conference finals? They just won by nine with a seven-deep rotation and their third-best player barely played. What happens when he is at full strength?",
+        "Is this series now less about basketball matchups and more about a health referendum on Jalen Williams' hamstring? Because if Williams cannot go in Game 5 at Frost Bank Center, OKC is walking into one of the loudest buildings in the playoffs with half a playbook — and Pop already knows exactly how to exploit it.",
       suggestedQuote:
-        "Think about what just happened. Oklahoma City won by nine points with seven players in double figures and Jalen Williams playing seven minutes. Seven. They have a guy who was averaging twenty-plus points before he got hurt just sitting there, slowly coming back online like a sleeper weapon. San Antonio is already shorthanded. The math here is genuinely alarming for the Spurs.",
+        "Pop made a thirty-six-point adjustment in forty-eight hours. Think about that. His team loses by fifteen at home, and he comes back out with a completely redesigned defensive scheme that holds OKC to their lowest scoring game of the season. That is not scheme — that is mastery. That is why the man has five rings.",
       relevantPlayers: [
-        "Jalen Williams",
+        "Gregg Popovich",
         "Shai Gilgeous-Alexander",
-        "Alex Caruso",
-        "Cason Wallace",
-        "Ajay Mitchell",
-      ],
-    },
-    {
-      topic:
-        "Hot Take: Stephon Castle's 9 Turnovers Were More Damaging Than Wembanyama's Brilliance Was Helpful",
-      segment: "hot-take",
-      duration: "6 min",
-      keyStats: [
-        "Castle: 25 PTS, 8 AST, 5 REB — but 9 TO (most by any player in the 2026 Conference Finals)",
-        "Castle's 9 turnovers generated 14 OKC transition points — more than the final margin of defeat",
-        "Wembanyama: 21 PTS, 17 REB, 6 AST, 4 BLK in 37 minutes",
-        "Wemby is averaging 31.0 PPG and 20.5 RPG through two WCF games",
-        "De'Aaron Fox: missed both Games 1 and 2 with a left ankle sprain",
-        "San Antonio's full rotation featured Castle, Vassell, Harper, and Wemby — no Fox",
-      ],
-      debateAngle:
-        "The take: San Antonio didn't lose Game 2 because Wembanyama was shut down or because OKC had a deeper roster. They lost because Stephon Castle's turnovers were a one-man wrecking ball that neutralized everything positive the Spurs built. The nine-point final margin is almost exactly the value of those 14 transition points. Castle lost this game. Unpack it.",
-      suggestedQuote:
-        "I love Stephon Castle. He is twenty-one years old and carrying an impossible load without his starting point guard in the Conference Finals. But nine turnovers that become fourteen layups? That is not a bad game. That is the entire box score. You cannot give Oklahoma City's transition offense that many free possessions and expect to win. This is fixable. Fox's return is the fix. But until then, Castle is both San Antonio's best weapon and their most dangerous liability.",
-      relevantPlayers: [
-        "Stephon Castle",
-        "De'Aaron Fox",
-        "Victor Wembanyama",
-        "Devin Vassell",
-        "Dylan Harper",
-      ],
-    },
-    {
-      topic:
-        "Rapid Fire: Caruso's Historic Bench Run · Vassell's Six Threes · ECF Preview · Castle Odds · History Trivia",
-      segment: "rapid-fire",
-      duration: "5 min",
-      keyStats: [
-        "Caruso: 48 combined points on 65% shooting across two WCF games — best bench production in the 2026 postseason",
-        "Caruso was +18 in Game 2 — game-high across both teams",
-        "Vassell: 22 PTS on 6-of-12 from three — best perimeter performance for SAS in Game 2",
-        "CLE @ NYK tonight — 8:00 PM ET, ESPN. NYK leads ECF 1-0. NYK -5.5",
-        "No team has ever blown a 20-plus-point Conference Finals lead in Game 1 and recovered to win the series",
-        "This Day in NBA History: May 21, 1986 — Ralph Sampson's spinning buzzer-beater eliminated the Lakers in WCF Game 5",
-      ],
-      debateAngle:
-        "Rapid fire means quick and spicy. Is Alex Caruso the most valuable non-star in the 2026 playoffs? Can Cleveland possibly recover from what happened in Game 1? And should Devin Vassell be starting over Dylan Harper with Fox out?",
-      suggestedQuote:
-        "Real quick — forty-eight points on sixty-five percent shooting across two Conference Finals games off the bench. Alex Caruso is not a story anymore, he is a problem. A beautiful, efficient, plus-eighteen problem that Oklahoma City's front office got for two first-round picks that now look like a steal of historic proportions.",
-      relevantPlayers: [
-        "Alex Caruso",
-        "Devin Vassell",
-        "Donovan Mitchell",
-        "Jalen Brunson",
-        "Ralph Sampson",
-      ],
-    },
-    {
-      topic:
-        "Looking Ahead: Cleveland's Existential Game 2, Fox's Return Timeline, and the WCF Shifts to San Antonio",
-      segment: "closer",
-      duration: "5 min",
-      keyStats: [
-        "CLE @ NYK — Game 2 tonight, 8:00 PM ET, ESPN. NYK leads ECF 1-0",
-        "Cleveland blew a 22-point lead and scored only 3 points in overtime in ECF Game 1",
-        "Brunson scored 38 in Game 1 comeback — Mitchell was -13 in the same game",
-        "OKC @ SAS — WCF Game 3, Friday 8:30 PM ET on NBC at Frost Bank Center",
-        "Fox (ankle) targeting return for WCF Game 3 — day-to-day status update expected Thursday",
-        "NBA Finals begin June 3 on ABC — OKC +125, SAS +225, NYK +350, CLE +800",
-      ],
-      debateAngle:
-        "Two massive questions heading into the next 72 hours: First — can Cleveland walk into Madison Square Garden and steal a game after that Game 1 trauma, or is this series already effectively over? Second — does De'Aaron Fox come back for Game 3 in San Antonio, and if so, does the home crowd and full roster flip the WCF back in the Spurs' favor?",
-      suggestedQuote:
-        "Here is where we stand tonight. Cleveland goes into Madison Square Garden facing the single most important game of the Donovan Mitchell era. Not an overstatement. Down 0-2 on the road after blowing twenty-two points would make this series a fait accompli — history says it has never been done. Meanwhile in San Antonio, the most anticipated injury return in the 2026 playoffs is De'Aaron Fox, and if he is back on Friday alongside a home crowd and a motivated Wembanyama, we might have ourselves a full seven-game Western Conference Finals. The NBA is giving us everything right now. Do not look away.",
-      relevantPlayers: [
-        "Donovan Mitchell",
-        "Jalen Brunson",
-        "De'Aaron Fox",
-        "Victor Wembanyama",
-        "Stephon Castle",
         "Jalen Williams",
-      ],
+        "Jared McCain",
+        "Victor Wembanyama",
+        "De'Aaron Fox"
+      ]
     },
+    {
+      topic:
+        "Hot Take: Donovan Mitchell's Minus-53 Cumulative Plus/Minus Is the Most Damning Stat Line in the 2026 Playoffs — He Is Getting Exposed Tonight",
+      segment: "hot-take",
+      duration: "6 minutes",
+      keyStats: [
+        "Mitchell: 78 points scored across 3 ECF games on -53 cumulative plus/minus",
+        "Individual game plus/minus splits: -9 (G1), -22 (G2), -22 (G3)",
+        "Cleveland three-point shooting: 26.4% for the series — worst of any team remaining",
+        "Jalen Brunson: 32.7 PPG with a POSITIVE plus/minus in all three ECF games",
+        "No team in NBA history has ever come back from 0-3 in a playoff series",
+        "James Harden shot 1-of-7 from three in ECF Game 3 — availability is not the issue"
+      ],
+      debateAngle:
+        "The hot take is this: Donovan Mitchell is the most productive losing player in this postseason. Seventy-eight points. Minus fifty-three. Those two numbers cannot coexist on a team that wants to survive. You can point to Cleveland's three-point shooting, to the supporting cast falling apart — but the guy eating the most shots on this team has a minus-fifty-three. At some point, volume scoring that does not move the needle is not a feature. Tonight is the moment of truth.",
+      suggestedQuote:
+        "I will say it plainly: Donovan Mitchell has been an isolation scorer in a team-elimination series. Seventy-eight points sound great until you realize the Cavaliers are losing by double digits every time he is on the floor. That is not a supporting cast problem. That is a shot-selection, shot-creation, make-my-teammates-better problem. And tonight he has one last chance to prove me wrong.",
+      relevantPlayers: [
+        "Donovan Mitchell",
+        "Jalen Brunson",
+        "James Harden",
+        "Mikal Bridges",
+        "Karl-Anthony Towns"
+      ]
+    },
+    {
+      topic:
+        "Rapid Fire: Brunson's Coronation Window, Mikal's Efficiency Record, Towns as the Knicks' Secret Weapon, and Wemby's Playoff MVP Case",
+      segment: "rapid-fire",
+      duration: "5 minutes",
+      keyStats: [
+        "Brunson: 32.7 PPG · 8.7 APG — leads ALL Conference Finals scorers through four games",
+        "Mikal Bridges: 11-of-15 shooting (73.3%) in ECF Game 3 — most efficient CF game of the round",
+        "Karl-Anthony Towns: +23 in ECF Game 3 — best single-game plus/minus of the Conference Finals round",
+        "Wembanyama: 30.5 PPG · 16.0 RPG · 3.5 BPG across 4 WCF games — a statistical profile that has no historical parallel",
+        "Landry Shamet: 4-of-5 from three in ECF Game 3 — most efficient three-point night (min. 4 makes) of the CF round",
+        "Stephon Castle's bounce-back after back-to-back shooting disasters is the underrated story of the WCF"
+      ],
+      debateAngle:
+        "If the Knicks win tonight, Brunson locks up Playoff MVP and the conversation is over. But if the Spurs go on to win the WCF, does Wembanyama's statistical case — thirty points, sixteen boards, three and a half blocks per game — become impossible to ignore? We could be heading toward the most interesting Playoff MVP debate in a decade.",
+      suggestedQuote:
+        "Real quick — shoutout to KAT. Thirteen points, eight rebounds, seven assists, plus twenty-three. Nobody is talking about Karl-Anthony Towns and he is the reason every other Knick can operate freely. The connective tissue of a potential Finals team. Give that man his flowers.",
+      relevantPlayers: [
+        "Jalen Brunson",
+        "Mikal Bridges",
+        "Karl-Anthony Towns",
+        "Victor Wembanyama",
+        "Landry Shamet",
+        "Stephon Castle"
+      ]
+    },
+    {
+      topic:
+        "Looking Ahead: Knicks vs. Cavaliers ECF Game 4 Tonight — Sweep or Survival, and What a 2-2 WCF Means for the Rest of the Playoffs",
+      segment: "closer",
+      duration: "7 minutes",
+      keyStats: [
+        "NYK leads ECF 3-0 — no team in NBA history has ever recovered from 0-3",
+        "Knicks favored by 3.5 — line moved from -3.0 on sharp action backing New York",
+        "WCF now tied 2-2 with Game 5 on Tuesday at San Antonio — best-of-three with Finals implications",
+        "Wembanyama: 30.5 PPG · 16.0 RPG · 3.5 BPG through four WCF games",
+        "Prediction: NYK 115-107 — Brunson 34 PTS, Mitchell 32 PTS, Knicks close with a 12-4 run",
+        "New York's last Finals appearance: 1999 — a 27-year drought ends tonight if the Knicks close it out"
+      ],
+      debateAngle:
+        "Here is the closing argument: the NBA just gave us the best possible Memorial Day setup. In the East, you have a sweep on the table and history about to be made — or denied. In the West, you have the most fascinating best-of-three remaining in the postseason with two of the three best players in the world going head-to-head. Which story are you watching more closely tonight and through the week — and which Finals matchup do you actually want to see?",
+      suggestedQuote:
+        "Twenty-seven years. Think about what New York has been through since 1999. The heartbreak, the rebuilds, the near misses. Tonight, Jalen Brunson walks into Rocket Arena with a chance to end all of it. And in San Antonio, a twenty-two-year-old alien is forcing a best-of-three for the Western Conference title. This is the best week of the NBA season. Do not look away.",
+      relevantPlayers: [
+        "Jalen Brunson",
+        "Donovan Mitchell",
+        "Victor Wembanyama",
+        "Shai Gilgeous-Alexander",
+        "Mikal Bridges",
+        "De'Aaron Fox"
+      ]
+    }
   ],
 
   socialClip:
-    "BEST CLIP FOR SOCIAL — The Jalen Williams return moment: pull the raw broadcast footage of Williams checking in during Q2 at Paycom Center to the crowd roar, overlay his fluid lateral cut on defense and the 2-steal sequence, then freeze-frame on his face coming off the court at the seven-minute mark looking zero percent bothered by the hamstring. Caption: 'He played 7 minutes. The WCF will never be the same.' Target platforms: Instagram Reels, TikTok, X. Estimated engagement hook: the crowd audio alone does the work — this is the most emotionally resonant moment of Game 2 and requires no extra production. Pair with the stat card: OKC already had 7 players in double figures WITHOUT him.",
+    "CLIP DESCRIPTION — 'The Wemby Wake-Up Call' (Target: 60–90 seconds, Instagram Reels / TikTok / X): Open on the Game 3 stat graphic — four rebounds, Wembanyama's worst postseason performance — overlaid with the cold silence of the Frost Bank Center after the loss. Cut hard to Game 4 highlights: the first tip, the first block at the rim, the second-chance put-back, the transition dunk, the mid-post fadeaway that drops through the net with nobody close enough to contest it. Voice-over drops the number: 'Thirty-one points. Eighteen rebounds. Five blocks. Plus twenty-four.' Pause. Let it breathe. Then: 'You wanted to know if the moment was too big for him. He just answered.' End on Wembanyama walking off the Frost Bank Center floor to a standing ovation, crowd noise building to a crescendo. Text card: 'WCF TIED 2-2. GAME 5 TUESDAY.' This is the most shareable sixty seconds of the postseason — a redemption arc, a stat line nobody believes until they see it, and a building that was silent forty-eight hours ago suddenly the loudest arena in basketball.",
 
   tweetThread: [
-    "🧵 HOOPS INTEL DAILY — May 21, 2026 | WCF GAME 2 RECAP + ECF GAME 2 PREVIEW | Let's go through everything that happened and everything that's coming tonight 👇",
+    "🏀 HOOPS INTEL MEMORIAL DAY THREAD — May 25, 2026 // Victor Wembanyama just saved the Western Conference Finals. San Antonio 103, Oklahoma City 82. Series tied 2-2. Let's go. 🧵",
 
-    "1/ SGA ANSWERED THE BELL. 30 PTS · 9 AST · +14 after going 8-for-24 in Game 1. He completely restructured his attack against Wembanyama — abandoned the rim, lived at 15 feet and in floater range, and turned the 7-3 rim protector into a spectator. OKC wins 122-113. WCF tied 1-1. 🎯",
+    "1/ WEMBY WOKE UP. After 4 rebounds in Game 3 — the performance that had all of San Antonio questioning everything — Wembanyama came back out with 31 PTS · 18 REB · 5 BLK · +24. The WCF is alive because one player decided it would be. That is franchise player behavior.",
 
-    "2/ BUT THE REAL STORY WAS 7 MINUTES. Jalen Williams came back from his hamstring strain and played 7 fluid, unrestricted minutes. OKC already had 7 players in double figures without him. If he ramps to 15-20 mins in San Antonio… the depth advantage becomes genuinely historic. 👀 Caruso added 17 PTS on 5-7 FG, +18 off the bench. 48 combined WCF points on 65% shooting. The best bench player alive.",
+    "2/ The Pop masterclass deserves its own paragraph. OKC bench torched SAS in Game 3 (four players at +20 or better). In Game 4, Popovich's switching scheme held them in check, neutralized SGA's angles, and held the Thunder to 82 — their lowest postseason total of 2026. He made a 36-point adjustment in 48 hours. Five rings for a reason.",
 
-    "3/ WEMBY POSTED 21/17/6/4BLK IN A LOSS and it barely registered because we are already desensitized. He is AVERAGING 31.0 PPG and 20.5 RPG in the WCF. Historically unprecedented. The problem was Castle's 9 turnovers → 14 OKC transition points. Fox MUST return for Game 3 Friday in SA. Day-to-day update expected Thursday. 🏥",
+    "3/ Meanwhile: Donovan Mitchell has scored 78 ECF points on a -53 cumulative plus/minus. That is the most damning empty-scoring stat line of the postseason. Tonight in Cleveland — elimination game, home crowd, everything on the line — he either rewrites that narrative or the Knicks are going to the Finals. NYK -3.5. No team has ever come back from 0-3. History does not favor Cleveland.",
 
-    "4/ TONIGHT: CLE @ NYK — 8 PM ET, ESPN. ECF Game 2. NYK leads 1-0. Cleveland blew a 22-point lead and scored 3 pts in OT in Game 1. No team has ever recovered from blowing a 20+ point Conference Finals lead in Game 1 and won the series. Mitchell needs 35+. Brunson needs to be stopped. This might be the most important game of the Donovan Mitchell era. 🔥 NYK -5.5 · O/U 215.5",
-
-    "5/ BIG PICTURE: OKC +125 · SAS +225 · NYK +350 · CLE +800. NBA Finals start June 3 on ABC. WCF shifts to San Antonio — Game 3 Friday 8:30 PM ET on NBC. Fox return imminent. Williams ramping up. The entire postseason is sitting on the next 72 hours. 🏆 Full breakdown + Hoops IQ quiz at hoopsintel.net | 🎙️ New episode dropping now — link in bio",
-  ],
+    "4/ THE BIGGER PICTURE: We have a WCF best-of-three with Wembanyama (30.5/16.0/3.5 BLK) vs. Gilgeous-Alexander AND a potential ECF sweep-clincher tonight with Brunson (32.7 PPG) trying to end a 27-year Knicks drought. This is the best week of NBA basketball of the entire 2026 season. Do not look away. 🏆 #NBAPlayoffs #HoopsIntel"
+  ]
 };
