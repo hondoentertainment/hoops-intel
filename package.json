@@ -51,7 +51,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "stripe": "^22.1.0",
-    "wouter": "^3.0.0"
+    "wouter": "^3.10.0"
   },
   "devDependencies": {
     "@emnapi/core": "1.10.0",
