@@ -16,9 +16,22 @@ import { existsSync, readFileSync } from "fs";
 
 export async function validateOutput(absPath) {
   if (!existsSync(absPath)) return { ok: false, reason: "output file missing" };
+  const code = readFileSync(absPath, "utf8");
+  const trimmed = code.trimEnd();
+  const lastLine = (trimmed.split(/\r?\n/).filter(Boolean).pop() ?? "").trim();
+  const validEnding =
+    lastLine.endsWith("};") ||
+    lastLine.endsWith("}") ||
+    lastLine.endsWith(");") ||
+    /^export\s/.test(lastLine);
+  if (!validEnding) {
+    return {
+      ok: false,
+      reason: `truncated: unexpected file ending (${lastLine.slice(0, 80)})`,
+    };
+  }
   try {
     const { transform } = await import("esbuild");
-    const code = readFileSync(absPath, "utf8");
     await transform(code, { loader: "ts", format: "esm", target: "esnext" });
     return { ok: true };
   } catch (err) {

@@ -7,6 +7,8 @@ name: Deployment Smoke
 # Also runs on a daily schedule as a safety net and supports manual base URL override.
 
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows:
       - Daily Edition Update
@@ -14,6 +16,7 @@ on:
       - Post-Game Scores Refresh
       - Midday Content Refresh
       - Playoff Nightly Sync
+      - Weekly Data Update
     types: [completed]
   workflow_dispatch:
     inputs:

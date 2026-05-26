@@ -1,0 +1,71 @@
+name: Ops Readiness Check
+
+# Polls production /api/ops-readiness and opens an issue when monetization or push
+# env is incomplete. Does not block merges — operational visibility only.
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ops-readiness-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Fetch production ops-readiness
+        id: readiness
+        env:
+          OPS_READINESS_URL: https://hoopsintel.net/api/ops-readiness
+        run: |
+          body=$(curl -fsSL "$OPS_READINESS_URL")
+          missing=$(echo "$body" | node -e "
+            const d = JSON.parse(require('fs').readFileSync(0,'utf8'));
+            const gaps = [];
+            if (!d.stripe?.checkoutReady) gaps.push('stripe checkout');
+            if (!d.stripe?.webhookReady) gaps.push('stripe webhook');
+            if (!d.push?.notifyAuthReady) gaps.push('push notify');
+            if (!d.supabase?.serverReady) gaps.push('supabase server');
+            if (!d.emailDigest?.resendReady) gaps.push('resend');
+            if (!d.llm?.anthropicSeriesIntelReady) gaps.push('anthropic');
+            console.log(gaps.join(', '));
+          ")
+          if [ -n "$missing" ]; then
+            echo "has_gaps=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Production ops gaps: $missing"
+          else
+            echo "has_gaps=false" >> "$GITHUB_OUTPUT"
+            echo "Production ops-readiness OK"
+          fi
+
+      - name: Open issue when production env gaps remain
+        if: steps.readiness.outputs.has_gaps == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `Ops readiness gaps — ${today}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'ops-readiness',
+              per_page: 10,
+            });
+            if (existing.data.some((i) => i.title.startsWith('Ops readiness gaps'))) {
+              core.notice('Ops readiness issue already open — skip');
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body: `## Production env gaps\n\n**Date:** ${today}\n**Check:** https://hoopsintel.net/api/ops-readiness\n**Workflow:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nRun \`vercel env pull\` and \`npm run ops:preflight:strict\` locally. See \`PRODUCTION-OPS.md\` for the full checklist.`,
+              labels: ['ops-readiness', 'automated'],
+            });

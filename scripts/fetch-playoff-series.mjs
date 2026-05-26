@@ -191,6 +191,7 @@ function seriesKey(homeAbbr, awayAbbr) {
   return [homeAbbr, awayAbbr].sort().join("-");
 }
 
+/** `{E|W}{roundRank}-{higherSeedTeam}-{lowerSeedTeam}` — digit is round (1–4), not seed. */
 function buildSeriesId(conference, round, higherTeam, lowerTeam) {
   const r = roundRank(round);
   const prefix = conference === "east" ? "E" : conference === "west" ? "W" : "F";

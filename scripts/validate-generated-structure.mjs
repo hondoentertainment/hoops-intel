@@ -35,8 +35,14 @@ export function validatePlayoffStructure() {
 
   const ids = [...inner.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => m[1]);
   const seen = new Set();
+  // Prefix digit is playoff round rank (E1/W1 first round … E4/W4 finals), not team seed.
+  const SERIES_ID_RE = /^[EW][1-4]-[A-Z]{3}-[A-Z]{3}$/;
   for (const id of ids) {
     assertCond(!seen.has(id), `duplicate seriesId in playoff sync: "${id}"`);
+    assertCond(
+      SERIES_ID_RE.test(id),
+      `invalid seriesId "${id}" (expected E|W + round 1-4 + team pair, e.g. W2-SAS-MIN)`,
+    );
     seen.add(id);
   }
 
@@ -174,6 +180,14 @@ async function main() {
     join(ROOT, "client/src/lib/refData.ts"),
     join(ROOT, "client/src/lib/pulseData.ts"),
     join(ROOT, "client/src/lib/playoffData.ts"),
+    join(ROOT, "client/src/lib/tradeValueData.ts"),
+    join(ROOT, "client/src/lib/lineupData.ts"),
+    join(ROOT, "client/src/lib/tacticsData.ts"),
+    join(ROOT, "client/src/lib/projectionsData.ts"),
+    join(ROOT, "client/src/lib/draftData.ts"),
+    join(ROOT, "client/src/lib/clutchData.ts"),
+    join(ROOT, "client/src/lib/tradeSimData.ts"),
+    join(ROOT, "client/src/lib/communityPulseData.ts"),
   ];
 
   for (const abs of phase2Ts) {

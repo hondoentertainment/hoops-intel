@@ -6,6 +6,8 @@ import { dirname, join } from "path";
 import {
   SITEMAP_GAME_META,
   SITEMAP_PLAYER_META,
+  SITEMAP_PLAYOFFS_HUB_META,
+  SITEMAP_PLAYOFFS_HUB_OFFSEASON_META,
   SITEMAP_SERIES_META,
   SITEMAP_STATIC_ROUTES,
   SITEMAP_TEAM_META,
@@ -99,21 +101,34 @@ export function generate() {
   }
 
   const now = new Date().toISOString().split("T")[0];
+  const playoffsActive =
+    /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);
+  const playoffsHubMeta = playoffsActive
+    ? SITEMAP_PLAYOFFS_HUB_META
+    : SITEMAP_PLAYOFFS_HUB_OFFSEASON_META;
+  const seriesMeta = playoffsActive
+    ? { priority: "0.88", changefreq: "daily" }
+    : SITEMAP_SERIES_META;
+  const pickEmMeta = playoffsActive
+    ? { priority: "0.8", changefreq: "daily" }
+    : { priority: "0.65", changefreq: "daily" };
 
   // Keep in sync with STATIC_SITEMAP_PATHS in client/src/lib/seoConfig.ts (verified in CI)
-  const staticToolPaths = SITEMAP_STATIC_ROUTES;
+  const staticToolPaths = SITEMAP_STATIC_ROUTES.map((route) =>
+    route.loc === "/pick-em" ? { ...route, ...pickEmMeta } : route,
+  );
 
   let urls = [
     { loc: "/", priority: "1.0", changefreq: "daily" },
     { loc: "/archive", priority: "0.8", changefreq: "daily" },
     { loc: "/pulse-history", priority: "0.7", changefreq: "daily" },
-    { loc: "/playoffs", priority: "0.7", changefreq: "daily" },
+    { loc: "/playoffs", ...playoffsHubMeta },
     ...staticToolPaths.map(({ loc, priority, changefreq }) => ({ loc, priority, changefreq })),
   ];
 
   const seriesIds = new Set([...playoffFile.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => m[1]));
   for (const id of seriesIds) {
-    urls.push({ loc: `/playoffs/series/${id}`, ...SITEMAP_SERIES_META });
+    urls.push({ loc: `/playoffs/series/${id}`, ...seriesMeta });
   }
 
   const playerSlugs = new Map();

@@ -74,6 +74,7 @@ export const SITEMAP_STATIC_ROUTES = [
   { loc: "/my-pulse", priority: "0.6", changefreq: "daily" },
   { loc: "/print-edition", priority: "0.6", changefreq: "daily" },
   { loc: "/widgets", priority: "0.6", changefreq: "daily" },
+  { loc: "/widgets/analytics", priority: "0.55", changefreq: "weekly" },
   { loc: "/embed-stats", priority: "0.55", changefreq: "weekly" },
   { loc: "/pro", priority: "0.7", changefreq: "weekly" },
   { loc: "/betting-intel", priority: "0.65", changefreq: "daily" },
@@ -83,7 +84,10 @@ export const SITEMAP_STATIC_ROUTES = [
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };
 export const SITEMAP_TEAM_META = { priority: "0.6", changefreq: "weekly" };
 export const SITEMAP_GAME_META = { priority: "0.55", changefreq: "daily" };
-export const SITEMAP_SERIES_META = { priority: "0.68", changefreq: "daily" };
+/** Default series sitemap meta; generate-sitemap.mjs bumps during active playoffs. */
+export const SITEMAP_SERIES_META = { priority: "0.85", changefreq: "daily" };
+export const SITEMAP_PLAYOFFS_HUB_META = { priority: "0.9", changefreq: "daily" };
+export const SITEMAP_PLAYOFFS_HUB_OFFSEASON_META = { priority: "0.7", changefreq: "daily" };
 
 /** Paths that must appear in seoConfig STATIC_SITEMAP_PATHS (core + static tool routes). */
 export const SEO_CONFIG_SITEMAP_PATHS = [

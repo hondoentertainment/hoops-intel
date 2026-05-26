@@ -1,6 +1,6 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: May 23, 2026 (post ops + playoff QA batch)_
+_Last revised: May 26, 2026 (production hardening batch)_
 
 ### Deploy & reliability
 
@@ -11,6 +11,11 @@ _Last revised: May 23, 2026 (post ops + playoff QA batch)_
 | P5 | Finals Command Mode vitest + print injury/fantasy sections | **Done** |
 | P5 | Social bot dry-run (`npm run social:preview`) | **Done** |
 | P5 | Embed analytics host filter on `/embed-stats` | **Done** |
+| Weekly CI gate | `stage-weekly-edition.mjs` + `test:pre-push` + no partial commit | **Done** |
+| Weekly validation | All weekly `*Data.ts` in `validate-generated-structure` | **Done** |
+| Deploy smoke on `main` push | `deployment-smoke.yml` triggers on push + weekly | **Done** |
+| Sitemap playoffs SEO | Hub/series/pick-em priority boost when playoffs active | **Done** |
+| Ops visibility | `ops-readiness-check.yml` + `PRODUCTION-OPS.md` | **Done** |
 | Post-deploy | `npm run smoke:deploy` after each prod push | **Ongoing ritual** |
 
 **DNS:** Production deploys alias to `hoopsintel.net` — confirm registrar records stay synced with Vercel Domains panel.
@@ -32,6 +37,8 @@ npm run test:ci:fast
 npm run smoke:deploy
 npx vercel deploy --prod --yes
 ```
+
+Full checklist: [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md)
 
 ### P1 — Remaining (product)
 

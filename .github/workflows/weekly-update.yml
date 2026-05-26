@@ -16,17 +16,24 @@ jobs:
     outputs:
       active: ${{ steps.season.outputs.active }}
     steps:
-      - name: Check NBA season status
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Check NBA season status (season-mode.mjs)
         id: season
         run: |
-          MONTH=$(date -u +%-m)
-          # NBA regular season: October (10) through April (4), playoffs through June (6)
-          if [ "$MONTH" -ge 7 ] && [ "$MONTH" -le 9 ]; then
-            echo "active=false" >> $GITHUB_OUTPUT
-            echo "NBA offseason (July-September) — skipping weekly generation."
-          else
-            echo "active=true" >> $GITHUB_OUTPUT
-          fi
+          ACTIVE=$(node scripts/check-generator-active.mjs)
+          echo "active=$ACTIVE" >> $GITHUB_OUTPUT
+          echo "generatorActive=$ACTIVE"
+
+      - name: Scheduled run — generator inactive (offseason)
+        if: github.event_name == 'schedule' && steps.season.outputs.active != 'true'
+        run: |
+          echo "::notice::Weekly generator skipped — season-mode reports inactive."
 
   generate-weekly:
     needs: check-season
@@ -60,37 +67,38 @@ jobs:
           exit_code=${PIPESTATUS[0]}
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
           if [ "$exit_code" -eq 1 ]; then
-            echo "Critical failure — all scripts failed"
+            echo "Critical failure — aborting"
             exit 1
           elif [ "$exit_code" -eq 2 ]; then
-            echo "Partial failure — some scripts succeeded"
-            echo "partial=true" >> $GITHUB_OUTPUT
+            echo "Partial failure — refusing to commit"
+            exit 1
           fi
         timeout-minutes: 15
+
+      - name: Stage weekly data files
+        run: node scripts/stage-weekly-edition.mjs
 
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Pre-push CI gate (schema + build)
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run test:pre-push
 
       - name: Commit and push weekly data
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          # NOTE: filename is `lineupData.ts` (singular). Listing each file
-          # explicitly avoids accidental commits of unrelated changes.
-          git add \
-            client/src/lib/tradeValueData.ts \
-            client/src/lib/lineupData.ts \
-            client/src/lib/tacticsData.ts \
-            client/src/lib/projectionsData.ts \
-            client/src/lib/draftData.ts \
-            client/src/lib/clutchData.ts \
-            client/src/lib/tradeSimData.ts \
-            client/src/lib/communityPulseData.ts
           git commit -m "Weekly update: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
+
+      - name: Post-push note
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "::notice::Weekly data pushed — deployment-smoke will verify production."
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'

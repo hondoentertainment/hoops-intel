@@ -4,7 +4,7 @@
 // Usage: node scripts/generate-all-weekly.mjs
 // Exit codes: 0 = all pass, 1 = critical failure, 2 = partial failure
 
-import { spawn } from "child_process";
+import { spawn, execSync } from "child_process";
 import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
@@ -174,6 +174,13 @@ async function main() {
     }
   } else {
     console.log("All weekly scripts completed successfully!");
+    if (!DRY_RUN) {
+      console.log("\nRunning full generated-structure validation...");
+      execSync("node scripts/validate-generated-structure.mjs", {
+        cwd: ROOT,
+        stdio: "inherit",
+      });
+    }
   }
 }
 
