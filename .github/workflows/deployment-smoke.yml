@@ -17,6 +17,7 @@ on:
       - Midday Content Refresh
       - Playoff Nightly Sync
       - Weekly Data Update
+      - Midday Content Refresh
     types: [completed]
   workflow_dispatch:
     inputs:

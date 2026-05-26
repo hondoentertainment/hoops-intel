@@ -20,15 +20,18 @@ jobs:
     outputs:
       active: ${{ steps.season.outputs.active }}
     steps:
-      - name: Check NBA season status
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Check NBA season status (season-mode.mjs)
         id: season
         run: |
-          MONTH=$(date -u +%-m)
-          if [ "$MONTH" -ge 7 ] && [ "$MONTH" -le 9 ]; then
-            echo "active=false" >> $GITHUB_OUTPUT
-          else
-            echo "active=true" >> $GITHUB_OUTPUT
-          fi
+          ACTIVE=$(node scripts/check-generator-active.mjs)
+          echo "active=$ACTIVE" >> $GITHUB_OUTPUT
 
   refresh:
     needs: check-season
@@ -36,6 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
 
     steps:
       - name: Checkout repository
@@ -54,19 +58,21 @@ jobs:
       - name: Refresh sentiment data
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-sentiment-daily.mjs || node scripts/generate-sentiment.mjs || true
+        run: |
+          set -e
+          node scripts/generate-sentiment-daily.mjs || node scripts/generate-sentiment.mjs
         timeout-minutes: 8
 
       - name: Refresh momentum data
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-momentum.mjs || true
+        run: node scripts/generate-momentum.mjs
         timeout-minutes: 3
 
       - name: Refresh watch guide
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-watch-guide.mjs || true
+        run: node scripts/generate-watch-guide.mjs
         timeout-minutes: 3
 
       - name: Refresh line movement (open → close)
@@ -76,20 +82,50 @@ jobs:
           node scripts/fetch-line-odds.mjs || true
           node scripts/sync-line-movement.mjs sync || true
 
+      - name: Stage midday refresh files
+        run: node scripts/stage-midday-refresh.mjs
+
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Pre-push CI gate (schema + build)
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run test:pre-push
 
       - name: Commit and push refresh
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
-          git add client/src/lib/sentimentData.ts client/src/lib/momentumData.ts client/src/lib/watchGuideData.ts client/src/lib/lineMovementData.ts
           git commit -m "Midday refresh: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
           git push origin ${{ github.ref_name }}
 
       - name: No changes detected
         if: steps.changes.outputs.changed == 'false'
         run: echo "No data changes — skipping commit."
+
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `Midday refresh failed — ${today}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'generation-failure',
+              per_page: 5,
+            });
+            if (!existing.data.some(i => i.title === title)) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: `## Midday Refresh Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                labels: ['generation-failure', 'automated'],
+              });
+            }
