@@ -1,6 +1,6 @@
 // GET /api/ops-readiness — boolean flags only (never leaks secret values or formats).
 
-export const config = { runtime: "nodejs" };
+export const config = { runtime: "edge" };
 
 function configured(v: string | undefined): boolean {
   return Boolean(v && String(v).length > 0);

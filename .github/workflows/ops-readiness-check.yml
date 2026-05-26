@@ -24,7 +24,7 @@ jobs:
         env:
           OPS_READINESS_URL: https://hoopsintel.net/api/ops-readiness
         run: |
-          body=$(curl -fsSL "$OPS_READINESS_URL")
+          body=$(curl -fsSL --max-time 15 "$OPS_READINESS_URL")
           missing=$(echo "$body" | node -e "
             const d = JSON.parse(require('fs').readFileSync(0,'utf8'));
             const gaps = [];
