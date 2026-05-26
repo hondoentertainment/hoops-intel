@@ -223,12 +223,6 @@
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/playoffs/series/E2-NYK-PHI</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.88</priority>
-  </url>
-  <url>
     <loc>https://hoopsintel.net/playoffs/series/E3-NYK-CLE</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
@@ -1627,7 +1621,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/game/SAS-OKC-20260524</loc>
+    <loc>https://hoopsintel.net/game/CLE-NYK-20260525</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
@@ -1675,30 +1669,6 @@
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/game/PHI-NYK-20260504</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/PHI-NYK-20260506</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/NYK-PHI-20260508</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/NYK-PHI-20260510</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
     <loc>https://hoopsintel.net/game/CLE-NYK-20260519</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
@@ -1718,24 +1688,6 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/game/NYK-CLE-20260525</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/CLE-NYK-20260527</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/NYK-CLE-20260529</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/CLE-NYK-20260531</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
@@ -1802,12 +1754,6 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/game/SAS-OKC-20260530</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/MIN-SAS-20260504</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
