@@ -55,32 +55,12 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Refresh sentiment data
+      - name: Run midday refresh (validate outputs)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          set -e
-          node scripts/generate-sentiment-daily.mjs || node scripts/generate-sentiment.mjs
-        timeout-minutes: 8
-
-      - name: Refresh momentum data
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-momentum.mjs
-        timeout-minutes: 3
-
-      - name: Refresh watch guide
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-watch-guide.mjs
-        timeout-minutes: 3
-
-      - name: Refresh line movement (open → close)
-        env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: |
-          node scripts/fetch-line-odds.mjs || true
-          node scripts/sync-line-movement.mjs sync || true
+        run: node scripts/run-midday-refresh.mjs
+        timeout-minutes: 15
 
       - name: Stage midday refresh files
         run: node scripts/stage-midday-refresh.mjs

@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { loadLocalEnv } from "./load-local-env.mjs";
 import { validateOutput } from "./lib/validate-output.mjs";
+import { validatePlayoffStructure } from "./validate-generated-structure.mjs";
 
 loadLocalEnv();
 
@@ -57,6 +58,17 @@ async function main() {
       stdio: "inherit",
       env: process.env,
     });
+    try {
+      validatePlayoffStructure();
+    } catch (structErr) {
+      console.warn(`⚠ playoff sync structure invalid: ${structErr.message}`);
+      try {
+        execSync(`git checkout -- "client/src/lib/playoffData.ts"`, { cwd: ROOT, stdio: "pipe" });
+        console.warn("   ↩ Reverted playoffData.ts to last committed version");
+      } catch {
+        console.warn("   ↩ Could not revert playoffData.ts");
+      }
+    }
     const chk = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
     if (!chk.ok) console.warn(`⚠ playoffData.ts parse check: ${chk.reason} (left as-is if sync skipped)`);
     try {

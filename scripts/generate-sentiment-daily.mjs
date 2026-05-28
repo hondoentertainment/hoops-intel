@@ -4,9 +4,10 @@
 // Run daily at 5:30am PST via GitHub Actions
 
 import Anthropic from "@anthropic-ai/sdk";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,9 +39,11 @@ async function main() {
     }
   })();
 
-  console.log("🤖 Calling Claude API to generate sentiment analysis...");
+  const outPath = join(ROOT, "client/src/lib/sentimentData.ts");
 
-  const prompt = `You are the social media analyst for Hoops Intel (hoopsintel.net), an NBA intelligence dashboard. Generate today's complete sentimentData.ts TypeScript file with social sentiment analysis.
+  async function generateOnce() {
+    console.log("🤖 Calling Claude API to generate sentiment analysis...");
+    const prompt = `You are the social media analyst for Hoops Intel (hoopsintel.net), an NBA intelligence dashboard. Generate today's complete sentimentData.ts TypeScript file with social sentiment analysis.
 
 ## Edition Info
 - Date: ${editionDate}
@@ -94,19 +97,22 @@ Generate a complete sentimentData.ts file with these sections:
 - Single export object, valid TypeScript
 - Match the exact structure of the current file
 
-Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
+Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation. The file MUST end with a closing \`};\` for the exported sentimentData object.`;
 
-  const msg = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 8192,
-    messages: [{ role: "user", content: prompt }],
-  });
+    const msg = await client.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 12000,
+      messages: [{ role: "user", content: prompt }],
+    });
 
-  const newContent = msg.content[0].text.trim();
-  const outPath = join(ROOT, "client/src/lib/sentimentData.ts");
-  writeFileSync(outPath, newContent, "utf8");
+    return msg.content[0].text.trim();
+  }
+
+  const result = await writeGeneratedFile(outPath, generateOnce, { retries: 2 });
+  if (!result.ok) {
+    throw new Error(`sentimentData.ts failed validation: ${result.reason}`);
+  }
   console.log("✓ sentimentData.ts written");
-
   console.log(`\n✅ Sentiment Pulse generated for ${editionDate}`);
 }
 

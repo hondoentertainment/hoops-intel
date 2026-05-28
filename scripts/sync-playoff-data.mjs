@@ -7,6 +7,9 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { TEAM_ABBR_SET, canonicalNbaAbbrev } from "./lib/content-quality-constants.mjs";
+
+const SERIES_ID_RE = /^[EWF][1-4]-[A-Z]{3}-[A-Z]{3}$/;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -68,7 +71,14 @@ function main() {
     console.warn("[sync-playoff-data] Invalid JSON — skipping:", e.message);
     return;
   }
-  const series = data.series || [];
+  const series = (data.series || []).filter((s) => {
+    const okTeam = (t) => t && TEAM_ABBR_SET.has(canonicalNbaAbbrev(t));
+    return (
+      SERIES_ID_RE.test(s.seriesId ?? "") &&
+      okTeam(s.higherTeam) &&
+      okTeam(s.lowerTeam)
+    );
+  });
   if (series.length === 0) {
     console.log("[sync-playoff-data] Empty series array — skipping (keeping committed playoffData.ts).");
     return;

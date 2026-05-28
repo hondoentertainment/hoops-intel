@@ -4,7 +4,7 @@ import {
   gameCenterShareMeta,
   matchLiveScoreboardGame,
   mergeLiveIntoGameCenter,
-  getGameCenterById,
+  getAllGameCenterGames,
 } from "../lib/gameCenter";
 import type { LiveGame } from "../lib/espnApi";
 
@@ -29,7 +29,7 @@ describe("gameCenter live + market helpers", () => {
   });
 
   it("overlays live scores onto a cached game center payload", () => {
-    const base = getGameCenterById("NYK-PHI-20260510");
+    const base = getAllGameCenterGames()[0];
     expect(base).toBeTruthy();
     const merged = mergeLiveIntoGameCenter(base!, {
       id: "402",
@@ -52,7 +52,7 @@ describe("gameCenter live + market helpers", () => {
   });
 
   it("builds share metadata with game-specific OG URL", () => {
-    const base = getGameCenterById("NYK-PHI-20260510");
+    const base = getAllGameCenterGames()[0];
     expect(base).toBeTruthy();
     const share = gameCenterShareMeta(base!);
     expect(share.url).toContain("/game/");

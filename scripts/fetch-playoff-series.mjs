@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate } from "./lib/dates.mjs";
 import { fetchESPNCached } from "./lib/espn-cache.mjs";
+import { TEAM_ABBR_SET, canonicalNbaAbbrev } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -110,6 +111,14 @@ function canonicalTeamAbbr(abbr) {
   return TEAM_ABBR_ALIASES[up] ?? up;
 }
 
+/** ESPN placeholders like "SPURS/THUNDER" or "TBD" are not committable team codes. */
+function resolvedPlayoffTeam(abbr) {
+  const raw = canonicalTeamAbbr(abbr);
+  if (!raw || /[^A-Z]/.test(raw)) return null;
+  const canon = canonicalNbaAbbrev(raw);
+  return TEAM_ABBR_SET.has(canon) ? canon : null;
+}
+
 function conferenceForTeam(abbr) {
   if (!abbr || abbr === "TBD") return null;
   return TEAM_CONFERENCE[String(abbr).toUpperCase()] ?? TEAM_CONFERENCE[canonicalTeamAbbr(abbr)] ?? null;
@@ -194,7 +203,14 @@ function seriesKey(homeAbbr, awayAbbr) {
 /** `{E|W}{roundRank}-{higherSeedTeam}-{lowerSeedTeam}` — digit is round (1–4), not seed. */
 function buildSeriesId(conference, round, higherTeam, lowerTeam) {
   const r = roundRank(round);
-  const prefix = conference === "east" ? "E" : conference === "west" ? "W" : "F";
+  const prefix =
+    round === "finals"
+      ? "F"
+      : conference === "east"
+        ? "E"
+        : conference === "west"
+          ? "W"
+          : "F";
   return `${prefix}${r}-${higherTeam}-${lowerTeam}`;
 }
 
@@ -360,14 +376,14 @@ async function main() {
       const away = comp.competitors.find((c) => c.homeAway === "away");
       if (!home || !away) continue;
 
-      const homeAbbr = canonicalTeamAbbr(home.team?.abbreviation ?? "");
-      const awayAbbr = canonicalTeamAbbr(away.team?.abbreviation ?? "");
+      const homeAbbr = resolvedPlayoffTeam(home.team?.abbreviation ?? "");
+      const awayAbbr = resolvedPlayoffTeam(away.team?.abbreviation ?? "");
       if (!homeAbbr || !awayAbbr) continue;
-      if (homeAbbr === "TBD" || awayAbbr === "TBD") continue;
 
       const key = seriesKey(homeAbbr, awayAbbr);
-      const conference = conferenceFromSeries(comp.series, homeAbbr, awayAbbr);
       const round = roundFromCompetition(comp);
+      let conference = conferenceFromSeries(comp.series, homeAbbr, awayAbbr);
+      if (round === "finals") conference = "finals";
 
       const hs = playoffSeed(home);
       const as = playoffSeed(away);
@@ -463,10 +479,14 @@ async function main() {
     for (const g of s.games) delete g.espnEventId;
   }
 
+  const seriesList = [...seriesDedupedMap.values()].filter(
+    (s) => resolvedPlayoffTeam(s.higherTeam) && resolvedPlayoffTeam(s.lowerTeam),
+  );
+
   const snapshot = {
     fetchedAt: new Date().toISOString(),
-    seriesCount: seriesDedupedMap.size,
-    series: [...seriesDedupedMap.values()].sort((a, b) => {
+    seriesCount: seriesList.length,
+    series: seriesList.sort((a, b) => {
       if (a.conference !== b.conference) return String(a.conference).localeCompare(String(b.conference));
       return a.higherSeed - b.higherSeed;
     }),
