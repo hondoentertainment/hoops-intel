@@ -39,7 +39,8 @@ export const momentumData: MomentumData = {
     player: "Victor Wembanyama",
     team: "SAS",
     clutchRating: 94,
-    description: "Wembanyama was an immovable force in the fourth quarter, posting 9 points and 2 blocks in the final period alone while OKC desperately clawed for any foothold. His combination of rim protection and offensive creation in high-leverage moments made him unguardable and unbypassable — a two-way anchor who personally suffocated OKC's last three possessions of consequence.",
+    description:
+      "Wembanyama was unguardable at both ends when the game was on the line — a go-ahead block-and-outlet in the third quarter and back-to-back mid-range jumpers in the fourth sealed OKC's fate and put San Antonio one win from the Finals.",
   },
   games: [
     {
@@ -49,35 +50,39 @@ export const momentumData: MomentumData = {
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:42",
-          description: "OKC opened with an 11-2 run fueled by SGA isolation buckets and an early Wembanyama foul situation, seizing home-court energy and forcing a San Antonio timeout.",
-          runScore: "11-2 OKC run",
+          timestamp: "4:12",
+          description:
+            "SGA ignited Paycom Center with back-to-back pull-up threes, capping a 10-2 Thunder run that seized early control and forced a San Antonio timeout.",
+          runScore: "10-2 OKC run",
           momentum: "home",
           keyPlayer: "Shai Gilgeous-Alexander",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "7:15",
-          description: "De'Aaron Fox returned from the bench after shaking off foul trouble and orchestrated a 14-4 Spurs burst, attacking the paint relentlessly and drawing four fouls on OKC's second unit to swing the halftime margin.",
-          runScore: "14-4 SAS run",
+          timestamp: "7:34",
+          description:
+            "Wembanyama answered with a personal 7-0 stretch — a mid-post turnaround, a corner three, and a finger-roll through contact — erasing OKC's lead and swinging the crowd into uneasy silence.",
+          runScore: "7-0 SAS run",
           momentum: "away",
-          keyPlayer: "De'Aaron Fox",
+          keyPlayer: "Victor Wembanyama",
           impact: "significant",
         },
         {
           quarter: "Q3",
-          timestamp: "5:30",
-          description: "Stephon Castle buried three consecutive three-pointers in a two-minute stretch — the first off a Wembanyama dump-off, the second off a Fox drive-and-kick, the third off a pure catch-and-shoot — igniting a 17-6 San Antonio run that broke OKC's defensive resolve and turned a two-point game into a double-digit crisis.",
-          runScore: "17-6 SAS run",
+          timestamp: "5:51",
+          description:
+            "Stephon Castle detonated the game open with three consecutive three-pointers in 97 seconds, turning a two-possession contest into a 14-point Spurs advantage and draining all remaining oxygen from the building.",
+          runScore: "16-4 SAS run",
           momentum: "away",
           keyPlayer: "Stephon Castle",
           impact: "game-changing",
         },
         {
           quarter: "Q4",
-          timestamp: "8:01",
-          description: "OKC refused to go quietly, using an SGA-led 9-2 run to cut the deficit back to seven and stir Paycom Center back to life, with a hobbled Jalen Williams hitting a mid-range jumper that briefly made the margin feel surmountable.",
+          timestamp: "8:05",
+          description:
+            "OKC mounted a desperate comeback behind SGA, trimming the deficit to seven on a floater-and-one that briefly made the crowd believe, but a visibly hobbled Jalen Williams could not provide the secondary scoring needed to complete the rally.",
           runScore: "9-2 OKC run",
           momentum: "home",
           keyPlayer: "Shai Gilgeous-Alexander",
@@ -85,11 +90,12 @@ export const momentumData: MomentumData = {
         },
         {
           quarter: "Q4",
-          timestamp: "3:10",
-          description: "Wembanyama answered OKC's charge with back-to-back buckets — a drop step over two defenders and a face-up mid-range pull-up — while swatting an SGA floater attempt on the other end, effectively sealing the game and clinching the series lead for San Antonio.",
+          timestamp: "3:28",
+          description:
+            "De'Aaron Fox drove baseline for a contested layup, then drew a charge on OKC's next possession — a two-play sequence that killed the Thunder's momentum entirely and allowed the Spurs bench to ice the game from the free-throw line.",
           runScore: "8-2 SAS run",
           momentum: "away",
-          keyPlayer: "Victor Wembanyama",
+          keyPlayer: "De'Aaron Fox",
           impact: "game-changing",
         },
       ],
@@ -97,33 +103,30 @@ export const momentumData: MomentumData = {
         {
           player: "Victor Wembanyama",
           team: "SAS",
-          description: "Drop-step power move over Isaiah Hartenstein and Chet Holmgren in the paint to push the lead back to 11 with OKC showing signs of life — the single play that closed the door on any OKC comeback narrative.",
-          timeRemaining: "3:10",
+          description:
+            "With OKC cutting to seven and the crowd surging, Wembanyama pinned Isaiah Hartenstein's putback attempt against the glass, triggered the fast break with a full-court outlet, and finished with a reverse layup on the other end — an 11-point swing moment in under five seconds.",
+          timeRemaining: "4:47 Q4",
           winProbabilityShift: 18,
-        },
-        {
-          player: "Victor Wembanyama",
-          team: "SAS",
-          description: "Rejected an SGA floater at the rim on OKC's answer possession, killing the Thunder's rhythm and forcing a desperation reset with the shot clock winding down.",
-          timeRemaining: "2:55",
-          winProbabilityShift: 12,
         },
         {
           player: "Shai Gilgeous-Alexander",
           team: "OKC",
-          description: "Pulled up for a step-back three over Fox to trim the deficit to seven and signal OKC was not folding, momentarily restoring tension in a building that had gone quiet.",
-          timeRemaining: "4:28",
+          description:
+            "SGA drew a four-point foul opportunity after a crafty shot-fake on Wembanyama, converting all four free throws to pull OKC within six and signal one final push.",
+          timeRemaining: "3:55 Q4",
           winProbabilityShift: -9,
         },
         {
           player: "De'Aaron Fox",
           team: "SAS",
-          description: "Split a double-team in transition and finished through contact with 4:05 left, converting the and-one to push San Antonio's lead back to double digits and exhaust the last of OKC's emotional reserves.",
-          timeRemaining: "4:05",
+          description:
+            "Fox took a charge from SGA driving left — his second of the night — turning OKC's best scoring sequence of the fourth quarter into a San Antonio possession and effectively ending the game as a contest.",
+          timeRemaining: "3:21 Q4",
           winProbabilityShift: 14,
         },
       ],
-      narrative: "This was the night San Antonio served notice that the league's most electric young core is ready to own the moment, not just occupy it. Oklahoma City, playing with the desperation of a team staring at elimination, had the crowd, the home floor, and a healthy dose of early momentum — but the Spurs methodically dismantled every foothold OKC tried to establish. Stephon Castle's third-quarter eruption was the turning point that broke the game's spine, and Wembanyama's fourth-quarter dominance was the signature on the verdict. Jalen Williams's visible limitations in the fourth were the subplot that may define this series: a Thunder team built on depth and health ran out of both at precisely the wrong moment, and San Antonio punished every crack with the clinical efficiency of a team that knows exactly what it is.",
+      narrative:
+        "This was the game where San Antonio served notice that they are not just a good story — they are a legitimate dynasty in formation. Oklahoma City, the league's best regular-season team, threw everything at the Spurs on their home floor and still found themselves dismantled in the third quarter by a 19-year-old point guard hitting threes with zero hesitation. Wembanyama was the gravitational center of it all, present for every critical sequence whether he was scoring, blocking, or simply occupying two defenders and creating space for others. The Thunder now face elimination in Game 6, and the haunting reality is that Jalen Williams — their second-best player — looked like a shadow of himself with 12 minutes left. If he can't go in San Antonio, this series is already over.",
     },
   ],
 };
