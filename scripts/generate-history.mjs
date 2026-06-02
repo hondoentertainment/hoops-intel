@@ -4,10 +4,11 @@
 // Run daily after generate-edition.mjs completes
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toDisplayDate } from "./lib/daily-dates.mjs";
+import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -91,26 +92,26 @@ export const historyData: HistoryData = { ... };
 8. Update milestones and streaks based on latest game results
 9. Verdicts should be thoughtful: "On pace to surpass", "Falling short", or "Matching stride"
 
-Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
+Output ONLY the complete TypeScript file. No markdown fences, no explanation. The file MUST end with \`};\` closing export const historyData.`;
 
-  console.log("🤖 Calling Claude API...");
-
-  const msg = await claudeGenerate("history", {
-    max_tokens: 10000,
-    messages: [{ role: "user", content: prompt }],
-  });
-
-  const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
-
-  // Clean up any markdown fences
-  let cleaned = content.replace(/^```(?:typescript|ts)?\n?/gm, "").replace(/```$/gm, "").trim();
-
-  // Write the file
   const outPath = join(ROOT, "client/src/lib/historyData.ts");
-  writeFileSync(outPath, cleaned + "\n", "utf8");
+
+  async function generateOnce() {
+    console.log("🤖 Calling Claude API...");
+    const msg = await claudeGenerate("history", {
+      max_tokens: 12000,
+      messages: [{ role: "user", content: prompt }],
+    });
+    const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
+    return content.replace(/^```(?:typescript|ts)?\n?/gm, "").replace(/```$/gm, "").trim() + "\n";
+  }
+
+  const result = await writeGeneratedFile(outPath, generateOnce, { retries: 2 });
+  if (!result.ok) {
+    throw new Error(`historyData.ts failed validation: ${result.reason}`);
+  }
 
   console.log(`✅ Wrote ${outPath}`);
-  console.log(`   Content length: ${cleaned.length} chars`);
 }
 
 main().catch((err) => {

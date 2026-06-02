@@ -4,11 +4,11 @@
 // Run daily after generate-edition.mjs completes
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
-import { validateOutput } from "./lib/validate-output.mjs";
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toDisplayDate } from "./lib/daily-dates.mjs";
+import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -95,31 +95,26 @@ export const refData: RefData = { ... };
 11. Write a weekly trend summary noting patterns in this week's assignments
 12. Keep ref numbers accurate where possible (Tony Brothers #25, Scott Foster #48, etc.)
 
-Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
-
-  console.log("🤖 Calling Claude API...");
-
-  const msg = await claudeGenerate("refs", {
-    max_tokens: 10000,
-    messages: [{ role: "user", content: prompt }],
-  });
-
-  const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
-
-  // Clean up any markdown fences
-  let cleaned = content.replace(/^```(?:typescript|ts)?\n?/gm, "").replace(/```$/gm, "").trim();
+Output ONLY the complete TypeScript file. No markdown fences, no explanation. The file MUST end with \`};\` closing export const refData.`;
 
   const outPath = join(ROOT, "client/src/lib/refData.ts");
-  const previous = existsSync(outPath) ? readFileSync(outPath, "utf8") : null;
-  writeFileSync(outPath, cleaned + "\n", "utf8");
-  const chk = await validateOutput(outPath);
-  if (!chk.ok) {
-    if (previous) writeFileSync(outPath, previous);
-    throw new Error(`Generated refData.ts failed validation: ${chk.reason}`);
+
+  async function generateOnce() {
+    console.log("🤖 Calling Claude API...");
+    const msg = await claudeGenerate("refs", {
+      max_tokens: 12000,
+      messages: [{ role: "user", content: prompt }],
+    });
+    const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";
+    return content.replace(/^```(?:typescript|ts)?\n?/gm, "").replace(/```$/gm, "").trim() + "\n";
+  }
+
+  const result = await writeGeneratedFile(outPath, generateOnce, { retries: 2 });
+  if (!result.ok) {
+    throw new Error(`Generated refData.ts failed validation: ${result.reason}`);
   }
 
   console.log(`✅ Wrote ${outPath}`);
-  console.log(`   Content length: ${cleaned.length} chars`);
 }
 
 main().catch((err) => {
