@@ -47,8 +47,13 @@ describe("teamColors", () => {
       expect(getTeamColor("")).toBe("#0EA5E9");
     });
 
-    it("is case-sensitive (lowercase returns fallback)", () => {
-      expect(getTeamColor("lal")).toBe("#0EA5E9");
+    it("is case-insensitive (lowercase resolves to the team color)", () => {
+      expect(getTeamColor("lal")).toBe("#552583");
+    });
+
+    it("resolves ESPN abbreviation variants to the right color", () => {
+      expect(getTeamColor("bkn")).toBe(getTeamColor("BRK"));
+      expect(getTeamColor("wsh")).toBe(getTeamColor("WAS"));
     });
   });
 });
