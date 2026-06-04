@@ -35,13 +35,14 @@ export function validatePlayoffStructure() {
 
   const ids = [...inner.matchAll(/seriesId:\s*"([^"]+)"/g)].map((m) => m[1]);
   const seen = new Set();
-  // Prefix digit is playoff round rank (E1/W1 first round … E4/W4 finals), not team seed.
-  const SERIES_ID_RE = /^[EW][1-4]-[A-Z]{3}-[A-Z]{3}$/;
+  // Prefix is conference (E/W) or F for the NBA Finals; digit is playoff round rank
+  // (E1/W1 first round … round 3 conference finals, F4 NBA Finals), not team seed.
+  const SERIES_ID_RE = /^[EWF][1-4]-[A-Z]{3}-[A-Z]{3}$/;
   for (const id of ids) {
     assertCond(!seen.has(id), `duplicate seriesId in playoff sync: "${id}"`);
     assertCond(
       SERIES_ID_RE.test(id),
-      `invalid seriesId "${id}" (expected E|W + round 1-4 + team pair, e.g. W2-SAS-MIN)`,
+      `invalid seriesId "${id}" (expected E|W|F + round 1-4 + team pair, e.g. W2-SAS-MIN or F4-SAS-NYK)`,
     );
     seen.add(id);
   }
