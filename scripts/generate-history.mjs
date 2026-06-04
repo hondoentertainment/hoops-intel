@@ -99,7 +99,7 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation. Th
   async function generateOnce() {
     console.log("🤖 Calling Claude API...");
     const msg = await claudeGenerate("history", {
-      max_tokens: 12000,
+      max_tokens: 16384,
       messages: [{ role: "user", content: prompt }],
     });
     const content = msg.content[0]?.type === "text" ? msg.content[0].text : "";

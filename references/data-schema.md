@@ -234,7 +234,7 @@ export interface PlayoffSeriesGame {
 }
 
 export interface PlayoffSeries {
-  seriesId: string;           // "E1-DET-ORL" / "W4-LAL-HOU"
+  seriesId: string;           // "E1-DET-ORL" (East R1) / "W3-OKC-SAS" (West conf finals) / "F4-SAS-NYK" (NBA Finals)
   conference: "east" | "west" | "finals";
   round: PlayoffRound;
   higherSeed: number;         // 1–8 (or 1 for Finals)
