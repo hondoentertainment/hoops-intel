@@ -149,6 +149,7 @@ async function main() {
 
   console.log(`   Yesterday: ${finalGames.length} final games`);
   console.log(`   Tonight:   ${scheduledGames.length} scheduled games`);
+  const offDayResults = finalGames.length === 0;
 
   // Read reference files
   const schema = readFileSync(join(ROOT, "references/data-schema.md"), "utf8");
@@ -235,6 +236,12 @@ async function main() {
 
 ## Yesterday's Game Results (${yesterdayESPN}) — ESPN API
 ${JSON.stringify(finalGames, null, 2)}
+${offDayResults ? `
+## OFF-DAY — no NBA games were played yesterday
+- Section comment MUST be: \`// GAME RESULTS — No Games (${editionDate})\`
+- \`export const gameResults = [];\` (empty array is required)
+- Lead narrative/ticker with series context, injury updates, and tonight's schedule instead of recaps
+` : ""}
 
 ## Tonight's Schedule (${todayESPN}) — ESPN API
 ${JSON.stringify(scheduledGames, null, 2)}
@@ -338,6 +345,20 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
     process.exit(1);
   }
   console.log("✓ all exports parse cleanly");
+
+  if (offDayResults && !/GAME RESULTS\s+—\s+No Games/i.test(contentToWrite)) {
+    contentToWrite = contentToWrite.replace(
+      /\/\/ GAME RESULTS[^\n]*/i,
+      `// GAME RESULTS — No Games (${editionDate})`,
+    );
+    if (!/export const gameResults\s*=\s*\[\s*\]/.test(contentToWrite)) {
+      contentToWrite = contentToWrite.replace(
+        /export const gameResults\s*=\s*\[[^\]]*\];/,
+        "export const gameResults = [];",
+      );
+    }
+    console.log("✓ injected off-day GAME RESULTS marker");
+  }
 
   writeFileSync(join(ROOT, "client/src/lib/pulseData.ts"), contentToWrite, "utf8");
   console.log("✓ pulseData.ts written");

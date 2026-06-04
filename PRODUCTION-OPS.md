@@ -64,7 +64,7 @@ npx vercel deploy --prod --yes   # optional immediate CLI prod deploy
 
 ## Playoff series URL schema
 
-Series IDs use `{E|W}{roundRank}-{higherTeam}-{lowerTeam}` where the digit is **round** (1 = first round, 2 = semifinals, 3 = conference finals, 4 = finals), not seed. Example: `W2-SAS-MIN` and `W2-OKC-LAL` are both valid West semifinal series.
+Series IDs use `{E|W|F}{roundRank}-{higherTeam}-{lowerTeam}` where the digit is **round** (1 = first round, 2 = semifinals, 3 = conference finals, 4 = NBA Finals), not seed. The conference prefix is `E` for East and `W` for West through round 3; the NBA Finals belongs to neither conference and uses `F`. Examples: `W2-SAS-MIN` (West semifinal), `E3-NYK-CLE` (East conference final), `F4-SAS-NYK` (NBA Finals).
 
 ## Troubleshooting
 
