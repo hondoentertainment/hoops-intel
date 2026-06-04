@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ToastProvider } from "./contexts/ToastContext";
 import AskHoopsIntel from "./components/AskHoopsIntel";
@@ -9,6 +9,7 @@ import BackToTop from "./components/BackToTop";
 import PwaInstallPrompt from "./components/PwaInstallPrompt";
 import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
 import RouteSeo from "./components/RouteSeo";
+import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import { incrementVisitCount } from "./lib/visitCount";
 import { syncEngagementBadges } from "./lib/badgeChecks";
 
@@ -102,6 +103,8 @@ function PageLoader() {
 }
 
 export default function App() {
+  const [location] = useLocation();
+
   useEffect(() => {
     incrementVisitCount();
     syncEngagementBadges();
@@ -120,6 +123,7 @@ export default function App() {
           color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
         }}
       >
+        <RouteErrorBoundary resetKey={location}>
         <Suspense fallback={<PageLoader />}>
           <Switch>
             <Route path="/" component={Home} />
@@ -189,6 +193,7 @@ export default function App() {
             </Route>
           </Switch>
         </Suspense>
+        </RouteErrorBoundary>
         <AskHoopsIntel />
         <MobileBottomNav />
         <BackToTop />

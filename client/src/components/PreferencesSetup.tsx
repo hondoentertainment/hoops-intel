@@ -112,6 +112,9 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="my-pulse-setup-title"
         className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl"
         style={{
           background: "#0A1628",
@@ -129,11 +132,13 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
         >
           <div>
             <div className="section-label text-xs mb-0.5">CUSTOMIZE</div>
-            <div className="text-lg font-bold text-white">My Pulse Setup</div>
+            <div id="my-pulse-setup-title" className="text-lg font-bold text-white">My Pulse Setup</div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded flex items-center justify-center transition-colors hover:bg-white/10"
+            aria-label="Close My Pulse setup"
+            className="w-8 h-8 rounded flex items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
             style={{ color: "rgba(255,255,255,0.4)" }}
           >
             <svg
@@ -166,8 +171,12 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
               </div>
             </div>
             <button
+              type="button"
+              role="switch"
+              aria-checked={enabled}
+              aria-label="Enable My Pulse personalization"
               onClick={() => setEnabled(!enabled)}
-              className="relative w-11 h-6 rounded-full transition-colors"
+              className="relative w-11 h-6 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
               style={{
                 background: enabled
                   ? "#0EA5E9"
@@ -211,8 +220,12 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                 return (
                   <button
                     key={team}
+                    type="button"
                     onClick={() => !disabled && toggleTeam(team)}
-                    className="py-2.5 rounded text-xs font-bold tracking-wider transition-all"
+                    disabled={disabled}
+                    aria-pressed={selected}
+                    aria-label={`${team}${selected ? ", selected" : ""}`}
+                    className="py-2.5 rounded text-xs font-bold tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
                     style={{
                       background: selected
                         ? "rgba(14,165,233,0.2)"
@@ -223,13 +236,13 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                       color: selected
                         ? "#0EA5E9"
                         : disabled
-                        ? "rgba(255,255,255,0.2)"
+                        ? "rgba(255,255,255,0.4)"
                         : "rgba(255,255,255,0.6)",
                       boxShadow: selected
                         ? "0 0 12px rgba(14,165,233,0.3)"
                         : "none",
                       cursor: disabled ? "not-allowed" : "pointer",
-                      opacity: disabled ? 0.4 : 1,
+                      opacity: disabled ? 0.5 : 1,
                     }}
                   >
                     {team}
@@ -301,8 +314,10 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                   {suggestions.map((p) => (
                     <button
                       key={p}
+                      type="button"
                       onClick={() => addPlayer(p)}
-                      className="w-full text-left px-3 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                      aria-label={`Add ${p} to favorites`}
+                      className="w-full text-left px-3 py-2 text-sm text-white hover:bg-white/10 focus-visible:outline-none focus-visible:bg-white/10 transition-colors"
                     >
                       {p}
                     </button>
@@ -326,8 +341,10 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                   >
                     {player}
                     <button
+                      type="button"
                       onClick={() => removePlayer(player)}
-                      className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                      aria-label={`Remove ${player} from favorites`}
+                      className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 transition-colors"
                       style={{ color: "#0EA5E9" }}
                     >
                       <svg
@@ -368,15 +385,17 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
           }}
         >
           <button
+            type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-white/10"
+            className="px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Cancel
           </button>
           <button
+            type="button"
             onClick={handleSave}
-            className="px-6 py-2 rounded text-sm font-semibold text-white transition-all hover:opacity-90"
+            className="px-6 py-2 rounded text-sm font-semibold text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
             style={{ background: "#0EA5E9" }}
           >
             Save Preferences

@@ -65,6 +65,7 @@ function TeamTable({ players, team, teamStats }: {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-left" style={{ minWidth: 600 }}>
+          <caption className="sr-only">{team} box score</caption>
           <thead>
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
               <th className="px-2 py-1 text-xs font-medium" style={{ color: "rgba(255,255,255,0.4)" }}>Player</th>
@@ -115,11 +116,14 @@ export default function BoxScoreCard({ espnGameId, homeTeam, awayTeam }: {
   return (
     <div className="mt-3">
       <button
+        type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 text-xs font-medium transition-colors"
+        className="flex items-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 rounded"
         style={{ color: "#0EA5E9" }}
+        aria-expanded={expanded}
+        aria-controls={`box-score-${espnGameId}`}
       >
-        <span style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s", display: "inline-block" }}>
+        <span aria-hidden style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s", display: "inline-block" }}>
           &#9654;
         </span>
         {expanded ? "Hide Box Score" : "View Box Score"}
@@ -127,16 +131,17 @@ export default function BoxScoreCard({ espnGameId, homeTeam, awayTeam }: {
 
       {expanded && (
         <div
+          id={`box-score-${espnGameId}`}
           className="mt-3 rounded-lg p-4"
           style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.06)" }}
         >
           {loading && (
-            <div className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" aria-live="polite" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
               Loading box score...
             </div>
           )}
           {error && (
-            <div className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
               Box score not available for this game.
             </div>
           )}
