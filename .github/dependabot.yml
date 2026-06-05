@@ -1,4 +1,10 @@
 # Dependabot — keep npm + Actions dependencies current (weekly batches).
+#
+# All npm bumps land in a single weekly PR (the `npm-all` group). This
+# eliminates the merge-cascade race where multiple Dependabot PRs auto-
+# merged in parallel produced duplicate JSON keys in package.json /
+# package-lock.json (see #155 post-mortem). With one grouped PR per
+# week, the lockfile resolves once, linearly.
 version: 2
 updates:
   - package-ecosystem: "npm"
@@ -6,17 +12,22 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     groups:
-      vite-react:
+      # All npm dependency bumps (prod + dev) land in one weekly PR.
+      # A single PR means one `npm install` resolves the whole lockfile
+      # atomically; no inter-PR collisions on package.json or
+      # package-lock.json.
+      npm-all:
         patterns:
-          - "vite"
-          - "@vitejs/*"
-          - "react*"
-          - "@types/react*"
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
+    groups:
+      actions-all:
+        patterns:
+          - "*"
