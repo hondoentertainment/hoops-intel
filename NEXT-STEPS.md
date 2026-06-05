@@ -1,6 +1,6 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: May 26, 2026 (production hardening batch)_
+_Last revised: June 5, 2026 (production hardening batch)_
 
 ### Deploy & reliability
 

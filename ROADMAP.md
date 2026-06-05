@@ -1,6 +1,6 @@
 # Hoops Intel — Feature Roadmap
 
-> Last updated: May 3, 2026
+> Last updated: June 5, 2026
 
 **Planning stack:** [`PRD.md`](./PRD.md) (requirements) → this file → [`NEXT-STEPS.md`](./NEXT-STEPS.md) (executable backlog).
 
