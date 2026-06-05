@@ -26,16 +26,23 @@ export default function ShareButton({
   const { toast } = useToast();
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
+  // Close dropdown on outside click or Escape
   useEffect(() => {
     if (!open) return;
-    const handler = (e: MouseEvent) => {
+    const onPointer = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
   }, [open]);
 
   const shareUrl = url || window.location.href;
@@ -81,8 +88,9 @@ export default function ShareButton({
     <div ref={ref} className={`relative inline-block ${className}`}>
       {/* Trigger button */}
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 ${btnPad} rounded ${textSize} font-semibold transition-colors`}
+        className={`flex items-center gap-1.5 ${btnPad} rounded ${textSize} font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60`}
         style={{
           background: open ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.06)",
           color: open ? "#0EA5E9" : "rgba(255,255,255,0.55)",
@@ -90,6 +98,8 @@ export default function ShareButton({
           borderColor: open ? "rgba(14,165,233,0.4)" : "rgba(255,255,255,0.1)",
         }}
         aria-label="Share"
+        aria-haspopup="menu"
+        aria-expanded={open}
       >
         <svg
           width={iconSize}
@@ -113,6 +123,8 @@ export default function ShareButton({
       {/* Dropdown */}
       {open && (
         <div
+          role="menu"
+          aria-label="Share options"
           className="absolute right-0 mt-1 rounded-lg overflow-hidden z-10"
           style={{
             background: "#0B1728",
@@ -123,8 +135,10 @@ export default function ShareButton({
         >
           {/* Copy link */}
           <button
+            type="button"
+            role="menuitem"
             onClick={handleCopyLink}
-            className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors"
+            className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
             style={{ color: "rgba(255,255,255,0.8)" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -147,8 +161,10 @@ export default function ShareButton({
 
           {/* Post on X */}
           <button
+            type="button"
+            role="menuitem"
             onClick={handleTweetShare}
-            className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors"
+            className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
             style={{ color: "rgba(255,255,255,0.8)" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -162,8 +178,10 @@ export default function ShareButton({
           {/* Native share (mobile) */}
           {hasNativeShare && (
             <button
+              type="button"
+              role="menuitem"
               onClick={handleNativeShare}
-              className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors"
+              className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
               style={{ color: "rgba(255,255,255,0.8)" }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}

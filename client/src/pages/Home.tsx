@@ -16,6 +16,7 @@ import {
 } from "../lib/pulseData";
 import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
+import TeamLogo from "../components/TeamLogo";
 import { useLiveScores } from "../lib/useLiveScores";
 import { slugify } from "../lib/searchUtils";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
@@ -120,9 +121,10 @@ function LiveScorebar() {
                   style={{ background: "rgba(255,255,255,0.04)" }}
                 >
                   <span
-                    className="section-label text-xs"
+                    className="flex items-center gap-1.5 section-label text-xs"
                     style={{ color: awayAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
                   >
+                    <TeamLogo team={g.awayTeam} size={18} />
                     {g.awayTeam}{" "}
                     <span className="mono-data font-bold">{fmtLiveScore(as)}</span>
                   </span>
@@ -130,9 +132,10 @@ function LiveScorebar() {
                     @
                   </span>
                   <span
-                    className="section-label text-xs"
+                    className="flex items-center gap-1.5 section-label text-xs"
                     style={{ color: homeAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
                   >
+                    <TeamLogo team={g.homeTeam} size={18} />
                     {g.homeTeam}{" "}
                     <span className="mono-data font-bold">{fmtLiveScore(hs)}</span>
                   </span>
@@ -499,12 +502,14 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
       >
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3 flex-1">
-            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${game.awayTeam.toLowerCase()}`} className="flex flex-col items-center w-14" onClick={(e) => e.stopPropagation()}>
+              <TeamLogo team={game.awayTeam} size={32} className="mb-1" />
               <div className="section-label mb-0.5" style={{ color: awayWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
               <div className={`mono-data font-bold text-2xl ${awayWin ? "pulse-glow-blue" : ""}`} style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
             </a>
             <div className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
-            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12" onClick={(e) => e.stopPropagation()}>
+            <a href={`/team/${game.homeTeam.toLowerCase()}`} className="flex flex-col items-center w-14" onClick={(e) => e.stopPropagation()}>
+              <TeamLogo team={game.homeTeam} size={32} className="mb-1" />
               <div className="section-label mb-0.5" style={{ color: homeWin ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
               <div className={`mono-data font-bold text-2xl ${homeWin ? "pulse-glow-blue" : ""}`} style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
             </a>
@@ -621,9 +626,22 @@ function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
             {gameResults.length} GAMES
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {sortedGames.map((game) => (<GameCard key={game.gameId} game={game} />))}
-        </div>
+        {sortedGames.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {sortedGames.map((game) => (<GameCard key={game.gameId} game={game} />))}
+          </div>
+        ) : (
+          <div
+            className="glass-card rounded-lg px-6 py-10 text-center"
+            style={{ border: "1px dashed rgba(255,255,255,0.12)" }}
+          >
+            <p className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>NO GAMES</p>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              No games on last night&apos;s slate. Check{" "}
+              <a href="/watch-guide" className="text-sky-400 underline">tonight&apos;s schedule</a> for the next tip-off.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -853,6 +871,7 @@ function PulseIndexSection() {
             return (
               <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4" style={isFavorite ? { borderLeft: "3px solid #0EA5E9" } : {}}>
                 <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "#0EA5E9" }}>{player.rank}</div>
+                <TeamLogo team={player.team} size={34} />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <a href={`/player/${slugify(player.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{player.player}</a>
@@ -1244,12 +1263,14 @@ function GamePreviewCard({ preview }: { preview: any }) {
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="text-center">
+            <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="flex flex-col items-center gap-1">
+              <TeamLogo team={preview.awayTeam} size={28} />
               <div className="section-label">{preview.awayTeam}</div>
               <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.awayRecord}</div>
             </a>
             <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
-            <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="text-center">
+            <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="flex flex-col items-center gap-1">
+              <TeamLogo team={preview.homeTeam} size={28} />
               <div className="section-label">{preview.homeTeam}</div>
               <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.homeRecord}</div>
             </a>
@@ -1512,7 +1533,10 @@ function StandingsSection() {
               >
                 <td className="px-3 py-2 mono-data" style={{ color: "#0EA5E9" }}>{team.rank}</td>
                 <td className="px-3 py-2 font-semibold">
-                  <a href={`/team/${team.team.toLowerCase()}`} className="text-white hover:text-sky-400 transition-colors">{team.team}</a>
+                  <a href={`/team/${team.team.toLowerCase()}`} className="inline-flex items-center gap-2 text-white hover:text-sky-400 transition-colors">
+                    <TeamLogo team={team.team} size={20} />
+                    {team.team}
+                  </a>
                   {team.rank === 6 && sortKey === "rank" && (
                     <span className="ml-2 text-[10px] px-1 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>PLAYOFF</span>
                   )}
