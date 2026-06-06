@@ -86,13 +86,15 @@ export const playoffSeries: PlayoffSeries[] = [
     higherTeam: "SAS",
     lowerTeam: "NYK",
     higherWins: 0,
-    lowerWins: 0,
-    status: "upcoming",
-    summary: "Series tied 0-0",
+    lowerWins: 2,
+    status: "active",
+    summary: "NYK leads 2-0",
     games: [
-      { gameNumber: 1, date: "2026-06-03", homeTeam: "SAS", awayTeam: "NYK", homeScore: null, awayScore: null, status: "scheduled", time: "6/3 - 8:30 PM EDT", tv: "ABC" },
-      { gameNumber: 2, date: "2026-06-05", homeTeam: "SAS", awayTeam: "NYK", homeScore: null, awayScore: null, status: "scheduled", time: "6/5 - 8:30 PM EDT", tv: "ABC" },
-      { gameNumber: 3, date: "2026-06-08", homeTeam: "NYK", awayTeam: "SAS", homeScore: null, awayScore: null, status: "scheduled", time: "6/8 - 8:30 PM EDT", tv: "ABC" }
+      { gameNumber: 1, date: "2026-06-03", homeTeam: "SAS", awayTeam: "NYK", homeScore: 95, awayScore: 105, status: "final", time: "Final", tv: "ABC", topPerformer: "Jalen Brunson", topLine: "30 PTS · 3 REB · 2 AST" },
+      { gameNumber: 2, date: "2026-06-05", homeTeam: "SAS", awayTeam: "NYK", homeScore: 104, awayScore: 105, status: "final", time: "Final", tv: "ABC", topPerformer: "Victor Wembanyama", topLine: "29 PTS · 9 REB · 2 AST" },
+      { gameNumber: 3, date: "2026-06-08", homeTeam: "NYK", awayTeam: "SAS", homeScore: null, awayScore: null, status: "scheduled", time: "6/8 - 8:30 PM EDT", tv: "ABC" },
+      { gameNumber: 4, date: "2026-06-10", homeTeam: "NYK", awayTeam: "SAS", homeScore: null, awayScore: null, status: "scheduled", time: "6/10 - 8:30 PM EDT", tv: "ABC" },
+      { gameNumber: 5, date: "2026-06-13", homeTeam: "SAS", awayTeam: "NYK", homeScore: null, awayScore: null, status: "scheduled", time: "6/13 - 8:30 PM EDT", tv: "ABC" }
     ],
   },
   {
@@ -180,22 +182,22 @@ export interface SeriesIntel {
 /** Keys MUST match `seriesId` from synced `playoffSeries` (E1-/W1-/E2-/W2-/E3-/W3-… + round). */
 export const seriesIntel: Record<string, SeriesIntel> = {
   "E3-NYK-CLE": {
-    regularSeasonH2H: "Cleveland held the edge in the regular season series, splitting or winning the majority of matchups behind Donovan Mitchell's consistent scoring, but those results proved irrelevant once the playoffs began.",
-    playoffHistory: "These franchises have limited deep playoff history against each other in the modern era, making this Eastern Conference Finals a genuinely fresh and significant chapter for both fan bases.",
-    keyMatchup: "Donovan Mitchell vs. Jalen Brunson defined the series, with Brunson outdueling Mitchell across all four games by shouldering New York's offense in clutch moments while Mitchell was repeatedly hemmed in by the Knicks' switching defensive schemes.",
-    narrative: "The Cavaliers never solved New York's physical, scheme-heavy defense — a unit that took away Cleveland's mid-range and transition opportunities and forced isolations against length. Cleveland's youth and relative inexperience at this stage showed in late-game execution, with turnovers and poor shot selection in fourth quarters handing the Knicks the margin they needed. A sweep of this magnitude signals not just a series loss but a structural gap between where Cleveland is and what it takes to survive a team playing its best basketball at the right time.",
+    regularSeasonH2H: "Cleveland held the edge in the regular season, winning three of four meetings against New York with Donovan Mitchell's scoring leading the way in most contests.",
+    playoffHistory: "These franchises have limited modern playoff history against each other, with their most notable postseason clashes dating to the LeBron-era Cavaliers who dispatched New York in the early 2010s, making this Eastern Conference Finals matchup a rare and fresh chapter.",
+    keyMatchup: "Jalen Brunson vs. Donovan Mitchell has been the series' defining duel, with Brunson outplaying his counterpart by orchestrating New York's offense at will while Mitchell has struggled to impose his will consistently against the Knicks' disciplined defensive rotations.",
+    narrative: "New York's 4-0 sweep signals a team operating at peak cohesion — Brunson's clutch-time dominance, Mikal Bridges' two-way versatility, and Tom Thibodeau's suffocating defensive scheme proved too complete a package for Cleveland to solve in any single game. The Cavaliers, despite Mitchell's brilliance and Darius Garland's playmaking, could never unlock a consistent answer for New York's switching defense or match the Knicks' physicality in the paint. This sweep cements New York's return to the NBA Finals as a legitimate contender built on toughness, trust, and the kind of collective identity Cleveland simply could not replicate.",
   },
   "F4-SAS-NYK": {
-    regularSeasonH2H: "San Antonio and New York split their regular-season meetings in a pair of competitive games that offered few clear answers about which club holds the edge heading into the Finals.",
-    playoffHistory: "The Spurs and Knicks have rarely crossed paths in the playoffs, with San Antonio holding the historical prestige advantage built on five championship banners compared to New York's two titles from a half-century ago.",
-    keyMatchup: "The series likely turns on the battle between San Antonio's primary playmaker and New York's defensive anchor in the frontcourt — whichever team wins that possession-level chess match at the point of attack should control the pace and tempo across seven games.",
-    narrative: "As the 3-seed, New York must make this series ugly — grinding possessions, packing the paint, and leveraging Madison Square Garden's deafening crowd to steal home-court advantage early in the series. San Antonio is vulnerable when its ball movement stalls in the halfcourt and opponents force it into isolation situations late in the shot clock. If the Knicks can disrupt rhythm and manufacture turnovers in transition, they have the offensive firepower to make this a genuine upset, but any lapse in defensive discipline against a Spurs team this well-coached will be punished without mercy.",
+    regularSeasonH2H: "The Spurs and Knicks split their regular-season meetings this year, with each team winning on the other's home floor in competitive, high-tempo games.",
+    playoffHistory: "San Antonio and New York have rarely met in the playoffs, with their most notable postseason clash coming in the 1999 NBA Finals, which the Spurs swept en route to their first championship.",
+    keyMatchup: "The battle between San Antonio's primary ball-handler and Jalen Brunson will define the series — Brunson is averaging north of 28 points in the postseason and the Spurs have yet to find a consistent answer for his mid-range pull-up game.",
+    narrative: "Down 0-2, San Antonio must solve its transition defense and force New York into half-court possessions where the Spurs' system-based offense can grind out advantages — the Knicks have feasted on Spurs turnovers and second-chance points through two games. San Antonio's path back requires their young core to match New York's physicality and for their coaching staff to introduce wrinkles that disrupt the Knicks' defensive rotations, which have been suffocating in Games 1 and 2. If the Spurs cannot win Game 3 at home and establish crowd energy as a factor, a historic Finals comeback becomes a very steep climb.",
   },
   "W3-OKC-SAS": {
-    regularSeasonH2H: "OKC dominated the regular-season series against San Antonio, leveraging Shai Gilgeous-Alexander's elite scoring and their suffocating defense to build the top seed in the West.",
-    playoffHistory: "These franchises have met in the playoffs sporadically over the decades, most notably when the Thunder — then featuring Kevin Durant and Russell Westbrook — battled San Antonio's dynasty-era Spurs in hard-fought Western Conference showdowns during the early 2010s.",
-    keyMatchup: "Shai Gilgeous-Alexander vs. the Spurs' primary perimeter defenders is the series' defining battle, as SGA averaged north of 30 points per game in the postseason and San Antonio has been forced to throw multiple looks at him to keep Oklahoma City from pulling away.",
-    narrative: "San Antonio, the underdog who clawed back from a 3-2 deficit to close the series in seven, has exposed OKC's vulnerability to length, disciplined ball movement, and veteran poise under pressure — elements the young Spurs core, galvanized by a rising star and Greg Popovich's fingerprints still on the organization's DNA, weaponized down the stretch. For Oklahoma City, the failure to close things out earlier reflects a recurring youth tax: moments of defensive breakdowns and shot-selection lapses that a savvy Spurs group has repeatedly punished. Now facing elimination's obverse — having been eliminated themselves — the Thunder's offseason reckoning will center on whether this group has the mental architecture to match their undeniable physical talent.",
+    regularSeasonH2H: "OKC dominated the regular-season series against San Antonio, leveraging Shai Gilgeous-Alexander's scoring and their elite defense to build the top seed in the West.",
+    playoffHistory: "OKC and San Antonio have a rich postseason rivalry rooted in the Tim Duncan era, though this meeting represents a new chapter with entirely different rosters and identities on both sides.",
+    keyMatchup: "Shai Gilgeous-Alexander versus Victor Wembanyama has defined this series — SGA averaging elite scoring numbers while Wembanyama has answered with rim protection, shot-making, and the kind of two-way dominance that shifted Games 5 through 7 in San Antonio's favor.",
+    narrative: "San Antonio, as the series winner, proved that Wembanyama's ceiling is high enough to neutralize even the West's best offense, and Chris Paul's veteran orchestration gave the Spurs a composure edge in crunch time. OKC, despite the defeat, showed this young core is no fluke — the Thunder simply ran into a generational talent in Wembanyama arriving at exactly the right moment, and San Antonio's ability to slow the pace and make the game ugly proved to be the blueprint OKC could never fully solve.",
   },
 };
 

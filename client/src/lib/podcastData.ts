@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: May 31, 2026
+// Last updated: June 6, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,151 +22,145 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "May 31, 2026",
+  date: "June 6, 2026",
 
   episodeTitle:
-    "One Win Away: Wembanyama Owns Paycom Center and the Spurs Are Knocking on the Finals Door",
+    "Ice Water and a Backboard: Brunson Steals Game 1 as Wembanyama's Buzzer Heave Breaks San Antonio's Heart",
 
   coldOpen:
-    "Let me paint the picture for you. Paycom Center. Oklahoma City. Fifty-thousand-something Thunder fans doing everything they can to save their season. SGA on the floor. Jalen Williams back from injury. The most important game this franchise has played in years. And Victor Wembanyama — twenty-two years old — walked in, posted twenty-nine points, fifteen rebounds, four blocks, a plus-eighteen, and walked out with a 3-2 series lead. The Spurs are one win from the NBA Finals. OKC is one loss from going home. And the best player on the floor was not even close to breaking a sweat. It is May 31st, this is Hoops Intel, and the Western Conference Finals just got very, very real.",
-
-  socialClip:
-    "Best clip of the night: Stephon Castle draining his third consecutive three-pointer in the third quarter at Paycom Center — a hostile road environment — as the Spurs blow the game open and the OKC crowd goes silent. Cut to Pop on the sideline, not even reacting, because he expected it. Pair the clip with the stat: Castle, 22 points, plus-15, three triples, in what might have been the series-defining burst of the 2026 WCF. Caption it: 'Pop knew.' This one is built for short-form. Post it everywhere.",
+    "Fourteen seconds. Frost Bank Center is shaking. The crowd that watched this building host a Game 7 eight days ago is absolutely losing its mind. San Antonio just clawed back from twelve down. Victor Wembanyama has scored eleven straight points for his team. And Jalen Brunson — road court, hostile building, biggest stage of his life — catches a pick, elevates from seventeen feet on the left elbow, and drops it through. Nothing but net. The Knicks go up two. The building tries to respond. They can't. Wembanyama's halfcourt heave hits the backboard and falls away as time expires. New York wins Game 1 of the NBA Finals, 105-104. Welcome to Hoops Intel. I'm your host. Tonight, we break down the most dramatic Finals opener in years — shot by shot, possession by possession. Let's get into it.",
 
   rundown: [
     {
       topic:
-        "Spurs Win Game 5 on the Road — Wembanyama Posts 29/15/4 BLK and San Antonio Takes a 3-2 WCF Lead",
+        "Jalen Brunson's Clutch Dagger: The Left-Elbow Pull-Up That Won Game 1",
       segment: "opener",
       duration: "8 minutes",
       keyStats: [
-        "Victor Wembanyama: 29 PTS, 15 REB, 4 BLK, +18 in a road Game 5",
-        "Final score: SAS 111, OKC 103 — more comfortable than it sounds",
-        "Spurs bench outscored OKC reserves by 14 points",
-        "De'Aaron Fox: 22 PTS, 7 AST while managing three third-quarter fouls",
-        "Stephon Castle: 22 PTS, 3 three-pointers, +15 in the deciding third quarter",
-        "San Antonio now one win from the NBA Finals; OKC faces elimination in Game 6",
+        "Brunson: 31 PTS · 9 AST · 5 REB · +9 in Finals Game 1",
+        "Game-winning pull-up from 17 feet on the left elbow with 14 seconds left",
+        "Knicks led by as many as 12 points in the fourth quarter",
+        "Brunson hit three separate clutch pull-ups in the ECF from this same spot",
+        "New York now 1-0 in NBA Finals — first Finals appearance in decades",
+        "Brunson is averaging 33+ points across this entire postseason run",
       ],
       debateAngle:
-        "Is this already the most dominant individual playoff performance by a big man since the peak Shaquille O'Neal years in the early 2000s? Wembanyama is doing this on the road, against a sixty-four-win team, at twenty-two years old. At what point do we stop contextualizing it and just call it the best thing we have ever seen from a player at this age in the postseason?",
+        "Is Jalen Brunson now a legitimate top-five clutch performer in NBA history based on this postseason alone — or is it too early to put him in that pantheon after just one Finals win? He has now hit go-ahead shots in the ECF and Game 1 of the Finals. At what point does the sample size stop being a caveat?",
       suggestedQuote:
-        "The Thunder had every advantage the building could give them — loud crowd, desperation energy, SGA going full SGA — and Wembanyama just turned all of it into background noise. That is not supposed to be possible for a twenty-two-year-old on the road in an elimination-stakes playoff game. And yet here we are.",
-      relevantPlayers: [
-        "Victor Wembanyama",
-        "Shai Gilgeous-Alexander",
-        "De'Aaron Fox",
-        "Stephon Castle",
-        "Jalen Williams",
-      ],
+        "There's clutch, and then there's Jalen Brunson in a hostile arena with fourteen seconds left in an NBA Finals game. That left-elbow pull-up wasn't luck — he's hit that exact shot three times in this postseason. At some point you have to stop calling it a moment and start calling it a skill.",
+      relevantPlayers: ["Jalen Brunson", "Karl-Anthony Towns", "OG Anunoby"],
     },
     {
       topic:
-        "The Wembanyama Blueprint: How San Antonio's Two-Way Anchor Has Dismantled OKC's Entire Offensive System Across Five Games",
+        "The Wembanyama Problem: 34-13-4 and Still on the Losing Side — What Does San Antonio Do Now?",
       segment: "deep-dive",
       duration: "10 minutes",
       keyStats: [
-        "Wembanyama WCF averages: 30.2 PPG, 15.4 RPG, 3.8 BPG across 5 games",
-        "Double-digit blocks across three consecutive WCF games — no other player in the series has more than 2 in any single game",
-        "Wembanyama's +18 in Game 5 is the best single-game plus/minus of the last two WCF contests",
-        "OKC's halfcourt offense, which improved in Game 5's first half, collapsed after Spurs third-quarter adjustments",
-        "San Antonio went 36-5 at home in the regular season — Frost Bank Center awaits in Game 6",
-        "Pop's rotations resulted in a 14-point bench margin — appearing in every single Spurs win this series",
+        "Wembanyama: 34 PTS · 13 REB · 4 BLK · -1 in Finals Game 1",
+        "Scored 11 of San Antonio's final 14 points in the last four minutes",
+        "Erased a 12-point fourth-quarter deficit almost entirely by himself",
+        "San Antonio shot just 38.4% from the field through three quarters",
+        "Wemby's halfcourt heave at 1.8 seconds caromed off the backboard",
+        "Karl-Anthony Towns finished +11 as the primary Wembanyama matchup",
       ],
       debateAngle:
-        "Pop is clearly running a system that was designed around Wembanyama's unique ability to erase two problems at once — interior scoring AND rim protection — which frees the entire defensive scheme to crowd OKC's perimeter. The real question is: can any team in the NBA Finals stop this, or has San Antonio already found the blueprint that wins a championship?",
+        "Wembanyama put up one of the most statistically dominant losing performances in NBA Finals history — 34 and 13 with four blocks — and his team still dropped Game 1. The real question for Game 2 is structural: does Pop change how and when he gets Wemby the ball in half-court sets, or does he trust that the fourth-quarter isolation brilliance will eventually be enough? Because right now, San Antonio is asking Wemby to win games in the final four minutes rather than building a lead he doesn't have to erase.",
       suggestedQuote:
-        "Here is what Oklahoma City cannot solve: every time they try to take Wembanyama away on offense, they open a lane for Fox or Castle. Every time they try to protect those lanes, Wemby is pulling up from eighteen feet or sealing the block and scoring over whoever they throw at him. Pop built this team specifically so that the defense of Wembanyama is always the wrong answer — and OKC is learning that in the worst way possible.",
+        "Victor Wembanyama's fourth quarter was the most jaw-dropping individual stretch in a Finals game in years. Eleven points, three possessions, an entire building going berserk. But the Spurs lost. And that is the most brutal possible indictment of San Antonio's offensive structure — when your best player has to erase a twelve-point deficit in four minutes just to give you a chance, something upstream is broken.",
       relevantPlayers: [
         "Victor Wembanyama",
-        "Gregg Popovich",
         "De'Aaron Fox",
         "Stephon Castle",
-        "Chet Holmgren",
+        "Karl-Anthony Towns",
       ],
     },
     {
       topic:
-        "Hot Take: Jalen Williams' Fourth-Quarter Disappearance Is the Reason OKC Is Going Home — This Series Was Over the Moment He Went Down in Round Two",
+        "Hot Take: The KAT-Wembanyama Matchup Is Already Decided — and San Antonio Has No Answer",
       segment: "hot-take",
       duration: "6 minutes",
       keyStats: [
-        "Williams played 22 minutes in Game 5 but was essentially absent in the fourth quarter",
-        "OKC won zero of the four games Williams missed with the hamstring strain",
-        "Williams' first-half return gave OKC visible offensive relief — second half told a different story",
-        "SGA: 31 PTS in Game 5, still a losing effort — he cannot carry this alone",
-        "OKC's bench has been outscored by 14+ points per game in Spurs wins this series",
-        "Williams' Game 6 availability is officially uncertain pending a Wednesday injury report",
+        "Karl-Anthony Towns: 22 PTS · 11 REB · 3 AST · +11 on 9-of-15 shooting",
+        "Towns operated as a face-up four — pulling Wemby away from the basket",
+        "Brunson driving lanes opened directly because Wemby was chasing Towns in space",
+        "Wembanyama's four blocks came in rim protection — not in Towns matchups",
+        "Towns' +11 was the best plus/minus of any player in Finals Game 1",
+        "San Antonio's frontcourt had no rotation capable of matching Towns' shooting range",
       ],
       debateAngle:
-        "The hot take is this: Oklahoma City's season ended the day Jalen Williams felt that hamstring pop, and everything since has been a slow-motion confirmation. SGA is one of the five best players in the world and he still cannot close out Wembanyama without a healthy number-two option. The Thunder are not losing because of a talent gap — they are losing because their second-best player is running on one leg. Is this a series OKC wins in seven with a healthy Williams, or was San Antonio always the better team?",
+        "Here's the hot take — Karl-Anthony Towns has already solved the Wembanyama defensive problem that ended every other contender's postseason, and San Antonio cannot fix it between now and Sunday. Towns' face-up game at the four forces Wemby to guard in space, neutralizes his rim protection, and opens every single Brunson drive. Pop is an all-time genius, but there is no roster move he can make in 48 hours that puts a perimeter-capable big on Towns. The matchup is broken and it might stay broken for the series.",
       suggestedQuote:
-        "Jalen Williams looked genuinely good in the first half. He was moving, scoring, giving SGA the pick-and-roll partner he has been starving for. And then the fourth quarter started and Williams was basically a spectator. That is the hamstring talking. And if that hamstring talks the same way in Game 6, Oklahoma City is going to watch the Finals from their couch next to the rest of us.",
+        "Take this one to the bank — Karl-Anthony Towns is the x-factor who decides this Finals, not Brunson, not Wembanyama. Every other team tried to play over Wemby's rim protection. Towns pulled him out to the elbow and made him guard in space. That one tactical decision unlocked the entire Knicks offense. Until San Antonio solves it, New York runs this series.",
       relevantPlayers: [
-        "Jalen Williams",
-        "Shai Gilgeous-Alexander",
+        "Karl-Anthony Towns",
         "Victor Wembanyama",
-        "De'Aaron Fox",
-        "Chet Holmgren",
+        "Jalen Brunson",
       ],
     },
     {
       topic:
-        "Rapid Fire: Castle's Breakout, Fox's Foul Trouble, KAT's Plus/Minus, the 1999 Rematch, and the Knicks Just Watching the World Burn",
+        "Rapid Fire: Castle's Strip, Fox's Clutch, Hart's Boards, Bridges' Buckets, and the 1999 Rematch Context",
       segment: "rapid-fire",
       duration: "5 minutes",
       keyStats: [
-        "Stephon Castle WCF stats: 16.8 PPG, 4.2 APG, 2.4 three-pointers per game across 5 games",
-        "De'Aaron Fox: 22 PTS, 7 AST in Game 5 while picking up 3 fouls in the third quarter alone",
-        "Karl-Anthony Towns cumulative ECF plus/minus: +64 — best team-impact number on either ECF roster",
-        "Jalen Brunson ECF sweep average: 33.3 PPG, 8.8 APG — resting in New York right now",
-        "New York last played on May 25 — the Knicks have been resting for six days while the WCF plays out",
-        "A 2026 Knicks-Spurs Finals would be a rematch of the 1999 series, 27 years later",
+        "Stephon Castle: 19 PTS · 6 AST · the strip of Anunoby with 22 seconds left",
+        "De'Aaron Fox: 27 PTS · 7 AST — converted layup after Castle strip to cut deficit to one",
+        "Josh Hart: 11 PTS · 12 REB off the bench — denied three consecutive second chances in Q3",
+        "Mikal Bridges: 18 PTS · 3 STL · 3-of-3 from three — shot 100% from deep",
+        "Dalen Terry: 9 PTS · 4 STL off the bench — four steals disrupted New York's motion offense",
+        "1999 NBA Finals: San Antonio defeated New York in five games — 2026 is a rematch 27 years in the making",
       ],
       debateAngle:
-        "Four rapid-fire debate sparks: One — is Stephon Castle already the most important second-year player in a conference finals since someone want to fight me on this? Two — does De'Aaron Fox's foul management in the second half of Game 5 prove he is a different player than the Fox who lost close games in Sacramento? Three — are the Knicks actually getting better sitting at home watching film while their Finals opponent exhausts itself? Four — does the 1999 Knicks-Spurs rematch narrative actually matter for ratings or is it just something old people like us get excited about?",
+        "Five rapid-fire questions: One — does Stephon Castle's strip become the defining image of his rookie Finals debut or does he get a redemption moment in Game 2? Two — is De'Aaron Fox underrated in this series given that he dropped 27 and nearly won it? Three — is Josh Hart the most underappreciated player in this entire Finals? Four — can Bridges stay at 100% from three all series or is Game 1 an anomaly? Five — does the 1999 history add genuine psychological weight to this matchup or is that just a media narrative?",
       suggestedQuote:
-        "Somewhere in New York, Jalen Brunson is watching Wembanyama post twenty-nine and fifteen on the road and circling plays on a tablet. The Knicks have been off for six days. They are rested, they are scouted, and they are watching their Finals opponent reveal every tendency in real time. That rest advantage is real and the NBA should be paying attention to it.",
+        "Let's run through the supporting cast real quick because the Brunson and Wemby storylines are eating everything. Castle's strip nearly won a Finals game. Fox dropped 27 and nobody is talking about it. Josh Hart grabbed twelve boards off the bench and denied second chances that changed the game's flow. And Dalen Terry came off the Pop bench and picked four pockets. This is a deep Finals series with a lot of moving parts.",
       relevantPlayers: [
         "Stephon Castle",
         "De'Aaron Fox",
-        "Karl-Anthony Towns",
-        "Jalen Brunson",
+        "Josh Hart",
         "Mikal Bridges",
+        "Dalen Terry",
       ],
     },
     {
       topic:
-        "Looking Ahead: WCF Game 6, Thursday in San Antonio — Can OKC Stop the Spurs From Punching Their Finals Ticket?",
+        "Looking Ahead: Game 2 Sunday Night — Can Pop Make the Adjustments and Can Brunson Do It Again?",
       segment: "closer",
       duration: "5 minutes",
       keyStats: [
-        "Game 6: OKC @ SAS, Thursday June 5 — tip time TBD, NBC and Peacock",
-        "Current spread: SAS -4.5, opened SAS -3.0 — moved on Williams injury signal",
-        "Over/under: 212.5",
-        "San Antonio went 36-5 at home in the 2025-26 regular season",
-        "Pop has never lost a closeout home game in a conference finals in his coaching career",
-        "Prediction: SAS 109, OKC 99 — Wembanyama closes the series with 30 points",
+        "Game 2 is Sunday, June 7 at Frost Bank Center — 8:00 PM ET on ABC",
+        "Line opened SAS -3.5, moved to SAS -2.0 as sharp Brunson-clutch money hit the market",
+        "Over/under: 210.5 — identical building, two extra days of prep",
+        "Game 2 prediction: SAS 111, NYK 106 — Wemby bounces back with 36",
+        "OG Anunoby: Probable (right hamstring managed) — played 38 minutes in G1 with no visible limitation",
+        "On this day in 1993: Charles Barkley scored 42 points to lead Phoenix past Chicago in Finals Game 3",
       ],
       debateAngle:
-        "The closing question: Does Oklahoma City have any realistic path to winning two straight — one in San Antonio, one at home — against this Spurs team? What would it actually take? Williams has to be healthy enough to play full fourth-quarter minutes. SGA has to give them a 38-point performance on the road. OKC's three-point shooting has to recover from two consecutive cold nights. And they have to solve Wembanyama in a building where he has been even more dominant than on the road. The line moved from three to four and a half for a reason. We will see you Thursday night.",
+        "The real closer question for Game 2 is this: does Jalen Brunson have the same left-elbow pull-up in him on Sunday in the same building, against a Pop defensive scheme that has had 48 hours to scheme specifically for that shot — and can San Antonio build enough of a lead in the first three quarters that the Knicks are not in a position to steal it in the final 14 seconds? Game 1 told us a lot about both teams. Game 2 will tell us which one actually learned from it.",
       suggestedQuote:
-        "Pop has never lost a closeout home game in a conference finals. Let that sit with you. He has been in this exact position — one win from the Finals, crowd behind him, best player on the floor — and he has closed every single time. Thursday night in San Antonio might be the most inevitable game of the 2026 playoffs. Or SGA does something we have never seen before and we all get a Game 7. Either way, do not miss it.",
+        "Here's what I'll leave you with. Pop has two days. He knows exactly what Brunson wants. He knows exactly where Towns wants to operate. He will draw something up for Game 2 that we haven't seen. The question is whether Thibodeau has an answer for whatever Pop designs — and whether Brunson can hit that same pull-up cold, on the road, in a building that will be the loudest it has ever been, with the whole series on the line. We find out Sunday. Don't miss it.",
       relevantPlayers: [
+        "Jalen Brunson",
         "Victor Wembanyama",
-        "Shai Gilgeous-Alexander",
-        "Jalen Williams",
-        "Gregg Popovich",
-        "Stephon Castle",
+        "Karl-Anthony Towns",
         "De'Aaron Fox",
+        "OG Anunoby",
       ],
     },
   ],
 
+  socialClip:
+    "CLIP DESCRIPTION — Most Shareable Moment (30–45 seconds): Begin with the live game audio of the Frost Bank Center crowd at peak volume as Wembanyama converts his second straight post score to make it 104-103. Cut to Brunson walking up the court — zero expression, zero urgency. Show the pick set by Towns, Brunson pulling off it, the two Spurs defenders closing hard, and the pull-up releasing from the left elbow at 17 feet. Freeze frame as the net snaps. Then cut immediately to the Wembanyama halfcourt heave — full arc in real time — and the ball caroming off the backboard as the buzzer sounds. Overlay text: 'ICE WATER. BRUNSON. GAME 1.' End on the scoreboard graphic: NYK 105 · SAS 104. Caption for post: 'Fourteen seconds. Left elbow. Ice water. Jalen Brunson just hit the most important shot of his career in Game 1 of the NBA Finals. Wemby's halfcourt answer falls off the glass. Knicks lead 1-0. 🏀🧊 #NBAFinals #Brunson #HoopsIntel'",
+
   tweetThread: [
-    "🎙️ NEW EPISODE — Hoops Intel Daily | May 31, 2026\n\n'One Win Away: Wembanyama Owns Paycom Center and the Spurs Are Knocking on the Finals Door'\n\nVictor Wembanyama. 29 PTS. 15 REB. 4 BLK. +18. On the road. In an elimination game. At 22 years old.\n\nThe Spurs lead 3-2. OKC is in serious trouble. Thread 👇",
-    "The Wembanyama performance in Game 5 was the most complete two-way showing of the 2026 playoffs.\n\nHe controlled the tempo on both ends, neutralized OKC's transition offense, and gave Pop everything he needed when Fox went to the bench with foul trouble in the third quarter.\n\nHis WCF line: 30.2 PPG · 15.4 RPG · 3.8 BPG\n\nThere is no comparison right now.",
-    "The hidden story of this series: depth.\n\nSAS bench outscored OKC reserves by 14 in Game 5. That margin has appeared in EVERY Spurs win.\n\nPop manufactured this advantage deliberately — Wembanyama forces opponents to overplay starters, which exhausts their rotation and opens the bench gap.\n\nThis is coaching. This is system. This is beautiful.",
-    "Hot take on today's episode: Oklahoma City's season ended the day Jalen Williams felt that hamstring pop.\n\nHe played 22 minutes in Game 5. Was GONE in the fourth quarter. SGA put up 31 and it still was not enough.\n\nIf Williams cannot go full speed Thursday, the Thunder are watching the Finals from home.\n\nWednesday injury report is everything.",
-    "Thursday. June 5. San Antonio. Frost Bank Center.\n\nPop has NEVER lost a closeout home game in a conference finals.\n\nSpurs are 36-5 at home. Line is SAS -4.5. Prediction: SAS 109, OKC 99.\n\nAnd if San Antonio closes — it is a 1999 Finals rematch. Knicks vs. Spurs. Brunson vs. Wembanyama. 27 years later.\n\nDo not sleep on Thursday night. 🔒🏆",
+    "🧵 HOOPS INTEL DAILY — June 6, 2026 | NBA Finals Game 1 recap thread. Knicks 105, Spurs 104. One of the most dramatic Finals openers in recent memory. Let's break it down. (1/5)",
+
+    "🎯 BRUNSON. LEFT ELBOW. 14 SECONDS LEFT. Jalen Brunson pulled up from 17 feet over two defenders with the game tied at 103 and dropped it through the net to put New York up two. That is his signature shot. He's hit it in three ECF moments and now once in the NBA Finals. 31 PTS · 9 AST. The Knicks have a closer. (2/5)",
+
+    "😤 WEMBY WAS HISTORIC AND STILL LOST. 34 PTS · 13 REB · 4 BLK. Scored 11 consecutive Spurs points in the final four minutes to erase a 12-point deficit. His buzzer heave at 1.8 seconds hit the backboard and fell away. The most brutal image of Game 1. Castle's strip of Anunoby nearly won it — Fox converted but Brunson hit both intentional FTs. One point. That's all it came down to. (3/5)",
+
+    "📊 THE UNDERRATED STORY: Karl-Anthony Towns was the structural reason the Knicks controlled this game. 22 PTS · 11 REB · +11 on 9-of-15 shooting. He pulled Wembanyama out of the paint all night and opened every Brunson driving lane. Josh Hart added 12 boards off the bench. Bridges shot 3-of-3 from three. Dalen Terry had 4 steals off the Pop bench. This Finals has real depth. (4/5)",
+
+    "📅 WHAT'S NEXT: NYK leads the NBA Finals 1-0. Game 2 is Sunday night, June 7 at Frost Bank Center — 8:00 PM ET on ABC. Line: SAS -2.0 (moved from -3.5). Pop has 48 hours to scheme a Brunson answer. Wembanyama gets a bounce-back spot at home. Our prediction: SAS 111, NYK 106. Don't miss it. Full breakdown at hoopsintel.net. 🏀 (5/5)",
   ],
 };

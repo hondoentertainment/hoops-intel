@@ -22,7 +22,7 @@
     <loc>https://hoopsintel.net/playoffs</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/tools</loc>
@@ -40,7 +40,7 @@
     <loc>https://hoopsintel.net/pick-em</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.65</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/trade-value</loc>
@@ -220,19 +220,19 @@
     <loc>https://hoopsintel.net/playoffs/series/E3-NYK-CLE</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/playoffs/series/F4-SAS-NYK</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/playoffs/series/W3-OKC-SAS</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/player/victor-wembanyama</loc>
@@ -1609,7 +1609,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/game/OKC-SAS-20260526</loc>
+    <loc>https://hoopsintel.net/game/SAS-NYK-20260605</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
@@ -1652,6 +1652,18 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/game/SAS-NYK-20260608</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/game/SAS-NYK-20260610</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/game/NYK-SAS-20260613</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
