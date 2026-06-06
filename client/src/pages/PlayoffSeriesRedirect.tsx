@@ -37,7 +37,7 @@ export default function PlayoffSeriesRedirect() {
     return (
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="PLAYOFFS" />
-        <main className="container py-20 text-center">
+        <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none">
           <div className="section-label mb-3">SERIES NOT FOUND</div>
           <h1 className="display-heading text-white text-2xl mb-4">No synced series for this ID</h1>
           <a href="/playoffs" className="text-sky-400 underline">Back to bracket</a>

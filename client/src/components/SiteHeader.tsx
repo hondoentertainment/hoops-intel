@@ -678,6 +678,7 @@ export default function SiteHeader({
                 <button
                   type="button"
                   onClick={() => setShowAuth(true)}
+                  aria-label="Sign in to your account"
                   className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
                   style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
                 >

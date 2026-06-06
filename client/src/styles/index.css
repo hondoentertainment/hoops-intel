@@ -194,6 +194,25 @@ html.light .glass-card {
   }
 }
 
+/* Floating Ask AI panel — sit above mobile tab bar */
+.ask-chat-panel {
+  bottom: calc(3.5rem + env(safe-area-inset-bottom));
+  height: min(600px, calc(85vh - 3.5rem - env(safe-area-inset-bottom)));
+}
+
+@media (min-width: 768px) {
+  .ask-chat-panel {
+    bottom: 0;
+    height: min(600px, 85vh);
+  }
+}
+
+/* Archive summaries are read-only — avoid implying whole-card navigation */
+.archive-card:hover {
+  transform: none;
+  cursor: default;
+}
+
 /* Pulse Glow Effects */
 .pulse-glow-blue {
   text-shadow: 0 0 20px rgba(14, 165, 233, 0.3);

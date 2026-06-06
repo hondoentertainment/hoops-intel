@@ -123,7 +123,7 @@ export default function GameCenter() {
     return (
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="GAME CENTER" />
-        <main className="container py-20 text-center">
+        <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none">
           <div className="section-label mb-3">GAME NOT FOUND</div>
           <h1 className="display-heading text-white text-2xl mb-4">No Game Center match for this ID</h1>
           <a href="/#scores" className="text-sky-400 underline">Back to scores</a>

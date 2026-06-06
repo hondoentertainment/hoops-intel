@@ -44,7 +44,7 @@ export default function Unsubscribe() {
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader subtitle="DIGEST" />
 
-      <div className="container py-14 max-w-md">
+      <main id="main-content" tabIndex={-1} className="container py-14 max-w-md outline-none">
         <h1 className="display-heading text-2xl text-white mb-2">Unsubscribe</h1>
         <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
           Turn off morning digest emails only — your Hoops Intel account (if any) stays active.
@@ -58,7 +58,7 @@ export default function Unsubscribe() {
           value={email}
           onChange={(ev) => setEmail(ev.target.value)}
           placeholder="you@domain.com"
-          className="w-full px-4 py-3 rounded-lg text-sm mb-4 outline-none"
+          className="w-full px-4 py-3 rounded-lg text-base sm:text-sm mb-4 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
           style={{
             background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.12)",
@@ -70,7 +70,7 @@ export default function Unsubscribe() {
           type="button"
           onClick={submit}
           disabled={status === "loading"}
-          className="w-full py-3 rounded-lg font-semibold transition-opacity"
+          className="w-full min-h-[44px] py-3 rounded-lg font-semibold transition-opacity"
           style={{
             background: "linear-gradient(135deg,#0EA5E9,#0284C7)",
             color: "#fff",
@@ -80,7 +80,7 @@ export default function Unsubscribe() {
           {status === "loading" ? "Submitting…" : "Confirm unsubscribe"}
         </button>
         {message && (
-          <p className={`mt-4 text-sm ${status === "ok" ? "text-emerald-400" : status === "err" ? "text-rose-400" : ""}`}>
+          <p className={`mt-4 text-sm ${status === "ok" ? "text-emerald-400" : status === "err" ? "text-rose-400" : ""}`} role={status === "err" ? "alert" : "status"}>
             {message}
           </p>
         )}
@@ -88,7 +88,7 @@ export default function Unsubscribe() {
           Tip: Prefer fewer emails instead? Quiet hours ship with bulk sends — ping us if something looks off after
           subscribing again from the home footer.
         </p>
-      </div>
+      </main>
     </div>
   );
 }

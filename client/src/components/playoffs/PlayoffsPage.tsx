@@ -211,7 +211,7 @@ export function PlayoffsPage() {
       <DashboardHeader />
       <StickyRibbon series={mergedSeries} />
 
-      <main className="container px-4 py-6 max-w-[1400px] mx-auto">
+      <main id="main-content" tabIndex={-1} className="container px-4 py-6 max-w-[1400px] mx-auto outline-none">
         {hasBoard && (
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <DataTrustBadge variant={hasLive ? "live" : "espn"} fetchedAt={liveData?.fetchedAt} />

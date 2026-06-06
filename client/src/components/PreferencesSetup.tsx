@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import {
   getPreferences,
   setPreferences,
@@ -47,7 +49,11 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
   const [search, setSearch] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const allPlayers = useMemo(() => buildPlayerList(), []);
+
+  useBodyScrollLock(true);
+  useFocusTrap(true, panelRef);
 
   // Load existing preferences on mount
   useEffect(() => {
@@ -112,10 +118,11 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
       onClick={onClose}
     >
       <div
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="my-pulse-setup-title"
-        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl"
+        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl outline-none"
         style={{
           background: "#0A1628",
           border: "1px solid rgba(14,165,233,0.25)",
