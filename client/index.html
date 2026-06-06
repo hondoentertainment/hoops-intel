@@ -65,9 +65,38 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
+      // Recover when a stale cached index references deleted JS chunks (post-deploy).
+      window.addEventListener(
+        "error",
+        function (event) {
+          var target = event.target;
+          if (!target || target.tagName !== "SCRIPT") return;
+          var src = target.src || "";
+          if (src.indexOf("/assets/") === -1) return;
+          if (sessionStorage.getItem("hi-boot-reload")) return;
+          sessionStorage.setItem("hi-boot-reload", "1");
+          if ("caches" in window) {
+            caches
+              .keys()
+              .then(function (keys) {
+                return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+              })
+              .finally(function () { location.reload(); });
+          } else {
+            location.reload();
+          }
+        },
+        true,
+      );
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(function (reg) {
+              reg.update();
+            })
+            .catch(function () {});
         });
       }
     </script>

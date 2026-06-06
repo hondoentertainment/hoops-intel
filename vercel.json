@@ -11,7 +11,12 @@
       "permanent": true
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    {
+      "source": "/((?!assets/|api/|og/|sw\\.js|manifest\\.json|feed\\.xml|sitemap\\.xml|robots\\.txt|embed\\.js|embed\\.html|_vercel/).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/embed/(.*)",

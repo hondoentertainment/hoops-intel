@@ -1,5 +1,5 @@
-// Hoops Intel Service Worker — offline edition with cache-first static + pulse bundles
-const CACHE_NAME = "hoops-intel-v4";
+// Hoops Intel Service Worker — network-first shell, cached static/edition chunks
+const CACHE_NAME = "hoops-intel-v5";
 const STATIC_ASSETS = ["/manifest.json", "/assets/logo.png"];
 
 /** Edition data chunks — hashed filenames still match these prefixes after build. */
@@ -34,8 +34,26 @@ async function networkFirstNavigate(request) {
   } catch {
     const cached = await caches.match(request);
     if (cached) return cached;
-    const shell = await caches.match("/");
+    const shell = await caches.match("/index.html");
     return shell || Response.error();
+  }
+}
+
+/** Prefer network for hashed bundles so deploys recover without serving stale HTML as JS. */
+async function networkFirstAsset(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      await cache.put(request, response.clone());
+      return response;
+    }
+    const cached = await caches.match(request);
+    return cached || response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    throw new Error("asset fetch failed");
   }
 }
 
@@ -68,18 +86,15 @@ self.addEventListener("fetch", (event) => {
 
   const path = url.pathname;
 
-  if (
-    path === "/" ||
-    path === "/index.html" ||
-    EDITION_CHUNK.test(path) ||
-    STATIC_EXT.test(path)
-  ) {
-    event.respondWith(cacheFirst(request));
+  // Always fetch fresh HTML shell after deploys (avoid stale index → missing chunk loops).
+  if (request.mode === "navigate" || path === "/" || path === "/index.html") {
+    event.respondWith(networkFirstNavigate(request));
     return;
   }
 
-  if (request.mode === "navigate") {
-    event.respondWith(networkFirstNavigate(request));
+  if (EDITION_CHUNK.test(path) || STATIC_EXT.test(path)) {
+    event.respondWith(networkFirstAsset(request));
+    return;
   }
 });
 

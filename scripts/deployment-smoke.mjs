@@ -36,6 +36,7 @@ const staticChecks = [
 const checks = [
   ...staticChecks,
   ...playoffSeriesPaths().map((path) => ({ path, type: "html" })),
+  { path: "/assets/__missing-chunk-test__.js", type: "asset404" },
 ];
 
 async function check({ path, type, optional }) {
@@ -50,6 +51,14 @@ async function check({ path, type, optional }) {
   }
   const text = await res.text();
   const durationMs = Date.now() - start;
+  if (type === "asset404") {
+    if (res.ok) return { ok: false, path, error: "expected missing asset to 404", durationMs };
+    if (res.status !== 404) return { ok: false, path, error: `expected 404 got HTTP ${res.status}`, durationMs };
+    if (/text\/html/i.test(res.headers.get("content-type") || "")) {
+      return { ok: false, path, error: "missing asset returned HTML shell", durationMs };
+    }
+    return { ok: true, path, durationMs };
+  }
   if (!res.ok && !optional) return { ok: false, path, error: `HTTP ${res.status}`, durationMs };
   if (!res.ok && optional) return { ok: true, optional, path, note: `optional HTTP ${res.status}`, durationMs };
   if (type === "html" && !/<div id="root">/.test(text)) return { ok: false, path, error: "missing app root", durationMs };
