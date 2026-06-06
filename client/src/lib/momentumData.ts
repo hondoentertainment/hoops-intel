@@ -37,53 +37,53 @@ export const momentumData: MomentumData = {
   gameOfTheNight: "NYK-SAS-20260605",
   topClutchPerformer: {
     player: "Jalen Brunson",
-    team: "New York Knicks",
+    team: "NYK",
     clutchRating: 97,
     description:
-      "Brunson authored the defining moment of Finals Game 1 — a cold-blooded 17-foot pull-up from the left elbow with 14 seconds left to push the lead to two, then sealed it at the stripe when the Spurs sent him intentionally. With Wembanyama's historic comeback threatening to swallow the Knicks whole, Brunson never flinched, finishing with 31 points and 9 assists in a one-possession classic.",
+      "Brunson authored one of the great Finals clutch performances in recent memory — a 17-foot pull-up with 14 seconds left that proved to be the dagger, then iced the game at the line after a Castle strip gave San Antonio one final gasp. He finished with 31 points, 9 assists, and a +9 in a game that swung violently in the final four minutes.",
   },
   games: [
     {
       gameId: "NYK-SAS-20260605",
-      teams: { home: "San Antonio Spurs", away: "New York Knicks" },
+      teams: { home: "SAS", away: "NYK" },
       finalScore: { home: 104, away: 105 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "4:42",
-          description:
-            "Brunson orchestrates a 9-2 Knicks run to open the game, knifing through San Antonio's drop coverage for back-to-back floaters to establish early control of pace and tempo.",
-          runScore: "9-2 NYK",
-          momentum: "away",
-          keyPlayer: "Jalen Brunson",
-          impact: "notable",
-        },
-        {
           quarter: "Q2",
-          timestamp: "6:15",
+          timestamp: "5:14",
           description:
-            "Wembanyama flips the first-half script with a 13-4 Spurs surge — two rim-rattling alley-oops, a transition rejection, and a pull-up three from the logo that silences the Frost Bank Center crowd into reverent awe.",
-          runScore: "13-4 SAS",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:30",
-          description:
-            "Karl-Anthony Towns takes over the third quarter on both ends, posting seven straight points on back-to-back mid-post jumpers and a baseline turnaround, while anchoring a zone look that forces three consecutive Spurs shot-clock violations.",
-          runScore: "11-3 NYK",
+            "Karl-Anthony Towns rattled off 8 consecutive points — two mid-range jumpers and a tip-in off a Brunson miss — to push the Knicks out to a 14-point lead and silence a raucous Frost Bank Center crowd that had been feeding off early Spurs energy.",
+          runScore: "8-0 NYK run (38-24)",
           momentum: "away",
           keyPlayer: "Karl-Anthony Towns",
           impact: "significant",
         },
         {
-          quarter: "Q4",
-          timestamp: "4:05",
+          quarter: "Q3",
+          timestamp: "3:31",
           description:
-            "With the Knicks ahead 99-87, Wembanyama ignites the most electrifying individual stretch of the 2026 Finals — 11 unanswered Spurs points in under three minutes, including a step-back three over two defenders, a vicious put-back slam, and a finger-roll off the glass that pulls San Antonio within one at 99-100.",
-          runScore: "11-0 SAS",
+            "Wembanyama ignited the building with back-to-back blocked shots that led to transition buckets on both ends — his own finger-roll and a Stephon Castle pull-up — trimming New York's lead to 6 and forcing a Knicks timeout as the crowd hit a fever pitch.",
+          runScore: "9-2 SAS run (61-55)",
+          momentum: "home",
+          keyPlayer: "Victor Wembanyama",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "8:02",
+          description:
+            "Brunson orchestrated a methodical 10-2 Knicks push to open the fourth quarter, dissecting the Spurs' drop coverage with floaters and finding Towns twice on high-low action, ballooning the lead back to 12 and appearing to put the game to rest.",
+          runScore: "10-2 NYK run (85-73)",
+          momentum: "away",
+          keyPlayer: "Jalen Brunson",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "3:58",
+          description:
+            "In the most stunning individual sequence of the 2026 Finals, Wembanyama scored 11 consecutive San Antonio points — a step-back three, a driving hook, a mid-post fallaway, a put-back slam, and another three off a broken play — pulling the Spurs within one and sending Frost Bank Center into pure delirium.",
+          runScore: "11-0 SAS run (101-100)",
           momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "game-changing",
@@ -92,8 +92,8 @@ export const momentumData: MomentumData = {
           quarter: "Q4",
           timestamp: "0:14",
           description:
-            "Brunson re-seizes control with a left-elbow pull-up over Wembanyama's outstretched seven-foot wingspan to restore a two-point cushion, a shot that will be replayed on highlight reels for a generation of Finals lore.",
-          runScore: "4-2 NYK",
+            "Brunson responded to the Wembanyama onslaught with ice-cold precision — isolating on the left elbow, pump-faking his defender into the air, and drilling a 17-foot pull-up to restore a two-point lead with 14 seconds left and reclaim control of the narrative.",
+          runScore: "2-1 NYK (103-101)",
           momentum: "away",
           keyPlayer: "Jalen Brunson",
           impact: "game-changing",
@@ -102,47 +102,47 @@ export const momentumData: MomentumData = {
       clutchPlays: [
         {
           player: "Victor Wembanyama",
-          team: "San Antonio Spurs",
+          team: "SAS",
           description:
-            "Step-back three over two Knicks defenders to cut the deficit to four — the shot that officially announced the comeback was real and not a blip.",
+            "Step-back three-pointer over OG Anunoby from the right wing — the opening salvo of an 11-0 personal run — cutting the deficit to 9 with under four minutes remaining and signaling that San Antonio was nowhere near done.",
           timeRemaining: "3:58",
-          winProbabilityShift: -28,
+          winProbabilityShift: -22,
+        },
+        {
+          player: "Victor Wembanyama",
+          team: "SAS",
+          description:
+            "Thunderous put-back slam off his own missed hook, drawing a foul in the process. He converted the and-one to pull San Antonio within two — the Frost Bank Center crowd was at a volume seldom heard in Finals history.",
+          timeRemaining: "1:47",
+          winProbabilityShift: -18,
         },
         {
           player: "Jalen Brunson",
-          team: "New York Knicks",
+          team: "NYK",
           description:
-            "17-foot pull-up jumper from the left elbow over Wembanyama's contest — created off a jab-step isolation, fell through the net without touching the rim, and restored a two-point lead with 14 seconds on the clock.",
+            "Isolation pull-up jumper from the left elbow over a closing Wembanyama — textbook footwork, perfect elevation — with 14 seconds on the clock to put New York up 103-101 and answer Wemby's personal run with one defining shot.",
           timeRemaining: "0:14",
-          winProbabilityShift: 41,
+          winProbabilityShift: 31,
         },
         {
           player: "Stephon Castle",
-          team: "San Antonio Spurs",
+          team: "SAS",
           description:
-            "Full-length-of-the-arm strip of Brunson in transition immediately following the pull-up, creating a live-ball scramble that gave the Spurs one last lifeline.",
-          timeRemaining: "0:11",
+            "Lightning-quick strip of Brunson in the open court after an inbounds pass, leading to De'Aaron Fox's layup that cut the deficit back to one and gave the Spurs a final heartbeat with 9 seconds remaining.",
+          timeRemaining: "0:09",
           winProbabilityShift: -19,
         },
         {
-          player: "De'Aaron Fox",
-          team: "San Antonio Spurs",
-          description:
-            "Composed push-shot layup off the Castle strip to pull within one — put 104-105 on the board and forced the Knicks into an intentional-foul decision.",
-          timeRemaining: "0:09",
-          winProbabilityShift: -14,
-        },
-        {
           player: "Jalen Brunson",
-          team: "New York Knicks",
+          team: "NYK",
           description:
-            "Sank both intentional-foul free throws under the highest-pressure conditions imaginable, effectively icing Game 1 and leaving Wembanyama's desperate halfcourt heave as the Spurs' only remaining prayer.",
-          timeRemaining: "0:07",
-          winProbabilityShift: 38,
+            "Hit both intentional-foul free throws with supreme composure after the Fox layup — 104-105, no room for error — sealing a one-point Knicks victory and denying Wembanyama a halfcourt miracle at the buzzer.",
+          timeRemaining: "0:06",
+          winProbabilityShift: 29,
         },
       ],
       narrative:
-        "Game 1 of the 2026 NBA Finals was a living, breathing argument for why basketball is the sport of the human spirit — messy, brilliant, and utterly resistant to narrative control. The Knicks looked composed and in command for three-and-a-half quarters before Wembanyama decided the laws of probability did not apply to him, turning an 87-99 deficit into a one-possession thriller through sheer extraterrestrial will. But Brunson — calm as a Tuesday practice — reached back for the kind of pull-up that separates good players from franchise cornerstones, dropping it through the net as if the moment weighed nothing. The final 14 seconds were a fire drill: a strip, a layup, two pressure free throws, and a halfcourt heave off the backboard glass, all compressed into an exhale that left San Antonio stunned and New York clinging to a 1-0 series lead. If Game 1 is any preview, this Finals will be remembered long after the final buzzer of Game 7 — whenever that may come.",
+        "Game 1 of the 2026 NBA Finals will be dissected for decades. The Knicks looked in full control, riding Brunson's orchestration and Towns' interior dominance to a 12-point cushion with four minutes left — and then Wembanyama decided the night wasn't over. His 11-point personal eruption was as breathtaking a stretch as any player has produced on the Finals stage, compressing an entire comeback into three minutes of pure individual will. But Brunson, who has been forged in exactly these moments across his Knicks tenure, answered with the cold-blooded left-elbow pull-up that franchise legend is built on. Wembanyama's halfcourt heave caroming off the glass was the last image of a night that confirmed both players — and both franchises — belong at the very top of the league.",
     },
   ],
 };
