@@ -96,7 +96,7 @@ jobs:
             echo "⚠️ Partial failure — edition generated but some secondary content failed"
             echo "partial=true" >> $GITHUB_OUTPUT
           fi
-        timeout-minutes: 20
+        timeout-minutes: 45
 
       - name: Append ESPN snapshot data quality (if artifact exists)
         if: always()
