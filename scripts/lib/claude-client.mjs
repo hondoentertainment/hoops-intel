@@ -23,7 +23,9 @@ function isTransient(err) {
     s === 503 ||
     s === 429 ||
     err?.error?.error?.type === "overloaded_error" ||
-    err?.headers?.["x-should-retry"] === "true"
+    err?.error?.type === "timeout_error" ||
+    err?.headers?.["x-should-retry"] === "true" ||
+    /timed out/i.test(err?.message ?? "")
   );
 }
 

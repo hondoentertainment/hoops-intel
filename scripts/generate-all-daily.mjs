@@ -43,11 +43,31 @@ const DAILY_SCRIPTS = [
   { name: "Sitemap",     script: "generate-sitemap.mjs",     critical: false },
 ];
 
+// Backfill only needs edition + archive + feed/sitemap — skip live-only secondary content.
+const BACKFILL_SCRIPTS = new Set([
+  "generate-edition.mjs",
+  "generate-rss.mjs",
+  "generate-sitemap.mjs",
+]);
+
+function isBackfillMode() {
+  return process.env.HOOPS_BACKFILL === "1" || process.env.HOOPS_BACKFILL === "true";
+}
+
 async function main() {
+  const backfill = isBackfillMode();
+  const scripts = backfill
+    ? DAILY_SCRIPTS.filter((s) => BACKFILL_SCRIPTS.has(s.script))
+    : DAILY_SCRIPTS;
+
   // ── ESPN playoff snapshot → committed playoffData.ts (no API key) ───
   console.log("🏀 Hoops Intel — Daily Generation Runner");
-  console.log("   Preflight: playoff series from ESPN scoreboards…\n");
-  try {
+  if (backfill) {
+    console.log("   Mode: backfill (edition + archive + RSS/sitemap only)\n");
+  } else {
+    console.log("   Preflight: playoff series from ESPN scoreboards…\n");
+  }
+  if (!backfill) try {
     execSync(`node "${join(__dirname, "fetch-playoff-series.mjs")}"`, {
       cwd: ROOT,
       stdio: "inherit",
@@ -103,14 +123,14 @@ async function main() {
   }
 
   console.log("");
-  console.log(`   Running ${DAILY_SCRIPTS.length} scripts...\n`);
+  console.log(`   Running ${scripts.length} scripts...\n`);
 
   const results = [];
   let passed = 0;
   let failed = 0;
   let criticalFailed = false;
 
-  for (const { name, script, critical, output } of DAILY_SCRIPTS) {
+  for (const { name, script, critical, output } of scripts) {
     const scriptPath = join(__dirname, script);
     console.log(`── ${name} (${script}) ──`);
 
@@ -147,7 +167,7 @@ async function main() {
     }
   }
 
-  if (passed > 0) {
+  if (passed > 0 && !backfill) {
     try {
       execSync(`node "${join(__dirname, "sync-line-movement.mjs")}" snapshot`, {
         cwd: ROOT,
@@ -180,8 +200,8 @@ async function main() {
     const icon = r.status === "success" ? "✅" : "❌";
     console.log(`  ${icon} ${r.name}`);
   }
-  console.log(`\n  Passed: ${passed}/${DAILY_SCRIPTS.length}`);
-  console.log(`  Failed: ${failed}/${DAILY_SCRIPTS.length}`);
+  console.log(`\n  Passed: ${passed}/${scripts.length}`);
+  console.log(`  Failed: ${failed}/${scripts.length}`);
   console.log("══════════════════════════════════════════\n");
 
   if (criticalFailed) {

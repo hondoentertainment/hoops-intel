@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // backfill-days.mjs — Run daily generation for one or more past dates
 // Usage: node scripts/backfill-days.mjs 2026-03-25 2026-03-26 2026-03-27
-// Each date runs the full daily pipeline (edition + parallel content) sequentially.
+// Each date runs edition + archive (+ RSS/sitemap) sequentially.
 //
-// Sets both HOOPS_EDITION_DATE and GENERATION_DATE so generate-edition (daily-dates.mjs)
-// and fetch-playoff-series (dates.mjs) target the same publication day.
+// Sets HOOPS_EDITION_DATE, GENERATION_DATE, and HOOPS_BACKFILL=1 so
+// generate-all-daily skips live-only secondary scripts and playoff preflight.
 
-import { spawn } from "child_process";
+import { spawn, execSync } from "child_process";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -20,11 +20,38 @@ if (dates.length === 0) {
   process.exit(1);
 }
 
-// Validate date format
 for (const d of dates) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) {
     console.error(`Invalid date format: ${d} (expected YYYY-MM-DD)`);
     process.exit(1);
+  }
+}
+
+function commitDate(date) {
+  const shouldCommit =
+    process.env.GITHUB_ACTIONS === "true" || process.env.HOOPS_BACKFILL_COMMIT === "1";
+  if (!shouldCommit || process.env.HOOPS_BACKFILL_COMMIT === "0") return;
+
+  let changed = true;
+  try {
+    execSync("git diff --quiet", { cwd: ROOT, stdio: "pipe" });
+    changed = false;
+  } catch {
+    /* diff present */
+  }
+
+  if (!changed) {
+    console.log(`  ℹ No file changes for ${date} — skipping commit.`);
+    return;
+  }
+
+  console.log(`  📤 Committing backfill for ${date}...`);
+  execSync("node scripts/validate-generated-structure.mjs", { cwd: ROOT, stdio: "inherit" });
+  execSync('git add client/src/lib/ public/feed.xml public/sitemap.xml public/og/', { cwd: ROOT, stdio: "inherit" });
+  execSync(`git commit -m "Backfill edition: ${date}"`, { cwd: ROOT, stdio: "inherit" });
+
+  if (process.env.GITHUB_ACTIONS === "true") {
+    execSync("git push origin main", { cwd: ROOT, stdio: "inherit" });
   }
 }
 
@@ -36,16 +63,26 @@ function runForDate(date) {
 
     const child = spawn("node", [join(__dirname, "generate-all-daily.mjs")], {
       cwd: ROOT,
-      // HOOPS_EDITION_DATE: all scripts using daily-dates.mjs (edition, watch guide, …)
-      // GENERATION_DATE: scripts using dates.mjs (fetch-playoff-series, espn snapshot)
-      env: { ...process.env, HOOPS_EDITION_DATE: date, GENERATION_DATE: date },
+      env: {
+        ...process.env,
+        HOOPS_BACKFILL: "1",
+        HOOPS_EDITION_DATE: date,
+        GENERATION_DATE: date,
+      },
       stdio: "inherit",
     });
 
     child.on("close", (code) => {
       if (code === 0 || code === 2) {
-        // code 0 = full success, code 2 = partial failure (edition OK, non-critical scripts failed)
-        if (code === 2) console.warn(`  ⚠ Partial failure for ${date} — edition generated, some non-critical scripts failed`);
+        if (code === 2) {
+          console.warn(`  ⚠ Partial failure for ${date} — edition generated, some non-critical scripts failed`);
+        }
+        try {
+          commitDate(date);
+        } catch (commitErr) {
+          reject(new Error(`commit failed for ${date}: ${commitErr.message}`));
+          return;
+        }
         resolve();
       } else {
         reject(new Error(`generate-all-daily.mjs exited with code ${code} for date ${date}`));

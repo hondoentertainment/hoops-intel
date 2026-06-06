@@ -47,7 +47,12 @@ function main() {
       execSync(`node "${RUNNER}"`, {
         cwd: ROOT,
         stdio: "inherit",
-        env: { ...process.env, HOOPS_EDITION_DATE: iso },
+        env: {
+          ...process.env,
+          HOOPS_BACKFILL: "1",
+          HOOPS_EDITION_DATE: iso,
+          GENERATION_DATE: iso,
+        },
       });
     } catch {
       failed.push(iso);
