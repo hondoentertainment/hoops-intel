@@ -126,7 +126,13 @@ jobs:
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
           git commit -m "Daily edition: $(date +'%B %-d, %Y' --date='TZ="America/Los_Angeles" now')"
-          git push origin ${{ github.ref_name }}
+          for attempt in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin ${{ github.ref_name }} && exit 0
+            echo "::warning::Push attempt $attempt failed — retrying after rebase"
+            sleep 10
+          done
+          echo "::error::Failed to push daily edition after 3 attempts"
+          exit 1
 
       - name: Post-push note
         if: steps.changes.outputs.changed == 'true'
