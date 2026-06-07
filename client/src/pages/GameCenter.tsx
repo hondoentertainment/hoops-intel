@@ -8,6 +8,7 @@ import { getGameCenterById, gameCenterLineMovement, gameCenterShareMeta, mergeLi
 import { playoffSeriesForMatchup, resolveSeriesIntel } from "../lib/playoffData";
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
+import TeamLogo from "../components/TeamLogo";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { useLiveScores } from "../lib/useLiveScores";
@@ -53,7 +54,8 @@ function useGameCenter(gameId: string) {
 
 function ScoreBlock({ abbr, score, align }: { abbr: string; score: number | null; align?: "right" }) {
   return (
-    <a href={`/team/${abbr.toLowerCase()}`} className={align === "right" ? "text-right" : ""}>
+    <a href={`/team/${abbr.toLowerCase()}`} className={`flex flex-col ${align === "right" ? "items-end" : "items-start"}`}>
+      <TeamLogo team={abbr} size={48} className="mb-2" />
       <div className="section-label mb-1" style={{ color: getTeamColor(abbr) }}>{abbr}</div>
       <div className="mono-data text-4xl font-bold text-white">{score ?? "—"}</div>
     </a>
