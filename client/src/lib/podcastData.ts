@@ -1,5 +1,5 @@
 // Podcast Companion — Daily Episode Blueprint
-// Last updated: June 6, 2026
+// Last updated: June 9, 2026
 // Generated from today's Hoops Intel edition
 
 export interface TalkingPoint {
@@ -22,145 +22,151 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
-  date: "June 6, 2026",
+  date: "June 9, 2026",
 
   episodeTitle:
-    "Ice Water and a Backboard: Brunson Steals Game 1 as Wembanyama's Buzzer Heave Breaks San Antonio's Heart",
+    "Wemby Owns the Garden: Spurs Take 2-1 Finals Lead After 38-Point MSG Masterclass",
 
   coldOpen:
-    "Fourteen seconds. Frost Bank Center is shaking. The crowd that watched this building host a Game 7 eight days ago is absolutely losing its mind. San Antonio just clawed back from twelve down. Victor Wembanyama has scored eleven straight points for his team. And Jalen Brunson — road court, hostile building, biggest stage of his life — catches a pick, elevates from seventeen feet on the left elbow, and drops it through. Nothing but net. The Knicks go up two. The building tries to respond. They can't. Wembanyama's halfcourt heave hits the backboard and falls away as time expires. New York wins Game 1 of the NBA Finals, 105-104. Welcome to Hoops Intel. I'm your host. Tonight, we break down the most dramatic Finals opener in years — shot by shot, possession by possession. Let's get into it.",
+    "You know that moment when a visiting superstar walks into Madison Square Garden — the loudest, most unforgiving building in basketball — and just absolutely takes over? Like the crowd, the history, the pressure, none of it exists? Victor Wembanyama did that last night. Thirty-eight points. Fourteen rebounds. Five blocks. At MSG. In a road Finals game. The Spurs lead 2-1, and right now it genuinely feels like we are watching a 22-year-old rewrite what this sport is supposed to look like. This is Hoops Intel. Let's get into it.",
 
   rundown: [
     {
-      topic:
-        "Jalen Brunson's Clutch Dagger: The Left-Elbow Pull-Up That Won Game 1",
+      topic: "Wembanyama's MSG Masterclass: The 38-Point Statement That Shifted the Finals",
       segment: "opener",
-      duration: "8 minutes",
+      duration: "8 min",
       keyStats: [
-        "Brunson: 31 PTS · 9 AST · 5 REB · +9 in Finals Game 1",
-        "Game-winning pull-up from 17 feet on the left elbow with 14 seconds left",
-        "Knicks led by as many as 12 points in the fourth quarter",
-        "Brunson hit three separate clutch pull-ups in the ECF from this same spot",
-        "New York now 1-0 in NBA Finals — first Finals appearance in decades",
-        "Brunson is averaging 33+ points across this entire postseason run",
+        "38 PTS — series-high, most dominant Finals scoring performance of 2026 postseason",
+        "14 REB — Finals personal best, neutralized New York's second-chance offense",
+        "5 BLK — deterred roughly a dozen more attempts beyond official blocks",
+        "+14 plus/minus — best on the floor for either team in Game 3",
+        "16 of SAS's first 28 points scored by Wembanyama",
+        "22 points at halftime — the game was effectively over before the third quarter began",
       ],
       debateAngle:
-        "Is Jalen Brunson now a legitimate top-five clutch performer in NBA history based on this postseason alone — or is it too early to put him in that pantheon after just one Finals win? He has now hit go-ahead shots in the ECF and Game 1 of the Finals. At what point does the sample size stop being a caveat?",
+        "Is Wembanyama's Game 3 already the single greatest Finals performance of the last decade, or do we wait until he wins a ring before we start making those claims? The numbers say yes. The trophy case says not yet.",
       suggestedQuote:
-        "There's clutch, and then there's Jalen Brunson in a hostile arena with fourteen seconds left in an NBA Finals game. That left-elbow pull-up wasn't luck — he's hit that exact shot three times in this postseason. At some point you have to stop calling it a moment and start calling it a skill.",
-      relevantPlayers: ["Jalen Brunson", "Karl-Anthony Towns", "OG Anunoby"],
+        "He walked into Madison Square Garden — the building that was supposed to save the Knicks' season — and turned it into a highlight reel before halftime. Thirty-eight points, fourteen boards, five blocks. On the road. In the Finals. At twenty-two years old. We are not watching a player peak. We are watching a player announce himself to history.",
+      relevantPlayers: [
+        "Victor Wembanyama",
+        "De'Aaron Fox",
+        "Jalen Brunson",
+        "Karl-Anthony Towns",
+      ],
     },
     {
       topic:
-        "The Wembanyama Problem: 34-13-4 and Still on the Losing Side — What Does San Antonio Do Now?",
+        "The Tactical Blueprint: How Castle and Wemby Dismantled Brunson's Left-Elbow Pull-Up Game",
       segment: "deep-dive",
-      duration: "10 minutes",
+      duration: "10 min",
       keyStats: [
-        "Wembanyama: 34 PTS · 13 REB · 4 BLK · -1 in Finals Game 1",
-        "Scored 11 of San Antonio's final 14 points in the last four minutes",
-        "Erased a 12-point fourth-quarter deficit almost entirely by himself",
-        "San Antonio shot just 38.4% from the field through three quarters",
-        "Wemby's halfcourt heave at 1.8 seconds caromed off the backboard",
-        "Karl-Anthony Towns finished +11 as the primary Wembanyama matchup",
+        "Brunson shot 10-of-24 (41.7%) in Game 3 vs. Games 1 and 2 efficiency",
+        "Stephon Castle: 3 STL, shadowed Brunson on every pick-and-roll",
+        "Wembanyama: modified drop coverage, expanding late to contest pull-up attempts",
+        "Castle finished with 17 PTS and +9 — the bonus production that proved he wasn't just a defensive stopper",
+        "Fox scored on 4 consecutive fourth-quarter possessions against tired Knicks defenders",
+        "KAT held to face-up game — Wemby's drop forced 18-foot jumpers instead of drives",
       ],
       debateAngle:
-        "Wembanyama put up one of the most statistically dominant losing performances in NBA Finals history — 34 and 13 with four blocks — and his team still dropped Game 1. The real question for Game 2 is structural: does Pop change how and when he gets Wemby the ball in half-court sets, or does he trust that the fourth-quarter isolation brilliance will eventually be enough? Because right now, San Antonio is asking Wemby to win games in the final four minutes rather than building a lead he doesn't have to erase.",
+        "Gregg Popovich's defensive scheme in Game 3 was as sophisticated as anything we've seen in a Finals in years — but is Thibodeau good enough to crack it in Game 4, or does San Antonio have counters to every counter New York can throw at them?",
       suggestedQuote:
-        "Victor Wembanyama's fourth quarter was the most jaw-dropping individual stretch in a Finals game in years. Eleven points, three possessions, an entire building going berserk. But the Spurs lost. And that is the most brutal possible indictment of San Antonio's offensive structure — when your best player has to erase a twelve-point deficit in four minutes just to give you a chance, something upstream is broken.",
+        "Here's the thing about what the Spurs did to Brunson — they didn't just guard him, they coached him out of his best shot. The left-elbow pull-up that won Game 1 for New York? Gone. Castle takes it away on the catch, and Wemby is right there if Brunson tries to probe the paint. Pop designed a defensive system in 48 hours that neutralized the Knicks' entire offensive identity. That's not scheme. That's art.",
       relevantPlayers: [
-        "Victor Wembanyama",
-        "De'Aaron Fox",
         "Stephon Castle",
+        "Victor Wembanyama",
+        "Jalen Brunson",
         "Karl-Anthony Towns",
+        "De'Aaron Fox",
       ],
     },
     {
       topic:
-        "Hot Take: The KAT-Wembanyama Matchup Is Already Decided — and San Antonio Has No Answer",
+        "Hot Take: De'Aaron Fox Is the Real Reason the Spurs Won Game 3 — Not Wembanyama",
       segment: "hot-take",
-      duration: "6 minutes",
+      duration: "6 min",
       keyStats: [
-        "Karl-Anthony Towns: 22 PTS · 11 REB · 3 AST · +11 on 9-of-15 shooting",
-        "Towns operated as a face-up four — pulling Wemby away from the basket",
-        "Brunson driving lanes opened directly because Wemby was chasing Towns in space",
-        "Wembanyama's four blocks came in rim protection — not in Towns matchups",
-        "Towns' +11 was the best plus/minus of any player in Finals Game 1",
-        "San Antonio's frontcourt had no rotation capable of matching Towns' shooting range",
+        "Fox: 26 PTS, 7 AST, +11 in Game 3",
+        "Four consecutive fourth-quarter conversions by Fox when NYK cut the lead to nine",
+        "Brunson: 29 PTS, 8 AST — comparable scoring night to Fox but on the losing team",
+        "Fox attacked closeouts in transition all fourth quarter against tired Knicks defenders",
+        "Wembanyama's +14 reflects dominance — Fox's closing run reflects winning",
+        "SAS has two closers in Wemby and Fox — NYK has only Brunson",
       ],
       debateAngle:
-        "Here's the hot take — Karl-Anthony Towns has already solved the Wembanyama defensive problem that ended every other contender's postseason, and San Antonio cannot fix it between now and Sunday. Towns' face-up game at the four forces Wemby to guard in space, neutralizes his rim protection, and opens every single Brunson drive. Pop is an all-time genius, but there is no roster move he can make in 48 hours that puts a perimeter-capable big on Towns. The matchup is broken and it might stay broken for the series.",
+        "Wembanyama built the lead. Fox protected it. When the Knicks had all the momentum of a comeback brewing in the fourth quarter, it was Fox who answered every single time. Does a 38-point monster performance overshadow the guy who actually closed the game out when it mattered most?",
       suggestedQuote:
-        "Take this one to the bank — Karl-Anthony Towns is the x-factor who decides this Finals, not Brunson, not Wembanyama. Every other team tried to play over Wemby's rim protection. Towns pulled him out to the elbow and made him guard in space. That one tactical decision unlocked the entire Knicks offense. Until San Antonio solves it, New York runs this series.",
+        "I love the Wembanyama show as much as anyone — the thirty-eight points are incredible, the blocks are incredible, the whole performance is incredible. But if we're being honest about why San Antonio wins Game 3, it's because when New York got it to within nine with six minutes left and the Garden was shaking, De'Aaron Fox scored four straight possessions and killed the comeback before it started. That's the most important sequence of the entire Finals so far.",
       relevantPlayers: [
-        "Karl-Anthony Towns",
+        "De'Aaron Fox",
         "Victor Wembanyama",
         "Jalen Brunson",
-      ],
-    },
-    {
-      topic:
-        "Rapid Fire: Castle's Strip, Fox's Clutch, Hart's Boards, Bridges' Buckets, and the 1999 Rematch Context",
-      segment: "rapid-fire",
-      duration: "5 minutes",
-      keyStats: [
-        "Stephon Castle: 19 PTS · 6 AST · the strip of Anunoby with 22 seconds left",
-        "De'Aaron Fox: 27 PTS · 7 AST — converted layup after Castle strip to cut deficit to one",
-        "Josh Hart: 11 PTS · 12 REB off the bench — denied three consecutive second chances in Q3",
-        "Mikal Bridges: 18 PTS · 3 STL · 3-of-3 from three — shot 100% from deep",
-        "Dalen Terry: 9 PTS · 4 STL off the bench — four steals disrupted New York's motion offense",
-        "1999 NBA Finals: San Antonio defeated New York in five games — 2026 is a rematch 27 years in the making",
-      ],
-      debateAngle:
-        "Five rapid-fire questions: One — does Stephon Castle's strip become the defining image of his rookie Finals debut or does he get a redemption moment in Game 2? Two — is De'Aaron Fox underrated in this series given that he dropped 27 and nearly won it? Three — is Josh Hart the most underappreciated player in this entire Finals? Four — can Bridges stay at 100% from three all series or is Game 1 an anomaly? Five — does the 1999 history add genuine psychological weight to this matchup or is that just a media narrative?",
-      suggestedQuote:
-        "Let's run through the supporting cast real quick because the Brunson and Wemby storylines are eating everything. Castle's strip nearly won a Finals game. Fox dropped 27 and nobody is talking about it. Josh Hart grabbed twelve boards off the bench and denied second chances that changed the game's flow. And Dalen Terry came off the Pop bench and picked four pockets. This is a deep Finals series with a lot of moving parts.",
-      relevantPlayers: [
-        "Stephon Castle",
-        "De'Aaron Fox",
-        "Josh Hart",
         "Mikal Bridges",
+      ],
+    },
+    {
+      topic: "Rapid Fire: Bridges' Quiet 22, Hart's 11 Boards, Anunoby's Three Blocks, and the Knicks' Path to a Game 4 Win",
+      segment: "rapid-fire",
+      duration: "5 min",
+      keyStats: [
+        "Mikal Bridges: 22 PTS, 4-of-7 from three — without him SAS wins by 12 instead of 4",
+        "Josh Hart: 11 REB off the bench — best hustle performance from any reserve in Game 3",
+        "OG Anunoby: 3 BLK — the only consistent interior deterrent NYK had against Wemby's post game",
+        "Isaiah Hartenstein: day-to-day with left knee soreness heading into Game 4",
+        "Game 4 line: SAS -1.5, moved from SAS -2.5 — market pricing this as a near coin flip",
+        "Game 4: Wednesday, June 11, 8:00 PM ET, MSG, on ABC",
+      ],
+      debateAngle:
+        "The line has moved a full point toward New York. The market believes Thibodeau adjusts and MSG forces a Game 5. Do you trust that, or is San Antonio's talent advantage too significant even on the road in a must-win atmosphere?",
+      suggestedQuote:
+        "Quick hits — Bridges' four threes kept the Spurs from blowing this thing open in the third quarter, which means we still have a series. Hart grabbed eleven boards playing through whatever that Garden energy was doing to everyone. Hartenstein is day-to-day with a knee — that matters for Game 4 because Thibodeau might need him as a physical option against Wembanyama. And the line is SAS minus one and a half, down from two and a half. Vegas thinks the Garden crowd is worth a point. I might actually agree.",
+      relevantPlayers: [
+        "Mikal Bridges",
+        "Josh Hart",
+        "OG Anunoby",
+        "Isaiah Hartenstein",
         "Dalen Terry",
+        "Stephon Castle",
       ],
     },
     {
       topic:
-        "Looking Ahead: Game 2 Sunday Night — Can Pop Make the Adjustments and Can Brunson Do It Again?",
+        "Looking Ahead: What Thibodeau Must Fix Before Game 4 — and a Historical Echo from 1994",
       segment: "closer",
-      duration: "5 minutes",
+      duration: "5 min",
       keyStats: [
-        "Game 2 is Sunday, June 7 at Frost Bank Center — 8:00 PM ET on ABC",
-        "Line opened SAS -3.5, moved to SAS -2.0 as sharp Brunson-clutch money hit the market",
-        "Over/under: 210.5 — identical building, two extra days of prep",
-        "Game 2 prediction: SAS 111, NYK 106 — Wemby bounces back with 36",
-        "OG Anunoby: Probable (right hamstring managed) — played 38 minutes in G1 with no visible limitation",
-        "On this day in 1993: Charles Barkley scored 42 points to lead Phoenix past Chicago in Finals Game 3",
+        "NYK must win Game 4 to avoid 3-1 deficit — near-impossible to overcome against this SAS team",
+        "Thibodeau adjustment needed: run Towns off screens into mid-post catches vs. face-up isolations",
+        "Brunson needs new coverage-busting sets — left-elbow pull-up is fully taken away",
+        "On June 9, 1994, Hakeem Olajuwon dropped 25-10 to give Houston a 2-1 lead over NYK at MSG — Rockets won the title",
+        "2026 Finals prediction: NYK wins Game 4, 108-104 — Brunson 33 points, series goes to Game 5",
+        "Wembanyama's Finals scoring average now above 30 PPG for the series",
       ],
       debateAngle:
-        "The real closer question for Game 2 is this: does Jalen Brunson have the same left-elbow pull-up in him on Sunday in the same building, against a Pop defensive scheme that has had 48 hours to scheme specifically for that shot — and can San Antonio build enough of a lead in the first three quarters that the Knicks are not in a position to steal it in the final 14 seconds? Game 1 told us a lot about both teams. Game 2 will tell us which one actually learned from it.",
+        "History is echoing loudly tonight — June 9, 1994, Hakeem Olajuwon dominated the Knicks at MSG to give Houston a 2-1 Finals lead, and the Rockets went on to win it all. Is this 2026 Spurs team walking the exact same path, or do the Knicks have enough in them to rewrite the ending?",
       suggestedQuote:
-        "Here's what I'll leave you with. Pop has two days. He knows exactly what Brunson wants. He knows exactly where Towns wants to operate. He will draw something up for Game 2 that we haven't seen. The question is whether Thibodeau has an answer for whatever Pop designs — and whether Brunson can hit that same pull-up cold, on the road, in a building that will be the loudest it has ever been, with the whole series on the line. We find out Sunday. Don't miss it.",
+        "Before we get out of here, let's take thirty seconds to acknowledge this: June 9th, 1994 — Hakeem Olajuwon, Madison Square Garden, 2-1 Houston lead in the NBA Finals. New York never won that series. Tonight it's June 9th, 2026, and San Antonio just took a 2-1 Finals lead at Madison Square Garden behind a dominant center performance. History doesn't repeat exactly — but it does rhyme. Wednesday is a must-win, the Garden will be unhinged, and Jalen Brunson will have something to say. See you then.",
       relevantPlayers: [
-        "Jalen Brunson",
         "Victor Wembanyama",
+        "Jalen Brunson",
         "Karl-Anthony Towns",
         "De'Aaron Fox",
-        "OG Anunoby",
+        "Hakeem Olajuwon",
       ],
     },
   ],
 
   socialClip:
-    "CLIP DESCRIPTION — Most Shareable Moment (30–45 seconds): Begin with the live game audio of the Frost Bank Center crowd at peak volume as Wembanyama converts his second straight post score to make it 104-103. Cut to Brunson walking up the court — zero expression, zero urgency. Show the pick set by Towns, Brunson pulling off it, the two Spurs defenders closing hard, and the pull-up releasing from the left elbow at 17 feet. Freeze frame as the net snaps. Then cut immediately to the Wembanyama halfcourt heave — full arc in real time — and the ball caroming off the backboard as the buzzer sounds. Overlay text: 'ICE WATER. BRUNSON. GAME 1.' End on the scoreboard graphic: NYK 105 · SAS 104. Caption for post: 'Fourteen seconds. Left elbow. Ice water. Jalen Brunson just hit the most important shot of his career in Game 1 of the NBA Finals. Wemby's halfcourt answer falls off the glass. Knicks lead 1-0. 🏀🧊 #NBAFinals #Brunson #HoopsIntel'",
+    "CLIP BRIEF — 'The Garden Goes Quiet' (Target: 60–75 seconds, vertical format for Reels/TikTok/Shorts): Open on the Game 3 final score graphic (NYK 111, SAS 115). Cut to Wembanyama stat line appearing one line at a time — 38 PTS… 14 REB… 5 BLK… +14 — with a beat drop between each stat. Host voiceover: 'Twenty-two years old. Madison Square Garden. Road Finals game. And he turned the loudest building in basketball into a library.' Cut to host delivering the Fox fourth-quarter closing run breakdown: 'Four straight possessions. Comeback dead.' End on the historical echo: 'June 9th, 1994 — Hakeem did the same thing in the same building. The Rockets won the championship.' Freeze on the 2-1 series graphic. Text overlay: 'Game 4. Wednesday. Must-win.' Tag: @HoopsIntel #WembanyamaSZN #NBAFinals",
 
   tweetThread: [
-    "🧵 HOOPS INTEL DAILY — June 6, 2026 | NBA Finals Game 1 recap thread. Knicks 105, Spurs 104. One of the most dramatic Finals openers in recent memory. Let's break it down. (1/5)",
+    "🎙️ NEW EPISODE — Hoops Intel | June 9, 2026\n\n'Wemby Owns the Garden: Spurs Take 2-1 Finals Lead After 38-Point MSG Masterclass'\n\nVictor Wembanyama just delivered the most dominant Finals performance of the 2026 postseason. Here's everything you need to know. 🧵 (1/5)",
 
-    "🎯 BRUNSON. LEFT ELBOW. 14 SECONDS LEFT. Jalen Brunson pulled up from 17 feet over two defenders with the game tied at 103 and dropped it through the net to put New York up two. That is his signature shot. He's hit it in three ECF moments and now once in the NBA Finals. 31 PTS · 9 AST. The Knicks have a closer. (2/5)",
+    "38 PTS. 14 REB. 5 BLK. +14.\n\nOn the road. At Madison Square Garden. In the NBA Finals. At 22 years old.\n\nWembanyama scored 16 of San Antonio's first 28 points, had 22 by halftime, and the Garden crowd was dead before the fourth quarter even started.\n\nThis is a legacy-building performance in real time. (2/5)",
 
-    "😤 WEMBY WAS HISTORIC AND STILL LOST. 34 PTS · 13 REB · 4 BLK. Scored 11 consecutive Spurs points in the final four minutes to erase a 12-point deficit. His buzzer heave at 1.8 seconds hit the backboard and fell away. The most brutal image of Game 1. Castle's strip of Anunoby nearly won it — Fox converted but Brunson hit both intentional FTs. One point. That's all it came down to. (3/5)",
+    "But here's the take you're not hearing enough: De'Aaron Fox CLOSED this game.\n\nWhen NYK cut it to nine with 6 minutes left and the Garden was ready to explode, Fox scored on FOUR STRAIGHT POSSESSIONS.\n\n26 PTS. 7 AST. +11.\n\nSAS doesn't just have one closer. They have two. NYK has one. (3/5)",
 
-    "📊 THE UNDERRATED STORY: Karl-Anthony Towns was the structural reason the Knicks controlled this game. 22 PTS · 11 REB · +11 on 9-of-15 shooting. He pulled Wembanyama out of the paint all night and opened every Brunson driving lane. Josh Hart added 12 boards off the bench. Bridges shot 3-of-3 from three. Dalen Terry had 4 steals off the Pop bench. This Finals has real depth. (4/5)",
+    "The tactical breakdown you need before Game 4:\n\n⚙️ Castle shadowed Brunson on every PnR\n⚙️ Wemby sat in drop, expanded late on pull-ups\n⚙️ Result: Brunson 10-of-24, left-elbow look is GONE\n⚙️ KAT's face-up game neutralized by Wemby's drop coverage\n\nThibodeau MUST design new sets. Run KAT off screens. Free Brunson from Castle. (4/5)",
 
-    "📅 WHAT'S NEXT: NYK leads the NBA Finals 1-0. Game 2 is Sunday night, June 7 at Frost Bank Center — 8:00 PM ET on ABC. Line: SAS -2.0 (moved from -3.5). Pop has 48 hours to scheme a Brunson answer. Wembanyama gets a bounce-back spot at home. Our prediction: SAS 111, NYK 106. Don't miss it. Full breakdown at hoopsintel.net. 🏀 (5/5)",
+    "History is whispering.\n\nJune 9, 1994: Hakeem Olajuwon drops 25-10 at MSG. Houston takes a 2-1 Finals lead. The Rockets win the championship.\n\nJune 9, 2026: Wembanyama drops 38-14-5 at MSG. San Antonio leads the Finals 2-1.\n\nGame 4. Wednesday. Must-win for New York.\n\nFull episode out now 👇 hoopsintel.net #NBAFinals #WembanyamaSZN (5/5)",
   ],
 };
