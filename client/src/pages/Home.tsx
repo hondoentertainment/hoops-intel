@@ -18,6 +18,7 @@ import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
 import TeamLogo from "../components/TeamLogo";
 import { useLiveScores } from "../lib/useLiveScores";
+import type { LiveGame } from "../lib/espnApi";
 import { slugify } from "../lib/searchUtils";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
@@ -83,66 +84,92 @@ function fmtLiveScore(value: number | null) {
   return value != null && Number.isFinite(value) ? value : "—";
 }
 
+function ScoreboardTeamRow({ team, score, leading, dim }: { team: string; score: number | null; leading: boolean; dim: boolean }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <span
+        className="flex items-center gap-1.5 section-label text-xs"
+        style={{ color: dim ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.75)" }}
+      >
+        <TeamLogo team={team} size={18} />
+        {team}
+      </span>
+      <span
+        className="mono-data text-sm font-bold tabular-nums"
+        style={{ color: leading ? "#0EA5E9" : dim ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.8)" }}
+      >
+        {fmtLiveScore(score)}
+      </span>
+    </div>
+  );
+}
+
+function ScoreboardCell({ g }: { g: LiveGame }) {
+  const live = g.status === "in";
+  const final = g.status === "post";
+  const pre = g.status === "pre";
+  const comparable = g.homeScore != null && g.awayScore != null;
+  const awayLead = comparable && (g.awayScore as number) > (g.homeScore as number);
+  const homeLead = comparable && (g.homeScore as number) > (g.awayScore as number);
+
+  return (
+    <div
+      className="flex flex-col gap-1 px-3 py-1.5 rounded-md flex-shrink-0 min-w-[148px]"
+      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+    >
+      <ScoreboardTeamRow team={g.awayTeam} score={g.awayScore} leading={awayLead} dim={final && !awayLead} />
+      <ScoreboardTeamRow team={g.homeTeam} score={g.homeScore} leading={homeLead} dim={final && !homeLead} />
+      <div className="flex items-center gap-1.5 pt-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        {live && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
+        <span
+          className="mono-data text-[10px] font-semibold tracking-wide"
+          style={{ color: live ? "#10B981" : pre ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.55)" }}
+        >
+          {final ? "FINAL" : g.statusDetail || (pre ? "Scheduled" : "")}
+        </span>
+        {pre && g.tv && g.tv !== "Local" ? (
+          <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.3)" }}>· {g.tv}</span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function LiveScorebar() {
   const { data, error, refresh, loading } = useLiveScores();
-  const liveGames = data?.games.filter((g) => g.status === "in") ?? [];
+  const games = data?.games ?? [];
+  const anyLive = games.some((g) => g.status === "in");
 
   if (loading && !data) {
     return <LiveScoreSkeleton />;
   }
 
-  if (liveGames.length > 0) {
+  if (games.length > 0) {
     return (
       <div
         className="border-b overflow-hidden"
-        style={{ borderColor: "rgba(16,185,129,0.3)", background: "rgba(16,185,129,0.05)" }}
+        style={{
+          borderColor: anyLive ? "rgba(16,185,129,0.3)" : "rgba(14,165,233,0.2)",
+          background: anyLive ? "rgba(16,185,129,0.05)" : "rgba(14,165,233,0.04)",
+        }}
+        aria-label="Today's NBA scoreboard"
       >
         <div className="container">
-          <div className="flex items-center gap-4 py-2 overflow-x-auto">
+          <div className="flex items-center gap-3 py-2 overflow-x-auto">
             <div className="flex items-center gap-2 flex-shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />
-              <span className="section-label text-emerald-400 text-xs">LIVE ESPN</span>
+              {anyLive && <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
+              <span className={`section-label text-xs ${anyLive ? "text-emerald-400" : ""}`} style={anyLive ? undefined : { color: "#0EA5E9" }}>
+                {anyLive ? "LIVE" : "TODAY"}
+              </span>
               {data?.fetchedAt ? (
-                <span className="text-[10px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
+                <span className="text-[10px] mono-data hidden sm:inline" style={{ color: "rgba(255,255,255,0.35)" }}>
                   {liveScoresTrustLabel(data.fetchedAt)}
                 </span>
               ) : null}
             </div>
-            {liveGames.map((g) => {
-              const hs = g.homeScore;
-              const as = g.awayScore;
-              const comparable = hs != null && as != null;
-              const awayAhead = comparable && as > hs;
-              const homeAhead = comparable && hs > as;
-              return (
-                <div
-                  key={g.id}
-                  className="flex items-center gap-3 px-3 py-1 rounded flex-shrink-0"
-                  style={{ background: "rgba(255,255,255,0.04)" }}
-                >
-                  <span
-                    className="flex items-center gap-1.5 section-label text-xs"
-                    style={{ color: awayAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
-                  >
-                    <TeamLogo team={g.awayTeam} size={18} />
-                    {g.awayTeam}{" "}
-                    <span className="mono-data font-bold">{fmtLiveScore(as)}</span>
-                  </span>
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                    @
-                  </span>
-                  <span
-                    className="flex items-center gap-1.5 section-label text-xs"
-                    style={{ color: homeAhead ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
-                  >
-                    <TeamLogo team={g.homeTeam} size={18} />
-                    {g.homeTeam}{" "}
-                    <span className="mono-data font-bold">{fmtLiveScore(hs)}</span>
-                  </span>
-                  <span className="mono-data text-xs text-emerald-400">{g.statusDetail}</span>
-                </div>
-              );
-            })}
+            {games.map((g) => (
+              <ScoreboardCell key={g.id} g={g} />
+            ))}
           </div>
         </div>
       </div>

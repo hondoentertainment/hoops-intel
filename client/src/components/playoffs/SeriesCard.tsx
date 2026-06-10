@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTeamColor } from "../../lib/teamColors";
+import TeamLogo from "../TeamLogo";
 import type { PlayoffSeries } from "../../lib/playoffData";
 import { resolveSeriesIntel } from "../../lib/playoffData";
 import { nextPendingGame } from "../../lib/playoffAnalytics";
@@ -27,13 +28,14 @@ function TeamMark({ team }: { team: string }) {
   const c = getTeamColor(team);
   return (
     <div
-      className="h-11 w-11 shrink-0 rounded-xl flex items-center justify-center font-black text-[11px] text-white tracking-tight shadow-lg"
+      className="h-11 w-11 shrink-0 rounded-xl flex items-center justify-center p-1.5"
       style={{
-        background: `linear-gradient(145deg, ${c}ee, ${c}66)`,
-        boxShadow: `0 8px 24px ${c}33`,
+        background: `linear-gradient(145deg, ${c}22, ${c}0a)`,
+        boxShadow: `0 8px 24px ${c}26`,
+        border: `1px solid ${c}33`,
       }}
     >
-      {team}
+      <TeamLogo team={team} size={28} />
     </div>
   );
 }

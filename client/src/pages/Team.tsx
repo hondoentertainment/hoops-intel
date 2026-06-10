@@ -4,6 +4,7 @@ import {
   seriesForTeam, playoffSeriesOpponent, playoffSeriesForMatchup } from "../lib/playoffData";
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
+import TeamLogo from "../components/TeamLogo";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { TEAM_NAMES, canonicalizeTeamCode } from "../lib/identity";
@@ -125,11 +126,14 @@ export default function Team() {
           style={{ borderLeft: `4px solid ${teamColor}` }}
         >
           <div className="flex items-start justify-between flex-wrap gap-4">
-            <div>
-              <div className="section-label mb-1">TEAM PROFILE</div>
-              <h1 className="display-heading text-white text-3xl mb-1">{fullName}</h1>
-              <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-                {standing?.conf === "east" ? "Eastern" : "Western"} Conference
+            <div className="flex items-center gap-4">
+              <TeamLogo team={abbr} size={64} />
+              <div>
+                <div className="section-label mb-1">TEAM PROFILE</div>
+                <h1 className="display-heading text-white text-3xl mb-1">{fullName}</h1>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {standing?.conf === "east" ? "Eastern" : "Western"} Conference
+                </div>
               </div>
             </div>
             {standing && (
