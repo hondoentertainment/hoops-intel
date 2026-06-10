@@ -4,6 +4,7 @@ import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
 import { pulseIndex, gameResults, injuryUpdates, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
+import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
 import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
 import SiteHeader from "../components/SiteHeader";
@@ -159,9 +160,10 @@ export default function Player() {
                   <a
                     key={t}
                     href={`/team/${t.toLowerCase()}`}
-                    className="text-xs px-2 py-1 rounded font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded font-semibold"
                     style={{ background: "rgba(255,255,255,0.06)", color: getTeamColor(t) }}
                   >
+                    <TeamLogo team={t} size={16} />
                     {t}
                   </a>
                 ))}

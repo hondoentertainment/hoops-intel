@@ -2,6 +2,7 @@ import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
+import TeamLogo from "../components/TeamLogo";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -150,9 +151,10 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
             <div className="flex items-center gap-2 mt-1">
               <a
                 href={`/team/${injury.team.toLowerCase()}`}
-                className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
                 style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}
               >
+                <TeamLogo team={injury.team} size={16} />
                 {injury.team}
               </a>
             </div>
