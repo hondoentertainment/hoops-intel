@@ -40,7 +40,7 @@ export default class RouteErrorBoundary extends Component<Props, State> {
     );
 
     return (
-      <main className="container py-20 text-center" role="alert" aria-live="assertive">
+      <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none" role="alert" aria-live="assertive">
         <p className="section-label mb-3">SOMETHING BROKE</p>
         <h1 className="display-heading text-2xl font-bold text-white mb-4">
           This page didn&apos;t load

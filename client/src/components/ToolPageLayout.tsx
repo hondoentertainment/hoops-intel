@@ -72,7 +72,9 @@ export default function ToolPageLayout({
           editionBadge={editionBadge}
           toolbarExtra={headerToolbarExtra}
         />
-        {children}
+        <main id="main-content" tabIndex={-1} className="flex-1 flex flex-col min-h-0 outline-none">
+          {children}
+        </main>
       </div>
     );
   }

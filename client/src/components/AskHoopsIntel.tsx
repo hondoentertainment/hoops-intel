@@ -369,7 +369,7 @@ export function ChatInput({
           }}
           placeholder="Ask about NBA games, players, stats..."
           maxLength={500}
-          className="flex-1 bg-transparent text-xs text-white placeholder-white/30 outline-none"
+          className="flex-1 bg-transparent text-base sm:text-xs text-white placeholder-white/30 outline-none min-h-[44px] sm:min-h-0"
           disabled={isLoading}
         />
         <button
@@ -453,17 +453,14 @@ export default function AskHoopsIntel() {
       {/* Chat Panel */}
       {isOpen && (
         <div
-          className="fixed z-50 flex flex-col"
+          className="ask-chat-panel fixed z-50 flex flex-col"
           role="dialog"
           aria-labelledby="floating-chat-title"
           aria-modal="true"
           style={{
-            /* Mobile: full width bottom sheet. Desktop: side panel */
-            bottom: 0,
             right: 0,
             width: "100%",
             maxWidth: "420px",
-            height: "min(600px, 85vh)",
             paddingBottom: "env(safe-area-inset-bottom)",
             background: "#0A1628",
             border: "1px solid rgba(255,255,255,0.08)",

@@ -41,7 +41,9 @@
     "digest": "node scripts/send-digest.mjs",
     "digest:preview": "node scripts/send-digest.mjs --preview",
     "settle:picks": "node scripts/settle-picks.mjs",
-    "test:deploy": "node scripts/verify-deploy-config.mjs"
+    "test:deploy": "node scripts/verify-deploy-config.mjs",
+    "backfill": "node scripts/backfill-daily.mjs",
+    "backfill:days": "node scripts/backfill-days.mjs"
   },
   "engines": {
     "node": "24.x"

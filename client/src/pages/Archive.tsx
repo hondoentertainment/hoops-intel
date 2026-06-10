@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { archiveEditions } from "../lib/archiveData";
 import { editionSearchHaystack } from "../lib/archiveSearch";
+import { slugify } from "../lib/searchUtils";
 
 function matchesSearch(edition: Record<string, unknown>, query: string): boolean {
   if (!query.trim()) return true;
@@ -20,17 +21,40 @@ function matchesMonth(edition: any, month: string): boolean {
 }
 
 function ArchiveCard({ edition }: { edition: any }) {
+  const topPlayer = edition.topPlayer as string | undefined;
+  const displayDate = edition.displayDate || edition.date || "Archive edition";
+  const gamesCount = edition.gamesCount ?? edition.gamesPlayed ?? 0;
+  const headline = edition.headline || edition.subheadline || "Edition recap";
+  const subheadline = edition.headline ? edition.subheadline : undefined;
   return (
-    <div className="glass-card rounded-lg p-5 transition-all hover:border-sky-500/30">
-      <div className="flex items-center justify-between mb-3">
-        <div className="section-label">{edition.displayDate}</div>
-        <div className="mono-data text-xs px-2 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>
-          {edition.gamesCount} GAMES
+    <article className="glass-card archive-card rounded-lg p-5">
+      <div className="flex items-center justify-between mb-3 gap-2">
+        <div className="section-label">{displayDate}</div>
+        <div className="mono-data text-xs px-2 py-0.5 rounded shrink-0" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>
+          {gamesCount} {gamesCount === 1 ? "GAME" : "GAMES"}
         </div>
       </div>
-      <h3 className="display-heading text-white text-lg mb-2">{edition.headline}</h3>
-      <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{edition.subheadline}</p>
+      <h2 className="display-heading text-white text-lg mb-2">{headline}</h2>
+      {subheadline ? (
+        <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{subheadline}</p>
+      ) : null}
       <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{edition.topStory}</p>
+      {topPlayer ? (
+        <p className="text-xs mb-4">
+          <span style={{ color: "rgba(255,255,255,0.45)" }}>Top performer: </span>
+          <a
+            href={`/player/${slugify(topPlayer)}`}
+            className="font-semibold text-sky-400 hover:text-sky-300"
+          >
+            {topPlayer}
+          </a>
+          {edition.topStatLine ? (
+            <span className="mono-data ml-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+              {edition.topStatLine}
+            </span>
+          ) : null}
+        </p>
+      ) : null}
       <div className="flex flex-wrap gap-1.5">
         {(edition.tags || []).map((tag: string) => (
           <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.08)", color: "rgba(14,165,233,0.7)", border: "1px solid rgba(14,165,233,0.15)" }}>
@@ -38,7 +62,7 @@ function ArchiveCard({ edition }: { edition: any }) {
           </span>
         ))}
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -73,10 +97,12 @@ export default function Archive() {
   };
 
   return (
-    <ToolPageLayout subtitle="ARCHIVE" showRelated={false}>
-        <div className="section-label mb-2">PAST EDITIONS</div>
-        <h1 className="display-heading text-white text-3xl mb-6">Archive</h1>
-
+    <ToolPageLayout
+      subtitle="ARCHIVE"
+      sectionLabel="PAST EDITIONS"
+      title="Archive"
+      showRelated={false}
+    >
         <div className="mb-4 flex flex-wrap gap-2">
           <button type="button" className="desk-section-pill" data-active={!tag ? "true" : undefined} onClick={() => { setTag(""); setPage(1); }}>
             All topics

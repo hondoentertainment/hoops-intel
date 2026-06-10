@@ -19,10 +19,13 @@ export default function PlayerCard() {
   if (!player) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <div className="text-center">
+        <main id="main-content" tabIndex={-1} className="text-center outline-none px-4">
           <h1 className="text-2xl font-bold text-white mb-4">Player Not Found</h1>
-          <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
-        </div>
+          <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+            We couldn&apos;t find a player card for that name.
+          </p>
+          <a href="/" className="text-sky-400 underline min-h-[44px] inline-flex items-center">Back to Hoops Intel</a>
+        </main>
       </div>
     );
   }

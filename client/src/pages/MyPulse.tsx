@@ -63,6 +63,7 @@ export default function MyPulse() {
     return (
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <MyPulseHeader onOpenSetup={() => setShowSetup(true)} prefs={prefs} />
+        <main id="main-content" tabIndex={-1} className="outline-none">
         <div className="container py-20 text-center">
           <div className="max-w-md mx-auto">
             <div
@@ -76,21 +77,23 @@ export default function MyPulse() {
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-3">
+            <h1 className="text-2xl font-bold text-white mb-3">
               Set Up My Pulse
-            </h2>
+            </h1>
             <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
               Pick your favorite teams and players to get a personalized daily edition tailored just for you.
             </p>
             <button
+              type="button"
               onClick={() => setShowSetup(true)}
-              className="px-6 py-3 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
+              className="min-h-[44px] px-6 py-3 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ background: "#0EA5E9" }}
             >
               Choose Favorites
             </button>
           </div>
         </div>
+        </main>
         {showSetup && (
           <PreferencesSetup onClose={() => setShowSetup(false)} onSave={handleSave} />
         )}
@@ -101,6 +104,7 @@ export default function MyPulse() {
   return (
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <MyPulseHeader onOpenSetup={() => setShowSetup(true)} prefs={prefs} />
+      <main id="main-content" tabIndex={-1} className="outline-none">
 
       {/* Your Teams Tonight */}
       {yourTeamPreviews.length > 0 && (
@@ -397,6 +401,8 @@ export default function MyPulse() {
           </p>
         </div>
       </footer>
+
+      </main>
 
       {showSetup && (
         <PreferencesSetup onClose={() => setShowSetup(false)} onSave={handleSave} />

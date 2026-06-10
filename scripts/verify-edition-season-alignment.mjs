@@ -15,7 +15,7 @@ const edition = readFileSync(editionPath, "utf8");
 
 const required = [
   ["seasonMode import", 'from "./lib/season-mode.mjs"'],
-  ["cal from seasonMode", "seasonMode(new Date())"],
+  ["cal from seasonMode", "seasonMode(pubDate)"],
   ["playoff instruction block", "## PLAYOFF MODE"],
   ["free-agency branch", 'cal === "free-agency"'],
   ["free-agency copy block", "## FREE AGENCY WINDOW (season-mode)"],

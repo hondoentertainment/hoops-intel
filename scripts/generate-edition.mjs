@@ -176,7 +176,12 @@ async function main() {
   } catch {
     /* ignore */
   }
-  const cal = seasonMode(new Date());
+  const pubEnv = process.env.HOOPS_EDITION_DATE?.trim() || process.env.GENERATION_DATE?.trim();
+  const pubDate =
+    pubEnv && /^\d{4}-\d{2}-\d{2}$/.test(pubEnv)
+      ? new Date(`${pubEnv}T12:00:00-08:00`)
+      : new Date();
+  const cal = seasonMode(pubDate);
   const calendarPlayoff = cal === "playoffs" || cal === "finals";
   const isPlayoffMode = calendarPlayoff || snapPlayoffs || playoffIndicators.length > 0;
   const editionContext =

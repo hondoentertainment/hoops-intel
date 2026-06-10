@@ -172,7 +172,7 @@ export default function App() {
             <Route path="/rivals" component={Rivals} />
             <Route path="/creator-queue" component={CreatorQueue} />
             <Route>
-              <main className="container py-20 text-center" lang="en">
+              <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none" lang="en">
                 <p className="section-label mb-3">NOT FOUND</p>
                 <h1 className="display-heading text-2xl font-bold text-white mb-4">404 — Page not found</h1>
                 <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
