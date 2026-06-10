@@ -16,6 +16,6 @@ export const lineMovementRows: LineMovementRow[] = [
     homeTeam: "NYK",
     openingSpread: "SAS -2.5",
     closingSpread: "SAS -1.5",
-    updatedAt: "2026-06-09T22:36:59.631Z",
+    updatedAt: "2026-06-10T07:56:27.898Z",
   }
 ];
