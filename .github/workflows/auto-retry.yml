@@ -52,6 +52,7 @@ jobs:
         id: generate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          HOOPS_SKIP_PLAYOFF_HYDRATION: "1"
         run: |
           echo "Retry attempt — running daily generation..."
           set +e
@@ -65,7 +66,7 @@ jobs:
             echo "Partial success on retry"
             echo "partial=true" >> $GITHUB_OUTPUT
           fi
-        timeout-minutes: 12
+        timeout-minutes: 30
 
       - name: Stage daily edition files
         run: node scripts/stage-daily-edition.mjs

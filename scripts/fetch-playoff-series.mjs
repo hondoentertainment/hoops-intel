@@ -472,8 +472,12 @@ async function main() {
   const seriesDedupedMap = dedupeSeriesByConferenceRound(seriesMap);
   pruneSupersededActiveSeries(seriesDedupedMap);
 
-  console.log("  [playoffs] Hydrating top performers from box scores…");
-  await hydrateTopLines(seriesDedupedMap);
+  if (process.env.HOOPS_SKIP_PLAYOFF_HYDRATION === "1") {
+    console.log("  [playoffs] Skipping box-score hydration (HOOPS_SKIP_PLAYOFF_HYDRATION=1)");
+  } else {
+    console.log("  [playoffs] Hydrating top performers from box scores…");
+    await hydrateTopLines(seriesDedupedMap);
+  }
 
   for (const s of seriesDedupedMap.values()) {
     for (const g of s.games) delete g.espnEventId;
