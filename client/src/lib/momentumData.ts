@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: June 11, 2026
+// Last updated: June 14, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -33,116 +33,108 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  date: "June 11, 2026",
-  gameOfTheNight: "SAS-NYK-20260611",
+  date: "June 14, 2026",
+  gameOfTheNight: "NYK-SAS-20260613",
   topClutchPerformer: {
-    player: "Victor Wembanyama",
-    team: "San Antonio Spurs",
+    player: "Jalen Brunson",
+    team: "New York Knicks",
     clutchRating: 97,
     description:
-      "Wembanyama was a closing force in the final four minutes — a go-ahead fadeaway jumper, a rim-rattling block on Brunson's drive, and two clutch free throws sealed Game 3. He finished +14 and authored the defining sequence of the 2026 NBA Finals so far.",
+      "Brunson was simply unstoppable when the stakes were highest. He scored 17 of his 41 points in the fourth quarter alone, converting two critical and-one opportunities and draining a pull-up mid-range jumper over Wembanyama with 1:42 remaining to push the Knicks' lead to four. His ability to weaponize Thibodeau's staggered-screen reads against the Castle-Wembanyama coverage scheme turned San Antonio's most carefully constructed defensive blueprint into rubble.",
   },
   games: [
     {
-      gameId: "SAS-NYK-20260611",
-      teams: { home: "NYK", away: "SAS" },
-      finalScore: { home: 111, away: 115 },
+      gameId: "NYK-SAS-20260613",
+      teams: { home: "San Antonio Spurs", away: "New York Knicks" },
+      finalScore: { home: 90, away: 94 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:41",
+          timestamp: "3:22",
           description:
-            "Wembanyama opened MSG cold with back-to-back blocked shots and a transition dunk, igniting a 10-2 Spurs run that silenced the home crowd early. San Antonio pushed to a 9-point lead before New York steadied.",
-          runScore: "10-2 SAS run — SAS 24, NYK 15",
-          momentum: "away",
+            "Wembanyama ignited Frost Bank Center with back-to-back blocks followed by a coast-to-coast layup, capping an 11-2 Spurs run that gave San Antonio early command and had the crowd sensing a series-tying statement game.",
+          runScore: "11-2 SAS",
+          momentum: "home",
           keyPlayer: "Victor Wembanyama",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "5:12",
+          timestamp: "6:47",
           description:
-            "Jalen Brunson engineered a fierce Knicks counter-surge, scoring 11 straight New York points across a two-minute stretch to flip the lead. MSG erupted as the Knicks closed the half up 57-54.",
-          runScore: "14-4 NYK run — NYK 57, SAS 54",
-          momentum: "home",
+            "Brunson began dismantling the Castle-Wembanyama coverage with a series of right-side staggered-screen actions, engineering a 14-4 New York run that erased the deficit and flipped the emotional energy in the building. Three consecutive Brunson baskets — a floater, a step-back three, and an and-one drive — were the sequence that rewired the game.",
+          runScore: "14-4 NYK",
+          momentum: "away",
           keyPlayer: "Jalen Brunson",
-          impact: "significant",
+          impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "4:28",
+          timestamp: "5:10",
           description:
-            "De'Aaron Fox took over the third quarter with relentless mid-range attacks and two consecutive pull-up jumpers, sparking a 12-3 Spurs surge that erased New York's halftime lead and pushed San Antonio back in front by 8.",
-          runScore: "12-3 SAS run — SAS 81, NYK 73",
-          momentum: "away",
-          keyPlayer: "De'Aaron Fox",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "7:15",
-          description:
-            "A thunderous Knicks crowd fueled a gritty New York rally — OG Anunoby hit two corner threes and Brunson converted a and-one to cut the deficit to 2. MSG was shaking as the Knicks threatened to complete the comeback.",
-          runScore: "11-3 NYK run — NYK 102, SAS 104",
+            "San Antonio's De'Aaron Fox found a second gear in the third, rattling off 9 quick points on mid-range pull-ups and free throws to spark a 13-5 Spurs surge that reclaimed the lead and briefly restored belief inside Frost Bank Center.",
+          runScore: "13-5 SAS",
           momentum: "home",
-          keyPlayer: "OG Anunoby",
+          keyPlayer: "De'Aaron Fox",
           impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "1:47",
+          timestamp: "8:31",
           description:
-            "Wembanyama imposed his will in the final two minutes — a contested post fadeaway pushed the lead to 4, and his rejection of Brunson's desperate floater ended New York's last real hope. Fox's subsequent free throws closed it out.",
-          runScore: "7-2 SAS run — SAS 115, NYK 109",
+            "New York's switching scheme suffocated San Antonio's half-court sets to open the fourth quarter, forcing three consecutive shot-clock violations and turnovers. The Knicks converted the chaos into a 10-2 run, seizing a lead they would never relinquish and holding the Spurs to a staggering 19 second-half points total.",
+          runScore: "10-2 NYK",
           momentum: "away",
-          keyPlayer: "Victor Wembanyama",
+          keyPlayer: "OG Anunoby",
           impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "1:05",
+          description:
+            "Wembanyama hit a desperation three-pointer to trim the deficit to two and gave San Antonio fans one final heartbeat, but it proved too little too late as the Knicks calmly executed at the free-throw line to close it out.",
+          runScore: "3-0 SAS",
+          momentum: "home",
+          keyPlayer: "Victor Wembanyama",
+          impact: "notable",
         },
       ],
       clutchPlays: [
         {
-          player: "Victor Wembanyama",
-          team: "San Antonio Spurs",
+          player: "Jalen Brunson",
+          team: "New York Knicks",
           description:
-            "Caught the ball on the left block with NYK down 2, rose over Isaiah Hartenstein with a one-legged fadeaway from 17 feet — pure silk — to push the Spurs lead to 4 with 1:47 remaining.",
-          timeRemaining: "1:47",
+            "Pull-up mid-range jumper over a closing Wembanyama from the right elbow — the signature shot of Thibodeau's staggered-screen package — with 1:42 remaining to push New York's advantage to four and functionally ice the road victory.",
+          timeRemaining: "1:42",
           winProbabilityShift: 28,
-        },
-        {
-          player: "Victor Wembanyama",
-          team: "San Antonio Spurs",
-          description:
-            "Rotated from the weak side to swat Brunson's running floater off the glass with 58 seconds left, preserving a 4-point lead and functionally ending New York's comeback bid.",
-          timeRemaining: "0:58",
-          winProbabilityShift: 22,
         },
         {
           player: "Jalen Brunson",
           team: "New York Knicks",
           description:
-            "Hit a spinning mid-range jumper over Castle to cut the deficit to 2 with 2:31 remaining, keeping MSG's hopes alive and forcing San Antonio into a timeout.",
-          timeRemaining: "2:31",
-          winProbabilityShift: -16,
+            "Absorbed contact driving baseline through Castle's coverage, converted the layup, and sank the free throw to complete a three-point play that extended the lead to five with 3:08 left and silenced the Frost Bank Center crowd.",
+          timeRemaining: "3:08",
+          winProbabilityShift: 19,
         },
         {
-          player: "De'Aaron Fox",
+          player: "Victor Wembanyama",
           team: "San Antonio Spurs",
           description:
-            "Went 4-of-4 from the free throw line in the final 35 seconds to ice the game, executing perfectly under a deafening MSG crowd and sealing a pivotal Game 3 victory.",
-          timeRemaining: "0:35",
-          winProbabilityShift: 18,
+            "Step-back three-pointer from the left wing over a scrambling Josh Hart to cut the deficit to two and reignite the crowd with 58 seconds remaining, momentarily threatening to force a Knicks timeout.",
+          timeRemaining: "0:58",
+          winProbabilityShift: -14,
         },
         {
           player: "OG Anunoby",
           team: "New York Knicks",
           description:
-            "Drained a catch-and-shoot corner three from the right wing off a Brunson drive-and-kick to trim the deficit to 5 with 3:09 left, briefly reigniting the Garden's energy.",
-          timeRemaining: "3:09",
-          winProbabilityShift: -12,
+            "Stripped De'Aaron Fox on a live-ball drive with 2:21 remaining, pushing the pace for a Brunson-led fast break that resulted in two free throws and pushed the lead back to five at a critical juncture.",
+          timeRemaining: "2:21",
+          winProbabilityShift: 17,
         },
       ],
       narrative:
-        "This was supposed to be New York's night — the Garden primed, Brunson locked in, the Knicks holding halftime lead in an NBA Finals game for the first time in a generation. Instead, it became the Victor Wembanyama Experience on the biggest stage in basketball. He didn't just beat the Knicks; he educated them, blocking their schemes, absorbing their punches, and delivering the dagger when MSG dared to dream. De'Aaron Fox's 26-point fourth-quarter presence gave San Antonio the mechanical engine while Wembanyama provided the soul, and together they pried open a 2-1 Finals lead that now puts New York in genuine danger. The Knicks must win Game 4 on Wednesday or face elimination pressure — and right now, no one has a real answer for the man from Saint-Quentin-en-Yvelines.",
+        "This was the night Jalen Brunson etched his name into Knicks lore, delivering a 41-point masterclass on the road in a must-win NBA Finals game with the precision of someone who had already seen every defensive wrinkle San Antonio could draw up. Thibodeau's staggered-screen adjustments were the tactical masterstroke, systematically dismantling the Castle-Wembanyama coverage scheme that had bottled Brunson up in Games 2 and 3 and leaving Spurs head coach Gregg Popovich Jr. with no clean answers. Wembanyama was magnificent — 29 points, 11 rebounds, three blocks — but the Spurs' offensive infrastructure crumbled when New York's switching scheme denied Fox clean looks and forced San Antonio into isolation basketball in the second half. Holding a Finals-caliber opponent to 19 second-half points on their home floor, in a Game 5 with the series on the line, is the kind of defensive performance that defines championships. The Knicks head back to Madison Square Garden on the edge of ending a 53-year drought, and the city is already shaking.",
     },
   ],
 };
