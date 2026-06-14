@@ -54,16 +54,32 @@ function isBackfillMode() {
   return process.env.HOOPS_BACKFILL === "1" || process.env.HOOPS_BACKFILL === "true";
 }
 
+/** CI fast path: edition + feed only — skips slow secondary AI scripts that exceed job timeout. */
+const CI_ESSENTIAL_SCRIPTS = new Set([
+  "generate-edition.mjs",
+  "generate-rss.mjs",
+  "generate-sitemap.mjs",
+]);
+
+function isCiFastMode() {
+  return process.env.HOOPS_CI_FAST === "1" || process.env.HOOPS_CI_FAST === "true";
+}
+
 async function main() {
   const backfill = isBackfillMode();
+  const ciFast = isCiFastMode();
   const scripts = backfill
     ? DAILY_SCRIPTS.filter((s) => BACKFILL_SCRIPTS.has(s.script))
-    : DAILY_SCRIPTS;
+    : ciFast
+      ? DAILY_SCRIPTS.filter((s) => CI_ESSENTIAL_SCRIPTS.has(s.script))
+      : DAILY_SCRIPTS;
 
   // ── ESPN playoff snapshot → committed playoffData.ts (no API key) ───
   console.log("🏀 Hoops Intel — Daily Generation Runner");
   if (backfill) {
     console.log("   Mode: backfill (edition + archive + RSS/sitemap only)\n");
+  } else if (ciFast) {
+    console.log("   Mode: CI fast (edition + RSS/sitemap only)\n");
   } else {
     console.log("   Preflight: playoff series from ESPN scoreboards…\n");
   }
@@ -92,11 +108,15 @@ async function main() {
     const chk = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
     if (!chk.ok) console.warn(`⚠ playoffData.ts parse check: ${chk.reason} (left as-is if sync skipped)`);
     try {
-      execSync(`node "${join(__dirname, "generate-series-intel.mjs")}"`, {
-        cwd: ROOT,
-        stdio: "inherit",
-        env: process.env,
-      });
+      if (!ciFast) {
+        execSync(`node "${join(__dirname, "generate-series-intel.mjs")}"`, {
+          cwd: ROOT,
+          stdio: "inherit",
+          env: process.env,
+        });
+      } else {
+        console.log("  [playoffs] Skipping series intel in CI fast mode");
+      }
       const chkIntel = await validateOutput(join(ROOT, "client/src/lib/playoffData.ts"));
       if (!chkIntel.ok) console.warn(`⚠ playoffData.ts after series intel: ${chkIntel.reason}`);
     } catch (intelErr) {

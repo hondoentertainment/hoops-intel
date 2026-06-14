@@ -53,6 +53,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           HOOPS_SKIP_PLAYOFF_HYDRATION: "1"
+          HOOPS_CI_FAST: "1"
         run: |
           echo "Retry attempt — running daily generation..."
           set +e
