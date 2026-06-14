@@ -58,26 +58,6 @@ export interface PlayoffPulseMover {
 // BEGIN_PLAYOFF_SERIES_SYNC
 export const playoffSeries: PlayoffSeries[] = [
   {
-    seriesId: "E3-NYK-CLE",
-    conference: "east",
-    round: "conference-finals",
-    higherSeed: 3,
-    lowerSeed: 4,
-    higherTeam: "NYK",
-    lowerTeam: "CLE",
-    higherWins: 4,
-    lowerWins: 0,
-    status: "complete",
-    winner: "NYK",
-    summary: "NYK wins 4-0",
-    games: [
-      { gameNumber: 1, date: "2026-05-19", homeTeam: "NYK", awayTeam: "CLE", homeScore: 115, awayScore: 104, status: "final", time: "Final/OT", tv: "ESPN", topPerformer: "Jalen Brunson", topLine: "38 PTS · 5 REB · 6 AST" },
-      { gameNumber: 2, date: "2026-05-21", homeTeam: "NYK", awayTeam: "CLE", homeScore: 109, awayScore: 93, status: "final", time: "Final", tv: "ESPN", topPerformer: "Donovan Mitchell", topLine: "26 PTS · 4 REB · 1 AST" },
-      { gameNumber: 3, date: "2026-05-23", homeTeam: "CLE", awayTeam: "NYK", homeScore: 108, awayScore: 121, status: "final", time: "Final", tv: "ABC", topPerformer: "Jalen Brunson", topLine: "30 PTS · 3 REB · 6 AST" },
-      { gameNumber: 4, date: "2026-05-25", homeTeam: "CLE", awayTeam: "NYK", homeScore: 93, awayScore: 130, status: "final", time: "Final", tv: "ESPN", topPerformer: "Donovan Mitchell", topLine: "31 PTS · 4 REB · 1 AST" }
-    ],
-  },
-  {
     seriesId: "F4-SAS-NYK",
     conference: "finals",
     round: "finals",
@@ -86,16 +66,16 @@ export const playoffSeries: PlayoffSeries[] = [
     higherTeam: "SAS",
     lowerTeam: "NYK",
     higherWins: 1,
-    lowerWins: 2,
-    status: "active",
-    summary: "NYK leads 2-1",
+    lowerWins: 4,
+    status: "complete",
+    winner: "NYK",
+    summary: "NYK wins 4-1",
     games: [
-      { gameNumber: 1, date: "2026-06-03", homeTeam: "SAS", awayTeam: "NYK", homeScore: 95, awayScore: 105, status: "final", time: "Final", tv: "ABC", topPerformer: "Jalen Brunson", topLine: "30 PTS · 3 REB · 2 AST" },
-      { gameNumber: 2, date: "2026-06-05", homeTeam: "SAS", awayTeam: "NYK", homeScore: 104, awayScore: 105, status: "final", time: "Final", tv: "ABC", topPerformer: "Victor Wembanyama", topLine: "29 PTS · 9 REB · 2 AST" },
-      { gameNumber: 3, date: "2026-06-08", homeTeam: "NYK", awayTeam: "SAS", homeScore: 111, awayScore: 115, status: "final", time: "Final", tv: "ABC", topPerformer: "Victor Wembanyama", topLine: "32 PTS · 8 REB · 6 AST" },
-      { gameNumber: 4, date: "2026-06-10", homeTeam: "NYK", awayTeam: "SAS", homeScore: null, awayScore: null, status: "scheduled", time: "6/10 - 8:30 PM EDT", tv: "ABC" },
-      { gameNumber: 5, date: "2026-06-13", homeTeam: "SAS", awayTeam: "NYK", homeScore: null, awayScore: null, status: "scheduled", time: "6/13 - 8:30 PM EDT", tv: "ABC" },
-      { gameNumber: 6, date: "2026-06-16", homeTeam: "NYK", awayTeam: "SAS", homeScore: null, awayScore: null, status: "scheduled", time: "6/16 - 8:30 PM EDT", tv: "ABC" }
+      { gameNumber: 1, date: "2026-06-03", homeTeam: "SAS", awayTeam: "NYK", homeScore: 95, awayScore: 105, status: "final", time: "Final", tv: "ABC" },
+      { gameNumber: 2, date: "2026-06-05", homeTeam: "SAS", awayTeam: "NYK", homeScore: 104, awayScore: 105, status: "final", time: "Final", tv: "ABC" },
+      { gameNumber: 3, date: "2026-06-08", homeTeam: "NYK", awayTeam: "SAS", homeScore: 111, awayScore: 115, status: "final", time: "Final", tv: "ABC" },
+      { gameNumber: 4, date: "2026-06-10", homeTeam: "NYK", awayTeam: "SAS", homeScore: 107, awayScore: 106, status: "final", time: "Final", tv: "ABC" },
+      { gameNumber: 5, date: "2026-06-13", homeTeam: "SAS", awayTeam: "NYK", homeScore: 90, awayScore: 94, status: "final", time: "Final", tv: "ABC" }
     ],
   }
 ];
