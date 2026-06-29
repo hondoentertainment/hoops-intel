@@ -31,7 +31,19 @@ export const tickerItems = [
 ];
 
 // GAME RESULTS — No Games (June 22, 2026)
-export const gameResults = [];
+export type GameResultEntry = {
+  homeTeam: string;
+  homeScore: number;
+  awayTeam: string;
+  awayScore: number;
+  status: "final";
+  topPerformer: string;
+  topLine: string;
+  recap: string;
+  gameId: string;
+};
+
+export const gameResults: GameResultEntry[] = [];
 
 // ═══════════════════════════════════════════════════════════
 // PULSE INDEX — Finals Series Rankings (Game 7 Day)
