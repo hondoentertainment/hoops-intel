@@ -11,11 +11,13 @@ import { seriesForTeam, playoffSeriesOpponent } from "./playoffData";
 import { nextPendingGame } from "./playoffAnalytics";
 import { TEAM_NAMES, canonicalizeTeamCode } from "./identity";
 
+type GameTeamMatchup = { homeTeam: string; awayTeam: string };
+
 export interface TeamIntelResponse {
   abbr: string;
   fullName: string;
   standing?: (typeof eastStandings)[0];
-  recentGames: typeof gameResults;
+  recentGames: GameTeamMatchup[];
   previews: typeof gamePreviews;
   injuries: typeof injuryUpdates;
   pulsePlayers: typeof pulseIndex;
@@ -45,7 +47,7 @@ export function getTeamIntelByAbbr(rawAbbr: string): TeamIntelResponse | null {
     abbr,
     fullName,
     standing,
-    recentGames: gameResults.filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
+    recentGames: (gameResults as GameTeamMatchup[]).filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
     previews: gamePreviews.filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
     injuries: injuryUpdates.filter((inj) => inj.team === abbr),
     pulsePlayers: pulseIndex.filter((p) => p.team === abbr),
