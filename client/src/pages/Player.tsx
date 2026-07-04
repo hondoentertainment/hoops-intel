@@ -4,6 +4,7 @@ import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
 import { pulseIndex, gameResults, injuryUpdates, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
+import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
 import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
@@ -152,7 +153,9 @@ export default function Player() {
           style={{ borderLeft: `4px solid ${teamColor}` }}
         >
           <div className="flex items-start justify-between flex-wrap gap-4">
-            <div>
+            <div className="flex items-center gap-4">
+              <PlayerAvatar name={player.name} team={player.teams[0]} size={72} />
+              <div>
               <div className="section-label mb-1">PLAYER PROFILE</div>
               <h1 className="display-heading text-white text-3xl mb-2">{player.name}</h1>
               <div className="flex items-center gap-2 flex-wrap">
@@ -170,6 +173,7 @@ export default function Player() {
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                   {player.mentions} mention{player.mentions !== 1 ? "s" : ""} in archive
                 </span>
+              </div>
               </div>
             </div>
             <div className="flex items-start gap-3">

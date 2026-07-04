@@ -1,7 +1,7 @@
 {
   "name": "hoops-intel",
   "version": "1.0.0",
-  "description": "Hoops Intel — Daily NBA Intelligence Dashboard",
+  "description": "Hoops Intel \u2014 Daily NBA Intelligence Dashboard",
   "private": true,
   "type": "module",
   "scripts": {
@@ -26,6 +26,7 @@
     "lines:snapshot": "node scripts/sync-line-movement.mjs snapshot",
     "lines:sync": "node scripts/sync-line-movement.mjs sync",
     "lines:fetch": "node scripts/fetch-line-odds.mjs",
+    "headshots:fetch": "node scripts/fetch-player-headshots.mjs",
     "test:series-intel-keys": "node scripts/verify-series-intel-keys.mjs",
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",

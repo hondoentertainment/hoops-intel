@@ -110,6 +110,10 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scripts/settle-picks.mjs
 
+      - name: Refresh player headshots (ESPN rosters)
+        continue-on-error: true
+        run: node scripts/fetch-player-headshots.mjs
+
       - name: Stage daily edition files
         run: node scripts/stage-daily-edition.mjs
 
