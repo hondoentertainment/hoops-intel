@@ -18,7 +18,7 @@ export interface TeamIntelResponse {
   fullName: string;
   standing?: (typeof eastStandings)[0];
   recentGames: GameTeamMatchup[];
-  previews: typeof gamePreviews;
+  previews: GameTeamMatchup[];
   injuries: typeof injuryUpdates;
   pulsePlayers: typeof pulseIndex;
   editions: typeof archiveEditions;
@@ -48,7 +48,7 @@ export function getTeamIntelByAbbr(rawAbbr: string): TeamIntelResponse | null {
     fullName,
     standing,
     recentGames: (gameResults as GameTeamMatchup[]).filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
-    previews: gamePreviews.filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
+    previews: (gamePreviews as GameTeamMatchup[]).filter((g) => g.homeTeam === abbr || g.awayTeam === abbr),
     injuries: injuryUpdates.filter((inj) => inj.team === abbr),
     pulsePlayers: pulseIndex.filter((p) => p.team === abbr),
     editions: archiveEditions.filter((ed: any) => (ed.teams || []).includes(abbr)),

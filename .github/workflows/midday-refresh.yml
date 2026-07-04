@@ -91,6 +91,35 @@ jobs:
         if: steps.changes.outputs.changed == 'false'
         run: echo "No data changes — skipping commit."
 
+      - name: Close resolved midday-failure issues
+        if: success()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'generation-failure',
+              per_page: 100,
+            });
+            for (const issue of open.data.filter((i) => i.title.startsWith('Midday refresh failed'))) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Midday refresh succeeded in ${runUrl}. Auto-closing this stale failure report.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+            }
+
       - name: Create issue on failure
         if: failure()
         uses: actions/github-script@v9
