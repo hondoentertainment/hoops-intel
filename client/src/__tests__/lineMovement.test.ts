@@ -6,8 +6,8 @@ describe("lineMovement", () => {
   it("finds movement row for matchup regardless of home/away order", () => {
     const seed = lineMovementRows[0];
     if (!seed) {
-      // Off-season / off-day editions generate no line-movement rows; the lookup
-      // must still no-op safely rather than the suite failing on empty data.
+      // Offseason / no games: sync-line-movement.mjs emits an empty rows array.
+      // The lookup contract still holds — any matchup resolves to undefined.
       expect(lineMovementForMatchup("LAL", "BOS")).toBeUndefined();
       return;
     }
