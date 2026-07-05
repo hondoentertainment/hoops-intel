@@ -33,7 +33,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run preview -- --port ${PORT} --strictPort`,
+    // Pin the host so the served interface matches the 127.0.0.1 healthcheck
+    // below — vite preview otherwise binds localhost/::1 and the check times out
+    // on CI runners.
+    command: `npm run preview -- --port ${PORT} --strictPort --host 127.0.0.1`,
     url: `http://127.0.0.1:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
