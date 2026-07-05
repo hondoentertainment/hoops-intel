@@ -299,6 +299,38 @@ function PlayoffHeroCta() {
   );
 }
 
+function HeroLeadStory() {
+  const featured = gamePreviews.find((g) => g.featured) ?? gamePreviews[0];
+  if (!featured) return null;
+  return (
+    <a
+      href="#tonight"
+      className="group inline-flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 rounded-xl px-4 py-3 backdrop-blur transition-colors"
+      style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.12)" }}
+    >
+      <span className="section-label text-[10px]" style={{ color: "#0EA5E9" }}>
+        Tonight’s Marquee
+      </span>
+      <span className="flex items-center gap-1.5 text-sm font-bold text-white">
+        <TeamLogo team={featured.awayTeam} size={26} />
+        {featured.awayTeam}
+      </span>
+      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>@</span>
+      <span className="flex items-center gap-1.5 text-sm font-bold text-white">
+        <TeamLogo team={featured.homeTeam} size={26} />
+        {featured.homeTeam}
+      </span>
+      <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+        {featured.time}
+        {featured.tv ? ` · ${featured.tv}` : ""}
+      </span>
+      <span className="text-xs font-semibold text-sky-300 group-hover:text-sky-200">
+        Preview →
+      </span>
+    </a>
+  );
+}
+
 function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   const playoffsOn = isPlayoffsActive();
   const finalsOn = isFinalsActive();
@@ -337,6 +369,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               How Pulse works
             </a>
           </div>
+          <HeroLeadStory />
           <div className="flex flex-wrap gap-3 items-center">
             {showMyPulse ? (
               <a
@@ -1543,9 +1576,9 @@ function StandingsSection() {
               <SortHeader label="W" keyName="wins" />
               <SortHeader label="L" keyName="losses" />
               <SortHeader label="PCT" keyName="pct" />
-              <th className="text-center px-3 py-2 section-label">GB</th>
+              <th className="text-center px-3 py-2 section-label cursor-help" title="Games Behind — how many games back of the conference leader (0 = leading)">GB</th>
               <SortHeader label="STRK" keyName="streak" />
-              <th className="text-center px-3 py-2 section-label">L10</th>
+              <th className="text-center px-3 py-2 section-label cursor-help" title="Record over the last 10 games">L10</th>
             </tr>
           </thead>
           <tbody>
@@ -1566,10 +1599,10 @@ function StandingsSection() {
                     {team.team}
                   </a>
                   {team.rank === 6 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>PLAYOFF</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 1–6 clinch an automatic playoff berth" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>PLAYOFF</span>
                   )}
                   {team.rank === 10 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 7–10 enter the Play-In Tournament for the final two playoff spots" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
                   )}
                 </td>
                 <td className="text-center px-3 py-2 mono-data">{team.wins}</td>
@@ -1596,9 +1629,9 @@ function StandingsSection() {
           </tbody>
         </table>
         {sortKey === "rank" && (
-          <div className="px-3 py-2 flex gap-4 text-[10px]" style={{ background: "rgba(255,255,255,0.02)", color: "rgba(255,255,255,0.3)" }}>
-            <span>1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
-            <span>7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
+          <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "rgba(255,255,255,0.02)", color: "rgba(255,255,255,0.3)" }}>
+            <span className="cursor-help" title="Top 6 in each conference clinch a playoff berth outright">1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
+            <span className="cursor-help" title="Seeds 7–10 play a mini-tournament for the final two playoff spots in each conference">7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
           </div>
         )}
       </div>

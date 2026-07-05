@@ -4,6 +4,7 @@
 import { useState, useMemo } from "react";
 import { tradeSimData, type TradeProposal, type TradeablePlayer } from "../lib/tradeSimData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import TeamLogo from "../components/TeamLogo";
 
 // ═══════════════════════════════════════════════════════════
 // NBA TEAMS (all 30)
@@ -187,9 +188,10 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
       <div className="px-5 pt-4 pb-3 flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
           <span
-            className="text-lg font-bold"
+            className="flex items-center gap-2 text-lg font-bold"
             style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
           >
+            <TeamLogo team={trade.team1.team} size={24} />
             {trade.team1.team}
           </span>
           <span
@@ -199,9 +201,10 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
             trades with
           </span>
           <span
-            className="text-lg font-bold"
+            className="flex items-center gap-2 text-lg font-bold"
             style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
           >
+            <TeamLogo team={trade.team2.team} size={24} />
             {trade.team2.team}
           </span>
         </div>

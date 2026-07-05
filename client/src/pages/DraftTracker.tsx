@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import TeamLogo from "../components/TeamLogo";
 import { draftData } from "../lib/draftData";
 
 function TrendArrow({ trend }: { trend: "rising" | "falling" | "stable" }) {
@@ -165,7 +166,7 @@ export default function DraftTracker() {
               {draftData.tankWatch.map(t => (
                 <div key={t.team} className="rounded-lg border p-4" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.06)" }}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-white">{t.team}</span>
+                    <span className="flex items-center gap-1.5 font-bold text-white"><TeamLogo team={t.team} size={18} />{t.team}</span>
                     <span className="text-xs font-mono" style={{ color: "#F43F5E" }}>{t.record}</span>
                   </div>
                   <div className="flex gap-3 text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
