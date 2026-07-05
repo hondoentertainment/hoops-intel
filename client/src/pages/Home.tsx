@@ -1300,9 +1300,23 @@ function TonightSection() {
       <div className="container">
         <div className="section-label mb-2">TONIGHT'S SLATE</div>
         <h2 className="display-heading text-white text-2xl mb-6">Game Previews</h2>
-        <div className="space-y-3">
-          {gamePreviews.map((preview: any, i: number) => (<GamePreviewCard key={i} preview={preview} />))}
-        </div>
+        {gamePreviews.length > 0 ? (
+          <div className="space-y-3">
+            {gamePreviews.map((preview: any, i: number) => (<GamePreviewCard key={i} preview={preview} />))}
+          </div>
+        ) : (
+          <div
+            className="glass-card rounded-lg px-6 py-10 text-center"
+            style={{ border: "1px dashed rgba(255,255,255,0.12)" }}
+          >
+            <p className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>NO GAMES TONIGHT</p>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              Nothing on tonight&apos;s schedule. Browse the{" "}
+              <a href="/watch-guide" className="text-sky-400 underline">watch guide</a> or catch up in the{" "}
+              <a href="/archive" className="text-sky-400 underline">archive</a>.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
