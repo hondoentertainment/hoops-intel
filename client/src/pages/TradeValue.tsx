@@ -1,4 +1,5 @@
 import ToolPageLayout from "../components/ToolPageLayout";
+import TeamLogo from "../components/TeamLogo";
 import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
 // Trade Value Index — data from `generate-trade-value.mjs` → tradeValueData.ts
@@ -139,9 +140,10 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
               {p.player}
             </span>
             <span
-              className="text-sm font-semibold"
+              className="flex items-center gap-1.5 text-sm font-semibold"
               style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
             >
+              <TeamLogo team={p.team} size={18} />
               {p.team}
             </span>
             <RankChangeBadge rank={p.rank} prevRank={p.prevRank} />

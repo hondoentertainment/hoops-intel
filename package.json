@@ -1,7 +1,7 @@
 {
   "name": "hoops-intel",
   "version": "1.0.0",
-  "description": "Hoops Intel — Daily NBA Intelligence Dashboard",
+  "description": "Hoops Intel \u2014 Daily NBA Intelligence Dashboard",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "build": "node scripts/generate-sitemap.mjs && vite build",
     "preview": "vite preview",
     "test:unit": "vitest run",
+    "test:e2e": "playwright test",
     "typecheck:api": "tsc --noEmit -p api/tsconfig.json",
     "test:watch": "vitest",
     "test:ci": "npm ci --no-audit --no-fund && npm run test:ci:tasks",
@@ -26,6 +27,7 @@
     "lines:snapshot": "node scripts/sync-line-movement.mjs snapshot",
     "lines:sync": "node scripts/sync-line-movement.mjs sync",
     "lines:fetch": "node scripts/fetch-line-odds.mjs",
+    "headshots:fetch": "node scripts/fetch-player-headshots.mjs",
     "test:series-intel-keys": "node scripts/verify-series-intel-keys.mjs",
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@emnapi/core": "1.10.0",
     "@emnapi/runtime": "1.10.0",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",

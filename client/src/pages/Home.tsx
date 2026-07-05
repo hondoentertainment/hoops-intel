@@ -17,6 +17,7 @@ import {
 import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
 import TeamLogo from "../components/TeamLogo";
+import PlayerAvatar from "../components/PlayerAvatar";
 import { useLiveScores } from "../lib/useLiveScores";
 import type { LiveGame } from "../lib/espnApi";
 import { slugify } from "../lib/searchUtils";
@@ -298,6 +299,38 @@ function PlayoffHeroCta() {
   );
 }
 
+function HeroLeadStory() {
+  const featured = gamePreviews.find((g) => g.featured) ?? gamePreviews[0];
+  if (!featured) return null;
+  return (
+    <a
+      href="#tonight"
+      className="group inline-flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 rounded-xl px-4 py-3 backdrop-blur transition-colors"
+      style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.12)" }}
+    >
+      <span className="section-label text-[10px]" style={{ color: "#0EA5E9" }}>
+        Tonight’s Marquee
+      </span>
+      <span className="flex items-center gap-1.5 text-sm font-bold text-white">
+        <TeamLogo team={featured.awayTeam} size={26} />
+        {featured.awayTeam}
+      </span>
+      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>@</span>
+      <span className="flex items-center gap-1.5 text-sm font-bold text-white">
+        <TeamLogo team={featured.homeTeam} size={26} />
+        {featured.homeTeam}
+      </span>
+      <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+        {featured.time}
+        {featured.tv ? ` · ${featured.tv}` : ""}
+      </span>
+      <span className="text-xs font-semibold text-sky-300 group-hover:text-sky-200">
+        Preview →
+      </span>
+    </a>
+  );
+}
+
 function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
   const playoffsOn = isPlayoffsActive();
   const finalsOn = isFinalsActive();
@@ -336,6 +369,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               How Pulse works
             </a>
           </div>
+          <HeroLeadStory />
           <div className="flex flex-wrap gap-3 items-center">
             {showMyPulse ? (
               <a
@@ -898,11 +932,11 @@ function PulseIndexSection() {
             return (
               <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4" style={isFavorite ? { borderLeft: "3px solid #0EA5E9" } : {}}>
                 <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "#0EA5E9" }}>{player.rank}</div>
-                <TeamLogo team={player.team} size={34} />
+                <PlayerAvatar name={player.player} team={player.team} size={40} />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <a href={`/player/${slugify(player.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{player.player}</a>
-                    <a href={`/team/${player.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>{player.team}</a>
+                    <a href={`/team/${player.team.toLowerCase()}`} className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}><TeamLogo team={player.team} size={14} />{player.team}</a>
                     {isFavorite && (
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="#0EA5E9" className="flex-shrink-0">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -1266,9 +1300,23 @@ function TonightSection() {
       <div className="container">
         <div className="section-label mb-2">TONIGHT'S SLATE</div>
         <h2 className="display-heading text-white text-2xl mb-6">Game Previews</h2>
-        <div className="space-y-3">
-          {gamePreviews.map((preview: any, i: number) => (<GamePreviewCard key={i} preview={preview} />))}
-        </div>
+        {gamePreviews.length > 0 ? (
+          <div className="space-y-3">
+            {gamePreviews.map((preview: any, i: number) => (<GamePreviewCard key={i} preview={preview} />))}
+          </div>
+        ) : (
+          <div
+            className="glass-card rounded-lg px-6 py-10 text-center"
+            style={{ border: "1px dashed rgba(255,255,255,0.12)" }}
+          >
+            <p className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>NO GAMES TONIGHT</p>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              Nothing on tonight&apos;s schedule. Browse the{" "}
+              <a href="/watch-guide" className="text-sky-400 underline">watch guide</a> or catch up in the{" "}
+              <a href="/archive" className="text-sky-400 underline">archive</a>.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1542,9 +1590,9 @@ function StandingsSection() {
               <SortHeader label="W" keyName="wins" />
               <SortHeader label="L" keyName="losses" />
               <SortHeader label="PCT" keyName="pct" />
-              <th className="text-center px-3 py-2 section-label">GB</th>
+              <th className="text-center px-3 py-2 section-label cursor-help" title="Games Behind — how many games back of the conference leader (0 = leading)">GB</th>
               <SortHeader label="STRK" keyName="streak" />
-              <th className="text-center px-3 py-2 section-label">L10</th>
+              <th className="text-center px-3 py-2 section-label cursor-help" title="Record over the last 10 games">L10</th>
             </tr>
           </thead>
           <tbody>
@@ -1565,10 +1613,10 @@ function StandingsSection() {
                     {team.team}
                   </a>
                   {team.rank === 6 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>PLAYOFF</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 1–6 clinch an automatic playoff berth" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>PLAYOFF</span>
                   )}
                   {team.rank === 10 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 7–10 enter the Play-In Tournament for the final two playoff spots" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
                   )}
                 </td>
                 <td className="text-center px-3 py-2 mono-data">{team.wins}</td>
@@ -1595,9 +1643,9 @@ function StandingsSection() {
           </tbody>
         </table>
         {sortKey === "rank" && (
-          <div className="px-3 py-2 flex gap-4 text-[10px]" style={{ background: "rgba(255,255,255,0.02)", color: "rgba(255,255,255,0.3)" }}>
-            <span>1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
-            <span>7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
+          <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "rgba(255,255,255,0.02)", color: "rgba(255,255,255,0.3)" }}>
+            <span className="cursor-help" title="Top 6 in each conference clinch a playoff berth outright">1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
+            <span className="cursor-help" title="Seeds 7–10 play a mini-tournament for the final two playoff spots in each conference">7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
           </div>
         )}
       </div>

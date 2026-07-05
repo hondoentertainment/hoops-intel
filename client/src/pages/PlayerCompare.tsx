@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import TeamLogo from "../components/TeamLogo";
 import { pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 
@@ -93,7 +94,7 @@ export default function PlayerCompare() {
                 <div>
                   <div className="mono-data text-xs mb-1" style={{ color: "#0EA5E9" }}>RANK #{p.rank}</div>
                   <h2 className="text-xl font-bold text-white">{p.player}</h2>
-                  <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{p.team} · {p.teamRecord}</div>
+                  <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
                 </div>
                 <div className="mono-data px-4 py-2 rounded-xl text-xl font-black" style={{ background: "rgba(14,165,233,0.12)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.25)" }}>
                   {p.indexScore}

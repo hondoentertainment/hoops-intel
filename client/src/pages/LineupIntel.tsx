@@ -5,6 +5,7 @@ import { useState } from "react";
 import { lineupData } from "../lib/lineupData";
 import type { LineupUnit, TeamLineupIntel } from "../lib/lineupData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import TeamLogo from "../components/TeamLogo";
 
 // ═══════════════════════════════════════════════════════════
 // NET RATING BAR
@@ -202,6 +203,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
         {/* Team header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
+            <TeamLogo team={team.team} size={22} />
             <span
               className="text-lg font-bold"
               style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
