@@ -7,6 +7,7 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { seasonMode } from "./lib/season-mode.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,6 +18,11 @@ const pulsePath = join(ROOT, "client/src/lib/pulseData.ts");
 
 function pulseEditionContext(raw) {
   const m = raw.match(/editionContext\s*:\s*"([^"]+)"/);
+  return m?.[1] ?? null;
+}
+
+function pulseEditionDate(raw) {
+  const m = raw.match(/export const pulseEdition\s*=\s*\{[^;]*\bdate\s*:\s*"([^"]+)"/s);
   return m?.[1] ?? null;
 }
 
@@ -53,6 +59,23 @@ try {
     process.exit(1);
   }
 
+  const editionDate = pulseEditionDate(pulseRaw);
+  const parsedEditionDate = editionDate ? new Date(`${editionDate} 00:00:00 UTC`) : null;
+  if (!parsedEditionDate || Number.isNaN(parsedEditionDate.getTime())) {
+    console.error("[drift] pulseEdition.date missing or invalid in pulseData.ts");
+    process.exit(1);
+  }
+
+  const calendarMode = seasonMode(parsedEditionDate);
+  const expectedContext =
+    calendarMode === "finals" ? "finals" : calendarMode === "playoffs" ? "playoffs" : "regular";
+  if (ctx !== expectedContext) {
+    console.error(
+      `[drift] pulseData.ts has editionContext "${ctx}" for ${editionDate} (${calendarMode}); expected "${expectedContext}".`,
+    );
+    process.exit(1);
+  }
+
   const inner = playoffSyncInner(playbookRaw);
   const boardOn = playbookBoardHasRows(inner);
   const hasRealSeries = boardOn ? hasNonTbdSeries(inner) : false;
@@ -60,11 +83,9 @@ try {
   const expectPlayoffEdition = ctx === "playoffs" || ctx === "finals";
 
   if (boardOn && hasRealSeries && ctx === "regular") {
-    console.error(
-      `[drift] pulseData.ts has editionContext "regular" but playoffData.ts has active matchups.`,
+    console.warn(
+      `[drift advisory] Archived playoffData.ts matchups remain during ${calendarMode}; edition context is correctly "${ctx}".`,
     );
-    console.error('      Set pulseEdition.editionContext to "playoffs" or "finals" during the postseason.');
-    process.exit(1);
   }
 
   if (expectPlayoffEdition && boardOn && !hasRealSeries) {
@@ -80,7 +101,7 @@ try {
   }
 
   console.log(
-    `[drift] OK — editionContext=${ctx}, playoff board nonempty=${boardOn}, real matchups=${hasRealSeries}`,
+    `[drift] OK — date=${editionDate}, mode=${calendarMode}, editionContext=${ctx}, playoff board nonempty=${boardOn}, real matchups=${hasRealSeries}`,
   );
 } catch (e) {
   console.error("[drift]", e.message || e);
