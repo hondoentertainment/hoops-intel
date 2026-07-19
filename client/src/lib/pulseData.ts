@@ -6,7 +6,7 @@
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"July 4, 2026",edition:"Vol. 2026 · No. 175",subtitle:"Wemby Supermax Watch · Fox Offer Sheet Clock Ticking · Independence Day, No Games",editionContext:"finals"};
+export const pulseEdition = {date:"July 4, 2026",edition:"Vol. 2026 · No. 175",subtitle:"Wemby Supermax Watch · Fox Offer Sheet Clock Ticking · Independence Day, No Games",editionContext:"regular"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE DAY

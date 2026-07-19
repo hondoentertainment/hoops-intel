@@ -45,6 +45,7 @@ jobs:
     if: needs.check-season.outputs.active == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: write
       issues: write
 
@@ -188,6 +189,20 @@ jobs:
           script: |
             const today = new Date().toISOString().slice(0, 10);
             const title = `Daily generation failed — ${today}`;
+            const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+              per_page: 100,
+            });
+            const failedSteps = jobs.flatMap((job) =>
+              (job.steps || [])
+                .filter((step) => step.conclusion === 'failure')
+                .map((step) => `- \`${job.name}\` → \`${step.name}\``),
+            );
+            const failureSummary = failedSteps.length
+              ? failedSteps.join('\n')
+              : '- Failed step unavailable; inspect the linked run logs.';
             // Check if issue already exists for today
             const existing = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
@@ -202,7 +217,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title,
-                body: `## Daily Generation Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nCheck the workflow logs for details. Common causes:\n- ESPN API outage\n- Anthropic API key expired or rate limited\n- Schema validation failure\n\nThis issue was auto-created by the daily-update workflow.`,
+                body: `## Daily Generation Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n### Failed step\n${failureSummary}\n\nThe generator, external APIs, and pre-push validation are separate steps. Use the failed step above to identify the failing stage before rotating credentials or retrying external services.\n\nThis issue was auto-created by the daily-update workflow.`,
                 labels: ['generation-failure', 'automated'],
               });
             }
