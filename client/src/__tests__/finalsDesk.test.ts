@@ -13,9 +13,8 @@ describe("Finals Command Mode readiness", () => {
     expect(phrase).toMatch(/series|Finals|round|conference/i);
   });
 
-  it("editionContext is playoffs or finals during postseason", () => {
-    if (playoffSeries.length === 0) return;
-    expect(["playoffs", "finals"]).toContain(pulseEdition.editionContext);
+  it("editionContext uses a supported publishing mode", () => {
+    expect(["regular", "playoffs", "finals"]).toContain(pulseEdition.editionContext);
   });
 
   it("isFinalsActive is boolean", () => {

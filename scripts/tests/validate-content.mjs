@@ -456,6 +456,8 @@ function main() {
     test("advisory", "game previews include exactly one featured game", () => {
       const previews = exports.gamePreviews;
       assert(Array.isArray(previews), "gamePreviews should be an array");
+      // Off-days and offseason editions legitimately have no game previews.
+      if (previews.length === 0) return;
       const featured = previews.filter((p) => p.featured === true);
       assertEqual(featured.length, 1, "Number of featured games");
     });
