@@ -19,15 +19,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "24"
 
       - name: Restore fingerprint cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: scripts/.cache/site-review-state.json
           key: site-review-fingerprints-v2-${{ github.repository }}
