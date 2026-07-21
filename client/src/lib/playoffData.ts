@@ -55,69 +55,15 @@ export interface PlayoffPulseMover {
 // Editorial blocks below: playoffMovers, seriesIntel.
 // ═══════════════════════════════════════════════════════════
 
+// The 2026 Finals concluded in June; the offseason has no active postseason.
+// Empty series = regular-season/offseason mode: isPlayoffsActive()/isFinalsActive()
+// return false, so the bracket falls back to projections and the Pulse Index
+// renders unfiltered. The playoff-series sync repopulates this each postseason.
 // BEGIN_PLAYOFF_SERIES_SYNC
-export const playoffSeries: PlayoffSeries[] = [
-  {
-    seriesId: "F4-SAS-NYK",
-    conference: "finals",
-    round: "finals",
-    higherSeed: 2,
-    lowerSeed: 3,
-    higherTeam: "SAS",
-    lowerTeam: "NYK",
-    higherWins: 0,
-    lowerWins: 1,
-    status: "active",
-    summary: "NYK leads 1-0",
-    games: [
-      { gameNumber: 5, date: "2026-06-13", homeTeam: "SAS", awayTeam: "NYK", homeScore: 90, awayScore: 94, status: "final", time: "Final", tv: "ABC" }
-    ],
-  }
-];
+export const playoffSeries: PlayoffSeries[] = [];
 // END_PLAYOFF_SERIES_SYNC
 
-export const playoffMovers: PlayoffPulseMover[] = [
-  {
-    player: "Stephon Castle",
-    team: "SAS",
-    direction: "riser",
-    delta: 18,
-    playoffLine: "32 PTS · 11 REB · 6 AST · 11-16 FG · +28 (Game 6)",
-    note: "The series-clinching masterpiece — 32/11/6 on 69% shooting in a 30-point road blowout. Castle is a star. Period.",
-  },
-  {
-    player: "Paul Reed",
-    team: "DET",
-    direction: "riser",
-    delta: 15,
-    playoffLine: "17 PTS · 6 REB · 7-9 FG · +8 (Game 6)",
-    note: "Detroit's bench catalyst in the 21-point road blowout that forced Game 7. Reed's energy and efficiency broke Cleveland.",
-  },
-  {
-    player: "De'Aaron Fox",
-    team: "SAS",
-    direction: "riser",
-    delta: 10,
-    playoffLine: "21 PTS · 9 AST · 8-10 FG · +26 (Game 6)",
-    note: "Surgical 80% shooting in the clincher with 9 assists. Fox was the steady hand that let Castle go supernova.",
-  },
-  {
-    player: "Donovan Mitchell",
-    team: "CLE",
-    direction: "faller",
-    delta: -14,
-    playoffLine: "18 PTS · 6-20 FG · -25 (Game 6)",
-    note: "From 43 points in Game 4 to 18 on 30% shooting with a -25. The worst Game 6 collapse by a star this postseason.",
-  },
-  {
-    player: "James Harden",
-    team: "CLE",
-    direction: "faller",
-    delta: -12,
-    playoffLine: "23 PTS · 8 TOs · -5 (Game 6)",
-    note: "Eight turnovers in a clinch game at home, two days after his vintage 30-point OT masterpiece. Peak playoff Harden duality.",
-  },
-];
+export const playoffMovers: PlayoffPulseMover[] = [];
 
 // ═══════════════════════════════════════════════════════════
 // HEAD-TO-HEAD SERIES INTEL

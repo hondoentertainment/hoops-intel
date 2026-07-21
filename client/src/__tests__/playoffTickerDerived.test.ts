@@ -4,7 +4,7 @@ import {
   buildPlayoffLiveTickerItems,
   playoffTickerWireItems,
 } from "../lib/playoffTickerDerived";
-import type { PlayoffSeries } from "../lib/playoffData";
+import { isPlayoffsActive, type PlayoffSeries } from "../lib/playoffData";
 
 describe("playoffTickerDerived", () => {
   it("buildPlayoffFinalScoreTickerItems emits FINAL lines for completed games", () => {
@@ -83,10 +83,11 @@ describe("playoffTickerDerived", () => {
     expect(live[0].text).toContain("SAS leads 1-0");
   });
 
-  it("playoffTickerWireItems returns items when playoff board is active", () => {
+  it("playoffTickerWireItems yields well-formed items, matching board state", () => {
     const wire = playoffTickerWireItems();
     expect(Array.isArray(wire)).toBe(true);
-    expect(wire.length).toBeGreaterThan(0);
     expect(wire.every((w) => typeof w.text === "string" && w.text.length > 0)).toBe(true);
+    // Offseason board is empty; only guarantee items while the postseason is live.
+    if (isPlayoffsActive()) expect(wire.length).toBeGreaterThan(0);
   });
 });
