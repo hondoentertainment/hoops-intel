@@ -41,7 +41,8 @@ Full checklist: [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md)
 | Multi-pair rival push (`rival_pairs` jsonb) | **Done** (needs migration) |
 | Betting opener archive UI | **Done** (`lineOpenersArchiveData.ts`) |
 | SSR/SEO | Deferred unless Lighthouse regresses |
-| Dependabot #241 / #242 | Merge when CI fully green |
+| Dependabot Actions #241 | **Merged** |
+| Dependabot npm #242 | Deferred — Vercel preview fails on PR; schedule dedicated bump day |
 
 ### Non-goals
 
