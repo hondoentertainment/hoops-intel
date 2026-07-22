@@ -597,6 +597,10 @@ async function sendEmail(to, subject, html) {
       to: [to],
       subject,
       html: personalizedHTML,
+      headers: {
+        'List-Unsubscribe': `<https://hoopsintel.net/unsubscribe?email=${encodeURIComponent(to)}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
     }),
   });
 

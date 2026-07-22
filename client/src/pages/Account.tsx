@@ -20,6 +20,7 @@ import { useSubscription, openBillingPortal } from "../lib/useSubscription";
 import {
   DEFAULT_PUSH_TOPICS,
   FANTASY_ONLY_PUSH_TOPICS,
+  TEAM_GAME_START_TOPICS,
   PUSH_TOPIC_OPTIONS,
   getDevicePushSubscription,
   subscribeDevicePush,
@@ -172,6 +173,18 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     }
   };
 
+  const resolveTeamAbbr = async (): Promise<string | null> => {
+    const fav = await getFavorites();
+    let team =
+      fav.teams[0]?.toUpperCase() ??
+      getPreferences().favoriteTeams[0]?.toUpperCase() ??
+      favoriteTeams[0]?.toUpperCase() ??
+      null;
+    if (team === "NY") team = "NYK";
+    if (team === "SA") team = "SAS";
+    return team && team.length === 3 ? team : null;
+  };
+
   const handleSaveTopics = async () => {
     if (!deviceEndpoint) {
       setErr("Enable push on this device first.");
@@ -187,16 +200,18 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     try {
       const wantsRival = topicList.map((t) => t.toLowerCase()).includes("rival");
       const rivals = rivalFieldsForSync(wantsRival);
+      const team_abbr = await resolveTeamAbbr();
       await patchMyPushSubscriptionFields(deviceEndpoint, {
         notify_topics: topicList,
+        team_abbr,
         ...rivals,
       });
       setMsg(
         wantsRival && rivals.rival_pairs.length === 0
           ? "Topics saved. Add a pairing on /rivals, then save again (or Sync rival) to target grudge alerts."
           : wantsRival && rivals.rival_pairs.length > 1
-            ? `Topics updated — ${rivals.rival_pairs.length} rival pairs synced.`
-            : "Topic preferences updated.",
+            ? `Topics updated — ${rivals.rival_pairs.length} rival pairs synced${team_abbr ? ` · team ${team_abbr}` : ""}.`
+            : `Topic preferences updated${team_abbr ? ` · game-start targets ${team_abbr}` : ""}.`,
       );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not save topics");
@@ -339,6 +354,14 @@ function AccountPushAlerts({ userId }: { userId: string }) {
           className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
         >
           Fantasy-only
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => applyTopicPreset(TEAM_GAME_START_TOPICS)}
+          className="min-h-[38px] px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider text-white/90 border border-white/[0.12] hover:bg-white/[0.05] disabled:opacity-40"
+        >
+          Team tip alerts
         </button>
         <button
           type="button"

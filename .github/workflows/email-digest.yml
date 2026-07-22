@@ -37,6 +37,12 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           DIGEST_EMAILS: ${{ secrets.DIGEST_EMAILS }}
+          # Quiet hours: morning PST window only (skip if Actions runs outside 6–11 PT)
+          DIGEST_USE_QUIET_WINDOW: "1"
+          DIGEST_SEND_START_HOUR_PST: "6"
+          DIGEST_SEND_END_HOUR_PST: "11"
+          # Optional: set repo variable DIGEST_QUIET_OVERRIDE=1 to force sends for ops drills
+          DIGEST_QUIET_OVERRIDE: ${{ vars.DIGEST_QUIET_OVERRIDE }}
         run: node scripts/send-digest.mjs
 
       - name: Fantasy watchlist pushes

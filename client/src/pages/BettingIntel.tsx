@@ -2,6 +2,7 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { lineOpenersArchive } from "../lib/lineOpenersArchiveData";
+import { booksForMatchup, consensusSummary } from "../lib/oddsBooksData";
 import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
 import { bettingDisclaimer, summarizeLineMovementEducation, slateLineMovementSummary } from "../lib/bettingLineStory";
 import { makeGameId } from "../lib/gameCenter";
@@ -213,6 +214,39 @@ export default function BettingIntel() {
                   {(g as { marketThesis: string }).marketThesis}
                 </div>
               ) : null}
+              {(() => {
+                const mb = booksForMatchup(g.awayTeam, g.homeTeam);
+                const cons = mb ? consensusSummary(mb) : null;
+                return (
+                  <div
+                    className="mb-4 rounded-lg px-4 py-3 text-xs leading-relaxed"
+                    style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.18)" }}
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400/90 mb-1">
+                      Multi-book consensus
+                    </div>
+                    {mb && cons ? (
+                      <>
+                        <p className="mono-data text-emerald-100/90 mb-2">
+                          {cons.agree}/{cons.total} books at {cons.label}
+                        </p>
+                        <ul className="space-y-1 text-white/65 mono-data">
+                          {mb.books.map((b) => (
+                            <li key={b.key}>
+                              {b.title}: {b.spread}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : (
+                      <p style={{ color: "rgba(226,239,249,0.55)" }}>
+                        Multi-book quotes appear when The Odds API returns <span className="mono-data">books[]</span>{" "}
+                        (set <span className="mono-data">ODDS_API_KEY</span> on midday / scores runs).
+                      </p>
+                    )}
+                  </div>
+                );
+              })()}
               <div
                 className="rounded-lg p-4 text-xs leading-relaxed space-y-2"
                 style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}

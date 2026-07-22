@@ -65,10 +65,11 @@ Core moat: **AI-generated narrative + real-time data + editorial curation in one
 
 High leverage next bets:
 
-1. **Multi-book consensus charts** — richer than opener archive table (Odds API multi-book when slate returns).
-2. **Dependabot bump day** — merge npm (#242) / Actions (#241) when CI fully green.
-3. **Creator editorial edit before publish** — optional `notes`/body override before public feed.
+1. **Production ops flip** — secrets + migrations (readiness still false in prod).
+2. **Multi-favorite team push** — target all My Pulse favorites, not only `team_abbr` first.
+3. **Dependabot npm #242** — merge after Vercel preview is green.
+4. **Creator editorial edit before publish** — optional body override before public feed.
 
-**Ops (not feature work):** production Stripe + VAPID/push + optional social secrets; apply `20260722_rival_pairs` — see [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0 and [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md).
+**Ops:** see [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0 and [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md).
 
-Shipped: `/widgets`, `/embed-stats`, `/guest-pulse` published feed, multi-pair rival sync, `/betting-intel` opener archive, `/print-edition`, `/creator-queue`.
+Shipped: Guest Pulse feed, multi-pair rivals, opener archive, multi-book consensus UI, game-start defaults, digest quiet hours, `/print-edition`, `/creator-queue`, `/embed-stats`.

@@ -73,20 +73,22 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 
 ---
 
-## Near-term (Q2 2026)
+## Near-term (Q2–Q3 2026)
 
 Tracked in [`NEXT-STEPS.md`](./NEXT-STEPS.md). Highlights:
 
-- **Pro / push ops** — Stripe + VAPID secrets in production (code + UX shipped; env-dependent)
-- **Embed growth** — publisher UX on `/widgets`; **embed analytics APIs** exist — productize reporting when adoption warrants
-- **Generator hygiene** — `season-mode` ↔ `generate-edition` prompt alignment **verified in CI**; daily workflow runs `content-schedule --verify-generators` + edition-align step
+- **Pro / push ops** — Stripe + VAPID + Supabase secrets in production (**blocking** — code shipped; wire env)
+- **Favorite-team game-start** — `check-tip-off-push` + Account defaults (**shipped**; needs VAPID/push secrets)
+- **Digest quiet hours + List-Unsubscribe** — wired in `email-digest.yml` (**shipped**)
+- **Multi-book consensus UI** — Betting Intel + Odds API `books[]` (**shipped**; fills in-season)
+- **Embed growth** — `/widgets` + `/embed-stats` analytics
+- **Generator hygiene** — season-mode alignment verified in CI
 
 ## Mid-term (Q3 2026)
 
-- Harden Resend digest (deliverability, quiet hours, operational runbooks) — unsubscribe + service routes exist
-- Web Push depth — favorite-team game alerts beyond playoff/fantasy/injury surfaces (VAPID pipeline exists)
+- Live X / Bluesky posting once GitHub social secrets are set (bot + dry-run already ship)
 - Deeper archive search (indexing, ranking) if usage outgrows client-side haystack search
-- Twitter/X and Bluesky distribution bots
+- Multi-favorite team push targeting (today: first My Pulse favorite only)
 
 ## Long-term (Q4 2026+)
 

@@ -237,6 +237,7 @@ export async function patchMyPushSubscriptionFields(
   endpoint: string,
   fields: {
     notify_topics?: string[];
+    team_abbr?: string | null;
     rival_abbr_a?: string | null;
     rival_abbr_b?: string | null;
     rival_pairs?: [string, string][] | null;
@@ -246,6 +247,7 @@ export async function patchMyPushSubscriptionFields(
   if (!token) throw new Error("Not signed in");
   const body: Record<string, unknown> = {};
   if (fields.notify_topics !== undefined) body.notify_topics = fields.notify_topics;
+  if (fields.team_abbr !== undefined) body.team_abbr = fields.team_abbr;
   if (fields.rival_abbr_a !== undefined) body.rival_abbr_a = fields.rival_abbr_a;
   if (fields.rival_abbr_b !== undefined) body.rival_abbr_b = fields.rival_abbr_b;
   if (fields.rival_pairs !== undefined) body.rival_pairs = fields.rival_pairs;

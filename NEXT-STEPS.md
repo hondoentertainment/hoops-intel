@@ -1,53 +1,42 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: July 21, 2026 (ship polish + product backlog)_
+_Last revised: July 21, 2026 (roadmap ops + team tip + digest quiet + multi-book)_
 
 ### Deploy & reliability
 
 | Phase | Action | Status |
 |-------|--------|--------|
-| P0–P5 | CI, smoke, sitemap, ops-readiness, print packet, social dry-run | **Done** |
+| P0–P5 product/CI | CI, smoke, print, social dry-run, Guest Pulse feed, rival_pairs, opener archive | **Done** |
 | Post-deploy | `npm run smoke:deploy` after each prod push | **Ongoing ritual** |
 
-**DNS:** Production deploys alias to `hoopsintel.net` — confirm registrar records stay synced with Vercel Domains panel.
+### P0 — Ops (manual — still blocking live Pro/push)
 
-### P0 — Ops (manual)
+`/api/ops-readiness` must flip to ready. Until secrets land, code paths soft-skip.
 
 | Step | Action | Status |
 |------|--------|--------|
-| Migrations | Supabase `20260519` … `20260521` + **`20260722_rival_pairs`** | **Run in dashboard / Actions workflow** |
-| Secrets | Stripe, VAPID, Supabase, Resend, push, odds keys | **Set in Vercel + GitHub** |
+| Migrations | Through **`20260722_rival_pairs`** | **Run** (SQL or Actions → Supabase migrations) |
+| Secrets | Stripe, VAPID, Supabase, Resend, push, ODDS_API_KEY | **Set in Vercel + GitHub** |
 | Preflight | `vercel env pull` → `npm run ops:preflight:strict` | Before monetization flip |
 | Push smoke | `npm run smoke:push` | After secrets live |
-| Social secrets | X + Bluesky GitHub secrets (optional; workflow dry-runs without) | **Ops** |
+| Social secrets | X + Bluesky (optional) | Dry-run until set |
 | Decommission | Archive `hoops-intel-1`, `hoops-intel-2` | Vercel dashboard |
 
-```bash
-vercel env pull .env.production.local
-npm run ops:preflight:strict
-npm run test:ci:fast
-npm run smoke:deploy
-```
+### Shipped product (this cycle)
 
-Full checklist: [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md)
-
-### P1 — Product (shipped)
-
-| Step | Status |
+| Item | Notes |
 |------|--------|
-| Multi-page print / Save-as-PDF | **Done** |
-| Social packages + dry-run workflow | **Done** |
-| Guest Pulse accepted → public feed | **Done** (`/api/guest-pulse-published`) |
-| Multi-pair rival push (`rival_pairs` jsonb) | **Done** (needs migration) |
-| Betting opener archive UI | **Done** (`lineOpenersArchiveData.ts`) |
-| SSR/SEO | Deferred unless Lighthouse regresses |
-| Dependabot Actions #241 | **Merged** |
-| Dependabot npm #242 | Deferred — Vercel preview fails on PR; schedule dedicated bump day |
+| Favorite-team **game-start** | Already in `playoff-push.yml`; defaults + Account “Team tip alerts” + `team_abbr` refresh on Save topics |
+| Digest quiet hours | Wired in `email-digest.yml` (6–11 PT) + List-Unsubscribe header |
+| Multi-book consensus UI | `oddsBooksData` + Betting Intel; fills when Odds API fetch returns `books[]` |
+| Dependabot Actions #241 | Merged |
+| Dependabot npm #242 | Deferred if Vercel preview still red |
 
-### Non-goals
+### Deferred
 
-Native app first, non-NBA core, on-site comments.
+- SSR/SEO unless Lighthouse regresses
+- Public API / native / WNBA (Q4+)
 
 ---
 
-_See [`ROADMAP.md`](./ROADMAP.md)._
+_See [`ROADMAP.md`](./ROADMAP.md) · [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md)._

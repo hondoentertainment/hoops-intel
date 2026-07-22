@@ -50,6 +50,8 @@ npm run smoke:push
 
 Send a test digest; confirm `/unsubscribe` works.
 
+Digest quiet hours are **on** in `email-digest.yml` (6–11 America/Los_Angeles). To force a manual blast from Actions, set repository variable `DIGEST_QUIET_OVERRIDE=1` temporarily, or run locally with that env. Full runbook: [`references/push-notifications.md`](./references/push-notifications.md).
+
 ### 4b. Social distribution (optional)
 
 X / Bluesky posts run from `.github/workflows/social-post.yml` after a successful Daily Edition Update. Secrets (GitHub Actions):

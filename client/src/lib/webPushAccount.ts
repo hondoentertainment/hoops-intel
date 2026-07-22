@@ -2,10 +2,13 @@
 
 const VAPID_PUBLIC = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined;
 
-export const DEFAULT_PUSH_TOPICS = ["elimination-game", "series-clincher", "playoff-tip"] as const;
+export const DEFAULT_PUSH_TOPICS = ["elimination-game", "series-clincher", "playoff-tip", "game-start"] as const;
 
 /** Fantasy-focused subscribers: playoff moments + fantasy digest blasts, no injury wire. */
 export const FANTASY_ONLY_PUSH_TOPICS = ["fantasy", "playoff-tip", "series-clincher"] as const;
+
+/** Regular-season team tip alerts (+ light playoff urgency). */
+export const TEAM_GAME_START_TOPICS = ["game-start", "playoff-tip", "series-clincher"] as const;
 
 export const PUSH_TOPIC_OPTIONS: { id: string; label: string; hint: string }[] = [
   {
