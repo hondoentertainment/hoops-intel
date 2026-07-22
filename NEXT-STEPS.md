@@ -1,6 +1,6 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: July 21, 2026 (roadmap ops + team tip + digest quiet + multi-book)_
+_Last revised: July 21, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
 
 ### Deploy & reliability
 

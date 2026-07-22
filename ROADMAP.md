@@ -1,10 +1,22 @@
 # Hoops Intel — Feature Roadmap
 
-> Last updated: May 3, 2026
+> Last updated: July 21, 2026
 
-**Planning stack:** [`PRD.md`](./PRD.md) (requirements) → this file → [`NEXT-STEPS.md`](./NEXT-STEPS.md) (executable backlog).
+**Planning stack:** [`PRD.md`](./PRD.md) (requirements) → this file → [`NEXT-STEPS.md`](./NEXT-STEPS.md) (executable backlog) → [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md) (secrets & smoke).
 
-Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped capabilities and horizons that are **not** yet committed to the sprint list.
+Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks **shipped** capabilities and horizons not yet committed to a sprint.
+
+---
+
+## Current focus (summer 2026)
+
+| Priority | Theme | Status |
+|----------|--------|--------|
+| **P0** | Production ops flip — Stripe, VAPID, Supabase, Resend, push, migrations through `20260722_rival_pairs` | **Blocking** — code ready; `/api/ops-readiness` still false until secrets land |
+| **P1** | Live X / Bluesky posting | Bot + dry-run shipped; needs GitHub social secrets |
+| **P1** | Multi-favorite team push targeting | Today: first My Pulse favorite only |
+| **P2** | In-season betting depth (live multi-book fills) | UI shipped; Odds API fills when slate returns |
+| **Defer** | SSR/SEO, public API, native app, WNBA | See Long-term |
 
 ---
 
@@ -13,89 +25,76 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks shipped 
 ### Core Platform
 - Daily AI-generated NBA edition with Pulse Index, game recaps, standings, injury wire
 - Archive of past editions with search & pagination
-- GitHub Actions daily auto-update (5 AM PST via ESPN + Claude API)
+- GitHub Actions daily / midday / scores / weekly pipelines (ESPN + Claude)
 - Live ESPN scorebar with 30s polling / 5min idle
 - Dark/light theme toggle
-- Vercel deployment with SPA rewrites
+- Vercel deployment with SPA rewrites + deploy-config CI gate
 
 ### Pages & Navigation
-- Player detail pages (`/player/:slug`)
-- Team detail pages (`/team/:abbr`)
-- Pulse Index History (`/pulse-history`) with 7-day/30-day trends & biggest movers
-- Playoff Bracket (`/playoffs`) — ESPN-synced series scores overlaid on bracket UI + static narrative layer
-- Global search (Cmd+K) across players, teams, games, stories
-- Ask Hoops Intel (`/ask`) — conversational AI Q&A over the archive
-- Daily Pick'em (`/pick-em`) — per-game picks + playoff bracket picks
-- Trivia / Hoops IQ (`/trivia`)
-- Trade Value (`/trade-value`) and Trade Simulator (`/trade-simulator`)
+- Player / team detail, Pulse History, Playoff Bracket, global search (Cmd+K)
+- Ask Hoops Intel (`/ask`), Pick'em, Trivia, Trade Value / Simulator
 - Momentum, Clutch Factor, Lineup Intel, Sentiment Pulse
 - Draft Tracker, Ref Reports, Coach Corner, Community Pulse, Projections
 - Watch Guide, History Engine, Season Performance, Podcast Companion
-- Widgets showcase (`/widgets`)
-- Player compare (`/compare-players`), Betting intel (`/betting-intel`), print-friendly edition (`/print-edition`), Rivals (`/rivals`), Guest Pulse (`/guest-pulse`)
-- Email digest unsubscribe landing (`/unsubscribe`) · optional fantasy-alert push passes after digest
+- Widgets (`/widgets`), publisher analytics (`/embed-stats`, `/widgets/analytics`)
+- Player compare, Betting intel (opener archive + multi-book consensus UI), print packet (`/print-edition`)
+- Rivals, Guest Pulse (pitch + **published feed** of accepted pitches), Creator queue (`/creator-queue`)
+- Account (Pro, push topics, ops readiness panel), unsubscribe landing
 
 ### Data & Content
-- Full ESPN box scores
-- Interactive sortable standings with playoff/play-in cut lines
-- Sparkline trend indicators on Pulse Index rankings
-- Betting links (DraftKings, FanDuel, BetMGM)
-- Live playoff series state — `PlayoffSeries` data model synced from ESPN;
-  push-notification dispatch for elimination games and series clinchers
-- Head-to-Head Series Intel — Claude-generated per-series narrative + matchup
-- Playoff-mode Pulse Index — generation auto-switches context when playoff
-  games are detected in the slate
-- **Home ticker —** `playoffTickerWireItems` prepends **ESPN-synced final scores**
-  from `playoffSeries` during playoffs; editorial `tickerItems` follow for tone
-- **CI quality gates —** `validate-playoff-pulse-drift.mjs`, `verify-edition-season-alignment.mjs`,
-  `verify-series-intel-keys.mjs`, expanded `season-mode.test.mjs`; same checks in `daily-update.yml`
+- ESPN box scores, standings, playoff series sync + series intel (Claude)
+- Playoff ticker wire (finals scores) + CI drift / season-mode / series-intel gates
+- Line movement snapshot/sync + opener archive client module
+- Odds API ingest with optional `books[]` for multi-book consensus
+- Offseason / summer-league season-mode switching in generators
 
 ### User Features
-- Supabase auth (email/password + Google OAuth)
-- Reactions system
-- Browser notification & email digest subscription UI
-- Pro subscription (Stripe) — checkout and webhooks when env configured; Trade Value and other surfaces use preview vs full depth gating
-- PWA — installable, offline shell
+- Supabase auth, reactions, email digest UI + quiet hours + List-Unsubscribe
+- Browser push topics: elimination, clincher, playoff tip, **game-start (30m)**, fantasy, injury, rival (multi-pair), clincher preview, playoff close
+- Pro subscription (Stripe) — code + UX; **env-dependent**
+- PWA installable offline shell
 
-### Infrastructure
-- Supabase schema with `user_favorites`, `reactions`, `digest_preferences`,
-  `push_subscriptions`, `pulse_snapshots`, `editions`, `picks`,
-  `bracket_picks`, `series_snapshots`
-- Code splitting with React.lazy
-- Zero-dependency Supabase REST client
-- RSS feed (`/feed.xml`)
-- Sitemap (`/sitemap.xml`)
-- OG images, Twitter Cards, SEO meta
-- Vercel Analytics
-- Schema validation for daily generation
-- Archive search over full edition text (recursive haystack matching in `archiveSearch.ts`)
-- Scheduled site review agent (production diffs + optional AI notes): `scripts/site-review-agent.mjs`, `.github/workflows/site-review-agent.yml`
+### Infrastructure & Ops tooling
+- Supabase migrations pack (embed analytics, push prefs, dispatch log, alert history, **rival_pairs**)
+- Social bot (`post-social.mjs`) with dry-run when X/Bluesky secrets missing
+- Ops readiness API + Account panel; `ops:preflight` / `smoke:push` / deployment smoke
+- Manual Supabase migrations GitHub workflow (requires `SUPABASE_ACCESS_TOKEN` + project ref)
+- RSS, sitemap, OG images, Vercel Analytics, site-review agent
 
 ---
 
-## Near-term (Q2–Q3 2026)
+## Near-term (finish ops → flip monetization)
 
-Tracked in [`NEXT-STEPS.md`](./NEXT-STEPS.md). Highlights:
+Executable checklist: [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0.
 
-- **Pro / push ops** — Stripe + VAPID + Supabase secrets in production (**blocking** — code shipped; wire env)
-- **Favorite-team game-start** — `check-tip-off-push` + Account defaults (**shipped**; needs VAPID/push secrets)
-- **Digest quiet hours + List-Unsubscribe** — wired in `email-digest.yml` (**shipped**)
-- **Multi-book consensus UI** — Betting Intel + Odds API `books[]` (**shipped**; fills in-season)
-- **Embed growth** — `/widgets` + `/embed-stats` analytics
-- **Generator hygiene** — season-mode alignment verified in CI
+1. Apply Supabase migrations through **`20260722_rival_pairs`**
+2. Set production secrets (Vercel + GitHub) — Stripe, VAPID, Supabase, Resend, push, optional `ODDS_API_KEY`
+3. `ops:preflight:strict` → `smoke:push` → Stripe checkout/webhook smoke
+4. Archive duplicate Vercel projects `hoops-intel-1` / `hoops-intel-2`
+5. Optional: X + Bluesky GitHub secrets for live social posts
 
-## Mid-term (Q3 2026)
+---
 
-- Live X / Bluesky posting once GitHub social secrets are set (bot + dry-run already ship)
-- Deeper archive search (indexing, ranking) if usage outgrows client-side haystack search
-- Multi-favorite team push targeting (today: first My Pulse favorite only)
+## Mid-term (Q3–Q4 2026)
 
-## Long-term (Q4 2026+)
+- **Live social distribution** — once secrets are set (workflow already posts or dry-runs)
+- **Multi-favorite team push** — fan-out game-start / injury to all My Pulse favorites
+- **Creator editorial edit before publish** — optional body/notes override before public Guest Pulse feed
+- **Deeper archive search** — indexing/ranking if client haystack becomes a bottleneck
+- **Dependabot hygiene** — npm group bumps on a dedicated green-CI day
+- **In-season betting polish** — richer multi-book charts once Odds API runs nightly with a slate
+
+---
+
+## Long-term (2027+)
 
 - Public API (`api.hoopsintel.com`) with tiered access
 - Mobile native app (Expo) — only if web PWA metrics prove insufficient
-- WNBA coverage (May–October 2027)
-- SSR/SSG migration — deferred; revisit only if Lighthouse or SEO regresses
+- WNBA coverage (May–October window)
+- SSR/SSG migration — only if Lighthouse or SEO regresses
+
+### Non-goals
+Native-first rewrite, non-NBA core product, on-site comments.
 
 ---
 
@@ -110,4 +109,4 @@ Tracked in [`NEXT-STEPS.md`](./NEXT-STEPS.md). Highlights:
 | Database | Supabase (Postgres) | RLS, real-time, edge functions |
 | Deployment | Vercel | Zero-config, preview deploys, analytics |
 | AI | Claude API (Anthropic) | Superior narrative generation |
-| Data Source | ESPN API | Comprehensive, real-time, free tier |
+| Data Source | ESPN API (+ Odds API optional) | Real-time free tier; books when keyed |
