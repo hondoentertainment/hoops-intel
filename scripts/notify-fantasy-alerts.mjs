@@ -8,6 +8,7 @@
 //   PUSH_API_URL, PUSH_API_SECRET, SUPABASE_URL, SUPABASE_SERVICE_KEY (same as check-injuries)
 
 import { extractPulseExport } from "./lib/read-pulse-exports.mjs";
+import { pushAlreadySent, pushMarkSent } from "./lib/push-dispatch-log.mjs";
 
 const REQ = ["PUSH_API_URL", "PUSH_API_SECRET"];
 const missing = REQ.filter((k) => !process.env[k]);
@@ -16,7 +17,19 @@ if (missing.length) {
   process.exit(0);
 }
 
-const { PUSH_API_URL, PUSH_API_SECRET } = process.env;
+const { PUSH_API_URL, PUSH_API_SECRET, SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env;
+
+function editionDateKey() {
+  try {
+    const ed = extractPulseExport("pulseEdition");
+    if (ed && typeof ed.date === "string" && ed.date.trim()) {
+      return ed.date.trim().replace(/\s+/g, "-").toLowerCase();
+    }
+  } catch {
+    /* fall through */
+  }
+  return new Date().toISOString().slice(0, 10);
+}
 
 async function fireFantasyPush({ title, body, teamAbbr }) {
   const res = await fetch(PUSH_API_URL, {
@@ -28,7 +41,7 @@ async function fireFantasyPush({ title, body, teamAbbr }) {
       title,
       body,
       teamAbbr,
-      url: "https://hoopsintel.net/injuries",
+      url: "https://hoopsintel.net/#fantasy",
     }),
   });
   if (!res.ok) throw new Error(`push-notify ${res.status}: ${await res.text().catch(() => "")}`);
@@ -48,8 +61,11 @@ async function main() {
     return;
   }
 
+  const dateKey = editionDateKey();
+  const canLog = Boolean(SUPABASE_URL && SUPABASE_SERVICE_KEY);
   const seen = new Set();
   let sent = 0;
+  let skipped = 0;
   let errors = 0;
 
   for (const a of hot) {
@@ -60,12 +76,20 @@ async function main() {
     if (seen.has(key)) continue;
     seen.add(key);
 
+    const eventKey = `fantasy:${dateKey}:${team}:${player.replace(/\s+/g, "_").toLowerCase()}`;
+    if (canLog && (await pushAlreadySent(SUPABASE_URL, SUPABASE_SERVICE_KEY, eventKey))) {
+      console.log(`[fantasy-push] skip already-sent ${eventKey}`);
+      skipped++;
+      continue;
+    }
+
     const title = `${a.urgency === "high" ? "⚡ Fantasy" : "Fantasy"}: ${player}`;
     const reason = typeof a.reason === "string" ? a.reason.slice(0, 180) : "";
     const body = `${a.action?.toUpperCase?.() ?? "WATCH"} — ${reason}${reason.length >= 180 ? "…" : ""}`;
 
     try {
       const r = await fireFantasyPush({ title, body, teamAbbr: team });
+      if (canLog) await pushMarkSent(SUPABASE_URL, SUPABASE_SERVICE_KEY, eventKey);
       console.log(`[fantasy-push] ${player} (${team}) → sent=${r.sent ?? "?"}`);
       sent++;
     } catch (e) {
@@ -74,7 +98,7 @@ async function main() {
     }
   }
 
-  console.log(`[fantasy-push] Done — dispatched ${sent}, errors ${errors}`);
+  console.log(`[fantasy-push] Done — dispatched ${sent}, skipped ${skipped}, errors ${errors}`);
   if (errors > 0) process.exit(1);
 }
 

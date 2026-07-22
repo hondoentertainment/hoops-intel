@@ -39,7 +39,7 @@ export function summarizeLineMovementEducation(preview: BettingPreviewSlice): st
   }
 
   lines.push(
-    `Closing line value (CLV): pros benchmark their number against the closing number. Hoops Intel does not ingest live sportsbook APIs here — compare your book’s final print with this desk snapshot.`,
+    `Closing line value (CLV): pros benchmark their number against the closing number. When ODDS_API_KEY is live, the desk syncs openers and sportsbook closers into lineMovementData; otherwise this card shows the morning edition snapshot — always compare your book’s final print before tip.`,
   );
 
   if (preview.overUnder) {

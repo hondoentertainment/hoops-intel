@@ -20,20 +20,31 @@ if (missing.length) {
 
 const { SUPABASE_URL, SUPABASE_SERVICE_KEY, PUSH_API_URL, PUSH_API_SECRET } = process.env;
 
+function addPair(seen, pairs, x, y) {
+  const a = x?.trim?.().toUpperCase?.() ?? String(x || "").trim().toUpperCase();
+  const b = y?.trim?.().toUpperCase?.() ?? String(y || "").trim().toUpperCase();
+  if (!a || !b || a.length !== 3 || b.length !== 3 || a === b) return;
+  const key = [a, b].sort().join("-");
+  if (seen.has(key)) return;
+  seen.add(key);
+  pairs.push({ a: key.split("-")[0], b: key.split("-")[1], key });
+}
+
 async function fetchDistinctRivalPairs() {
+  // First pair stays denormalized on rival_abbr_*; rival_pairs carries extras.
   const rows = await pushLogFetch(SUPABASE_URL, SUPABASE_SERVICE_KEY, "push_subscriptions", {
-    query: "select=rival_abbr_a,rival_abbr_b&rival_abbr_a=not.is.null&rival_abbr_b=not.is.null",
+    query:
+      "select=rival_abbr_a,rival_abbr_b,rival_pairs&rival_abbr_a=not.is.null&rival_abbr_b=not.is.null",
   });
   const seen = new Set();
   const pairs = [];
   for (const row of rows || []) {
-    const a = row.rival_abbr_a?.trim().toUpperCase();
-    const b = row.rival_abbr_b?.trim().toUpperCase();
-    if (!a || !b || a === b) continue;
-    const key = [a, b].sort().join("-");
-    if (seen.has(key)) continue;
-    seen.add(key);
-    pairs.push({ a, b, key });
+    if (Array.isArray(row.rival_pairs)) {
+      for (const p of row.rival_pairs) {
+        if (Array.isArray(p) && p.length >= 2) addPair(seen, pairs, p[0], p[1]);
+      }
+    }
+    addPair(seen, pairs, row.rival_abbr_a, row.rival_abbr_b);
   }
   return pairs;
 }

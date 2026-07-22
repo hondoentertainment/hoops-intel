@@ -118,7 +118,7 @@ function buildSubsQuery(teamAbbr?: string, playerSlug?: string, topic?: PushTopi
     filters.push("rival_abbr_b=not.is.null");
   }
   const sel =
-    "select=endpoint,p256dh,auth_key,team_abbr,player_slug,notify_topics,rival_abbr_a,rival_abbr_b";
+    "select=endpoint,p256dh,auth_key,team_abbr,player_slug,notify_topics,rival_abbr_a,rival_abbr_b,rival_pairs";
   return filters.length ? `${sel}&${filters.join("&")}` : sel;
 }
 

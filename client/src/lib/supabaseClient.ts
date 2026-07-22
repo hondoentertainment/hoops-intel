@@ -186,13 +186,14 @@ export interface PushSubscriptionRow {
   team_abbr: string | null;
   rival_abbr_a?: string | null;
   rival_abbr_b?: string | null;
+  rival_pairs?: [string, string][] | null;
 }
 
 export async function getMyPushSubscriptions(): Promise<PushSubscriptionRow[]> {
   const token = getStoredToken();
   if (!token) return [];
   const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,notify_topics,team_abbr,rival_abbr_a,rival_abbr_b`,
+    `${SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,notify_topics,team_abbr,rival_abbr_a,rival_abbr_b,rival_pairs`,
     { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${token}` } },
   );
   if (!res.ok) return [];
@@ -208,6 +209,7 @@ export async function upsertMyPushSubscription(row: {
   notify_topics?: string[] | null;
   rival_abbr_a?: string | null;
   rival_abbr_b?: string | null;
+  rival_pairs?: [string, string][] | null;
 }): Promise<void> {
   const token = getStoredToken();
   if (!token) throw new Error("Not signed in");
@@ -237,6 +239,7 @@ export async function patchMyPushSubscriptionFields(
     notify_topics?: string[];
     rival_abbr_a?: string | null;
     rival_abbr_b?: string | null;
+    rival_pairs?: [string, string][] | null;
   },
 ): Promise<void> {
   const token = getStoredToken();
@@ -245,6 +248,7 @@ export async function patchMyPushSubscriptionFields(
   if (fields.notify_topics !== undefined) body.notify_topics = fields.notify_topics;
   if (fields.rival_abbr_a !== undefined) body.rival_abbr_a = fields.rival_abbr_a;
   if (fields.rival_abbr_b !== undefined) body.rival_abbr_b = fields.rival_abbr_b;
+  if (fields.rival_pairs !== undefined) body.rival_pairs = fields.rival_pairs;
   if (Object.keys(body).length === 0) return;
   const res = await fetch(
     `${SUPABASE_URL}/rest/v1/push_subscriptions?endpoint=eq.${encodeURIComponent(endpoint)}`,

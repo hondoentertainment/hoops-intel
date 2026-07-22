@@ -47,6 +47,7 @@
     "api/embed-analytics-timeseries.ts": { "maxDuration": 30 },
     "api/embed-analytics-summary.ts": { "maxDuration": 30 },
     "api/embed-analytics.ts": { "maxDuration": 30 },
+    "api/guest-pulse-published.ts": { "maxDuration": 10 },
     "api/guest-pulse-queue.ts": { "maxDuration": 30 },
     "api/ops-readiness.ts": { "maxDuration": 10 },
     "api/og.ts": { "maxDuration": 30 },

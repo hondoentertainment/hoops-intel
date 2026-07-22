@@ -20,8 +20,14 @@ export default function WidgetAnalytics() {
     ])
       .then(([ts, sum]) => {
         if (stop) return;
-        const s = Array.isArray(ts.series) ? ts.series : [];
-        setSeries(s as DayBucket[]);
+        const raw = Array.isArray(ts.series) ? ts.series : [];
+        const s: DayBucket[] = raw.map((row: Record<string, unknown>) => ({
+          day: typeof row.day === "string" ? row.day : typeof row.d === "string" ? row.d : "",
+          pulse: typeof row.pulse === "number" ? row.pulse : Number(row.pulse) || 0,
+          ticker: typeof row.ticker === "number" ? row.ticker : Number(row.ticker) || 0,
+          injury: typeof row.injury === "number" ? row.injury : Number(row.injury) || 0,
+        })).filter((r) => r.day);
+        setSeries(s);
         const c = sum?.counts && typeof sum.counts === "object" && sum.counts !== null ? sum.counts : {};
         const norm: Record<string, number> = {};
         for (const [k, v] of Object.entries(c))
@@ -70,7 +76,11 @@ export default function WidgetAnalytics() {
               <a href="/widgets" className="text-sky-400 underline">
                 Back to widgets
               </a>
-              . Telemetry needs the Supabase RPCs referenced in the migration pack.
+              {" · "}
+              <a href="/embed-stats" className="text-sky-400 underline">
+                Full publisher dashboard
+              </a>
+              {" "}(hosts, trends, filters). Telemetry needs the Supabase RPCs in the migration pack.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">

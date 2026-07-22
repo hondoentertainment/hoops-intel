@@ -1475,7 +1475,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
 
 function RookieAndFantasySection() {
   return (
-    <section className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="fantasy" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>

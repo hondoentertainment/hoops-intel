@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ops-preflight.mjs — env presence checklist for ops (never prints secret values).
 
+/** Keys that fail --strict when missing. */
 const KEYS = [
   "STRIPE_SECRET_KEY",
   "STRIPE_PRICE_MONTHLY",
@@ -21,6 +22,16 @@ const KEYS = [
   "ODDS_API_KEY",
 ];
 
+/** Reported for visibility; never fail --strict (social can dry-run without them). */
+const OPTIONAL_KEYS = [
+  "TWITTER_API_KEY",
+  "TWITTER_API_SECRET",
+  "TWITTER_ACCESS_TOKEN",
+  "TWITTER_ACCESS_SECRET",
+  "BLUESKY_HANDLE",
+  "BLUESKY_APP_PASSWORD",
+];
+
 const strict = process.argv.includes("--strict");
 
 function statusFor(key) {
@@ -35,10 +46,15 @@ for (const key of KEYS) {
   if (s === "missing") anyMissing = true;
   console.log(`  ${key}: ${s}`);
 }
+
+console.log("\nOptional — social distribution (workflow dry-runs when unset)\n");
+for (const key of OPTIONAL_KEYS) {
+  console.log(`  ${key}: ${statusFor(key)}`);
+}
 console.log("");
 
 if (strict && anyMissing) {
-  console.error("Strict mode: one or more keys missing — exiting 1");
+  console.error("Strict mode: one or more required keys missing — exiting 1");
   process.exit(1);
 }
 

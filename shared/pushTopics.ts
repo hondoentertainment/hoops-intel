@@ -16,6 +16,8 @@ export type PushTopicKind =
   | "fantasy"
   | "rival";
 
+export type RivalPairTuple = [string, string];
+
 export interface PushPrefsRow {
   endpoint: string;
   p256dh: string;
@@ -26,6 +28,8 @@ export interface PushPrefsRow {
   notify_topics?: string[] | null;
   rival_abbr_a?: string | null;
   rival_abbr_b?: string | null;
+  /** Optional multi-pair list; when present, any pair can match tonight's matchup. */
+  rival_pairs?: RivalPairTuple[] | null;
 }
 
 function topicAllowed(row: PushPrefsRow, topic: PushTopicKind): boolean {
@@ -39,12 +43,39 @@ export function normalizedRivalPair(a?: string | null, b?: string | null): Set<s
   return new Set([a.trim().toUpperCase(), b.trim().toUpperCase()]);
 }
 
-/** True when away/home set equals stored rival pairing (either order). */
+function pairsFromRow(row: PushPrefsRow): RivalPairTuple[] {
+  const out: RivalPairTuple[] = [];
+  const seen = new Set<string>();
+  const add = (x?: string | null, y?: string | null) => {
+    const a = x?.trim().toUpperCase();
+    const b = y?.trim().toUpperCase();
+    if (!a || !b || a.length !== 3 || b.length !== 3 || a === b) return;
+    const [p, q] = [a, b].sort() as RivalPairTuple;
+    const key = `${p}-${q}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push([p, q]);
+  };
+
+  if (Array.isArray(row.rival_pairs)) {
+    for (const pair of row.rival_pairs) {
+      if (!Array.isArray(pair) || pair.length < 2) continue;
+      add(pair[0], pair[1]);
+    }
+  }
+  if (out.length === 0) add(row.rival_abbr_a, row.rival_abbr_b);
+  return out;
+}
+
+/** True when away/home set equals any stored rival pairing (either order). */
 export function rivalPairMatches(row: PushPrefsRow, away: string, home: string): boolean {
   const want = normalizedRivalPair(away, home);
-  const have = normalizedRivalPair(row.rival_abbr_a, row.rival_abbr_b);
-  if (!want || !have || have.size !== 2 || want.size !== 2) return false;
-  return [...want].every((t) => have.has(t));
+  if (!want || want.size !== 2) return false;
+  for (const [a, b] of pairsFromRow(row)) {
+    const have = normalizedRivalPair(a, b);
+    if (have && have.size === 2 && [...want].every((t) => have.has(t))) return true;
+  }
+  return false;
 }
 
 export function filterRowsForTopic(

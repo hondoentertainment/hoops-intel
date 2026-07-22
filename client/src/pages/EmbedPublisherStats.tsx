@@ -58,8 +58,9 @@ function parseSeries(raw: unknown): TimeseriesRow[] {
   for (const item of raw) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
     const o = item as Record<string, unknown>;
-    const d = o.d;
-    if (typeof d !== "string") continue;
+    // RPC embed_agg_timeseries returns `day`; older clients/fixtures used `d`.
+    const d = typeof o.day === "string" ? o.day : typeof o.d === "string" ? o.d : null;
+    if (!d) continue;
     out.push({
       d,
       pulse: num(o.pulse),

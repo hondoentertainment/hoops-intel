@@ -1,6 +1,7 @@
 import ToolPageLayout from "../components/ToolPageLayout";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
+import { lineOpenersArchive } from "../lib/lineOpenersArchiveData";
 import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
 import { bettingDisclaimer, summarizeLineMovementEducation, slateLineMovementSummary } from "../lib/bettingLineStory";
 import { makeGameId } from "../lib/gameCenter";
@@ -72,6 +73,53 @@ export default function BettingIntel() {
           games (<strong>{slate.pct}%</strong>). Markets and the desk diverge deliberately on some nights — audit game cards below for context.
         </p>
       ) : null}
+
+      <section className="mb-12" aria-labelledby="opener-archive-heading">
+        <h2 id="opener-archive-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/45 mb-3">
+          Opener archive
+        </h2>
+        {lineOpenersArchive.length === 0 ? (
+          <p className="text-sm text-white/50">
+            No archived openers yet — morning <span className="mono-data">lines:snapshot</span> fills this when the
+            slate returns.
+          </p>
+        ) : (
+          <div className="overflow-x-auto rounded-xl border border-white/[0.08]">
+            <table className="w-full text-xs mono-data">
+              <thead>
+                <tr className="text-left text-white/40 border-b border-white/[0.08]">
+                  <th className="px-4 py-3 font-semibold">Date</th>
+                  <th className="px-4 py-3 font-semibold">Matchup</th>
+                  <th className="px-4 py-3 font-semibold">Opener</th>
+                  <th className="px-4 py-3 font-semibold">Closer</th>
+                  <th className="px-4 py-3 font-semibold">Δ</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lineOpenersArchive.flatMap((ed) =>
+                  ed.games.map((g, i) => {
+                    const closer = g.closingSpread;
+                    const moved = closer && spreadMoved(g.openingSpread, closer);
+                    const badge =
+                      closer && moved ? formatLineMovementBadge(g.openingSpread, closer) : closer ? "flat" : "—";
+                    return (
+                      <tr key={`${ed.editionDate}-${g.awayTeam}-${g.homeTeam}-${i}`} className="border-t border-white/[0.05]">
+                        <td className="px-4 py-2.5 text-white/45 whitespace-nowrap">{ed.editionDate}</td>
+                        <td className="px-4 py-2.5 text-white/85">
+                          {g.awayTeam} @ {g.homeTeam}
+                        </td>
+                        <td className="px-4 py-2.5 text-white/70">{g.openingSpread || "—"}</td>
+                        <td className="px-4 py-2.5 text-white/70">{closer || "—"}</td>
+                        <td className="px-4 py-2.5 text-amber-200/90">{badge}</td>
+                      </tr>
+                    );
+                  }),
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
 
       <div className="space-y-8">
         {!gamePreviews.length && <p className="text-white/60 text-sm">No slate rows in today’s edition yet.</p>}

@@ -22,6 +22,7 @@ Apply in order in the Supabase SQL editor (if not already applied):
 - `supabase/migrations/20260519_push_dispatch_log.sql`
 - `supabase/migrations/20260520_embed_referrer_agg.sql`
 - `supabase/migrations/20260521_push_alert_history.sql`
+- `supabase/migrations/20260722_rival_pairs.sql` (multi-pair rival push jsonb)
 
 ### 2. Environment variables
 
@@ -48,6 +49,15 @@ npm run smoke:push
 ```
 
 Send a test digest; confirm `/unsubscribe` works.
+
+### 4b. Social distribution (optional)
+
+X / Bluesky posts run from `.github/workflows/social-post.yml` after a successful Daily Edition Update. Secrets (GitHub Actions):
+
+- Twitter/X: `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET`
+- Bluesky: `BLUESKY_HANDLE`, `BLUESKY_APP_PASSWORD`
+
+If none are set, the workflow runs `npm run social:preview` (dry-run) and exits successfully. Packages `twitter-api-v2` and `@atproto/api` ship in `package.json`. Preflight lists these keys as optional (`npm run ops:preflight`).
 
 ### 5. Vercel hygiene
 

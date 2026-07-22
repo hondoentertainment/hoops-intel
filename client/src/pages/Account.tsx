@@ -11,7 +11,6 @@ import {
   getUser,
   isSupabaseConfigured,
   patchMyPushSubscriptionFields,
-  patchMyPushSubscriptionTopics,
   signOut,
   upsertMyPushSubscription,
   type User,
@@ -51,11 +50,40 @@ function AccountPushAlerts({ userId }: { userId: string }) {
   const [err, setErr] = useState("");
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>(() => getPreferences().favoriteTeams);
 
+  /** All valid /rivals pairings (capped at 2), sorted tuples for server rival_pairs. */
+  const rivalPairsForPush = (): [string, string][] => {
+    const out: [string, string][] = [];
+    const seen = new Set<string>();
+    for (const p of getPreferences().rivalPairs.slice(0, 2)) {
+      if (!p || p.mine.length !== 3 || p.rival.length !== 3) continue;
+      const mine = p.mine.toUpperCase();
+      const rival = p.rival.toUpperCase();
+      if (mine === rival) continue;
+      const [a, b] = [mine, rival].sort() as [string, string];
+      const key = `${a}-${b}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push([a, b]);
+    }
+    return out;
+  };
+
   const rivalPairForPush = (): { a: string; b: string } | null => {
-    const p = getPreferences().rivalPairs[0];
-    if (!p || p.mine.length !== 3 || p.rival.length !== 3) return null;
-    const [a, b] = [p.mine.toUpperCase(), p.rival.toUpperCase()].sort();
-    return { a, b };
+    const first = rivalPairsForPush()[0];
+    return first ? { a: first[0], b: first[1] } : null;
+  };
+
+  const rivalFieldsForSync = (include: boolean) => {
+    if (!include) {
+      return { rival_abbr_a: null as string | null, rival_abbr_b: null as string | null, rival_pairs: [] as [string, string][] };
+    }
+    const pairs = rivalPairsForPush();
+    const first = pairs[0];
+    return {
+      rival_abbr_a: first?.[0] ?? null,
+      rival_abbr_b: first?.[1] ?? null,
+      rival_pairs: pairs,
+    };
   };
 
   const refreshLocal = async () => {
@@ -118,15 +146,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       if (team === "NY") team = "NYK";
       if (team === "SA") team = "SAS";
       const notify_topics = topicList.length ? topicList : [...DEFAULT_PUSH_TOPICS];
-      let rival_a: string | null = null;
-      let rival_b: string | null = null;
-      if (notify_topics.map((t) => t.toLowerCase()).includes("rival")) {
-        const rp = rivalPairForPush();
-        if (rp) {
-          rival_a = rp.a;
-          rival_b = rp.b;
-        }
-      }
+      const wantsRival = notify_topics.map((t) => t.toLowerCase()).includes("rival");
+      const rivals = rivalFieldsForSync(wantsRival);
       await upsertMyPushSubscription({
         user_id: userId,
         endpoint,
@@ -134,13 +155,16 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         auth_key,
         team_abbr: team,
         notify_topics,
-        rival_abbr_a: rival_a,
-        rival_abbr_b: rival_b,
+        ...rivals,
       });
       setDeviceEndpoint(endpoint);
       setTopics(new Set(notify_topics));
       setPerm("granted");
-      setMsg("This device is registered for browser push with your topic choices.");
+      setMsg(
+        wantsRival && rivals.rival_pairs.length > 1
+          ? `Device registered — ${rivals.rival_pairs.length} rival pairs synced for push.`
+          : "This device is registered for browser push with your topic choices.",
+      );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not enable push");
     } finally {
@@ -161,8 +185,19 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     setMsg("");
     setBusy(true);
     try {
-      await patchMyPushSubscriptionTopics(deviceEndpoint, topicList);
-      setMsg("Topic preferences updated.");
+      const wantsRival = topicList.map((t) => t.toLowerCase()).includes("rival");
+      const rivals = rivalFieldsForSync(wantsRival);
+      await patchMyPushSubscriptionFields(deviceEndpoint, {
+        notify_topics: topicList,
+        ...rivals,
+      });
+      setMsg(
+        wantsRival && rivals.rival_pairs.length === 0
+          ? "Topics saved. Add a pairing on /rivals, then save again (or Sync rival) to target grudge alerts."
+          : wantsRival && rivals.rival_pairs.length > 1
+            ? `Topics updated — ${rivals.rival_pairs.length} rival pairs synced.`
+            : "Topic preferences updated.",
+      );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not save topics");
     } finally {
@@ -175,8 +210,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       setErr("Enable push on this device first.");
       return;
     }
-    const rp = rivalPairForPush();
-    if (!rp) {
+    const pairs = rivalPairsForPush();
+    if (!pairs.length) {
       setErr("Add a valid pairing on /rivals (two different 3-letter teams).");
       return;
     }
@@ -184,8 +219,13 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     setMsg("");
     setBusy(true);
     try {
-      await patchMyPushSubscriptionFields(deviceEndpoint, { rival_abbr_a: rp.a, rival_abbr_b: rp.b });
-      setMsg("Rival pairing saved on this subscription.");
+      const rivals = rivalFieldsForSync(true);
+      await patchMyPushSubscriptionFields(deviceEndpoint, rivals);
+      setMsg(
+        pairs.length > 1
+          ? `${pairs.length} rival pairs saved on this subscription.`
+          : "Rival pairing saved on this subscription.",
+      );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not sync rivalry");
     } finally {
@@ -220,7 +260,11 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     setMsg("");
     setBusy(true);
     try {
-      await patchMyPushSubscriptionFields(deviceEndpoint, { rival_abbr_a: null, rival_abbr_b: null });
+      await patchMyPushSubscriptionFields(deviceEndpoint, {
+        rival_abbr_a: null,
+        rival_abbr_b: null,
+        rival_pairs: [],
+      });
       setMsg("Rival pairing fields cleared for this subscription (topics unchanged).");
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not clear rivalry");

@@ -1,5 +1,5 @@
 // POST /api/contact-intake  { kind, name?, email?, message }
-// Forwards submissions (e.g. Guest Pulse pitches) via Resend when CONTACT_INBOUND_EMAIL + RESEND_API_KEY exist.
+// Guest Pulse pitches enqueue to Supabase when service creds exist; Resend notify is best-effort.
 
 const RATE_WINDOW_MS = 60_000;
 const MAX_SUBMISSIONS_PER_WINDOW = 12;
@@ -29,6 +29,53 @@ function allowRate(mapKey: string): boolean {
   stamps.push(now);
   map.set(mapKey, stamps);
   return true;
+}
+
+async function enqueueGuestPulse(opts: {
+  name: string;
+  email: string;
+  message: string;
+}): Promise<string | undefined> {
+  const sbUrl = process.env.SUPABASE_URL;
+  const sbKey = process.env.SUPABASE_SERVICE_KEY;
+  if (!sbUrl || !sbKey) return undefined;
+
+  try {
+    const ins = await fetch(`${sbUrl}/rest/v1/guest_pulse_submissions`, {
+      method: "POST",
+      headers: {
+        apikey: sbKey,
+        Authorization: `Bearer ${sbKey}`,
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify([
+        {
+          name: opts.name || null,
+          email: opts.email || null,
+          pitch: opts.message,
+          status: "received",
+        },
+      ]),
+    });
+    if (!ins.ok) {
+      const t = await ins.text().catch(() => "");
+      console.warn("[contact-intake] Guest Pulse queue:", ins.status, t);
+      return undefined;
+    }
+    try {
+      const rows = (await ins.json()) as unknown;
+      if (Array.isArray(rows) && rows.length > 0) {
+        const id = rows[0] as { id?: unknown };
+        if (typeof id.id === "string" && id.id.length > 0) return id.id;
+      }
+    } catch {
+      /* ignore malformed body */
+    }
+  } catch (e) {
+    console.warn("[contact-intake] Guest Pulse queue failed:", e);
+  }
+  return undefined;
 }
 
 export const config = { runtime: "nodejs" };
@@ -68,97 +115,91 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({ error: "Invalid email" }), { status: 400 });
   }
 
-  if (!resendKey || !to) {
-    return new Response(JSON.stringify({ error: "Intake inbox not configured yet." }), { status: 503 });
+  let submissionId: string | undefined;
+  if (kind === "guest-pulse-index") {
+    submissionId = await enqueueGuestPulse({ name, email, message });
   }
 
-  const subject = `[Hoops Intel/${kind}] ${name || email || "Inbound"}`;
-  const html = `<p><strong>Kind:</strong> ${kind}</p>
+  const canEmail = Boolean(resendKey && to);
+  let emailSent = false;
+
+  if (canEmail) {
+    const subject = `[Hoops Intel/${kind}] ${name || email || "Inbound"}`;
+    const html = `<p><strong>Kind:</strong> ${kind}</p>
 <p><strong>Name:</strong> ${name || "—"}</p>
 <p><strong>Email:</strong> ${email || "—"}</p>
 <hr />
 <pre style="white-space:pre-wrap;font-family:system-ui">${message.replace(/</g, "&lt;")}</pre>`;
 
-  const resend = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: fromAddr,
-      to: [to],
-      reply_to: email || undefined,
-      subject,
-      html,
-    }),
-  });
-
-  if (!resend.ok) {
-    const txt = await resend.text().catch(() => "");
-    console.error("[contact-intake] Resend", resend.status, txt);
-    return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
-  }
-
-  const adminNotify = process.env.ADMIN_NOTIFY_EMAIL?.trim();
-  if (adminNotify && kind === "guest-pulse-index") {
-    await fetch("https://api.resend.com/emails", {
+    const resend = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: fromAddr,
-        to: [adminNotify],
-        subject: `[Queue] New Guest Pulse pitch — ${name || email || "anonymous"}`,
-        html: `<p>New pitch in <strong>guest_pulse_submissions</strong>. Review at <a href="https://hoopsintel.net/creator-queue">/creator-queue</a>.</p><p><strong>From:</strong> ${name || "—"} (${email || "no email"})</p><pre style="white-space:pre-wrap">${message.slice(0, 500).replace(/</g, "&lt;")}</pre>`,
+        to: [to],
+        reply_to: email || undefined,
+        subject,
+        html,
       }),
-    }).catch((e) => console.warn("[contact-intake] admin notify:", e));
-  }
+    });
 
-  let submissionId: string | undefined;
-
-  if (kind === "guest-pulse-index") {
-    const sbUrl = process.env.SUPABASE_URL;
-    const sbKey = process.env.SUPABASE_SERVICE_KEY;
-    if (sbUrl && sbKey) {
-      try {
-        const ins = await fetch(`${sbUrl}/rest/v1/guest_pulse_submissions`, {
-          method: "POST",
-          headers: {
-            apikey: sbKey,
-            Authorization: `Bearer ${sbKey}`,
-            "Content-Type": "application/json",
-            Prefer: "return=representation",
-          },
-          body: JSON.stringify([
-            {
-              name: name || null,
-              email: email || null,
-              pitch: message,
-              status: "received",
-            },
-          ]),
-        });
-        if (!ins.ok) {
-          const t = await ins.text().catch(() => "");
-          console.warn("[contact-intake] Guest Pulse queue:", ins.status, t);
-        } else {
-          try {
-            const rows = (await ins.json()) as unknown;
-            if (Array.isArray(rows) && rows.length > 0) {
-              const id = rows[0] as { id?: unknown };
-              if (typeof id.id === "string" && id.id.length > 0) submissionId = id.id;
-            }
-          } catch {
-            /* ignore malformed body */
-          }
-        }
-      } catch (e) {
-        console.warn("[contact-intake] Guest Pulse queue failed:", e);
+    if (!resend.ok) {
+      const txt = await resend.text().catch(() => "");
+      console.error("[contact-intake] Resend", resend.status, txt);
+      // Queue success still counts when guest-pulse was enqueued.
+      if (!(kind === "guest-pulse-index" && submissionId)) {
+        return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
       }
+    } else {
+      emailSent = true;
+    }
+
+    const adminNotify = process.env.ADMIN_NOTIFY_EMAIL?.trim();
+    if (adminNotify && kind === "guest-pulse-index" && emailSent) {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: fromAddr,
+          to: [adminNotify],
+          subject: `[Queue] New Guest Pulse pitch — ${name || email || "anonymous"}`,
+          html: `<p>New pitch in <strong>guest_pulse_submissions</strong>. Review at <a href="https://hoopsintel.net/creator-queue">/creator-queue</a>.</p><p><strong>From:</strong> ${name || "—"} (${email || "no email"})</p><pre style="white-space:pre-wrap">${message.slice(0, 500).replace(/</g, "&lt;")}</pre>`,
+        }),
+      }).catch((e) => console.warn("[contact-intake] admin notify:", e));
     }
   }
 
-  const bodyOut =
-    submissionId !== undefined ? { ok: true as const, submissionId } : { ok: true as const };
+  // Guest Pulse: succeed when the moderation queue has a row (email optional).
+  if (kind === "guest-pulse-index") {
+    if (submissionId) {
+      return new Response(JSON.stringify({ ok: true, submissionId, emailSent }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    if (emailSent) {
+      return new Response(JSON.stringify({ ok: true, emailSent: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    return new Response(
+      JSON.stringify({
+        error: "Intake not configured — need Supabase service role and/or Resend inbox.",
+      }),
+      { status: 503, headers: { "Content-Type": "application/json" } },
+    );
+  }
 
-  return new Response(JSON.stringify(bodyOut), {
+  // Non–guest-pulse kinds still require email delivery.
+  if (!canEmail) {
+    return new Response(JSON.stringify({ error: "Intake inbox not configured yet." }), { status: 503 });
+  }
+  if (!emailSent) {
+    return new Response(JSON.stringify({ error: "Failed to send intake" }), { status: 502 });
+  }
+
+  return new Response(JSON.stringify({ ok: true }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
