@@ -68,11 +68,20 @@ function VercelAnalyticsScript() {
   useEffect(() => {
     if (!import.meta.env.PROD) return;
     if (typeof document === "undefined") return;
+    // vite preview / local hosts SPA-fallback HTML for /_vercel/*, which throws
+    // SyntaxError: Unexpected token '<' and flakes E2E visual smoke.
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0" || host.endsWith(".local")) {
+      return;
+    }
     if (document.querySelector('script[data-hi-vercel-insights="1"]')) return;
     const s = document.createElement("script");
     s.dataset.hiVercelInsights = "1";
     s.src = "/_vercel/insights/script.js";
     s.defer = true;
+    s.onerror = () => {
+      s.remove();
+    };
     document.body.appendChild(s);
   }, []);
   return null;
