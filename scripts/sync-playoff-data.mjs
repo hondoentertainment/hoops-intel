@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { TEAM_ABBR_SET, canonicalNbaAbbrev } from "./lib/content-quality-constants.mjs";
+import { seasonMode } from "./lib/season-mode.mjs";
 
 const SERIES_ID_RE = /^[EWF][1-4]-[A-Z]{3}-[A-Z]{3}$/;
 
@@ -79,19 +80,25 @@ function main() {
       okTeam(s.lowerTeam)
     );
   });
-  if (series.length === 0) {
-    console.log("[sync-playoff-data] Empty series array — skipping (keeping committed playoffData.ts).");
-    return;
-  }
-
   const src = readFileSync(OUT, "utf8");
   const startMark = "// BEGIN_PLAYOFF_SERIES_SYNC";
   const endMark = "// END_PLAYOFF_SERIES_SYNC";
 
+  if (series.length === 0) {
+    // Mid-postseason, an empty fetch is almost always a transient ESPN hiccup, so
+    // keep the committed bracket. Once the postseason ends, an empty fetch is the
+    // truth: clear the stale bracket so isFinalsActive()/isPlayoffsActive() return
+    // false and the Pulse Index renders unfiltered through the offseason.
+    const mode = seasonMode(new Date());
+    if (mode === "playoffs" || mode === "finals") {
+      console.log("[sync-playoff-data] Empty series during postseason — keeping committed playoffData.ts (transient fetch).");
+      return;
+    }
+  }
+
+  const inner = series.length ? `\n${series.map(formatSeries).join(",\n")}\n` : "";
   const block = `${startMark}
-export const playoffSeries: PlayoffSeries[] = [
-${series.map(formatSeries).join(",\n")}
-];
+export const playoffSeries: PlayoffSeries[] = [${inner}];
 ${endMark}`;
 
   let next;
@@ -110,7 +117,11 @@ ${endMark}`;
   }
 
   writeFileSync(OUT, next, "utf8");
-  console.log(`✅ playoffData.ts — synced ${series.length} series from ESPN snapshot`);
+  console.log(
+    series.length === 0
+      ? "✅ playoffData.ts — offseason: cleared playoff bracket to empty."
+      : `✅ playoffData.ts — synced ${series.length} series from ESPN snapshot`,
+  );
 }
 
 main();
