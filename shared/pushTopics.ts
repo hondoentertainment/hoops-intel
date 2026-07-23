@@ -24,6 +24,8 @@ export interface PushPrefsRow {
   auth_key?: string | null;
   auth?: string | null;
   team_abbr?: string | null;
+  /** All favorite teams for game-start / injury targeting (in addition to team_abbr). */
+  team_abbrs?: string[] | null;
   player_slug?: string | null;
   notify_topics?: string[] | null;
   rival_abbr_a?: string | null;
@@ -78,16 +80,30 @@ export function rivalPairMatches(row: PushPrefsRow, away: string, home: string):
   return false;
 }
 
+/** True when row's scalar team or team_abbrs list includes the target. */
+export function rowMatchesTeam(row: PushPrefsRow, teamAbbr?: string | null): boolean {
+  if (!teamAbbr?.trim()) return true;
+  const want = teamAbbr.trim().toUpperCase();
+  if (row.team_abbr?.trim().toUpperCase() === want) return true;
+  if (Array.isArray(row.team_abbrs)) {
+    return row.team_abbrs.some((t) => String(t).trim().toUpperCase() === want);
+  }
+  return false;
+}
+
 export function filterRowsForTopic(
   rows: PushPrefsRow[],
   opts: {
     topic: PushTopicKind;
     rivalAway?: string;
     rivalHome?: string;
+    /** When set, keep only rows that target this team (scalar or team_abbrs). */
+    teamAbbr?: string;
   },
 ): PushPrefsRow[] {
   return rows.filter((row) => {
     if (!topicAllowed(row, opts.topic)) return false;
+    if (opts.teamAbbr && !rowMatchesTeam(row, opts.teamAbbr)) return false;
     if (opts.topic === "rival") {
       const a = opts.rivalAway?.trim();
       const h = opts.rivalHome?.trim();

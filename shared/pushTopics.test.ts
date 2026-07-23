@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterRowsForTopic, rivalPairMatches, type PushPrefsRow } from "./pushTopics";
+import { filterRowsForTopic, rivalPairMatches, rowMatchesTeam, type PushPrefsRow } from "./pushTopics";
 
 describe("pushTopics filtering", () => {
   const base: PushPrefsRow = {
@@ -38,5 +38,19 @@ describe("pushTopics filtering", () => {
     expect(rivalPairMatches(row, "BKN", "NYK")).toBe(true);
     expect(rivalPairMatches(row, "LAL", "BOS")).toBe(true);
     expect(rivalPairMatches(row, "MIA", "BOS")).toBe(false);
+  });
+
+  it("matches team via team_abbrs multi-favorite list", () => {
+    const row: PushPrefsRow = {
+      ...base,
+      notify_topics: ["game-start"],
+      team_abbr: "LAL",
+      team_abbrs: ["LAL", "BOS", "NYK"],
+    };
+    expect(rowMatchesTeam(row, "BOS")).toBe(true);
+    expect(rowMatchesTeam(row, "MIA")).toBe(false);
+    expect(
+      filterRowsForTopic([row], { topic: "game-start", teamAbbr: "NYK" }),
+    ).toHaveLength(1);
   });
 });

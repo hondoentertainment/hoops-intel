@@ -23,6 +23,7 @@ Apply in order in the Supabase SQL editor (if not already applied):
 - `supabase/migrations/20260520_embed_referrer_agg.sql`
 - `supabase/migrations/20260521_push_alert_history.sql`
 - `supabase/migrations/20260722_rival_pairs.sql` (multi-pair rival push jsonb)
+- `supabase/migrations/20260723_team_abbrs_published_pitch.sql` (multi-favorite `team_abbrs` + Guest Pulse `published_pitch`)
 
 ### 2. Environment variables
 

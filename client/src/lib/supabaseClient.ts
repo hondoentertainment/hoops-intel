@@ -184,6 +184,7 @@ export interface PushSubscriptionRow {
   endpoint: string;
   notify_topics: string[] | null;
   team_abbr: string | null;
+  team_abbrs?: string[] | null;
   rival_abbr_a?: string | null;
   rival_abbr_b?: string | null;
   rival_pairs?: [string, string][] | null;
@@ -193,7 +194,7 @@ export async function getMyPushSubscriptions(): Promise<PushSubscriptionRow[]> {
   const token = getStoredToken();
   if (!token) return [];
   const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,notify_topics,team_abbr,rival_abbr_a,rival_abbr_b,rival_pairs`,
+    `${SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,notify_topics,team_abbr,team_abbrs,rival_abbr_a,rival_abbr_b,rival_pairs`,
     { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${token}` } },
   );
   if (!res.ok) return [];
@@ -206,6 +207,7 @@ export async function upsertMyPushSubscription(row: {
   p256dh: string;
   auth_key: string;
   team_abbr?: string | null;
+  team_abbrs?: string[] | null;
   notify_topics?: string[] | null;
   rival_abbr_a?: string | null;
   rival_abbr_b?: string | null;
@@ -238,6 +240,7 @@ export async function patchMyPushSubscriptionFields(
   fields: {
     notify_topics?: string[];
     team_abbr?: string | null;
+    team_abbrs?: string[] | null;
     rival_abbr_a?: string | null;
     rival_abbr_b?: string | null;
     rival_pairs?: [string, string][] | null;
@@ -248,6 +251,7 @@ export async function patchMyPushSubscriptionFields(
   const body: Record<string, unknown> = {};
   if (fields.notify_topics !== undefined) body.notify_topics = fields.notify_topics;
   if (fields.team_abbr !== undefined) body.team_abbr = fields.team_abbr;
+  if (fields.team_abbrs !== undefined) body.team_abbrs = fields.team_abbrs;
   if (fields.rival_abbr_a !== undefined) body.rival_abbr_a = fields.rival_abbr_a;
   if (fields.rival_abbr_b !== undefined) body.rival_abbr_b = fields.rival_abbr_b;
   if (fields.rival_pairs !== undefined) body.rival_pairs = fields.rival_pairs;

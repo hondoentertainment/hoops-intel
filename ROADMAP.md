@@ -1,6 +1,6 @@
 # Hoops Intel — Feature Roadmap
 
-> Last updated: July 21, 2026
+> Last updated: July 22, 2026
 
 **Planning stack:** [`PRD.md`](./PRD.md) (requirements) → this file → [`NEXT-STEPS.md`](./NEXT-STEPS.md) (executable backlog) → [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md) (secrets & smoke).
 
@@ -12,9 +12,8 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks **shippe
 
 | Priority | Theme | Status |
 |----------|--------|--------|
-| **P0** | Production ops flip — Stripe, VAPID, Supabase, Resend, push, migrations through `20260722_rival_pairs` | **Blocking** — code ready; `/api/ops-readiness` still false until secrets land |
+| **P0** | Production ops flip — Stripe, VAPID, Supabase, Resend, push, migrations through `20260723_team_abbrs_published_pitch` | **Blocking** — code ready; `/api/ops-readiness` still false until secrets land |
 | **P1** | Live X / Bluesky posting | Bot + dry-run shipped; needs GitHub social secrets |
-| **P1** | Multi-favorite team push targeting | Today: first My Pulse favorite only |
 | **P2** | In-season betting depth (live multi-book fills) | UI shipped; Odds API fills when slate returns |
 | **Defer** | SSR/SEO, public API, native app, WNBA | See Long-term |
 
@@ -50,12 +49,13 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks **shippe
 
 ### User Features
 - Supabase auth, reactions, email digest UI + quiet hours + List-Unsubscribe
-- Browser push topics: elimination, clincher, playoff tip, **game-start (30m)**, fantasy, injury, rival (multi-pair), clincher preview, playoff close
+- Browser push topics: elimination, clincher, playoff tip, **game-start (30m)** for **all** My Pulse favorites (`team_abbrs`), fantasy, injury, rival (multi-pair), clincher preview, playoff close
+- Guest Pulse creator queue with **edit-before-publish** (`published_pitch`)
 - Pro subscription (Stripe) — code + UX; **env-dependent**
 - PWA installable offline shell
 
 ### Infrastructure & Ops tooling
-- Supabase migrations pack (embed analytics, push prefs, dispatch log, alert history, **rival_pairs**)
+- Supabase migrations pack (embed analytics, push prefs, dispatch log, alert history, **rival_pairs**, **team_abbrs** / **published_pitch**)
 - Social bot (`post-social.mjs`) with dry-run when X/Bluesky secrets missing
 - Ops readiness API + Account panel; `ops:preflight` / `smoke:push` / deployment smoke
 - Manual Supabase migrations GitHub workflow (requires `SUPABASE_ACCESS_TOKEN` + project ref)
@@ -67,7 +67,7 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks **shippe
 
 Executable checklist: [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0.
 
-1. Apply Supabase migrations through **`20260722_rival_pairs`**
+1. Apply Supabase migrations through **`20260723_team_abbrs_published_pitch`**
 2. Set production secrets (Vercel + GitHub) — Stripe, VAPID, Supabase, Resend, push, optional `ODDS_API_KEY`
 3. `ops:preflight:strict` → `smoke:push` → Stripe checkout/webhook smoke
 4. Archive duplicate Vercel projects `hoops-intel-1` / `hoops-intel-2`
@@ -78,8 +78,6 @@ Executable checklist: [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0.
 ## Mid-term (Q3–Q4 2026)
 
 - **Live social distribution** — once secrets are set (workflow already posts or dry-runs)
-- **Multi-favorite team push** — fan-out game-start / injury to all My Pulse favorites
-- **Creator editorial edit before publish** — optional body/notes override before public Guest Pulse feed
 - **Deeper archive search** — indexing/ranking if client haystack becomes a bottleneck
 - **Dependabot hygiene** — npm group bumps on a dedicated green-CI day
 - **In-season betting polish** — richer multi-book charts once Odds API runs nightly with a slate

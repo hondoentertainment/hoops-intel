@@ -20,8 +20,8 @@ Use this runbook when debugging **no alerts**, **duplicate alerts**, or **digest
 ## Client expectations
 
 1. Visitor grants **browser permission** and selects **topics** on **`/account`** (or quick enable from the header bell for digest-only email).
-2. Logged-in users with **favorite teams** benefit when server rules filter pushes by `team_abbr` (first My Pulse team — refreshed when you **Save topics**).
-3. **Game start** topic fires ~30 minutes before tip for that `team_abbr` via `check-tip-off-push.mjs`.
+2. Logged-in users with **favorite teams** get game-start / injury targeting for **all** My Pulse favorites via `team_abbrs` (first favorite also stored as legacy `team_abbr` — refreshed when you **Save topics**). Needs migration `20260723_team_abbrs_published_pitch`.
+3. **Game start** topic fires ~30 minutes before tip for each matched favorite via `check-tip-off-push.mjs`.
 4. Multi-pair **rival** alerts need migration `20260722_rival_pairs` + Sync rival / Save topics after configuring `/rivals`.
 
 ## Digest quiet hours & deliverability

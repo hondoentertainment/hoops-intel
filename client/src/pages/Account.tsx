@@ -142,10 +142,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         }
       }
       const { endpoint, p256dh, auth_key } = await subscribeDevicePush();
-      const fav = await getFavorites();
-      let team = fav.teams[0]?.toUpperCase() ?? null;
-      if (team === "NY") team = "NYK";
-      if (team === "SA") team = "SAS";
+      const teams = await resolveTeamAbbrs();
       const notify_topics = topicList.length ? topicList : [...DEFAULT_PUSH_TOPICS];
       const wantsRival = notify_topics.map((t) => t.toLowerCase()).includes("rival");
       const rivals = rivalFieldsForSync(wantsRival);
@@ -154,7 +151,8 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         endpoint,
         p256dh,
         auth_key,
-        team_abbr: team,
+        team_abbr: teams[0] ?? null,
+        team_abbrs: teams,
         notify_topics,
         ...rivals,
       });
@@ -162,9 +160,11 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       setTopics(new Set(notify_topics));
       setPerm("granted");
       setMsg(
-        wantsRival && rivals.rival_pairs.length > 1
-          ? `Device registered — ${rivals.rival_pairs.length} rival pairs synced for push.`
-          : "This device is registered for browser push with your topic choices.",
+        teams.length > 1
+          ? `Device registered — tip alerts for ${teams.length} favorite teams.`
+          : wantsRival && rivals.rival_pairs.length > 1
+            ? `Device registered — ${rivals.rival_pairs.length} rival pairs synced for push.`
+            : "This device is registered for browser push with your topic choices.",
       );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not enable push");
@@ -173,16 +173,31 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     }
   };
 
-  const resolveTeamAbbr = async (): Promise<string | null> => {
+  const normalizeTeam = (raw: string): string | null => {
+    let t = raw.trim().toUpperCase();
+    if (t === "NY") t = "NYK";
+    if (t === "SA") t = "SAS";
+    return t.length === 3 ? t : null;
+  };
+
+  /** All My Pulse / local favorites (capped), first is legacy team_abbr. */
+  const resolveTeamAbbrs = async (): Promise<string[]> => {
     const fav = await getFavorites();
-    let team =
-      fav.teams[0]?.toUpperCase() ??
-      getPreferences().favoriteTeams[0]?.toUpperCase() ??
-      favoriteTeams[0]?.toUpperCase() ??
-      null;
-    if (team === "NY") team = "NYK";
-    if (team === "SA") team = "SAS";
-    return team && team.length === 3 ? team : null;
+    const merged = [
+      ...fav.teams,
+      ...getPreferences().favoriteTeams,
+      ...favoriteTeams,
+    ];
+    const out: string[] = [];
+    const seen = new Set<string>();
+    for (const raw of merged) {
+      const t = normalizeTeam(String(raw));
+      if (!t || seen.has(t)) continue;
+      seen.add(t);
+      out.push(t);
+      if (out.length >= 8) break;
+    }
+    return out;
   };
 
   const handleSaveTopics = async () => {
@@ -200,18 +215,21 @@ function AccountPushAlerts({ userId }: { userId: string }) {
     try {
       const wantsRival = topicList.map((t) => t.toLowerCase()).includes("rival");
       const rivals = rivalFieldsForSync(wantsRival);
-      const team_abbr = await resolveTeamAbbr();
+      const teams = await resolveTeamAbbrs();
       await patchMyPushSubscriptionFields(deviceEndpoint, {
         notify_topics: topicList,
-        team_abbr,
+        team_abbr: teams[0] ?? null,
+        team_abbrs: teams,
         ...rivals,
       });
       setMsg(
         wantsRival && rivals.rival_pairs.length === 0
           ? "Topics saved. Add a pairing on /rivals, then save again (or Sync rival) to target grudge alerts."
-          : wantsRival && rivals.rival_pairs.length > 1
-            ? `Topics updated — ${rivals.rival_pairs.length} rival pairs synced${team_abbr ? ` · team ${team_abbr}` : ""}.`
-            : `Topic preferences updated${team_abbr ? ` · game-start targets ${team_abbr}` : ""}.`,
+          : teams.length > 1
+            ? `Topics updated — game-start / injury target ${teams.join(", ")}.`
+            : wantsRival && rivals.rival_pairs.length > 1
+              ? `Topics updated — ${rivals.rival_pairs.length} rival pairs synced${teams[0] ? ` · team ${teams[0]}` : ""}.`
+              : `Topic preferences updated${teams[0] ? ` · game-start targets ${teams[0]}` : ""}.`,
       );
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not save topics");

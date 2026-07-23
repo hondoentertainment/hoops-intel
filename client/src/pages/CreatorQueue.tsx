@@ -11,6 +11,8 @@ type Row = {
   status: string;
   notes: string;
   pitch: string;
+  /** Editor override for public feed; null/empty → show original pitch. */
+  published_pitch?: string | null;
 };
 
 type StatusKey = "received" | "reviewing" | "accepted" | "declined";
@@ -58,6 +60,7 @@ export default function CreatorQueue() {
   const [err, setErr] = useState("");
   const [filterStatus, setFilterStatus] = useState<"" | StatusKey | "pending">("pending");
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
+  const [publicDrafts, setPublicDrafts] = useState<Record<string, string>>({});
 
   const authHeader = useMemo(() => (token.startsWith("Bearer ") ? token : token ? `Bearer ${token}` : ""), [token]);
   const isAdmin = authHeader.replace(/^Bearer\s+/i, "").length >= 16;
@@ -85,6 +88,14 @@ export default function CreatorQueue() {
         const merged = { ...prev };
         for (const r of next) {
           if (merged[r.id] === undefined) merged[r.id] = r.notes ?? "";
+        }
+        return merged;
+      });
+      setPublicDrafts(() => {
+        const merged: Record<string, string> = {};
+        for (const r of next) {
+          const override = typeof r.published_pitch === "string" ? r.published_pitch.trim() : "";
+          merged[r.id] = override || r.pitch || "";
         }
         return merged;
       });
@@ -118,7 +129,10 @@ export default function CreatorQueue() {
     setErr("");
   };
 
-  const patchRow = async (id: string, patch: { status?: string; notes?: string }) => {
+  const patchRow = async (
+    id: string,
+    patch: { status?: string; notes?: string; published_pitch?: string | null },
+  ) => {
     if (!authHeader) return;
     setBusy(true);
     setErr("");
@@ -130,13 +144,22 @@ export default function CreatorQueue() {
       });
       const j = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error((j as { error?: string }).error ?? res.statusText);
-      setMsg(patch.status ? `Marked ${STATUS_LABEL[statusKey(patch.status)] ?? patch.status}.` : "Notes saved.");
+      if (patch.status) setMsg(`Marked ${STATUS_LABEL[statusKey(patch.status)] ?? patch.status}.`);
+      else if (patch.published_pitch !== undefined) setMsg("Public body saved.");
+      else setMsg("Notes saved.");
       await load();
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Update failed");
     } finally {
       setBusy(false);
     }
+  };
+
+  const publishWithEdit = async (r: Row) => {
+    const draft = (publicDrafts[r.id] ?? r.pitch ?? "").trim();
+    const original = (r.pitch ?? "").trim();
+    const published_pitch = draft && draft !== original ? draft : null;
+    await patchRow(r.id, { status: "accepted", published_pitch });
   };
 
   const counts = useMemo(() => {
@@ -149,12 +172,14 @@ export default function CreatorQueue() {
   }, [rows]);
 
   const exportCsv = () => {
-    const header = ["id", "created_at", "name", "email", "status", "notes", "pitch"];
+    const header = ["id", "created_at", "name", "email", "status", "notes", "pitch", "published_pitch"];
     const esc = (v: string) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const lines = [
       header.join(","),
       ...rows.map((r) =>
-        [r.id, r.created_at, r.name, r.email, r.status, r.notes, r.pitch].map((c) => esc(c ?? "")).join(","),
+        [r.id, r.created_at, r.name, r.email, r.status, r.notes, r.pitch, r.published_pitch ?? ""]
+          .map((c) => esc(c ?? ""))
+          .join(","),
       ),
     ];
     const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
@@ -174,7 +199,7 @@ export default function CreatorQueue() {
       <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
         Admin surface for <span className="mono-data text-white/70">guest_pulse_submissions</span>. Paste{" "}
         <strong className="text-white/80">GUEST_PULSE_ADMIN_SECRET</strong> as a Bearer token. Workflow:{" "}
-        <span className="text-white/70">New → In review → Published / Rejected</span>.
+        <span className="text-white/70">New → In review → edit public body → Published / Rejected</span>.
       </p>
 
       {!isAdmin ? (
@@ -288,9 +313,52 @@ export default function CreatorQueue() {
                     <div className="text-sm font-semibold text-white mb-1">
                       {r.name || "—"} · {r.email || "—"}
                     </div>
+                    <label className="block text-[10px] uppercase tracking-wider text-white/35 mb-1">
+                      Original pitch
+                    </label>
                     <p className="text-sm whitespace-pre-wrap leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.68)" }}>
                       {r.pitch}
                     </p>
+
+                    <label className="block text-[10px] uppercase tracking-wider text-white/35 mb-1">
+                      Public body (edit before publish)
+                    </label>
+                    <textarea
+                      value={publicDrafts[r.id] ?? r.published_pitch ?? r.pitch ?? ""}
+                      onChange={(e) => setPublicDrafts((prev) => ({ ...prev, [r.id]: e.target.value }))}
+                      rows={4}
+                      className="inp w-full text-sm mb-2 resize-y min-h-[88px]"
+                      placeholder="What readers see on the Guest Pulse feed…"
+                    />
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <button
+                        type="button"
+                        disabled={busy}
+                        onClick={() =>
+                          void patchRow(r.id, {
+                            published_pitch: (publicDrafts[r.id] ?? "").trim() || null,
+                          })
+                        }
+                        className="btn-soft text-[11px]"
+                      >
+                        Save public body
+                      </button>
+                      <button
+                        type="button"
+                        disabled={busy}
+                        onClick={() =>
+                          setPublicDrafts((prev) => ({ ...prev, [r.id]: r.pitch ?? "" }))
+                        }
+                        className="btn-soft text-[11px]"
+                      >
+                        Reset to original
+                      </button>
+                      {r.published_pitch ? (
+                        <span className="text-[10px] self-center text-emerald-300/80 uppercase tracking-wider">
+                          Override on file
+                        </span>
+                      ) : null}
+                    </div>
 
                     <label className="block text-[10px] uppercase tracking-wider text-white/35 mb-1">Editor notes</label>
                     <textarea
@@ -325,7 +393,7 @@ export default function CreatorQueue() {
                           <button
                             type="button"
                             disabled={busy}
-                            onClick={() => void patchRow(r.id, { status: "accepted" })}
+                            onClick={() => void publishWithEdit(r)}
                             className="px-3 py-1.5 rounded text-[11px] font-bold uppercase border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
                           >
                             Publish
@@ -348,6 +416,20 @@ export default function CreatorQueue() {
                           className="btn-soft text-[11px]"
                         >
                           ← Back to new
+                        </button>
+                      )}
+                      {sk === "accepted" && (
+                        <button
+                          type="button"
+                          disabled={busy}
+                          onClick={() =>
+                            void patchRow(r.id, {
+                              published_pitch: (publicDrafts[r.id] ?? "").trim() || null,
+                            })
+                          }
+                          className="px-3 py-1.5 rounded text-[11px] font-bold uppercase border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
+                        >
+                          Update published body
                         </button>
                       )}
                       {(sk === "accepted" || sk === "declined") && (

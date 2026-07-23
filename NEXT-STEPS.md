@@ -1,12 +1,12 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: July 21, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
+_Last revised: July 22, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
 
 ### Deploy & reliability
 
 | Phase | Action | Status |
 |-------|--------|--------|
-| P0–P5 product/CI | CI, smoke, print, social dry-run, Guest Pulse feed, rival_pairs, opener archive | **Done** |
+| P0–P5 product/CI | CI, smoke, print, social dry-run, Guest Pulse feed, rival_pairs, opener archive, multi-fav push, creator edit | **Done** |
 | Post-deploy | `npm run smoke:deploy` after each prod push | **Ongoing ritual** |
 
 ### P0 — Ops (manual — still blocking live Pro/push)
@@ -15,7 +15,7 @@ _Last revised: July 21, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
 
 | Step | Action | Status |
 |------|--------|--------|
-| Migrations | Through **`20260722_rival_pairs`** | **Run** (SQL or Actions → Supabase migrations) |
+| Migrations | Through **`20260723_team_abbrs_published_pitch`** | **Run** (SQL or Actions → Supabase migrations) |
 | Secrets | Stripe, VAPID, Supabase, Resend, push, ODDS_API_KEY | **Set in Vercel + GitHub** |
 | Preflight | `vercel env pull` → `npm run ops:preflight:strict` | Before monetization flip |
 | Push smoke | `npm run smoke:push` | After secrets live |
@@ -26,16 +26,17 @@ _Last revised: July 21, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
 
 | Item | Notes |
 |------|--------|
-| Favorite-team **game-start** | Already in `playoff-push.yml`; defaults + Account “Team tip alerts” + `team_abbr` refresh on Save topics |
+| Multi-favorite **game-start / injury** | `team_abbrs[]` + Account sync of all My Pulse favorites (capped at 8) |
+| Creator **edit before publish** | `published_pitch` on Guest Pulse; `/creator-queue` public body editor |
+| Favorite-team **game-start** | Defaults + Account “Team tip alerts” + team refresh on Save topics |
 | Digest quiet hours | Wired in `email-digest.yml` (6–11 PT) + List-Unsubscribe header |
 | Multi-book consensus UI | `oddsBooksData` + Betting Intel; fills when Odds API fetch returns `books[]` |
-| Dependabot Actions #241 | Merged |
-| Dependabot npm #242 | Deferred if Vercel preview still red |
 
 ### Deferred
 
 - SSR/SEO unless Lighthouse regresses
 - Public API / native / WNBA (Q4+)
+- Dependabot npm #242 (after green Vercel preview)
 
 ---
 

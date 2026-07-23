@@ -65,11 +65,10 @@ Core moat: **AI-generated narrative + real-time data + editorial curation in one
 
 High leverage next bets:
 
-1. **Production ops flip** — secrets + migrations (readiness still false in prod).
-2. **Multi-favorite team push** — target all My Pulse favorites, not only `team_abbr` first.
-3. **Dependabot npm #242** — merge after Vercel preview is green.
-4. **Creator editorial edit before publish** — optional body override before public feed.
+1. **Production ops flip** — secrets + migrations through `20260723` (readiness still false in prod).
+2. **Dependabot npm #242** — merge after Vercel preview is green.
+3. **Live X / Bluesky** — set GitHub social secrets (dry-run already green).
 
 **Ops:** see [`NEXT-STEPS.md`](./NEXT-STEPS.md) P0 and [`PRODUCTION-OPS.md`](./PRODUCTION-OPS.md).
 
-Shipped: Guest Pulse feed, multi-pair rivals, opener archive, multi-book consensus UI, game-start defaults, digest quiet hours, `/print-edition`, `/creator-queue`, `/embed-stats`.
+Shipped: Guest Pulse feed + edit-before-publish, multi-favorite push (`team_abbrs`), multi-pair rivals, opener archive, multi-book consensus UI, game-start defaults, digest quiet hours, `/print-edition`, `/creator-queue`, `/embed-stats`.

@@ -1,5 +1,5 @@
 // GET /api/guest-pulse-queue — list moderation queue rows (Bearer GUEST_PULSE_ADMIN_SECRET).
-// PATCH /api/guest-pulse-queue — { id, status?, notes? }, same Bearer.
+// PATCH /api/guest-pulse-queue — { id, status?, notes?, published_pitch? }, same Bearer.
 
 import { sendResendEmail } from "./_lib/resendSend";
 
@@ -26,7 +26,9 @@ async function fetchRow(
   );
   if (!res.ok) return null;
   const rows = (await res.json()) as unknown[];
-  return Array.isArray(rows) && rows[0] && typeof rows[0] === "object" ? (rows[0] as { email?: string | null; name?: string | null; status?: string; pitch?: string }) : null;
+  return Array.isArray(rows) && rows[0] && typeof rows[0] === "object"
+    ? (rows[0] as { email?: string | null; name?: string | null; status?: string; pitch?: string })
+    : null;
 }
 
 async function notifySubmitterStatus(
@@ -66,7 +68,7 @@ export default async function handler(req: Request): Promise<Response> {
     const qs = new URL(req.url).searchParams;
     const status = qs.get("status");
     let filter =
-      "select=id,created_at,name,email,status,notes,pitch&order=created_at.desc&limit=100";
+      "select=id,created_at,name,email,status,notes,pitch,published_pitch&order=created_at.desc&limit=100";
     if (status && STATUSES.has(status)) {
       filter += `&status=eq.${encodeURIComponent(status)}`;
     }
@@ -84,9 +86,14 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   if (req.method === "PATCH") {
-    let body: { id?: string; status?: string; notes?: string };
+    let body: { id?: string; status?: string; notes?: string; published_pitch?: string | null };
     try {
-      body = (await req.json()) as { id?: string; status?: string; notes?: string };
+      body = (await req.json()) as {
+        id?: string;
+        status?: string;
+        notes?: string;
+        published_pitch?: string | null;
+      };
     } catch {
       return new Response(JSON.stringify({ error: "Invalid JSON" }), { status: 400 });
     }
@@ -95,12 +102,23 @@ export default async function handler(req: Request): Promise<Response> {
 
     const before = await fetchRow(supabaseUrl, svc, id);
 
-    const patch: Record<string, string> = {};
+    const patch: Record<string, string | null> = {};
     if (body.status !== undefined) {
-      if (!STATUSES.has(body.status)) return new Response(JSON.stringify({ error: "Invalid status" }), { status: 400 });
+      if (!STATUSES.has(body.status)) {
+        return new Response(JSON.stringify({ error: "Invalid status" }), { status: 400 });
+      }
       patch.status = body.status;
     }
     if (body.notes !== undefined) patch.notes = String(body.notes).slice(0, 2000);
+    if (body.published_pitch !== undefined) {
+      if (body.published_pitch === null) {
+        patch.published_pitch = null;
+      } else {
+        const trimmed = String(body.published_pitch).trim().slice(0, 8000);
+        // Empty string clears override so public feed falls back to original pitch.
+        patch.published_pitch = trimmed.length ? trimmed : null;
+      }
+    }
 
     if (Object.keys(patch).length === 0) {
       return new Response(JSON.stringify({ error: "Nothing to patch" }), { status: 400 });

@@ -111,14 +111,20 @@ async function sendPush(
 
 function buildSubsQuery(teamAbbr?: string, playerSlug?: string, topic?: PushTopicKind): string {
   const filters: string[] = [];
-  if (teamAbbr) filters.push(`team_abbr=eq.${encodeURIComponent(teamAbbr)}`);
+  if (teamAbbr) {
+    const t = teamAbbr.trim().toUpperCase();
+    // Match legacy scalar team_abbr OR multi-favorite team_abbrs array.
+    filters.push(
+      `or=(team_abbr.eq.${encodeURIComponent(t)},team_abbrs.cs.{${encodeURIComponent(t)}})`,
+    );
+  }
   if (playerSlug) filters.push(`player_slug=eq.${encodeURIComponent(playerSlug)}`);
   if (topic === "rival") {
     filters.push("rival_abbr_a=not.is.null");
     filters.push("rival_abbr_b=not.is.null");
   }
   const sel =
-    "select=endpoint,p256dh,auth_key,team_abbr,player_slug,notify_topics,rival_abbr_a,rival_abbr_b,rival_pairs";
+    "select=endpoint,p256dh,auth_key,team_abbr,team_abbrs,player_slug,notify_topics,rival_abbr_a,rival_abbr_b,rival_pairs";
   return filters.length ? `${sel}&${filters.join("&")}` : sel;
 }
 
@@ -265,6 +271,7 @@ export default async function handler(req: Request): Promise<Response> {
         topic: payload.topic,
         rivalAway: payload.rivalAway,
         rivalHome: payload.rivalHome,
+        teamAbbr: payload.teamAbbr,
       });
       subscriptions = rowsToSubscriptions(rows);
     } catch (err) {

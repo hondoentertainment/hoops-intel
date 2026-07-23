@@ -17,7 +17,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   const qs =
-    "select=id,created_at,name,pitch&status=eq.accepted&order=created_at.desc&limit=20";
+    "select=id,created_at,name,pitch,published_pitch&status=eq.accepted&order=created_at.desc&limit=20";
   const res = await fetch(`${supabaseUrl}/rest/v1/guest_pulse_submissions?${qs}`, {
     headers: { apikey: svc, Authorization: `Bearer ${svc}` },
   });
@@ -33,15 +33,22 @@ export default async function handler(req: Request): Promise<Response> {
 
   const rows = (await res.json()) as unknown;
   const posts = Array.isArray(rows)
-    ? rows.map((r) => {
-        const row = r as Record<string, unknown>;
-        return {
-          id: typeof row.id === "string" ? row.id : "",
-          created_at: typeof row.created_at === "string" ? row.created_at : "",
-          name: typeof row.name === "string" && row.name.trim() ? row.name.trim() : "Guest",
-          pitch: typeof row.pitch === "string" ? row.pitch : "",
-        };
-      }).filter((p) => p.id && p.pitch)
+    ? rows
+        .map((r) => {
+          const row = r as Record<string, unknown>;
+          const original = typeof row.pitch === "string" ? row.pitch : "";
+          const override =
+            typeof row.published_pitch === "string" && row.published_pitch.trim()
+              ? row.published_pitch.trim()
+              : "";
+          return {
+            id: typeof row.id === "string" ? row.id : "",
+            created_at: typeof row.created_at === "string" ? row.created_at : "",
+            name: typeof row.name === "string" && row.name.trim() ? row.name.trim() : "Guest",
+            pitch: override || original,
+          };
+        })
+        .filter((p) => p.id && p.pitch)
     : [];
 
   return new Response(JSON.stringify({ posts }), {
