@@ -8,7 +8,8 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
-import { seasonMode } from "./lib/season-mode.mjs";
+import { seasonMode, editionContextForMode } from "./lib/season-mode.mjs";
+import { VALID_EDITION_CONTEXTS } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -184,12 +185,14 @@ async function main() {
   const cal = seasonMode(pubDate);
   const calendarPlayoff = cal === "playoffs" || cal === "finals";
   const isPlayoffMode = calendarPlayoff || snapPlayoffs || playoffIndicators.length > 0;
+  // Snapshot-detected postseason still wins over the calendar (schedule shifts),
+  // otherwise the season window drives the context.
   const editionContext =
     cal === "finals" || snapshotFinalsOnly
       ? "finals"
       : isPlayoffMode
         ? "playoffs"
-        : "regular";
+        : editionContextForMode(cal);
   if (isPlayoffMode) console.log("🏆 Playoff/finals mode — Pulse Index scopes to postseason context.");
   const playoffInstructions = isPlayoffMode
     ? `
@@ -226,7 +229,18 @@ async function main() {
 ## PRESEASON WINDOW (season-mode)
 - Rotation battles, minutes caps, injury cautions, and scheme teases — lighter analytical certainty than Opening Week
 `
-          : "";
+          : cal === "dead-period"
+            ? `
+
+## DEAD PERIOD WINDOW (season-mode)
+- No games and few transactions — do NOT invent scores, standings movement, or breaking rumors
+- Lead with roster-construction retrospectives, extension-eligibility math, schedule-release angles, and season-ahead projections
+- Pulse Index ranks by offseason stock (contract status, role change, development arc), never by recent box scores
+- Tonight's Games: state plainly that there is no NBA slate; point to evergreen desks instead of manufacturing a preview
+- gameResults MUST be an empty array
+- Credibility in this window comes from analysis, not news — label all speculation clearly
+`
+            : "";
 
   // ── Generate pulseData.ts ────────────────────────────────
   console.log("🤖 Calling Claude API to generate edition...");
@@ -237,7 +251,7 @@ async function main() {
 - Publication date: ${editionDate}
 - Edition: Vol. 2026 · No. ${editionNo}
 - Content covers games played YESTERDAY (${yesterdayESPN})
-- **pulseEdition.editionContext** MUST be exactly: "${editionContext}" (one of "regular" | "playoffs" | "finals"). Use "finals" only during the NBA Finals; "playoffs" for all other postseason including play-in and early rounds.
+- **pulseEdition.editionContext** MUST be exactly: "${editionContext}" (one of "regular" | "playoffs" | "finals" | "draft" | "free-agency" | "summer-league" | "preseason" | "dead-period"). Copy the value verbatim — it is derived from the season calendar and drives the site's desk labelling.
 
 ## Yesterday's Game Results (${yesterdayESPN}) — ESPN API
 ${JSON.stringify(finalGames, null, 2)}
@@ -324,7 +338,7 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
   let contentToWrite = newPulseContent;
   try {
     const ctx = scope.pulseEdition?.editionContext;
-    if (!ctx || !["regular", "playoffs", "finals"].includes(ctx)) {
+    if (!ctx || !VALID_EDITION_CONTEXTS.has(ctx)) {
       console.warn(`⚠ pulseEdition.editionContext missing or invalid (${JSON.stringify(ctx)}) — injecting "${editionContext}"`);
       const patched = contentToWrite.replace(
         /export const pulseEdition = (\{[^}]+\});/,
@@ -340,7 +354,7 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
       contentToWrite = patched;
       scope.pulseEdition = extractExportLiteral(contentToWrite, "pulseEdition", {});
       const ctx2 = scope.pulseEdition?.editionContext;
-      if (!ctx2 || !["regular", "playoffs", "finals"].includes(ctx2)) {
+      if (!ctx2 || !VALID_EDITION_CONTEXTS.has(ctx2)) {
         console.error("❌ editionContext still invalid after inject");
         process.exit(1);
       }

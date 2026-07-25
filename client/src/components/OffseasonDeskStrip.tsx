@@ -33,7 +33,9 @@ export default function OffseasonDeskStrip() {
                   ? "Cap sheet & rotation fit"
                   : ctx === "summer-league"
                     ? "Rookie auditions & two-way standouts"
-                    : "Minutes caps & scheme teases"}
+                    : ctx === "dead-period"
+                      ? "Roster construction & season-ahead outlook"
+                      : "Minutes caps & scheme teases"}
             </h2>
           </div>
           <a
@@ -70,7 +72,9 @@ export default function OffseasonDeskStrip() {
             <p className="text-sm leading-relaxed text-white/70">
               {ctx === "free-agency"
                 ? "Track signings, cap tiers, and rotation fit on Trade Value — the morning desk pivots to market moves when the slate thins."
-                : "Preseason desk prioritizes rotation battles and injury cautions. Use Lineups for projected minutes and scheme teases."}
+                : ctx === "dead-period"
+                  ? "No games on the calendar. The desk runs roster-construction retrospectives, extension math, and season-ahead projections until camps open."
+                  : "Preseason desk prioritizes rotation battles and injury cautions. Use Lineups for projected minutes and scheme teases."}
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
               <a href="/trade-value" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">

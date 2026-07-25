@@ -18,7 +18,8 @@ export type EditionContext =
   | "draft"
   | "free-agency"
   | "summer-league"
-  | "preseason";
+  | "preseason"
+  | "dead-period";
 
 const EDITION_CONTEXTS = new Set<string>([
   "regular",
@@ -28,6 +29,7 @@ const EDITION_CONTEXTS = new Set<string>([
   "free-agency",
   "summer-league",
   "preseason",
+  "dead-period",
 ]);
 
 const OFFSEASON_CONTEXTS = new Set<EditionContext>([
@@ -35,6 +37,7 @@ const OFFSEASON_CONTEXTS = new Set<EditionContext>([
   "free-agency",
   "summer-league",
   "preseason",
+  "dead-period",
 ]);
 
 /** UTC calendar mode — keep in sync with scripts/lib/season-mode.mjs */
@@ -70,6 +73,8 @@ export function seasonModeToEditionContext(mode: ClientSeasonMode): EditionConte
       return "summer-league";
     case "preseason":
       return "preseason";
+    case "dead-period":
+      return "dead-period";
     default:
       return "regular";
   }
@@ -100,6 +105,8 @@ export function offseasonPrimaryHref(date = new Date()): string {
       return "/draft";
     case "preseason":
       return "/lineups";
+    case "dead-period":
+      return "/projections";
     default:
       return "/tools";
   }
@@ -115,6 +122,8 @@ export function offseasonPrimaryCta(date = new Date()): { label: string; href: s
       return { label: "Summer League watch", href: "/draft", emoji: "☀️" };
     case "preseason":
       return { label: "Rotation battles", href: "/lineups", emoji: "🏀" };
+    case "dead-period":
+      return { label: "Season projections", href: "/projections", emoji: "📈" };
     default:
       return { label: "All tools", href: "/tools", emoji: "🛠️" };
   }
@@ -134,6 +143,8 @@ export function editionContextDeskLabel(ctx: EditionContext = activeEditionConte
       return "Summer League desk";
     case "preseason":
       return "Preseason desk";
+    case "dead-period":
+      return "Offseason desk";
     default:
       return "Regular season desk";
   }

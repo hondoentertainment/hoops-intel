@@ -243,8 +243,9 @@ reads it).
   corrected during the next regeneration. CI treats this job as
   advisory.
 - `daily-update.yml` gates execution with `scripts/check-generator-active.mjs`
-  (`generatorActive()` from `season-mode.mjs`), so postseason / draft /
-  preseason windows run while only the **`dead-period`** slice is suppressed.
+  (`generatorActive()` from `season-mode.mjs`). Every window now generates,
+  including `dead-period` — which previously froze the dashboard from
+  July 23 through August 31.
 - `public/` at the repo root is wired into `vite.config.ts` via
   `publicDir`. Files there ship verbatim to `dist/`. Do not create
   `client/public/`.

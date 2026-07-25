@@ -14,7 +14,16 @@ describe("Finals Command Mode readiness", () => {
   });
 
   it("editionContext uses a supported publishing mode", () => {
-    expect(["regular", "playoffs", "finals"]).toContain(pulseEdition.editionContext);
+    expect([
+      "regular",
+      "playoffs",
+      "finals",
+      "draft",
+      "free-agency",
+      "summer-league",
+      "preseason",
+      "dead-period",
+    ]).toContain(pulseEdition.editionContext);
   });
 
   it("isFinalsActive is boolean", () => {
