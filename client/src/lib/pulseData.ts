@@ -6,7 +6,7 @@
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"July 22, 2026",edition:"Vol. 2026 · No. 178",subtitle:"Fox Standoff Enters Critical Phase · OKC Playmaker Hunt Accelerates · Summer League Roster Decisions Crystallizing",editionContext:"regular"};
+export const pulseEdition = {date:"July 22, 2026",edition:"Vol. 2026 · No. 178",subtitle:"Fox Standoff Enters Critical Phase · OKC Playmaker Hunt Accelerates · Summer League Roster Decisions Crystallizing",editionContext:"summer-league"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE DAY

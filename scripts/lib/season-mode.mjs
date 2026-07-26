@@ -47,13 +47,53 @@ export function seasonMode(date = new Date()) {
 }
 
 /**
+ * @typedef {"regular" | "playoffs" | "finals" | "draft" | "free-agency" | "summer-league" | "preseason" | "dead-period"} EditionContext
+ */
+
+/**
+ * Edition context written to pulseEdition.editionContext.
+ *
+ * Single source of truth for the calendar → context mapping. The client
+ * (client/src/lib/deskMode.ts) keys its desk labels, CTAs, and the
+ * OffseasonDeskStrip off this value, so collapsing offseason windows to
+ * "regular" here silently disables that entire surface.
+ * @param {SeasonMode} mode
+ * @returns {EditionContext}
+ */
+export function editionContextForMode(mode) {
+  return mode === "regular-season" ? "regular" : mode;
+}
+
+/** Mirrors editionContextDeskLabel in client/src/lib/deskMode.ts. */
+const DESK_LABELS = Object.freeze({
+  finals: "NBA Finals desk",
+  playoffs: "Playoffs desk",
+  draft: "Draft desk",
+  "free-agency": "Free agency desk",
+  "summer-league": "Summer League desk",
+  preseason: "Preseason desk",
+  "dead-period": "Offseason desk",
+});
+
+/**
+ * @param {EditionContext} ctx
+ * @returns {string}
+ */
+export function deskLabelForContext(ctx) {
+  return DESK_LABELS[ctx] ?? "Regular season desk";
+}
+
+/**
  * Can daily edition generation run meaningful content today?
- * The dead-period (late July through August) is the only true gap.
+ *
+ * Every window now has a season-appropriate prompt branch in
+ * generate-edition.mjs, including dead-period — which otherwise froze the
+ * dashboard from July 23 through August 31.
  * @param {Date} [date]
  * @returns {boolean}
  */
-export function generatorActive(date = new Date()) {
-  return seasonMode(date) !== "dead-period";
+export function generatorActive(_date = new Date()) {
+  return true;
 }
 
 /**
@@ -78,6 +118,8 @@ export function primaryGenerator(date = new Date()) {
       return "generate-edition.mjs";
     case "dead-period":
     default:
-      return "generate-history.mjs"; // flashback mode for otherwise dead days
+      // generate-history.mjs writes historyData.ts from an already-current
+      // pulseData.ts — it is a secondary section, not an edition producer.
+      return "generate-edition.mjs";
   }
 }

@@ -23,7 +23,7 @@ Computed at runtime from **`playoffSeries`**:
 
 ## 3. Other postseason surfaces
 
-- **Pulse**: `pulseEdition.editionContext` (`regular` | `playoffs` | `finals`) must agree with nonempty **`playoffSeries`** when postseason is underway — enforced by **`npm run test:drift`** (`validate-playoff-pulse-drift.mjs`). CI runs it in `.github/workflows/tests.yml`.
+- **Pulse**: `pulseEdition.editionContext` (season-derived — see `editionContextForMode()` in `scripts/lib/season-mode.mjs`) must agree with nonempty **`playoffSeries`** when postseason is underway — enforced by **`npm run test:drift`** (`validate-playoff-pulse-drift.mjs`). CI runs it in `.github/workflows/tests.yml`.
 - **Ticker**: **`playoffTickerDerivedItems`** — built from synced series + **`nextPendingGame`**.
 - **Pushes**: [`.github/workflows/playoff-push.yml`](../.github/workflows/playoff-push.yml) runs **`fetch-playoff-series.mjs`** + **`check-playoff-series.mjs`** every ~30 minutes; uses JSON snapshot only (**does not** commit **`playoffData.ts`**).
 

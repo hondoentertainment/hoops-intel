@@ -16,6 +16,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { deskLabelForContext } from './lib/season-mode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -197,10 +198,7 @@ function buildSixtySecondBullets(data) {
 }
 
 function editionContextLabel(pulseEdition) {
-  const ctx = pulseEdition?.editionContext ?? 'regular';
-  if (ctx === 'finals') return 'NBA Finals desk';
-  if (ctx === 'playoffs') return 'Playoffs desk';
-  return 'Regular season desk';
+  return deskLabelForContext(pulseEdition?.editionContext ?? 'regular');
 }
 
 // ── HTML email template ───────────────────────────────────────────────────

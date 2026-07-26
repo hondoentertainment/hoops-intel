@@ -26,7 +26,16 @@ export function isEspnSyncedTeamAbbrev(abbr) {
   return TEAM_ABBR_SET.has(canonicalNbaAbbrev(abbr));
 }
 
-export const VALID_EDITION_CONTEXTS = new Set(["regular", "playoffs", "finals"]);
+export const VALID_EDITION_CONTEXTS = new Set([
+  "regular",
+  "playoffs",
+  "finals",
+  "draft",
+  "free-agency",
+  "summer-league",
+  "preseason",
+  "dead-period",
+]);
 
 export const VALID_FANTASY_ACTIONS = new Set(["add", "drop", "hold", "stream"]);
 

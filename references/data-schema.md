@@ -11,7 +11,18 @@ export interface PulseEdition {
   date: string;      // Display date: "March 3, 2026"
   edition: string;   // "Vol. 2026 · No. 62"
   subtitle: string;  // 2–3 story bullets joined by " · "
-  editionContext: "regular" | "playoffs" | "finals"; // set from calendar + ESPN snapshot
+  // Set from the season calendar + ESPN snapshot via editionContextForMode()
+  // in scripts/lib/season-mode.mjs. Drives desk labelling on the site, so
+  // offseason windows must NOT be collapsed to "regular".
+  editionContext:
+    | "regular"
+    | "playoffs"
+    | "finals"
+    | "draft"
+    | "free-agency"
+    | "summer-league"
+    | "preseason"
+    | "dead-period";
 }
 ```
 

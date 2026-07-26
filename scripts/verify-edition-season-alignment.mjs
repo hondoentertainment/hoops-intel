@@ -23,6 +23,9 @@ const required = [
   ["summer-league copy block", "## SUMMER LEAGUE WINDOW (season-mode)"],
   ["preseason branch", 'cal === "preseason"'],
   ["preseason copy block", "## PRESEASON WINDOW (season-mode)"],
+  ["dead-period branch", 'cal === "dead-period"'],
+  ["dead-period copy block", "## DEAD PERIOD WINDOW (season-mode)"],
+  ["season-derived edition context", "editionContextForMode(cal)"],
   ["editionContext in Claude prompt", "pulseEdition.editionContext"],
 ];
 

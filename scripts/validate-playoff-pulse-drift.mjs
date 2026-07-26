@@ -7,7 +7,8 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { seasonMode } from "./lib/season-mode.mjs";
+import { seasonMode, editionContextForMode } from "./lib/season-mode.mjs";
+import { VALID_EDITION_CONTEXTS } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -54,7 +55,7 @@ try {
   const playbookRaw = readFileSync(playbookPath, "utf8");
 
   const ctx = pulseEditionContext(pulseRaw);
-  if (!ctx || !["regular", "playoffs", "finals"].includes(ctx)) {
+  if (!ctx || !VALID_EDITION_CONTEXTS.has(ctx)) {
     console.error("[drift] pulseEdition.editionContext missing or invalid in pulseData.ts");
     process.exit(1);
   }
@@ -67,8 +68,7 @@ try {
   }
 
   const calendarMode = seasonMode(parsedEditionDate);
-  const expectedContext =
-    calendarMode === "finals" ? "finals" : calendarMode === "playoffs" ? "playoffs" : "regular";
+  const expectedContext = editionContextForMode(calendarMode);
   if (ctx !== expectedContext) {
     console.error(
       `[drift] pulseData.ts has editionContext "${ctx}" for ${editionDate} (${calendarMode}); expected "${expectedContext}".`,
