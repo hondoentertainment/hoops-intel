@@ -1,12 +1,12 @@
 // NBA Pulse — Daily Edition Data
-// Last updated: July 22, 2026 (Vol. 2026 · No. 178)
+// Last updated: July 27, 2026 (Vol. 2026 · No. 179)
 // Live at: https://hoopsintel.net
 
 // ═══════════════════════════════════════════════════════════
 // EDITION METADATA
 // ═══════════════════════════════════════════════════════════
 
-export const pulseEdition = {date:"July 22, 2026",edition:"Vol. 2026 · No. 178",subtitle:"Fox Standoff Enters Critical Phase · OKC Playmaker Hunt Accelerates · Summer League Roster Decisions Crystallizing",editionContext:"summer-league"};
+export const pulseEdition = {date:"July 27, 2026",edition:"Vol. 2026 · No. 179",subtitle:"Fox Standoff Enters Critical Phase · OKC Playmaker Hunt Accelerates · Summer League Roster Decisions Crystallizing",editionContext:"dead-period"};
 
 // ═══════════════════════════════════════════════════════════
 // NARRATIVE OF THE DAY
@@ -30,7 +30,7 @@ export const tickerItems = [
   {text:"TONIGHT: No NBA games scheduled — offseason/Summer League window; Las Vegas SL games on ESPN2 and NBA TV",type:"score"}
 ];
 
-// GAME RESULTS — No Games (July 22, 2026)
+// GAME RESULTS — No Games (July 27, 2026)
 export const gameResults = [];
 
 // ═══════════════════════════════════════════════════════════
@@ -88,7 +88,7 @@ export const injuryUpdates = [
 ];
 
 // ═══════════════════════════════════════════════════════════
-// GAME PREVIEWS — No Games Tonight (July 22, 2026)
+// GAME PREVIEWS — No Games Tonight (July 27, 2026)
 // ═══════════════════════════════════════════════════════════
 
 export const gamePreviews = [];
@@ -157,16 +157,16 @@ export const westStandings = [
 export const standings = [...eastStandings, ...westStandings];
 
 // ═══════════════════════════════════════════════════════════
-// THIS DAY IN NBA HISTORY — July 22
+// THIS DAY IN NBA HISTORY — July 27
 // ═══════════════════════════════════════════════════════════
 
-export const historyFact = {year:1998,fact:"On July 22, 1998, the NBA and the NBA Players Association failed to reach a new collective bargaining agreement, triggering an owner lockout that would ultimately shorten the 1998-99 season to just 50 games. The work stoppage lasted 191 days and became one of the most disruptive labor disputes in league history.",players:["David Stern","Patrick Ewing"]};
+export const historyFact = {year:1993,fact:"On July 27, 1993, Boston Celtics captain and two-time All-Star Reggie Lewis died after collapsing during an offseason practice. The Celtics later retired his No. 35 jersey.",players:["Reggie Lewis"]};
 
 // ═══════════════════════════════════════════════════════════
 // HOOPS IQ TRIVIA (Daily)
 // ═══════════════════════════════════════════════════════════
 
-export const triviaQuestion = {id:"2026-07-22",question:"The 1998-99 NBA season was shortened to how many games per team due to the owner lockout?",options:["42 games","50 games","58 games","66 games"],correctIndex:1,explanation:"The 1998 NBA lockout, which began on July 1, 1998, reduced the 1998-99 regular season to 50 games per team after a deal was reached in January 1999.",difficulty:"medium"};
+export const triviaQuestion = {id:"2026-07-27",question:"Which NBA team retired Reggie Lewis's No. 35 jersey?",options:["Boston Celtics","Charlotte Hornets","Detroit Pistons","Philadelphia 76ers"],correctIndex:0,explanation:"The Boston Celtics retired Reggie Lewis's No. 35 in 1995, honoring their former captain and two-time All-Star.",difficulty:"medium"};
 
 // ═══════════════════════════════════════════════════════════
 // HOOPS IQ QUIZ
