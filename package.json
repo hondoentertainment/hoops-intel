@@ -51,8 +51,8 @@
     "node": "24.x"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.112.5",
-    "@atproto/api": "^0.20.31",
+    "@anthropic-ai/sdk": "^0.115.0",
+    "@atproto/api": "^0.20.34",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "stripe": "^22.3.2",
@@ -60,9 +60,9 @@
     "wouter": "^3.10.0"
   },
   "devDependencies": {
-    "@emnapi/core": "1.11.2",
-    "@emnapi/runtime": "1.11.2",
-    "@playwright/test": "^1.61.1",
+    "@emnapi/core": "1.11.3",
+    "@emnapi/runtime": "1.11.3",
+    "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
@@ -70,11 +70,11 @@
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^6.0.3",
+    "@vitejs/plugin-react": "^6.0.4",
     "autoprefixer": "^10.5.4",
     "esbuild": "^0.28.1",
     "jsdom": "^29.1.1",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.23",
     "tailwindcss": "^4.3.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.5",
