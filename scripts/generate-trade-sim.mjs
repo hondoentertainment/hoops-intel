@@ -10,10 +10,17 @@ import Anthropic from "@anthropic-ai/sdk";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { validateOutput } from "./lib/validate-output.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+const OUT_PATH = join(ROOT, "client", "src", "lib", "tradeSimData.ts");
+
+// Trade sim payloads are large (30+ players + 6 proposals). 8K max_tokens
+// truncates mid-string under weekly load; 16K + one retry covers that.
+const MAX_TOKENS = 16384;
+const MAX_ATTEMPTS = 2;
 
 // ── CLI args ────────────────────────────────────────────────
 
@@ -146,6 +153,7 @@ Rules:
 - Include at least 30 players in the players array
 - Include exactly 6 featured trade proposals
 - Include exactly 6 hottest names
+- Keep aiAnalysis to 2 sentences max so the full module fits without truncation
 - salaryDiff must reflect realistic NBA salary matching rules
 - Impact scores must be between -10 and +10
 - winProjectionChange must be formatted like "+3.5 wins" or "-2.0 wins"
@@ -153,15 +161,41 @@ Rules:
 - Include a mix of verdicts: at least 2 approve, at least 1 reject, at least 1 conditional
 - Players in featuredTrades sending/receiving arrays should come from the players array where possible
 - Use 3-letter NBA team abbreviations: ATL, BOS, BKN, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS
-- The TypeScript must be syntactically valid and importable`;
+- The TypeScript must be syntactically valid and importable
+- Emit the COMPLETE file ending with a closing }; — never stop mid-string`;
 }
 
-// ── Write output ────────────────────────────────────────────
+function stripFences(text) {
+  return text
+    .replace(/^```(?:typescript|ts)?\n?/m, "")
+    .replace(/\n?```$/m, "")
+    .trim();
+}
 
-function writeOutput(content) {
-  const outPath = join(ROOT, "client", "src", "lib", "tradeSimData.ts");
-  writeFileSync(outPath, content, "utf8");
-  return outPath;
+async function generateOnce(client, prompt, attempt) {
+  console.log(`🤖 Calling Claude (claude-sonnet-4-6, max_tokens=${MAX_TOKENS}, attempt ${attempt}/${MAX_ATTEMPTS})...`);
+  const message = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: MAX_TOKENS,
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+  });
+
+  const block = message.content.find((b) => b.type === "text");
+  if (!block) throw new Error("No text block in Claude response");
+
+  if (message.stop_reason === "max_tokens") {
+    console.warn("⚠ Claude hit max_tokens — output may be truncated");
+  }
+
+  return {
+    text: stripFences(block.text),
+    stopReason: message.stop_reason,
+  };
 }
 
 // ── Main ────────────────────────────────────────────────────
@@ -181,52 +215,46 @@ async function main() {
 
   // Init Anthropic client
   const client = new Anthropic();
-
-  console.log("🤖 Calling Claude (claude-sonnet-4-6)...");
   const prompt = buildPrompt(weekLabel, pulseContext);
 
-  let responseText;
-  try {
-    const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 8192,
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
+  let lastError = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let responseText;
+    try {
+      const result = await generateOnce(client, prompt, attempt);
+      responseText = result.text;
+    } catch (err) {
+      console.error("❌ Claude API error:", err.message);
+      process.exit(1);
+    }
 
-    const block = message.content.find((b) => b.type === "text");
-    if (!block) throw new Error("No text block in Claude response");
-    responseText = block.text;
-  } catch (err) {
-    console.error("❌ Claude API error:", err.message);
-    process.exit(1);
+    try {
+      writeFileSync(OUT_PATH, responseText, "utf8");
+    } catch (err) {
+      console.error("❌ Failed to write output:", err.message);
+      process.exit(1);
+    }
+
+    const check = await validateOutput(OUT_PATH);
+    if (check.ok) {
+      console.log(`✅ Trade Simulator data written to: ${OUT_PATH}`);
+      console.log("");
+      console.log("Next steps:");
+      console.log("  1. Review client/src/lib/tradeSimData.ts for accuracy");
+      console.log("  2. Verify the TradeSimulator page renders correctly");
+      console.log("  3. Commit and deploy");
+      return;
+    }
+
+    lastError = check.reason;
+    console.error(`  [Trade Simulator] parse check failed: ${check.reason}`);
+    if (attempt < MAX_ATTEMPTS) {
+      console.warn("  Retrying generation once…");
+    }
   }
 
-  // Strip any accidental markdown fences
-  responseText = responseText
-    .replace(/^```(?:typescript|ts)?\n?/m, "")
-    .replace(/\n?```$/m, "")
-    .trim();
-
-  // Write to file
-  let outPath;
-  try {
-    outPath = writeOutput(responseText);
-  } catch (err) {
-    console.error("❌ Failed to write output:", err.message);
-    process.exit(1);
-  }
-
-  console.log(`✅ Trade Simulator data written to: ${outPath}`);
-  console.log("");
-  console.log("Next steps:");
-  console.log("  1. Review client/src/lib/tradeSimData.ts for accuracy");
-  console.log("  2. Verify the TradeSimulator page renders correctly");
-  console.log("  3. Commit and deploy");
+  console.error(`❌ Trade Simulator generation failed after ${MAX_ATTEMPTS} attempts: ${lastError}`);
+  process.exit(1);
 }
 
 main().catch((err) => {

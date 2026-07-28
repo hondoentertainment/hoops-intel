@@ -13,6 +13,13 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
+    # TypeScript 7 is a Go-native compiler that drops the JS Compiler API
+    # (ts.sys / createProgram). Vercel serverless compilation still needs
+    # that API and fails with: Cannot read properties of undefined
+    # (reading 'readFile'). Stay on 6.x until Vercel supports TS 7.
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       # All npm dependency bumps (prod + dev) land in one weekly PR.
       # A single PR means one `npm install` resolves the whole lockfile
