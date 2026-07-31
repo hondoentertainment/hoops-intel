@@ -379,7 +379,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "morez johnson": 4873153,
   "moritz wagner": 3150844,
   "moses moody": 4432171,
-  "mouhamadou gueye": 4592933,
   "mouhamed gueye": 4712863,
   "moussa cisse": 4701208,
   "moussa diabate": 4433249,
