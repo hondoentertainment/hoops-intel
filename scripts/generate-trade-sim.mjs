@@ -18,9 +18,11 @@ const ROOT = join(__dirname, "..");
 const OUT_PATH = join(ROOT, "client", "src", "lib", "tradeSimData.ts");
 
 // Trade sim payloads are large (30+ players + 6 proposals). 8K max_tokens
-// truncates mid-string under weekly load; 16K + one retry covers that.
-const MAX_TOKENS = 16384;
-const MAX_ATTEMPTS = 2;
+// truncated mid-string under weekly load (#273). A retry at the same ceiling
+// is just a re-roll of the same constraint, so the second attempt gets more
+// room rather than the same budget twice.
+const TOKEN_LADDER = [16384, 24576];
+const MAX_ATTEMPTS = TOKEN_LADDER.length;
 
 // ── CLI args ────────────────────────────────────────────────
 
@@ -173,10 +175,11 @@ function stripFences(text) {
 }
 
 async function generateOnce(client, prompt, attempt) {
-  console.log(`🤖 Calling Claude (claude-sonnet-4-6, max_tokens=${MAX_TOKENS}, attempt ${attempt}/${MAX_ATTEMPTS})...`);
+  const maxTokens = TOKEN_LADDER[attempt - 1] ?? TOKEN_LADDER[TOKEN_LADDER.length - 1];
+  console.log(`🤖 Calling Claude (claude-sonnet-4-6, max_tokens=${maxTokens}, attempt ${attempt}/${MAX_ATTEMPTS})...`);
   const message = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: MAX_TOKENS,
+    max_tokens: maxTokens,
     messages: [
       {
         role: "user",

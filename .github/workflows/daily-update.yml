@@ -158,37 +158,23 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const open = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'generation-failure',
-              per_page: 100,
+            await alerts.closeResolvedIssues(github, context, core, {
+              label: 'generation-failure',
+              titlePrefix: 'Daily generation failed',
+              note: `Daily generation succeeded in ${runUrl}. Auto-closing this stale failure report.`,
             });
-            for (const issue of open.data.filter((i) => i.title.startsWith('Daily generation failed'))) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: `Daily generation succeeded in ${runUrl}. Auto-closing this stale failure report.`,
-              });
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                state: 'closed',
-                state_reason: 'completed',
-              });
-            }
 
       - name: Create issue on failure
         if: failure()
         uses: actions/github-script@v9
+        env:
+          ALERT_ASSIGNEE: ${{ vars.ALERT_ASSIGNEE || github.repository_owner }}
         with:
           script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
             const today = new Date().toISOString().slice(0, 10);
-            const title = `Daily generation failed — ${today}`;
             const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -203,21 +189,8 @@ jobs:
             const failureSummary = failedSteps.length
               ? failedSteps.join('\n')
               : '- Failed step unavailable; inspect the linked run logs.';
-            // Check if issue already exists for today
-            const existing = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'generation-failure',
-              per_page: 5,
+            await alerts.openFailureIssue(github, context, core, {
+              label: 'generation-failure',
+              title: `Daily generation failed — ${today}`,
+              body: `## Daily Generation Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n### Failed step\n${failureSummary}\n\nThe generator, external APIs, and pre-push validation are separate steps. Use the failed step above to identify the failing stage before rotating credentials or retrying external services.\n\nThis issue was auto-created by the daily-update workflow.`,
             });
-            const alreadyExists = existing.data.some(i => i.title === title);
-            if (!alreadyExists) {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body: `## Daily Generation Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n### Failed step\n${failureSummary}\n\nThe generator, external APIs, and pre-push validation are separate steps. Use the failed step above to identify the failing stage before rotating credentials or retrying external services.\n\nThis issue was auto-created by the daily-update workflow.`,
-                labels: ['generation-failure', 'automated'],
-              });
-            }
