@@ -38,6 +38,17 @@ buried five real deploy failures dating back to June.
 | Assignee | Set repo variable **`ALERT_ASSIGNEE`** to a collaborator login | **Manual** — defaults to `github.repository_owner`, which is silently ignored if that's an org |
 | Slack | Set `SLACK_DATA_QUALITY_WEBHOOK` for out-of-band alerts | **Manual** — smoke failures post there today only if set |
 
+### Dependencies
+
+The npm bump was deferred pending a green Vercel preview — now satisfied.
+
+| Step | Action | Status |
+|------|--------|--------|
+| Dependabot npm group | PR **#279** (9 updates) | **Verified, awaiting merge** — keeps `typescript@~6.0.3`; full suite, `vite build`, `dist/embed.js` and `typecheck:api` all pass against it |
+| jsdom 29 → 30 | Major bump of the vitest environment, bundled in #279 | **Verified** — 223/223 pass |
+
+Verified locally on Node 22; CI and Vercel run Node 24.
+
 ### P0 — Ops (manual — still blocking live Pro/push)
 
 `/api/ops-readiness` must flip to ready. Until secrets land, code paths soft-skip.
