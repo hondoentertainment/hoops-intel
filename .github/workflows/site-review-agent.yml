@@ -103,14 +103,14 @@ jobs:
               repo: context.repo.repo,
               labels: 'site-review',
               state: 'open',
-              per_page: 30,
+              per_page: 100,
             });
             const dup = openIssues.data.find((i) => i.title.includes(today));
             if (dup) {
               core.notice('Issue already exists for ' + today + ' — skip');
               return;
             }
-            await github.rest.issues.create({
+            const created = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title,
@@ -118,3 +118,29 @@ jobs:
                 `\n\n---\n**Workflow:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
               labels: ['site-review', 'automated'],
             });
+            // A site review is a daily snapshot, not a tracked defect. Leaving
+            // each one open accumulated 50+ issues that buried the
+            // deployment-failure and generation-failure alerts sharing the
+            // list. Supersede yesterday's once today's is filed; anything
+            // worth keeping gets relabelled by a human, which exempts it.
+            const superseded = openIssues.data.filter(
+              (i) => i.number !== created.data.number &&
+                i.title.startsWith('Site review —') &&
+                i.labels.some((l) => (l.name || l) === 'automated'),
+            );
+            for (const issue of superseded) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Superseded by #${created.data.number} (${today}).`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+            }
+            if (superseded.length) core.notice(`Closed ${superseded.length} superseded site review(s)`);

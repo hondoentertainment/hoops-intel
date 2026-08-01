@@ -16,9 +16,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       issues: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Fetch production ops-readiness
         id: readiness
         env:
@@ -44,28 +48,43 @@ jobs:
             echo "Production ops-readiness OK"
           fi
 
-      - name: Open issue when production env gaps remain
-        if: steps.readiness.outputs.has_gaps == 'true'
+      - name: Close ops-readiness issues once gaps clear
+        if: steps.readiness.outputs.has_gaps == 'false'
         uses: actions/github-script@v9
         with:
           script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await alerts.closeResolvedIssues(github, context, core, {
+              label: 'ops-readiness',
+              titlePrefix: 'Ops readiness gaps',
+              note: `Production ops-readiness reports no gaps in ${runUrl}. Auto-closing.`,
+            });
+
+      - name: Open issue when production env gaps remain
+        if: steps.readiness.outputs.has_gaps == 'true'
+        uses: actions/github-script@v9
+        env:
+          ALERT_ASSIGNEE: ${{ vars.ALERT_ASSIGNEE || github.repository_owner }}
+        with:
+          script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
             const today = new Date().toISOString().slice(0, 10);
-            const title = `Ops readiness gaps — ${today}`;
-            const existing = await github.rest.issues.listForRepo({
+            const open = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open',
               labels: 'ops-readiness',
-              per_page: 10,
+              per_page: 100,
             });
-            if (existing.data.some((i) => i.title.startsWith('Ops readiness gaps'))) {
+            // Gaps persist until secrets land, so one open tracker is enough —
+            // match on the prefix rather than today's exact title.
+            if (open.data.some((i) => i.title.startsWith('Ops readiness gaps'))) {
               core.notice('Ops readiness issue already open — skip');
               return;
             }
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
+            await alerts.openFailureIssue(github, context, core, {
+              label: 'ops-readiness',
+              title: `Ops readiness gaps — ${today}`,
               body: `## Production env gaps\n\n**Date:** ${today}\n**Check:** https://hoopsintel.net/api/ops-readiness\n**Workflow:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nRun \`vercel env pull\` and \`npm run ops:preflight:strict\` locally. See \`PRODUCTION-OPS.md\` for the full checklist.`,
-              labels: ['ops-readiness', 'automated'],
             });

@@ -31,35 +31,39 @@ jobs:
         run: |
           set +e
           node scripts/health-check.mjs 2>&1 | tee health-report.json
-          exit_code=$?
+          # PIPESTATUS[0], not $? — after a pipeline $? is tee's status, which
+          # is always 0, so the stale-content alert could never fire.
+          exit_code=${PIPESTATUS[0]}
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
           exit 0
+
+      - name: Close resolved content-stale issues
+        if: steps.health.outputs.exit_code == '0'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await alerts.closeResolvedIssues(github, context, core, {
+              label: 'content-stale',
+              titlePrefix: 'Content stale',
+              note: `Health check passed in ${runUrl}. Content is fresh again — auto-closing this stale report.`,
+            });
 
       - name: Create issue if content is stale
         if: steps.health.outputs.exit_code == '1'
         uses: actions/github-script@v9
+        env:
+          ALERT_ASSIGNEE: ${{ vars.ALERT_ASSIGNEE || github.repository_owner }}
         with:
           script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
             const today = new Date().toISOString().slice(0, 10);
-            const title = `Content stale — health check failed — ${today}`;
-            // Check if issue already exists for today
-            const existing = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'content-stale',
-              per_page: 5,
+            await alerts.openFailureIssue(github, context, core, {
+              label: 'content-stale',
+              title: `Content stale — health check failed — ${today}`,
+              body: `## Health Check Failed\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nOne or more critical checks failed. The daily content may be stale (>36 hours old) or missing required data.\n\nCheck the workflow logs for the full health report.\n\nThis issue was auto-created by the health-check workflow.`,
             });
-            const alreadyExists = existing.data.some(i => i.title === title);
-            if (!alreadyExists) {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body: `## Health Check Failed\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nOne or more critical checks failed. The daily content may be stale (>36 hours old) or missing required data.\n\nCheck the workflow logs for the full health report.\n\nThis issue was auto-created by the health-check workflow.`,
-                labels: ['content-stale', 'automated'],
-              });
-            }
 
       - name: Fail workflow if critical issues found
         if: steps.health.outputs.exit_code == '1'

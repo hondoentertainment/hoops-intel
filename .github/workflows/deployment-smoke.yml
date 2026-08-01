@@ -88,33 +88,36 @@ jobs:
         env:
           SMOKE_BASE_URL: ${{ inputs.base_url || 'https://hoopsintel.net' }}
 
-      - name: Create issue on smoke failure
-        if: failure()
+      - name: Close resolved deployment-failure issues
+        if: success()
         uses: actions/github-script@v9
         with:
           script: |
-            const today = new Date().toISOString().slice(0, 10);
-            const title = `Production smoke failed — ${today}`;
-            const existing = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'deployment-failure',
-              per_page: 5,
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await alerts.closeResolvedIssues(github, context, core, {
+              label: 'deployment-failure',
+              titlePrefix: 'Production smoke failed',
+              note: `Production smoke passed in ${runUrl}. Auto-closing this stale failure report.`,
             });
-            const alreadyExists = existing.data.some(i => i.title === title);
-            if (!alreadyExists) {
-              const upstream = context.payload.workflow_run
-                ? `\n**Upstream workflow:** ${context.payload.workflow_run.name} (${context.payload.workflow_run.html_url})`
-                : '';
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body: `## Production Smoke Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}${upstream}\n\nDeployment smoke checks failed after a content push or scheduled verification. Review logs for HTTP errors, missing routes, or API handler failures.\n\nThis issue was auto-created by the deployment-smoke workflow.`,
-                labels: ['deployment-failure', 'automated'],
-              });
-            }
+
+      - name: Create issue on smoke failure
+        if: failure()
+        uses: actions/github-script@v9
+        env:
+          ALERT_ASSIGNEE: ${{ vars.ALERT_ASSIGNEE || github.repository_owner }}
+        with:
+          script: |
+            const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
+            const today = new Date().toISOString().slice(0, 10);
+            const upstream = context.payload.workflow_run
+              ? `\n**Upstream workflow:** ${context.payload.workflow_run.name} (${context.payload.workflow_run.html_url})`
+              : '';
+            await alerts.openFailureIssue(github, context, core, {
+              label: 'deployment-failure',
+              title: `Production smoke failed — ${today}`,
+              body: `## Production Smoke Failure\n\n**Date:** ${today}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}${upstream}\n\nDeployment smoke checks failed after a content push or scheduled verification. Review logs for HTTP errors, missing routes, or API handler failures.\n\nThis issue was auto-created by the deployment-smoke workflow.`,
+            });
 
       - name: Notify Slack webhook (optional)
         if: failure()

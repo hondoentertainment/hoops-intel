@@ -49,7 +49,8 @@ const WEEKLY_SCRIPTS = [
   { name: "Projections",     script: "generate-projections.mjs",   output: "client/src/lib/projectionsData.ts" },
   { name: "Draft Intel",     script: "generate-draft.mjs",         output: "client/src/lib/draftData.ts" },
   { name: "Clutch Ratings",  script: "generate-clutch.mjs",        output: "client/src/lib/clutchData.ts" },
-  // Extra headroom: generator retries once at 16K tokens when output truncates.
+  // Extra headroom: on truncation the generator retries at a raised token
+  // ceiling (16K then 24K), so it needs room for two full-length calls.
   { name: "Trade Simulator", script: "generate-trade-sim.mjs",     output: "client/src/lib/tradeSimData.ts", timeoutMs: 480_000 },
   { name: "Community Pulse", script: "generate-community-pulse.mjs", output: "client/src/lib/communityPulseData.ts" },
 ];
