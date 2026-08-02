@@ -254,6 +254,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "jd davison": 4576085,
   "jerami grant": 2991070,
   "jeremiah fears": 5144091,
+  "jeremy sochan": 4610139,
   "jericho sims": 4277922,
   "jett howard": 5105806,
   "jevon carter": 3133635,
