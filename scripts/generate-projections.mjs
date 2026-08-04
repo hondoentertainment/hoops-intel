@@ -200,7 +200,9 @@ async function main() {
   try {
     const message = await client.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 16000,
+      // 16000 truncated mid-file on 2026-08-03 (#289) and sank the whole
+      // weekly run. Same headroom the trade-sim retry uses.
+      max_tokens: 24576,
       messages: [
         {
           role: "user",
