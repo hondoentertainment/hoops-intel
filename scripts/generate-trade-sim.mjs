@@ -177,16 +177,20 @@ function stripFences(text) {
 async function generateOnce(client, prompt, attempt) {
   const maxTokens = TOKEN_LADDER[attempt - 1] ?? TOKEN_LADDER[TOKEN_LADDER.length - 1];
   console.log(`🤖 Calling Claude (claude-sonnet-4-6, max_tokens=${maxTokens}, attempt ${attempt}/${MAX_ATTEMPTS})...`);
-  const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: maxTokens,
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-  });
+  // The 24576 retry rung trips the SDK's 10-minute non-streaming guard
+  // (#293), so stream and take the final message.
+  const message = await client.messages
+    .stream({
+      model: "claude-sonnet-4-6",
+      max_tokens: maxTokens,
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    })
+    .finalMessage();
 
   const block = message.content.find((b) => b.type === "text");
   if (!block) throw new Error("No text block in Claude response");

@@ -198,18 +198,22 @@ async function main() {
 
   let responseText;
   try {
-    const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
-      // 16000 truncated mid-file on 2026-08-03 (#289) and sank the whole
-      // weekly run. Same headroom the trade-sim retry uses.
-      max_tokens: 24576,
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
+    // 16000 truncated mid-file on 2026-08-03 (#289) and sank the whole
+    // weekly run. max_tokens above ~16K trips the SDK's 10-minute
+    // non-streaming guard and rejects before sending (#293), so stream
+    // and take the final message.
+    const message = await client.messages
+      .stream({
+        model: "claude-sonnet-4-6",
+        max_tokens: 24576,
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      })
+      .finalMessage();
 
     const block = message.content.find((b) => b.type === "text");
     if (!block) throw new Error("No text block in Claude response");
