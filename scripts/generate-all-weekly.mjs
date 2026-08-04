@@ -117,7 +117,25 @@ async function main() {
   console.log(`   Total scripts: ${WEEKLY_SCRIPTS.length}`);
   console.log(`   Running all scripts in parallel...\n`);
 
-  const results = await Promise.all(WEEKLY_SCRIPTS.map(runScript));
+  let results = await Promise.all(WEEKLY_SCRIPTS.map(runScript));
+
+  // One failed section discards the whole run (exit 2 refuses to commit), so
+  // a single stochastic truncation costs a full week of content — that is
+  // what sank 7 passing sections on 2026-07-27 (#273, Trade Simulator) and
+  // again on 2026-08-03 (#289, Projections). Generation is a re-roll:
+  // re-run just the failed scripts once before giving up on the week.
+  const firstWaveFailures = results.filter((r) => r.status === "failed");
+  if (firstWaveFailures.length > 0 && firstWaveFailures.length < results.length) {
+    const names = firstWaveFailures.map((r) => r.name).join(", ");
+    console.log(`\nRetrying ${firstWaveFailures.length} failed script(s): ${names}\n`);
+    const retryScripts = WEEKLY_SCRIPTS.filter((s) =>
+      firstWaveFailures.some((f) => f.name === s.name)
+    );
+    const retried = await Promise.all(retryScripts.map(runScript));
+    results = results.map((r) =>
+      r.status === "failed" ? (retried.find((n) => n.name === r.name) ?? r) : r
+    );
+  }
 
   const passed = results.filter((r) => r.status === "success").length;
   const failed = results.filter((r) => r.status === "failed").length;
