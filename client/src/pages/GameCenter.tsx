@@ -9,6 +9,8 @@ import { playoffSeriesForMatchup, resolveSeriesIntel } from "../lib/playoffData"
 import { nextPendingGame } from "../lib/playoffAnalytics";
 import { getTeamColor } from "../lib/teamColors";
 import TeamLogo from "../components/TeamLogo";
+import PlayByPlayFeed from "../components/PlayByPlayFeed";
+import BoxScoreCard from "../components/BoxScoreCard";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { useLiveScores } from "../lib/useLiveScores";
@@ -247,6 +249,14 @@ export default function GameCenter() {
               <div className="section-label mb-2">WHY IT MATTERS</div>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{game.whyItMatters}</p>
             </div>
+
+            {game.espnGameId && (
+              <div className="glass-card rounded-lg p-5 space-y-4">
+                <div className="section-label">LIVE FEED</div>
+                <PlayByPlayFeed espnGameId={game.espnGameId} awayTeam={game.away.abbr} homeTeam={game.home.abbr} />
+                <BoxScoreCard espnGameId={game.espnGameId} awayTeam={game.away.abbr} homeTeam={game.home.abbr} />
+              </div>
+            )}
 
             {(game.topPerformer || game.topLine || game.recap) && (
               <div className="glass-card rounded-lg p-5">

@@ -53,3 +53,15 @@ test("a lazy tool route loads and shows team marks", async ({ page }) => {
   const marks = page.locator('img[src*="a.espncdn.com"], span[role="img"]');
   await expect(marks.first()).toBeVisible({ timeout: 10_000 });
 });
+
+test("Game Center renders without uncaught errors, on a match or a not-found id", async ({ page }) => {
+  // No static gameId is guaranteed to exist on every slate (e.g. the offseason
+  // dead period), so this exercises both the found and not-found render paths —
+  // either way it must not throw, and it proves the new Live Feed / box score
+  // imports don't break the route bundle.
+  const errors = collectPageErrors(page);
+  await page.goto("/game/LAL-BOS-20260101", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("h1").first()).toBeVisible({ timeout: 10_000 });
+  await page.waitForTimeout(500);
+  expect(errors, `uncaught page errors:\n${errors.join("\n")}`).toHaveLength(0);
+});
