@@ -5,6 +5,12 @@ on:
     # Monday 6:00 AM PST (UTC-8) = 14:00 UTC
     - cron: "0 14 * * 1"
   workflow_dispatch: # allow manual trigger from GitHub Actions UI
+  # Out-of-band regeneration without Actions UI access: bump the marker file
+  # on main (e.g. via a merged PR) and the workflow fires. The generated
+  # content commits never touch the marker, so runs don't self-trigger.
+  push:
+    branches: [main]
+    paths: [".github/weekly-regen-request"]
 
 concurrency:
   group: weekly-edition
