@@ -29,6 +29,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "amari williams": 4702745,
   "amen thompson": 4684740,
   "andre drummond": 6585,
+  "andre jackson": 4432190,
   "andrew nembhard": 4395712,
   "andrew wiggins": 3059319,
   "anfernee simons": 4351851,
