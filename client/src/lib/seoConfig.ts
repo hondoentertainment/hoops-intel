@@ -76,6 +76,11 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description: "Test your NBA knowledge with daily Hoops IQ trivia challenges.",
     canonicalPath: "/trivia",
   },
+  "/82-0": {
+    title: "The 82-0 Challenge | Hoops Intel",
+    description: "Spin a franchise and an era, draft a starting five, and simulate a full season. Can your lineup go 82-0?",
+    canonicalPath: "/82-0",
+  },
   "/performance": {
     title: "Season Performance Tracker | Hoops Intel",
     description: "AI-assisted season performance tracking and trend analysis for NBA players.",
@@ -219,6 +224,7 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/pick-em",
   "/trade-value",
   "/trivia",
+  "/82-0",
   "/performance",
   "/momentum",
   "/lineups",

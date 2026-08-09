@@ -102,6 +102,7 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Ask AI", href: "/ask", description: "Full-page assistant", category: "analysis" },
   { label: "Player compare", href: "/compare-players", description: "Pulse Index side-by-side", category: "analysis" },
   { label: "Pulse methodology", href: "/pulse-methodology", description: "How Pulse rankings are judged", category: "analysis" },
+  { label: "82-0 Challenge", href: "/82-0", description: "Spin eras, draft a five, chase the perfect season", category: "community" },
   { label: "Community pulse", href: "/community-pulse", description: "Community trends", category: "community" },
   { label: "Watch guide", href: "/watch-guide", description: "What to watch", category: "community" },
   { label: "Podcast companion", href: "/podcast-companion", description: "Show notes mode", category: "community" },

@@ -28,6 +28,7 @@ const PickEm = lazy(() => import("./pages/PickEm"));
 const TradeValue = lazy(() => import("./pages/TradeValue"));
 const InjuryReport = lazy(() => import("./pages/InjuryReport"));
 const Trivia = lazy(() => import("./pages/Trivia"));
+const EightyTwoZero = lazy(() => import("./pages/EightyTwoZero"));
 const PlayerCard = lazy(() => import("./pages/PlayerCard"));
 const SeasonPerformance = lazy(() => import("./pages/SeasonPerformance"));
 
@@ -148,6 +149,7 @@ export default function App() {
             <Route path="/injuries" component={InjuryReport} />
             <Route path="/card/:player" component={PlayerCard} />
             <Route path="/trivia" component={Trivia} />
+            <Route path="/82-0" component={EightyTwoZero} />
             <Route path="/performance" component={SeasonPerformance} />
             <Route path="/momentum" component={Momentum} />
             <Route path="/lineups" component={LineupIntel} />
