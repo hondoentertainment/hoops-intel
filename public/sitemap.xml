@@ -55,6 +55,12 @@
     <priority>0.65</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/82-0</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/performance</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
