@@ -63,6 +63,44 @@ export function strengthRating(lineup: EraPlayer[]): RatingBreakdown {
   return { base, rimProtectionPenalty, playmakingPenalty, reboundPenalty, usageTax, total };
 }
 
+/** Regular-season month buckets; game counts sum to 82. */
+export const SEASON_MONTHS: { label: string; games: number }[] = [
+  { label: "OCT", games: 8 },
+  { label: "NOV", games: 15 },
+  { label: "DEC", games: 14 },
+  { label: "JAN", games: 15 },
+  { label: "FEB", games: 11 },
+  { label: "MAR", games: 15 },
+  { label: "APR", games: 4 },
+];
+
+export interface MonthSplit {
+  label: string;
+  wins: number;
+  losses: number;
+}
+
+export function monthlySplits(lossGames: SeasonLoss[]): MonthSplit[] {
+  const lossNumbers = new Set(lossGames.map((l) => l.gameNumber));
+  const splits: MonthSplit[] = [];
+  let game = 0;
+  for (const month of SEASON_MONTHS) {
+    let losses = 0;
+    for (let i = 0; i < month.games; i++) {
+      game++;
+      if (lossNumbers.has(game)) losses++;
+    }
+    splits.push({ label: month.label, wins: month.games - losses, losses });
+  }
+  return splits;
+}
+
+/** Win/loss for each of the 82 games in order — drives the season-reveal strip. */
+export function gameStrip(result: SeasonResult): boolean[] {
+  const lossNumbers = new Set(result.lossGames.map((l) => l.gameNumber));
+  return Array.from({ length: GAMES }, (_, i) => !lossNumbers.has(i + 1));
+}
+
 function fnv1a(str: string): number {
   let h = 0x811c9dc5;
   for (let i = 0; i < str.length; i++) {
@@ -117,6 +155,48 @@ export function verdictFor(wins: number): string {
   if (wins >= 50) return "A solid playoff team. You were asked for a perfect one.";
   if (wins >= 35) return "Play-in territory. Someone drafted for vibes.";
   return "The lottery balls thank you for your service.";
+}
+
+// ── Draft-time coverage hints ───────────────────────────────
+
+export interface DraftCoverage {
+  rawStrength: number;
+  hasCenter: boolean;
+  hasGuard: boolean;
+  onPaceAssists: boolean;
+  onPaceRebounds: boolean;
+}
+
+/** Coverage checks scale to how many slots are filled so hints stay honest mid-draft. */
+export function draftCoverage(picked: EraPlayer[]): DraftCoverage {
+  const filled = Math.max(1, picked.length);
+  const totalAst = picked.reduce((s, pl) => s + pl.ast, 0);
+  const totalReb = picked.reduce((s, pl) => s + pl.reb, 0);
+  return {
+    rawStrength: picked.reduce((s, pl) => s + playerScore(pl), 0),
+    hasCenter: picked.some((pl) => pl.pos === "C"),
+    hasGuard: picked.some((pl) => pl.pos === "G"),
+    onPaceAssists: totalAst >= (15 * filled) / 5,
+    onPaceRebounds: totalReb >= (35 * filled) / 5,
+  };
+}
+
+// ── Seeded spinning (Daily Wheel) ───────────────────────────
+
+/** Deterministic RNG stream; the Daily Wheel gives every visitor the same spins. */
+export function createRng(seedString: string): () => number {
+  return mulberry32(fnv1a(seedString));
+}
+
+export function dailyWheelSeed(date: Date = new Date()): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `82-0-daily-${y}-${m}-${d}`;
+}
+
+export function dailyWheelLabel(date: Date = new Date()): string {
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 // ── Spin helpers ────────────────────────────────────────────
