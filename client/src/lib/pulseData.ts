@@ -33,7 +33,7 @@ export const tickerItems = [
   {text:"NEWS: 82-0 Challenge live at hoopsintel.net/82-0 — spin eras, draft a five, chase the perfect season",type:"news"}
 ];
 
-// GAME RESULTS — No Games (August 9, 2026)
+// GAME RESULTS — No Games (August 10, 2026)
 export const gameResults = [];
 
 // ═══════════════════════════════════════════════════════════
