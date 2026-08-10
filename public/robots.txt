@@ -4,6 +4,7 @@ Disallow: /account
 Disallow: /creator-queue
 Disallow: /unsubscribe
 Disallow: /widgets/analytics
+Disallow: /embed-stats
 Disallow: /embed/
 Disallow: /card/
 

@@ -63,6 +63,7 @@ import { rationaleToBullets } from "../lib/pulseRationale";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import OffseasonDeskStrip from "../components/OffseasonDeskStrip";
 import { isOffseasonDesk, offseasonPrimaryCta, activeEditionContext, editionContextDeskLabel } from "../lib/deskMode";
+import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
@@ -1779,15 +1780,16 @@ function Footer() {
           <div>
             <div className="section-label mb-2">QUICK LINKS</div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <a href="#scores" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Scores</a>
-              <a href="#pulse-index" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Index</a>
-              <a href="#injuries" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Injuries</a>
-              <a href="#tonight" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Tonight</a>
-              <a href="/archive" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Archive</a>
-              <a href="/tools" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>All tools</a>
-              <a href="/playoffs" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Playoffs</a>
-              <a href="/pulse-methodology" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>How Pulse works</a>
-              <a href="/feed.xml" className="text-xs hover:text-sky-400 transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>RSS</a>
+              {FOOTER_QUICK_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs hover:text-sky-400 transition-colors"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>

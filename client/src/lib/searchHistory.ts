@@ -4,7 +4,10 @@ const MAX = 5;
 export const POPULAR_SEARCH_DESTINATIONS = [
   { label: "Playoffs bracket", href: "/playoffs" },
   { label: "Injury report", href: "/injuries" },
+  { label: "Watch guide", href: "/watch-guide" },
+  { label: "Projections", href: "/projections" },
   { label: "Compare players", href: "/compare-players" },
+  { label: "History engine", href: "/history" },
   { label: "Pulse history", href: "/pulse-history" },
   { label: "Ask AI", href: "/ask" },
 ];

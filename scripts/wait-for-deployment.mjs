@@ -35,6 +35,12 @@ function readTag(path, tag) {
   return xml.match(new RegExp(`<${tag}>([^<]+)</${tag}>`))?.[1] ?? null;
 }
 
+function maxLastmod(xml) {
+  const mods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  if (!mods.length) return null;
+  return mods.sort().at(-1);
+}
+
 function readLocalFingerprint() {
   const feedBuild = readTag(join(ROOT, "public/feed.xml"), "lastBuildDate");
   if (feedBuild) return { kind: "feed", value: feedBuild };
@@ -42,8 +48,7 @@ function readLocalFingerprint() {
   const sitemapPath = join(ROOT, "public/sitemap.xml");
   if (existsSync(sitemapPath)) {
     const xml = readFileSync(sitemapPath, "utf8");
-    const mods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)];
-    const lastmod = mods.at(-1)?.[1];
+    const lastmod = maxLastmod(xml);
     if (lastmod) return { kind: "sitemap", value: lastmod };
   }
 
@@ -74,8 +79,7 @@ function remoteMatches(kind, remoteXml, expected) {
     // Production already has a build at or after our commit (e.g. prior bot push).
     return remoteTs != null && expectedTs != null && remoteTs >= expectedTs;
   }
-  const mods = [...remoteXml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)];
-  const remote = mods.at(-1)?.[1];
+  const remote = maxLastmod(remoteXml);
   if (!remote) return false;
   if (remote === expected) return true;
   return remote >= expected;
@@ -108,7 +112,7 @@ async function main() {
       const preview =
         fingerprint.kind === "feed"
           ? remoteXml.match(/<lastBuildDate>([^<]+)<\/lastBuildDate>/)?.[1]
-          : [...remoteXml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].at(-1)?.[1];
+          : maxLastmod(remoteXml);
       console.log(`[deploy-wait] not live yet — remote ${fingerprint.kind} is "${preview ?? "?"}"`);
     } catch (err) {
       console.warn(`[deploy-wait] poll error: ${err.message}`);
