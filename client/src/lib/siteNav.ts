@@ -30,12 +30,36 @@ export const MAIN_NAV_LINKS: MainNavLink[] = [
   { label: "Pulse Index", href: "/#pulse-index" },
   { label: "Injuries", href: "/injuries" },
   { label: "Tonight", href: "/#tonight" },
+  { label: "Watch guide", href: "/watch-guide" },
   { label: "Playoffs", href: "/playoffs" },
   { label: "Archive", href: "/archive" },
   { label: "All tools", href: "/tools" },
+  { label: "Projections", href: "/projections" },
+  { label: "Compare", href: "/compare-players" },
   { label: "Performance", href: "/performance" },
   { label: "Hoops IQ", href: "/trivia" },
   { label: "Ask AI", href: "/ask" },
+];
+
+/** Home footer explore links — keep discoverable product routes out of crawl orphan status. */
+export const FOOTER_QUICK_LINKS: MainNavLink[] = [
+  { label: "Scores", href: "#scores" },
+  { label: "Pulse Index", href: "#pulse-index" },
+  { label: "Injuries", href: "#injuries" },
+  { label: "Tonight", href: "#tonight" },
+  { label: "Archive", href: "/archive" },
+  { label: "All tools", href: "/tools" },
+  { label: "Playoffs", href: "/playoffs" },
+  { label: "Watch guide", href: "/watch-guide" },
+  { label: "Projections", href: "/projections" },
+  { label: "Compare players", href: "/compare-players" },
+  { label: "History", href: "/history" },
+  { label: "Refs", href: "/refs" },
+  { label: "Podcast companion", href: "/podcast-companion" },
+  { label: "Guest Pulse", href: "/guest-pulse" },
+  { label: "Rivals", href: "/rivals" },
+  { label: "How Pulse works", href: "/pulse-methodology" },
+  { label: "RSS", href: "/feed.xml" },
 ];
 
 /** Sticky in-page section jumps on today's desk */

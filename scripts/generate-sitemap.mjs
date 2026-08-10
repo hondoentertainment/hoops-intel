@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // generate-sitemap.mjs — Generates sitemap.xml from archive + player/team data
-import { readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, statSync, writeFileSync } from "fs";
+import { execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import {
@@ -17,6 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 const BASE = "https://hoopsintel.net";
+const gitDateCache = new Map();
 
 /** Match `slugify` in `client/src/lib/searchUtils.ts` so /player/:slug URLs align. */
 function slugify(name) {
@@ -72,6 +74,124 @@ function xmlEscape(value) {
     .replace(/"/g, "&quot;");
 }
 
+function isoDay(d) {
+  if (!(d instanceof Date) || Number.isNaN(d.getTime())) return null;
+  return d.toISOString().split("T")[0];
+}
+
+function fileMtimeIso(relPath) {
+  const p = join(ROOT, relPath);
+  if (!existsSync(p)) return null;
+  return isoDay(statSync(p).mtime);
+}
+
+/** Prefer git history so clones with uniform mtimes still emit selective lastmod. */
+function gitCommitIso(relPath) {
+  if (gitDateCache.has(relPath)) return gitDateCache.get(relPath);
+  let value = null;
+  try {
+    const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", relPath], {
+      cwd: ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(out)) value = out;
+  } catch {
+    value = null;
+  }
+  gitDateCache.set(relPath, value);
+  return value;
+}
+
+function sourceFreshnessIso(relPath) {
+  return gitCommitIso(relPath) ?? fileMtimeIso(relPath);
+}
+
+function parseDisplayDate(str) {
+  const t = Date.parse(str);
+  return Number.isNaN(t) ? null : isoDay(new Date(t));
+}
+
+function maxIso(...dates) {
+  return dates.filter(Boolean).sort().at(-1) ?? null;
+}
+
+function extractPulseEditionIso(pulseFile) {
+  const m = pulseFile.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/);
+  return m ? parseDisplayDate(m[1]) : null;
+}
+
+/** Prefer content dates / source mtimes so crawlers see selective freshness. */
+const STATIC_ROUTE_SOURCES = {
+  "/tools": ["client/src/lib/siteNav.ts"],
+  "/injuries": ["client/src/lib/pulseData.ts"],
+  "/pick-em": ["client/src/lib/playoffData.ts", "client/src/pages/PickEm.tsx"],
+  "/trade-value": ["client/src/lib/tradeValueData.ts"],
+  "/trivia": ["client/src/pages/Trivia.tsx"],
+  "/82-0": ["client/src/lib/eightyTwoZeroData.ts", "client/src/lib/eightyTwoZeroSim.ts"],
+  "/performance": ["client/src/pages/Performance.tsx"],
+  "/momentum": ["client/src/lib/momentumData.ts"],
+  "/lineups": ["client/src/lib/lineupData.ts"],
+  "/trade-simulator": ["client/src/lib/tradeSimData.ts"],
+  "/clutch": ["client/src/lib/clutchData.ts"],
+  "/draft": ["client/src/lib/draftData.ts"],
+  "/sentiment": ["client/src/lib/sentimentData.ts"],
+  "/tactics": ["client/src/lib/tacticsData.ts"],
+  "/projections": ["client/src/lib/projectionsData.ts"],
+  "/badges": ["client/src/lib/badgesData.ts"],
+  "/community-pulse": ["client/src/lib/communityPulseData.ts"],
+  "/watch-guide": ["client/src/lib/watchGuideData.ts"],
+  "/podcast-companion": ["client/src/lib/podcastData.ts"],
+  "/history": ["client/src/lib/historyData.ts"],
+  "/refs": ["client/src/lib/refData.ts"],
+  "/ask": ["client/src/pages/AskAI.tsx", "client/src/lib/archiveData.ts"],
+  "/compare-players": ["client/src/pages/PlayerCompare.tsx", "client/src/lib/pulseData.ts"],
+  "/pulse-methodology": ["client/src/pages/PulseMethodology.tsx"],
+  "/rivals": ["client/src/pages/Rivals.tsx"],
+  "/my-pulse": ["client/src/lib/pulseData.ts"],
+  "/print-edition": ["client/src/lib/pulseData.ts"],
+  "/widgets": ["client/src/pages/Widgets.tsx"],
+  "/pro": ["client/src/pages/Pro.tsx"],
+  "/betting-intel": ["client/src/lib/pulseData.ts", "client/src/lib/lineMovementData.ts"],
+  "/guest-pulse": ["client/src/pages/GuestPulse.tsx"],
+};
+
+function sourcesLastmod(sources) {
+  return maxIso(...(sources || []).map(sourceFreshnessIso));
+}
+
+function lastmodForLoc(loc, ctx) {
+  if (loc === "/" || loc === "/archive" || loc === "/pulse-history") {
+    return maxIso(ctx.editionIso, ctx.pulseMtime, loc === "/archive" ? ctx.archiveMtime : null) ?? ctx.buildDay;
+  }
+  if (loc === "/playoffs" || loc.startsWith("/playoffs/series/")) {
+    return maxIso(ctx.playoffMtime, ctx.editionIso) ?? ctx.buildDay;
+  }
+  if (loc.startsWith("/player/") || loc.startsWith("/team/")) {
+    return maxIso(ctx.archiveMtime, ctx.pulseMtime, ctx.editionIso) ?? ctx.buildDay;
+  }
+  if (loc.startsWith("/game/")) {
+    const digits = loc.match(/(\d{8})$/)?.[1];
+    if (digits) {
+      return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}`;
+    }
+    return maxIso(ctx.pulseMtime, ctx.editionIso) ?? ctx.buildDay;
+  }
+  // Desk surfaces tied to the morning edition inherit edition date; tool pages use source freshness only.
+  const deskTied = new Set([
+    "/injuries",
+    "/my-pulse",
+    "/print-edition",
+    "/betting-intel",
+    "/compare-players",
+  ]);
+  const sourceDate = sourcesLastmod(STATIC_ROUTE_SOURCES[loc]);
+  if (deskTied.has(loc)) {
+    return maxIso(sourceDate, ctx.editionIso) ?? ctx.buildDay;
+  }
+  return sourceDate ?? ctx.buildDay;
+}
+
 export function generate() {
   const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
   const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
@@ -100,7 +220,13 @@ export function generate() {
     games.add(`${m[3]}-${m[2]}-${date}`);
   }
 
-  const now = new Date().toISOString().split("T")[0];
+  const buildDay = new Date().toISOString().split("T")[0];
+  const editionIso = extractPulseEditionIso(pulseFile);
+  const pulseMtime = sourceFreshnessIso("client/src/lib/pulseData.ts");
+  const archiveMtime = sourceFreshnessIso("client/src/lib/archiveData.ts");
+  const playoffMtime = sourceFreshnessIso("client/src/lib/playoffData.ts");
+  const lastmodCtx = { buildDay, editionIso, pulseMtime, archiveMtime, playoffMtime };
+
   const playoffsActive =
     /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);
   const playoffsHubMeta = playoffsActive
@@ -159,18 +285,23 @@ export function generate() {
     return true;
   });
 
+  for (const u of urls) {
+    u.lastmod = lastmodForLoc(u.loc, lastmodCtx);
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url>
     <loc>${xmlEscape(BASE + u.loc)}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${u.lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join("\n")}
 </urlset>`;
 
   writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
-  console.log(`✓ Sitemap written with ${urls.length} URLs`);
+  const distinctLastmods = new Set(urls.map((u) => u.lastmod));
+  console.log(`✓ Sitemap written with ${urls.length} URLs (${distinctLastmods.size} distinct lastmod dates)`);
 }
 
 // ── Standalone CLI entry point ────────────────────────────

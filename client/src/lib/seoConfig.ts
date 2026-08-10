@@ -25,6 +25,7 @@ export const NOINDEX_PATHS = new Set([
   "/creator-queue",
   "/unsubscribe",
   "/widgets/analytics",
+  "/embed-stats",
   "/embed",
 ]);
 
@@ -247,8 +248,6 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/my-pulse",
   "/print-edition",
   "/widgets",
-  "/widgets/analytics",
-  "/embed-stats",
   "/pro",
   "/betting-intel",
   "/guest-pulse",
