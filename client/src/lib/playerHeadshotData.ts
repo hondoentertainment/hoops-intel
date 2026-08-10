@@ -465,7 +465,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "scoot henderson": 4683678,
   "scottie barnes": 4433134,
   "scotty pippen": 4431785,
-  "sean pedulla": 4709131,
   "sergio de larrea": 5279129,
   "shaedon sharpe": 4914336,
   "shai gilgeous alexander": 4278073,
