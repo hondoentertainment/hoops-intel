@@ -2,9 +2,15 @@ import { describe, it, expect } from "vitest";
 import { ERA_LABELS, TEAM_ERA_POOLS, type EraPlayer } from "../lib/eightyTwoZeroData";
 import {
   availablePlayers,
+  createRng,
+  dailyWheelSeed,
+  draftCoverage,
+  gameStrip,
+  monthlySplits,
   playerScore,
   respinEra,
   respinTeam,
+  SEASON_MONTHS,
   simulateSeason,
   strengthRating,
   verdictFor,
@@ -136,6 +142,72 @@ describe("spin helpers", () => {
     const names = availablePlayers(pool, taken).map((p) => p.name);
     expect(names).not.toContain(pool.players[0].name);
     expect(names.length).toBe(pool.players.length - 1);
+  });
+});
+
+describe("season presentation helpers", () => {
+  it("month buckets cover exactly 82 games", () => {
+    expect(SEASON_MONTHS.reduce((s, m) => s + m.games, 0)).toBe(82);
+  });
+
+  it("monthlySplits partitions wins and losses to the right months", () => {
+    const splits = monthlySplits([
+      { gameNumber: 1, opponent: "'96 Bulls" },
+      { gameNumber: 9, opponent: "'17 Warriors" },
+      { gameNumber: 82, opponent: "'86 Celtics" },
+    ]);
+    expect(splits.map((s) => s.label)).toEqual(["OCT", "NOV", "DEC", "JAN", "FEB", "MAR", "APR"]);
+    expect(splits[0]).toMatchObject({ losses: 1, wins: 7 });
+    expect(splits[1]).toMatchObject({ losses: 1, wins: 14 });
+    expect(splits[6]).toMatchObject({ losses: 1, wins: 3 });
+    expect(splits.reduce((s, m) => s + m.wins + m.losses, 0)).toBe(82);
+  });
+
+  it("gameStrip mirrors the season record game by game", () => {
+    const result = simulateSeason(roleSquad);
+    const strip = gameStrip(result);
+    expect(strip.length).toBe(82);
+    expect(strip.filter(Boolean).length).toBe(result.wins);
+    for (const loss of result.lossGames) {
+      expect(strip[loss.gameNumber - 1]).toBe(false);
+    }
+  });
+});
+
+describe("draftCoverage", () => {
+  it("tracks positional coverage of a partial lineup", () => {
+    const partial = [godSquad[0], godSquad[2]];
+    const cov = draftCoverage(partial);
+    expect(cov.hasGuard).toBe(true);
+    expect(cov.hasCenter).toBe(false);
+    expect(cov.rawStrength).toBeCloseTo(playerScore(partial[0]) + playerScore(partial[1]));
+  });
+
+  it("scales assist and rebound pace to filled slots", () => {
+    const onePasser = [pl("John Stockton", "G", 13.5, 2.8, 11.5)];
+    expect(draftCoverage(onePasser).onPaceAssists).toBe(true);
+    const oneNonPasser = [pl("Reggie Miller", "G", 19.5, 3, 1)];
+    expect(draftCoverage(oneNonPasser).onPaceAssists).toBe(false);
+  });
+});
+
+describe("Daily Wheel seeding", () => {
+  it("the same seed yields the same spin sequence", () => {
+    const a = createRng("82-0-daily-2026-08-09");
+    const b = createRng("82-0-daily-2026-08-09");
+    const seqA = Array.from({ length: 10 }, () => a());
+    const seqB = Array.from({ length: 10 }, () => b());
+    expect(seqA).toEqual(seqB);
+  });
+
+  it("different days yield different sequences", () => {
+    const a = createRng(dailyWheelSeed(new Date(2026, 7, 9)));
+    const b = createRng(dailyWheelSeed(new Date(2026, 7, 10)));
+    expect(a()).not.toBe(b());
+  });
+
+  it("seed string is date-stamped", () => {
+    expect(dailyWheelSeed(new Date(2026, 7, 9))).toBe("82-0-daily-2026-08-09");
   });
 });
 
