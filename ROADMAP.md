@@ -31,7 +31,7 @@ Near-term sequencing lives in **`NEXT-STEPS.md`**. This document tracks **shippe
 
 ### Pages & Navigation
 - Player / team detail, Pulse History, Playoff Bracket, global search (Cmd+K)
-- Ask Hoops Intel (`/ask`), Pick'em, Trivia, Trade Value / Simulator
+- Ask Hoops Intel (`/ask`), Pick'em, Trivia, Trade Value / Simulator, 82-0 Challenge (`/82-0`)
 - Momentum, Clutch Factor, Lineup Intel, Sentiment Pulse
 - Draft Tracker, Ref Reports, Coach Corner, Community Pulse, Projections
 - Watch Guide, History Engine, Season Performance, Podcast Companion
