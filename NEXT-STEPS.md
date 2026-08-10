@@ -1,6 +1,6 @@
 # Hoops Intel — Next steps (living doc)
 
-_Last revised: August 1, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
+_Last revised: August 10, 2026 — see refreshed [`ROADMAP.md`](./ROADMAP.md)_
 
 ### Deploy & reliability
 
@@ -35,23 +35,30 @@ buried five real deploy failures dating back to June.
 | Auto-close on recovery | `deployment-smoke`, `health-check`, `ops-readiness` now clear their own backlog | **Done** |
 | Site-review noise | Each day's report supersedes and closes the previous one | **Done** |
 | Health-check alert | `exit_code=$?` after a pipe read `tee`'s status, so the stale-content alert could never fire | **Fixed** (`PIPESTATUS[0]`) |
-| Assignee | Set repo variable **`ALERT_ASSIGNEE`** to a collaborator login | **Manual** — defaults to `github.repository_owner`, which is silently ignored if that's an org |
+| Assignee | Set repo variable **`ALERT_ASSIGNEE`** to a collaborator login | **Done** — resolves to `hondoentertainment` (confirmed in the Aug 10 ops-readiness run env) |
 | Slack | Set `SLACK_DATA_QUALITY_WEBHOOK` for out-of-band alerts | **Manual** — smoke failures post there today only if set |
 
 ### Dependencies
 
-The npm bump was deferred pending a green Vercel preview — now satisfied.
-
 | Step | Action | Status |
 |------|--------|--------|
-| Dependabot npm group | PR **#279** (9 updates) | **Verified, awaiting merge** — keeps `typescript@~6.0.3`; full suite, `vite build`, `dist/embed.js` and `typecheck:api` all pass against it |
-| jsdom 29 → 30 | Major bump of the vitest environment, bundled in #279 | **Verified** — 223/223 pass |
+| Dependabot npm group | PRs **#287** and **#311** | **Merged** (Aug 10) — keeps `typescript@~6.0.3`; #311 verified locally: 269/269 vitest, `vite build`, `dist/embed.js`, `typecheck:api` all pass |
+| jsdom 29 → 30 | Major bump of the vitest environment (landed via the group PRs) | **Merged** |
 
-Verified locally on Node 22; CI and Vercel run Node 24.
+Verified locally on Node 22; CI and Vercel run Node 24. The TS-majors
+Dependabot ignore rule remains in force (see standing constraint above).
 
 ### P0 — Ops (manual — still blocking live Pro/push)
 
 `/api/ops-readiness` must flip to ready. Until secrets land, code paths soft-skip.
+
+**Status Aug 10:** all six env groups still missing per the scheduled
+ops-readiness check — `stripe checkout, stripe webhook, push notify,
+supabase server, resend, anthropic` (tracker issue #129). Every row below
+is blocked on entering credentials; there is no code work left in P0.
+Note: the GitHub App used by remote agent sessions cannot dispatch
+workflows (403), so Actions → Supabase migrations / dry-run must be
+clicked by a maintainer.
 
 | Step | Action | Status |
 |------|--------|--------|
@@ -71,6 +78,7 @@ Verified locally on Node 22; CI and Vercel run Node 24.
 | Favorite-team **game-start** | Defaults + Account “Team tip alerts” + team refresh on Save topics |
 | Digest quiet hours | Wired in `email-digest.yml` (6–11 PT) + List-Unsubscribe header |
 | Multi-book consensus UI | `oddsBooksData` + Betting Intel; fills when Odds API fetch returns `books[]` |
+| **82-0 Challenge** (`/82-0`) | Era-spin lineup game with seeded season sim, animated reveal, Daily Wheel mode (#306, #308) |
 
 ### Deferred
 
