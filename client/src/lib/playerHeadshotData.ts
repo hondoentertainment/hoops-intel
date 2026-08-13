@@ -184,7 +184,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "hannes steinbach": 5281370,
   "harrison barnes": 6578,
   "harrison ingram": 4433618,
-  "haywood highsmith": 4291678,
   "henri veesaar": 5105571,
   "herbert jones": 4277813,
   "hugo gonzalez": 5175647,
