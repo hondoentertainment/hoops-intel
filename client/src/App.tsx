@@ -10,6 +10,7 @@ import PwaInstallPrompt from "./components/PwaInstallPrompt";
 import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
 import RouteSeo from "./components/RouteSeo";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
+import SpaNavigator from "./components/SpaNavigator";
 import { incrementVisitCount } from "./lib/visitCount";
 import { syncEngagementBadges } from "./lib/badgeChecks";
 
@@ -124,6 +125,7 @@ export default function App() {
     <ThemeProvider switchable={true}>
       <ToastProvider>
       <RouteSeo />
+      <SpaNavigator />
       <SkipToContent />
       <VercelAnalyticsScript />
       <div

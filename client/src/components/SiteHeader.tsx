@@ -478,6 +478,14 @@ export default function SiteHeader({
     void getUser().then(setSessionUser);
   }, []);
 
+  // Client-side navs don't reload the document, so overlays must close themselves.
+  useEffect(() => {
+    setMobileOpen(false);
+    document.querySelectorAll<HTMLDetailsElement>("header details[open]").forEach((d) => {
+      d.open = false;
+    });
+  }, [locationPath]);
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;

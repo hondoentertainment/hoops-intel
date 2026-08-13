@@ -121,6 +121,40 @@ export default function EightyTwoZero() {
     };
   }, []);
 
+  // Keyboard flow: 1-3 drafts, T/E re-spin, Enter runs it back. The handler
+  // lives in a ref so one listener always sees current state.
+  const keyHandler = useRef<(e: KeyboardEvent) => void>(() => {});
+  keyHandler.current = (e: KeyboardEvent) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = (e.target as HTMLElement)?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (e.target as HTMLElement)?.isContentEditable) return;
+    if (result) {
+      if (e.key === "Enter" && revealed >= 82) {
+        e.preventDefault();
+        startRun(mode);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        skipReveal();
+      }
+      return;
+    }
+    if (spinning) return;
+    const num = Number.parseInt(e.key, 10);
+    if (num >= 1 && num <= choices.length) {
+      e.preventDefault();
+      pickPlayer(choices[num - 1]);
+    } else if (e.key.toLowerCase() === "t") {
+      handleRespinTeam();
+    } else if (e.key.toLowerCase() === "e") {
+      handleRespinEra();
+    }
+  };
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => keyHandler.current(e);
+    document.addEventListener("keydown", listener);
+    return () => document.removeEventListener("keydown", listener);
+  }, []);
+
   function clearSpinTimers() {
     spinTimers.current.forEach((t) => window.clearInterval(t));
     spinTimers.current = [];
@@ -276,7 +310,10 @@ export default function EightyTwoZero() {
       <p className="text-sm mb-4 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>
         Spin a franchise and an era, draft one player, repeat until you have a starting five. Then we play out a full
         82-game season against history&apos;s buzzsaws. One team re-spin and one era re-spin per slot — spend them
-        wisely. Same five, same record, every time: no take-backs, no lucky reruns.
+        wisely. Same five, same record, every time: no take-backs, no lucky reruns.{" "}
+        <span className="hidden sm:inline mono-data text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Keys: 1–3 draft · T/E re-spin · Enter runs it back.
+        </span>
       </p>
 
       {/* Mode toggle */}
@@ -530,7 +567,7 @@ export default function EightyTwoZero() {
           </div>
 
           <div className="p-5 grid gap-3 sm:grid-cols-3" style={{ opacity: spinning ? 0.35 : 1, transition: "opacity 150ms" }}>
-            {(spinning ? shownPool.players : choices).map((pl) => (
+            {(spinning ? shownPool.players : choices).map((pl, idx) => (
               <button
                 key={pl.name}
                 type="button"
@@ -543,8 +580,13 @@ export default function EightyTwoZero() {
                   <span className="font-bold text-sm" style={{ color: "var(--hi-heading,#fff)" }}>
                     {pl.name}
                   </span>
-                  <span className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10" style={{ color: "rgba(255,255,255,0.6)" }}>
-                    {pl.pos}
+                  <span className="flex items-center gap-1">
+                    <kbd className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10 hidden sm:inline" style={{ color: "rgba(255,255,255,0.4)" }} aria-hidden>
+                      {idx + 1}
+                    </kbd>
+                    <span className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      {pl.pos}
+                    </span>
                   </span>
                 </div>
                 <div className="mono-data text-[11px]" style={{ color: "rgba(255,255,255,0.55)" }}>
