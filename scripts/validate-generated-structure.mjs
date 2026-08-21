@@ -148,6 +148,23 @@ export function validateWorldClassRoutes() {
       const game = loc.match(/\/game\/([^/?#]+)/)?.[1];
       if (game) assertCond(GAME_ID_PATTERN.test(game), `sitemap game URL has invalid gameId: ${loc}`);
     }
+    for (const banned of [
+      "/player/michael-jordan",
+      "/player/kobe-bryant",
+      "/player/larry-bird",
+      "/player/hakeem-olajuwon",
+      "/embed-stats",
+      "/widgets/analytics",
+    ]) {
+      assertCond(
+        !locs.some((loc) => loc.endsWith(banned)),
+        `sitemap should not index thin/noindex URL: ${banned}`,
+      );
+    }
+    assertCond(
+      locs.some((loc) => loc.includes("/player/chris-paul")),
+      "retired Chris Paul should stay in the sitemap with roster-status context",
+    );
   }
 
   return { ok: true };

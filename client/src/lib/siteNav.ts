@@ -156,6 +156,15 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Unsubscribe digest", href: "/unsubscribe", description: "Email opt-out page", category: "publishing" },
 ];
 
+/** Publisher / embed surfaces — linked from /tools and /pro (noindex, not in sitemap). */
+export const DISTRIBUTION_TOOL_HREFS = ["/widgets", "/embed-stats", "/widgets/analytics"] as const;
+
+export function distributionTools() {
+  return DISTRIBUTION_TOOL_HREFS.map((href) => TOOLS_DIRECTORY.find((t) => t.href === href)).filter(
+    (t): t is ToolLink => Boolean(t),
+  );
+}
+
 /** Related tools in the same category (excluding current route). */
 export function relatedToolsForHref(href: string, limit = 4) {
   const path = href.split("#")[0] || href;
