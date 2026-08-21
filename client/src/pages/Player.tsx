@@ -8,6 +8,7 @@ import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
 import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
+import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
 import SiteHeader from "../components/SiteHeader";
 import Breadcrumbs from "../components/Breadcrumbs";
 import ErrorBlock from "../components/ErrorBlock";
@@ -67,6 +68,13 @@ export default function Player() {
 
   const slug = params.slug || "";
   const currentPulse = player ? pulseIndex.find((p: any) => p.player === player.name) : undefined;
+  const roster = player
+    ? getPlayerRosterStatus(player.name, {
+        inPulse: Boolean(currentPulse),
+        hasCurrentTeam: player.teams.length > 0,
+        mentions: player.mentions,
+      })
+    : null;
 
   useMetaTags({
     enabled: Boolean(slug),
@@ -79,11 +87,13 @@ export default function Player() {
       ? "This player profile is not available on Hoops Intel."
       : currentPulse
         ? `${currentPulse.keyStats} — ${currentPulse.note}`
-        : `Player profile for ${player.name} on Hoops Intel.`,
+        : roster && roster.status !== "active"
+          ? `${player.name} — ${roster.label}. ${roster.detail}`
+          : `Player profile for ${player.name} on Hoops Intel.`,
     ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
     ogUrl: `https://hoopsintel.net/player/${slug}`,
     canonicalUrl: `https://hoopsintel.net/player/${slug}`,
-    noindex: !player,
+    noindex: !player || !roster?.indexable,
     jsonLd: player
       ? {
           "@context": "https://schema.org",
@@ -170,6 +180,17 @@ export default function Player() {
                     {t}
                   </a>
                 ))}
+                {roster && roster.status !== "active" && (
+                  <span
+                    className="text-xs px-2 py-1 rounded font-semibold uppercase tracking-wide"
+                    style={{
+                      background: roster.status === "retired" ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.06)",
+                      color: roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.55)",
+                    }}
+                  >
+                    {roster.label}
+                  </span>
+                )}
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                   {player.mentions} mention{player.mentions !== 1 ? "s" : ""} in archive
                 </span>
@@ -230,6 +251,21 @@ export default function Player() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-4">
+            {roster && roster.status !== "active" && (
+              <div
+                className="glass-card rounded-lg p-4"
+                style={{
+                  borderLeft: `3px solid ${roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.25)"}`,
+                }}
+              >
+                <div className="section-label mb-2">ROSTER STATUS</div>
+                <div className="text-sm font-semibold text-white mb-1">{roster.label}</div>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                  {roster.detail}
+                </p>
+              </div>
+            )}
+
             {/* Current Stats */}
             {currentPulse && (
               <div className="glass-card rounded-lg p-4">
@@ -375,6 +411,10 @@ export default function Player() {
             <div className="glass-card rounded-lg p-4">
               <div className="section-label mb-3">QUICK FACTS</div>
               <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Roster status</span>
+                  <span className="text-white font-semibold">{roster?.label ?? "—"}</span>
+                </div>
                 <div className="flex justify-between">
                   <span style={{ color: "rgba(255,255,255,0.4)" }}>Team</span>
                   <span className="text-white font-semibold">{player.teams.join(", ") || "—"}</span>

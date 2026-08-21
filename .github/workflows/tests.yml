@@ -79,6 +79,9 @@ jobs:
       - name: Season-mode calendar (node:test)
         run: node --test scripts/tests/season-mode.test.mjs
 
+      - name: Sitemap lastmod + player index quality (node:test)
+        run: node --test scripts/tests/sitemap-lastmod.test.mjs
+
       - name: Push tip-window helpers (node:test)
         run: node --test scripts/tests/tip-window.test.mjs scripts/tests/fetch-odds-api.test.mjs
 

@@ -59,11 +59,43 @@ const CANONICAL_PLAYER_NAMES = new Map([
   ["cameron-thomas", "Cam Thomas"],
   ["alperen-eng-n", "Alperen Sengun"],
   ["alperen-sengun", "Alperen Sengun"],
+  ["luka-doncic", "Luka Doncic"],
+  ["nikola-jokic", "Nikola Jokic"],
+  ["o-g-anunoby", "OG Anunoby"],
+  ["og-anunoby", "OG Anunoby"],
+  ["nic-claxton", "Nic Claxton"],
+  ["nicolas-claxton", "Nic Claxton"],
+  ["bub-carrington", "Bub Carrington"],
+  ["carlton-carrington", "Bub Carrington"],
 ]);
 
 function canonicalPlayerName(name) {
   const slug = slugify(name);
   return CANONICAL_PLAYER_NAMES.get(slug) ?? name;
+}
+
+function readExportedNameList(tsSource, exportName) {
+  const block = tsSource.match(new RegExp(`export const ${exportName}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as const`));
+  if (!block) return [];
+  return [...block[1].matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+}
+
+function loadRosterLists() {
+  const rosterFile = readFileSync(join(ROOT, "client/src/lib/playerRosterStatus.ts"), "utf8");
+  return {
+    historical: new Set(readExportedNameList(rosterFile, "HISTORICAL_PLAYER_NAMES").map(canonicalPlayerName)),
+    retired: new Set(readExportedNameList(rosterFile, "RETIRED_PLAYER_NAMES").map(canonicalPlayerName)),
+    nonPlayers: new Set(readExportedNameList(rosterFile, "NON_PLAYER_NAMES").map(canonicalPlayerName)),
+  };
+}
+
+/** Mirror `isIndexablePlayerProfile` so sitemap and player pages stay aligned. */
+export function isSitemapIndexablePlayer(name, context, lists) {
+  const canonical = canonicalPlayerName(name);
+  if (lists.nonPlayers.has(canonical) || lists.historical.has(canonical)) return false;
+  if (lists.retired.has(canonical)) return (context.mentions ?? 0) > 0;
+  if (context.inPulse || context.hasCurrentTeam) return true;
+  return (context.mentions ?? 0) >= 2;
 }
 
 function xmlEscape(value) {
@@ -121,15 +153,41 @@ function extractPulseEditionIso(pulseFile) {
   return m ? parseDisplayDate(m[1]) : null;
 }
 
+/** Published timestamp on a generated data object — not git/mtime (those follow deploys). */
+export function extractExportedTimestamp(fileText) {
+  const exportIdx = fileText.search(/export const \w[\w]*\s*[:=]/);
+  const slice = exportIdx >= 0 ? fileText.slice(exportIdx, exportIdx + 900) : fileText.slice(0, 900);
+  for (const field of ["generatedDate", "date", "displayDate"]) {
+    const m = slice.match(new RegExp(`\\b${field}:\\s*"([^"]+)"`));
+    if (m) return parseDisplayDate(m[1]);
+  }
+  return null;
+}
+
+function contentTimestampIso(relPath) {
+  const p = join(ROOT, relPath);
+  if (!existsSync(p)) return null;
+  return extractExportedTimestamp(readFileSync(p, "utf8"));
+}
+
+function contentDatesLastmod(sources) {
+  return maxIso(...(sources || []).map(contentTimestampIso));
+}
+
+function extractLatestArchiveIso(archiveFile) {
+  const dates = [...archiveFile.matchAll(/\bdate:\s*"(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]);
+  return maxIso(...dates);
+}
+
 /** Prefer content dates / source mtimes so crawlers see selective freshness. */
-const STATIC_ROUTE_SOURCES = {
+export const STATIC_ROUTE_SOURCES = {
   "/tools": ["client/src/lib/siteNav.ts"],
   "/injuries": ["client/src/lib/pulseData.ts"],
   "/pick-em": ["client/src/lib/playoffData.ts", "client/src/pages/PickEm.tsx"],
   "/trade-value": ["client/src/lib/tradeValueData.ts"],
   "/trivia": ["client/src/pages/Trivia.tsx"],
   "/82-0": ["client/src/lib/eightyTwoZeroData.ts", "client/src/lib/eightyTwoZeroSim.ts"],
-  "/performance": ["client/src/pages/Performance.tsx"],
+  "/performance": ["client/src/pages/SeasonPerformance.tsx"],
   "/momentum": ["client/src/lib/momentumData.ts"],
   "/lineups": ["client/src/lib/lineupData.ts"],
   "/trade-simulator": ["client/src/lib/tradeSimData.ts"],
@@ -160,24 +218,23 @@ function sourcesLastmod(sources) {
   return maxIso(...(sources || []).map(sourceFreshnessIso));
 }
 
-function lastmodForLoc(loc, ctx) {
+export function lastmodForLoc(loc, ctx) {
   if (loc === "/" || loc === "/archive" || loc === "/pulse-history") {
-    return maxIso(ctx.editionIso, ctx.pulseMtime, loc === "/archive" ? ctx.archiveMtime : null) ?? ctx.buildDay;
+    return maxIso(ctx.editionIso, loc === "/archive" ? ctx.latestArchiveIso : null) ?? ctx.buildDay;
   }
   if (loc === "/playoffs" || loc.startsWith("/playoffs/series/")) {
-    return maxIso(ctx.playoffMtime, ctx.editionIso) ?? ctx.buildDay;
+    return maxIso(ctx.playoffContentIso, ctx.editionIso) ?? ctx.buildDay;
   }
   if (loc.startsWith("/player/") || loc.startsWith("/team/")) {
-    return maxIso(ctx.archiveMtime, ctx.pulseMtime, ctx.editionIso) ?? ctx.buildDay;
+    return maxIso(ctx.editionIso, ctx.latestArchiveIso) ?? ctx.buildDay;
   }
   if (loc.startsWith("/game/")) {
     const digits = loc.match(/(\d{8})$/)?.[1];
     if (digits) {
       return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}`;
     }
-    return maxIso(ctx.pulseMtime, ctx.editionIso) ?? ctx.buildDay;
+    return ctx.editionIso ?? ctx.buildDay;
   }
-  // Desk surfaces tied to the morning edition inherit edition date; tool pages use source freshness only.
   const deskTied = new Set([
     "/injuries",
     "/my-pulse",
@@ -185,11 +242,13 @@ function lastmodForLoc(loc, ctx) {
     "/betting-intel",
     "/compare-players",
   ]);
+  const contentDate = contentDatesLastmod(STATIC_ROUTE_SOURCES[loc]);
   const sourceDate = sourcesLastmod(STATIC_ROUTE_SOURCES[loc]);
   if (deskTied.has(loc)) {
-    return maxIso(sourceDate, ctx.editionIso) ?? ctx.buildDay;
+    return maxIso(contentDate, ctx.editionIso) ?? ctx.buildDay;
   }
-  return sourceDate ?? ctx.buildDay;
+  // Published content date wins over git/mtime so weekly pages don't advertise a deploy touch.
+  return contentDate ?? sourceDate ?? ctx.buildDay;
 }
 
 export function generate() {
@@ -197,14 +256,22 @@ export function generate() {
   const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
 
-  // Extract players and teams from archive
-  const players = new Set();
+  const mentionCounts = new Map();
   const teams = new Set();
   const games = new Set();
 
+  const bumpMention = (name) => {
+    const canonical = canonicalPlayerName(name);
+    if (!canonical) return;
+    mentionCounts.set(canonical, (mentionCounts.get(canonical) || 0) + 1);
+  };
+
   const playerMatches = archiveFile.matchAll(/players:\s*\[([^\]]+)\]/g);
   for (const m of playerMatches) {
-    m[1].match(/"([^"]+)"/g)?.forEach((p) => players.add(p.replace(/"/g, "")));
+    m[1].match(/"([^"]+)"/g)?.forEach((p) => bumpMention(p.replace(/"/g, "")));
+  }
+  for (const m of archiveFile.matchAll(/topPlayer:\s*"([^"]+)"/g)) {
+    bumpMention(m[1]);
   }
   const teamMatches = archiveFile.matchAll(/teams:\s*\[([^\]]+)\]/g);
   for (const m of teamMatches) {
@@ -222,10 +289,9 @@ export function generate() {
 
   const buildDay = new Date().toISOString().split("T")[0];
   const editionIso = extractPulseEditionIso(pulseFile);
-  const pulseMtime = sourceFreshnessIso("client/src/lib/pulseData.ts");
-  const archiveMtime = sourceFreshnessIso("client/src/lib/archiveData.ts");
-  const playoffMtime = sourceFreshnessIso("client/src/lib/playoffData.ts");
-  const lastmodCtx = { buildDay, editionIso, pulseMtime, archiveMtime, playoffMtime };
+  const latestArchiveIso = extractLatestArchiveIso(archiveFile);
+  const playoffContentIso = extractExportedTimestamp(playoffFile);
+  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso };
 
   const playoffsActive =
     /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);
@@ -257,11 +323,30 @@ export function generate() {
     urls.push({ loc: `/playoffs/series/${id}`, ...seriesMeta });
   }
 
+  const rosterLists = loadRosterLists();
+  for (const name of rosterLists.retired) {
+    if (archiveFile.includes(name) || pulseFile.includes(name)) bumpMention(name);
+  }
+  const pulsePlayers = new Set();
+  for (const m of pulseFile.matchAll(/\bplayer:\s*"([^"]+)"/g)) {
+    const canonical = canonicalPlayerName(m[1]);
+    pulsePlayers.add(canonical);
+    bumpMention(canonical);
+  }
+
   const playerSlugs = new Map();
-  for (const player of players) {
-    const canonical = canonicalPlayerName(player);
+  for (const [canonical, mentions] of mentionCounts) {
     const slug = slugify(canonical);
     if (!slug || playerSlugs.has(slug)) continue;
+    if (
+      !isSitemapIndexablePlayer(
+        canonical,
+        { inPulse: pulsePlayers.has(canonical), mentions },
+        rosterLists,
+      )
+    ) {
+      continue;
+    }
     playerSlugs.set(slug, canonical);
     urls.push({ loc: `/player/${slug}`, ...SITEMAP_PLAYER_META });
   }

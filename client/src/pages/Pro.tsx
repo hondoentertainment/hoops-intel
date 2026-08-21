@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useSubscription, startCheckout, openBillingPortal } from "../lib/useSubscription";
+import { distributionTools } from "../lib/siteNav";
 import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
 
@@ -306,6 +307,26 @@ export default function Pro() {
                 <div className="display-heading text-white text-base mb-1">{f.title}</div>
                 <div className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>{f.body}</div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>DISTRIBUTION & EMBEDS</div>
+          <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Publisher tools for embedding Hoops Intel — widgets, load analytics, and the same surfaces listed under Tools.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {distributionTools().map((t) => (
+              <a
+                key={t.href}
+                href={t.href}
+                className="rounded-lg p-4 block transition-colors hover:bg-white/[0.04]"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <div className="display-heading text-white text-base mb-1">{t.label}</div>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>{t.description}</div>
+              </a>
             ))}
           </div>
         </div>
