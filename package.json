@@ -51,8 +51,8 @@
     "node": "24.x"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.117.1",
-    "@atproto/api": "^0.20.40",
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@atproto/api": "^0.20.41",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "stripe": "^22.5.0",
@@ -66,18 +66,18 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.4",
+    "@testing-library/user-event": "^14.6.5",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^6.0.5",
+    "@vitejs/plugin-react": "^6.1.0",
     "autoprefixer": "^10.5.4",
     "esbuild": "^0.28.2",
     "jsdom": "^30.0.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.0",
     "typescript": "~6.0.3",
-    "vite": "^8.2.1",
-    "vitest": "^4.1.10"
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
   }
 }
