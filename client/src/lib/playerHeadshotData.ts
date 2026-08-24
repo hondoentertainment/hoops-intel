@@ -321,6 +321,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "khris middleton": 6609,
   "kingston flemings": 5149077,
   "kj simpson": 4683834,
+  "klay thompson": 6475,
   "koa peat": 5041953,
   "kobe brown": 4431752,
   "kobe sanders": 4702352,
