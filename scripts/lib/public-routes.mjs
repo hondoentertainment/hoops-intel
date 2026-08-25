@@ -48,40 +48,45 @@ export const SITE_REVIEW_PATHS = [
 
 /** Static tool paths written to sitemap.xml (excludes /, /archive, /pulse-history, /playoffs). */
 export const SITEMAP_STATIC_ROUTES = [
-  { loc: "/tools", priority: "0.65", changefreq: "weekly" },
-  { loc: "/injuries", priority: "0.65", changefreq: "weekly" },
-  { loc: "/pick-em", priority: "0.65", changefreq: "daily" },
-  { loc: "/trade-value", priority: "0.65", changefreq: "weekly" },
-  { loc: "/trivia", priority: "0.65", changefreq: "weekly" },
-  { loc: "/82-0", priority: "0.65", changefreq: "weekly" },
-  { loc: "/performance", priority: "0.65", changefreq: "weekly" },
-  { loc: "/momentum", priority: "0.65", changefreq: "weekly" },
-  { loc: "/lineups", priority: "0.65", changefreq: "weekly" },
-  { loc: "/trade-simulator", priority: "0.65", changefreq: "weekly" },
-  { loc: "/clutch", priority: "0.65", changefreq: "weekly" },
-  { loc: "/draft", priority: "0.65", changefreq: "weekly" },
-  { loc: "/sentiment", priority: "0.65", changefreq: "weekly" },
-  { loc: "/tactics", priority: "0.65", changefreq: "weekly" },
-  { loc: "/projections", priority: "0.65", changefreq: "weekly" },
-  { loc: "/badges", priority: "0.65", changefreq: "weekly" },
-  { loc: "/community-pulse", priority: "0.65", changefreq: "weekly" },
+  // Daily desk — crawl above interactive tools
+  { loc: "/injuries", priority: "0.7", changefreq: "daily" },
+  { loc: "/betting-intel", priority: "0.7", changefreq: "daily" },
   { loc: "/watch-guide", priority: "0.65", changefreq: "daily" },
-  { loc: "/podcast-companion", priority: "0.65", changefreq: "weekly" },
-  { loc: "/history", priority: "0.65", changefreq: "weekly" },
-  { loc: "/refs", priority: "0.65", changefreq: "weekly" },
-  { loc: "/ask", priority: "0.65", changefreq: "weekly" },
-  { loc: "/compare-players", priority: "0.65", changefreq: "weekly" },
-  { loc: "/pulse-methodology", priority: "0.55", changefreq: "monthly" },
-  { loc: "/rivals", priority: "0.65", changefreq: "weekly" },
+  { loc: "/momentum", priority: "0.65", changefreq: "daily" },
   { loc: "/my-pulse", priority: "0.6", changefreq: "daily" },
   { loc: "/print-edition", priority: "0.6", changefreq: "daily" },
+  { loc: "/pick-em", priority: "0.65", changefreq: "daily" },
+  { loc: "/podcast-companion", priority: "0.6", changefreq: "weekly" },
   { loc: "/widgets", priority: "0.6", changefreq: "daily" },
   { loc: "/pro", priority: "0.7", changefreq: "weekly" },
-  { loc: "/betting-intel", priority: "0.65", changefreq: "daily" },
+  // Analysis / content
+  { loc: "/lineups", priority: "0.6", changefreq: "weekly" },
+  { loc: "/clutch", priority: "0.6", changefreq: "weekly" },
+  { loc: "/draft", priority: "0.6", changefreq: "weekly" },
+  { loc: "/sentiment", priority: "0.6", changefreq: "weekly" },
+  { loc: "/tactics", priority: "0.6", changefreq: "weekly" },
+  { loc: "/projections", priority: "0.6", changefreq: "weekly" },
+  { loc: "/history", priority: "0.6", changefreq: "weekly" },
+  { loc: "/refs", priority: "0.6", changefreq: "weekly" },
+  { loc: "/rivals", priority: "0.6", changefreq: "weekly" },
+  { loc: "/community-pulse", priority: "0.6", changefreq: "weekly" },
   { loc: "/guest-pulse", priority: "0.55", changefreq: "weekly" },
+  { loc: "/pulse-methodology", priority: "0.55", changefreq: "monthly" },
+  // Interactive tools — below daily desk so crawl budget is not flattened
+  { loc: "/tools", priority: "0.55", changefreq: "weekly" },
+  { loc: "/trade-value", priority: "0.55", changefreq: "weekly" },
+  { loc: "/performance", priority: "0.55", changefreq: "weekly" },
+  { loc: "/ask", priority: "0.55", changefreq: "weekly" },
+  { loc: "/compare-players", priority: "0.55", changefreq: "weekly" },
+  { loc: "/trade-simulator", priority: "0.5", changefreq: "weekly" },
+  { loc: "/trivia", priority: "0.5", changefreq: "weekly" },
+  { loc: "/82-0", priority: "0.5", changefreq: "weekly" },
+  { loc: "/badges", priority: "0.5", changefreq: "weekly" },
 ];
 
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };
+/** Pulse Index names — existing daily desk signal, not a handmade celebrity list. */
+export const SITEMAP_PLAYER_DESK_META = { priority: "0.65", changefreq: "daily" };
 export const SITEMAP_TEAM_META = { priority: "0.6", changefreq: "weekly" };
 export const SITEMAP_GAME_META = { priority: "0.55", changefreq: "daily" };
 /** Default series sitemap meta; generate-sitemap.mjs bumps during active playoffs. */

@@ -26,6 +26,7 @@ export interface MomentumSwing {
 }
 
 export interface MomentumData {
+  generatedDate: string;
   date: string;
   games: MomentumSwing[];
   gameOfTheNight: string;
@@ -33,6 +34,7 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
+  generatedDate: "2026-08-25",
   date: "June 14, 2026",
   gameOfTheNight: "NYK-SAS-20260613",
   topClutchPerformer: {

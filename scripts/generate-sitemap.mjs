@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import {
   SITEMAP_GAME_META,
+  SITEMAP_PLAYER_DESK_META,
   SITEMAP_PLAYER_META,
   SITEMAP_PLAYOFFS_HUB_META,
   SITEMAP_PLAYOFFS_HUB_OFFSEASON_META,
@@ -179,6 +180,11 @@ function extractLatestArchiveIso(archiveFile) {
   return maxIso(...dates);
 }
 
+/** Pulse Index membership is the only popularity signal we trust for crawl weight. */
+export function playerSitemapMeta({ inPulse } = {}) {
+  return inPulse ? SITEMAP_PLAYER_DESK_META : SITEMAP_PLAYER_META;
+}
+
 /** Prefer content dates / source mtimes so crawlers see selective freshness. */
 export const STATIC_ROUTE_SOURCES = {
   "/tools": ["client/src/lib/siteNav.ts"],
@@ -333,6 +339,13 @@ export function generate() {
     pulsePlayers.add(canonical);
     bumpMention(canonical);
   }
+  const pulseIndexPlayers = new Set();
+  const pulseIndexBlock = pulseFile.match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/);
+  if (pulseIndexBlock) {
+    for (const m of pulseIndexBlock[1].matchAll(/\bplayer:\s*"([^"]+)"/g)) {
+      pulseIndexPlayers.add(canonicalPlayerName(m[1]));
+    }
+  }
 
   const playerSlugs = new Map();
   for (const [canonical, mentions] of mentionCounts) {
@@ -348,7 +361,10 @@ export function generate() {
       continue;
     }
     playerSlugs.set(slug, canonical);
-    urls.push({ loc: `/player/${slug}`, ...SITEMAP_PLAYER_META });
+    urls.push({
+      loc: `/player/${slug}`,
+      ...playerSitemapMeta({ inPulse: pulseIndexPlayers.has(canonical) }),
+    });
   }
   const teamSlugs = new Set();
   for (const team of teams) {
