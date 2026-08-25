@@ -10,7 +10,8 @@ import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { toESPNDate, toDisplayDate } from "./lib/daily-dates.mjs";
+import { toESPNDate, toDisplayDate, toISODate } from "./lib/daily-dates.mjs";
+import { stampGeneratedDate } from "./lib/stamp-generated-date.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -117,6 +118,7 @@ export interface MomentumSwing {
 }
 
 export interface MomentumData {
+  generatedDate: string;
   date: string;
   games: MomentumSwing[];
   gameOfTheNight: string;
@@ -124,6 +126,7 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
+  generatedDate: "${toISODate(0)}",
   date: "${displayDate}",
   gameOfTheNight: "...", // gameId of the most dramatic game
   topClutchPerformer: { ... },
@@ -179,7 +182,10 @@ async function main() {
   console.log(`   Found ${finalGames.length} completed games`);
 
   if (finalGames.length === 0) {
-    console.log("⚠  No completed games found. Skipping generation.");
+    const outPath = join(ROOT, "client", "src", "lib", "momentumData.ts");
+    const next = stampGeneratedDate(readFileSync(outPath, "utf8"), toISODate(0));
+    writeFileSync(outPath, next, "utf8");
+    console.log("⚠  No completed games found. Stamped generatedDate; left game narratives unchanged.");
     process.exit(0);
   }
 

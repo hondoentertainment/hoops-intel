@@ -7,7 +7,7 @@ import { claudeGenerate } from "./lib/claude-client.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { toDisplayDate } from "./lib/daily-dates.mjs";
+import { toDisplayDate, toISODate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,6 +46,7 @@ export interface TalkingPoint {
 }
 
 export interface PodcastCompanionData {
+  generatedDate: string;
   date: string;
   episodeTitle: string;
   rundown: TalkingPoint[];
@@ -54,7 +55,7 @@ export interface PodcastCompanionData {
   tweetThread: string[];
 }
 
-export const podcastCompanion: PodcastCompanionData = { ... };
+export const podcastCompanion: PodcastCompanionData = { generatedDate: "${toISODate(0)}", ... };
 \`\`\`
 
 ## Instructions

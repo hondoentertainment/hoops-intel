@@ -195,7 +195,13 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
   "/embed-stats": {
     title: "Embed Publisher Stats | Hoops Intel",
     description: "Publisher dashboard for embed load trends and export.",
-    canonicalPath: "/embed-stats",
+    canonicalPath: "/widgets",
+    noindex: true,
+  },
+  "/widgets/analytics": {
+    title: "Widget Load Timeline | Hoops Intel",
+    description: "Publisher dashboard for stacked daily embed loads — pulse, ticker, and injury.",
+    canonicalPath: "/widgets",
     noindex: true,
   },
   "/pro": {
@@ -376,7 +382,7 @@ export function resolveRouteSeo(pathname: string): PageSeo | null {
     return {
       title: base?.title ?? `${SITE_NAME}`,
       description: base?.description ?? "Hoops Intel account and settings.",
-      canonicalPath: path,
+      canonicalPath: base?.canonicalPath ?? path,
       noindex: true,
     };
   }

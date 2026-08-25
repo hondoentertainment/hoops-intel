@@ -8,7 +8,10 @@ import {
   extractExportedTimestamp,
   isSitemapIndexablePlayer,
   lastmodForLoc,
+  playerSitemapMeta,
 } from "../generate-sitemap.mjs";
+import { SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
+import { stampGeneratedDate } from "../lib/stamp-generated-date.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -53,15 +56,56 @@ test("game lastmod uses the game date in the URL", () => {
   );
 });
 
-test("momentum lastmod matches the published content date, not git/mtime", () => {
+test("momentum lastmod prefers generatedDate over the frozen game-night date", () => {
   const file = readFileSync(join(ROOT, "client/src/lib/momentumData.ts"), "utf8");
   const contentDate = extractExportedTimestamp(file);
   assert.ok(contentDate, "momentumData.ts should export a date");
+  assert.match(file, /generatedDate:\s*"\d{4}-\d{2}-\d{2}"/);
+  assert.match(file, /date:\s*"June 14, 2026"/);
+  assert.notEqual(contentDate, "2026-06-14", "lastmod source must not stay stuck on last game night");
   assert.equal(
     lastmodForLoc("/momentum", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
     contentDate,
   );
   assert.notEqual(contentDate, "2026-08-21");
+});
+
+test("podcast lastmod prefers generatedDate over the episode date", () => {
+  const file = readFileSync(join(ROOT, "client/src/lib/podcastData.ts"), "utf8");
+  const contentDate = extractExportedTimestamp(file);
+  assert.ok(contentDate, "podcastData.ts should export a date");
+  assert.match(file, /generatedDate:\s*"\d{4}-\d{2}-\d{2}"/);
+  assert.match(file, /date:\s*"June 9, 2026"/);
+  assert.notEqual(contentDate, "2026-06-09");
+  assert.equal(
+    lastmodForLoc("/podcast-companion", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
+    contentDate,
+  );
+});
+
+test("stampGeneratedDate upserts ISO generatedDate without rewriting date", () => {
+  const src = `export const momentumData: MomentumData = {\n  date: "June 14, 2026",\n};\n`;
+  const stamped = stampGeneratedDate(src, "2026-08-25");
+  assert.match(stamped, /generatedDate: "2026-08-25"/);
+  assert.match(stamped, /date: "June 14, 2026"/);
+  assert.equal(stampGeneratedDate(stamped, "2026-08-26").includes('generatedDate: "2026-08-26"'), true);
+});
+
+test("Pulse Index players get higher sitemap priority; others stay default", () => {
+  assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
+  assert.deepEqual(playerSitemapMeta({ inPulse: false }), { priority: "0.5", changefreq: "weekly" });
+});
+
+test("daily desk sitemap priority sits above interactive tools", () => {
+  const byLoc = Object.fromEntries(SITEMAP_STATIC_ROUTES.map((r) => [r.loc, r]));
+  assert.ok(Number(byLoc["/betting-intel"].priority) > Number(byLoc["/tools"].priority));
+  assert.ok(Number(byLoc["/betting-intel"].priority) > Number(byLoc["/trade-simulator"].priority));
+  assert.ok(Number(byLoc["/injuries"].priority) > Number(byLoc["/compare-players"].priority));
+  assert.ok(Number(byLoc["/tools"].priority) <= 0.55);
+  assert.ok(Number(byLoc["/trade-simulator"].priority) <= 0.55);
+  assert.ok(Number(byLoc["/compare-players"].priority) <= 0.55);
+  assert.equal(byLoc["/injuries"].changefreq, "daily");
+  assert.equal(byLoc["/betting-intel"].changefreq, "daily");
 });
 
 test("historical comparison names are not sitemap-indexable", () => {

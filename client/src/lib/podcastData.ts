@@ -13,6 +13,7 @@ export interface TalkingPoint {
 }
 
 export interface PodcastCompanionData {
+  generatedDate: string;
   date: string;
   episodeTitle: string;
   rundown: TalkingPoint[];
@@ -22,6 +23,7 @@ export interface PodcastCompanionData {
 }
 
 export const podcastCompanion: PodcastCompanionData = {
+  generatedDate: "2026-08-25",
   date: "June 9, 2026",
 
   episodeTitle:
