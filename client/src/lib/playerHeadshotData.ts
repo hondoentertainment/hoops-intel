@@ -22,6 +22,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "brandin podziemski": 4709138,
   "brandon ingram": 3913176,
   "brandon miller": 4433287,
+  "brandon williams": 52131,
   "brice sensabaugh": 5105839,
   "brook lopez": 3448,
   "bryce mcgowens": 4576086,
