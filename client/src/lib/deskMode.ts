@@ -80,16 +80,18 @@ export function seasonModeToEditionContext(mode: ClientSeasonMode): EditionConte
   }
 }
 
-/** Edition context from pulse data, with calendar fallback when unset or stale. */
+/**
+ * Chrome follows the calendar for `date`. Edition metadata can only pull
+ * regular-season chrome into playoffs/finals (series started early).
+ * Stale "regular" or leftover "dead-period" never overrides a later window.
+ */
 export function activeEditionContext(date = new Date()): EditionContext {
   const cal = seasonModeToEditionContext(clientSeasonMode(date));
   const raw = pulseEdition.editionContext;
-  if (raw && EDITION_CONTEXTS.has(raw)) {
-    const fromData = raw as EditionContext;
-    // Stale "regular" metadata during calendar offseason — chrome follows the calendar.
-    if (fromData === "regular" && OFFSEASON_CONTEXTS.has(cal)) return cal;
-    return fromData;
-  }
+  const fromData = raw && EDITION_CONTEXTS.has(raw) ? (raw as EditionContext) : null;
+
+  if (OFFSEASON_CONTEXTS.has(cal)) return cal;
+  if (cal === "regular" && (fromData === "playoffs" || fromData === "finals")) return fromData;
   return cal;
 }
 
