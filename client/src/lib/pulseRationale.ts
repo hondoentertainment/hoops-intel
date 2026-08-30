@@ -1,3 +1,8 @@
+/** First plain-language reason for a Pulse row — shown on the card, not behind ?. */
+export function pulseLeadLine(rationale: string, note?: string): string {
+  return rationaleToBullets(rationale, note)[0] || "";
+}
+
 /** Split editorial rationale into up to three scannable bullets for the rank explainer. */
 export function rationaleToBullets(rationale: string, note?: string): string[] {
   const splitSentences = (text: string) =>

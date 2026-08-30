@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
-import { DESK_SECTION_LINKS } from "../lib/siteNav";
+import { deskSectionLinks } from "../lib/siteNav";
 import { isPlayoffsActive } from "../lib/playoffData";
 
 export default function DeskSectionNav() {
   const [activeId, setActiveId] = useState<string>("");
 
   const links = useMemo(() => {
-    if (!isPlayoffsActive()) return DESK_SECTION_LINKS;
+    const base = deskSectionLinks();
+    if (!isPlayoffsActive()) return base;
     const playoffLink = { label: "Playoffs", href: "#playoffs" };
-    const idx = DESK_SECTION_LINKS.findIndex((l) => l.href === "#injuries");
-    const next = [...DESK_SECTION_LINKS];
+    const idx = base.findIndex((l) => l.href === "#injuries");
+    const next = [...base];
     next.splice(idx + 1, 0, playoffLink);
     return next;
   }, []);

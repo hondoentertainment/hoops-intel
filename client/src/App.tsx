@@ -89,7 +89,28 @@ function VercelAnalyticsScript() {
   return null;
 }
 
+function pageLoaderLabel(path: string): string {
+  if (path.startsWith("/pick-em") || path === "/picks") return "Loading picks";
+  if (path.startsWith("/playoffs")) return "Loading playoffs";
+  if (path.startsWith("/ask")) return "Loading Ask Hoops Intel";
+  if (path.startsWith("/injuries")) return "Loading injury report";
+  if (path.startsWith("/archive")) return "Loading archive";
+  if (path.startsWith("/my-pulse")) return "Loading My Pulse";
+  if (path.startsWith("/pro")) return "Loading Pro";
+  if (path.startsWith("/tools")) return "Loading tools";
+  return "Loading page";
+}
+
+function RedirectTo({ href }: { href: string }) {
+  const [, setLocation] = useLocation();
+  useEffect(() => {
+    setLocation(href);
+  }, [href, setLocation]);
+  return <PageLoader />;
+}
+
 function PageLoader() {
+  const [location] = useLocation();
   return (
     <div className="flex items-center justify-center min-h-[50vh] px-4" role="status" aria-live="polite">
       <div className="w-full max-w-md space-y-4">
@@ -100,7 +121,7 @@ function PageLoader() {
             aria-hidden
           />
           <div className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
-            Loading page…
+            {pageLoaderLabel(location)}…
           </div>
         </div>
         <div className="space-y-2" aria-hidden>
@@ -146,6 +167,9 @@ export default function App() {
             <Route path="/pulse-history" component={PulseHistory} />
             <Route path="/playoffs" component={PlayoffBracket} />
             <Route path="/playoffs/series/:seriesId" component={PlayoffSeriesRedirect} />
+            <Route path="/picks">
+              <RedirectTo href="/pick-em" />
+            </Route>
             <Route path="/pick-em" component={PickEm} />
             <Route path="/trade-value" component={TradeValue} />
             <Route path="/injuries" component={InjuryReport} />
@@ -188,19 +212,23 @@ export default function App() {
               <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none" lang="en">
                 <p className="section-label mb-3">NOT FOUND</p>
                 <h1 className="display-heading text-2xl font-bold text-white mb-4">404 — Page not found</h1>
-                <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  That route is not part of Hoops Intel. Try search (⌘K / Ctrl+K) from any page.
+                <p className="text-sm mb-6" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+                  That route is not part of Hoops Intel.
                 </p>
-                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                  <a href="/" className="text-sky-400 underline">
+                <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
+                  <a href="/" className="text-sky-400 underline min-h-[44px] inline-flex items-center">
                     Today&apos;s desk
                   </a>
-                  <a href="/tools" className="text-sky-400 underline">
-                    All tools
+                  <a href="/tools" className="text-sky-400 underline min-h-[44px] inline-flex items-center">
+                    Tools
                   </a>
-                  <a href="/archive" className="text-sky-400 underline">
-                    Archive
-                  </a>
+                  <button
+                    type="button"
+                    className="text-sky-400 underline min-h-[44px] inline-flex items-center"
+                    onClick={() => window.dispatchEvent(new Event("hi-open-search"))}
+                  >
+                    Open search
+                  </button>
                 </div>
               </main>
             </Route>

@@ -80,11 +80,17 @@ export function seasonModeToEditionContext(mode: ClientSeasonMode): EditionConte
   }
 }
 
-/** Edition context from pulse data, with calendar fallback when unset or legacy. */
+/** Edition context from pulse data, with calendar fallback when unset or stale. */
 export function activeEditionContext(date = new Date()): EditionContext {
+  const cal = seasonModeToEditionContext(clientSeasonMode(date));
   const raw = pulseEdition.editionContext;
-  if (raw && EDITION_CONTEXTS.has(raw)) return raw as EditionContext;
-  return seasonModeToEditionContext(clientSeasonMode(date));
+  if (raw && EDITION_CONTEXTS.has(raw)) {
+    const fromData = raw as EditionContext;
+    // Stale "regular" metadata during calendar offseason — chrome follows the calendar.
+    if (fromData === "regular" && OFFSEASON_CONTEXTS.has(cal)) return cal;
+    return fromData;
+  }
+  return cal;
 }
 
 export function isOffseasonDesk(date = new Date()): boolean {
@@ -112,20 +118,20 @@ export function offseasonPrimaryHref(date = new Date()): string {
   }
 }
 
-export function offseasonPrimaryCta(date = new Date()): { label: string; href: string; emoji: string } {
+export function offseasonPrimaryCta(date = new Date()): { label: string; href: string } {
   switch (activeEditionContext(date)) {
     case "draft":
-      return { label: "Draft big board", href: "/draft", emoji: "📋" };
+      return { label: "Draft big board", href: "/draft" };
     case "free-agency":
-      return { label: "Free agency desk", href: "/trade-value", emoji: "💰" };
+      return { label: "Free agency desk", href: "/trade-value" };
     case "summer-league":
-      return { label: "Summer League watch", href: "/draft", emoji: "☀️" };
+      return { label: "Summer League watch", href: "/draft" };
     case "preseason":
-      return { label: "Rotation battles", href: "/lineups", emoji: "🏀" };
+      return { label: "Rotation battles", href: "/lineups" };
     case "dead-period":
-      return { label: "Season projections", href: "/projections", emoji: "📈" };
+      return { label: "Season projections", href: "/projections" };
     default:
-      return { label: "All tools", href: "/tools", emoji: "🛠️" };
+      return { label: "All tools", href: "/tools" };
   }
 }
 

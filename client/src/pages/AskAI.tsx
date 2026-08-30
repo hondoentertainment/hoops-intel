@@ -90,6 +90,7 @@ export default function AskAI() {
             setInput={setInput}
             isLoading={isLoading}
             onSend={() => sendMessage()}
+            inputId="ask-hoops-intel-page"
           />
         </div>
       </div>

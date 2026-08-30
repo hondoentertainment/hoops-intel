@@ -59,10 +59,11 @@ import SixtySecondBriefing from "../components/SixtySecondBriefing";
 import SectionErrorBoundary from "../components/SectionErrorBoundary";
 import { AskPromptChips } from "../components/AskHoopsIntel";
 import { dispatchAskPrompt } from "../lib/askShortcuts";
-import { rationaleToBullets } from "../lib/pulseRationale";
+import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
+import { shouldShowLiveScorebar, scorebarGamesToShow } from "../lib/scorebarVisibility";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import OffseasonDeskStrip from "../components/OffseasonDeskStrip";
-import { isOffseasonDesk, offseasonPrimaryCta, activeEditionContext, editionContextDeskLabel } from "../lib/deskMode";
+import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
 import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
@@ -139,11 +140,15 @@ function ScoreboardCell({ g }: { g: LiveGame }) {
 
 function LiveScorebar() {
   const { data, error, refresh, loading } = useLiveScores();
-  const games = data?.games ?? [];
+  const games = scorebarGamesToShow(data?.games ?? [], isOffseasonDesk());
   const anyLive = games.some((g) => g.status === "in");
 
   if (loading && !data) {
     return <LiveScoreSkeleton />;
+  }
+
+  if (!shouldShowLiveScorebar(games, isOffseasonDesk()) && games.length === 0) {
+    return null;
   }
 
   if (games.length > 0) {
@@ -294,7 +299,7 @@ function PlayoffHeroCta() {
           : "linear-gradient(135deg, #F59E0B, #D97706)",
       }}
     >
-      <span>{finalsOn ? "🏆 NBA Finals desk" : `🏆 Playoffs live · ${activeCount} active series`}</span>
+      <span>{finalsOn ? "NBA Finals desk" : `Playoffs live · ${activeCount} active series`}</span>
       <span className="text-xs font-medium opacity-90 mono-data">{nextLabel}</span>
     </a>
   );
@@ -349,7 +354,9 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
       <div className="container py-12 md:py-16">
         <div className="max-w-4xl animate-fade-up">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <div className="section-label">{finalsOn ? "NBA Finals Desk" : pulseEdition.edition}</div>
+            <div className="section-label">
+              {finalsOn ? "NBA Finals desk" : `${editionContextDeskLabel()} · ${pulseEdition.date}`}
+            </div>
             <DataTrustBadge variant="edition" />
           </div>
           <h1 className="display-heading text-white mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
@@ -370,8 +377,15 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               How Pulse works
             </a>
           </div>
-          <HeroLeadStory />
+          {!isOffseasonDesk() ? <HeroLeadStory /> : null}
           <div className="flex flex-wrap gap-3 items-center">
+            <a
+              href="#today-desk"
+              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
+              style={{ background: "#0EA5E9" }}
+            >
+              Read the brief
+            </a>
             {showMyPulse ? (
               <a
                 href="/my-pulse"
@@ -380,18 +394,25 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               >
                 Your desk →
               </a>
-            ) : null}
-            {playoffsOn ? (
-              <PlayoffHeroCta />
             ) : (
               <a
-                href="/playoffs"
-                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
-                style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)" }}
+                href="/my-pulse"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
+                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
-                🏆 Playoff bracket
+                Set My Pulse
               </a>
             )}
+            {isOffseasonDesk() ? (
+              <a
+                href={offseasonPrimaryCta().href}
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
+                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+              >
+                {offseasonPrimaryCta().label}
+              </a>
+            ) : null}
+            {playoffsOn ? <PlayoffHeroCta /> : null}
             {finalsOn ? (
               <a
                 href="/print-edition"
@@ -401,20 +422,24 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
                 Finals print edition
               </a>
             ) : null}
-            <a
-              href="#scores"
-              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold text-white transition-all"
-              style={{ background: "#0EA5E9" }}
-            >
-              Today’s scores
-            </a>
-            <a
-              href="#tonight"
-              className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
-              style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.12)" }}
-            >
-              Tonight’s games
-            </a>
+            {!isOffseasonDesk() && gameResults.length > 0 ? (
+              <a
+                href="#scores"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
+                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+              >
+                Scores
+              </a>
+            ) : null}
+            {!isOffseasonDesk() && gamePreviews.length > 0 ? (
+              <a
+                href="#tonight"
+                className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
+                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+              >
+                Tonight
+              </a>
+            ) : null}
           </div>
           <details className="mt-4 max-w-xl rounded-lg border border-white/10 bg-black/25 open:bg-black/35 px-4 py-2">
             <summary className="text-xs cursor-pointer select-none outline-none hover:text-sky-400 [&::-webkit-details-marker]:hidden [&::marker]:content-none flex items-center gap-2 justify-between py-2" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -444,7 +469,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
                 My Pulse
               </a>
               <a href="/tools" className="text-xs font-medium underline-offset-4 hover:text-sky-400" style={{ color: "rgba(255,255,255,0.5)" }}>
-                All tools →
+                Tools →
               </a>
             </div>
           </details>
@@ -483,33 +508,33 @@ function TodayDeskSection() {
   return (
     <section id="today-desk" className="py-8 border-t border-white/[0.06]" aria-labelledby="today-desk-title">
       <div className="container">
-        <div className="mb-5 space-y-4">
+        <div className="mb-8 max-w-3xl">
+          <p className="section-label mb-2">Morning briefing</p>
+          <h2 id="today-desk-title" className="sr-only">
+            Today&apos;s desk
+          </h2>
+          <p className="text-lg leading-relaxed mb-5" style={{ color: "var(--hi-heading, #fff)" }}>
+            {narrative.subhead}
+          </p>
           <SectionErrorBoundary section="60-second read">
             <SixtySecondBriefing />
           </SectionErrorBoundary>
-          <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
-            <div className="section-label mb-2">ASK HOOPS INTEL</div>
-            <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Tap a shortcut — opens the AI assistant with today&apos;s edition context
-            </p>
-            <AskPromptChips onSelect={dispatchAskPrompt} />
-          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr] gap-5">
-          <div className="glass-card rounded-xl p-5">
-            <div className="section-label mb-2">MORNING BRIEFING</div>
-            <h2 id="today-desk-title" className="display-heading text-white text-2xl mb-3">{narrative.headline}</h2>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.68)" }}>{narrative.subhead}</p>
+          {deskGames.length > 0 ? (
+          <div className="rounded-xl p-5 border border-white/[0.08]">
+            <div className="section-label mb-3">On the slate</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {deskGames.map((game) => (
                 <a key={game.gameId} href={`/game/${game.gameId}`} className="rounded-lg p-3 bg-white/[0.04] hover:bg-white/[0.07] transition-colors">
                   <div className="section-label mb-1">{game.status} · {game.source.replace(/-/g, " ")}</div>
                   <div className="text-sm font-semibold text-white">{game.away.abbr} at {game.home.abbr}</div>
-                  <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{shortenPulsePreview(game.subtitle || game.whyItMatters, 86)}</div>
+                  <div className="text-xs mt-1" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>{shortenPulsePreview(game.subtitle || game.whyItMatters, 86)}</div>
                 </a>
               ))}
             </div>
           </div>
+          ) : null}
 
           <div className="space-y-4">
             <div className="glass-card rounded-xl p-4">
@@ -522,18 +547,25 @@ function TodayDeskSection() {
                 ))}
               </div>
             </div>
-            <div className="glass-card rounded-xl p-4">
+            <div className="rounded-xl p-4 border border-white/[0.08]">
               <div className="section-label mb-3">HOW THIS EDITION WAS BUILT</div>
               <div className="grid grid-cols-1 gap-2">
                 {trust.map((signal) => (
                   <div key={signal.label} className="flex justify-between gap-3 text-xs">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{signal.label}</span>
+                    <span style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>{signal.label}</span>
                     <span className="text-right text-white/75">{signal.value}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
+        <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 mt-5">
+          <div className="section-label mb-2">Ask Hoops Intel</div>
+          <p className="text-xs mb-3" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+            Tap a shortcut — opens the assistant with today&apos;s edition context
+          </p>
+          <AskPromptChips onSelect={dispatchAskPrompt} />
         </div>
       </div>
     </section>
@@ -913,13 +945,15 @@ function PulseIndexSection() {
           <a href="/pulse-history" className="text-xs font-medium hover:underline" style={{ color: "#0EA5E9" }}>View History &rarr;</a>
         </div>
         <h2 className="display-heading text-white text-2xl mb-2">Pulse Index</h2>
-        {finalsOn ? (
-          <p className="text-xs mb-6 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
-            Scoped to finalist teams{finalists.length ? ` (${finalists.join(" · ")})` : ""} while the NBA Finals desk is active.
-          </p>
-        ) : (
-          <div className="mb-6" />
-        )}
+        <p className="text-sm mb-6 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+          Pulse 0–100 is today&apos;s organizational and on-court weight.{" "}
+          <a href="/pulse-methodology" className="text-sky-400 underline-offset-2 hover:underline">
+            How Pulse works
+          </a>
+          {finalsOn
+            ? ` Scoped to finalist teams${finalists.length ? ` (${finalists.join(" · ")})` : ""} while the NBA Finals desk is active.`
+            : ""}
+        </p>
         {finalsOn && pulseRows.length === 0 ? (
           <p className="text-sm rounded-lg px-4 py-3 mb-4" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)" }}>
             No Pulse rows match the synced finalist teams yet — check back after the next edition refresh.
@@ -949,7 +983,10 @@ function PulseIndexSection() {
                     <Sparkline trend={player.trend} />
                   </div>
                   <div className="mono-data text-xs mb-1" style={{ color: "#10B981" }}>{player.keyStats}</div>
-                  <div className="text-xs leading-snug" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <div className="text-sm leading-snug mb-1" style={{ color: "rgba(255,255,255,0.85)" }}>
+                    {pulseLeadLine(String(player.rationale || ""), String(player.note || ""))}
+                  </div>
+                  <div className="text-xs leading-snug" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
                     {shortenPulsePreview(String(player.note || ""))}
                   </div>
                 </div>
@@ -959,7 +996,6 @@ function PulseIndexSection() {
                     <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{player.teamRecord}</div>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    {/* "Why ranked here?" button */}
                     <button
                       type="button"
                       onClick={() =>
@@ -972,7 +1008,7 @@ function PulseIndexSection() {
                           ),
                         })
                       }
-                      className="min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center px-3 sm:w-9 sm:h-9 sm:p-0 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/25"
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center px-3 rounded-full text-xs font-bold transition-colors hover:bg-sky-500/25"
                       style={{
                         background: "rgba(14,165,233,0.1)",
                         color: "#0EA5E9",
@@ -983,12 +1019,6 @@ function PulseIndexSection() {
                     >
                       ?
                     </button>
-                    {/* Share player card */}
-                    <ShareButton
-                      url={`https://hoopsintel.net/player/${slugify(player.player)}`}
-                      tweetText={`${player.player} — Pulse Rank #${player.rank} | ${player.keyStats} hoopsintel.net/player/${slugify(player.player)}`}
-                      size="sm"
-                    />
                   </div>
                 </div>
               </div>
@@ -1075,9 +1105,12 @@ function InjurySection() {
             return (
               <div key={i} className="glass-card rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <a href={`/player/${slugify(injury.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{injury.player}</a>
-                    <a href={`/team/${injury.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>{injury.team}</a>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <PlayerAvatar name={String(injury.player || "Unnamed player")} team={injury.team} size={36} />
+                    <a href={`/player/${slugify(injury.player || "player")}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors truncate">
+                      {injury.player?.trim() || "Unnamed player"}
+                    </a>
+                    <a href={`/team/${String(injury.team || "nba").toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors shrink-0" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>{injury.team || "NBA"}</a>
                   </div>
                   <span className="text-xs font-semibold px-2 py-0.5 rounded uppercase" style={{ background: ss.bg, color: ss.color }}>{injury.status}</span>
                 </div>
@@ -1711,8 +1744,8 @@ function Footer() {
               <div className="w-6 h-6 rounded flex items-center justify-center font-bold text-white text-xs" style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>HI</div>
               <span className="display-heading text-white text-sm">HOOPS INTEL</span>
             </div>
-            <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>
-              Daily NBA Intelligence · Updated Every Morning · {pulseEdition.edition}
+            <p className="text-xs mb-3" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+              Daily NBA intelligence · {pulseEdition.date}
             </p>
             <div className="flex gap-3">
               <a href="/archive" className="text-xs" style={{ color: "#0EA5E9" }}>Archive</a>
@@ -1785,7 +1818,7 @@ function Footer() {
                   key={link.href}
                   href={link.href}
                   className="text-xs hover:text-sky-400 transition-colors"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
                 >
                   {link.label}
                 </a>
@@ -1842,13 +1875,14 @@ export default function Home() {
         <HeroSection showMyPulse={showMyPulse} />
         <DeskSectionNav />
         <TodayDeskSection />
-        <PickEmHomeBanner />
+        <OffseasonDeskStrip />
+        {!isOffseasonDesk() || gamePreviews.length > 0 ? <PickEmHomeBanner /> : null}
         {!showMyPulse ? <MyPulseBanner onSetup={() => setShowPrefsSetup(true)} /> : null}
         {isPlayoffsActive() ? <PlayoffSection /> : null}
-        <ScoresSection favoriteTeams={favoriteTeams} />
+        {!(isOffseasonDesk() && gameResults.length === 0) ? <ScoresSection favoriteTeams={favoriteTeams} /> : null}
         <PulseIndexSection />
         <InjurySection />
-        <TonightSection />
+        {!(isOffseasonDesk() && gamePreviews.length === 0) ? <TonightSection /> : null}
         <CollapsibleEditionExtras
           narrative={<NarrativeSection />}
           media={<MediaReactionsSection />}

@@ -405,7 +405,24 @@ ${urls.map((u) => `  <url>
   console.log(`✓ Sitemap written with ${urls.length} URLs (${distinctLastmods.size} distinct lastmod dates)`);
 }
 
+function writeFallbackSitemap() {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${xmlEscape(BASE + "/")}</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+  writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
+}
+
 // ── Standalone CLI entry point ────────────────────────────
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  generate();
+  try {
+    generate();
+  } catch (err) {
+    console.error("Sitemap generation failed — writing fallback so /sitemap.xml stays valid.", err);
+    writeFallbackSitemap();
+  }
 }

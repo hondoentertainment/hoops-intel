@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, useCallback, type ReactElement } from "react";
+import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { searchContext } from "../lib/hoopsSearch";
 import { contextualAskChips } from "../lib/askShortcuts";
 
@@ -214,7 +216,7 @@ export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) 
           style={{
             background: "rgba(14,165,233,0.08)",
             border: "1px solid rgba(14,165,233,0.15)",
-            color: "rgba(255,255,255,0.6)",
+            color: "var(--hi-muted, rgba(255,255,255,0.72))",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(14,165,233,0.15)";
@@ -222,7 +224,7 @@ export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) 
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "rgba(14,165,233,0.08)";
-            e.currentTarget.style.color = "rgba(255,255,255,0.6)";
+            e.currentTarget.style.color = "var(--hi-muted, rgba(255,255,255,0.72))";
           }}
         >
           {q}
@@ -339,17 +341,22 @@ export function ChatInput({
   setInput,
   isLoading,
   onSend,
+  inputId = "ask-hoops-intel-input",
 }: {
   input: string;
   setInput: (v: string) => void;
   isLoading: boolean;
   onSend: () => void;
+  inputId?: string;
 }) {
   return (
     <div
       className="px-3 py-3 border-t"
       style={{ borderColor: "rgba(255,255,255,0.06)" }}
     >
+      <label htmlFor={inputId} className="block text-xs font-medium mb-2 text-white">
+        Ask Hoops Intel
+      </label>
       <div
         className="flex items-center gap-2 rounded-lg px-3 py-2"
         style={{
@@ -358,6 +365,7 @@ export function ChatInput({
         }}
       >
         <input
+          id={inputId}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -369,7 +377,7 @@ export function ChatInput({
           }}
           placeholder="Ask about NBA games, players, stats..."
           maxLength={500}
-          className="flex-1 bg-transparent text-base sm:text-xs text-white placeholder-white/30 outline-none min-h-[44px] sm:min-h-0"
+          className="flex-1 bg-transparent text-base sm:text-sm text-white placeholder-white/40 outline-none min-h-[44px]"
           disabled={isLoading}
         />
         <button
@@ -377,7 +385,7 @@ export function ChatInput({
           onClick={onSend}
           disabled={isLoading || !input.trim()}
           aria-label="Send message"
-          className="flex-shrink-0 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center transition-all"
+          className="flex-shrink-0 min-h-[44px] px-3 rounded-lg flex items-center justify-center gap-1 text-xs font-semibold transition-all"
           style={{
             background:
               isLoading || !input.trim()
@@ -389,10 +397,11 @@ export function ChatInput({
                 : "#0EA5E9",
           }}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
             <line x1="22" y1="2" x2="11" y2="13" />
             <polygon points="22 2 15 22 11 13 2 9 22 2" />
           </svg>
+          <span>Send</span>
         </button>
       </div>
       <div
@@ -412,6 +421,15 @@ export function ChatInput({
 export default function AskHoopsIntel() {
   const [isOpen, setIsOpen] = useState(false);
   const { messages, input, setInput, isLoading, sendMessage } = useChatEngine();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  useFocusTrap(isOpen, panelRef);
+  useBodyScrollLock(isOpen);
+
+  const closePanel = useCallback(() => {
+    setIsOpen(false);
+    queueMicrotask(() => triggerRef.current?.focus());
+  }, []);
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -424,12 +442,25 @@ export default function AskHoopsIntel() {
     return () => window.removeEventListener("hoops-intel:ask", handler);
   }, [sendMessage]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePanel();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen, closePanel]);
+
   return (
     <>
       {/* Floating Button */}
       {!isOpen && (
         <button
           type="button"
+          ref={triggerRef}
           onClick={() => setIsOpen(true)}
           className="fixed z-50 flex items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02] md:bottom-6"
           style={{
@@ -446,13 +477,14 @@ export default function AskHoopsIntel() {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
           </svg>
-          <span className="text-sm font-semibold">Ask AI</span>
+          <span className="text-sm font-semibold">Ask Hoops Intel</span>
         </button>
       )}
 
       {/* Chat Panel */}
       {isOpen && (
         <div
+          ref={panelRef}
           className="ask-chat-panel fixed z-50 flex flex-col"
           role="dialog"
           aria-labelledby="floating-chat-title"
@@ -497,7 +529,7 @@ export default function AskHoopsIntel() {
                 className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-sky-400"
                 style={{ color: "rgba(255,255,255,0.55)", background: "rgba(255,255,255,0.05)" }}
                 title="Open full page"
-                aria-label="Open full Ask AI page"
+                aria-label="Open full Ask Hoops Intel page"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
@@ -505,7 +537,7 @@ export default function AskHoopsIntel() {
               </a>
               <button
                 type="button"
-                onClick={() => setIsOpen(false)}
+                onClick={closePanel}
                 className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-xs transition-colors hover:bg-white/10"
                 style={{ color: "rgba(255,255,255,0.6)" }}
                 aria-label="Close assistant"
@@ -531,6 +563,7 @@ export default function AskHoopsIntel() {
             setInput={setInput}
             isLoading={isLoading}
             onSend={() => sendMessage()}
+            inputId="ask-hoops-intel-floating"
           />
         </div>
       )}

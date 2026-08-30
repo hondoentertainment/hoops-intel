@@ -22,8 +22,8 @@ html.dark {
   --hi-mobile-sheet: #081018;
   --hi-border-soft: rgba(255, 255, 255, 0.08);
   --hi-heading: #ffffff;
-  --hi-muted: rgba(255, 255, 255, 0.6);
-  --hi-muted-sub: rgba(255, 255, 255, 0.5);
+  --hi-muted: rgba(255, 255, 255, 0.72);
+  --hi-muted-sub: rgba(255, 255, 255, 0.68);
 }
 
 html.light {

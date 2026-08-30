@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { useTheme } from "../contexts/ThemeContext";
-import { MAIN_NAV_LINKS, HEADER_NAV_LINKS, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
+import { headerNavLinks, mainNavLinks, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
 import { globalSearch, type SearchResult } from "../lib/searchUtils";
 import AuthModal from "./AuthModal";
 import { getUser, type User } from "../lib/supabaseClient";
@@ -92,7 +92,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
       <button
         type="button"
         onClick={() => setShowModal(!showModal)}
-        className="relative min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-white/10 sm:min-h-0 sm:min-w-0 sm:p-1.5"
+        className="relative min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-white/10"
         title="Notifications"
         aria-label="Notifications menu"
       >
@@ -126,36 +126,29 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           <div className="p-4">
             <div className="section-label mb-3">NOTIFICATIONS</div>
 
-            <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
-              <span className="text-white/60 font-medium">Email digest:</span> morning drop at 5 AM PST (sign up below).
-              Push alerts use a separate flow:{" "}
-              <span className="text-white/60 font-medium">sign in</span>, then{" "}
-              <a href="/account#browser-push" className="underline text-sky-400/95">
-                Account → Browser push
-              </a>{" "}
-              to register this device and choose topics (elimination, clinchers, injury wire, fantasy).&nbsp;
-              <a href="/playoffs" className="underline text-sky-400/95">
-                Playoff board →
-              </a>
-            </p>
-
-            <div className="mb-4">
+            <div className="mb-4 space-y-2">
+              <p className="text-xs font-semibold text-white">Email digest</p>
+              <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+                Morning edition at 5 AM PST.
+              </p>
+            </div>
+            <div className="mb-4 space-y-2">
+              <p className="text-xs font-semibold text-white">Browser push</p>
+              <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+                Sign in, then register this device and pick topics.
+              </p>
               <a
                 href="/account#browser-push"
-                className="block w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] sm:min-h-0 flex items-center"
+                className="block w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] flex items-center"
                 style={{
                   background: "rgba(14,165,233,0.1)",
                   color: "#0EA5E9",
                   border: "1px solid rgba(14,165,233,0.2)",
                 }}
               >
-                Set up browser push & topics →
+                Set up browser push →
               </a>
             </div>
-
-            <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Daily email digest at 5 AM PST
-            </p>
 
             {subscribed ? (
               <div className="px-3 py-2 rounded text-xs" style={{ background: "rgba(16,185,129,0.1)", color: "#10B981" }}>
@@ -283,20 +276,20 @@ function SearchDialog({
 
   if (!open) return null;
 
-  const iconForType = (type: string) => {
+  const labelForType = (type: string) => {
     switch (type) {
       case "player":
-        return "👤";
+        return "Player";
       case "team":
-        return "🏀";
+        return "Team";
       case "game":
-        return "📊";
+        return "Game";
       case "injury":
-        return "🏥";
+        return "Injury";
       case "story":
-        return "📰";
+        return "Story";
       default:
-        return "📌";
+        return "Page";
     }
   };
 
@@ -357,8 +350,33 @@ function SearchDialog({
         </div>
         <div className="max-h-[min(20rem,50vh)] overflow-y-auto overscroll-contain">
           {results.length === 0 && query.length >= 2 && (
-            <div className="px-4 py-8 text-center text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-              No results found
+            <div className="px-4 py-6 text-center">
+              <p className="text-sm mb-3" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+                No results for “{query.trim()}”. Try a player, team, or one of these:
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
+                {POPULAR_SEARCH_DESTINATIONS.map((d) => (
+                  <a
+                    key={d.href}
+                    href={d.href}
+                    className="text-xs px-3 py-2 rounded-lg min-h-[36px] inline-flex items-center"
+                    style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.8)" }}
+                    onClick={onClose}
+                  >
+                    {d.label}
+                  </a>
+                ))}
+              </div>
+              <button
+                type="button"
+                className="text-xs text-sky-400 underline min-h-[44px]"
+                onClick={() => {
+                  setQuery("");
+                  inputRef.current?.focus();
+                }}
+              >
+                Clear query
+              </button>
             </div>
           )}
           {results.length === 0 && query.length < 2 && (
@@ -419,8 +437,11 @@ function SearchDialog({
                 }
               }}
             >
-              <span className="text-base" aria-hidden>
-                {iconForType(r.type)}
+              <span
+                className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded shrink-0"
+                style={{ background: "rgba(255,255,255,0.08)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
+              >
+                {labelForType(r.type)}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium text-white truncate">{r.title}</div>
@@ -512,7 +533,7 @@ export default function SiteHeader({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "text-xs font-medium transition-colors hover:text-[#0EA5E9] px-3 py-2 rounded-lg min-h-[44px] flex items-center md:min-h-0 md:inline-flex md:py-1 md:px-0 [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-sky-500";
+    "text-xs font-medium transition-colors hover:text-[#0EA5E9] px-3 py-2 rounded-lg min-h-[44px] flex items-center md:inline-flex [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-sky-500";
 
   return (
     <>
@@ -572,7 +593,7 @@ export default function SiteHeader({
             </div>
 
             <nav className="hidden md:flex items-center gap-3 xl:gap-5" aria-label="Primary">
-              {HEADER_NAV_LINKS.map(({ label, href }) => {
+              {headerNavLinks().map(({ label, href }) => {
                 const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
                 return (
                 <a
@@ -580,7 +601,7 @@ export default function SiteHeader({
                   href={href}
                   className={navLinkClass}
                   style={{
-                    color: navRouteMatches(href, locationPath) ? "#0EA5E9" : "rgba(255,255,255,0.5)",
+                    color: navRouteMatches(href, locationPath) ? "#0EA5E9" : "var(--hi-muted, rgba(255,255,255,0.72))",
                   }}
                   {...navAriaCurrent(href, locationPath)}
                 >
@@ -591,7 +612,7 @@ export default function SiteHeader({
               <details className="relative group">
                 <summary
                   className={`${navLinkClass} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+                  style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
                 >
                   More
                 </summary>
@@ -599,7 +620,7 @@ export default function SiteHeader({
                   className="absolute right-0 top-full mt-2 min-w-[11rem] rounded-lg py-2 shadow-xl z-[60]"
                   style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
                 >
-                  {MAIN_NAV_LINKS.filter((l) => !HEADER_NAV_LINKS.some((h) => h.href === l.href)).map(({ label, href }) => (
+                  {mainNavLinks().filter((l) => !headerNavLinks().some((h) => h.href === l.href)).map(({ label, href }) => (
                     <a
                       key={`more-${label}`}
                       href={href}
@@ -621,7 +642,7 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 min-h-[44px] px-3 py-2 rounded-lg text-xs transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
+                className="flex items-center gap-2 min-h-[44px] px-3 py-2 rounded-lg text-xs transition-colors hover:bg-white/10"
                 style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}
                 aria-haspopup="dialog"
                 aria-label="Open search"
@@ -639,7 +660,7 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-white/10 sm:min-h-0 sm:min-w-0 sm:p-1.5"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-white/10"
                 title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               >
@@ -673,7 +694,7 @@ export default function SiteHeader({
               ) : sessionUser ? (
                 <a
                   href="/account"
-                  className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
+                  className="flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
                   style={{ background: "rgba(14,165,233,0.12)", color: "#7dd3fc", border: "1px solid rgba(14,165,233,0.25)" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -687,8 +708,8 @@ export default function SiteHeader({
                   type="button"
                   onClick={() => setShowAuth(true)}
                   aria-label="Sign in to your account"
-                  className="hidden sm:flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10 sm:min-h-0 sm:py-1.5"
-                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)" }}
+                  className="flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
+                  style={{ background: "rgba(255,255,255,0.05)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -730,7 +751,7 @@ export default function SiteHeader({
               <a href="/" className="text-sm font-semibold text-sky-400 py-3 px-3 rounded-lg hover:bg-white/5" onClick={() => setMobileOpen(false)}>
                 Today’s desk →
               </a>
-              {MAIN_NAV_LINKS.map(({ label, href }) => {
+              {mainNavLinks().map(({ label, href }) => {
                 const active = navRouteMatches(href, locationPath);
                 const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
                 return (
