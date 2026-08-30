@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 
 vi.mock("../lib/pulseData", () => ({
   gamePreviews: [{ homeTeam: "NYK", awayTeam: "CLE" }],
@@ -31,6 +31,12 @@ import { buildSixtySecondBullets, editionContextLabel } from "../lib/deskBriefin
 describe("deskBriefing", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(Date.UTC(2026, 4, 19)));
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("buildSixtySecondBullets returns up to five desk bullets", () => {

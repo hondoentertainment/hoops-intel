@@ -1,7 +1,6 @@
 import { draftData } from "../lib/draftData";
 import {
   activeEditionContext,
-  activeGeneratorScript,
   editionContextDeskLabel,
   isOffseasonDesk,
   offseasonPrimaryCta,
@@ -43,7 +42,7 @@ export default function OffseasonDeskStrip() {
             className="min-h-[44px] inline-flex items-center px-4 py-2 rounded text-sm font-semibold text-white transition-all hover:opacity-95"
             style={{ background: "linear-gradient(135deg, #8B5CF6, #6D28D9)" }}
           >
-            {cta.emoji} {cta.label} →
+            {cta.label} →
           </a>
         </div>
 
@@ -97,9 +96,6 @@ export default function OffseasonDeskStrip() {
             {topRiser.reason}
           </p>
         ) : null}
-        <p className="text-[10px] mt-4 text-white/30 mono-data">
-          Pipeline: {activeGeneratorScript()} · desk label synced with season-mode
-        </p>
       </div>
     </section>
   );

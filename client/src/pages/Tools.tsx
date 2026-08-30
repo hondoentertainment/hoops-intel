@@ -1,16 +1,18 @@
 import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import {
-  TOOLS_DIRECTORY,
+  publicToolsDirectory,
   TOOL_CATEGORY_ORDER,
   TOOL_CATEGORY_LABELS,
   type ToolCategory,
 } from "../lib/siteNav";
 import { POPULAR_SEARCH_DESTINATIONS } from "../lib/searchHistory";
 
-const bySection = TOOL_CATEGORY_ORDER.reduce<Record<ToolCategory, typeof TOOLS_DIRECTORY>>(
+const PUBLIC_TOOLS = publicToolsDirectory();
+
+const bySection = TOOL_CATEGORY_ORDER.reduce<Record<ToolCategory, typeof PUBLIC_TOOLS>>(
   (acc, cat) => {
-    acc[cat] = TOOLS_DIRECTORY.filter((t) => t.category === cat);
+    acc[cat] = PUBLIC_TOOLS.filter((t) => t.category === cat);
     return acc;
   },
   { desk: [], postseason: [], analysis: [], community: [], publishing: [] },
@@ -44,8 +46,8 @@ export default function Tools() {
           Every Hoops Intel tool
         </h1>
         <p className="text-sm mb-6 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>
-          Jump straight to standings intel, simulations, embeddings, podcast mode, and the rest — same shell and search as the
-          main desk (⌘K / Ctrl+K or press <kbd className="mono-data text-[10px] px-1 py-0.5 rounded bg-white/10">/</kbd>).
+          Daily desk and analysis tools. Search from any page, or press{" "}
+          <kbd className="mono-data text-[10px] px-1 py-0.5 rounded bg-white/10">/</kbd> to jump to a player, team, or story.
         </p>
 
         <div className="mb-4 flex flex-wrap gap-2">

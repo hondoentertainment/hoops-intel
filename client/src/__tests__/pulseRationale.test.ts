@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { rationaleToBullets } from "../lib/pulseRationale";
+import { pulseLeadLine, rationaleToBullets } from "../lib/pulseRationale";
 
 describe("rationaleToBullets", () => {
   it("splits rationale into up to three sentences", () => {
@@ -13,5 +13,11 @@ describe("rationaleToBullets", () => {
   it("fills from note when rationale is short", () => {
     const bullets = rationaleToBullets("Single rationale.", "Note one. Note two.");
     expect(bullets.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("pulseLeadLine returns the first rationale sentence", () => {
+    expect(pulseLeadLine("Ranks first because the extension is imminent.", "Longer note.")).toBe(
+      "Ranks first because the extension is imminent",
+    );
   });
 });

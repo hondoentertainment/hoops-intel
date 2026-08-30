@@ -4,6 +4,7 @@ import {
   clientSeasonMode,
   editionContextDeskLabel,
   isOffseasonDesk,
+  offseasonPrimaryHref,
   seasonModeToEditionContext,
   type ClientSeasonMode,
 } from "../lib/deskMode";
@@ -57,5 +58,21 @@ describe("committed edition context", () => {
 
   it("exposes offseason state as a boolean", () => {
     expect(typeof isOffseasonDesk()).toBe("boolean");
+  });
+});
+
+describe("calendar chrome", () => {
+  it("treats August as dead-period offseason even when edition metadata says regular", () => {
+    const august = new Date(Date.UTC(2026, 7, 29));
+    expect(clientSeasonMode(august)).toBe("dead-period");
+    expect(activeEditionContext(august)).toBe("dead-period");
+    expect(isOffseasonDesk(august)).toBe(true);
+    expect(offseasonPrimaryHref(august)).toBe("/projections");
+  });
+
+  it("keeps January as regular season", () => {
+    const january = new Date(Date.UTC(2026, 0, 15));
+    expect(isOffseasonDesk(january)).toBe(false);
+    expect(activeEditionContext(january)).toBe("regular");
   });
 });

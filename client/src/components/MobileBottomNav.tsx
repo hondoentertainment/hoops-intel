@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { MOBILE_BOTTOM_NAV_LINKS, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
+import { mobileBottomNavLinks, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
 import { hapticTap } from "../lib/haptic";
 
 function NavIcon({ label, href }: { label: string; href: string }) {
@@ -11,6 +11,28 @@ function NavIcon({ label, href }: { label: string; href: string }) {
       <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden {...common}>
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
         <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    );
+  }
+  if (label === "Pulse") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden {...common}>
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    );
+  }
+  if (label === "Projections") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden {...common}>
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+        <polyline points="17 6 23 6 23 12" />
+      </svg>
+    );
+  }
+  if (label === "Ask") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden {...common}>
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
       </svg>
     );
   }
@@ -100,7 +122,7 @@ export default function MobileBottomNav() {
       aria-label="Primary mobile navigation"
     >
       <div className="grid grid-cols-5">
-        {MOBILE_BOTTOM_NAV_LINKS.map((link) => {
+        {mobileBottomNavLinks().map((link) => {
           const active = linkActive(link.href, location);
           const navLabel = link.href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : link.label;
           return (
