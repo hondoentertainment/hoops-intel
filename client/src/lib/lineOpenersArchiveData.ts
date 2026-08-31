@@ -15,7 +15,7 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "August 30, 2026",
+    editionDate: "August 31, 2026",
     games: [
 
     ],
