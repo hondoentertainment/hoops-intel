@@ -17,6 +17,7 @@ describe("mobile chrome", () => {
     const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
     expect(css).toContain("--hi-tabbar-clearance");
     expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
-    expect(ask).toContain("var(--hi-tabbar-clearance)");
+    expect(ask).toContain("ask-page-composer");
+    expect(css).toContain(".ask-page-composer");
   });
 });

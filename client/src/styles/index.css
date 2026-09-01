@@ -93,6 +93,16 @@ body {
   padding-bottom: var(--hi-tabbar-clearance);
 }
 
+.ask-page-composer {
+  padding-bottom: var(--hi-tabbar-clearance);
+}
+
+@media (min-width: 768px) {
+  .ask-page-composer {
+    padding-bottom: 0;
+  }
+}
+
 @media (min-width: 768px) {
   .has-mobile-tabbar {
     padding-bottom: 0;
