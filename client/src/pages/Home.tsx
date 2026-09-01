@@ -1574,6 +1574,16 @@ function RookieAndFantasySection() {
 function StandingsSection() {
   const [sortKey, setSortKey] = useState<string>("rank");
   const [sortAsc, setSortAsc] = useState(true);
+  const [desktopTable, setDesktopTable] = useState(() =>
+    typeof window.matchMedia === "function" ? window.matchMedia("(min-width: 768px)").matches : false,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const apply = () => setDesktopTable(mq.matches);
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   const handleSort = (key: string) => {
     if (sortKey === key) { setSortAsc(!sortAsc); }
@@ -1613,7 +1623,8 @@ function StandingsSection() {
   const renderConference = (title: string, standings: any[]) => (
     <div>
       <h3 className="display-heading text-white text-lg mb-3">{title}</h3>
-      <div className="hidden md:block glass-card rounded-lg overflow-x-auto">
+      {desktopTable ? (
+      <div className="glass-card rounded-lg overflow-x-auto">
         <table className="w-full min-w-[620px] text-xs">
           <thead>
             <tr style={{ background: "rgba(255,255,255,0.04)" }}>
@@ -1681,7 +1692,8 @@ function StandingsSection() {
           </div>
         )}
       </div>
-      <div className="md:hidden enhanced-card divide-y" style={{ borderColor: "var(--hi-border,#1e2c40)" }}>
+      ) : (
+      <div className="enhanced-card divide-y" style={{ borderColor: "var(--hi-border,#1e2c40)" }}>
         {sortedStandings(standings).map((team: any) => (
           <a
             key={`m-${team.team}`}
@@ -1699,6 +1711,7 @@ function StandingsSection() {
           </a>
         ))}
       </div>
+      )}
     </div>
   );
 

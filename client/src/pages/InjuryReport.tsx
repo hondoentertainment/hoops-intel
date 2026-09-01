@@ -364,7 +364,9 @@ export default function InjuryReport() {
                     {injury.team}
                   </p>
                 </div>
-                <InjuryChip status={injury.status} />
+                <div className="self-start">
+                  <InjuryChip status={injury.status} />
+                </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-base font-medium leading-6 text-[var(--hi-text,#f3f6fa)]">{injury.injury}</p>
                   <p className="editorial-body mobile-readable mt-1" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
