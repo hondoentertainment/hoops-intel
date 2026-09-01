@@ -15,6 +15,11 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Matches MobileBottomNav (~86px chrome + safe area). Keep Ask, toasts, and page padding in sync. */
+  --hi-tabbar-clearance: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+}
+
 html.dark {
   --hi-bg-page: #050d1a;
   --hi-shell-text: rgba(255, 255, 255, 0.85);
@@ -85,7 +90,7 @@ body {
 
 /* Fixed phone tab bar — keep page content and empty states clear of it. */
 .has-mobile-tabbar {
-  padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: var(--hi-tabbar-clearance);
 }
 
 @media (min-width: 768px) {
@@ -274,8 +279,8 @@ html.light .glass-card {
 
 /* Floating Ask AI panel — sit above mobile tab bar */
 .ask-chat-panel {
-  bottom: calc(3.5rem + env(safe-area-inset-bottom));
-  height: min(600px, calc(85vh - 3.5rem - env(safe-area-inset-bottom)));
+  bottom: var(--hi-tabbar-clearance);
+  height: min(600px, calc(85vh - var(--hi-tabbar-clearance)));
 }
 
 @media (min-width: 768px) {
@@ -485,7 +490,7 @@ html.light .glass-card {
 .back-to-top {
   position: fixed;
   right: 1rem;
-  bottom: calc(4.75rem + env(safe-area-inset-bottom));
+  bottom: var(--hi-tabbar-clearance);
   z-index: 45;
   display: flex;
   align-items: center;
@@ -579,7 +584,7 @@ html.light .desk-section-pill[data-active="true"] {
 
 .toast-stack {
   position: fixed;
-  bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  bottom: var(--hi-tabbar-clearance);
   left: 50%;
   transform: translateX(-50%);
   z-index: 120;
@@ -627,7 +632,7 @@ html.light .desk-section-pill[data-active="true"] {
   position: fixed;
   left: 1rem;
   right: 1rem;
-  bottom: calc(5.25rem + env(safe-area-inset-bottom));
+  bottom: var(--hi-tabbar-clearance);
   z-index: 55;
   display: flex;
   flex-wrap: wrap;
