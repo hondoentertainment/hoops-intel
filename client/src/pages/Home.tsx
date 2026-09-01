@@ -1864,7 +1864,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader editionBadge={pulseEdition.date} />
       <RivalTonightBanner />
       <EnhancedTicker />

@@ -14,9 +14,9 @@ export default function Tonight() {
   const slateOpen = hasTonightSlate();
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none">
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
         <SectionHeader
           eyebrow="TONIGHT'S SLATE"
           title={slateOpen ? `${gamePreviews.length} games tonight` : "No games tonight"}

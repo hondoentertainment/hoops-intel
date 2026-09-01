@@ -16,7 +16,7 @@ export default function MobileBottomNav() {
     <nav
       className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 md:hidden border-t"
       style={{
-        paddingBottom: "env(safe-area-inset-bottom)",
+        paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
         background: "var(--hi-surface,#0c1522)",
         borderColor: "var(--hi-border,#1e2c40)",
       }}

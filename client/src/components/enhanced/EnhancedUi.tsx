@@ -40,15 +40,19 @@ export function SectionHeader({
   actionHref?: string;
 }) {
   return (
-    <div className="flex items-end gap-3 w-full">
+    <div className="flex items-end gap-3 w-full min-w-0">
       <div className="flex-1 min-w-0">
         <p className="enhanced-kicker">{eyebrow}</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[28px] leading-8 max-md:text-2xl">
+        <h2 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[28px] leading-8 max-md:text-2xl max-md:leading-7 break-words">
           {title}
         </h2>
       </div>
       {action && actionHref ? (
-        <a href={actionHref} className="text-xs font-medium shrink-0 pb-1" style={{ color: ENHANCED_ACCENT }}>
+        <a
+          href={actionHref}
+          className="text-xs font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
+          style={{ color: ENHANCED_ACCENT }}
+        >
           {action}
         </a>
       ) : null}
@@ -66,14 +70,14 @@ export function StatCard({
   sub: string;
 }) {
   return (
-    <div className="enhanced-card flex flex-col gap-1.5 px-4 py-3.5 min-w-0">
+    <div className="enhanced-card flex flex-col gap-1.5 px-4 py-3.5 max-md:px-3 max-md:py-3 min-w-0 overflow-hidden">
       <p className="text-[10px] font-semibold tracking-[1.2px] uppercase" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
         {kicker}
       </p>
-      <p className="mono-data font-bold leading-9 text-[32px] max-md:text-[28px]" style={{ color: ENHANCED_ACCENT }}>
+      <p className="mono-data font-bold leading-9 text-[32px] max-md:text-[28px] max-md:leading-8 break-words" style={{ color: ENHANCED_ACCENT }}>
         {value}
       </p>
-      <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+      <p className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
         {sub}
       </p>
     </div>
@@ -108,7 +112,7 @@ export function EnhancedButton({
   type?: "button" | "submit";
 }) {
   const className =
-    "inline-flex items-center justify-center px-4 py-[9px] rounded-md text-[13px] font-semibold min-h-[40px] transition-opacity hover:opacity-90";
+    "inline-flex items-center justify-center px-4 py-[9px] rounded-md text-[13px] font-semibold min-h-11 transition-opacity hover:opacity-90";
   const style =
     variant === "primary"
       ? { background: ENHANCED_ACCENT, color: "#050d1a" }
@@ -144,24 +148,23 @@ export function GamePreviewCard({
   note: string;
 }) {
   return (
-    <div className="enhanced-card flex flex-col gap-2.5 px-4 py-3.5 min-w-0">
-      <div className="flex items-center gap-2">
+    <div className="enhanced-card flex flex-col gap-2.5 px-4 py-3.5 max-md:px-3.5 min-w-0 overflow-hidden">
+      <div className="flex items-center gap-2 min-w-0">
         <p className="enhanced-kicker">{status}</p>
-        <span className="flex-1" />
-        <p className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <span className="flex-1 min-w-0" />
+        <p className="text-[11px] shrink-0 text-right" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
           {when}
         </p>
       </div>
-      <div className="flex items-center gap-3">
-        <p className="mono-data font-bold text-[26px] text-[var(--hi-text,#f3f6fa)]">{away}</p>
-        <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-          @
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0">
+        <p className="mono-data font-bold text-[22px] md:text-[26px] text-[var(--hi-text,#f3f6fa)]">
+          {away} <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>@</span> {home}
         </p>
-        <p className="mono-data font-bold text-[26px] text-[var(--hi-text,#f3f6fa)]">{home}</p>
-        <span className="flex-1" />
-        <p className="text-[11px] font-semibold tracking-[0.8px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-          {network}
-        </p>
+        {network ? (
+          <p className="text-[11px] font-semibold tracking-[0.8px] ml-auto" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            {network}
+          </p>
+        ) : null}
       </div>
       <p className="editorial-body text-xs leading-4 text-[var(--hi-text,#f3f6fa)]">{note}</p>
     </div>

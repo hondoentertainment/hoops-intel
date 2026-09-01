@@ -81,7 +81,7 @@ export default function ToolPageLayout({
 
   return (
     <div
-      className={`min-h-screen pb-8 ${shellClassName}`.trim()}
+      className={`min-h-screen pb-8 has-mobile-tabbar ${shellClassName}`.trim()}
       style={{ background: "var(--hi-bg-page, #050D1A)" }}
     >
       <SiteHeader

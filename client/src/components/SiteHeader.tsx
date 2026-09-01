@@ -549,12 +549,12 @@ export default function SiteHeader({
           backdropFilter: "blur(20px)",
         }}
       >
-        <div className="container">
-          <div className="flex items-center justify-between gap-3 h-14 min-h-[56px]">
-            <div className="flex items-center gap-2 min-w-0 flex-1">
+        <div className="container max-md:px-4">
+          <div className="flex items-center justify-between gap-2 h-14 min-h-[56px] overflow-hidden">
+            <div className="flex items-center gap-1 min-w-0">
               <button
                 type="button"
-                className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg border border-white/10 text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-sky-500"
+                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-lg text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-sky-500"
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
@@ -572,7 +572,7 @@ export default function SiteHeader({
                 </svg>
               </button>
 
-              <div className="flex items-center gap-3 min-w-0 shrink-0 py-1">
+              <div className="flex items-center min-w-0 py-1">
                 <BrandLockup compact />
               </div>
             </div>
@@ -625,9 +625,9 @@ export default function SiteHeader({
               </details>
             </nav>
 
-            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-0.5 sm:gap-2 shrink-0">
               <span
-                className="mono-data text-[11px] md:hidden mr-1"
+                className="mono-data text-[11px] md:hidden px-1"
                 style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}
               >
                 {compactEditionDate(editionBadge ?? pulseEdition.date)}
@@ -636,7 +636,19 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 min-h-[36px] px-2.5 py-1.5 rounded-md text-xs transition-colors hover:bg-white/10"
+                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-lg hover:bg-white/10"
+                aria-haspopup="dialog"
+                aria-label="Open search"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSearchOpen(true)}
+                className="hidden md:flex items-center gap-2 min-h-11 px-2.5 py-1.5 rounded-md text-xs transition-colors hover:bg-white/10"
                 style={{
                   background: "var(--hi-surface-2,#121c2c)",
                   color: "var(--hi-text-secondary,#8b9bb0)",
@@ -645,13 +657,12 @@ export default function SiteHeader({
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
-                <span className="hidden sm:inline">Search desk</span>
-                <span className="sm:hidden">Search</span>
+                <span>Search desk</span>
                 <span className="hidden lg:inline mono-data text-[11px]">⌘K</span>
               </button>
               <a
                 href="/pro"
-                className="hidden sm:inline-flex items-center justify-center min-h-[36px] px-4 py-[9px] rounded-md text-[13px] font-semibold"
+                className="hidden md:inline-flex items-center justify-center min-h-11 px-4 py-[9px] rounded-md text-[13px] font-semibold"
                 style={{
                   color: "var(--hi-text,#f3f6fa)",
                   border: "1px solid var(--hi-border,#1e2c40)",
@@ -663,7 +674,7 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-white/10"
+                className="hidden md:flex min-h-11 min-w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/10"
                 title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               >
@@ -686,18 +697,20 @@ export default function SiteHeader({
                 )}
               </button>
 
-              <NotificationBell idPrefix="nav-bell" />
+              <div className="hidden md:block">
+                <NotificationBell idPrefix="nav-bell" />
+              </div>
 
               {sessionUser === undefined ? (
                 <span
-                  className="hidden sm:inline-block w-14 h-8 rounded-lg animate-pulse shrink-0"
+                  className="hidden md:inline-block w-14 h-8 rounded-lg animate-pulse shrink-0"
                   style={{ background: "rgba(255,255,255,0.06)" }}
                   aria-hidden
                 />
               ) : sessionUser ? (
                 <a
                   href="/account"
-                  className="flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
+                  className="hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
                   style={{ background: "rgba(14,165,233,0.12)", color: "#7dd3fc", border: "1px solid rgba(14,165,233,0.25)" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -711,7 +724,7 @@ export default function SiteHeader({
                   type="button"
                   onClick={() => setShowAuth(true)}
                   aria-label="Sign in to your account"
-                  className="flex items-center gap-1 min-h-[44px] px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
+                  className="hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
                   style={{ background: "rgba(255,255,255,0.05)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -770,22 +783,48 @@ export default function SiteHeader({
                   </a>
                 );
               })}
+              <div className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-1">
+                <a
+                  href="/pro"
+                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-12 flex items-center"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Pro
+                </a>
+                <a
+                  href="/account#browser-push"
+                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-12 flex items-center"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Notifications
+                </a>
+                <button
+                  type="button"
+                  className="w-full text-left py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-12"
+                  onClick={() => {
+                    toggleTheme();
+                    setMobileOpen(false);
+                  }}
+                >
+                  {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                </button>
+              </div>
               {sessionUser ? (
                 <a
                   href="/account"
-                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 text-sky-400 font-medium"
+                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 text-sky-400 font-medium min-h-12 flex items-center"
                   onClick={() => setMobileOpen(false)}
                 >
                   Account
                 </a>
               ) : (
-                <div className="mt-2 pt-3 border-t border-white/10">
+                <div className="mt-1 pt-3 border-t border-white/10">
                   <p className="px-3 pb-2 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
                     Sync favorites, reactions, and push alerts across devices.
                   </p>
                   <button
                     type="button"
-                    className="w-full text-left py-3 px-3 rounded-lg text-sm font-semibold text-sky-400 hover:bg-white/5 min-h-[48px]"
+                    className="w-full text-left py-3 px-3 rounded-lg text-sm font-semibold text-sky-400 hover:bg-white/5 min-h-12"
                     onClick={() => {
                       setMobileOpen(false);
                       setShowAuth(true);

@@ -3,6 +3,7 @@ import { slugify } from "../../lib/searchUtils";
 import { dispatchAskPrompt } from "../../lib/askShortcuts";
 import { isFinalsActive, finalistTeams } from "../../lib/playoffData";
 import {
+  compactPulseStats,
   deskAskChips,
   deskEyebrow,
   editionUpdatedLabel,
@@ -26,33 +27,36 @@ function PulseRow({
   indexScore,
   teamRecord,
   trend,
-}: (typeof pulseIndex)[number]) {
+  compact = false,
+}: (typeof pulseIndex)[number] & { compact?: boolean }) {
   const mark = pulseTrendMark(trend);
   return (
     <a
       href={`/player/${slugify(player)}`}
-      className="enhanced-card flex items-center gap-4 px-4 py-3 w-full min-w-0 hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      className="enhanced-card flex items-center gap-3 md:gap-4 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
     >
-      <p className="mono-data font-bold text-xl shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <p className="mono-data font-bold text-lg md:text-xl shrink-0 w-7 md:w-auto" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
         {padRank(rank)}
       </p>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-[var(--hi-text,#f3f6fa)]">{player}</span>
-          <span className="text-[11px] font-bold tracking-[0.6px]" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <div className="flex-1 min-w-0 overflow-hidden">
+        <div className="flex items-baseline gap-2 min-w-0">
+          <span className="text-sm font-semibold text-[var(--hi-text,#f3f6fa)] truncate">{player}</span>
+          <span className="text-[11px] font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
             {team}
           </span>
         </div>
         <p className="text-[11px] mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-          {keyStats}
+          {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
-        <p className="editorial-body text-xs leading-4 mt-0.5 line-clamp-2 text-[var(--hi-text,#f3f6fa)]">{note}</p>
+        <p className={`editorial-body text-xs leading-4 mt-0.5 text-[var(--hi-text,#f3f6fa)] ${compact ? "line-clamp-1" : "line-clamp-2"}`}>
+          {note}
+        </p>
       </div>
-      <div className="flex flex-col items-end gap-0.5 shrink-0 w-[72px] text-right">
+      <div className="flex flex-col items-end gap-0.5 shrink-0 w-14 md:w-[72px] text-right">
         <span className="text-[11px] font-bold" style={{ color: mark.color }}>
           {mark.mark}
         </span>
-        <span className="mono-data font-bold text-[22px] text-[var(--hi-text,#f3f6fa)]">{formatPulseScore(indexScore)}</span>
+        <span className="mono-data font-bold text-[22px] leading-none text-[var(--hi-text,#f3f6fa)]">{formatPulseScore(indexScore)}</span>
         <span className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
           {teamRecord}
         </span>
@@ -64,7 +68,7 @@ function PulseRow({
 export function EnhancedTicker() {
   return (
     <div
-      className="flex items-center gap-4 px-4 md:px-7 py-2 overflow-hidden"
+      className="hidden md:flex items-center gap-4 px-4 md:px-7 py-2 overflow-hidden"
       style={{ background: "var(--hi-surface-2,#121c2c)" }}
       aria-label="Edition wire"
     >
@@ -151,12 +155,12 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           </div>
           <div className="flex flex-col gap-2 md:hidden">
             {mobilePulse.map((row) => (
-              <PulseRow key={row.rank} {...row} />
+              <PulseRow key={row.rank} {...row} compact />
             ))}
           </div>
         </div>
 
-        <aside className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 max-md:pt-2">
+        <aside className="hidden md:flex w-full lg:w-[320px] shrink-0 flex-col gap-4">
           <SectionHeader
             eyebrow="INJURY WIRE"
             title="Desk tags"
@@ -193,7 +197,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
               <button
                 key={chip}
                 type="button"
-                className="text-left text-[11px] font-medium px-2.5 py-2 rounded-md min-h-[36px]"
+                className="text-left text-[11px] font-medium px-2.5 py-2 rounded-md min-h-11"
                 style={{ background: "var(--hi-surface-2,#121c2c)", color: "var(--hi-text,#f3f6fa)" }}
                 onClick={() => dispatchAskPrompt(chip)}
               >
