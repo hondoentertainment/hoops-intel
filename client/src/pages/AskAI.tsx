@@ -20,7 +20,7 @@ export default function AskAI() {
     <ToolPageLayout
       subtitle="ASK HOOPS INTEL"
       contentOnly
-      shellClassName="flex flex-col"
+      shellClassName="flex flex-col has-mobile-tabbar"
       showBreadcrumbs={false}
       showRelated={false}
     >
@@ -84,7 +84,7 @@ export default function AskAI() {
           />
         </div>
 
-        <div className="sticky bottom-0 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <div className="sticky bottom-0 ask-page-composer" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
           <ChatInput
             input={input}
             setInput={setInput}

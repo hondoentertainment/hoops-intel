@@ -551,8 +551,8 @@ export default function SiteHeader({
         }}
       >
         <div className="container max-md:px-4">
-          <div className="flex items-center justify-between gap-2 h-14 min-h-[56px] overflow-hidden">
-            <div className="flex items-center gap-1 min-w-0">
+          <div className="flex items-center justify-between gap-2 h-14 min-h-[56px]">
+            <div className="flex items-center gap-1 min-w-0 overflow-x-clip">
               <button
                 type="button"
                 className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-lg text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-sky-500"
