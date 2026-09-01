@@ -547,6 +547,7 @@ export default function SiteHeader({
           background: "var(--hi-header-bg, rgba(5, 13, 26, 0.95))",
           borderColor: "var(--hi-border-soft, rgba(255,255,255,0.08))",
           backdropFilter: "blur(20px)",
+          paddingTop: "env(safe-area-inset-top)",
         }}
       >
         <div className="container max-md:px-4">
@@ -760,7 +761,7 @@ export default function SiteHeader({
             ref={mobilePanelRef}
             role="navigation"
             aria-label="Sections"
-            className="absolute top-14 left-0 right-0 max-h-[min(70vh,28rem)] overflow-y-auto pb-[env(safe-area-inset-bottom)] border-t border-white/10 shadow-xl"
+            className="absolute top-[calc(3.5rem+env(safe-area-inset-top))] left-0 right-0 max-h-[min(70vh,28rem)] overflow-y-auto pb-[env(safe-area-inset-bottom)] border-t border-white/10 shadow-xl"
             style={{ background: "var(--hi-mobile-sheet, #081018)" }}
           >
             <div className="container py-3 flex flex-col gap-1">

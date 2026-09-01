@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react";
 import TeamLogo from "../components/TeamLogo";
 import {
   teamLogoUrl,
+  teamLogoSrcSet,
+  teamLogoUrlSized,
   normalizeTeam,
   getTeamColor,
   getTeamName,
@@ -45,9 +47,22 @@ describe("team identity helpers", () => {
 });
 
 describe("TeamLogo", () => {
+  it("offers combiner srcset so phones skip the 500px mark", () => {
+    const set = teamLogoSrcSet("LAL");
+    expect(set).toContain("40w");
+    expect(set).toContain("80w");
+    expect(teamLogoUrlSized("LAL", 40)).toContain("w=40");
+    expect(teamLogoUrlSized("LAL", 40)).toContain("/i/teamlogos/nba/500/lal.png");
+  });
+
   it("renders an accessible image with the full team name", () => {
     render(<TeamLogo team="LAL" />);
-    expect(screen.getByAltText("Los Angeles Lakers")).toBeInTheDocument();
+    const img = screen.getByAltText("Los Angeles Lakers") as HTMLImageElement;
+    expect(img).toBeInTheDocument();
+    expect(img.getAttribute("src")).toContain("combiner");
+    expect(img.getAttribute("src")).toContain("w=48");
+    expect(img.getAttribute("srcset")).toContain("40w");
+    expect(img.getAttribute("sizes")).toBe("24px");
   });
 
   it("falls back to a labeled crest for unknown teams", () => {

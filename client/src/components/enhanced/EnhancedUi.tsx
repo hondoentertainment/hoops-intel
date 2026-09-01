@@ -40,17 +40,17 @@ export function SectionHeader({
   actionHref?: string;
 }) {
   return (
-    <div className="flex items-end gap-3 w-full min-w-0">
+    <div className="flex flex-col items-start gap-1 md:flex-row md:items-end md:gap-3 w-full min-w-0">
       <div className="flex-1 min-w-0">
         <p className="enhanced-kicker">{eyebrow}</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[28px] leading-8 max-md:text-2xl max-md:leading-7 break-words">
+        <h2 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[28px] leading-8 max-md:text-[1.5rem] max-md:leading-8">
           {title}
         </h2>
       </div>
       {action && actionHref ? (
         <a
           href={actionHref}
-          className="text-xs font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
+          className="text-sm font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
           style={{ color: ENHANCED_ACCENT }}
         >
           {action}
@@ -77,7 +77,7 @@ export function StatCard({
       <p className="mono-data font-bold leading-9 text-[32px] max-md:text-[28px] max-md:leading-8 break-words" style={{ color: ENHANCED_ACCENT }}>
         {value}
       </p>
-      <p className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+      <p className="text-sm leading-5 max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
         {sub}
       </p>
     </div>
@@ -152,21 +152,21 @@ export function GamePreviewCard({
       <div className="flex items-center gap-2 min-w-0">
         <p className="enhanced-kicker">{status}</p>
         <span className="flex-1 min-w-0" />
-        <p className="text-[11px] shrink-0 text-right" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <p className="text-sm shrink-0 text-right leading-5" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
           {when}
         </p>
       </div>
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0">
-        <p className="mono-data font-bold text-[22px] md:text-[26px] text-[var(--hi-text,#f3f6fa)]">
+      <div className="flex flex-col gap-1 min-w-0">
+        <p className="mono-data font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#f3f6fa)] break-words">
           {away} <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>@</span> {home}
         </p>
         {network ? (
-          <p className="text-[11px] font-semibold tracking-[0.8px] ml-auto" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+          <p className="text-sm font-semibold tracking-[0.8px] leading-5" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
             {network}
           </p>
         ) : null}
       </div>
-      <p className="editorial-body text-xs leading-4 text-[var(--hi-text,#f3f6fa)]">{note}</p>
+      <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)]">{note}</p>
     </div>
   );
 }

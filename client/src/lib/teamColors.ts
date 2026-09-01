@@ -40,6 +40,26 @@ export function teamLogoUrl(team: string): string | null {
   return slug ? `https://a.espncdn.com/i/teamlogos/nba/500/${slug}.png` : null;
 }
 
+/** ESPN combiner resize so phones do not download the 500px mark. */
+export function espnCombinerUrl(cdnPath: string, px: number): string {
+  const w = Math.max(16, Math.round(px));
+  return `https://a.espncdn.com/combiner/i?img=${cdnPath}&w=${w}&h=${w}`;
+}
+
+export function teamLogoUrlSized(team: string, px: number): string | null {
+  const slug = ESPN_LOGO_SLUGS[normalizeTeam(team)];
+  return slug ? espnCombinerUrl(`/i/teamlogos/nba/500/${slug}.png`, px) : null;
+}
+
+export function teamLogoSrcSet(team: string): string | null {
+  const full = teamLogoUrl(team);
+  if (!full) return null;
+  const s40 = teamLogoUrlSized(team, 40);
+  const s80 = teamLogoUrlSized(team, 80);
+  const s160 = teamLogoUrlSized(team, 160);
+  return `${s40} 40w, ${s80} 80w, ${s160} 160w, ${full} 500w`;
+}
+
 const TEAM_NAMES: Record<string, string> = {
   ATL: "Atlanta Hawks", BOS: "Boston Celtics", BRK: "Brooklyn Nets",
   CHA: "Charlotte Hornets", CHI: "Chicago Bulls", CLE: "Cleveland Cavaliers",

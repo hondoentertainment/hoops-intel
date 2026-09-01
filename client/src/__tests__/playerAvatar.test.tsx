@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import PlayerAvatar, { normalizePlayerName, headshotUrlForName } from "../components/PlayerAvatar";
+import PlayerAvatar, { normalizePlayerName, headshotUrlForName, headshotSrcSetForName } from "../components/PlayerAvatar";
 
 vi.mock("../lib/playerHeadshotData", () => ({
   playerHeadshotIds: { "lebron james": 1966, "nikola jokic": 3112335 },
@@ -43,7 +43,11 @@ describe("PlayerAvatar", () => {
     render(<PlayerAvatar name="LeBron James" team="LAL" />);
     const img = screen.getByAltText("LeBron James") as HTMLImageElement;
     expect(img.tagName).toBe("IMG");
-    expect(img.src).toContain("/1966.png");
+    expect(img.src).toContain("1966.png");
+    expect(img.src).toContain("combiner");
+    expect(img.getAttribute("srcset")).toContain("64w");
+    expect(img.getAttribute("sizes")).toBe("40px");
+    expect(headshotSrcSetForName("LeBron James")).toContain("combiner");
   });
 
   it("falls back to a labeled initials crest for unknown players", () => {

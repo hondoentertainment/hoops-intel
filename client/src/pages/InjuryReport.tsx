@@ -328,19 +328,19 @@ export default function InjuryReport() {
     <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
       <SiteHeader />
       <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
-        <div className="flex items-end justify-between gap-3 min-w-0">
+        <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between min-w-0">
           <SectionHeader eyebrow="INJURY WIRE" title="Full report" />
           <button
             type="button"
             onClick={nextClub}
-            className="text-xs font-medium min-h-11 shrink-0 inline-flex items-end pb-1"
+            className="text-sm font-medium min-h-11 shrink-0 inline-flex items-end pb-1 self-start"
             style={{ color: "var(--hi-accent,#1ec8f5)" }}
           >
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
           </button>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+          <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
             {shortDate} · {editionContextDeskLabel().toLowerCase()} · {tallies.dtd} day-to-day · {tallies.probable}{" "}
             probable · {tallies.out} out
           </p>
@@ -359,15 +359,17 @@ export default function InjuryReport() {
                 className="enhanced-card flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 p-3.5 min-w-0 overflow-hidden"
               >
                 <div className="w-full sm:w-[220px] shrink-0 min-w-0">
-                  <p className="text-[15px] font-semibold text-[var(--hi-text,#f3f6fa)] truncate">{injury.player}</p>
-                  <p className="text-[11px] font-bold tracking-[0.6px]" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                  <p className="text-base font-semibold leading-6 text-[var(--hi-text,#f3f6fa)] truncate">{injury.player}</p>
+                  <p className="text-sm font-bold tracking-[0.6px] leading-5" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                     {injury.team}
                   </p>
                 </div>
-                <InjuryChip status={injury.status} />
+                <div className="self-start">
+                  <InjuryChip status={injury.status} />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[13px] font-medium text-[var(--hi-text,#f3f6fa)]">{injury.injury}</p>
-                  <p className="editorial-body text-xs leading-[17px] mt-1" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+                  <p className="text-base font-medium leading-6 text-[var(--hi-text,#f3f6fa)]">{injury.injury}</p>
+                  <p className="editorial-body mobile-readable mt-1" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
                     {injury.timeline}
                   </p>
                 </div>
