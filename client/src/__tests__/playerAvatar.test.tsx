@@ -43,7 +43,8 @@ describe("PlayerAvatar", () => {
     render(<PlayerAvatar name="LeBron James" team="LAL" />);
     const img = screen.getByAltText("LeBron James") as HTMLImageElement;
     expect(img.tagName).toBe("IMG");
-    expect(img.src).toContain("/1966.png");
+    expect(img.src).toContain("1966.png");
+    expect(img.src).toContain("combiner");
     expect(img.getAttribute("srcset")).toContain("64w");
     expect(img.getAttribute("sizes")).toBe("40px");
     expect(headshotSrcSetForName("LeBron James")).toContain("combiner");

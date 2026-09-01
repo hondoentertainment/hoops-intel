@@ -59,6 +59,8 @@ describe("TeamLogo", () => {
     render(<TeamLogo team="LAL" />);
     const img = screen.getByAltText("Los Angeles Lakers") as HTMLImageElement;
     expect(img).toBeInTheDocument();
+    expect(img.getAttribute("src")).toContain("combiner");
+    expect(img.getAttribute("src")).toContain("w=48");
     expect(img.getAttribute("srcset")).toContain("40w");
     expect(img.getAttribute("sizes")).toBe("24px");
   });

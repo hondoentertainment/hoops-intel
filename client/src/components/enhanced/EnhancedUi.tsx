@@ -157,7 +157,7 @@ export function GamePreviewCard({
         </p>
       </div>
       <div className="flex flex-col gap-1 min-w-0">
-        <p className="mono-data pulse-score font-bold text-[22px] md:text-[26px] text-[var(--hi-text,#f3f6fa)]">
+        <p className="mono-data font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#f3f6fa)] break-words">
           {away} <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>@</span> {home}
         </p>
         {network ? (

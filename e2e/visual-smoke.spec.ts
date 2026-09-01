@@ -7,7 +7,7 @@ import { test, expect, type Page } from "@playwright/test";
 // <img>; when it isn't, TeamLogo's onError swaps each to a crest. Either way a
 // team mark is present and no broken <img> is left mounted.
 
-const ESPN_LOGO = /https:\/\/a\.espncdn\.com\/i\/teamlogos\/nba\/500\/[a-z]+\.png/;
+const ESPN_LOGO = /https:\/\/a\.espncdn\.com\/(?:combiner\/i\?img=\/)?i\/teamlogos\/nba\/500\/[a-z]+\.png/;
 
 function collectPageErrors(page: Page): string[] {
   const errors: string[] = [];
@@ -27,9 +27,10 @@ test("team marks resolve as a real logo or a crest — never a broken image", as
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
   // Standings render team marks regardless of season/slate. A mark is either a
-  // loaded logo <img> or its crest fallback (role=img span).
-  const marks = page.locator('img[src*="a.espncdn.com/i/teamlogos"], span[role="img"]');
-  await expect(marks.first()).toBeVisible({ timeout: 10_000 });
+  // loaded logo <img> or its crest fallback (role=img span). Mobile standings
+  // keep a compact list that is display:none on desktop — only assert visible.
+  const marks = page.locator('img[src*="teamlogos"], span[role="img"]');
+  await expect(marks.filter({ visible: true }).first()).toBeVisible({ timeout: 10_000 });
 
   // Let any failed logo images run their onError → crest swap.
   await page.waitForTimeout(800);
@@ -40,9 +41,10 @@ test("team marks resolve as a real logo or a crest — never a broken image", as
     .evaluateAll((els) => els.filter((e) => (e as HTMLImageElement).complete && (e as HTMLImageElement).naturalWidth === 0).length);
   expect(broken, "broken team-logo <img> still mounted").toBe(0);
 
-  // Any logo that did stay mounted must carry a well-formed ESPN logo URL.
+  // Any logo that did stay mounted must carry a well-formed ESPN logo URL
+  // (direct 500px mark or combiner resize).
   const srcs = await page
-    .locator('img[src*="a.espncdn.com/i/teamlogos"]')
+    .locator('img[src*="teamlogos"]')
     .evaluateAll((els) => els.map((e) => (e as HTMLImageElement).src));
   for (const src of srcs) expect(src).toMatch(ESPN_LOGO);
 });

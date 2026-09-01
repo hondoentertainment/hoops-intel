@@ -23,6 +23,12 @@ export function headshotUrlForName(name: string): string | null {
   return id ? `https://a.espncdn.com/i/headshots/nba/players/full/${id}.png` : null;
 }
 
+export function headshotUrlSized(name: string, px: number): string | null {
+  const full = headshotUrlForName(name);
+  if (!full) return null;
+  return espnCombinerUrl(full.replace("https://a.espncdn.com", ""), px);
+}
+
 export function headshotSrcSetForName(name: string): string | null {
   const full = headshotUrlForName(name);
   if (!full) return null;
@@ -53,6 +59,7 @@ interface PlayerAvatarProps {
 export default function PlayerAvatar({ name, team, size = 40, className = "" }: PlayerAvatarProps) {
   const [failed, setFailed] = useState(false);
   const url = headshotUrlForName(name);
+  const src = headshotUrlSized(name, Math.min(256, Math.max(64, size * 2))) ?? url;
   const srcSet = headshotSrcSetForName(name);
 
   if (!url || failed) {
@@ -80,7 +87,7 @@ export default function PlayerAvatar({ name, team, size = 40, className = "" }: 
 
   return (
     <img
-      src={url}
+      src={src ?? undefined}
       srcSet={srcSet ?? undefined}
       sizes={`${size}px`}
       alt={name}
@@ -90,7 +97,7 @@ export default function PlayerAvatar({ name, team, size = 40, className = "" }: 
       loading="lazy"
       decoding="async"
       onError={() => setFailed(true)}
-      className={`shrink-0 rounded-full object-cover object-top max-w-full ${className}`}
+      className={`shrink-0 rounded-full object-cover object-top overflow-hidden max-w-full ${className}`}
       style={{ width: size, height: size, maxWidth: size, maxHeight: size, background: "rgba(255,255,255,0.06)" }}
     />
   );

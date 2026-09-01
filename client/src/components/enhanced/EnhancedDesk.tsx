@@ -33,7 +33,7 @@ function PulseRow({
   return (
     <a
       href={`/player/${slugify(player)}`}
-      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_3.5rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_4rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
     >
       <p className="mono-data pulse-score font-bold text-lg md:text-xl self-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
         {padRank(rank)}

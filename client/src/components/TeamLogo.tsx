@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   teamLogoUrl,
+  teamLogoUrlSized,
   teamLogoSrcSet,
   getTeamColor,
   getTeamName,
@@ -24,6 +25,7 @@ export default function TeamLogo({ team, size = 24, className = "" }: TeamLogoPr
   const [failed, setFailed] = useState(false);
   const abbr = normalizeTeam(team);
   const url = teamLogoUrl(team);
+  const src = teamLogoUrlSized(team, Math.min(160, Math.max(40, size * 2))) ?? url;
   const srcSet = teamLogoSrcSet(team);
   const name = getTeamName(team);
 
@@ -52,7 +54,7 @@ export default function TeamLogo({ team, size = 24, className = "" }: TeamLogoPr
 
   return (
     <img
-      src={url}
+      src={src ?? undefined}
       srcSet={srcSet ?? undefined}
       sizes={`${size}px`}
       alt={name}
@@ -62,7 +64,7 @@ export default function TeamLogo({ team, size = 24, className = "" }: TeamLogoPr
       loading="lazy"
       decoding="async"
       onError={() => setFailed(true)}
-      className={`shrink-0 object-contain max-w-full ${className}`}
+      className={`shrink-0 object-contain object-center overflow-hidden max-w-full ${className}`}
       style={{ width: size, height: size, maxWidth: size, maxHeight: size }}
     />
   );
