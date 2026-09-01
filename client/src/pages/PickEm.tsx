@@ -24,6 +24,9 @@ import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
 import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
+import SiteHeader from "../components/SiteHeader";
+import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -502,6 +505,67 @@ function HowItWorksSection() {
 // PICK'EM PAGE
 // ═══════════════════════════════════════════════════════════
 
+function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
+  const record =
+    pickStats.wins + pickStats.losses > 0 ? `${pickStats.wins}–${pickStats.losses}` : "0–0";
+  const streak = pickStats.streak > 0 ? String(pickStats.streak) : "—";
+
+  return (
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+      <SiteHeader />
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none">
+        <SectionHeader
+          eyebrow="PICK 'EM"
+          title="Lock tonight’s slate"
+          action="Season board →"
+          actionHref="/pick-em#season-board"
+        />
+        <div className="enhanced-card flex flex-col gap-2.5 p-[22px]">
+          <p className="editorial-heading text-2xl text-[var(--hi-text,#f3f6fa)]">No picks yet.</p>
+          <p className="editorial-body text-sm leading-5 text-[var(--hi-text,#f3f6fa)] max-w-3xl">
+            Nothing on tonight’s schedule, so the board is closed. Game and bracket picks count toward the
+            season board when the first tip lands. Lock picks to see how you stack up against the desk.
+          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <EnhancedButton href="/tonight">Open Pick &apos;Em</EnhancedButton>
+            <EnhancedButton href="/archive" variant="ghost">
+              View archive
+            </EnhancedButton>
+          </div>
+        </div>
+        <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+          <StatCard kicker="SEASON RECORD" value={record} sub="No settled picks yet" />
+          <StatCard kicker="DESK RECORD" value="—" sub="The desk waits on October" />
+          <StatCard kicker="STREAK" value={streak} sub="First lock of 2026-27" />
+          <StatCard kicker="BRACKET" value="Open" sub="Playoff tooling idle" />
+        </div>
+        <SectionHeader
+          eyebrow="WHEN GAMES RETURN"
+          title="How a lock looks"
+          action="Scoring rules →"
+          actionHref="#how-it-works"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {SAMPLE_LOCKS.map((lock) => (
+            <GamePreviewCard
+              key={`${lock.away}-${lock.home}`}
+              status="SAMPLE LOCK"
+              when={lock.when}
+              away={lock.away}
+              home={lock.home}
+              network={lock.lean}
+              note={lock.note}
+            />
+          ))}
+        </div>
+        <div id="how-it-works" className="pt-2">
+          <HowItWorksSection />
+        </div>
+      </main>
+    </div>
+  );
+}
+
 // Derive today's edition date string (YYYY-MM-DD) from pulseEdition
 function parseEditionDate(dateStr: string): string {
   return editionDateFromPulse(dateStr);
@@ -515,6 +579,7 @@ export default function PickEmPage() {
   const playoffSnap = isPlayoffsActive()
     ? playoffSnapshot(playoffSeries, todayISOLocal())
     : null;
+  const boardClosed = gamePreviews.length === 0 && !isPlayoffsActive();
 
   useEffect(() => {
     let cancelled = false;
@@ -525,6 +590,10 @@ export default function PickEmPage() {
       cancelled = true;
     };
   }, []);
+
+  if (boardClosed) {
+    return <ClosedBoardPickEm pickStats={pickStats} />;
+  }
 
   return (
     <ToolPageLayout subtitle="PICK EM">

@@ -14,73 +14,50 @@ export interface MainNavLink {
   href: string;
 }
 
-/** Compact header links (desktop) — season-aware. */
-export function headerNavLinks(date = new Date()): MainNavLink[] {
-  if (isOffseasonDesk(date)) {
-    return [
-      { label: "Pulse", href: "/#pulse-index" },
-      { label: "Briefing", href: "/#today-desk" },
-      { label: "Injuries", href: "/injuries" },
-      { label: "Projections", href: offseasonPrimaryHref(date) },
-      { label: "Tools", href: "/tools" },
-    ];
-  }
+/** Compact header links (desktop) — Enhanced IA. */
+export function headerNavLinks(_date = new Date()): MainNavLink[] {
   return [
-    { label: "Scores", href: "/#scores" },
-    { label: "Pulse", href: "/#pulse-index" },
+    { label: "Desk", href: "/" },
     { label: "Injuries", href: "/injuries" },
-    { label: "Tonight", href: "/#tonight" },
-    { label: playoffsNavLabel(), href: PLAYOFFS_NAV_HREF },
-    { label: "Tools", href: "/tools" },
+    { label: "Tonight", href: "/tonight" },
+    { label: "Pick 'Em", href: "/pick-em" },
+    { label: "Archive", href: "/archive" },
+    { label: "Ask", href: "/ask" },
   ];
 }
 
 /** Full drawer navigation (mobile menu + overflow) */
 export function mainNavLinks(date = new Date()): MainNavLink[] {
-  const seasonal = isOffseasonDesk(date)
-    ? [
-        { label: "Pulse", href: "/#pulse-index" },
-        { label: "Briefing", href: "/#today-desk" },
-        { label: "Injuries", href: "/injuries" },
-        { label: "Projections", href: offseasonPrimaryHref(date) },
-      ]
-    : [
-        { label: "Scores", href: "/#scores" },
-        { label: "Pulse", href: "/#pulse-index" },
-        { label: "Injuries", href: "/injuries" },
-        { label: "Tonight", href: "/#tonight" },
-        { label: playoffsNavLabel(), href: PLAYOFFS_NAV_HREF },
-      ];
-
-  return [
-    ...seasonal,
+  const primary = headerNavLinks(date);
+  const extra = [
+    { label: "Pulse", href: "/#pulse-index" },
+    { label: playoffsNavLabel(), href: PLAYOFFS_NAV_HREF },
     { label: "Watch guide", href: "/watch-guide" },
-    { label: "Archive", href: "/archive" },
     { label: "Tools", href: "/tools" },
-    { label: "Projections", href: "/projections" },
+    { label: "Projections", href: offseasonPrimaryHref(date) },
     { label: "Compare", href: "/compare-players" },
     { label: "Performance", href: "/performance" },
     { label: "Hoops IQ", href: "/trivia" },
-    { label: "Ask Hoops Intel", href: "/ask" },
-  ].filter((link, index, all) => all.findIndex((l) => l.href === link.href) === index);
+    { label: "My Pulse", href: "/my-pulse" },
+  ];
+
+  return [...primary, ...extra].filter(
+    (link, index, all) => all.findIndex((l) => l.href === link.href) === index,
+  );
 }
 
 /** Home footer explore links — keep discoverable product routes out of crawl orphan status. */
 export const FOOTER_QUICK_LINKS: MainNavLink[] = [
-  { label: "Briefing", href: "#today-desk" },
-  { label: "Pulse", href: "#pulse-index" },
-  { label: "Injuries", href: "#injuries" },
-  { label: "Projections", href: "/projections" },
+  { label: "Desk", href: "/" },
+  { label: "Pulse", href: "/#pulse-index" },
+  { label: "Injuries", href: "/injuries" },
+  { label: "Tonight", href: "/tonight" },
+  { label: "Pick 'Em", href: "/pick-em" },
   { label: "Archive", href: "/archive" },
+  { label: "Ask", href: "/ask" },
   { label: "Tools", href: "/tools" },
   { label: "My Pulse", href: "/my-pulse" },
   { label: "Watch guide", href: "/watch-guide" },
-  { label: "Compare players", href: "/compare-players" },
-  { label: "History", href: "/history" },
-  { label: "Refs", href: "/refs" },
-  { label: "Podcast companion", href: "/podcast-companion" },
-  { label: "Guest Pulse", href: "/guest-pulse" },
-  { label: "Rivals", href: "/rivals" },
   { label: "How Pulse works", href: "/pulse-methodology" },
   { label: "RSS", href: "/feed.xml" },
 ];
@@ -106,22 +83,13 @@ export function deskSectionLinks(date = new Date()): MainNavLink[] {
   ];
 }
 
-export function mobileBottomNavLinks(date = new Date()): MainNavLink[] {
-  if (isOffseasonDesk(date)) {
-    return [
-      { label: "Today", href: "/" },
-      { label: "Pulse", href: "/#pulse-index" },
-      { label: "Projections", href: offseasonPrimaryHref(date) },
-      { label: "My Pulse", href: "/my-pulse" },
-      { label: "Ask", href: "/ask" },
-    ];
-  }
+export function mobileBottomNavLinks(_date = new Date()): MainNavLink[] {
   return [
-    { label: "Today", href: "/" },
-    { label: "Scores", href: "/#scores" },
-    { label: playoffsNavLabel(), href: PLAYOFFS_NAV_HREF },
-    { label: "My Pulse", href: "/my-pulse" },
-    { label: "Picks", href: "/pick-em" },
+    { label: "Desk", href: "/" },
+    { label: "Injuries", href: "/injuries" },
+    { label: "Tonight", href: "/tonight" },
+    { label: "Pick 'Em", href: "/pick-em" },
+    { label: "Ask", href: "/ask" },
   ];
 }
 
@@ -157,7 +125,8 @@ export interface ToolLink {
 }
 
 export const TOOLS_DIRECTORY: ToolLink[] = [
-  { label: "Today’s desk", href: "/", description: "Daily briefing, scores, Pulse Index, slate", category: "desk" },
+  { label: "Desk", href: "/", description: "Daily briefing, Pulse Index, injury rail, slate", category: "desk" },
+  { label: "Tonight", href: "/tonight", description: "Tonight's slate and camp-open previews", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },
   { label: "Pulse history", href: "/pulse-history", description: "Ranking history", category: "desk" },
   { label: "My Pulse", href: "/my-pulse", description: "Personalized edition", category: "desk" },

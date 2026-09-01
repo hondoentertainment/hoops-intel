@@ -27,8 +27,6 @@ import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDige
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
-import DeskSectionNav from "../components/DeskSectionNav";
-import MyPulseBanner from "../components/MyPulseBanner";
 import PreferencesSetup from "../components/PreferencesSetup";
 import { LiveScoreSkeleton } from "../components/PageSkeletons";
 import { useToast } from "../contexts/ToastContext";
@@ -62,12 +60,12 @@ import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
 import { shouldShowLiveScorebar, scorebarGamesToShow } from "../lib/scorebarVisibility";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
-import OffseasonDeskStrip from "../components/OffseasonDeskStrip";
 import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
 import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
+import EnhancedDesk, { EnhancedTicker } from "../components/enhanced/EnhancedDesk";
 
 function shortenPulsePreview(text: string, max = 110) {
   const t = text.trim();
@@ -1869,20 +1867,13 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader editionBadge={pulseEdition.date} />
       <RivalTonightBanner />
-      <LiveScorebar />
-      <TickerBar />
+      <EnhancedTicker />
       <main id="main-content" tabIndex={-1}>
-        <HeroSection showMyPulse={showMyPulse} />
-        <DeskSectionNav />
-        <TodayDeskSection />
-        <OffseasonDeskStrip />
-        {!isOffseasonDesk() || gamePreviews.length > 0 ? <PickEmHomeBanner /> : null}
-        {!showMyPulse ? <MyPulseBanner onSetup={() => setShowPrefsSetup(true)} /> : null}
+        <EnhancedDesk showMyPulse={showMyPulse} />
+        <LiveScorebar />
         {isPlayoffsActive() ? <PlayoffSection /> : null}
         {!(isOffseasonDesk() && gameResults.length === 0) ? <ScoresSection favoriteTeams={favoriteTeams} /> : null}
-        <PulseIndexSection />
-        <InjurySection />
-        {!(isOffseasonDesk() && gamePreviews.length === 0) ? <TonightSection /> : null}
+        {!isOffseasonDesk() || gamePreviews.length > 0 ? <PickEmHomeBanner /> : null}
         <CollapsibleEditionExtras
           narrative={<NarrativeSection />}
           media={<MediaReactionsSection />}

@@ -14,6 +14,10 @@ import {
   readRecentSearches,
   POPULAR_SEARCH_DESTINATIONS,
 } from "../lib/searchHistory";
+import { BrandLockup } from "./enhanced/EnhancedUi";
+import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
+import { pulseEdition } from "../lib/pulseData";
+import { compactEditionDate } from "../lib/enhancedDesk";
 
 export type SiteHeaderProps = {
   /** Secondary line under brand (e.g. ARCHIVE, DAILY INTELLIGENCE). */
@@ -533,7 +537,7 @@ export default function SiteHeader({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "text-xs font-medium transition-colors hover:text-[#0EA5E9] px-3 py-2 rounded-lg min-h-[44px] flex items-center md:inline-flex [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-sky-500";
+    "text-[13px] font-medium transition-colors px-3 py-2 min-h-[44px] flex items-center md:inline-flex border-b-2 border-transparent [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-sky-500";
 
   return (
     <>
@@ -568,40 +572,24 @@ export default function SiteHeader({
                 </svg>
               </button>
 
-              <a href="/" className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0 py-2">
-                <div
-                  className="w-8 h-8 rounded flex items-center justify-center font-bold text-white text-sm shrink-0"
-                  style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
-                >
-                  HI
-                </div>
-                <div className="min-w-0">
-                  <div className="display-heading text-[var(--hi-heading,#ffffff)] text-base sm:text-lg leading-none truncate">
-                    {brandTitle}
-                  </div>
-                  <div
-                    className="section-label !text-[max(10px,0.625rem)]"
-                    style={{
-                      fontSize: "0.6rem",
-                      color: subtitleAccent ? "#F59E0B" : undefined,
-                    }}
-                  >
-                    {subtitle}
-                  </div>
-                </div>
-              </a>
+              <div className="flex items-center gap-3 min-w-0 shrink-0 py-1">
+                <BrandLockup compact />
+              </div>
             </div>
 
-            <nav className="hidden md:flex items-center gap-3 xl:gap-5" aria-label="Primary">
+            <nav className="hidden md:flex items-center gap-1 xl:gap-1 flex-1" aria-label="Primary">
               {headerNavLinks().map(({ label, href }) => {
                 const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
+                const active = navRouteMatches(href, locationPath);
                 return (
                 <a
                   key={label}
                   href={href}
                   className={navLinkClass}
                   style={{
-                    color: navRouteMatches(href, locationPath) ? "#0EA5E9" : "var(--hi-muted, rgba(255,255,255,0.72))",
+                    color: active ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8b9bb0)",
+                    borderBottomColor: active ? ENHANCED_ACCENT : "transparent",
+                    fontWeight: active ? 600 : 500,
                   }}
                   {...navAriaCurrent(href, locationPath)}
                 >
@@ -638,24 +626,39 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+              <span
+                className="mono-data text-[11px] md:hidden mr-1"
+                style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}
+              >
+                {compactEditionDate(editionBadge ?? pulseEdition.date)}
+              </span>
               {toolbarExtra}
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 min-h-[44px] px-3 py-2 rounded-lg text-xs transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}
+                className="flex items-center gap-2 min-h-[36px] px-2.5 py-1.5 rounded-md text-xs transition-colors hover:bg-white/10"
+                style={{
+                  background: "var(--hi-surface-2,#121c2c)",
+                  color: "var(--hi-text-secondary,#8b9bb0)",
+                  border: "1px solid var(--hi-border,#1e2c40)",
+                }}
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span className="hidden sm:inline">Search</span>
-                <span className="hidden lg:inline px-1 py-0.5 rounded text-[10px]" style={{ background: "rgba(255,255,255,0.08)" }}>
-                  ⌘K
-                </span>
+                <span className="hidden sm:inline">Search desk</span>
+                <span className="sm:hidden">Search</span>
+                <span className="hidden lg:inline mono-data text-[11px]">⌘K</span>
               </button>
+              <a
+                href="/pro"
+                className="hidden sm:inline-flex items-center justify-center min-h-[36px] px-4 py-[9px] rounded-md text-[13px] font-semibold"
+                style={{
+                  color: "var(--hi-text,#f3f6fa)",
+                  border: "1px solid var(--hi-border,#1e2c40)",
+                }}
+              >
+                Pro
+              </a>
 
               <button
                 type="button"

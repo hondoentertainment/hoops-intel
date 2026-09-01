@@ -11,6 +11,7 @@ const STATIC_IMPORTERS: Record<string, Importer> = {
   "/pick-em": () => import("../pages/PickEm"),
   "/trade-value": () => import("../pages/TradeValue"),
   "/injuries": () => import("../pages/InjuryReport"),
+  "/tonight": () => import("../pages/Tonight"),
   "/trivia": () => import("../pages/Trivia"),
   "/82-0": () => import("../pages/EightyTwoZero"),
   "/performance": () => import("../pages/SeasonPerformance"),
@@ -55,7 +56,7 @@ const PREFIX_IMPORTERS: [string, Importer][] = [
 ];
 
 /** Most-travelled destinations, warmed during idle time after first paint. */
-export const HOT_ROUTES = ["/tools", "/archive", "/injuries", "/playoffs", "/82-0", "/trivia", "/pick-em", "/my-pulse", "/ask"];
+export const HOT_ROUTES = ["/tools", "/archive", "/injuries", "/tonight", "/playoffs", "/82-0", "/trivia", "/pick-em", "/my-pulse", "/ask"];
 
 export function importerForPath(pathname: string): Importer | null {
   const direct = STATIC_IMPORTERS[pathname];
