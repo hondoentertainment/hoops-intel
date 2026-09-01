@@ -1,5 +1,8 @@
-import { useState } from "react";
-import ToolPageLayout from "../components/ToolPageLayout";
+import { useMemo, useState } from "react";
+import SiteHeader from "../components/SiteHeader";
+import { InjuryChip, SectionHeader } from "../components/enhanced/EnhancedUi";
+import { editionContextDeskLabel } from "../lib/deskMode";
+import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 import TeamLogo from "../components/TeamLogo";
@@ -292,115 +295,87 @@ function FilterButton({
 // ═══════════════════════════════════════════════════════════
 
 export default function InjuryReport() {
-  const [filter, setFilter] = useState<FilterType>("all");
-
-  // Sort by impact (highest first)
-  const sorted = [...injuryUpdates].sort((a, b) => {
-    return impactRating(b.impact) - impactRating(a.impact);
+  const [club, setClub] = useState("all");
+  const tallies = injuryCounts();
+  const clubs = useMemo(
+    () => ["all", ...Array.from(new Set(injuryUpdates.map((i) => i.team))).sort()],
+    [],
+  );
+  const rows = injuryUpdates.filter((injury) => club === "all" || injury.team === club);
+  const nextClub = () => {
+    const idx = clubs.indexOf(club);
+    setClub(clubs[(idx + 1) % clubs.length] ?? "all");
+  };
+  const shortDate = pulseEdition.date.replace(/,.*/, "").replace(/(\w+)\s+(\d+)/, (_, m, d) => {
+    const months: Record<string, string> = {
+      January: "Jan",
+      February: "Feb",
+      March: "Mar",
+      April: "Apr",
+      May: "May",
+      June: "Jun",
+      July: "Jul",
+      August: "Aug",
+      September: "Sep",
+      October: "Oct",
+      November: "Nov",
+      December: "Dec",
+    };
+    return `${months[m] ?? m} ${d}`;
   });
-
-  const filtered = sorted.filter((injury) => {
-    if (filter === "all") return true;
-    if (filter === "out") return injury.status.toLowerCase() === "out";
-    if (filter === "questionable")
-      return injury.status.toLowerCase() === "questionable";
-    if (filter === "high-impact") return impactRating(injury.impact) >= 8;
-    return true;
-  });
-
-  const counts = {
-    all: sorted.length,
-    out: sorted.filter((i) => i.status.toLowerCase() === "out").length,
-    questionable: sorted.filter((i) => i.status.toLowerCase() === "questionable").length,
-    "high-impact": sorted.filter((i) => impactRating(i.impact) >= 8).length,
-  }
 
   return (
-    <ToolPageLayout subtitle="INJURY REPORT">
-{/* ── Section label + title ── */}
-        <div className="mb-2">
-          <div
-            className="text-[10px] font-bold tracking-widest uppercase mb-1"
-            style={{ color: "rgba(255,255,255,0.35)" }}
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+      <SiteHeader />
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none">
+        <div className="flex items-end justify-between gap-3">
+          <SectionHeader eyebrow="INJURY WIRE" title="Full report" />
+          <button
+            type="button"
+            onClick={nextClub}
+            className="text-xs font-medium min-h-[36px] shrink-0 pb-1"
+            style={{ color: "var(--hi-accent,#1ec8f5)" }}
           >
-            INJURY WIRE
-          </div>
-          <div className="flex flex-wrap items-end gap-4 justify-between">
-            <div>
-              <h1
-                className="display-heading text-white mb-1"
-                style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-              >
-                Injury Report
-              </h1>
-              <div className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-                {pulseEdition.date} · {counts.all} players tracked
-              </div>
-            </div>
-            {/* Legend */}
-            <div className="flex items-center gap-4 flex-wrap">
-              {[
-                { label: "High Impact (8–10)", color: "#F43F5E" },
-                { label: "Mid Impact (5–7)", color: "#F59E0B" },
-                { label: "Low Impact (1–4)", color: "#10B981" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                    style={{ background: item.color }}
-                  />
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    {item.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+            {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
+          </button>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            {shortDate} · {editionContextDeskLabel().toLowerCase()} · {tallies.dtd} day-to-day · {tallies.probable}{" "}
+            probable · {tallies.out} out
+          </p>
         </div>
 
-        {/* ── Filter buttons ── */}
-        <div className="flex flex-wrap gap-2 mt-6 mb-8">
-          <FilterButton
-            label="All"
-            active={filter === "all"}
-            onClick={() => setFilter("all")}
-            count={counts.all}
-          />
-          <FilterButton
-            label="OUT"
-            active={filter === "out"}
-            onClick={() => setFilter("out")}
-            count={counts.out}
-          />
-          <FilterButton
-            label="Questionable"
-            active={filter === "questionable"}
-            onClick={() => setFilter("questionable")}
-            count={counts.questionable}
-          />
-          <FilterButton
-            label="High Impact"
-            active={filter === "high-impact"}
-            onClick={() => setFilter("high-impact")}
-            count={counts["high-impact"]}
-          />
-        </div>
-
-        {/* ── Impact grid ── */}
-        {filtered.length === 0 ? (
-          <div
-            className="text-center py-20 text-sm"
-            style={{ color: "rgba(255,255,255,0.3)" }}
-          >
-            No injuries match this filter.
+        {rows.length === 0 ? (
+          <div className="text-sm py-16 text-center" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            No injuries match this club filter.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {filtered.map((injury, i) => (
-              <InjuryCard key={i} injury={injury} />
+          <div className="flex flex-col gap-2">
+            {rows.map((injury) => (
+              <a
+                key={`${injury.player}-${injury.team}`}
+                href={`/player/${slugify(injury.player)}`}
+                className="enhanced-card flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3.5"
+              >
+                <div className="w-full sm:w-[220px] shrink-0">
+                  <p className="text-[15px] font-semibold text-[var(--hi-text,#f3f6fa)]">{injury.player}</p>
+                  <p className="text-[11px] font-bold tracking-[0.6px]" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                    {injury.team}
+                  </p>
+                </div>
+                <InjuryChip status={injury.status} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-[13px] font-medium text-[var(--hi-text,#f3f6fa)]">{injury.injury}</p>
+                  <p className="editorial-body text-xs leading-[17px] mt-1" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+                    {injury.timeline}
+                  </p>
+                </div>
+              </a>
             ))}
           </div>
         )}
-    </ToolPageLayout>
+      </main>
+    </div>
   );
 }

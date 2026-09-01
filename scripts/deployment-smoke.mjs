@@ -19,6 +19,7 @@ const staticChecks = [
   { path: "/", type: "html" },
   { path: "/playoffs", type: "html" },
   { path: "/pick-em", type: "html" },
+  { path: "/tonight", type: "html" },
   { path: "/betting-intel", type: "html" },
   { path: "/embed-stats", type: "html" },
   { path: "/print-edition", type: "html" },

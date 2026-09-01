@@ -24,6 +24,14 @@ html.dark {
   --hi-heading: #ffffff;
   --hi-muted: rgba(255, 255, 255, 0.72);
   --hi-muted-sub: rgba(255, 255, 255, 0.68);
+  --hi-accent: #1ec8f5;
+  --hi-surface: #0c1522;
+  --hi-surface-2: #121c2c;
+  --hi-border: #1e2c40;
+  --hi-text: #f3f6fa;
+  --hi-text-secondary: #8b9bb0;
+  --hi-success: #3ddc97;
+  --hi-danger: #ff4d6a;
 }
 
 html.light {
@@ -35,6 +43,14 @@ html.light {
   --hi-heading: #0f172a;
   --hi-muted: rgba(15, 23, 42, 0.68);
   --hi-muted-sub: rgba(15, 23, 42, 0.52);
+  --hi-accent: #0284c7;
+  --hi-surface: #ffffff;
+  --hi-surface-2: #e2e8f0;
+  --hi-border: rgba(15, 23, 42, 0.12);
+  --hi-text: #0f172a;
+  --hi-text-secondary: #475569;
+  --hi-success: #059669;
+  --hi-danger: #e11d48;
 }
 
 .sr-only {
@@ -152,12 +168,38 @@ html.light .section-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #0ea5e9;
+  color: var(--hi-accent, #1ec8f5);
 }
 
 .mono-data {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.85rem;
+}
+
+.editorial-heading {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.editorial-body {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.enhanced-kicker {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--hi-accent, #1ec8f5);
+}
+
+.enhanced-card {
+  background: var(--hi-surface, #0c1522);
+  border: 1px solid var(--hi-border, #1e2c40);
+  border-radius: 10px;
 }
 
 /* Container */

@@ -62,6 +62,11 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description: "Daily injury wire with status updates, return timelines, and impact on tonight's slate.",
     canonicalPath: "/injuries",
   },
+  "/tonight": {
+    title: "Tonight's NBA Slate | Hoops Intel",
+    description: "Tonight's games, camp-open previews, and honest empty-slate coverage when the league is dark.",
+    canonicalPath: "/tonight",
+  },
   "/pick-em": {
     title: "NBA Playoff Pick 'Em | Hoops Intel",
     description: "Bracket-style playoff picks and series predictions on Hoops Intel.",
@@ -228,6 +233,7 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/playoffs",
   "/tools",
   "/injuries",
+  "/tonight",
   "/pick-em",
   "/trade-value",
   "/trivia",

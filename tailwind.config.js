@@ -6,7 +6,8 @@ export default {
     extend: {
       colors: {
         navy: "#050D1A",
-        "electric-blue": "#0EA5E9",
+        "electric-blue": "#1EC8F5",
+        accent: "#1EC8F5",
         emerald: "#10B981",
         rose: "#F43F5E",
         amber: "#F59E0B",
