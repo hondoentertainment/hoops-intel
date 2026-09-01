@@ -1613,7 +1613,25 @@ function StandingsSection() {
   const renderConference = (title: string, standings: any[]) => (
     <div>
       <h3 className="display-heading text-white text-lg mb-3">{title}</h3>
-      <div className="glass-card rounded-lg overflow-x-auto">
+      <div className="md:hidden enhanced-card divide-y" style={{ borderColor: "var(--hi-border,#1e2c40)" }}>
+        {sortedStandings(standings).map((team: any) => (
+          <a
+            key={`m-${team.team}`}
+            href={`/team/${team.team.toLowerCase()}`}
+            className="flex items-center gap-3 px-3 py-2.5 min-h-12 min-w-0"
+          >
+            <span className="mono-data pulse-score w-6 text-sm" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+              {team.rank}
+            </span>
+            <TeamLogo team={team.team} size={24} />
+            <span className="text-base font-semibold leading-5 truncate">{team.team}</span>
+            <span className="mono-data pulse-score ml-auto text-sm">
+              {team.wins}-{team.losses}
+            </span>
+          </a>
+        ))}
+      </div>
+      <div className="hidden md:block glass-card rounded-lg overflow-x-auto">
         <table className="w-full min-w-[620px] text-xs">
           <thead>
             <tr style={{ background: "rgba(255,255,255,0.04)" }}>

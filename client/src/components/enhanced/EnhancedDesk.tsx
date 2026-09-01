@@ -33,31 +33,31 @@ function PulseRow({
   return (
     <a
       href={`/player/${slugify(player)}`}
-      className="enhanced-card flex items-center gap-3 md:gap-4 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_3.5rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
     >
-      <p className="mono-data font-bold text-lg md:text-xl shrink-0 w-7 md:w-auto" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <p className="mono-data pulse-score font-bold text-lg md:text-xl self-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
         {padRank(rank)}
       </p>
-      <div className="flex-1 min-w-0 overflow-hidden">
+      <div className="min-w-0 overflow-hidden">
         <div className="flex items-baseline gap-2 min-w-0">
-          <span className="text-sm font-semibold text-[var(--hi-text,#f3f6fa)] truncate">{player}</span>
-          <span className="text-[11px] font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#f3f6fa)] truncate">{player}</span>
+          <span className="text-xs font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
             {team}
           </span>
         </div>
-        <p className="text-[11px] mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
           {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
-        <p className={`editorial-body text-xs leading-4 mt-0.5 text-[var(--hi-text,#f3f6fa)] ${compact ? "line-clamp-1" : "line-clamp-2"}`}>
+        <p className={`editorial-body mobile-readable mt-1 text-[var(--hi-text,#f3f6fa)] ${compact ? "line-clamp-2" : "line-clamp-2"}`}>
           {note}
         </p>
       </div>
-      <div className="flex flex-col items-end gap-0.5 shrink-0 w-14 md:w-[72px] text-right">
-        <span className="text-[11px] font-bold" style={{ color: mark.color }}>
+      <div className="flex flex-col items-end gap-0.5 min-w-0 text-right">
+        <span className="text-xs font-bold leading-none" style={{ color: mark.color }}>
           {mark.mark}
         </span>
-        <span className="mono-data font-bold text-[22px] leading-none text-[var(--hi-text,#f3f6fa)]">{formatPulseScore(indexScore)}</span>
-        <span className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#f3f6fa)]">{formatPulseScore(indexScore)}</span>
+        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
           {teamRecord}
         </span>
       </div>
@@ -102,10 +102,10 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             <p className="enhanced-kicker">
               {deskEyebrow()} · {pulseEdition.date.toUpperCase()}
             </p>
-            <h1 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[30px] leading-[34px] md:text-[30px] max-md:text-2xl max-md:leading-7">
+            <h1 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[30px] leading-[34px] max-md:text-[1.5rem] max-md:leading-8">
               {narrative.headline}
             </h1>
-            <p className="text-xs max-md:text-[11px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            <p className="text-xs md:text-xs max-md:mobile-readable max-md:text-[var(--hi-text-secondary,#8b9bb0)]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
               <span className="hidden md:inline">By Will Henderson · Hoops Intel · {editionUpdatedLabel()}</span>
               <span className="md:hidden">
                 Will Henderson · 5:03 AM PT

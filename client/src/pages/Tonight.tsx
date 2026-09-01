@@ -53,15 +53,15 @@ export default function Tonight() {
           </div>
         ) : (
           <div className="enhanced-card flex flex-col gap-2 p-5">
-            <p className="editorial-heading text-[22px] leading-[26px] text-[var(--hi-text,#f3f6fa)]">
+            <p className="editorial-heading text-[1.375rem] leading-8 text-[var(--hi-text,#f3f6fa)]">
               The dead period still has the floor.
             </p>
-            <p className="editorial-body text-sm leading-5 text-[var(--hi-text,#f3f6fa)]">
+            <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)]">
               Nothing on tonight’s schedule. Preseason opens October 3
               {campDays > 0 ? ` — ${campDays === 1 ? "one day" : `${campDays} days`}` : ""}. Rotation battles
               and minutes caps move to Lineups until the first tip.
             </p>
-            <p className="text-xs leading-[18px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
               Scores is not a standalone route — recaps live on the desk when games exist.
             </p>
             <div className="pt-1">
@@ -80,7 +80,7 @@ export default function Tonight() {
               action="Add to Pulse →"
               actionHref="/my-pulse"
             />
-            <p className="text-xs -mt-2" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+            <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
               Editorial camp-open watch list — not a live ESPN slate and not tonight’s scores.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

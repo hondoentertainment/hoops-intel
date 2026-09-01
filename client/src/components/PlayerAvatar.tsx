@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { playerHeadshotIds } from "../lib/playerHeadshotData";
-import { getTeamColor, readableTextOn } from "../lib/teamColors";
+import { espnCombinerUrl, getTeamColor, readableTextOn } from "../lib/teamColors";
 
 /**
  * Normalize a display name to a stable lookup key. MUST stay identical to the
@@ -21,6 +21,13 @@ export function normalizePlayerName(name: string): string {
 export function headshotUrlForName(name: string): string | null {
   const id = playerHeadshotIds[normalizePlayerName(name)];
   return id ? `https://a.espncdn.com/i/headshots/nba/players/full/${id}.png` : null;
+}
+
+export function headshotSrcSetForName(name: string): string | null {
+  const full = headshotUrlForName(name);
+  if (!full) return null;
+  const path = full.replace("https://a.espncdn.com", "");
+  return `${espnCombinerUrl(path, 64)} 64w, ${espnCombinerUrl(path, 128)} 128w, ${espnCombinerUrl(path, 256)} 256w, ${full} 600w`;
 }
 
 function initials(name: string): string {
@@ -46,6 +53,7 @@ interface PlayerAvatarProps {
 export default function PlayerAvatar({ name, team, size = 40, className = "" }: PlayerAvatarProps) {
   const [failed, setFailed] = useState(false);
   const url = headshotUrlForName(name);
+  const srcSet = headshotSrcSetForName(name);
 
   if (!url || failed) {
     const bg = team ? getTeamColor(team) : "#1E3A5F";
@@ -73,6 +81,8 @@ export default function PlayerAvatar({ name, team, size = 40, className = "" }: 
   return (
     <img
       src={url}
+      srcSet={srcSet ?? undefined}
+      sizes={`${size}px`}
       alt={name}
       title={name}
       width={size}
@@ -80,8 +90,8 @@ export default function PlayerAvatar({ name, team, size = 40, className = "" }: 
       loading="lazy"
       decoding="async"
       onError={() => setFailed(true)}
-      className={`shrink-0 rounded-full object-cover ${className}`}
-      style={{ width: size, height: size, background: "rgba(255,255,255,0.06)" }}
+      className={`shrink-0 rounded-full object-cover object-top max-w-full ${className}`}
+      style={{ width: size, height: size, maxWidth: size, maxHeight: size, background: "rgba(255,255,255,0.06)" }}
     />
   );
 }
