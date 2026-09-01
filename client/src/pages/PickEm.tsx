@@ -511,16 +511,16 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
   const streak = pickStats.streak > 0 ? String(pickStats.streak) : "—";
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none">
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
         <SectionHeader
           eyebrow="PICK 'EM"
           title="Lock tonight’s slate"
           action="Season board →"
           actionHref="/pick-em#season-board"
         />
-        <div className="enhanced-card flex flex-col gap-2.5 p-[22px]">
+        <div className="enhanced-card flex flex-col gap-2.5 p-[22px] max-md:p-4">
           <p className="editorial-heading text-2xl text-[var(--hi-text,#f3f6fa)]">No picks yet.</p>
           <p className="editorial-body text-sm leading-5 text-[var(--hi-text,#f3f6fa)] max-w-3xl">
             Nothing on tonight’s schedule, so the board is closed. Game and bracket picks count toward the
@@ -533,7 +533,7 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
             </EnhancedButton>
           </div>
         </div>
-        <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+        <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3">
           <StatCard kicker="SEASON RECORD" value={record} sub="No settled picks yet" />
           <StatCard kicker="DESK RECORD" value="—" sub="The desk waits on October" />
           <StatCard kicker="STREAK" value={streak} sub="First lock of 2026-27" />

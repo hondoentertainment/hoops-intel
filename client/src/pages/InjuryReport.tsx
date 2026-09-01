@@ -325,15 +325,15 @@ export default function InjuryReport() {
   });
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none">
-        <div className="flex items-end justify-between gap-3">
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
+        <div className="flex items-end justify-between gap-3 min-w-0">
           <SectionHeader eyebrow="INJURY WIRE" title="Full report" />
           <button
             type="button"
             onClick={nextClub}
-            className="text-xs font-medium min-h-[36px] shrink-0 pb-1"
+            className="text-xs font-medium min-h-11 shrink-0 inline-flex items-end pb-1"
             style={{ color: "var(--hi-accent,#1ec8f5)" }}
           >
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
@@ -356,10 +356,10 @@ export default function InjuryReport() {
               <a
                 key={`${injury.player}-${injury.team}`}
                 href={`/player/${slugify(injury.player)}`}
-                className="enhanced-card flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3.5"
+                className="enhanced-card flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 p-3.5 min-w-0 overflow-hidden"
               >
-                <div className="w-full sm:w-[220px] shrink-0">
-                  <p className="text-[15px] font-semibold text-[var(--hi-text,#f3f6fa)]">{injury.player}</p>
+                <div className="w-full sm:w-[220px] shrink-0 min-w-0">
+                  <p className="text-[15px] font-semibold text-[var(--hi-text,#f3f6fa)] truncate">{injury.player}</p>
                   <p className="text-[11px] font-bold tracking-[0.6px]" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                     {injury.team}
                   </p>

@@ -45,6 +45,15 @@ export function formatPulseScore(score: number): string {
   return Number.isInteger(score) ? String(score) : score.toFixed(1);
 }
 
+/** Phone Pulse rows: drop unit suffixes so the stat line fits a 390px card. */
+export function compactPulseStats(keyStats: string): string {
+  return keyStats
+    .replace(/\s+(PPG|RPG|BPG|APG|SPG|FG%|3P%)\b/gi, "")
+    .replace(/\s+·\s+·/g, " · ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 export function padRank(rank: number): string {
   return String(rank).padStart(2, "0");
 }

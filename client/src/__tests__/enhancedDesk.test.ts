@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  compactPulseStats,
   daysUntilIso,
   deskAskChips,
   formatPulseScore,
@@ -7,6 +8,7 @@ import {
   heroStats,
   injuryChipTone,
   injuryCounts,
+  mobileHeroStats,
   padRank,
   pulseTrendMark,
   shortInjuryLine,
@@ -37,6 +39,17 @@ describe("enhancedDesk", () => {
     expect(injuryChipTone("Day-to-Day")).toBe("danger");
     expect(injuryChipTone("Probable")).toBe("success");
     expect(shortInjuryLine("Right knee soreness (chronic management)")).toMatch(/knee/i);
+  });
+
+  it("compacts Pulse stat lines and hero chips for a 390px desk", () => {
+    expect(compactPulseStats("32.8 PPG · 12.1 RPG · 4.2 BPG · Locked 2030-31")).toBe(
+      "32.8 · 12.1 · 4.2 · Locked 2030-31",
+    );
+    const chips = mobileHeroStats();
+    expect(chips).toHaveLength(2);
+    expect(chips[0]?.kicker).toBe("PULSE");
+    expect(chips[1]?.kicker).toBe("CAMP");
+    expect(chips[1]?.value).toMatch(/d$|Today|Open|—/);
   });
 
   it("uses closed-slate Ask chips when there are no games", () => {

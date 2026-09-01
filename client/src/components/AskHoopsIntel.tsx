@@ -462,7 +462,7 @@ export default function AskHoopsIntel() {
           type="button"
           ref={triggerRef}
           onClick={() => setIsOpen(true)}
-          className="fixed z-50 flex items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02] md:bottom-6"
+          className="hidden md:flex fixed z-50 items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02] md:bottom-6"
           style={{
             background: "linear-gradient(135deg, #0EA5E9, #0284C7)",
             color: "white",
