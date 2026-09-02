@@ -1,7 +1,8 @@
+import { editionPublishLabel } from "./pacificTime";
 import { pulseEdition } from "./pulseData";
 
-/** Morning edition publish window (matches GitHub Actions daily update). */
-export const EDITION_PUBLISH_LABEL = "5:03 AM PST";
+/** Morning edition publish window (13:00 UTC cron, labeled in America/Los_Angeles). */
+export const EDITION_PUBLISH_LABEL = editionPublishLabel();
 
 export function editionUpdatedLabel(): string {
   return `Updated ${EDITION_PUBLISH_LABEL} · ${pulseEdition.date}`;

@@ -18,6 +18,7 @@ import { BrandLockup } from "./enhanced/EnhancedUi";
 import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
 import { pulseEdition } from "../lib/pulseData";
 import { compactEditionDate } from "../lib/enhancedDesk";
+import { editionHourLabel } from "../lib/pacificTime";
 
 export type SiteHeaderProps = {
   /** Secondary line under brand (e.g. ARCHIVE, DAILY INTELLIGENCE). */
@@ -81,7 +82,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
     if (result.ok) {
       setSubscribed(true);
       setShowModal(false);
-      toast("Subscribed — morning digest at 5 AM PST");
+      toast(`Subscribed — morning digest at ${editionHourLabel()}`);
     } else {
       setApiError(result.error);
     }
@@ -133,7 +134,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
             <div className="mb-4 space-y-2">
               <p className="text-xs font-semibold text-white">Email digest</p>
               <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
-                Morning edition at 5 AM PST.
+                Morning edition at {editionHourLabel()}.
               </p>
             </div>
             <div className="mb-4 space-y-2">
