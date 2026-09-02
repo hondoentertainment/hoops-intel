@@ -4,11 +4,12 @@
 // Run daily after generate-edition.mjs completes
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { toDisplayDate } from "./lib/daily-dates.mjs";
+import { toDisplayDate, toISODate } from "./lib/daily-dates.mjs";
 import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
+import { stampGeneratedDate } from "./lib/stamp-generated-date.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -78,7 +79,7 @@ export interface HistoryData {
   narrative: string;
 }
 
-export const historyData: HistoryData = { ... };
+export const historyData: HistoryData = { generatedDate: "${toISODate(0)}", ... };
 \`\`\`
 
 ## Instructions
@@ -91,6 +92,7 @@ export const historyData: HistoryData = { ... };
 7. Be historically accurate — use real NBA records, real seasons, real stats
 8. Update milestones and streaks based on latest game results
 9. Verdicts should be thoughtful: "On pace to surpass", "Falling short", or "Matching stride"
+10. Set generatedDate to ISO YYYY-MM-DD (${toISODate(0)})
 
 Output ONLY the complete TypeScript file. No markdown fences, no explanation. The file MUST end with \`};\` closing export const historyData.`;
 
@@ -111,6 +113,7 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation. Th
     throw new Error(`historyData.ts failed validation: ${result.reason}`);
   }
 
+  writeFileSync(outPath, stampGeneratedDate(readFileSync(outPath, "utf8"), toISODate(0)), "utf8");
   console.log(`✅ Wrote ${outPath}`);
 }
 
