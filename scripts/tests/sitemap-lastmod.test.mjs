@@ -77,10 +77,32 @@ test("podcast lastmod prefers generatedDate over the episode date", () => {
   assert.match(file, /generatedDate:\s*"\d{4}-\d{2}-\d{2}"/);
   assert.match(file, /date:\s*"June 9, 2026"/);
   assert.notEqual(contentDate, "2026-06-09");
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
   assert.equal(
     lastmodForLoc("/podcast-companion", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
-    contentDate,
+    later(contentDate, "2026-08-20"),
   );
+});
+
+test("podcast-companion lastmod advances with the daily edition when content is frozen", () => {
+  const podcastIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/podcastData.ts"), "utf8"));
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/podcast-companion", ctx), later(podcastIso, ctx.editionIso));
+  assert.equal(lastmodForLoc("/podcast-companion", ctx), "2026-09-02");
+});
+
+test("publisher 200 routes lastmod follow the edition when page sources are older", () => {
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/embed-stats", ctx), "2026-09-02");
+  assert.equal(lastmodForLoc("/widgets/analytics", ctx), "2026-09-02");
+});
+
+test("publisher 200 routes are in the static sitemap list", () => {
+  const locs = SITEMAP_STATIC_ROUTES.map((r) => r.loc);
+  assert.ok(locs.includes("/embed-stats"));
+  assert.ok(locs.includes("/widgets/analytics"));
+  assert.ok(!locs.includes("/account"));
 });
 
 test("stampGeneratedDate upserts ISO generatedDate without rewriting date", () => {
@@ -146,6 +168,19 @@ test("Pulse Index players stay indexable", () => {
     isSitemapIndexablePlayer("Victor Wembanyama", { inPulse: true, mentions: 1 }, lists),
     true,
   );
+});
+
+test("committed sitemap includes publisher 200 routes and edition-stamped lastmod", () => {
+  const xml = readFileSync(join(ROOT, "public/sitemap.xml"), "utf8");
+  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
+  for (const path of ["/podcast-companion", "/embed-stats", "/widgets/analytics"]) {
+    const escaped = path.replace(/\//g, "\\/");
+    const block = xml.match(
+      new RegExp(`<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`),
+    );
+    assert.ok(block, `${path} missing from committed sitemap`);
+    assert.equal(block[1], "2026-09-02", `${path} lastmod should follow the current edition`);
+  }
 });
 
 test("every static sitemap source file exists (no silent build-day lastmod)", () => {

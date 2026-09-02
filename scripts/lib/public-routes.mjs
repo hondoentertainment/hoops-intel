@@ -60,6 +60,8 @@ export const SITEMAP_STATIC_ROUTES = [
   { loc: "/pick-em", priority: "0.65", changefreq: "daily" },
   { loc: "/podcast-companion", priority: "0.6", changefreq: "weekly" },
   { loc: "/widgets", priority: "0.6", changefreq: "daily" },
+  { loc: "/widgets/analytics", priority: "0.5", changefreq: "weekly" },
+  { loc: "/embed-stats", priority: "0.5", changefreq: "weekly" },
   { loc: "/pro", priority: "0.7", changefreq: "weekly" },
   // Analysis / content
   { loc: "/lineups", priority: "0.6", changefreq: "weekly" },
@@ -89,6 +91,8 @@ export const SITEMAP_STATIC_ROUTES = [
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };
 /** Pulse Index names — existing daily desk signal, not a handmade celebrity list. */
 export const SITEMAP_PLAYER_DESK_META = { priority: "0.65", changefreq: "daily" };
+// Threshold (do not invent another ranking): Pulse Index membership only.
+// inPulse → daily 0.65; everyone else → weekly 0.5.
 export const SITEMAP_TEAM_META = { priority: "0.6", changefreq: "weekly" };
 export const SITEMAP_GAME_META = { priority: "0.55", changefreq: "daily" };
 /** Default series sitemap meta; generate-sitemap.mjs bumps during active playoffs. */

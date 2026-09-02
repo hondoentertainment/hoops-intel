@@ -180,7 +180,10 @@ function extractLatestArchiveIso(archiveFile) {
   return maxIso(...dates);
 }
 
-/** Pulse Index membership is the only popularity signal we trust for crawl weight. */
+/**
+ * Pulse Index membership is the only popularity signal we trust for crawl weight.
+ * Threshold: inPulse → daily 0.65; otherwise weekly 0.5. No minutes/search/celebrity list.
+ */
 export function playerSitemapMeta({ inPulse } = {}) {
   return inPulse ? SITEMAP_PLAYER_DESK_META : SITEMAP_PLAYER_META;
 }
@@ -216,6 +219,8 @@ export const STATIC_ROUTE_SOURCES = {
   "/my-pulse": ["client/src/lib/pulseData.ts"],
   "/print-edition": ["client/src/lib/pulseData.ts"],
   "/widgets": ["client/src/pages/Widgets.tsx"],
+  "/widgets/analytics": ["client/src/pages/WidgetAnalytics.tsx"],
+  "/embed-stats": ["client/src/pages/EmbedPublisherStats.tsx"],
   "/pro": ["client/src/pages/Pro.tsx"],
   "/betting-intel": ["client/src/lib/pulseData.ts", "client/src/lib/lineMovementData.ts"],
   "/guest-pulse": ["client/src/pages/GuestPulse.tsx"],
@@ -252,6 +257,9 @@ export function lastmodForLoc(loc, ctx) {
     // Daily-pipeline pages: lastmod follows the edition when generators freeze.
     "/history",
     "/refs",
+    "/podcast-companion",
+    "/embed-stats",
+    "/widgets/analytics",
   ]);
   const contentDate = contentDatesLastmod(STATIC_ROUTE_SOURCES[loc]);
   const sourceDate = sourcesLastmod(STATIC_ROUTE_SOURCES[loc]);
