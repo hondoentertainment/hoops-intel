@@ -40,6 +40,8 @@ Verify live: https://hoopsintel.net/api/ops-readiness
 
 `APP_BASE_URL` defaults to `https://hoopsintel.net` and `PUSH_API_URL` defaults to `https://hoopsintel.net/api/push-notify` in checkout, portal, and `/api/ops-readiness`. Set them explicitly in Vercel anyway. Stripe, VAPID keys, Supabase, Resend, and Anthropic have no safe defaults — those flags stay false until secrets land.
 
+The Ops Readiness Check closer may complete a tracker only when `gaps` is an empty array **and** every secret flag is `true` (`stripe.checkoutReady`, `stripe.webhookReady`, `push.notifyAuthReady`, `supabase.serverReady`, `emailDigest.resendReady`, `llm.anthropicSeriesIntelReady`). URL defaults never count as ready. A fetch/parse failure leaves issues open.
+
 ### 3. Stripe Pro
 
 - Production webhook → `https://hoopsintel.net/api/stripe-webhook`

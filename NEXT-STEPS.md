@@ -32,7 +32,7 @@ buried five real deploy failures dating back to June.
 | Step | Action | Status |
 |------|--------|--------|
 | Shared helper | `.github/scripts/alert-issues.cjs` — one open/close/assign path for all workflows | **Done** |
-| Auto-close on recovery | `deployment-smoke`, `health-check`, `ops-readiness` now clear their own backlog | **Done** |
+| Auto-close on recovery | `deployment-smoke`, `health-check`, `ops-readiness` now clear their own backlog | **Done** — ops-readiness closer now refuses unless `gaps` is empty **and** every secret flag is true |
 | Site-review noise | Each day's report supersedes and closes the previous one | **Done** |
 | Health-check alert | `exit_code=$?` after a pipe read `tee`'s status, so the stale-content alert could never fire | **Fixed** (`PIPESTATUS[0]`) |
 | Assignee | Set repo variable **`ALERT_ASSIGNEE`** to a collaborator login | **Done** — resolves to `hondoentertainment` (confirmed in the Aug 10 ops-readiness run env) |
