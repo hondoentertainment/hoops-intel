@@ -41,7 +41,7 @@ const FEATURES = [
   },
   {
     title: "Early morning delivery",
-    body: "Edition at 6 AM PST when push/digest is configured — ahead of the public desk drop.",
+    body: "Edition at 6 AM PT when push/digest is configured — ahead of the public desk drop.",
   },
   {
     title: "Pick ’Em accountability",

@@ -16,6 +16,7 @@ import {
   shortInjuryLine,
   tickerWireText,
 } from "../../lib/enhancedDesk";
+import { editionPublishLabel } from "../../lib/pacificTime";
 import { EnhancedButton, InjuryChip, SectionHeader, StatCard } from "./EnhancedUi";
 
 function PulseRow({
@@ -108,7 +109,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             <p className="text-xs md:text-xs max-md:mobile-readable max-md:text-[var(--hi-text-secondary,#8b9bb0)]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
               <span className="hidden md:inline">By Will Henderson · Hoops Intel · {editionUpdatedLabel()}</span>
               <span className="md:hidden">
-                Will Henderson · 5:03 AM PT
+                Will Henderson · {editionPublishLabel()}
                 {hasTonightSlate() ? "" : " · no games tonight"}
               </span>
             </p>

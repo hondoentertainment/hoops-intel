@@ -249,6 +249,9 @@ export function lastmodForLoc(loc, ctx) {
     "/print-edition",
     "/betting-intel",
     "/compare-players",
+    // Daily-pipeline pages: lastmod follows the edition when generators freeze.
+    "/history",
+    "/refs",
   ]);
   const contentDate = contentDatesLastmod(STATIC_ROUTE_SOURCES[loc]);
   const sourceDate = sourcesLastmod(STATIC_ROUTE_SOURCES[loc]);

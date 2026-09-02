@@ -31,13 +31,16 @@ jobs:
           body=$(curl -fsSL --max-time 15 "$OPS_READINESS_URL")
           missing=$(echo "$body" | node -e "
             const d = JSON.parse(require('fs').readFileSync(0,'utf8'));
-            const gaps = [];
-            if (!d.stripe?.checkoutReady) gaps.push('stripe checkout');
-            if (!d.stripe?.webhookReady) gaps.push('stripe webhook');
-            if (!d.push?.notifyAuthReady) gaps.push('push notify');
-            if (!d.supabase?.serverReady) gaps.push('supabase server');
-            if (!d.emailDigest?.resendReady) gaps.push('resend');
-            if (!d.llm?.anthropicSeriesIntelReady) gaps.push('anthropic');
+            const gaps = Array.isArray(d.gaps)
+              ? d.gaps
+              : [
+                  !d.stripe?.checkoutReady && 'stripe checkout',
+                  !d.stripe?.webhookReady && 'stripe webhook',
+                  !d.push?.notifyAuthReady && 'push notify',
+                  !d.supabase?.serverReady && 'supabase server',
+                  !d.emailDigest?.resendReady && 'resend',
+                  !d.llm?.anthropicSeriesIntelReady && 'anthropic',
+                ].filter(Boolean);
             console.log(gaps.join(', '));
           ")
           if [ -n "$missing" ]; then

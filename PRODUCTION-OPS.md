@@ -38,6 +38,8 @@ Required keys are listed in `scripts/ops-preflight.mjs`. Client-side: `VITE_*` p
 
 Verify live: https://hoopsintel.net/api/ops-readiness
 
+`APP_BASE_URL` defaults to `https://hoopsintel.net` and `PUSH_API_URL` defaults to `https://hoopsintel.net/api/push-notify` in checkout, portal, and `/api/ops-readiness`. Set them explicitly in Vercel anyway. Stripe, VAPID keys, Supabase, Resend, and Anthropic have no safe defaults — those flags stay false until secrets land.
+
 ### 3. Stripe Pro
 
 - Production webhook → `https://hoopsintel.net/api/stripe-webhook`
@@ -65,7 +67,7 @@ If none are set, the workflow runs `npm run social:preview` (dry-run) and exits 
 ### 5. Vercel hygiene
 
 - Confirm `hoopsintel.net` DNS → Vercel production project **hoops-intel**
-- Archive duplicate projects `hoops-intel-1` and `hoops-intel-2`
+- Do not recreate deleted clones `hoops-intel-1` / `hoops-intel-2`
 
 ## Ship ritual (every production deploy)
 

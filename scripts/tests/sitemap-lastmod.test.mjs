@@ -91,6 +91,25 @@ test("stampGeneratedDate upserts ISO generatedDate without rewriting date", () =
   assert.equal(stampGeneratedDate(stamped, "2026-08-26").includes('generatedDate: "2026-08-26"'), true);
 });
 
+test("stampGeneratedDate replaces display-string generatedDate instead of duplicating", () => {
+  const src = `export const historyData: HistoryData = {\n  generatedDate: "June 9, 2026",\n};\n`;
+  const stamped = stampGeneratedDate(src, "2026-09-02");
+  assert.equal([...stamped.matchAll(/generatedDate:/g)].length, 1);
+  assert.match(stamped, /generatedDate: "2026-09-02"/);
+  assert.doesNotMatch(stamped, /June 9, 2026/);
+});
+
+test("history and refs lastmod advance with the daily edition when content is frozen", () => {
+  const historyIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/historyData.ts"), "utf8"));
+  const refsIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/refData.ts"), "utf8"));
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/history", ctx), later(historyIso, ctx.editionIso));
+  assert.equal(lastmodForLoc("/refs", ctx), later(refsIso, ctx.editionIso));
+  assert.equal(lastmodForLoc("/history", ctx), "2026-09-02");
+  assert.equal(lastmodForLoc("/refs", ctx), "2026-09-02");
+});
+
 test("Pulse Index players get higher sitemap priority; others stay default", () => {
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
   assert.deepEqual(playerSitemapMeta({ inPulse: false }), { priority: "0.5", changefreq: "weekly" });

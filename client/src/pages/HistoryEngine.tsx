@@ -1,6 +1,7 @@
 // Historical Context Engine — Past Meets Present
 
 import ToolPageLayout from "../components/ToolPageLayout";
+import { formatContentDate } from "../lib/contentDate";
 import { historyData } from "../lib/historyData";
 import type { HistoricalComparison, MilestoneWatch as MilestoneWatchType } from "../lib/historyData";
 
@@ -188,7 +189,7 @@ export default function HistoryEngine() {
             Past Meets Present
           </h1>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {data.generatedDate} — Connecting today's performances to NBA history
+            {formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history
           </p>
         </div>
 

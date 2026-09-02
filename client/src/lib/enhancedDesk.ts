@@ -1,6 +1,7 @@
 import { gamePreviews, injuryUpdates, narrative, pulseEdition, pulseIndex, tickerItems, westStandings } from "./pulseData";
 import { contextualAskChips } from "./askShortcuts";
 import { activeEditionContext, editionContextDeskLabel, type EditionContext } from "./deskMode";
+import { editionPublishLabel } from "./pacificTime";
 
 export const ENHANCED_ACCENT = "#1EC8F5";
 export const CAMP_OPEN_ISO = "2026-10-03";
@@ -102,8 +103,8 @@ export function deskEyebrow(ctx: EditionContext = activeEditionContext()): strin
   return editionContextDeskLabel(ctx).toUpperCase();
 }
 
-export function editionUpdatedLabel(display = pulseEdition.date): string {
-  return `Updated 5:03 AM PT`;
+export function editionUpdatedLabel(_display = pulseEdition.date): string {
+  return `Updated ${editionPublishLabel()}`;
 }
 
 export function compactEditionDate(display = pulseEdition.date): string {

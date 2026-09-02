@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { formatContentDate } from "../lib/contentDate";
 import { refData } from "../lib/refData";
 import type { RefereeProfile, TonightRefAssignment } from "../lib/refData";
 
@@ -209,7 +210,7 @@ export default function RefReports() {
             Know the Whistle
           </h1>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {data.generatedDate} — Tonight's officiating crews and their tendencies
+            {formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies
           </p>
         </div>
 

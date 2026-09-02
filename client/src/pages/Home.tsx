@@ -63,6 +63,7 @@ import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
 import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
+import { editionHourLabel } from "../lib/pacificTime";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
 import EnhancedDesk, { EnhancedTicker } from "../components/enhanced/EnhancedDesk";
@@ -1754,7 +1755,7 @@ function Footer() {
     setSubmitting(false);
     if (result.ok) {
       setSubscribed(true);
-      toast("Subscribed — morning digest at 5 AM PST");
+      toast(`Subscribed — morning digest at ${editionHourLabel()}`);
     } else {
       setApiError(result.error);
     }
@@ -1787,7 +1788,7 @@ function Footer() {
           <div>
             <div className="section-label mb-2">DAILY DIGEST</div>
             <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
-              Get the morning edition in your inbox at 5 AM PST
+              Get the morning edition in your inbox at {editionHourLabel()}
             </p>
             {subscribed ? (
               <div className="text-xs px-3 py-2 rounded" style={{ background: "rgba(16,185,129,0.1)", color: "#10B981" }}>
