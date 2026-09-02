@@ -28,27 +28,19 @@ jobs:
         env:
           OPS_READINESS_URL: https://hoopsintel.net/api/ops-readiness
         run: |
-          body=$(curl -fsSL --max-time 15 "$OPS_READINESS_URL")
-          missing=$(echo "$body" | node -e "
-            const d = JSON.parse(require('fs').readFileSync(0,'utf8'));
-            const gaps = Array.isArray(d.gaps)
-              ? d.gaps
-              : [
-                  !d.stripe?.checkoutReady && 'stripe checkout',
-                  !d.stripe?.webhookReady && 'stripe webhook',
-                  !d.push?.notifyAuthReady && 'push notify',
-                  !d.supabase?.serverReady && 'supabase server',
-                  !d.emailDigest?.resendReady && 'resend',
-                  !d.llm?.anthropicSeriesIntelReady && 'anthropic',
-                ].filter(Boolean);
-            console.log(gaps.join(', '));
-          ")
-          if [ -n "$missing" ]; then
-            echo "has_gaps=true" >> "$GITHUB_OUTPUT"
-            echo "::warning::Production ops gaps: $missing"
-          else
+          # Fail closed: a bad fetch, empty body, or any secret-flag false
+          # must never look like "no gaps" (that wrongly completed issue 129).
+          echo "has_gaps=true" >> "$GITHUB_OUTPUT"
+          body=$(curl -fsSL --max-time 15 "$OPS_READINESS_URL") || {
+            echo "::warning::ops-readiness fetch failed — leaving issues open"
+            exit 0
+          }
+          if missing=$(echo "$body" | node scripts/lib/ops-readiness.cjs); then
             echo "has_gaps=false" >> "$GITHUB_OUTPUT"
             echo "Production ops-readiness OK"
+          else
+            echo "has_gaps=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Production ops gaps: $missing"
           fi
 
       - name: Close ops-readiness issues once gaps clear
@@ -57,7 +49,21 @@ jobs:
         with:
           script: |
             const alerts = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/alert-issues.cjs`);
+            const { evaluateOpsReadiness } = require(`${process.env.GITHUB_WORKSPACE}/scripts/lib/ops-readiness.cjs`);
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            let payload;
+            try {
+              const res = await fetch('https://hoopsintel.net/api/ops-readiness');
+              payload = await res.json();
+            } catch (err) {
+              core.warning(`Refusing to close ops-readiness issues: refetch failed (${err.message || err})`);
+              return;
+            }
+            const verdict = evaluateOpsReadiness(payload);
+            if (!verdict.ready) {
+              core.warning(`Refusing to close ops-readiness issues while gaps remain: ${verdict.gaps.join(', ')}`);
+              return;
+            }
             await alerts.closeResolvedIssues(github, context, core, {
               label: 'ops-readiness',
               titlePrefix: 'Ops readiness gaps',

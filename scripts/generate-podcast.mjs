@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toDisplayDate, toISODate } from "./lib/daily-dates.mjs";
+import { stampGeneratedDate } from "./lib/stamp-generated-date.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -84,7 +85,7 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
 
   // Write the file
   const outPath = join(ROOT, "client/src/lib/podcastData.ts");
-  writeFileSync(outPath, cleaned + "\n", "utf8");
+  writeFileSync(outPath, stampGeneratedDate(cleaned + "\n", toISODate(0)), "utf8");
 
   console.log(`✅ Wrote ${outPath}`);
   console.log(`   Content length: ${cleaned.length} chars`);

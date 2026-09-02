@@ -153,12 +153,16 @@ export function validateWorldClassRoutes() {
       "/player/kobe-bryant",
       "/player/larry-bird",
       "/player/hakeem-olajuwon",
-      "/embed-stats",
-      "/widgets/analytics",
     ]) {
       assertCond(
         !locs.some((loc) => loc.endsWith(banned)),
         `sitemap should not index thin/noindex URL: ${banned}`,
+      );
+    }
+    for (const required of ["/embed-stats", "/widgets/analytics"]) {
+      assertCond(
+        locs.some((loc) => loc.endsWith(required)),
+        `sitemap should include public 200 route: ${required}`,
       );
     }
     assertCond(

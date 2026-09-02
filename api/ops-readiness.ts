@@ -70,6 +70,7 @@ export default async function handler(req: Request): Promise<Response> {
       anthropicSeriesIntelReady: anthropicReady,
     },
     gaps,
+    ready: gaps.length === 0,
     hints: [
       "Client env (VITE_*) is not inspected here — set Stripe publishable + VITE_VAPID_PUBLIC_KEY in Vercel.",
       "Cron workflows need GitHub repository secrets mirrored from production.",
