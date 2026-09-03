@@ -1,17 +1,15 @@
 import SiteHeader from "../components/SiteHeader";
 import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
-import {
-  CAMP_OPENER_PREVIEWS,
-  daysUntilIso,
-  CAMP_OPEN_ISO,
-  hasTonightSlate,
-} from "../lib/enhancedDesk";
+import { daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
+import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { makeGameId } from "../lib/gameCenter";
 
 export default function Tonight() {
   const campDays = daysUntilIso(CAMP_OPEN_ISO);
   const slateOpen = hasTonightSlate();
+  const deskCards = campIntelCards(3);
+  const schedule = campScheduleStatus();
 
   return (
     <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
@@ -52,21 +50,24 @@ export default function Tonight() {
             ))}
           </div>
         ) : (
-          <div className="enhanced-card flex flex-col gap-2 p-5">
+          <div className="enhanced-card flex flex-col gap-2 p-5 max-md:p-4">
             <p className="editorial-heading text-[1.375rem] leading-8 text-[var(--hi-text,#f3f6fa)]">
-              The dead period still has the floor.
+              The slate is empty. The desk is not.
             </p>
             <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)]">
-              Nothing on tonight’s schedule. Preseason opens October 3
-              {campDays > 0 ? ` — ${campDays === 1 ? "one day" : `${campDays} days`}` : ""}. Rotation battles
-              and minutes caps move to Lineups until the first tip.
+              Nothing on tonight’s ESPN schedule. Training camp opens October 3
+              {campDays > 0 ? ` — ${campDays === 1 ? "one day" : `${campDays} days`}` : ""}.
+              Roster battles, cuts, and Pulse of the camp live on the morning desk — not as invented matchups here.
             </p>
             <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-              Scores is not a standalone route — recaps live on the desk when games exist.
+              {schedule.kind === "espn-upcoming"
+                ? schedule.sub
+                : "Scores is not a standalone route — recaps land on the desk when games exist."}
             </p>
-            <div className="pt-1">
+            <div className="flex flex-wrap gap-2 pt-1">
+              <EnhancedButton href="/#camp-intel">Open camp intel</EnhancedButton>
               <EnhancedButton href="/lineups" variant="ghost">
-                Open lineups
+                Rotation battles
               </EnhancedButton>
             </div>
           </div>
@@ -75,45 +76,17 @@ export default function Tonight() {
         {!slateOpen ? (
           <>
             <SectionHeader
-              eyebrow="WHEN THE SLATE RETURNS"
-              title="Camp openers · Oct 3"
-              action="Add to Pulse →"
-              actionHref="/my-pulse"
+              eyebrow="ON THE DESK"
+              title="Camp / preseason intel"
+              action="Open desk →"
+              actionHref="/#camp-intel"
             />
-            <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-              Editorial camp-open watch list — not a live ESPN slate and not tonight’s scores.
-            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {CAMP_OPENER_PREVIEWS.map((game) => (
-                <GamePreviewCard
-                  key={`${game.away}-${game.home}`}
-                  status="PRESEASON"
-                  when={game.when}
-                  away={game.away}
-                  home={game.home}
-                  network={game.network}
-                  note={game.note}
-                />
+              {deskCards.map((card) => (
+                <a key={`${card.kicker}-${card.title}`} href={card.href}>
+                  <StatCard kicker={card.kicker} value={card.team ?? card.kicker} sub={card.title} />
+                </a>
               ))}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <a href="/lineups">
-                <StatCard
-                  kicker="ROTATION BATTLES"
-                  value="Lineups desk"
-                  sub="Preseason desk prioritizes minutes caps and scheme teases."
-                />
-              </a>
-              <StatCard
-                kicker="MURRAY D17"
-                value="DEN"
-                sub="Silence is now institutional precedent — not reversible by one announcement."
-              />
-              <StatCard
-                kicker="OKC PREP"
-                value="Operational"
-                sub="Preparation depth converting from abstract to camp decisions."
-              />
             </div>
           </>
         ) : null}

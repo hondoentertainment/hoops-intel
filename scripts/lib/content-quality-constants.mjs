@@ -13,6 +13,11 @@ export const TEAM_ABBR_SET = new Set(TEAM_ABBREVIATIONS);
 const ESPN_TEAM_ALIASES = Object.freeze({
   NY: "NYK",
   SA: "SAS",
+  GS: "GSW",
+  NO: "NOP",
+  WSH: "WAS",
+  BKN: "BRK",
+  UTAH: "UTA",
 });
 
 /** @returns {string} */
