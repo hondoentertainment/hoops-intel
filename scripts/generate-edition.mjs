@@ -227,7 +227,15 @@ async function main() {
           ? `
 
 ## PRESEASON WINDOW (season-mode)
-- Rotation battles, minutes caps, injury cautions, and scheme teases — lighter analytical certainty than Opening Week
+- September / pre-camp / early camp is a CAMP DESK: roster battles, cuts, camp storylines, schedule-release, and Pulse-of-the-camp — not a game night
+- Do NOT invent scores, box scores, injury reports, or tonight's matchups
+- If ESPN's tonight slate is empty: gamePreviews MUST be []; say plainly there are no NBA games tonight and point readers at camp intel
+- If ESPN's yesterday slate is empty: gameResults MUST be []
+- Do NOT estimate spreads, openingSpread, or marketThesis when gamePreviews is empty
+- Pulse Index ranks by offseason/camp stock (contract status, role change, camp readiness, unresolved extensions) — never by invented box scores
+- Lead narrative/ticker with camp design costs, rotation questions, extension freezes, and the October 3 camp open
+- Injury rows are last-known editorial context for camp participation, not a live ESPN injury wire (that cron is dark July–September)
+- Label speculation clearly
 `
           : cal === "dead-period"
             ? `

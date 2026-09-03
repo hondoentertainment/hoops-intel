@@ -8,6 +8,7 @@ import { dirname, join } from "path";
 import { loadLocalEnv } from "./load-local-env.mjs";
 import { validateOutput } from "./lib/validate-output.mjs";
 import { validatePlayoffStructure } from "./validate-generated-structure.mjs";
+import { seasonMode } from "./lib/season-mode.mjs";
 
 loadLocalEnv();
 
@@ -133,6 +134,20 @@ async function main() {
     }
   } catch (err) {
     console.warn(`⚠ Preflight playoff sync: ${err.message}`);
+  }
+
+  const cal = seasonMode();
+  if (cal === "preseason" || cal === "dead-period") {
+    try {
+      console.log("📅 Preflight: ESPN camp-week schedule (not tonight)...\n");
+      execSync(`node "${join(__dirname, "fetch-camp-schedule.mjs")}"`, {
+        cwd: ROOT,
+        stdio: "inherit",
+        env: process.env,
+      });
+    } catch (err) {
+      console.warn(`⚠ Camp schedule fetch: ${err.message} — keeping last committed snapshot`);
+    }
   }
 
   // ── Pre-flight: validate required environment variables ───

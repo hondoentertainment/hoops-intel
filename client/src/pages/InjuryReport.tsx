@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import { InjuryChip, SectionHeader } from "../components/enhanced/EnhancedUi";
-import { editionContextDeskLabel } from "../lib/deskMode";
+import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
 import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
@@ -343,6 +343,9 @@ export default function InjuryReport() {
           <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
             {shortDate} · {editionContextDeskLabel().toLowerCase()} · {tallies.dtd} day-to-day · {tallies.probable}{" "}
             probable · {tallies.out} out
+            {isOffseasonDesk()
+              ? " · last-known editorial tags — live injury cron is dark through September"
+              : ""}
           </p>
         </div>
 

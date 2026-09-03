@@ -28,6 +28,7 @@
     "lines:sync": "node scripts/sync-line-movement.mjs sync",
     "lines:fetch": "node scripts/fetch-line-odds.mjs",
     "headshots:fetch": "node scripts/fetch-player-headshots.mjs",
+    "camp:schedule": "node scripts/fetch-camp-schedule.mjs",
     "test:series-intel-keys": "node scripts/verify-series-intel-keys.mjs",
     "test:generators": "node scripts/content-schedule.mjs --verify-generators",
     "health": "node scripts/health-check.mjs",

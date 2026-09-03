@@ -13,7 +13,7 @@ import {
   pulseTrendMark,
   shortInjuryLine,
 } from "../lib/enhancedDesk";
-import { gamePreviews, pulseIndex, westStandings } from "../lib/pulseData";
+import { gamePreviews, pulseIndex } from "../lib/pulseData";
 
 describe("enhancedDesk", () => {
   it("formats pulse scores and ranks for the homepage module", () => {
@@ -28,7 +28,8 @@ describe("enhancedDesk", () => {
     const cards = heroStats();
     expect(cards[0]?.kicker).toBe("PULSE LEADER");
     expect(cards[0]?.value).toBe(formatPulseScore(pulseIndex[0]!.indexScore));
-    expect(cards.some((c) => c.kicker === "WEST NO. 1" && c.value === `${westStandings[0]!.wins}-${westStandings[0]!.losses}`)).toBe(true);
+    expect(cards.some((c) => c.kicker === "WEST NO. 1")).toBe(false);
+    expect(cards.some((c) => c.kicker === "UNRESOLVED")).toBe(true);
     expect(hasTonightSlate()).toBe(gamePreviews.length > 0);
   });
 
@@ -54,7 +55,7 @@ describe("enhancedDesk", () => {
 
   it("uses closed-slate Ask chips when there are no games", () => {
     const chips = deskAskChips();
-    expect(chips).toContain("Who's rising on the Pulse Index?");
+    expect(chips).toContain("Which rotation battles matter before camp?");
     expect(daysUntilIso("2026-10-03", new Date("2026-09-01T12:00:00"))).toBe(32);
   });
 });

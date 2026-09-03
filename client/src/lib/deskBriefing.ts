@@ -36,7 +36,7 @@ export function buildSixtySecondBullets(): string[] {
     } else if (ctx === "free-agency") {
       bullets.push("Free agency desk — cap tiers and rotation fit on Trade Value");
     } else if (ctx === "preseason") {
-      bullets.push("Preseason desk — rotation battles and minutes caps on Lineups");
+      bullets.push("Preseason desk — camp intel, rotation battles, and Pulse of the camp (no invented games)");
     } else if (ctx === "dead-period") {
       bullets.push("Offseason desk — roster construction and season-ahead projections");
     }

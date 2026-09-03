@@ -67,9 +67,8 @@ export function deskSectionLinks(date = new Date()): MainNavLink[] {
   if (isOffseasonDesk(date)) {
     return [
       { label: "Briefing", href: "#today-desk" },
+      { label: "Camp", href: "#camp-intel" },
       { label: "Pulse", href: "#pulse-index" },
-      { label: "Injuries", href: "#injuries" },
-      { label: "Outlook", href: "#offseason-desk" },
       { label: "Standings", href: "#standings" },
     ];
   }
@@ -125,8 +124,8 @@ export interface ToolLink {
 }
 
 export const TOOLS_DIRECTORY: ToolLink[] = [
-  { label: "Desk", href: "/", description: "Daily briefing, Pulse Index, injury rail, slate", category: "desk" },
-  { label: "Tonight", href: "/tonight", description: "Tonight's slate and camp-open previews", category: "desk" },
+  { label: "Desk", href: "/", description: "Daily briefing, Pulse Index, camp intel when the slate is empty", category: "desk" },
+  { label: "Tonight", href: "/tonight", description: "Tonight's ESPN slate — empty when the league is dark, with a pointer to the desk", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },
   { label: "Pulse history", href: "/pulse-history", description: "Ranking history", category: "desk" },
   { label: "My Pulse", href: "/my-pulse", description: "Personalized edition", category: "desk" },

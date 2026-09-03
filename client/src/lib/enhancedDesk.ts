@@ -150,6 +150,22 @@ export function heroStats(): HeroStat[] {
     value: campDays > 0 ? `${campDays} days` : campDays === 0 ? "Today" : "Open",
     sub: "Camp opens October 3",
   });
+
+  // Empty slates stay a camp desk — last season's W-L is not tonight's scoreboard.
+  if (gamePreviews.length === 0) {
+    const unresolved = pulseIndex.filter((row) => row.trend === "down");
+    if (unresolved.length > 0) {
+      cards.push({
+        kicker: "UNRESOLVED",
+        value: String(unresolved.length),
+        sub: unresolved.map((row) => row.player.split(" ").slice(-1)[0]).join(" · "),
+      });
+    } else if (murray) {
+      cards.push({ kicker: "MURRAY", value: murray.value, sub: murray.sub });
+    }
+    return cards.slice(0, 4);
+  }
+
   if (murray) {
     cards.push({ kicker: "MURRAY", value: murray.value, sub: murray.sub });
   }
@@ -180,9 +196,9 @@ export function mobileHeroStats(): HeroStat[] {
 export function deskAskChips(): string[] {
   if (gamePreviews.length === 0) {
     return [
-      "Who's rising on the Pulse Index?",
-      "Injury impact on the slate?",
-      "When does camp actually start?",
+      "Which rotation battles matter before camp?",
+      "Who is unresolved heading into October?",
+      "When does training camp open?",
     ];
   }
   return contextualAskChips().slice(0, 3);
@@ -195,40 +211,14 @@ export function tickerWireText(): string {
     .join("  ·  ");
 }
 
-export type CampOpenerPreview = {
+export type SampleLock = {
   away: string;
   home: string;
   when: string;
   network: string;
   note: string;
+  lean: string;
 };
-
-/** Editorial camp-open previews — not a live ESPN slate and never shown as scores. */
-export const CAMP_OPENER_PREVIEWS: CampOpenerPreview[] = [
-  {
-    away: "NYK",
-    home: "BOS",
-    when: "Oct 3 · 7:00 PM ET",
-    network: "ESPN",
-    note: "Minutes-cap watch: Anunoby probable, Brunson settled, East’s cleanest camp open.",
-  },
-  {
-    away: "LAL",
-    home: "GSW",
-    when: "Oct 3 · 10:00 PM ET",
-    network: "NBATV",
-    note: "West coast opener — scheme teases only; no Pulse weight until regular season.",
-  },
-  {
-    away: "SAS",
-    home: "HOU",
-    when: "Oct 4 · 8:00 PM ET",
-    network: "ESPN",
-    note: "Fox-Sengun minutes. Houston freeze is already a training-camp design cost.",
-  },
-];
-
-export type SampleLock = CampOpenerPreview & { lean: string };
 
 export const SAMPLE_LOCKS: SampleLock[] = [
   {

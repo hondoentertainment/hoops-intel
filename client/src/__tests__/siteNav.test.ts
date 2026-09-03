@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { headerNavLinks, mobileBottomNavLinks, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
+import { deskSectionLinks, headerNavLinks, mobileBottomNavLinks, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
 
 const ENHANCED_HEADER = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Archive", "Ask"];
 const ENHANCED_MOBILE = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Ask"];
@@ -27,6 +27,13 @@ describe("siteNav", () => {
     expect(mobile).not.toContain("Picks");
     expect(mobile).toContain("Pick 'Em");
     expect(headerNavLinks(january).find((l) => l.label === "Tonight")?.href).toBe("/tonight");
+  });
+
+  it("jumps the offseason desk to camp intel instead of a game-night slate", () => {
+    const september = new Date(Date.UTC(2026, 8, 2));
+    const hrefs = deskSectionLinks(september).map((l) => l.href);
+    expect(hrefs).toContain("#camp-intel");
+    expect(hrefs).not.toContain("#tonight");
   });
 
   it("hides admin and opt-out routes from the public tools grid", () => {

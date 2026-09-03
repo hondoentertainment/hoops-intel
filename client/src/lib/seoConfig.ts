@@ -64,7 +64,7 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
   },
   "/tonight": {
     title: "Tonight's NBA Slate | Hoops Intel",
-    description: "Tonight's games, camp-open previews, and honest empty-slate coverage when the league is dark.",
+    description: "Tonight's ESPN slate. When the league is dark, an honest empty board that points to camp intel on the desk.",
     canonicalPath: "/tonight",
   },
   "/pick-em": {

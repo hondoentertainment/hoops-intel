@@ -73,7 +73,7 @@ export default function OffseasonDeskStrip() {
                 ? "Track signings, cap tiers, and rotation fit on Trade Value — the morning desk pivots to market moves when the slate thins."
                 : ctx === "dead-period"
                   ? "No games on the calendar. The desk runs roster-construction retrospectives, extension math, and season-ahead projections until camps open."
-                  : "Preseason desk prioritizes rotation battles and injury cautions. Use Lineups for projected minutes and scheme teases."}
+                  : "Preseason desk leads with camp intel — roster battles, unresolved extensions, and Pulse of the camp. Tonight stays empty until ESPN posts a slate."}
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
               <a href="/trade-value" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
