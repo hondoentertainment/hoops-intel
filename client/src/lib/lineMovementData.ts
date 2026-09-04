@@ -8,7 +8,7 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "September 3, 2026";
+export const lineMovementEditionDate = "September 4, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
 
