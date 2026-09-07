@@ -172,6 +172,8 @@ test("Pulse Index players stay indexable", () => {
 
 test("committed sitemap includes publisher 200 routes and edition-stamped lastmod", () => {
   const xml = readFileSync(join(ROOT, "public/sitemap.xml"), "utf8");
+  const editionIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
+  assert.ok(editionIso, "pulseEdition.date should parse to an ISO day");
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
   for (const path of ["/podcast-companion", "/embed-stats", "/widgets/analytics"]) {
     const escaped = path.replace(/\//g, "\\/");
@@ -179,7 +181,8 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
       new RegExp(`<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`),
     );
     assert.ok(block, `${path} missing from committed sitemap`);
-    assert.equal(block[1], "2026-09-02", `${path} lastmod should follow the current edition`);
+    const expected = lastmodForLoc(path, { buildDay: "2099-01-01", editionIso });
+    assert.equal(block[1], expected, `${path} lastmod should follow the current edition`);
   }
 });
 
