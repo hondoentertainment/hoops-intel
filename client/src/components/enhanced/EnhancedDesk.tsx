@@ -319,7 +319,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
                   {chip}
                 </button>
               ))}
-              <EnhancedButton href="/ask">Ask Hoops Intel</EnhancedButton>
+              <EnhancedButton href="/ask" className="w-full">Ask Hoops Intel</EnhancedButton>
             </DeskPanel>
           </aside>
 

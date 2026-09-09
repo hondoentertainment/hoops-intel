@@ -178,15 +178,17 @@ export function EnhancedButton({
   variant = "primary",
   onClick,
   type = "button",
+  className = "",
 }: {
   href?: string;
   children: ReactNode;
   variant?: "primary" | "ghost";
   onClick?: () => void;
   type?: "button" | "submit";
+  className?: string;
 }) {
-  const className =
-    "inline-flex items-center justify-center px-3.5 py-2.5 rounded-[10px] text-[13px] font-semibold min-h-11 transition-opacity hover:opacity-90";
+  const cls =
+    `inline-flex items-center justify-center px-3.5 py-2.5 rounded-[10px] text-[13px] font-semibold min-h-11 transition-opacity hover:opacity-90 ${className}`;
   const style =
     variant === "primary"
       ? { background: ENHANCED_ACCENT, color: "#0a0d12" }
@@ -194,13 +196,13 @@ export function EnhancedButton({
 
   if (href) {
     return (
-      <a href={href} className={className} style={style}>
+      <a href={href} className={cls} style={style}>
         {children}
       </a>
     );
   }
   return (
-    <button type={type} onClick={onClick} className={className} style={style}>
+    <button type={type} onClick={onClick} className={cls} style={style}>
       {children}
     </button>
   );
