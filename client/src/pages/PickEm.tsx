@@ -521,15 +521,15 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
           actionHref="/pick-em#season-board"
         />
         <div className="enhanced-card flex flex-col gap-2.5 p-[22px] max-md:p-4">
-          <p className="editorial-heading text-2xl max-md:text-[1.5rem] max-md:leading-8 text-[var(--hi-text,#f3f6fa)]">No picks yet.</p>
-          <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)] max-w-3xl">
-            Nothing on tonight’s schedule, so the board is closed. Game and bracket picks count toward the
-            season board when the first tip lands. Lock picks to see how you stack up against the desk.
+          <p className="editorial-heading text-2xl max-md:text-[1.5rem] max-md:leading-8 text-[var(--hi-text,#f2f5fa)]">Board closed.</p>
+          <p className="editorial-body mobile-readable text-[var(--hi-text,#f2f5fa)] max-w-3xl">
+            Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. We never invent tip-offs for camp week.
+            Game and bracket picks count toward the season board when the first tip lands.
           </p>
           <div className="flex flex-wrap gap-2 pt-1">
-            <EnhancedButton href="/tonight">Open Pick &apos;Em</EnhancedButton>
-            <EnhancedButton href="/archive" variant="ghost">
-              View archive
+            <EnhancedButton href="/tonight">Open Tonight</EnhancedButton>
+            <EnhancedButton href="/#camp-intel" variant="ghost">
+              Camp intel
             </EnhancedButton>
           </div>
         </div>

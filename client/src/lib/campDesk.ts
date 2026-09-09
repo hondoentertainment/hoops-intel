@@ -19,7 +19,17 @@ export type CampScheduleRow = {
   when: string;
   tv: string;
   note: string;
+  dateIso?: string;
 };
+
+export function campShortDate(dateIso: string): string {
+  const parts = dateIso.split("-");
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  if (!month || !day || !months[month - 1]) return dateIso;
+  return `${months[month - 1]} ${day}`;
+}
 
 export type CampScheduleStatus = {
   kind: "tonight" | "espn-upcoming" | "empty";
@@ -182,13 +192,14 @@ export function campScheduleStatus(): CampScheduleStatus {
     return {
       kind: "espn-upcoming",
       headline: "ESPN camp-week slate",
-      sub: "Not tonight. First tips when camp opens — pulled from ESPN, not invented.",
-      games: campScheduleGames.slice(0, 3).map((game) => ({
+      sub: "Oct 3 openers · labeled not tonight",
+      games: campScheduleGames.slice(0, 5).map((game) => ({
         away: game.away,
         home: game.home,
         when: game.when,
         tv: game.tv,
         note: game.venue || "ESPN camp-week listing",
+        dateIso: game.dateIso,
       })),
     };
   }
@@ -203,8 +214,8 @@ export function campScheduleStatus(): CampScheduleStatus {
 
 export function campAskChips(): string[] {
   return [
-    "Which rotation battles matter before camp?",
-    "Who is unresolved heading into October?",
-    "When does training camp open?",
+    "Who leads Camp Pulse?",
+    "When does camp open?",
+    "Any unresolved injuries?",
   ];
 }

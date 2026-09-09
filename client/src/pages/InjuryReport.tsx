@@ -267,7 +267,7 @@ function FilterButton({
       className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all"
       style={
         active
-          ? { background: "#0EA5E9", color: "#fff" }
+          ? { background: "var(--hi-accent,#1ec8f5)", color: "#0a0d12" }
           : {
               background: "rgba(255,255,255,0.05)",
               color: "rgba(255,255,255,0.5)",

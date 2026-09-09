@@ -5,12 +5,15 @@ import {
   deskAskChips,
   formatPulseScore,
   hasTonightSlate,
+  headerDateLabel,
   heroStats,
   injuryChipTone,
   injuryCounts,
+  lastNameOf,
   mobileHeroStats,
   padRank,
   pulseTrendMark,
+  seasonChipLabel,
   shortInjuryLine,
 } from "../lib/enhancedDesk";
 import { gamePreviews, pulseIndex } from "../lib/pulseData";
@@ -27,7 +30,9 @@ describe("enhancedDesk", () => {
   it("derives hero stats from live edition data, not invented scores", () => {
     const cards = heroStats();
     expect(cards[0]?.kicker).toBe("PULSE LEADER");
-    expect(cards[0]?.value).toBe(formatPulseScore(pulseIndex[0]!.indexScore));
+    expect(cards[0]?.value).toBe(lastNameOf(pulseIndex[0]!.player));
+    expect(cards[0]?.sub).toContain(formatPulseScore(pulseIndex[0]!.indexScore));
+    expect(cards.some((c) => c.kicker === "CAMP OPENS")).toBe(true);
     expect(cards.some((c) => c.kicker === "WEST NO. 1")).toBe(false);
     expect(cards.some((c) => c.kicker === "UNRESOLVED")).toBe(true);
     expect(hasTonightSlate()).toBe(gamePreviews.length > 0);
@@ -37,7 +42,7 @@ describe("enhancedDesk", () => {
     const counts = injuryCounts();
     expect(counts.all).toBeGreaterThan(0);
     expect(counts.dtd + counts.probable + counts.out + counts.questionable).toBe(counts.all);
-    expect(injuryChipTone("Day-to-Day")).toBe("danger");
+    expect(injuryChipTone("Day-to-Day")).toBe("warn");
     expect(injuryChipTone("Probable")).toBe("success");
     expect(shortInjuryLine("Right knee soreness (chronic management)")).toMatch(/knee/i);
   });
@@ -55,7 +60,9 @@ describe("enhancedDesk", () => {
 
   it("uses closed-slate Ask chips when there are no games", () => {
     const chips = deskAskChips();
-    expect(chips).toContain("Which rotation battles matter before camp?");
+    expect(chips).toContain("Who leads Camp Pulse?");
     expect(daysUntilIso("2026-10-03", new Date("2026-09-01T12:00:00"))).toBe(32);
+    expect(seasonChipLabel("preseason")).toBe("PRESEASON");
+    expect(headerDateLabel("September 9, 2026")).toBe("Sep 9, 2026");
   });
 });

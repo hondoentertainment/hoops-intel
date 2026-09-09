@@ -5,6 +5,7 @@ import { isFinalsActive, finalistTeams } from "../../lib/playoffData";
 import {
   campIntelCards,
   campScheduleStatus,
+  campShortDate,
   isCampDesk,
   type CampCard,
   type CampScheduleRow,
@@ -13,8 +14,8 @@ import {
   compactPulseStats,
   deskAskChips,
   deskEyebrow,
-  editionUpdatedLabel,
   formatPulseScore,
+  formatPulseTenths,
   hasTonightSlate,
   heroStats,
   mobileHeroStats,
@@ -24,7 +25,15 @@ import {
   tickerWireText,
 } from "../../lib/enhancedDesk";
 import { editionPublishLabel } from "../../lib/pacificTime";
-import { EnhancedButton, InjuryChip, SectionHeader, StatCard } from "./EnhancedUi";
+import {
+  DeskInset,
+  DeskPanel,
+  EnhancedButton,
+  InjuryChip,
+  SectionHeader,
+  StatCard,
+  StatusPill,
+} from "./EnhancedUi";
 
 function PulseRow({
   rank,
@@ -48,24 +57,22 @@ function PulseRow({
       </p>
       <div className="min-w-0 overflow-hidden">
         <div className="flex items-baseline gap-2 min-w-0">
-          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#f3f6fa)] truncate">{player}</span>
+          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#f2f5fa)] truncate">{player}</span>
           <span className="text-xs font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
             {team}
           </span>
         </div>
-        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
-        <p className={`editorial-body mobile-readable mt-1 text-[var(--hi-text,#f3f6fa)] ${compact ? "line-clamp-2" : "line-clamp-2"}`}>
-          {note}
-        </p>
+        <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#f2f5fa)] line-clamp-2">{note}</p>
       </div>
       <div className="flex flex-col items-end gap-0.5 min-w-0 text-right">
         <span className="text-xs font-bold leading-none" style={{ color: mark.color }}>
           {mark.mark}
         </span>
-        <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#f3f6fa)]">{formatPulseScore(indexScore)}</span>
-        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+        <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#f2f5fa)]">{formatPulseScore(indexScore)}</span>
+        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           {teamRecord}
         </span>
       </div>
@@ -73,42 +80,56 @@ function PulseRow({
   );
 }
 
-function CampIntelCard({ card }: { card: CampCard }) {
+function CompactPulseRow({
+  rank,
+  player,
+  team,
+  indexScore,
+}: Pick<(typeof pulseIndex)[number], "rank" | "player" | "team" | "indexScore">) {
   return (
     <a
-      href={card.href}
-      className="enhanced-card flex flex-col gap-1.5 p-3.5 max-md:p-3 min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      href={`/player/${slugify(player)}`}
+      className="desk-inset flex items-center gap-3 px-3 py-2.5 min-h-11 min-w-0 overflow-hidden"
     >
-      <div className="flex items-center gap-2 min-w-0">
-        <p className="enhanced-kicker truncate">{card.kicker}</p>
-        {card.team ? (
-          <span className="text-[11px] font-bold shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
-            {card.team}
-          </span>
-        ) : null}
-      </div>
-      <p className="text-sm font-semibold leading-5 text-[var(--hi-text,#f3f6fa)] line-clamp-2">{card.title}</p>
-      <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)] line-clamp-3">{card.body}</p>
+      <span className="mono-data text-xs font-bold shrink-0 w-4" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+        {rank}
+      </span>
+      <span className="flex-1 min-w-0 text-[13px] font-medium text-[var(--hi-text,#f2f5fa)] truncate">{player}</span>
+      <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        {team}
+      </span>
+      <span className="mono-data text-sm font-bold shrink-0 pulse-score" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+        {formatPulseTenths(indexScore)}
+      </span>
     </a>
   );
 }
 
-function CampScheduleRow({ game, label }: { game: CampScheduleRow; label: string }) {
+function CampIntelRow({ card }: { card: CampCard }) {
+  const kicker = card.team ? `${card.kicker} · ${card.team}` : card.kicker;
   return (
-    <div className="enhanced-card flex flex-col gap-1 px-3.5 py-3 min-w-0 overflow-hidden">
-      <p className="enhanced-kicker">{label}</p>
-      <p className="mono-data font-bold text-[20px] leading-6 text-[var(--hi-text,#f3f6fa)] break-words">
-        {game.away}{" "}
-        <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-          @
-        </span>{" "}
-        {game.home}
+    <DeskInset href={card.href} className="flex flex-col gap-1 p-3">
+      <p className="text-[10px] font-semibold tracking-[0.8px] uppercase" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+        {kicker}
       </p>
-      <p className="text-sm leading-5 truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-        {game.when}
-        {game.tv ? ` · ${game.tv}` : ""}
+      <p className="text-sm font-semibold leading-[17px] text-[var(--hi-text,#f2f5fa)] line-clamp-2">{card.title}</p>
+      <p className="text-xs leading-[18px] line-clamp-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        {card.body}
       </p>
-    </div>
+    </DeskInset>
+  );
+}
+
+function CampSlateCard({ game }: { game: CampScheduleRow }) {
+  const dateLabel = game.dateIso ? campShortDate(game.dateIso) : game.when.split(" ")[0] ?? game.when;
+  return (
+    <DeskInset className="flex flex-col gap-1.5 p-2.5 w-[152px] shrink-0">
+      <p className="text-[11px] font-semibold text-[var(--hi-text,#f2f5fa)]">{dateLabel}</p>
+      <p className="text-[11px] truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        {game.away} @ {game.home}
+      </p>
+      <StatusPill tone="warn">NOT TONIGHT</StatusPill>
+    </DeskInset>
   );
 }
 
@@ -116,11 +137,11 @@ export function EnhancedTicker() {
   return (
     <div
       className="hidden md:flex items-center gap-4 px-4 md:px-7 py-2 overflow-hidden"
-      style={{ background: "var(--hi-surface-2,#121c2c)" }}
+      style={{ background: "var(--hi-surface-2,#12171f)" }}
       aria-label="Edition wire"
     >
       <p className="enhanced-kicker shrink-0">{deskEyebrow()}</p>
-      <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+      <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
         {tickerWireText()}
       </p>
     </div>
@@ -144,175 +165,183 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
   const intel = campIntelCards(3);
   const mobileIntel = intel.slice(0, 2);
   const schedule = campScheduleStatus();
-  const scheduleLabel = schedule.kind === "tonight" ? "TONIGHT" : "ESPN · NOT TONIGHT";
 
   return (
-    <div className="px-4 md:px-7 py-4 md:py-5">
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
-        <div className="flex-1 min-w-0 flex flex-col gap-3.5">
-          <div id="today-desk" className="flex flex-col gap-2">
-            <p className="enhanced-kicker">
-              {deskEyebrow()} · {pulseEdition.date.toUpperCase()}
-            </p>
-            <h1 className="editorial-heading text-[var(--hi-text,#f3f6fa)] text-[30px] leading-[34px] max-md:text-[1.5rem] max-md:leading-8">
-              {narrative.headline}
-            </h1>
-            <p className="text-xs md:text-xs max-md:mobile-readable max-md:text-[var(--hi-text-secondary,#8b9bb0)]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-              <span className="hidden md:inline">By Will Henderson · Hoops Intel · {editionUpdatedLabel()}</span>
-              <span className="md:hidden">
-                Will Henderson · {editionPublishLabel()}
-                {hasTonightSlate() ? "" : " · no games tonight"}
-              </span>
-            </p>
+    <div className="px-4 md:px-7 py-6 md:py-6">
+      <div className="flex flex-col gap-[22px]">
+        <div id="today-desk" className="flex flex-col gap-2.5 max-w-[980px] min-w-0">
+          <p className="enhanced-kicker">
+            {deskEyebrow()} · {pulseEdition.date.toUpperCase()}
+          </p>
+          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#f2f5fa)] text-[26px] leading-[34px]">
+            {narrative.headline}
+          </h1>
+          <h1 className="md:hidden editorial-heading text-[var(--hi-text,#f2f5fa)] text-[1.5rem] leading-8">
+            {campMode ? pulseEdition.date : narrative.headline}
+          </h1>
+          <p className="text-xs max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <span className="hidden md:inline">Will Henderson · updated {editionPublishLabel()}</span>
+            <span className="md:hidden">
+              {campMode
+                ? `Camp opens Oct 3. Tonight stays empty.`
+                : `Will Henderson · ${editionPublishLabel()}${hasTonightSlate() ? "" : " · no games tonight"}`}
+            </span>
+          </p>
+          {!campMode ? (
             <div className="flex flex-wrap gap-2 items-center">
-              <EnhancedButton href={campMode ? "#camp-intel" : "#pulse-index"}>
-                {campMode ? "Camp intel" : "Read the brief"}
-              </EnhancedButton>
+              <EnhancedButton href="#pulse-index">Read the brief</EnhancedButton>
               <EnhancedButton href="/my-pulse" variant="ghost">
                 {showMyPulse ? "My Pulse" : "Set My Pulse"}
               </EnhancedButton>
             </div>
-          </div>
-
-          <div className="hidden md:grid grid-cols-2 xl:grid-cols-4 gap-2.5">
-            {desktopStats.map((card) => (
-              <StatCard key={card.kicker} {...card} />
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-2 md:hidden">
-            {mobileStats.map((card) => (
-              <StatCard key={card.kicker} {...card} />
-            ))}
-          </div>
-
-          {campMode ? (
-            <div id="camp-intel" className="flex flex-col gap-2">
-              <SectionHeader
-                eyebrow="CAMP INTEL"
-                title="Before the slate"
-                action="Lineups →"
-                actionHref="/lineups"
-              />
-              <p className="mobile-readable hidden md:block" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-                Roster battles, unresolved extensions, and Pulse of the camp — grounded in this edition, not invented games.
-              </p>
-              <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                {intel.map((card) => (
-                  <CampIntelCard key={`${card.kicker}-${card.title}`} card={card} />
-                ))}
-              </div>
-              <div className="grid grid-cols-1 gap-2 md:hidden">
-                {mobileIntel.map((card) => (
-                  <CampIntelCard key={`${card.kicker}-${card.title}`} card={card} />
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          <div id="pulse-index" className="hidden md:block">
-            <SectionHeader
-              eyebrow={campMode ? "CAMP PULSE" : "HOMEPAGE MODULE"}
-              title={campMode ? "Pulse of the camp" : "Pulse Index"}
-              action="How Pulse works →"
-              actionHref="/pulse-methodology"
-            />
-          </div>
-          <div className="md:hidden">
-            <SectionHeader
-              eyebrow="PULSE INDEX"
-              title={campMode ? "Camp Pulse" : "Today's board"}
-              action="Full →"
-              actionHref="/pulse-history"
-            />
-          </div>
-
-          <div className="hidden md:flex flex-col gap-2">
-            {desktopPulse.map((row) => (
-              <PulseRow key={row.rank} {...row} />
-            ))}
-          </div>
-          <div className="flex flex-col gap-2 md:hidden">
-            {mobilePulse.map((row) => (
-              <PulseRow key={row.rank} {...row} compact />
-            ))}
-          </div>
-
-          {campMode && schedule.kind !== "empty" ? (
-            <div id="camp-schedule" className="flex flex-col gap-2">
-              <SectionHeader
-                eyebrow="SCHEDULE"
-                title={schedule.headline}
-                action="Tonight →"
-                actionHref="/tonight"
-              />
-              <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-                {schedule.sub}
-              </p>
-              <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                {schedule.games.map((game) => (
-                  <CampScheduleRow key={`${game.away}-${game.home}-${game.when}`} game={game} label={scheduleLabel} />
-                ))}
-              </div>
-              <div className="grid grid-cols-1 gap-2 md:hidden">
-                {schedule.games.slice(0, 2).map((game) => (
-                  <CampScheduleRow key={`${game.away}-${game.home}-${game.when}`} game={game} label={scheduleLabel} />
-                ))}
-              </div>
-            </div>
           ) : null}
         </div>
 
-        <aside id="injuries" className="hidden md:flex w-full lg:w-[320px] shrink-0 flex-col gap-4">
-          <SectionHeader
-            eyebrow={campMode ? "CAMP WATCH" : "INJURY WIRE"}
-            title={campMode ? "Last known" : "Desk tags"}
-            action="Full report →"
-            actionHref="/injuries"
-          />
-          {campMode ? (
-            <p className="text-xs leading-5" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-              Editorial tags from today’s edition. The live injury cron stays dark through September.
-            </p>
-          ) : null}
-          <div className="flex flex-col gap-2">
-            {railInjuries.map((injury) => (
-              <a
-                key={injury.player}
-                href={`/player/${slugify(injury.player)}`}
-                className="enhanced-card flex flex-col gap-1 p-2.5"
-              >
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-semibold text-[var(--hi-text,#f3f6fa)]">{injury.player}</span>
-                  <span className="text-[11px] font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
-                    {injury.team}
-                  </span>
-                  <InjuryChip status={injury.status} />
+        <div className="hidden md:grid grid-cols-3 gap-3 max-w-[936px]">
+          {desktopStats.slice(0, 3).map((card) => (
+            <StatCard key={card.kicker} {...card} />
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-2 md:hidden">
+          {mobileStats.map((card) => (
+            <StatCard key={card.kicker} {...card} />
+          ))}
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-5 items-start">
+          <div className="flex-1 min-w-0 flex flex-col gap-4">
+            {campMode ? (
+              <DeskPanel id="camp-intel" kicker="Before the slate" hint="Camp intel · storylines before tip-offs return">
+                <div className="hidden md:flex flex-col gap-3">
+                  {intel.map((card) => (
+                    <CampIntelRow key={`${card.kicker}-${card.title}`} card={card} />
+                  ))}
                 </div>
-                <p className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-                  {shortInjuryLine(injury.injury)}
-                </p>
-              </a>
-            ))}
+                <div className="flex flex-col gap-2 md:hidden">
+                  {mobileIntel.map((card) => (
+                    <CampIntelRow key={`${card.kicker}-${card.title}`} card={card} />
+                  ))}
+                </div>
+              </DeskPanel>
+            ) : null}
+
+            {campMode ? (
+              <DeskPanel id="pulse-index" kicker="Pulse of the camp">
+                <div className="hidden md:flex flex-col gap-3">
+                  {desktopPulse.map((row) => (
+                    <CompactPulseRow key={row.rank} rank={row.rank} player={row.player} team={row.team} indexScore={row.indexScore} />
+                  ))}
+                </div>
+                <div className="flex flex-col gap-2 md:hidden">
+                  {mobilePulse.map((row) => (
+                    <CompactPulseRow key={row.rank} rank={row.rank} player={row.player} team={row.team} indexScore={row.indexScore} />
+                  ))}
+                </div>
+              </DeskPanel>
+            ) : (
+              <>
+                <div id="pulse-index" className="hidden md:block">
+                  <SectionHeader eyebrow="HOMEPAGE MODULE" title="Pulse Index" action="How Pulse works →" actionHref="/pulse-methodology" />
+                </div>
+                <div className="md:hidden">
+                  <SectionHeader eyebrow="PULSE INDEX" title="Today's board" action="Full →" actionHref="/pulse-history" />
+                </div>
+                <div className="hidden md:flex flex-col gap-2">
+                  {desktopPulse.map((row) => (
+                    <PulseRow key={row.rank} {...row} />
+                  ))}
+                </div>
+                <div className="flex flex-col gap-2 md:hidden">
+                  {mobilePulse.map((row) => (
+                    <PulseRow key={row.rank} {...row} compact />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {campMode && schedule.kind !== "empty" ? (
+              <DeskPanel id="camp-schedule" kicker="ESPN camp-week slate" hint={schedule.sub} className="hidden md:flex">
+                <div className="flex gap-2 overflow-x-auto pb-1">
+                  {schedule.games.map((game) => (
+                    <CampSlateCard key={`${game.away}-${game.home}-${game.when}`} game={game} />
+                  ))}
+                </div>
+              </DeskPanel>
+            ) : null}
           </div>
 
-          <div className="enhanced-card flex flex-col gap-2 p-3.5">
-            <p className="enhanced-kicker">Ask Hoops Intel</p>
-            <p className="editorial-body text-xs leading-4 text-[var(--hi-text,#f3f6fa)]">
-              Shortcuts open the assistant with today’s edition context.
-            </p>
-            {chips.map((chip) => (
-              <button
-                key={chip}
-                type="button"
-                className="text-left text-[11px] font-medium px-2.5 py-2 rounded-md min-h-11"
-                style={{ background: "var(--hi-surface-2,#121c2c)", color: "var(--hi-text,#f3f6fa)" }}
-                onClick={() => dispatchAskPrompt(chip)}
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
-        </aside>
+          <aside id="injuries" className="hidden md:flex w-full lg:w-[420px] shrink-0 flex-col gap-4">
+            <DeskPanel kicker={campMode ? "Camp Watch" : "Injury Wire"} hint={campMode ? "Last known" : "Desk tags"}>
+              <div className="flex flex-col gap-2.5">
+                {railInjuries.map((injury) => (
+                  <a
+                    key={injury.player}
+                    href={`/player/${slugify(injury.player)}`}
+                    className="desk-inset flex items-center gap-2 px-2.5 py-2 min-h-11 min-w-0"
+                  >
+                    <span className="flex-1 min-w-0 text-xs font-medium text-[var(--hi-text,#f2f5fa)] truncate">
+                      {injury.player}
+                    </span>
+                    <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                      {injury.team}
+                    </span>
+                    <InjuryChip status={injury.status} />
+                  </a>
+                ))}
+              </div>
+              {campMode ? (
+                <p className="sr-only">
+                  Editorial tags from today’s edition. The live injury cron stays dark through September. {railInjuries.map((i) => shortInjuryLine(i.injury)).join("; ")}
+                </p>
+              ) : null}
+            </DeskPanel>
+
+            {campMode ? (
+              <DeskPanel kicker="Tonight">
+                <DeskInset className="flex flex-col items-center justify-center gap-2 p-[18px] text-center">
+                  <p className="text-sm font-semibold text-[var(--hi-text,#f2f5fa)]">Slate clear</p>
+                  <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                    No invented tip-offs. Camp opens Oct 3.
+                  </p>
+                  <StatusPill tone="accent">EMPTY · HONEST</StatusPill>
+                </DeskInset>
+              </DeskPanel>
+            ) : null}
+
+            <DeskPanel kicker="Ask Hoops Intel" hint="Shortcuts into the desk AI">
+              {chips.map((chip) => (
+                <button
+                  key={chip}
+                  type="button"
+                  className="desk-inset text-left text-xs font-normal px-2.5 py-2 min-h-11 w-full text-[var(--hi-text,#f2f5fa)]"
+                  onClick={() => dispatchAskPrompt(chip)}
+                >
+                  {chip}
+                </button>
+              ))}
+              <EnhancedButton href="/ask">Ask Hoops Intel</EnhancedButton>
+            </DeskPanel>
+          </aside>
+
+          {campMode ? (
+            <div className="md:hidden w-full flex flex-col gap-3">
+              <DeskPanel kicker="Tonight">
+                <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                  Slate clear · not tonight
+                </p>
+              </DeskPanel>
+              {schedule.kind !== "empty" ? (
+                <DeskPanel kicker="ESPN camp-week slate" hint={schedule.sub}>
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {schedule.games.slice(0, 3).map((game) => (
+                      <CampSlateCard key={`${game.away}-${game.home}-${game.when}`} game={game} />
+                    ))}
+                  </div>
+                </DeskPanel>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

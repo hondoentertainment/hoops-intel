@@ -61,6 +61,8 @@ import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
 import { shouldShowLiveScorebar, scorebarGamesToShow } from "../lib/scorebarVisibility";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
+import { isCampDesk } from "../lib/campDesk";
+import { hasTonightSlate } from "../lib/enhancedDesk";
 import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { editionHourLabel } from "../lib/pacificTime";
@@ -1899,7 +1901,7 @@ export default function Home() {
     <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
       <SiteHeader editionBadge={pulseEdition.date} />
       <RivalTonightBanner />
-      <EnhancedTicker />
+      {isCampDesk() && !hasTonightSlate() ? null : <EnhancedTicker />}
       <main id="main-content" tabIndex={-1}>
         <EnhancedDesk showMyPulse={showMyPulse} />
         <LiveScorebar />

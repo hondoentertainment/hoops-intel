@@ -14,8 +14,8 @@ import {
   readRecentSearches,
   POPULAR_SEARCH_DESTINATIONS,
 } from "../lib/searchHistory";
-import { BrandLockup } from "./enhanced/EnhancedUi";
-import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
+import { BrandLockup, SeasonChip } from "./enhanced/EnhancedUi";
+import { ENHANCED_ACCENT, headerDateLabel, seasonChipLabel } from "../lib/enhancedDesk";
 import { pulseEdition } from "../lib/pulseData";
 import { compactEditionDate } from "../lib/enhancedDesk";
 import { editionHourLabel } from "../lib/pacificTime";
@@ -496,6 +496,7 @@ export default function SiteHeader({
   const { theme, toggleTheme } = useTheme();
   const { toast } = useToast();
   const [locationPath] = useLocation();
+  const seasonChip = seasonChipLabel();
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(mobileOpen);
   useFocusTrap(mobileOpen, mobilePanelRef);
@@ -628,12 +629,21 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex items-center gap-0.5 sm:gap-2 shrink-0">
+              {seasonChip ? <SeasonChip>{seasonChip}</SeasonChip> : null}
               <span
-                className="mono-data text-[11px] md:hidden px-1"
-                style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}
+                className="hidden md:inline text-[11px] font-medium whitespace-nowrap"
+                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
               >
-                {compactEditionDate(editionBadge ?? pulseEdition.date)}
+                {headerDateLabel(editionBadge ?? pulseEdition.date)}
               </span>
+              {!seasonChip ? (
+                <span
+                  className="mono-data text-[11px] md:hidden px-1"
+                  style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                >
+                  {compactEditionDate(editionBadge ?? pulseEdition.date)}
+                </span>
+              ) : null}
               {toolbarExtra}
               <button
                 type="button"
@@ -737,10 +747,10 @@ export default function SiteHeader({
                 </button>
               )}
 
-              {editionBadge ? (
+              {editionBadge && !seasonChip ? (
                 <div
                   className="hidden sm:block px-2 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-medium whitespace-nowrap"
-                  style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.3)" }}
+                  style={{ background: "rgba(30,200,245,0.14)", color: ENHANCED_ACCENT, border: "1px solid rgba(30,200,245,0.28)" }}
                 >
                   {editionBadge}
                 </div>
