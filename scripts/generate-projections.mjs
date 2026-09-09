@@ -7,13 +7,22 @@
 //   node scripts/generate-projections.mjs --week "Week of March 23–29, 2026"
 
 import Anthropic from "@anthropic-ai/sdk";
-import { readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { validateOutput } from "./lib/validate-output.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
+const OUT_PATH = join(ROOT, "client", "src", "lib", "projectionsData.ts");
+
+// 16K truncated mid-file on 2026-08-03 (#289). 24K still wrote a helper
+// assignment ending on 2026-09-07 (#373); retry at the same ceiling after
+// a parse/completeness check rather than re-rolling the same 16K budget.
+const TOKEN_LADDER = [24576, 24576];
+const MAX_ATTEMPTS = TOKEN_LADDER.length;
+const MIN_TEAMS = 30;
 
 // ── CLI args ────────────────────────────────────────────────
 
@@ -125,7 +134,8 @@ export const projectionsData: ProjectionsData = {
   biggestRiser: { team: "...", change: "...", reason: "..." },
   biggestFaller: { team: "...", change: "...", reason: "..." },
   teams: [
-    // ALL 30 NBA teams
+    // ALL 30 NBA teams inline in this array — do NOT use a helper const
+    // or post-assign (projectionsData as ProjectionsData).teams = ...
     // conference: "east" or "west"
     // currentWins/currentLosses: based on context
     // projectedWins/projectedLosses: must total 82
@@ -136,7 +146,7 @@ export const projectionsData: ProjectionsData = {
     // remainingSOSLabel: "Brutal" | "Tough" | "Average" | "Easy" | "Cupcake"
     // keyStretch: upcoming schedule note
     // projection: "1st Round Exit" | "2nd Round" | "Conference Finals" | "Finals" | "Champion"
-    // narrative: 2-3 sentences specific to this week
+    // narrative: 1-2 sentences specific to this week
   ],
   projectedBracket: {
     east: [
@@ -156,7 +166,7 @@ export const projectionsData: ProjectionsData = {
 };
 
 Rules:
-- Include ALL 30 NBA teams (15 East, 15 West)
+- Include ALL 30 NBA teams (15 East, 15 West) inline in teams[]
 - Current records must be consistent with the pulse data context
 - Projected records must total 82 games (wins + losses = 82)
 - Championship probabilities should roughly sum to 100% across all teams
@@ -165,16 +175,53 @@ Rules:
 - keyFactor: 1 sentence explaining why the series goes that way
 - remainingSOS rankings must be unique (1-30, no ties)
 - Use 3-letter team abbreviations consistently
-- Narratives must reference THIS week's context
-- The TypeScript must be syntactically valid and importable`;
+- Narratives must reference THIS week's context — 1-2 sentences max so the module fits
+- weeklyNarrative: 2-3 sentences max
+- Put every team object inside teams: [ ... ] — never a helper array or a later .teams = assignment
+- The TypeScript must be syntactically valid and importable
+- Emit the COMPLETE file ending with a closing }; — never stop mid-string`;
 }
 
-// ── Write output ────────────────────────────────────────────
+function stripFences(text) {
+  return text
+    .replace(/^```(?:typescript|ts)?\n?/m, "")
+    .replace(/\n?```$/m, "")
+    .trim();
+}
 
-function writeOutput(content) {
-  const outPath = join(ROOT, "client", "src", "lib", "projectionsData.ts");
-  writeFileSync(outPath, content, "utf8");
-  return outPath;
+function countProjectedTeams(source) {
+  return (source.match(/conference:\s*"(?:east|west)"/g) || []).length;
+}
+
+async function generateOnce(client, prompt, attempt) {
+  const maxTokens = TOKEN_LADDER[attempt - 1] ?? TOKEN_LADDER[TOKEN_LADDER.length - 1];
+  console.log(`🤖 Calling Claude (claude-sonnet-4-6, max_tokens=${maxTokens}, attempt ${attempt}/${MAX_ATTEMPTS})...`);
+  // max_tokens above ~16K trips the SDK's 10-minute non-streaming guard
+  // (#293), so stream and take the final message.
+  const message = await client.messages
+    .stream({
+      model: "claude-sonnet-4-6",
+      max_tokens: maxTokens,
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    })
+    .finalMessage();
+
+  const block = message.content.find((b) => b.type === "text");
+  if (!block) throw new Error("No text block in Claude response");
+
+  if (message.stop_reason === "max_tokens") {
+    console.warn("⚠ Claude hit max_tokens — output may be truncated");
+  }
+
+  return {
+    text: stripFences(block.text),
+    stopReason: message.stop_reason,
+  };
 }
 
 // ── Main ────────────────────────────────────────────────────
@@ -192,56 +239,50 @@ async function main() {
   console.log("📊 Loaded pulseData.ts context");
 
   const client = new Anthropic();
-
-  console.log("🤖 Calling Claude (claude-sonnet-4-6)...");
   const prompt = buildPrompt(weekLabel, pulseContext);
+  const previous = existsSync(OUT_PATH) ? readFileSync(OUT_PATH, "utf8") : null;
 
-  let responseText;
-  try {
-    // 16000 truncated mid-file on 2026-08-03 (#289) and sank the whole
-    // weekly run. max_tokens above ~16K trips the SDK's 10-minute
-    // non-streaming guard and rejects before sending (#293), so stream
-    // and take the final message.
-    const message = await client.messages
-      .stream({
-        model: "claude-sonnet-4-6",
-        max_tokens: 24576,
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-      })
-      .finalMessage();
+  let lastError = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let responseText;
+    try {
+      const result = await generateOnce(client, prompt, attempt);
+      responseText = result.text;
+    } catch (err) {
+      console.error("❌ Claude API error:", err.message);
+      process.exit(1);
+    }
 
-    const block = message.content.find((b) => b.type === "text");
-    if (!block) throw new Error("No text block in Claude response");
-    responseText = block.text;
-  } catch (err) {
-    console.error("❌ Claude API error:", err.message);
-    process.exit(1);
+    try {
+      writeFileSync(OUT_PATH, responseText, "utf8");
+    } catch (err) {
+      console.error("❌ Failed to write output:", err.message);
+      process.exit(1);
+    }
+
+    const check = await validateOutput(OUT_PATH);
+    const teams = countProjectedTeams(responseText);
+    if (check.ok && teams >= MIN_TEAMS) {
+      console.log(`✅ Rest-of-Season Projections written to: ${OUT_PATH}`);
+      console.log("");
+      console.log("Next steps:");
+      console.log("  1. Review client/src/lib/projectionsData.ts for accuracy");
+      console.log("  2. Commit and deploy");
+      return;
+    }
+
+    lastError = !check.ok
+      ? check.reason
+      : `incomplete team list (${teams}/${MIN_TEAMS})`;
+    console.error(`  [Projections] parse check failed: ${lastError}`);
+    if (attempt < MAX_ATTEMPTS) {
+      console.warn("  Retrying generation once…");
+    }
   }
 
-  // Strip any accidental markdown fences
-  responseText = responseText
-    .replace(/^```(?:typescript|ts)?\n?/m, "")
-    .replace(/\n?```$/m, "")
-    .trim();
-
-  let outPath;
-  try {
-    outPath = writeOutput(responseText);
-  } catch (err) {
-    console.error("❌ Failed to write output:", err.message);
-    process.exit(1);
-  }
-
-  console.log(`✅ Rest-of-Season Projections written to: ${outPath}`);
-  console.log("");
-  console.log("Next steps:");
-  console.log("  1. Review client/src/lib/projectionsData.ts for accuracy");
-  console.log("  2. Commit and deploy");
+  if (previous) writeFileSync(OUT_PATH, previous, "utf8");
+  console.error(`❌ Projections generation failed after ${MAX_ATTEMPTS} attempts: ${lastError}`);
+  process.exit(1);
 }
 
 main().catch((err) => {

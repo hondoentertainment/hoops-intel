@@ -35,7 +35,7 @@ if (!process.env.ANTHROPIC_API_KEY) {
 // individual calls can take 2-3 minutes, and `claudeGenerate` retries with
 // 5s→60s backoff on overload. The previous 3-minute default left no headroom
 // when several scripts requested simultaneously, so we use a 6-minute default.
-// The workflow itself still bounds total runtime via `timeout-minutes: 15`.
+// The workflow itself still bounds total runtime via `timeout-minutes: 20`.
 const DEFAULT_SCRIPT_TIMEOUT = 360_000; // 6 minutes per script
 // `output` is the data file the script is expected to write. After every
 // script finishes successfully we run a syntax/parse check against the file
@@ -46,7 +46,10 @@ const WEEKLY_SCRIPTS = [
   { name: "Trade Value",     script: "generate-trade-value.mjs",   output: "client/src/lib/tradeValueData.ts" },
   { name: "Lineups",         script: "generate-lineups.mjs",       output: "client/src/lib/lineupData.ts" },
   { name: "Tactics",         script: "generate-tactics.mjs",       output: "client/src/lib/tacticsData.ts" },
-  { name: "Projections",     script: "generate-projections.mjs",   output: "client/src/lib/projectionsData.ts" },
+  // Streaming 24K tokens regularly exceeds the 6-minute default (#373):
+  // the 2026-09-07 first wave was killed at 360s, then the retry wrote a
+  // helper-assignment ending that the parse check rejected.
+  { name: "Projections",     script: "generate-projections.mjs",   output: "client/src/lib/projectionsData.ts", timeoutMs: 480_000 },
   { name: "Draft Intel",     script: "generate-draft.mjs",         output: "client/src/lib/draftData.ts" },
   { name: "Clutch Ratings",  script: "generate-clutch.mjs",        output: "client/src/lib/clutchData.ts" },
   // Extra headroom: on truncation the generator retries at a raised token
