@@ -193,11 +193,12 @@ function stripFences(text) {
 /** Count distinct NBA teams, not the `conference: "east" | "west"` interface. */
 export function countProjectedTeams(source) {
   const abbrs = new Set();
-  const re = /team:\s*"([A-Z]{3})"\s*,\s*conference:\s*"(?:east|west)"/g;
-  let match;
-  while ((match = re.exec(source)) !== null) {
-    const abbr = match[1];
-    if (isEspnSyncedTeamAbbrev(abbr)) abbrs.add(canonicalNbaAbbrev(abbr));
+  const objects = source.match(/\{[^{}]*\}/g) || [];
+  for (const obj of objects) {
+    const team = obj.match(/(?:(?<![A-Za-z])team|"team")\s*:\s*"([A-Z]{3})"/);
+    const conf = obj.match(/(?:(?<![A-Za-z])conference|"conference")\s*:\s*"(?:east|west)"/);
+    if (!team || !conf) continue;
+    if (isEspnSyncedTeamAbbrev(team[1])) abbrs.add(canonicalNbaAbbrev(team[1]));
   }
   return abbrs.size;
 }

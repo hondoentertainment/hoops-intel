@@ -103,6 +103,17 @@ test("countProjectedTeams accepts 30 distinct team rows", () => {
   assert.equal(countProjectedTeams(src), 30);
 });
 
+test("countProjectedTeams is independent of property order and quoting", () => {
+  const src = `
+export const projectionsData = { teams: [
+  { conference: "east", currentWins: 50, team: "NYK" },
+  { "team": "BOS", currentWins: 48, "conference": "east" },
+  { team: "OKC", currentWins: 64, conference: "west" },
+] };
+`;
+  assert.equal(countProjectedTeams(src), 3);
+});
+
 test("committed projectionsData.ts still counts as a full 30-team slate", () => {
   const file = readFileSync(new URL("../../client/src/lib/projectionsData.ts", import.meta.url), "utf8");
   assert.equal(countProjectedTeams(file), 30);
