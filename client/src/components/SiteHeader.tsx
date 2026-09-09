@@ -747,14 +747,6 @@ export default function SiteHeader({
                 </button>
               )}
 
-              {editionBadge && !seasonChip ? (
-                <div
-                  className="hidden sm:block px-2 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-medium whitespace-nowrap"
-                  style={{ background: "rgba(30,200,245,0.14)", color: ENHANCED_ACCENT, border: "1px solid rgba(30,200,245,0.28)" }}
-                >
-                  {editionBadge}
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
