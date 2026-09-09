@@ -4,6 +4,7 @@ import { mkdtempSync, writeFileSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { hasCompleteModuleEnding, validateOutput } from "../lib/validate-output.mjs";
+import { countProjectedTeams } from "../generate-projections.mjs";
 
 test("hasCompleteModuleEnding accepts closed object / export endings", () => {
   assert.equal(hasCompleteModuleEnding("};"), true);
@@ -66,4 +67,43 @@ test("weekly runner gives Projections the same extra timeout as Trade Simulator"
     src,
     /name:\s*"Projections"[\s\S]{0,160}timeoutMs:\s*480_000/,
   );
+});
+
+const INTERFACE_AND_RISER = `
+export interface TeamProjection {
+  team: string;
+  conference: "east" | "west";
+}
+export const projectionsData = {
+  biggestRiser: { team: "HOU", change: "+1" },
+  teams: [
+`;
+
+function teamRow(abbr, conference = "west") {
+  return `    { team: "${abbr}", conference: "${conference}", currentWins: 1 },`;
+}
+
+test("countProjectedTeams ignores the interface union, riser fields, and bogus abbrevs", () => {
+  const twentyNine = Array.from({ length: 29 }, (_, i) =>
+    teamRow(["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+      "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+      "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA"][i]),
+  ).join("\n");
+  const src = `${INTERFACE_AND_RISER}\n${twentyNine}\n${teamRow("SAN")}\n  ],\n};\n`;
+  assert.equal(countProjectedTeams(src), 29);
+});
+
+test("countProjectedTeams accepts 30 distinct team rows", () => {
+  const thirty = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+    "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    .map((abbr, i) => teamRow(abbr, i < 15 ? "east" : "west"))
+    .join("\n");
+  const src = `${INTERFACE_AND_RISER}\n${thirty}\n  ],\n};\n`;
+  assert.equal(countProjectedTeams(src), 30);
+});
+
+test("committed projectionsData.ts still counts as a full 30-team slate", () => {
+  const file = readFileSync(new URL("../../client/src/lib/projectionsData.ts", import.meta.url), "utf8");
+  assert.equal(countProjectedTeams(file), 30);
 });
