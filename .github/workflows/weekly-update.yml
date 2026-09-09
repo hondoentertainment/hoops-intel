@@ -79,7 +79,7 @@ jobs:
             echo "Partial failure — refusing to commit"
             exit 1
           fi
-        timeout-minutes: 15
+        timeout-minutes: 20
 
       - name: Stage weekly data files
         run: node scripts/stage-weekly-edition.mjs
