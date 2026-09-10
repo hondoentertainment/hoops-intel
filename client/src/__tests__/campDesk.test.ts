@@ -66,8 +66,9 @@ describe("Tonight empty slate", () => {
     const tonight = readFileSync(join(srcDir, "pages/Tonight.tsx"), "utf8");
     expect(tonight).not.toContain("CAMP_OPENER");
     expect(tonight).toContain("Open camp intel");
-    expect(tonight).toContain("Waiting on Oct 3");
-    expect(tonight).toContain("never invent tip-offs");
+    expect(tonight).toContain("Waiting on ${openDate}");
+    expect(tonight).toContain("empty slate until real tip-offs");
+    expect(tonight).toContain("we never invent a slate");
     expect(tonight).not.toMatch(/away:\s*"NYK"[\s\S]*home:\s*"BOS"/);
   });
 });
