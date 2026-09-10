@@ -172,11 +172,14 @@ export default function Pro() {
   return (
     <ToolPageLayout subtitle="PRO" maxWidth="xl" showRelated={false}>
         <div className="mb-10">
-          <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>HOOPS INTEL PRO</div>
-          <h1 className="display-heading text-white text-4xl mb-3">Sharper basketball, earlier and ad-free.</h1>
-          <p className="text-base" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="enhanced-kicker mb-2">Hoops Intel Pro</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[36px] leading-10 mb-3 max-md:text-[1.75rem]">
+            Sharper basketball, earlier and ad-free.
+          </h1>
+          <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             Everything free readers get — plus early access, deeper analytics, and an unobstructed reading experience.
           </p>
+          <div className="desk-hairline mt-4" />
         </div>
 
         {sub.isPro ? (
@@ -204,7 +207,7 @@ export default function Pro() {
                 disabled={portalLoading}
                 onClick={() => void handlePortal()}
                 className="min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)", fontFamily: "'DM Sans', sans-serif" }}
               >
                 {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING"}
               </button>

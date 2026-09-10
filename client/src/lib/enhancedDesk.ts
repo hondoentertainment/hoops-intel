@@ -143,6 +143,16 @@ export function deskEyebrow(ctx: EditionContext = activeEditionContext()): strin
   return editionContextDeskLabel(ctx).toUpperCase();
 }
 
+export function deskKickerLine(ctx: EditionContext = activeEditionContext()): string {
+  return `${deskEyebrow(ctx)} · ${pulseEdition.edition}`;
+}
+
+export function campOpenDisplay(iso = CAMP_OPEN_ISO): string {
+  const parsed = new Date(`${iso}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) return "October 3";
+  return parsed.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+}
+
 export function editionUpdatedLabel(_display = pulseEdition.date): string {
   return `Updated ${editionPublishLabel()}`;
 }

@@ -15,6 +15,8 @@ import {
   pulseTrendMark,
   seasonChipLabel,
   shortInjuryLine,
+  campOpenDisplay,
+  deskKickerLine,
 } from "../lib/enhancedDesk";
 import { gamePreviews, pulseIndex } from "../lib/pulseData";
 
@@ -64,5 +66,7 @@ describe("enhancedDesk", () => {
     expect(daysUntilIso("2026-10-03", new Date("2026-09-01T12:00:00"))).toBe(32);
     expect(seasonChipLabel("preseason")).toBe("PRESEASON");
     expect(headerDateLabel("September 9, 2026")).toBe("Sep 9, 2026");
+    expect(campOpenDisplay("2026-10-03")).toBe("October 3");
+    expect(deskKickerLine("preseason")).toMatch(/PRESEASON DESK/);
   });
 });

@@ -1,7 +1,10 @@
 import { type ReactNode } from "react";
 import { useLocation } from "wouter";
 import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
+import { DeskPanel, PageHero } from "./enhanced/EnhancedUi";
+import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
 import { relatedToolsForHref } from "../lib/siteNav";
 
 const MAX_WIDTH: Record<string, string> = {
@@ -64,7 +67,7 @@ export default function ToolPageLayout({
     return (
       <div
         className={`min-h-screen ${shellClassName}`.trim()}
-        style={{ background: "var(--hi-bg-page, #050D1A)" }}
+        style={{ background: "var(--hi-bg-page, #07090e)" }}
       >
         <SiteHeader
           subtitle={subtitle}
@@ -75,14 +78,15 @@ export default function ToolPageLayout({
         <main id="main-content" tabIndex={-1} className="flex-1 flex flex-col min-h-0 outline-none">
           {children}
         </main>
+        <SiteFooter />
       </div>
     );
   }
 
   return (
     <div
-      className={`min-h-screen pb-8 has-mobile-tabbar ${shellClassName}`.trim()}
-      style={{ background: "var(--hi-bg-page, #050D1A)" }}
+      className={`min-h-screen has-mobile-tabbar ${shellClassName}`.trim()}
+      style={{ background: "var(--hi-bg-page, #07090e)" }}
     >
       <SiteHeader
         subtitle={subtitle}
@@ -92,47 +96,55 @@ export default function ToolPageLayout({
       />
       <main id="main-content" tabIndex={-1} className={`container py-8 mx-auto px-4 ${widthClass}`}>
         {showBreadcrumbs && <Breadcrumbs items={defaultCrumbs} />}
-        {(sectionLabel || title || description) && (
-          <header className="mb-8">
-            {sectionLabel && <p className="section-label mb-2">{sectionLabel}</p>}
-            {title && (
-              <h1 className="display-heading text-2xl sm:text-3xl mb-3" style={{ color: "var(--hi-heading,#fff)" }}>
-                {title}
-              </h1>
-            )}
-            {description && (
-              <p className="text-sm max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>
+        {title ? (
+          <div className="mb-8">
+            <PageHero
+              kicker={sectionLabel || subtitle}
+              title={title}
+              description={description}
+            />
+          </div>
+        ) : sectionLabel || description ? (
+          <header className="mb-8 min-w-0">
+            {sectionLabel ? <p className="enhanced-kicker mb-2">{sectionLabel}</p> : null}
+            {description ? (
+              <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
                 {description}
               </p>
-            )}
+            ) : null}
           </header>
-        )}
+        ) : null}
         <div className={related.length > 0 ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_15rem] gap-8 items-start" : undefined}>
           <div className="min-w-0">{children}</div>
           {related.length > 0 && (
             <aside className="lg:sticky lg:top-20">
-              <div className="glass-card rounded-xl p-4">
-                <div className="section-label mb-3">RELATED TOOLS</div>
-                <ul className="space-y-2">
+              <DeskPanel kicker="Related tools">
+                <ul className="flex flex-col gap-1">
                   {related.map((tool) => (
                     <li key={tool.href}>
                       <a
                         href={tool.href}
-                        className="block text-xs font-medium text-sky-400 hover:text-sky-300 py-1.5"
+                        className="desk-inset flex items-center min-h-11 px-3 text-xs font-medium"
+                        style={{ color: ENHANCED_ACCENT }}
                       >
                         {tool.label} →
                       </a>
                     </li>
                   ))}
                 </ul>
-                <a href="/tools" className="inline-block mt-3 text-[11px] text-white/45 hover:text-sky-400">
+                <a
+                  href="/tools"
+                  className="inline-flex items-center min-h-11 text-[11px]"
+                  style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                >
                   All tools directory
                 </a>
-              </div>
+              </DeskPanel>
             </aside>
           )}
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

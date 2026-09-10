@@ -119,7 +119,7 @@ function PageLoader() {
         <div className="flex items-center gap-3">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin shrink-0"
-            style={{ borderColor: "#0EA5E9", borderTopColor: "transparent" }}
+            style={{ borderColor: "var(--hi-accent,#1ec8f5)", borderTopColor: "transparent" }}
             aria-hidden
           />
           <div className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
@@ -213,21 +213,24 @@ export default function App() {
             <Route path="/creator-queue" component={CreatorQueue} />
             <Route>
               <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none" lang="en">
-                <p className="section-label mb-3">NOT FOUND</p>
-                <h1 className="display-heading text-2xl font-bold text-white mb-4">404 — Page not found</h1>
-                <p className="text-sm mb-6" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+                <p className="enhanced-kicker mb-3">Not found</p>
+                <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-4 max-md:text-[1.5rem]">
+                  404 — Page not found
+                </h1>
+                <p className="mobile-readable mb-6" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
                   That route is not part of Hoops Intel.
                 </p>
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-                  <a href="/" className="text-sky-400 underline min-h-[44px] inline-flex items-center">
+                  <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                     Today&apos;s desk
                   </a>
-                  <a href="/tools" className="text-sky-400 underline min-h-[44px] inline-flex items-center">
+                  <a href="/tools" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                     Tools
                   </a>
                   <button
                     type="button"
-                    className="text-sky-400 underline min-h-[44px] inline-flex items-center"
+                    className="underline min-h-11 inline-flex items-center"
+                    style={{ color: "var(--hi-accent,#1ec8f5)" }}
                     onClick={() => window.dispatchEvent(new Event("hi-open-search"))}
                   >
                     Open search

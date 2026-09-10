@@ -29,30 +29,28 @@ export default function AskAI() {
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
         <div className="container max-w-3xl mx-auto px-4 py-6">
-          <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <p className="enhanced-kicker mb-2">Ask Hoops Intel</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[28px] leading-8 mb-2 max-md:text-[1.5rem]">
+            Shorts into the desk
+          </h1>
+          <p className="text-sm mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             AI-powered NBA analysis from daily editions
           </p>
-          <div
-            className="rounded-lg px-4 py-3"
-            style={{
-              background: "rgba(14,165,233,0.06)",
-              border: "1px solid rgba(14,165,233,0.12)",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-1">
+          <div className="enhanced-card px-4 py-3">
+            <div className="flex items-center gap-2 mb-1 min-w-0">
               <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: "#0EA5E9" }}
+                className="w-1.5 h-1.5 rounded-full shrink-0"
+                style={{ background: "var(--hi-accent,#1ec8f5)" }}
               />
               <span
-                className="text-xs font-medium"
-                style={{ color: "#0EA5E9" }}
+                className="text-xs font-medium truncate"
+                style={{ color: "var(--hi-accent,#1ec8f5)" }}
               >
-                Latest Edition — {pulseEdition.date}
+                Latest edition — {pulseEdition.date}
               </span>
               <span
-                className="text-xs"
-                style={{ color: "rgba(255,255,255,0.3)" }}
+                className="text-xs shrink-0"
+                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
               >
                 {pulseEdition.edition}
               </span>
@@ -65,7 +63,7 @@ export default function AskAI() {
                 ? narrative.subhead.slice(0, 200) + "..."
                 : narrative.subhead}
             </p>
-            <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(14,165,233,0.12)" }}>
+            <div className="mt-4 pt-4 border-t" style={{ borderColor: "var(--hi-border-soft, rgba(255,255,255,0.06))" }}>
               <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
                 Quick prompts
               </p>

@@ -27,24 +27,25 @@ function ArchiveCard({ edition }: { edition: any }) {
   const headline = edition.headline || edition.subheadline || "Edition recap";
   const subheadline = edition.headline ? edition.subheadline : undefined;
   return (
-    <article className="glass-card archive-card rounded-lg p-5">
-      <div className="flex items-center justify-between mb-3 gap-2">
-        <div className="section-label">{displayDate}</div>
-        <div className="mono-data text-xs px-2 py-0.5 rounded shrink-0" style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}>
-          {gamesCount} {gamesCount === 1 ? "GAME" : "GAMES"}
-        </div>
+    <article className="enhanced-card archive-card p-5 min-w-0">
+      <div className="flex items-center justify-between mb-3 gap-2 min-w-0">
+        <p className="enhanced-kicker truncate">{displayDate}</p>
+        <span className="desk-chip shrink-0" style={{ background: "rgba(30,200,245,0.14)", color: "var(--hi-accent,#1ec8f5)" }}>
+          {gamesCount} {gamesCount === 1 ? "game" : "games"}
+        </span>
       </div>
-      <h2 className="display-heading text-white text-lg mb-2">{headline}</h2>
+      <h2 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-lg mb-2">{headline}</h2>
       {subheadline ? (
-        <p className="text-sm mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{subheadline}</p>
+        <p className="text-sm mb-3" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>{subheadline}</p>
       ) : null}
-      <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{edition.topStory}</p>
+      <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--hi-text,#f2f5fa)" }}>{edition.topStory}</p>
       {topPlayer ? (
         <p className="text-xs mb-4">
           <span style={{ color: "rgba(255,255,255,0.45)" }}>Top performer: </span>
           <a
             href={`/player/${slugify(topPlayer)}`}
-            className="font-semibold text-sky-400 hover:text-sky-300"
+            className="font-semibold"
+            style={{ color: "var(--hi-accent,#1ec8f5)" }}
           >
             {topPlayer}
           </a>
@@ -57,7 +58,7 @@ function ArchiveCard({ edition }: { edition: any }) {
       ) : null}
       <div className="flex flex-wrap gap-1.5">
         {(edition.tags || []).map((tag: string) => (
-          <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(14,165,233,0.08)", color: "rgba(14,165,233,0.7)", border: "1px solid rgba(14,165,233,0.15)" }}>
+          <span key={tag} className="desk-chip" style={{ background: "rgba(30,200,245,0.1)", color: "var(--hi-accent,#1ec8f5)" }}>
             {tag}
           </span>
         ))}
@@ -99,8 +100,9 @@ export default function Archive() {
   return (
     <ToolPageLayout
       subtitle="ARCHIVE"
-      sectionLabel="PAST EDITIONS"
+      sectionLabel="Past editions"
       title="Archive"
+      description="Every morning brief the desk has published — search by topic, month, or player."
       showRelated={false}
     >
         <div className="mb-4 flex flex-wrap gap-2">
@@ -161,7 +163,7 @@ export default function Archive() {
 
         {filtered.length === 0 && (
           <div className="text-center py-12 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            No editions match. <button type="button" className="text-sky-400 underline" onClick={() => { setSearch(""); setTag(""); setMonth(""); }}>Clear filters</button>
+            No editions match. <button type="button" className="underline min-h-11" style={{ color: "var(--hi-accent,#1ec8f5)" }} onClick={() => { setSearch(""); setTag(""); setMonth(""); }}>Clear filters</button>
           </div>
         )}
 
@@ -172,7 +174,7 @@ export default function Archive() {
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={currentPage <= 1}
               className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
-              style={{ background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)", color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "#0EA5E9" }}
+              style={{ background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(30,200,245,0.12)", color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#1ec8f5)" }}
             >
               Previous
             </button>
@@ -182,7 +184,7 @@ export default function Archive() {
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage >= totalPages}
               className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
-              style={{ background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(14,165,233,0.1)", color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "#0EA5E9" }}
+              style={{ background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(30,200,245,0.12)", color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#1ec8f5)" }}
             >
               Next
             </button>

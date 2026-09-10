@@ -108,7 +108,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          style={{ color: subscribed ? "#0EA5E9" : "rgba(255,255,255,0.5)" }}
+          style={{ color: subscribed ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8594a8)" }}
           aria-hidden
         >
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -146,9 +146,9 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
                 href="/account#browser-push"
                 className="block w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] flex items-center"
                 style={{
-                  background: "rgba(14,165,233,0.1)",
-                  color: "#0EA5E9",
-                  border: "1px solid rgba(14,165,233,0.2)",
+                  background: "rgba(30,200,245,0.1)",
+                  color: ENHANCED_ACCENT,
+                  border: "1px solid rgba(30,200,245,0.2)",
                 }}
               >
                 Set up browser push →
@@ -188,7 +188,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
                     onClick={() => void handleSubscribe()}
                     disabled={submitting}
                     className="min-h-[44px] px-3 py-2 rounded text-xs font-semibold text-white sm:min-h-0 disabled:opacity-50"
-                    style={{ background: "#0EA5E9" }}
+                    style={{ background: ENHANCED_ACCENT, color: "#0a0d12" }}
                   >
                     {submitting ? "…" : "Subscribe"}
                   </button>
@@ -576,7 +576,12 @@ export default function SiteHeader({
               </button>
 
               <div className="flex items-center min-w-0 py-1">
-                <BrandLockup compact />
+                <span className="md:hidden">
+                  <BrandLockup compact />
+                </span>
+                <span className="hidden md:inline-flex min-w-0">
+                  <BrandLockup subtitle="Daily NBA Intelligence" />
+                </span>
               </div>
             </div>
 
@@ -617,7 +622,7 @@ export default function SiteHeader({
                       href={href}
                       className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-white/5 hover:text-sky-400"
                       style={{
-                        color: navRouteMatches(href, locationPath) ? "#0EA5E9" : "rgba(255,255,255,0.75)",
+                        color: navRouteMatches(href, locationPath) ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8594a8)",
                       }}
                       {...navAriaCurrent(href, locationPath)}
                     >
@@ -723,7 +728,7 @@ export default function SiteHeader({
                 <a
                   href="/account"
                   className="hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
-                  style={{ background: "rgba(14,165,233,0.12)", color: "#7dd3fc", border: "1px solid rgba(14,165,233,0.25)" }}
+                  style={{ background: "rgba(30,200,245,0.12)", color: ENHANCED_ACCENT, border: "1px solid rgba(30,200,245,0.25)" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -768,7 +773,12 @@ export default function SiteHeader({
             style={{ background: "var(--hi-mobile-sheet, #081018)" }}
           >
             <div className="container py-3 flex flex-col gap-1">
-              <a href="/" className="text-sm font-semibold text-sky-400 py-3 px-3 rounded-lg hover:bg-white/5" onClick={() => setMobileOpen(false)}>
+              <a
+                href="/"
+                className="text-sm font-semibold py-3 px-3 rounded-lg hover:bg-white/5 min-h-12 flex items-center"
+                style={{ color: ENHANCED_ACCENT }}
+                onClick={() => setMobileOpen(false)}
+              >
                 Today’s desk →
               </a>
               {mainNavLinks().map(({ label, href }) => {
@@ -779,7 +789,7 @@ export default function SiteHeader({
                     key={`m-${label}`}
                     href={href}
                     className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-[48px] flex items-center"
-                    style={{ color: active ? "#38BDF8" : "rgba(255,255,255,0.85)" }}
+                    style={{ color: active ? ENHANCED_ACCENT : "var(--hi-text,#f2f5fa)" }}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setMobileOpen(false)}
                   >

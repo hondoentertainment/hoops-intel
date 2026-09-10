@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "wouter";
 import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 import Breadcrumbs from "../components/Breadcrumbs";
 import ErrorBlock from "../components/ErrorBlock";
 import ShareButton from "../components/ShareButton";
@@ -119,6 +120,7 @@ export default function GameCenter() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="GAME CENTER" />
         <Skeleton />
+        <SiteFooter />
       </div>
     );
   }
@@ -128,10 +130,11 @@ export default function GameCenter() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="GAME CENTER" />
         <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none">
-          <div className="section-label mb-3">GAME NOT FOUND</div>
-          <h1 className="display-heading text-white text-2xl mb-4">No Game Center match for this ID</h1>
-          <a href="/#scores" className="text-sky-400 underline">Back to scores</a>
+          <p className="enhanced-kicker mb-3">Game not found</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">No Game Center match for this ID</h1>
+          <a href="/#scores" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to scores</a>
         </main>
+        <SiteFooter />
       </div>
     );
   }
@@ -376,6 +379,7 @@ export default function GameCenter() {
           </aside>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

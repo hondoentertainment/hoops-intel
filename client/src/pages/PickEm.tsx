@@ -24,8 +24,8 @@ import { isPlayoffsActive, playoffSeries } from "../lib/playoffData";
 import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
-import SiteHeader from "../components/SiteHeader";
-import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import EditorialShell from "../components/EditorialShell";
+import { EnhancedButton, GamePreviewCard, PageHero, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
 
 // ═══════════════════════════════════════════════════════════
@@ -511,9 +511,7 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
   const streak = pickStats.streak > 0 ? String(pickStats.streak) : "—";
 
   return (
-    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
-      <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
+    <EditorialShell mainClassName="px-4 md:px-7 py-5 flex flex-col gap-4 max-md:gap-3.5">
         <SectionHeader
           eyebrow="PICK 'EM"
           title="Lock tonight’s slate"
@@ -561,8 +559,7 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
         <div id="how-it-works" className="pt-2">
           <HowItWorksSection />
         </div>
-      </main>
-    </div>
+    </EditorialShell>
   );
 }
 
@@ -599,28 +596,11 @@ export default function PickEmPage() {
     <ToolPageLayout subtitle="PICK EM">
 {/* Page Title */}
         <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            {pulseEdition.edition} &middot; {pulseEdition.date.toUpperCase()}
-          </div>
-          <h1
-            className="text-4xl font-bold mb-2 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Daily Pick&apos;em
-          </h1>
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            {gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.
-          </p>
+          <PageHero
+            kicker={`${pulseEdition.edition} · ${pulseEdition.date}`}
+            title="Daily Pick 'Em"
+            description={`${gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.`}
+          />
         </div>
 
         {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0 || slateSettled > 0) && (

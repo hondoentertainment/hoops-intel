@@ -14,6 +14,7 @@ import {
   compactPulseStats,
   deskAskChips,
   deskEyebrow,
+  deskKickerLine,
   formatPulseScore,
   formatPulseTenths,
   hasTonightSlate,
@@ -171,22 +172,23 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
       <div className="flex flex-col gap-[22px]">
         <div id="today-desk" className="flex flex-col gap-2.5 max-w-[980px] min-w-0">
           <p className="enhanced-kicker">
-            {deskEyebrow()} · {pulseEdition.date.toUpperCase()}
+            {deskKickerLine()}
           </p>
-          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#f2f5fa)] text-[26px] leading-[34px]">
+          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-[38px]">
             {narrative.headline}
           </h1>
           <h1 className="md:hidden editorial-heading text-[var(--hi-text,#f2f5fa)] text-[1.5rem] leading-8">
             {campMode ? pulseEdition.date : narrative.headline}
           </h1>
           <p className="text-xs max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            <span className="hidden md:inline">Will Henderson · updated {editionPublishLabel()}</span>
+            <span className="hidden md:inline">Will Henderson · Updated {editionPublishLabel()}</span>
             <span className="md:hidden">
               {campMode
                 ? `Camp opens Oct 3. Tonight stays empty.`
                 : `Will Henderson · ${editionPublishLabel()}${hasTonightSlate() ? "" : " · no games tonight"}`}
             </span>
           </p>
+          <div className="desk-hairline mt-1" />
           {!campMode ? (
             <div className="flex flex-wrap gap-2 items-center">
               <EnhancedButton href="#pulse-index">Read the brief</EnhancedButton>

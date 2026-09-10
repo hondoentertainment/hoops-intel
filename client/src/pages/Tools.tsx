@@ -41,11 +41,11 @@ export default function Tools() {
 
   return (
     <ToolPageLayout subtitle="TOOLS & LABS" maxWidth="xl" showRelated={false}>
-        <p className="section-label mb-2">FEATURE DIRECTORY</p>
-        <h1 className="display-heading text-2xl sm:text-3xl mb-4" style={{ color: "var(--hi-heading,#fff)" }}>
+        <p className="enhanced-kicker mb-2">Feature directory</p>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem] max-md:leading-8">
           Every Hoops Intel tool
         </h1>
-        <p className="text-sm mb-6 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>
+        <p className="mobile-readable mb-6 max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           Daily desk and analysis tools. Search from any page, or press{" "}
           <kbd className="mono-data text-[10px] px-1 py-0.5 rounded bg-white/10">/</kbd> to jump to a player, team, or story.
         </p>
@@ -132,7 +132,7 @@ export default function Tools() {
               if (items.length === 0) return null;
               return (
                 <section key={cat} aria-labelledby={`tools-cat-${cat}`}>
-                  <h2 id={`tools-cat-${cat}`} className="section-label mb-4" style={{ color: "rgba(148,163,184,0.95)" }}>
+                  <h2 id={`tools-cat-${cat}`} className="enhanced-kicker mb-4">
                     {TOOL_CATEGORY_LABELS[cat]}
                   </h2>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -140,7 +140,7 @@ export default function Tools() {
                       <li key={t.href + t.label}>
                         <a
                           href={t.href}
-                          className="glass-card block rounded-xl p-4 min-h-[4.75rem] transition-colors hover:border-sky-500/40 hover:bg-white/[0.05] outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
+                          className="enhanced-card block p-4 min-h-[4.75rem] outline-none"
                         >
                           <span className="text-sm font-semibold text-[var(--hi-heading,#fff)]">{t.label}</span>
                           <p className="text-xs mt-1 leading-snug" style={{ color: "var(--hi-muted-sub,rgba(255,255,255,0.5))" }}>
