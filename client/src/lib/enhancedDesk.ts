@@ -71,13 +71,53 @@ export function injuryStatusKey(status: string): string {
 
 export function injuryChipTone(status: string): "danger" | "success" | "warn" {
   const key = injuryStatusKey(status);
-  if (key === "out" || key === "day-to-day" || key === "doubtful") return "danger";
+  if (key === "out") return "danger";
   if (key === "probable") return "success";
   return "warn";
 }
 
 export function injuryStatusLabel(status: string): string {
-  return status.replace(/-/g, "-").toUpperCase();
+  if (injuryStatusKey(status) === "day-to-day") return "Day-to-Day";
+  if (!status) return status;
+  return status
+    .split(/[-_\s]+/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join("-");
+}
+
+export function lastNameOf(name: string): string {
+  return name.split(" ").slice(-1)[0] ?? name;
+}
+
+export function formatPulseTenths(score: number): string {
+  return score.toFixed(1);
+}
+
+export function seasonChipLabel(ctx: EditionContext = activeEditionContext()): string | null {
+  switch (ctx) {
+    case "preseason":
+      return "PRESEASON";
+    case "playoffs":
+      return "PLAYOFFS";
+    case "finals":
+      return "FINALS";
+    case "draft":
+      return "DRAFT";
+    case "free-agency":
+      return "FREE AGENCY";
+    case "summer-league":
+      return "SUMMER";
+    case "dead-period":
+      return "OFFSEASON";
+    default:
+      return null;
+  }
+}
+
+export function headerDateLabel(display = pulseEdition.date): string {
+  const parsed = parseEditionDisplayDate(display);
+  if (!parsed) return display;
+  return parsed.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export function injuryCounts(rows = injuryUpdates) {
@@ -135,20 +175,20 @@ export function heroStats(): HeroStat[] {
   const west1 = westStandings[0];
   const campDays = daysUntilIso(CAMP_OPEN_ISO);
   const murray = murrayStandoff();
-  const lastName = leader?.player.split(" ").slice(-1)[0] ?? "—";
+  const lastName = leader ? lastNameOf(leader.player) : "—";
 
   const cards: HeroStat[] = [];
   if (leader) {
     cards.push({
       kicker: "PULSE LEADER",
-      value: formatPulseScore(leader.indexScore),
-      sub: `${lastName} · ${leader.team}`,
+      value: lastName,
+      sub: `${leader.team} · ${formatPulseScore(leader.indexScore)}`,
     });
   }
   cards.push({
-    kicker: "PRESEASON",
+    kicker: "CAMP OPENS",
     value: campDays > 0 ? `${campDays} days` : campDays === 0 ? "Today" : "Open",
-    sub: "Camp opens October 3",
+    sub: "October 3",
   });
 
   // Empty slates stay a camp desk — last season's W-L is not tonight's scoreboard.
@@ -157,8 +197,8 @@ export function heroStats(): HeroStat[] {
     if (unresolved.length > 0) {
       cards.push({
         kicker: "UNRESOLVED",
-        value: String(unresolved.length),
-        sub: unresolved.map((row) => row.player.split(" ").slice(-1)[0]).join(" · "),
+        value: `${unresolved.length} ${unresolved.length === 1 ? "issue" : "issues"}`,
+        sub: unresolved.map((row) => lastNameOf(row.player)).join(" · "),
       });
     } else if (murray) {
       cards.push({ kicker: "MURRAY", value: murray.value, sub: murray.sub });
@@ -182,23 +222,23 @@ export function heroStats(): HeroStat[] {
 export function mobileHeroStats(): HeroStat[] {
   const all = heroStats();
   const pulse = all.find((c) => c.kicker === "PULSE LEADER");
-  const camp = all.find((c) => c.kicker === "PRESEASON");
+  const camp = all.find((c) => c.kicker === "CAMP OPENS" || c.kicker === "PRESEASON");
   return [
     pulse
-      ? { kicker: "PULSE", value: pulse.value, sub: pulse.sub.replace(/Wembanyama/, "Wemby") }
+      ? { kicker: "PULSE", value: pulse.value.replace(/Wembanyama/, "Wemby"), sub: pulse.sub }
       : { kicker: "PULSE", value: "—", sub: "Board idle" },
     camp
-      ? { kicker: "CAMP", value: camp.value.replace(/ days$/, "d"), sub: "Opens Oct 3" }
-      : { kicker: "CAMP", value: "—", sub: "Opens Oct 3" },
+      ? { kicker: "CAMP", value: camp.value.replace(/ days$/, "d"), sub: camp.sub }
+      : { kicker: "CAMP", value: "—", sub: "October 3" },
   ];
 }
 
 export function deskAskChips(): string[] {
   if (gamePreviews.length === 0) {
     return [
-      "Which rotation battles matter before camp?",
-      "Who is unresolved heading into October?",
-      "When does training camp open?",
+      "Who leads Camp Pulse?",
+      "When does camp open?",
+      "Any unresolved injuries?",
     ];
   }
   return contextualAskChips().slice(0, 3);

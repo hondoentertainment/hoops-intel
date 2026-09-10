@@ -6,6 +6,7 @@ import {
   campIntelCards,
   campRosterBattles,
   campScheduleStatus,
+  campShortDate,
   campStorylines,
   campUnresolved,
   isCampDesk,
@@ -45,6 +46,8 @@ describe("campDesk", () => {
     expect(status.headline).toMatch(/camp-week/i);
     expect(status.sub).toMatch(/not tonight/i);
     expect(status.games[0]).toMatchObject({ away: "MIA", home: "TOR" });
+    expect(status.games.length).toBeGreaterThanOrEqual(3);
+    expect(campShortDate("2026-10-03")).toBe("Oct 3");
     expect(campScheduleMeta.label).toMatch(/not tonight/i);
     expect(campScheduleGames.some((g) => g.away === "NYK" && g.home === "BOS" && g.dateIso === "2026-10-03")).toBe(
       false,
@@ -63,7 +66,19 @@ describe("Tonight empty slate", () => {
     const tonight = readFileSync(join(srcDir, "pages/Tonight.tsx"), "utf8");
     expect(tonight).not.toContain("CAMP_OPENER");
     expect(tonight).toContain("Open camp intel");
-    expect(tonight).toContain("No games tonight");
+    expect(tonight).toContain("Waiting on Oct 3");
+    expect(tonight).toContain("never invent tip-offs");
     expect(tonight).not.toMatch(/away:\s*"NYK"[\s\S]*home:\s*"BOS"/);
+  });
+});
+
+describe("Camp Desk Figma pass", () => {
+  it("labels the ESPN slate not-tonight and keeps Tonight empty honest", () => {
+    const desk = readFileSync(join(srcDir, "components/enhanced/EnhancedDesk.tsx"), "utf8");
+    expect(desk).toContain("NOT TONIGHT");
+    expect(desk).toContain("EMPTY · HONEST");
+    expect(desk).toContain("No invented tip-offs");
+    expect(desk).toContain("Pulse of the camp");
+    expect(desk).not.toContain("CAMP_OPENER");
   });
 });

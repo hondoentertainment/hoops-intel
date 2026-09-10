@@ -1,5 +1,5 @@
 import SiteHeader from "../components/SiteHeader";
-import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { DeskPanel, EnhancedButton, GamePreviewCard, SectionHeader, StatCard, StatusPill } from "../components/enhanced/EnhancedUi";
 import { daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
 import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
@@ -14,13 +14,17 @@ export default function Tonight() {
   return (
     <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
-        <SectionHeader
-          eyebrow="TONIGHT'S SLATE"
-          title={slateOpen ? `${gamePreviews.length} games tonight` : "No games tonight"}
-          action="Watch guide →"
-          actionHref="/watch-guide"
-        />
+      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-6 flex flex-col gap-5 outline-none">
+        <div className="flex flex-col gap-2 min-w-0">
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[30px] leading-[34px] max-md:text-[1.5rem] max-md:leading-8">
+            Tonight
+          </h1>
+          <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {slateOpen
+              ? `${gamePreviews.length} games on the ESPN board.`
+              : "No games on the board. Preseason desk stays honest — we never invent tip-offs."}
+          </p>
+        </div>
 
         {slateOpen ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -50,26 +54,13 @@ export default function Tonight() {
             ))}
           </div>
         ) : (
-          <div className="enhanced-card flex flex-col gap-2 p-5 max-md:p-4">
-            <p className="editorial-heading text-[1.375rem] leading-8 text-[var(--hi-text,#f3f6fa)]">
-              The slate is empty. The desk is not.
+          <div className="enhanced-card flex flex-col items-center justify-center text-center gap-2 px-6 py-12 max-md:px-4 max-md:py-10">
+            <p className="font-semibold text-lg leading-6 text-[var(--hi-text,#f2f5fa)]">Waiting on Oct 3</p>
+            <p className="text-sm max-w-md" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+              Camp openers land on ESPN schedule · not tonight
+              {campDays > 0 ? ` · ${campDays === 1 ? "one day" : `${campDays} days`} out` : ""}.
             </p>
-            <p className="editorial-body mobile-readable text-[var(--hi-text,#f3f6fa)]">
-              Nothing on tonight’s ESPN schedule. Training camp opens October 3
-              {campDays > 0 ? ` — ${campDays === 1 ? "one day" : `${campDays} days`}` : ""}.
-              Roster battles, cuts, and Pulse of the camp live on the morning desk — not as invented matchups here.
-            </p>
-            <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-              {schedule.kind === "espn-upcoming"
-                ? schedule.sub
-                : "Scores is not a standalone route — recaps land on the desk when games exist."}
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <EnhancedButton href="/#camp-intel">Open camp intel</EnhancedButton>
-              <EnhancedButton href="/lineups" variant="ghost">
-                Rotation battles
-              </EnhancedButton>
-            </div>
+            <StatusPill tone="warn">NOT TONIGHT</StatusPill>
           </div>
         )}
 
@@ -87,6 +78,22 @@ export default function Tonight() {
                   <StatCard kicker={card.kicker} value={card.team ?? card.kicker} sub={card.title} />
                 </a>
               ))}
+            </div>
+            {schedule.kind === "espn-upcoming" ? (
+              <DeskPanel kicker="ESPN camp-week slate" hint={schedule.sub}>
+                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                  {schedule.games
+                    .slice(0, 3)
+                    .map((game) => `${game.away} @ ${game.home}`)
+                    .join(" · ")}
+                </p>
+              </DeskPanel>
+            ) : null}
+            <div className="flex flex-wrap gap-2">
+              <EnhancedButton href="/#camp-intel">Open camp intel</EnhancedButton>
+              <EnhancedButton href="/lineups" variant="ghost">
+                Rotation battles
+              </EnhancedButton>
             </div>
           </>
         ) : null}

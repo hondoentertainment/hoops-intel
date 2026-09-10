@@ -4,7 +4,7 @@
 /* ═══════════════════════════════════════════════════════════
    HOOPS INTEL — Global Styles
    Design: Dark Intelligence Dashboard
-   Colors: Navy #050D1A, Electric Blue #0EA5E9, Emerald #10B981,
+   Colors: Navy #050D1A, Accent #1EC8F5, Emerald #10B981,
            Rose #F43F5E, Amber #F59E0B
    Fonts: Barlow Condensed (headers), DM Sans (body), JetBrains Mono (stats)
    ═══════════════════════════════════════════════════════════ */
@@ -30,13 +30,14 @@ html.dark {
   --hi-muted: rgba(255, 255, 255, 0.72);
   --hi-muted-sub: rgba(255, 255, 255, 0.68);
   --hi-accent: #1ec8f5;
-  --hi-surface: #0c1522;
-  --hi-surface-2: #121c2c;
-  --hi-border: #1e2c40;
-  --hi-text: #f3f6fa;
-  --hi-text-secondary: #8b9bb0;
-  --hi-success: #3ddc97;
+  --hi-surface: #171c26;
+  --hi-surface-2: #12171f;
+  --hi-border: #293342;
+  --hi-text: #f2f5fa;
+  --hi-text-secondary: #8594a8;
+  --hi-success: #40d18c;
   --hi-danger: #ff4d6a;
+  --hi-warn: #f2b838;
 }
 
 html.light {
@@ -56,6 +57,7 @@ html.light {
   --hi-text-secondary: #475569;
   --hi-success: #059669;
   --hi-danger: #e11d48;
+  --hi-warn: #b45309;
 }
 
 .sr-only {
@@ -241,16 +243,34 @@ html.light .section-label {
 .enhanced-kicker {
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 1.4px;
+  font-size: 11px;
+  letter-spacing: 1.1px;
   text-transform: uppercase;
   color: var(--hi-accent, #1ec8f5);
 }
 
 .enhanced-card {
-  background: var(--hi-surface, #0c1522);
-  border: 1px solid var(--hi-border, #1e2c40);
+  background: var(--hi-surface, #171c26);
+  border: 1px solid var(--hi-border, #293342);
+  border-radius: 14px;
+}
+
+.desk-inset {
+  background: var(--hi-surface-2, #12171f);
   border-radius: 10px;
+}
+
+.desk-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 /* Container */
