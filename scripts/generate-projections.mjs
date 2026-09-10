@@ -11,6 +11,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { validateOutput } from "./lib/validate-output.mjs";
+import { canonicalNbaAbbrev, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -189,8 +190,17 @@ function stripFences(text) {
     .trim();
 }
 
-function countProjectedTeams(source) {
-  return (source.match(/conference:\s*"(?:east|west)"/g) || []).length;
+/** Count distinct NBA teams, not the `conference: "east" | "west"` interface. */
+export function countProjectedTeams(source) {
+  const abbrs = new Set();
+  const objects = source.match(/\{[^{}]*\}/g) || [];
+  for (const obj of objects) {
+    const team = obj.match(/(?:(?<![A-Za-z])team|"team")\s*:\s*"([A-Z]{3})"/);
+    const conf = obj.match(/(?:(?<![A-Za-z])conference|"conference")\s*:\s*"(?:east|west)"/);
+    if (!team || !conf) continue;
+    if (isEspnSyncedTeamAbbrev(team[1])) abbrs.add(canonicalNbaAbbrev(team[1]));
+  }
+  return abbrs.size;
 }
 
 async function generateOnce(client, prompt, attempt) {
@@ -241,6 +251,9 @@ async function main() {
   const client = new Anthropic();
   const prompt = buildPrompt(weekLabel, pulseContext);
   const previous = existsSync(OUT_PATH) ? readFileSync(OUT_PATH, "utf8") : null;
+  const restorePrevious = () => {
+    if (previous !== null) writeFileSync(OUT_PATH, previous, "utf8");
+  };
 
   let lastError = null;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -249,6 +262,7 @@ async function main() {
       const result = await generateOnce(client, prompt, attempt);
       responseText = result.text;
     } catch (err) {
+      restorePrevious();
       console.error("❌ Claude API error:", err.message);
       process.exit(1);
     }
@@ -256,6 +270,7 @@ async function main() {
     try {
       writeFileSync(OUT_PATH, responseText, "utf8");
     } catch (err) {
+      restorePrevious();
       console.error("❌ Failed to write output:", err.message);
       process.exit(1);
     }
@@ -280,12 +295,14 @@ async function main() {
     }
   }
 
-  if (previous) writeFileSync(OUT_PATH, previous, "utf8");
+  restorePrevious();
   console.error(`❌ Projections generation failed after ${MAX_ATTEMPTS} attempts: ${lastError}`);
   process.exit(1);
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  main().catch((err) => {
+    console.error("Fatal error:", err);
+    process.exit(1);
+  });
+}
