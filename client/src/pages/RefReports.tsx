@@ -195,23 +195,15 @@ export default function RefReports() {
 
   return (
     <ToolPageLayout subtitle="REFEREE REPORTS">
-{/* Page header */}
         <div className="mb-8">
-          <div
-            className="text-[10px] font-bold tracking-widest uppercase mb-1"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
-            REFEREE TENDENCY REPORTS
-          </div>
-          <h1
-            className="display-heading text-white mb-2"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-          >
-            Know the Whistle
+          <p className="enhanced-kicker mb-2">Referee reports</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
+            Know the whistle
           </h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {formatContentDate(data.generatedDate)} — Tonight&apos;s officiating crews and their tendencies
           </p>
+          <div className="desk-hairline mt-3" />
         </div>
 
         {/* Weekly trend banner */}

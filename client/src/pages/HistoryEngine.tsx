@@ -174,23 +174,15 @@ export default function HistoryEngine() {
 
   return (
     <ToolPageLayout subtitle="HISTORICAL CONTEXT ENGINE">
-{/* Page header */}
         <div className="mb-8">
-          <div
-            className="text-[10px] font-bold tracking-widest uppercase mb-1"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
-            HISTORICAL CONTEXT ENGINE
-          </div>
-          <h1
-            className="display-heading text-white mb-2"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-          >
-            Past Meets Present
+          <p className="enhanced-kicker mb-2">Historical context</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
+            Past meets present
           </h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {formatContentDate(data.generatedDate)} — Connecting today&apos;s performances to NBA history
           </p>
+          <div className="desk-hairline mt-3" />
         </div>
 
         {/* Narrative banner */}

@@ -836,29 +836,13 @@ export default function TradeSimulator() {
 
   return (
     <ToolPageLayout subtitle="TRADE SIMULATOR">
-{/* Page header */}
         <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            WEEKLY AI ANALYSIS
-          </div>
-          <h1
-            className="text-4xl font-bold mb-1 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            TRADE SIMULATOR
+          <p className="enhanced-kicker mb-2">Weekly AI analysis</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
+            Trade simulator
           </h1>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            What If &mdash; AI-powered trade proposals and interactive trade builder
+          <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            What If — AI-powered trade proposals and interactive trade builder
           </p>
           <div className="flex items-center gap-3 flex-wrap">
             <span

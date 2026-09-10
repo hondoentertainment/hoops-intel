@@ -77,17 +77,18 @@ export default function MyPulse() {
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-white mb-3">
-              Set Up My Pulse
+            <p className="enhanced-kicker mb-2">My Pulse</p>
+            <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-3">
+              Set up My Pulse
             </h1>
-            <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="mobile-readable mb-6" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
               Pick your favorite teams and players to get a personalized daily edition tailored just for you.
             </p>
             <button
               type="button"
               onClick={() => setShowSetup(true)}
-              className="min-h-[44px] px-6 py-3 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
-              style={{ background: "#0EA5E9" }}
+              className="min-h-11 px-6 py-3 rounded-[10px] text-sm font-semibold transition-opacity hover:opacity-90"
+              style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
             >
               Choose Favorites
             </button>
@@ -437,9 +438,9 @@ function MyPulseHeader({
                   href={`/team/${team.toLowerCase()}`}
                   className="px-2 py-1 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-colors hover:bg-sky-500/25"
                   style={{
-                    background: "rgba(14,165,233,0.15)",
-                    color: "#0EA5E9",
-                    border: "1px solid rgba(14,165,233,0.3)",
+                    background: "rgba(30,200,245,0.15)",
+                    color: "var(--hi-accent,#1ec8f5)",
+                    border: "1px solid rgba(30,200,245,0.3)",
                   }}
                 >
                   {team}

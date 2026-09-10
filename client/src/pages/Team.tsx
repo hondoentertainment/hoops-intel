@@ -9,6 +9,7 @@ import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { TEAM_NAMES, canonicalizeTeamCode } from "../lib/identity";
 import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 import Breadcrumbs from "../components/Breadcrumbs";
 import ErrorBlock from "../components/ErrorBlock";
 import { TeamPageSkeleton } from "../components/PageSkeletons";
@@ -76,9 +77,11 @@ export default function Team() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="TEAMS" />
         <div className="container py-20 text-center">
-          <h1 className="display-heading text-white text-2xl mb-4">Team Not Found</h1>
-          <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
+          <p className="enhanced-kicker mb-3">Team</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">Team not found</h1>
+          <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to Hoops Intel</a>
         </div>
+        <SiteFooter />
       </div>
     );
   }
@@ -88,6 +91,7 @@ export default function Team() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle={`TEAM · ${abbr}`} />
         <TeamPageSkeleton />
+        <SiteFooter />
       </div>
     );
   }
@@ -129,8 +133,8 @@ export default function Team() {
             <div className="flex items-center gap-4">
               <TeamLogo team={abbr} size={64} />
               <div>
-                <div className="section-label mb-1">TEAM PROFILE</div>
-                <h1 className="display-heading text-white text-3xl mb-1">{fullName}</h1>
+                <p className="enhanced-kicker mb-1">Team profile</p>
+                <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-1 max-md:text-[1.5rem]">{fullName}</h1>
                 <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
                   {standing?.conf === "east" ? "Eastern" : "Western"} Conference
                 </div>
@@ -436,6 +440,7 @@ export default function Team() {
           </div>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

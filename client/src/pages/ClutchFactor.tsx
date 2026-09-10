@@ -290,23 +290,15 @@ function WeeklyHighlight() {
 export default function ClutchFactor() {
   return (
     <ToolPageLayout subtitle="CLUTCH FACTOR" maxWidth="2xl" showBreadcrumbs={false}>
-        <div style={{ marginBottom: 40 }}>
-          <h1
-            style={{
-              fontSize: 36,
-              fontWeight: 900,
-              letterSpacing: -0.5,
-              margin: 0,
-              background: "linear-gradient(135deg, #FFD700, #0EA5E9)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            CLUTCH FACTOR
+        <div className="mb-10">
+          <p className="enhanced-kicker mb-2">Clutch factor</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[36px] leading-10 max-md:text-[1.75rem]">
+            Who owns the last two minutes
           </h1>
-          <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 6 }}>
-            {clutchData.weekLabel} &middot; Generated {clutchData.generatedDate}
-          </div>
+          <p className="text-sm mt-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {clutchData.weekLabel} · Generated {clutchData.generatedDate}
+          </p>
+          <div className="desk-hairline mt-3" />
         </div>
 
         <ClutchKingCard />

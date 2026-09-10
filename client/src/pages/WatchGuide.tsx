@@ -302,20 +302,15 @@ export default function WatchGuide() {
         </span>
       }
     >
-{/* Title */}
-        <div className="text-center">
-          <h1
-            className="text-2xl font-black uppercase tracking-wider mb-2"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "#fff" }}
-          >
-            Tonight's Watch Guide
+        <div className="mb-6">
+          <p className="enhanced-kicker mb-2">Watch guide</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 max-md:text-[1.5rem] max-md:leading-8">
+            Tonight&apos;s watch guide
           </h1>
-          <p
-            className="text-sm"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+          <p className="text-sm mt-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {data.date}
           </p>
+          <div className="desk-hairline mt-3" />
         </div>
 
         {/* Top Pick Callout */}

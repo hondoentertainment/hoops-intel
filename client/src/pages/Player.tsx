@@ -10,6 +10,7 @@ import { useMetaTags } from "../lib/useMetaTags";
 import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
 import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
 import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 import Breadcrumbs from "../components/Breadcrumbs";
 import ErrorBlock from "../components/ErrorBlock";
 import { PlayerPageSkeleton } from "../components/PageSkeletons";
@@ -111,9 +112,11 @@ export default function Player() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="PLAYER" />
         <div className="container py-20 text-center">
-          <h1 className="display-heading text-white text-2xl mb-4">Player Not Found</h1>
-          <a href="/" className="text-sky-400 underline">Back to Hoops Intel</a>
+          <p className="enhanced-kicker mb-3">Player</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">Player not found</h1>
+          <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to Hoops Intel</a>
         </div>
+        <SiteFooter />
       </div>
     );
   }
@@ -123,6 +126,7 @@ export default function Player() {
       <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
         <SiteHeader subtitle="PLAYER" />
         <PlayerPageSkeleton />
+        <SiteFooter />
       </div>
     );
   }
@@ -166,8 +170,8 @@ export default function Player() {
             <div className="flex items-center gap-4">
               <PlayerAvatar name={player.name} team={player.teams[0]} size={72} />
               <div>
-              <div className="section-label mb-1">PLAYER PROFILE</div>
-              <h1 className="display-heading text-white text-3xl mb-2">{player.name}</h1>
+              <p className="enhanced-kicker mb-1">Player profile</p>
+              <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-2 max-md:text-[1.5rem]">{player.name}</h1>
               <div className="flex items-center gap-2 flex-wrap">
                 {player.teams.map((t) => (
                   <a
@@ -463,6 +467,7 @@ export default function Player() {
           </div>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -27,7 +27,11 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
                   {item.label}
                 </span>
               ) : (
-                <a href={item.href} className="truncate text-sky-400 hover:text-sky-300 transition-colors">
+                <a
+                  href={item.href}
+                  className="truncate min-h-11 inline-flex items-center hover:opacity-80"
+                  style={{ color: "var(--hi-accent,#1ec8f5)" }}
+                >
                   {item.label}
                 </a>
               )}

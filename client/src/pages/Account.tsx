@@ -434,7 +434,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
           disabled={busy}
           onClick={() => void handleRegister()}
           className="min-h-[44px] px-4 py-2 rounded-lg text-xs font-semibold text-white disabled:opacity-50"
-          style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
         >
           {deviceEndpoint ? "RE-SYNC THIS DEVICE" : "ENABLE PUSH ON THIS DEVICE"}
         </button>
@@ -544,7 +544,7 @@ export default function Account() {
         <div className="py-12 flex justify-center">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin"
-            style={{ borderColor: "#0EA5E9", borderTopColor: "transparent" }}
+            style={{ borderColor: "var(--hi-accent,#1ec8f5)", borderTopColor: "transparent" }}
           />
         </div>
       </ToolPageLayout>
@@ -554,10 +554,8 @@ export default function Account() {
   if (!user || !getStoredAuthToken()) {
     return (
       <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
-        <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
-          ACCOUNT
-        </div>
-        <h1 className="display-heading text-white text-3xl mb-3">Sign in to manage your desk</h1>
+        <p className="enhanced-kicker mb-2">Account</p>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-3 max-md:text-[1.5rem]">Sign in to manage your desk</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
           Hoops Intel accounts power Pro billing, synced favorites, and optional digest settings. Nothing here is required to
           read the free edition.
@@ -571,7 +569,7 @@ export default function Account() {
             type="button"
             onClick={() => setShowAuth(true)}
             className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold text-white"
-            style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
           >
             SIGN IN OR CREATE ACCOUNT
           </button>
@@ -592,10 +590,8 @@ export default function Account() {
 
   return (
     <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
-      <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
-        YOUR ACCOUNT
-      </div>
-      <h1 className="display-heading text-white text-3xl mb-8">Settings &amp; billing</h1>
+      <p className="enhanced-kicker mb-2">Your account</p>
+      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-8 max-md:text-[1.5rem]">Settings &amp; billing</h1>
 
       <OpsReadinessPanel />
 
@@ -667,7 +663,7 @@ export default function Account() {
               disabled={portalLoading}
               onClick={() => void handlePortal()}
               className="w-full sm:w-auto min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
-              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
             >
               {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
             </button>
@@ -701,7 +697,7 @@ export default function Account() {
             <a
               href="/pro"
               className="inline-flex min-h-[48px] items-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white"
-              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
             >
               {stripeCheckoutReady === false ? "VIEW PRO (OPS PENDING)" : "UPGRADE TO PRO"}
             </a>

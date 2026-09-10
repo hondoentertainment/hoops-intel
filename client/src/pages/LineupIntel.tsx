@@ -492,30 +492,15 @@ export default function LineupIntel() {
 
   return (
     <ToolPageLayout subtitle="LINEUP INTEL">
-{/* Page header */}
         <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            WEEKLY ANALYSIS
-          </div>
-          <h1
-            className="text-4xl font-bold mb-1 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Lineup Intelligence
+          <p className="enhanced-kicker mb-2">Weekly analysis</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
+            Lineup intelligence
           </h1>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+          <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             AI-analyzed lineup combinations, death lineups, and rotation insights
           </p>
+          <div className="desk-hairline" />
 
           {/* Week badge + generated date */}
           <div className="flex items-center gap-3 flex-wrap">

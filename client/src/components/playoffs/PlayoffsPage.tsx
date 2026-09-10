@@ -19,6 +19,7 @@ import { PlayoffsSkeleton } from "./PlayoffsSkeleton";
 import { SeriesCard, sortedSeriesCardsData } from "./SeriesCard";
 import { TakeawaysSection } from "./TakeawaysSection";
 import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
 import { PlayoffBracketBoard } from "./PlayoffBracketBoard";
 
@@ -236,10 +237,14 @@ export function PlayoffsPage() {
         {!hydrated ? (
           <PlayoffsSkeleton />
         ) : !hasBoard ? (
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
-            <p className="text-white/70 text-sm mb-3">Postseason telemetry is syncing — no series rows on file yet.</p>
-            <a href="/" className="text-sky-400 text-sm font-semibold">
-              ← Return to Hoops Intel Today
+          <div className="enhanced-card flex flex-col items-center text-center gap-3 px-8 py-12">
+            <p className="enhanced-kicker">Playoffs</p>
+            <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl">Board idle</h1>
+            <p className="mobile-readable max-w-md" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+              Postseason telemetry is syncing — no series rows on file yet.
+            </p>
+            <a href="/" className="text-sm font-semibold min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+              ← Return to today&apos;s desk
             </a>
           </div>
         ) : (
@@ -272,19 +277,7 @@ export function PlayoffsPage() {
         )}
       </main>
 
-      <footer className="border-t border-white/[0.06] py-8 mt-8">
-        <div className="container px-4 flex flex-wrap items-center justify-between gap-4 text-[10px] text-white/30">
-          <span>Hoops Intel · Bloomberg-style playoff stack</span>
-          <div className="flex gap-4">
-            <a href="/pick-em" className="hover:text-sky-400/90">
-              Pick ’Em
-            </a>
-            <a href="/" className="hover:text-sky-400/90">
-              Edition
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

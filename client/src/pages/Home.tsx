@@ -23,10 +23,10 @@ import type { LiveGame } from "../lib/espnApi";
 import { slugify } from "../lib/searchUtils";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
-import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
 import BoxScoreCard from "../components/BoxScoreCard";
 import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 import PreferencesSetup from "../components/PreferencesSetup";
 import { LiveScoreSkeleton } from "../components/PageSkeletons";
 import { useToast } from "../contexts/ToastContext";
@@ -63,9 +63,7 @@ import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
 import { isCampDesk } from "../lib/campDesk";
 import { hasTonightSlate } from "../lib/enhancedDesk";
-import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
-import { editionHourLabel } from "../lib/pacificTime";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
 import EnhancedDesk, { EnhancedTicker } from "../components/enhanced/EnhancedDesk";
@@ -74,10 +72,6 @@ function shortenPulsePreview(text: string, max = 110) {
   const t = text.trim();
   if (t.length <= max) return t;
   return `${t.slice(0, max).trim()}…`;
-}
-
-function footerEmailOk(raw: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.trim());
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1721,151 +1715,14 @@ function StandingsSection() {
   return (
     <section id="standings" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <div className="container">
-        <div className="section-label mb-2">CONFERENCE STANDINGS</div>
-        <h2 className="display-heading text-white text-2xl mb-6">Standings</h2>
+        <p className="enhanced-kicker mb-2">Conference standings</p>
+        <h2 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-6">Standings</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {renderConference("Eastern Conference", eastStandings)}
           {renderConference("Western Conference", westStandings)}
         </div>
       </div>
     </section>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════
-// FOOTER — With email subscription + RSS
-// ═══════════════════════════════════════════════════════════
-
-function Footer() {
-  const { toast } = useToast();
-  const digestId = "footer-digest-email";
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [apiError, setApiError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [subscribed, setSubscribed] = useState(() => readDigestSignupHint());
-
-  const handleSubscribe = async () => {
-    if (!footerEmailOk(email)) {
-      setEmailError("Enter a valid email.");
-      return;
-    }
-    setEmailError("");
-    setApiError("");
-    setSubmitting(true);
-    const result = await subscribeDigestEmail(email);
-    setSubmitting(false);
-    if (result.ok) {
-      setSubscribed(true);
-      toast(`Subscribed — morning digest at ${editionHourLabel()}`);
-    } else {
-      setApiError(result.error);
-    }
-  };
-
-  const digestDescribedBy =
-    [emailError ? "footer-email-err" : "", apiError ? "footer-digest-api-err" : ""].filter(Boolean).join(" ") || undefined;
-
-  return (
-    <footer className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded flex items-center justify-center font-bold text-white text-xs" style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>HI</div>
-              <span className="display-heading text-white text-sm">HOOPS INTEL</span>
-            </div>
-            <p className="text-xs mb-3" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
-              Daily NBA intelligence · {pulseEdition.date}
-            </p>
-            <div className="flex gap-3">
-              <a href="/archive" className="text-xs" style={{ color: "#0EA5E9" }}>Archive</a>
-              <a href="/performance" className="text-xs" style={{ color: "#0EA5E9" }}>AI Performance</a>
-              <a href="/feed.xml" className="text-xs" style={{ color: "#0EA5E9" }}>RSS Feed</a>
-            </div>
-          </div>
-
-          {/* Daily Digest Signup */}
-          <div>
-            <div className="section-label mb-2">DAILY DIGEST</div>
-            <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
-              Get the morning edition in your inbox at {editionHourLabel()}
-            </p>
-            {subscribed ? (
-              <div className="text-xs px-3 py-2 rounded" style={{ background: "rgba(16,185,129,0.1)", color: "#10B981" }}>
-                ✓ You're subscribed to the daily digest
-              </div>
-            ) : (
-              <div className="space-y-1">
-                <label htmlFor={digestId} className="sr-only">
-                  Email for daily Hoops Intel digest
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  <input
-                    id={digestId}
-                    type="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      if (emailError) setEmailError("");
-                      if (apiError) setApiError("");
-                    }}
-                    aria-invalid={emailError || apiError ? "true" : undefined}
-                    aria-describedby={digestDescribedBy}
-                    placeholder="you@domain.com"
-                    className="flex-1 min-w-[min(100%,12rem)] min-h-[44px] px-3 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 sm:min-h-0"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => void handleSubscribe()}
-                    disabled={submitting}
-                    className="min-h-[44px] px-4 py-2 rounded text-xs font-semibold text-white sm:min-h-0 disabled:opacity-50"
-                    style={{ background: "#0EA5E9" }}
-                  >
-                    {submitting ? "Signing up…" : "Subscribe"}
-                  </button>
-                </div>
-                {emailError ? (
-                  <p id="footer-email-err" className="text-xs text-rose-400" role="alert">
-                    {emailError}
-                  </p>
-                ) : null}
-                {apiError ? (
-                  <p id="footer-digest-api-err" className="text-xs text-rose-400" role="alert">
-                    {apiError}
-                  </p>
-                ) : null}
-              </div>
-            )}
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <div className="section-label mb-2">QUICK LINKS</div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {FOOTER_QUICK_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-xs hover:text-sky-400 transition-colors"
-                  style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="text-center pt-6 border-t" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
-            © {new Date().getFullYear()} Hoops Intel · Not affiliated with the NBA · Data for entertainment purposes
-          </p>
-        </div>
-      </div>
-    </footer>
   );
 }
 
@@ -1915,7 +1772,7 @@ export default function Home() {
         />
         <StandingsSection />
       </main>
-      <Footer />
+      <SiteFooter />
       {showPrefsSetup && (
         <PreferencesSetup
           onClose={() => setShowPrefsSetup(false)}

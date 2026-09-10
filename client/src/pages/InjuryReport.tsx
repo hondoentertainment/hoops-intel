@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import SiteHeader from "../components/SiteHeader";
-import { InjuryChip, SectionHeader } from "../components/enhanced/EnhancedUi";
+import EditorialShell from "../components/EditorialShell";
+import { EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
 import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
 import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
@@ -325,11 +325,18 @@ export default function InjuryReport() {
   });
 
   return (
-    <div className="min-h-screen has-mobile-tabbar" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
-      <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="px-4 md:px-7 py-5 flex flex-col gap-4 outline-none max-md:gap-3.5">
+    <EditorialShell>
+      <div className="px-4 md:px-7 py-5 flex flex-col gap-4 max-md:gap-3.5">
         <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between min-w-0">
-          <SectionHeader eyebrow="INJURY WIRE" title="Full report" />
+          <PageHero
+            kicker="Injury wire"
+            title="Full report"
+            description={`${shortDate} · ${editionContextDeskLabel().toLowerCase()} · ${tallies.dtd} day-to-day · ${tallies.probable} probable · ${tallies.out} out${
+              isOffseasonDesk()
+                ? " · last-known editorial tags — live injury cron is dark through September"
+                : ""
+            }`}
+          />
           <button
             type="button"
             onClick={nextClub}
@@ -339,20 +346,15 @@ export default function InjuryReport() {
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
           </button>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-            {shortDate} · {editionContextDeskLabel().toLowerCase()} · {tallies.dtd} day-to-day · {tallies.probable}{" "}
-            probable · {tallies.out} out
-            {isOffseasonDesk()
-              ? " · last-known editorial tags — live injury cron is dark through September"
-              : ""}
-          </p>
-        </div>
 
         {rows.length === 0 ? (
-          <div className="text-sm py-16 text-center" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
-            No injuries match this club filter.
-          </div>
+          <EmptyState
+            kicker="Injury wire"
+            title="No matches"
+            body="No injuries match this club filter."
+            pill="CLEAR FILTER"
+            pillTone="accent"
+          />
         ) : (
           <div className="flex flex-col gap-2">
             {rows.map((injury) => (
@@ -380,7 +382,7 @@ export default function InjuryReport() {
             ))}
           </div>
         )}
-      </main>
-    </div>
+      </div>
+    </EditorialShell>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
+import EditorialShell from "../components/EditorialShell";
+import { PageHero } from "../components/enhanced/EnhancedUi";
 
 function loadEmail(): string {
   try {
@@ -41,14 +42,13 @@ export default function Unsubscribe() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="DIGEST" />
-
-      <main id="main-content" tabIndex={-1} className="container py-14 max-w-md outline-none">
-        <h1 className="display-heading text-2xl text-white mb-2">Unsubscribe</h1>
-        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
-          Turn off morning digest emails only — your Hoops Intel account (if any) stays active.
-        </p>
+    <EditorialShell header={{ subtitle: "DIGEST" }} mainClassName="container py-14 max-w-md">
+        <PageHero
+          kicker="Digest"
+          title="Unsubscribe"
+          description="Turn off morning digest emails only — your Hoops Intel account (if any) stays active."
+        />
+        <div className="mt-6">
         <label htmlFor="unsub-email" className="sr-only">
           Email
         </label>
@@ -72,8 +72,8 @@ export default function Unsubscribe() {
           disabled={status === "loading"}
           className="w-full min-h-[44px] py-3 rounded-lg font-semibold transition-opacity"
           style={{
-            background: "linear-gradient(135deg,#0EA5E9,#0284C7)",
-            color: "#fff",
+            background: "var(--hi-accent,#1ec8f5)",
+            color: "var(--hi-accent-ink,#0a0d12)",
             opacity: status === "loading" ? 0.6 : 1,
           }}
         >
@@ -84,11 +84,11 @@ export default function Unsubscribe() {
             {message}
           </p>
         )}
-        <p className="mt-10 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <p className="mt-10 text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           Tip: Prefer fewer emails instead? Quiet hours ship with bulk sends — ping us if something looks off after
           subscribing again from the home footer.
         </p>
-      </main>
-    </div>
+        </div>
+    </EditorialShell>
   );
 }

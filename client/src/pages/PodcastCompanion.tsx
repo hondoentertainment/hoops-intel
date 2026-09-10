@@ -157,21 +157,14 @@ export default function PodcastCompanion() {
     <ToolPageLayout subtitle="PODCAST COMPANION">
 {/* Page header */}
         <div className="mb-8">
-          <div
-            className="text-[10px] font-bold tracking-widest uppercase mb-1"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
-            PODCAST COMPANION
-          </div>
-          <h1
-            className="display-heading text-white mb-2"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-          >
-            Today's Episode Blueprint
+          <p className="enhanced-kicker mb-2">Podcast companion</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
+            Today&apos;s episode blueprint
           </h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {data.date} — Everything you need for today's show
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {data.date} — Everything you need for today&apos;s show
           </p>
+          <div className="desk-hairline mt-3" />
         </div>
 
         {/* Episode title card */}

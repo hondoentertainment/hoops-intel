@@ -21,23 +21,26 @@ html {
 }
 
 html.dark {
-  --hi-bg-page: #050d1a;
-  --hi-shell-text: rgba(255, 255, 255, 0.85);
-  --hi-header-bg: rgba(5, 13, 26, 0.95);
-  --hi-mobile-sheet: #081018;
-  --hi-border-soft: rgba(255, 255, 255, 0.08);
-  --hi-heading: #ffffff;
-  --hi-muted: rgba(255, 255, 255, 0.72);
-  --hi-muted-sub: rgba(255, 255, 255, 0.68);
+  --hi-bg-page: #07090e;
+  --hi-shell-text: rgba(242, 245, 250, 0.88);
+  --hi-header-bg: rgba(7, 9, 14, 0.92);
+  --hi-mobile-sheet: #0b0e14;
+  --hi-border-soft: rgba(255, 255, 255, 0.06);
+  --hi-heading: #f2f5fa;
+  --hi-muted: rgba(242, 245, 250, 0.72);
+  --hi-muted-sub: rgba(242, 245, 250, 0.58);
   --hi-accent: #1ec8f5;
-  --hi-surface: #171c26;
-  --hi-surface-2: #12171f;
-  --hi-border: #293342;
+  --hi-accent-ink: #0a0d12;
+  --hi-surface: #141820;
+  --hi-surface-2: #0e1218;
+  --hi-border: #252b36;
   --hi-text: #f2f5fa;
   --hi-text-secondary: #8594a8;
   --hi-success: #40d18c;
   --hi-danger: #ff4d6a;
   --hi-warn: #f2b838;
+  --hi-card-radius: 16px;
+  --hi-inset-radius: 10px;
 }
 
 html.light {
@@ -50,6 +53,7 @@ html.light {
   --hi-muted: rgba(15, 23, 42, 0.68);
   --hi-muted-sub: rgba(15, 23, 42, 0.52);
   --hi-accent: #0284c7;
+  --hi-accent-ink: #f8fafc;
   --hi-surface: #ffffff;
   --hi-surface-2: #e2e8f0;
   --hi-border: rgba(15, 23, 42, 0.12);
@@ -58,6 +62,8 @@ html.light {
   --hi-success: #059669;
   --hi-danger: #e11d48;
   --hi-warn: #b45309;
+  --hi-card-radius: 16px;
+  --hi-inset-radius: 10px;
 }
 
 .sr-only {
@@ -122,7 +128,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #38bdf8;
+  outline: 2px solid var(--hi-accent, #1ec8f5);
   outline-offset: 3px;
   border-radius: 0.375rem;
 }
@@ -205,6 +211,15 @@ html.light .section-label {
   color: var(--hi-accent, #1ec8f5);
 }
 
+/* Page titles inherit the editorial serif — condensed lockups stay on non-h1 display-heading. */
+h1.display-heading {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .mono-data {
   font-family: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.85rem;
@@ -250,14 +265,21 @@ html.light .section-label {
 }
 
 .enhanced-card {
-  background: var(--hi-surface, #171c26);
-  border: 1px solid var(--hi-border, #293342);
-  border-radius: 14px;
+  background: var(--hi-surface, #141820);
+  border: 1px solid var(--hi-border, #252b36);
+  border-radius: var(--hi-card-radius, 16px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 28px rgba(0, 0, 0, 0.22);
 }
 
 .desk-inset {
-  background: var(--hi-surface-2, #12171f);
-  border-radius: 10px;
+  background: var(--hi-surface-2, #0e1218);
+  border-radius: var(--hi-inset-radius, 10px);
+}
+
+.desk-hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--hi-border-soft, rgba(255, 255, 255, 0.08));
 }
 
 .desk-chip {
@@ -280,21 +302,21 @@ html.light .section-label {
   padding: 0 1rem;
 }
 
-/* Glass Card */
+/* Glass Card — same editorial surface as DeskPanel so secondary pages match the desk */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.18);
-  transition: background 0.18s ease, border-color 0.18s ease,
-    box-shadow 0.18s ease, transform 0.18s ease;
+  background: var(--hi-surface, #141820);
+  border: 1px solid var(--hi-border, #252b36);
+  border-radius: var(--hi-card-radius, 16px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 28px rgba(0, 0, 0, 0.22);
+  backdrop-filter: none;
+  transition: border-color 0.18s ease;
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(14, 165, 233, 0.2);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.28);
-  transform: translateY(-2px);
+  background: var(--hi-surface, #141820);
+  border-color: rgba(30, 200, 245, 0.28);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 28px rgba(0, 0, 0, 0.22);
+  transform: none;
 }
 
 html.light .glass-card {
@@ -397,7 +419,7 @@ html.light .glass-card {
 
 /* Selection */
 ::selection {
-  background: rgba(14, 165, 233, 0.3);
+  background: rgba(30, 200, 245, 0.28);
   color: white;
 }
 
@@ -502,8 +524,8 @@ html.light .glass-card {
   z-index: 200;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  background: #0ea5e9;
-  color: #fff;
+  background: var(--hi-accent, #1ec8f5);
+  color: var(--hi-accent-ink, #0a0d12);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -578,9 +600,9 @@ html.light .glass-card {
 }
 
 .desk-section-pill[data-active="true"] {
-  color: #38bdf8;
-  background: rgba(14, 165, 233, 0.12);
-  border-color: rgba(14, 165, 233, 0.28);
+  color: var(--hi-accent, #1ec8f5);
+  background: rgba(30, 200, 245, 0.12);
+  border-color: rgba(30, 200, 245, 0.28);
 }
 
 html.light .desk-section-pill {
