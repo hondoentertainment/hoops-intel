@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-09-09T13:08:24.634Z",
+  fetchedAt: "2026-09-10T13:08:22.740Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -21,6 +21,7 @@ export const campScheduleMeta = {
 export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-03",when:"10/3 - 7:00 PM EDT",away:"MIA",home:"TOR",tv:"",venue:"Videotron Centre"},
   {dateIso:"2026-10-04",when:"10/4 - 7:00 PM EDT",away:"UTA",home:"DEN",tv:"",venue:"CU Events Center"},
+  {dateIso:"2026-10-04",when:"10/4 - 7:00 PM EDT",away:"GSW",home:"LAC",tv:"",venue:"Intuit Dome"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"MEM",home:"ATL",tv:"",venue:"State Farm Arena"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"PHX",home:"DET",tv:"",venue:"Little Caesars Arena"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"NYK",home:"PHI",tv:"",venue:"Xfinity Mobile Arena"},
@@ -40,7 +41,7 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"PHI",home:"BRK",tv:"",venue:"Barclays Center"},
   {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"WAS",home:"NYK",tv:"",venue:"Madison Square Garden"},
   {dateIso:"2026-10-08",when:"10/8 - 8:00 PM EDT",away:"ATL",home:"SAS",tv:"",venue:"Frost Bank Center"},
-  {dateIso:"2026-10-08",when:"10/8 - 10:30 PM EDT",away:"SAC",home:"LAL",tv:"",venue:"crypto.com Arena"},
+  {dateIso:"2026-10-08",when:"10/8 - 10:30 PM EDT",away:"SAC",home:"LAL",tv:"ESPN2",venue:"crypto.com Arena"},
   {dateIso:"2026-10-09",when:"10/9 - 8:00 AM EDT",away:"HOU",home:"DAL",tv:"",venue:"Venetian Arena"},
   {dateIso:"2026-10-09",when:"10/9 - 8:00 PM EDT",away:"MEM",home:"CHI",tv:"",venue:"United Center"},
   {dateIso:"2026-10-10",when:"10/10 - 6:30 PM EDT",away:"LAC",home:"TOR",tv:"",venue:"Rogers Arena"},
@@ -49,5 +50,5 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"MIN",home:"MIA",tv:"",venue:"Kaseya Center"},
   {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"PHI",home:"BOS",tv:"",venue:"TD Garden"},
   {dateIso:"2026-10-10",when:"10/10 - 8:30 PM EDT",away:"SAC",home:"GSW",tv:"",venue:"Chase Center"},
-  {dateIso:"2026-10-10",when:"10/10 - 10:30 PM EDT",away:"SAS",home:"PHX",tv:"",venue:"Mortgage Matchup Center"},
+  {dateIso:"2026-10-10",when:"10/10 - 10:30 PM EDT",away:"SAS",home:"PHX",tv:"ESPN2",venue:"Mortgage Matchup Center"},
 ];
