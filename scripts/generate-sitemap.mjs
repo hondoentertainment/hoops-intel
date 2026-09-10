@@ -260,6 +260,17 @@ export function lastmodForLoc(loc, ctx) {
     "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",
+    // Weekly tools: generatedDate freezes on the last successful weekly run
+    // (currently 2026-08-31). Follow the edition so lastmod tracks real desk
+    // freshness without inventing lineup/clutch/tactics copy.
+    "/lineups",
+    "/clutch",
+    "/tactics",
+    "/draft",
+    "/projections",
+    "/community-pulse",
+    "/trade-value",
+    "/trade-simulator",
   ]);
   const contentDate = contentDatesLastmod(STATIC_ROUTE_SOURCES[loc]);
   const sourceDate = sourcesLastmod(STATIC_ROUTE_SOURCES[loc]);

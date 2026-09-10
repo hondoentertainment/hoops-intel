@@ -132,6 +132,26 @@ test("history and refs lastmod advance with the daily edition when content is fr
   assert.equal(lastmodForLoc("/refs", ctx), "2026-09-02");
 });
 
+test("weekly tool pages lastmod advance with the daily edition when content is frozen", () => {
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  const frozenTools = [
+    ["/lineups", "client/src/lib/lineupData.ts"],
+    ["/clutch", "client/src/lib/clutchData.ts"],
+    ["/tactics", "client/src/lib/tacticsData.ts"],
+    ["/draft", "client/src/lib/draftData.ts"],
+    ["/projections", "client/src/lib/projectionsData.ts"],
+    ["/community-pulse", "client/src/lib/communityPulseData.ts"],
+    ["/trade-value", "client/src/lib/tradeValueData.ts"],
+    ["/trade-simulator", "client/src/lib/tradeSimData.ts"],
+  ];
+  for (const [path, rel] of frozenTools) {
+    const contentIso = extractExportedTimestamp(readFileSync(join(ROOT, rel), "utf8"));
+    assert.equal(lastmodForLoc(path, ctx), later(contentIso, ctx.editionIso), path);
+    assert.equal(lastmodForLoc(path, ctx), "2026-09-02", path);
+  }
+});
+
 test("Pulse Index players get higher sitemap priority; others stay default", () => {
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
   assert.deepEqual(playerSitemapMeta({ inPulse: false }), { priority: "0.5", changefreq: "weekly" });
@@ -175,7 +195,14 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
   const editionIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
   assert.ok(editionIso, "pulseEdition.date should parse to an ISO day");
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
-  for (const path of ["/podcast-companion", "/embed-stats", "/widgets/analytics"]) {
+  for (const path of [
+    "/podcast-companion",
+    "/embed-stats",
+    "/widgets/analytics",
+    "/lineups",
+    "/clutch",
+    "/tactics",
+  ]) {
     const escaped = path.replace(/\//g, "\\/");
     const block = xml.match(
       new RegExp(`<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`),
