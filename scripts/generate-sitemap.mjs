@@ -23,12 +23,19 @@ const gitDateCache = new Map();
 
 /** Match `slugify` in `client/src/lib/searchUtils.ts` so /player/:slug URLs align. */
 function slugify(name) {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+  try {
+    return String(name ?? "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  } catch {
+    return String(name ?? "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  }
 }
 
 const TEAM_NAMES = new Set([
@@ -99,12 +106,74 @@ export function isSitemapIndexablePlayer(name, context, lists) {
   return (context.mentions ?? 0) >= 2;
 }
 
-function xmlEscape(value) {
+const ALLOWED_CHANGEFREQ = new Set([
+  "always",
+  "hourly",
+  "daily",
+  "weekly",
+  "monthly",
+  "yearly",
+  "never",
+]);
+
+export function xmlEscape(value) {
   return String(value)
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+export function sanitizeLastmod(value) {
+  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+}
+
+export function buildUrlEntry(u, { buildDay } = {}) {
+  if (!u?.loc || typeof u.loc !== "string" || !u.loc.startsWith("/")) return "";
+  if (u.loc.includes(" ") || u.loc.includes("%20")) return "";
+  if (!ALLOWED_CHANGEFREQ.has(u.changefreq)) return "";
+  if (!/^\d(\.\d+)?$/.test(String(u.priority))) return "";
+  const lastmod = sanitizeLastmod(u.lastmod) ?? sanitizeLastmod(buildDay);
+  const lastmodLine = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
+  return `  <url>
+    <loc>${xmlEscape(BASE + u.loc)}</loc>${lastmodLine}
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`;
+}
+
+export function assertWellFormedSitemap(xml) {
+  if (typeof xml !== "string" || !xml.startsWith("<?xml ")) {
+    throw new Error("sitemap missing XML declaration");
+  }
+  if (!xml.includes("<urlset") || !xml.trimEnd().endsWith("</urlset>")) {
+    throw new Error("sitemap urlset truncated");
+  }
+  const opens = (xml.match(/<url>/g) || []).length;
+  const closes = (xml.match(/<\/url>/g) || []).length;
+  if (opens !== closes) {
+    throw new Error(`sitemap url tags truncated (${opens} open / ${closes} close)`);
+  }
+  const locs = (xml.match(/<loc>/g) || []).length;
+  if (locs !== opens) {
+    throw new Error("sitemap loc count mismatch");
+  }
+  if (/<loc>[^<\n]*$/.test(xml.replace(/\s*<\/urlset>\s*$/, ""))) {
+    throw new Error("sitemap loc truncated mid-entry");
+  }
+  return true;
+}
+
+export function buildSitemapXml(urls, { buildDay } = {}) {
+  const entries = (urls || []).map((u) => buildUrlEntry(u, { buildDay })).filter(Boolean);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join("\n")}
+</urlset>
+`;
+  assertWellFormedSitemap(xml);
+  return xml;
 }
 
 function isoDay(d) {
@@ -281,12 +350,13 @@ export function lastmodForLoc(loc, ctx) {
   return contentDate ?? sourceDate ?? ctx.buildDay;
 }
 
-export function generate() {
+export function generate({ write = true } = {}) {
   const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
   const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
 
   const mentionCounts = new Map();
+  const playerTeams = new Map();
   const teams = new Set();
   const games = new Set();
 
@@ -294,6 +364,16 @@ export function generate() {
     const canonical = canonicalPlayerName(name);
     if (!canonical) return;
     mentionCounts.set(canonical, (mentionCounts.get(canonical) || 0) + 1);
+  };
+
+  const noteTeam = (name, team) => {
+    const code = canonicalTeamCode(team);
+    if (!code) return;
+    const canonical = canonicalPlayerName(name);
+    if (!canonical) return;
+    const set = playerTeams.get(canonical) ?? new Set();
+    set.add(code);
+    playerTeams.set(canonical, set);
   };
 
   const playerMatches = archiveFile.matchAll(/players:\s*\[([^\]]+)\]/g);
@@ -311,10 +391,15 @@ export function generate() {
   for (const m of pulseFile.matchAll(/gameId:\s*"([^"]+)"/g)) {
     games.add(m[1]);
   }
-  const playoffGameMatches = playoffFile.matchAll(/date:\s*"([^"]+)"[\s\S]*?homeTeam:\s*"([A-Z]{3})"[\s\S]*?awayTeam:\s*"([A-Z]{3})"/g);
-  for (const m of playoffGameMatches) {
-    const date = m[1].replace(/-/g, "");
-    games.add(`${m[3]}-${m[2]}-${date}`);
+  for (const m of playoffFile.matchAll(
+    /date:\s*"(?<date>\d{4}-\d{2}-\d{2})"[\s\S]{0,400}?homeTeam:\s*"(?<home>[A-Z]{3})"[\s\S]{0,400}?awayTeam:\s*"(?<away>[A-Z]{3})"/g,
+  )) {
+    games.add(`${m.groups.away}-${m.groups.home}-${m.groups.date.replace(/-/g, "")}`);
+  }
+  for (const m of playoffFile.matchAll(
+    /homeTeam:\s*"(?<home>[A-Z]{3})"[\s\S]{0,400}?awayTeam:\s*"(?<away>[A-Z]{3})"[\s\S]{0,400}?date:\s*"(?<date>\d{4}-\d{2}-\d{2})"/g,
+  )) {
+    games.add(`${m.groups.away}-${m.groups.home}-${m.groups.date.replace(/-/g, "")}`);
   }
 
   const buildDay = new Date().toISOString().split("T")[0];
@@ -363,6 +448,9 @@ export function generate() {
     pulsePlayers.add(canonical);
     bumpMention(canonical);
   }
+  for (const m of pulseFile.matchAll(/player:\s*"([^"]+)"\s*,\s*team:\s*"([^"]+)"/g)) {
+    noteTeam(m[1], m[2]);
+  }
   const pulseIndexPlayers = new Set();
   const pulseIndexBlock = pulseFile.match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/);
   if (pulseIndexBlock) {
@@ -378,7 +466,11 @@ export function generate() {
     if (
       !isSitemapIndexablePlayer(
         canonical,
-        { inPulse: pulsePlayers.has(canonical), mentions },
+        {
+          inPulse: pulsePlayers.has(canonical),
+          hasCurrentTeam: (playerTeams.get(canonical)?.size ?? 0) > 0,
+          mentions,
+        },
         rosterLists,
       )
     ) {
@@ -411,33 +503,28 @@ export function generate() {
   });
 
   for (const u of urls) {
-    u.lastmod = lastmodForLoc(u.loc, lastmodCtx);
+    try {
+      u.lastmod = sanitizeLastmod(lastmodForLoc(u.loc, lastmodCtx)) ?? lastmodCtx.buildDay;
+    } catch {
+      u.lastmod = lastmodCtx.buildDay;
+    }
   }
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url>
-    <loc>${xmlEscape(BASE + u.loc)}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`).join("\n")}
-</urlset>`;
-
-  writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
-  const distinctLastmods = new Set(urls.map((u) => u.lastmod));
-  console.log(`✓ Sitemap written with ${urls.length} URLs (${distinctLastmods.size} distinct lastmod dates)`);
+  const xml = buildSitemapXml(urls, { buildDay });
+  const written = urls.filter((u) => buildUrlEntry(u, { buildDay }));
+  if (write) {
+    writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
+    const distinctLastmods = new Set(written.map((u) => u.lastmod).filter(Boolean));
+    console.log(`✓ Sitemap written with ${written.length} URLs (${distinctLastmods.size} distinct lastmod dates)`);
+  }
+  return { xml, urls: written };
 }
 
 function writeFallbackSitemap() {
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${xmlEscape(BASE + "/")}</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>`;
+  const xml = buildSitemapXml(
+    [{ loc: "/", changefreq: "daily", priority: "1.0" }],
+    { buildDay: new Date().toISOString().split("T")[0] },
+  );
   writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
 }
 

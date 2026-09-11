@@ -169,6 +169,20 @@ export function validateWorldClassRoutes() {
       locs.some((loc) => loc.includes("/player/chris-paul")),
       "retired Chris Paul should stay in the sitemap with roster-status context",
     );
+    const urlOpens = (sitemap.match(/<url>/g) || []).length;
+    const urlCloses = (sitemap.match(/<\/url>/g) || []).length;
+    assertCond(urlOpens === urlCloses, `sitemap url tags truncated (${urlOpens} open / ${urlCloses} close)`);
+    assertCond(sitemap.trimEnd().endsWith("</urlset>"), "sitemap urlset truncated");
+    for (const loc of locs) {
+      if (!loc.includes("/player/")) continue;
+      const escaped = loc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const block = sitemap.match(
+        new RegExp(
+          `<url>\\s*<loc>${escaped}<\\/loc>\\s*<lastmod>[^<]+<\\/lastmod>\\s*<changefreq>[^<]+<\\/changefreq>\\s*<priority>[^<]+<\\/priority>\\s*<\\/url>`,
+        ),
+      );
+      assertCond(Boolean(block), `sitemap player entry truncated or incomplete: ${loc}`);
+    }
   }
 
   return { ok: true };

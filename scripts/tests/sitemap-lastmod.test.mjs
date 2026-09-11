@@ -5,10 +5,15 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import {
   STATIC_ROUTE_SOURCES,
+  assertWellFormedSitemap,
+  buildSitemapXml,
   extractExportedTimestamp,
+  generate,
   isSitemapIndexablePlayer,
   lastmodForLoc,
   playerSitemapMeta,
+  sanitizeLastmod,
+  xmlEscape,
 } from "../generate-sitemap.mjs";
 import { SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
 import { stampGeneratedDate } from "../lib/stamp-generated-date.mjs";
@@ -218,5 +223,70 @@ test("every static sitemap source file exists (no silent build-day lastmod)", ()
     for (const rel of files) {
       assert.ok(existsSync(join(ROOT, rel)), `${loc} source missing: ${rel}`);
     }
+  }
+});
+
+test("current-team one-mention players stay sitemap-indexable", () => {
+  assert.equal(
+    isSitemapIndexablePlayer("Jaime Jaquez Jr.", { hasCurrentTeam: true, mentions: 1 }, lists),
+    true,
+  );
+});
+
+test("sanitizeLastmod rejects non-ISO values instead of interpolating them", () => {
+  assert.equal(sanitizeLastmod("undefined"), null);
+  assert.equal(sanitizeLastmod(null), null);
+  assert.equal(sanitizeLastmod("2026-09-10"), "2026-09-10");
+});
+
+test("xmlEscape strips control characters that would invalidate XML 1.0", () => {
+  assert.equal(xmlEscape("Jaime\u0001Jaquez"), "JaimeJaquez");
+  assert.equal(xmlEscape("OKC & SAS"), "OKC &amp; SAS");
+});
+
+test("buildSitemapXml skips broken entries and never emits a truncated url block", () => {
+  const xml = buildSitemapXml(
+    [
+      { loc: "/player/jaime-jaquez-jr", lastmod: "2026-09-10", changefreq: "weekly", priority: "0.5" },
+      { loc: "/player/broken", lastmod: "not-a-date", changefreq: "weekly", priority: "0.5" },
+      { loc: "not-a-path", lastmod: "2026-09-10", changefreq: "weekly", priority: "0.5" },
+    ],
+    { buildDay: "2026-09-11" },
+  );
+  assertWellFormedSitemap(xml);
+  assert.match(
+    xml,
+    /<url>\s*<loc>https:\/\/hoopsintel\.net\/player\/jaime-jaquez-jr<\/loc>\s*<lastmod>2026-09-10<\/lastmod>\s*<changefreq>weekly<\/changefreq>\s*<priority>0\.5<\/priority>\s*<\/url>/,
+  );
+  assert.match(xml, /<loc>https:\/\/hoopsintel\.net\/player\/broken<\/loc>\s*<lastmod>2026-09-11<\/lastmod>/);
+  assert.doesNotMatch(xml, /not-a-path/);
+  assert.equal((xml.match(/<url>/g) || []).length, (xml.match(/<\/url>/g) || []).length);
+});
+
+test("assertWellFormedSitemap rejects mid-entry truncation", () => {
+  assert.throws(
+    () =>
+      assertWellFormedSitemap(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hoopsintel.net/player/jaime-jaquez-jr
+`),
+    /truncated/,
+  );
+});
+
+test("generate writes a well-formed sitemap with complete player profile URLs", () => {
+  const { xml, urls } = generate({ write: false });
+  assertWellFormedSitemap(xml);
+  assert.ok(xml.trimEnd().endsWith("</urlset>"));
+  assert.ok(urls.length >= 50, `expected a full sitemap, got ${urls.length} URLs`);
+  const requiredPlayers = ["jaime-jaquez-jr", "vj-edgecombe", "amen-thompson", "keyonte-george"];
+  for (const slug of requiredPlayers) {
+    const block = xml.match(
+      new RegExp(
+        `<url>\\s*<loc>https:\\/\\/hoopsintel\\.net\\/player\\/${slug}<\\/loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}<\\/lastmod>\\s*<changefreq>[a-z]+<\\/changefreq>\\s*<priority>[0-9.]+<\\/priority>\\s*<\\/url>`,
+      ),
+    );
+    assert.ok(block, `complete <url> block missing for /player/${slug}`);
   }
 });
