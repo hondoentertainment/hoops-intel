@@ -62,7 +62,12 @@ function stripForHash(html, path) {
   return s;
 }
 
-function htmlToExcerpt(html) {
+function htmlToExcerpt(html, path) {
+  if (path === "/sitemap.xml" || path?.endsWith("/sitemap.xml")) {
+    const locs = [...html.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const summary = `${locs.length} urls: ${locs.join(" ")}`;
+    return summary.length > MAX_EXCERPT ? `${summary.slice(0, MAX_EXCERPT)}…` : summary;
+  }
   let s = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
   s = s.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "");
   s = s.replace(/<!--[\s\S]*?-->/g, "");
@@ -128,7 +133,7 @@ async function runRecommendations({ base, results, previous, changedPaths, faile
 
   const excerpts = results
     .filter((r) => r.ok && changedPaths.includes(r.path) && r.html)
-    .map((r) => `### ${r.path}\n${htmlToExcerpt(r.html)}`)
+    .map((r) => `### ${r.path}\n${htmlToExcerpt(r.html, r.path)}`)
     .join("\n\n");
 
   const failedNote =
