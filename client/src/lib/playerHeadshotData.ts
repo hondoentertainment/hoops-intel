@@ -346,6 +346,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "labaron philon": 4873090,
   "lajae jones": 5108969,
   "lamelo ball": 4432816,
+  "lamont butler": 4433183,
   "landry shamet": 3914044,
   "larry nance": 2580365,
   "lauri markkanen": 4066336,
