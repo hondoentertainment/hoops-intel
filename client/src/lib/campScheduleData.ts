@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-09-11T13:08:14.518Z",
+  fetchedAt: "2026-09-12T13:07:04.478Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -39,14 +39,14 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-08",when:"10/8 - 7:00 PM EDT",away:"BOS",home:"CLE",tv:"",venue:"Rocket Arena"},
   {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"NOP",home:"MIA",tv:"",venue:"Kaseya Center"},
   {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"PHI",home:"BRK",tv:"",venue:"Barclays Center"},
-  {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"WAS",home:"NYK",tv:"",venue:"Madison Square Garden"},
+  {dateIso:"2026-10-08",when:"10/8 - 7:30 PM EDT",away:"WAS",home:"NYK",tv:"MNMT",venue:"Madison Square Garden"},
   {dateIso:"2026-10-08",when:"10/8 - 8:00 PM EDT",away:"ATL",home:"SAS",tv:"",venue:"Frost Bank Center"},
   {dateIso:"2026-10-08",when:"10/8 - 10:30 PM EDT",away:"SAC",home:"LAL",tv:"ESPN2",venue:"crypto.com Arena"},
   {dateIso:"2026-10-09",when:"10/9 - 8:00 AM EDT",away:"HOU",home:"DAL",tv:"",venue:"Venetian Arena"},
   {dateIso:"2026-10-09",when:"10/9 - 8:00 PM EDT",away:"MEM",home:"CHI",tv:"",venue:"United Center"},
   {dateIso:"2026-10-10",when:"10/10 - 6:30 PM EDT",away:"LAC",home:"TOR",tv:"",venue:"Rogers Arena"},
   {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"ATL",home:"IND",tv:"",venue:"Gainbridge Fieldhouse"},
-  {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"DET",home:"WAS",tv:"",venue:"Capital One Arena"},
+  {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"DET",home:"WAS",tv:"MNMT",venue:"Capital One Arena"},
   {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"MIN",home:"MIA",tv:"",venue:"Kaseya Center"},
   {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"PHI",home:"BOS",tv:"",venue:"TD Garden"},
   {dateIso:"2026-10-10",when:"10/10 - 8:30 PM EDT",away:"SAC",home:"GSW",tv:"",venue:"Chase Center"},
