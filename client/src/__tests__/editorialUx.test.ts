@@ -39,6 +39,7 @@ describe("editorial UX primitives", () => {
     const watch = readFileSync(join(srcDir, "pages/WatchGuide.tsx"), "utf8");
     const podcast = readFileSync(join(srcDir, "pages/PodcastCompanion.tsx"), "utf8");
     expect(watch).toContain("DeskLoopLinks");
+    expect(watch).toContain("No games on the board");
     expect(podcast).toContain("DeskLoopLinks");
   });
 });
