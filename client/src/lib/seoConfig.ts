@@ -27,6 +27,8 @@ export const NOINDEX_PATHS = new Set([
   "/widgets/analytics",
   "/embed-stats",
   "/embed",
+  "/82-0",
+  "/badges",
 ]);
 
 const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
@@ -67,6 +69,11 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description: "Tonight's ESPN slate. When the league is dark, an honest empty board that points to camp intel on the desk.",
     canonicalPath: "/tonight",
   },
+  "/players": {
+    title: "NBA Player Index | Hoops Intel",
+    description: "Browse and search Hoops Intel player profiles — Pulse Index rankings, archive coverage, and roster status.",
+    canonicalPath: "/players",
+  },
   "/pick-em": {
     title: "NBA Playoff Pick 'Em | Hoops Intel",
     description: "Bracket-style playoff picks and series predictions on Hoops Intel.",
@@ -86,6 +93,7 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     title: "The 82-0 Challenge | Hoops Intel",
     description: "Spin a franchise and an era, draft a starting five, and simulate a full season. Can your lineup go 82-0?",
     canonicalPath: "/82-0",
+    noindex: true,
   },
   "/performance": {
     title: "Season Performance Tracker | Hoops Intel",
@@ -136,6 +144,7 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     title: "Hoops Intel Badges | Hoops Intel",
     description: "Achievement badges earned across Hoops Intel tools and community features.",
     canonicalPath: "/badges",
+    noindex: true,
   },
   "/community-pulse": {
     title: "Community Pulse | Hoops Intel",
@@ -234,10 +243,10 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/tools",
   "/injuries",
   "/tonight",
+  "/players",
   "/pick-em",
   "/trade-value",
   "/trivia",
-  "/82-0",
   "/performance",
   "/momentum",
   "/lineups",
@@ -247,7 +256,6 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/sentiment",
   "/tactics",
   "/projections",
-  "/badges",
   "/community-pulse",
   "/watch-guide",
   "/podcast-companion",

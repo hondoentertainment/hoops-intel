@@ -12,6 +12,7 @@ const STATIC_IMPORTERS: Record<string, Importer> = {
   "/trade-value": () => import("../pages/TradeValue"),
   "/injuries": () => import("../pages/InjuryReport"),
   "/tonight": () => import("../pages/Tonight"),
+  "/players": () => import("../pages/Players"),
   "/trivia": () => import("../pages/Trivia"),
   "/82-0": () => import("../pages/EightyTwoZero"),
   "/performance": () => import("../pages/SeasonPerformance"),

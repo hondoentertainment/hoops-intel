@@ -8,6 +8,11 @@ export function editionUpdatedLabel(): string {
   return `Updated ${EDITION_PUBLISH_LABEL} · ${pulseEdition.date}`;
 }
 
+/** Visible desk stamp — edition date only, no live clock. */
+export function lastUpdatedStamp(display = pulseEdition.date): string {
+  return `Last updated: ${display}`;
+}
+
 export function espnSourceLabel(fetchedAt?: number | string | null): string {
   if (fetchedAt == null) return "Source: ESPN";
   const ts = typeof fetchedAt === "number" ? fetchedAt : Date.parse(String(fetchedAt));

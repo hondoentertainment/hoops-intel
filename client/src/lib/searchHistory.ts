@@ -6,6 +6,7 @@ export const POPULAR_SEARCH_DESTINATIONS = [
   { label: "Injury report", href: "/injuries" },
   { label: "Season projections", href: "/projections" },
   { label: "Compare players", href: "/compare-players" },
+  { label: "Player index", href: "/players" },
   { label: "Watch guide", href: "/watch-guide" },
   { label: "Ask Hoops Intel", href: "/ask" },
 ];

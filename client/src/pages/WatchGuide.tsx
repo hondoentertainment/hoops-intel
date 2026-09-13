@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskLoopLinks, EmptyState } from "../components/enhanced/EnhancedUi";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -288,6 +289,7 @@ export default function WatchGuide() {
   const topGame = data.games[data.topPick.gameIndex];
   const sleeperGame = data.games[data.sleeper.gameIndex];
   const skipGame = data.games[data.skipIt.gameIndex];
+  const slateOpen = data.games.length > 0 && Boolean(topGame);
 
   return (
     <ToolPageLayout
@@ -313,6 +315,16 @@ export default function WatchGuide() {
           <div className="desk-hairline mt-3" />
         </div>
 
+        {!slateOpen ? (
+          <EmptyState
+            kicker="Watch guide"
+            title="No games on the board"
+            body={data.nightOverview || "The desk stays honest — no invented watch rankings when the league is dark."}
+            pill="NOT TONIGHT"
+            footnote={data.topPick.reason}
+          />
+        ) : (
+          <>
         {/* Top Pick Callout */}
         <CalloutCard type="topPick" game={topGame} reason={data.topPick.reason} />
 
@@ -347,6 +359,8 @@ export default function WatchGuide() {
 
         {/* Skip It */}
         <CalloutCard type="skipIt" game={skipGame} reason={data.skipIt.reason} />
+          </>
+        )}
 
         {/* Legend */}
         <div
@@ -385,6 +399,8 @@ export default function WatchGuide() {
             Each factor scored 0-20. Watch Score = sum of all factors.
           </p>
         </div>
+
+        <DeskLoopLinks intro="Continue the pre-game loop" />
 
         {/* Footer spacer */}
         <div className="h-12" />

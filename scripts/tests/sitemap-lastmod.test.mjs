@@ -107,7 +107,21 @@ test("publisher 200 routes are in the static sitemap list", () => {
   const locs = SITEMAP_STATIC_ROUTES.map((r) => r.loc);
   assert.ok(locs.includes("/embed-stats"));
   assert.ok(locs.includes("/widgets/analytics"));
+  assert.ok(locs.includes("/players"));
+  assert.ok(locs.includes("/tonight"));
   assert.ok(!locs.includes("/account"));
+  assert.ok(!locs.includes("/82-0"));
+  assert.ok(!locs.includes("/badges"));
+});
+
+test("tonight and players lastmod follow the daily edition", () => {
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const pulseIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/tonight", ctx), later(pulseIso, ctx.editionIso));
+  assert.equal(lastmodForLoc("/players", ctx), later(pulseIso, ctx.editionIso));
+  assert.equal(lastmodForLoc("/tonight", ctx), pulseIso);
+  assert.notEqual(lastmodForLoc("/tonight", ctx), ctx.buildDay);
 });
 
 test("stampGeneratedDate upserts ISO generatedDate without rewriting date", () => {
@@ -200,7 +214,11 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
   const editionIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
   assert.ok(editionIso, "pulseEdition.date should parse to an ISO day");
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
+  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/82-0<\/loc>/);
+  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/badges<\/loc>/);
   for (const path of [
+    "/tonight",
+    "/players",
     "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",

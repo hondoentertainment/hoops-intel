@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskLoopLinks } from "../components/enhanced/EnhancedUi";
 import { podcastCompanion } from "../lib/podcastData";
 import type { TalkingPoint } from "../lib/podcastData";
 
@@ -284,6 +285,10 @@ export default function PodcastCompanion() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-8">
+          <DeskLoopLinks intro="Tonight’s slate and rotations" />
         </div>
     </ToolPageLayout>
   );

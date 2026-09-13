@@ -192,6 +192,26 @@ export function InjuryChip({ status }: { status: string }) {
   return <StatusPill tone={injuryChipTone(status)}>{injuryStatusLabel(status)}</StatusPill>;
 }
 
+export function DeskLoopLinks({
+  intro = "Pre-game desk",
+}: {
+  intro?: string;
+}) {
+  return (
+    <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <p className="text-[10px] font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
+        {intro}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        <EnhancedButton href="/tonight">Tonight&apos;s slate</EnhancedButton>
+        <EnhancedButton href="/lineups" variant="ghost">
+          Lineup intel
+        </EnhancedButton>
+      </div>
+    </div>
+  );
+}
+
 export function EnhancedButton({
   href,
   children,

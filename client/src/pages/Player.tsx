@@ -7,8 +7,9 @@ import { getTeamColor } from "../lib/teamColors";
 import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
-import { getPlayerIntelBySlug, type PlayerIntelResponse } from "../lib/playerIntel";
+import { getPlayerIntelBySlug, playerHasLiveDeskCoverage, type PlayerIntelResponse } from "../lib/playerIntel";
 import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
+import { EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -114,7 +115,7 @@ export default function Player() {
         <div className="container py-20 text-center">
           <p className="enhanced-kicker mb-3">Player</p>
           <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">Player not found</h1>
-          <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to Hoops Intel</a>
+          <a href="/players" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Browse players</a>
         </div>
         <SiteFooter />
       </div>
@@ -148,7 +149,7 @@ export default function Player() {
         <Breadcrumbs
           items={[
             { label: "Today's desk", href: "/" },
-            { label: "Pulse Index", href: "/#pulse-index" },
+            { label: "Players", href: "/players" },
             { label: player.name },
           ]}
         />
@@ -255,6 +256,23 @@ export default function Player() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-4">
+            {!playerHasLiveDeskCoverage(intel) && (
+              <>
+                <EmptyState
+                  kicker="Limited coverage"
+                  title={`${player.name} is not on today’s Pulse desk`}
+                  body="This profile is built from archive mentions only — no Pulse score, injury tag, or live game line yet. Check back after the next morning edition."
+                  pill="ARCHIVE ONLY"
+                  footnote={`${player.mentions} archive mention${player.mentions !== 1 ? "s" : ""}`}
+                />
+                <div className="flex flex-wrap gap-2">
+                  <EnhancedButton href="/players">Player index</EnhancedButton>
+                  <EnhancedButton href="/compare-players" variant="ghost">
+                    Compare Pulse
+                  </EnhancedButton>
+                </div>
+              </>
+            )}
             {roster && roster.status !== "active" && (
               <div
                 className="glass-card rounded-lg p-4"

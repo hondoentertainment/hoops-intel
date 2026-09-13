@@ -1,7 +1,9 @@
 import EditorialShell from "../components/EditorialShell";
+import DataTrustBadge from "../components/DataTrustBadge";
 import { DeskPanel, EmptyState, EnhancedButton, GamePreviewCard, PageHero, StatCard } from "../components/enhanced/EnhancedUi";
 import { campOpenDisplay, daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
 import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { makeGameId } from "../lib/gameCenter";
 
@@ -11,17 +13,22 @@ export default function Tonight() {
   const deskCards = campIntelCards(3);
   const schedule = campScheduleStatus();
   const openDate = campOpenDisplay();
+  const freshness = lastUpdatedStamp();
 
   return (
     <EditorialShell>
       <div className="px-4 md:px-7 py-6 flex flex-col gap-5">
         {slateOpen ? (
           <>
-            <PageHero
-              kicker="Tonight"
-              title={`${gamePreviews.length} games on the ESPN board`}
-              description="Tip-offs from today’s edition — we never invent a slate."
-            />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <PageHero
+                kicker="Tonight"
+                title={`${gamePreviews.length} games on the ESPN board`}
+                description="Tip-offs from today’s edition — we never invent a slate."
+                meta={freshness}
+              />
+              <DataTrustBadge variant="edition" className="self-start shrink-0" />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
               {(gamePreviews as Array<{
                 gameId?: string;
@@ -51,6 +58,12 @@ export default function Tonight() {
           </>
         ) : (
           <>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <DataTrustBadge variant="edition" />
+              <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                {freshness}
+              </p>
+            </div>
             <EmptyState
               kicker="Tonight"
               title={`Waiting on ${openDate}`}
