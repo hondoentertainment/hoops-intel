@@ -262,6 +262,7 @@ export const STATIC_ROUTE_SOURCES = {
   "/tools": ["client/src/lib/siteNav.ts"],
   "/injuries": ["client/src/lib/pulseData.ts"],
   "/tonight": ["client/src/lib/pulseData.ts", "client/src/pages/Tonight.tsx"],
+  "/players": ["client/src/lib/playerRosterStatus.ts", "client/src/lib/pulseData.ts"],
   "/pick-em": ["client/src/lib/playoffData.ts", "client/src/pages/PickEm.tsx"],
   "/trade-value": ["client/src/lib/tradeValueData.ts"],
   "/trivia": ["client/src/pages/Trivia.tsx"],
@@ -319,6 +320,7 @@ export function lastmodForLoc(loc, ctx) {
   const deskTied = new Set([
     "/injuries",
     "/tonight",
+    "/players",
     "/my-pulse",
     "/print-edition",
     "/betting-intel",

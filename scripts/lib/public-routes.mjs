@@ -11,6 +11,7 @@ export const SITE_REVIEW_PATHS = [
   "/playoffs",
   "/injuries",
   "/tonight",
+  "/players",
   "/performance",
   "/pulse-history",
   "/my-pulse",
@@ -52,6 +53,7 @@ export const SITEMAP_STATIC_ROUTES = [
   // Daily desk — crawl above interactive tools
   { loc: "/injuries", priority: "0.7", changefreq: "daily" },
   { loc: "/tonight", priority: "0.7", changefreq: "daily" },
+  { loc: "/players", priority: "0.65", changefreq: "daily" },
   { loc: "/betting-intel", priority: "0.7", changefreq: "daily" },
   { loc: "/watch-guide", priority: "0.65", changefreq: "daily" },
   { loc: "/momentum", priority: "0.65", changefreq: "daily" },
@@ -84,8 +86,6 @@ export const SITEMAP_STATIC_ROUTES = [
   { loc: "/compare-players", priority: "0.55", changefreq: "weekly" },
   { loc: "/trade-simulator", priority: "0.5", changefreq: "weekly" },
   { loc: "/trivia", priority: "0.5", changefreq: "weekly" },
-  { loc: "/82-0", priority: "0.5", changefreq: "weekly" },
-  { loc: "/badges", priority: "0.5", changefreq: "weekly" },
 ];
 
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };

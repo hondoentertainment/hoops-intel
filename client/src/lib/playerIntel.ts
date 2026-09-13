@@ -202,3 +202,13 @@ export function getPlayerIntelBySlug(slug: string): PlayerIntelResponse | null {
 export function topPlayerIntelSlugs(limit = 12) {
   return pulseIndex.slice(0, limit).map((p: any) => playerSlug(p.player));
 }
+
+/** True when the profile has live desk intel — Pulse, injury, sentiment, or games. */
+export function playerHasLiveDeskCoverage(intel: PlayerIntelResponse | null): boolean {
+  if (!intel) return false;
+  if (intel.pulse || intel.injury || intel.sentiment) return true;
+  if (intel.recentGames?.length || intel.upcomingGames?.length) return true;
+  if (intel.playoff?.mover || (intel.playoff?.series?.length ?? 0) > 0) return true;
+  if (intel.statLeaderCategories?.length) return true;
+  return false;
+}

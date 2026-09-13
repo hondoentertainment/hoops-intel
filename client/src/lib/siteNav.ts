@@ -33,6 +33,7 @@ export function mainNavLinks(date = new Date()): MainNavLink[] {
     { label: "Pulse", href: "/#pulse-index" },
     { label: playoffsNavLabel(), href: PLAYOFFS_NAV_HREF },
     { label: "Watch guide", href: "/watch-guide" },
+    { label: "Players", href: "/players" },
     { label: "Tools", href: "/tools" },
     { label: "Projections", href: offseasonPrimaryHref(date) },
     { label: "Compare", href: "/compare-players" },
@@ -58,6 +59,7 @@ export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Tools", href: "/tools" },
   { label: "My Pulse", href: "/my-pulse" },
   { label: "Watch guide", href: "/watch-guide" },
+  { label: "Players", href: "/players" },
   { label: "How Pulse works", href: "/pulse-methodology" },
   { label: "RSS", href: "/feed.xml" },
 ];
@@ -126,6 +128,7 @@ export interface ToolLink {
 export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Desk", href: "/", description: "Daily briefing, Pulse Index, camp intel when the slate is empty", category: "desk" },
   { label: "Tonight", href: "/tonight", description: "Tonight's ESPN slate — empty when the league is dark, with a pointer to the desk", category: "desk" },
+  { label: "Players", href: "/players", description: "Browse and search player profiles from Pulse and the archive", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },
   { label: "Pulse history", href: "/pulse-history", description: "Ranking history", category: "desk" },
   { label: "My Pulse", href: "/my-pulse", description: "Personalized edition", category: "desk" },

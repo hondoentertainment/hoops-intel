@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskLoopLinks } from "../components/enhanced/EnhancedUi";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -385,6 +386,8 @@ export default function WatchGuide() {
             Each factor scored 0-20. Watch Score = sum of all factors.
           </p>
         </div>
+
+        <DeskLoopLinks intro="Continue the pre-game loop" />
 
         {/* Footer spacer */}
         <div className="h-12" />

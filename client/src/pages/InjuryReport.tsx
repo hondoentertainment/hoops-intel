@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import EditorialShell from "../components/EditorialShell";
 import { EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
 import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
@@ -336,6 +337,7 @@ export default function InjuryReport() {
                 ? " · last-known editorial tags — live injury cron is dark through September"
                 : ""
             }`}
+            meta={lastUpdatedStamp()}
           />
           <button
             type="button"
