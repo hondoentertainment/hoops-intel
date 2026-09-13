@@ -37,6 +37,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/players</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/betting-intel</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
@@ -68,7 +74,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pick-em</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
@@ -80,7 +86,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/widgets</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -98,7 +104,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pro</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -152,7 +158,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/rivals</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -164,19 +170,19 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/guest-pulse</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/pulse-methodology</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/tools</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
@@ -188,13 +194,13 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/performance</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/ask</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
@@ -212,19 +218,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/trivia</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/82-0</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/badges</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

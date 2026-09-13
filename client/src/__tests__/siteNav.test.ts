@@ -43,5 +43,7 @@ describe("siteNav", () => {
     expect(hrefs).not.toContain("/embed-stats");
     expect(TOOLS_DIRECTORY.some((t) => t.href === "/creator-queue")).toBe(true);
     expect(TOOLS_DIRECTORY.some((t) => t.href === "/tonight")).toBe(true);
+    expect(hrefs).toContain("/players");
+    expect(TOOLS_DIRECTORY.some((t) => t.href === "/players")).toBe(true);
   });
 });

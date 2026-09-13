@@ -32,7 +32,13 @@ describe("editorial UX primitives", () => {
     expect(tonight).toContain("EmptyState");
     expect(tonight).toContain("Waiting on");
     expect(tonight).toContain("empty slate until real tip-offs");
+    expect(tonight).toContain("DataTrustBadge");
+    expect(tonight).toContain("lastUpdatedStamp");
     const header = readFileSync(join(srcDir, "components/SiteHeader.tsx"), "utf8");
     expect(header).toContain("Daily NBA Intelligence");
+    const watch = readFileSync(join(srcDir, "pages/WatchGuide.tsx"), "utf8");
+    const podcast = readFileSync(join(srcDir, "pages/PodcastCompanion.tsx"), "utf8");
+    expect(watch).toContain("DeskLoopLinks");
+    expect(podcast).toContain("DeskLoopLinks");
   });
 });
