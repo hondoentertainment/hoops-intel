@@ -4,6 +4,7 @@ import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import { DeskPanel, PageHero } from "./enhanced/EnhancedUi";
+import { AskInFlowCta } from "./AskHoopsIntel";
 import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
 import { relatedToolsForHref } from "../lib/siteNav";
 
@@ -115,7 +116,12 @@ export default function ToolPageLayout({
           </header>
         ) : null}
         <div className={related.length > 0 ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_15rem] gap-8 items-start" : undefined}>
-          <div className="min-w-0">{children}</div>
+          <div className="min-w-0">
+            {children}
+            <div className="mt-8">
+              <AskInFlowCta />
+            </div>
+          </div>
           {related.length > 0 && (
             <aside className="lg:sticky lg:top-20">
               <DeskPanel kicker="Related tools">

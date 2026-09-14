@@ -1,6 +1,6 @@
 import { pulseEdition, pulseIndex, injuryUpdates, narrative } from "../../lib/pulseData";
 import { slugify } from "../../lib/searchUtils";
-import { dispatchAskPrompt } from "../../lib/askShortcuts";
+import { AskInFlowCta } from "../AskHoopsIntel";
 import { isFinalsActive, finalistTeams } from "../../lib/playoffData";
 import {
   campIntelCards,
@@ -12,7 +12,6 @@ import {
 } from "../../lib/campDesk";
 import {
   compactPulseStats,
-  deskAskChips,
   deskEyebrow,
   deskKickerLine,
   formatPulseScore,
@@ -159,7 +158,6 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
   const desktopPulse = pulseRows.slice(0, 4);
   const mobilePulse = pulseRows.slice(0, 3);
   const railInjuries = injuryUpdates.slice(0, 4);
-  const chips = deskAskChips();
   const desktopStats = heroStats();
   const mobileStats = mobileHeroStats();
   const campMode = isCampDesk() && !hasTonightSlate();
@@ -261,8 +259,12 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
               </>
             )}
 
+            <AskInFlowCta />
+          </div>
+
+          <aside id="injuries" className="hidden md:flex w-full lg:w-[420px] shrink-0 flex-col gap-4">
             {campMode && schedule.kind !== "empty" ? (
-              <DeskPanel id="camp-schedule" kicker="ESPN camp-week slate" hint={schedule.sub} className="hidden md:flex">
+              <DeskPanel id="camp-schedule" kicker="ESPN camp-week slate" hint={schedule.sub}>
                 <div className="flex gap-2 overflow-x-auto pb-1">
                   {schedule.games.map((game) => (
                     <CampSlateCard key={`${game.away}-${game.home}-${game.when}`} game={game} />
@@ -270,9 +272,6 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
                 </div>
               </DeskPanel>
             ) : null}
-          </div>
-
-          <aside id="injuries" className="hidden md:flex w-full lg:w-[420px] shrink-0 flex-col gap-4">
             <DeskPanel kicker={campMode ? "Camp Watch" : "Injury Wire"} hint={campMode ? "Last known" : "Desk tags"}>
               <div className="flex flex-col gap-2.5">
                 {railInjuries.map((injury) => (
@@ -309,20 +308,6 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
                 </DeskInset>
               </DeskPanel>
             ) : null}
-
-            <DeskPanel kicker="Ask Hoops Intel" hint="Shortcuts into the desk AI">
-              {chips.map((chip) => (
-                <button
-                  key={chip}
-                  type="button"
-                  className="desk-inset text-left text-xs font-normal px-2.5 py-2 min-h-11 w-full text-[var(--hi-text,#f2f5fa)]"
-                  onClick={() => dispatchAskPrompt(chip)}
-                >
-                  {chip}
-                </button>
-              ))}
-              <EnhancedButton href="/ask" className="w-full">Ask Hoops Intel</EnhancedButton>
-            </DeskPanel>
           </aside>
 
           {campMode ? (

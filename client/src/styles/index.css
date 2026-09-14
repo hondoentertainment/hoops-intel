@@ -16,8 +16,10 @@
 }
 
 html {
-  /* Matches MobileBottomNav (~86px chrome + safe area). Keep Ask, toasts, and page padding in sync. */
-  --hi-tabbar-clearance: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  /* MobileBottomNav is 4rem + safe-area. Content inset is the Figma 88px safe-stack. */
+  --hi-tabbar-height: 4rem;
+  --hi-tabbar-clearance: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-bottom: var(--hi-tabbar-clearance);
 }
 
 html.dark {
@@ -96,8 +98,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fixed phone tab bar — keep page content and empty states clear of it. */
-.has-mobile-tabbar {
+/* App shell owns the tab-bar inset so every route clears the fixed nav. */
+.hi-app-shell:not(.hi-app-shell--chromeless) {
   padding-bottom: var(--hi-tabbar-clearance);
 }
 
@@ -105,14 +107,25 @@ body {
   padding-bottom: var(--hi-tabbar-clearance);
 }
 
-@media (min-width: 768px) {
-  .ask-page-composer {
-    padding-bottom: 0;
-  }
+.ask-inflow-cta {
+  display: flex;
+  width: 100%;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.125rem;
+  border-radius: 14px;
+  background: var(--hi-accent, #1ec8f5);
+  color: var(--hi-accent-ink, #0a0d12);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 @media (min-width: 768px) {
-  .has-mobile-tabbar {
+  .hi-app-shell:not(.hi-app-shell--chromeless),
+  .has-mobile-tabbar,
+  .ask-page-composer {
     padding-bottom: 0;
   }
 }
