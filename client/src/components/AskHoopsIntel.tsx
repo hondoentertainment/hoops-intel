@@ -202,6 +202,24 @@ export function useChatEngine() {
 // CHAT MESSAGES UI
 // ═══════════════════════════════════════════════════════════
 
+export function openAskAssistant() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new Event("hoops-intel:open-ask"));
+}
+
+export function AskInFlowCta({ className = "" }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      data-ask-inflow-cta="1"
+      className={`ask-inflow-cta ${className}`.trim()}
+      onClick={() => openAskAssistant()}
+    >
+      Ask Hoops Intel
+    </button>
+  );
+}
+
 export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) {
   const suggestions = contextualAskChips();
 
@@ -422,13 +440,14 @@ export default function AskHoopsIntel() {
   const [isOpen, setIsOpen] = useState(false);
   const { messages, input, setInput, isLoading, sendMessage } = useChatEngine();
   const panelRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   useFocusTrap(isOpen, panelRef);
   useBodyScrollLock(isOpen);
 
   const closePanel = useCallback(() => {
     setIsOpen(false);
-    queueMicrotask(() => triggerRef.current?.focus());
+    queueMicrotask(() => {
+      document.querySelector<HTMLButtonElement>("[data-ask-inflow-cta]")?.focus();
+    });
   }, []);
 
   useEffect(() => {
@@ -438,8 +457,13 @@ export default function AskHoopsIntel() {
       setIsOpen(true);
       void sendMessage(question.trim());
     };
+    const open = () => setIsOpen(true);
     window.addEventListener("hoops-intel:ask", handler);
-    return () => window.removeEventListener("hoops-intel:ask", handler);
+    window.addEventListener("hoops-intel:open-ask", open);
+    return () => {
+      window.removeEventListener("hoops-intel:ask", handler);
+      window.removeEventListener("hoops-intel:open-ask", open);
+    };
   }, [sendMessage]);
 
   useEffect(() => {
@@ -454,35 +478,9 @@ export default function AskHoopsIntel() {
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen, closePanel]);
 
-  return (
-    <>
-      {/* Floating Button */}
-      {!isOpen && (
-        <button
-          type="button"
-          ref={triggerRef}
-          onClick={() => setIsOpen(true)}
-          className="hidden md:flex fixed z-50 items-center gap-2 min-h-[48px] px-4 py-3 rounded-full shadow-lg transition-all hover:scale-[1.02] md:bottom-6"
-          style={{
-            background: "linear-gradient(135deg, #0EA5E9, #0284C7)",
-            color: "white",
-            boxShadow: "0 4px 20px rgba(14,165,233,0.4)",
-            bottom: "calc(4.75rem + env(safe-area-inset-bottom))",
-            right: "max(1.25rem, env(safe-area-inset-right))",
-          }}
-          aria-haspopup="dialog"
-          aria-label="Open Hoops Intel AI assistant"
-          data-ask-ai-fab="1"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-          </svg>
-          <span className="text-sm font-semibold">Ask Hoops Intel</span>
-        </button>
-      )}
+  if (!isOpen) return null;
 
-      {/* Chat Panel */}
-      {isOpen && (
+  return (
         <div
           ref={panelRef}
           className="ask-chat-panel fixed z-50 flex flex-col"
@@ -566,7 +564,5 @@ export default function AskHoopsIntel() {
             inputId="ask-hoops-intel-floating"
           />
         </div>
-      )}
-    </>
   );
 }

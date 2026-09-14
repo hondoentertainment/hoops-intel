@@ -16,7 +16,8 @@ export default function MobileBottomNav() {
     <nav
       className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 md:hidden border-t"
       style={{
-        paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
+        height: "calc(var(--hi-tabbar-height) + env(safe-area-inset-bottom, 0px))",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
         paddingLeft: "env(safe-area-inset-left)",
         paddingRight: "env(safe-area-inset-right)",
         background: "var(--hi-surface,#0c1522)",
@@ -24,7 +25,7 @@ export default function MobileBottomNav() {
       }}
       aria-label="Primary mobile navigation"
     >
-      <div className="grid grid-cols-5 px-2 pt-2.5 pb-4">
+      <div className="grid grid-cols-5 h-16 px-2">
         {mobileBottomNavLinks().map((link) => {
           const active = linkActive(link.href, location);
           return (
@@ -32,7 +33,7 @@ export default function MobileBottomNav() {
               key={link.href}
               href={link.href}
               aria-current={active ? "page" : undefined}
-              className="mobile-bottom-nav-item relative min-h-12 flex flex-col items-center justify-center gap-1 text-[11px] leading-none tracking-wide active:scale-[0.97] transition-transform"
+              className="mobile-bottom-nav-item relative h-full min-h-12 flex flex-col items-center justify-center gap-1 text-[11px] leading-none tracking-wide active:scale-[0.97] transition-transform"
               style={{
                 color: active ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8b9bb0)",
                 fontWeight: active ? 600 : 500,
