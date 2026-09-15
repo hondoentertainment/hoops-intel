@@ -55,6 +55,10 @@ describe("editorial UX primitives", () => {
     expect(css).toContain(".desk-section-pill");
     expect(css).toContain("min-height: 2.75rem");
     expect(css).toContain(".desk-field:focus-visible");
+
+    const gameCenter = readFileSync(join(srcDir, "pages/GameCenter.tsx"), "utf8");
+    expect(gameCenter).toContain('title="Loading matchup"');
+    expect(gameCenter).toContain('title="No Game Center match for this ID"');
   });
 
   it("routes tool pages and the desk through the shared footer", () => {

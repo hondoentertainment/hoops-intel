@@ -116,7 +116,13 @@ export default function GameCenter() {
 
   if (loading && !game) {
     return (
-      <ToolPageLayout subtitle="GAME CENTER" showRelated={false} showBreadcrumbs={false}>
+      <ToolPageLayout
+        subtitle="GAME CENTER"
+        sectionLabel="Game Center"
+        title="Loading matchup"
+        showRelated={false}
+        showBreadcrumbs={false}
+      >
         <Skeleton />
       </ToolPageLayout>
     );
@@ -126,6 +132,9 @@ export default function GameCenter() {
     return (
       <ToolPageLayout
         subtitle="GAME CENTER"
+        sectionLabel="Game not found"
+        title="No Game Center match for this ID"
+        description="That game is not on today’s edition or the cached slate."
         showRelated={false}
         breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Scores", href: "/#scores" }, { label: "Not found" }]}
       >
