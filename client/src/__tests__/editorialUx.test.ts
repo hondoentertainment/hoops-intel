@@ -42,4 +42,18 @@ describe("editorial UX primitives", () => {
     expect(watch).toContain("No games on the board");
     expect(podcast).toContain("DeskLoopLinks");
   });
+
+  it("keeps Ask in-flow in the main column and never as a fixed overlay", () => {
+    const ask = readFileSync(join(srcDir, "components/AskHoopsIntel.tsx"), "utf8");
+    const desk = readFileSync(join(srcDir, "components/enhanced/EnhancedDesk.tsx"), "utf8");
+    const shell = readFileSync(join(srcDir, "components/EditorialShell.tsx"), "utf8");
+    const layout = readFileSync(join(srcDir, "components/ToolPageLayout.tsx"), "utf8");
+    expect(ask).toContain("export function AskInFlowCta");
+    expect(ask).toContain("data-ask-inflow-cta");
+    expect(ask).not.toMatch(/data-ask-ai-fab/);
+    expect(ask).not.toMatch(/hidden md:flex fixed/);
+    expect(desk).toContain("AskInFlowCta");
+    expect(shell).toContain("AskInFlowCta");
+    expect(layout).toContain("AskInFlowCta");
+  });
 });

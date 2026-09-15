@@ -6,6 +6,13 @@ import { describe, expect, it } from "vitest";
 const srcDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 describe("mobile chrome", () => {
+  it("sizes the tab bar to the shared height token", () => {
+    const nav = readFileSync(join(srcDir, "components/MobileBottomNav.tsx"), "utf8");
+    expect(nav).toContain("var(--hi-tabbar-height)");
+    expect(nav).toContain("h-16");
+    expect(nav).not.toMatch(/pt-2\.5 pb-4/);
+  });
+
   it("does not clip header popovers on the shared 56px row", () => {
     const header = readFileSync(join(srcDir, "components/SiteHeader.tsx"), "utf8");
     expect(header).toMatch(/h-14 min-h-\[56px\]"/);
@@ -15,8 +22,11 @@ describe("mobile chrome", () => {
   it("keeps Ask input and page padding on the shared tab-bar clearance", () => {
     const ask = readFileSync(join(srcDir, "pages/AskAI.tsx"), "utf8");
     const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
     expect(css).toContain("--hi-tabbar-clearance");
-    expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
+    expect(css).toContain("--hi-tabbar-height");
+    expect(css).toMatch(/\.hi-app-shell:not\(\.hi-app-shell--chromeless\)[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
+    expect(app).toContain("hi-app-shell");
     expect(ask).toContain("ask-page-composer");
     expect(css).toContain(".ask-page-composer");
   });

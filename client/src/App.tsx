@@ -146,6 +146,8 @@ export default function App() {
     syncEngagementBadges();
   }, []);
 
+  const chromeless = location.startsWith("/embed/");
+
   return (
     <ThemeProvider switchable={true}>
       <ToastProvider>
@@ -154,7 +156,7 @@ export default function App() {
       <SkipToContent />
       <VercelAnalyticsScript />
       <div
-        className="min-h-screen pb-16 md:pb-0"
+        className={`min-h-screen hi-app-shell${chromeless ? " hi-app-shell--chromeless" : ""}`}
         style={{
           background: "var(--hi-bg-page, #050d1a)",
           color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
@@ -244,11 +246,11 @@ export default function App() {
           </Switch>
         </Suspense>
         </RouteErrorBoundary>
-        <AskHoopsIntel />
-        <MobileBottomNav />
-        <BackToTop />
-        <PwaInstallPrompt />
-        <KeyboardShortcutsHelp />
+        {chromeless ? null : <AskHoopsIntel />}
+        {chromeless ? null : <MobileBottomNav />}
+        {chromeless ? null : <BackToTop />}
+        {chromeless ? null : <PwaInstallPrompt />}
+        {chromeless ? null : <KeyboardShortcutsHelp />}
       </div>
       </ToastProvider>
     </ThemeProvider>

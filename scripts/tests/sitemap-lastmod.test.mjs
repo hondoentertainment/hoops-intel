@@ -154,6 +154,7 @@ test("history and refs lastmod advance with the daily edition when content is fr
 test("weekly tool pages lastmod advance with the daily edition when content is frozen", () => {
   const later = (...dates) => dates.filter(Boolean).sort().at(-1);
   const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  const futureDesk = { buildDay: "2026-12-01", editionIso: "2099-01-01" };
   const frozenTools = [
     ["/lineups", "client/src/lib/lineupData.ts"],
     ["/clutch", "client/src/lib/clutchData.ts"],
@@ -166,8 +167,12 @@ test("weekly tool pages lastmod advance with the daily edition when content is f
   ];
   for (const [path, rel] of frozenTools) {
     const contentIso = extractExportedTimestamp(readFileSync(join(ROOT, rel), "utf8"));
+    assert.ok(contentIso, `${rel} should export a generated date`);
     assert.equal(lastmodForLoc(path, ctx), later(contentIso, ctx.editionIso), path);
-    assert.equal(lastmodForLoc(path, ctx), "2026-09-02", path);
+    assert.notEqual(lastmodForLoc(path, ctx), ctx.buildDay, path);
+    // Weekly stamps can be newer than a fixture edition after the Monday regen.
+    // A later desk date still wins so lastmod tracks freshness, not a frozen week.
+    assert.equal(lastmodForLoc(path, futureDesk), futureDesk.editionIso, path);
   }
 });
 
