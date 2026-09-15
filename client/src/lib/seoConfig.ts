@@ -124,7 +124,7 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
   },
   "/draft": {
     title: "NBA Draft Tracker | Hoops Intel",
-    description: "Draft board movement, prospect intel, and team needs throughout draft season.",
+    description: "Weekly 2026 draft board, prospect intel, and team-need notes. Frozen between weekly regenerations — not a live draft-night tracker.",
     canonicalPath: "/draft",
   },
   "/sentiment": {
@@ -224,7 +224,7 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
   },
   "/pro": {
     title: "Hoops Intel Pro | Hoops Intel",
-    description: "Pro tier features — deeper intel, sharing tools, and premium desk access.",
+    description: "Pro tier — full Pulse ranks, My Pulse alerts, ad-free desk, and early morning delivery. Checkout stays pending until Stripe keys land.",
     canonicalPath: "/pro",
   },
   "/betting-intel": {

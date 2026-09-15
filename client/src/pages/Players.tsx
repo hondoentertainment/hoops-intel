@@ -10,6 +10,7 @@ import {
   InjuryChip,
 } from "../components/enhanced/EnhancedUi";
 import { getTeamColor } from "../lib/teamColors";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import {
   filterBrowsePlayers,
   listBrowsePlayers,
@@ -39,6 +40,7 @@ export default function Players() {
           ? `Search the Pulse Index and archive coverage so sitemap player pages are one click from the desk. ${pulseCount} on today’s Pulse · ${catalog.length} indexable profiles.`
           : "Search the Pulse Index and archive coverage so sitemap player pages are one click from the desk."
       }
+      heroMeta={lastUpdatedStamp()}
       maxWidth="xl"
       showRelated={false}
       breadcrumbs={[

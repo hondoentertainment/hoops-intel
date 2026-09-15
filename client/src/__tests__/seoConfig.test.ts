@@ -49,4 +49,12 @@ describe("soft-launch and desk SEO", () => {
     expect(seo?.canonicalPath).toBe("/players");
     expect(seo?.title).toMatch(/Player Index/i);
   });
+
+  it("indexes the draft board (populated weekly, not a stub)", () => {
+    expect(NOINDEX_PATHS.has("/draft")).toBe(false);
+    const seo = resolveRouteSeo("/draft");
+    expect(seo?.noindex).toBeUndefined();
+    expect(seo?.canonicalPath).toBe("/draft");
+    expect(seo?.description).toMatch(/not a live draft-night/i);
+  });
 });

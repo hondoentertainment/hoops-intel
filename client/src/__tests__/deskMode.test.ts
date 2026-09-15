@@ -5,6 +5,7 @@ import {
   editionContextDeskLabel,
   isOffseasonDesk,
   offseasonPrimaryHref,
+  pulseProFeatureBody,
   seasonModeToEditionContext,
   type ClientSeasonMode,
 } from "../lib/deskMode";
@@ -74,5 +75,15 @@ describe("calendar chrome", () => {
     const january = new Date(Date.UTC(2026, 0, 15));
     expect(isOffseasonDesk(january)).toBe(false);
     expect(activeEditionContext(january)).toBe("regular");
+  });
+});
+
+describe("Pro seasonal copy", () => {
+  it("uses preseason desk language outside playoffs", () => {
+    expect(pulseProFeatureBody("preseason")).toMatch(/preseason desk context/);
+    expect(pulseProFeatureBody("preseason")).not.toMatch(/playoff context/);
+    expect(pulseProFeatureBody("playoffs")).toMatch(/playoff context/);
+    expect(pulseProFeatureBody("dead-period")).toMatch(/offseason desk context/);
+    expect(pulseProFeatureBody("regular")).toMatch(/regular-season context/);
   });
 });

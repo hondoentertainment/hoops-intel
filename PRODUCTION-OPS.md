@@ -40,6 +40,23 @@ Verify live: https://hoopsintel.net/api/ops-readiness
 
 `APP_BASE_URL` defaults to `https://hoopsintel.net` and `PUSH_API_URL` defaults to `https://hoopsintel.net/api/push-notify` in checkout, portal, and `/api/ops-readiness`. Set them explicitly in Vercel anyway. Stripe, VAPID keys, Supabase, Resend, and Anthropic have no safe defaults — those flags stay false until secrets land.
 
+### Status 2026-09-15 (issue #129)
+
+Live `https://hoopsintel.net/api/ops-readiness` still returns `ready: false`. URL defaults are already true (`APP_BASE_URL`, `PUSH_API_URL`, `VAPID_SUBJECT`). Remaining gaps are **owner-held Vercel Production secrets** — there is no further in-repo default that can flip them:
+
+| Gap | Vars Kyle must set in Vercel Production (and GitHub Actions where mirrored) |
+|-----|------------------------------------------------------------------------------|
+| stripe checkout | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_ANNUAL` |
+| stripe webhook | `STRIPE_WEBHOOK_SECRET` |
+| push notify | `PUSH_API_SECRET`, `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` |
+| supabase server | `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` |
+| resend | `RESEND_API_KEY` |
+| anthropic | `ANTHROPIC_API_KEY` (Vercel; separate from the Actions daily-generator secret) |
+
+Informational flags that stay `false` and are **not** in `gaps[]`: `creatorQueue.adminConfigured` (`GUEST_PULSE_ADMIN_SECRET`), `emailDigest.intakeInboxReady` (`CONTACT_INBOUND_EMAIL`), `push.vapidKeyPairReady` (already covered by the push-notify gap). Client `VITE_*` publishable keys are not inspected.
+
+Close #129 only after `ready: true` (or an explicit accept-degraded-prod decision).
+
 The Ops Readiness Check closer may complete a tracker only when `gaps` is an empty array **and** every secret flag is `true` (`stripe.checkoutReady`, `stripe.webhookReady`, `push.notifyAuthReady`, `supabase.serverReady`, `emailDigest.resendReady`, `llm.anthropicSeriesIntelReady`). URL defaults never count as ready. A fetch/parse failure leaves issues open.
 
 ### 3. Stripe Pro

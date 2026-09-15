@@ -1,4 +1,4 @@
-import { editionPublishLabel } from "./pacificTime";
+import { editionPublishLabel, PACIFIC_TZ } from "./pacificTime";
 import { pulseEdition } from "./pulseData";
 
 /** Morning edition publish window (13:00 UTC cron, labeled in America/Los_Angeles). */
@@ -11,6 +11,28 @@ export function editionUpdatedLabel(): string {
 /** Visible desk stamp — edition date only, no live clock. */
 export function lastUpdatedStamp(display = pulseEdition.date): string {
   return `Last updated: ${display}`;
+}
+
+function pacificIsoDay(date: Date): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: PACIFIC_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+}
+
+/** True when the edition display date is a Pacific calendar day behind `now`. */
+export function isDeskEditionStale(now = new Date(), display = pulseEdition.date): boolean {
+  const parsed = new Date(`${display} 12:00:00`);
+  if (Number.isNaN(parsed.getTime())) return false;
+  return pacificIsoDay(parsed) < pacificIsoDay(now);
+}
+
+/** User-facing note when /tonight or /injuries would show yesterday under today's chrome. */
+export function deskStaleNote(now = new Date(), display = pulseEdition.date): string | null {
+  if (!isDeskEditionStale(now, display)) return null;
+  return `Desk date is ${display}. Morning edition has not landed yet — treat this as last-known, not live.`;
 }
 
 export function espnSourceLabel(fetchedAt?: number | string | null): string {

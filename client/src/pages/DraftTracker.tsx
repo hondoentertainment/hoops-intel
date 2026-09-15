@@ -2,6 +2,8 @@ import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskPanel } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
+import { lastUpdatedStamp } from "../lib/dataTrust";
+import { isDraftDesk } from "../lib/deskMode";
 import { draftData } from "../lib/draftData";
 
 function TrendArrow({ trend }: { trend: "rising" | "falling" | "stable" }) {
@@ -40,9 +42,26 @@ export default function DraftTracker() {
       sectionLabel="Draft lab"
       title="Draft stock tracker"
       description={`${draftData.classYear} NBA Draft · ${draftData.weekLabel}`}
+      heroMeta={lastUpdatedStamp(draftData.generatedDate)}
       maxWidth="2xl"
       showBreadcrumbs={false}
     >
+        {!isDraftDesk() && (
+          <div
+            className="rounded-lg p-4 mb-6"
+            role="status"
+            data-testid="draft-frozen-banner"
+            style={{
+              background: "rgba(245,158,11,0.08)",
+              border: "1px solid rgba(245,158,11,0.25)",
+            }}
+          >
+            <div className="section-label mb-1" style={{ color: "#F59E0B" }}>FROZEN WEEKLY BOARD</div>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+              This is last week&apos;s scout board, not a live draft-night tracker. Generated {draftData.generatedDate}.
+            </p>
+          </div>
+        )}
         <DeskPanel kicker="Weekly scout report" className="mb-8">
           <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>{draftData.weeklyScoutReport}</p>
         </DeskPanel>

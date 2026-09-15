@@ -24,6 +24,7 @@ export type ToolPageLayoutProps = {
   sectionLabel?: string;
   title?: string;
   description?: string;
+  heroMeta?: string;
   breadcrumbs?: Crumb[];
   relatedHref?: string;
   maxWidth?: keyof typeof MAX_WIDTH;
@@ -43,6 +44,7 @@ export default function ToolPageLayout({
   sectionLabel,
   title,
   description,
+  heroMeta,
   breadcrumbs,
   relatedHref,
   maxWidth = "full",
@@ -97,6 +99,7 @@ export default function ToolPageLayout({
             kicker={sectionLabel || subtitle}
             title={title}
             description={description}
+            meta={heroMeta}
           />
         </div>
       ) : sectionLabel || description ? (
