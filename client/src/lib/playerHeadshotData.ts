@@ -544,6 +544,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "walter clayton": 4896372,
   "wendell carter": 4277847,
   "wendell moore": 4592187,
+  "will baker": 4431691,
   "will richard": 4897262,
   "will riley": 5144126,
   "yang hansen": 5217746,
