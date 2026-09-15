@@ -27,8 +27,8 @@ function StickyRibbon({ series }: { series: typeof playoffSeries }) {
   const snap = playoffSnapshot(series, todayISOLocal());
   return (
     <div
-      className="sticky top-14 z-30 border-b border-white/[0.06] backdrop-blur-xl sm:top-14"
-      style={{ background: "rgba(5,10,18,0.92)" }}
+      className="sticky z-30 border-b border-white/[0.06] backdrop-blur-xl"
+      style={{ top: "var(--hi-header-offset)", background: "rgba(5,10,18,0.92)" }}
     >
       <div className="container py-2 px-4">
         <div className="flex items-center justify-between gap-2 overflow-x-auto text-[10px] sm:text-xs mono-data text-white/65 pb-0.5">

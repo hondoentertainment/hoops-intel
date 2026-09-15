@@ -123,11 +123,17 @@ describe("editorial UX primitives", () => {
     expect(embed).not.toContain("EditorialShell");
     expect(embed).not.toContain("ToolPageLayout");
     expect(embed).not.toContain("AskInFlowCta");
+    expect(embed).not.toContain("has-mobile-tabbar");
 
     const printEdition = readFileSync(join(srcDir, "pages/PrintEdition.tsx"), "utf8");
     expect(printEdition).toContain("print-edition-shell");
+    expect(printEdition).toContain("has-mobile-tabbar");
     expect(printEdition).not.toContain("ToolPageLayout");
     expect(printEdition).not.toContain("AskInFlowCta");
+
+    const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,120}var\(--hi-tabbar-clearance\)/);
+    expect(css).not.toMatch(/\.desk-page-main[\s\S]{0,80}--hi-tabbar-clearance/);
 
     const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
     expect(app).toContain('lazy(() => import("./pages/NotFound"))');

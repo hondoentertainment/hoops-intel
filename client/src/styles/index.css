@@ -19,6 +19,8 @@ html {
   /* MobileBottomNav is 4rem + safe-area. Content inset is the Figma 88px safe-stack. */
   --hi-tabbar-height: 4rem;
   --hi-tabbar-clearance: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  --hi-header-offset: calc(3.5rem + env(safe-area-inset-top, 0px));
+  scroll-padding-top: var(--hi-header-offset);
   scroll-padding-bottom: var(--hi-tabbar-clearance);
 }
 
@@ -92,9 +94,13 @@ html {
   scroll-behavior: smooth;
 }
 
-html,
-body {
+html {
   overflow-x: clip;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+body {
   max-width: 100%;
 }
 
@@ -106,13 +112,62 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* App shell owns the tab-bar inset so every route clears the fixed nav. */
+/*
+  Inset must live on the same box as min-h-screen (.has-mobile-tabbar).
+  #390 moved it to the outer shell only, so nested 100vh pages painted
+  under the fixed tab bar — outer padding sat after the 100vh child.
+  hi-app-shell is the fallback for routes that skip DeskAppShell/Home.
+*/
+.has-mobile-tabbar,
 .hi-app-shell:not(.hi-app-shell--chromeless) {
   padding-bottom: var(--hi-tabbar-clearance);
 }
 
+.hi-app-shell:not(.hi-app-shell--chromeless):has(.has-mobile-tabbar) {
+  padding-bottom: 0;
+}
+
 .ask-page-composer {
   padding-bottom: var(--hi-tabbar-clearance);
+}
+
+/*
+  Mobile safe-stack: the route column scrolls in a box that ends above the
+  fixed tab bar. End-of-page padding alone cannot clear first-paint cards
+  that sit in the lower viewport (the /injuries + /pro audit shots).
+*/
+@media (max-width: 767px) {
+  html:has(.hi-app-shell:not(.hi-app-shell--chromeless)),
+  html:has(.hi-app-shell:not(.hi-app-shell--chromeless)) body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hi-app-shell:not(.hi-app-shell--chromeless),
+  .hi-app-shell:not(.hi-app-shell--chromeless):has(.has-mobile-tabbar) {
+    height: 100dvh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: calc(var(--hi-tabbar-height) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hi-app-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .has-mobile-tabbar {
+    min-height: 100%;
+    padding-bottom: var(--hi-tabbar-clearance);
+  }
+
+  .ask-page-composer {
+    padding-bottom: 0;
+  }
 }
 
 .ask-inflow-cta {
@@ -815,6 +870,12 @@ html.light .pwa-install-prompt {
 }
 
 @media print {
+  .has-mobile-tabbar,
+  .hi-app-shell:not(.hi-app-shell--chromeless),
+  .ask-page-composer {
+    padding-bottom: 0;
+  }
+
   .mobile-bottom-nav,
   .back-to-top,
   .toast-stack,

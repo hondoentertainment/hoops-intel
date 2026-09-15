@@ -98,13 +98,37 @@ export function scrollToHash(hash: string, maxFrames = 60): void {
   attempt();
 }
 
+export function appScrollRoot(): HTMLElement {
+  const el = document.querySelector(".hi-app-scroll");
+  if (el instanceof HTMLElement) {
+    const overflowY = getComputedStyle(el).overflowY;
+    if (overflowY === "auto" || overflowY === "scroll") return el;
+  }
+  return document.documentElement;
+}
+
+export function appScrollY(): number {
+  const root = appScrollRoot();
+  return root === document.documentElement ? window.scrollY : root.scrollTop;
+}
+
+export function scrollAppTo(y: number, behavior: ScrollBehavior = "auto"): void {
+  const root = appScrollRoot();
+  if (root === document.documentElement) {
+    window.scrollTo({ top: y, behavior });
+    return;
+  }
+  root.scrollTo({ top: y, behavior });
+}
+
 /** Restore a remembered scroll position once the page is tall enough to hold it. */
 export function restoreScroll(y: number, maxFrames = 60): void {
   let frames = 0;
   const attempt = () => {
-    const maxY = document.documentElement.scrollHeight - window.innerHeight;
+    const root = appScrollRoot();
+    const maxY = root.scrollHeight - root.clientHeight;
     if (maxY >= y || frames >= maxFrames) {
-      window.scrollTo(0, Math.min(y, Math.max(0, maxY)));
+      scrollAppTo(Math.min(y, Math.max(0, maxY)));
       return;
     }
     frames++;

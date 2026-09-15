@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import { appScrollY, scrollAppTo } from "../lib/spaNavigation";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 480);
+    const onScroll = () => setVisible(appScrollY() > 480);
     onScroll();
+    const root = document.querySelector(".hi-app-scroll");
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    root?.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      root?.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   if (!visible) return null;
@@ -16,7 +22,7 @@ export default function BackToTop() {
     <button
       type="button"
       className="back-to-top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={() => scrollAppTo(0, "smooth")}
       aria-label="Back to top"
       title="Back to top"
     >

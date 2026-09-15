@@ -163,6 +163,7 @@ export default function App() {
           color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
         }}
       >
+        <div className="hi-app-scroll">
         <RouteErrorBoundary resetKey={location}>
         <Suspense fallback={<PageLoader />}>
           <Switch>
@@ -223,6 +224,7 @@ export default function App() {
           </Switch>
         </Suspense>
         </RouteErrorBoundary>
+        </div>
         {chromeless ? null : <AskHoopsIntel />}
         {chromeless ? null : <MobileBottomNav />}
         {chromeless ? null : <BackToTop />}
