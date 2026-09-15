@@ -77,7 +77,7 @@ export default function GuestPulse() {
   return (
     <ToolPageLayout subtitle="PROGRAM">
       <p className="section-label mb-2">CREATOR EXPERIMENT</p>
-      <h1 className="display-heading text-2xl sm:text-3xl mb-4 text-white">Guest Pulse</h1>
+      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Guest Pulse</h1>
       <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
         Accepted pitches appear below when editors mark them Published in the creator queue. Propose a Pulse Index
         takeover: who you&apos;d elevate, thesis, and credibility in ~150 words.

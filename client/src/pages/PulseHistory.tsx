@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { getPlayerTrends, getBiggestMovers, type PlayerTrend } from "../lib/pulseHistory";
 import { slugify } from "../lib/searchUtils";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
 
 // ═══════════════════════════════════════════════════════════
 // TREND CHART — SVG sparkline with labels
@@ -89,7 +90,7 @@ function MoverCard({ trend, direction }: { trend: PlayerTrend; direction: "up" |
         </div>
       </div>
       <div className="text-right">
-        <div className="mono-data text-lg font-bold" style={{ color: "#0EA5E9" }}>#{trend.currentRank}</div>
+        <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>#{trend.currentRank}</div>
         <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{trend.currentScore.toFixed(1)}</div>
       </div>
     </div>
@@ -115,17 +116,17 @@ export default function PulseHistory() {
   }, [trends, sortBy]);
 
   return (
-    <ToolPageLayout subtitle="PULSE INDEX HISTORY">
-<div className="section-label mb-2">RANKINGS OVER TIME</div>
-        <h1 className="display-heading text-white text-3xl mb-2">Pulse Index History</h1>
-        <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
-          Track how player rankings shift day to day. Trends based on recent edition data.
-        </p>
+    <ToolPageLayout
+      subtitle="PULSE INDEX HISTORY"
+      sectionLabel="Rankings over time"
+      title="Pulse Index History"
+      description="Track how player rankings shift day to day. Trends based on recent edition data."
+    >
 
         {/* Biggest Movers */}
         {(risers.length > 0 || fallers.length > 0) && (
           <div className="mb-8">
-            <div className="section-label mb-3">BIGGEST MOVERS THIS WEEK</div>
+            <p className="enhanced-kicker mb-3">Biggest movers this week</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <div className="text-xs font-medium mb-2" style={{ color: "#10B981" }}>RISING</div>
@@ -144,21 +145,12 @@ export default function PulseHistory() {
         )}
 
         {/* Sort controls */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Sort by:</span>
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span className="enhanced-kicker">Sort by</span>
           {(["rank", "score", "change"] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setSortBy(s)}
-              className="px-3 py-1 rounded text-xs font-medium transition-colors"
-              style={{
-                background: sortBy === s ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.04)",
-                color: sortBy === s ? "#0EA5E9" : "rgba(255,255,255,0.5)",
-                border: `1px solid ${sortBy === s ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
-              }}
-            >
+            <DeskFilterChip key={s} active={sortBy === s} onClick={() => setSortBy(s)}>
               {s === "rank" ? "Rank" : s === "score" ? "Score" : "Weekly Change"}
-            </button>
+            </DeskFilterChip>
           ))}
         </div>
 
@@ -169,7 +161,7 @@ export default function PulseHistory() {
               <div className="flex items-center gap-4">
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg"
-                  style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}
+                  style={{ background: "rgba(30,200,245,0.1)", color: "var(--hi-accent,#1ec8f5)" }}
                 >
                   {trend.currentRank}
                 </div>
@@ -179,7 +171,7 @@ export default function PulseHistory() {
                   </a>
                   <div className="flex items-center gap-3 mt-0.5">
                     <a href={`/team/${trend.team}`} className="section-label text-xs hover:text-sky-400">{trend.team}</a>
-                    <span className="mono-data text-xs" style={{ color: "#0EA5E9" }}>{trend.currentScore.toFixed(1)}</span>
+                    <span className="mono-data text-xs" style={{ color: "var(--hi-accent,#1ec8f5)" }}>{trend.currentScore.toFixed(1)}</span>
                     {trend.weeklyChange !== 0 && (
                       <span
                         className="mono-data text-xs"

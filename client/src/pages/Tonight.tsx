@@ -16,8 +16,8 @@ export default function Tonight() {
   const freshness = lastUpdatedStamp();
 
   return (
-    <EditorialShell>
-      <div className="px-4 md:px-7 py-6 flex flex-col gap-5">
+    <EditorialShell header={{ subtitle: "TONIGHT" }}>
+      <div className="desk-page-stack">
         {slateOpen ? (
           <>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">

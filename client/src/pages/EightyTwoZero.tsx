@@ -303,8 +303,8 @@ export default function EightyTwoZero() {
       relatedHref="/82-0"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "82-0" }]}
     >
-      <p className="section-label mb-2">THE 82-0 CHALLENGE</p>
-      <h1 className="display-heading text-2xl sm:text-3xl mb-3" style={{ color: "var(--hi-heading,#fff)" }}>
+      <p className="enhanced-kicker mb-2">The 82-0 challenge</p>
+      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-3 max-md:text-[1.5rem]">
         Can your five go 82-0?
       </h1>
       <p className="text-sm mb-4 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>

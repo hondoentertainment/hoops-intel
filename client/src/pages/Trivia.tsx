@@ -162,18 +162,14 @@ export default function Trivia() {
   }
 
   return (
-    <ToolPageLayout subtitle="HOOPS IQ" maxWidth="lg">
+    <ToolPageLayout
+      subtitle="HOOPS IQ"
+      sectionLabel="Hoops IQ"
+      title="Daily Trivia"
+      description={`${formatDateLabel(triviaQuestion.id)} · ${triviaQuestion.difficulty.charAt(0).toUpperCase() + triviaQuestion.difficulty.slice(1)} difficulty`}
+      maxWidth="lg"
+    >
       <div>
-        {/* Page Title */}
-        <div className="mb-8 text-center">
-          <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(14,165,233,0.12)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.25)" }}>
-            🧠 Hoops IQ
-          </div>
-          <h1 className="text-3xl font-black text-white tracking-tight mb-1">Daily Trivia</h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            {formatDateLabel(triviaQuestion.id)} · {triviaQuestion.difficulty.charAt(0).toUpperCase() + triviaQuestion.difficulty.slice(1)} difficulty
-          </p>
-        </div>
 
         {/* Streak Banner */}
         {streak.totalAnswered > 0 && (

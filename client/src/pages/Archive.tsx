@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskFilterChip, DeskSearchField, EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
 import { archiveEditions } from "../lib/archiveData";
 import { editionSearchHaystack } from "../lib/archiveSearch";
 import { slugify } from "../lib/searchUtils";
@@ -106,41 +107,35 @@ export default function Archive() {
       showRelated={false}
     >
         <div className="mb-4 flex flex-wrap gap-2">
-          <button type="button" className="desk-section-pill" data-active={!tag ? "true" : undefined} onClick={() => { setTag(""); setPage(1); }}>
+          <DeskFilterChip active={!tag} onClick={() => { setTag(""); setPage(1); }}>
             All topics
-          </button>
+          </DeskFilterChip>
           {ALL_TAGS.map((t) => (
-            <button
+            <DeskFilterChip
               key={t}
-              type="button"
-              className="desk-section-pill"
-              data-active={tag === t ? "true" : undefined}
+              active={tag === t}
               onClick={() => { setTag(t === tag ? "" : t); setPage(1); }}
             >
               {t}
-            </button>
+            </DeskFilterChip>
           ))}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-          <div>
-            <label htmlFor="archive-search" className="sr-only">Search editions</label>
-            <input
-              id="archive-search"
-              type="search"
-              placeholder="Search players, teams, stories..."
-              value={search}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="w-full min-h-[48px] px-4 py-2.5 rounded-lg text-base sm:text-sm outline-none bg-white/5 text-white border border-white/10 focus-visible:ring-2 focus-visible:ring-sky-500/50"
-            />
-          </div>
+          <DeskSearchField
+            id="archive-search"
+            label="Search editions"
+            value={search}
+            onChange={handleSearch}
+            placeholder="Search players, teams, stories..."
+          />
           <div>
             <label htmlFor="archive-month" className="sr-only">Filter by month</label>
             <select
               id="archive-month"
               value={month}
               onChange={(e) => { setMonth(e.target.value); setPage(1); }}
-              className="w-full min-h-[48px] px-4 py-2.5 rounded-lg text-base sm:text-sm outline-none bg-white/5 text-white border border-white/10"
+              className="desk-field text-base sm:text-sm outline-none"
             >
               <option value="">All months</option>
               {ALL_MONTHS.map((m) => (
@@ -162,8 +157,17 @@ export default function Archive() {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-12 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            No editions match. <button type="button" className="underline min-h-11" style={{ color: "var(--hi-accent,#1ec8f5)" }} onClick={() => { setSearch(""); setTag(""); setMonth(""); }}>Clear filters</button>
+          <div className="flex flex-col items-center gap-4">
+            <EmptyState
+              kicker="Archive"
+              title="No editions match"
+              body="Clear the search or pick another topic to see past morning briefs."
+              pill="TRY AGAIN"
+              pillTone="accent"
+            />
+            <EnhancedButton variant="ghost" onClick={() => { setSearch(""); setTag(""); setMonth(""); }}>
+              Clear filters
+            </EnhancedButton>
           </div>
         )}
 

@@ -67,6 +67,7 @@ const Rivals = lazy(() => import("./pages/Rivals"));
 const PulseMethodology = lazy(() => import("./pages/PulseMethodology"));
 const WidgetAnalytics = lazy(() => import("./pages/WidgetAnalytics"));
 const CreatorQueue = lazy(() => import("./pages/CreatorQueue"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function VercelAnalyticsScript() {
   useEffect(() => {
@@ -217,31 +218,7 @@ export default function App() {
             <Route path="/rivals" component={Rivals} />
             <Route path="/creator-queue" component={CreatorQueue} />
             <Route>
-              <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none" lang="en">
-                <p className="enhanced-kicker mb-3">Not found</p>
-                <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-4 max-md:text-[1.5rem]">
-                  404 — Page not found
-                </h1>
-                <p className="mobile-readable mb-6" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-                  That route is not part of Hoops Intel.
-                </p>
-                <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-                  <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
-                    Today&apos;s desk
-                  </a>
-                  <a href="/tools" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
-                    Tools
-                  </a>
-                  <button
-                    type="button"
-                    className="underline min-h-11 inline-flex items-center"
-                    style={{ color: "var(--hi-accent,#1ec8f5)" }}
-                    onClick={() => window.dispatchEvent(new Event("hi-open-search"))}
-                  >
-                    Open search
-                  </button>
-                </div>
-              </main>
+              <NotFound />
             </Route>
           </Switch>
         </Suspense>

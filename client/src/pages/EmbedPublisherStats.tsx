@@ -290,7 +290,7 @@ export default function EmbedPublisherStats() {
         >
           Publisher · iframe loads
         </p>
-        <h1 className="text-2xl md:text-3xl font-black text-white mb-3 tracking-tight">Embed analytics</h1>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-3 max-md:text-[1.5rem]">Embed analytics</h1>
         <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.45)" }}>
           Rollups match Supabase <span className="mono-data text-white/70">embed_analytics_events</span>. Referrer hosts
           come from <span className="mono-data text-white/70">embed_agg_by_referrer</span> (parent page hostname on load).

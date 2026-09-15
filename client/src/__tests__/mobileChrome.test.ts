@@ -29,5 +29,11 @@ describe("mobile chrome", () => {
     expect(app).toContain("hi-app-shell");
     expect(ask).toContain("ask-page-composer");
     expect(css).toContain(".ask-page-composer");
+    expect(css).toContain(".desk-page-main");
+    expect(css).not.toMatch(/\.desk-page-main[\s\S]{0,80}--hi-tabbar-clearance/);
+    const layout = readFileSync(join(srcDir, "components/ToolPageLayout.tsx"), "utf8");
+    const appShell = readFileSync(join(srcDir, "components/DeskAppShell.tsx"), "utf8");
+    expect(layout).toContain("DeskAppShell");
+    expect(appShell).toContain("has-mobile-tabbar");
   });
 });

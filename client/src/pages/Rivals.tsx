@@ -23,7 +23,7 @@ export default function Rivals() {
   return (
     <ToolPageLayout subtitle="SETTINGS">
 <p className="section-label mb-2">MATCHUP WATCHLIST</p>
-        <h1 className="display-heading text-2xl sm:text-3xl text-white mb-4">Rival alerts</h1>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Rival alerts</h1>
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
           When tonight&apos;s preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker.&nbsp;
           Server pushes can now target rivalry pairings encoded on <span className="mono-data text-white/70">push_subscriptions</span> (<code className="mono-data text-white/65">rival_abbr_a/b</code>) —

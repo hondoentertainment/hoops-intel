@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { PageHero } from "../components/enhanced/EnhancedUi";
 import {
   useChatEngine,
   ChatMessages,
@@ -28,14 +29,14 @@ export default function AskAI() {
         className="border-b flex-shrink-0"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
-        <div className="container max-w-3xl mx-auto px-4 py-6">
-          <p className="enhanced-kicker mb-2">Ask Hoops Intel</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[28px] leading-8 mb-2 max-md:text-[1.5rem]">
-            Shorts into the desk
-          </h1>
-          <p className="text-sm mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            AI-powered NBA analysis from daily editions
-          </p>
+        <div className="max-w-3xl mx-auto px-[var(--hi-desk-pad-x,1rem)] md:px-[var(--hi-desk-pad-x-md,1.75rem)] py-6">
+          <div className="mb-4">
+            <PageHero
+              kicker="Ask Hoops Intel"
+              title="Shorts into the desk"
+              description="AI-powered NBA analysis from daily editions"
+            />
+          </div>
           <div className="enhanced-card px-4 py-3">
             <div className="flex items-center gap-2 mb-1 min-w-0">
               <span

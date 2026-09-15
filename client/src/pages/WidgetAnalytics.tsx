@@ -70,7 +70,7 @@ export default function WidgetAnalytics() {
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
           <div>
             <p className="section-label mb-2">EMBED LOADS</p>
-            <h1 className="display-heading text-white text-2xl sm:text-3xl mb-4">Publisher analytics dashboard</h1>
+            <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Publisher analytics dashboard</h1>
             <p className="text-sm max-w-3xl leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
               Rolling daily counts aggregated from iframe beacons.&nbsp;
               <a href="/widgets" className="text-sky-400 underline">

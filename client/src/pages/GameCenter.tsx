@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "wouter";
-import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
-import Breadcrumbs from "../components/Breadcrumbs";
+import { EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
+import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
 import ShareButton from "../components/ShareButton";
 import { getGameCenterById, gameCenterLineMovement, gameCenterShareMeta, mergeLiveIntoGameCenter, matchLiveScoreboardGame, type GameCenterResponse } from "../lib/gameCenter";
@@ -67,12 +66,12 @@ function ScoreBlock({ abbr, score, align }: { abbr: string; score: number | null
 
 function Skeleton() {
   return (
-    <div className="container py-10 space-y-4" aria-busy="true" role="status">
+    <div className="space-y-4" aria-busy="true" role="status">
       <span className="sr-only">Loading game center</span>
-      <div className="h-36 rounded-xl bg-white/5 animate-pulse" />
+      <div className="h-36 rounded-[var(--hi-card-radius,16px)] bg-white/5 animate-pulse" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 h-64 rounded-xl bg-white/5 animate-pulse" />
-        <div className="h-64 rounded-xl bg-white/5 animate-pulse" />
+        <div className="lg:col-span-2 h-64 rounded-[var(--hi-card-radius,16px)] bg-white/5 animate-pulse" />
+        <div className="h-64 rounded-[var(--hi-card-radius,16px)] bg-white/5 animate-pulse" />
       </div>
     </div>
   );
@@ -117,25 +116,39 @@ export default function GameCenter() {
 
   if (loading && !game) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="GAME CENTER" />
+      <ToolPageLayout
+        subtitle="GAME CENTER"
+        sectionLabel="Game Center"
+        title="Loading matchup"
+        showRelated={false}
+        showBreadcrumbs={false}
+      >
         <Skeleton />
-        <SiteFooter />
-      </div>
+      </ToolPageLayout>
     );
   }
 
   if (!game) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="GAME CENTER" />
-        <main id="main-content" tabIndex={-1} className="container py-20 text-center outline-none">
-          <p className="enhanced-kicker mb-3">Game not found</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">No Game Center match for this ID</h1>
-          <a href="/#scores" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to scores</a>
-        </main>
-        <SiteFooter />
-      </div>
+      <ToolPageLayout
+        subtitle="GAME CENTER"
+        sectionLabel="Game not found"
+        title="No Game Center match for this ID"
+        description="That game is not on today’s edition or the cached slate."
+        showRelated={false}
+        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Scores", href: "/#scores" }, { label: "Not found" }]}
+      >
+        <EmptyState
+          kicker="Game not found"
+          title="No Game Center match for this ID"
+          body="That game is not on today’s edition or the cached slate."
+          pill="BACK TO SCORES"
+          pillTone="accent"
+        />
+        <div className="flex justify-center">
+          <EnhancedButton href="/#scores">Back to scores</EnhancedButton>
+        </div>
+      </ToolPageLayout>
     );
   }
 
@@ -153,16 +166,15 @@ export default function GameCenter() {
   const playoffNext = activePlayoffSeries ? nextPendingGame(activePlayoffSeries) : undefined;
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="GAME CENTER" />
-      <main id="main-content" tabIndex={-1} className="container py-8">
-        <Breadcrumbs
-          items={[
-            { label: "Today's desk", href: "/" },
-            { label: "Scores", href: "/#scores" },
-            { label: game ? `${game.away.abbr} at ${game.home.abbr}` : "Game" },
-          ]}
-        />
+    <ToolPageLayout
+      subtitle="GAME CENTER"
+      showRelated={false}
+      breadcrumbs={[
+        { label: "Today's desk", href: "/" },
+        { label: "Scores", href: "/#scores" },
+        { label: `${game.away.abbr} at ${game.home.abbr}` },
+      ]}
+    >
         {error && (
           <div className="mb-4">
             <ErrorBlock
@@ -173,7 +185,7 @@ export default function GameCenter() {
           </div>
         )}
 
-        <section className="glass-card rounded-xl p-5 md:p-6 mb-6" style={{ borderTop: `3px solid ${getTeamColor(game.home.abbr)}` }}>
+        <section className="enhanced-card p-5 md:p-6 mb-6" style={{ borderTop: `3px solid ${getTeamColor(game.home.abbr)}` }}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -185,7 +197,7 @@ export default function GameCenter() {
                   </span>
                 )}
               </div>
-              <h1 className="display-heading text-white text-3xl mb-2">{game.title}</h1>
+              <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">{game.title}</h1>
               <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
                 {game.date}{game.time ? ` · ${game.time}` : ""}{game.tv ? ` · ${game.tv}` : ""}{game.venue ? ` · ${game.venue}` : ""}
               </p>
@@ -217,7 +229,7 @@ export default function GameCenter() {
 
         {activePlayoffSeries && playoffIntel && (
           <section
-            className="glass-card rounded-lg p-4 md:p-5 mb-6"
+            className="enhanced-card p-4 md:p-5 mb-6"
             style={{
               border: "1px solid rgba(244,63,94,0.22)",
               background: "rgba(244,63,94,0.04)",
@@ -248,13 +260,13 @@ export default function GameCenter() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <section className="lg:col-span-2 space-y-4">
-            <div className="glass-card rounded-lg p-5">
+            <div className="enhanced-card p-5">
               <div className="section-label mb-2">WHY IT MATTERS</div>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{game.whyItMatters}</p>
             </div>
 
             {game.espnGameId && (
-              <div className="glass-card rounded-lg p-5 space-y-4">
+              <div className="enhanced-card p-5 space-y-4">
                 <div className="section-label">LIVE FEED</div>
                 <PlayByPlayFeed espnGameId={game.espnGameId} awayTeam={game.away.abbr} homeTeam={game.home.abbr} />
                 <BoxScoreCard espnGameId={game.espnGameId} awayTeam={game.away.abbr} homeTeam={game.home.abbr} />
@@ -262,7 +274,7 @@ export default function GameCenter() {
             )}
 
             {(game.topPerformer || game.topLine || game.recap) && (
-              <div className="glass-card rounded-lg p-5">
+              <div className="enhanced-card p-5">
                 <div className="section-label mb-3">TOP PERFORMER</div>
                 {game.topPerformer && (
                   <a href={`/player/${slugify(game.topPerformer)}`} className="text-lg font-semibold text-white hover:text-sky-400">
@@ -275,7 +287,7 @@ export default function GameCenter() {
             )}
 
             {game.refs?.impact && (
-              <div className="glass-card rounded-lg p-5">
+              <div className="enhanced-card p-5">
                 <div className="section-label mb-2">REF CONTEXT</div>
                 <div className="text-sm font-semibold text-white mb-2">{game.refs.leadRef} lead crew</div>
                 {game.refs.crew && <div className="mono-data text-xs mb-3" style={{ color: "#38BDF8" }}>{game.refs.crew.join(" · ")}</div>}
@@ -284,7 +296,7 @@ export default function GameCenter() {
             )}
 
             {(game.betting?.spread || game.betting?.overUnder || game.betting?.angle || lineMove?.moveBadge) && (
-              <div className="glass-card rounded-lg p-5">
+              <div className="enhanced-card p-5">
                 <div className="section-label mb-2">MARKET CONTEXT</div>
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   <div className="rounded bg-white/[0.04] p-3">
@@ -319,7 +331,7 @@ export default function GameCenter() {
           </section>
 
           <aside className="space-y-4">
-            <div className="glass-card rounded-lg p-4 sticky top-4">
+            <div className="enhanced-card p-4 sticky top-4">
               <div className="section-label mb-3">KEY FACTS</div>
               <div className="flex flex-wrap gap-2 mb-3">
                 <a href="/pick-em" className="text-[10px] font-bold uppercase tracking-wider px-2 py-1.5 rounded bg-emerald-500/15 text-emerald-300">
@@ -345,7 +357,7 @@ export default function GameCenter() {
             </div>
 
             {game.injuries.length > 0 && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">INJURY CONTEXT</div>
                 <div className="space-y-3">
                   {game.injuries.map((inj) => (
@@ -358,7 +370,7 @@ export default function GameCenter() {
               </div>
             )}
 
-            <div className="glass-card rounded-lg p-4">
+            <div className="enhanced-card p-4">
               <div className="section-label mb-3">RELATED</div>
               <div className="flex flex-wrap gap-2 mb-3">
                 {game.relatedTeams.map((team) => (
@@ -378,8 +390,6 @@ export default function GameCenter() {
             </div>
           </aside>
         </div>
-      </main>
-      <SiteFooter />
-    </div>
+    </ToolPageLayout>
   );
 }

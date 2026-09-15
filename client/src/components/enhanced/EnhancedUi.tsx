@@ -192,16 +192,115 @@ export function InjuryChip({ status }: { status: string }) {
   return <StatusPill tone={injuryChipTone(status)}>{injuryStatusLabel(status)}</StatusPill>;
 }
 
+export function DeskFilterChip({
+  active,
+  children,
+  onClick,
+  href,
+}: {
+  active?: boolean;
+  children: ReactNode;
+  onClick?: () => void;
+  href?: string;
+}) {
+  const cls = "desk-section-pill";
+  if (href) {
+    return (
+      <a href={href} className={cls} data-active={active ? "true" : undefined}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <button type="button" className={cls} data-active={active ? "true" : undefined} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+export function DeskSearchField({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="sr-only">
+        {label}
+      </label>
+      <div className="relative">
+        <svg
+          className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="rgba(255,255,255,0.35)"
+          strokeWidth="2"
+          aria-hidden
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          id={id}
+          type="search"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className="desk-field pl-10 pr-4 text-base sm:text-sm outline-none"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function DeskLinkCard({
+  href,
+  kicker,
+  title,
+  description,
+}: {
+  href: string;
+  kicker?: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className="enhanced-card flex flex-col gap-1 p-4 min-h-[4.75rem] min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+    >
+      {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
+      <p className="text-base font-semibold leading-5 text-[var(--hi-text,#f2f5fa)]">{title}</p>
+      {description ? (
+        <p className="text-xs leading-[18px]" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          {description}
+        </p>
+      ) : null}
+    </a>
+  );
+}
+
 export function DeskLoopLinks({
   intro = "Pre-game desk",
 }: {
   intro?: string;
 }) {
   return (
-    <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-      <p className="text-[10px] font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
-        {intro}
-      </p>
+    <div className="enhanced-card p-4">
+      <p className="enhanced-kicker mb-3">{intro}</p>
       <div className="flex flex-wrap gap-2">
         <EnhancedButton href="/tonight">Tonight&apos;s slate</EnhancedButton>
         <EnhancedButton href="/lineups" variant="ghost">

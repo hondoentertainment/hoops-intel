@@ -1,17 +1,15 @@
 import type { ReactNode } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel } from "../components/enhanced/EnhancedUi";
 
 export default function PulseMethodology() {
   return (
-    <ToolPageLayout subtitle="REFERENCE">
-<div>
-          <p className="section-label mb-2">HOW WE SCORE PLAYERS</p>
-          <h1 className="display-heading text-white text-3xl sm:text-4xl mb-4">Pulse Index methodology</h1>
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-            The Pulse ranks the ten players defining the nightly conversation around the NBA. Numbers matter, but the desk also weights context:
-            postseason pressure, matchup stakes, swings in efficiency, defensive impact when the scorer sheet is quiet.
-          </p>
-        </div>
+    <ToolPageLayout
+      subtitle="REFERENCE"
+      sectionLabel="How we score players"
+      title="Pulse Index methodology"
+      description="The Pulse ranks the ten players defining the nightly conversation around the NBA. Numbers matter, but the desk also weights context: postseason pressure, matchup stakes, swings in efficiency, defensive impact when the scorer sheet is quiet."
+    >
 
         <Section title="Signals we elevate">
           <ul className="list-disc ml-6 space-y-2 text-white/72 text-sm leading-relaxed">
@@ -51,7 +49,7 @@ export default function PulseMethodology() {
         </Section>
 
         <div
-          className="rounded-xl p-5 border text-sm leading-relaxed"
+          className="enhanced-card p-5 text-sm leading-relaxed"
           style={{
             borderColor: "rgba(245,158,11,0.25)",
             background: "rgba(245,158,11,0.05)",
@@ -67,11 +65,8 @@ export default function PulseMethodology() {
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section>
-      <h2 className="text-xl font-black text-white mb-3 uppercase tracking-[0.12em]" style={{ fontFamily: "'Barlow Condensed',sans-serif" }}>
-        {title}
-      </h2>
-      <div>{children}</div>
-    </section>
+    <div className="mb-4">
+      <DeskPanel kicker={title}>{children}</DeskPanel>
+    </div>
   );
 }

@@ -1,9 +1,16 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const srcDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+const CHROMELESS_PAGES = new Set([
+  "Home.tsx",
+  "Embed.tsx",
+  "PrintEdition.tsx",
+  "PlayoffBracket.tsx",
+]);
 
 describe("editorial UX primitives", () => {
   it("keeps the shared card language at 16px with the caliber accent", () => {
@@ -13,21 +20,57 @@ describe("editorial UX primitives", () => {
     expect(css).toMatch(/\.enhanced-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toMatch(/\.glass-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toContain(".desk-hairline");
+    expect(css).toContain(".desk-page-main");
+    expect(css).toContain("--hi-desk-pad-x: 1rem");
+    expect(css).toContain("--hi-desk-pad-x-md: 1.75rem");
+    expect(css).toContain(".glass-card.rounded-lg");
+    expect(css).toMatch(/\.glass-card\.rounded-lg[\s\S]{0,180}var\(--hi-card-radius/);
   });
 
   it("exposes PageHero and EmptyState on the shared primitive module", () => {
     const ui = readFileSync(join(srcDir, "components/enhanced/EnhancedUi.tsx"), "utf8");
     expect(ui).toContain("export function PageHero");
     expect(ui).toContain("export function EmptyState");
+    expect(ui).toContain("export function DeskFilterChip");
+    expect(ui).toContain("export function DeskLinkCard");
+    expect(ui).toContain("export function DeskSearchField");
     expect(ui).toContain("subtitle");
   });
 
+  it("aligns the tools directory and catalog filters to homepage chrome", () => {
+    const tools = readFileSync(join(srcDir, "pages/Tools.tsx"), "utf8");
+    const players = readFileSync(join(srcDir, "pages/Players.tsx"), "utf8");
+    const archive = readFileSync(join(srcDir, "pages/Archive.tsx"), "utf8");
+    const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    expect(tools).toContain("DeskFilterChip");
+    expect(tools).toContain("DeskLinkCard");
+    expect(tools).toContain("DeskSearchField");
+    expect(tools).toContain("EmptyState");
+    expect(tools).toContain("Every Hoops Intel tool");
+    expect(players).toContain("DeskFilterChip");
+    expect(players).toContain("DeskSearchField");
+    expect(players).toContain("var(--hi-accent,#1ec8f5)");
+    expect(archive).toContain("DeskFilterChip");
+    expect(archive).toContain("desk-field");
+    expect(css).toContain(".desk-section-pill");
+    expect(css).toContain("min-height: 2.75rem");
+    expect(css).toContain(".desk-field:focus-visible");
+
+    const gameCenter = readFileSync(join(srcDir, "pages/GameCenter.tsx"), "utf8");
+    expect(gameCenter).toContain('title="Loading matchup"');
+    expect(gameCenter).toContain('title="No Game Center match for this ID"');
+  });
+
   it("routes tool pages and the desk through the shared footer", () => {
+    const shell = readFileSync(join(srcDir, "components/DeskAppShell.tsx"), "utf8");
     const layout = readFileSync(join(srcDir, "components/ToolPageLayout.tsx"), "utf8");
     const home = readFileSync(join(srcDir, "pages/Home.tsx"), "utf8");
     const tonight = readFileSync(join(srcDir, "pages/Tonight.tsx"), "utf8");
-    expect(layout).toContain("SiteFooter");
+    expect(shell).toContain("SiteFooter");
+    expect(shell).toContain("has-mobile-tabbar");
+    expect(layout).toContain("DeskAppShell");
     expect(layout).toContain("PageHero");
+    expect(shell).toContain("desk-page-main");
     expect(home).toContain("SiteFooter");
     expect(tonight).toContain("EmptyState");
     expect(tonight).toContain("Waiting on");
@@ -46,14 +89,40 @@ describe("editorial UX primitives", () => {
   it("keeps Ask in-flow in the main column and never as a fixed overlay", () => {
     const ask = readFileSync(join(srcDir, "components/AskHoopsIntel.tsx"), "utf8");
     const desk = readFileSync(join(srcDir, "components/enhanced/EnhancedDesk.tsx"), "utf8");
-    const shell = readFileSync(join(srcDir, "components/EditorialShell.tsx"), "utf8");
+    const appShell = readFileSync(join(srcDir, "components/DeskAppShell.tsx"), "utf8");
+    const editorial = readFileSync(join(srcDir, "components/EditorialShell.tsx"), "utf8");
     const layout = readFileSync(join(srcDir, "components/ToolPageLayout.tsx"), "utf8");
     expect(ask).toContain("export function AskInFlowCta");
     expect(ask).toContain("data-ask-inflow-cta");
     expect(ask).not.toMatch(/data-ask-ai-fab/);
     expect(ask).not.toMatch(/hidden md:flex fixed/);
     expect(desk).toContain("AskInFlowCta");
-    expect(shell).toContain("AskInFlowCta");
+    expect(appShell).toContain("AskInFlowCta");
+    expect(editorial).toContain("DeskAppShell");
     expect(layout).toContain("AskInFlowCta");
+    expect(layout).toContain("askInFlow={false}");
+  });
+
+  it("puts main-shell pages on EditorialShell or ToolPageLayout", () => {
+    const pages = readdirSync(join(srcDir, "pages")).filter((name) => name.endsWith(".tsx"));
+    const missing = pages.filter((name) => {
+      if (CHROMELESS_PAGES.has(name)) return false;
+      const src = readFileSync(join(srcDir, "pages", name), "utf8");
+      return !src.includes("EditorialShell") && !src.includes("ToolPageLayout");
+    });
+    expect(missing).toEqual([]);
+
+    const playoffs = readFileSync(join(srcDir, "components/playoffs/PlayoffsPage.tsx"), "utf8");
+    expect(playoffs).toContain("EditorialShell");
+    expect(playoffs).toContain("desk-page-main");
+
+    const embed = readFileSync(join(srcDir, "pages/Embed.tsx"), "utf8");
+    expect(embed).not.toContain("EditorialShell");
+    expect(embed).not.toContain("ToolPageLayout");
+    expect(embed).not.toContain("AskInFlowCta");
+
+    const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
+    expect(app).toContain('lazy(() => import("./pages/NotFound"))');
+    expect(app).toContain("hi-app-shell--chromeless");
   });
 });
