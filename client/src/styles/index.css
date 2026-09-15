@@ -19,6 +19,8 @@ html {
   /* MobileBottomNav is 4rem + safe-area. Content inset is the Figma 88px safe-stack. */
   --hi-tabbar-height: 4rem;
   --hi-tabbar-clearance: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  --hi-header-offset: calc(3.5rem + env(safe-area-inset-top, 0px));
+  scroll-padding-top: var(--hi-header-offset);
   scroll-padding-bottom: var(--hi-tabbar-clearance);
 }
 
@@ -95,6 +97,7 @@ html {
 html,
 body {
   overflow-x: clip;
+  overflow-y: auto;
   max-width: 100%;
 }
 
@@ -106,9 +109,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* App shell owns the tab-bar inset so every route clears the fixed nav. */
+/*
+  Inset must live on the same box as min-h-screen (.has-mobile-tabbar).
+  #390 moved it to the outer shell only, so nested 100vh pages painted
+  under the fixed tab bar — outer padding sat after the 100vh child.
+  hi-app-shell is the fallback for routes that skip DeskAppShell/Home.
+*/
+.has-mobile-tabbar,
 .hi-app-shell:not(.hi-app-shell--chromeless) {
   padding-bottom: var(--hi-tabbar-clearance);
+}
+
+.hi-app-shell:not(.hi-app-shell--chromeless):has(.has-mobile-tabbar) {
+  padding-bottom: 0;
 }
 
 .ask-page-composer {
@@ -815,6 +828,12 @@ html.light .pwa-install-prompt {
 }
 
 @media print {
+  .has-mobile-tabbar,
+  .hi-app-shell:not(.hi-app-shell--chromeless),
+  .ask-page-composer {
+    padding-bottom: 0;
+  }
+
   .mobile-bottom-nav,
   .back-to-top,
   .toast-stack,

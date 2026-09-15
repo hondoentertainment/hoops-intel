@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -25,6 +25,9 @@ describe("mobile chrome", () => {
     const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
     expect(css).toContain("--hi-tabbar-clearance");
     expect(css).toContain("--hi-tabbar-height");
+    expect(css).toContain("--hi-header-offset");
+    expect(css).toMatch(/overflow-y:\s*auto/);
+    expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,120}var\(--hi-tabbar-clearance\)/);
     expect(css).toMatch(/\.hi-app-shell:not\(\.hi-app-shell--chromeless\)[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
     expect(app).toContain("hi-app-shell");
     expect(ask).toContain("ask-page-composer");
@@ -35,5 +38,42 @@ describe("mobile chrome", () => {
     const appShell = readFileSync(join(srcDir, "components/DeskAppShell.tsx"), "utf8");
     expect(layout).toContain("DeskAppShell");
     expect(appShell).toContain("has-mobile-tabbar");
+  });
+
+  it("cannot ship a main-shell page without the shared bottom inset carrier", () => {
+    const pagesDir = join(srcDir, "pages");
+    const pages = readdirSync(pagesDir).filter((name) => name.endsWith(".tsx"));
+    const appShell = readFileSync(join(srcDir, "components/DeskAppShell.tsx"), "utf8");
+    const playoffs = readFileSync(join(srcDir, "components/playoffs/PlayoffsPage.tsx"), "utf8");
+    expect(appShell).toContain("has-mobile-tabbar");
+    expect(playoffs).toContain("EditorialShell");
+    expect(playoffs).toContain("var(--hi-header-offset)");
+
+    const missing = pages.filter((name) => {
+      if (name === "Embed.tsx") return false;
+      const src = readFileSync(join(pagesDir, name), "utf8");
+      if (src.includes("has-mobile-tabbar")) return false;
+      if (src.includes("EditorialShell") || src.includes("ToolPageLayout")) return false;
+      if (src.includes("PlayoffsPage")) return false;
+      return true;
+    });
+    expect(missing).toEqual([]);
+
+    const embed = readFileSync(join(pagesDir, "Embed.tsx"), "utf8");
+    expect(embed).not.toContain("has-mobile-tabbar");
+    expect(embed).not.toContain("AskInFlowCta");
+    expect(embed).not.toContain("EditorialShell");
+    expect(embed).not.toContain("ToolPageLayout");
+
+    const print = readFileSync(join(pagesDir, "PrintEdition.tsx"), "utf8");
+    expect(print).toContain("has-mobile-tabbar");
+    expect(print).toContain("print-edition-shell");
+
+    const home = readFileSync(join(pagesDir, "Home.tsx"), "utf8");
+    expect(home).toContain("has-mobile-tabbar");
+
+    const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
+    expect(app).toContain("hi-app-shell--chromeless");
+    expect(app).toContain('location.startsWith("/embed/")');
   });
 });

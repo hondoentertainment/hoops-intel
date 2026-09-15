@@ -44,7 +44,7 @@ export default function PrintEdition() {
   );
 
   return (
-    <div className="print-edition-shell min-h-screen bg-white text-slate-900 print:bg-white">
+    <div className="print-edition-shell has-mobile-tabbar min-h-screen bg-white text-slate-900 print:bg-white">
       <style>{`
         @page {
           margin: 0.6in 0.65in;
