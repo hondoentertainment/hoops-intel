@@ -58,12 +58,7 @@ export default function Unsubscribe() {
           value={email}
           onChange={(ev) => setEmail(ev.target.value)}
           placeholder="you@domain.com"
-          className="w-full px-4 py-3 rounded-lg text-base sm:text-sm mb-4 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            color: "#fff",
-          }}
+          className="desk-field text-base sm:text-sm mb-4 outline-none"
           autoComplete="email"
         />
         <button

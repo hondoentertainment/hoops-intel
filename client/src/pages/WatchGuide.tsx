@@ -294,6 +294,9 @@ export default function WatchGuide() {
   return (
     <ToolPageLayout
       subtitle="WATCH GUIDE"
+      sectionLabel="Watch guide"
+      title="Tonight's watch guide"
+      description={data.date}
       maxWidth="md"
       headerToolbarExtra={
         <span
@@ -304,16 +307,6 @@ export default function WatchGuide() {
         </span>
       }
     >
-        <div className="mb-6">
-          <p className="enhanced-kicker mb-2">Watch guide</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 max-md:text-[1.5rem] max-md:leading-8">
-            Tonight&apos;s watch guide
-          </h1>
-          <p className="text-sm mt-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            {data.date}
-          </p>
-          <div className="desk-hairline mt-3" />
-        </div>
 
         {!slateOpen ? (
           <>

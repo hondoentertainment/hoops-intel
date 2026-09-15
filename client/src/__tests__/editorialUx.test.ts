@@ -31,7 +31,30 @@ describe("editorial UX primitives", () => {
     const ui = readFileSync(join(srcDir, "components/enhanced/EnhancedUi.tsx"), "utf8");
     expect(ui).toContain("export function PageHero");
     expect(ui).toContain("export function EmptyState");
+    expect(ui).toContain("export function DeskFilterChip");
+    expect(ui).toContain("export function DeskLinkCard");
+    expect(ui).toContain("export function DeskSearchField");
     expect(ui).toContain("subtitle");
+  });
+
+  it("aligns the tools directory and catalog filters to homepage chrome", () => {
+    const tools = readFileSync(join(srcDir, "pages/Tools.tsx"), "utf8");
+    const players = readFileSync(join(srcDir, "pages/Players.tsx"), "utf8");
+    const archive = readFileSync(join(srcDir, "pages/Archive.tsx"), "utf8");
+    const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    expect(tools).toContain("DeskFilterChip");
+    expect(tools).toContain("DeskLinkCard");
+    expect(tools).toContain("DeskSearchField");
+    expect(tools).toContain("EmptyState");
+    expect(tools).toContain("Every Hoops Intel tool");
+    expect(players).toContain("DeskFilterChip");
+    expect(players).toContain("DeskSearchField");
+    expect(players).toContain("var(--hi-accent,#1ec8f5)");
+    expect(archive).toContain("DeskFilterChip");
+    expect(archive).toContain("desk-field");
+    expect(css).toContain(".desk-section-pill");
+    expect(css).toContain("min-height: 2.75rem");
+    expect(css).toContain(".desk-field:focus-visible");
   });
 
   it("routes tool pages and the desk through the shared footer", () => {

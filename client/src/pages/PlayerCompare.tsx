@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import TeamLogo from "../components/TeamLogo";
+import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
 import { pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 
@@ -39,31 +40,26 @@ export default function PlayerCompare() {
   return (
     <ToolPageLayout
       subtitle="TOOLS"
+      sectionLabel="Pulse lab"
+      title="Player compare"
+      description="Side-by-side read of today’s Pulse Index entrants — rankings and editorial notes regenerate with each morning edition."
       maxWidth="xl"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "Player compare" }]}
     >
-        <p className="enhanced-kicker mb-2">Pulse lab</p>
-        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">Player compare</h1>
-        <p className="mobile-readable mb-6 max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-          Side-by-side read of today’s Pulse Index entrants — rankings and editorial notes regenerate with each morning edition.
-        </p>
-
         {availablePresets.length > 0 && (
           <div className="mb-8">
-            <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Quick matchups</div>
+            <p className="enhanced-kicker mb-2">Quick matchups</p>
             <div className="flex flex-wrap gap-2">
               {availablePresets.map((preset) => (
-                <button
+                <DeskFilterChip
                   key={preset.label}
-                  type="button"
-                  className="desk-section-pill"
                   onClick={() => {
                     setAIdx(indexForName(preset.a));
                     setBIdx(indexForName(preset.b));
                   }}
                 >
                   {preset.label}
-                </button>
+                </DeskFilterChip>
               ))}
             </div>
           </div>
@@ -75,9 +71,9 @@ export default function PlayerCompare() {
             ["Player B", bIdx, setBIdx] as const,
           ].map(([label, idx, setter]) => (
             <label key={label} className="block">
-              <span className="text-xs uppercase font-bold tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</span>
+              <span className="enhanced-kicker">{label}</span>
               <select
-                className="mt-1 w-full min-h-[48px] px-4 py-3 rounded-lg text-base sm:text-sm outline-none bg-white/[0.06] border border-white/12 text-white"
+                className="desk-field mt-2 text-base sm:text-sm outline-none"
                 value={idx}
                 onChange={(e) => setter(Number(e.target.value))}
               >
@@ -91,14 +87,14 @@ export default function PlayerCompare() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[a, b].map((p) => (
-            <div key={p.player} className="glass-card rounded-xl p-6">
+            <div key={p.player} className="enhanced-card p-6">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="mono-data text-xs mb-1" style={{ color: "#0EA5E9" }}>RANK #{p.rank}</div>
-                  <h2 className="text-xl font-bold text-white">{p.player}</h2>
-                  <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
+                  <div className="mono-data text-xs mb-1" style={{ color: "var(--hi-accent,#1ec8f5)" }}>RANK #{p.rank}</div>
+                  <h2 className="text-xl font-bold text-[var(--hi-text,#f2f5fa)]">{p.player}</h2>
+                  <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "var(--hi-text-secondary,#8594a8)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
                 </div>
-                <div className="mono-data px-4 py-2 rounded-xl text-xl font-black" style={{ background: "rgba(14,165,233,0.12)", color: "#0EA5E9", border: "1px solid rgba(14,165,233,0.25)" }}>
+                <div className="mono-data px-4 py-2 rounded-[10px] text-xl font-black" style={{ background: "rgba(30,200,245,0.12)", color: "var(--hi-accent,#1ec8f5)", border: "1px solid rgba(30,200,245,0.25)" }}>
                   {p.indexScore}
                 </div>
               </div>
@@ -108,7 +104,7 @@ export default function PlayerCompare() {
               </dl>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{p.note}</p>
               <div className="mt-6">
-                <a href={`/player/${slugify(p.player)}`} className="text-xs font-semibold text-sky-400 hover:text-sky-300">
+                <a href={`/player/${slugify(p.player)}`} className="text-xs font-semibold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                   Open full player dossier →
                 </a>
               </div>

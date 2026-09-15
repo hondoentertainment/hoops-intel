@@ -16,7 +16,7 @@ export default function Tonight() {
   const freshness = lastUpdatedStamp();
 
   return (
-    <EditorialShell>
+    <EditorialShell header={{ subtitle: "TONIGHT" }}>
       <div className="desk-page-stack">
         {slateOpen ? (
           <>
