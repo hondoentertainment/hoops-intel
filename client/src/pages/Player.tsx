@@ -15,9 +15,7 @@ import {
 } from "../lib/playerIntel";
 import { getPlayerRosterStatus, playerCoverageEmptyState } from "../lib/playerRosterStatus";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
-import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
-import Breadcrumbs from "../components/Breadcrumbs";
+import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
 import { PlayerPageSkeleton } from "../components/PageSkeletons";
 import ShareButton from "../components/ShareButton";
@@ -119,25 +117,34 @@ export default function Player() {
 
   if (!player) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="PLAYER" />
-        <div className="container py-20 text-center">
-          <p className="enhanced-kicker mb-3">Player</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">Player not found</h1>
-          <a href="/players" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Browse players</a>
+      <ToolPageLayout
+        subtitle="PLAYER"
+        showRelated={false}
+        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Players", href: "/players" }, { label: "Not found" }]}
+      >
+        <EmptyState
+          kicker="Player"
+          title="Player not found"
+          body="That profile is not in the Pulse Index or archive coverage."
+          pill="BROWSE INDEX"
+          pillTone="accent"
+        />
+        <div className="flex justify-center">
+          <EnhancedButton href="/players">Browse players</EnhancedButton>
         </div>
-        <SiteFooter />
-      </div>
+      </ToolPageLayout>
     );
   }
 
   if (intelLoading) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="PLAYER" />
+      <ToolPageLayout
+        subtitle="PLAYER"
+        showRelated={false}
+        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Players", href: "/players" }, { label: "Loading" }]}
+      >
         <PlayerPageSkeleton />
-        <SiteFooter />
-      </div>
+      </ToolPageLayout>
     );
   }
 
@@ -150,7 +157,7 @@ export default function Player() {
   });
   const currentGame = gameResults.find((g: any) => g.topPerformer === player.name);
   const editions = getPlayerEditions(player.name);
-  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
+  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent,#1ec8f5)";
 
   const shareUrl = `https://hoopsintel.net/player/${slug}`;
   const shareTweet = currentPulse
@@ -158,16 +165,15 @@ export default function Player() {
     : `${player.name} on Hoops Intel hoopsintel.net/player/${slug}`;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle="PLAYER" />
-      <main id="main-content" tabIndex={-1} className="container py-8">
-        <Breadcrumbs
-          items={[
-            { label: "Today's desk", href: "/" },
-            { label: "Players", href: "/players" },
-            { label: player.name },
-          ]}
-        />
+    <ToolPageLayout
+      subtitle="PLAYER"
+      showRelated={false}
+      breadcrumbs={[
+        { label: "Today's desk", href: "/" },
+        { label: "Players", href: "/players" },
+        { label: player.name },
+      ]}
+    >
         {intelUnavailable && (
           <div className="mb-4">
             <ErrorBlock
@@ -179,7 +185,7 @@ export default function Player() {
         )}
         {/* Player Header */}
         <div
-          className="glass-card rounded-lg p-6 mb-6 relative"
+          className="enhanced-card p-6 mb-6 relative"
           style={{ borderLeft: `4px solid ${teamColor}` }}
         >
           <div className="flex items-start justify-between flex-wrap gap-4">
@@ -228,7 +234,7 @@ export default function Player() {
             <div className="flex items-start gap-3">
               {currentPulse && (
                 <div className="text-right">
-                  <div className="mono-data text-3xl font-bold" style={{ color: "#0EA5E9" }}>
+                  <div className="mono-data text-3xl font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                     {currentPulse.indexScore}
                   </div>
                   <div className="section-label">PULSE INDEX</div>
@@ -249,7 +255,7 @@ export default function Player() {
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.background = "rgba(14,165,233,0.12)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#0EA5E9";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--hi-accent,#1ec8f5)";
                   (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(14,165,233,0.3)";
                 }}
                 onMouseLeave={(e) => {
@@ -298,7 +304,7 @@ export default function Player() {
             )}
             {roster && roster.status !== "active" && (
               <div
-                className="glass-card rounded-lg p-4"
+                className="enhanced-card p-4"
                 style={{
                   borderLeft: `3px solid ${roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.25)"}`,
                 }}
@@ -313,7 +319,7 @@ export default function Player() {
 
             {/* Current Stats */}
             {currentPulse && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-2">CURRENT FORM — {pulseEdition.date}</div>
                 <div className="mono-data text-sm mb-2" style={{ color: "#10B981" }}>
                   {currentPulse.keyStats}
@@ -325,11 +331,11 @@ export default function Player() {
             )}
 
             {intel?.sentiment && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-2">SENTIMENT PROFILE</div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-white capitalize">{intel.sentiment.sentiment}</span>
-                  <span className="mono-data text-lg" style={{ color: "#0EA5E9" }}>{intel.sentiment.score}</span>
+                  <span className="mono-data text-lg" style={{ color: "var(--hi-accent,#1ec8f5)" }}>{intel.sentiment.score}</span>
                 </div>
                 <p className="text-sm mb-2" style={{ color: "rgba(255,255,255,0.65)" }}>{intel.sentiment.topTake}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{intel.sentiment.narrativeArc}</p>
@@ -337,7 +343,7 @@ export default function Player() {
             )}
 
             {intel?.recentGames && intel.recentGames.length > 0 && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">RELATED GAMES</div>
                 <div className="space-y-2">
                   {intel.recentGames.map((g) => (
@@ -352,7 +358,7 @@ export default function Player() {
 
             {/* Current Game */}
             {currentGame && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-2">LAST GAME</div>
                 <div className="text-sm font-semibold text-white mb-1">
                   {currentGame.awayTeam} {currentGame.awayScore} @ {currentGame.homeTeam} {currentGame.homeScore}
@@ -376,13 +382,13 @@ export default function Player() {
                   </p>
                 )}
                 {editions.map((ed: any) => (
-                  <div key={ed.id} className="glass-card rounded-lg p-4">
+                  <div key={ed.id} className="enhanced-card p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="section-label">{ed.displayDate}</span>
                       {ed.topPlayer === player.name && (
                         <span
                           className="text-xs px-2 py-0.5 rounded"
-                          style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9" }}
+                          style={{ background: "rgba(14,165,233,0.15)", color: "var(--hi-accent,#1ec8f5)" }}
                         >
                           TOP PLAYER
                         </span>
@@ -404,7 +410,7 @@ export default function Player() {
           <div className="space-y-4">
             {/* Injury Status */}
             {currentInjury && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-2">INJURY STATUS</div>
                 <div className="flex items-center gap-2 mb-2">
                   <InjuryChip status={currentInjury.status} />
@@ -417,7 +423,7 @@ export default function Player() {
             )}
 
             {intel?.playoff && (intel.playoff.mover || intel.playoff.series.length > 0) && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">PLAYOFF CONTEXT</div>
                 {intel.playoff.mover && (
                   <div className="mb-3">
@@ -435,7 +441,7 @@ export default function Player() {
             )}
 
             {/* Quick Stats */}
-            <div className="glass-card rounded-lg p-4">
+            <div className="enhanced-card p-4">
               <div className="section-label mb-3">QUICK FACTS</div>
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between">
@@ -483,14 +489,12 @@ export default function Player() {
 
             <a
               href="/compare-players"
-              className="block glass-card rounded-lg p-4 text-sm font-semibold text-sky-300 hover:text-sky-200"
+              className="block enhanced-card p-4 text-sm font-semibold text-sky-300 hover:text-sky-200"
             >
               Compare {player.name} in Player Compare →
             </a>
           </div>
         </div>
-      </main>
-      <SiteFooter />
-    </div>
+    </ToolPageLayout>
   );
 }

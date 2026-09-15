@@ -81,7 +81,7 @@ export default function Players() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by name or team…"
-            className="w-full min-h-[48px] pl-10 pr-4 py-2 rounded-xl text-base sm:text-sm bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
+            className="desk-field pl-10 pr-4 text-base sm:text-sm outline-none"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}

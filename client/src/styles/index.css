@@ -43,6 +43,10 @@ html.dark {
   --hi-warn: #f2b838;
   --hi-card-radius: 16px;
   --hi-inset-radius: 10px;
+  --hi-desk-pad-x: 1rem;
+  --hi-desk-pad-x-md: 1.75rem;
+  --hi-desk-pad-y: 1.5rem;
+  --hi-desk-gap: 1.375rem;
 }
 
 html.light {
@@ -66,6 +70,10 @@ html.light {
   --hi-warn: #b45309;
   --hi-card-radius: 16px;
   --hi-inset-radius: 10px;
+  --hi-desk-pad-x: 1rem;
+  --hi-desk-pad-x-md: 1.75rem;
+  --hi-desk-pad-y: 1.5rem;
+  --hi-desk-gap: 1.375rem;
 }
 
 .sr-only {
@@ -306,6 +314,66 @@ h1.display-heading {
   line-height: 1.2;
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+/* Homepage desk rhythm — ToolPageLayout / EditorialShell consume these. */
+.desk-page-main {
+  padding: var(--hi-desk-pad-y, 1.5rem) var(--hi-desk-pad-x, 1rem);
+}
+
+@media (min-width: 768px) {
+  .desk-page-main {
+    padding: var(--hi-desk-pad-y, 1.5rem) var(--hi-desk-pad-x-md, 1.75rem);
+  }
+}
+
+.desk-page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hi-desk-gap, 1.375rem);
+}
+
+.desk-page-ask {
+  margin-top: 2rem;
+}
+
+main:not(.desk-page-main) > .desk-page-ask {
+  padding-left: var(--hi-desk-pad-x, 1rem);
+  padding-right: var(--hi-desk-pad-x, 1rem);
+}
+
+@media (min-width: 768px) {
+  main:not(.desk-page-main) > .desk-page-ask {
+    padding-left: var(--hi-desk-pad-x-md, 1.75rem);
+    padding-right: var(--hi-desk-pad-x-md, 1.75rem);
+  }
+}
+
+.desk-page-main > h1,
+.desk-page-main h1.display-heading,
+.desk-page-main h1.editorial-heading {
+  color: var(--hi-text, #f2f5fa);
+}
+
+.desk-field {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.625rem 1rem;
+  border-radius: var(--hi-inset-radius, 10px);
+  background: var(--hi-surface-2, #0e1218);
+  color: var(--hi-text, #f2f5fa);
+  border: 1px solid var(--hi-border, #252b36);
+}
+
+.glass-card.rounded,
+.glass-card.rounded-lg,
+.glass-card.rounded-xl,
+.glass-card.rounded-2xl,
+.enhanced-card.rounded,
+.enhanced-card.rounded-lg,
+.enhanced-card.rounded-xl,
+.enhanced-card.rounded-2xl {
+  border-radius: var(--hi-card-radius, 16px);
 }
 
 /* Container */

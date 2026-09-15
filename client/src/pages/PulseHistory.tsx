@@ -116,9 +116,9 @@ export default function PulseHistory() {
 
   return (
     <ToolPageLayout subtitle="PULSE INDEX HISTORY">
-<div className="section-label mb-2">RANKINGS OVER TIME</div>
-        <h1 className="display-heading text-white text-3xl mb-2">Pulse Index History</h1>
-        <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
+<p className="enhanced-kicker mb-2">Rankings over time</p>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">Pulse Index History</h1>
+        <p className="mobile-readable mb-8" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           Track how player rankings shift day to day. Trends based on recent edition data.
         </p>
 

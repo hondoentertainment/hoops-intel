@@ -511,7 +511,7 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
   const streak = pickStats.streak > 0 ? String(pickStats.streak) : "—";
 
   return (
-    <EditorialShell mainClassName="px-4 md:px-7 py-5 flex flex-col gap-4 max-md:gap-3.5">
+    <EditorialShell mainClassName="desk-page-stack">
         <SectionHeader
           eyebrow="PICK 'EM"
           title="Lock tonight’s slate"

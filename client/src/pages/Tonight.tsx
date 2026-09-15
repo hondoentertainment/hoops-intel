@@ -17,7 +17,7 @@ export default function Tonight() {
 
   return (
     <EditorialShell>
-      <div className="px-4 md:px-7 py-6 flex flex-col gap-5">
+      <div className="desk-page-stack">
         {slateOpen ? (
           <>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">

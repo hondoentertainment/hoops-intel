@@ -6,7 +6,7 @@ export default function PulseMethodology() {
     <ToolPageLayout subtitle="REFERENCE">
 <div>
           <p className="section-label mb-2">HOW WE SCORE PLAYERS</p>
-          <h1 className="display-heading text-white text-3xl sm:text-4xl mb-4">Pulse Index methodology</h1>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Pulse Index methodology</h1>
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
             The Pulse ranks the ten players defining the nightly conversation around the NBA. Numbers matter, but the desk also weights context:
             postseason pressure, matchup stakes, swings in efficiency, defensive impact when the scorer sheet is quiet.

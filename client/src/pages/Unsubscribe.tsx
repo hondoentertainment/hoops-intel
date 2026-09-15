@@ -42,7 +42,7 @@ export default function Unsubscribe() {
   };
 
   return (
-    <EditorialShell header={{ subtitle: "DIGEST" }} mainClassName="container py-14 max-w-md">
+    <EditorialShell header={{ subtitle: "DIGEST" }} mainClassName="max-w-md mx-auto">
         <PageHero
           kicker="Digest"
           title="Unsubscribe"

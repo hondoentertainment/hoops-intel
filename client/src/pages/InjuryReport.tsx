@@ -327,7 +327,7 @@ export default function InjuryReport() {
 
   return (
     <EditorialShell>
-      <div className="px-4 md:px-7 py-5 flex flex-col gap-4 max-md:gap-3.5">
+      <div className="desk-page-stack">
         <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between min-w-0">
           <PageHero
             kicker="Injury wire"

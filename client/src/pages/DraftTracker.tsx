@@ -36,9 +36,9 @@ export default function DraftTracker() {
   return (
     <ToolPageLayout subtitle="DRAFT TRACKER" maxWidth="2xl" showBreadcrumbs={false}>
         <div className="mb-8">
-          <div className="text-xs tracking-widest mb-1" style={{ color: "#0EA5E9" }}>HOOPS INTEL</div>
-          <h1 className="text-3xl font-bold text-white">DRAFT STOCK TRACKER</h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <p className="enhanced-kicker mb-2">Hoops Intel</p>
+          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 max-md:text-[1.5rem]">Draft stock tracker</h1>
+          <p className="mobile-readable mt-1" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {draftData.classYear} NBA Draft &middot; {draftData.weekLabel}
           </p>
         </div>

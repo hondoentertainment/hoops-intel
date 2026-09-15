@@ -28,9 +28,11 @@ export default function PlayerCompare() {
 
   if (!pulseIndex.length) {
     return (
-      <div className="min-h-screen container py-20" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
-        <p className="text-white">Pulse Index unavailable for comparison.</p>
-      </div>
+      <ToolPageLayout subtitle="TOOLS" showRelated={false} title="Player compare" description="Pulse Index unavailable for comparison.">
+        <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          Pulse Index unavailable for comparison.
+        </p>
+      </ToolPageLayout>
     );
   }
 
@@ -40,9 +42,9 @@ export default function PlayerCompare() {
       maxWidth="xl"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "Player compare" }]}
     >
-        <p className="section-label mb-2">PULSE LAB</p>
-        <h1 className="display-heading text-white text-2xl sm:text-3xl mb-2">Player compare</h1>
-        <p className="text-sm mb-6 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+        <p className="enhanced-kicker mb-2">Pulse lab</p>
+        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">Player compare</h1>
+        <p className="mobile-readable mb-6 max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           Side-by-side read of today’s Pulse Index entrants — rankings and editorial notes regenerate with each morning edition.
         </p>
 

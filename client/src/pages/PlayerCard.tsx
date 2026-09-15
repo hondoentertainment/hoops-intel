@@ -5,7 +5,8 @@ import { pulseIndex, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { findPlayerInjury } from "../lib/playerIntel";
 import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
-import { InjuryChip } from "../components/enhanced/EnhancedUi";
+import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
+import EditorialShell from "../components/EditorialShell";
 
 function findPlayer(slug: string) {
   const all = getAllPlayers();
@@ -21,15 +22,18 @@ export default function PlayerCard() {
 
   if (!player) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <main id="main-content" tabIndex={-1} className="text-center outline-none px-4">
-          <h1 className="text-2xl font-bold text-white mb-4">Player Not Found</h1>
-          <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
-            We couldn&apos;t find a player card for that name.
-          </p>
-          <a href="/" className="text-sky-400 underline min-h-[44px] inline-flex items-center">Back to Hoops Intel</a>
-        </main>
-      </div>
+      <EditorialShell header={{ subtitle: "PLAYER CARD" }}>
+        <EmptyState
+          kicker="Player card"
+          title="Player not found"
+          body="We couldn't find a player card for that name."
+          pill="BACK TO DESK"
+          pillTone="accent"
+        />
+        <div className="flex justify-center">
+          <EnhancedButton href="/">Today's desk</EnhancedButton>
+        </div>
+      </EditorialShell>
     );
   }
 
@@ -114,10 +118,8 @@ export default function PlayerCard() {
   }
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center py-10 px-4"
-      style={{ background: "var(--hi-bg-page, #050D1A)" }}
-    >
+    <EditorialShell header={{ subtitle: "PLAYER CARD" }} mainClassName="flex flex-col items-center">
+    <div className="w-full max-w-sm flex flex-col items-center">
       {/* Print stylesheet injected inline */}
       <style>{`
         @media print {
@@ -415,5 +417,6 @@ export default function PlayerCard() {
         </button>
       </div>
     </div>
+    </EditorialShell>
   );
 }

@@ -18,8 +18,7 @@ import { getTeamColor } from "../../lib/teamColors";
 import { PlayoffsSkeleton } from "./PlayoffsSkeleton";
 import { SeriesCard, sortedSeriesCardsData } from "./SeriesCard";
 import { TakeawaysSection } from "./TakeawaysSection";
-import SiteHeader from "../../components/SiteHeader";
-import SiteFooter from "../../components/SiteFooter";
+import EditorialShell from "../../components/EditorialShell";
 import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
 import { PlayoffBracketBoard } from "./PlayoffBracketBoard";
 
@@ -60,10 +59,6 @@ function StickyRibbon({ series }: { series: typeof playoffSeries }) {
       </div>
     </div>
   );
-}
-
-function DashboardHeader() {
-  return <SiteHeader subtitle="PLAYOFF COMMAND" subtitleAccent />;
 }
 
 function SeriesHeroStrip({
@@ -208,11 +203,12 @@ export function PlayoffsPage() {
   const hasLive = boardCounts.live > 0;
 
   return (
-    <div className="min-h-screen pb-14" style={{ background: "var(--hi-bg-page, #050d12)" }}>
-      <DashboardHeader />
+    <EditorialShell
+      header={{ subtitle: "PLAYOFF COMMAND", subtitleAccent: true }}
+      padded={false}
+    >
       <StickyRibbon series={mergedSeries} />
-
-      <main id="main-content" tabIndex={-1} className="container px-4 py-6 max-w-[1400px] mx-auto outline-none">
+      <div className="desk-page-main max-w-[1400px] mx-auto">
         {hasBoard && (
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <DataTrustBadge variant={hasLive ? "live" : "espn"} fetchedAt={liveData?.fetchedAt} />
@@ -275,9 +271,7 @@ export function PlayoffsPage() {
             </div>
           </>
         )}
-      </main>
-
-      <SiteFooter />
-    </div>
+      </div>
+    </EditorialShell>
   );
 }

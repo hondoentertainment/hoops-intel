@@ -1,7 +1,6 @@
 import { type ReactNode } from "react";
 import { useLocation } from "wouter";
-import SiteHeader from "./SiteHeader";
-import SiteFooter from "./SiteFooter";
+import DeskAppShell from "./DeskAppShell";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import { DeskPanel, PageHero } from "./enhanced/EnhancedUi";
 import { AskInFlowCta } from "./AskHoopsIntel";
@@ -64,93 +63,86 @@ export default function ToolPageLayout({
     ...(title ? [{ label: title }] : []),
   ];
 
+  const header = {
+    subtitle,
+    brandTitle,
+    editionBadge,
+    toolbarExtra: headerToolbarExtra,
+  };
+
   if (contentOnly) {
     return (
-      <div
-        className={`min-h-screen ${shellClassName}`.trim()}
-        style={{ background: "var(--hi-bg-page, #07090e)" }}
+      <DeskAppShell
+        header={header}
+        padded={false}
+        askInFlow={false}
+        mainClassName="flex-1 flex flex-col min-h-0"
+        shellClassName={`flex flex-col ${shellClassName}`.trim()}
       >
-        <SiteHeader
-          subtitle={subtitle}
-          brandTitle={brandTitle}
-          editionBadge={editionBadge}
-          toolbarExtra={headerToolbarExtra}
-        />
-        <main id="main-content" tabIndex={-1} className="flex-1 flex flex-col min-h-0 outline-none">
-          {children}
-        </main>
-        <SiteFooter />
-      </div>
+        {children}
+      </DeskAppShell>
     );
   }
 
   return (
-    <div
-      className={`min-h-screen has-mobile-tabbar ${shellClassName}`.trim()}
-      style={{ background: "var(--hi-bg-page, #07090e)" }}
+    <DeskAppShell
+      header={header}
+      askInFlow={false}
+      mainClassName={`mx-auto ${widthClass} ${shellClassName}`.trim()}
     >
-      <SiteHeader
-        subtitle={subtitle}
-        brandTitle={brandTitle}
-        editionBadge={editionBadge}
-        toolbarExtra={headerToolbarExtra}
-      />
-      <main id="main-content" tabIndex={-1} className={`container py-8 mx-auto px-4 ${widthClass}`}>
-        {showBreadcrumbs && <Breadcrumbs items={defaultCrumbs} />}
-        {title ? (
-          <div className="mb-8">
-            <PageHero
-              kicker={sectionLabel || subtitle}
-              title={title}
-              description={description}
-            />
-          </div>
-        ) : sectionLabel || description ? (
-          <header className="mb-8 min-w-0">
-            {sectionLabel ? <p className="enhanced-kicker mb-2">{sectionLabel}</p> : null}
-            {description ? (
-              <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-                {description}
-              </p>
-            ) : null}
-          </header>
-        ) : null}
-        <div className={related.length > 0 ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_15rem] gap-8 items-start" : undefined}>
-          <div className="min-w-0">
-            {children}
-            <div className="mt-8">
-              <AskInFlowCta />
-            </div>
-          </div>
-          {related.length > 0 && (
-            <aside className="lg:sticky lg:top-20">
-              <DeskPanel kicker="Related tools">
-                <ul className="flex flex-col gap-1">
-                  {related.map((tool) => (
-                    <li key={tool.href}>
-                      <a
-                        href={tool.href}
-                        className="desk-inset flex items-center min-h-11 px-3 text-xs font-medium"
-                        style={{ color: ENHANCED_ACCENT }}
-                      >
-                        {tool.label} →
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="/tools"
-                  className="inline-flex items-center min-h-11 text-[11px]"
-                  style={{ color: "var(--hi-text-secondary,#8594a8)" }}
-                >
-                  All tools directory
-                </a>
-              </DeskPanel>
-            </aside>
-          )}
+      {showBreadcrumbs && <Breadcrumbs items={defaultCrumbs} />}
+      {title ? (
+        <div className="mb-8">
+          <PageHero
+            kicker={sectionLabel || subtitle}
+            title={title}
+            description={description}
+          />
         </div>
-      </main>
-      <SiteFooter />
-    </div>
+      ) : sectionLabel || description ? (
+        <header className="mb-8 min-w-0">
+          {sectionLabel ? <p className="enhanced-kicker mb-2">{sectionLabel}</p> : null}
+          {description ? (
+            <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+              {description}
+            </p>
+          ) : null}
+        </header>
+      ) : null}
+      <div className={related.length > 0 ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_15rem] gap-8 items-start" : undefined}>
+        <div className="min-w-0">
+          {children}
+          <div className="desk-page-ask">
+            <AskInFlowCta />
+          </div>
+        </div>
+        {related.length > 0 && (
+          <aside className="lg:sticky lg:top-20">
+            <DeskPanel kicker="Related tools">
+              <ul className="flex flex-col gap-1">
+                {related.map((tool) => (
+                  <li key={tool.href}>
+                    <a
+                      href={tool.href}
+                      className="desk-inset flex items-center min-h-11 px-3 text-xs font-medium"
+                      style={{ color: ENHANCED_ACCENT }}
+                    >
+                      {tool.label} →
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/tools"
+                className="inline-flex items-center min-h-11 text-[11px]"
+                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+              >
+                All tools directory
+              </a>
+            </DeskPanel>
+          </aside>
+        )}
+      </div>
+    </DeskAppShell>
   );
 }

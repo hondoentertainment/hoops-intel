@@ -96,7 +96,7 @@ export default function Tools() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Filter by name or description…"
-              className="w-full min-h-[48px] pl-10 pr-4 py-2 rounded-xl text-base sm:text-sm bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
+              className="desk-field pl-10 pr-4 text-base sm:text-sm outline-none"
               autoCapitalize="off"
               autoCorrect="off"
               spellCheck={false}
@@ -110,8 +110,8 @@ export default function Tools() {
         </div>
 
         {totalMatches === 0 ? (
-          <div className="rounded-xl p-6 border border-white/10 text-center">
-            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <div className="enhanced-card p-6 text-center">
+            <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
               No tools match your filter. Try a shorter keyword or browse popular destinations.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-4">

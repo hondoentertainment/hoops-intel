@@ -1,6 +1,6 @@
 export function PlayerPageSkeleton() {
   return (
-    <div className="container py-8 space-y-4" aria-busy="true" role="status">
+    <div className="space-y-4" aria-busy="true" role="status">
       <span className="sr-only">Loading player profile</span>
       <div className="h-4 w-48 rounded bg-white/5 animate-pulse" />
       <div className="h-10 w-64 rounded bg-white/5 animate-pulse" />
@@ -14,7 +14,7 @@ export function PlayerPageSkeleton() {
 
 export function TeamPageSkeleton() {
   return (
-    <div className="container py-8 space-y-4" aria-busy="true" role="status">
+    <div className="space-y-4" aria-busy="true" role="status">
       <span className="sr-only">Loading team profile</span>
       <div className="h-4 w-32 rounded bg-white/5 animate-pulse" />
       <div className="h-10 w-72 rounded bg-white/5 animate-pulse" />

@@ -8,9 +8,8 @@ import TeamLogo from "../components/TeamLogo";
 import { slugify } from "../lib/searchUtils";
 import { useMetaTags } from "../lib/useMetaTags";
 import { TEAM_NAMES, canonicalizeTeamCode } from "../lib/identity";
-import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
-import Breadcrumbs from "../components/Breadcrumbs";
+import { EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
+import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
 import { TeamPageSkeleton } from "../components/PageSkeletons";
 import { getTeamIntelByAbbr, type TeamIntelResponse } from "../lib/teamIntel";
@@ -74,25 +73,30 @@ export default function Team() {
 
   if (!fullName) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle="TEAMS" />
-        <div className="container py-20 text-center">
-          <p className="enhanced-kicker mb-3">Team</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl mb-4">Team not found</h1>
-          <a href="/" className="underline min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>Back to Hoops Intel</a>
+      <ToolPageLayout
+        subtitle="TEAMS"
+        showRelated={false}
+        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: "Not found" }]}
+      >
+        <EmptyState
+          kicker="Team"
+          title="Team not found"
+          body="That abbreviation is not on the Hoops Intel desk."
+          pill="BACK TO DESK"
+          pillTone="accent"
+        />
+        <div className="flex justify-center">
+          <EnhancedButton href="/">Today's desk</EnhancedButton>
         </div>
-        <SiteFooter />
-      </div>
+      </ToolPageLayout>
     );
   }
 
   if (intelLoading || !teamIntel) {
     return (
-      <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-        <SiteHeader subtitle={`TEAM · ${abbr}`} />
+      <ToolPageLayout subtitle={`TEAM · ${abbr}`} showRelated={false} showBreadcrumbs={false}>
         <TeamPageSkeleton />
-        <SiteFooter />
-      </div>
+      </ToolPageLayout>
     );
   }
 
@@ -111,10 +115,11 @@ export default function Team() {
   const playoffOppName = playoffOppAbbr ? TEAM_NAMES[oppStandingsKey] ?? playoffOppAbbr : "";
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
-      <SiteHeader subtitle={`TEAM · ${abbr}`} />
-      <main id="main-content" tabIndex={-1} className="container py-8">
-        <Breadcrumbs items={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: abbr }]} />
+    <ToolPageLayout
+      subtitle={`TEAM · ${abbr}`}
+      showRelated={false}
+      breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: abbr }]}
+    >
         {intelUnavailable && (
           <div className="mb-4">
             <ErrorBlock
@@ -126,7 +131,7 @@ export default function Team() {
         )}
         {/* Team Header */}
         <div
-          className="glass-card rounded-lg p-6 mb-6"
+          className="enhanced-card p-6 mb-6"
           style={{ borderLeft: `4px solid ${teamColor}` }}
         >
           <div className="flex items-start justify-between flex-wrap gap-4">
@@ -168,13 +173,13 @@ export default function Team() {
 
         {playoffRow && (
           <div
-            className="glass-card rounded-lg p-4 mb-6"
+            className="enhanced-card p-4 mb-6"
             style={{
               border: "1px solid rgba(14,165,233,0.2)",
               background: "rgba(14,165,233,0.04)",
             }}
           >
-            <div className="section-label mb-2" style={{ color: "#0EA5E9" }}>
+            <div className="section-label mb-2" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
               PLAYOFFS (SYNCED BOARD)
             </div>
             <p className="text-sm text-white font-semibold mb-1">
@@ -223,7 +228,7 @@ export default function Team() {
                     (g.homeTeam === abbr && g.homeScore > g.awayScore) ||
                     (g.awayTeam === abbr && g.awayScore > g.homeScore);
                   return (
-                    <div key={g.gameId} className="glass-card rounded-lg p-4 mb-3">
+                    <div key={g.gameId} className="enhanced-card p-4 mb-3">
                       <div className="flex items-center gap-3 mb-2">
                         <span
                           className="text-xs font-bold px-2 py-0.5 rounded"
@@ -257,14 +262,14 @@ export default function Team() {
                 {teamPreviews.map((p: any, i: number) => {
                   const previewSeries = playoffSeriesForMatchup(p.awayTeam, p.homeTeam);
                   return (
-                  <div key={i} className="glass-card rounded-lg p-4 mb-3">
+                  <div key={i} className="enhanced-card p-4 mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold text-white">
                         {p.awayTeam} @ {p.homeTeam}
                       </span>
                       <span className="text-sm text-white">{p.time}</span>
                     </div>
-                    <div className="mono-data text-xs mb-2" style={{ color: "#0EA5E9" }}>
+                    <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                       {p.spread} · O/U {p.overUnder} · {p.tv}
                     </div>
                     {previewSeries && previewSeries.status !== "complete" && (
@@ -292,7 +297,7 @@ export default function Team() {
               </div>
               <div className="space-y-3">
                 {teamEditions.slice(0, 10).map((ed: any) => (
-                  <div key={ed.id} className="glass-card rounded-lg p-4">
+                  <div key={ed.id} className="enhanced-card p-4">
                     <div className="section-label mb-1">{ed.displayDate}</div>
                     <h3 className="text-sm font-semibold text-white mb-1">{ed.headline}</h3>
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -313,7 +318,7 @@ export default function Team() {
           <div className="space-y-4">
             {/* Pulse Index Players */}
             {teamPlayers.length > 0 && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">PULSE INDEX</div>
                 <div className="space-y-3">
                   {teamPlayers.map((p: any) => (
@@ -323,7 +328,7 @@ export default function Team() {
                       className="block hover:opacity-80 transition-opacity"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="mono-data text-lg font-bold" style={{ color: "#0EA5E9" }}>
+                        <span className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
                           #{p.rank}
                         </span>
                         <div>
@@ -341,7 +346,7 @@ export default function Team() {
 
             {/* Injuries */}
             {teamInjuries.length > 0 && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">INJURY REPORT</div>
                 <div className="space-y-3">
                   {teamInjuries.map((inj: any, i: number) => (
@@ -377,7 +382,7 @@ export default function Team() {
 
             {/* Standing Details */}
             {standing && (
-              <div className="glass-card rounded-lg p-4">
+              <div className="enhanced-card p-4">
                 <div className="section-label mb-3">STANDINGS</div>
                 <div className="space-y-2 text-xs">
                   <div className="flex justify-between">
@@ -439,8 +444,6 @@ export default function Team() {
             )}
           </div>
         </div>
-      </main>
-      <SiteFooter />
-    </div>
+    </ToolPageLayout>
   );
 }
