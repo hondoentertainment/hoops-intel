@@ -540,7 +540,13 @@ export default function Account() {
 
   if (user === undefined) {
     return (
-      <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
+      <ToolPageLayout
+        subtitle="ACCOUNT"
+        sectionLabel="Account"
+        title="Loading your desk"
+        maxWidth="lg"
+        showRelated={false}
+      >
         <div className="py-12 flex justify-center">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin"
@@ -553,13 +559,14 @@ export default function Account() {
 
   if (!user || !getStoredAuthToken()) {
     return (
-      <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
-        <p className="enhanced-kicker mb-2">Account</p>
-        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-3 max-md:text-[1.5rem]">Sign in to manage your desk</h1>
-        <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-          Hoops Intel accounts power Pro billing, synced favorites, and optional digest settings. Nothing here is required to
-          read the free edition.
-        </p>
+      <ToolPageLayout
+        subtitle="ACCOUNT"
+        sectionLabel="Account"
+        title="Sign in to manage your desk"
+        description="Hoops Intel accounts power Pro billing, synced favorites, and optional digest settings. Nothing here is required to read the free edition."
+        maxWidth="lg"
+        showRelated={false}
+      >
         {!isSupabaseConfigured ? (
           <div className="rounded-xl p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)" }}>
             Accounts are not configured in this environment (missing Supabase keys).
@@ -589,9 +596,13 @@ export default function Account() {
   }
 
   return (
-    <ToolPageLayout subtitle="ACCOUNT" maxWidth="lg" showRelated={false}>
-      <p className="enhanced-kicker mb-2">Your account</p>
-      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-8 max-md:text-[1.5rem]">Settings &amp; billing</h1>
+    <ToolPageLayout
+      subtitle="ACCOUNT"
+      sectionLabel="Your account"
+      title="Settings & billing"
+      maxWidth="lg"
+      showRelated={false}
+    >
 
       <OpsReadinessPanel />
 

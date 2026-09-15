@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { sentimentPulseData, type PlayerSentiment, type TeamSentiment } from "../lib/sentimentPulseView";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { SeasonChip } from "../components/enhanced/EnhancedUi";
 
 // ═══════════════════════════════════════════════════════════
 // HELPERS
@@ -412,52 +413,18 @@ export default function SentimentPulse() {
   const data = sentimentPulseData;
 
   return (
-    <ToolPageLayout subtitle="SENTIMENT PULSE">
-{/* Page header */}
-        <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            DAILY ANALYSIS
-          </div>
-          <h1
-            className="text-4xl font-bold mb-1 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            SENTIMENT PULSE
-          </h1>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            What the Internet Thinks
-          </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {data.generatedDate}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
+    <ToolPageLayout
+      subtitle="SENTIMENT PULSE"
+      sectionLabel="Daily analysis"
+      title="Sentiment Pulse"
+      description="What the internet thinks — aggregated from X, Reddit, forums, and media"
+    >
+          <div className="flex items-center gap-3 flex-wrap mb-8">
+            <SeasonChip>{data.generatedDate}</SeasonChip>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
               Aggregated from X, Reddit, forums & media
             </span>
           </div>
-        </div>
 
         {/* ── Viral Moment ──────────────────────────────────── */}
         <div

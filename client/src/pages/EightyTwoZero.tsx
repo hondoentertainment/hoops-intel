@@ -299,21 +299,15 @@ export default function EightyTwoZero() {
   return (
     <ToolPageLayout
       subtitle="GAMES & CHALLENGES"
+      sectionLabel="The 82-0 challenge"
+      title="Can your five go 82-0?"
+      description="Spin a franchise and an era, draft one player, repeat until you have a starting five. Then we play out a full 82-game season against history's buzzsaws. One team re-spin and one era re-spin per slot — spend them wisely. Same five, same record, every time: no take-backs, no lucky reruns."
       maxWidth="xl"
       relatedHref="/82-0"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "82-0" }]}
     >
-      <p className="enhanced-kicker mb-2">The 82-0 challenge</p>
-      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-3 max-md:text-[1.5rem]">
-        Can your five go 82-0?
-      </h1>
-      <p className="text-sm mb-4 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,rgba(255,255,255,0.6))" }}>
-        Spin a franchise and an era, draft one player, repeat until you have a starting five. Then we play out a full
-        82-game season against history&apos;s buzzsaws. One team re-spin and one era re-spin per slot — spend them
-        wisely. Same five, same record, every time: no take-backs, no lucky reruns.{" "}
-        <span className="hidden sm:inline mono-data text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
-          Keys: 1–3 draft · T/E re-spin · Enter runs it back.
-        </span>
+      <p className="hidden sm:block mono-data text-[11px] mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        Keys: 1–3 draft · T/E re-spin · Enter runs it back.
       </p>
 
       {/* Mode toggle */}

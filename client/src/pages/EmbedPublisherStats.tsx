@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
 
 type DayOption = 7 | 14 | 30 | 90;
 type WidgetId = "pulse" | "ticker" | "injury";
@@ -282,20 +283,12 @@ export default function EmbedPublisherStats() {
       : `${widgetChoices.find((w) => w.value === widgetFilter)?.label ?? widgetFilter} · ${days}d`;
 
   return (
-    <ToolPageLayout subtitle="EMBED ANALYTICS">
-      <div className="mb-8">
-        <p
-          className="text-[10px] font-bold tracking-widest uppercase mb-2"
-          style={{ color: "rgba(255,255,255,0.35)" }}
-        >
-          Publisher · iframe loads
-        </p>
-        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-3 max-md:text-[1.5rem]">Embed analytics</h1>
-        <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.45)" }}>
-          Rollups match Supabase <span className="mono-data text-white/70">embed_analytics_events</span>. Referrer hosts
-          come from <span className="mono-data text-white/70">embed_agg_by_referrer</span> (parent page hostname on load).
-        </p>
-      </div>
+    <ToolPageLayout
+      subtitle="EMBED ANALYTICS"
+      sectionLabel="Publisher · iframe loads"
+      title="Embed analytics"
+      description="Rollups match Supabase embed_analytics_events. Referrer hosts come from embed_agg_by_referrer (parent page hostname on load)."
+    >
 
       <UnavailableBanner flags={flags} />
 
@@ -305,23 +298,9 @@ export default function EmbedPublisherStats() {
         </span>
         <div className="flex flex-wrap gap-2">
           {dayChoices.map((d) => (
-            <button
-              key={d}
-              type="button"
-              onClick={() => setDays(d)}
-              className="px-4 py-2 rounded-lg text-xs font-semibold transition-all"
-              style={
-                days === d
-                  ? { background: "#0EA5E9", color: "#fff" }
-                  : {
-                      background: "rgba(255,255,255,0.05)",
-                      color: "rgba(255,255,255,0.55)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }
-              }
-            >
+            <DeskFilterChip key={d} active={days === d} onClick={() => setDays(d)}>
               {d} days
-            </button>
+            </DeskFilterChip>
           ))}
         </div>
         <span className="text-[10px] font-bold uppercase tracking-wider ml-2" style={{ color: "rgba(255,255,255,0.35)" }}>

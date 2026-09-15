@@ -25,7 +25,7 @@ import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 import EditorialShell from "../components/EditorialShell";
-import { EnhancedButton, GamePreviewCard, PageHero, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
 
 // ═══════════════════════════════════════════════════════════
@@ -593,15 +593,12 @@ export default function PickEmPage() {
   }
 
   return (
-    <ToolPageLayout subtitle="PICK EM">
-{/* Page Title */}
-        <div className="mb-8">
-          <PageHero
-            kicker={`${pulseEdition.edition} · ${pulseEdition.date}`}
-            title="Daily Pick 'Em"
-            description={`${gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.`}
-          />
-        </div>
+    <ToolPageLayout
+      subtitle="PICK EM"
+      sectionLabel={`${pulseEdition.edition} · ${pulseEdition.date}`}
+      title="Daily Pick 'Em"
+      description={`${gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.`}
+    >
 
         {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0 || slateSettled > 0) && (
           <PickEmShareCard

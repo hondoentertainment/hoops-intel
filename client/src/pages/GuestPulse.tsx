@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { EmptyState } from "../components/enhanced/EnhancedUi";
 
 type PublishedPost = {
   id: string;
@@ -75,13 +76,12 @@ export default function GuestPulse() {
   };
 
   return (
-    <ToolPageLayout subtitle="PROGRAM">
-      <p className="section-label mb-2">CREATOR EXPERIMENT</p>
-      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Guest Pulse</h1>
-      <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
-        Accepted pitches appear below when editors mark them Published in the creator queue. Propose a Pulse Index
-        takeover: who you&apos;d elevate, thesis, and credibility in ~150 words.
-      </p>
+    <ToolPageLayout
+      subtitle="PROGRAM"
+      sectionLabel="Creator experiment"
+      title="Guest Pulse"
+      description="Accepted pitches appear below when editors mark them Published in the creator queue. Propose a Pulse Index takeover: who you'd elevate, thesis, and credibility in ~150 words."
+    >
 
       <section className="mb-12" aria-labelledby="guest-published-heading">
         <h2 id="guest-published-heading" className="text-sm font-bold uppercase tracking-[0.18em] text-white/50 mb-4">
@@ -91,13 +91,13 @@ export default function GuestPulse() {
           <p className="text-sm text-amber-200/80 mb-4">{postsNote}</p>
         ) : null}
         {posts.length === 0 && !postsNote ? (
-          <p className="text-sm text-white/45 mb-4">
-            No accepted pitches yet — submit below and editors can publish from{" "}
-            <a href="/creator-queue" className="text-sky-400 underline">
-              /creator-queue
-            </a>
-            .
-          </p>
+          <EmptyState
+            kicker="Guest Pulse"
+            title="No accepted pitches yet"
+            body="Submit below and editors can publish from the creator queue."
+            pill="OPEN QUEUE"
+            pillTone="accent"
+          />
         ) : (
           <div className="space-y-4 mb-4">
             {posts.map((p) => (

@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import { momentumData } from "../lib/momentumData";
 import type { MomentumSwing } from "../lib/momentumData";
 
@@ -477,64 +478,24 @@ export default function Momentum() {
   const otherGames = games.filter((g) => g.gameId !== gameOfTheNight);
 
   return (
-    <ToolPageLayout subtitle="MOMENTUM ENGINE">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Daily momentum analysis</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Momentum engine
-          </h1>
-          <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            AI-analyzed momentum shifts, clutch plays, and game narratives
-          </p>
-
-          {/* Date badge */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {date}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              {games.length} games analyzed
-            </span>
-          </div>
+    <ToolPageLayout
+      subtitle="MOMENTUM ENGINE"
+      sectionLabel="Daily momentum analysis"
+      title="Momentum engine"
+      description="AI-analyzed momentum shifts, clutch plays, and game narratives"
+    >
+        <div className="flex items-center gap-3 flex-wrap mb-8">
+          <SeasonChip>{date}</SeasonChip>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            {games.length} games analyzed
+          </span>
         </div>
 
-        {/* Explanation box */}
-        <div
-          className="rounded-xl px-5 py-4 mb-8"
-          style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
-          }}
-        >
-          <div
-            className="text-xs font-semibold mb-1.5"
-            style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.08em",
-            }}
-          >
-            HOW IT WORKS
-          </div>
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+        <DeskPanel kicker="How it works" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             The Momentum Engine tracks scoring runs, momentum shifts, and clutch plays across every game. AI analyzes play-by-play data to identify the critical swings that decided each game&apos;s outcome. Win Probability (WP) shifts show how each play changed the game&apos;s trajectory.
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Legend */}
         <div className="flex items-center gap-4 mb-6 flex-wrap">

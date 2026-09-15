@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 import { draftData } from "../lib/draftData";
 
@@ -34,20 +35,17 @@ export default function DraftTracker() {
   const [showTankWatch, setShowTankWatch] = useState(false);
 
   return (
-    <ToolPageLayout subtitle="DRAFT TRACKER" maxWidth="2xl" showBreadcrumbs={false}>
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Hoops Intel</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 max-md:text-[1.5rem]">Draft stock tracker</h1>
-          <p className="mobile-readable mt-1" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            {draftData.classYear} NBA Draft &middot; {draftData.weekLabel}
-          </p>
-        </div>
-
-        {/* Weekly Scout Report */}
-        <div className="rounded-lg border p-5 mb-8" style={{ background: "rgba(14,165,233,0.05)", borderColor: "rgba(14,165,233,0.2)" }}>
-          <div className="text-xs font-bold tracking-widest mb-2" style={{ color: "#0EA5E9" }}>WEEKLY SCOUT REPORT</div>
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>{draftData.weeklyScoutReport}</p>
-        </div>
+    <ToolPageLayout
+      subtitle="DRAFT TRACKER"
+      sectionLabel="Draft lab"
+      title="Draft stock tracker"
+      description={`${draftData.classYear} NBA Draft · ${draftData.weekLabel}`}
+      maxWidth="2xl"
+      showBreadcrumbs={false}
+    >
+        <DeskPanel kicker="Weekly scout report" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>{draftData.weeklyScoutReport}</p>
+        </DeskPanel>
 
         {/* Risers & Fallers */}
         <div className="grid grid-cols-2 gap-4 mb-8">

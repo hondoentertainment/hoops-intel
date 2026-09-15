@@ -90,7 +90,7 @@ export default function PrintEdition() {
             type="button"
             onClick={() => window.print()}
             className="min-h-[44px] px-4 rounded-lg text-xs font-bold uppercase tracking-wider text-white"
-            style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
+            style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
           >
             Print / Save as PDF
           </button>

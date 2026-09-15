@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { EnhancedButton } from "../components/enhanced/EnhancedUi";
 
 type DayBucket = { day: string; pulse: number; ticker: number; injury: number };
 
@@ -66,22 +67,17 @@ export default function WidgetAnalytics() {
   }, [series, days]);
 
   return (
-    <ToolPageLayout subtitle="PUBLISHER ANALYTICS" maxWidth="xl">
+    <ToolPageLayout
+      subtitle="PUBLISHER ANALYTICS"
+      sectionLabel="Embed loads"
+      title="Publisher analytics dashboard"
+      description="Rolling daily counts aggregated from iframe beacons. Telemetry needs the Supabase RPCs in the migration pack."
+      maxWidth="xl"
+    >
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
-          <div>
-            <p className="section-label mb-2">EMBED LOADS</p>
-            <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Publisher analytics dashboard</h1>
-            <p className="text-sm max-w-3xl leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
-              Rolling daily counts aggregated from iframe beacons.&nbsp;
-              <a href="/widgets" className="text-sky-400 underline">
-                Back to widgets
-              </a>
-              {" · "}
-              <a href="/embed-stats" className="text-sky-400 underline">
-                Full publisher dashboard
-              </a>
-              {" "}(hosts, trends, filters). Telemetry needs the Supabase RPCs in the migration pack.
-            </p>
+          <div className="flex flex-wrap gap-3">
+            <EnhancedButton href="/widgets" variant="ghost">Back to widgets</EnhancedButton>
+            <EnhancedButton href="/embed-stats" variant="ghost">Full publisher dashboard</EnhancedButton>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <label className="text-[11px] uppercase tracking-[0.18em]" style={{ color: "rgba(255,255,255,0.38)" }}>

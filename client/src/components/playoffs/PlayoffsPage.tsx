@@ -19,6 +19,7 @@ import { PlayoffsSkeleton } from "./PlayoffsSkeleton";
 import { SeriesCard, sortedSeriesCardsData } from "./SeriesCard";
 import { TakeawaysSection } from "./TakeawaysSection";
 import EditorialShell from "../../components/EditorialShell";
+import { DeskFilterChip, EmptyState, EnhancedButton, PageHero } from "../../components/enhanced/EnhancedUi";
 import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
 import { PlayoffBracketBoard } from "./PlayoffBracketBoard";
 
@@ -212,36 +213,32 @@ export function PlayoffsPage() {
         {hasBoard && (
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <DataTrustBadge variant={hasLive ? "live" : "espn"} fetchedAt={liveData?.fetchedAt} />
-            <div className="flex rounded-lg border border-white/10 overflow-hidden text-[10px] font-bold uppercase tracking-wider">
-              <button
-                type="button"
-                className={`px-3 py-2 min-h-[44px] ${boardMode === "active" ? "bg-sky-500/20 text-sky-300" : "text-white/45"}`}
-                onClick={() => setBoardMode("active")}
-              >
+            <div className="flex flex-wrap gap-2">
+              <DeskFilterChip active={boardMode === "active"} onClick={() => setBoardMode("active")}>
                 Live round ({boardCounts.active})
-              </button>
-              <button
-                type="button"
-                className={`px-3 py-2 min-h-[44px] ${boardMode === "all" ? "bg-sky-500/20 text-sky-300" : "text-white/45"}`}
-                onClick={() => setBoardMode("all")}
-              >
+              </DeskFilterChip>
+              <DeskFilterChip active={boardMode === "all"} onClick={() => setBoardMode("all")}>
                 Full bracket ({boardCounts.all})
-              </button>
+              </DeskFilterChip>
             </div>
           </div>
         )}
         {!hydrated ? (
           <PlayoffsSkeleton />
         ) : !hasBoard ? (
-          <div className="enhanced-card flex flex-col items-center text-center gap-3 px-8 py-12">
-            <p className="enhanced-kicker">Playoffs</p>
-            <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-2xl">Board idle</h1>
-            <p className="mobile-readable max-w-md" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-              Postseason telemetry is syncing — no series rows on file yet.
-            </p>
-            <a href="/" className="text-sm font-semibold min-h-11 inline-flex items-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
-              ← Return to today&apos;s desk
-            </a>
+          <div className="desk-page-stack">
+            <PageHero
+              kicker="Playoffs"
+              title="Board idle"
+              description="Postseason telemetry is syncing — no series rows on file yet."
+            />
+            <EmptyState
+              title="No series rows on file"
+              body="Open today's desk while the bracket loads."
+              pill="BOARD IDLE"
+              pillTone="accent"
+            />
+            <EnhancedButton href="/">Return to today's desk</EnhancedButton>
           </div>
         ) : (
           <>

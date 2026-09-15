@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { EnhancedButton } from "../components/enhanced/EnhancedUi";
 import { teamColors } from "../lib/teamColors";
 import { getPreferences, setPreferences } from "../lib/userPreferences";
 
@@ -21,15 +22,12 @@ export default function Rivals() {
   };
 
   return (
-    <ToolPageLayout subtitle="SETTINGS">
-<p className="section-label mb-2">MATCHUP WATCHLIST</p>
-        <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-4 max-md:text-[1.5rem]">Rival alerts</h1>
-        <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-          When tonight&apos;s preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker.&nbsp;
-          Server pushes can now target rivalry pairings encoded on <span className="mono-data text-white/70">push_subscriptions</span> (<code className="mono-data text-white/65">rival_abbr_a/b</code>) —
-          callers POST <code className="mono-data text-white/65">topic: &quot;rival&quot;</code> with{" "}
-          <code className="mono-data text-white/65">rivalAway</code>/<code className="mono-data text-white/65">rivalHome</code>.
-        </p>
+    <ToolPageLayout
+      subtitle="SETTINGS"
+      sectionLabel="Matchup watchlist"
+      title="Rival alerts"
+      description="When tonight's preview slate includes both teams in a pairing, Hoops Intel surfaces a headline banner above the ticker. Server pushes can now target rivalry pairings encoded on push_subscriptions (rival_abbr_a/b) — callers POST topic: “rival” with rivalAway/rivalHome."
+    >
 
         <div className="space-y-8">
           {pairs.map((p, i) => (
@@ -56,23 +54,11 @@ export default function Rivals() {
           ))}
         </div>
 
-        <div className="mt-10 flex gap-4">
-          <button
-            type="button"
-            onClick={save}
-            className="flex-1 py-3 rounded-lg font-semibold"
-            style={{ background: "#0EA5E9", color: "#fff" }}
-          >
-            Save watchlist
-          </button>
-          <button
-            type="button"
-            onClick={() => setPairs([{ mine: "NYK", rival: "BOS" }])}
-            className="py-3 px-4 rounded-lg text-sm font-semibold"
-            style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.8)" }}
-          >
+        <div className="mt-10 flex flex-wrap gap-3">
+          <EnhancedButton onClick={save}>Save watchlist</EnhancedButton>
+          <EnhancedButton variant="ghost" onClick={() => setPairs([{ mine: "NYK", rival: "BOS" }])}>
             Reset
-          </button>
+          </EnhancedButton>
         </div>
     </ToolPageLayout>
   );
@@ -85,8 +71,7 @@ function Select({ label, val, on }: { label: string; val: string; on: (v: string
         {label}
       </span>
       <select
-        className="w-full px-3 py-3 rounded-xl text-white text-sm"
-        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
+        className="desk-field w-full px-3 py-3 text-white text-sm"
         value={val}
         onChange={(e) => on(e.target.value)}
       >

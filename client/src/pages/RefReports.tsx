@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel } from "../components/enhanced/EnhancedUi";
 import { formatContentDate } from "../lib/contentDate";
 import { refData } from "../lib/refData";
 import type { RefereeProfile, TonightRefAssignment } from "../lib/refData";
@@ -194,38 +195,17 @@ export default function RefReports() {
   );
 
   return (
-    <ToolPageLayout subtitle="REFEREE REPORTS">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Referee reports</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Know the whistle
-          </h1>
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            {formatContentDate(data.generatedDate)} — Tonight&apos;s officiating crews and their tendencies
-          </p>
-          <div className="desk-hairline mt-3" />
-        </div>
-
-        {/* Weekly trend banner */}
-        <div
-          className="rounded-xl p-5 mb-8"
-          style={{
-            background: "rgba(245,158,11,0.06)",
-            border: "1px solid rgba(245,158,11,0.12)",
-          }}
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-            <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#F59E0B" }}>
-              Weekly Trend
-            </span>
-          </div>
-          <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+    <ToolPageLayout
+      subtitle="REFEREE REPORTS"
+      sectionLabel="Referee reports"
+      title="Know the whistle"
+      description={`${formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies`}
+    >
+        <DeskPanel kicker="Weekly trend" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {data.weeklyTrend}
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Tonight's assignments */}
         <div className="mb-10">

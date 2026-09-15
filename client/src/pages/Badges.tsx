@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskFilterChip, EmptyState } from "../components/enhanced/EnhancedUi";
 import { useBadges } from "../lib/useBadges";
 import { allBadges, getBadgeTierColor, getBadgeTierLabel, type Badge } from "../lib/badgesData";
 
@@ -216,31 +217,19 @@ export default function Badges() {
   return (
     <ToolPageLayout
       subtitle="BADGES & STREAKS"
+      sectionLabel="Badges & streaks"
+      title="Your Hoops Intel journey"
+      description="Earn badges, build streaks, prove your hoops knowledge"
       maxWidth="md"
       headerToolbarExtra={
         <span
           className="text-xs tabular-nums font-bold whitespace-nowrap"
-          style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: "var(--hi-accent,#1ec8f5)", fontFamily: "'JetBrains Mono', monospace" }}
         >
           {earnedCount}/{totalBadges} earned
         </span>
       }
     >
-{/* Title */}
-        <div className="text-center">
-          <h1
-            className="text-2xl font-black uppercase tracking-wider mb-2"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "#fff" }}
-          >
-            Your Hoops Intel Journey
-          </h1>
-          <p
-            className="text-sm"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Earn badges, build streaks, prove your hoops knowledge
-          </p>
-        </div>
 
         {/* Streak Counter */}
         <StreakCounter current={streak.currentStreak} longest={streak.longestStreak} />
@@ -248,7 +237,7 @@ export default function Badges() {
         {/* Stats Summary */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: "Badges Earned", value: String(earnedCount), color: "#0EA5E9" },
+            { label: "Badges Earned", value: String(earnedCount), color: "var(--hi-accent,#1ec8f5)" },
             { label: "Current Streak", value: `${streak.currentStreak}d`, color: "#F59E0B" },
             { label: "Longest Streak", value: `${streak.longestStreak}d`, color: "#10B981" },
           ].map((stat) => (
@@ -276,26 +265,12 @@ export default function Badges() {
           ))}
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-4 px-4">
-          {CATEGORY_TABS.map((tab) => {
-            const isActive = activeTab === tab.key;
-            return (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all"
-                style={{
-                  background: isActive ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.03)",
-                  color: isActive ? "#0EA5E9" : "rgba(255,255,255,0.4)",
-                  border: `1px solid ${isActive ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
+        <div className="flex flex-wrap gap-2">
+          {CATEGORY_TABS.map((tab) => (
+            <DeskFilterChip key={tab.key} active={activeTab === tab.key} onClick={() => setActiveTab(tab.key)}>
+              {tab.label}
+            </DeskFilterChip>
+          ))}
         </div>
 
         {/* Badge Grid */}
@@ -313,21 +288,13 @@ export default function Badges() {
 
         {/* Empty state for filtered tabs */}
         {sorted.length === 0 && (
-          <div
-            className="rounded-xl p-8 text-center"
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <div className="text-3xl mb-3">{"\u{1F50D}"}</div>
-            <p
-              className="text-sm"
-              style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              No badges in this category yet.
-            </p>
-          </div>
+          <EmptyState
+            kicker="Badges"
+            title="No badges in this category yet"
+            body="Earn badges on another tab, or keep reading the desk."
+            pill="NO MATCHES"
+            pillTone="accent"
+          />
         )}
 
         {/* Footer spacer */}

@@ -170,17 +170,14 @@ export default function Pro() {
   };
 
   return (
-    <ToolPageLayout subtitle="PRO" maxWidth="xl" showRelated={false}>
-        <div className="mb-10">
-          <p className="enhanced-kicker mb-2">Hoops Intel Pro</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[36px] leading-10 mb-3 max-md:text-[1.75rem]">
-            Sharper basketball, earlier and ad-free.
-          </h1>
-          <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            Everything free readers get — plus early access, deeper analytics, and an unobstructed reading experience.
-          </p>
-          <div className="desk-hairline mt-4" />
-        </div>
+    <ToolPageLayout
+      subtitle="PRO"
+      sectionLabel="Hoops Intel Pro"
+      title="Sharper basketball, earlier and ad-free."
+      description="Everything free readers get — plus early access, deeper analytics, and an unobstructed reading experience."
+      maxWidth="xl"
+      showRelated={false}
+    >
 
         {sub.isPro ? (
           <div className="rounded-xl p-6 mb-10" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.3)" }}>
