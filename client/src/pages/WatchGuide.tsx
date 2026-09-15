@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { DeskLoopLinks, EmptyState } from "../components/enhanced/EnhancedUi";
+import { DeskLoopLinks, EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -316,13 +316,21 @@ export default function WatchGuide() {
         </div>
 
         {!slateOpen ? (
+          <>
           <EmptyState
             kicker="Watch guide"
             title="No games on the board"
-            body={data.nightOverview || "The desk stays honest — no invented watch rankings when the league is dark."}
+            body="The league is dark — Hoops Intel is not inventing a watch ranking, sleeper pick, or skip list. Check Tonight's slate or the injury wire when camp and games resume."
             pill="NOT TONIGHT"
-            footnote={data.topPick.reason}
+            footnote={data.nightOverview || data.topPick.reason}
           />
+          <div className="flex flex-wrap gap-2 mb-6">
+            <EnhancedButton href="/tonight">Tonight&apos;s slate</EnhancedButton>
+            <EnhancedButton href="/injuries" variant="ghost">
+              Injury wire
+            </EnhancedButton>
+          </div>
+          </>
         ) : (
           <>
         {/* Top Pick Callout */}

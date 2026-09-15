@@ -48,19 +48,18 @@ export const SITE_REVIEW_PATHS = [
   "/sitemap.xml",
 ];
 
-/** Static tool paths written to sitemap.xml (excludes /, /archive, /pulse-history, /playoffs). */
+/** Static tool paths written to sitemap.xml (excludes /, /archive, /pulse-history, /playoffs).
+ * Soft-launch noindex routes (/82-0, /badges, /watch-guide, /podcast-companion) stay off this list. */
 export const SITEMAP_STATIC_ROUTES = [
   // Daily desk — crawl above interactive tools
   { loc: "/injuries", priority: "0.7", changefreq: "daily" },
   { loc: "/tonight", priority: "0.7", changefreq: "daily" },
   { loc: "/players", priority: "0.65", changefreq: "daily" },
   { loc: "/betting-intel", priority: "0.7", changefreq: "daily" },
-  { loc: "/watch-guide", priority: "0.65", changefreq: "daily" },
   { loc: "/momentum", priority: "0.65", changefreq: "daily" },
   { loc: "/my-pulse", priority: "0.6", changefreq: "daily" },
   { loc: "/print-edition", priority: "0.6", changefreq: "daily" },
   { loc: "/pick-em", priority: "0.65", changefreq: "daily" },
-  { loc: "/podcast-companion", priority: "0.6", changefreq: "weekly" },
   { loc: "/widgets", priority: "0.6", changefreq: "daily" },
   { loc: "/widgets/analytics", priority: "0.5", changefreq: "weekly" },
   { loc: "/embed-stats", priority: "0.5", changefreq: "weekly" },

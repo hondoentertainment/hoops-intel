@@ -78,6 +78,12 @@ export function findPlayerBySlug(slug: string) {
   return getAllPlayers().find((p) => playerSlug(p.name) === canonical) ?? null;
 }
 
+/** Injury-wire row from today's edition only — never invents availability. */
+export function findPlayerInjury(name: string) {
+  const canonical = canonicalizePlayerName(name);
+  return injuryUpdates.find((i: any) => canonicalizePlayerName(i.player) === canonical) ?? null;
+}
+
 function opponentFor(series: any, team: string) {
   if (series.higherTeam === team) return series.lowerTeam;
   if (series.lowerTeam === team) return series.higherTeam;

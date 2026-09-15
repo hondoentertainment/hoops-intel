@@ -29,6 +29,8 @@ export const NOINDEX_PATHS = new Set([
   "/embed",
   "/82-0",
   "/badges",
+  "/watch-guide",
+  "/podcast-companion",
 ]);
 
 const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
@@ -155,11 +157,13 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     title: "NBA Watch Guide | Hoops Intel",
     description: "What to watch tonight — must-see games, matchups, and storyline priorities.",
     canonicalPath: "/watch-guide",
+    noindex: true,
   },
   "/podcast-companion": {
     title: "Podcast Companion | Hoops Intel",
     description: "Show-notes mode linking Hoops Intel data to your favorite NBA podcasts.",
     canonicalPath: "/podcast-companion",
+    noindex: true,
   },
   "/history": {
     title: "NBA History Engine | Hoops Intel",
@@ -257,8 +261,6 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/tactics",
   "/projections",
   "/community-pulse",
-  "/watch-guide",
-  "/podcast-companion",
   "/history",
   "/refs",
   "/ask",

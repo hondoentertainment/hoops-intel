@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useParams } from "wouter";
 import { slugify, getAllPlayers } from "../lib/searchUtils";
-import { pulseIndex, statLeaders, pulseEdition } from "../lib/pulseData";
+import { pulseIndex, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
+import { findPlayerInjury } from "../lib/playerIntel";
+import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
+import { InjuryChip } from "../components/enhanced/EnhancedUi";
 
 function findPlayer(slug: string) {
   const all = getAllPlayers();
@@ -31,6 +34,12 @@ export default function PlayerCard() {
   }
 
   const currentPulse = pulseIndex.find((p: any) => p.player === player.name);
+  const currentInjury = findPlayerInjury(player.name);
+  const roster = getPlayerRosterStatus(player.name, {
+    inPulse: Boolean(currentPulse),
+    hasCurrentTeam: player.teams.length > 0,
+    mentions: player.mentions,
+  });
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
 
   // Parse season stats from keyStats string (e.g. "40 PTS · 14-27 FG · 3-5 3PT · 9-11 FT")
@@ -175,6 +184,19 @@ export default function PlayerCard() {
                   {t}
                 </span>
               ))}
+              {currentInjury && <InjuryChip status={currentInjury.status} />}
+              {roster.status !== "active" && (
+                <span
+                  className="text-xs px-2.5 py-1 rounded-full font-bold tracking-wide uppercase"
+                  style={{
+                    background: roster.status === "retired" ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.08)",
+                    color: roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.6)",
+                    border: `1px solid ${roster.status === "retired" ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.12)"}`,
+                  }}
+                >
+                  {roster.label}
+                </span>
+              )}
             </div>
             {currentPulse && (
               <div

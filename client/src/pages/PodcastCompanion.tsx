@@ -163,9 +163,23 @@ export default function PodcastCompanion() {
             Today&apos;s episode blueprint
           </h1>
           <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            {data.date} — Everything you need for today&apos;s show
+            Frozen show notes from {data.date} — not a live daily rundown.
           </p>
           <div className="desk-hairline mt-3" />
+        </div>
+        <div
+          className="rounded-xl p-4 mb-6"
+          style={{
+            background: "rgba(245,158,11,0.08)",
+            border: "1px solid rgba(245,158,11,0.2)",
+          }}
+        >
+          <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#F59E0B" }}>
+            Soft launch
+          </p>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+            This companion is last generated {data.generatedDate}. It is show-notes mode from a frozen edition, not a current-day podcast product.
+          </p>
         </div>
 
         {/* Episode title card */}

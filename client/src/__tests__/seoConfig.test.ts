@@ -27,7 +27,7 @@ describe("publisher dashboard SEO", () => {
 
 describe("soft-launch and desk SEO", () => {
   it("noindexes thin engagement routes with self canonicals", () => {
-    for (const path of ["/82-0", "/badges"]) {
+    for (const path of ["/82-0", "/badges", "/watch-guide", "/podcast-companion"]) {
       expect(NOINDEX_PATHS.has(path)).toBe(true);
       const seo = resolveRouteSeo(path);
       expect(seo?.noindex).toBe(true);

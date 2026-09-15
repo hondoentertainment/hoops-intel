@@ -110,8 +110,8 @@ export function getPlayerRosterStatus(
   if (mentions >= 2) {
     return {
       status: "inactive",
-      label: "Inactive / off desk",
-      detail: "Not on today's Pulse Index. Profile is built from archive editions only.",
+      label: "Archive only",
+      detail: "Past-edition mentions only. Not a current NBA roster or Pulse card — no live counting stats on this page.",
       indexable: true,
     };
   }
@@ -119,8 +119,43 @@ export function getPlayerRosterStatus(
   return {
     status: "inactive",
     label: "Limited coverage",
-    detail: "Thin archive mention only — not enough live intel for a populated player page.",
+    detail: "Thin archive mention only — not a current NBA roster card and not enough live intel for a populated player page.",
     indexable: false,
+  };
+}
+
+export function isCurrentNbaRosterCard(context: {
+  inPulse?: boolean;
+  hasCurrentTeam?: boolean;
+} = {}): boolean {
+  return Boolean(context.inPulse || context.hasCurrentTeam);
+}
+
+export function playerCoverageEmptyState(
+  name: string,
+  roster: RosterStatusInfo,
+): { kicker: string; title: string; body: string; pill: string } {
+  if (roster.status === "retired") {
+    return {
+      kicker: "Retired",
+      title: `${name} is not on an active NBA roster`,
+      body: roster.detail,
+      pill: "RETIRED",
+    };
+  }
+  if (roster.status === "historical") {
+    return {
+      kicker: roster.label,
+      title: `${name} is not a current NBA roster profile`,
+      body: roster.detail,
+      pill: "HISTORICAL",
+    };
+  }
+  return {
+    kicker: "Archive only",
+    title: `No current NBA stats for ${name}`,
+    body: "This page is built from archive mentions only. Hoops Intel is not publishing a current roster card, Pulse line, or live counting stats here.",
+    pill: "ARCHIVE ONLY",
   };
 }
 

@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "wouter";
 import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { archiveEditions } from "../lib/archiveData";
-import { pulseIndex, gameResults, injuryUpdates, pulseEdition } from "../lib/pulseData";
+import { pulseIndex, gameResults, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
-import { getPlayerIntelBySlug, playerHasLiveDeskCoverage, type PlayerIntelResponse } from "../lib/playerIntel";
-import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
-import { EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
+import {
+  findPlayerInjury,
+  getPlayerIntelBySlug,
+  playerHasLiveDeskCoverage,
+  type PlayerIntelResponse,
+} from "../lib/playerIntel";
+import { getPlayerRosterStatus, playerCoverageEmptyState } from "../lib/playerRosterStatus";
+import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -91,7 +96,7 @@ export default function Player() {
         ? `${currentPulse.keyStats} — ${currentPulse.note}`
         : roster && roster.status !== "active"
           ? `${player.name} — ${roster.label}. ${roster.detail}`
-          : `Player profile for ${player.name} on Hoops Intel.`,
+          : `Archive and desk coverage for ${player.name} on Hoops Intel.`,
     ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
     ogUrl: `https://hoopsintel.net/player/${slug}`,
     canonicalUrl: `https://hoopsintel.net/player/${slug}`,
@@ -101,7 +106,11 @@ export default function Player() {
           "@context": "https://schema.org",
           "@type": "Person",
           name: player.name,
-          description: currentPulse?.note || `Player intelligence profile for ${player.name}.`,
+          description:
+            currentPulse?.note ||
+            (roster && roster.status !== "active"
+              ? `${player.name} — ${roster.label}. ${roster.detail}`
+              : `Hoops Intel desk coverage for ${player.name}.`),
           url: `https://hoopsintel.net/player/${slug}`,
           affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
         }
@@ -132,7 +141,13 @@ export default function Player() {
     );
   }
 
-  const currentInjury = injuryUpdates.find((inj: any) => inj.player === player.name);
+  const currentInjury = findPlayerInjury(player.name);
+  const coverageEmpty = playerCoverageEmptyState(player.name, roster ?? {
+    status: "inactive",
+    label: "Limited coverage",
+    detail: "Thin archive mention only — not a current NBA roster card.",
+    indexable: false,
+  });
   const currentGame = gameResults.find((g: any) => g.topPerformer === player.name);
   const editions = getPlayerEditions(player.name);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
@@ -171,7 +186,9 @@ export default function Player() {
             <div className="flex items-center gap-4">
               <PlayerAvatar name={player.name} team={player.teams[0]} size={72} />
               <div>
-              <p className="enhanced-kicker mb-1">Player profile</p>
+              <p className="enhanced-kicker mb-1">
+                {roster && roster.status !== "active" ? roster.label : "Player profile"}
+              </p>
               <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-2 max-md:text-[1.5rem]">{player.name}</h1>
               <div className="flex items-center gap-2 flex-wrap">
                 {player.teams.map((t) => (
@@ -185,8 +202,14 @@ export default function Player() {
                     {t}
                   </a>
                 ))}
+                {currentInjury && (
+                  <span data-testid="player-injury-badge">
+                    <InjuryChip status={currentInjury.status} />
+                  </span>
+                )}
                 {roster && roster.status !== "active" && (
                   <span
+                    data-testid="player-roster-badge"
                     className="text-xs px-2 py-1 rounded font-semibold uppercase tracking-wide"
                     style={{
                       background: roster.status === "retired" ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.06)",
@@ -259,10 +282,10 @@ export default function Player() {
             {!playerHasLiveDeskCoverage(intel) && (
               <>
                 <EmptyState
-                  kicker="Limited coverage"
-                  title={`${player.name} is not on today’s Pulse desk`}
-                  body="This profile is built from archive mentions only — no Pulse score, injury tag, or live game line yet. Check back after the next morning edition."
-                  pill="ARCHIVE ONLY"
+                  kicker={coverageEmpty.kicker}
+                  title={coverageEmpty.title}
+                  body={coverageEmpty.body}
+                  pill={coverageEmpty.pill}
                   footnote={`${player.mentions} archive mention${player.mentions !== 1 ? "s" : ""}`}
                 />
                 <div className="flex flex-wrap gap-2">
@@ -384,25 +407,7 @@ export default function Player() {
               <div className="glass-card rounded-lg p-4">
                 <div className="section-label mb-2">INJURY STATUS</div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span
-                    className="text-xs font-bold px-2 py-0.5 rounded uppercase"
-                    style={{
-                      background:
-                        currentInjury.status === "out"
-                          ? "rgba(244,63,94,0.1)"
-                          : currentInjury.status === "returning"
-                            ? "rgba(16,185,129,0.1)"
-                            : "rgba(245,158,11,0.1)",
-                      color:
-                        currentInjury.status === "out"
-                          ? "#F43F5E"
-                          : currentInjury.status === "returning"
-                            ? "#10B981"
-                            : "#F59E0B",
-                    }}
-                  >
-                    {currentInjury.status}
-                  </span>
+                  <InjuryChip status={currentInjury.status} />
                 </div>
                 <div className="text-sm text-white mb-1">{currentInjury.injury}</div>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
