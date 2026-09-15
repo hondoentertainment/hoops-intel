@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findPlayerInjury, playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
-import { lastUpdatedStamp } from "../lib/dataTrust";
+import { deskStaleNote, isDeskEditionStale, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { filterBrowsePlayers, listBrowsePlayers } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
@@ -84,5 +84,12 @@ describe("player availability badges", () => {
 describe("freshness stamp", () => {
   it("uses the edition date, not a live clock", () => {
     expect(lastUpdatedStamp()).toBe(`Last updated: ${pulseEdition.date}`);
+  });
+
+  it("treats a same-day Pacific edition as fresh and yesterday as stale", () => {
+    expect(isDeskEditionStale(new Date("2026-09-15T18:00:00-07:00"), "September 15, 2026")).toBe(false);
+    expect(isDeskEditionStale(new Date("2026-09-16T12:00:00-07:00"), "September 15, 2026")).toBe(true);
+    expect(deskStaleNote(new Date("2026-09-15T18:00:00-07:00"), "September 15, 2026")).toBeNull();
+    expect(deskStaleNote(new Date("2026-09-16T12:00:00-07:00"), "September 15, 2026")).toMatch(/last-known/);
   });
 });

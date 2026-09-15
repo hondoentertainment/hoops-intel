@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useSubscription, startCheckout, openBillingPortal } from "../lib/useSubscription";
+import { pulseProFeatureBody } from "../lib/deskMode";
 import { distributionTools } from "../lib/siteNav";
 import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
@@ -17,7 +18,7 @@ function getStoredAuthToken(): string | null {
 const FEATURES = [
   {
     title: "Full Pulse Index + rationales",
-    body: "Every ranked player with editorial rationale, trends, and playoff context — not just the free preview.",
+    body: pulseProFeatureBody(),
   },
   {
     title: "My Pulse alerts",

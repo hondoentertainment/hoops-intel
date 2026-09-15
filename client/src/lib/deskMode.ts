@@ -137,6 +137,20 @@ export function offseasonPrimaryCta(date = new Date()): { label: string; href: s
   }
 }
 
+/** Pulse upsell line on /pro — follows the live desk window, not leftover playoff copy. */
+export function pulseProFeatureBody(ctx: EditionContext = activeEditionContext()): string {
+  if (ctx === "playoffs" || ctx === "finals") {
+    return "Every ranked player with editorial rationale, trends, and playoff context — not just the free preview.";
+  }
+  if (ctx === "preseason") {
+    return "Every ranked player with editorial rationale, camp trends, and preseason desk context — not just the free preview.";
+  }
+  if (ctx === "draft" || ctx === "free-agency" || ctx === "summer-league" || ctx === "dead-period") {
+    return "Every ranked player with editorial rationale, trends, and offseason desk context — not just the free preview.";
+  }
+  return "Every ranked player with editorial rationale, trends, and regular-season context — not just the free preview.";
+}
+
 export function editionContextDeskLabel(ctx: EditionContext = activeEditionContext()): string {
   switch (ctx) {
     case "finals":

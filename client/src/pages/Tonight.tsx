@@ -3,7 +3,7 @@ import DataTrustBadge from "../components/DataTrustBadge";
 import { DeskPanel, EmptyState, EnhancedButton, GamePreviewCard, PageHero, StatCard } from "../components/enhanced/EnhancedUi";
 import { campOpenDisplay, daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
 import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
-import { lastUpdatedStamp } from "../lib/dataTrust";
+import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { makeGameId } from "../lib/gameCenter";
 
@@ -14,10 +14,16 @@ export default function Tonight() {
   const schedule = campScheduleStatus();
   const openDate = campOpenDisplay();
   const freshness = lastUpdatedStamp();
+  const stale = deskStaleNote();
 
   return (
     <EditorialShell header={{ subtitle: "TONIGHT" }}>
       <div className="desk-page-stack">
+        {stale && (
+          <p className="text-xs" role="status" data-testid="tonight-stale-note" style={{ color: "#F59E0B" }}>
+            {stale}
+          </p>
+        )}
         {slateOpen ? (
           <>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">

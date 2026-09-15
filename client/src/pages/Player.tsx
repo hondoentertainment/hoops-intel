@@ -14,6 +14,7 @@ import {
   type PlayerIntelResponse,
 } from "../lib/playerIntel";
 import { getPlayerRosterStatus, playerCoverageEmptyState } from "../lib/playerRosterStatus";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
@@ -111,6 +112,7 @@ export default function Player() {
               : `Hoops Intel desk coverage for ${player.name}.`),
           url: `https://hoopsintel.net/player/${slug}`,
           affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
+          dateModified: pulseEdition.date,
         }
       : undefined,
   });
@@ -174,6 +176,22 @@ export default function Player() {
         { label: player.name },
       ]}
     >
+        {roster && roster.status !== "active" && (
+          <div
+            className="enhanced-card p-4 mb-4"
+            data-testid="player-roster-banner"
+            role="status"
+            style={{
+              borderLeft: `3px solid ${roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.25)"}`,
+            }}
+          >
+            <div className="section-label mb-2">ROSTER STATUS</div>
+            <div className="text-sm font-semibold text-white mb-1">{roster.label}</div>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+              {roster.detail}
+            </p>
+          </div>
+        )}
         {intelUnavailable && (
           <div className="mb-4">
             <ErrorBlock
@@ -227,6 +245,13 @@ export default function Player() {
                 )}
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
                   {player.mentions} mention{player.mentions !== 1 ? "s" : ""} in archive
+                </span>
+                <span
+                  className="text-xs"
+                  data-testid="player-last-updated"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {lastUpdatedStamp()}
                 </span>
               </div>
               </div>
@@ -302,21 +327,6 @@ export default function Player() {
                 </div>
               </>
             )}
-            {roster && roster.status !== "active" && (
-              <div
-                className="enhanced-card p-4"
-                style={{
-                  borderLeft: `3px solid ${roster.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.25)"}`,
-                }}
-              >
-                <div className="section-label mb-2">ROSTER STATUS</div>
-                <div className="text-sm font-semibold text-white mb-1">{roster.label}</div>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
-                  {roster.detail}
-                </p>
-              </div>
-            )}
-
             {/* Current Stats */}
             {currentPulse && (
               <div className="enhanced-card p-4">
@@ -455,6 +465,10 @@ export default function Player() {
                 <div className="flex justify-between">
                   <span style={{ color: "rgba(255,255,255,0.4)" }}>Archive Mentions</span>
                   <span className="text-white font-semibold">{player.mentions}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Last updated</span>
+                  <span className="text-white font-semibold">{pulseEdition.date}</span>
                 </div>
                 <div className="flex justify-between">
                   <span style={{ color: "rgba(255,255,255,0.4)" }}>Top Player Awards</span>

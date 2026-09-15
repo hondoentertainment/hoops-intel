@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import EditorialShell from "../components/EditorialShell";
 import { EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
 import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
-import { lastUpdatedStamp } from "../lib/dataTrust";
+import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
@@ -303,6 +303,7 @@ export default function InjuryReport() {
     [],
   );
   const rows = injuryUpdates.filter((injury) => club === "all" || injury.team === club);
+  const stale = deskStaleNote();
   const nextClub = () => {
     const idx = clubs.indexOf(club);
     setClub(clubs[(idx + 1) % clubs.length] ?? "all");
@@ -348,6 +349,11 @@ export default function InjuryReport() {
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
           </button>
         </div>
+        {stale ? (
+          <p className="text-xs" role="status" data-testid="injuries-stale-note" style={{ color: "#F59E0B" }}>
+            {stale}
+          </p>
+        ) : null}
 
         {rows.length === 0 ? (
           <EmptyState
