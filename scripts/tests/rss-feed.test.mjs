@@ -118,6 +118,13 @@ test("committed feed.xml and rss.xml are well-formed and not HTML", () => {
   assert.equal(editionIso(new Date(firstPub[1]).toISOString().slice(0, 10)), live.date);
 });
 
+test("Vite preview aliases /rss to rss.xml so local preview is not SPA HTML", () => {
+  const vite = readFileSync(join(ROOT, "vite.config.ts"), "utf8");
+  assert.match(vite, /name:\s*"rss-alias"/);
+  assert.match(vite, /\/rss\.xml/);
+  assert.match(vite, /configurePreviewServer/);
+});
+
 test("Vercel SPA fallback cannot swallow rss.xml, and /rss rewrites to XML", () => {
   const vercel = JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8"));
   const rewriteSources = (vercel.rewrites || []).map((r) => r.source);

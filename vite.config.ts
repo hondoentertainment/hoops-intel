@@ -2,8 +2,27 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
+function rewriteRssPath() {
+  return (req, _res, next) => {
+    const url = req.url || "";
+    if (url === "/rss" || url.startsWith("/rss?")) req.url = "/rss.xml" + url.slice(4);
+    next();
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: "rss-alias",
+      configureServer(server) {
+        server.middlewares.use(rewriteRssPath());
+      },
+      configurePreviewServer(server) {
+        server.middlewares.use(rewriteRssPath());
+      },
+    },
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client/src"),
