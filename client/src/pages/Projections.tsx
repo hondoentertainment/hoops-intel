@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { projectionsData, type TeamProjection, type PlayoffMatchup } from "../lib/projectionsData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 
 // ═══════════════════════════════════════════════════════════
 // CONFERENCE TABLE
@@ -364,56 +365,24 @@ export default function Projections() {
   const westCF = projectedBracket.west.filter((m) => m.round === "Conference Finals");
 
   return (
-    <ToolPageLayout subtitle="PROJECTIONS">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Weekly projections</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Rest-of-season projections
-          </h1>
-          <p
-            className="mobile-readable mb-4"
-            style={{ color: "var(--hi-text-secondary,#8594a8)" }}
-          >
-            Win totals, playoff probabilities &amp; championship odds
-          </p>
-
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {weekLabel}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
+    <ToolPageLayout
+      subtitle="PROJECTIONS"
+      sectionLabel="Weekly projections"
+      title="Rest-of-season projections"
+      description="Win totals, playoff probabilities & championship odds"
+    >
+          <div className="flex items-center gap-3 flex-wrap mb-8">
+            <SeasonChip>{weekLabel}</SeasonChip>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
               Generated {generatedDate}
             </span>
           </div>
-        </div>
 
-        {/* Weekly Narrative */}
-        <div
-          className="rounded-xl px-5 py-4 mb-8"
-          style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
-          }}
-        >
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+        <DeskPanel kicker="Weekly narrative" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {weeklyNarrative}
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Biggest Movers */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">

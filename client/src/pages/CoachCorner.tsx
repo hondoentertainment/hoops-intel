@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { tacticsData, type TacticalBreakdown } from "../lib/tacticsData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 
 // ═══════════════════════════════════════════════════════════
 // SCHEME GRADE BADGE
@@ -314,70 +315,24 @@ export default function CoachCorner() {
   } = tacticsData;
 
   return (
-    <ToolPageLayout subtitle="COACH CORNER">
-{/* Page header */}
-        <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            WEEKLY TACTICAL BREAKDOWN
-          </div>
-          <h1
-            className="text-4xl font-bold mb-1 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Coach&apos;s Corner
-          </h1>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Scheme analysis &amp; tactical trends across the NBA
-          </p>
-
-          {/* Week badge */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {weekLabel}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              Generated {generatedDate}
-            </span>
-          </div>
+    <ToolPageLayout
+      subtitle="COACH CORNER"
+      sectionLabel="Weekly tactical breakdown"
+      title="Coach's Corner"
+      description="Scheme analysis & tactical trends across the NBA"
+    >
+        <div className="flex items-center gap-3 flex-wrap mb-8">
+          <SeasonChip>{weekLabel}</SeasonChip>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            Generated {generatedDate}
+          </span>
         </div>
 
-        {/* Weekly Narrative */}
-        <div
-          className="rounded-xl px-5 py-4 mb-8"
-          style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
-          }}
-        >
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+        <DeskPanel kicker="Weekly narrative" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {weeklyNarrative}
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Scheme of the Week */}
         <div className="mb-10">

@@ -1,4 +1,5 @@
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
@@ -200,80 +201,24 @@ export default function TradeValue() {
       : players;
 
   return (
-    <ToolPageLayout subtitle="TRADE VALUE">
-{/* Page header */}
-        <div className="mb-8">
-          <div
-            className="text-xs font-semibold mb-2"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.1em",
-            }}
-          >
-            WEEKLY RANKINGS
-          </div>
-          <h1
-            className="text-4xl font-bold mb-1 leading-tight"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Trade Value Index
-          </h1>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Updated weekly by Hoops Intel AI
-          </p>
-
-          {/* Week badge + generated date */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {weekLabel}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              Generated {generatedDate}
-            </span>
-          </div>
+    <ToolPageLayout
+      subtitle="TRADE VALUE"
+      sectionLabel="Weekly rankings"
+      title="Trade Value Index"
+      description="Updated weekly by Hoops Intel AI"
+    >
+        <div className="flex items-center gap-3 flex-wrap mb-8">
+          <SeasonChip>{weekLabel}</SeasonChip>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            Generated {generatedDate}
+          </span>
         </div>
 
-        {/* Explanation box */}
-        <div
-          className="rounded-xl px-5 py-4 mb-8"
-          style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
-          }}
-        >
-          <div
-            className="text-xs font-semibold mb-1.5"
-            style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.08em",
-            }}
-          >
-            METHODOLOGY
-          </div>
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+        <DeskPanel kicker="Methodology" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             The TVI ranks the {players.length} most tradeable players this week by AI-assessed value. Inputs: recent performance trend, contract (years + salary), age, team&apos;s playoff position, injury history.
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Legend */}
         <div className="flex items-center gap-4 mb-6">

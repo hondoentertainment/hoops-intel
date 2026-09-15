@@ -3,6 +3,7 @@
 
 import { useState, useCallback } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { SeasonChip } from "../components/enhanced/EnhancedUi";
 import { communityPulseData } from "../lib/communityPulseView";
 import { ratablePlayers } from "../lib/communityRatablePlayers";
 
@@ -294,55 +295,18 @@ export default function CommunityPulse() {
   return (
     <ToolPageLayout
       subtitle="COMMUNITY PULSE"
+      sectionLabel="Community Pulse"
+      title="Your rankings vs. AI"
+      description={`${data.weekLabel} · ${data.totalVoters.toLocaleString()} voters this week`}
       maxWidth="md"
       headerToolbarExtra={
-        <span
-          className="text-xs whitespace-nowrap"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-        >
+        <span className="text-xs whitespace-nowrap" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
           {data.weekLabel}
         </span>
       }
     >
-{/* Title */}
-        <div className="text-center">
-          <h1
-            className="text-2xl font-black uppercase tracking-wider mb-2"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "#fff" }}
-          >
-            Community Pulse
-          </h1>
-          <p
-            className="text-sm"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Your Rankings vs. AI
-          </p>
-        </div>
-
-        {/* Total voters */}
-        <div className="flex justify-center">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
-            style={{
-              background: "rgba(14,165,233,0.08)",
-              border: "1px solid rgba(14,165,233,0.15)",
-            }}
-          >
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{"\u{1F5F3}\uFE0F"}</span>
-            <span
-              className="text-xs font-bold tabular-nums"
-              style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}
-            >
-              {data.totalVoters.toLocaleString()}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              total voters this week
-            </span>
-          </div>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <SeasonChip>{data.totalVoters.toLocaleString()} voters</SeasonChip>
         </div>
 
         {/* Voting Section */}

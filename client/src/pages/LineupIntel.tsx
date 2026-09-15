@@ -5,6 +5,7 @@ import { useState } from "react";
 import { lineupData } from "../lib/lineupData";
 import type { LineupUnit, TeamLineupIntel } from "../lib/lineupData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 
 // ═══════════════════════════════════════════════════════════
@@ -491,65 +492,24 @@ export default function LineupIntel() {
   const { generatedDate, weekLabel, teams, biggestSurprise } = lineupData;
 
   return (
-    <ToolPageLayout subtitle="LINEUP INTEL">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Weekly analysis</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Lineup intelligence
-          </h1>
-          <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            AI-analyzed lineup combinations, death lineups, and rotation insights
-          </p>
-          <div className="desk-hairline" />
-
-          {/* Week badge + generated date */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {weekLabel}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
-            >
-              Generated {generatedDate}
-            </span>
-          </div>
+    <ToolPageLayout
+      subtitle="LINEUP INTEL"
+      sectionLabel="Weekly analysis"
+      title="Lineup intelligence"
+      description="AI-analyzed lineup combinations, death lineups, and rotation insights"
+    >
+        <div className="flex items-center gap-3 flex-wrap mb-8">
+          <SeasonChip>{weekLabel}</SeasonChip>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            Generated {generatedDate}
+          </span>
         </div>
 
-        {/* Explanation box */}
-        <div
-          className="rounded-xl px-5 py-4 mb-8"
-          style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
-          }}
-        >
-          <div
-            className="text-xs font-semibold mb-1.5"
-            style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: "0.08em",
-            }}
-          >
-            METHODOLOGY
-          </div>
-          <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
-          >
+        <DeskPanel kicker="Methodology" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             Lineup Intelligence ranks five-man units by net rating (points scored minus points allowed per 100 possessions). &quot;Death Lineups&quot; are closing units used in the final 5 minutes of close games. Minimum 30 minutes together to qualify. Data sourced from NBA.com advanced stats.
           </p>
-        </div>
+        </DeskPanel>
 
         {/* League-wide best lineups table */}
         <div

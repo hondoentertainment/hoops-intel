@@ -1,5 +1,4 @@
 import ToolPageLayout from "../components/ToolPageLayout";
-import { PageHero } from "../components/enhanced/EnhancedUi";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { lineOpenersArchive } from "../lib/lineOpenersArchiveData";
@@ -24,14 +23,12 @@ export default function BettingIntel() {
   });
 
   return (
-    <ToolPageLayout subtitle="TOOLS">
-      <div className="mb-6">
-        <PageHero
-          kicker="Market context"
-          title="Betting intel"
-          description="Openers freeze at morning edition; closers sync from the edition board; current lines refresh via The Odds API on midday and post-game runs. Cards below show opener → closer → current movement plus how sharps read the number."
-        />
-      </div>
+    <ToolPageLayout
+      subtitle="TOOLS"
+      sectionLabel="Market context"
+      title="Betting intel"
+      description="Openers freeze at morning edition; closers sync from the edition board; current lines refresh via The Odds API on midday and post-game runs. Cards below show opener → closer → current movement plus how sharps read the number."
+    >
 
       <p
         className="text-xs mb-10 max-w-3xl rounded-lg px-4 py-3 leading-relaxed"

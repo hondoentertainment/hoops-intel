@@ -4,6 +4,7 @@
 import { useState, useMemo } from "react";
 import { tradeSimData, type TradeProposal, type TradeablePlayer } from "../lib/tradeSimData";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { SeasonChip, StatusPill } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 
 // ═══════════════════════════════════════════════════════════
@@ -835,41 +836,15 @@ export default function TradeSimulator() {
   const { generatedDate, players, featuredTrades, hottest } = tradeSimData;
 
   return (
-    <ToolPageLayout subtitle="TRADE SIMULATOR">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Weekly AI analysis</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Trade simulator
-          </h1>
-          <p className="mobile-readable mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            What If — AI-powered trade proposals and interactive trade builder
-          </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(14,165,233,0.12)",
-                color: "#0EA5E9",
-                border: "1px solid rgba(14,165,233,0.25)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              Generated {generatedDate}
-            </span>
-            <span
-              className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: "rgba(245,158,11,0.1)",
-                color: "#F59E0B",
-                border: "1px solid rgba(245,158,11,0.2)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {featuredTrades.length} Featured Trades
-            </span>
-          </div>
+    <ToolPageLayout
+      subtitle="TRADE SIMULATOR"
+      sectionLabel="Weekly AI analysis"
+      title="Trade simulator"
+      description="What If — AI-powered trade proposals and interactive trade builder"
+    >
+        <div className="flex items-center gap-3 flex-wrap mb-8">
+          <SeasonChip>Generated {generatedDate}</SeasonChip>
+          <StatusPill tone="warn">{featuredTrades.length} Featured Trades</StatusPill>
         </div>
 
         {/* Featured Trades */}

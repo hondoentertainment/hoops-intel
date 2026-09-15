@@ -115,14 +115,75 @@ describe("editorial UX primitives", () => {
     const playoffs = readFileSync(join(srcDir, "components/playoffs/PlayoffsPage.tsx"), "utf8");
     expect(playoffs).toContain("EditorialShell");
     expect(playoffs).toContain("desk-page-main");
+    expect(playoffs).toContain("DeskFilterChip");
+    expect(playoffs).toContain("PageHero");
+    expect(playoffs).toContain("EmptyState");
 
     const embed = readFileSync(join(srcDir, "pages/Embed.tsx"), "utf8");
     expect(embed).not.toContain("EditorialShell");
     expect(embed).not.toContain("ToolPageLayout");
     expect(embed).not.toContain("AskInFlowCta");
 
+    const printEdition = readFileSync(join(srcDir, "pages/PrintEdition.tsx"), "utf8");
+    expect(printEdition).toContain("print-edition-shell");
+    expect(printEdition).not.toContain("ToolPageLayout");
+    expect(printEdition).not.toContain("AskInFlowCta");
+
     const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
     expect(app).toContain('lazy(() => import("./pages/NotFound"))');
     expect(app).toContain("hi-app-shell--chromeless");
+    expect(app).toMatch(/const chromeless = location\.startsWith\("\/embed\/"\)/);
+  });
+
+  it("lifts leftover tool pages onto PageHero via ToolPageLayout title", () => {
+    const leftoverHeroPages = [
+      "Momentum.tsx",
+      "LineupIntel.tsx",
+      "SeasonPerformance.tsx",
+      "TradeValue.tsx",
+      "CommunityPulse.tsx",
+      "Pro.tsx",
+      "PickEm.tsx",
+      "TradeSimulator.tsx",
+      "ClutchFactor.tsx",
+      "DraftTracker.tsx",
+      "CoachCorner.tsx",
+      "Projections.tsx",
+      "Rivals.tsx",
+      "RefReports.tsx",
+      "HistoryEngine.tsx",
+      "Account.tsx",
+      "Widgets.tsx",
+      "PodcastCompanion.tsx",
+      "GuestPulse.tsx",
+      "EightyTwoZero.tsx",
+      "Badges.tsx",
+      "SentimentPulse.tsx",
+      "BettingIntel.tsx",
+      "WidgetAnalytics.tsx",
+      "EmbedPublisherStats.tsx",
+      "CreatorQueue.tsx",
+    ];
+
+    for (const name of leftoverHeroPages) {
+      const src = readFileSync(join(srcDir, "pages", name), "utf8");
+      expect(src, name).toContain("ToolPageLayout");
+      expect(src, name).toMatch(/title="/);
+      expect(src, name).not.toMatch(/<h1[\s\S]{0,160}display-heading/);
+      expect(src, name).not.toMatch(/<h1[\s\S]{0,160}editorial-heading/);
+    }
+
+    const performance = readFileSync(join(srcDir, "pages/SeasonPerformance.tsx"), "utf8");
+    const badges = readFileSync(join(srcDir, "pages/Badges.tsx"), "utf8");
+    const embeds = readFileSync(join(srcDir, "pages/EmbedPublisherStats.tsx"), "utf8");
+    expect(performance).toContain("DeskFilterChip");
+    expect(badges).toContain("DeskFilterChip");
+    expect(badges).toContain("EmptyState");
+    expect(embeds).toContain("DeskFilterChip");
+
+    const siteHeaderPages = readdirSync(join(srcDir, "pages"))
+      .filter((name) => name.endsWith(".tsx"))
+      .filter((name) => readFileSync(join(srcDir, "pages", name), "utf8").includes('from "../components/SiteHeader"'));
+    expect(siteHeaderPages.sort()).toEqual(["Home.tsx", "PrintEdition.tsx"]);
   });
 });

@@ -193,14 +193,12 @@ export default function CreatorQueue() {
   };
 
   return (
-    <ToolPageLayout subtitle="CREATOR OPS">
-      <p className="section-label mb-1">guest pulse moderation</p>
-      <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">Creator queue</h1>
-      <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
-        Admin surface for <span className="mono-data text-white/70">guest_pulse_submissions</span>. Paste{" "}
-        <strong className="text-white/80">GUEST_PULSE_ADMIN_SECRET</strong> as a Bearer token. Workflow:{" "}
-        <span className="text-white/70">New → In review → edit public body → Published / Rejected</span>.
-      </p>
+    <ToolPageLayout
+      subtitle="CREATOR OPS"
+      sectionLabel="Guest Pulse moderation"
+      title="Creator queue"
+      description="Admin surface for guest_pulse_submissions. Paste GUEST_PULSE_ADMIN_SECRET as a Bearer token. Workflow: New → In review → edit public body → Published / Rejected."
+    >
 
       {!isAdmin ? (
         <div

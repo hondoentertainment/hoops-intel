@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
 // ═══════════════════════════════════════════════════════════
 // SEASON PERFORMANCE DATA
 // Aggregated prediction results across all editions
@@ -179,19 +180,14 @@ export default function SeasonPerformance() {
   const overallPct = parseFloat(pct(totalCorrect, totalGames));
 
   return (
-    <ToolPageLayout subtitle="SEASON PERFORMANCE" maxWidth="2xl" showBreadcrumbs={false}>
-        {/* Title */}
-        <div className="mb-8">
-          <h1
-            className="text-2xl md:text-3xl font-bold text-white mb-2"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
-          >
-            AI MODEL SEASON PERFORMANCE
-          </h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Tracking Hoops Intel&apos;s prediction accuracy across the 2025-26 NBA season &middot; Updated March 24, 2026
-          </p>
-        </div>
+    <ToolPageLayout
+      subtitle="SEASON PERFORMANCE"
+      sectionLabel="Model accuracy"
+      title="AI model season performance"
+      description="Tracking Hoops Intel's prediction accuracy across the 2025-26 NBA season · Updated March 24, 2026"
+      maxWidth="2xl"
+      showBreadcrumbs={false}
+    >
 
         {/* Hero Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
@@ -259,21 +255,11 @@ export default function SeasonPerformance() {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mb-6 overflow-x-auto pb-1">
+        <div className="flex flex-wrap gap-2 mb-6">
           {tabs.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className="px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all"
-              style={{
-                background: tab === t.id ? "#0EA5E9" : "rgba(255,255,255,0.04)",
-                color: tab === t.id ? "#fff" : "rgba(255,255,255,0.5)",
-                border: tab === t.id ? "none" : "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
+            <DeskFilterChip key={t.id} active={tab === t.id} onClick={() => setTab(t.id)}>
               {t.label}
-            </button>
+            </DeskFilterChip>
           ))}
         </div>
 

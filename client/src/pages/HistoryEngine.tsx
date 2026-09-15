@@ -1,6 +1,7 @@
 // Historical Context Engine — Past Meets Present
 
 import ToolPageLayout from "../components/ToolPageLayout";
+import { DeskPanel } from "../components/enhanced/EnhancedUi";
 import { formatContentDate } from "../lib/contentDate";
 import { historyData } from "../lib/historyData";
 import type { HistoricalComparison, MilestoneWatch as MilestoneWatchType } from "../lib/historyData";
@@ -173,30 +174,17 @@ export default function HistoryEngine() {
   const data = historyData;
 
   return (
-    <ToolPageLayout subtitle="HISTORICAL CONTEXT ENGINE">
-        <div className="mb-8">
-          <p className="enhanced-kicker mb-2">Historical context</p>
-          <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem] max-md:leading-8">
-            Past meets present
-          </h1>
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
-            {formatContentDate(data.generatedDate)} — Connecting today&apos;s performances to NBA history
-          </p>
-          <div className="desk-hairline mt-3" />
-        </div>
-
-        {/* Narrative banner */}
-        <div
-          className="rounded-xl p-6 mb-8"
-          style={{
-            background: "linear-gradient(135deg, rgba(14,165,233,0.08), rgba(245,158,11,0.06))",
-            border: "1px solid rgba(14,165,233,0.15)",
-          }}
-        >
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+    <ToolPageLayout
+      subtitle="HISTORICAL CONTEXT ENGINE"
+      sectionLabel="Historical context"
+      title="Past meets present"
+      description={`${formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history`}
+    >
+        <DeskPanel kicker="This week" className="mb-8">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
             {data.narrative}
           </p>
-        </div>
+        </DeskPanel>
 
         {/* Active comparisons */}
         <div className="mb-10">
