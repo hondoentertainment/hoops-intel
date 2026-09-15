@@ -82,6 +82,9 @@ jobs:
       - name: Sitemap lastmod + player index quality (node:test)
         run: node --test scripts/tests/sitemap-lastmod.test.mjs
 
+      - name: RSS well-formed + newest edition (node:test)
+        run: node --test scripts/tests/rss-feed.test.mjs
+
       - name: Push tip-window helpers (node:test)
         run: node --test scripts/tests/tip-window.test.mjs scripts/tests/fetch-odds-api.test.mjs
 
@@ -90,6 +93,9 @@ jobs:
 
       - name: Verify embed bundle shipped
         run: node scripts/verify-dist-embed.mjs
+
+      - name: Verify RSS bundle shipped
+        run: node scripts/verify-dist-rss.mjs
 
   assembly:
     name: Pipeline assembly tests

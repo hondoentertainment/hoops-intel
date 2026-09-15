@@ -47,7 +47,7 @@ function commitDate(date) {
 
   console.log(`  📤 Committing backfill for ${date}...`);
   execSync("node scripts/validate-generated-structure.mjs", { cwd: ROOT, stdio: "inherit" });
-  execSync('git add client/src/lib/ public/feed.xml public/sitemap.xml public/og/', { cwd: ROOT, stdio: "inherit" });
+  execSync('git add client/src/lib/ public/feed.xml public/rss.xml public/sitemap.xml public/og/', { cwd: ROOT, stdio: "inherit" });
   execSync(`git commit -m "Backfill edition: ${date}"`, { cwd: ROOT, stdio: "inherit" });
 
   if (process.env.GITHUB_ACTIONS === "true") {

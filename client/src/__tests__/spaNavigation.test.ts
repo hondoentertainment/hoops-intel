@@ -42,7 +42,7 @@ describe("shouldIntercept", () => {
   });
 
   it("skips static files and API routes", () => {
-    for (const path of ["/feed.xml", "/sitemap.xml", "/robots.txt", "/embed.js", "/manifest.webmanifest", "/api/ask", "/og-image.svg"]) {
+    for (const path of ["/feed.xml", "/rss.xml", "/rss", "/sitemap.xml", "/robots.txt", "/embed.js", "/manifest.webmanifest", "/api/ask", "/og-image.svg"]) {
       expect(shouldIntercept(click(), anchor({ pathname: path }), ORIGIN), path).toBe(false);
     }
   });
@@ -74,6 +74,7 @@ describe("route preload registry", () => {
 
   it("returns null for unknown and non-SPA paths", () => {
     expect(importerForPath("/feed.xml")).toBeNull();
+    expect(importerForPath("/rss.xml")).toBeNull();
     expect(importerForPath("/nonexistent")).toBeNull();
   });
 });

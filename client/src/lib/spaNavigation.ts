@@ -4,7 +4,7 @@
 // manage scroll memory so back/forward feels native.
 
 /** Paths that must stay full-document navigations (static files, APIs, embeds). */
-export const NON_SPA_PATH_RE = /^\/(api\/|embed\.js$)|\.(xml|txt|json|js|css|svg|png|jpg|jpeg|webp|ico|pdf|webmanifest)$/i;
+export const NON_SPA_PATH_RE = /^\/(api\/|embed\.js$|rss$)|\.(xml|txt|json|js|css|svg|png|jpg|jpeg|webp|ico|pdf|webmanifest)$/i;
 
 export interface ClickLike {
   button: number;
