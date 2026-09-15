@@ -128,6 +128,45 @@ body {
   padding-bottom: var(--hi-tabbar-clearance);
 }
 
+/*
+  Mobile safe-stack: the route column scrolls in a box that ends above the
+  fixed tab bar. End-of-page padding alone cannot clear first-paint cards
+  that sit in the lower viewport (the /injuries + /pro audit shots).
+*/
+@media (max-width: 767px) {
+  html:has(.hi-app-shell:not(.hi-app-shell--chromeless)),
+  html:has(.hi-app-shell:not(.hi-app-shell--chromeless)) body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hi-app-shell:not(.hi-app-shell--chromeless),
+  .hi-app-shell:not(.hi-app-shell--chromeless):has(.has-mobile-tabbar) {
+    height: 100dvh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: calc(var(--hi-tabbar-height) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hi-app-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .has-mobile-tabbar {
+    min-height: 100%;
+    padding-bottom: 0;
+  }
+
+  .ask-page-composer {
+    padding-bottom: 0;
+  }
+}
+
 .ask-inflow-cta {
   display: flex;
   width: 100%;

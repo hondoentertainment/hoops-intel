@@ -30,6 +30,9 @@ describe("mobile chrome", () => {
     expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,120}var\(--hi-tabbar-clearance\)/);
     expect(css).toMatch(/\.hi-app-shell:not\(\.hi-app-shell--chromeless\)[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
     expect(app).toContain("hi-app-shell");
+    expect(app).toContain("hi-app-scroll");
+    expect(css).toContain(".hi-app-scroll");
+    expect(css).toMatch(/\.hi-app-scroll[\s\S]{0,120}overflow-y:\s*auto/);
     expect(ask).toContain("ask-page-composer");
     expect(css).toContain(".ask-page-composer");
     expect(css).toContain(".desk-page-main");
@@ -74,6 +77,7 @@ describe("mobile chrome", () => {
 
     const app = readFileSync(join(srcDir, "App.tsx"), "utf8");
     expect(app).toContain("hi-app-shell--chromeless");
+    expect(app).toContain("hi-app-scroll");
     expect(app).toContain('location.startsWith("/embed/")');
   });
 });

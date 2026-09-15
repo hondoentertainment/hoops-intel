@@ -5,10 +5,12 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import {
+  appScrollY,
   findAnchor,
   recallScroll,
   rememberScroll,
   restoreScroll,
+  scrollAppTo,
   scrollKeyFor,
   scrollToHash,
   shouldIntercept,
@@ -34,7 +36,7 @@ export default function SpaNavigator() {
       if (!ok) return;
 
       e.preventDefault();
-      rememberScroll(scrollKeyFor(window.location.pathname, window.location.search), window.scrollY);
+      rememberScroll(scrollKeyFor(window.location.pathname, window.location.search), appScrollY());
 
       const samePage = anchor.pathname === window.location.pathname && anchor.search === window.location.search;
       if (samePage) {
@@ -86,11 +88,16 @@ export default function SpaNavigator() {
       ticking = true;
       window.setTimeout(() => {
         ticking = false;
-        rememberScroll(scrollKeyFor(window.location.pathname, window.location.search), window.scrollY);
+        rememberScroll(scrollKeyFor(window.location.pathname, window.location.search), appScrollY());
       }, 250);
     };
+    const root = document.querySelector(".hi-app-scroll");
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    root?.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      root?.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // After each push-style route change: jump to hash or start at top.
@@ -109,7 +116,7 @@ export default function SpaNavigator() {
       scrollToHash(hash);
       return;
     }
-    window.scrollTo(0, 0);
+    scrollAppTo(0);
   }, [location]);
 
   // Warm the chunk for whatever link the pointer is considering.
