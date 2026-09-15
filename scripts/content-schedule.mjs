@@ -29,7 +29,7 @@ const SCHEDULE = {
       outputs: [
         "pulseData.ts", "archiveData.ts", "watchGuideData.ts",
         "sentimentData.ts", "momentumData.ts", "podcastData.ts",
-        "historyData.ts", "refData.ts", "feed.xml", "sitemap.xml",
+        "historyData.ts", "refData.ts", "feed.xml", "rss.xml", "sitemap.xml",
       ],
       apis: ["ESPN (free)", "Anthropic Claude"],
       secrets: ["ANTHROPIC_API_KEY"],

@@ -12,6 +12,6 @@ const ROOT = join(__dirname, "..");
 // Fail fast before staging broken AI output (prevents daily-update CI gate failures).
 execSync("node scripts/validate-generated-structure.mjs", { cwd: ROOT, stdio: "inherit" });
 
-const PATHS = ["client/src/lib/", "public/feed.xml", "public/sitemap.xml", "public/og/"];
+const PATHS = ["client/src/lib/", "public/feed.xml", "public/rss.xml", "public/sitemap.xml", "public/og/"];
 
 execSync(`git add ${PATHS.map((p) => `"${p}"`).join(" ")}`, { cwd: ROOT, stdio: "inherit" });
