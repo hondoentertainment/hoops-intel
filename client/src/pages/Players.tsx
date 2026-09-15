@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
-import { EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
+import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import { getTeamColor } from "../lib/teamColors";
 import {
   filterBrowsePlayers,
@@ -123,6 +123,18 @@ export default function Players() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
+                    {player.injuryStatus ? <InjuryChip status={player.injuryStatus} /> : null}
+                    {player.status !== "active" ? (
+                      <span
+                        className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
+                        style={{
+                          background: player.status === "retired" ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.06)",
+                          color: player.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.5)",
+                        }}
+                      >
+                        {player.label}
+                      </span>
+                    ) : null}
                     {player.teams.map((abbr) => (
                       <span
                         key={abbr}

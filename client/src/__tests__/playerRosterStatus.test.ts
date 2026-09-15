@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import { distributionTools, TOOLS_DIRECTORY } from "../lib/siteNav";
 import {
   getPlayerRosterStatus,
+  isCurrentNbaRosterCard,
   isIndexablePlayerProfile,
+  playerCoverageEmptyState,
 } from "../lib/playerRosterStatus";
 
 describe("playerRosterStatus", () => {
@@ -33,6 +35,32 @@ describe("playerRosterStatus", () => {
 
   it("noindexes thin one-mention placeholders", () => {
     expect(isIndexablePlayerProfile("One-Off Mention", { mentions: 1 })).toBe(false);
+  });
+
+  it("frames archive-only names as not current NBA roster cards", () => {
+    const status = getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 });
+    expect(status.status).toBe("inactive");
+    expect(status.label).toBe("Archive only");
+    expect(status.indexable).toBe(true);
+    expect(status.detail.toLowerCase()).toContain("not a current nba roster");
+    expect(isCurrentNbaRosterCard({ inPulse: false, hasCurrentTeam: false })).toBe(false);
+  });
+
+  it("uses honest empty-state copy for prospects and retired names", () => {
+    const vj = playerCoverageEmptyState(
+      "VJ Edgecombe",
+      getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 }),
+    );
+    expect(vj.title).toMatch(/No current NBA stats/);
+    expect(vj.pill).toBe("ARCHIVE ONLY");
+    expect(vj.body.toLowerCase()).toContain("not publishing a current roster card");
+
+    const cp = playerCoverageEmptyState(
+      "Chris Paul",
+      getPlayerRosterStatus("Chris Paul", { mentions: 3 }),
+    );
+    expect(cp.pill).toBe("RETIRED");
+    expect(cp.title.toLowerCase()).toContain("not on an active nba roster");
   });
 });
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
+import { findPlayerInjury, playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
 import { lastUpdatedStamp } from "../lib/dataTrust";
-import { pulseEdition, pulseIndex } from "../lib/pulseData";
+import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { filterBrowsePlayers, listBrowsePlayers } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
 
@@ -40,6 +40,43 @@ describe("player empty-state coverage", () => {
     if (thin) {
       expect(playerHasLiveDeskCoverage(thin)).toBe(false);
       expect(thin.mentions).toBeGreaterThan(0);
+      expect(thin.pulse).toBeUndefined();
+      expect(thin.injury).toBeUndefined();
+    }
+  });
+});
+
+describe("player availability badges", () => {
+  it("surfaces injury-wire status on browse cards without inventing rows", () => {
+    const rows = listBrowsePlayers();
+    const wired = injuryUpdates[0];
+    expect(wired).toBeTruthy();
+    const card = rows.find((p) => p.name === wired!.player);
+    expect(card?.injuryStatus).toBe(wired!.status);
+    expect(card?.injuryNote).toBe(wired!.injury);
+
+    expect(findPlayerInjury("Chris Paul")).toBeNull();
+    expect(findPlayerInjury("Kawhi Leonard")).toBeNull();
+    expect(findPlayerInjury(wired!.player)?.status).toBe(wired!.status);
+
+    const chris = rows.find((p) => p.name === "Chris Paul");
+    expect(chris?.injuryStatus).toBeUndefined();
+    expect(chris?.status).toBe("retired");
+    expect(chris?.label).toBe("Retired");
+
+    const kawhi = rows.find((p) => p.name === "Kawhi Leonard" || p.slug === "kawhi-leonard");
+    if (kawhi) {
+      expect(kawhi.injuryStatus).toBeUndefined();
+      expect(kawhi.status).not.toBe("active");
+      expect(kawhi.label.toLowerCase()).toMatch(/archive|limited/);
+    }
+
+    const vj = rows.find((p) => p.slug === "vj-edgecombe" || p.name === "VJ Edgecombe");
+    if (vj) {
+      expect(vj.status).toBe("inactive");
+      expect(vj.label).toBe("Archive only");
+      expect(vj.injuryStatus).toBeUndefined();
+      expect(vj.pulseRank).toBeUndefined();
     }
   });
 });

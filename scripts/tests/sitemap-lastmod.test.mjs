@@ -112,6 +112,8 @@ test("publisher 200 routes are in the static sitemap list", () => {
   assert.ok(!locs.includes("/account"));
   assert.ok(!locs.includes("/82-0"));
   assert.ok(!locs.includes("/badges"));
+  assert.ok(!locs.includes("/watch-guide"));
+  assert.ok(!locs.includes("/podcast-companion"));
 });
 
 test("tonight and players lastmod follow the daily edition", () => {
@@ -176,6 +178,14 @@ test("weekly tool pages lastmod advance with the daily edition when content is f
   }
 });
 
+test("player profile lastmod follows the current edition, not a stale archive-only date", () => {
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-14", latestArchiveIso: "2026-05-11" };
+  assert.equal(lastmodForLoc("/player/kawhi-leonard", ctx), "2026-09-14");
+  assert.equal(lastmodForLoc("/player/vj-edgecombe", ctx), "2026-09-14");
+  assert.equal(lastmodForLoc("/player/chris-paul", ctx), "2026-09-14");
+  assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
+});
+
 test("Pulse Index players get higher sitemap priority; others stay default", () => {
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
   assert.deepEqual(playerSitemapMeta({ inPulse: false }), { priority: "0.5", changefreq: "weekly" });
@@ -221,10 +231,11 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/82-0<\/loc>/);
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/badges<\/loc>/);
+  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/watch-guide<\/loc>/);
+  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/podcast-companion<\/loc>/);
   for (const path of [
     "/tonight",
     "/players",
-    "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",
     "/lineups",
@@ -303,6 +314,7 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assertWellFormedSitemap(xml);
   assert.ok(xml.trimEnd().endsWith("</urlset>"));
   assert.ok(urls.length >= 50, `expected a full sitemap, got ${urls.length} URLs`);
+  assert.ok(!urls.some((u) => u.loc === "/watch-guide" || u.loc === "/podcast-companion"));
   const requiredPlayers = ["jaime-jaquez-jr", "vj-edgecombe", "amen-thompson", "keyonte-george"];
   for (const slug of requiredPlayers) {
     const block = xml.match(

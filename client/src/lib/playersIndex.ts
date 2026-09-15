@@ -1,4 +1,4 @@
-import { pulseIndex } from "./pulseData";
+import { injuryUpdates, pulseIndex } from "./pulseData";
 import { canonicalizePlayerName, playerSlug } from "./identity";
 import { getPlayerRosterStatus, type RosterStatus } from "./playerRosterStatus";
 import { getAllPlayers } from "./searchUtils";
@@ -15,6 +15,8 @@ export interface BrowsePlayer {
   pulseRank?: number;
   pulseScore?: number;
   keyStats?: string;
+  injuryStatus?: string;
+  injuryNote?: string;
 }
 
 export function listBrowsePlayers(): BrowsePlayer[] {
@@ -28,6 +30,9 @@ export function listBrowsePlayers(): BrowsePlayer[] {
   return getAllPlayers()
     .map((player) => {
       const pulse = pulseByName.get(canonicalizePlayerName(player.name));
+      const injury = injuryUpdates.find(
+        (row) => canonicalizePlayerName(row.player) === canonicalizePlayerName(player.name),
+      );
       const roster = getPlayerRosterStatus(player.name, {
         inPulse: Boolean(pulse),
         hasCurrentTeam: player.teams.length > 0,
@@ -43,6 +48,8 @@ export function listBrowsePlayers(): BrowsePlayer[] {
         pulseRank: pulse?.rank,
         pulseScore: pulse?.indexScore,
         keyStats: pulse?.keyStats,
+        injuryStatus: injury?.status,
+        injuryNote: injury?.injury,
         indexable: roster.indexable,
       };
     })
