@@ -94,10 +94,13 @@ html {
   scroll-behavior: smooth;
 }
 
-html,
-body {
+html {
   overflow-x: clip;
   overflow-y: auto;
+  max-width: 100%;
+}
+
+body {
   max-width: 100%;
 }
 
@@ -159,7 +162,7 @@ body {
 
   .has-mobile-tabbar {
     min-height: 100%;
-    padding-bottom: 0;
+    padding-bottom: var(--hi-tabbar-clearance);
   }
 
   .ask-page-composer {

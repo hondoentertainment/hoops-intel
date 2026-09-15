@@ -79,8 +79,9 @@ test.describe("tab-bar clearance @ 390px", () => {
       );
       expect(bottoms.length, `${path} had no measurable last content`).toBeGreaterThan(0);
       const lastBottom = Math.max(...bottoms);
+      const gap = path === "/print-edition" ? 24 : 1;
       expect(lastBottom, `${path} last content under tab bar (bottom ${lastBottom} vs nav ${m.navTop})`).toBeLessThanOrEqual(
-        (m.navTop as number) + 1,
+        (m.navTop as number) - gap + 1,
       );
     });
   }

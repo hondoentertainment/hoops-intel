@@ -26,7 +26,8 @@ describe("mobile chrome", () => {
     expect(css).toContain("--hi-tabbar-clearance");
     expect(css).toContain("--hi-tabbar-height");
     expect(css).toContain("--hi-header-offset");
-    expect(css).toMatch(/overflow-y:\s*auto/);
+    expect(css).toMatch(/html\s*\{[\s\S]{0,80}overflow-y:\s*auto/);
+    expect(css).not.toMatch(/html,\s*body\s*\{[\s\S]{0,80}overflow-y:\s*auto/);
     expect(css).toMatch(/\.has-mobile-tabbar[\s\S]{0,120}var\(--hi-tabbar-clearance\)/);
     expect(css).toMatch(/\.hi-app-shell:not\(\.hi-app-shell--chromeless\)[\s\S]{0,80}var\(--hi-tabbar-clearance\)/);
     expect(app).toContain("hi-app-shell");
