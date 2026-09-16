@@ -134,7 +134,7 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
 export function EnhancedTicker() {
   return (
     <div
-      className="hidden md:flex items-center gap-4 px-[var(--hi-desk-pad-x,1.5rem)] md:px-[var(--hi-desk-pad-x-md,2rem)] py-2 overflow-hidden"
+      className="hi-desk-pad-x hidden md:flex items-center gap-4 py-2 overflow-hidden"
       style={{ background: "var(--hi-surface-2,#f3f3f0)" }}
       aria-label="Edition wire"
     >
@@ -164,7 +164,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
   const schedule = campScheduleStatus();
 
   return (
-    <div className="px-[var(--hi-desk-pad-x,1.5rem)] md:px-[var(--hi-desk-pad-x-md,2rem)] py-6">
+    <div className="hi-desk-pad-x py-6">
       <div className="flex flex-col gap-[22px]">
         <div id="today-desk" className="flex flex-col gap-2.5 max-w-[980px] min-w-0">
           <p className="enhanced-kicker">

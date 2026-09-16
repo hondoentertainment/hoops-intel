@@ -150,8 +150,10 @@ describe("type + contrast presentation", () => {
     expect(leftovers).toEqual([]);
     expect(pageSrc("CommunityPulse.tsx")).not.toContain("rgba(255,255,255,0.25)");
     expect(pageSrc("AskAI.tsx")).toContain("ask-page-composer");
-    expect(pageSrc("AskAI.tsx")).not.toContain("sticky bottom-0");
+    expect(pageSrc("AskAI.tsx")).toContain("ask-fill-scroll");
+    expect(css).toContain(".ask-fill-scroll");
     expect(css).toContain("overflow-x: hidden");
+    expect(css).toContain(".hi-desk-pad-x");
     expect(css).not.toMatch(/\.hi-app-scroll[\s\S]{0,80}overflow-x:\s*clip/);
   });
 

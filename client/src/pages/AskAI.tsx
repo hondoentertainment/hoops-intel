@@ -21,7 +21,8 @@ export default function AskAI() {
     <ToolPageLayout
       subtitle="ASK HOOPS INTEL"
       contentOnly
-      shellClassName="flex flex-col has-mobile-tabbar"
+      footer={false}
+      shellClassName="ask-fill-scroll flex flex-col"
       showBreadcrumbs={false}
       showRelated={false}
     >
@@ -29,7 +30,7 @@ export default function AskAI() {
         className="border-b flex-shrink-0"
         style={{ borderColor: "var(--hi-border-soft, rgba(10,10,10,0.06))" }}
       >
-        <div className="max-w-3xl mx-auto px-[var(--hi-desk-pad-x,1rem)] md:px-[var(--hi-desk-pad-x-md,1.75rem)] py-6">
+        <div className="hi-desk-pad-x max-w-3xl mx-auto py-6">
           <div className="mb-4">
             <PageHero
               kicker="Ask Hoops Intel"
@@ -74,8 +75,8 @@ export default function AskAI() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto" style={{ minHeight: 0 }}>
-        <div className="flex-1 flex flex-col" style={{ minHeight: "50vh" }}>
+      <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto min-h-0">
+        <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
           <ChatMessages
             messages={messages}
             isLoading={isLoading}
@@ -83,7 +84,7 @@ export default function AskAI() {
           />
         </div>
 
-        <div className="ask-page-composer" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
+        <div className="ask-page-composer sticky bottom-0" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
           <ChatInput
             input={input}
             setInput={setInput}

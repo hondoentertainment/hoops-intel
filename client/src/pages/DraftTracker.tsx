@@ -102,7 +102,7 @@ export default function DraftTracker() {
                   onClick={() => setExpandedRow(expandedRow === p.rank ? null : p.rank)}
                 >
                   <div className="w-8 text-center">
-                    <div className="text-lg font-bold" style={{ color: p.rank <= 3 ? "#FFD700" : p.rank <= 10 ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>
+                    <div className="text-lg font-bold" style={{ color: p.rank <= 3 ? "#B45309" : p.rank <= 10 ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>
                       {p.rank}
                     </div>
                     <RankChange current={p.rank} prev={p.prevRank} />

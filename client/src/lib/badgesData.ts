@@ -41,10 +41,10 @@ export const allBadges: Badge[] = [
 // Helper to get badge tier color
 export function getBadgeTierColor(tier: Badge["tier"]): string {
   switch (tier) {
-    case "bronze": return "#CD7F32";
-    case "silver": return "#C0C0C0";
-    case "gold": return "#FFD700";
-    case "diamond": return "#B9F2FF";
+    case "bronze": return "#9a3412";
+    case "silver": return "#57534e";
+    case "gold": return "#B45309";
+    case "diamond": return "#0e7490";
   }
 }
 

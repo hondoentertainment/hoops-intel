@@ -209,6 +209,19 @@ body {
   padding-bottom: calc(var(--hi-tabbar-clearance) + 0.75rem);
 }
 
+.ask-fill-scroll {
+  min-height: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .ask-fill-scroll.has-mobile-tabbar {
+    min-height: 0 !important;
+    height: 100%;
+    padding-bottom: 0;
+  }
+}
+
 /*
   Mobile safe-stack: the route column scrolls in a box that ends above the
   fixed tab bar. End-of-page padding alone cannot clear first-paint cards
@@ -498,6 +511,18 @@ h1.display-heading {
 }
 
 /* Homepage desk rhythm — ToolPageLayout / EditorialShell consume these. */
+.hi-desk-pad-x {
+  padding-left: var(--hi-desk-pad-x, 1.5rem);
+  padding-right: var(--hi-desk-pad-x, 1.5rem);
+}
+
+@media (min-width: 768px) {
+  .hi-desk-pad-x {
+    padding-left: var(--hi-desk-pad-x-md, 2rem);
+    padding-right: var(--hi-desk-pad-x-md, 2rem);
+  }
+}
+
 .desk-page-main {
   padding: var(--hi-desk-pad-y, 2rem) var(--hi-desk-pad-x, 1.5rem);
 }

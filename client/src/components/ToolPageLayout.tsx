@@ -32,6 +32,7 @@ export type ToolPageLayoutProps = {
   /** Skip container, breadcrumbs, and related sidebar — header + children only */
   contentOnly?: boolean;
   shellClassName?: string;
+  footer?: boolean;
   children: ReactNode;
 };
 
@@ -51,6 +52,7 @@ export default function ToolPageLayout({
   showBreadcrumbs = true,
   contentOnly = false,
   shellClassName = "",
+  footer = true,
   children,
 }: ToolPageLayoutProps) {
   const [location] = useLocation();
@@ -75,6 +77,7 @@ export default function ToolPageLayout({
     return (
       <DeskAppShell
         header={header}
+        footer={footer}
         padded={false}
         askInFlow={false}
         mainClassName="flex-1 flex flex-col min-h-0"
