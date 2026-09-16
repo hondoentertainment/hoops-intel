@@ -25,7 +25,7 @@ export default function DeskAppShell({
   return (
     <div
       className={`min-h-screen has-mobile-tabbar ${shellClassName}`.trim()}
-      style={{ background: "var(--hi-bg-page, #07090e)" }}
+      style={{ background: "var(--hi-bg-page, #f7f7f5)" }}
     >
       <SiteHeader {...header} />
       <main

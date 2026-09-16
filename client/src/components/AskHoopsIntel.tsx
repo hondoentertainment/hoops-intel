@@ -49,7 +49,7 @@ function renderMarkdown(text: string): ReactElement[] {
     // Bullet list
     if (line.match(/^[-•]\s/)) {
       elements.push(
-        <li key={i} className="ml-4 list-disc" style={{ color: "rgba(255,255,255,0.8)" }}>
+        <li key={i} className="ml-4 list-disc" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {parts.length > 1 ? parts : line.replace(/^[-•]\s/, "")}
         </li>
       );
@@ -59,7 +59,7 @@ function renderMarkdown(text: string): ReactElement[] {
     // Numbered list
     if (line.match(/^\d+\.\s/)) {
       elements.push(
-        <li key={i} className="ml-4 list-decimal" style={{ color: "rgba(255,255,255,0.8)" }}>
+        <li key={i} className="ml-4 list-decimal" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {parts.length > 1 ? parts : line.replace(/^\d+\.\s/, "")}
         </li>
       );
@@ -73,7 +73,7 @@ function renderMarkdown(text: string): ReactElement[] {
     }
 
     elements.push(
-      <p key={i} style={{ color: "rgba(255,255,255,0.8)" }}>
+      <p key={i} style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {parts.length > 1 ? parts : line}
       </p>
     );
@@ -230,19 +230,17 @@ export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) 
           key={q}
           type="button"
           onClick={() => onSelect(q)}
-          className="text-left px-3 py-2 rounded-full text-xs transition-all hover:scale-[1.01]"
+          className="hi-pill text-left px-3 py-2 text-xs"
           style={{
-            background: "rgba(14,165,233,0.08)",
-            border: "1px solid rgba(14,165,233,0.15)",
-            color: "var(--hi-muted, rgba(255,255,255,0.72))",
+            color: "var(--hi-muted,#5c5c58)",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(14,165,233,0.15)";
-            e.currentTarget.style.color = "#0EA5E9";
+            e.currentTarget.style.background = "var(--hi-accent-soft,#d7eef9)";
+            e.currentTarget.style.color = "var(--hi-text,#0a0a0a)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(14,165,233,0.08)";
-            e.currentTarget.style.color = "var(--hi-muted, rgba(255,255,255,0.72))";
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "var(--hi-muted,#5c5c58)";
           }}
         >
           {q}
@@ -280,15 +278,15 @@ export function ChatMessages({
           <div className="text-center">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3"
-              style={{ background: "rgba(14,165,233,0.15)" }}
+              style={{ background: "rgba(142,200,240,0.15)" }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="1.5">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent)" strokeWidth="1.5">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                 <path d="M12 16v-4M12 8h.01" />
               </svg>
             </div>
             <h3 className="text-white font-semibold text-sm mb-1">Ask Hoops Intel</h3>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Ask anything about NBA games, players, standings, and more
             </p>
           </div>
@@ -309,8 +307,8 @@ export function ChatMessages({
               style={
                 msg.role === "user"
                   ? {
-                      background: "rgba(14,165,233,0.2)",
-                      border: "1px solid rgba(14,165,233,0.3)",
+                      background: "rgba(142,200,240,0.2)",
+                      border: "1px solid rgba(142,200,240,0.3)",
                       color: "white",
                     }
                   : {
@@ -326,18 +324,18 @@ export function ChatMessages({
                   <div className="flex gap-1">
                     <span
                       className="w-1.5 h-1.5 rounded-full animate-bounce"
-                      style={{ background: "#0EA5E9", animationDelay: "0ms" }}
+                      style={{ background: "var(--hi-accent)", animationDelay: "0ms" }}
                     />
                     <span
                       className="w-1.5 h-1.5 rounded-full animate-bounce"
-                      style={{ background: "#0EA5E9", animationDelay: "150ms" }}
+                      style={{ background: "var(--hi-accent)", animationDelay: "150ms" }}
                     />
                     <span
                       className="w-1.5 h-1.5 rounded-full animate-bounce"
-                      style={{ background: "#0EA5E9", animationDelay: "300ms" }}
+                      style={{ background: "var(--hi-accent)", animationDelay: "300ms" }}
                     />
                   </div>
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Analyzing...</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Analyzing...</span>
                 </div>
               ) : (
                 <div className="space-y-1">{renderMarkdown(msg.content)}</div>
@@ -408,11 +406,11 @@ export function ChatInput({
             background:
               isLoading || !input.trim()
                 ? "rgba(255,255,255,0.05)"
-                : "rgba(14,165,233,0.2)",
+                : "rgba(142,200,240,0.2)",
             color:
               isLoading || !input.trim()
                 ? "rgba(255,255,255,0.2)"
-                : "#0EA5E9",
+                : "var(--hi-accent)",
           }}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -424,7 +422,7 @@ export function ChatInput({
       </div>
       <div
         className="text-center mt-1.5"
-        style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.6rem" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}
       >
         Powered by Hoops Intel AI
       </div>
@@ -492,7 +490,7 @@ export default function AskHoopsIntel() {
             width: "100%",
             maxWidth: "420px",
             paddingBottom: "env(safe-area-inset-bottom)",
-            background: "#0A1628",
+            background: "var(--hi-surface,#eeeeec)",
             border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: "16px 16px 0 0",
             boxShadow: "0 -4px 40px rgba(0,0,0,0.5)",
@@ -506,9 +504,9 @@ export default function AskHoopsIntel() {
             <div className="flex items-center gap-2">
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center"
-                style={{ background: "rgba(14,165,233,0.15)" }}
+                style={{ background: "rgba(142,200,240,0.15)" }}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent)" strokeWidth="2">
                   <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
                 </svg>
               </div>
@@ -516,7 +514,7 @@ export default function AskHoopsIntel() {
                 <div id="floating-chat-title" className="text-white text-xs font-semibold">
                   Ask Hoops Intel
                 </div>
-                <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.6rem" }}>
+                <div style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
                   NBA AI Assistant
                 </div>
               </div>
@@ -524,8 +522,8 @@ export default function AskHoopsIntel() {
             <div className="flex items-center gap-2">
               <a
                 href="/ask"
-                className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-sky-400"
-                style={{ color: "rgba(255,255,255,0.55)", background: "rgba(255,255,255,0.05)" }}
+                className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-[var(--hi-text)]"
+                style={{ color: "var(--hi-muted,#5c5c58)", background: "rgba(255,255,255,0.05)" }}
                 title="Open full page"
                 aria-label="Open full Ask Hoops Intel page"
               >
@@ -537,7 +535,7 @@ export default function AskHoopsIntel() {
                 type="button"
                 onClick={closePanel}
                 className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-xs transition-colors hover:bg-white/10"
-                style={{ color: "rgba(255,255,255,0.6)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)" }}
                 aria-label="Close assistant"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

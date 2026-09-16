@@ -159,7 +159,7 @@ export default function Player() {
   });
   const currentGame = gameResults.find((g: any) => g.topPerformer === player.name);
   const editions = getPlayerEditions(player.name);
-  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent,#1ec8f5)";
+  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent,#8ec8f0)";
 
   const shareUrl = `https://hoopsintel.net/player/${slug}`;
   const shareTweet = currentPulse
@@ -187,7 +187,7 @@ export default function Player() {
           >
             <div className="section-label mb-2">ROSTER STATUS</div>
             <div className="text-sm font-semibold text-white mb-1">{roster.label}</div>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               {roster.detail}
             </p>
           </div>
@@ -213,7 +213,7 @@ export default function Player() {
               <p className="enhanced-kicker mb-1">
                 {roster && roster.status !== "active" ? roster.label : "Player profile"}
               </p>
-              <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-2 max-md:text-[1.5rem]">{player.name}</h1>
+              <h1 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-3xl mb-2 max-md:text-[1.5rem]">{player.name}</h1>
               <div className="flex items-center gap-2 flex-wrap">
                 {player.teams.map((t) => (
                   <a
@@ -243,13 +243,13 @@ export default function Player() {
                     {roster.label}
                   </span>
                 )}
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   {player.mentions} mention{player.mentions !== 1 ? "s" : ""} in archive
                 </span>
                 <span
                   className="text-xs"
                   data-testid="player-last-updated"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                 >
                   {lastUpdatedStamp()}
                 </span>
@@ -259,11 +259,11 @@ export default function Player() {
             <div className="flex items-start gap-3">
               {currentPulse && (
                 <div className="text-right">
-                  <div className="mono-data text-3xl font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                  <div className="mono-data text-3xl font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                     {currentPulse.indexScore}
                   </div>
                   <div className="section-label">PULSE INDEX</div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     Rank #{currentPulse.rank}
                   </div>
                 </div>
@@ -274,14 +274,14 @@ export default function Player() {
                 className="flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold transition-colors"
                 style={{
                   background: "rgba(255,255,255,0.06)",
-                  color: "rgba(255,255,255,0.65)",
+                  color: "var(--hi-muted,#5c5c58)",
                   border: "1px solid rgba(255,255,255,0.1)",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(14,165,233,0.12)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--hi-accent,#1ec8f5)";
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(14,165,233,0.3)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(142,200,240,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--hi-accent,#8ec8f0)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(142,200,240,0.3)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.06)";
@@ -334,7 +334,7 @@ export default function Player() {
                 <div className="mono-data text-sm mb-2" style={{ color: "#10B981" }}>
                   {currentPulse.keyStats}
                 </div>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {currentPulse.note}
                 </p>
               </div>
@@ -345,10 +345,10 @@ export default function Player() {
                 <div className="section-label mb-2">SENTIMENT PROFILE</div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-white capitalize">{intel.sentiment.sentiment}</span>
-                  <span className="mono-data text-lg" style={{ color: "var(--hi-accent,#1ec8f5)" }}>{intel.sentiment.score}</span>
+                  <span className="mono-data text-lg" style={{ color: "var(--hi-accent,#8ec8f0)" }}>{intel.sentiment.score}</span>
                 </div>
-                <p className="text-sm mb-2" style={{ color: "rgba(255,255,255,0.65)" }}>{intel.sentiment.topTake}</p>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{intel.sentiment.narrativeArc}</p>
+                <p className="text-sm mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>{intel.sentiment.topTake}</p>
+                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{intel.sentiment.narrativeArc}</p>
               </div>
             )}
 
@@ -359,7 +359,7 @@ export default function Player() {
                   {intel.recentGames.map((g) => (
                     <a key={g.gameId} href={g.link} className="block rounded p-2 bg-white/[0.03] hover:bg-white/[0.06]">
                       <div className="text-sm font-semibold text-white">{g.title}</div>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{g.line || g.status}</div>
+                      <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{g.line || g.status}</div>
                     </a>
                   ))}
                 </div>
@@ -376,7 +376,7 @@ export default function Player() {
                 <div className="mono-data text-xs mb-2" style={{ color: "#10B981" }}>
                   {currentGame.topLine}
                 </div>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {currentGame.recap}
                 </p>
               </div>
@@ -387,7 +387,7 @@ export default function Player() {
               <div className="section-label mb-3">EDITION HISTORY</div>
               <div className="space-y-3">
                 {editions.length === 0 && (
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     No archive appearances yet.
                   </p>
                 )}
@@ -398,7 +398,7 @@ export default function Player() {
                       {ed.topPlayer === player.name && (
                         <span
                           className="text-xs px-2 py-0.5 rounded"
-                          style={{ background: "rgba(14,165,233,0.15)", color: "var(--hi-accent,#1ec8f5)" }}
+                          style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent,#8ec8f0)" }}
                         >
                           TOP PLAYER
                         </span>
@@ -426,7 +426,7 @@ export default function Player() {
                   <InjuryChip status={currentInjury.status} />
                 </div>
                 <div className="text-sm text-white mb-1">{currentInjury.injury}</div>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {currentInjury.timeline}
                 </p>
               </div>
@@ -439,11 +439,11 @@ export default function Player() {
                   <div className="mb-3">
                     <div className="text-sm font-semibold text-white capitalize">{intel.playoff.mover.direction} {intel.playoff.mover.delta > 0 ? "+" : ""}{intel.playoff.mover.delta}</div>
                     <div className="mono-data text-xs mb-1" style={{ color: "#10B981" }}>{intel.playoff.mover.line}</div>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{intel.playoff.mover.note}</p>
+                    <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{intel.playoff.mover.note}</p>
                   </div>
                 )}
                 {intel.playoff.series.map((s) => (
-                  <a key={s.seriesId} href={`/playoffs#series-card-${s.seriesId}`} className="block text-xs text-sky-300 hover:text-sky-200">
+                  <a key={s.seriesId} href={`/playoffs#series-card-${s.seriesId}`} className="block text-xs text-[var(--hi-text)] hover:text-[var(--hi-muted)]">
                     vs {s.opponent} · {s.summary}
                   </a>
                 ))}
@@ -455,23 +455,23 @@ export default function Player() {
               <div className="section-label mb-3">QUICK FACTS</div>
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Roster status</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Roster status</span>
                   <span className="text-white font-semibold">{roster?.label ?? "—"}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Team</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Team</span>
                   <span className="text-white font-semibold">{player.teams.join(", ") || "—"}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Archive Mentions</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Archive Mentions</span>
                   <span className="text-white font-semibold">{player.mentions}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Last updated</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Last updated</span>
                   <span className="text-white font-semibold">{pulseEdition.date}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Top Player Awards</span>
+                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Top Player Awards</span>
                   <span className="text-white font-semibold">
                     {editions.filter((e: any) => e.topPlayer === player.name).length}
                   </span>
@@ -479,11 +479,11 @@ export default function Player() {
                 {currentPulse && (
                   <>
                     <div className="flex justify-between">
-                      <span style={{ color: "rgba(255,255,255,0.4)" }}>Pulse Rank</span>
+                      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Pulse Rank</span>
                       <span className="text-white font-semibold">#{currentPulse.rank}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span style={{ color: "rgba(255,255,255,0.4)" }}>Trend</span>
+                      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Trend</span>
                       <span
                         className={
                           currentPulse.trend === "up"
@@ -503,7 +503,7 @@ export default function Player() {
 
             <a
               href="/compare-players"
-              className="block enhanced-card p-4 text-sm font-semibold text-sky-300 hover:text-sky-200"
+              className="block enhanced-card p-4 text-sm font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
             >
               Compare {player.name} in Player Compare →
             </a>

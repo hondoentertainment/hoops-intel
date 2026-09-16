@@ -78,7 +78,7 @@ export default function ShotChart({ awayShots, homeShots, awayTeam, homeTeam }: 
         <ShotDots shots={awayShots} color={awayColor} />
         <ShotDots shots={homeShots} color={homeColor} />
       </svg>
-      <p className="text-[10px] mt-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+      <p className="text-[10px] mt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         Filled = made · outline = missed. Positions are relative to this game&apos;s shot spread, not true court scale.
       </p>
     </div>

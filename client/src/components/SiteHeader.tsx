@@ -108,7 +108,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          style={{ color: subscribed ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8594a8)" }}
+          style={{ color: subscribed ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8a8a86)" }}
           aria-hidden
         >
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -123,7 +123,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
         <div
           ref={panelRef}
           className="absolute right-0 top-full mt-2 w-[min(100vw-1.5rem,18rem)] rounded-lg overflow-hidden shadow-xl z-[60]"
-          style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
+          style={{ background: "var(--hi-surface,#eeeeec)", border: "1px solid var(--hi-border,rgba(10,10,10,0.06))" }}
           role="dialog"
           aria-modal="true"
           aria-label="Notifications"
@@ -133,22 +133,22 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
 
             <div className="mb-4 space-y-2">
               <p className="text-xs font-semibold text-white">Email digest</p>
-              <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+              <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 Morning edition at {editionHourLabel()}.
               </p>
             </div>
             <div className="mb-4 space-y-2">
               <p className="text-xs font-semibold text-white">Browser push</p>
-              <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+              <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 Sign in, then register this device and pick topics.
               </p>
               <a
                 href="/account#browser-push"
                 className="block w-full text-left px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] flex items-center"
                 style={{
-                  background: "rgba(30,200,245,0.1)",
-                  color: ENHANCED_ACCENT,
-                  border: "1px solid rgba(30,200,245,0.2)",
+                  background: "var(--hi-accent-soft,#d7eef9)",
+                  color: "var(--hi-text,#0a0a0a)",
+                  border: "1px solid transparent",
                 }}
               >
                 Set up browser push →
@@ -181,14 +181,13 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
                       if (apiError) setApiError("");
                     }}
                     placeholder="you@domain.com"
-                    className="min-h-[44px] flex-1 min-w-[8rem] px-2 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 sm:min-h-0 sm:py-1.5"
+                    className="min-h-[44px] flex-1 min-w-[8rem] px-2 py-2 rounded text-xs bg-white/5 text-white border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/50 sm:min-h-0 sm:py-1.5"
                   />
                   <button
                     type="button"
                     onClick={() => void handleSubscribe()}
                     disabled={submitting}
-                    className="min-h-[44px] px-3 py-2 rounded text-xs font-semibold text-white sm:min-h-0 disabled:opacity-50"
-                    style={{ background: ENHANCED_ACCENT, color: "#0a0d12" }}
+                    className="hi-pill-primary min-h-[44px] px-3 py-2 text-xs sm:min-h-0 disabled:opacity-50"
                   >
                     {submitting ? "…" : "Subscribe"}
                   </button>
@@ -316,8 +315,8 @@ function SearchDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby="site-search-heading"
-        className="w-full max-w-lg rounded-xl overflow-hidden shadow-2xl"
-        style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
+        className="w-full max-w-lg overflow-hidden"
+        style={{ background: "var(--hi-canvas-soft,#fafaf8)", border: "1px solid var(--hi-border,rgba(10,10,10,0.06))", borderRadius: "var(--hi-card-radius,20px)" }}
         onClick={(e) => e.stopPropagation()}
       >
         <h2 id="site-search-heading" className="sr-only">
@@ -341,14 +340,14 @@ function SearchDialog({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search players, teams, stories..."
-            className="flex-1 min-w-[40%] min-h-[44px] bg-transparent text-white text-base sm:text-sm outline-none placeholder-white/30 sm:min-h-0"
+            className="flex-1 min-w-[40%] min-h-[44px] bg-transparent text-[var(--hi-text,#0a0a0a)] text-base sm:text-sm outline-none sm:min-h-0"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}
           />
           <span
             className="text-xs px-1.5 py-1 rounded whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}
+            style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}
           >
             ↑↓ · Esc
           </span>
@@ -356,7 +355,7 @@ function SearchDialog({
         <div className="max-h-[min(20rem,50vh)] overflow-y-auto overscroll-contain">
           {results.length === 0 && query.length >= 2 && (
             <div className="px-4 py-6 text-center">
-              <p className="text-sm mb-3" style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}>
+              <p className="text-sm mb-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 No results for “{query.trim()}”. Try a player, team, or one of these:
               </p>
               <div className="flex flex-wrap justify-center gap-2 mb-3">
@@ -365,7 +364,7 @@ function SearchDialog({
                     key={d.href}
                     href={d.href}
                     className="text-xs px-3 py-2 rounded-lg min-h-[36px] inline-flex items-center"
-                    style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.8)" }}
+                    style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
                     onClick={onClose}
                   >
                     {d.label}
@@ -374,7 +373,7 @@ function SearchDialog({
               </div>
               <button
                 type="button"
-                className="text-xs text-sky-400 underline min-h-[44px]"
+                className="text-xs underline min-h-[44px]"
                 onClick={() => {
                   setQuery("");
                   inputRef.current?.focus();
@@ -387,7 +386,7 @@ function SearchDialog({
           {results.length === 0 && query.length < 2 && (
             <div className="px-4 py-4 space-y-4">
               <div>
-                <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   Popular
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -406,7 +405,7 @@ function SearchDialog({
               </div>
               {recentSearches.length > 0 && (
                 <div>
-                  <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     Recent
                   </div>
                   <div className="space-y-1">
@@ -415,7 +414,7 @@ function SearchDialog({
                         key={term}
                         type="button"
                         className="block w-full text-left text-xs px-3 py-2 rounded-lg min-h-[40px] hover:bg-white/5"
-                        style={{ color: "rgba(255,255,255,0.65)" }}
+                        style={{ color: "var(--hi-muted,#5c5c58)" }}
                         onClick={() => openRecent(term)}
                       >
                         {term}
@@ -424,7 +423,7 @@ function SearchDialog({
                   </div>
                 </div>
               )}
-              <p className="text-xs text-center pt-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <p className="text-xs text-center pt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 Type at least two characters to search
               </p>
             </div>
@@ -434,7 +433,7 @@ function SearchDialog({
               key={i}
               href={r.link || "#"}
               className="flex items-center gap-3 px-4 py-3 min-h-[48px] hover:bg-white/5 transition-colors cursor-pointer"
-              style={{ background: i === selectedIndex ? "rgba(14,165,233,0.12)" : undefined }}
+              style={{ background: i === selectedIndex ? "rgba(142,200,240,0.12)" : undefined }}
               onClick={() => {
                 if (r.link) {
                   pushRecentSearch(query);
@@ -444,18 +443,18 @@ function SearchDialog({
             >
               <span
                 className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded shrink-0"
-                style={{ background: "rgba(255,255,255,0.08)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
+                style={{ background: "rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}
               >
                 {labelForType(r.type)}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium text-white truncate">{r.title}</div>
-                <div className="text-xs truncate" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   {r.subtitle}
                 </div>
               </div>
               {r.date && (
-                <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <span className="text-xs flex-shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   {r.date}
                 </span>
               )}
@@ -539,7 +538,7 @@ export default function SiteHeader({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "text-[13px] font-medium transition-colors px-3 py-2 min-h-[44px] flex items-center md:inline-flex border-b-2 border-transparent [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-sky-500";
+    "text-[13px] font-medium transition-colors px-3 py-2 min-h-[44px] flex items-center md:inline-flex rounded-full border border-transparent [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-[var(--hi-accent)]";
 
   return (
     <>
@@ -557,7 +556,7 @@ export default function SiteHeader({
             <div className="flex items-center gap-1 min-w-0 overflow-x-clip">
               <button
                 type="button"
-                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-lg text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-sky-500"
+                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--hi-text,#0a0a0a)] hover:bg-black/5 focus-visible:outline focus-visible:outline-[var(--hi-accent)]"
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
@@ -595,9 +594,10 @@ export default function SiteHeader({
                   href={href}
                   className={navLinkClass}
                   style={{
-                    color: active ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8b9bb0)",
-                    borderBottomColor: active ? ENHANCED_ACCENT : "transparent",
-                    fontWeight: active ? 600 : 500,
+                    color: active ? "var(--hi-cta-ink,#ffffff)" : "var(--hi-text-secondary,#8a8a86)",
+                    background: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
+                    borderColor: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
+                    fontWeight: active ? 500 : 500,
                   }}
                   {...navAriaCurrent(href, locationPath)}
                 >
@@ -608,21 +608,21 @@ export default function SiteHeader({
               <details className="relative group">
                 <summary
                   className={`${navLinkClass} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
-                  style={{ color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
+                  style={{ color: "var(--hi-muted,#5c5c58)" }}
                 >
                   More
                 </summary>
                 <div
                   className="absolute right-0 top-full mt-2 min-w-[11rem] rounded-lg py-2 shadow-xl z-[60]"
-                  style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
+                  style={{ background: "var(--hi-surface,#eeeeec)", border: "1px solid var(--hi-border,rgba(10,10,10,0.06))" }}
                 >
                   {mainNavLinks().filter((l) => !headerNavLinks().some((h) => h.href === l.href)).map(({ label, href }) => (
                     <a
                       key={`more-${label}`}
                       href={href}
-                      className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-white/5 hover:text-sky-400"
+                      className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-black/5"
                       style={{
-                        color: navRouteMatches(href, locationPath) ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8594a8)",
+                        color: navRouteMatches(href, locationPath) ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#8a8a86)",
                       }}
                       {...navAriaCurrent(href, locationPath)}
                     >
@@ -637,14 +637,14 @@ export default function SiteHeader({
               {seasonChip ? <SeasonChip>{seasonChip}</SeasonChip> : null}
               <span
                 className="hidden md:inline text-[11px] font-medium whitespace-nowrap"
-                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 {headerDateLabel(editionBadge ?? pulseEdition.date)}
               </span>
               {!seasonChip ? (
                 <span
                   className="mono-data text-[11px] md:hidden px-1"
-                  style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                  style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                 >
                   {compactEditionDate(editionBadge ?? pulseEdition.date)}
                 </span>
@@ -665,12 +665,7 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 min-h-11 px-2.5 py-1.5 rounded-md text-xs transition-colors hover:bg-white/10"
-                style={{
-                  background: "var(--hi-surface-2,#121c2c)",
-                  color: "var(--hi-text-secondary,#8b9bb0)",
-                  border: "1px solid var(--hi-border,#1e2c40)",
-                }}
+                className="hi-pill hidden md:flex items-center gap-2 min-h-11 px-2.5 py-1.5 text-xs transition-colors"
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
@@ -679,11 +674,7 @@ export default function SiteHeader({
               </button>
               <a
                 href="/pro"
-                className="hidden md:inline-flex items-center justify-center min-h-11 px-4 py-[9px] rounded-md text-[13px] font-semibold"
-                style={{
-                  color: "var(--hi-text,#f3f6fa)",
-                  border: "1px solid var(--hi-border,#1e2c40)",
-                }}
+                className="hi-pill-primary hidden md:inline-flex items-center justify-center min-h-11 px-4 py-[9px] text-[13px]"
               >
                 Pro
               </a>
@@ -727,8 +718,7 @@ export default function SiteHeader({
               ) : sessionUser ? (
                 <a
                   href="/account"
-                  className="hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
-                  style={{ background: "rgba(30,200,245,0.12)", color: ENHANCED_ACCENT, border: "1px solid rgba(30,200,245,0.25)" }}
+                  className="hi-pill hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 text-xs font-medium"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -741,8 +731,7 @@ export default function SiteHeader({
                   type="button"
                   onClick={() => setShowAuth(true)}
                   aria-label="Sign in to your account"
-                  className="hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-white/10"
-                  style={{ background: "rgba(255,255,255,0.05)", color: "var(--hi-muted, rgba(255,255,255,0.72))" }}
+                  className="hi-pill hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 text-xs font-medium"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -776,7 +765,7 @@ export default function SiteHeader({
               <a
                 href="/"
                 className="text-sm font-semibold py-3 px-3 rounded-lg hover:bg-white/5 min-h-12 flex items-center"
-                style={{ color: ENHANCED_ACCENT }}
+                style={{ color: "var(--hi-text,#0a0a0a)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 Today’s desk →
@@ -789,7 +778,7 @@ export default function SiteHeader({
                     key={`m-${label}`}
                     href={href}
                     className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 min-h-[48px] flex items-center"
-                    style={{ color: active ? ENHANCED_ACCENT : "var(--hi-text,#f2f5fa)" }}
+                    style={{ color: active ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setMobileOpen(false)}
                   >
@@ -826,19 +815,19 @@ export default function SiteHeader({
               {sessionUser ? (
                 <a
                   href="/account"
-                  className="py-3 px-3 rounded-lg text-sm hover:bg-white/5 text-sky-400 font-medium min-h-12 flex items-center"
+                  className="py-3 px-3 rounded-full text-sm hover:bg-black/5 font-medium min-h-12 flex items-center"
                   onClick={() => setMobileOpen(false)}
                 >
                   Account
                 </a>
               ) : (
                 <div className="mt-1 pt-3 border-t border-white/10">
-                  <p className="px-3 pb-2 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  <p className="px-3 pb-2 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     Sync favorites, reactions, and push alerts across devices.
                   </p>
                   <button
                     type="button"
-                    className="w-full text-left py-3 px-3 rounded-lg text-sm font-semibold text-sky-400 hover:bg-white/5 min-h-12"
+                    className="w-full text-left py-3 px-3 rounded-full text-sm font-semibold hover:bg-black/5 min-h-12"
                     onClick={() => {
                       setMobileOpen(false);
                       setShowAuth(true);

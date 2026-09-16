@@ -67,8 +67,8 @@ export default function Unsubscribe() {
           disabled={status === "loading"}
           className="w-full min-h-[44px] py-3 rounded-lg font-semibold transition-opacity"
           style={{
-            background: "var(--hi-accent,#1ec8f5)",
-            color: "var(--hi-accent-ink,#0a0d12)",
+            background: "var(--hi-accent,#8ec8f0)",
+            color: "var(--hi-accent-ink,#0a0a0a)",
             opacity: status === "loading" ? 0.6 : 1,
           }}
         >
@@ -79,7 +79,7 @@ export default function Unsubscribe() {
             {message}
           </p>
         )}
-        <p className="mt-10 text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="mt-10 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           Tip: Prefer fewer emails instead? Quiet hours ship with bulk sends — ping us if something looks off after
           subscribing again from the home footer.
         </p>

@@ -50,29 +50,29 @@ function PulseRow({
   return (
     <a
       href={`/player/${slugify(player)}`}
-      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_4rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_4rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#8ec8f0)]/40 transition-colors"
     >
-      <p className="mono-data pulse-score font-bold text-lg md:text-xl self-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <p className="mono-data pulse-score font-bold text-lg md:text-xl self-center" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
         {padRank(rank)}
       </p>
       <div className="min-w-0 overflow-hidden">
         <div className="flex items-baseline gap-2 min-w-0">
-          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#f2f5fa)] truncate">{player}</span>
-          <span className="text-xs font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#0a0a0a)] truncate">{player}</span>
+          <span className="text-xs font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
             {team}
           </span>
         </div>
-        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
-        <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#f2f5fa)] line-clamp-2">{note}</p>
+        <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#0a0a0a)] line-clamp-2">{note}</p>
       </div>
       <div className="flex flex-col items-end gap-0.5 min-w-0 text-right">
         <span className="text-xs font-bold leading-none" style={{ color: mark.color }}>
           {mark.mark}
         </span>
-        <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#f2f5fa)]">{formatPulseScore(indexScore)}</span>
-        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#0a0a0a)]">{formatPulseScore(indexScore)}</span>
+        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {teamRecord}
         </span>
       </div>
@@ -91,14 +91,14 @@ function CompactPulseRow({
       href={`/player/${slugify(player)}`}
       className="desk-inset flex items-center gap-3 px-3 py-2.5 min-h-11 min-w-0 overflow-hidden"
     >
-      <span className="mono-data text-xs font-bold shrink-0 w-4" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <span className="mono-data text-xs font-bold shrink-0 w-4" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
         {rank}
       </span>
-      <span className="flex-1 min-w-0 text-[13px] font-medium text-[var(--hi-text,#f2f5fa)] truncate">{player}</span>
-      <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+      <span className="flex-1 min-w-0 text-[13px] font-medium text-[var(--hi-text,#0a0a0a)] truncate">{player}</span>
+      <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {team}
       </span>
-      <span className="mono-data text-sm font-bold shrink-0 pulse-score" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <span className="mono-data text-sm font-bold shrink-0 pulse-score" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
         {formatPulseTenths(indexScore)}
       </span>
     </a>
@@ -109,11 +109,11 @@ function CampIntelRow({ card }: { card: CampCard }) {
   const kicker = card.team ? `${card.kicker} · ${card.team}` : card.kicker;
   return (
     <DeskInset href={card.href} className="flex flex-col gap-1 p-3">
-      <p className="text-[10px] font-semibold tracking-[0.8px] uppercase" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+      <p className="text-[10px] font-semibold tracking-[0.8px] uppercase" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
         {kicker}
       </p>
-      <p className="text-sm font-semibold leading-[17px] text-[var(--hi-text,#f2f5fa)] line-clamp-2">{card.title}</p>
-      <p className="text-xs leading-[18px] line-clamp-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+      <p className="text-sm font-semibold leading-[17px] text-[var(--hi-text,#0a0a0a)] line-clamp-2">{card.title}</p>
+      <p className="text-xs leading-[18px] line-clamp-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {card.body}
       </p>
     </DeskInset>
@@ -124,8 +124,8 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
   const dateLabel = game.dateIso ? campShortDate(game.dateIso) : game.when.split(" ")[0] ?? game.when;
   return (
     <DeskInset className="flex flex-col gap-1.5 p-2.5 w-[152px] shrink-0">
-      <p className="text-[11px] font-semibold text-[var(--hi-text,#f2f5fa)]">{dateLabel}</p>
-      <p className="text-[11px] truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+      <p className="text-[11px] font-semibold text-[var(--hi-text,#0a0a0a)]">{dateLabel}</p>
+      <p className="text-[11px] truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {game.away} @ {game.home}
       </p>
       <StatusPill tone="warn">NOT TONIGHT</StatusPill>
@@ -141,7 +141,7 @@ export function EnhancedTicker() {
       aria-label="Edition wire"
     >
       <p className="enhanced-kicker shrink-0">{deskEyebrow()}</p>
-      <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+      <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {tickerWireText()}
       </p>
     </div>
@@ -172,13 +172,13 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           <p className="enhanced-kicker">
             {deskKickerLine()}
           </p>
-          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-[38px]">
+          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-[38px]">
             {narrative.headline}
           </h1>
-          <h1 className="md:hidden editorial-heading text-[var(--hi-text,#f2f5fa)] text-[1.5rem] leading-8">
+          <h1 className="md:hidden editorial-heading text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8">
             {campMode ? pulseEdition.date : narrative.headline}
           </h1>
-          <p className="text-xs max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-xs max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             <span className="hidden md:inline">Will Henderson · Updated {editionPublishLabel()}</span>
             <span className="md:hidden">
               {campMode
@@ -280,10 +280,10 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
                     href={`/player/${slugify(injury.player)}`}
                     className="desk-inset flex items-center gap-2 px-2.5 py-2 min-h-11 min-w-0"
                   >
-                    <span className="flex-1 min-w-0 text-xs font-medium text-[var(--hi-text,#f2f5fa)] truncate">
+                    <span className="flex-1 min-w-0 text-xs font-medium text-[var(--hi-text,#0a0a0a)] truncate">
                       {injury.player}
                     </span>
-                    <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                    <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                       {injury.team}
                     </span>
                     <InjuryChip status={injury.status} />
@@ -300,8 +300,8 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             {campMode ? (
               <DeskPanel kicker="Tonight">
                 <DeskInset className="flex flex-col items-center justify-center gap-2 p-[18px] text-center">
-                  <p className="text-sm font-semibold text-[var(--hi-text,#f2f5fa)]">Slate clear</p>
-                  <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                  <p className="text-sm font-semibold text-[var(--hi-text,#0a0a0a)]">Slate clear</p>
+                  <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     No invented tip-offs. Camp opens Oct 3.
                   </p>
                   <StatusPill tone="accent">EMPTY · HONEST</StatusPill>
@@ -313,7 +313,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           {campMode ? (
             <div className="md:hidden w-full flex flex-col gap-3">
               <DeskPanel kicker="Tonight">
-                <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   Slate clear · not tonight
                 </p>
               </DeskPanel>

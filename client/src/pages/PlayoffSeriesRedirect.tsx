@@ -70,10 +70,10 @@ export default function PlayoffSeriesRedirect() {
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div>
               <p className="enhanced-kicker mb-2">{series.round.replace(/-/g, " ")} · {series.summary}</p>
-              <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">
+              <h1 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">
                 {series.higherTeam} vs {series.lowerTeam}
               </h1>
-              <p className="mono-data text-2xl font-black text-[var(--hi-text,#f2f5fa)]">
+              <p className="mono-data text-2xl font-black text-[var(--hi-text,#0a0a0a)]">
                 {series.higherWins}–{series.lowerWins}
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function PlayoffSeriesRedirect() {
           />
 
           {intel ? (
-            <p className="mobile-readable mt-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <p className="mobile-readable mt-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {intel.narrative}
             </p>
           ) : null}
@@ -99,7 +99,7 @@ export default function PlayoffSeriesRedirect() {
           <a
             href={`/playoffs#series-card-${series.seriesId}`}
             className="inline-flex items-center min-h-11 mt-4 text-sm font-semibold"
-            style={{ color: "var(--hi-accent,#1ec8f5)" }}
+            style={{ color: "var(--hi-accent,#8ec8f0)" }}
           >
             Open bracket card →
           </a>
@@ -115,10 +115,10 @@ export default function PlayoffSeriesRedirect() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                    <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                       Game {entry.gameNumber} · {entry.date}
                     </div>
-                    <div className="text-sm font-semibold text-[var(--hi-text,#f2f5fa)] mt-1">
+                    <div className="text-sm font-semibold text-[var(--hi-text,#0a0a0a)] mt-1">
                       {entry.awayTeam} {entry.awayScore ?? "—"} @ {entry.homeTeam} {entry.homeScore ?? "—"}
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function PlayoffSeriesRedirect() {
                             ? "rgba(255,77,106,0.14)"
                             : "rgba(255,255,255,0.06)",
                       color:
-                        entry.status === "live" ? "var(--hi-success,#40d18c)" : entry.status === "final" ? "var(--hi-danger,#ff4d6a)" : "var(--hi-text-secondary,#8594a8)",
+                        entry.status === "live" ? "var(--hi-success,#40d18c)" : entry.status === "final" ? "var(--hi-danger,#ff4d6a)" : "var(--hi-text-secondary,#8a8a86)",
                     }}
                   >
                     {statusLabel(entry.status)}
@@ -140,23 +140,23 @@ export default function PlayoffSeriesRedirect() {
                 </div>
 
                 {entry.topPerformer ? (
-                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                     ★ {entry.topPerformer}
                     {entry.topLine ? ` · ${entry.topLine}` : ""}
                   </div>
                 ) : null}
 
                 {entry.archiveHeadline ? (
-                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     {entry.archiveHeadline}
                   </p>
                 ) : entry.archiveSnippet ? (
-                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     {entry.archiveSnippet}
                   </p>
                 ) : null}
 
-                <a href={entry.gameCenterHref} className="inline-flex items-center min-h-11 text-sm font-semibold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                <a href={entry.gameCenterHref} className="inline-flex items-center min-h-11 text-sm font-semibold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                   Open Game Center →
                 </a>
               </article>

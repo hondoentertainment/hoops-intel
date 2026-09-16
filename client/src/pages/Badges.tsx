@@ -31,8 +31,8 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
     <div
       className="rounded-2xl p-8 text-center relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(16,185,129,0.08) 100%)",
-        border: "1px solid rgba(14,165,233,0.2)",
+        background: "linear-gradient(135deg, rgba(142,200,240,0.12) 0%, rgba(16,185,129,0.08) 100%)",
+        border: "1px solid rgba(142,200,240,0.2)",
       }}
     >
       {/* Flame glow effect */}
@@ -48,8 +48,8 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
         <div
           className="text-7xl font-black tabular-nums leading-none mb-2"
           style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            color: current >= 7 ? "#F59E0B" : current >= 3 ? "#0EA5E9" : "rgba(255,255,255,0.5)",
+            fontFamily: "var(--hi-font-display)",
+            color: current >= 7 ? "#F59E0B" : current >= 3 ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
             textShadow: current >= 3 ? "0 0 30px rgba(251,146,60,0.3)" : "none",
           }}
         >
@@ -62,15 +62,15 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
         </div>
         <div
           className="text-sm font-semibold uppercase tracking-widest mb-4"
-          style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           day{current !== 1 ? "s" : ""} in a row
         </div>
         <div
           className="text-xs"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
-          Longest streak: <span className="font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>{longest} day{longest !== 1 ? "s" : ""}</span>
+          Longest streak: <span className="font-bold" style={{ color: "var(--hi-muted,#5c5c58)" }}>{longest} day{longest !== 1 ? "s" : ""}</span>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
           style={{
             background: `${tierColor}18`,
             color: tierColor,
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
           }}
         >
           {getBadgeTierLabel(badge.tier)}
@@ -120,7 +120,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Name */}
       <h3
         className="text-base font-bold mb-1"
-        style={{ color: earned ? "#fff" : "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: earned ? "#fff" : "rgba(255,255,255,0.6)", fontFamily: "var(--hi-font-body)" }}
       >
         {badge.name}
       </h3>
@@ -128,7 +128,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Description */}
       <p
         className="text-xs mb-3 leading-relaxed"
-        style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
       >
         {badge.description}
       </p>
@@ -136,7 +136,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Requirement */}
       <div
         className="text-[11px] mb-2"
-        style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
       >
         {badge.requirement}
       </div>
@@ -145,7 +145,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {earned && earnedDate ? (
         <div
           className="text-[11px] font-semibold"
-          style={{ color: "#10B981", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "#10B981", fontFamily: "var(--hi-font-body)" }}
         >
           Earned {formatDate(earnedDate)}
         </div>
@@ -162,7 +162,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
           </div>
           <div
             className="text-[10px] text-right tabular-nums"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
           >
             {progress}%
           </div>
@@ -170,7 +170,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       ) : (
         <div
           className="text-[11px]"
-          style={{ color: "rgba(255,255,255,0.2)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           Locked
         </div>
@@ -224,7 +224,7 @@ export default function Badges() {
       headerToolbarExtra={
         <span
           className="text-xs tabular-nums font-bold whitespace-nowrap"
-          style={{ color: "var(--hi-accent,#1ec8f5)", fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: "var(--hi-accent,#8ec8f0)", fontFamily: "var(--hi-font-mono)" }}
         >
           {earnedCount}/{totalBadges} earned
         </span>
@@ -237,7 +237,7 @@ export default function Badges() {
         {/* Stats Summary */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: "Badges Earned", value: String(earnedCount), color: "var(--hi-accent,#1ec8f5)" },
+            { label: "Badges Earned", value: String(earnedCount), color: "var(--hi-accent,#8ec8f0)" },
             { label: "Current Streak", value: `${streak.currentStreak}d`, color: "#F59E0B" },
             { label: "Longest Streak", value: `${streak.longestStreak}d`, color: "#10B981" },
           ].map((stat) => (
@@ -251,13 +251,13 @@ export default function Badges() {
             >
               <div
                 className="text-2xl font-black tabular-nums mb-1"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", color: stat.color }}
+                style={{ fontFamily: "var(--hi-font-display)", color: stat.color }}
               >
                 {stat.value}
               </div>
               <div
                 className="text-[10px] uppercase tracking-wider"
-                style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
               >
                 {stat.label}
               </div>

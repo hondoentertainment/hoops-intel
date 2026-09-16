@@ -44,7 +44,7 @@ export default function PlayerCard() {
     hasCurrentTeam: player.teams.length > 0,
     mentions: player.mentions,
   });
-  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "#0EA5E9";
+  const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent)";
 
   // Parse season stats from keyStats string (e.g. "40 PTS · 14-27 FG · 3-5 3PT · 9-11 FT")
   function parseStats(keyStats: string) {
@@ -135,7 +135,7 @@ export default function PlayerCard() {
         <a
           href={`/player/${slug}`}
           className="text-xs font-medium flex items-center gap-1 transition-opacity hover:opacity-80"
-          style={{ color: "#0EA5E9" }}
+          style={{ color: "var(--hi-accent)" }}
         >
           ← View Full Profile
         </a>
@@ -204,9 +204,9 @@ export default function PlayerCard() {
               <div
                 className="text-xs px-3 py-1.5 rounded-full font-bold whitespace-nowrap"
                 style={{
-                  background: "rgba(14,165,233,0.15)",
-                  color: "#0EA5E9",
-                  border: "1px solid rgba(14,165,233,0.3)",
+                  background: "rgba(142,200,240,0.15)",
+                  color: "var(--hi-accent)",
+                  border: "1px solid rgba(142,200,240,0.3)",
                 }}
               >
                 #{currentPulse.rank} Pulse Index
@@ -240,14 +240,14 @@ export default function PlayerCard() {
                   className="font-black leading-none"
                   style={{
                     fontSize: "3.5rem",
-                    color: "#0EA5E9",
+                    color: "var(--hi-accent)",
                     fontVariantNumeric: "tabular-nums",
-                    textShadow: "0 0 20px rgba(14,165,233,0.4)",
+                    textShadow: "0 0 20px rgba(142,200,240,0.4)",
                   }}
                 >
                   {currentPulse.indexScore}
                 </div>
-                <div className="text-xs font-bold tracking-widest mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="text-xs font-bold tracking-widest mt-0.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   PULSE INDEX
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function PlayerCard() {
           {/* Stats grid */}
           {currentPulse && (
             <div className="mb-5">
-              <div className="text-xs font-bold tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <div className="text-xs font-bold tracking-widest mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 LAST GAME — {pulseEdition.date}
               </div>
               <div className="grid grid-cols-4 gap-2">
@@ -297,7 +297,7 @@ export default function PlayerCard() {
                       >
                         {value}
                       </div>
-                      <div className="text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      <div className="text-xs font-bold" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                         {label}
                       </div>
                     </div>
@@ -318,7 +318,7 @@ export default function PlayerCard() {
           {currentPulse?.note && (
             <p
               className="text-xs leading-relaxed mb-5"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--hi-muted,#5c5c58)" }}
             >
               {currentPulse.note}
             </p>
@@ -335,7 +335,7 @@ export default function PlayerCard() {
             <div className="flex items-center gap-2">
               <div
                 className="w-6 h-6 rounded flex items-center justify-center font-bold text-white text-xs"
-                style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
+                style={{ background: "linear-gradient(135deg, var(--hi-accent), #0284C7)" }}
               >
                 HI
               </div>
@@ -346,12 +346,12 @@ export default function PlayerCard() {
                 >
                   HOOPS INTEL
                 </div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.6rem" }}>
+                <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
                   hoopsintel.net
                 </div>
               </div>
             </div>
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.6rem" }}>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
               {pulseEdition.date}
             </div>
           </div>
@@ -364,9 +364,9 @@ export default function PlayerCard() {
           onClick={handleShare}
           className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold transition-all"
           style={{
-            background: shareCopied ? "rgba(16,185,129,0.2)" : "rgba(14,165,233,0.12)",
-            color: shareCopied ? "#10B981" : "#0EA5E9",
-            border: `1px solid ${shareCopied ? "rgba(16,185,129,0.35)" : "rgba(14,165,233,0.3)"}`,
+            background: shareCopied ? "rgba(16,185,129,0.2)" : "rgba(142,200,240,0.12)",
+            color: shareCopied ? "#10B981" : "var(--hi-accent)",
+            border: `1px solid ${shareCopied ? "rgba(16,185,129,0.35)" : "rgba(142,200,240,0.3)"}`,
           }}
           aria-label="Share player card"
         >
@@ -395,7 +395,7 @@ export default function PlayerCard() {
           className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold transition-all"
           style={{
             background: "rgba(255,255,255,0.04)",
-            color: "rgba(255,255,255,0.65)",
+            color: "var(--hi-muted,#5c5c58)",
             border: "1px solid rgba(255,255,255,0.1)",
           }}
           onMouseEnter={(e) => {

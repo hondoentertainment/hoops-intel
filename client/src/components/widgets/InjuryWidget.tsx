@@ -31,7 +31,7 @@ export default function InjuryWidget({ theme = "dark", size = "medium" }: Injury
   const isDark = theme === "dark";
   const cfg = sizeConfig[size];
 
-  const bg = isDark ? "#0A1628" : "#FFFFFF";
+  const bg = isDark ? "#111111" : "#FFFFFF";
   const cardBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)";
   const textPrimary = isDark ? "#FFFFFF" : "#1A1A2E";
   const textSecondary = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)";
@@ -182,7 +182,7 @@ export default function InjuryWidget({ theme = "dark", size = "medium" }: Injury
             width: 6,
             height: 6,
             borderRadius: "50%",
-            background: "#0EA5E9",
+            background: "var(--hi-accent)",
           }}
         />
         <span

@@ -55,7 +55,7 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
 
   if (rows.length === 0) {
     return (
-      <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+      <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         No settled picks yet — check back after tonight&apos;s games.
       </p>
     );
@@ -84,7 +84,7 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
     >
       <div
         className="grid grid-cols-12 gap-2 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider"
-        style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)" }}
+        style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-text-secondary,#8a8a86)" }}
       >
         <div className="col-span-1">#</div>
         <div className="col-span-5">User</div>
@@ -104,16 +104,16 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
             <div className="col-span-1 font-bold" style={{ color: rankColor }}>
               {rank}
             </div>
-            <div className="col-span-5 truncate" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem" }}>
+            <div className="col-span-5 truncate" style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)", fontSize: "0.65rem" }}>
               {truncateLeaderboardUserId(row.user_id)}
             </div>
             <div
               className="col-span-3 text-right font-bold tabular-nums"
-              style={{ color: leaderboardAccuracyColor(row.accuracy_pct), fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: leaderboardAccuracyColor(row.accuracy_pct), fontFamily: "var(--hi-font-mono)" }}
             >
               {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
             </div>
-            <div className="col-span-3 text-right tabular-nums" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <div className="col-span-3 text-right tabular-nums" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {row.current_streak > 0 ? `${row.current_streak}W` : "—"}
             </div>
           </div>

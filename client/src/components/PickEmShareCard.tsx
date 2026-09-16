@@ -46,7 +46,7 @@ export default function PickEmShareCard({
     <div
       className="rounded-xl p-4 mb-6"
       style={{
-        background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(14,165,233,0.06))",
+        background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(142,200,240,0.06))",
         border: "1px solid rgba(16,185,129,0.28)",
       }}
     >
@@ -59,11 +59,11 @@ export default function PickEmShareCard({
             <div>
               <div
                 className="text-3xl font-black tabular-nums leading-none"
-                style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}
               >
                 {displayWins}-{displayLosses}
               </div>
-              <div className="text-[10px] uppercase tracking-wider mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <div className="text-[10px] uppercase tracking-wider mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 {recordLabel} {total > 0 ? `· ${pct}%` : ""}
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function PickEmShareCard({
                   {streak}
                   <span className="text-xs ml-1">W</span>
                 </div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   Streak
                 </div>
               </div>
@@ -84,12 +84,12 @@ export default function PickEmShareCard({
             {seasonRecord && slateTotal > 0 ? (
               <div
                 className="rounded-lg px-3 py-2"
-                style={{ background: "rgba(14,165,233,0.08)", border: "1px solid rgba(14,165,233,0.2)" }}
+                style={{ background: "rgba(142,200,240,0.08)", border: "1px solid rgba(142,200,240,0.2)" }}
               >
-                <div className="text-lg font-bold tabular-nums" style={{ color: "#0EA5E9" }}>
+                <div className="text-lg font-bold tabular-nums" style={{ color: "var(--hi-accent)" }}>
                   {wins}-{losses}
                 </div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   Season
                 </div>
               </div>

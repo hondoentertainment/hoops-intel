@@ -82,8 +82,8 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
         style={{
           background: "rgba(255,255,255,0.02)",
           border: "1px solid rgba(255,255,255,0.06)",
-          color: "rgba(255,255,255,0.35)",
-          fontFamily: "'DM Sans', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-body)",
         }}
       >
         No picks settled yet. Check back after tonight&apos;s games conclude.
@@ -101,8 +101,8 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
         className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
         style={{
           background: "rgba(255,255,255,0.04)",
-          color: "rgba(255,255,255,0.35)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
         }}
       >
@@ -133,7 +133,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
             {/* Rank */}
             <div
               className="col-span-1 text-sm font-bold"
-              style={{ color: rankColor, fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: rankColor, fontFamily: "var(--hi-font-display)" }}
             >
               {rank}
             </div>
@@ -145,9 +145,9 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
                 style={{
                   background: isTop3
                     ? `rgba(${rank === 1 ? "245,158,11" : rank === 2 ? "148,163,184" : "205,127,50"},0.15)`
-                    : "rgba(14,165,233,0.1)",
-                  color: isTop3 ? rankColor : "#0EA5E9",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                    : "rgba(142,200,240,0.1)",
+                  color: isTop3 ? rankColor : "var(--hi-accent)",
+                  fontFamily: "var(--hi-font-display)",
                 }}
               >
                 {truncateLeaderboardUserId(row.user_id).slice(0, 1)}
@@ -156,7 +156,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
                 className="text-xs font-medium truncate"
                 style={{
                   color: "rgba(255,255,255,0.7)",
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--hi-font-mono)",
                   fontSize: "0.7rem",
                 }}
               >
@@ -170,7 +170,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
                 className="text-sm font-bold"
                 style={{
                   color: leaderboardAccuracyColor(row.accuracy_pct),
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--hi-font-mono)",
                 }}
               >
                 {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
@@ -182,7 +182,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
               className="col-span-2 text-right text-sm font-semibold"
               style={{
                 color: row.current_streak > 0 ? "#F59E0B" : "rgba(255,255,255,0.3)",
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--hi-font-mono)",
               }}
             >
               {row.current_streak > 0 ? `${row.current_streak}W` : "—"}
@@ -191,7 +191,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
             {/* Correct */}
             <div
               className="col-span-2 text-right text-sm font-semibold"
-              style={{ color: "#10B981", fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: "#10B981", fontFamily: "var(--hi-font-mono)" }}
             >
               {row.correct_picks}
             </div>
@@ -199,7 +199,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
             {/* Total */}
             <div
               className="col-span-2 text-right text-sm"
-              style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
             >
               {row.total_settled}
             </div>
@@ -242,7 +242,7 @@ function BracketLeaderboardSection() {
             className="text-xs font-semibold mb-1"
             style={{
               color: "#F43F5E",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -250,7 +250,7 @@ function BracketLeaderboardSection() {
           </div>
           <h2
             className="text-2xl font-bold"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
           >
             Series Pick Accuracy
           </h2>
@@ -264,7 +264,7 @@ function BracketLeaderboardSection() {
             background: "rgba(244,63,94,0.06)",
             border: "1px solid rgba(244,63,94,0.15)",
             color: "rgba(244,63,94,0.8)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           Bracket leaderboard: {error}
@@ -276,8 +276,8 @@ function BracketLeaderboardSection() {
           style={{
             background: "rgba(255,255,255,0.02)",
             border: "1px solid rgba(255,255,255,0.06)",
-            color: "rgba(255,255,255,0.35)",
-            fontFamily: "'DM Sans', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           No bracket results settled yet. Check back as series finish.
@@ -292,8 +292,8 @@ function BracketLeaderboardSection() {
             className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
             style={{
               background: "rgba(255,255,255,0.04)",
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
             }}
           >
@@ -315,18 +315,18 @@ function BracketLeaderboardSection() {
                   background: idx % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent",
                 }}
               >
-                <div className="col-span-1 text-sm font-bold" style={{ color: rankColor, fontFamily: "'Barlow Condensed', sans-serif" }}>
+                <div className="col-span-1 text-sm font-bold" style={{ color: rankColor, fontFamily: "var(--hi-font-display)" }}>
                   {rank}
                 </div>
-                <div className="col-span-5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem" }}>
+                <div className="col-span-5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--hi-font-mono)", fontSize: "0.7rem" }}>
                   {truncateLeaderboardUserId(row.user_id)}
                 </div>
                 <div className="col-span-3 text-right">
-                  <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}>
+                  <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "rgba(255,255,255,0.3)", fontFamily: "var(--hi-font-mono)" }}>
                     {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
                   </span>
                 </div>
-                <div className="col-span-3 text-right text-sm font-semibold" style={{ color: "#10B981", fontFamily: "'JetBrains Mono', monospace" }}>
+                <div className="col-span-3 text-right text-sm font-semibold" style={{ color: "#10B981", fontFamily: "var(--hi-font-mono)" }}>
                   {row.correct_series}
                 </div>
               </div>
@@ -361,7 +361,7 @@ function LeaderboardSection() {
             className="text-xs font-semibold mb-1"
             style={{
               color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -369,7 +369,7 @@ function LeaderboardSection() {
           </div>
           <h2
             className="text-2xl font-bold"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
           >
             Season Pick&apos;em Leaders
           </h2>
@@ -380,7 +380,7 @@ function LeaderboardSection() {
             background: "rgba(245,158,11,0.08)",
             color: "rgba(245,158,11,0.7)",
             border: "1px solid rgba(245,158,11,0.15)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           Top 10 · All Season
@@ -395,7 +395,7 @@ function LeaderboardSection() {
             background: "rgba(244,63,94,0.06)",
             border: "1px solid rgba(244,63,94,0.15)",
             color: "rgba(244,63,94,0.8)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           Could not load leaderboard: {error}
@@ -414,7 +414,7 @@ function HowItWorksSection() {
   const steps = [
     {
       icon: "1",
-      color: "#0EA5E9",
+      color: "#8ec8f0",
       title: "Pick Tonight's Winners",
       body: "Before tip-off, select which team you think will win each game. You can pick as many or as few games as you want.",
     },
@@ -437,8 +437,8 @@ function HowItWorksSection() {
       <div
         className="text-xs font-semibold mb-4"
         style={{
-          color: "rgba(255,255,255,0.4)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.1em",
         }}
       >
@@ -458,27 +458,27 @@ function HowItWorksSection() {
               className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mb-3"
               style={{
                 background: `rgba(${
-                  step.color === "#0EA5E9"
-                    ? "14,165,233"
+                  step.color === "#8ec8f0"
+                    ? "142,200,240"
                     : step.color === "#10B981"
                     ? "16,185,129"
                     : "245,158,11"
                 },0.12)`,
                 color: step.color,
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
               }}
             >
               {step.icon}
             </div>
             <div
               className="text-sm font-semibold mb-1.5"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
             >
               {step.title}
             </div>
             <div
               className="text-xs leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
             >
               {step.body}
             </div>
@@ -488,14 +488,14 @@ function HowItWorksSection() {
       <div
         className="mt-4 rounded-lg px-4 py-3 text-sm"
         style={{
-          background: "rgba(14,165,233,0.05)",
-          border: "1px solid rgba(14,165,233,0.12)",
-          color: "rgba(255,255,255,0.5)",
-          fontFamily: "'DM Sans', sans-serif",
+          background: "rgba(142,200,240,0.05)",
+          border: "1px solid rgba(142,200,240,0.12)",
+          color: "var(--hi-muted,#5c5c58)",
+          fontFamily: "var(--hi-font-body)",
         }}
       >
         Pick tonight&apos;s winners before tip-off.{" "}
-        <span style={{ color: "rgba(14,165,233,0.8)" }}>Accuracy tracked all season.</span>
+        <span style={{ color: "rgba(142,200,240,0.8)" }}>Accuracy tracked all season.</span>
       </div>
     </section>
   );
@@ -519,8 +519,8 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
           actionHref="/pick-em#season-board"
         />
         <div className="enhanced-card flex flex-col gap-2.5 p-[22px] max-md:p-4">
-          <p className="editorial-heading text-2xl max-md:text-[1.5rem] max-md:leading-8 text-[var(--hi-text,#f2f5fa)]">Board closed.</p>
-          <p className="editorial-body mobile-readable text-[var(--hi-text,#f2f5fa)] max-w-3xl">
+          <p className="editorial-heading text-2xl max-md:text-[1.5rem] max-md:leading-8 text-[var(--hi-text,#0a0a0a)]">Board closed.</p>
+          <p className="editorial-body mobile-readable text-[var(--hi-text,#0a0a0a)] max-w-3xl">
             Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. We never invent tip-offs for camp week.
             Game and bracket picks count toward the season board when the first tip lands.
           </p>
@@ -619,10 +619,10 @@ export default function PickEmPage() {
           <div
             className="mb-8 rounded-xl px-4 py-3 text-sm"
             style={{
-              background: "rgba(14,165,233,0.06)",
-              border: "1px solid rgba(14,165,233,0.15)",
-              color: "rgba(255,255,255,0.55)",
-              fontFamily: "'DM Sans', sans-serif",
+              background: "rgba(142,200,240,0.06)",
+              border: "1px solid rgba(142,200,240,0.15)",
+              color: "var(--hi-muted,#5c5c58)",
+              fontFamily: "var(--hi-font-body)",
             }}
           >
             Playoff bracket picks use the same ESPN-synced series as the command center (
@@ -630,7 +630,7 @@ export default function PickEmPage() {
             <span className="text-white/80">{playoffSnap.seriesActive}</span> active ·{" "}
             <span className="text-white/80">{playoffSnap.seriesComplete}</span> complete).{" "}
             {playoffSnap.nextMilestone}.{" "}
-            <a href="/playoffs" style={{ color: "rgba(14,165,233,0.95)" }}>
+            <a href="/playoffs" style={{ color: "rgba(142,200,240,0.95)" }}>
               Open playoff board →
             </a>
           </div>
@@ -643,7 +643,7 @@ export default function PickEmPage() {
               className="text-xs font-semibold mb-4"
               style={{
                 color: "#F43F5E",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.1em",
               }}
             >
@@ -658,8 +658,8 @@ export default function PickEmPage() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >

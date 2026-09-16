@@ -80,17 +80,16 @@ export default function PrintEdition() {
         }
       `}</style>
 
-      <div className="no-print-header bg-[#050D1A]">
+      <div className="no-print-header" style={{ background: "var(--hi-bg-page,#f7f7f5)" }}>
         <SiteHeader subtitle="PRINT" />
         <div className="container max-w-[720px] py-4 flex flex-wrap gap-3 items-center justify-between">
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Multi-page desk packet — use Print → Save as PDF for a branded export.
           </p>
           <button
             type="button"
             onClick={() => window.print()}
-            className="min-h-[44px] px-4 rounded-lg text-xs font-bold uppercase tracking-wider text-white"
-            style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)" }}
+            className="hi-pill-primary min-h-[44px] px-4 text-xs"
           >
             Print / Save as PDF
           </button>
@@ -101,7 +100,7 @@ export default function PrintEdition() {
         {/* Page 1 — Cover + narrative */}
         <section className="print-page print-avoid-break">
           <header className="border-b border-slate-200 pb-6 mb-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-sky-600 font-bold">
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-600 font-bold">
               Hoops Intel · {finalsOn ? "NBA Finals Print Packet" : "Daily Print Packet"}
             </p>
             <h1 className="display-heading text-4xl mt-4 text-slate-900">{packTitle}</h1>

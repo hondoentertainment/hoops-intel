@@ -65,7 +65,7 @@ function GapIndicator({ gap }: { gap: number }) {
       </div>
       <span
         className="text-xs font-bold tabular-nums w-10 text-right"
-        style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color, fontFamily: "var(--hi-font-mono)" }}
       >
         {label}
       </span>
@@ -83,7 +83,7 @@ function ScoreBar({ value, max, color, label }: { value: number; max: number; co
     <div className="flex items-center gap-2">
       <span
         className="text-[10px] w-20 text-right uppercase tracking-wider"
-        style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
       >
         {label}
       </span>
@@ -98,7 +98,7 @@ function ScoreBar({ value, max, color, label }: { value: number; max: number; co
       </div>
       <span
         className="text-xs font-bold tabular-nums w-10 text-right"
-        style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color, fontFamily: "var(--hi-font-mono)" }}
       >
         {value.toFixed(1)}
       </span>
@@ -145,13 +145,13 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
         <div className="text-3xl mb-2">{"\u2705"}</div>
         <h3
           className="text-base font-bold mb-1"
-          style={{ color: "#10B981", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "#10B981", fontFamily: "var(--hi-font-body)" }}
         >
           Vote Submitted
         </h3>
         <p
           className="text-xs mb-3"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           You rated {votedCount} player{votedCount !== 1 ? "s" : ""}. See how your picks compare below.
         </p>
@@ -160,9 +160,9 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
           className="text-xs font-semibold px-4 py-2 rounded-lg transition-all hover:opacity-80"
           style={{
             background: "rgba(255,255,255,0.06)",
-            color: "rgba(255,255,255,0.5)",
+            color: "var(--hi-muted,#5c5c58)",
             border: "1px solid rgba(255,255,255,0.08)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           Update Votes
@@ -185,13 +185,13 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
       >
         <h2
           className="text-sm font-bold uppercase tracking-wider"
-          style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
         >
           Rate Players (1-10)
         </h2>
         <p
           className="text-xs mt-1"
-          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           Rate each player's current form. 10 = elite, 1 = struggling.
         </p>
@@ -207,13 +207,13 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
             <div className="flex-1 min-w-0">
               <div
                 className="text-sm font-semibold truncate"
-                style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
               >
                 {p.player}
               </div>
               <div
                 className="text-[11px]"
-                style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {p.team}
               </div>
@@ -230,16 +230,16 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
                     className="w-7 h-7 rounded text-xs font-bold transition-all"
                     style={{
                       background: isSelected
-                        ? n >= 8 ? "rgba(16,185,129,0.3)" : n >= 5 ? "rgba(14,165,233,0.3)" : "rgba(244,63,94,0.3)"
+                        ? n >= 8 ? "rgba(16,185,129,0.3)" : n >= 5 ? "rgba(142,200,240,0.3)" : "rgba(244,63,94,0.3)"
                         : "rgba(255,255,255,0.03)",
                       color: isSelected
-                        ? n >= 8 ? "#10B981" : n >= 5 ? "#0EA5E9" : "#F43F5E"
+                        ? n >= 8 ? "#10B981" : n >= 5 ? "var(--hi-accent)" : "#F43F5E"
                         : "rgba(255,255,255,0.25)",
                       border: `1px solid ${isSelected
-                        ? n >= 8 ? "rgba(16,185,129,0.4)" : n >= 5 ? "rgba(14,165,233,0.4)" : "rgba(244,63,94,0.4)"
+                        ? n >= 8 ? "rgba(16,185,129,0.4)" : n >= 5 ? "rgba(142,200,240,0.4)" : "rgba(244,63,94,0.4)"
                         : "rgba(255,255,255,0.06)"
                       }`,
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--hi-font-mono)",
                     }}
                   >
                     {n}
@@ -257,7 +257,7 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
       >
         <span
           className="text-xs"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           {votedCount} of {ratablePlayers.length} rated
         </span>
@@ -266,10 +266,10 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
           disabled={votedCount === 0}
           className="px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
           style={{
-            background: votedCount > 0 ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.03)",
-            color: votedCount > 0 ? "#0EA5E9" : "rgba(255,255,255,0.2)",
-            border: `1px solid ${votedCount > 0 ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: votedCount > 0 ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.03)",
+            color: votedCount > 0 ? "var(--hi-accent)" : "rgba(255,255,255,0.2)",
+            border: `1px solid ${votedCount > 0 ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
+            fontFamily: "var(--hi-font-display)",
             cursor: votedCount > 0 ? "pointer" : "not-allowed",
           }}
         >
@@ -300,7 +300,7 @@ export default function CommunityPulse() {
       description={`${data.weekLabel} · ${data.totalVoters.toLocaleString()} voters this week`}
       maxWidth="md"
       headerToolbarExtra={
-        <span className="text-xs whitespace-nowrap" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <span className="text-xs whitespace-nowrap" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {data.weekLabel}
         </span>
       }
@@ -325,25 +325,25 @@ export default function CommunityPulse() {
             <div>
               <h3
                 className="text-sm font-bold uppercase tracking-wider mb-1"
-                style={{ color: "#F43F5E", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "#F43F5E", fontFamily: "var(--hi-font-display)" }}
               >
                 Biggest Disagreement
               </h3>
               <p
                 className="text-base font-bold mb-1"
-                style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}
               >
                 {data.biggestDisagreement.player}
               </p>
               <p
                 className="text-xs"
-                style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
               >
                 Community Rank: <span className="font-bold" style={{ color: "#F59E0B" }}>#{data.biggestDisagreement.communityRank}</span>
                 {" \u00B7 "}
-                AI Rank: <span className="font-bold" style={{ color: "#0EA5E9" }}>#{data.biggestDisagreement.aiRank}</span>
+                AI Rank: <span className="font-bold" style={{ color: "var(--hi-accent)" }}>#{data.biggestDisagreement.aiRank}</span>
                 {" \u00B7 "}
-                <span style={{ color: "rgba(255,255,255,0.4)" }}>{data.biggestDisagreement.direction}</span>
+                <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{data.biggestDisagreement.direction}</span>
               </p>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function CommunityPulse() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-4"
-            style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
           >
             Community vs. AI Rankings
           </h2>
@@ -380,7 +380,7 @@ export default function CommunityPulse() {
                       style={{
                         background: "rgba(245,158,11,0.12)",
                         color: "#F59E0B",
-                        fontFamily: "'Barlow Condensed', sans-serif",
+                        fontFamily: "var(--hi-font-display)",
                       }}
                     >
                       {communityRank}
@@ -390,13 +390,13 @@ export default function CommunityPulse() {
                       <div className="flex items-center gap-2">
                         <span
                           className="text-sm font-semibold truncate"
-                          style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'DM Sans', sans-serif" }}
+                          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
                         >
                           {vote.player}
                         </span>
                         <span
                           className="text-[10px]"
-                          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}
+                          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
                         >
                           {vote.team}
                         </span>
@@ -412,7 +412,7 @@ export default function CommunityPulse() {
                             ? "rgba(16,185,129,0.12)"
                             : "rgba(244,63,94,0.12)",
                           color: rankDiff > 0 ? "#10B981" : "#F43F5E",
-                          fontFamily: "'Barlow Condensed', sans-serif",
+                          fontFamily: "var(--hi-font-display)",
                         }}
                       >
                         {rankDiff > 0 ? `\u2191${rankDiff}` : `\u2193${Math.abs(rankDiff)}`} vs AI
@@ -423,7 +423,7 @@ export default function CommunityPulse() {
                   {/* Score comparison */}
                   <div className="space-y-1">
                     <ScoreBar value={vote.communityScore} max={100} color="#F59E0B" label="Community" />
-                    <ScoreBar value={vote.aiScore} max={100} color="#0EA5E9" label="AI Pulse" />
+                    <ScoreBar value={vote.aiScore} max={100} color="var(--hi-accent)" label="AI Pulse" />
                   </div>
 
                   {/* Gap */}
@@ -446,13 +446,13 @@ export default function CommunityPulse() {
         >
           <h3
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
           >
             Weekly Narrative
           </h3>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {data.narrative}
           </p>

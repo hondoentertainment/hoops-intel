@@ -45,7 +45,7 @@ export default class RouteErrorBoundary extends Component<Props, State> {
         <h1 className="display-heading text-2xl font-bold text-white mb-4">
           This page didn&apos;t load
         </h1>
-        <p className="text-sm mb-6 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+        <p className="text-sm mb-6 max-w-md mx-auto" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {isChunkError
             ? "A newer version of the site shipped while you were here. Reloading will pull the latest."
             : "An unexpected error stopped this page from rendering. Reloading usually clears it."}
@@ -55,7 +55,7 @@ export default class RouteErrorBoundary extends Component<Props, State> {
             type="button"
             onClick={() => window.location.reload()}
             className="px-5 py-2 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ background: "#0EA5E9" }}
+            style={{ background: "var(--hi-accent)" }}
           >
             Reload page
           </button>

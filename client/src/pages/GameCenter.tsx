@@ -197,8 +197,8 @@ export default function GameCenter() {
                   </span>
                 )}
               </div>
-              <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">{game.title}</h1>
-              <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <h1 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 mb-2 max-md:text-[1.5rem]">{game.title}</h1>
+              <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 {game.date}{game.time ? ` · ${game.time}` : ""}{game.tv ? ` · ${game.tv}` : ""}{game.venue ? ` · ${game.venue}` : ""}
               </p>
             </div>
@@ -207,10 +207,10 @@ export default function GameCenter() {
 
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)" }}>
             <ScoreBlock abbr={game.away.abbr} score={game.away.score} />
-            <div className="section-label text-center" style={{ color: "rgba(255,255,255,0.35)" }}>AT</div>
+            <div className="section-label text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>AT</div>
             <ScoreBlock abbr={game.home.abbr} score={game.home.score} align="right" />
           </div>
-          <div className="mt-4 flex flex-wrap gap-2 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <div className="mt-4 flex flex-wrap gap-2 text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             <span className="rounded-full bg-white/[0.06] px-3 py-1.5">Source: {game.meta.sourceLabel}</span>
             <span className="rounded-full bg-white/[0.06] px-3 py-1.5">Updated: {game.updatedAt}</span>
             {liveData?.fetchedAt && isLiveOverlay ? (
@@ -240,18 +240,18 @@ export default function GameCenter() {
             </div>
             <p className="text-sm font-semibold text-white mb-2">{activePlayoffSeries.summary}</p>
             {playoffNext && (
-              <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <p className="text-xs mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 Next: {playoffNext.awayTeam} @ {playoffNext.homeTeam}
                 {playoffNext.time ? ` · ${playoffNext.time}` : ""}
                 {playoffNext.tv ? ` · ${playoffNext.tv}` : ""}
               </p>
             )}
-            <p className="text-xs leading-relaxed mb-3 line-clamp-3" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="text-xs leading-relaxed mb-3 line-clamp-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               {playoffIntel.keyMatchup}
             </p>
             <a
               href={`/playoffs/series/${activePlayoffSeries.seriesId}`}
-              className="text-xs font-semibold text-sky-300 hover:text-sky-200"
+              className="text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
             >
               Full series timeline →
             </a>
@@ -277,7 +277,7 @@ export default function GameCenter() {
               <div className="enhanced-card p-5">
                 <div className="section-label mb-3">TOP PERFORMER</div>
                 {game.topPerformer && (
-                  <a href={`/player/${slugify(game.topPerformer)}`} className="text-lg font-semibold text-white hover:text-sky-400">
+                  <a href={`/player/${slugify(game.topPerformer)}`} className="text-lg font-semibold text-white hover:text-[var(--hi-text)]">
                     {game.topPerformer}
                   </a>
                 )}
@@ -344,12 +344,12 @@ export default function GameCenter() {
               <div className="space-y-2">
                 {game.insights.map((insight) => (
                   <div key={insight.label} className="flex justify-between gap-3 text-xs">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{insight.label}</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{insight.label}</span>
                     <span className="text-right text-white font-semibold">{insight.value}</span>
                   </div>
                 ))}
                 {game.series && (
-                  <a href={`/playoffs/series/${game.series.seriesId}`} className="block pt-2 text-xs font-semibold text-sky-300 hover:text-sky-200">
+                  <a href={`/playoffs/series/${game.series.seriesId}`} className="block pt-2 text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]">
                     Open series timeline →
                   </a>
                 )}
@@ -377,12 +377,12 @@ export default function GameCenter() {
                   <a key={team} href={`/team/${team.toLowerCase()}`} className="text-xs min-h-[36px] inline-flex items-center px-2 py-1 rounded bg-white/[0.06]" style={{ color: getTeamColor(team) }}>{team}</a>
                 ))}
                 {game.relatedPlayers.map((player) => (
-                  <a key={player} href={`/player/${slugify(player)}`} className="text-xs min-h-[36px] inline-flex items-center px-2 py-1 rounded bg-white/[0.06] text-sky-300">{player}</a>
+                  <a key={player} href={`/player/${slugify(player)}`} className="text-xs min-h-[36px] inline-flex items-center px-2 py-1 rounded bg-white/[0.06] text-[var(--hi-text)]">{player}</a>
                 ))}
               </div>
               <div className="space-y-2">
                 {game.relatedStories.map((story) => (
-                  <a key={story.id} href="/archive" className="block text-xs text-white/65 hover:text-sky-300">
+                  <a key={story.id} href="/archive" className="block text-xs text-white/65 hover:text-[var(--hi-text)]">
                     {story.displayDate} · {story.headline}
                   </a>
                 ))}

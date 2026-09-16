@@ -4,7 +4,6 @@ import DeskAppShell from "./DeskAppShell";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import { DeskPanel, PageHero } from "./enhanced/EnhancedUi";
 import { AskInFlowCta } from "./AskHoopsIntel";
-import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
 import { relatedToolsForHref } from "../lib/siteNav";
 
 const MAX_WIDTH: Record<string, string> = {
@@ -106,7 +105,7 @@ export default function ToolPageLayout({
         <header className="mb-8 min-w-0">
           {sectionLabel ? <p className="enhanced-kicker mb-2">{sectionLabel}</p> : null}
           {description ? (
-            <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {description}
             </p>
           ) : null}
@@ -128,7 +127,7 @@ export default function ToolPageLayout({
                     <a
                       href={tool.href}
                       className="desk-inset flex items-center min-h-11 px-3 text-xs font-medium"
-                      style={{ color: ENHANCED_ACCENT }}
+                      style={{ color: "var(--hi-text,#0a0a0a)" }}
                     >
                       {tool.label} →
                     </a>
@@ -138,7 +137,7 @@ export default function ToolPageLayout({
               <a
                 href="/tools"
                 className="inline-flex items-center min-h-11 text-[11px]"
-                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 All tools directory
               </a>

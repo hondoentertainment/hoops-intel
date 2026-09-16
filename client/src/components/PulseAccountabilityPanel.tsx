@@ -18,19 +18,19 @@ export default function PulseAccountabilityPanel() {
           className="text-xs font-semibold mb-1"
           style={{
             color: "#10B981",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
         >
           TRANSPARENCY
         </div>
-        <h2 id="pulse-accountability" className="text-2xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+        <h2 id="pulse-accountability" className="text-2xl font-bold text-white" style={{ fontFamily: "var(--hi-font-display)" }}>
           Pulse accountability (this desk)
         </h2>
-        <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <p className="text-xs mt-2 leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           Editions pair stats with rationale — these readouts summarise how Pulse lined up against final chips and nightly market copy.
           Full methodology:&nbsp;
-          <a href="/pulse-methodology" style={{ color: "rgba(14,165,233,0.95)" }}>
+          <a href="/pulse-methodology" style={{ color: "rgba(142,200,240,0.95)" }}>
             Pulse methodology →
           </a>
         </p>
@@ -63,7 +63,7 @@ export default function PulseAccountabilityPanel() {
         className="mt-4 rounded-lg px-4 py-3 text-xs leading-relaxed"
         style={{
           border: "1px solid rgba(255,255,255,0.07)",
-          color: "rgba(255,255,255,0.45)",
+          color: "var(--hi-text-secondary,#8a8a86)",
         }}
       >
         Fan Pick&apos;em settlement still routes through Supabase once games lock — leaderboard accuracy reflects your calls, independent of Pulse.
@@ -86,7 +86,7 @@ function MetricCard({
   return (
     <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="text-[11px] font-bold uppercase tracking-wide text-white/40 mb-2">{title}</div>
-      <div className="text-4xl font-black mb-3" style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}>
+      <div className="text-4xl font-black mb-3" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}>
         {value}
       </div>
       <p className="text-xs text-white/55 mb-2 leading-relaxed">{caption}</p>

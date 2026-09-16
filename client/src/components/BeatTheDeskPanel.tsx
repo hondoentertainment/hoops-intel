@@ -14,10 +14,10 @@ function StatPill({ label, value, color }: { label: string; value: string; color
       className="rounded-lg px-3 py-2 text-center min-w-[72px]"
       style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
     >
-      <div className="text-lg font-bold tabular-nums" style={{ color, fontFamily: "'Barlow Condensed', sans-serif" }}>
+      <div className="text-lg font-bold tabular-nums" style={{ color, fontFamily: "var(--hi-font-display)" }}>
         {value}
       </div>
-      <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
+      <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {label}
       </div>
     </div>
@@ -75,7 +75,7 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
           className="text-xs font-semibold mb-1"
           style={{
             color: "#10B981",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
         >
@@ -84,18 +84,18 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
         <h2
           id="beat-the-desk-title"
           className="text-2xl font-bold"
-          style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
         >
           You vs. editorial picks
         </h2>
-        <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <p className="text-xs mt-2 leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {headlineForSummary(summary)}
         </p>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-4">
         <StatPill label="You" value={settled > 0 ? `${summary.userWins}-${summary.userLosses}` : "—"} color="#10B981" />
-        <StatPill label="Desk" value={deskSettled > 0 ? `${summary.deskWins}-${summary.deskLosses}` : "—"} color="#0EA5E9" />
+        <StatPill label="Desk" value={deskSettled > 0 ? `${summary.deskWins}-${summary.deskLosses}` : "—"} color="var(--hi-accent)" />
         <StatPill
           label="Edge"
           value={
@@ -121,8 +121,8 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
             className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
             style={{
               background: "rgba(255,255,255,0.04)",
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
             }}
           >
@@ -144,7 +144,7 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
                   ? "—"
                   : "Split";
               const edgeColor =
-                edge === "You" ? "#10B981" : edge === "Desk" ? "#0EA5E9" : "rgba(255,255,255,0.35)";
+                edge === "You" ? "#10B981" : edge === "Desk" ? "var(--hi-accent)" : "rgba(255,255,255,0.35)";
               return (
                 <div
                   key={row.gameId}
@@ -158,7 +158,7 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
                     className="col-span-2 text-center font-bold"
                     style={{
                       color: row.userCorrect === true ? "#10B981" : row.userCorrect === false ? "#F43F5E" : "#fff",
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--hi-font-mono)",
                     }}
                   >
                     {row.userPick ?? "—"}
@@ -166,13 +166,13 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
                   <div
                     className="col-span-2 text-center font-bold"
                     style={{
-                      color: row.deskCorrect === true ? "#10B981" : row.deskCorrect === false ? "#F43F5E" : "#0EA5E9",
-                      fontFamily: "'JetBrains Mono', monospace",
+                      color: row.deskCorrect === true ? "#10B981" : row.deskCorrect === false ? "#F43F5E" : "var(--hi-accent)",
+                      fontFamily: "var(--hi-font-mono)",
                     }}
                   >
                     {row.deskPick ?? "—"}
                   </div>
-                  <div className="col-span-2 text-center" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  <div className="col-span-2 text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     {row.final ? row.winner : "Pending"}
                   </div>
                   <div className="col-span-2 text-right font-semibold" style={{ color: edgeColor }}>

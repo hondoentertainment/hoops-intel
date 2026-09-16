@@ -24,7 +24,7 @@ function RankChangeBadge({ rank, prevRank }: { rank: number; prevRank: number })
         style={{
           background: "rgba(16,185,129,0.12)",
           color: "#10B981",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.02em",
         }}
       >
@@ -41,7 +41,7 @@ function RankChangeBadge({ rank, prevRank }: { rank: number; prevRank: number })
         style={{
           background: "rgba(244,63,94,0.12)",
           color: "#F43F5E",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.02em",
         }}
       >
@@ -54,8 +54,8 @@ function RankChangeBadge({ rank, prevRank }: { rank: number; prevRank: number })
       className="inline-flex items-center text-xs font-bold px-1.5 py-0.5 rounded"
       style={{
         background: "rgba(255,255,255,0.05)",
-        color: "rgba(255,255,255,0.35)",
-        fontFamily: "'Barlow Condensed', sans-serif",
+        color: "var(--hi-text-secondary,#8a8a86)",
+        fontFamily: "var(--hi-font-display)",
       }}
     >
       —
@@ -73,7 +73,7 @@ function TradeValueBar({ value }: { value: number }) {
     value >= 90
       ? "#10B981"
       : value >= 75
-      ? "#0EA5E9"
+      ? "var(--hi-accent)"
       : value >= 60
       ? "#F59E0B"
       : "#F43F5E";
@@ -91,7 +91,7 @@ function TradeValueBar({ value }: { value: number }) {
       </div>
       <span
         className="text-sm font-bold tabular-nums w-8 text-right"
-        style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color, fontFamily: "var(--hi-font-mono)" }}
       >
         {value}
       </span>
@@ -122,9 +122,9 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
         <div
           className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl leading-none"
           style={{
-            background: "rgba(14,165,233,0.1)",
-            color: "#0EA5E9",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: "rgba(142,200,240,0.1)",
+            color: "var(--hi-accent)",
+            fontFamily: "var(--hi-font-display)",
           }}
         >
           {p.rank}
@@ -136,13 +136,13 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
           <div className="flex items-center gap-2 flex-wrap mb-1">
             <span
               className="text-base font-bold leading-tight"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
             >
               {p.player}
             </span>
             <span
               className="flex items-center gap-1.5 text-sm font-semibold"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               <TeamLogo team={p.team} size={18} />
               {p.team}
@@ -153,7 +153,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
           {/* Age + contract */}
           <div
             className="text-xs mb-3"
-            style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Age {p.age} · {p.contract}
           </div>
@@ -163,8 +163,8 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
             <div
               className="text-xs font-semibold mb-1.5"
               style={{
-                color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "var(--hi-text-secondary,#8a8a86)",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
             >
@@ -176,7 +176,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
           {/* Rationale */}
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {p.rationale}
           </p>
@@ -209,13 +209,13 @@ export default function TradeValue() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Methodology" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             The TVI ranks the {players.length} most tradeable players this week by AI-assessed value. Inputs: recent performance trend, contract (years + salary), age, team&apos;s playoff position, injury history.
           </p>
         </DeskPanel>
@@ -224,25 +224,25 @@ export default function TradeValue() {
         <div className="flex items-center gap-4 mb-6">
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Rank change:
           </span>
           <span
             className="text-xs font-semibold"
-            style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}
           >
             ▲ Improved
           </span>
           <span
             className="text-xs font-semibold"
-            style={{ color: "#F43F5E", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "#F43F5E", fontFamily: "var(--hi-font-display)" }}
           >
             ▼ Worsened
           </span>
           <span
             className="text-xs font-semibold"
-            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
           >
             — Stable
           </span>
@@ -265,11 +265,11 @@ export default function TradeValue() {
           >
             <div
               className="display-heading text-amber-200 text-xs mb-2"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}
+              style={{ fontFamily: "var(--hi-font-display)", letterSpacing: "0.08em" }}
             >
               PRO PREVIEW GATE
             </div>
-            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}>
+            <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
               Showing top {previewCount} trade chips for signed-out / free readers. Hoops Intel Pro unlocks ranks{" "}
               {previewCount + 1}–{players.length} with full rationales (weekly refresh via <code className="text-white/50">generate-trade-value.mjs</code>).
             </p>
@@ -277,7 +277,7 @@ export default function TradeValue() {
               href="/pro"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white hover:brightness-105 transition-all"
               style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.05em",
                 background: "linear-gradient(135deg, #F59E0B, #D97706)",
               }}
@@ -292,7 +292,7 @@ export default function TradeValue() {
           style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
         />
 
-        <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}>
+        <p className="text-center text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
           Rankings regenerate weekly from the latest ESPN slate + Hoops Intel prompts.
         </p>
     </ToolPageLayout>

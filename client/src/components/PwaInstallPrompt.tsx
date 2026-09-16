@@ -37,7 +37,7 @@ export default function PwaInstallPrompt() {
         <div id="pwa-install-title" className="text-sm font-semibold text-white">
           Add Hoops Intel to your home screen
         </div>
-        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.55)" }}>
+        <p className="text-xs mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           Quick access to today&apos;s desk, scores, and Pulse Index every morning.
         </p>
       </div>
@@ -45,7 +45,7 @@ export default function PwaInstallPrompt() {
         <button
           type="button"
           className="text-xs px-3 py-2 rounded-lg min-h-[44px]"
-          style={{ color: "rgba(255,255,255,0.5)" }}
+          style={{ color: "var(--hi-muted,#5c5c58)" }}
           onClick={() => {
             localStorage.setItem("hi-pwa-dismissed", "1");
             setVisible(false);
@@ -56,7 +56,7 @@ export default function PwaInstallPrompt() {
         <button
           type="button"
           className="text-xs font-semibold px-3 py-2 rounded-lg min-h-[44px] text-white"
-          style={{ background: "#0EA5E9" }}
+          style={{ background: "var(--hi-accent)" }}
           onClick={() => {
             void deferred.prompt().then(() => {
               localStorage.setItem("hi-pwa-dismissed", "1");

@@ -20,7 +20,7 @@ type FetchFlags = {
   error?: string;
 };
 
-function WidgetSparkline({ values, color = "#0EA5E9" }: { values: number[]; color?: string }) {
+function WidgetSparkline({ values, color = "var(--hi-accent)" }: { values: number[]; color?: string }) {
   if (values.length < 2) return null;
   const w = 88;
   const h = 28;
@@ -293,7 +293,7 @@ export default function EmbedPublisherStats() {
       <UnavailableBanner flags={flags} />
 
       <div className="flex flex-wrap items-center gap-3 mb-8">
-        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           Period
         </span>
         <div className="flex flex-wrap gap-2">
@@ -303,7 +303,7 @@ export default function EmbedPublisherStats() {
             </DeskFilterChip>
           ))}
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider ml-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <span className="text-[10px] font-bold uppercase tracking-wider ml-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           Widget
         </span>
         <select
@@ -330,9 +330,9 @@ export default function EmbedPublisherStats() {
             title={!hasSeriesData ? "No timeseries rows to export" : undefined}
             className="px-4 py-2 rounded-lg text-xs font-semibold transition-all disabled:opacity-40"
             style={{
-              background: "rgba(14,165,233,0.12)",
+              background: "rgba(142,200,240,0.12)",
               color: "#7DD3FC",
-              border: "1px solid rgba(14,165,233,0.35)",
+              border: "1px solid rgba(142,200,240,0.35)",
             }}
           >
             Export timeseries CSV
@@ -344,9 +344,9 @@ export default function EmbedPublisherStats() {
             title={hosts.length === 0 ? "No referrer hosts in window" : undefined}
             className="px-4 py-2 rounded-lg text-xs font-semibold transition-all disabled:opacity-40"
             style={{
-              background: "rgba(14,165,233,0.12)",
+              background: "rgba(142,200,240,0.12)",
               color: "#7DD3FC",
-              border: "1px solid rgba(14,165,233,0.35)",
+              border: "1px solid rgba(142,200,240,0.35)",
             }}
           >
             Export hosts CSV
@@ -361,8 +361,8 @@ export default function EmbedPublisherStats() {
           <div
             className="rounded-xl px-5 py-4 mb-6 flex flex-wrap items-end justify-between gap-4"
             style={{
-              background: "rgba(14,165,233,0.08)",
-              border: "1px solid rgba(14,165,233,0.22)",
+              background: "rgba(142,200,240,0.08)",
+              border: "1px solid rgba(142,200,240,0.22)",
             }}
           >
             <div>
@@ -398,7 +398,7 @@ export default function EmbedPublisherStats() {
                   className="rounded-xl px-5 py-4 transition-opacity"
                   style={{
                     background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(14,165,233,0.18)",
+                    border: "1px solid rgba(142,200,240,0.18)",
                     opacity: dimmed ? 0.45 : 1,
                   }}
                 >
@@ -409,7 +409,7 @@ export default function EmbedPublisherStats() {
                     {flags.summaryUnavailable ? "—" : r.loads > 0 ? r.loads : "0"}
                   </div>
                   <WidgetSparkline values={sparklineByWidget[r.id]} />
-                  <div className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  <div className="text-[10px] mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     Total loads ({days}d)
                   </div>
                 </div>
@@ -457,7 +457,7 @@ export default function EmbedPublisherStats() {
                     <li key={h.host} className="px-5 py-3">
                       <div className="flex justify-between gap-3 text-sm mb-1.5">
                         <span className="mono-data text-white/80 truncate">{h.host}</span>
-                        <span className="mono-data text-sky-300 shrink-0">
+                        <span className="mono-data text-[var(--hi-text)] shrink-0">
                           {h.loads}
                           <span className="text-white/35 ml-2">{pct.toFixed(1)}%</span>
                         </span>
@@ -486,10 +486,10 @@ export default function EmbedPublisherStats() {
               className="px-5 py-4 flex items-center justify-between gap-3 flex-wrap"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
             >
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 Daily breakdown
               </span>
-              <span className="text-[10px] mono-data" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <span className="text-[10px] mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 Newest first · UTC dates
               </span>
             </div>
@@ -499,7 +499,7 @@ export default function EmbedPublisherStats() {
                   <tr style={{ background: "rgba(0,0,0,0.25)" }}>
                     <th
                       className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-wider"
-                      style={{ color: "rgba(255,255,255,0.45)" }}
+                      style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                     >
                       Date
                     </th>
@@ -507,7 +507,7 @@ export default function EmbedPublisherStats() {
                       <th
                         key={id}
                         className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-wider"
-                        style={{ color: "rgba(255,255,255,0.45)" }}
+                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                       >
                         {id === "pulse" ? "Pulse" : id === "ticker" ? "Ticker" : "Injury"}
                       </th>
@@ -526,7 +526,7 @@ export default function EmbedPublisherStats() {
                       <td
                         colSpan={tableColumns.length + 1}
                         className="px-5 py-10 text-center text-xs"
-                        style={{ color: "rgba(255,255,255,0.35)" }}
+                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                       >
                         No daily rows yet for this window. Loads will appear after embed traffic is recorded.
                       </td>
@@ -550,8 +550,8 @@ export default function EmbedPublisherStats() {
         </>
       )}
 
-      <p className="mt-8 text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
-        <a href="/widgets" className="text-sky-400 underline underline-offset-2">
+      <p className="mt-8 text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <a href="/widgets" className="text-[var(--hi-text)] underline underline-offset-2">
           ← Back to widgets
         </a>
       </p>

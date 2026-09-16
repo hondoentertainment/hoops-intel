@@ -79,7 +79,7 @@ function MoverCard({ trend, direction }: { trend: PlayerTrend; direction: "up" |
         {direction === "up" ? "\u2191" : "\u2193"}
       </div>
       <div className="flex-1 min-w-0">
-        <a href={`/player/${slugify(trend.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
+        <a href={`/player/${slugify(trend.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">
           {trend.player}
         </a>
         <div className="flex items-center gap-2 mt-0.5">
@@ -90,8 +90,8 @@ function MoverCard({ trend, direction }: { trend: PlayerTrend; direction: "up" |
         </div>
       </div>
       <div className="text-right">
-        <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>#{trend.currentRank}</div>
-        <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{trend.currentScore.toFixed(1)}</div>
+        <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>#{trend.currentRank}</div>
+        <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{trend.currentScore.toFixed(1)}</div>
       </div>
     </div>
   );
@@ -161,17 +161,17 @@ export default function PulseHistory() {
               <div className="flex items-center gap-4">
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg"
-                  style={{ background: "rgba(30,200,245,0.1)", color: "var(--hi-accent,#1ec8f5)" }}
+                  style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent,#8ec8f0)" }}
                 >
                   {trend.currentRank}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <a href={`/player/${slugify(trend.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
+                  <a href={`/player/${slugify(trend.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">
                     {trend.player}
                   </a>
                   <div className="flex items-center gap-3 mt-0.5">
-                    <a href={`/team/${trend.team}`} className="section-label text-xs hover:text-sky-400">{trend.team}</a>
-                    <span className="mono-data text-xs" style={{ color: "var(--hi-accent,#1ec8f5)" }}>{trend.currentScore.toFixed(1)}</span>
+                    <a href={`/team/${trend.team}`} className="section-label text-xs hover:text-[var(--hi-text)]">{trend.team}</a>
+                    <span className="mono-data text-xs" style={{ color: "var(--hi-accent,#8ec8f0)" }}>{trend.currentScore.toFixed(1)}</span>
                     {trend.weeklyChange !== 0 && (
                       <span
                         className="mono-data text-xs"

@@ -66,7 +66,7 @@ export default function Players() {
           placeholder="Search by name or team…"
         />
         {query.trim() ? (
-          <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.45)" }} role="status">
+          <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }} role="status">
             {rows.length === 0
               ? "No players match — try a last name or a 3-letter team."
               : `${rows.length} player${rows.length === 1 ? "" : "s"} found`}
@@ -94,8 +94,8 @@ export default function Players() {
                 >
                   <PlayerAvatar name={player.name} team={team} size={44} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-base font-semibold text-[var(--hi-text,#f2f5fa)] truncate">{player.name}</p>
-                    <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+                    <p className="text-base font-semibold text-[var(--hi-text,#0a0a0a)] truncate">{player.name}</p>
+                    <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                       {player.keyStats || player.label}
                       {player.mentions ? ` · ${player.mentions} mention${player.mentions === 1 ? "" : "s"}` : ""}
                     </p>
@@ -124,7 +124,7 @@ export default function Players() {
                       </span>
                     ))}
                     {player.pulseRank != null ? (
-                      <span className="mono-data text-sm font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                      <span className="mono-data text-sm font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                         #{player.pulseRank}
                       </span>
                     ) : null}

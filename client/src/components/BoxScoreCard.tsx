@@ -5,7 +5,7 @@ function StatCell({ val, highlight }: { val: string | number; highlight?: boolea
   return (
     <td
       className="px-1.5 py-1 text-right mono-data text-xs"
-      style={{ color: highlight ? "#0EA5E9" : "rgba(255,255,255,0.7)" }}
+      style={{ color: highlight ? "var(--hi-accent)" : "rgba(255,255,255,0.7)" }}
     >
       {val}
     </td>
@@ -17,7 +17,7 @@ function PlayerRow({ p, best }: { p: PlayerBoxLine; best: { pts: number; reb: nu
     <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
       <td className="px-2 py-1 text-xs text-white whitespace-nowrap">
         <span className="font-medium">{p.name}</span>
-        <span className="ml-1" style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem" }}>{p.position}</span>
+        <span className="ml-1" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.65rem" }}>{p.position}</span>
       </td>
       <StatCell val={p.minutes} />
       <StatCell val={p.points} highlight={p.points === best.pts && p.points > 0} />
@@ -52,13 +52,13 @@ function TeamTable({ players, team, teamStats }: {
       <div className="flex items-center justify-between mb-2">
         <span className="section-label text-xs">{team}</span>
         <div className="flex gap-3">
-          <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             FG {teamStats.fgPct}
           </span>
-          <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             3P {teamStats.tpPct}
           </span>
-          <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             FT {teamStats.ftPct}
           </span>
         </div>
@@ -68,9 +68,9 @@ function TeamTable({ players, team, teamStats }: {
           <caption className="sr-only">{team} box score</caption>
           <thead>
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-              <th className="px-2 py-1 text-xs font-medium" style={{ color: "rgba(255,255,255,0.4)" }}>Player</th>
+              <th className="px-2 py-1 text-xs font-medium" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Player</th>
               {["MIN", "PTS", "REB", "AST", "FG", "3PT", "FT", "STL", "BLK", "TO", "+/-"].map((h) => (
-                <th key={h} className="px-1.5 py-1 text-right text-xs font-medium" style={{ color: "rgba(255,255,255,0.4)" }}>{h}</th>
+                <th key={h} className="px-1.5 py-1 text-right text-xs font-medium" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -78,7 +78,7 @@ function TeamTable({ players, team, teamStats }: {
             {starters.map((p) => <PlayerRow key={p.name} p={p} best={best} />)}
             {bench.length > 0 && (
               <tr>
-                <td colSpan={12} className="px-2 py-1 text-xs font-medium" style={{ color: "rgba(255,255,255,0.25)" }}>
+                <td colSpan={12} className="px-2 py-1 text-xs font-medium" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   BENCH
                 </td>
               </tr>
@@ -118,8 +118,8 @@ export default function BoxScoreCard({ espnGameId, homeTeam, awayTeam }: {
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 rounded"
-        style={{ color: "#0EA5E9" }}
+        className="flex items-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 rounded"
+        style={{ color: "var(--hi-accent)" }}
         aria-expanded={expanded}
         aria-controls={`box-score-${espnGameId}`}
       >
@@ -136,12 +136,12 @@ export default function BoxScoreCard({ espnGameId, homeTeam, awayTeam }: {
           style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.06)" }}
         >
           {loading && (
-            <div role="status" aria-live="polite" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" aria-live="polite" className="text-center py-4 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Loading box score...
             </div>
           )}
           {error && (
-            <div role="status" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" className="text-center py-4 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Box score not available for this game.
             </div>
           )}

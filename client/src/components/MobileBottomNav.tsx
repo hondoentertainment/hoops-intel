@@ -1,7 +1,6 @@
 import { useLocation } from "wouter";
 import { mobileBottomNavLinks } from "../lib/siteNav";
 import { hapticTap } from "../lib/haptic";
-import { ENHANCED_ACCENT } from "../lib/enhancedDesk";
 
 function linkActive(href: string, location: string) {
   const base = href.split("#")[0] || "/";
@@ -20,8 +19,8 @@ export default function MobileBottomNav() {
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
         paddingLeft: "env(safe-area-inset-left)",
         paddingRight: "env(safe-area-inset-right)",
-        background: "var(--hi-surface,#0c1522)",
-        borderColor: "var(--hi-border,#1e2c40)",
+        background: "var(--hi-header-bg,#fafaf8)",
+        borderColor: "var(--hi-border-soft,rgba(10,10,10,0.06))",
       }}
       aria-label="Primary mobile navigation"
     >
@@ -35,7 +34,7 @@ export default function MobileBottomNav() {
               aria-current={active ? "page" : undefined}
               className="mobile-bottom-nav-item relative h-full min-h-12 flex flex-col items-center justify-center gap-1 text-[11px] leading-none tracking-wide active:scale-[0.97] transition-transform"
               style={{
-                color: active ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8b9bb0)",
+                color: active ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#8a8a86)",
                 fontWeight: active ? 600 : 500,
               }}
               onClick={() => hapticTap()}

@@ -11,7 +11,7 @@ import type { TalkingPoint } from "../lib/podcastData";
 // ═══════════════════════════════════════════════════════════
 
 const segmentStyles: Record<string, { color: string; bg: string; border: string }> = {
-  opener: { color: "#0EA5E9", bg: "rgba(14,165,233,0.12)", border: "rgba(14,165,233,0.3)" },
+  opener: { color: "var(--hi-accent)", bg: "rgba(142,200,240,0.12)", border: "rgba(142,200,240,0.3)" },
   "deep-dive": { color: "#8B5CF6", bg: "rgba(139,92,246,0.12)", border: "rgba(139,92,246,0.3)" },
   "hot-take": { color: "#F43F5E", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.3)" },
   "rapid-fire": { color: "#F59E0B", bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.3)" },
@@ -38,7 +38,7 @@ function CopyBtn({ text, label = "Copy" }: { text: string; label?: string }) {
       style={
         copied
           ? { background: "rgba(16,185,129,0.15)", color: "#10B981" }
-          : { background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }
+          : { background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }
       }
     >
       {copied ? "Copied!" : label}
@@ -72,13 +72,13 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
             >
               {segmentLabel(point.segment)}
             </span>
-            <span className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <span className="text-[10px] font-medium" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Segment {index + 1}
             </span>
           </div>
           <span
             className="text-xs font-semibold px-2 py-0.5 rounded"
-            style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}
+            style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}
           >
             {point.duration}
           </span>
@@ -91,12 +91,12 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
 
         {/* Key stats */}
         <div className="mb-4">
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Key Stats
           </div>
           <ul className="space-y-1.5">
             {point.keyStats.map((stat, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+              <li key={i} className="flex items-start gap-2 text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: style.color }} />
                 {stat}
               </li>
@@ -112,7 +112,7 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
           <div className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "#F43F5E" }}>
             Debate Angle
           </div>
-          <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {point.debateAngle}
           </p>
         </div>
@@ -120,12 +120,12 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
         {/* Suggested quote */}
         <div
           className="rounded-lg p-3 mb-4"
-          style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}
+          style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.12)" }}
         >
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "rgba(14,165,233,0.7)" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "rgba(142,200,240,0.7)" }}>
             Suggested Quote
           </div>
-          <p className="text-xs leading-relaxed italic" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="text-xs leading-relaxed italic" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             "{point.suggestedQuote}"
           </p>
         </div>
@@ -136,7 +136,7 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
             <span
               key={p}
               className="text-[10px] font-medium px-2 py-0.5 rounded-full"
-              style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}
+              style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
             >
               {p}
             </span>
@@ -162,7 +162,7 @@ export default function PodcastCompanion() {
       description={`Frozen show notes from ${data.date} — not a live daily rundown.`}
     >
         <DeskPanel kicker="Soft launch" className="mb-6">
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             This companion is last generated {data.generatedDate}. It is show-notes mode from a frozen edition, not a current-day podcast product.
           </p>
         </DeskPanel>
@@ -171,11 +171,11 @@ export default function PodcastCompanion() {
         <div
           className="rounded-xl p-6 mb-6"
           style={{
-            background: "linear-gradient(135deg, rgba(14,165,233,0.1), rgba(139,92,246,0.08))",
-            border: "1px solid rgba(14,165,233,0.2)",
+            background: "linear-gradient(135deg, rgba(142,200,240,0.1), rgba(139,92,246,0.08))",
+            border: "1px solid rgba(142,200,240,0.2)",
           }}
         >
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "#0EA5E9" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent)" }}>
             Episode Title
           </div>
           <h2 className="text-xl font-bold text-white mb-1 leading-snug">
@@ -205,7 +205,7 @@ export default function PodcastCompanion() {
             </div>
             <CopyBtn text={data.coldOpen} label="Copy Script" />
           </div>
-          <p className="text-sm leading-relaxed italic" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-sm leading-relaxed italic" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             "{data.coldOpen}"
           </p>
         </div>
@@ -214,7 +214,7 @@ export default function PodcastCompanion() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white">Show Rundown</h2>
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {data.rundown.length} segments
             </span>
           </div>
@@ -242,7 +242,7 @@ export default function PodcastCompanion() {
               Social Clip Moment
             </div>
           </div>
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {data.socialClip}
           </p>
         </div>
@@ -257,11 +257,11 @@ export default function PodcastCompanion() {
         >
           <div className="p-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="flex items-center gap-2">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z" />
                 <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
               </svg>
-              <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "#0EA5E9" }}>
+              <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--hi-accent)" }}>
                 Tweet Thread ({data.tweetThread.length} posts)
               </div>
             </div>
@@ -272,11 +272,11 @@ export default function PodcastCompanion() {
                 <div className="flex items-start gap-3 flex-1">
                   <span
                     className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5"
-                    style={{ background: "rgba(14,165,233,0.15)", color: "#0EA5E9" }}
+                    style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent)" }}
                   >
                     {i + 1}
                   </span>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {tweet}
                   </p>
                 </div>

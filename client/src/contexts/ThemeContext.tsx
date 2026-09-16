@@ -7,7 +7,7 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
   switchable: false,
 });
@@ -24,7 +24,7 @@ export function ThemeProvider({
       const stored = localStorage.getItem("theme");
       if (stored === "dark" || stored === "light") return stored;
     }
-    return "dark";
+    return "light";
   });
 
   useEffect(() => {

@@ -54,13 +54,13 @@ function ComparisonCard({ comp }: { comp: HistoricalComparison }) {
           {/* Current */}
           <div
             className="rounded-lg p-3"
-            style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}
+            style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.12)" }}
           >
-            <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "#0EA5E9" }}>
+            <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent)" }}>
               NOW
             </div>
             <div className="text-sm font-bold text-white mb-0.5">{comp.player}</div>
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.team}</div>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{comp.team}</div>
           </div>
 
           {/* Historical */}
@@ -72,26 +72,26 @@ function ComparisonCard({ comp }: { comp: HistoricalComparison }) {
               THEN
             </div>
             <div className="text-sm font-bold text-white mb-0.5">{comp.historicalParallel.player}</div>
-            <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div className="text-xs mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {comp.historicalParallel.season}
             </div>
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               {comp.historicalParallel.stat}
             </div>
           </div>
         </div>
 
         {/* Context */}
-        <div className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <div className="text-xs leading-relaxed mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {comp.historicalParallel.context}
         </div>
 
         {/* Comparison narrative */}
         <div
           className="rounded-lg p-3"
-          style={{ background: "rgba(255,255,255,0.02)", borderLeft: "2px solid rgba(14,165,233,0.3)" }}
+          style={{ background: "rgba(255,255,255,0.02)", borderLeft: "2px solid rgba(142,200,240,0.3)" }}
         >
-          <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {comp.comparison}
           </p>
         </div>
@@ -122,11 +122,11 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
       <div className="flex items-start justify-between gap-3 mb-3">
         <div>
           <div className="text-sm font-bold text-white">{milestone.player}</div>
-          <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{milestone.team}</div>
+          <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{milestone.team}</div>
         </div>
         <span
           className="text-[10px] font-semibold px-2 py-0.5 rounded"
-          style={{ background: "rgba(14,165,233,0.1)", color: "#0EA5E9" }}
+          style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent)" }}
         >
           {milestone.projectedDate}
         </span>
@@ -137,10 +137,10 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
       {/* Progress bar */}
       <div className="mb-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {milestone.current}
           </span>
-          <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {milestone.needed} needed
           </span>
         </div>
@@ -152,14 +152,14 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
             className="h-full rounded-full transition-all duration-500"
             style={{
               width: `${Math.min(pct, 100)}%`,
-              background: "linear-gradient(90deg, #0EA5E9, #10B981)",
-              boxShadow: "0 0 8px rgba(14,165,233,0.4)",
+              background: "linear-gradient(90deg, var(--hi-accent), #10B981)",
+              boxShadow: "0 0 8px rgba(142,200,240,0.4)",
             }}
           />
         </div>
       </div>
 
-      <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>
+      <p className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {milestone.significance}
       </p>
     </div>
@@ -181,7 +181,7 @@ export default function HistoryEngine() {
       description={`${formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history`}
     >
         <DeskPanel kicker="This week" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {data.narrative}
           </p>
         </DeskPanel>
@@ -189,7 +189,7 @@ export default function HistoryEngine() {
         {/* Active comparisons */}
         <div className="mb-10">
           <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
@@ -242,7 +242,7 @@ export default function HistoryEngine() {
                       <th
                         key={h}
                         className="text-left text-[10px] font-bold uppercase tracking-wider px-4 py-3"
-                        style={{ color: "rgba(255,255,255,0.3)" }}
+                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                       >
                         {h}
                       </th>
@@ -259,15 +259,15 @@ export default function HistoryEngine() {
                       <td className="px-4 py-3">
                         <span
                           className="text-xs px-1.5 py-0.5 rounded"
-                          style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}
+                          style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
                         >
                           {s.team}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      <td className="px-4 py-3 text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                         {s.streak}
                       </td>
-                      <td className="px-4 py-3 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      <td className="px-4 py-3 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                         {s.record}
                       </td>
                       <td className="px-4 py-3">
@@ -282,7 +282,7 @@ export default function HistoryEngine() {
                           <span
                             className="text-xs font-bold"
                             style={{
-                              fontFamily: "'Barlow Condensed', sans-serif",
+                              fontFamily: "var(--hi-font-display)",
                               color: s.gamesAway <= 3 ? "#F59E0B" : "rgba(255,255,255,0.5)",
                             }}
                           >
@@ -325,13 +325,13 @@ export default function HistoryEngine() {
                 >
                   <span
                     className="text-lg font-bold"
-                    style={{ color: "#8B5CF6", fontFamily: "'Barlow Condensed', sans-serif" }}
+                    style={{ color: "#8B5CF6", fontFamily: "var(--hi-font-display)" }}
                   >
                     {event.year}
                   </span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {event.event}
                   </p>
                   <div className="flex flex-wrap gap-1.5">

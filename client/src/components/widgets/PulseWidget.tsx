@@ -19,11 +19,11 @@ export default function PulseWidget({ theme = "dark", size = "medium" }: PulseWi
   const cfg = sizeConfig[size];
   const top5 = pulseIndex.slice(0, 5);
 
-  const bg = isDark ? "#0A1628" : "#FFFFFF";
+  const bg = isDark ? "#111111" : "#FFFFFF";
   const cardBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)";
   const textPrimary = isDark ? "#FFFFFF" : "#1A1A2E";
   const textSecondary = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)";
-  const accent = "#0EA5E9";
+  const accent = "var(--hi-accent)";
   const border = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
 
   const trendColor = (trend: string) => {
@@ -152,7 +152,7 @@ export default function PulseWidget({ theme = "dark", size = "medium" }: PulseWi
                 fontSize: cfg.fontSize + 1,
                 fontWeight: 800,
                 color: accent,
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
                 flexShrink: 0,
                 minWidth: 32,
                 textAlign: "right" as const,

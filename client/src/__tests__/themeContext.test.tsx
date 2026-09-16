@@ -19,26 +19,26 @@ describe("ThemeContext", () => {
     document.documentElement.classList.remove("dark", "light");
   });
 
-  it("defaults to dark theme", () => {
+  it("defaults to light theme", () => {
     render(
       <ThemeProvider>
         <TestConsumer />
       </ThemeProvider>
     );
-    expect(screen.getByTestId("theme").textContent).toBe("dark");
-  });
-
-  it("toggles from dark to light", () => {
-    render(
-      <ThemeProvider>
-        <TestConsumer />
-      </ThemeProvider>
-    );
-    fireEvent.click(screen.getByText("Toggle"));
     expect(screen.getByTestId("theme").textContent).toBe("light");
   });
 
-  it("toggles back from light to dark", () => {
+  it("toggles from light to dark", () => {
+    render(
+      <ThemeProvider>
+        <TestConsumer />
+      </ThemeProvider>
+    );
+    fireEvent.click(screen.getByText("Toggle"));
+    expect(screen.getByTestId("theme").textContent).toBe("dark");
+  });
+
+  it("toggles back from dark to light", () => {
     render(
       <ThemeProvider>
         <TestConsumer />
@@ -46,7 +46,7 @@ describe("ThemeContext", () => {
     );
     fireEvent.click(screen.getByText("Toggle"));
     fireEvent.click(screen.getByText("Toggle"));
-    expect(screen.getByTestId("theme").textContent).toBe("dark");
+    expect(screen.getByTestId("theme").textContent).toBe("light");
   });
 
   it("persists theme to localStorage", () => {
@@ -56,7 +56,7 @@ describe("ThemeContext", () => {
       </ThemeProvider>
     );
     fireEvent.click(screen.getByText("Toggle"));
-    expect(localStorage.getItem("theme")).toBe("light");
+    expect(localStorage.getItem("theme")).toBe("dark");
   });
 
   it("loads persisted theme from localStorage", () => {
@@ -69,14 +69,14 @@ describe("ThemeContext", () => {
     expect(screen.getByTestId("theme").textContent).toBe("light");
   });
 
-  it("defaults to dark for invalid localStorage value", () => {
+  it("defaults to light for invalid localStorage value", () => {
     localStorage.setItem("theme", "invalid-theme");
     render(
       <ThemeProvider>
         <TestConsumer />
       </ThemeProvider>
     );
-    expect(screen.getByTestId("theme").textContent).toBe("dark");
+    expect(screen.getByTestId("theme").textContent).toBe("light");
   });
 
   it("sets switchable prop correctly", () => {
@@ -97,13 +97,13 @@ describe("ThemeContext", () => {
     expect(screen.getByTestId("switchable").textContent).toBe("false");
   });
 
-  it("applies dark class to document element", () => {
+  it("applies light class to document element", () => {
     render(
       <ThemeProvider>
         <TestConsumer />
       </ThemeProvider>
     );
-    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(document.documentElement.classList.contains("light")).toBe(true);
   });
 
   it("switches classes when toggling theme", () => {
@@ -113,7 +113,7 @@ describe("ThemeContext", () => {
       </ThemeProvider>
     );
     fireEvent.click(screen.getByText("Toggle"));
-    expect(document.documentElement.classList.contains("light")).toBe(true);
-    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(document.documentElement.classList.contains("light")).toBe(false);
   });
 });

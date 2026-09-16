@@ -21,7 +21,7 @@ const BADGE_STYLES = {
   amber: "bg-amber-500/15 text-amber-300 border-amber-500/35",
   rose: "bg-rose-500/15 text-rose-300 border-rose-500/35",
   emerald: "bg-emerald-500/15 text-emerald-300 border-emerald-500/35",
-  sky: "bg-sky-500/15 text-sky-300 border-sky-500/35",
+  sky: "bg-sky-500/15 text-[var(--hi-text)] border-sky-500/35",
 } as const;
 
 function TeamMark({ team }: { team: string }) {
@@ -74,7 +74,7 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="w-full text-left p-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101c]"
+        className="w-full text-left p-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101c]"
         aria-expanded={open}
         aria-controls={`series-panel-${series.seriesId}`}
         aria-label={open ? `Collapse ${expandLabel}` : `Expand ${expandLabel}`}
@@ -151,18 +151,18 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
             </span>
           </div>
           <div className="rounded-lg bg-sky-500/[0.08] px-2 py-1.5 border border-sky-500/20">
-            <span className="text-sky-300/80 uppercase text-[9px] block mb-0.5">Insight</span>
+            <span className="text-[var(--hi-text)]/80 uppercase text-[9px] block mb-0.5">Insight</span>
             <span className="text-white/90 leading-snug line-clamp-2">{heroSentence(series)}</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between mt-2 text-[10px] text-white/40">
-          <span className="group-hover:text-sky-400/80 transition-colors">{open ? "Collapse" : "Tap for intel layer"}</span>
+          <span className="group-hover:text-[var(--hi-text)]/80 transition-colors">{open ? "Collapse" : "Tap for intel layer"}</span>
           <span className="flex items-center gap-3">
             <a
               href={`/playoffs/series/${series.seriesId}`}
               onClick={(e) => e.stopPropagation()}
-              className="font-semibold text-sky-400/80 hover:text-sky-300"
+              className="font-semibold text-[var(--hi-text)]/80 hover:text-[var(--hi-text)]"
             >
               Series hub →
             </a>

@@ -75,36 +75,29 @@ function PlanCard({
 }) {
   return (
     <div
-      className="rounded-xl p-6 flex flex-col"
+      className="enhanced-card p-6 flex flex-col"
       style={{
-        background: highlighted ? "rgba(14,165,233,0.08)" : "rgba(255,255,255,0.02)",
-        border: `1px solid ${highlighted ? "rgba(14,165,233,0.4)" : "rgba(255,255,255,0.08)"}`,
+        background: highlighted ? "var(--hi-canvas-soft,#fafaf8)" : "var(--hi-surface,#eeeeec)",
       }}
     >
-      <div className="section-label mb-1" style={{ color: highlighted ? "#0EA5E9" : "rgba(255,255,255,0.4)" }}>
+      <div className="section-label mb-1" style={{ color: highlighted ? "var(--hi-chip,#ff7a17)" : "var(--hi-text-secondary,#8a8a86)" }}>
         {title}
       </div>
       <div className="flex items-baseline gap-1 mb-2">
-        <span className="text-4xl font-bold" style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}>
+        <span className="display-heading text-4xl" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           {price}
         </span>
-        <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>/ {cadence}</span>
+        <span className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>/ {cadence}</span>
       </div>
-      <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+      <p className="text-xs mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         Cancel anytime. Refunds honored in the first 7 days.
       </p>
       <button
         onClick={onSelect}
         disabled={loading || disabled}
-        className="py-3 rounded-lg font-semibold transition-all"
+        className={highlighted ? "hi-pill-primary py-3" : "hi-pill py-3"}
         style={{
-          background: highlighted
-            ? "linear-gradient(135deg, #0EA5E9, #0284C7)"
-            : "rgba(255,255,255,0.05)",
-          color: highlighted ? "#fff" : "rgba(255,255,255,0.85)",
           cursor: loading || disabled ? "not-allowed" : "pointer",
-          fontFamily: "'Barlow Condensed', sans-serif",
-          letterSpacing: "0.06em",
         }}
       >
         {loading
@@ -190,13 +183,13 @@ export default function Pro() {
             </div>
             <div className="text-white text-lg mb-1">{sub.plan === "annual" ? "Annual plan" : "Monthly plan"}</div>
             {sub.renewsAt && (
-              <div className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <div className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 {sub.cancelAtPeriodEnd ? "Access ends " : "Renews "}
                 {sub.renewsAt.toLocaleDateString(undefined, { dateStyle: "medium" })}
                 {sub.cancelAtPeriodEnd ? " (cancel at period end)" : ""}
               </div>
             )}
-            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               Full Pulse ranks, ad-free desk, and Pro-only tools are unlocked on this account.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -204,15 +197,14 @@ export default function Pro() {
                 type="button"
                 disabled={portalLoading}
                 onClick={() => void handlePortal()}
-                className="min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
-                style={{ background: "var(--hi-accent,#1ec8f5)", color: "var(--hi-accent-ink,#0a0d12)", fontFamily: "'DM Sans', sans-serif" }}
+                className="hi-pill-primary min-h-[48px] px-5 py-2.5 text-sm disabled:opacity-50"
               >
                 {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING"}
               </button>
               <a
                 href="/account"
                 className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors hover:bg-white/10"
-                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)" }}
+                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "var(--hi-muted,#5c5c58)" }}
               >
                 Account hub
               </a>
@@ -301,20 +293,20 @@ export default function Pro() {
         )}
 
         <div className="mb-10">
-          <div className="section-label mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>WHAT YOU GET</div>
+          <div className="section-label mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>WHAT YOU GET</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {FEATURES.map((f, i) => (
               <div key={i} className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <div className="display-heading text-white text-base mb-1">{f.title}</div>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>{f.body}</div>
+                <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>{f.body}</div>
               </div>
             ))}
           </div>
         </div>
 
         <div className="mb-10">
-          <div className="section-label mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>DISTRIBUTION & EMBEDS</div>
-          <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>DISTRIBUTION & EMBEDS</div>
+          <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Publisher tools for embedding Hoops Intel — widgets, load analytics, and the same surfaces listed under Tools.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -326,15 +318,15 @@ export default function Pro() {
                 style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
               >
                 <div className="display-heading text-white text-base mb-1">{t.label}</div>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>{t.description}</div>
+                <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>{t.description}</div>
               </a>
             ))}
           </div>
         </div>
 
-        <div className="rounded-lg p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
+        <div className="rounded-lg p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
           Billing handled by Stripe. Manage or cancel anytime from{" "}
-          <a href="/account" className="text-sky-400 underline hover:text-sky-300">
+          <a href="/account" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">
             your account
           </a>
           . If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping

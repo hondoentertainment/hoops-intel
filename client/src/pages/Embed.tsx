@@ -45,7 +45,7 @@ class EmbedErrorBoundary extends Component<EBProps, { err: Error | null }> {
     if (!this.state.err) return this.props.children;
     const t = this.props.theme === "dark";
     return (
-      <div style={{ background: t ? "#050d1a" : "#ffffff", padding: "1rem" }} role="alert">
+      <div style={{ background: t ? "#111111" : "#ffffff", padding: "1rem" }} role="alert">
         <div
           className="rounded-lg p-4 text-sm"
           style={{
@@ -55,7 +55,7 @@ class EmbedErrorBoundary extends Component<EBProps, { err: Error | null }> {
           }}
         >
           &quot;{this.props.widgetId}&quot; could not render in this iframe.&nbsp;
-          <a href="https://hoopsintel.net/widgets" style={{ color: "#0EA5E9" }}>
+          <a href="https://hoopsintel.net/widgets" style={{ color: "var(--hi-accent)" }}>
             Copy a fresh snippet
           </a>
           .
@@ -90,7 +90,7 @@ function renderWidget(widgetId: string | undefined, theme: WidgetTheme, size: Wi
           <p className="text-xs leading-relaxed" style={{ color: theme === "dark" ? "rgba(248,250,252,0.58)" : "rgba(15,23,42,0.65)" }}>
             Use <strong>pulse</strong>, <strong>ticker</strong>, or <strong>injury</strong> in this URL.&nbsp;
             Preview snippets at{" "}
-            <a href="https://hoopsintel.net/widgets" style={{ color: "#0EA5E9" }}>
+            <a href="https://hoopsintel.net/widgets" style={{ color: "var(--hi-accent)" }}>
               /widgets
             </a>
             .
@@ -107,14 +107,14 @@ function EmbedChrome({
   theme: WidgetTheme;
   children: ReactNode;
 }) {
-  const bg = theme === "dark" ? "var(--hi-bg-page, #050D1A)" : "#ffffff";
+  const bg = theme === "dark" ? "#111111" : "#ffffff";
   const foot = theme === "dark" ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.42)";
   return (
     <div style={{ background: bg, minHeight: "100%", padding: 0, margin: 0 }}>
       {children}
       <div className="text-[10px] py-1 px-2 text-right" style={{ color: foot }}>
         Powered by{" "}
-        <a href="https://hoopsintel.net" target="_blank" rel="noopener noreferrer" style={{ color: "#0EA5E9", textDecoration: "none" }}>
+        <a href="https://hoopsintel.net" target="_blank" rel="noopener noreferrer" style={{ color: "var(--hi-accent)", textDecoration: "none" }}>
           Hoops Intel
         </a>
       </div>
@@ -162,7 +162,7 @@ export default function Embed() {
     }).catch(() => {});
   }, [mounted, widgetId]);
 
-  const bgShell = theme === "dark" ? "var(--hi-bg-page, #050D1A)" : "#ffffff";
+  const bgShell = theme === "dark" ? "#111111" : "#ffffff";
 
   if (!mounted) {
     return (
