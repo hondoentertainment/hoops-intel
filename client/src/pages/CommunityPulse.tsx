@@ -38,7 +38,7 @@ function saveVotes(votes: UserVote[]) {
 
 function GapIndicator({ gap }: { gap: number }) {
   const absGap = Math.abs(gap);
-  const color = gap > 0 ? "#10B981" : gap < 0 ? "#F43F5E" : "rgba(255,255,255,0.3)";
+  const color = gap > 0 ? "#10B981" : gap < 0 ? "#F43F5E" : "var(--hi-text-secondary,#5c5c5a)";
   const label = gap > 0 ? `+${gap.toFixed(1)}` : gap < 0 ? gap.toFixed(1) : "0";
   const barWidth = Math.min(100, absGap * 8);
 
@@ -230,14 +230,14 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
                     className="w-7 h-7 rounded text-xs font-bold transition-all"
                     style={{
                       background: isSelected
-                        ? n >= 8 ? "rgba(16,185,129,0.3)" : n >= 5 ? "rgba(142,200,240,0.3)" : "rgba(244,63,94,0.3)"
-                        : "rgba(255,255,255,0.03)",
+                        ? n >= 8 ? "rgba(16,185,129,0.18)" : n >= 5 ? "rgba(142,200,240,0.22)" : "rgba(244,63,94,0.16)"
+                        : "transparent",
                       color: isSelected
-                        ? n >= 8 ? "#10B981" : n >= 5 ? "var(--hi-accent)" : "#F43F5E"
-                        : "rgba(255,255,255,0.25)",
+                        ? n >= 8 ? "#047857" : n >= 5 ? "var(--hi-accent-text,#146a8c)" : "#BE123C"
+                        : "var(--hi-text,#0a0a0a)",
                       border: `1px solid ${isSelected
-                        ? n >= 8 ? "rgba(16,185,129,0.4)" : n >= 5 ? "rgba(142,200,240,0.4)" : "rgba(244,63,94,0.4)"
-                        : "rgba(255,255,255,0.06)"
+                        ? n >= 8 ? "rgba(16,185,129,0.4)" : n >= 5 ? "rgba(20,106,140,0.35)" : "rgba(244,63,94,0.4)"
+                        : "var(--hi-pill-border, rgba(10,10,10,0.16))"
                       }`,
                       fontFamily: "var(--hi-font-mono)",
                     }}

@@ -181,7 +181,7 @@ export default function HistoryEngine() {
       description={`${formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history`}
     >
         <DeskPanel kicker="This week" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text,#0a0a0a)" }}>
             {data.narrative}
           </p>
         </DeskPanel>

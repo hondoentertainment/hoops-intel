@@ -84,11 +84,11 @@ export default function GuestPulse() {
     >
 
       <section className="mb-12" aria-labelledby="guest-published-heading">
-        <h2 id="guest-published-heading" className="text-sm font-bold uppercase tracking-[0.18em] text-white/50 mb-4">
+        <h2 id="guest-published-heading" className="text-sm font-bold uppercase tracking-[0.18em] mb-4" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           Published pitches
         </h2>
         {postsNote ? (
-          <p className="text-sm text-amber-200/80 mb-4">{postsNote}</p>
+          <p className="text-sm mb-4" style={{ color: "var(--hi-warn,#c2410c)" }}>{postsNote}</p>
         ) : null}
         {posts.length === 0 && !postsNote ? (
           <EmptyState
@@ -118,7 +118,7 @@ export default function GuestPulse() {
         )}
       </section>
 
-      <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-white/50 mb-4">Submit a pitch</h2>
+      <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4" style={{ color: "var(--hi-text,#0a0a0a)" }}>Submit a pitch</h2>
       <div className="space-y-4">
         <Field label="Your name">
           <input

@@ -3,9 +3,9 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import { clutchData, ClutchPlayer } from "../lib/clutchData";
 
 function getMedalStyle(rank: number): React.CSSProperties | null {
-  if (rank === 1) return { color: "#FFD700", fontWeight: 800 };
-  if (rank === 2) return { color: "#C0C0C0", fontWeight: 800 };
-  if (rank === 3) return { color: "#CD7F32", fontWeight: 800 };
+  if (rank === 1) return { color: "#B45309", fontWeight: 800 };
+  if (rank === 2) return { color: "#57534e", fontWeight: 800 };
+  if (rank === 3) return { color: "#9a3412", fontWeight: 800 };
   return null;
 }
 
@@ -65,7 +65,7 @@ function ClutchKingCard() {
       </div>
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 24 }}>
         <div style={{ flex: "1 1 400px" }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#FFD700", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
             Clutch King
           </div>
           <div style={{ fontSize: 28, fontWeight: 800, color: "var(--hi-text,#0a0a0a)", marginBottom: 4 }}>
@@ -79,10 +79,10 @@ function ClutchKingCard() {
           </p>
         </div>
         <div style={{ textAlign: "center", flex: "0 0 auto" }}>
-          <div style={{ fontSize: 64, fontWeight: 900, color: "#FFD700", lineHeight: 1 }}>
+          <div style={{ fontSize: 64, fontWeight: 900, color: "#B45309", lineHeight: 1 }}>
             {rating}
           </div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,215,0,0.6)", letterSpacing: 1, marginTop: 4 }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "var(--hi-text-secondary,#5c5c5a)", letterSpacing: 1, marginTop: 4 }}>
             CLUTCH RATING
           </div>
         </div>
@@ -170,7 +170,7 @@ function RankingsTable() {
     padding: "10px 16px",
     fontSize: 11,
     fontWeight: 700,
-    color: "var(--hi-text-secondary,#5c5c58)",
+    color: "var(--hi-text,#0a0a0a)",
     letterSpacing: 1.2,
     textTransform: "uppercase",
     borderBottom: "1px solid rgba(255,255,255,0.06)",

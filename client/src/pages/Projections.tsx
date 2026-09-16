@@ -22,8 +22,8 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
     if (proj === "Champion") return "#F59E0B";
     if (proj === "Finals") return "#10B981";
     if (proj === "Conference Finals") return "var(--hi-accent)";
-    if (proj === "2nd Round") return "rgba(255,255,255,0.6)";
-    return "rgba(255,255,255,0.35)";
+    if (proj === "2nd Round") return "var(--hi-text-secondary,#5c5c5a)";
+    return "var(--hi-muted,#5c5c5a)";
   }
 
   return (
@@ -51,7 +51,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                   key={h}
                   className="text-left py-2 px-2 text-xs font-semibold"
                   style={{
-                    color: "var(--hi-text-secondary,#5c5c58)",
+                    color: "var(--hi-text,#0a0a0a)",
                     fontFamily: "var(--hi-font-display)",
                     letterSpacing: "0.06em",
                   }}

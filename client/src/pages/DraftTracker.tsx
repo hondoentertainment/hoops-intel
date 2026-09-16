@@ -48,15 +48,11 @@ export default function DraftTracker() {
     >
         {!isDraftDesk() && (
           <div
-            className="rounded-lg p-4 mb-6"
+            className="hi-notice-warn mb-6"
             role="status"
             data-testid="draft-frozen-banner"
-            style={{
-              background: "rgba(245,158,11,0.08)",
-              border: "1px solid rgba(245,158,11,0.25)",
-            }}
           >
-            <div className="section-label mb-1" style={{ color: "#F59E0B" }}>FROZEN WEEKLY BOARD</div>
+            <div className="section-label mb-1" style={{ color: "#7c2d12" }}>FROZEN WEEKLY BOARD</div>
             <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               This is last week&apos;s scout board, not a live draft-night tracker. Generated {draftData.generatedDate}.
             </p>
@@ -128,9 +124,9 @@ export default function DraftTracker() {
                       background: p.projection.includes("No. 1") ? "rgba(255,215,0,0.15)" :
                         p.projection.includes("Top") ? "rgba(142,200,240,0.15)" :
                         p.projection.includes("Lottery") ? "rgba(16,185,129,0.15)" : "rgba(255,255,255,0.06)",
-                      color: p.projection.includes("No. 1") ? "#FFD700" :
-                        p.projection.includes("Top") ? "var(--hi-accent)" :
-                        p.projection.includes("Lottery") ? "#10B981" : "rgba(255,255,255,0.5)"
+                      color: p.projection.includes("No. 1") ? "#B45309" :
+                        p.projection.includes("Top") ? "var(--hi-accent-text,#146a8c)" :
+                        p.projection.includes("Lottery") ? "#047857" : "var(--hi-text,#0a0a0a)"
                     }}>
                       {p.projection}
                     </span>

@@ -74,7 +74,7 @@ export function StatusPill({
 }) {
   const styles = {
     accent: { background: "var(--hi-accent-soft,#d7eef9)", color: ENHANCED_INK },
-    warn: { background: "rgba(242,184,56,0.14)", color: "var(--hi-warn,#f2b838)" },
+    warn: { background: "rgba(194,65,12,0.1)", color: "var(--hi-warn,#c2410c)" },
     success: { background: "rgba(64,209,140,0.14)", color: "var(--hi-success,#40d18c)" },
     danger: { background: "rgba(255,77,106,0.14)", color: "var(--hi-danger,#ff4d6a)" },
   }[tone];
@@ -99,7 +99,7 @@ export function DeskPanel({
   className?: string;
 }) {
   return (
-    <section id={id} className={`enhanced-card flex flex-col gap-3 p-6 min-w-0 overflow-hidden ${className}`}>
+    <section id={id} className={`enhanced-card flex flex-col gap-3 p-6 min-w-0 ${className}`}>
       <div className="min-w-0">
         <p className="enhanced-kicker">{kicker}</p>
         {hint ? (
@@ -122,7 +122,7 @@ export function DeskInset({
   className?: string;
   href?: string;
 }) {
-  const cls = `desk-inset min-w-0 overflow-hidden ${className}`;
+  const cls = `desk-inset min-w-0 ${className}`;
   if (href) {
     return (
       <a href={href} className={`${cls} block transition-colors hover:bg-white/[0.04]`}>
@@ -175,7 +175,7 @@ export function StatCard({
   sub: string;
 }) {
   return (
-    <div className="enhanced-card flex flex-col gap-1 p-6 max-md:p-4 min-w-0 overflow-hidden">
+    <div className="enhanced-card flex flex-col gap-1 p-6 max-md:p-4 min-w-0">
       <p className="enhanced-kicker">{kicker}</p>
       <p className="hi-stat text-lg">{value}</p>
       <p className="text-xs leading-4 hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>

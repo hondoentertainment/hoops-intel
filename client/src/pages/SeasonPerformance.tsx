@@ -201,7 +201,7 @@ export default function SeasonPerformance() {
             label="Against the Spread"
             value={`${totalATS}-${totalATSGames - totalATS}`}
             sub={`${pct(totalATS, totalATSGames)}% ATS`}
-            color="var(--hi-accent)"
+            color="var(--hi-accent-text,#146a8c)"
           />
           <StatCard
             label="Featured Games"
@@ -213,7 +213,7 @@ export default function SeasonPerformance() {
             label="Total Predictions"
             value={`${totalGames}`}
             sub={`${monthlyData.length} months tracked`}
-            color="rgba(255,255,255,0.7)"
+            color="var(--hi-text,#0a0a0a)"
           />
         </div>
 

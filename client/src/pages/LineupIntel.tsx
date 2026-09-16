@@ -327,7 +327,7 @@ function LeagueTable() {
   };
 
   const headerStyle = (key: SortKey) => ({
-    color: sortBy === key ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
+    color: sortBy === key ? "var(--hi-accent-text,#146a8c)" : "var(--hi-text,#0a0a0a)",
     fontFamily: "var(--hi-font-display)",
     letterSpacing: "0.06em",
     cursor: "pointer" as const,
@@ -349,13 +349,13 @@ function LeagueTable() {
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 #
               </th>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 LINEUP
               </th>

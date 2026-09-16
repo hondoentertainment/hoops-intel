@@ -37,7 +37,7 @@ function sortProfiles(profiles: RefereeProfile[], key: SortKey, asc: boolean): R
 const paceColor = (pace: number) => {
   if (pace > 1) return "#10B981";
   if (pace < -0.5) return "#F43F5E";
-  return "rgba(255,255,255,0.6)";
+  return "var(--hi-text-secondary,#5c5c5a)";
 };
 
 const techColor = (tech: string) => {
@@ -89,7 +89,7 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
           >
             <div className="flex items-center justify-between mb-2">
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "rgba(142,200,240,0.7)" }}>
+                <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                   Lead Official
                 </div>
                 <div className="text-sm font-bold text-white mt-0.5">
@@ -202,7 +202,7 @@ export default function RefReports() {
       description={`${formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies`}
     >
         <DeskPanel kicker="Weekly trend" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text,#0a0a0a)" }}>
             {data.weeklyTrend}
           </p>
         </DeskPanel>

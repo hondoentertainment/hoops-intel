@@ -458,9 +458,9 @@ export default function SentimentPulse() {
           </div>
           <p
             className="text-sm leading-relaxed mb-3"
-            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}
           >
-            <span className="font-bold text-white">{data.viralMoment.player}</span>{" "}
+            <span className="font-bold">{data.viralMoment.player}</span>{" "}
             &mdash; {data.viralMoment.description}
           </p>
           <div

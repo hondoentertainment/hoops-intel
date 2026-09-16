@@ -83,7 +83,7 @@ export default function AskAI() {
           />
         </div>
 
-        <div className="sticky bottom-0 ask-page-composer" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
+        <div className="ask-page-composer" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
           <ChatInput
             input={input}
             setInput={setInput}

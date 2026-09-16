@@ -39,12 +39,12 @@ html {
   --hi-bg-page: #f7f7f5;
   --hi-canvas-soft: #fafaf8;
   --hi-canvas-card: #eeeeec;
-  --hi-shell-text: #5c5c58;
+  --hi-shell-text: #5c5c5a;
   --hi-header-bg: rgba(247, 247, 245, 0.92);
   --hi-mobile-sheet: #fafaf8;
   --hi-border-soft: rgba(10, 10, 10, 0.06);
   --hi-heading: #0a0a0a;
-  --hi-muted: #5c5c58;
+  --hi-muted: #5c5c5a;
   --hi-muted-sub: #6b6b67;
   --hi-accent: #8ec8f0;
   --hi-accent-ink: #0a0a0a;
@@ -58,7 +58,7 @@ html {
   --hi-border: rgba(10, 10, 10, 0.06);
   --hi-hairline: rgba(10, 10, 10, 0.06);
   --hi-text: #0a0a0a;
-  --hi-text-secondary: #5c5c58;
+  --hi-text-secondary: #5c5c5a;
   --hi-kicker-size: 0.75rem;
   --hi-kicker-tracking: 0.08em;
   --hi-measure: 40rem;
@@ -67,10 +67,11 @@ html {
   --hi-warn: #c2410c;
   --hi-card-radius: 20px;
   --hi-inset-radius: 16px;
-  --hi-desk-pad-x: 1.25rem;
+  --hi-desk-pad-x: 1.5rem;
   --hi-desk-pad-x-md: 2rem;
   --hi-desk-pad-y: 2rem;
   --hi-desk-gap: 2rem;
+  --hi-ink-secondary: #5c5c5a;
   scroll-padding-top: var(--hi-header-offset);
   scroll-padding-bottom: var(--hi-tabbar-clearance);
 }
@@ -79,12 +80,12 @@ html.light {
   --hi-bg-page: #f7f7f5;
   --hi-canvas-soft: #fafaf8;
   --hi-canvas-card: #eeeeec;
-  --hi-shell-text: #5c5c58;
+  --hi-shell-text: #5c5c5a;
   --hi-header-bg: rgba(247, 247, 245, 0.92);
   --hi-mobile-sheet: #fafaf8;
   --hi-border-soft: rgba(10, 10, 10, 0.06);
   --hi-heading: #0a0a0a;
-  --hi-muted: #5c5c58;
+  --hi-muted: #5c5c5a;
   --hi-muted-sub: #6b6b67;
   --hi-accent: #8ec8f0;
   --hi-accent-ink: #0a0a0a;
@@ -98,7 +99,7 @@ html.light {
   --hi-border: rgba(10, 10, 10, 0.06);
   --hi-hairline: rgba(10, 10, 10, 0.06);
   --hi-text: #0a0a0a;
-  --hi-text-secondary: #5c5c58;
+  --hi-text-secondary: #5c5c5a;
   --hi-kicker-size: 0.75rem;
   --hi-kicker-tracking: 0.08em;
   --hi-measure: 40rem;
@@ -107,10 +108,11 @@ html.light {
   --hi-warn: #c2410c;
   --hi-card-radius: 20px;
   --hi-inset-radius: 16px;
-  --hi-desk-pad-x: 1.25rem;
+  --hi-desk-pad-x: 1.5rem;
   --hi-desk-pad-x-md: 2rem;
   --hi-desk-pad-y: 2rem;
   --hi-desk-gap: 2rem;
+  --hi-ink-secondary: #5c5c5a;
   --hi-pill-border: rgba(10, 10, 10, 0.16);
 }
 
@@ -146,7 +148,7 @@ html.dark {
   --hi-warn: #f2b838;
   --hi-card-radius: 20px;
   --hi-inset-radius: 16px;
-  --hi-desk-pad-x: 1.25rem;
+  --hi-desk-pad-x: 1.5rem;
   --hi-desk-pad-x-md: 2rem;
   --hi-desk-pad-y: 2rem;
   --hi-desk-gap: 2rem;
@@ -170,7 +172,7 @@ html {
 }
 
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
   overflow-y: auto;
   max-width: 100%;
 }
@@ -203,7 +205,8 @@ body {
 }
 
 .ask-page-composer {
-  padding-bottom: var(--hi-tabbar-clearance);
+  flex-shrink: 0;
+  padding-bottom: calc(var(--hi-tabbar-clearance) + 0.75rem);
 }
 
 /*
@@ -230,7 +233,7 @@ body {
   .hi-app-scroll {
     flex: 1 1 auto;
     min-height: 0;
-    overflow-x: clip;
+    overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -241,7 +244,7 @@ body {
   }
 
   .ask-page-composer {
-    padding-bottom: 0;
+    padding-bottom: 1rem;
   }
 }
 
@@ -284,9 +287,12 @@ body {
 
 @media (min-width: 768px) {
   .hi-app-shell:not(.hi-app-shell--chromeless),
-  .has-mobile-tabbar,
-  .ask-page-composer {
+  .has-mobile-tabbar {
     padding-bottom: 0;
+  }
+
+  .ask-page-composer {
+    padding-bottom: 1.5rem;
   }
 }
 
@@ -368,7 +374,8 @@ textarea:focus-visible,
   font-size: var(--hi-kicker-size, 0.75rem);
   text-transform: uppercase;
   letter-spacing: var(--hi-kicker-tracking, 0.08em);
-  color: var(--hi-text-secondary, #5c5c58);
+  color: var(--hi-text-secondary, #5c5c5a);
+  padding-inline: 1px;
 }
 
 h1.display-heading {
@@ -492,7 +499,7 @@ h1.display-heading {
 
 /* Homepage desk rhythm — ToolPageLayout / EditorialShell consume these. */
 .desk-page-main {
-  padding: var(--hi-desk-pad-y, 2rem) var(--hi-desk-pad-x, 1.25rem);
+  padding: var(--hi-desk-pad-y, 2rem) var(--hi-desk-pad-x, 1.5rem);
 }
 
 @media (min-width: 768px) {
@@ -512,8 +519,8 @@ h1.display-heading {
 }
 
 main:not(.desk-page-main) > .desk-page-ask {
-  padding-left: var(--hi-desk-pad-x, 1.25rem);
-  padding-right: var(--hi-desk-pad-x, 1.25rem);
+  padding-left: var(--hi-desk-pad-x, 1.5rem);
+  padding-right: var(--hi-desk-pad-x, 1.5rem);
 }
 
 @media (min-width: 768px) {
@@ -948,29 +955,19 @@ main:not(.desk-page-main) > .desk-page-ask {
 /*
   Old desk ink was Tailwind text-white. On the light canvas that becomes
   invisible — remap to product ink, except true white-on-black pills.
-  Opacity variants (text-white/40 …) were leftover navy wash and fail AA.
+  Attribute selectors catch every opacity (including /72) leftover from
+  the navy desk.
 */
-html.light .text-white {
+html.light [class*="text-white"] {
   color: var(--hi-text, #0a0a0a);
 }
 
-html.light .text-white\/10,
-html.light .text-white\/20,
-html.light .text-white\/30,
-html.light .text-white\/38,
-html.light .text-white\/40,
-html.light .text-white\/45,
-html.light .text-white\/48,
-html.light .text-white\/50,
-html.light .text-white\/55,
-html.light .text-white\/60,
-html.light .text-white\/65,
-html.light .text-white\/70,
-html.light .text-white\/75,
-html.light .text-white\/80,
-html.light .text-white\/85,
-html.light .text-white\/90 {
-  color: var(--hi-muted, #5c5c58);
+html.light [class*="text-white/"] {
+  color: var(--hi-text-secondary, #5c5c5a);
+}
+
+html.light [class*="text-amber-200"] {
+  color: var(--hi-warn, #c2410c);
 }
 
 html.light .hi-pill-primary,
@@ -982,8 +979,49 @@ html.light .toast-item [class*="text-white"] {
   color: #ffffff;
 }
 
-html.light .placeholder-white\/30::placeholder {
-  color: var(--hi-text-secondary, #5c5c58);
+html.light [class*="placeholder-white"]::placeholder {
+  color: var(--hi-text-secondary, #5c5c5a);
+}
+
+.hi-notice,
+.hi-notice-warn,
+.hi-notice-info {
+  border-radius: var(--hi-inset-radius, 16px);
+  padding: 1rem 1.25rem;
+  color: var(--hi-text, #0a0a0a);
+}
+
+.hi-notice-warn {
+  background: #fff4e5;
+  border: 1px solid rgba(124, 45, 18, 0.28);
+  color: #7c2d12;
+}
+
+.hi-notice-info {
+  background: var(--hi-accent-soft, #d7eef9);
+  border: 1px solid rgba(20, 106, 140, 0.22);
+  color: var(--hi-accent-text, #146a8c);
+}
+
+.hi-notice-warn p,
+.hi-notice-warn code,
+.hi-notice-info p,
+.hi-notice-info code {
+  color: inherit;
+}
+
+.hi-th {
+  color: var(--hi-text, #0a0a0a);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hi-chip,
+.hi-chip-orange,
+.hi-chip-ask {
+  color: var(--hi-text, #0a0a0a);
 }
 
 @media print {

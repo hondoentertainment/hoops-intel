@@ -91,7 +91,7 @@ function CompactPulseRow({
       href={`/player/${slugify(player)}`}
       className="desk-inset flex items-center gap-3 px-3 py-2.5 min-h-11 min-w-0 overflow-hidden"
     >
-      <span className="hi-stat text-xs shrink-0 w-4 hi-accent-text">
+      <span className="hi-stat text-xs shrink-0 w-6 hi-accent-text">
         {rank}
       </span>
       <span className="flex-1 min-w-0 text-[13px] font-medium hi-title text-[var(--hi-text,#0a0a0a)]">{player}</span>
@@ -134,7 +134,7 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
 export function EnhancedTicker() {
   return (
     <div
-      className="hidden md:flex items-center gap-4 px-4 md:px-7 py-2 overflow-hidden"
+      className="hidden md:flex items-center gap-4 px-[var(--hi-desk-pad-x,1.5rem)] md:px-[var(--hi-desk-pad-x-md,2rem)] py-2 overflow-hidden"
       style={{ background: "var(--hi-surface-2,#f3f3f0)" }}
       aria-label="Edition wire"
     >
@@ -164,7 +164,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
   const schedule = campScheduleStatus();
 
   return (
-    <div className="px-4 md:px-7 py-6 md:py-6">
+    <div className="px-[var(--hi-desk-pad-x,1.5rem)] md:px-[var(--hi-desk-pad-x-md,2rem)] py-6">
       <div className="flex flex-col gap-[22px]">
         <div id="today-desk" className="flex flex-col gap-2.5 max-w-[980px] min-w-0">
           <p className="enhanced-kicker">

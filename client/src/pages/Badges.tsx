@@ -49,7 +49,7 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
           className="text-7xl font-black tabular-nums leading-none mb-2"
           style={{
             fontFamily: "var(--hi-font-display)",
-            color: current >= 7 ? "#F59E0B" : current >= 3 ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
+            color: "var(--hi-text,#0a0a0a)",
             textShadow: current >= 3 ? "0 0 30px rgba(251,146,60,0.3)" : "none",
           }}
         >

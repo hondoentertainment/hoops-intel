@@ -495,7 +495,7 @@ function HowItWorksSection() {
         }}
       >
         Pick tonight&apos;s winners before tip-off.{" "}
-        <span style={{ color: "rgba(142,200,240,0.8)" }}>Accuracy tracked all season.</span>
+        <span style={{ color: "var(--hi-accent-text,#146a8c)" }}>Accuracy tracked all season.</span>
       </div>
     </section>
   );

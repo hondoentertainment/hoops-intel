@@ -223,18 +223,10 @@ export default function Pro() {
         ) : (
           <>
             {checkoutReady === false && (
-              <div
-                className="rounded-lg p-4 mb-6 space-y-2"
-                style={{
-                  background: "rgba(245,158,11,0.08)",
-                  border: "1px solid rgba(245,158,11,0.25)",
-                  color: "var(--hi-warn,#c2410c)",
-                }}
-                role="status"
-              >
+              <div className="hi-notice-warn mb-6 space-y-2" role="status">
                 <p className="text-sm font-semibold">Upgrade available — checkout pending ops</p>
-                <p className="text-xs opacity-90">
-                  <code className="hi-accent-text">/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
+                <p className="text-xs">
+                  <code>/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
                   STRIPE_SECRET_KEY + price IDs in Vercel before go-live.
                 </p>
               </div>
@@ -275,7 +267,7 @@ export default function Pro() {
             </div>
             {error ? (
               isStripeConfigError(error) ? (
-                <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "var(--hi-warn,#c2410c)" }}>
+                <div className="hi-notice-warn mb-10 space-y-2">
                   <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
                   <p className="text-sm opacity-90">{error}</p>
                   <p className="text-xs opacity-80">
