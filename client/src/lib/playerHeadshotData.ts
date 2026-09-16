@@ -36,6 +36,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "anthony black": 4712849,
   "anthony davis": 6583,
   "anthony edwards": 4594268,
+  "anthony gill": 2581184,
   "ariel hukporti": 4871141,
   "asa newell": 4873201,
   "ausar thompson": 4684742,
