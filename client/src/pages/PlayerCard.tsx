@@ -135,7 +135,7 @@ export default function PlayerCard() {
         <a
           href={`/player/${slug}`}
           className="text-xs font-medium flex items-center gap-1 transition-opacity hover:opacity-80"
-          style={{ color: "var(--hi-accent)" }}
+          style={{ color: "var(--hi-accent-text,#146a8c)" }}
         >
           ← View Full Profile
         </a>
@@ -205,7 +205,7 @@ export default function PlayerCard() {
                 className="text-xs px-3 py-1.5 rounded-full font-bold whitespace-nowrap"
                 style={{
                   background: "rgba(142,200,240,0.15)",
-                  color: "var(--hi-accent)",
+                  color: "var(--hi-accent-text,#146a8c)",
                   border: "1px solid rgba(142,200,240,0.3)",
                 }}
               >
@@ -240,14 +240,14 @@ export default function PlayerCard() {
                   className="font-black leading-none"
                   style={{
                     fontSize: "3.5rem",
-                    color: "var(--hi-accent)",
+                    color: "var(--hi-accent-text,#146a8c)",
                     fontVariantNumeric: "tabular-nums",
                     textShadow: "0 0 20px rgba(142,200,240,0.4)",
                   }}
                 >
                   {currentPulse.indexScore}
                 </div>
-                <div className="text-xs font-bold tracking-widest mt-0.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="text-xs font-bold tracking-widest mt-0.5" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   PULSE INDEX
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function PlayerCard() {
           {/* Stats grid */}
           {currentPulse && (
             <div className="mb-5">
-              <div className="text-xs font-bold tracking-widest mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-xs font-bold tracking-widest mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 LAST GAME — {pulseEdition.date}
               </div>
               <div className="grid grid-cols-4 gap-2">
@@ -297,7 +297,7 @@ export default function PlayerCard() {
                       >
                         {value}
                       </div>
-                      <div className="text-xs font-bold" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <div className="text-xs font-bold" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         {label}
                       </div>
                     </div>
@@ -342,16 +342,16 @@ export default function PlayerCard() {
               <div>
                 <div
                   className="font-black text-sm tracking-widest leading-none"
-                  style={{ color: "rgba(255,255,255,0.9)", fontFamily: "'Inter', system-ui, sans-serif" }}
+                  style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   HOOPS INTEL
                 </div>
-                <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
+                <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}>
                   hoopsintel.net
                 </div>
               </div>
             </div>
-            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}>
               {pulseEdition.date}
             </div>
           </div>

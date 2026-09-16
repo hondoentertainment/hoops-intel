@@ -87,14 +87,14 @@ function ScoreboardTeamRow({ team, score, leading, dim }: { team: string; score:
     <div className="flex items-center justify-between gap-3">
       <span
         className="flex items-center gap-1.5 section-label text-xs"
-        style={{ color: dim ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.75)" }}
+        style={{ color: dim ? "var(--hi-muted,#5c5c58)" : "var(--hi-text,#0a0a0a)" }}
       >
         <TeamLogo team={team} size={18} />
         {team}
       </span>
       <span
-        className="mono-data text-sm font-bold tabular-nums"
-        style={{ color: leading ? "var(--hi-accent)" : dim ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.8)" }}
+        className="hi-stat text-sm"
+        style={{ color: leading ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}
       >
         {fmtLiveScore(score)}
       </span>
@@ -121,12 +121,12 @@ function ScoreboardCell({ g }: { g: LiveGame }) {
         {live && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
         <span
           className="mono-data text-[10px] font-semibold tracking-wide"
-          style={{ color: live ? "#10B981" : pre ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.55)" }}
+          style={{ color: live ? "#10B981" : pre ? "var(--hi-muted,#5c5c58)" : "var(--hi-muted,#5c5c58)" }}
         >
           {final ? "FINAL" : g.statusDetail || (pre ? "Scheduled" : "")}
         </span>
         {pre && g.tv && g.tv !== "Local" ? (
-          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>· {g.tv}</span>
+          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>· {g.tv}</span>
         ) : null}
       </div>
     </div>
@@ -160,11 +160,11 @@ function LiveScorebar() {
           <div className="flex items-center gap-3 py-2 overflow-x-auto">
             <div className="flex items-center gap-2 flex-shrink-0">
               {anyLive && <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
-              <span className={`section-label text-xs ${anyLive ? "text-emerald-400" : ""}`} style={anyLive ? undefined : { color: "var(--hi-accent)" }}>
+              <span className={`section-label text-xs ${anyLive ? "text-emerald-400" : ""}`} style={anyLive ? undefined : { color: "var(--hi-accent-text,#146a8c)" }}>
                 {anyLive ? "LIVE" : "TODAY"}
               </span>
               {data?.fetchedAt ? (
-                <span className="text-[10px] mono-data hidden sm:inline" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <span className="text-[10px] mono-data hidden sm:inline" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   {liveScoresTrustLabel(data.fetchedAt)}
                 </span>
               ) : null}
@@ -228,7 +228,7 @@ function TickerBar() {
   return (
     <div
       className="relative overflow-hidden border-b"
-      style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(0,0,0,0.4)" }}
+      style={{ borderColor: "var(--hi-muted,#5c5c58)", background: "rgba(0,0,0,0.4)" }}
       aria-labelledby="desk-ticker-wire-label"
     >
       <div id="desk-ticker-wire-label" className="sr-only">
@@ -247,7 +247,7 @@ function TickerBar() {
         <button
           type="button"
           className="absolute right-2 top-1/2 -translate-y-1/2 z-20 text-[10px] px-2 py-1 rounded min-h-[32px] sm:min-h-0"
-          style={{ background: "rgba(0,0,0,0.45)", color: "rgba(255,255,255,0.7)" }}
+          style={{ background: "rgba(0,0,0,0.45)", color: "var(--hi-muted,#5c5c58)" }}
           onClick={() => setPaused((p) => !p)}
           aria-pressed={paused}
           aria-label={paused ? "Resume ticker" : "Pause ticker"}
@@ -309,14 +309,14 @@ function HeroLeadStory() {
       className="group inline-flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 rounded-xl px-4 py-3 backdrop-blur transition-colors"
       style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.12)" }}
     >
-      <span className="section-label text-[10px]" style={{ color: "var(--hi-accent)" }}>
+      <span className="section-label text-[10px]" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
         Tonight’s Marquee
       </span>
       <span className="flex items-center gap-1.5 text-sm font-bold text-white">
         <TeamLogo team={featured.awayTeam} size={26} />
         {featured.awayTeam}
       </span>
-      <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</span>
+      <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</span>
       <span className="flex items-center gap-1.5 text-sm font-bold text-white">
         <TeamLogo team={featured.homeTeam} size={26} />
         {featured.homeTeam}
@@ -363,11 +363,11 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               : narrative.subhead}
           </p>
           <div className="flex items-center gap-2 mb-6">
-            <span className="text-xs font-semibold tracking-wide" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>BY</span>
+            <span className="text-xs font-semibold tracking-wide" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>BY</span>
             <span className="text-xs font-semibold tracking-wide" style={{ color: "var(--hi-muted,#5c5c58)" }}>WILL HENDERSON</span>
-            <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>·</span>
-            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Hoops Intel</span>
-            <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>·</span>
+            <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>·</span>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Hoops Intel</span>
+            <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>·</span>
             <a href="/pulse-methodology" className="text-xs text-[var(--hi-text)] hover:text-[var(--hi-text)] underline-offset-2 hover:underline">
               How Pulse works
             </a>
@@ -393,7 +393,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               <a
                 href="/my-pulse"
                 className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
-                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
                 Set My Pulse
               </a>
@@ -402,7 +402,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               <a
                 href={offseasonPrimaryCta().href}
                 className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
-                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
                 {offseasonPrimaryCta().label}
               </a>
@@ -421,7 +421,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               <a
                 href="#scores"
                 className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
-                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
                 Scores
               </a>
@@ -430,14 +430,14 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               <a
                 href="#tonight"
                 className="min-h-[48px] inline-flex items-center px-5 py-2.5 rounded text-sm font-semibold transition-all"
-                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
                 Tonight
               </a>
             ) : null}
           </div>
           <details className="mt-4 max-w-xl rounded-lg border border-white/10 bg-black/25 open:bg-black/35 px-4 py-2">
-            <summary className="text-xs cursor-pointer select-none outline-none hover:text-[var(--hi-text)] [&::-webkit-details-marker]:hidden [&::marker]:content-none flex items-center gap-2 justify-between py-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <summary className="text-xs cursor-pointer select-none outline-none hover:text-[var(--hi-text)] [&::-webkit-details-marker]:hidden [&::marker]:content-none flex items-center gap-2 justify-between py-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               <span className="font-semibold uppercase tracking-wider section-label text-[10px]" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 More actions
               </span>
@@ -454,7 +454,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
                 className="min-h-[48px] inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-semibold transition-all hover:opacity-90"
                 style={{
                   background: "linear-gradient(135deg, rgba(142,200,240,0.2), rgba(142,200,240,0.08))",
-                  color: "var(--hi-accent)",
+                  color: "var(--hi-accent-text,#146a8c)",
                   border: "1px solid rgba(142,200,240,0.3)",
                 }}
               >
@@ -475,7 +475,7 @@ function HeroSection({ showMyPulse }: { showMyPulse: boolean }) {
               className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs font-medium transition-all hover:opacity-90"
               style={{
                 background: "rgba(142,200,240,0.1)",
-                color: "var(--hi-accent)",
+                color: "var(--hi-accent-text,#146a8c)",
                 border: "1px solid rgba(142,200,240,0.2)",
               }}
             >
@@ -593,19 +593,19 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
           <div className="flex items-center gap-3 flex-1">
             <a href={`/team/${game.awayTeam.toLowerCase()}`} className="flex flex-col items-center w-14" onClick={(e) => e.stopPropagation()}>
               <TeamLogo team={game.awayTeam} size={32} className="mb-1" />
-              <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent)" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
-              <div className={`mono-data font-bold text-2xl ${awayWin ? "pulse-glow-blue" : ""}`} style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
+              <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>{game.awayTeam}</div>
+              <div className={`hi-stat text-2xl ${awayWin ? "pulse-glow-blue" : ""}`} style={{ color: awayWin ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}>{game.awayScore}</div>
             </a>
-            <div className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
+            <div className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</div>
             <a href={`/team/${game.homeTeam.toLowerCase()}`} className="flex flex-col items-center w-14" onClick={(e) => e.stopPropagation()}>
               <TeamLogo team={game.homeTeam} size={32} className="mb-1" />
-              <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent)" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
-              <div className={`mono-data font-bold text-2xl ${homeWin ? "pulse-glow-blue" : ""}`} style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
+              <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>{game.homeTeam}</div>
+              <div className={`hi-stat text-2xl ${homeWin ? "pulse-glow-blue" : ""}`} style={{ color: homeWin ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}>{game.homeScore}</div>
             </a>
           </div>
           <div className="text-right">
-            <div className="text-xs font-medium px-2 py-0.5 rounded mb-1 inline-block" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>FINAL</div>
-            <div className="text-xs" style={{ color: "var(--hi-accent)" }}>{expanded ? "▲ Collapse" : "▼ Expand"}</div>
+            <div className="text-xs font-medium px-2 py-0.5 rounded mb-1 inline-block" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)" }}>FINAL</div>
+            <div className="text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{expanded ? "▲ Collapse" : "▼ Expand"}</div>
           </div>
         </div>
         <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
@@ -711,7 +711,7 @@ function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
               )}
             </div>
           </div>
-          <div className="mono-data text-sm px-3 py-1 rounded" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent)", border: "1px solid rgba(142,200,240,0.2)" }}>
+          <div className="mono-data text-sm px-3 py-1 rounded" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)", border: "1px solid rgba(142,200,240,0.2)" }}>
             {gameResults.length} GAMES
           </div>
         </div>
@@ -724,7 +724,7 @@ function ScoresSection({ favoriteTeams }: { favoriteTeams: string[] }) {
             className="glass-card rounded-lg px-6 py-10 text-center"
             style={{ border: "1px dashed rgba(255,255,255,0.12)" }}
           >
-            <p className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>NO GAMES</p>
+            <p className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>NO GAMES</p>
             <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               No games on last night&apos;s slate. Check{" "}
               <a href="/watch-guide" className="text-[var(--hi-text)] underline">tonight&apos;s schedule</a> for the next tip-off.
@@ -748,7 +748,7 @@ function CollapsibleEditionExtras({
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <section className="py-6 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section className="py-6 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <button
           type="button"
@@ -776,7 +776,7 @@ function CollapsibleEditionExtras({
 
 function NarrativeSection() {
   return (
-    <section className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -793,12 +793,12 @@ function NarrativeSection() {
                 <div key={i} className="glass-card rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{stat.category.toUpperCase()}</div>
+                      <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{stat.category.toUpperCase()}</div>
                       <a href={`/player/${slugify(stat.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">{stat.player}</a>
                       <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{stat.context}</div>
                     </div>
                     <div className="text-right">
-                      <div className="mono-data text-2xl font-bold" style={{ color: "var(--hi-accent)" }}>{stat.value}</div>
+                      <div className="mono-data text-2xl font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{stat.value}</div>
                     </div>
                   </div>
                 </div>
@@ -866,7 +866,7 @@ function PulseNoteModal({
         style={{ background: "var(--hi-surface,#eeeeec)", border: "1px solid rgba(142,200,240,0.25)" }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
           <div>
             <div id="pulse-note-sub" className="section-label text-xs mb-0.5">
               EXPLAIN THIS RANK
@@ -879,7 +879,7 @@ function PulseNoteModal({
             type="button"
             onClick={onClose}
             className="min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center transition-colors hover:bg-white/10"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
             aria-label="Close"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden>
@@ -907,7 +907,7 @@ function PulseNoteModal({
           >
             View {playerName} profile &rarr;
           </a>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Escape to dismiss
           </span>
         </div>
@@ -933,11 +933,11 @@ function PulseIndexSection() {
     : pulseIndex;
 
   return (
-    <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="pulse-index" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="flex items-center justify-between mb-2">
           <div className="section-label">{finalsOn ? "FINALS PULSE" : "DAILY RANKINGS"}</div>
-          <a href="/pulse-history" className="text-xs font-medium hover:underline" style={{ color: "var(--hi-accent)" }}>View History &rarr;</a>
+          <a href="/pulse-history" className="text-xs font-medium hover:underline" style={{ color: "var(--hi-accent-text,#146a8c)" }}>View History &rarr;</a>
         </div>
         <h2 className="display-heading text-white text-2xl mb-2">Pulse Index</h2>
         <p className="text-sm mb-6 max-w-2xl leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -950,7 +950,7 @@ function PulseIndexSection() {
             : ""}
         </p>
         {finalsOn && pulseRows.length === 0 ? (
-          <p className="text-sm rounded-lg px-4 py-3 mb-4" style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-muted,#5c5c58)" }}>
+          <p className="text-sm rounded-lg px-4 py-3 mb-4" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}>
             No Pulse rows match the synced finalist teams yet — check back after the next edition refresh.
           </p>
         ) : null}
@@ -961,12 +961,12 @@ function PulseIndexSection() {
             const isFavorite = favPlayers.includes(player.player.toLowerCase()) || favTeams.includes(player.team.toUpperCase());
             return (
               <div key={player.rank} className="glass-card rounded-lg p-4 flex items-center gap-4" style={isFavorite ? { borderLeft: "3px solid var(--hi-accent)" } : {}}>
-                <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent)" }}>{player.rank}</div>
+                <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{player.rank}</div>
                 <PlayerAvatar name={player.player} team={player.team} size={40} />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <a href={`/player/${slugify(player.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">{player.player}</a>
-                    <a href={`/team/${player.team.toLowerCase()}`} className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}><TeamLogo team={player.team} size={14} />{player.team}</a>
+                    <a href={`/team/${player.team.toLowerCase()}`} className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}><TeamLogo team={player.team} size={14} />{player.team}</a>
                     {isFavorite && (
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--hi-accent)" className="flex-shrink-0">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -987,8 +987,8 @@ function PulseIndexSection() {
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <div className="text-right">
-                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent)" }}>{player.indexScore}</div>
-                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{player.teamRecord}</div>
+                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{player.indexScore}</div>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{player.teamRecord}</div>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <button
@@ -1006,7 +1006,7 @@ function PulseIndexSection() {
                       className="min-h-[44px] min-w-[44px] flex items-center justify-center px-3 rounded-full text-xs font-bold transition-colors hover:bg-black/5"
                       style={{
                         background: "rgba(142,200,240,0.1)",
-                        color: "var(--hi-accent)",
+                        color: "var(--hi-accent-text,#146a8c)",
                         border: "1px solid rgba(142,200,240,0.25)",
                       }}
                       title="Explain this rank"
@@ -1041,16 +1041,16 @@ function PulseIndexSection() {
 function MediaReactionsSection() {
   const sentimentColors: Record<string, { color: string; bg: string }> = {
     hot: { color: "#F43F5E", bg: "rgba(244,63,94,0.1)" },
-    cold: { color: "var(--hi-accent)", bg: "rgba(142,200,240,0.1)" },
+    cold: { color: "var(--hi-accent-text,#146a8c)", bg: "rgba(142,200,240,0.1)" },
     neutral: { color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
   };
 
   return (
-    <section className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="section-label mb-2">AROUND THE CONVERSATION</div>
         <h2 className="display-heading text-white text-2xl mb-2">Desk Read</h2>
-        <p className="text-xs mb-6" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-xs mb-6" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Generated conversation summary, not attributed reporting or direct quotes.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -1060,12 +1060,12 @@ function MediaReactionsSection() {
               <div key={i} className="glass-card rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: sc.bg, color: sc.color }}>{reaction.sentiment.toUpperCase()}</span>
-                  <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{reaction.topic}</span>
+                  <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{reaction.topic}</span>
                 </div>
-                <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.7)" }}>{reaction.quote}</p>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>{reaction.quote}</p>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold text-white">{reaction.author}</span>
-                  <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{reaction.outlet}</span>
+                  <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{reaction.outlet}</span>
                 </div>
               </div>
             );
@@ -1090,7 +1090,7 @@ function InjurySection() {
   };
 
   return (
-    <section id="injuries" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="injuries" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="section-label mb-2">INJURY WIRE</div>
         <h2 className="display-heading text-white text-2xl mb-6">Injury Updates</h2>
@@ -1105,12 +1105,12 @@ function InjurySection() {
                     <a href={`/player/${slugify(injury.player || "player")}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors truncate">
                       {injury.player?.trim() || "Unnamed player"}
                     </a>
-                    <a href={`/team/${String(injury.team || "nba").toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors shrink-0" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>{injury.team || "NBA"}</a>
+                    <a href={`/team/${String(injury.team || "nba").toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors shrink-0" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}>{injury.team || "NBA"}</a>
                   </div>
                   <span className="text-xs font-semibold px-2 py-0.5 rounded uppercase" style={{ background: ss.bg, color: ss.color }}>{injury.status}</span>
                 </div>
                 <div className="text-xs mb-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>{injury.injury}</div>
-                <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{injury.timeline}</div>
+                <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{injury.timeline}</div>
               </div>
             );
           })}
@@ -1119,7 +1119,7 @@ function InjurySection() {
           <a
             href="/injuries"
             className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:underline"
-            style={{ color: "var(--hi-accent)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)" }}
           >
             Full Report
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1146,7 +1146,7 @@ function PlayoffSection() {
   const statTiles = [
     { label: "Teams left", value: String(snap.teamsRemaining), color: "#10B981" },
     { label: "Eliminated", value: String(snap.teamsEliminated), color: "#F43F5E" },
-    { label: "Finals played", value: String(snap.gamesPlayed), color: "var(--hi-accent)" },
+    { label: "Finals played", value: String(snap.gamesPlayed), color: "var(--hi-accent-text,#146a8c)" },
     {
       label: snap.matchPointSeries > 0 ? "Match point" : snap.scheduledToday > 0 ? "Today" : "Status",
       value:
@@ -1162,11 +1162,11 @@ function PlayoffSection() {
   ];
 
   return (
-    <section id="playoffs" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="playoffs" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="flex items-center justify-between mb-2">
           <div className="section-label">POSTSEASON</div>
-          <a href="/playoffs" className="text-xs font-medium" style={{ color: "var(--hi-accent)" }}>Full bracket &rarr;</a>
+          <a href="/playoffs" className="text-xs font-medium" style={{ color: "var(--hi-accent-text,#146a8c)" }}>Full bracket &rarr;</a>
         </div>
         <h2 className="display-heading text-white text-2xl mb-2">Playoff Series</h2>
         <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -1186,7 +1186,7 @@ function PlayoffSection() {
               <div className="mono-data text-base font-bold" style={{ color: t.color }}>
                 {t.value}
               </div>
-              <div className="text-[10px] mt-0.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-[10px] mt-0.5" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {t.label}
               </div>
             </div>
@@ -1227,7 +1227,7 @@ function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
   return (
     <div className="glass-card rounded-lg p-3" style={{ borderLeft: `3px solid ${accent}` }}>
       <div className="flex items-center justify-between mb-2">
-        <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {confLabel} · ({series.higherSeed}) vs ({series.lowerSeed})
         </div>
         {matchPoint && (
@@ -1244,7 +1244,7 @@ function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
         {series.summary}
       </div>
       {edge && (
-        <div className="mt-2 text-[10px] leading-snug mono-data" style={{ color: "rgba(255,255,255,0.38)" }}>
+        <div className="mt-2 text-[10px] leading-snug mono-data" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           Finals only: avg {edge.avgTotalPoints} pts · {edge.avgMargin} avg spread · {edge.higher.team}{" "}
           {edge.higher.margin >= 0 ? "+" : ""}
           {edge.higher.margin}/G vs {edge.lower.team}{" "}
@@ -1253,7 +1253,7 @@ function HomeSeriesCard({ series }: { series: PlayoffSeries }) {
         </div>
       )}
       {nextGame && (
-        <div className="mt-1 text-[11px] mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="mt-1 text-[11px] mono-data" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {nextGame.status === "live" ? "Live" : "Next"} Game {nextGame.gameNumber}
           {(nextGame.status === "scheduled" || !nextGame.status) &&
             ` · ${nextGame.time ?? nextGame.date}${nextGame.tv ? ` · ${nextGame.tv}` : ""}`}
@@ -1271,7 +1271,7 @@ function SeriesTeamLine({ team, seed, wins, leading }: { team: string; seed: num
           className="w-5 h-5 rounded flex items-center justify-center text-[11px] font-bold"
           style={{
             background: leading ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.05)",
-            color: leading ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+            color: leading ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
           }}
         >
           {seed}
@@ -1284,7 +1284,7 @@ function SeriesTeamLine({ team, seed, wins, leading }: { team: string; seed: num
         {[0, 1, 2, 3].map((i) => (
           <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: i < wins ? (leading ? "var(--hi-accent)" : "#10B981") : "rgba(255,255,255,0.1)" }} />
         ))}
-        <span className="mono-data text-xs ml-1 font-bold" style={{ color: leading ? "var(--hi-accent)" : "rgba(255,255,255,0.5)" }}>{wins}</span>
+        <span className="mono-data text-xs ml-1 font-bold" style={{ color: leading ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>{wins}</span>
       </div>
     </div>
   );
@@ -1293,7 +1293,7 @@ function SeriesTeamLine({ team, seed, wins, leading }: { team: string; seed: num
 function PlayoffMoversCard() {
   return (
     <div className="mt-6 glass-card rounded-lg p-4">
-      <div className="section-label mb-3" style={{ color: "var(--hi-accent)" }}>PLAYOFF RISERS &amp; FALLERS</div>
+      <div className="section-label mb-3" style={{ color: "var(--hi-accent-text,#146a8c)" }}>PLAYOFF RISERS &amp; FALLERS</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {playoffMovers.map((m, i) => (
           <div key={i} className="flex items-start gap-3 p-2 rounded" style={{ background: "rgba(255,255,255,0.02)" }}>
@@ -1308,7 +1308,7 @@ function PlayoffMoversCard() {
               {m.direction === "riser" ? "↑" : "↓"}{Math.abs(m.delta)}
             </div>
             <div className="min-w-0">
-              <div className="text-sm font-semibold text-white">{m.player} <span className="text-xs font-normal" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{m.team}</span></div>
+              <div className="text-sm font-semibold text-white">{m.player} <span className="text-xs font-normal" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{m.team}</span></div>
               <div className="mono-data text-[11px]" style={{ color: "var(--hi-muted,#5c5c58)" }}>{m.playoffLine}</div>
               <div className="text-xs mt-0.5" style={{ color: "var(--hi-muted,#5c5c58)" }}>{m.note}</div>
             </div>
@@ -1325,7 +1325,7 @@ function PlayoffMoversCard() {
 
 function TonightSection() {
   return (
-    <section id="tonight" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="tonight" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="section-label mb-2">TONIGHT'S SLATE</div>
         <h2 className="display-heading text-white text-2xl mb-6">Game Previews</h2>
@@ -1338,7 +1338,7 @@ function TonightSection() {
             className="glass-card rounded-lg px-6 py-10 text-center"
             style={{ border: "1px dashed rgba(255,255,255,0.12)" }}
           >
-            <p className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>NO GAMES TONIGHT</p>
+            <p className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>NO GAMES TONIGHT</p>
             <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               Nothing on tonight&apos;s schedule. Browse the{" "}
               <a href="/watch-guide" className="text-[var(--hi-text)] underline">watch guide</a> or catch up in the{" "}
@@ -1370,21 +1370,21 @@ function GamePreviewCard({ preview }: { preview: any }) {
             <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="flex flex-col items-center gap-1">
               <TeamLogo team={preview.awayTeam} size={28} />
               <div className="section-label">{preview.awayTeam}</div>
-              <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{preview.awayRecord}</div>
+              <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{preview.awayRecord}</div>
             </a>
-            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</div>
             <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="flex flex-col items-center gap-1">
               <TeamLogo team={preview.homeTeam} size={28} />
               <div className="section-label">{preview.homeTeam}</div>
-              <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{preview.homeRecord}</div>
+              <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{preview.homeRecord}</div>
             </a>
           </div>
           <div className="text-right">
             <div className="text-sm font-medium text-white">{preview.time}</div>
-            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{preview.tv}</div>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{preview.tv}</div>
           </div>
           <div className="text-right ml-4">
-            <div className="mono-data text-xs" style={{ color: "var(--hi-accent)" }} title="Vegas point spread — negative means favored">
+            <div className="mono-data text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }} title="Vegas point spread — negative means favored">
               {closer}
             </div>
             {moveBadge ? (
@@ -1396,7 +1396,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
                 {opener} → {closer}
               </div>
             ) : null}
-            <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }} title="Over/Under — projected combined total points">Total {preview.overUnder}</div>
+            <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }} title="Over/Under — projected combined total points">Total {preview.overUnder}</div>
           </div>
           <button
             type="button"
@@ -1408,7 +1408,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
           </button>
         </div>
         {preview.featured && (
-          <div className="mt-2 text-xs font-semibold px-2 py-0.5 rounded inline-block" style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent)" }}>
+          <div className="mt-2 text-xs font-semibold px-2 py-0.5 rounded inline-block" style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent-text,#146a8c)" }}>
             FEATURED GAME
           </div>
         )}
@@ -1443,23 +1443,23 @@ function GamePreviewCard({ preview }: { preview: any }) {
               <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 <span className="font-semibold" style={{ color: "var(--hi-muted,#5c5c58)" }}>Matchup to watch:</span> {intel.keyMatchup}
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{intel.narrative}</p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{intel.narrative}</p>
             </div>
           )}
           <div className="pt-3">
-            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>KEY MATCHUP</div>
+            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>KEY MATCHUP</div>
             <div className="text-sm text-white">{preview.keyMatchup}</div>
           </div>
           <div>
-            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>STORYLINE</div>
+            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>STORYLINE</div>
             <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{preview.storyline}</p>
           </div>
           <div>
-            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>PREDICTION</div>
+            <div className="text-xs font-medium mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>PREDICTION</div>
             <p className="text-sm" style={{ color: "#10B981" }}>{preview.prediction}</p>
           </div>
           <div className="pt-2 space-y-1">
-            <div className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Sportsbook home (external) · 21+ where legal — gamble responsibly
             </div>
             <div className="flex flex-wrap gap-2">
@@ -1468,7 +1468,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
               >
                 DraftKings
               </a>
@@ -1477,7 +1477,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
               >
                 FanDuel
               </a>
@@ -1486,7 +1486,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded transition-colors hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.1)" }}
               >
                 BetMGM
               </a>
@@ -1504,7 +1504,7 @@ function GamePreviewCard({ preview }: { preview: any }) {
 
 function RookieAndFantasySection() {
   return (
-    <section id="fantasy" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="fantasy" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
@@ -1513,11 +1513,11 @@ function RookieAndFantasySection() {
             <div className="space-y-2">
               {rookieWatch.map((rookie: any) => (
                 <div key={rookie.rank} className="glass-card rounded-lg p-3 flex items-center gap-3">
-                  <div className="mono-data text-lg font-bold w-6 text-center" style={{ color: "var(--hi-accent)" }}>{rookie.rank}</div>
+                  <div className="mono-data text-lg font-bold w-6 text-center" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{rookie.rank}</div>
                   <div className="flex-1">
                     <div className="text-sm font-semibold text-white">
                       <a href={`/player/${slugify(rookie.player)}`} className="hover:text-[var(--hi-text)] transition-colors">{rookie.player}</a>{" "}
-                      <a href={`/team/${rookie.team.toLowerCase()}`} className="text-xs hover:text-[var(--hi-text)] transition-colors" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{rookie.team}</a>
+                      <a href={`/team/${rookie.team.toLowerCase()}`} className="text-xs hover:text-[var(--hi-text)] transition-colors" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{rookie.team}</a>
                     </div>
                     <div className="mono-data text-xs" style={{ color: "#10B981" }}>{rookie.statLine}</div>
                     <div className="text-xs mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>{rookie.note}</div>
@@ -1535,7 +1535,7 @@ function RookieAndFantasySection() {
                   add: { color: "#10B981", bg: "rgba(16,185,129,0.1)" },
                   drop: { color: "#F43F5E", bg: "rgba(244,63,94,0.1)" },
                   hold: { color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
-                  stream: { color: "var(--hi-accent)", bg: "rgba(142,200,240,0.1)" },
+                  stream: { color: "var(--hi-accent-text,#146a8c)", bg: "rgba(142,200,240,0.1)" },
                 };
                 const actionLabels: Record<string, string> = {
                   add: "Add to roster",
@@ -1548,9 +1548,9 @@ function RookieAndFantasySection() {
                   <div key={i} className="glass-card rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-bold px-2 py-0.5 rounded uppercase" style={{ background: ac.bg, color: ac.color }} title={actionLabels[alert.action]}>{alert.action}</span>
-                      <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{actionLabels[alert.action]}</span>
+                      <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{actionLabels[alert.action]}</span>
                       <a href={`/player/${slugify(alert.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">{alert.player}</a>
-                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs hover:text-[var(--hi-text)] transition-colors" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{alert.team}</a>
+                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs hover:text-[var(--hi-text)] transition-colors" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{alert.team}</a>
                     </div>
                     <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{alert.reason}</p>
                   </div>
@@ -1641,19 +1641,19 @@ function StandingsSection() {
                 key={team.team}
                 className="border-t"
                 style={{
-                  borderColor: team.rank === 6 && sortKey === "rank" ? "rgba(142,200,240,0.4)" : "rgba(255,255,255,0.04)",
+                  borderColor: team.rank === 6 && sortKey === "rank" ? "rgba(142,200,240,0.4)" : "var(--hi-muted,#5c5c58)",
                   borderTopWidth: team.rank === 7 && sortKey === "rank" ? 2 : undefined,
                   background: team.rank <= 6 ? "transparent" : team.rank <= 10 ? "rgba(245,158,11,0.03)" : "rgba(244,63,94,0.03)",
                 }}
               >
-                <td className="px-3 py-2 mono-data" style={{ color: "var(--hi-accent)" }}>{team.rank}</td>
+                <td className="px-3 py-2 mono-data" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{team.rank}</td>
                 <td className="px-3 py-2 font-semibold">
                   <a href={`/team/${team.team.toLowerCase()}`} className="inline-flex items-center gap-2 text-white hover:text-[var(--hi-text)] transition-colors">
                     <TeamLogo team={team.team} size={20} />
                     {team.team}
                   </a>
                   {team.rank === 6 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 1–6 clinch an automatic playoff berth" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent)" }}>PLAYOFF</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 1–6 clinch an automatic playoff berth" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}>PLAYOFF</span>
                   )}
                   {team.rank === 10 && sortKey === "rank" && (
                     <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 7–10 enter the Play-In Tournament for the final two playoff spots" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
@@ -1683,7 +1683,7 @@ function StandingsSection() {
           </tbody>
         </table>
         {sortKey === "rank" && (
-          <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "rgba(255,255,255,0.02)", color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}>
             <span className="cursor-help" title="Top 6 in each conference clinch a playoff berth outright">1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
             <span className="cursor-help" title="Seeds 7–10 play a mini-tournament for the final two playoff spots in each conference">7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
           </div>
@@ -1697,7 +1697,7 @@ function StandingsSection() {
             href={`/team/${team.team.toLowerCase()}`}
             className="flex items-center gap-3 px-3 py-2.5 min-h-12 min-w-0"
           >
-            <span className="mono-data pulse-score w-6 text-sm" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+            <span className="mono-data pulse-score w-6 text-sm" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
               {team.rank}
             </span>
             <TeamLogo team={team.team} size={24} />
@@ -1713,7 +1713,7 @@ function StandingsSection() {
   );
 
   return (
-    <section id="standings" className="py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+    <section id="standings" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
         <p className="enhanced-kicker mb-2">Conference standings</p>
         <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-2xl mb-6">Standings</h2>

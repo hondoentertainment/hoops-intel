@@ -14,14 +14,14 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
           return (
             <li key={`${item.label}-${i}`} className="flex items-center gap-1.5 min-w-0">
               {i > 0 && (
-                <span aria-hidden style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <span aria-hidden style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   /
                 </span>
               )}
               {last || !item.href ? (
                 <span
                   className="truncate font-medium"
-                  style={{ color: last ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.45)" }}
+                  style={{ color: last ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}
                   aria-current={last ? "page" : undefined}
                 >
                   {item.label}
@@ -30,7 +30,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
                 <a
                   href={item.href}
                   className="truncate min-h-11 inline-flex items-center hover:opacity-80"
-                  style={{ color: "var(--hi-accent,#8ec8f0)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)" }}
                 >
                   {item.label}
                 </a>

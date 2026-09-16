@@ -162,7 +162,7 @@ export default function Team() {
                   >
                     {standing.streak}
                   </span>
-                  <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     L10: {standing.last10}
                   </span>
                 </div>
@@ -179,7 +179,7 @@ export default function Team() {
               background: "rgba(142,200,240,0.04)",
             }}
           >
-            <div className="section-label mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+            <div className="section-label mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
               PLAYOFFS (SYNCED BOARD)
             </div>
             <p className="text-sm text-white font-semibold mb-1">
@@ -193,7 +193,7 @@ export default function Team() {
               </p>
             )}
             {!playoffNext && playoffRow.status === "complete" && (
-              <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 Series complete.
               </p>
             )}
@@ -269,7 +269,7 @@ export default function Team() {
                       </span>
                       <span className="text-sm text-white">{p.time}</span>
                     </div>
-                    <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                    <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                       {p.spread} · O/U {p.overUnder} · {p.tv}
                     </div>
                     {previewSeries && previewSeries.status !== "complete" && (
@@ -306,7 +306,7 @@ export default function Team() {
                   </div>
                 ))}
                 {teamEditions.length > 10 && (
-                  <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     + {teamEditions.length - 10} more editions
                   </p>
                 )}
@@ -328,7 +328,7 @@ export default function Team() {
                       className="block hover:opacity-80 transition-opacity"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                        <span className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                           #{p.rank}
                         </span>
                         <div>
@@ -371,7 +371,7 @@ export default function Team() {
                           {inj.status}
                         </span>
                       </div>
-                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         {inj.injury}
                       </div>
                     </div>
@@ -386,27 +386,27 @@ export default function Team() {
                 <div className="section-label mb-3">STANDINGS</div>
                 <div className="space-y-2 text-xs">
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Conference</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Conference</span>
                     <span className="text-white font-semibold">
                       {standing.conf === "east" ? "Eastern" : "Western"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Seed</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Seed</span>
                     <span className="text-white font-semibold">#{standing.rank}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Record</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Record</span>
                     <span className="text-white font-semibold">
                       {standing.wins}-{standing.losses} ({standing.pct})
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Games Back</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Games Back</span>
                     <span className="text-white font-semibold">{standing.gb}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Streak</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Streak</span>
                     <span
                       style={{
                         color: standing.streak.startsWith("W") ? "#10B981" : "#F43F5E",
@@ -416,11 +416,11 @@ export default function Team() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Last 10</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Last 10</span>
                     <span className="text-white font-semibold">{standing.last10}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Playoff Status</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Playoff Status</span>
                     <span
                       className="font-semibold"
                       style={{

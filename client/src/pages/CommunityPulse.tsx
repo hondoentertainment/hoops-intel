@@ -83,7 +83,7 @@ function ScoreBar({ value, max, color, label }: { value: number; max: number; co
     <div className="flex items-center gap-2">
       <span
         className="text-[10px] w-20 text-right uppercase tracking-wider"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {label}
       </span>
@@ -151,7 +151,7 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
         </h3>
         <p
           className="text-xs mb-3"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           You rated {votedCount} player{votedCount !== 1 ? "s" : ""}. See how your picks compare below.
         </p>
@@ -181,28 +181,28 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
     >
       <div
         className="px-5 py-4 border-b"
-        style={{ borderColor: "rgba(255,255,255,0.06)" }}
+        style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
       >
         <h2
           className="text-sm font-bold uppercase tracking-wider"
-          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+          style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
         >
           Rate Players (1-10)
         </h2>
         <p
           className="text-xs mt-1"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           Rate each player's current form. 10 = elite, 1 = struggling.
         </p>
       </div>
 
-      <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
+      <div className="divide-y" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
         {ratablePlayers.map((p) => (
           <div
             key={p.player}
             className="px-5 py-3 flex items-center gap-3"
-            style={{ borderColor: "rgba(255,255,255,0.04)" }}
+            style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
           >
             <div className="flex-1 min-w-0">
               <div
@@ -213,7 +213,7 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
               </div>
               <div
                 className="text-[11px]"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {p.team}
               </div>
@@ -253,11 +253,11 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
 
       <div
         className="px-5 py-4 flex items-center justify-between border-t"
-        style={{ borderColor: "rgba(255,255,255,0.06)" }}
+        style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
       >
         <span
           className="text-xs"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {votedCount} of {ratablePlayers.length} rated
         </span>
@@ -267,7 +267,7 @@ function VotingSection({ onSubmit }: { onSubmit: () => void }) {
           className="px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
           style={{
             background: votedCount > 0 ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.03)",
-            color: votedCount > 0 ? "var(--hi-accent)" : "rgba(255,255,255,0.2)",
+            color: votedCount > 0 ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
             border: `1px solid ${votedCount > 0 ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
             fontFamily: "var(--hi-font-display)",
             cursor: votedCount > 0 ? "pointer" : "not-allowed",
@@ -300,7 +300,7 @@ export default function CommunityPulse() {
       description={`${data.weekLabel} · ${data.totalVoters.toLocaleString()} voters this week`}
       maxWidth="md"
       headerToolbarExtra={
-        <span className="text-xs whitespace-nowrap" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <span className="text-xs whitespace-nowrap" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {data.weekLabel}
         </span>
       }
@@ -341,9 +341,9 @@ export default function CommunityPulse() {
               >
                 Community Rank: <span className="font-bold" style={{ color: "#F59E0B" }}>#{data.biggestDisagreement.communityRank}</span>
                 {" \u00B7 "}
-                AI Rank: <span className="font-bold" style={{ color: "var(--hi-accent)" }}>#{data.biggestDisagreement.aiRank}</span>
+                AI Rank: <span className="font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>#{data.biggestDisagreement.aiRank}</span>
                 {" \u00B7 "}
-                <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{data.biggestDisagreement.direction}</span>
+                <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{data.biggestDisagreement.direction}</span>
               </p>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function CommunityPulse() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-4"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             Community vs. AI Rankings
           </h2>
@@ -396,7 +396,7 @@ export default function CommunityPulse() {
                         </span>
                         <span
                           className="text-[10px]"
-                          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+                          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
                         >
                           {vote.team}
                         </span>
@@ -446,7 +446,7 @@ export default function CommunityPulse() {
         >
           <h3
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             Weekly Narrative
           </h3>

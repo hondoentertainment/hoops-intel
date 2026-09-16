@@ -91,7 +91,7 @@ export default function PlayoffSeriesRedirect() {
           />
 
           {intel ? (
-            <p className="mobile-readable mt-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="mobile-readable mt-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {intel.narrative}
             </p>
           ) : null}
@@ -99,7 +99,7 @@ export default function PlayoffSeriesRedirect() {
           <a
             href={`/playoffs#series-card-${series.seriesId}`}
             className="inline-flex items-center min-h-11 mt-4 text-sm font-semibold"
-            style={{ color: "var(--hi-accent,#8ec8f0)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)" }}
           >
             Open bracket card →
           </a>
@@ -115,7 +115,7 @@ export default function PlayoffSeriesRedirect() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                    <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                       Game {entry.gameNumber} · {entry.date}
                     </div>
                     <div className="text-sm font-semibold text-[var(--hi-text,#0a0a0a)] mt-1">
@@ -132,7 +132,7 @@ export default function PlayoffSeriesRedirect() {
                             ? "rgba(255,77,106,0.14)"
                             : "rgba(255,255,255,0.06)",
                       color:
-                        entry.status === "live" ? "var(--hi-success,#40d18c)" : entry.status === "final" ? "var(--hi-danger,#ff4d6a)" : "var(--hi-text-secondary,#8a8a86)",
+                        entry.status === "live" ? "var(--hi-success,#40d18c)" : entry.status === "final" ? "var(--hi-danger,#ff4d6a)" : "var(--hi-text-secondary,#5c5c58)",
                     }}
                   >
                     {statusLabel(entry.status)}
@@ -140,23 +140,23 @@ export default function PlayoffSeriesRedirect() {
                 </div>
 
                 {entry.topPerformer ? (
-                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                     ★ {entry.topPerformer}
                     {entry.topLine ? ` · ${entry.topLine}` : ""}
                   </div>
                 ) : null}
 
                 {entry.archiveHeadline ? (
-                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     {entry.archiveHeadline}
                   </p>
                 ) : entry.archiveSnippet ? (
-                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     {entry.archiveSnippet}
                   </p>
                 ) : null}
 
-                <a href={entry.gameCenterHref} className="inline-flex items-center min-h-11 text-sm font-semibold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                <a href={entry.gameCenterHref} className="inline-flex items-center min-h-11 text-sm font-semibold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                   Open Game Center →
                 </a>
               </article>

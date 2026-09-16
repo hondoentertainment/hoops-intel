@@ -66,7 +66,7 @@ export default function Players() {
           placeholder="Search by name or team…"
         />
         {query.trim() ? (
-          <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }} role="status">
+          <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }} role="status">
             {rows.length === 0
               ? "No players match — try a last name or a 3-letter team."
               : `${rows.length} player${rows.length === 1 ? "" : "s"} found`}
@@ -94,8 +94,8 @@ export default function Players() {
                 >
                   <PlayerAvatar name={player.name} team={team} size={44} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-base font-semibold text-[var(--hi-text,#0a0a0a)] truncate">{player.name}</p>
-                    <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                    <p className="text-base font-semibold hi-title text-[var(--hi-text,#0a0a0a)]">{player.name}</p>
+                    <p className="text-xs hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {player.keyStats || player.label}
                       {player.mentions ? ` · ${player.mentions} mention${player.mentions === 1 ? "" : "s"}` : ""}
                     </p>
@@ -107,7 +107,7 @@ export default function Players() {
                         className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
                         style={{
                           background: player.status === "retired" ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.06)",
-                          color: player.status === "retired" ? "#F59E0B" : "rgba(255,255,255,0.5)",
+                          color: player.status === "retired" ? "var(--hi-warn,#c2410c)" : "var(--hi-muted,#5c5c58)",
                         }}
                       >
                         {player.label}
@@ -124,7 +124,7 @@ export default function Players() {
                       </span>
                     ))}
                     {player.pulseRank != null ? (
-                      <span className="mono-data text-sm font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                      <span className="mono-data text-sm font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                         #{player.pulseRank}
                       </span>
                     ) : null}

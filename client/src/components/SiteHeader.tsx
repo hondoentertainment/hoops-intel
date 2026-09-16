@@ -108,7 +108,7 @@ function NotificationBell({ idPrefix }: { idPrefix: string }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          style={{ color: subscribed ? ENHANCED_ACCENT : "var(--hi-text-secondary,#8a8a86)" }}
+          style={{ color: subscribed ? ENHANCED_ACCENT : "var(--hi-text-secondary,#5c5c58)" }}
           aria-hidden
         >
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -324,7 +324,7 @@ function SearchDialog({
         </h2>
         <div
           className="flex flex-wrap items-center gap-3 px-4 py-3 border-b"
-          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" aria-hidden>
             <circle cx="11" cy="11" r="8" />
@@ -347,7 +347,7 @@ function SearchDialog({
           />
           <span
             className="text-xs px-1.5 py-1 rounded whitespace-nowrap"
-            style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}
+            style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}
           >
             ↑↓ · Esc
           </span>
@@ -364,7 +364,7 @@ function SearchDialog({
                     key={d.href}
                     href={d.href}
                     className="text-xs px-3 py-2 rounded-lg min-h-[36px] inline-flex items-center"
-                    style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
+                    style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
                     onClick={onClose}
                   >
                     {d.label}
@@ -386,7 +386,7 @@ function SearchDialog({
           {results.length === 0 && query.length < 2 && (
             <div className="px-4 py-4 space-y-4">
               <div>
-                <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   Popular
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -395,7 +395,7 @@ function SearchDialog({
                       key={d.href}
                       href={d.href}
                       className="text-xs px-3 py-2 rounded-lg min-h-[36px] inline-flex items-center"
-                      style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
+                      style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
                       onClick={() => onClose()}
                     >
                       {d.label}
@@ -405,7 +405,7 @@ function SearchDialog({
               </div>
               {recentSearches.length > 0 && (
                 <div>
-                  <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     Recent
                   </div>
                   <div className="space-y-1">
@@ -423,7 +423,7 @@ function SearchDialog({
                   </div>
                 </div>
               )}
-              <p className="text-xs text-center pt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <p className="text-xs text-center pt-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 Type at least two characters to search
               </p>
             </div>
@@ -443,18 +443,18 @@ function SearchDialog({
             >
               <span
                 className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded shrink-0"
-                style={{ background: "rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
               >
                 {labelForType(r.type)}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium text-white truncate">{r.title}</div>
-                <div className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   {r.subtitle}
                 </div>
               </div>
               {r.date && (
-                <span className="text-xs flex-shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <span className="text-xs flex-shrink-0" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   {r.date}
                 </span>
               )}
@@ -594,7 +594,7 @@ export default function SiteHeader({
                   href={href}
                   className={navLinkClass}
                   style={{
-                    color: active ? "var(--hi-cta-ink,#ffffff)" : "var(--hi-text-secondary,#8a8a86)",
+                    color: active ? "var(--hi-cta-ink,#ffffff)" : "var(--hi-text-secondary,#5c5c58)",
                     background: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
                     borderColor: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
                     fontWeight: active ? 500 : 500,
@@ -622,7 +622,7 @@ export default function SiteHeader({
                       href={href}
                       className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-black/5"
                       style={{
-                        color: navRouteMatches(href, locationPath) ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#8a8a86)",
+                        color: navRouteMatches(href, locationPath) ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#5c5c58)",
                       }}
                       {...navAriaCurrent(href, locationPath)}
                     >
@@ -637,14 +637,14 @@ export default function SiteHeader({
               {seasonChip ? <SeasonChip>{seasonChip}</SeasonChip> : null}
               <span
                 className="hidden md:inline text-[11px] font-medium whitespace-nowrap"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
               >
                 {headerDateLabel(editionBadge ?? pulseEdition.date)}
               </span>
               {!seasonChip ? (
                 <span
                   className="mono-data text-[11px] md:hidden px-1"
-                  style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                  style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                 >
                   {compactEditionDate(editionBadge ?? pulseEdition.date)}
                 </span>
@@ -822,7 +822,7 @@ export default function SiteHeader({
                 </a>
               ) : (
                 <div className="mt-1 pt-3 border-t border-white/10">
-                  <p className="px-3 pb-2 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <p className="px-3 pb-2 text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     Sync favorites, reactions, and push alerts across devices.
                   </p>
                   <button

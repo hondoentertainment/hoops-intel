@@ -82,7 +82,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
         style={{
           background: "rgba(255,255,255,0.02)",
           border: "1px solid rgba(255,255,255,0.06)",
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-body)",
         }}
       >
@@ -101,7 +101,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
         className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
         style={{
           background: "rgba(255,255,255,0.04)",
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
         }}
@@ -146,7 +146,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
                   background: isTop3
                     ? `rgba(${rank === 1 ? "245,158,11" : rank === 2 ? "148,163,184" : "205,127,50"},0.15)`
                     : "rgba(142,200,240,0.1)",
-                  color: isTop3 ? rankColor : "var(--hi-accent)",
+                  color: isTop3 ? rankColor : "var(--hi-accent-text,#146a8c)",
                   fontFamily: "var(--hi-font-display)",
                 }}
               >
@@ -155,7 +155,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
               <span
                 className="text-xs font-medium truncate"
                 style={{
-                  color: "rgba(255,255,255,0.7)",
+                  color: "var(--hi-muted,#5c5c58)",
                   fontFamily: "var(--hi-font-mono)",
                   fontSize: "0.7rem",
                 }}
@@ -181,7 +181,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
             <div
               className="col-span-2 text-right text-sm font-semibold"
               style={{
-                color: row.current_streak > 0 ? "#F59E0B" : "rgba(255,255,255,0.3)",
+                color: row.current_streak > 0 ? "#F59E0B" : "var(--hi-muted,#5c5c58)",
                 fontFamily: "var(--hi-font-mono)",
               }}
             >
@@ -199,7 +199,7 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
             {/* Total */}
             <div
               className="col-span-2 text-right text-sm"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
             >
               {row.total_settled}
             </div>
@@ -276,7 +276,7 @@ function BracketLeaderboardSection() {
           style={{
             background: "rgba(255,255,255,0.02)",
             border: "1px solid rgba(255,255,255,0.06)",
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-body)",
           }}
         >
@@ -292,7 +292,7 @@ function BracketLeaderboardSection() {
             className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
             style={{
               background: "rgba(255,255,255,0.04)",
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
             }}
@@ -318,11 +318,11 @@ function BracketLeaderboardSection() {
                 <div className="col-span-1 text-sm font-bold" style={{ color: rankColor, fontFamily: "var(--hi-font-display)" }}>
                   {rank}
                 </div>
-                <div className="col-span-5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--hi-font-mono)", fontSize: "0.7rem" }}>
+                <div className="col-span-5 text-xs font-medium" style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)", fontSize: "0.7rem" }}>
                   {truncateLeaderboardUserId(row.user_id)}
                 </div>
                 <div className="col-span-3 text-right">
-                  <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "rgba(255,255,255,0.3)", fontFamily: "var(--hi-font-mono)" }}>
+                  <span className="text-sm font-bold" style={{ color: row.accuracy_pct !== null ? "#10B981" : "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}>
                     {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
                   </span>
                 </div>
@@ -437,7 +437,7 @@ function HowItWorksSection() {
       <div
         className="text-xs font-semibold mb-4"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.1em",
         }}
@@ -478,7 +478,7 @@ function HowItWorksSection() {
             </div>
             <div
               className="text-xs leading-relaxed"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {step.body}
             </div>
@@ -658,7 +658,7 @@ export default function PickEmPage() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}

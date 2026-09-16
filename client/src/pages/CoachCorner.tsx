@@ -47,7 +47,7 @@ function RankIndicator({ label, rank, total = 30 }: { label: string; rank: numbe
       <div
         className="text-xs mb-1"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
         }}
@@ -85,7 +85,7 @@ function StyleBadge({ label, value, color }: { label: string; value: string; col
       <div
         className="text-xs mb-0.5"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
           fontSize: "0.65rem",
@@ -136,7 +136,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
             </span>
             <span
               className="text-sm"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {breakdown.coach}
             </span>
@@ -170,7 +170,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
           <span
             className="text-xs font-semibold"
             style={{
-              color: "var(--hi-accent)",
+              color: "var(--hi-accent-text,#146a8c)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -224,7 +224,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
       <button
         onClick={() => setExpanded(!expanded)}
         className="text-xs font-medium transition-colors"
-        style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
+        style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-body)" }}
       >
         {expanded ? "Hide analysis" : "Read full analysis"} {expanded ? "▲" : "▼"}
       </button>
@@ -253,7 +253,7 @@ function HotSeatCard({ coach, team, reason, temperature }: {
   const config = {
     scorching: { flames: "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25", color: "#F43F5E", bg: "rgba(244,63,94,0.08)", border: "rgba(244,63,94,0.2)" },
     warm: { flames: "\uD83D\uDD25\uD83D\uDD25", color: "#F59E0B", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" },
-    lukewarm: { flames: "\uD83D\uDD25", color: "var(--hi-muted,#5c5c58)", bg: "rgba(255,255,255,0.03)", border: "rgba(255,255,255,0.1)" },
+    lukewarm: { flames: "\uD83D\uDD25", color: "var(--hi-muted,#5c5c58)", bg: "var(--hi-muted,#5c5c58)", border: "var(--hi-muted,#5c5c58)" },
   }[temperature];
 
   return (
@@ -323,13 +323,13 @@ export default function CoachCorner() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Weekly narrative" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {weeklyNarrative}
           </p>
         </DeskPanel>
@@ -385,7 +385,7 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
@@ -404,7 +404,7 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
@@ -435,7 +435,7 @@ export default function CoachCorner() {
                         className="text-xs font-semibold px-1.5 py-0.5 rounded"
                         style={{
                           background: "rgba(142,200,240,0.1)",
-                          color: "var(--hi-accent)",
+                          color: "var(--hi-accent-text,#146a8c)",
                           fontFamily: "var(--hi-font-display)",
                         }}
                       >
@@ -460,7 +460,7 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}

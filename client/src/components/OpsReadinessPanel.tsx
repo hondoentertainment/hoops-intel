@@ -13,7 +13,7 @@ type OpsBody = {
 function Flag({ ok, label }: { ok: boolean; label: string }) {
   return (
     <div className="flex justify-between gap-3 text-xs">
-      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{label}</span>
+      <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{label}</span>
       <span className={ok ? "text-emerald-400 font-semibold" : "text-amber-400/90"}>{ok ? "Ready" : "Pending"}</span>
     </div>
   );

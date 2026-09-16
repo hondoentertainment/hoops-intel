@@ -80,7 +80,7 @@ export default function WidgetAnalytics() {
             <EnhancedButton href="/embed-stats" variant="ghost">Full publisher dashboard</EnhancedButton>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <label className="text-[11px] uppercase tracking-[0.18em]" style={{ color: "rgba(255,255,255,0.38)" }}>
+            <label className="text-[11px] uppercase tracking-[0.18em]" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               Window
               <select
                 className="block mt-1 rounded-lg px-3 py-2 text-sm text-white/90 mono-data cursor-pointer border border-white/10 bg-white/[0.06]"
@@ -111,18 +111,18 @@ export default function WidgetAnalytics() {
               key={id}
               className="rounded-xl px-4 py-3 border border-white/[0.08] bg-white/[0.02]"
             >
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {id}
               </div>
               <div className="text-2xl font-bold text-white/90 mono-data mt-1">{totals[id]}</div>
-              <div className="text-[11px] mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-[11px] mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 last {days}d (RPC summary)
               </div>
             </div>
           ))}
         </div>
 
-        <p className="text-[11px] mb-8 mono-data" style={{ color: "rgba(255,255,255,0.42)" }}>
+        <p className="text-[11px] mb-8 mono-data" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           Combined window Σ {totals.sum} · chart rows {series.length}
         </p>
 
@@ -167,7 +167,7 @@ export default function WidgetAnalytics() {
           )}
         </div>
 
-        <div className="flex gap-6 text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="flex gap-6 text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           <span className="flex items-center gap-2">
             <span className="inline-block w-3 h-3 rounded-sm bg-sky-500/80" /> Pulse
           </span>

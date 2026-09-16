@@ -11,7 +11,7 @@ import type { TalkingPoint } from "../lib/podcastData";
 // ═══════════════════════════════════════════════════════════
 
 const segmentStyles: Record<string, { color: string; bg: string; border: string }> = {
-  opener: { color: "var(--hi-accent)", bg: "rgba(142,200,240,0.12)", border: "rgba(142,200,240,0.3)" },
+  opener: { color: "var(--hi-accent-text,#146a8c)", bg: "rgba(142,200,240,0.12)", border: "rgba(142,200,240,0.3)" },
   "deep-dive": { color: "#8B5CF6", bg: "rgba(139,92,246,0.12)", border: "rgba(139,92,246,0.3)" },
   "hot-take": { color: "#F43F5E", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.3)" },
   "rapid-fire": { color: "#F59E0B", bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.3)" },
@@ -38,7 +38,7 @@ function CopyBtn({ text, label = "Copy" }: { text: string; label?: string }) {
       style={
         copied
           ? { background: "rgba(16,185,129,0.15)", color: "#10B981" }
-          : { background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }
+          : { background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }
       }
     >
       {copied ? "Copied!" : label}
@@ -72,13 +72,13 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
             >
               {segmentLabel(point.segment)}
             </span>
-            <span className="text-[10px] font-medium" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <span className="text-[10px] font-medium" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Segment {index + 1}
             </span>
           </div>
           <span
             className="text-xs font-semibold px-2 py-0.5 rounded"
-            style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}
+            style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}
           >
             {point.duration}
           </span>
@@ -91,7 +91,7 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
 
         {/* Key stats */}
         <div className="mb-4">
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Key Stats
           </div>
           <ul className="space-y-1.5">
@@ -136,7 +136,7 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
             <span
               key={p}
               className="text-[10px] font-medium px-2 py-0.5 rounded-full"
-              style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
+              style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
             >
               {p}
             </span>
@@ -162,7 +162,7 @@ export default function PodcastCompanion() {
       description={`Frozen show notes from ${data.date} — not a live daily rundown.`}
     >
         <DeskPanel kicker="Soft launch" className="mb-6">
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             This companion is last generated {data.generatedDate}. It is show-notes mode from a frozen edition, not a current-day podcast product.
           </p>
         </DeskPanel>
@@ -175,7 +175,7 @@ export default function PodcastCompanion() {
             border: "1px solid rgba(142,200,240,0.2)",
           }}
         >
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent)" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
             Episode Title
           </div>
           <h2 className="text-xl font-bold text-white mb-1 leading-snug">
@@ -214,7 +214,7 @@ export default function PodcastCompanion() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white">Show Rundown</h2>
-            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {data.rundown.length} segments
             </span>
           </div>
@@ -261,18 +261,18 @@ export default function PodcastCompanion() {
                 <path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z" />
                 <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
               </svg>
-              <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--hi-accent)" }}>
+              <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                 Tweet Thread ({data.tweetThread.length} posts)
               </div>
             </div>
           </div>
-          <div className="divide-y" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+          <div className="divide-y" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
             {data.tweetThread.map((tweet, i) => (
               <div key={i} className="p-5 flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3 flex-1">
                   <span
                     className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5"
-                    style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent)" }}
+                    style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent-text,#146a8c)" }}
                   >
                     {i + 1}
                   </span>

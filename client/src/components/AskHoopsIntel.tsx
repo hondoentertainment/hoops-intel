@@ -286,7 +286,7 @@ export function ChatMessages({
               </svg>
             </div>
             <h3 className="text-white font-semibold text-sm mb-1">Ask Hoops Intel</h3>
-            <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Ask anything about NBA games, players, standings, and more
             </p>
           </div>
@@ -335,7 +335,7 @@ export function ChatMessages({
                       style={{ background: "var(--hi-accent)", animationDelay: "300ms" }}
                     />
                   </div>
-                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Analyzing...</span>
+                  <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Analyzing...</span>
                 </div>
               ) : (
                 <div className="space-y-1">{renderMarkdown(msg.content)}</div>
@@ -368,7 +368,7 @@ export function ChatInput({
   return (
     <div
       className="px-3 py-3 border-t"
-      style={{ borderColor: "rgba(255,255,255,0.06)" }}
+      style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
     >
       <label htmlFor={inputId} className="block text-xs font-medium mb-2 text-white">
         Ask Hoops Intel
@@ -422,7 +422,7 @@ export function ChatInput({
       </div>
       <div
         className="text-center mt-1.5"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}
       >
         Powered by Hoops Intel AI
       </div>
@@ -499,7 +499,7 @@ export default function AskHoopsIntel() {
           {/* Header */}
           <div
             className="flex items-center justify-between px-4 py-3 border-b flex-shrink-0"
-            style={{ borderColor: "rgba(255,255,255,0.08)" }}
+            style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
           >
             <div className="flex items-center gap-2">
               <div
@@ -514,7 +514,7 @@ export default function AskHoopsIntel() {
                 <div id="floating-chat-title" className="text-white text-xs font-semibold">
                   Ask Hoops Intel
                 </div>
-                <div style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
+                <div style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}>
                   NBA AI Assistant
                 </div>
               </div>
@@ -523,7 +523,7 @@ export default function AskHoopsIntel() {
               <a
                 href="/ask"
                 className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-[var(--hi-text)]"
-                style={{ color: "var(--hi-muted,#5c5c58)", background: "rgba(255,255,255,0.05)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)", background: "var(--hi-surface-2,#f3f3f0)" }}
                 title="Open full page"
                 aria-label="Open full Ask Hoops Intel page"
               >

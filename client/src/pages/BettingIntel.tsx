@@ -151,18 +151,18 @@ export default function BettingIntel() {
             >
               <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent)" }}>
+                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                     {g.tv ? `${g.tv} · ` : ""}
                     {g.time ?? "TBD"}
                   </div>
                   <a href={gameHref} className="group block">
                     <div className="text-xl font-bold text-white flex flex-wrap gap-2 items-baseline group-hover:text-[var(--hi-muted)] transition-colors">
                       <span>{g.awayTeam}</span>
-                      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</span>
+                      <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</span>
                       <span>{g.homeTeam}</span>
                     </div>
                   </a>
-                  <div className="mono-data mt-3 text-lg" style={{ color: "rgba(255,255,255,0.75)" }}>
+                  <div className="mono-data mt-3 text-lg" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {current} · O/U {g.overUnder}
                   </div>
                   {ladder ? (
@@ -193,7 +193,7 @@ export default function BettingIntel() {
                   ) : null}
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     Projection
                   </div>
                   <div className="text-lg font-semibold mt-2" style={{ color: "#10B981" }}>

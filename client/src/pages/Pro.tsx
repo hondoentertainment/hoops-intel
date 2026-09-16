@@ -80,14 +80,14 @@ function PlanCard({
         background: highlighted ? "var(--hi-canvas-soft,#fafaf8)" : "var(--hi-surface,#eeeeec)",
       }}
     >
-      <div className="section-label mb-1" style={{ color: highlighted ? "var(--hi-chip,#ff7a17)" : "var(--hi-text-secondary,#8a8a86)" }}>
+      <div className="section-label mb-1" style={{ color: highlighted ? "var(--hi-chip,#ff7a17)" : "var(--hi-text-secondary,#5c5c58)" }}>
         {title}
       </div>
       <div className="flex items-baseline gap-1 mb-2">
         <span className="display-heading text-4xl" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           {price}
         </span>
-        <span className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>/ {cadence}</span>
+        <span className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>/ {cadence}</span>
       </div>
       <p className="text-xs mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         Cancel anytime. Refunds honored in the first 7 days.
@@ -177,7 +177,7 @@ export default function Pro() {
           <div className="rounded-xl p-6 mb-10" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.3)" }}>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <div className="section-label" style={{ color: "#10B981" }}>PRO ACTIVE</div>
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border border-emerald-500/40 text-emerald-200 bg-emerald-500/10">
+              <span className="desk-chip" style={{ background: "rgba(31,157,106,0.12)", color: "var(--hi-success,#1f9d6a)" }}>
                 Subscribed
               </span>
             </div>
@@ -211,7 +211,7 @@ export default function Pro() {
             </div>
             {portalError ? (
               isStripeConfigError(portalError) ? (
-                <p className="text-sm mt-3 text-amber-200" role="alert">
+                <p className="text-sm mt-3" style={{ color: "var(--hi-warn,#c2410c)" }} role="alert">
                   Billing portal isn&apos;t wired yet ({portalError}). See README env vars or{" "}
                   <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
                 </p>
@@ -228,13 +228,13 @@ export default function Pro() {
                 style={{
                   background: "rgba(245,158,11,0.08)",
                   border: "1px solid rgba(245,158,11,0.25)",
-                  color: "rgba(253,224,71,0.95)",
+                  color: "var(--hi-warn,#c2410c)",
                 }}
                 role="status"
               >
                 <p className="text-sm font-semibold">Upgrade available — checkout pending ops</p>
                 <p className="text-xs opacity-90">
-                  <code className="text-amber-100/90">/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
+                  <code className="hi-accent-text">/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
                   STRIPE_SECRET_KEY + price IDs in Vercel before go-live.
                 </p>
               </div>
@@ -245,7 +245,7 @@ export default function Pro() {
                 style={{
                   background: "rgba(16,185,129,0.06)",
                   border: "1px solid rgba(16,185,129,0.22)",
-                  color: "rgba(167,243,208,0.95)",
+                  color: "var(--hi-success,#1f9d6a)",
                 }}
                 role="status"
               >
@@ -275,12 +275,12 @@ export default function Pro() {
             </div>
             {error ? (
               isStripeConfigError(error) ? (
-                <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "rgba(253,224,71,0.95)" }}>
+                <div className="rounded-lg p-4 mb-10 space-y-2" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "var(--hi-warn,#c2410c)" }}>
                   <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
                   <p className="text-sm opacity-90">{error}</p>
                   <p className="text-xs opacity-80">
                     Production needs Stripe keys and price IDs (see repo README — Environment variables). Questions:{" "}
-                    <a href="mailto:hello@hoopsintel.net" className="underline text-amber-100">hello@hoopsintel.net</a>
+                    <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
                   </p>
                 </div>
               ) : (
@@ -293,7 +293,7 @@ export default function Pro() {
         )}
 
         <div className="mb-10">
-          <div className="section-label mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>WHAT YOU GET</div>
+          <div className="section-label mb-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>WHAT YOU GET</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {FEATURES.map((f, i) => (
               <div key={i} className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -305,7 +305,7 @@ export default function Pro() {
         </div>
 
         <div className="mb-10">
-          <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>DISTRIBUTION & EMBEDS</div>
+          <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>DISTRIBUTION & EMBEDS</div>
           <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Publisher tools for embedding Hoops Intel — widgets, load analytics, and the same surfaces listed under Tools.
           </p>
@@ -324,7 +324,7 @@ export default function Pro() {
           </div>
         </div>
 
-        <div className="rounded-lg p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
+        <div className="rounded-lg p-5 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", border: "1px solid rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
           Billing handled by Stripe. Manage or cancel anytime from{" "}
           <a href="/account" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">
             your account

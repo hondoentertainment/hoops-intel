@@ -57,7 +57,7 @@ describe("editorial UX primitives", () => {
     expect(tools).toContain("Every Hoops Intel tool");
     expect(players).toContain("DeskFilterChip");
     expect(players).toContain("DeskSearchField");
-    expect(players).toContain("var(--hi-accent,#8ec8f0)");
+    expect(players).toContain("var(--hi-accent-text,#146a8c)");
     expect(archive).toContain("DeskFilterChip");
     expect(archive).toContain("desk-field");
     expect(css).toContain(".desk-section-pill");

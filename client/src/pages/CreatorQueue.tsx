@@ -220,7 +220,7 @@ export default function CreatorQueue() {
               Unlock queue
             </button>
           </div>
-          <p className="text-xs mt-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-xs mt-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Stored in sessionStorage only — cleared when you close the tab.
           </p>
         </div>
@@ -287,7 +287,7 @@ export default function CreatorQueue() {
                   <article key={r.id} className="rounded-xl p-5 border border-white/[0.08] bg-white/[0.02]">
                     <div
                       className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2 items-center"
-                      style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                      style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                     >
                       <span className="flex flex-wrap items-center gap-2">
                         <span>{r.created_at.slice(0, 19)}</span>
@@ -314,7 +314,7 @@ export default function CreatorQueue() {
                     <label className="block text-[10px] uppercase tracking-wider text-white/35 mb-1">
                       Original pitch
                     </label>
-                    <p className="text-sm whitespace-pre-wrap leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.68)" }}>
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {r.pitch}
                     </p>
 

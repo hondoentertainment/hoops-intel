@@ -63,7 +63,7 @@ export default function PickEmShareCard({
               >
                 {displayWins}-{displayLosses}
               </div>
-              <div className="text-[10px] uppercase tracking-wider mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-[10px] uppercase tracking-wider mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {recordLabel} {total > 0 ? `· ${pct}%` : ""}
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function PickEmShareCard({
                   {streak}
                   <span className="text-xs ml-1">W</span>
                 </div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   Streak
                 </div>
               </div>
@@ -86,10 +86,10 @@ export default function PickEmShareCard({
                 className="rounded-lg px-3 py-2"
                 style={{ background: "rgba(142,200,240,0.08)", border: "1px solid rgba(142,200,240,0.2)" }}
               >
-                <div className="text-lg font-bold tabular-nums" style={{ color: "var(--hi-accent)" }}>
+                <div className="text-lg font-bold tabular-nums" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                   {wins}-{losses}
                 </div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   Season
                 </div>
               </div>

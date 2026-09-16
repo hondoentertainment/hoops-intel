@@ -173,7 +173,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           className="absolute top-0 right-0 px-2 py-0.5 text-xs font-semibold rounded-bl-lg"
           style={{
             background: "rgba(142,200,240,0.2)",
-            color: "var(--hi-accent)",
+            color: "var(--hi-accent-text,#146a8c)",
             fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.05em",
           }}
@@ -186,7 +186,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
       <div className="flex items-center gap-2 mb-3">
         <span
           className="text-xs font-medium"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
         >
           {game.time}
         </span>
@@ -195,7 +195,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
             className="px-1.5 py-0.5 rounded text-xs font-semibold"
             style={{
               background: "rgba(142,200,240,0.1)",
-              color: "var(--hi-accent)",
+              color: "var(--hi-accent-text,#146a8c)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
@@ -206,7 +206,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
         {game.spread && (
           <span
             className="text-xs"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
           >
             {game.spread}
           </span>
@@ -232,7 +232,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-lg font-bold leading-none mb-0.5"
             style={{
-              color: awayPicked ? "var(--hi-accent)" : "rgba(255,255,255,0.85)",
+              color: awayPicked ? "var(--hi-accent-text,#146a8c)" : "var(--hi-text,#0a0a0a)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
@@ -242,7 +242,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: awayPicked ? "rgba(142,200,240,0.7)" : "rgba(255,255,255,0.35)",
+              color: awayPicked ? "rgba(142,200,240,0.7)" : "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-mono)",
             }}
           >
@@ -251,7 +251,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           {awayPicked && (
             <div
               className="text-xs font-semibold mt-1"
-              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+              style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
             >
               YOUR PICK
             </div>
@@ -260,7 +260,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
 
         <div
           className="text-xs font-bold px-2"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}
         >
           @
         </div>
@@ -282,7 +282,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-lg font-bold leading-none mb-0.5"
             style={{
-              color: homePicked ? "var(--hi-accent)" : "rgba(255,255,255,0.85)",
+              color: homePicked ? "var(--hi-accent-text,#146a8c)" : "var(--hi-text,#0a0a0a)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
@@ -292,7 +292,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: homePicked ? "rgba(142,200,240,0.7)" : "rgba(255,255,255,0.35)",
+              color: homePicked ? "rgba(142,200,240,0.7)" : "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-mono)",
             }}
           >
@@ -301,7 +301,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           {homePicked && (
             <div
               className="text-xs font-semibold mt-1"
-              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+              style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
             >
               YOUR PICK
             </div>
@@ -313,7 +313,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
       {game.keyMatchup && (
         <div
           className="mt-2 text-xs"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {game.keyMatchup}
         </div>
@@ -382,13 +382,13 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
       <div className="text-center">
         <div
           className="text-2xl font-bold leading-none"
-          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+          style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
         >
           {entry.accuracy_pct !== null ? `${entry.accuracy_pct}%` : "—"}
         </div>
         <div
           className="text-xs mt-0.5"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           Season Accuracy
         </div>
@@ -399,13 +399,13 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
           style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}
         >
           {entry.correct_picks}
-          <span style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "1rem" }}>
+          <span style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "1rem" }}>
             /{entry.total_settled}
           </span>
         </div>
         <div
           className="text-xs mt-0.5"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           Correct / Total
         </div>
@@ -549,7 +549,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
             </div>
             <div
               className="text-xs mt-0.5"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {userId
                 ? "Your picks are saved. Accuracy updates after games conclude."
@@ -622,7 +622,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
           {pickedCount > 0 && pickedCount < totalGames && (
             <div
               className="text-xs"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
             >
               {totalGames - pickedCount} remaining
             </div>

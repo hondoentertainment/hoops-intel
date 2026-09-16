@@ -31,7 +31,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
       <div
         className="text-sm font-bold mb-3"
         style={{
-          color: conference === "east" ? "var(--hi-accent)" : "#F59E0B",
+          color: conference === "east" ? "var(--hi-accent-text,#146a8c)" : "#F59E0B",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.08em",
         }}
@@ -51,7 +51,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                   key={h}
                   className="text-left py-2 px-2 text-xs font-semibold"
                   style={{
-                    color: "var(--hi-text-secondary,#8a8a86)",
+                    color: "var(--hi-text-secondary,#5c5c58)",
                     fontFamily: "var(--hi-font-display)",
                     letterSpacing: "0.06em",
                   }}
@@ -96,7 +96,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                   <span
                     className="text-xs font-bold tabular-nums"
                     style={{
-                      color: t.winChange > 0 ? "#10B981" : t.winChange < 0 ? "#F43F5E" : "rgba(255,255,255,0.35)",
+                      color: t.winChange > 0 ? "#10B981" : t.winChange < 0 ? "#F43F5E" : "var(--hi-muted,#5c5c58)",
                       fontFamily: "var(--hi-font-mono)",
                     }}
                   >
@@ -120,7 +120,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                     <span
                       className="text-xs tabular-nums"
                       style={{
-                        color: t.playoffProb >= 90 ? "#10B981" : t.playoffProb >= 50 ? "#F59E0B" : "rgba(255,255,255,0.4)",
+                        color: t.playoffProb >= 90 ? "#10B981" : t.playoffProb >= 50 ? "#F59E0B" : "var(--hi-muted,#5c5c58)",
                         fontFamily: "var(--hi-font-mono)",
                       }}
                     >
@@ -131,7 +131,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                 <td
                   className="py-2 px-2 tabular-nums text-xs"
                   style={{
-                    color: t.championshipProb >= 5 ? "#F59E0B" : "rgba(255,255,255,0.35)",
+                    color: t.championshipProb >= 5 ? "#F59E0B" : "var(--hi-muted,#5c5c58)",
                     fontFamily: "var(--hi-font-mono)",
                   }}
                 >
@@ -175,13 +175,13 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
       <div className="flex items-center gap-4 mt-2">
         <div className="flex items-center gap-1.5">
           <div className="w-6 h-1 rounded" style={{ background: "rgba(142,200,240,0.5)" }} />
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
             Playoff line
           </span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-6 h-1 rounded" style={{ background: "rgba(245,158,11,0.5)" }} />
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
             Play-in line
           </span>
         </div>
@@ -213,7 +213,7 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
           </span>
           <span
             className="text-xs"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
           >
             vs
           </span>
@@ -228,7 +228,7 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
           className="text-xs font-bold px-2 py-0.5 rounded"
           style={{
             background: "rgba(142,200,240,0.12)",
-            color: "var(--hi-accent)",
+            color: "var(--hi-accent-text,#146a8c)",
             fontFamily: "var(--hi-font-display)",
           }}
         >
@@ -237,7 +237,7 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
       </div>
       <p
         className="text-xs"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {matchup.keyFactor}
       </p>
@@ -255,7 +255,7 @@ function BracketRound({ title, matchups }: { title: string; matchups: PlayoffMat
       <div
         className="text-xs font-semibold mb-2"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.08em",
         }}
@@ -285,7 +285,7 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
       <div
         className="text-xs font-semibold mb-4"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.1em",
         }}
@@ -311,7 +311,7 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
               </span>
               <span
                 className="text-xs tabular-nums"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {t.currentWins}-{t.currentLosses}
               </span>
@@ -329,7 +329,7 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
         <button
           onClick={() => setShowAll(!showAll)}
           className="text-xs font-medium mt-3 transition-colors"
-          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-body)" }}
         >
           {showAll ? "Show less" : `Show all ${playoffTeams.length} teams`}
         </button>
@@ -373,13 +373,13 @@ export default function Projections() {
     >
           <div className="flex items-center gap-3 flex-wrap mb-8">
             <SeasonChip>{weekLabel}</SeasonChip>
-            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Generated {generatedDate}
             </span>
           </div>
 
         <DeskPanel kicker="Weekly narrative" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {weeklyNarrative}
           </p>
         </DeskPanel>
@@ -482,7 +482,7 @@ export default function Projections() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
@@ -515,7 +515,7 @@ export default function Projections() {
               <div
                 className="text-sm font-bold mb-3"
                 style={{
-                  color: "var(--hi-accent)",
+                  color: "var(--hi-accent-text,#146a8c)",
                   fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.06em",
                 }}
@@ -557,7 +557,7 @@ export default function Projections() {
               </span>
               <span
                 className="text-sm"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
               >
                 vs
               </span>

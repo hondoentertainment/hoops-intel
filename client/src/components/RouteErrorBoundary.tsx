@@ -62,7 +62,7 @@ export default class RouteErrorBoundary extends Component<Props, State> {
           <a
             href="/"
             className="px-5 py-2 rounded text-sm font-semibold transition-colors hover:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.15)" }}
           >
             Back to today&apos;s desk
           </a>

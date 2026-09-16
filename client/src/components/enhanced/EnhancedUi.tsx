@@ -42,7 +42,7 @@ export function BrandLockup({
             className="truncate font-medium mt-0.5"
             style={{
               fontSize: compact ? 9 : 10,
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               letterSpacing: "0.01em",
             }}
           >
@@ -103,7 +103,7 @@ export function DeskPanel({
       <div className="min-w-0">
         <p className="enhanced-kicker">{kicker}</p>
         {hint ? (
-          <p className="text-xs leading-5 mt-1.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-xs leading-5 mt-1.5" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {hint}
           </p>
         ) : null}
@@ -148,7 +148,7 @@ export function SectionHeader({
     <div className="flex flex-col items-start gap-1 md:flex-row md:items-end md:gap-3 w-full min-w-0">
       <div className="flex-1 min-w-0">
         <p className="enhanced-kicker">{eyebrow}</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 max-md:text-[1.75rem] max-md:leading-8">
+        <h2 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 max-md:text-[1.75rem] max-md:leading-8">
           {title}
         </h2>
       </div>
@@ -176,14 +176,9 @@ export function StatCard({
 }) {
   return (
     <div className="enhanced-card flex flex-col gap-1 p-6 max-md:p-4 min-w-0 overflow-hidden">
-      <p
-        className="text-[10px] font-semibold tracking-[0.8px] uppercase"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
-      >
-        {kicker}
-      </p>
-      <p className="font-bold text-lg leading-[22px] text-[var(--hi-text,#0a0a0a)] break-words">{value}</p>
-      <p className="text-xs leading-[15px] truncate" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+      <p className="enhanced-kicker">{kicker}</p>
+      <p className="hi-stat text-lg">{value}</p>
+      <p className="text-xs leading-4 hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {sub}
       </p>
     </div>
@@ -245,7 +240,7 @@ export function DeskSearchField({
           height="16"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="var(--hi-text-secondary,#8a8a86)"
+          stroke="var(--hi-text-secondary,#5c5c58)"
           strokeWidth="2"
           aria-hidden
         >
@@ -285,9 +280,9 @@ export function DeskLinkCard({
       className="enhanced-card flex flex-col gap-1 p-6 min-h-[4.75rem] min-w-0 overflow-hidden transition-colors"
     >
       {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
-      <p className="text-base font-semibold leading-5 text-[var(--hi-text,#0a0a0a)]">{title}</p>
+      <p className="text-base font-semibold leading-5 hi-title text-[var(--hi-text,#0a0a0a)]">{title}</p>
       {description ? (
-        <p className="text-xs leading-[18px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-xs leading-[18px] hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {description}
         </p>
       ) : null}
@@ -367,20 +362,20 @@ export function GamePreviewCard({
       <div className="flex items-center gap-2 min-w-0">
         <p className="enhanced-kicker">{status}</p>
         <span className="flex-1 min-w-0" />
-        <p className="text-sm shrink-0 text-right leading-5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-sm shrink-0 text-right leading-5" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {when}
         </p>
       </div>
       <div className="flex flex-col gap-1 min-w-0">
-        <p className="mono-data font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#0a0a0a)] break-words">
+        <p className="hi-title font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#0a0a0a)]">
           {away}{" "}
-          <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-sm font-normal" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             @
           </span>{" "}
           {home}
         </p>
         {network ? (
-          <p className="text-sm font-semibold tracking-[0.8px] leading-5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm font-semibold tracking-[0.8px] leading-5" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {network}
           </p>
         ) : null}
@@ -419,7 +414,7 @@ export function PageHero({
     <header className="flex flex-col gap-2 min-w-0">
       <p className="enhanced-kicker">{kicker}</p>
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between min-w-0">
-        <Heading className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[40px] leading-[1.1] max-md:text-[1.75rem] max-md:leading-8 min-w-0">
+        <Heading className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[40px] leading-[1.1] max-md:text-[1.75rem] max-md:leading-8 min-w-0">
           {title}
         </Heading>
         {action && actionHref ? (
@@ -433,12 +428,10 @@ export function PageHero({
         ) : null}
       </div>
       {description ? (
-        <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
-          {description}
-        </p>
+        <p className="hi-lede">{description}</p>
       ) : null}
       {meta ? (
-        <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {meta}
         </p>
       ) : null}
@@ -463,21 +456,17 @@ export function EmptyState({
   footnote?: string;
 }) {
   return (
-    <div className="flex flex-col items-center text-center gap-3 py-10 md:py-16 px-4 min-w-0">
+    <div className="flex flex-col items-center text-center gap-4 py-12 md:py-20 px-5 min-w-0">
       {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
-      <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] md:text-[40px] leading-tight max-md:text-[1.75rem]">
+      <h2 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] md:text-[40px] leading-tight max-md:text-[1.75rem]">
         {title}
       </h2>
-      {body ? (
-        <p className="mobile-readable max-w-lg" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
-          {body}
-        </p>
-      ) : null}
+      {body ? <p className="hi-empty-copy">{body}</p> : null}
       {pill || footnote ? (
         <div className="enhanced-card flex flex-col items-center justify-center gap-2 px-8 py-8 w-full max-w-xl">
           {pill ? <StatusPill tone={pillTone}>{pill}</StatusPill> : null}
           {footnote ? (
-            <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               {footnote}
             </p>
           ) : null}

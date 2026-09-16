@@ -80,7 +80,7 @@ export default function Tools() {
           placeholder="Filter by name or description…"
         />
         {query.trim() ? (
-          <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }} role="status">
+          <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }} role="status">
             {totalMatches === 0
               ? "No tools match — try Pulse or Injuries."
               : `${totalMatches} tool${totalMatches === 1 ? "" : "s"} found`}

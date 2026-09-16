@@ -54,7 +54,7 @@ function RankChangeBadge({ rank, prevRank }: { rank: number; prevRank: number })
       className="inline-flex items-center text-xs font-bold px-1.5 py-0.5 rounded"
       style={{
         background: "rgba(255,255,255,0.05)",
-        color: "var(--hi-text-secondary,#8a8a86)",
+        color: "var(--hi-text-secondary,#5c5c58)",
         fontFamily: "var(--hi-font-display)",
       }}
     >
@@ -123,7 +123,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
           className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl leading-none"
           style={{
             background: "rgba(142,200,240,0.1)",
-            color: "var(--hi-accent)",
+            color: "var(--hi-accent-text,#146a8c)",
             fontFamily: "var(--hi-font-display)",
           }}
         >
@@ -142,7 +142,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
             </span>
             <span
               className="flex items-center gap-1.5 text-sm font-semibold"
-              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+              style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
             >
               <TeamLogo team={p.team} size={18} />
               {p.team}
@@ -153,7 +153,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
           {/* Age + contract */}
           <div
             className="text-xs mb-3"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Age {p.age} · {p.contract}
           </div>
@@ -163,7 +163,7 @@ function PlayerCard({ p }: { p: TVIPlayer }) {
             <div
               className="text-xs font-semibold mb-1.5"
               style={{
-                color: "var(--hi-text-secondary,#8a8a86)",
+                color: "var(--hi-text-secondary,#5c5c58)",
                 fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
@@ -209,13 +209,13 @@ export default function TradeValue() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Methodology" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             The TVI ranks the {players.length} most tradeable players this week by AI-assessed value. Inputs: recent performance trend, contract (years + salary), age, team&apos;s playoff position, injury history.
           </p>
         </DeskPanel>
@@ -224,7 +224,7 @@ export default function TradeValue() {
         <div className="flex items-center gap-4 mb-6">
           <span
             className="text-xs"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Rank change:
           </span>
@@ -242,7 +242,7 @@ export default function TradeValue() {
           </span>
           <span
             className="text-xs font-semibold"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}
           >
             — Stable
           </span>
@@ -292,7 +292,7 @@ export default function TradeValue() {
           style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
         />
 
-        <p className="text-center text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
+        <p className="text-center text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
           Rankings regenerate weekly from the latest ESPN slate + Hoops Intel prompts.
         </p>
     </ToolPageLayout>

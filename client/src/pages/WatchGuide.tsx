@@ -12,7 +12,7 @@ import { watchGuideData } from "../lib/watchGuideData";
 
 const FACTOR_LABELS: { key: keyof (typeof watchGuideData.games)[0]["factors"]; label: string; color: string }[] = [
   { key: "starPower", label: "Stars", color: "#F59E0B" },
-  { key: "playoffImplications", label: "Playoffs", color: "var(--hi-accent)" },
+  { key: "playoffImplications", label: "Playoffs", color: "var(--hi-accent-text,#146a8c)" },
   { key: "rivalry", label: "Rivalry", color: "#F43F5E" },
   { key: "entertainment", label: "Entertain", color: "#10B981" },
   { key: "storyline", label: "Story", color: "#A855F7" },
@@ -28,7 +28,7 @@ function FactorBars({ factors }: { factors: (typeof watchGuideData.games)[0]["fa
           <div key={key}>
             <div
               className="text-[9px] uppercase tracking-wider text-center mb-1"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {label}
             </div>
@@ -114,7 +114,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
               background: game.rank <= 2
                 ? "rgba(142,200,240,0.12)"
                 : "rgba(255,255,255,0.04)",
-              color: game.rank <= 2 ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+              color: game.rank <= 2 ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
             }}
           >
@@ -132,7 +132,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
             <div className="flex items-center gap-2 mt-0.5">
               <span
                 className="text-xs"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {game.time}
               </span>
@@ -142,7 +142,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
                   background: game.tv === "ESPN"
                     ? "rgba(244,63,94,0.12)"
                     : "rgba(255,255,255,0.04)",
-                  color: game.tv === "ESPN" ? "#F43F5E" : "rgba(255,255,255,0.35)",
+                  color: game.tv === "ESPN" ? "#F43F5E" : "var(--hi-muted,#5c5c58)",
                   fontFamily: "var(--hi-font-display)",
                 }}
               >
@@ -170,7 +170,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
         {/* Headline */}
         <p
           className="text-sm font-semibold mt-3 mb-2"
-          style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {game.headline}
         </p>
@@ -178,7 +178,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
         {/* Key matchup */}
         <div
           className="text-xs mb-3"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
         >
           Key Matchup: {game.keyMatchup}
         </div>
@@ -191,7 +191,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
           <button
             onClick={() => setExpanded(!expanded)}
             className="mt-3 text-xs font-semibold transition-all hover:opacity-80"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-body)" }}
           >
             {expanded ? "Hide Storyline \u25B2" : "Full Storyline \u25BC"}
           </button>
@@ -203,7 +203,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
             style={{
               color: "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-body)",
-              borderColor: "rgba(255,255,255,0.06)",
+              borderColor: "var(--hi-muted,#5c5c58)",
             }}
           >
             {game.storyline}
@@ -301,7 +301,7 @@ export default function WatchGuide() {
       headerToolbarExtra={
         <span
           className="text-xs whitespace-nowrap"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {data.games.length} games tonight
         </span>
@@ -333,7 +333,7 @@ export default function WatchGuide() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             Game of the Night
           </h2>
@@ -344,7 +344,7 @@ export default function WatchGuide() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             Full Rankings
           </h2>
@@ -373,7 +373,7 @@ export default function WatchGuide() {
         >
           <h3
             className="text-[10px] font-bold uppercase tracking-wider mb-2"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}
           >
             Watch Score Factors
           </h3>
@@ -386,7 +386,7 @@ export default function WatchGuide() {
                 />
                 <div
                   className="text-[9px] uppercase tracking-wider"
-                  style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+                  style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
                 >
                   {label}
                 </div>
@@ -395,7 +395,7 @@ export default function WatchGuide() {
           </div>
           <p
             className="text-[10px] text-center mt-2"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Each factor scored 0-20. Watch Score = sum of all factors.
           </p>

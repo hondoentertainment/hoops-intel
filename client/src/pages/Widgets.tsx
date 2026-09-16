@@ -70,7 +70,7 @@ function CopyButton({ text }: { text: string }) {
       style={
         copied
           ? { background: "rgba(16,185,129,0.15)", color: "#10B981", border: "1px solid rgba(16,185,129,0.3)" }
-          : { background: "rgba(142,200,240,0.12)", color: "var(--hi-accent)", border: "1px solid rgba(142,200,240,0.25)" }
+          : { background: "rgba(142,200,240,0.12)", color: "var(--hi-accent-text,#146a8c)", border: "1px solid rgba(142,200,240,0.25)" }
       }
     >
       {copied ? (
@@ -108,8 +108,8 @@ function SizePicker({ value, onChange }: { value: WidgetSize; onChange: (s: Widg
           className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all capitalize"
           style={
             value === s
-              ? { background: "var(--hi-accent)", color: "var(--hi-text,#0a0a0a)" }
-              : { background: "rgba(255,255,255,0.05)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.08)" }
+              ? { background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-text,#0a0a0a)" }
+              : { background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.08)" }
           }
         >
           {s}
@@ -134,8 +134,8 @@ function ThemePicker({ value, onChange }: { value: WidgetTheme; onChange: (t: Wi
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all capitalize"
           style={
             value === t
-              ? { background: "var(--hi-accent)", color: "var(--hi-text,#0a0a0a)" }
-              : { background: "rgba(255,255,255,0.05)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.08)" }
+              ? { background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-text,#0a0a0a)" }
+              : { background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)", border: "1px solid rgba(255,255,255,0.08)" }
           }
         >
           <span
@@ -191,7 +191,7 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div>
             <h2 className="text-lg font-bold text-white mb-1">{widget.name}</h2>
-            <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {widget.description}
             </p>
           </div>
@@ -207,13 +207,13 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
         {/* Controls */}
         <div className="flex flex-wrap gap-4 items-center">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Size
             </div>
             <SizePicker value={size} onChange={setSize} />
           </div>
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Theme
             </div>
             <ThemePicker value={theme} onChange={setTheme} />
@@ -238,7 +238,7 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
       <div className="p-6 space-y-6" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div>
           <div className="flex items-center justify-between mb-3">
-            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Script Embed (recommended — auto-resizes)
             </div>
             <CopyButton text={scriptEmbedCode} />
@@ -260,7 +260,7 @@ function WidgetSection({ widget }: { widget: WidgetConfig }) {
         </div>
         <div>
           <div className="flex items-center justify-between mb-3">
-            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               iframe Fallback (fixed size)
             </div>
             <CopyButton text={embedCode} />
@@ -329,7 +329,7 @@ function PublisherEmbedRollup() {
           </a>
         </span>
       </div>
-      <p className="text-xs mb-5 leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="text-xs mb-5 leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         Counts ingest when Supabase exposes <span className="mono-data text-white/70">embed_analytics_events</span>. Silent zeroes usually mean telemetry migration pending — each iframe ping still forwards from production traffic.
       </p>
       <div className="grid sm:grid-cols-3 gap-3">
@@ -383,13 +383,13 @@ export default function Widgets() {
         </div>
 
         <DeskPanel kicker="Publisher handbook" className="mb-12">
-          <p className="text-sm mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
-            Hoops Intel serves embeds over HTTPS only. Prefer the script loader (<code className="mono-data text-[11px]" style={{ color: "var(--hi-accent,#8ec8f0)" }}>embed.js</code>) so iframe
-            height tracks content via <code className="mono-data text-[11px]" style={{ color: "var(--hi-accent,#8ec8f0)" }}>postMessage</code>; fall back to the static iframe if your CMS sanitizes scripts.
+          <p className="text-sm mb-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+            Hoops Intel serves embeds over HTTPS only. Prefer the script loader (<code className="mono-data text-[11px]" style={{ color: "var(--hi-accent-text,#146a8c)" }}>embed.js</code>) so iframe
+            height tracks content via <code className="mono-data text-[11px]" style={{ color: "var(--hi-accent-text,#146a8c)" }}>postMessage</code>; fall back to the static iframe if your CMS sanitizes scripts.
           </p>
           <div className="overflow-x-auto text-xs mono-data rounded-lg mb-4" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <table className="w-full text-left [&_td]:border-b [&_td]:border-white/5 [&_td]:py-2 [&_td]:px-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
-              <thead style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+              <thead style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                 <tr>
                   <td className="font-bold">Widget ID</td>
                   <td className="font-bold">Default width</td>
@@ -431,7 +431,7 @@ script-src 'self' https://hoopsintel.net;
 # SPA re-mount helper after client-side navigations:
 window.HoopsIntel && HoopsIntel.mount();`}
           </pre>
-          <p className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             The loader sandboxes injected iframes with <code>allow-scripts allow-same-origin allow-popups</code> — add{" "}
             <code>allow-forms</code> locally if your integration needs in-widget forms (not shipped by Hoops Intel today).
           </p>
@@ -476,13 +476,13 @@ window.HoopsIntel && HoopsIntel.mount();`}
               <div key={item.step} className="flex gap-3">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent)" }}
+                  style={{ background: "rgba(142,200,240,0.15)", color: "var(--hi-accent-text,#146a8c)" }}
                 >
                   {item.step}
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-white mb-1">{item.title}</div>
-                  <div className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     {item.desc}
                   </div>
                 </div>

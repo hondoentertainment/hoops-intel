@@ -41,7 +41,7 @@ export default function RivalTonightBanner() {
           <span className="text-sm font-semibold text-white">
             {preview.awayTeam} @ {preview.homeTeam}
           </span>
-          <span className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {preview.time ?? ""}
             {preview.tv ? ` · ${preview.tv}` : ""}
           </span>

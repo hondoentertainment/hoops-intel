@@ -293,7 +293,7 @@ export default function EmbedPublisherStats() {
       <UnavailableBanner flags={flags} />
 
       <div className="flex flex-wrap items-center gap-3 mb-8">
-        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Period
         </span>
         <div className="flex flex-wrap gap-2">
@@ -303,7 +303,7 @@ export default function EmbedPublisherStats() {
             </DeskFilterChip>
           ))}
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider ml-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <span className="text-[10px] font-bold uppercase tracking-wider ml-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Widget
         </span>
         <select
@@ -312,7 +312,7 @@ export default function EmbedPublisherStats() {
           className="px-3 py-2 rounded-lg text-xs font-semibold"
           style={{
             background: "rgba(255,255,255,0.05)",
-            color: "rgba(255,255,255,0.75)",
+            color: "var(--hi-muted,#5c5c58)",
             border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
@@ -409,7 +409,7 @@ export default function EmbedPublisherStats() {
                     {flags.summaryUnavailable ? "—" : r.loads > 0 ? r.loads : "0"}
                   </div>
                   <WidgetSparkline values={sparklineByWidget[r.id]} />
-                  <div className="text-[10px] mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="text-[10px] mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     Total loads ({days}d)
                   </div>
                 </div>
@@ -436,7 +436,7 @@ export default function EmbedPublisherStats() {
                 className="px-3 py-1.5 rounded-lg text-xs max-w-[200px]"
                 style={{
                   background: "rgba(255,255,255,0.05)",
-                  color: "rgba(255,255,255,0.75)",
+                  color: "var(--hi-muted,#5c5c58)",
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               />
@@ -486,10 +486,10 @@ export default function EmbedPublisherStats() {
               className="px-5 py-4 flex items-center justify-between gap-3 flex-wrap"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
             >
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 Daily breakdown
               </span>
-              <span className="text-[10px] mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <span className="text-[10px] mono-data" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 Newest first · UTC dates
               </span>
             </div>
@@ -499,7 +499,7 @@ export default function EmbedPublisherStats() {
                   <tr style={{ background: "rgba(0,0,0,0.25)" }}>
                     <th
                       className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-wider"
-                      style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                      style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                     >
                       Date
                     </th>
@@ -507,7 +507,7 @@ export default function EmbedPublisherStats() {
                       <th
                         key={id}
                         className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-wider"
-                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                        style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                       >
                         {id === "pulse" ? "Pulse" : id === "ticker" ? "Ticker" : "Injury"}
                       </th>
@@ -526,7 +526,7 @@ export default function EmbedPublisherStats() {
                       <td
                         colSpan={tableColumns.length + 1}
                         className="px-5 py-10 text-center text-xs"
-                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                        style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                       >
                         No daily rows yet for this window. Loads will appear after embed traffic is recorded.
                       </td>
@@ -550,7 +550,7 @@ export default function EmbedPublisherStats() {
         </>
       )}
 
-      <p className="mt-8 text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="mt-8 text-xs text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         <a href="/widgets" className="text-[var(--hi-text)] underline underline-offset-2">
           ← Back to widgets
         </a>

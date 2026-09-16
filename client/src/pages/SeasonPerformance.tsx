@@ -149,13 +149,13 @@ function StatCard({ label, value, sub, color }: { label: string; value: string; 
       className="rounded-xl p-5 text-center"
       style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
     >
-      <div className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
+      <div className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
         {label}
       </div>
       <div className="text-3xl font-bold mb-1" style={{ color, fontFamily: "var(--hi-font-mono)" }}>
         {value}
       </div>
-      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{sub}</div>
+      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{sub}</div>
     </div>
   );
 }
@@ -223,10 +223,10 @@ export default function SeasonPerformance() {
           style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
         >
           <div className="flex items-center justify-between mb-3">
-            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
               Season Accuracy Trend
             </div>
-            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Win rate by month
             </div>
           </div>
@@ -246,7 +246,7 @@ export default function SeasonPerformance() {
                       {pct(m.correct, m.total)}%
                     </div>
                   </div>
-                  <div className="w-14 text-xs text-right" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}>
+                  <div className="w-14 text-xs text-right" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}>
                     {m.correct}/{m.total}
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export default function SeasonPerformance() {
               className="rounded-xl p-5"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
             >
-              <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
+              <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
                 Key Insights
               </div>
               <div className="grid md:grid-cols-2 gap-4">
@@ -282,11 +282,11 @@ export default function SeasonPerformance() {
                   { label: "Hardest Team to Predict", value: "Dallas Mavericks — 55.1%", detail: "Tanking teams with rookie variance create the most uncertainty" },
                 ].map((insight) => (
                   <div key={insight.label} className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)" }}>
-                    <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}>
+                    <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}>
                       {insight.label}
                     </div>
                     <div className="text-sm font-semibold text-white mb-1">{insight.value}</div>
-                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{insight.detail}</div>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{insight.detail}</div>
                   </div>
                 ))}
               </div>
@@ -336,7 +336,7 @@ export default function SeasonPerformance() {
             {/* Table Header */}
             <div
               className="grid grid-cols-12 gap-2 px-4 py-3 text-xs font-semibold"
-              style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
+              style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
             >
               <div className="col-span-2">MONTH</div>
               <div className="col-span-2 text-center">RECORD</div>
@@ -357,19 +357,19 @@ export default function SeasonPerformance() {
                   }}
                 >
                   <div className="col-span-2 font-semibold text-white">{m.month}</div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "var(--hi-muted,#5c5c58)" }}>
                     {m.correct}-{m.total - m.correct}
                   </div>
                   <div className="col-span-2 text-center font-semibold" style={{ color: getAccuracyColor(p), fontFamily: "var(--hi-font-mono)" }}>
                     {pct(m.correct, m.total)}%
                   </div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "var(--hi-muted,#5c5c58)" }}>
                     {m.ats}-{m.atsTotal - m.ats}
                   </div>
                   <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: getAccuracyColor(parseFloat(pct(m.ats, m.atsTotal))) }}>
                     {pct(m.ats, m.atsTotal)}%
                   </div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "var(--hi-muted,#5c5c58)" }}>
                     {m.featuredCorrect}/{m.featuredTotal}
                   </div>
                 </div>
@@ -384,13 +384,13 @@ export default function SeasonPerformance() {
               <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
                 {totalCorrect}-{totalGames - totalCorrect}
               </div>
-              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}>
+              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}>
                 {pct(totalCorrect, totalGames)}%
               </div>
               <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
                 {totalATS}-{totalATSGames - totalATS}
               </div>
-              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}>
+              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}>
                 {pct(totalATS, totalATSGames)}%
               </div>
               <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
@@ -408,7 +408,7 @@ export default function SeasonPerformance() {
                 className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
                 style={{
                   background: teamSort === "pct" ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.04)",
-                  color: teamSort === "pct" ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+                  color: teamSort === "pct" ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
                   border: `1px solid ${teamSort === "pct" ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
                 }}
               >
@@ -419,7 +419,7 @@ export default function SeasonPerformance() {
                 className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
                 style={{
                   background: teamSort === "total" ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.04)",
-                  color: teamSort === "total" ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+                  color: teamSort === "total" ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
                   border: `1px solid ${teamSort === "total" ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
                 }}
               >
@@ -435,7 +435,7 @@ export default function SeasonPerformance() {
                 >
                   <div
                     className="w-6 text-center text-xs font-bold"
-                    style={{ color: i < 3 ? "#10B981" : i >= 27 ? "#EF4444" : "rgba(255,255,255,0.35)", fontFamily: "var(--hi-font-mono)" }}
+                    style={{ color: i < 3 ? "#10B981" : i >= 27 ? "#EF4444" : "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
                   >
                     {i + 1}
                   </div>
@@ -457,7 +457,7 @@ export default function SeasonPerformance() {
                   <div className="w-14 text-right text-xs font-semibold" style={{ color: getAccuracyColor(team.pct), fontFamily: "var(--hi-font-mono)" }}>
                     {team.pct.toFixed(1)}%
                   </div>
-                  <div className="w-12 text-right text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}>
+                  <div className="w-12 text-right text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}>
                     {team.correct}/{team.total}
                   </div>
                 </div>
@@ -481,7 +481,7 @@ export default function SeasonPerformance() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-xs font-semibold text-white">{pred.matchup}</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}>
                       {pred.date}
                     </span>
                   </div>
@@ -507,15 +507,15 @@ export default function SeasonPerformance() {
 
         {/* Footer Note */}
         <div className="mt-12 pt-6 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Predictions are generated by Claude AI based on team performance, injuries, scheduling, and historical data.
             <br />
             Past performance does not guarantee future accuracy. For entertainment purposes only.
           </p>
           <div className="mt-3 flex justify-center gap-3">
-            <a href="/" className="text-xs" style={{ color: "var(--hi-accent)" }}>Home</a>
-            <a href="/archive" className="text-xs" style={{ color: "var(--hi-accent)" }}>Archive</a>
-            <a href="/pick-em" className="text-xs" style={{ color: "var(--hi-accent)" }}>Pick&apos;Em</a>
+            <a href="/" className="text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>Home</a>
+            <a href="/archive" className="text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>Archive</a>
+            <a href="/pick-em" className="text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>Pick&apos;Em</a>
           </div>
         </div>
     </ToolPageLayout>

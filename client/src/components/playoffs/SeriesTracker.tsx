@@ -58,7 +58,7 @@ export function SeriesTracker({ games, higherTeam, lowerTeam, highlightedGame, o
               .filter(Boolean)
               .join(" ")}
             style={{
-              borderColor: muted ? "transparent" : "rgba(255,255,255,0.06)",
+              borderColor: muted ? "transparent" : "var(--hi-muted,#5c5c58)",
               background:
                 isFinal && win ? (isHi ? `${getTeamColor(higherTeam)}35` : `${getTeamColor(lowerTeam)}35`) : muted ? undefined : "rgba(142,200,240,0.12)",
               color:

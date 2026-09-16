@@ -31,7 +31,7 @@ export default function PulseMethodology() {
         <Section title="How we talk about accountability">
           <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             On <a href="/pick-em">Pick ’Em</a> you will see:&nbsp;
-            <strong style={{ color: "rgba(255,255,255,0.9)" }}>Pulse-vs-board alignment</strong>—did our top-listed stars ultimately play for winners in
+            <strong style={{ color: "var(--hi-text,#0a0a0a)" }}>Pulse-vs-board alignment</strong>—did our top-listed stars ultimately play for winners in
             finalized games bundled with the desk? That is illustrative, not a claim of causal inference.
           </p>
           <p className="text-sm leading-relaxed mt-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>

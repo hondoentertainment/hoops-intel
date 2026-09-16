@@ -67,7 +67,7 @@ export default function Rivals() {
 function Select({ label, val, on }: { label: string; val: string; on: (v: string) => void }) {
   return (
     <label className="block">
-      <span className="mono-data text-[10px] uppercase block mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <span className="mono-data text-[10px] uppercase block mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         {label}
       </span>
       <select

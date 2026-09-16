@@ -93,9 +93,9 @@ export default function ShareButton({
         className={`flex items-center gap-1.5 ${btnPad} rounded ${textSize} font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60`}
         style={{
           background: open ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.06)",
-          color: open ? "var(--hi-accent)" : "rgba(255,255,255,0.55)",
+          color: open ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
           border: "1px solid",
-          borderColor: open ? "rgba(142,200,240,0.4)" : "rgba(255,255,255,0.1)",
+          borderColor: open ? "rgba(142,200,240,0.4)" : "var(--hi-muted,#5c5c58)",
         }}
         aria-label="Share"
         aria-haspopup="menu"

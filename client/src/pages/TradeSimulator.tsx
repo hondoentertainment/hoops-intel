@@ -101,7 +101,7 @@ function ImpactBar({ label, value }: { label: string; value: number }) {
       <span
         className="text-xs w-20 text-right flex-shrink-0"
         style={{
-          color: "var(--hi-text-secondary,#8a8a86)",
+          color: "var(--hi-text-secondary,#5c5c58)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.04em",
           fontSize: "0.65rem",
@@ -190,20 +190,20 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
         <div className="flex items-center gap-3">
           <span
             className="flex items-center gap-2 text-lg font-bold"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             <TeamLogo team={trade.team1.team} size={24} />
             {trade.team1.team}
           </span>
           <span
             className="text-xs"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             trades with
           </span>
           <span
             className="flex items-center gap-2 text-lg font-bold"
-            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
           >
             <TeamLogo team={trade.team2.team} size={24} />
             {trade.team2.team}
@@ -219,7 +219,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -240,7 +240,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -261,7 +261,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2 mt-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -275,7 +275,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div className="mt-2 flex items-center gap-2">
             <span
               className="text-xs"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               Win proj:
             </span>
@@ -288,7 +288,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -309,7 +309,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -330,7 +330,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div
             className="text-xs font-semibold mb-2 mt-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -344,7 +344,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           <div className="mt-2 flex items-center gap-2">
             <span
               className="text-xs"
-              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               Win proj:
             </span>
@@ -363,7 +363,7 @@ function TradeCard({ trade }: { trade: TradeProposal }) {
           onClick={() => setExpanded(!expanded)}
           className="text-xs font-semibold transition-colors cursor-pointer"
           style={{
-            color: "var(--hi-accent)",
+            color: "var(--hi-accent-text,#146a8c)",
             fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.04em",
             background: "none",
@@ -470,7 +470,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
           <div
             className="text-xs font-semibold mb-1"
             style={{
-              color: "var(--hi-accent)",
+              color: "var(--hi-accent-text,#146a8c)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -489,7 +489,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
             onClick={handleReset}
             className="text-xs font-semibold cursor-pointer"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               background: "rgba(255,255,255,0.05)",
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: "6px",
@@ -510,7 +510,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
           <label
             className="block text-xs font-semibold mb-1.5"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -539,7 +539,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
           {team1 && (
             <div className="mt-3 space-y-1">
               {team1Players.length === 0 ? (
-                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
+                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
                   No tradeable players in database for {team1}
                 </p>
               ) : (
@@ -562,7 +562,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                       <span className="text-sm font-semibold" style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}>
                         {p.name}
                       </span>
-                      <span className="text-xs ml-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <span className="text-xs ml-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         {p.position} / {p.salary}
                       </span>
                     </div>
@@ -572,7 +572,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
               {selected1.size > 0 && (
                 <div
                   className="text-xs font-semibold mt-2 px-3"
-                  style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   Total: ${salary1.toFixed(1)}M
                 </div>
@@ -586,7 +586,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
           <label
             className="block text-xs font-semibold mb-1.5"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
@@ -615,7 +615,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
           {team2 && (
             <div className="mt-3 space-y-1">
               {team2Players.length === 0 ? (
-                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
+                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}>
                   No tradeable players in database for {team2}
                 </p>
               ) : (
@@ -638,7 +638,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                       <span className="text-sm font-semibold" style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}>
                         {p.name}
                       </span>
-                      <span className="text-xs ml-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <span className="text-xs ml-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         {p.position} / {p.salary}
                       </span>
                     </div>
@@ -648,7 +648,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
               {selected2.size > 0 && (
                 <div
                   className="text-xs font-semibold mt-2 px-3"
-                  style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   Total: ${salary2.toFixed(1)}M
                 </div>
@@ -694,7 +694,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                 <div
                   className="text-xs font-semibold mb-1"
                   style={{
-                    color: "var(--hi-text-secondary,#8a8a86)",
+                    color: "var(--hi-text-secondary,#5c5c58)",
                     fontFamily: "var(--hi-font-display)",
                     letterSpacing: "0.08em",
                   }}
@@ -703,7 +703,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                 </div>
                 <div
                   className="text-lg font-bold"
-                  style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   {totalValue1}
                 </div>
@@ -712,7 +712,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                 <div
                   className="text-xs font-semibold mb-1"
                   style={{
-                    color: "var(--hi-text-secondary,#8a8a86)",
+                    color: "var(--hi-text-secondary,#5c5c58)",
                     fontFamily: "var(--hi-font-display)",
                     letterSpacing: "0.08em",
                   }}
@@ -721,7 +721,7 @@ function BuildYourOwnTrade({ players }: { players: TradeablePlayer[] }) {
                 </div>
                 <div
                   className="text-lg font-bold"
-                  style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   {totalValue2}
                 </div>
@@ -809,7 +809,7 @@ function HottestNames({ hottest }: { hottest: { player: string; team: string; re
                 </span>
                 <span
                   className="text-xs font-semibold"
-                  style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+                  style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
                 >
                   {h.team}
                 </span>
@@ -852,7 +852,7 @@ export default function TradeSimulator() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
@@ -898,7 +898,7 @@ export default function TradeSimulator() {
         >
           <p
             className="text-xs"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Trade proposals are AI-generated for entertainment and analysis purposes.
             Salary figures are approximate. All trades subject to league approval.

@@ -72,7 +72,7 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
                 className="text-[10px] px-2 py-0.5 rounded-full font-medium"
                 style={{
                   background: ref === assignment.leadRef ? "rgba(142,200,240,0.12)" : "rgba(255,255,255,0.06)",
-                  color: ref === assignment.leadRef ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+                  color: ref === assignment.leadRef ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
                 }}
               >
                 {ref}
@@ -97,7 +97,7 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{leadProfile.experience}</div>
+                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{leadProfile.experience}</div>
                 <div className="text-xs font-semibold" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {leadProfile.gamesThisSeason} games
                 </div>
@@ -105,19 +105,19 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="text-center">
-                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Fouls/G</div>
-                <div className="text-sm font-bold" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}>
+                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Fouls/G</div>
+                <div className="text-sm font-bold" style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}>
                   {leadProfile.tendencies.foulsPerGame}
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Home W%</div>
-                <div className="text-sm font-bold" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}>
+                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Home W%</div>
+                <div className="text-sm font-bold" style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}>
                   {leadProfile.tendencies.homeWinPct}%
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Pace</div>
+                <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Pace</div>
                 <div className="text-sm font-bold" style={{ color: paceColor(leadProfile.tendencies.avgPace), fontFamily: "var(--hi-font-display)" }}>
                   {leadProfile.tendencies.avgPace > 0 ? "+" : ""}{leadProfile.tendencies.avgPace}
                 </div>
@@ -128,7 +128,7 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
 
         {/* Impact prediction */}
         <div className="mb-3">
-          <div className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <div className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Impact Prediction
           </div>
           <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -150,7 +150,7 @@ function AssignmentCard({ assignment }: { assignment: TonightRefAssignment }) {
         </div>
 
         {/* Historical */}
-        <div className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {assignment.historical}
         </div>
       </div>
@@ -182,7 +182,7 @@ export default function RefReports() {
   const SortHeader = ({ label, colKey }: { label: string; colKey: SortKey }) => (
     <th
       className="text-left text-[10px] font-bold uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[var(--hi-text)] transition-colors"
-      style={{ color: sortKey === colKey ? "var(--hi-accent)" : "rgba(255,255,255,0.3)" }}
+      style={{ color: sortKey === colKey ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}
       onClick={() => handleSort(colKey)}
     >
       <span className="flex items-center gap-1">
@@ -202,7 +202,7 @@ export default function RefReports() {
       description={`${formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies`}
     >
         <DeskPanel kicker="Weekly trend" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {data.weeklyTrend}
           </p>
         </DeskPanel>
@@ -270,17 +270,17 @@ export default function RefReports() {
                       >
                         <td className="px-4 py-3">
                           <div className="text-sm font-semibold text-white">{ref.name}</div>
-                          <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                          <div className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                             #{ref.number} · {ref.experience}
                           </div>
                         </td>
                         <td className="px-4 py-3 text-sm font-semibold" style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
                           {ref.gamesThisSeason}
                         </td>
-                        <td className="px-4 py-3 text-sm font-semibold" style={{ color: ref.tendencies.foulsPerGame > 43 ? "#F43F5E" : ref.tendencies.foulsPerGame < 41 ? "#10B981" : "rgba(255,255,255,0.6)", fontFamily: "var(--hi-font-display)" }}>
+                        <td className="px-4 py-3 text-sm font-semibold" style={{ color: ref.tendencies.foulsPerGame > 43 ? "#F43F5E" : ref.tendencies.foulsPerGame < 41 ? "#10B981" : "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
                           {ref.tendencies.foulsPerGame}
                         </td>
-                        <td className="px-4 py-3 text-sm font-semibold" style={{ color: ref.tendencies.homeWinPct > 55 ? "#F59E0B" : "rgba(255,255,255,0.6)", fontFamily: "var(--hi-font-display)" }}>
+                        <td className="px-4 py-3 text-sm font-semibold" style={{ color: ref.tendencies.homeWinPct > 55 ? "#F59E0B" : "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-display)" }}>
                           {ref.tendencies.homeWinPct}%
                         </td>
                         <td className="px-4 py-3 text-sm font-semibold" style={{ color: paceColor(ref.tendencies.avgPace), fontFamily: "var(--hi-font-display)" }}>
@@ -349,7 +349,7 @@ export default function RefReports() {
                                   </p>
                                 </div>
                               </div>
-                              <div className="mt-3 flex items-center gap-4 text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                              <div className="mt-3 flex items-center gap-4 text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                                 <span>OT Games: {ref.tendencies.overtimeGames}</span>
                               </div>
                             </div>

@@ -180,17 +180,17 @@ export default function Trivia() {
             <div className="flex items-center gap-4">
               <div className="text-center">
                 <div className="text-xl font-black text-white">{streak.streak > 0 ? `${streak.streak} 🔥` : "0"}</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Streak</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Streak</div>
               </div>
               <div className="w-px h-8" style={{ background: "rgba(255,255,255,0.08)" }} />
               <div className="text-center">
                 <div className="text-xl font-black" style={{ color: "#10B981" }}>{accuracy}%</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Accuracy</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Accuracy</div>
               </div>
               <div className="w-px h-8" style={{ background: "rgba(255,255,255,0.08)" }} />
               <div className="text-center">
                 <div className="text-xl font-black text-white">{streak.totalAnswered}</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Answered</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Answered</div>
               </div>
             </div>
           </div>
@@ -305,7 +305,7 @@ export default function Trivia() {
                 </span>
               )}
             </div>
-            <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
               {triviaQuestion.explanation}
             </p>
           </div>
@@ -320,7 +320,7 @@ export default function Trivia() {
               style={{
                 background: copied ? "rgba(16,185,129,0.15)" : "rgba(142,200,240,0.15)",
                 border: `1px solid ${copied ? "rgba(16,185,129,0.35)" : "rgba(142,200,240,0.35)"}`,
-                color: copied ? "#10B981" : "var(--hi-accent)",
+                color: copied ? "#10B981" : "var(--hi-accent-text,#146a8c)",
               }}
             >
               {copied ? (
@@ -344,7 +344,7 @@ export default function Trivia() {
 
         {/* CTA if not yet answered */}
         {!revealed && (
-          <p className="text-center text-xs mt-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-center text-xs mt-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Select an answer above — no take-backs!
           </p>
         )}

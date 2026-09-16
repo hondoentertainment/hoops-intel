@@ -79,7 +79,7 @@ export default function Unsubscribe() {
             {message}
           </p>
         )}
-        <p className="mt-10 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="mt-10 text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Tip: Prefer fewer emails instead? Quiet hours ship with bulk sends — ping us if something looks off after
           subscribing again from the home footer.
         </p>

@@ -66,7 +66,7 @@ export default function Tonight() {
           <>
             <div className="flex flex-wrap items-center justify-center gap-2">
               <DataTrustBadge variant="edition" />
-              <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {freshness}
               </p>
             </div>
@@ -86,7 +86,7 @@ export default function Tonight() {
             </div>
             {schedule.kind === "espn-upcoming" ? (
               <DeskPanel kicker="ESPN camp-week slate" hint={schedule.sub}>
-                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   {schedule.games
                     .slice(0, 3)
                     .map((game) => `${game.away} @ ${game.home}`)

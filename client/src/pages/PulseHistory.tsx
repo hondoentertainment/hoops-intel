@@ -90,8 +90,8 @@ function MoverCard({ trend, direction }: { trend: PlayerTrend; direction: "up" |
         </div>
       </div>
       <div className="text-right">
-        <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>#{trend.currentRank}</div>
-        <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{trend.currentScore.toFixed(1)}</div>
+        <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>#{trend.currentRank}</div>
+        <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{trend.currentScore.toFixed(1)}</div>
       </div>
     </div>
   );
@@ -161,7 +161,7 @@ export default function PulseHistory() {
               <div className="flex items-center gap-4">
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg"
-                  style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent,#8ec8f0)" }}
+                  style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}
                 >
                   {trend.currentRank}
                 </div>
@@ -171,7 +171,7 @@ export default function PulseHistory() {
                   </a>
                   <div className="flex items-center gap-3 mt-0.5">
                     <a href={`/team/${trend.team}`} className="section-label text-xs hover:text-[var(--hi-text)]">{trend.team}</a>
-                    <span className="mono-data text-xs" style={{ color: "var(--hi-accent,#8ec8f0)" }}>{trend.currentScore.toFixed(1)}</span>
+                    <span className="mono-data text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{trend.currentScore.toFixed(1)}</span>
                     {trend.weeklyChange !== 0 && (
                       <span
                         className="mono-data text-xs"
