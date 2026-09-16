@@ -15,7 +15,7 @@ function ImpactBadge({ impact }: { impact: "game-changing" | "significant" | "no
   const styles = {
     "game-changing": { color: "#F43F5E", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.25)" },
     significant: { color: "#F59E0B", bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.25)" },
-    notable: { color: "#0EA5E9", bg: "rgba(14,165,233,0.12)", border: "rgba(14,165,233,0.25)" },
+    notable: { color: "var(--hi-accent)", bg: "rgba(142,200,240,0.12)", border: "rgba(142,200,240,0.25)" },
   };
   const s = styles[impact];
   return (
@@ -25,7 +25,7 @@ function ImpactBadge({ impact }: { impact: "game-changing" | "significant" | "no
         color: s.color,
         background: s.bg,
         border: `1px solid ${s.border}`,
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "var(--hi-font-display)",
         letterSpacing: "0.04em",
       }}
     >
@@ -48,7 +48,7 @@ function WinProbBadge({ shift }: { shift: number }) {
       style={{
         color,
         background: bg,
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "var(--hi-font-mono)",
         fontSize: "0.7rem",
       }}
     >
@@ -64,7 +64,7 @@ function WinProbBadge({ shift }: { shift: number }) {
 function MomentumTimeline({ game }: { game: MomentumSwing }) {
   const segments = game.swings.map((swing, i) => {
     const isHome = swing.momentum === "home";
-    const color = isHome ? "#F59E0B" : "#0EA5E9";
+    const color = isHome ? "#F59E0B" : "var(--hi-accent)";
     const weight =
       swing.impact === "game-changing" ? 3 : swing.impact === "significant" ? 2 : 1;
     const totalWeight = game.swings.reduce(
@@ -94,7 +94,7 @@ function MomentumTimeline({ game }: { game: MomentumSwing }) {
           className="text-xs font-semibold"
           style={{
             color: "#F59E0B",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.04em",
           }}
         >
@@ -103,8 +103,8 @@ function MomentumTimeline({ game }: { game: MomentumSwing }) {
         <span
           className="text-xs"
           style={{
-            color: "rgba(255,255,255,0.3)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.06em",
           }}
         >
@@ -113,8 +113,8 @@ function MomentumTimeline({ game }: { game: MomentumSwing }) {
         <span
           className="text-xs font-semibold"
           style={{
-            color: "#0EA5E9",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-accent)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.04em",
           }}
         >
@@ -145,10 +145,10 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
       style={{
         background: "rgba(255,255,255,0.025)",
         border: isGameOfTheNight
-          ? "1px solid rgba(14,165,233,0.3)"
+          ? "1px solid rgba(142,200,240,0.3)"
           : "1px solid rgba(255,255,255,0.06)",
         ...(isGameOfTheNight
-          ? { boxShadow: "0 0 30px rgba(14,165,233,0.08)" }
+          ? { boxShadow: "0 0 30px rgba(142,200,240,0.08)" }
           : {}),
       }}
     >
@@ -157,15 +157,15 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
         <div
           className="px-4 py-1.5 text-center"
           style={{
-            background: "rgba(14,165,233,0.1)",
-            borderBottom: "1px solid rgba(14,165,233,0.15)",
+            background: "rgba(142,200,240,0.1)",
+            borderBottom: "1px solid rgba(142,200,240,0.15)",
           }}
         >
           <span
             className="text-xs font-bold"
             style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-accent)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.12em",
             }}
           >
@@ -182,7 +182,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               className="text-lg font-bold"
               style={{
                 color: winner === "away" ? "#fff" : "rgba(255,255,255,0.5)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
               }}
             >
               {game.teams.away}
@@ -191,7 +191,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               className="text-2xl font-bold tabular-nums"
               style={{
                 color: winner === "away" ? "#fff" : "rgba(255,255,255,0.5)",
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--hi-font-mono)",
               }}
             >
               {game.finalScore.away}
@@ -201,8 +201,8 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
             className="text-xs font-semibold px-2 py-0.5 rounded"
             style={{
               background: "rgba(255,255,255,0.05)",
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -213,7 +213,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               className="text-2xl font-bold tabular-nums"
               style={{
                 color: winner === "home" ? "#fff" : "rgba(255,255,255,0.5)",
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--hi-font-mono)",
               }}
             >
               {game.finalScore.home}
@@ -222,7 +222,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               className="text-lg font-bold"
               style={{
                 color: winner === "home" ? "#fff" : "rgba(255,255,255,0.5)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
               }}
             >
               {game.teams.home}
@@ -239,8 +239,8 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
             <div
               className="text-xs font-semibold mb-2"
               style={{
-                color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "var(--hi-text-secondary,#8a8a86)",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
             >
@@ -257,21 +257,21 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
                     <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                       <span
                         className="text-sm font-bold"
-                        style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                        style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
                       >
                         {play.player}
                       </span>
                       <span
                         className="text-xs font-semibold"
-                        style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+                        style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
                       >
                         {play.team}
                       </span>
                       <span
                         className="text-xs tabular-nums"
                         style={{
-                          color: "rgba(255,255,255,0.35)",
-                          fontFamily: "'JetBrains Mono', monospace",
+                          color: "var(--hi-text-secondary,#8a8a86)",
+                          fontFamily: "var(--hi-font-mono)",
                           fontSize: "0.65rem",
                         }}
                       >
@@ -280,7 +280,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
                     </div>
                     <p
                       className="text-xs leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+                      style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
                     >
                       {play.description}
                     </p>
@@ -299,9 +299,9 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
           onClick={() => setExpanded(!expanded)}
           className="w-full text-center py-2 rounded-lg transition-colors"
           style={{
-            background: expanded ? "rgba(14,165,233,0.08)" : "rgba(255,255,255,0.03)",
-            color: expanded ? "#0EA5E9" : "rgba(255,255,255,0.4)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: expanded ? "rgba(142,200,240,0.08)" : "rgba(255,255,255,0.03)",
+            color: expanded ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+            fontFamily: "var(--hi-font-display)",
             fontSize: "0.75rem",
             letterSpacing: "0.06em",
             border: "none",
@@ -319,8 +319,8 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               <div
                 className="text-xs font-semibold mb-2"
                 style={{
-                  color: "rgba(255,255,255,0.35)",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  color: "var(--hi-text-secondary,#8a8a86)",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -333,15 +333,15 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
                     className="rounded-lg px-4 py-3"
                     style={{
                       background: "rgba(255,255,255,0.02)",
-                      borderLeft: `3px solid ${swing.momentum === "home" ? "#F59E0B" : "#0EA5E9"}`,
+                      borderLeft: `3px solid ${swing.momentum === "home" ? "#F59E0B" : "var(--hi-accent)"}`,
                     }}
                   >
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span
                         className="text-xs font-bold tabular-nums"
                         style={{
-                          color: "rgba(255,255,255,0.5)",
-                          fontFamily: "'JetBrains Mono', monospace",
+                          color: "var(--hi-muted,#5c5c58)",
+                          fontFamily: "var(--hi-font-mono)",
                         }}
                       >
                         {swing.quarter} {swing.timestamp}
@@ -349,8 +349,8 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
                       <span
                         className="text-xs font-bold"
                         style={{
-                          color: swing.momentum === "home" ? "#F59E0B" : "#0EA5E9",
-                          fontFamily: "'Barlow Condensed', sans-serif",
+                          color: swing.momentum === "home" ? "#F59E0B" : "var(--hi-accent)",
+                          fontFamily: "var(--hi-font-display)",
                         }}
                       >
                         {swing.runScore}
@@ -359,13 +359,13 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
                     </div>
                     <p
                       className="text-sm leading-relaxed mb-1"
-                      style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+                      style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
                     >
                       {swing.description}
                     </p>
                     <span
                       className="text-xs"
-                      style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+                      style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
                     >
                       Key player: {swing.keyPlayer}
                     </span>
@@ -378,15 +378,15 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
             <div
               className="rounded-lg px-4 py-3"
               style={{
-                background: "rgba(14,165,233,0.04)",
-                border: "1px solid rgba(14,165,233,0.1)",
+                background: "rgba(142,200,240,0.04)",
+                border: "1px solid rgba(142,200,240,0.1)",
               }}
             >
               <div
                 className="text-xs font-semibold mb-1.5"
                 style={{
-                  color: "#0EA5E9",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  color: "var(--hi-accent)",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -394,7 +394,7 @@ function GameCard({ game, isGameOfTheNight }: { game: MomentumSwing; isGameOfThe
               </div>
               <p
                 className="text-sm leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
               >
                 {game.narrative}
               </p>
@@ -424,7 +424,7 @@ function ClutchPerformerCard() {
         className="text-xs font-semibold mb-3"
         style={{
           color: "#10B981",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.1em",
         }}
       >
@@ -436,7 +436,7 @@ function ClutchPerformerCard() {
           style={{
             background: "rgba(16,185,129,0.12)",
             color: "#10B981",
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--hi-font-mono)",
           }}
         >
           {topClutchPerformer.clutchRating.toFixed(1)}
@@ -445,20 +445,20 @@ function ClutchPerformerCard() {
           <div className="flex items-center gap-2 mb-1">
             <span
               className="text-lg font-bold"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
             >
               {topClutchPerformer.player}
             </span>
             <span
               className="text-sm font-semibold"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               {topClutchPerformer.team}
             </span>
           </div>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {topClutchPerformer.description}
           </p>
@@ -486,13 +486,13 @@ export default function Momentum() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{date}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {games.length} games analyzed
           </span>
         </div>
 
         <DeskPanel kicker="How it works" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             The Momentum Engine tracks scoring runs, momentum shifts, and clutch plays across every game. AI analyzes play-by-play data to identify the critical swings that decided each game&apos;s outcome. Win Probability (WP) shifts show how each play changed the game&apos;s trajectory.
           </p>
         </DeskPanel>
@@ -501,7 +501,7 @@ export default function Momentum() {
         <div className="flex items-center gap-4 mb-6 flex-wrap">
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Momentum:
           </span>
@@ -509,29 +509,29 @@ export default function Momentum() {
             <span className="w-3 h-3 rounded-sm" style={{ background: "#F59E0B" }} />
             <span
               className="text-xs font-semibold"
-              style={{ color: "#F59E0B", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "#F59E0B", fontFamily: "var(--hi-font-display)" }}
             >
               Home
             </span>
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-sm" style={{ background: "#0EA5E9" }} />
+            <span className="w-3 h-3 rounded-sm" style={{ background: "var(--hi-accent)" }} />
             <span
               className="text-xs font-semibold"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               Away
             </span>
           </span>
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             |
           </span>
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Impact:
           </span>
@@ -556,8 +556,8 @@ export default function Momentum() {
         <div
           className="text-xs font-semibold mb-4"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
         >
@@ -587,7 +587,7 @@ export default function Momentum() {
             className="text-xs font-semibold mb-1"
             style={{
               color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -595,7 +595,7 @@ export default function Momentum() {
           </div>
           <p
             className="text-sm"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Momentum analysis is generated after all games complete each night
           </p>

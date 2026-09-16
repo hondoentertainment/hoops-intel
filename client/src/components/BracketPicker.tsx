@@ -100,10 +100,10 @@ function SeriesRow({
       style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${borderColor}` }}
     >
       <div className="flex items-center justify-between mb-2">
-        <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {series.conference === "east" ? "East" : "West"} · ({series.higherSeed}) vs ({series.lowerSeed}) · {series.round.replace(/-/g, " ")}
         </div>
-        <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{series.summary}</div>
+        <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{series.summary}</div>
       </div>
       <div className="flex gap-2">
         {[series.higherTeam, series.lowerTeam].map((team) => {
@@ -115,15 +115,15 @@ function SeriesRow({
               onClick={() => !locked && onPick(team)}
               className="flex-1 rounded-lg py-3 px-4 transition-all"
               style={{
-                background: selected ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.04)",
-                border: `2px solid ${selected ? "#0EA5E9" : "rgba(255,255,255,0.08)"}`,
+                background: selected ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.04)",
+                border: `2px solid ${selected ? "var(--hi-accent)" : "rgba(255,255,255,0.08)"}`,
                 cursor: locked ? "default" : "pointer",
               }}
             >
-              <div className="text-lg font-bold" style={{ color: selected ? "#0EA5E9" : "rgba(255,255,255,0.85)", fontFamily: "'Barlow Condensed', sans-serif" }}>
+              <div className="text-lg font-bold" style={{ color: selected ? "var(--hi-accent)" : "rgba(255,255,255,0.85)", fontFamily: "var(--hi-font-display)" }}>
                 {team}
               </div>
-              <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <div className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 {team === series.higherTeam ? `#${series.higherSeed}` : `#${series.lowerSeed}`}
               </div>
             </button>
@@ -132,22 +132,22 @@ function SeriesRow({
       </div>
       {pick?.picked_team && !locked && (
         <div className="mt-3 flex items-center gap-2 text-xs">
-          <span style={{ color: "rgba(255,255,255,0.5)" }}>In</span>
+          <span style={{ color: "var(--hi-muted,#5c5c58)" }}>In</span>
           {[4, 5, 6, 7].map((g) => (
             <button
               key={g}
               onClick={() => onGamesChange(g)}
               className="px-2 py-1 rounded"
               style={{
-                background: pick.picked_in_games === g ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.04)",
-                color: pick.picked_in_games === g ? "#0EA5E9" : "rgba(255,255,255,0.55)",
-                border: `1px solid ${pick.picked_in_games === g ? "#0EA5E9" : "rgba(255,255,255,0.06)"}`,
+                background: pick.picked_in_games === g ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.04)",
+                color: pick.picked_in_games === g ? "var(--hi-accent)" : "rgba(255,255,255,0.55)",
+                border: `1px solid ${pick.picked_in_games === g ? "var(--hi-accent)" : "rgba(255,255,255,0.06)"}`,
               }}
             >
               {g}
             </button>
           ))}
-          <span style={{ color: "rgba(255,255,255,0.3)" }}>games</span>
+          <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>games</span>
         </div>
       )}
       {correct && (
@@ -206,7 +206,7 @@ export default function BracketPicker() {
 
   if (playoffSeries.length === 0) {
     return (
-      <div className="rounded-lg p-4 text-sm" style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.5)" }}>
+      <div className="rounded-lg p-4 text-sm" style={{ background: "rgba(255,255,255,0.03)", color: "var(--hi-muted,#5c5c58)" }}>
         Bracket picks open when the playoffs tip off.
       </div>
     );
@@ -222,12 +222,12 @@ export default function BracketPicker() {
     <div className="space-y-3">
       <div className="flex items-center justify-between mb-2">
         <div>
-          <div className="section-label" style={{ color: "#0EA5E9" }}>BRACKET PICKS</div>
-          <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <div className="section-label" style={{ color: "var(--hi-accent)" }}>BRACKET PICKS</div>
+          <div className="text-xs mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Pick one winner per series. Series-level picks lock when the series tips off.
           </div>
         </div>
-        <div className="text-xs mono-data" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <div className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {picked}/{total}
         </div>
       </div>
@@ -258,10 +258,10 @@ export default function BracketPicker() {
             disabled={saving}
             className="py-3 px-6 rounded-xl font-semibold text-sm transition-all"
             style={{
-              background: saving ? "rgba(14,165,233,0.3)" : "linear-gradient(135deg, #0EA5E9, #0284C7)",
-              color: "#fff",
+              background: saving ? "rgba(142,200,240,0.3)" : "linear-gradient(135deg, var(--hi-accent), #0284C7)",
+              color: "var(--hi-text,#0a0a0a)",
               cursor: saving ? "not-allowed" : "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
             }}
           >

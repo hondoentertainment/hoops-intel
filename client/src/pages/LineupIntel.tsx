@@ -18,7 +18,7 @@ function NetRatingBar({ value, max = 25 }: { value: number; max?: number }) {
     ? value >= 15
       ? "#10B981"
       : value >= 8
-      ? "#0EA5E9"
+      ? "var(--hi-accent)"
       : "#22D3EE"
     : value <= -8
     ? "#F43F5E"
@@ -38,7 +38,7 @@ function NetRatingBar({ value, max = 25 }: { value: number; max?: number }) {
       </div>
       <span
         className="text-sm font-bold tabular-nums w-12 text-right"
-        style={{ color, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem" }}
+        style={{ color, fontFamily: "var(--hi-font-mono)", fontSize: "0.75rem" }}
       >
         {positive ? "+" : ""}{value.toFixed(1)}
       </span>
@@ -59,8 +59,8 @@ function LineupPill({ players }: { players: string[] }) {
           className="text-xs px-2 py-0.5 rounded"
           style={{
             background: "rgba(255,255,255,0.04)",
-            color: "rgba(255,255,255,0.65)",
-            fontFamily: "'DM Sans', sans-serif",
+            color: "var(--hi-muted,#5c5c58)",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           {p.split(" ").slice(-1)[0]}
@@ -99,7 +99,7 @@ function LineupSection({
           className="text-xs font-bold"
           style={{
             color: labelColor,
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.08em",
           }}
         >
@@ -109,8 +109,8 @@ function LineupSection({
           <span
             className="text-xs tabular-nums"
             style={{
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "'JetBrains Mono', monospace",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-mono)",
               fontSize: "0.65rem",
             }}
           >
@@ -120,7 +120,7 @@ function LineupSection({
             className="text-xs font-bold tabular-nums"
             style={{
               color: lineup.netRating >= 0 ? "#10B981" : "#F43F5E",
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--hi-font-mono)",
               fontSize: "0.75rem",
             }}
           >
@@ -136,7 +136,7 @@ function LineupSection({
             style={{
               background: "rgba(255,255,255,0.05)",
               color: "rgba(255,255,255,0.7)",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--hi-font-body)",
             }}
           >
             {p}
@@ -147,8 +147,8 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'JetBrains Mono', monospace",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
         >
@@ -157,8 +157,8 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'JetBrains Mono', monospace",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
         >
@@ -167,8 +167,8 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'JetBrains Mono', monospace",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
         >
@@ -177,7 +177,7 @@ function LineupSection({
       </div>
       <p
         className="text-xs leading-relaxed"
-        style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {lineup.keyStrength}
       </p>
@@ -207,13 +207,13 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
             <TeamLogo team={team.team} size={22} />
             <span
               className="text-lg font-bold"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
             >
               {team.team}
             </span>
             <span
               className="text-sm font-semibold"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               {team.teamRecord}
             </span>
@@ -221,12 +221,12 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
           <span
             className="text-xs font-bold tabular-nums px-2 py-0.5 rounded"
             style={{
-              color: team.bestUnit.netRating >= 12 ? "#10B981" : "#0EA5E9",
+              color: team.bestUnit.netRating >= 12 ? "#10B981" : "var(--hi-accent)",
               background:
                 team.bestUnit.netRating >= 12
                   ? "rgba(16,185,129,0.12)"
-                  : "rgba(14,165,233,0.12)",
-              fontFamily: "'JetBrains Mono', monospace",
+                  : "rgba(142,200,240,0.12)",
+              fontFamily: "var(--hi-font-mono)",
               fontSize: "0.75rem",
             }}
           >
@@ -259,9 +259,9 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
           onClick={() => setExpanded(!expanded)}
           className="w-full text-center py-2 mt-3 rounded-lg transition-colors"
           style={{
-            background: expanded ? "rgba(14,165,233,0.08)" : "rgba(255,255,255,0.03)",
-            color: expanded ? "#0EA5E9" : "rgba(255,255,255,0.4)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: expanded ? "rgba(142,200,240,0.08)" : "rgba(255,255,255,0.03)",
+            color: expanded ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+            fontFamily: "var(--hi-font-display)",
             fontSize: "0.75rem",
             letterSpacing: "0.06em",
             border: "none",
@@ -275,15 +275,15 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
           <div
             className="mt-3 rounded-lg px-4 py-3"
             style={{
-              background: "rgba(14,165,233,0.04)",
-              border: "1px solid rgba(14,165,233,0.1)",
+              background: "rgba(142,200,240,0.04)",
+              border: "1px solid rgba(142,200,240,0.1)",
             }}
           >
             <div
               className="text-xs font-semibold mb-1.5"
               style={{
-                color: "#0EA5E9",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "var(--hi-accent)",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
             >
@@ -291,7 +291,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {team.narrative}
             </p>
@@ -327,8 +327,8 @@ function LeagueTable() {
   };
 
   const headerStyle = (key: SortKey) => ({
-    color: sortBy === key ? "#0EA5E9" : "rgba(255,255,255,0.4)",
-    fontFamily: "'Barlow Condensed', sans-serif",
+    color: sortBy === key ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+    fontFamily: "var(--hi-font-display)",
     letterSpacing: "0.06em",
     cursor: "pointer" as const,
   });
@@ -349,13 +349,13 @@ function LeagueTable() {
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 #
               </th>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 LINEUP
               </th>
@@ -408,8 +408,8 @@ function LeagueTable() {
                 <td
                   className="px-4 py-3 font-bold"
                   style={{
-                    color: "#0EA5E9",
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    color: "var(--hi-accent)",
+                    fontFamily: "var(--hi-font-display)",
                   }}
                 >
                   {i + 1}
@@ -418,7 +418,7 @@ function LeagueTable() {
                   <div className="flex items-center gap-2 mb-1">
                     <span
                       className="text-sm font-bold"
-                      style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                      style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
                     >
                       {lineup.team}
                     </span>
@@ -429,7 +429,7 @@ function LeagueTable() {
                   className="px-4 py-3 text-right font-bold tabular-nums"
                   style={{
                     color: lineup.netRating >= 0 ? "#10B981" : "#F43F5E",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "var(--hi-font-mono)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -438,8 +438,8 @@ function LeagueTable() {
                 <td
                   className="px-4 py-3 text-right tabular-nums"
                   style={{
-                    color: "rgba(255,255,255,0.6)",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    color: "var(--hi-muted,#5c5c58)",
+                    fontFamily: "var(--hi-font-mono)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -448,8 +448,8 @@ function LeagueTable() {
                 <td
                   className="px-4 py-3 text-right tabular-nums"
                   style={{
-                    color: "rgba(255,255,255,0.6)",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    color: "var(--hi-muted,#5c5c58)",
+                    fontFamily: "var(--hi-font-mono)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -459,7 +459,7 @@ function LeagueTable() {
                   className="px-4 py-3 text-right font-bold tabular-nums"
                   style={{
                     color: lineup.plusMinus >= 0 ? "#10B981" : "#F43F5E",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "var(--hi-font-mono)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -468,8 +468,8 @@ function LeagueTable() {
                 <td
                   className="px-4 py-3 text-right tabular-nums"
                   style={{
-                    color: "rgba(255,255,255,0.5)",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    color: "var(--hi-muted,#5c5c58)",
+                    fontFamily: "var(--hi-font-mono)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -500,13 +500,13 @@ export default function LineupIntel() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Methodology" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Lineup Intelligence ranks five-man units by net rating (points scored minus points allowed per 100 possessions). &quot;Death Lineups&quot; are closing units used in the final 5 minutes of close games. Minimum 30 minutes together to qualify. Data sourced from NBA.com advanced stats.
           </p>
         </DeskPanel>
@@ -515,8 +515,8 @@ export default function LineupIntel() {
         <div
           className="text-xs font-semibold mb-3"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
         >
@@ -536,7 +536,7 @@ export default function LineupIntel() {
             className="text-xs font-semibold mb-2"
             style={{
               color: "#8B5CF6",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -545,14 +545,14 @@ export default function LineupIntel() {
           <div className="flex items-center gap-2 mb-2">
             <span
               className="text-lg font-bold"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
             >
               {biggestSurprise.team}
             </span>
           </div>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {biggestSurprise.description}
           </p>
@@ -562,8 +562,8 @@ export default function LineupIntel() {
         <div
           className="text-xs font-semibold mb-4"
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
         >
@@ -593,7 +593,7 @@ export default function LineupIntel() {
             className="text-xs font-semibold mb-1"
             style={{
               color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -601,7 +601,7 @@ export default function LineupIntel() {
           </div>
           <p
             className="text-sm"
-            style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Lineup intelligence is regenerated every Monday with the latest rotation data
           </p>

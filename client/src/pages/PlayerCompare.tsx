@@ -30,7 +30,7 @@ export default function PlayerCompare() {
   if (!pulseIndex.length) {
     return (
       <ToolPageLayout subtitle="TOOLS" showRelated={false} title="Player compare" description="Pulse Index unavailable for comparison.">
-        <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="mobile-readable" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           Pulse Index unavailable for comparison.
         </p>
       </ToolPageLayout>
@@ -90,11 +90,11 @@ export default function PlayerCompare() {
             <div key={p.player} className="enhanced-card p-6">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="mono-data text-xs mb-1" style={{ color: "var(--hi-accent,#1ec8f5)" }}>RANK #{p.rank}</div>
-                  <h2 className="text-xl font-bold text-[var(--hi-text,#f2f5fa)]">{p.player}</h2>
-                  <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "var(--hi-text-secondary,#8594a8)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
+                  <div className="mono-data text-xs mb-1" style={{ color: "var(--hi-accent,#8ec8f0)" }}>RANK #{p.rank}</div>
+                  <h2 className="text-xl font-bold text-[var(--hi-text,#0a0a0a)]">{p.player}</h2>
+                  <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
                 </div>
-                <div className="mono-data px-4 py-2 rounded-[10px] text-xl font-black" style={{ background: "rgba(30,200,245,0.12)", color: "var(--hi-accent,#1ec8f5)", border: "1px solid rgba(30,200,245,0.25)" }}>
+                <div className="mono-data px-4 py-2 rounded-[10px] text-xl font-black" style={{ background: "rgba(142,200,240,0.12)", color: "var(--hi-accent,#8ec8f0)", border: "1px solid rgba(142,200,240,0.25)" }}>
                   {p.indexScore}
                 </div>
               </div>
@@ -104,7 +104,7 @@ export default function PlayerCompare() {
               </dl>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{p.note}</p>
               <div className="mt-6">
-                <a href={`/player/${slugify(p.player)}`} className="text-xs font-semibold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                <a href={`/player/${slugify(p.player)}`} className="text-xs font-semibold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                   Open full player dossier →
                 </a>
               </div>
@@ -118,7 +118,7 @@ export default function PlayerCompare() {
 function Row({ k, v }: { k: string; v: string }) {
   return (
     <div className="flex justify-between gap-4">
-      <dt className="shrink-0 mono-data text-xs uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>{k}</dt>
+      <dt className="shrink-0 mono-data text-xs uppercase" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{k}</dt>
       <dd className="text-right text-white/85">{v}</dd>
     </div>
   );

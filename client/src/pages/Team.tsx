@@ -139,8 +139,8 @@ export default function Team() {
               <TeamLogo team={abbr} size={64} />
               <div>
                 <p className="enhanced-kicker mb-1">Team profile</p>
-                <h1 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-3xl mb-1 max-md:text-[1.5rem]">{fullName}</h1>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <h1 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-3xl mb-1 max-md:text-[1.5rem]">{fullName}</h1>
+                <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {standing?.conf === "east" ? "Eastern" : "Western"} Conference
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function Team() {
                   >
                     {standing.streak}
                   </span>
-                  <span className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <span className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     L10: {standing.last10}
                   </span>
                 </div>
@@ -175,25 +175,25 @@ export default function Team() {
           <div
             className="enhanced-card p-4 mb-6"
             style={{
-              border: "1px solid rgba(14,165,233,0.2)",
-              background: "rgba(14,165,233,0.04)",
+              border: "1px solid rgba(142,200,240,0.2)",
+              background: "rgba(142,200,240,0.04)",
             }}
           >
-            <div className="section-label mb-2" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+            <div className="section-label mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
               PLAYOFFS (SYNCED BOARD)
             </div>
             <p className="text-sm text-white font-semibold mb-1">
               vs {playoffOppName} — {playoffRow.summary}
             </p>
             {playoffNext && (
-              <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <p className="text-xs mb-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 Next: {playoffNext.awayTeam} @ {playoffNext.homeTeam}
                 {playoffNext.time ? ` · ${playoffNext.time}` : ""}
                 {playoffNext.tv ? ` · ${playoffNext.tv}` : ""}
               </p>
             )}
             {!playoffNext && playoffRow.status === "complete" && (
-              <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 Series complete.
               </p>
             )}
@@ -201,7 +201,7 @@ export default function Team() {
               <a
                 href={`/team/${playoffOppAbbr.toLowerCase()}`}
                 className="text-xs font-medium"
-                style={{ color: "rgba(255,255,255,0.55)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)" }}
               >
                 {playoffOppName} team intel →
               </a>
@@ -246,7 +246,7 @@ export default function Team() {
                       <div className="mono-data text-xs mb-2" style={{ color: "#10B981" }}>
                         {g.topPerformer}: {g.topLine}
                       </div>
-                      <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                      <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                         {g.recap}
                       </p>
                     </div>
@@ -269,7 +269,7 @@ export default function Team() {
                       </span>
                       <span className="text-sm text-white">{p.time}</span>
                     </div>
-                    <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                    <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                       {p.spread} · O/U {p.overUnder} · {p.tv}
                     </div>
                     {previewSeries && previewSeries.status !== "complete" && (
@@ -281,7 +281,7 @@ export default function Team() {
                         Playoff series · {previewSeries.summary} →
                       </a>
                     )}
-                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                    <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {p.storyline}
                     </p>
                   </div>
@@ -300,13 +300,13 @@ export default function Team() {
                   <div key={ed.id} className="enhanced-card p-4">
                     <div className="section-label mb-1">{ed.displayDate}</div>
                     <h3 className="text-sm font-semibold text-white mb-1">{ed.headline}</h3>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {ed.subheadline}
                     </p>
                   </div>
                 ))}
                 {teamEditions.length > 10 && (
-                  <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     + {teamEditions.length - 10} more editions
                   </p>
                 )}
@@ -328,7 +328,7 @@ export default function Team() {
                       className="block hover:opacity-80 transition-opacity"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                        <span className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                           #{p.rank}
                         </span>
                         <div>
@@ -354,7 +354,7 @@ export default function Team() {
                       <div className="flex items-center gap-2 mb-1">
                         <a
                           href={`/player/${slugify(inj.player)}`}
-                          className="text-sm font-semibold text-white hover:text-sky-400 transition-colors"
+                          className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors"
                         >
                           {inj.player}
                         </a>
@@ -371,7 +371,7 @@ export default function Team() {
                           {inj.status}
                         </span>
                       </div>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                         {inj.injury}
                       </div>
                     </div>
@@ -386,27 +386,27 @@ export default function Team() {
                 <div className="section-label mb-3">STANDINGS</div>
                 <div className="space-y-2 text-xs">
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Conference</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Conference</span>
                     <span className="text-white font-semibold">
                       {standing.conf === "east" ? "Eastern" : "Western"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Seed</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Seed</span>
                     <span className="text-white font-semibold">#{standing.rank}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Record</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Record</span>
                     <span className="text-white font-semibold">
                       {standing.wins}-{standing.losses} ({standing.pct})
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Games Back</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Games Back</span>
                     <span className="text-white font-semibold">{standing.gb}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Streak</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Streak</span>
                     <span
                       style={{
                         color: standing.streak.startsWith("W") ? "#10B981" : "#F43F5E",
@@ -416,11 +416,11 @@ export default function Team() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Last 10</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Last 10</span>
                     <span className="text-white font-semibold">{standing.last10}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Playoff Status</span>
+                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Playoff Status</span>
                     <span
                       className="font-semibold"
                       style={{

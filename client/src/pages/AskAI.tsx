@@ -41,31 +41,31 @@ export default function AskAI() {
             <div className="flex items-center gap-2 mb-1 min-w-0">
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ background: "var(--hi-accent,#1ec8f5)" }}
+                style={{ background: "var(--hi-accent,#8ec8f0)" }}
               />
               <span
                 className="text-xs font-medium truncate"
-                style={{ color: "var(--hi-accent,#1ec8f5)" }}
+                style={{ color: "var(--hi-accent,#8ec8f0)" }}
               >
                 Latest edition — {pulseEdition.date}
               </span>
               <span
                 className="text-xs shrink-0"
-                style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 {pulseEdition.edition}
               </span>
             </div>
             <p
               className="text-xs leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--hi-muted,#5c5c58)" }}
             >
               {narrative.subhead.length > 200
                 ? narrative.subhead.slice(0, 200) + "..."
                 : narrative.subhead}
             </p>
             <div className="mt-4 pt-4 border-t" style={{ borderColor: "var(--hi-border-soft, rgba(255,255,255,0.06))" }}>
-              <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 Quick prompts
               </p>
               <AskPromptChips onSelect={dispatchAskPrompt} />
@@ -83,7 +83,7 @@ export default function AskAI() {
           />
         </div>
 
-        <div className="sticky bottom-0 ask-page-composer" style={{ background: "var(--hi-bg-page, #050D1A)" }}>
+        <div className="sticky bottom-0 ask-page-composer" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
           <ChatInput
             input={input}
             setInput={setInput}

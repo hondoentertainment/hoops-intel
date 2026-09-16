@@ -11,7 +11,7 @@ import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 function SchemeGradeBadge({ grade }: { grade: string }) {
   const color =
     grade.startsWith("A") ? "#10B981" :
-    grade.startsWith("B") ? "#0EA5E9" :
+    grade.startsWith("B") ? "var(--hi-accent)" :
     grade.startsWith("C") ? "#F59E0B" :
     "#F43F5E";
 
@@ -22,7 +22,7 @@ function SchemeGradeBadge({ grade }: { grade: string }) {
         background: `${color}15`,
         color,
         border: `1px solid ${color}40`,
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "var(--hi-font-display)",
       }}
     >
       {grade}
@@ -38,7 +38,7 @@ function RankIndicator({ label, rank, total = 30 }: { label: string; rank: numbe
   const pct = ((total - rank) / total) * 100;
   const color =
     rank <= 5 ? "#10B981" :
-    rank <= 10 ? "#0EA5E9" :
+    rank <= 10 ? "var(--hi-accent)" :
     rank <= 20 ? "#F59E0B" :
     "#F43F5E";
 
@@ -47,8 +47,8 @@ function RankIndicator({ label, rank, total = 30 }: { label: string; rank: numbe
       <div
         className="text-xs mb-1"
         style={{
-          color: "rgba(255,255,255,0.4)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
         }}
       >
@@ -66,7 +66,7 @@ function RankIndicator({ label, rank, total = 30 }: { label: string; rank: numbe
         </div>
         <span
           className="text-xs font-bold tabular-nums w-6 text-right"
-          style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color, fontFamily: "var(--hi-font-mono)" }}
         >
           {rank}
         </span>
@@ -85,8 +85,8 @@ function StyleBadge({ label, value, color }: { label: string; value: string; col
       <div
         className="text-xs mb-0.5"
         style={{
-          color: "rgba(255,255,255,0.35)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
           fontSize: "0.65rem",
         }}
@@ -99,7 +99,7 @@ function StyleBadge({ label, value, color }: { label: string; value: string; col
           background: `${color}12`,
           color,
           border: `1px solid ${color}30`,
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "var(--hi-font-body)",
           fontSize: "0.7rem",
         }}
       >
@@ -130,13 +130,13 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
           <div className="flex items-center gap-2 mb-0.5">
             <span
               className="text-lg font-bold"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
             >
               {breakdown.team}
             </span>
             <span
               className="text-sm"
-              style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
             >
               {breakdown.coach}
             </span>
@@ -147,7 +147,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
 
       {/* Offense / Defense style badges */}
       <div className="flex gap-4 mb-4 flex-wrap">
-        <StyleBadge label="OFFENSE" value={breakdown.offenseStyle} color="#0EA5E9" />
+        <StyleBadge label="OFFENSE" value={breakdown.offenseStyle} color="var(--hi-accent)" />
         <StyleBadge label="DEFENSE" value={breakdown.defenseScheme} color="#10B981" />
       </div>
 
@@ -162,16 +162,16 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
       <div
         className="rounded-lg px-4 py-3 mb-4"
         style={{
-          background: "rgba(14,165,233,0.05)",
-          border: "1px solid rgba(14,165,233,0.1)",
+          background: "rgba(142,200,240,0.05)",
+          border: "1px solid rgba(142,200,240,0.1)",
         }}
       >
         <div className="flex items-center justify-between mb-1.5">
           <span
             className="text-xs font-semibold"
             style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-accent)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -180,13 +180,13 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
           <div className="flex gap-3">
             <span
               className="text-xs tabular-nums"
-              style={{ color: "#F59E0B", fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: "#F59E0B", fontFamily: "var(--hi-font-mono)" }}
             >
               {breakdown.keyPlay.frequency}
             </span>
             <span
               className="text-xs tabular-nums"
-              style={{ color: "#10B981", fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: "#10B981", fontFamily: "var(--hi-font-mono)" }}
             >
               {breakdown.keyPlay.efficiency}
             </span>
@@ -194,7 +194,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
         </div>
         <p
           className="text-xs leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {breakdown.keyPlay.description}
         </p>
@@ -206,7 +206,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
           className="text-xs font-semibold mb-1"
           style={{
             color: "#F59E0B",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.06em",
           }}
         >
@@ -214,7 +214,7 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
         </div>
         <p
           className="text-sm leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {breakdown.weeklyAdjustment}
         </p>
@@ -224,14 +224,14 @@ function TacticalCard({ breakdown }: { breakdown: TacticalBreakdown }) {
       <button
         onClick={() => setExpanded(!expanded)}
         className="text-xs font-medium transition-colors"
-        style={{ color: "#0EA5E9", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
       >
         {expanded ? "Hide analysis" : "Read full analysis"} {expanded ? "▲" : "▼"}
       </button>
       {expanded && (
         <p
           className="text-sm leading-relaxed mt-2"
-          style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {breakdown.narrative}
         </p>
@@ -253,7 +253,7 @@ function HotSeatCard({ coach, team, reason, temperature }: {
   const config = {
     scorching: { flames: "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25", color: "#F43F5E", bg: "rgba(244,63,94,0.08)", border: "rgba(244,63,94,0.2)" },
     warm: { flames: "\uD83D\uDD25\uD83D\uDD25", color: "#F59E0B", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" },
-    lukewarm: { flames: "\uD83D\uDD25", color: "rgba(255,255,255,0.5)", bg: "rgba(255,255,255,0.03)", border: "rgba(255,255,255,0.1)" },
+    lukewarm: { flames: "\uD83D\uDD25", color: "var(--hi-muted,#5c5c58)", bg: "rgba(255,255,255,0.03)", border: "rgba(255,255,255,0.1)" },
   }[temperature];
 
   return (
@@ -268,13 +268,13 @@ function HotSeatCard({ coach, team, reason, temperature }: {
         <div className="flex items-center gap-2">
           <span
             className="text-base font-bold"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
           >
             {coach}
           </span>
           <span
             className="text-sm"
-            style={{ color: config.color, fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: config.color, fontFamily: "var(--hi-font-display)" }}
           >
             {team}
           </span>
@@ -283,7 +283,7 @@ function HotSeatCard({ coach, team, reason, temperature }: {
           <span className="text-sm">{config.flames}</span>
           <span
             className="text-xs font-semibold uppercase"
-            style={{ color: config.color, fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}
+            style={{ color: config.color, fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
           >
             {temperature}
           </span>
@@ -291,7 +291,7 @@ function HotSeatCard({ coach, team, reason, temperature }: {
       </div>
       <p
         className="text-sm leading-relaxed"
-        style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {reason}
       </p>
@@ -323,13 +323,13 @@ export default function CoachCorner() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Weekly narrative" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {weeklyNarrative}
           </p>
         </DeskPanel>
@@ -340,7 +340,7 @@ export default function CoachCorner() {
             className="text-xs font-semibold mb-3"
             style={{
               color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -349,7 +349,7 @@ export default function CoachCorner() {
           <div
             className="rounded-xl p-6"
             style={{
-              background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(14,165,233,0.05))",
+              background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(142,200,240,0.05))",
               border: "1px solid rgba(245,158,11,0.2)",
             }}
           >
@@ -359,21 +359,21 @@ export default function CoachCorner() {
                 style={{
                   background: "rgba(245,158,11,0.15)",
                   color: "#F59E0B",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                 }}
               >
                 {schemeOfTheWeek.team}
               </span>
               <span
                 className="text-lg font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {schemeOfTheWeek.title}
               </span>
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {schemeOfTheWeek.description}
             </p>
@@ -385,8 +385,8 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -404,8 +404,8 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -424,7 +424,7 @@ export default function CoachCorner() {
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span
                     className="text-base font-bold"
-                    style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                    style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
                   >
                     {t.title}
                   </span>
@@ -434,9 +434,9 @@ export default function CoachCorner() {
                         key={team}
                         className="text-xs font-semibold px-1.5 py-0.5 rounded"
                         style={{
-                          background: "rgba(14,165,233,0.1)",
-                          color: "#0EA5E9",
-                          fontFamily: "'Barlow Condensed', sans-serif",
+                          background: "rgba(142,200,240,0.1)",
+                          color: "var(--hi-accent)",
+                          fontFamily: "var(--hi-font-display)",
                         }}
                       >
                         {team}
@@ -446,7 +446,7 @@ export default function CoachCorner() {
                 </div>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
                 >
                   {t.description}
                 </p>
@@ -460,8 +460,8 @@ export default function CoachCorner() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >

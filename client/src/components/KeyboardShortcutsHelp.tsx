@@ -43,7 +43,7 @@ export default function KeyboardShortcutsHelp() {
         aria-modal="true"
         aria-labelledby="shortcuts-title"
         className="w-full max-w-sm rounded-xl p-5 shadow-2xl"
-        style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.1)" }}
+        style={{ background: "var(--hi-surface,#eeeeec)", border: "1px solid rgba(255,255,255,0.1)" }}
         onClick={(e) => e.stopPropagation()}
       >
         <h2 id="shortcuts-title" className="display-heading text-white text-lg mb-4">
@@ -52,15 +52,15 @@ export default function KeyboardShortcutsHelp() {
         <dl className="space-y-2">
           {rows.map(([key, desc]) => (
             <div key={key} className="flex justify-between gap-4 text-sm">
-              <dt className="mono-data text-sky-300">{key}</dt>
-              <dd style={{ color: "rgba(255,255,255,0.65)" }}>{desc}</dd>
+              <dt className="mono-data text-[var(--hi-text)]">{key}</dt>
+              <dd style={{ color: "var(--hi-muted,#5c5c58)" }}>{desc}</dd>
             </div>
           ))}
         </dl>
         <button
           type="button"
           className="mt-5 w-full min-h-[44px] rounded-lg text-sm font-semibold text-white"
-          style={{ background: "#0EA5E9" }}
+          style={{ background: "var(--hi-accent)" }}
           onClick={() => setOpen(false)}
         >
           Close

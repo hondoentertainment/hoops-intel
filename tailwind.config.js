@@ -5,17 +5,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: "#050D1A",
-        "electric-blue": "#1EC8F5",
-        accent: "#1EC8F5",
-        emerald: "#10B981",
+        navy: "#f7f7f5",
+        "electric-blue": "#8ec8f0",
+        accent: "#8ec8f0",
+        emerald: "#1f9d6a",
         rose: "#F43F5E",
-        amber: "#F59E0B",
+        amber: "#ff7a17",
       },
       fontFamily: {
-        display: ["Barlow Condensed", "sans-serif"],
-        body: ["DM Sans", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        display: ["Geist", "Inter", "sans-serif"],
+        body: ["Geist", "Inter", "sans-serif"],
+        mono: ["Geist Mono", "ui-monospace", "monospace"],
       },
     },
   },

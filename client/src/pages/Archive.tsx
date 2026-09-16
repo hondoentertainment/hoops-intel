@@ -31,27 +31,27 @@ function ArchiveCard({ edition }: { edition: any }) {
     <article className="enhanced-card archive-card p-5 min-w-0">
       <div className="flex items-center justify-between mb-3 gap-2 min-w-0">
         <p className="enhanced-kicker truncate">{displayDate}</p>
-        <span className="desk-chip shrink-0" style={{ background: "rgba(30,200,245,0.14)", color: "var(--hi-accent,#1ec8f5)" }}>
+        <span className="desk-chip shrink-0" style={{ background: "rgba(142,200,240,0.14)", color: "var(--hi-accent,#8ec8f0)" }}>
           {gamesCount} {gamesCount === 1 ? "game" : "games"}
         </span>
       </div>
-      <h2 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-lg mb-2">{headline}</h2>
+      <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-lg mb-2">{headline}</h2>
       {subheadline ? (
-        <p className="text-sm mb-3" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>{subheadline}</p>
+        <p className="text-sm mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{subheadline}</p>
       ) : null}
-      <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--hi-text,#f2f5fa)" }}>{edition.topStory}</p>
+      <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--hi-text,#0a0a0a)" }}>{edition.topStory}</p>
       {topPlayer ? (
         <p className="text-xs mb-4">
-          <span style={{ color: "rgba(255,255,255,0.45)" }}>Top performer: </span>
+          <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Top performer: </span>
           <a
             href={`/player/${slugify(topPlayer)}`}
             className="font-semibold"
-            style={{ color: "var(--hi-accent,#1ec8f5)" }}
+            style={{ color: "var(--hi-accent,#8ec8f0)" }}
           >
             {topPlayer}
           </a>
           {edition.topStatLine ? (
-            <span className="mono-data ml-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <span className="mono-data ml-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {edition.topStatLine}
             </span>
           ) : null}
@@ -59,7 +59,7 @@ function ArchiveCard({ edition }: { edition: any }) {
       ) : null}
       <div className="flex flex-wrap gap-1.5">
         {(edition.tags || []).map((tag: string) => (
-          <span key={tag} className="desk-chip" style={{ background: "rgba(30,200,245,0.1)", color: "var(--hi-accent,#1ec8f5)" }}>
+          <span key={tag} className="desk-chip" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent,#8ec8f0)" }}>
             {tag}
           </span>
         ))}
@@ -145,7 +145,7 @@ export default function Archive() {
           </div>
         </div>
 
-        <div className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <div className="text-xs mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {filtered.length} edition{filtered.length !== 1 ? "s" : ""} found
           {totalPages > 1 && ` · Page ${currentPage} of ${totalPages}`}
         </div>
@@ -178,17 +178,17 @@ export default function Archive() {
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={currentPage <= 1}
               className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
-              style={{ background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(30,200,245,0.12)", color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#1ec8f5)" }}
+              style={{ background: currentPage <= 1 ? "rgba(255,255,255,0.03)" : "rgba(142,200,240,0.12)", color: currentPage <= 1 ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#8ec8f0)" }}
             >
               Previous
             </button>
-            <span className="text-xs mono-data" style={{ color: "rgba(255,255,255,0.45)" }}>{currentPage} / {totalPages}</span>
+            <span className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{currentPage} / {totalPages}</span>
             <button
               type="button"
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage >= totalPages}
               className="px-3 py-1.5 rounded text-xs font-medium min-h-[44px]"
-              style={{ background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(30,200,245,0.12)", color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#1ec8f5)" }}
+              style={{ background: currentPage >= totalPages ? "rgba(255,255,255,0.03)" : "rgba(142,200,240,0.12)", color: currentPage >= totalPages ? "rgba(255,255,255,0.2)" : "var(--hi-accent,#8ec8f0)" }}
             >
               Next
             </button>

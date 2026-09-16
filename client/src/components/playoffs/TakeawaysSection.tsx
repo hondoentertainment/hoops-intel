@@ -17,7 +17,7 @@ export function TakeawaysSection({ data, onMustWatch }: { data: TakeawaysModel; 
           <ul className="space-y-2">
             {data.bullets.map((b, i) => (
               <li key={i} className="flex gap-2 text-sm text-white/85 leading-snug">
-                <span className="mono-data text-sky-400 font-bold">{i + 1}</span>
+                <span className="mono-data text-[var(--hi-text)] font-bold">{i + 1}</span>
                 <span>{b}</span>
               </li>
             ))}

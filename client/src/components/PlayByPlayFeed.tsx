@@ -15,14 +15,14 @@ function PlayRow({ play, awayTeam, homeTeam }: { play: PlayEvent; awayTeam: stri
       className="flex items-start gap-3 py-2 px-2 rounded"
       style={play.scoringPlay ? { background: "rgba(255,255,255,0.03)" } : undefined}
     >
-      <span className="mono-data text-[10px] w-10 shrink-0 pt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
+      <span className="mono-data text-[10px] w-10 shrink-0 pt-0.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {play.clock}
       </span>
       <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ background: color }} aria-hidden />
       <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.75)" }}>
         {play.text}
       </span>
-      <span className="mono-data text-[10px] shrink-0 pt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+      <span className="mono-data text-[10px] shrink-0 pt-0.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {play.awayScore}-{play.homeScore}
       </span>
     </div>
@@ -87,8 +87,8 @@ export default function PlayByPlayFeed({ espnGameId, awayTeam, homeTeam }: {
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 rounded"
-        style={{ color: "#0EA5E9" }}
+        className="flex items-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 rounded"
+        style={{ color: "var(--hi-accent)" }}
         aria-expanded={expanded}
         aria-controls={`play-by-play-${espnGameId}`}
       >
@@ -101,12 +101,12 @@ export default function PlayByPlayFeed({ espnGameId, awayTeam, homeTeam }: {
       {expanded && (
         <div id={`play-by-play-${espnGameId}`} className="mt-3 rounded-lg p-4" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.06)" }}>
           {loading && (
-            <div role="status" aria-live="polite" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" aria-live="polite" className="text-center py-4 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Loading play-by-play...
             </div>
           )}
           {error && (
-            <div role="status" className="text-center py-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div role="status" className="text-center py-4 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Play-by-play not available for this game.
             </div>
           )}
@@ -117,8 +117,8 @@ export default function PlayByPlayFeed({ espnGameId, awayTeam, homeTeam }: {
                   <button
                     type="button"
                     onClick={() => setShowShotChart((v) => !v)}
-                    className="text-[10px] font-semibold uppercase tracking-wider mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 rounded"
-                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    className="text-[10px] font-semibold uppercase tracking-wider mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 rounded"
+                    style={{ color: "var(--hi-muted,#5c5c58)" }}
                     aria-expanded={showShotChart}
                   >
                     {showShotChart ? "▲ Hide shot chart" : "▼ Show shot chart"}
@@ -131,7 +131,7 @@ export default function PlayByPlayFeed({ espnGameId, awayTeam, homeTeam }: {
               <div className="space-y-4 max-h-[28rem] overflow-y-auto">
                 {byPeriod.map(({ period, plays: periodPlays }) => (
                   <div key={period}>
-                    <div className="section-label text-[10px] mb-1 sticky top-0 py-1" style={{ color: "rgba(255,255,255,0.4)", background: "#0B1520" }}>
+                    <div className="section-label text-[10px] mb-1 sticky top-0 py-1" style={{ color: "var(--hi-text-secondary,#8a8a86)", background: "#0B1520" }}>
                       {periodLabel(period)}
                     </div>
                     <div>

@@ -148,7 +148,7 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
           <div>
             <a
               href={`/player/${slugify(injury.player)}`}
-              className="text-base font-bold text-white hover:text-sky-400 transition-colors block leading-tight"
+              className="text-base font-bold text-white hover:text-[var(--hi-text)] transition-colors block leading-tight"
             >
               {injury.player}
             </a>
@@ -156,7 +156,7 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
               <a
                 href={`/team/${injury.team.toLowerCase()}`}
                 className="inline-flex items-center gap-1.5 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
-                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}
+                style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
               >
                 <TeamLogo team={injury.team} size={16} />
                 {injury.team}
@@ -175,14 +175,14 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
         <div className="mb-1 text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
           {injury.injury}
         </div>
-        <div className="text-xs leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <div className="text-xs leading-relaxed mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {injury.timeline}
         </div>
 
         {/* Impact rating bar */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Team Impact
             </span>
             <span className="text-xs font-bold mono-data" style={{ color: barColor }}>
@@ -208,21 +208,21 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
         {replacement && (
           <div
             className="rounded-lg p-3 mb-3"
-            style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}
+            style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.12)" }}
           >
-            <div className="text-xs font-semibold mb-1" style={{ color: "rgba(14,165,233,0.7)" }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: "rgba(142,200,240,0.7)" }}>
               WHO STEPS UP
             </div>
             <div className="flex items-start gap-2">
-              <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#0EA5E9" }} />
+              <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "var(--hi-accent)" }} />
               <div>
                 <a
                   href={`/player/${slugify(replacement.name)}`}
-                  className="text-sm font-semibold text-white hover:text-sky-400 transition-colors"
+                  className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors"
                 >
                   {replacement.name}
                 </a>
-                <div className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <div className="text-xs mt-0.5 leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {replacement.role}
                 </div>
               </div>
@@ -232,7 +232,7 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
 
         {/* Fantasy action badge */}
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Fantasy
           </span>
           <span
@@ -265,24 +265,16 @@ function FilterButton({
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all"
-      style={
-        active
-          ? { background: "var(--hi-accent,#1ec8f5)", color: "#0a0d12" }
-          : {
-              background: "rgba(255,255,255,0.05)",
-              color: "rgba(255,255,255,0.5)",
-              border: "1px solid rgba(255,255,255,0.08)",
-            }
-      }
+      className="desk-section-pill gap-2"
+      data-active={active ? "true" : undefined}
     >
       {label}
       <span
         className="rounded-full px-1.5 py-0.5 text-[10px] font-bold"
         style={
           active
-            ? { background: "rgba(255,255,255,0.2)", color: "#fff" }
-            : { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }
+            ? { background: "rgba(255,255,255,0.18)", color: "var(--hi-text,#0a0a0a)" }
+            : { background: "rgba(10,10,10,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }
         }
       >
         {count}
@@ -344,7 +336,7 @@ export default function InjuryReport() {
             type="button"
             onClick={nextClub}
             className="text-sm font-medium min-h-11 shrink-0 inline-flex items-end pb-1 self-start"
-            style={{ color: "var(--hi-accent,#1ec8f5)" }}
+            style={{ color: "var(--hi-accent,#8ec8f0)" }}
           >
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
           </button>
@@ -373,7 +365,7 @@ export default function InjuryReport() {
               >
                 <div className="w-full sm:w-[220px] shrink-0 min-w-0">
                   <p className="text-base font-semibold leading-6 text-[var(--hi-text,#f3f6fa)] truncate">{injury.player}</p>
-                  <p className="text-sm font-bold tracking-[0.6px] leading-5" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                  <p className="text-sm font-bold tracking-[0.6px] leading-5" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                     {injury.team}
                   </p>
                 </div>

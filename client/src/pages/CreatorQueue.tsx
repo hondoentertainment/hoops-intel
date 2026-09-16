@@ -25,7 +25,7 @@ const STATUS_LABEL: Record<StatusKey, string> = {
 };
 
 const STATUS_CLASS: Record<StatusKey, string> = {
-  received: "text-sky-200 bg-sky-500/12 border-sky-500/30",
+  received: "text-[var(--hi-muted)] bg-sky-500/12 border-sky-500/30",
   reviewing: "text-amber-200 bg-amber-500/12 border-amber-500/30",
   accepted: "text-emerald-200 bg-emerald-500/12 border-emerald-500/30",
   declined: "text-rose-200 bg-rose-500/12 border-rose-500/30",
@@ -41,7 +41,7 @@ function backlogBadge(status: string, hours: number): { label: string; className
   if (status !== "received" && status !== "reviewing") return null;
   if (hours >= 72) return { label: "Stale (72h+)", className: "text-amber-300 bg-amber-500/15 border-amber-500/35" };
   if (hours >= 48) return { label: "Backlog · 48h+", className: "text-white/70 bg-white/[0.04] border-white/14" };
-  if (hours >= 24 && status === "received") return { label: "24h+ in queue", className: "text-sky-200/90 bg-sky-500/10 border-sky-500/25" };
+  if (hours >= 24 && status === "received") return { label: "24h+ in queue", className: "text-[var(--hi-muted)]/90 bg-sky-500/10 border-sky-500/25" };
   return null;
 }
 
@@ -220,7 +220,7 @@ export default function CreatorQueue() {
               Unlock queue
             </button>
           </div>
-          <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.35)" }}>
+          <p className="text-xs mt-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Stored in sessionStorage only — cleared when you close the tab.
           </p>
         </div>
@@ -287,7 +287,7 @@ export default function CreatorQueue() {
                   <article key={r.id} className="rounded-xl p-5 border border-white/[0.08] bg-white/[0.02]">
                     <div
                       className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2 items-center"
-                      style={{ color: "rgba(255,255,255,0.45)" }}
+                      style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
                     >
                       <span className="flex flex-wrap items-center gap-2">
                         <span>{r.created_at.slice(0, 19)}</span>
@@ -461,7 +461,7 @@ export default function CreatorQueue() {
           .btn-primary {
             padding: 0.6rem 1rem;
             border-radius: 10px;
-            background: linear-gradient(135deg, #0EA5E9, #0369a1);
+            background: linear-gradient(135deg, var(--hi-accent), #0369a1);
             font-weight: 700;
             color: white;
           }

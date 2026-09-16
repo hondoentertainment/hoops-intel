@@ -21,7 +21,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
   function projectionColor(proj: string) {
     if (proj === "Champion") return "#F59E0B";
     if (proj === "Finals") return "#10B981";
-    if (proj === "Conference Finals") return "#0EA5E9";
+    if (proj === "Conference Finals") return "var(--hi-accent)";
     if (proj === "2nd Round") return "rgba(255,255,255,0.6)";
     return "rgba(255,255,255,0.35)";
   }
@@ -31,15 +31,15 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
       <div
         className="text-sm font-bold mb-3"
         style={{
-          color: conference === "east" ? "#0EA5E9" : "#F59E0B",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: conference === "east" ? "var(--hi-accent)" : "#F59E0B",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.08em",
         }}
       >
         {conference === "east" ? "EASTERN CONFERENCE" : "WESTERN CONFERENCE"}
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        <table className="w-full text-sm" style={{ fontFamily: "var(--hi-font-body)" }}>
           <thead>
             <tr
               style={{
@@ -51,8 +51,8 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                   key={h}
                   className="text-left py-2 px-2 text-xs font-semibold"
                   style={{
-                    color: "rgba(255,255,255,0.35)",
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    color: "var(--hi-text-secondary,#8a8a86)",
+                    fontFamily: "var(--hi-font-display)",
                     letterSpacing: "0.06em",
                   }}
                 >
@@ -67,7 +67,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                 key={t.team}
                 style={{
                   background: rowTint(t),
-                  borderBottom: i === 5 ? "2px solid rgba(14,165,233,0.3)" :
+                  borderBottom: i === 5 ? "2px solid rgba(142,200,240,0.3)" :
                                i === 9 ? "2px solid rgba(245,158,11,0.3)" :
                                "1px solid rgba(255,255,255,0.04)",
                 }}
@@ -75,20 +75,20 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                 <td className="py-2 px-2">
                   <span
                     className="font-bold text-sm"
-                    style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                    style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
                   >
                     {t.team}
                   </span>
                 </td>
                 <td
                   className="py-2 px-2 tabular-nums text-xs"
-                  style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'JetBrains Mono', monospace" }}
+                  style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   {t.currentWins}-{t.currentLosses}
                 </td>
                 <td
                   className="py-2 px-2 tabular-nums text-xs font-bold"
-                  style={{ color: "#fff", fontFamily: "'JetBrains Mono', monospace" }}
+                  style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-mono)" }}
                 >
                   {t.projectedWins}-{t.projectedLosses}
                 </td>
@@ -97,7 +97,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                     className="text-xs font-bold tabular-nums"
                     style={{
                       color: t.winChange > 0 ? "#10B981" : t.winChange < 0 ? "#F43F5E" : "rgba(255,255,255,0.35)",
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--hi-font-mono)",
                     }}
                   >
                     {t.winChange > 0 ? `+${t.winChange}` : t.winChange === 0 ? "--" : t.winChange}
@@ -121,7 +121,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                       className="text-xs tabular-nums"
                       style={{
                         color: t.playoffProb >= 90 ? "#10B981" : t.playoffProb >= 50 ? "#F59E0B" : "rgba(255,255,255,0.4)",
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--hi-font-mono)",
                       }}
                     >
                       {t.playoffProb.toFixed(0)}%
@@ -132,7 +132,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                   className="py-2 px-2 tabular-nums text-xs"
                   style={{
                     color: t.championshipProb >= 5 ? "#F59E0B" : "rgba(255,255,255,0.35)",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "var(--hi-font-mono)",
                   }}
                 >
                   {t.championshipProb > 0 ? `${t.championshipProb.toFixed(1)}%` : "--"}
@@ -147,7 +147,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                       color: t.remainingSOS <= 5 ? "#F43F5E" :
                              t.remainingSOS <= 15 ? "#F59E0B" :
                              "#10B981",
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--hi-font-body)",
                       fontSize: "0.65rem",
                     }}
                   >
@@ -159,7 +159,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
                     className="text-xs font-semibold"
                     style={{
                       color: projectionColor(t.projection),
-                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontFamily: "var(--hi-font-display)",
                       letterSpacing: "0.03em",
                     }}
                   >
@@ -174,14 +174,14 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
       {/* Legend */}
       <div className="flex items-center gap-4 mt-2">
         <div className="flex items-center gap-1.5">
-          <div className="w-6 h-1 rounded" style={{ background: "rgba(14,165,233,0.5)" }} />
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}>
+          <div className="w-6 h-1 rounded" style={{ background: "rgba(142,200,240,0.5)" }} />
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
             Playoff line
           </span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-6 h-1 rounded" style={{ background: "rgba(245,158,11,0.5)" }} />
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
             Play-in line
           </span>
         </div>
@@ -207,19 +207,19 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
         <div className="flex items-center gap-2">
           <span
             className="text-sm font-bold"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
           >
             {matchup.highSeed}
           </span>
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
           >
             vs
           </span>
           <span
             className="text-sm font-bold"
-            style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
           >
             {matchup.lowSeed}
           </span>
@@ -227,9 +227,9 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
         <span
           className="text-xs font-bold px-2 py-0.5 rounded"
           style={{
-            background: "rgba(14,165,233,0.12)",
-            color: "#0EA5E9",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: "rgba(142,200,240,0.12)",
+            color: "var(--hi-accent)",
+            fontFamily: "var(--hi-font-display)",
           }}
         >
           {matchup.seriesProb}
@@ -237,7 +237,7 @@ function BracketMatchup({ matchup }: { matchup: PlayoffMatchup }) {
       </div>
       <p
         className="text-xs"
-        style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
       >
         {matchup.keyFactor}
       </p>
@@ -255,8 +255,8 @@ function BracketRound({ title, matchups }: { title: string; matchups: PlayoffMat
       <div
         className="text-xs font-semibold mb-2"
         style={{
-          color: "rgba(255,255,255,0.35)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.08em",
         }}
       >
@@ -285,8 +285,8 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
       <div
         className="text-xs font-semibold mb-4"
         style={{
-          color: "rgba(255,255,255,0.4)",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          color: "var(--hi-text-secondary,#8a8a86)",
+          fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.1em",
         }}
       >
@@ -305,20 +305,20 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
             <div className="flex items-center gap-2 mb-1">
               <span
                 className="text-sm font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {t.team}
               </span>
               <span
                 className="text-xs tabular-nums"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'JetBrains Mono', monospace" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {t.currentWins}-{t.currentLosses}
               </span>
             </div>
             <p
               className="text-xs leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {t.keyStretch}
             </p>
@@ -329,7 +329,7 @@ function KeyStretches({ teams }: { teams: TeamProjection[] }) {
         <button
           onClick={() => setShowAll(!showAll)}
           className="text-xs font-medium mt-3 transition-colors"
-          style={{ color: "#0EA5E9", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
         >
           {showAll ? "Show less" : `Show all ${playoffTeams.length} teams`}
         </button>
@@ -373,13 +373,13 @@ export default function Projections() {
     >
           <div className="flex items-center gap-3 flex-wrap mb-8">
             <SeasonChip>{weekLabel}</SeasonChip>
-            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Generated {generatedDate}
             </span>
           </div>
 
         <DeskPanel kicker="Weekly narrative" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {weeklyNarrative}
           </p>
         </DeskPanel>
@@ -399,7 +399,7 @@ export default function Projections() {
                 className="text-xs font-semibold"
                 style={{
                   color: "#10B981",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -410,20 +410,20 @@ export default function Projections() {
             <div className="flex items-center gap-2 mb-1.5">
               <span
                 className="text-lg font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {biggestRiser.team}
               </span>
               <span
                 className="text-sm font-bold"
-                style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}
               >
                 {biggestRiser.change}
               </span>
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {biggestRiser.reason}
             </p>
@@ -442,7 +442,7 @@ export default function Projections() {
                 className="text-xs font-semibold"
                 style={{
                   color: "#F43F5E",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -453,20 +453,20 @@ export default function Projections() {
             <div className="flex items-center gap-2 mb-1.5">
               <span
                 className="text-lg font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {biggestFaller.team}
               </span>
               <span
                 className="text-sm font-bold"
-                style={{ color: "#F43F5E", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "#F43F5E", fontFamily: "var(--hi-font-display)" }}
               >
                 {biggestFaller.change}
               </span>
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {biggestFaller.reason}
             </p>
@@ -482,8 +482,8 @@ export default function Projections() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -497,7 +497,7 @@ export default function Projections() {
                 className="text-sm font-bold mb-3"
                 style={{
                   color: "#F59E0B",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.06em",
                 }}
               >
@@ -515,8 +515,8 @@ export default function Projections() {
               <div
                 className="text-sm font-bold mb-3"
                 style={{
-                  color: "#0EA5E9",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  color: "var(--hi-accent)",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.06em",
                 }}
               >
@@ -534,7 +534,7 @@ export default function Projections() {
           <div
             className="rounded-xl p-6"
             style={{
-              background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(14,165,233,0.08))",
+              background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(142,200,240,0.08))",
               border: "1px solid rgba(245,158,11,0.2)",
             }}
           >
@@ -542,7 +542,7 @@ export default function Projections() {
               className="text-xs font-semibold mb-3 text-center"
               style={{
                 color: "#F59E0B",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.1em",
               }}
             >
@@ -551,19 +551,19 @@ export default function Projections() {
             <div className="flex items-center justify-center gap-4 mb-3 flex-wrap">
               <span
                 className="text-xl font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {projectedBracket.finals.highSeed}
               </span>
               <span
                 className="text-sm"
-                style={{ color: "rgba(255,255,255,0.35)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 vs
               </span>
               <span
                 className="text-xl font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {projectedBracket.finals.lowSeed}
               </span>
@@ -575,7 +575,7 @@ export default function Projections() {
                   background: "rgba(245,158,11,0.15)",
                   color: "#F59E0B",
                   border: "1px solid rgba(245,158,11,0.3)",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                 }}
               >
                 {projectedBracket.finals.seriesProb}
@@ -583,7 +583,7 @@ export default function Projections() {
             </div>
             <p
               className="text-sm leading-relaxed text-center mt-3"
-              style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {projectedBracket.finals.keyFactor}
             </p>

@@ -33,13 +33,13 @@ export default function ReactionBar({ itemId }: { itemId: string }) {
             aria-pressed={isActive}
             className="flex items-center gap-1 px-2 py-1 rounded-full text-xs transition-all min-h-[44px] sm:min-h-0 active:scale-[0.97]"
             style={{
-              background: isActive ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.04)",
-              border: `1px solid ${isActive ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
+              background: isActive ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.04)",
+              border: `1px solid ${isActive ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
             }}
           >
             <span style={{ fontSize: "0.85rem" }} aria-hidden>{REACTION_EMOJIS[r]}</span>
             {count > 0 && (
-              <span className="mono-data" style={{ color: isActive ? "#0EA5E9" : "rgba(255,255,255,0.4)", fontSize: "0.65rem" }}>
+              <span className="mono-data" style={{ color: isActive ? "var(--hi-accent)" : "rgba(255,255,255,0.4)", fontSize: "0.65rem" }}>
                 {count}
               </span>
             )}

@@ -164,17 +164,17 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
       className="rounded-xl p-4 relative overflow-hidden"
       style={{
         background: "rgba(255,255,255,0.03)",
-        border: `1px solid ${game.featured ? "rgba(14,165,233,0.25)" : "rgba(255,255,255,0.06)"}`,
-        boxShadow: game.featured ? "0 0 20px rgba(14,165,233,0.08)" : "none",
+        border: `1px solid ${game.featured ? "rgba(142,200,240,0.25)" : "rgba(255,255,255,0.06)"}`,
+        boxShadow: game.featured ? "0 0 20px rgba(142,200,240,0.08)" : "none",
       }}
     >
       {game.featured && (
         <div
           className="absolute top-0 right-0 px-2 py-0.5 text-xs font-semibold rounded-bl-lg"
           style={{
-            background: "rgba(14,165,233,0.2)",
-            color: "#0EA5E9",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            background: "rgba(142,200,240,0.2)",
+            color: "var(--hi-accent)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.05em",
           }}
         >
@@ -186,7 +186,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
       <div className="flex items-center gap-2 mb-3">
         <span
           className="text-xs font-medium"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
         >
           {game.time}
         </span>
@@ -194,9 +194,9 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <span
             className="px-1.5 py-0.5 rounded text-xs font-semibold"
             style={{
-              background: "rgba(14,165,233,0.1)",
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              background: "rgba(142,200,240,0.1)",
+              color: "var(--hi-accent)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
           >
@@ -206,7 +206,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
         {game.spread && (
           <span
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'JetBrains Mono', monospace" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
           >
             {game.spread}
           </span>
@@ -222,9 +222,9 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           className="flex-1 rounded-lg py-3 px-4 text-center transition-all duration-200"
           style={{
             background: awayPicked
-              ? "rgba(14,165,233,0.2)"
+              ? "rgba(142,200,240,0.2)"
               : "rgba(255,255,255,0.04)",
-            border: `2px solid ${awayPicked ? "#0EA5E9" : "rgba(255,255,255,0.08)"}`,
+            border: `2px solid ${awayPicked ? "var(--hi-accent)" : "rgba(255,255,255,0.08)"}`,
             cursor: locked ? "default" : "pointer",
             transform: awayPicked && !locked ? "scale(1.02)" : "scale(1)",
           }}
@@ -232,8 +232,8 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-lg font-bold leading-none mb-0.5"
             style={{
-              color: awayPicked ? "#0EA5E9" : "rgba(255,255,255,0.85)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: awayPicked ? "var(--hi-accent)" : "rgba(255,255,255,0.85)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
           >
@@ -242,8 +242,8 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: awayPicked ? "rgba(14,165,233,0.7)" : "rgba(255,255,255,0.35)",
-              fontFamily: "'JetBrains Mono', monospace",
+              color: awayPicked ? "rgba(142,200,240,0.7)" : "rgba(255,255,255,0.35)",
+              fontFamily: "var(--hi-font-mono)",
             }}
           >
             {game.awayRecord}
@@ -251,7 +251,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           {awayPicked && (
             <div
               className="text-xs font-semibold mt-1"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               YOUR PICK
             </div>
@@ -260,7 +260,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
 
         <div
           className="text-xs font-bold px-2"
-          style={{ color: "rgba(255,255,255,0.25)", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
         >
           @
         </div>
@@ -272,9 +272,9 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           className="flex-1 rounded-lg py-3 px-4 text-center transition-all duration-200"
           style={{
             background: homePicked
-              ? "rgba(14,165,233,0.2)"
+              ? "rgba(142,200,240,0.2)"
               : "rgba(255,255,255,0.04)",
-            border: `2px solid ${homePicked ? "#0EA5E9" : "rgba(255,255,255,0.08)"}`,
+            border: `2px solid ${homePicked ? "var(--hi-accent)" : "rgba(255,255,255,0.08)"}`,
             cursor: locked ? "default" : "pointer",
             transform: homePicked && !locked ? "scale(1.02)" : "scale(1)",
           }}
@@ -282,8 +282,8 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-lg font-bold leading-none mb-0.5"
             style={{
-              color: homePicked ? "#0EA5E9" : "rgba(255,255,255,0.85)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: homePicked ? "var(--hi-accent)" : "rgba(255,255,255,0.85)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.04em",
             }}
           >
@@ -292,8 +292,8 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: homePicked ? "rgba(14,165,233,0.7)" : "rgba(255,255,255,0.35)",
-              fontFamily: "'JetBrains Mono', monospace",
+              color: homePicked ? "rgba(142,200,240,0.7)" : "rgba(255,255,255,0.35)",
+              fontFamily: "var(--hi-font-mono)",
             }}
           >
             {game.homeRecord}
@@ -301,7 +301,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           {homePicked && (
             <div
               className="text-xs font-semibold mt-1"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               YOUR PICK
             </div>
@@ -313,7 +313,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
       {game.keyMatchup && (
         <div
           className="mt-2 text-xs"
-          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           {game.keyMatchup}
         </div>
@@ -351,7 +351,7 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
     return (
       <div
         className="rounded-lg px-4 py-3 mt-4 animate-pulse"
-        style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.15)" }}
+        style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.15)" }}
       >
         <div className="h-3 w-32 rounded" style={{ background: "rgba(255,255,255,0.08)" }} />
       </div>
@@ -363,10 +363,10 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
       <div
         className="rounded-lg px-4 py-3 mt-4 text-xs"
         style={{
-          background: "rgba(14,165,233,0.06)",
-          border: "1px solid rgba(14,165,233,0.15)",
-          color: "rgba(255,255,255,0.5)",
-          fontFamily: "'DM Sans', sans-serif",
+          background: "rgba(142,200,240,0.06)",
+          border: "1px solid rgba(142,200,240,0.15)",
+          color: "var(--hi-muted,#5c5c58)",
+          fontFamily: "var(--hi-font-body)",
         }}
       >
         No settled picks yet — check back after games conclude.
@@ -377,18 +377,18 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
   return (
     <div
       className="rounded-lg px-4 py-3 mt-4 flex items-center gap-6"
-      style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.15)" }}
+      style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.15)" }}
     >
       <div className="text-center">
         <div
           className="text-2xl font-bold leading-none"
-          style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
         >
           {entry.accuracy_pct !== null ? `${entry.accuracy_pct}%` : "—"}
         </div>
         <div
           className="text-xs mt-0.5"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           Season Accuracy
         </div>
@@ -396,16 +396,16 @@ function AccuracyDisplay({ userId }: AccuracyDisplayProps) {
       <div className="text-center">
         <div
           className="text-2xl font-bold leading-none"
-          style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif" }}
+          style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}
         >
           {entry.correct_picks}
-          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "1rem" }}>
+          <span style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "1rem" }}>
             /{entry.total_settled}
           </span>
         </div>
         <div
           className="text-xs mt-0.5"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           Correct / Total
         </div>
@@ -515,7 +515,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
             background: "rgba(245,158,11,0.08)",
             border: "1px solid rgba(245,158,11,0.2)",
             color: "rgba(245,158,11,0.9)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           <span>&#9888;</span>
@@ -543,13 +543,13 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
           <div>
             <div
               className="font-semibold text-sm"
-              style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.04em" }}
+              style={{ color: "#10B981", fontFamily: "var(--hi-font-display)", letterSpacing: "0.04em" }}
             >
               LOCKED IN — {pickedCount} of {totalGames} picks submitted
             </div>
             <div
               className="text-xs mt-0.5"
-              style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
             >
               {userId
                 ? "Your picks are saved. Accuracy updates after games conclude."
@@ -584,7 +584,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
             background: "rgba(244,63,94,0.08)",
             border: "1px solid rgba(244,63,94,0.2)",
             color: "rgba(244,63,94,0.9)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--hi-font-body)",
           }}
         >
           {errorMsg || "Failed to save picks. Please try again."}
@@ -603,12 +603,12 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
                 pickedCount === 0
                   ? "rgba(255,255,255,0.06)"
                   : isLoading
-                  ? "rgba(14,165,233,0.3)"
-                  : "linear-gradient(135deg, #0EA5E9, #0284C7)",
+                  ? "rgba(142,200,240,0.3)"
+                  : "linear-gradient(135deg, var(--hi-accent), #0284C7)",
               color:
                 pickedCount === 0 ? "rgba(255,255,255,0.3)" : "#fff",
               cursor: pickedCount === 0 || isLoading ? "not-allowed" : "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
               fontSize: "0.95rem",
             }}
@@ -622,7 +622,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
           {pickedCount > 0 && pickedCount < totalGames && (
             <div
               className="text-xs"
-              style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
             >
               {totalGames - pickedCount} remaining
             </div>

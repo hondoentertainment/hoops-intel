@@ -105,11 +105,11 @@ export default function GuestPulse() {
                 key={p.id}
                 className="rounded-xl px-5 py-4 border border-white/[0.08] bg-white/[0.02]"
               >
-                <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   <span className="font-semibold text-white/70">{p.name}</span>
                   <span>{p.created_at ? p.created_at.slice(0, 10) : ""}</span>
                 </div>
-                <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "rgba(255,255,255,0.72)" }}>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {p.pitch}
                 </p>
               </article>
@@ -158,7 +158,7 @@ export default function GuestPulse() {
         className="mt-6 w-full py-3 rounded-lg font-semibold"
         style={{
           background: "linear-gradient(135deg,#10B981,#059669)",
-          color: "#fff",
+          color: "var(--hi-text,#0a0a0a)",
           opacity: busy || pitch.trim().length < 10 ? 0.55 : 1,
         }}
       >
@@ -179,7 +179,7 @@ export default function GuestPulse() {
               </code>
             </p>
           )}
-          <p style={{ color: "rgba(255,255,255,0.5)" }}>
+          <p style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Our editors typically review Guest Pulse pitches within several business days. Accepted pitches appear in
             the published feed above.
           </p>
@@ -203,7 +203,7 @@ export default function GuestPulse() {
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <label className="block text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+      <label className="block text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         {label}
       </label>
       {children}

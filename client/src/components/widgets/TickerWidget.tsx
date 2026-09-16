@@ -21,7 +21,7 @@ const typeStyles = (type: string, isDark: boolean) => {
     case "injury":
       return { color: "#F43F5E", dot: "#F43F5E" };
     default:
-      return { color: isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)", dot: "#0EA5E9" };
+      return { color: isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)", dot: "var(--hi-accent)" };
   }
 };
 
@@ -29,9 +29,9 @@ export default function TickerWidget({ theme = "dark", size = "medium" }: Ticker
   const isDark = theme === "dark";
   const cfg = sizeConfig[size];
 
-  const bg = isDark ? "#0A1628" : "#FFFFFF";
+  const bg = isDark ? "#111111" : "#FFFFFF";
   const border = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
-  const accent = "#0EA5E9";
+  const accent = "var(--hi-accent)";
   const textSecondary = isDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)";
 
   // Filter to scores and alerts for the ticker
@@ -77,7 +77,7 @@ export default function TickerWidget({ theme = "dark", size = "medium" }: Ticker
           style={{
             fontSize: cfg.fontSize - 2,
             fontWeight: 800,
-            color: "#fff",
+            color: "var(--hi-text,#0a0a0a)",
             letterSpacing: "0.08em",
             textTransform: "uppercase" as const,
           }}

@@ -41,7 +41,7 @@ export default function PickEmHomeBanner() {
         <div
           className="rounded-xl p-4 sm:p-5 flex flex-col gap-4"
           style={{
-            background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(14,165,233,0.06))",
+            background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(142,200,240,0.06))",
             border: "1px solid rgba(16,185,129,0.25)",
           }}
         >

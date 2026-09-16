@@ -124,8 +124,8 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
         aria-labelledby="my-pulse-setup-title"
         className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl outline-none"
         style={{
-          background: "#0A1628",
-          border: "1px solid rgba(14,165,233,0.25)",
+          background: "var(--hi-surface,#eeeeec)",
+          border: "1px solid rgba(142,200,240,0.25)",
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -134,7 +134,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
           className="flex items-center justify-between px-6 py-4 border-b sticky top-0 z-10"
           style={{
             borderColor: "rgba(255,255,255,0.08)",
-            background: "#0A1628",
+            background: "var(--hi-surface,#eeeeec)",
           }}
         >
           <div>
@@ -145,8 +145,8 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
             type="button"
             onClick={onClose}
             aria-label="Close My Pulse setup"
-            className="w-8 h-8 rounded flex items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
-            style={{ color: "rgba(255,255,255,0.4)" }}
+            className="w-8 h-8 rounded flex items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
+            style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
           >
             <svg
               width="16"
@@ -172,7 +172,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
               </div>
               <div
                 className="text-xs"
-                style={{ color: "rgba(255,255,255,0.4)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 Personalize your daily edition based on favorites
               </div>
@@ -183,10 +183,10 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
               aria-checked={enabled}
               aria-label="Enable My Pulse personalization"
               onClick={() => setEnabled(!enabled)}
-              className="relative w-11 h-6 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+              className="relative w-11 h-6 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
               style={{
                 background: enabled
-                  ? "#0EA5E9"
+                  ? "var(--hi-accent)"
                   : "rgba(255,255,255,0.15)",
               }}
             >
@@ -211,9 +211,9 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                   background:
                     teams.length >= MAX_TEAMS
                       ? "rgba(244,63,94,0.15)"
-                      : "rgba(14,165,233,0.15)",
+                      : "rgba(142,200,240,0.15)",
                   color:
-                    teams.length >= MAX_TEAMS ? "#F43F5E" : "#0EA5E9",
+                    teams.length >= MAX_TEAMS ? "#F43F5E" : "var(--hi-accent)",
                 }}
               >
                 {teams.length}/{MAX_TEAMS} selected
@@ -232,21 +232,21 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                     disabled={disabled}
                     aria-pressed={selected}
                     aria-label={`${team}${selected ? ", selected" : ""}`}
-                    className="py-2.5 rounded text-xs font-bold tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+                    className="py-2.5 rounded text-xs font-bold tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
                     style={{
                       background: selected
-                        ? "rgba(14,165,233,0.2)"
+                        ? "rgba(142,200,240,0.2)"
                         : "rgba(255,255,255,0.04)",
                       border: selected
-                        ? "2px solid #0EA5E9"
+                        ? "2px solid var(--hi-accent)"
                         : "2px solid rgba(255,255,255,0.08)",
                       color: selected
-                        ? "#0EA5E9"
+                        ? "var(--hi-accent)"
                         : disabled
                         ? "rgba(255,255,255,0.4)"
                         : "rgba(255,255,255,0.6)",
                       boxShadow: selected
-                        ? "0 0 12px rgba(14,165,233,0.3)"
+                        ? "0 0 12px rgba(142,200,240,0.3)"
                         : "none",
                       cursor: disabled ? "not-allowed" : "pointer",
                       opacity: disabled ? 0.5 : 1,
@@ -269,11 +269,11 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                   background:
                     players.length >= MAX_PLAYERS
                       ? "rgba(244,63,94,0.15)"
-                      : "rgba(14,165,233,0.15)",
+                      : "rgba(142,200,240,0.15)",
                   color:
                     players.length >= MAX_PLAYERS
                       ? "#F43F5E"
-                      : "#0EA5E9",
+                      : "var(--hi-accent)",
                 }}
               >
                 {players.length}/{MAX_PLAYERS} selected
@@ -341,9 +341,9 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                     key={player}
                     className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
                     style={{
-                      background: "rgba(14,165,233,0.15)",
-                      color: "#0EA5E9",
-                      border: "1px solid rgba(14,165,233,0.3)",
+                      background: "rgba(142,200,240,0.15)",
+                      color: "var(--hi-accent)",
+                      border: "1px solid rgba(142,200,240,0.3)",
                     }}
                   >
                     {player}
@@ -351,8 +351,8 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                       type="button"
                       onClick={() => removePlayer(player)}
                       aria-label={`Remove ${player} from favorites`}
-                      className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 transition-colors"
-                      style={{ color: "#0EA5E9" }}
+                      className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 transition-colors"
+                      style={{ color: "var(--hi-accent)" }}
                     >
                       <svg
                         width="10"
@@ -375,7 +375,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
             {players.length === 0 && (
               <div
                 className="text-xs py-2"
-                style={{ color: "rgba(255,255,255,0.3)" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
               >
                 Search and add up to {MAX_PLAYERS} favorite players
               </div>
@@ -388,22 +388,22 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
           className="flex items-center justify-between px-6 py-4 border-t sticky bottom-0"
           style={{
             borderColor: "rgba(255,255,255,0.08)",
-            background: "#0A1628",
+            background: "var(--hi-surface,#eeeeec)",
           }}
         >
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
-            style={{ color: "rgba(255,255,255,0.5)" }}
+            className="px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
+            style={{ color: "var(--hi-muted,#5c5c58)" }}
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={handleSave}
-            className="px-6 py-2 rounded text-sm font-semibold text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
-            style={{ background: "#0EA5E9" }}
+            className="px-6 py-2 rounded text-sm font-semibold text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
+            style={{ background: "var(--hi-accent)" }}
           >
             Save Preferences
           </button>

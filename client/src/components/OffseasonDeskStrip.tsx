@@ -76,13 +76,13 @@ export default function OffseasonDeskStrip() {
                   : "Preseason desk leads with camp intel — roster battles, unresolved extensions, and Pulse of the camp. Tonight stays empty until ESPN posts a slate."}
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
-              <a href="/trade-value" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
+              <a href="/trade-value" className="text-xs text-[var(--hi-text)] hover:text-[var(--hi-text)] underline-offset-2 hover:underline">
                 Trade Value →
               </a>
-              <a href="/lineups" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
+              <a href="/lineups" className="text-xs text-[var(--hi-text)] hover:text-[var(--hi-text)] underline-offset-2 hover:underline">
                 Lineups →
               </a>
-              <a href="/draft" className="text-xs text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
+              <a href="/draft" className="text-xs text-[var(--hi-text)] hover:text-[var(--hi-text)] underline-offset-2 hover:underline">
                 Draft tracker →
               </a>
             </div>

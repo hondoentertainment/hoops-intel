@@ -13,18 +13,26 @@ const CHROMELESS_PAGES = new Set([
 ]);
 
 describe("editorial UX primitives", () => {
-  it("keeps the shared card language at 16px with the caliber accent", () => {
+  it("keeps the shared light Grok canvas, pills, and soft-radius cards", () => {
     const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
-    expect(css).toContain("--hi-accent: #1ec8f5");
-    expect(css).toContain("--hi-card-radius: 16px");
+    expect(css).toContain("--hi-bg-page: #f7f7f5");
+    expect(css).toContain("--hi-accent: #8ec8f0");
+    expect(css).toContain("--hi-chip: #ff7a17");
+    expect(css).toContain("--hi-cta: #0a0a0a");
+    expect(css).toContain("--hi-pill-radius: 9999px");
+    expect(css).toContain("--hi-card-radius: 20px");
     expect(css).toMatch(/\.enhanced-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toMatch(/\.glass-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toContain(".desk-hairline");
     expect(css).toContain(".desk-page-main");
-    expect(css).toContain("--hi-desk-pad-x: 1rem");
-    expect(css).toContain("--hi-desk-pad-x-md: 1.75rem");
+    expect(css).toContain("--hi-desk-pad-x: 1.25rem");
+    expect(css).toContain("--hi-desk-pad-x-md: 2rem");
     expect(css).toContain(".glass-card.rounded-lg");
     expect(css).toMatch(/\.glass-card\.rounded-lg[\s\S]{0,180}var\(--hi-card-radius/);
+    expect(css).toContain(".hi-pill-primary");
+    expect(css).toContain(".ask-inflow-cta");
+    expect(css).not.toContain("#1ec8f5");
+    expect(css).not.toContain("#050D1A");
   });
 
   it("exposes PageHero and EmptyState on the shared primitive module", () => {
@@ -49,7 +57,7 @@ describe("editorial UX primitives", () => {
     expect(tools).toContain("Every Hoops Intel tool");
     expect(players).toContain("DeskFilterChip");
     expect(players).toContain("DeskSearchField");
-    expect(players).toContain("var(--hi-accent,#1ec8f5)");
+    expect(players).toContain("var(--hi-accent,#8ec8f0)");
     expect(archive).toContain("DeskFilterChip");
     expect(archive).toContain("desk-field");
     expect(css).toContain(".desk-section-pill");

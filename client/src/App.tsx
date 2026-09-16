@@ -122,10 +122,10 @@ function PageLoader() {
         <div className="flex items-center gap-3">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin shrink-0"
-            style={{ borderColor: "var(--hi-accent,#1ec8f5)", borderTopColor: "transparent" }}
+            style={{ borderColor: "var(--hi-accent,#8ec8f0)", borderTopColor: "transparent" }}
             aria-hidden
           />
-          <div className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
+          <div className="text-sm font-medium" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             {pageLoaderLabel(location)}…
           </div>
         </div>
@@ -159,8 +159,8 @@ export default function App() {
       <div
         className={`min-h-screen hi-app-shell${chromeless ? " hi-app-shell--chromeless" : ""}`}
         style={{
-          background: "var(--hi-bg-page, #050d1a)",
-          color: "var(--hi-shell-text, rgba(255,255,255,0.85))",
+          background: "var(--hi-bg-page, #f7f7f5)",
+          color: "var(--hi-shell-text, #5c5c58)",
         }}
       >
         <div className="hi-app-scroll">

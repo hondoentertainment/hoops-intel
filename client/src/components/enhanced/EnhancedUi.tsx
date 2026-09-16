@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ENHANCED_ACCENT, injuryChipTone, injuryStatusLabel } from "../../lib/enhancedDesk";
+import { ENHANCED_CHIP, ENHANCED_INK, injuryChipTone, injuryStatusLabel } from "../../lib/enhancedDesk";
 
 export function BrandMark({ size = 14 }: { size?: number }) {
   return (
@@ -26,21 +26,23 @@ export function BrandLockup({
       <BrandMark size={compact ? 12 : 14} />
       <span className="flex flex-col min-w-0 leading-none">
         <span
-          className="font-bold truncate"
+          className="truncate"
           style={{
-            fontSize: compact ? 12 : 13,
-            letterSpacing: compact ? "0.8px" : "1px",
-            color: ENHANCED_ACCENT,
+            fontFamily: "var(--hi-font-display)",
+            fontSize: compact ? 13 : 15,
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            color: "var(--hi-text,#0a0a0a)",
           }}
         >
-          HOOPS INTEL
+          Hoops Intel
         </span>
         {subtitle ? (
           <span
             className="truncate font-medium mt-0.5"
             style={{
               fontSize: compact ? 9 : 10,
-              color: "var(--hi-text-secondary,#8594a8)",
+              color: "var(--hi-text-secondary,#8a8a86)",
               letterSpacing: "0.01em",
             }}
           >
@@ -56,7 +58,7 @@ export function SeasonChip({ children }: { children: ReactNode }) {
   return (
     <span
       className="desk-chip uppercase"
-      style={{ background: "rgba(31,199,245,0.14)", color: ENHANCED_ACCENT }}
+      style={{ background: "rgba(255,122,23,0.12)", color: ENHANCED_CHIP }}
     >
       {children}
     </span>
@@ -71,7 +73,7 @@ export function StatusPill({
   children: ReactNode;
 }) {
   const styles = {
-    accent: { background: "rgba(31,199,245,0.14)", color: ENHANCED_ACCENT },
+    accent: { background: "var(--hi-accent-soft,#d7eef9)", color: ENHANCED_INK },
     warn: { background: "rgba(242,184,56,0.14)", color: "var(--hi-warn,#f2b838)" },
     success: { background: "rgba(64,209,140,0.14)", color: "var(--hi-success,#40d18c)" },
     danger: { background: "rgba(255,77,106,0.14)", color: "var(--hi-danger,#ff4d6a)" },
@@ -97,11 +99,11 @@ export function DeskPanel({
   className?: string;
 }) {
   return (
-    <section id={id} className={`enhanced-card flex flex-col gap-3 p-4 min-w-0 overflow-hidden ${className}`}>
+    <section id={id} className={`enhanced-card flex flex-col gap-3 p-6 min-w-0 overflow-hidden ${className}`}>
       <div className="min-w-0">
         <p className="enhanced-kicker">{kicker}</p>
         {hint ? (
-          <p className="text-xs leading-5 mt-1.5" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-xs leading-5 mt-1.5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {hint}
           </p>
         ) : null}
@@ -146,7 +148,7 @@ export function SectionHeader({
     <div className="flex flex-col items-start gap-1 md:flex-row md:items-end md:gap-3 w-full min-w-0">
       <div className="flex-1 min-w-0">
         <p className="enhanced-kicker">{eyebrow}</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[28px] leading-8 max-md:text-[1.5rem] max-md:leading-8">
+        <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 max-md:text-[1.75rem] max-md:leading-8">
           {title}
         </h2>
       </div>
@@ -154,7 +156,7 @@ export function SectionHeader({
         <a
           href={actionHref}
           className="text-sm font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
-          style={{ color: ENHANCED_ACCENT }}
+          style={{ color: ENHANCED_INK }}
         >
           {action}
         </a>
@@ -173,15 +175,15 @@ export function StatCard({
   sub: string;
 }) {
   return (
-    <div className="enhanced-card flex flex-col gap-1 p-4 max-md:p-3 min-w-0 overflow-hidden">
+    <div className="enhanced-card flex flex-col gap-1 p-6 max-md:p-4 min-w-0 overflow-hidden">
       <p
         className="text-[10px] font-semibold tracking-[0.8px] uppercase"
-        style={{ color: "var(--hi-text-secondary,#8594a8)" }}
+        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
       >
         {kicker}
       </p>
-      <p className="font-bold text-lg leading-[22px] text-[var(--hi-text,#f2f5fa)] break-words">{value}</p>
-      <p className="text-xs leading-[15px] truncate" style={{ color: ENHANCED_ACCENT }}>
+      <p className="font-bold text-lg leading-[22px] text-[var(--hi-text,#0a0a0a)] break-words">{value}</p>
+      <p className="text-xs leading-[15px] truncate" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {sub}
       </p>
     </div>
@@ -243,7 +245,7 @@ export function DeskSearchField({
           height="16"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="rgba(255,255,255,0.35)"
+          stroke="var(--hi-text-secondary,#8a8a86)"
           strokeWidth="2"
           aria-hidden
         >
@@ -280,12 +282,12 @@ export function DeskLinkCard({
   return (
     <a
       href={href}
-      className="enhanced-card flex flex-col gap-1 p-4 min-h-[4.75rem] min-w-0 overflow-hidden hover:border-[var(--hi-accent,#1ec8f5)]/40 transition-colors"
+      className="enhanced-card flex flex-col gap-1 p-6 min-h-[4.75rem] min-w-0 overflow-hidden transition-colors"
     >
       {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
-      <p className="text-base font-semibold leading-5 text-[var(--hi-text,#f2f5fa)]">{title}</p>
+      <p className="text-base font-semibold leading-5 text-[var(--hi-text,#0a0a0a)]">{title}</p>
       {description ? (
-        <p className="text-xs leading-[18px]" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="text-xs leading-[18px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {description}
         </p>
       ) : null}
@@ -299,7 +301,7 @@ export function DeskLoopLinks({
   intro?: string;
 }) {
   return (
-    <div className="enhanced-card p-4">
+    <div className="enhanced-card p-6">
       <p className="enhanced-kicker mb-3">{intro}</p>
       <div className="flex flex-wrap gap-2">
         <EnhancedButton href="/tonight">Tonight&apos;s slate</EnhancedButton>
@@ -327,21 +329,19 @@ export function EnhancedButton({
   className?: string;
 }) {
   const cls =
-    `inline-flex items-center justify-center px-3.5 py-2.5 rounded-[10px] text-[13px] font-semibold min-h-11 transition-opacity hover:opacity-90 ${className}`;
-  const style =
-    variant === "primary"
-      ? { background: ENHANCED_ACCENT, color: "#0a0d12" }
-      : { background: "transparent", color: "var(--hi-text,#f2f5fa)", border: "1px solid var(--hi-border,#293342)" };
+    `inline-flex items-center justify-center min-h-11 transition-opacity hover:opacity-90 ${
+      variant === "primary" ? "hi-pill-primary" : "hi-pill"
+    } ${className}`;
 
   if (href) {
     return (
-      <a href={href} className={cls} style={style}>
+      <a href={href} className={cls}>
         {children}
       </a>
     );
   }
   return (
-    <button type={type} onClick={onClick} className={cls} style={style}>
+    <button type={type} onClick={onClick} className={cls}>
       {children}
     </button>
   );
@@ -367,32 +367,32 @@ export function GamePreviewCard({
       <div className="flex items-center gap-2 min-w-0">
         <p className="enhanced-kicker">{status}</p>
         <span className="flex-1 min-w-0" />
-        <p className="text-sm shrink-0 text-right leading-5" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="text-sm shrink-0 text-right leading-5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {when}
         </p>
       </div>
       <div className="flex flex-col gap-1 min-w-0">
-        <p className="mono-data font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#f2f5fa)] break-words">
+        <p className="mono-data font-bold text-[22px] md:text-[26px] leading-7 text-[var(--hi-text,#0a0a0a)] break-words">
           {away}{" "}
-          <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <span className="text-sm font-normal" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             @
           </span>{" "}
           {home}
         </p>
         {network ? (
-          <p className="text-sm font-semibold tracking-[0.8px] leading-5" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+          <p className="text-sm font-semibold tracking-[0.8px] leading-5" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             {network}
           </p>
         ) : null}
       </div>
-      <p className="editorial-body mobile-readable text-[var(--hi-text,#f2f5fa)]">{note}</p>
+      <p className="editorial-body mobile-readable text-[var(--hi-text,#0a0a0a)]">{note}</p>
     </div>
   );
 }
 
 export function EnhancedPageFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#050d1a)" }}>
+    <div className="min-h-screen" style={{ background: "var(--hi-bg-page,#f7f7f5)" }}>
       {children}
     </div>
   );
@@ -419,26 +419,26 @@ export function PageHero({
     <header className="flex flex-col gap-2 min-w-0">
       <p className="enhanced-kicker">{kicker}</p>
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between min-w-0">
-        <Heading className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] leading-9 max-md:text-[1.5rem] max-md:leading-8 min-w-0">
+        <Heading className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[40px] leading-[1.1] max-md:text-[1.75rem] max-md:leading-8 min-w-0">
           {title}
         </Heading>
         {action && actionHref ? (
           <a
             href={actionHref}
             className="text-sm font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
-            style={{ color: ENHANCED_ACCENT }}
+            style={{ color: ENHANCED_INK }}
           >
             {action}
           </a>
         ) : null}
       </div>
       {description ? (
-        <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {description}
         </p>
       ) : null}
       {meta ? (
-        <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {meta}
         </p>
       ) : null}
@@ -465,11 +465,11 @@ export function EmptyState({
   return (
     <div className="flex flex-col items-center text-center gap-3 py-10 md:py-16 px-4 min-w-0">
       {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
-      <h2 className="editorial-heading text-[var(--hi-text,#f2f5fa)] text-[32px] md:text-[40px] leading-tight max-md:text-[1.75rem]">
+      <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] md:text-[40px] leading-tight max-md:text-[1.75rem]">
         {title}
       </h2>
       {body ? (
-        <p className="mobile-readable max-w-lg" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+        <p className="mobile-readable max-w-lg" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           {body}
         </p>
       ) : null}
@@ -477,7 +477,7 @@ export function EmptyState({
         <div className="enhanced-card flex flex-col items-center justify-center gap-2 px-8 py-8 w-full max-w-xl">
           {pill ? <StatusPill tone={pillTone}>{pill}</StatusPill> : null}
           {footnote ? (
-            <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               {footnote}
             </p>
           ) : null}

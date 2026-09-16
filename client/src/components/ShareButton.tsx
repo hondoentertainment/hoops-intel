@@ -90,12 +90,12 @@ export default function ShareButton({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 ${btnPad} rounded ${textSize} font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60`}
+        className={`flex items-center gap-1.5 ${btnPad} rounded ${textSize} font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60`}
         style={{
-          background: open ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.06)",
-          color: open ? "#0EA5E9" : "rgba(255,255,255,0.55)",
+          background: open ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.06)",
+          color: open ? "var(--hi-accent)" : "rgba(255,255,255,0.55)",
           border: "1px solid",
-          borderColor: open ? "rgba(14,165,233,0.4)" : "rgba(255,255,255,0.1)",
+          borderColor: open ? "rgba(142,200,240,0.4)" : "rgba(255,255,255,0.1)",
         }}
         aria-label="Share"
         aria-haspopup="menu"
@@ -139,7 +139,7 @@ export default function ShareButton({
             role="menuitem"
             onClick={handleCopyLink}
             className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.8)" }}
+            style={{ color: "var(--hi-muted,#5c5c58)" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
@@ -165,7 +165,7 @@ export default function ShareButton({
             role="menuitem"
             onClick={handleTweetShare}
             className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.8)" }}
+            style={{ color: "var(--hi-muted,#5c5c58)" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
@@ -182,7 +182,7 @@ export default function ShareButton({
               role="menuitem"
               onClick={handleNativeShare}
               className="w-full flex items-center gap-2 px-4 py-3 text-xs text-left transition-colors focus-visible:outline-none focus-visible:bg-white/10"
-              style={{ color: "rgba(255,255,255,0.8)" }}
+              style={{ color: "var(--hi-muted,#5c5c58)" }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >

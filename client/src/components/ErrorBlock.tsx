@@ -24,7 +24,7 @@ export default function ErrorBlock({
             type="button"
             onClick={onRetry}
             className="min-h-[44px] px-4 py-2 rounded-lg text-xs font-semibold text-white"
-            style={{ background: "rgba(14,165,233,0.25)", color: "#7dd3fc" }}
+            style={{ background: "rgba(142,200,240,0.25)", color: "#7dd3fc" }}
           >
             Retry
           </button>

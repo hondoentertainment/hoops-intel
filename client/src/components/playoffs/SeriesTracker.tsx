@@ -48,7 +48,7 @@ export function SeriesTracker({ games, higherTeam, lowerTeam, highlightedGame, o
             }
             className={[
               "tap-target flex-1 min-w-0 rounded px-0.5 py-2 text-[10px] sm:text-xs font-bold transition-all duration-200",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-[#07101c]",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 focus-visible:ring-offset-1 focus-visible:ring-offset-[#07101c]",
               muted ? "bg-white/[0.04] text-white/30" : "",
               isFinal && isHi ? "ring-1 shadow-sm" : "",
               isFinal && isLo ? "ring-1 shadow-sm" : "",
@@ -60,7 +60,7 @@ export function SeriesTracker({ games, higherTeam, lowerTeam, highlightedGame, o
             style={{
               borderColor: muted ? "transparent" : "rgba(255,255,255,0.06)",
               background:
-                isFinal && win ? (isHi ? `${getTeamColor(higherTeam)}35` : `${getTeamColor(lowerTeam)}35`) : muted ? undefined : "rgba(14,165,233,0.12)",
+                isFinal && win ? (isHi ? `${getTeamColor(higherTeam)}35` : `${getTeamColor(lowerTeam)}35`) : muted ? undefined : "rgba(142,200,240,0.12)",
               color:
                 isFinal && win ? "#fff" : isLive ? "#34d399" : undefined,
               boxShadow: highlightN === n && (isFinal || isLive) ? "0 0 0 1px rgba(245,158,11,0.4)" : undefined,

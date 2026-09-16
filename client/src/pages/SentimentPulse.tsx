@@ -12,7 +12,7 @@ import { SeasonChip } from "../components/enhanced/EnhancedUi";
 
 const sentimentColor = (score: number): string => {
   if (score >= 60) return "#10B981";
-  if (score >= 20) return "#0EA5E9";
+  if (score >= 20) return "var(--hi-accent)";
   if (score >= -20) return "#F59E0B";
   if (score >= -60) return "#F43F5E";
   return "#EF4444";
@@ -61,7 +61,7 @@ const moodEmoji = (mood: string): string => {
 const moodColor = (mood: string): string => {
   switch (mood) {
     case "ecstatic": return "#10B981";
-    case "optimistic": return "#0EA5E9";
+    case "optimistic": return "var(--hi-accent)";
     case "neutral": return "#F59E0B";
     case "frustrated": return "#F97316";
     case "furious": return "#F43F5E";
@@ -121,7 +121,7 @@ function SentimentMeter({ score }: { score: number }) {
           left: `${pct}%`,
           transform: `translate(-50%, -50%)`,
           background: color,
-          borderColor: "var(--hi-bg-page, #050D1A)",
+          borderColor: "var(--hi-bg-page, #f7f7f5)",
           boxShadow: `0 0 6px ${color}`,
         }}
       />
@@ -141,12 +141,12 @@ function PlatformBadge({ platform, score }: { platform: string; score: number })
       style={{
         background: `${color}15`,
         color,
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "var(--hi-font-display)",
         letterSpacing: "0.02em",
       }}
     >
       {platform}
-      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem" }}>
+      <span style={{ fontFamily: "var(--hi-font-mono)", fontSize: "0.65rem" }}>
         {score > 0 ? "+" : ""}{score}
       </span>
     </span>
@@ -177,13 +177,13 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
           <div className="flex items-center gap-2 flex-wrap mb-0.5">
             <span
               className="text-base font-bold leading-tight"
-              style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
             >
               {p.player}
             </span>
             <span
               className="text-sm font-semibold"
-              style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
             >
               {p.team}
             </span>
@@ -195,8 +195,8 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
               className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded"
               style={{
                 background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.5)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "var(--hi-muted,#5c5c58)",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.04em",
               }}
             >
@@ -208,7 +208,7 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
         <div className="text-right flex-shrink-0">
           <div
             className="text-2xl font-bold tabular-nums leading-none mb-0.5"
-            style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+            style={{ color, fontFamily: "var(--hi-font-mono)" }}
           >
             {p.overallSentiment > 0 ? "+" : ""}{p.overallSentiment}
           </div>
@@ -216,7 +216,7 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
             className="text-xs font-semibold"
             style={{
               color,
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
               opacity: 0.8,
             }}
@@ -236,8 +236,8 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
         <span
           className="text-xs font-semibold"
           style={{
-            color: "rgba(255,255,255,0.35)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: "var(--hi-text-secondary,#8a8a86)",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.06em",
           }}
         >
@@ -248,7 +248,7 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
           style={{
             background: `${gap}15`,
             color: gap,
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.03em",
           }}
         >
@@ -263,9 +263,9 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
             onClick={() => setShowContrary(false)}
             className="text-xs font-semibold px-2 py-0.5 rounded transition-colors"
             style={{
-              background: !showContrary ? "rgba(14,165,233,0.15)" : "transparent",
-              color: !showContrary ? "#0EA5E9" : "rgba(255,255,255,0.35)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              background: !showContrary ? "rgba(142,200,240,0.15)" : "transparent",
+              color: !showContrary ? "var(--hi-accent)" : "rgba(255,255,255,0.35)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.05em",
               cursor: "pointer",
               border: "none",
@@ -279,7 +279,7 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
             style={{
               background: showContrary ? "rgba(244,63,94,0.15)" : "transparent",
               color: showContrary ? "#F43F5E" : "rgba(255,255,255,0.35)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.05em",
               cursor: "pointer",
               border: "none",
@@ -290,7 +290,7 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
         </div>
         <p
           className="text-sm leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {showContrary ? p.contraryTake : p.topTake}
         </p>
@@ -304,9 +304,9 @@ function PlayerSentimentCard({ p }: { p: PlayerSentiment }) {
             className="text-xs px-2 py-0.5 rounded-full"
             style={{
               background: "rgba(255,255,255,0.04)",
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--hi-text-secondary,#8a8a86)",
               border: "1px solid rgba(255,255,255,0.06)",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--hi-font-body)",
             }}
           >
             #{topic.replace(/\s+/g, "")}
@@ -335,7 +335,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
       <div className="flex items-center justify-between mb-2">
         <span
           className="text-sm font-bold"
-          style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
+          style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
         >
           {t.team}
         </span>
@@ -349,7 +349,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
           style={{
             background: `${color}15`,
             color,
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.04em",
             textTransform: "uppercase",
           }}
@@ -358,7 +358,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
         </span>
         <span
           className="text-xs font-bold tabular-nums"
-          style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color, fontFamily: "var(--hi-font-mono)" }}
         >
           {t.moodScore > 0 ? "+" : ""}{t.moodScore}
         </span>
@@ -368,7 +368,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
           className="text-xs font-semibold mb-0.5"
           style={{
             color: "#F43F5E",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.06em",
             fontSize: "0.6rem",
           }}
@@ -377,7 +377,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
         </div>
         <p
           className="text-xs leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {t.topGrievance}
         </p>
@@ -387,7 +387,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
           className="text-xs font-semibold mb-0.5"
           style={{
             color: "#10B981",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.06em",
             fontSize: "0.6rem",
           }}
@@ -396,7 +396,7 @@ function TeamMoodCard({ t }: { t: TeamSentiment }) {
         </div>
         <p
           className="text-xs leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           {t.brightSpot}
         </p>
@@ -421,7 +421,7 @@ export default function SentimentPulse() {
     >
           <div className="flex items-center gap-3 flex-wrap mb-8">
             <SeasonChip>{data.generatedDate}</SeasonChip>
-            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Aggregated from X, Reddit, forums & media
             </span>
           </div>
@@ -430,8 +430,8 @@ export default function SentimentPulse() {
         <div
           className="rounded-xl p-5 mb-8"
           style={{
-            background: "linear-gradient(135deg, rgba(14,165,233,0.08), rgba(244,63,94,0.06))",
-            border: "1px solid rgba(14,165,233,0.2)",
+            background: "linear-gradient(135deg, rgba(142,200,240,0.08), rgba(244,63,94,0.06))",
+            border: "1px solid rgba(142,200,240,0.2)",
           }}
         >
           <div className="flex items-center gap-2 mb-3">
@@ -440,7 +440,7 @@ export default function SentimentPulse() {
               style={{
                 background: "rgba(244,63,94,0.15)",
                 color: "#F43F5E",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
             >
@@ -449,8 +449,8 @@ export default function SentimentPulse() {
             <span
               className="text-xs font-semibold"
               style={{
-                color: "#0EA5E9",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "var(--hi-accent)",
+                fontFamily: "var(--hi-font-display)",
               }}
             >
               {data.viralMoment.platform}
@@ -458,7 +458,7 @@ export default function SentimentPulse() {
           </div>
           <p
             className="text-sm leading-relaxed mb-3"
-            style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "rgba(255,255,255,0.75)", fontFamily: "var(--hi-font-body)" }}
           >
             <span className="font-bold text-white">{data.viralMoment.player}</span>{" "}
             &mdash; {data.viralMoment.description}
@@ -466,8 +466,8 @@ export default function SentimentPulse() {
           <div
             className="text-xs font-semibold"
             style={{
-              color: "rgba(255,255,255,0.35)",
-              fontFamily: "'JetBrains Mono', monospace",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-mono)",
               letterSpacing: "0.02em",
             }}
           >
@@ -487,7 +487,7 @@ export default function SentimentPulse() {
             className="text-xs font-semibold mb-2"
             style={{
               color: "#F59E0B",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -495,7 +495,7 @@ export default function SentimentPulse() {
           </div>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {data.narrative}
           </p>
@@ -506,8 +506,8 @@ export default function SentimentPulse() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -516,10 +516,10 @@ export default function SentimentPulse() {
 
           {/* Legend */}
           <div className="flex items-center gap-4 mb-4 flex-wrap">
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
               Scale: -100 (hated) to +100 (beloved)
             </span>
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}>
+            <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}>
               Gap: + = underrated, - = overrated
             </span>
           </div>
@@ -547,7 +547,7 @@ export default function SentimentPulse() {
                 style={{
                   background: "rgba(244,63,94,0.15)",
                   color: "#F43F5E",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -557,20 +557,20 @@ export default function SentimentPulse() {
             <div className="flex items-center gap-2 mb-2">
               <span
                 className="text-lg font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {data.overrated.player}
               </span>
               <span
                 className="text-sm font-semibold"
-                style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
               >
                 {data.overrated.team}
               </span>
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {data.overrated.explanation}
             </p>
@@ -590,7 +590,7 @@ export default function SentimentPulse() {
                 style={{
                   background: "rgba(16,185,129,0.15)",
                   color: "#10B981",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                   letterSpacing: "0.08em",
                 }}
               >
@@ -600,20 +600,20 @@ export default function SentimentPulse() {
             <div className="flex items-center gap-2 mb-2">
               <span
                 className="text-lg font-bold"
-                style={{ color: "#fff", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
               >
                 {data.underrated.player}
               </span>
               <span
                 className="text-sm font-semibold"
-                style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+                style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
               >
                 {data.underrated.team}
               </span>
             </div>
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
             >
               {data.underrated.explanation}
             </p>
@@ -625,8 +625,8 @@ export default function SentimentPulse() {
           <div
             className="text-xs font-semibold mb-4"
             style={{
-              color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-text-secondary,#8a8a86)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.1em",
             }}
           >
@@ -643,15 +643,15 @@ export default function SentimentPulse() {
         <div
           className="rounded-xl px-5 py-4 mb-8"
           style={{
-            background: "rgba(14,165,233,0.05)",
-            border: "1px solid rgba(14,165,233,0.12)",
+            background: "rgba(142,200,240,0.05)",
+            border: "1px solid rgba(142,200,240,0.12)",
           }}
         >
           <div
             className="text-xs font-semibold mb-1.5"
             style={{
-              color: "#0EA5E9",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: "var(--hi-accent)",
+              fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.08em",
             }}
           >
@@ -659,7 +659,7 @@ export default function SentimentPulse() {
           </div>
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Sentiment scores are AI-generated based on analysis of social media discourse (X/Twitter, Reddit, forums),
             media coverage, and fan reactions. Scores range from -100 (universally negative) to +100 (universally positive).
@@ -684,7 +684,7 @@ export default function SentimentPulse() {
         >
           <p
             className="text-xs"
-            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Sentiment data is generated by AI analysis and does not represent official positions.
             All takes are aggregated from public discourse for entertainment purposes.

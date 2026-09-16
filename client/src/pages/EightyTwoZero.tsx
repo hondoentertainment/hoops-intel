@@ -306,7 +306,7 @@ export default function EightyTwoZero() {
       relatedHref="/82-0"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "82-0" }]}
     >
-      <p className="hidden sm:block mono-data text-[11px] mb-4" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>
+      <p className="hidden sm:block mono-data text-[11px] mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
         Keys: 1–3 draft · T/E re-spin · Enter runs it back.
       </p>
 
@@ -329,12 +329,12 @@ export default function EightyTwoZero() {
           Daily Wheel · {dailyWheelLabel()}
         </button>
         {mode === "daily" && (
-          <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <span className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Everyone gets the same spins today — the draft is on you.
           </span>
         )}
         {daily && (
-          <span className="mono-data text-[11px] ml-auto" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <span className="mono-data text-[11px] ml-auto" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             TODAY&apos;S WHEEL BEST: {daily.wins}–{daily.losses}
           </span>
         )}
@@ -351,11 +351,11 @@ export default function EightyTwoZero() {
               key={i}
               className="rounded-lg border p-2 min-h-[84px] flex flex-col justify-between"
               style={{
-                borderColor: slot ? color : isNext ? "rgba(14,165,233,0.5)" : "rgba(255,255,255,0.12)",
+                borderColor: slot ? color : isNext ? "rgba(142,200,240,0.5)" : "rgba(255,255,255,0.12)",
                 background: slot ? `${color}22` : "rgba(255,255,255,0.03)",
               }}
             >
-              <div className="mono-data text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <div className="mono-data text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 {i + 1}
               </div>
               {slot ? (
@@ -363,12 +363,12 @@ export default function EightyTwoZero() {
                   <div className="text-xs font-bold leading-tight" style={{ color: "var(--hi-heading,#fff)" }}>
                     {slot.player.name}
                   </div>
-                  <div className="mono-data text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <div className="mono-data text-[10px] mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {slot.team} · {ERA_LABELS[slot.era]}
                   </div>
                 </div>
               ) : (
-                <div className="text-[11px]" style={{ color: isNext ? "#0EA5E9" : "rgba(255,255,255,0.3)" }}>
+                <div className="text-[11px]" style={{ color: isNext ? "var(--hi-accent)" : "rgba(255,255,255,0.3)" }}>
                   {isNext ? "On the clock" : "Empty"}
                 </div>
               )}
@@ -381,16 +381,16 @@ export default function EightyTwoZero() {
       {!result && slots.length > 0 && (
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 min-w-[180px] flex-1 max-w-xs">
-            <span className="mono-data text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <span className="mono-data text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               RAW STRENGTH
             </span>
             <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-500"
-                style={{ width: `${Math.min(100, (coverage.rawStrength / 240) * 100)}%`, background: "#0EA5E9" }}
+                style={{ width: `${Math.min(100, (coverage.rawStrength / 240) * 100)}%`, background: "var(--hi-accent)" }}
               />
             </div>
-            <span className="mono-data text-xs font-bold" style={{ color: "#0EA5E9" }}>
+            <span className="mono-data text-xs font-bold" style={{ color: "var(--hi-accent)" }}>
               {Math.round(coverage.rawStrength)}
             </span>
           </div>
@@ -424,7 +424,7 @@ export default function EightyTwoZero() {
                   : result.wins >= 73
                     ? "#10B981"
                     : result.wins >= 50
-                      ? "#0EA5E9"
+                      ? "var(--hi-accent)"
                       : "#F43F5E"
                 : "rgba(255,255,255,0.85)",
             }}
@@ -458,14 +458,14 @@ export default function EightyTwoZero() {
               type="button"
               onClick={skipReveal}
               className="mono-data text-xs underline"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--hi-muted,#5c5c58)" }}
             >
               Skip to the final record
             </button>
           ) : (
             <>
               {/* Monthly splits */}
-              <div className="mono-data text-[11px] mb-4 flex flex-wrap justify-center gap-x-3 gap-y-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+              <div className="mono-data text-[11px] mb-4 flex flex-wrap justify-center gap-x-3 gap-y-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 {splits.map((s) => (
                   <span key={s.label}>
                     {s.label}{" "}
@@ -480,7 +480,7 @@ export default function EightyTwoZero() {
                 {result.verdict}
               </p>
 
-              <div className="mono-data text-xs mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <div className="mono-data text-xs mb-6" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 STRENGTH RATING {Math.round(result.rating.total)}
                 {result.rating.total < result.rating.base && (
                   <span> (base {Math.round(result.rating.base)} − {Math.round(result.rating.base - result.rating.total)} balance penalties)</span>
@@ -492,13 +492,13 @@ export default function EightyTwoZero() {
                   <p className="section-label mb-2 text-center">THE NIGHTS IT DIED</p>
                   <ul className="space-y-1">
                     {result.lossGames.slice(0, 8).map((loss) => (
-                      <li key={loss.gameNumber} className="mono-data text-xs flex justify-between" style={{ color: "rgba(255,255,255,0.55)" }}>
+                      <li key={loss.gameNumber} className="mono-data text-xs flex justify-between" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                         <span style={{ color: "#F43F5E" }}>L — Game {loss.gameNumber}</span>
                         <span>vs the {loss.opponent}</span>
                       </li>
                     ))}
                     {result.lossGames.length > 8 && (
-                      <li className="mono-data text-xs text-center" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      <li className="mono-data text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                         …and {result.lossGames.length - 8} more
                       </li>
                     )}
@@ -511,7 +511,7 @@ export default function EightyTwoZero() {
                   type="button"
                   onClick={() => startRun(mode)}
                   className="min-h-[44px] px-6 rounded-xl font-bold text-sm"
-                  style={{ background: "#0EA5E9", color: "#050D1A" }}
+                  style={{ background: "var(--hi-accent)", color: "var(--hi-bg-page,#f7f7f5)" }}
                 >
                   Run it back
                 </button>
@@ -544,7 +544,7 @@ export default function EightyTwoZero() {
                 onClick={handleRespinTeam}
                 disabled={teamRespinUsed || spinning}
                 className="min-h-[40px] px-3 rounded-lg text-xs font-bold border border-white/20 disabled:opacity-30"
-                style={{ color: "rgba(255,255,255,0.85)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)" }}
               >
                 ↻ Re-spin team{teamRespinUsed ? " (used)" : ""}
               </button>
@@ -553,7 +553,7 @@ export default function EightyTwoZero() {
                 onClick={handleRespinEra}
                 disabled={eraRespinUsed || spinning}
                 className="min-h-[40px] px-3 rounded-lg text-xs font-bold border border-white/20 disabled:opacity-30"
-                style={{ color: "rgba(255,255,255,0.85)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)" }}
               >
                 ↻ Re-spin era{eraRespinUsed ? " (used)" : ""}
               </button>
@@ -567,7 +567,7 @@ export default function EightyTwoZero() {
                 type="button"
                 onClick={() => pickPlayer(pl)}
                 disabled={spinning}
-                className="text-left rounded-xl border border-white/10 p-4 transition-colors hover:border-sky-500/60 focus-visible:ring-2 focus-visible:ring-sky-500/50 outline-none disabled:cursor-default"
+                className="text-left rounded-xl border border-white/10 p-4 transition-colors hover:border-sky-500/60 focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/50 outline-none disabled:cursor-default"
                 style={{ background: "rgba(255,255,255,0.04)" }}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -575,15 +575,15 @@ export default function EightyTwoZero() {
                     {pl.name}
                   </span>
                   <span className="flex items-center gap-1">
-                    <kbd className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10 hidden sm:inline" style={{ color: "rgba(255,255,255,0.4)" }} aria-hidden>
+                    <kbd className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10 hidden sm:inline" style={{ color: "var(--hi-text-secondary,#8a8a86)" }} aria-hidden>
                       {idx + 1}
                     </kbd>
-                    <span className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    <span className="mono-data text-[10px] px-1.5 py-0.5 rounded bg-white/10" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {pl.pos}
                     </span>
                   </span>
                 </div>
-                <div className="mono-data text-[11px]" style={{ color: "rgba(255,255,255,0.55)" }}>
+                <div className="mono-data text-[11px]" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {statLine(pl)}
                 </div>
               </button>
@@ -596,7 +596,7 @@ export default function EightyTwoZero() {
       {(best || history.length > 0) && (
         <div className="mt-8">
           {best && (
-            <p className="mono-data text-xs mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <p className="mono-data text-xs mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               YOUR BEST: {best.wins}–{best.losses} ({best.lineup.join(", ")})
             </p>
           )}
@@ -605,11 +605,11 @@ export default function EightyTwoZero() {
               <p className="section-label mb-2">RECENT RUNS</p>
               <ul className="space-y-1">
                 {history.map((run, i) => (
-                  <li key={i} className="mono-data text-xs flex flex-wrap gap-x-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <li key={i} className="mono-data text-xs flex flex-wrap gap-x-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     <span style={{ color: run.wins === 82 ? "#F59E0B" : run.wins >= 73 ? "#10B981" : "rgba(255,255,255,0.75)" }}>
                       {run.wins}–{run.losses}
                     </span>
-                    {run.mode === "daily" && <span style={{ color: "#0EA5E9" }}>[daily]</span>}
+                    {run.mode === "daily" && <span style={{ color: "var(--hi-accent)" }}>[daily]</span>}
                     <span>{run.lineup.join(", ")}</span>
                   </li>
                 ))}

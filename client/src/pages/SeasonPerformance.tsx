@@ -123,7 +123,7 @@ function barWidth(n: number, d: number): string {
 
 function getAccuracyColor(pctVal: number): string {
   if (pctVal >= 80) return "#10B981";
-  if (pctVal >= 70) return "#0EA5E9";
+  if (pctVal >= 70) return "var(--hi-accent)";
   if (pctVal >= 60) return "#F59E0B";
   return "#EF4444";
 }
@@ -149,13 +149,13 @@ function StatCard({ label, value, sub, color }: { label: string; value: string; 
       className="rounded-xl p-5 text-center"
       style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
     >
-      <div className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Barlow Condensed', sans-serif" }}>
+      <div className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
         {label}
       </div>
-      <div className="text-3xl font-bold mb-1" style={{ color, fontFamily: "'JetBrains Mono', monospace" }}>
+      <div className="text-3xl font-bold mb-1" style={{ color, fontFamily: "var(--hi-font-mono)" }}>
         {value}
       </div>
-      <div className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{sub}</div>
+      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{sub}</div>
     </div>
   );
 }
@@ -201,7 +201,7 @@ export default function SeasonPerformance() {
             label="Against the Spread"
             value={`${totalATS}-${totalATSGames - totalATS}`}
             sub={`${pct(totalATS, totalATSGames)}% ATS`}
-            color="#0EA5E9"
+            color="var(--hi-accent)"
           />
           <StatCard
             label="Featured Games"
@@ -223,10 +223,10 @@ export default function SeasonPerformance() {
           style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
         >
           <div className="flex items-center justify-between mb-3">
-            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
               Season Accuracy Trend
             </div>
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
               Win rate by month
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function SeasonPerformance() {
               const p = parseFloat(pct(m.correct, m.total));
               return (
                 <div key={m.month} className="flex items-center gap-3">
-                  <div className="w-12 text-xs text-right" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="w-12 text-xs text-right" style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}>
                     {m.month.slice(0, 3)}
                   </div>
                   <div className="flex-1 h-6 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
@@ -246,7 +246,7 @@ export default function SeasonPerformance() {
                       {pct(m.correct, m.total)}%
                     </div>
                   </div>
-                  <div className="w-14 text-xs text-right" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="w-14 text-xs text-right" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}>
                     {m.correct}/{m.total}
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export default function SeasonPerformance() {
               className="rounded-xl p-5"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
             >
-              <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Barlow Condensed', sans-serif" }}>
+              <div className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}>
                 Key Insights
               </div>
               <div className="grid md:grid-cols-2 gap-4">
@@ -282,11 +282,11 @@ export default function SeasonPerformance() {
                   { label: "Hardest Team to Predict", value: "Dallas Mavericks — 55.1%", detail: "Tanking teams with rookie variance create the most uncertainty" },
                 ].map((insight) => (
                   <div key={insight.label} className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)" }}>
-                    <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}>
                       {insight.label}
                     </div>
                     <div className="text-sm font-semibold text-white mb-1">{insight.value}</div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{insight.detail}</div>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{insight.detail}</div>
                   </div>
                 ))}
               </div>
@@ -298,10 +298,10 @@ export default function SeasonPerformance() {
                 className="rounded-xl p-5"
                 style={{ background: "rgba(16,185,129,0.04)", border: "1px solid rgba(16,185,129,0.15)" }}
               >
-                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#10B981", fontFamily: "'Barlow Condensed', sans-serif" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#10B981", fontFamily: "var(--hi-font-display)" }}>
                   Model Strengths
                 </div>
-                <ul className="space-y-2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   <li className="flex items-start gap-2"><span style={{ color: "#10B981" }}>+</span>Excellent at predicting blowouts and high-spread games</li>
                   <li className="flex items-start gap-2"><span style={{ color: "#10B981" }}>+</span>Strong performance on featured/nationally televised games</li>
                   <li className="flex items-start gap-2"><span style={{ color: "#10B981" }}>+</span>Accurately identifies dominant team performances (OKC, SAS, DET)</li>
@@ -313,10 +313,10 @@ export default function SeasonPerformance() {
                 className="rounded-xl p-5"
                 style={{ background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.15)" }}
               >
-                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#EF4444", fontFamily: "'Barlow Condensed', sans-serif" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#EF4444", fontFamily: "var(--hi-font-display)" }}>
                   Areas for Improvement
                 </div>
-                <ul className="space-y-2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                <ul className="space-y-2 text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   <li className="flex items-start gap-2"><span style={{ color: "#EF4444" }}>-</span>Struggles with tanking teams and high-variance matchups</li>
                   <li className="flex items-start gap-2"><span style={{ color: "#EF4444" }}>-</span>ATS accuracy lags behind straight-up picks</li>
                   <li className="flex items-start gap-2"><span style={{ color: "#EF4444" }}>-</span>Underestimates injury impact in same-day lineup changes</li>
@@ -336,7 +336,7 @@ export default function SeasonPerformance() {
             {/* Table Header */}
             <div
               className="grid grid-cols-12 gap-2 px-4 py-3 text-xs font-semibold"
-              style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.35)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}
+              style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
             >
               <div className="col-span-2">MONTH</div>
               <div className="col-span-2 text-center">RECORD</div>
@@ -357,19 +357,19 @@ export default function SeasonPerformance() {
                   }}
                 >
                   <div className="col-span-2 font-semibold text-white">{m.month}</div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "'JetBrains Mono', monospace", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
                     {m.correct}-{m.total - m.correct}
                   </div>
-                  <div className="col-span-2 text-center font-semibold" style={{ color: getAccuracyColor(p), fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="col-span-2 text-center font-semibold" style={{ color: getAccuracyColor(p), fontFamily: "var(--hi-font-mono)" }}>
                     {pct(m.correct, m.total)}%
                   </div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "'JetBrains Mono', monospace", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
                     {m.ats}-{m.atsTotal - m.ats}
                   </div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "'JetBrains Mono', monospace", color: getAccuracyColor(parseFloat(pct(m.ats, m.atsTotal))) }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: getAccuracyColor(parseFloat(pct(m.ats, m.atsTotal))) }}>
                     {pct(m.ats, m.atsTotal)}%
                   </div>
-                  <div className="col-span-2 text-center" style={{ fontFamily: "'JetBrains Mono', monospace", color: "rgba(255,255,255,0.7)" }}>
+                  <div className="col-span-2 text-center" style={{ fontFamily: "var(--hi-font-mono)", color: "rgba(255,255,255,0.7)" }}>
                     {m.featuredCorrect}/{m.featuredTotal}
                   </div>
                 </div>
@@ -378,22 +378,22 @@ export default function SeasonPerformance() {
             {/* Totals */}
             <div
               className="grid grid-cols-12 gap-2 px-4 py-3 items-center text-sm font-bold"
-              style={{ background: "rgba(14,165,233,0.06)", borderTop: "1px solid rgba(14,165,233,0.2)" }}
+              style={{ background: "rgba(142,200,240,0.06)", borderTop: "1px solid rgba(142,200,240,0.2)" }}
             >
               <div className="col-span-2 text-white">TOTAL</div>
-              <div className="col-span-2 text-center text-white" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
                 {totalCorrect}-{totalGames - totalCorrect}
               </div>
-              <div className="col-span-2 text-center" style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}>
+              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}>
                 {pct(totalCorrect, totalGames)}%
               </div>
-              <div className="col-span-2 text-center text-white" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
                 {totalATS}-{totalATSGames - totalATS}
               </div>
-              <div className="col-span-2 text-center" style={{ color: "#0EA5E9", fontFamily: "'JetBrains Mono', monospace" }}>
+              <div className="col-span-2 text-center" style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-mono)" }}>
                 {pct(totalATS, totalATSGames)}%
               </div>
-              <div className="col-span-2 text-center text-white" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <div className="col-span-2 text-center text-white" style={{ fontFamily: "var(--hi-font-mono)" }}>
                 {totalFeatured}/{totalFeaturedGames}
               </div>
             </div>
@@ -407,9 +407,9 @@ export default function SeasonPerformance() {
                 onClick={() => setTeamSort("pct")}
                 className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
                 style={{
-                  background: teamSort === "pct" ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.04)",
-                  color: teamSort === "pct" ? "#0EA5E9" : "rgba(255,255,255,0.5)",
-                  border: `1px solid ${teamSort === "pct" ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
+                  background: teamSort === "pct" ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.04)",
+                  color: teamSort === "pct" ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+                  border: `1px solid ${teamSort === "pct" ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
                 }}
               >
                 Sort by Accuracy
@@ -418,9 +418,9 @@ export default function SeasonPerformance() {
                 onClick={() => setTeamSort("total")}
                 className="px-3 py-1.5 rounded text-xs font-medium transition-colors"
                 style={{
-                  background: teamSort === "total" ? "rgba(14,165,233,0.15)" : "rgba(255,255,255,0.04)",
-                  color: teamSort === "total" ? "#0EA5E9" : "rgba(255,255,255,0.5)",
-                  border: `1px solid ${teamSort === "total" ? "rgba(14,165,233,0.3)" : "rgba(255,255,255,0.06)"}`,
+                  background: teamSort === "total" ? "rgba(142,200,240,0.15)" : "rgba(255,255,255,0.04)",
+                  color: teamSort === "total" ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+                  border: `1px solid ${teamSort === "total" ? "rgba(142,200,240,0.3)" : "rgba(255,255,255,0.06)"}`,
                 }}
               >
                 Sort by Games
@@ -435,14 +435,14 @@ export default function SeasonPerformance() {
                 >
                   <div
                     className="w-6 text-center text-xs font-bold"
-                    style={{ color: i < 3 ? "#10B981" : i >= 27 ? "#EF4444" : "rgba(255,255,255,0.35)", fontFamily: "'JetBrains Mono', monospace" }}
+                    style={{ color: i < 3 ? "#10B981" : i >= 27 ? "#EF4444" : "rgba(255,255,255,0.35)", fontFamily: "var(--hi-font-mono)" }}
                   >
                     {i + 1}
                   </div>
                   <a
                     href={`/team/${team.abbr.toLowerCase()}`}
-                    className="w-10 text-center text-xs font-bold text-white hover:text-sky-400 transition-colors"
-                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    className="w-10 text-center text-xs font-bold text-white hover:text-[var(--hi-text)] transition-colors"
+                    style={{ fontFamily: "var(--hi-font-mono)" }}
                   >
                     {team.abbr}
                   </a>
@@ -454,10 +454,10 @@ export default function SeasonPerformance() {
                       />
                     </div>
                   </div>
-                  <div className="w-14 text-right text-xs font-semibold" style={{ color: getAccuracyColor(team.pct), fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="w-14 text-right text-xs font-semibold" style={{ color: getAccuracyColor(team.pct), fontFamily: "var(--hi-font-mono)" }}>
                     {team.pct.toFixed(1)}%
                   </div>
-                  <div className="w-12 text-right text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="w-12 text-right text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}>
                     {team.correct}/{team.total}
                   </div>
                 </div>
@@ -481,11 +481,11 @@ export default function SeasonPerformance() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-xs font-semibold text-white">{pred.matchup}</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)" }}>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }}>
                       {pred.date}
                     </span>
                   </div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     Predicted: {pred.prediction} &middot; Actual: {pred.result}
                   </div>
                 </div>
@@ -507,15 +507,15 @@ export default function SeasonPerformance() {
 
         {/* Footer Note */}
         <div className="mt-12 pt-6 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Predictions are generated by Claude AI based on team performance, injuries, scheduling, and historical data.
             <br />
             Past performance does not guarantee future accuracy. For entertainment purposes only.
           </p>
           <div className="mt-3 flex justify-center gap-3">
-            <a href="/" className="text-xs" style={{ color: "#0EA5E9" }}>Home</a>
-            <a href="/archive" className="text-xs" style={{ color: "#0EA5E9" }}>Archive</a>
-            <a href="/pick-em" className="text-xs" style={{ color: "#0EA5E9" }}>Pick&apos;Em</a>
+            <a href="/" className="text-xs" style={{ color: "var(--hi-accent)" }}>Home</a>
+            <a href="/archive" className="text-xs" style={{ color: "var(--hi-accent)" }}>Archive</a>
+            <a href="/pick-em" className="text-xs" style={{ color: "var(--hi-accent)" }}>Pick&apos;Em</a>
           </div>
         </div>
     </ToolPageLayout>

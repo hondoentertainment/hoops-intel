@@ -3,7 +3,9 @@ import { contextualAskChips } from "./askShortcuts";
 import { activeEditionContext, editionContextDeskLabel, type EditionContext } from "./deskMode";
 import { editionPublishLabel } from "./pacificTime";
 
-export const ENHANCED_ACCENT = "#1EC8F5";
+export const ENHANCED_ACCENT = "#8ec8f0";
+export const ENHANCED_CHIP = "#ff7a17";
+export const ENHANCED_INK = "#0a0a0a";
 export const CAMP_OPEN_ISO = "2026-10-03";
 
 const WORD_DAYS: Record<string, number> = {

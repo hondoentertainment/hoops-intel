@@ -13,7 +13,7 @@ type OpsBody = {
 function Flag({ ok, label }: { ok: boolean; label: string }) {
   return (
     <div className="flex justify-between gap-3 text-xs">
-      <span style={{ color: "rgba(255,255,255,0.45)" }}>{label}</span>
+      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{label}</span>
       <span className={ok ? "text-emerald-400 font-semibold" : "text-amber-400/90"}>{ok ? "Ready" : "Pending"}</span>
     </div>
   );
@@ -37,7 +37,7 @@ export default function OpsReadinessPanel() {
     >
       <div className="section-label mb-2">PRODUCTION READINESS</div>
       <p className="text-xs mb-4 text-white/45 leading-relaxed">
-        Public snapshot from <code className="text-sky-400/80">/api/ops-readiness</code> — wire Stripe, VAPID, and Resend in
+        Public snapshot from <code className="text-[var(--hi-text)]/80">/api/ops-readiness</code> — wire Stripe, VAPID, and Resend in
         Vercel/GitHub to complete the daily habit loop.
       </p>
       {err && <p className="text-xs text-amber-300">Could not load readiness flags.</p>}

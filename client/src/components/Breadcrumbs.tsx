@@ -14,7 +14,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
           return (
             <li key={`${item.label}-${i}`} className="flex items-center gap-1.5 min-w-0">
               {i > 0 && (
-                <span aria-hidden style={{ color: "rgba(255,255,255,0.25)" }}>
+                <span aria-hidden style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                   /
                 </span>
               )}
@@ -30,7 +30,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
                 <a
                   href={item.href}
                   className="truncate min-h-11 inline-flex items-center hover:opacity-80"
-                  style={{ color: "var(--hi-accent,#1ec8f5)" }}
+                  style={{ color: "var(--hi-accent,#8ec8f0)" }}
                 >
                   {item.label}
                 </a>

@@ -96,14 +96,14 @@ export default function MyPulse() {
                 <div
                   key={i}
                   className="enhanced-card p-4"
-                  style={{ borderLeft: "3px solid var(--hi-accent,#1ec8f5)" }}
+                  style={{ borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="text-center">
                         <div className="section-label">{preview.awayTeam}</div>
                       </a>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
                       <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="text-center">
                         <div className="section-label">{preview.homeTeam}</div>
                       </a>
@@ -111,24 +111,24 @@ export default function MyPulse() {
                     <div className="text-right">
                       <div className="text-sm font-medium text-white">{preview.time}</div>
                       {preview.tv && (
-                        <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{preview.tv}</div>
+                        <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{preview.tv}</div>
                       )}
                     </div>
                     <div className="text-right ml-4">
-                      <div className="mono-data text-xs" style={{ color: "var(--hi-accent,#1ec8f5)" }}>{preview.spread}</div>
-                      <div className="mono-data text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      <div className="mono-data text-xs" style={{ color: "var(--hi-accent,#8ec8f0)" }}>{preview.spread}</div>
+                      <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                         O/U {preview.overUnder}
                       </div>
                     </div>
                   </div>
                   {preview.storyline && (
-                    <p className="text-xs mt-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <p className="text-xs mt-3 leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {preview.storyline}
                     </p>
                   )}
                   <a
                     href={`/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, preview.time || pulseEdition.date)}`}
-                    className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200"
+                    className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
                   >
                     Open personalized Game Center →
                   </a>
@@ -146,41 +146,41 @@ export default function MyPulse() {
             <SectionHeader eyebrow="Pulse Index" title="Your players" />
             <div className="space-y-2">
               {yourPlayerIndex.map((player: any) => (
-                <div key={player.rank} className="enhanced-card p-4 flex items-center gap-4" style={{ borderLeft: "3px solid var(--hi-accent,#1ec8f5)" }}>
-                  <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                <div key={player.rank} className="enhanced-card p-4 flex items-center gap-4" style={{ borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }}>
+                  <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                     {player.rank}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <a
                         href={`/player/${slugify(player.player)}`}
-                        className="text-sm font-semibold text-white hover:text-sky-400 transition-colors"
+                        className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors"
                       >
                         {player.player}
                       </a>
                       <a
                         href={`/team/${player.team.toLowerCase()}`}
                         className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
-                        style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}
+                        style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
                       >
                         {player.team}
                       </a>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--hi-accent,#1ec8f5)" className="flex-shrink-0">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--hi-accent,#8ec8f0)" className="flex-shrink-0">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     </div>
                     <div className="mono-data text-xs mb-1" style={{ color: "#10B981" }}>
                       {player.keyStats}
                     </div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {player.note}
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#1ec8f5)" }}>
+                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
                       {player.indexScore}
                     </div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                       {player.teamRecord}
                     </div>
                   </div>
@@ -208,26 +208,26 @@ export default function MyPulse() {
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12">
-                        <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent,#1ec8f5)" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
+                        <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent,#8ec8f0)" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
                         <div className="mono-data font-bold text-2xl" style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
                       </a>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>@</div>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
                       <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12">
-                        <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent,#1ec8f5)" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
+                        <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent,#8ec8f0)" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
                         <div className="mono-data font-bold text-2xl" style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
                       </a>
-                      <div className="text-xs font-medium px-2 py-0.5 rounded ml-auto" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>FINAL</div>
+                      <div className="text-xs font-medium px-2 py-0.5 rounded ml-auto" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>FINAL</div>
                     </div>
                     <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
-                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "var(--hi-accent,#1ec8f5)" }} />
-                      <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-sky-400 transition-colors">
+                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "var(--hi-accent,#8ec8f0)" }} />
+                      <a href={`/player/${slugify(game.topPerformer)}`} className="text-xs font-semibold text-white hover:text-[var(--hi-text)] transition-colors">
                         {game.topPerformer}
                       </a>
                       <span className="text-xs mono-data" style={{ color: "#10B981" }}>{game.topLine}</span>
                     </div>
                     <a
                       href={`/game/${game.gameId || makeGameId(game.awayTeam, game.homeTeam, pulseEdition.date)}`}
-                      className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-sky-300 hover:text-sky-200"
+                      className="mt-3 inline-flex min-h-[44px] items-center text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
                     >
                       Open personalized Game Center →
                     </a>
@@ -247,20 +247,20 @@ export default function MyPulse() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {yourInjuries.map((injury: any, i: number) => {
                 return (
-                  <div key={i} className="enhanced-card p-4" style={{ borderLeft: "3px solid var(--hi-accent,#1ec8f5)" }}>
+                  <div key={i} className="enhanced-card p-4" style={{ borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <a href={`/player/${slugify(injury.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">
+                        <a href={`/player/${slugify(injury.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">
                           {injury.player}
                         </a>
-                        <a href={`/team/${injury.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
+                        <a href={`/team/${injury.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
                           {injury.team}
                         </a>
                       </div>
                       <InjuryChip status={injury.status} />
                     </div>
-                    <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>{injury.injury}</div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{injury.timeline}</div>
+                    <div className="text-xs mb-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>{injury.injury}</div>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{injury.timeline}</div>
                   </div>
                 );
               })}
@@ -280,17 +280,17 @@ export default function MyPulse() {
                   add: { color: "#10B981", bg: "rgba(16,185,129,0.1)" },
                   drop: { color: "#F43F5E", bg: "rgba(244,63,94,0.1)" },
                   hold: { color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
-                  stream: { color: "var(--hi-accent,#1ec8f5)", bg: "rgba(14,165,233,0.1)" },
+                  stream: { color: "var(--hi-accent,#8ec8f0)", bg: "rgba(142,200,240,0.1)" },
                 };
                 const ac = actionColors[alert.action] || actionColors.hold;
                 return (
-                  <div key={i} className="enhanced-card p-3" style={{ borderLeft: "3px solid var(--hi-accent,#1ec8f5)" }}>
+                  <div key={i} className="enhanced-card p-3" style={{ borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }}>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-bold px-2 py-0.5 rounded uppercase" style={{ background: ac.bg, color: ac.color }}>{alert.action}</span>
-                      <a href={`/player/${slugify(alert.player)}`} className="text-sm font-semibold text-white hover:text-sky-400 transition-colors">{alert.player}</a>
-                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{alert.team}</a>
+                      <a href={`/player/${slugify(alert.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">{alert.player}</a>
+                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{alert.team}</a>
                     </div>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{alert.reason}</p>
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{alert.reason}</p>
                   </div>
                 );
               })}
@@ -308,7 +308,7 @@ export default function MyPulse() {
               const dotColors: Record<string, string> = {
                 score: "bg-slate-400",
                 injury: "bg-amber-400",
-                news: "bg-sky-400",
+                news: "bg-[var(--hi-accent)]",
                 alert: "bg-emerald-400",
               };
               return (
@@ -317,7 +317,7 @@ export default function MyPulse() {
                   className="enhanced-card px-4 py-3 flex items-start gap-3"
                   style={
                     item.isPersonalized
-                      ? { borderLeft: "3px solid var(--hi-accent,#1ec8f5)" }
+                      ? { borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }
                       : {}
                   }
                 >
@@ -328,7 +328,7 @@ export default function MyPulse() {
                     </div>
                   </div>
                   {item.isPersonalized && (
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--hi-accent,#1ec8f5)" className="flex-shrink-0 mt-1">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--hi-accent,#8ec8f0)" className="flex-shrink-0 mt-1">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   )}
@@ -380,11 +380,11 @@ function MyPulseShell({
                   <a
                     key={team}
                     href={`/team/${team.toLowerCase()}`}
-                    className="px-2 py-1 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-colors hover:bg-sky-500/25"
+                    className="px-2 py-1 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-colors hover:bg-black/5"
                     style={{
-                      background: "rgba(30,200,245,0.15)",
-                      color: "var(--hi-accent,#1ec8f5)",
-                      border: "1px solid rgba(30,200,245,0.3)",
+                      background: "rgba(142,200,240,0.15)",
+                      color: "var(--hi-accent,#8ec8f0)",
+                      border: "1px solid rgba(142,200,240,0.3)",
                     }}
                   >
                     {team}
@@ -398,7 +398,7 @@ function MyPulseShell({
               className="flex items-center gap-1 min-h-[44px] lg:min-h-0 px-2 sm:px-3 py-2 rounded-[10px] text-xs font-medium transition-colors hover:bg-white/10"
               style={{
                 background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.6)",
+                color: "var(--hi-muted,#5c5c58)",
                 border: "1px solid var(--hi-border,#252b36)",
               }}
             >

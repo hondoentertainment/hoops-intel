@@ -66,7 +66,7 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
           <div className="text-[9px] font-bold uppercase tracking-wider text-white/40 mb-1">Last game</div>
           <p className="text-xs text-white/80 leading-relaxed">{lastGameSummaryLine(series)}</p>
           {last?.topPerformer ? (
-            <div className="mono-data text-[11px] text-sky-300/90 mt-1.5">★ {last.topPerformer}</div>
+            <div className="mono-data text-[11px] text-[var(--hi-text)]/90 mt-1.5">★ {last.topPerformer}</div>
           ) : null}
           {last?.topLine ? <div className="mono-data text-[10px] text-white/55 mt-0.5">{last.topLine}</div> : null}
         </div>
@@ -100,7 +100,7 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
       </div>
 
       <div className="rounded-lg bg-sky-500/[0.06] px-3 py-2 border border-sky-500/20">
-        <div className="text-[9px] font-bold uppercase text-sky-400/90 mb-1">Tape room</div>
+        <div className="text-[9px] font-bold uppercase text-[var(--hi-text)]/90 mb-1">Tape room</div>
         <p className="text-[11px] text-white/70 leading-relaxed">{intelRow.keyMatchup}</p>
         <p className="text-[10px] text-white/48 leading-snug mt-1.5 line-clamp-3">{intelRow.narrative}</p>
       </div>
@@ -110,7 +110,7 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
           <div className="text-[9px] font-bold uppercase text-white/40 mb-0.5">Series timeline</div>
           <a
             href={`/playoffs/series/${series.seriesId}`}
-            className="text-[10px] text-sky-300 hover:text-sky-200 mono-data truncate block"
+            className="text-[10px] text-[var(--hi-text)] hover:text-[var(--hi-muted)] mono-data truncate block"
             title={share.url}
           >
             {share.url.replace(/^https?:\/\//, "")}
@@ -121,7 +121,7 @@ export function ExpandedSeriesPanel({ series, intel }: ExpandedSeriesPanelProps)
           <button
             type="button"
             onClick={copyShare}
-            className="tap-target shrink-0 rounded-lg border border-sky-500/35 bg-sky-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-sky-300 hover:bg-sky-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+            className="tap-target shrink-0 rounded-lg border border-sky-500/35 bg-sky-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-[var(--hi-text)] hover:bg-sky-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
             aria-label={copied ? "Series link copied" : `Copy share link for ${series.higherTeam} vs ${series.lowerTeam}`}
           >
             {copied ? "Copied ✓" : "Copy"}

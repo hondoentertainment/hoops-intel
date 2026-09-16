@@ -41,7 +41,7 @@ function StickyRibbon({ series }: { series: typeof playoffSeries }) {
               <span className="text-rose-400">{snap.teamsEliminated}</span> out
             </span>
             <span className="whitespace-nowrap">
-              <span className="text-sky-400">{snap.gamesPlayed}</span> finals
+              <span className="text-[var(--hi-text)]">{snap.gamesPlayed}</span> finals
             </span>
             <span className="whitespace-nowrap">
               <span className="text-amber-400">{snap.matchPointSeries}</span> match pt
@@ -86,10 +86,10 @@ function SeriesHeroStrip({
               aria-label={`Highlight series ${i + 1} of ${pool.length}`}
               aria-current={mod === i ? "true" : undefined}
               onClick={() => onSelect(i)}
-              className="tap-target inline-flex items-center justify-center rounded-full p-2 -m-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60"
+              className="tap-target inline-flex items-center justify-center rounded-full p-2 -m-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
             >
               <span
-                className={`block rounded-full transition-all duration-300 ${mod === i ? "h-1.5 w-8 bg-sky-500 shadow-[0_0_12px_rgba(14,165,233,0.45)]" : "h-1.5 w-1.5 bg-white/25"}`}
+                className={`block rounded-full transition-all duration-300 ${mod === i ? "h-1.5 w-8 bg-sky-500 shadow-[0_0_12px_rgba(142,200,240,0.45)]" : "h-1.5 w-1.5 bg-white/25"}`}
                 aria-hidden
               />
             </button>
@@ -131,12 +131,12 @@ function SeriesHeroStrip({
                     <div className="text-white/85">{nx ? `${nx.time ?? formatShortDate(nx.date)}` : "Broadcast TBD"}</div>
                   </div>
                   <div className="rounded-lg bg-sky-500/[0.1] px-2 py-1.5 border border-sky-500/25">
-                    <div className="text-[9px] uppercase text-sky-400/85 mb-0.5">Key insight</div>
+                    <div className="text-[9px] uppercase text-[var(--hi-text)]/85 mb-0.5">Key insight</div>
                     <div className="text-white/90 leading-snug text-[11px] line-clamp-3">{heroSentence(s)}</div>
                   </div>
                 </div>
                 <div className="mt-3 flex justify-end">
-                  <button type="button" onClick={() => onSelect(i)} className="text-[10px] font-bold uppercase tracking-wide text-sky-400 hover:text-sky-300">
+                  <button type="button" onClick={() => onSelect(i)} className="text-[10px] font-bold uppercase tracking-wide text-[var(--hi-text)] hover:text-[var(--hi-text)]">
                     Set hero ▸
                   </button>
                 </div>

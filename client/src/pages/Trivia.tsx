@@ -180,17 +180,17 @@ export default function Trivia() {
             <div className="flex items-center gap-4">
               <div className="text-center">
                 <div className="text-xl font-black text-white">{streak.streak > 0 ? `${streak.streak} 🔥` : "0"}</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Streak</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Streak</div>
               </div>
               <div className="w-px h-8" style={{ background: "rgba(255,255,255,0.08)" }} />
               <div className="text-center">
                 <div className="text-xl font-black" style={{ color: "#10B981" }}>{accuracy}%</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Accuracy</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Accuracy</div>
               </div>
               <div className="w-px h-8" style={{ background: "rgba(255,255,255,0.08)" }} />
               <div className="text-center">
                 <div className="text-xl font-black text-white">{streak.totalAnswered}</div>
-                <div className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Answered</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Answered</div>
               </div>
             </div>
           </div>
@@ -247,8 +247,8 @@ export default function Trivia() {
                   }}
                   onMouseEnter={(e) => {
                     if (!revealed) {
-                      e.currentTarget.style.borderColor = "#0EA5E9";
-                      e.currentTarget.style.background = "rgba(14,165,233,0.08)";
+                      e.currentTarget.style.borderColor = "var(--hi-accent)";
+                      e.currentTarget.style.background = "rgba(142,200,240,0.08)";
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -318,9 +318,9 @@ export default function Trivia() {
               onClick={handleShare}
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all"
               style={{
-                background: copied ? "rgba(16,185,129,0.15)" : "rgba(14,165,233,0.15)",
-                border: `1px solid ${copied ? "rgba(16,185,129,0.35)" : "rgba(14,165,233,0.35)"}`,
-                color: copied ? "#10B981" : "#0EA5E9",
+                background: copied ? "rgba(16,185,129,0.15)" : "rgba(142,200,240,0.15)",
+                border: `1px solid ${copied ? "rgba(16,185,129,0.35)" : "rgba(142,200,240,0.35)"}`,
+                color: copied ? "#10B981" : "var(--hi-accent)",
               }}
             >
               {copied ? (
@@ -344,7 +344,7 @@ export default function Trivia() {
 
         {/* CTA if not yet answered */}
         {!revealed && (
-          <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <p className="text-center text-xs mt-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
             Select an answer above — no take-backs!
           </p>
         )}

@@ -29,12 +29,12 @@ export default function PulseMethodology() {
         </Section>
 
         <Section title="How we talk about accountability">
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             On <a href="/pick-em">Pick ’Em</a> you will see:&nbsp;
             <strong style={{ color: "rgba(255,255,255,0.9)" }}>Pulse-vs-board alignment</strong>—did our top-listed stars ultimately play for winners in
             finalized games bundled with the desk? That is illustrative, not a claim of causal inference.
           </p>
-          <p className="text-sm leading-relaxed mt-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="text-sm leading-relaxed mt-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             We also benchmark when the nightly spread-side matches the matchup prediction copy. Disagreements are surfaced on purpose—it is how shoppers and
             scouts stress-test narratives before tip.
           </p>

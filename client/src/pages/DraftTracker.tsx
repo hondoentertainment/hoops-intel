@@ -9,19 +9,19 @@ import { draftData } from "../lib/draftData";
 function TrendArrow({ trend }: { trend: "rising" | "falling" | "stable" }) {
   if (trend === "rising") return <span style={{ color: "#10B981" }}>{"\u25B2"}</span>;
   if (trend === "falling") return <span style={{ color: "#F43F5E" }}>{"\u25BC"}</span>;
-  return <span style={{ color: "rgba(255,255,255,0.3)" }}>{"\u2014"}</span>;
+  return <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{"\u2014"}</span>;
 }
 
 function RankChange({ current, prev }: { current: number; prev: number }) {
   const diff = prev - current;
   if (diff > 0) return <span className="text-xs font-mono" style={{ color: "#10B981" }}>{"\u25B2"}{diff}</span>;
   if (diff < 0) return <span className="text-xs font-mono" style={{ color: "#F43F5E" }}>{"\u25BC"}{Math.abs(diff)}</span>;
-  return <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>&mdash;</span>;
+  return <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>&mdash;</span>;
 }
 
 function GradeBar({ value, max = 100 }: { value: number; max?: number }) {
   const pct = (value / max) * 100;
-  const color = pct >= 90 ? "#10B981" : pct >= 80 ? "#0EA5E9" : pct >= 70 ? "#F59E0B" : "#F43F5E";
+  const color = pct >= 90 ? "#10B981" : pct >= 80 ? "var(--hi-accent)" : pct >= 70 ? "#F59E0B" : "#F43F5E";
   return (
     <div className="flex items-center gap-2">
       <div className="w-16 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -63,7 +63,7 @@ export default function DraftTracker() {
           </div>
         )}
         <DeskPanel kicker="Weekly scout report" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8594a8)" }}>{draftData.weeklyScoutReport}</p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{draftData.weeklyScoutReport}</p>
         </DeskPanel>
 
         {/* Risers & Fallers */}
@@ -76,7 +76,7 @@ export default function DraftTracker() {
                   <span className="text-sm font-bold text-white">{r.name}</span>
                   <span className="text-xs font-mono" style={{ color: "#10B981" }}>+{r.change}</span>
                 </div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{r.reason}</div>
+                <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{r.reason}</div>
               </div>
             ))}
           </div>
@@ -88,7 +88,7 @@ export default function DraftTracker() {
                   <span className="text-sm font-bold text-white">{f.name}</span>
                   <span className="text-xs font-mono" style={{ color: "#F43F5E" }}>-{f.change}</span>
                 </div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{f.reason}</div>
+                <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{f.reason}</div>
               </div>
             ))}
           </div>
@@ -106,7 +106,7 @@ export default function DraftTracker() {
                   onClick={() => setExpandedRow(expandedRow === p.rank ? null : p.rank)}
                 >
                   <div className="w-8 text-center">
-                    <div className="text-lg font-bold" style={{ color: p.rank <= 3 ? "#FFD700" : p.rank <= 10 ? "#0EA5E9" : "rgba(255,255,255,0.6)" }}>
+                    <div className="text-lg font-bold" style={{ color: p.rank <= 3 ? "#FFD700" : p.rank <= 10 ? "var(--hi-accent)" : "rgba(255,255,255,0.6)" }}>
                       {p.rank}
                     </div>
                     <RankChange current={p.rank} prev={p.prevRank} />
@@ -116,7 +116,7 @@ export default function DraftTracker() {
                       <span className="font-bold text-white text-sm">{p.name}</span>
                       <TrendArrow trend={p.trend} />
                     </div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                       {p.school} &middot; {p.position} &middot; {p.height} &middot; {p.age}yo
                     </div>
                   </div>
@@ -126,16 +126,16 @@ export default function DraftTracker() {
                   <div className="text-right">
                     <span className="text-xs px-2 py-1 rounded-full" style={{
                       background: p.projection.includes("No. 1") ? "rgba(255,215,0,0.15)" :
-                        p.projection.includes("Top") ? "rgba(14,165,233,0.15)" :
+                        p.projection.includes("Top") ? "rgba(142,200,240,0.15)" :
                         p.projection.includes("Lottery") ? "rgba(16,185,129,0.15)" : "rgba(255,255,255,0.06)",
                       color: p.projection.includes("No. 1") ? "#FFD700" :
-                        p.projection.includes("Top") ? "#0EA5E9" :
+                        p.projection.includes("Top") ? "var(--hi-accent)" :
                         p.projection.includes("Lottery") ? "#10B981" : "rgba(255,255,255,0.5)"
                     }}>
                       {p.projection}
                     </span>
                   </div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     {expandedRow === p.rank ? "\u25B2" : "\u25BC"}
                   </div>
                 </div>
@@ -153,12 +153,12 @@ export default function DraftTracker() {
                       <div>
                         <div className="text-xs font-bold mb-1" style={{ color: "#F59E0B" }}>NBA COMPARISON</div>
                         <div className="text-sm text-white">{p.comparison}</div>
-                        <div className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.4)" }}>
+                        <div className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                           BEST FIT: {p.bestFit.join(", ")}
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-4 text-xs font-mono mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <div className="flex gap-4 text-xs font-mono mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       <span>{p.stats.ppg} PPG</span>
                       <span>{p.stats.rpg} RPG</span>
                       <span>{p.stats.apg} APG</span>
@@ -176,7 +176,7 @@ export default function DraftTracker() {
         {/* Tank Watch */}
         <div className="mb-8">
           <button onClick={() => setShowTankWatch(!showTankWatch)} className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            TANK WATCH <span className="text-xs" style={{ color: "#0EA5E9" }}>{showTankWatch ? "\u25B2" : "\u25BC"}</span>
+            TANK WATCH <span className="text-xs" style={{ color: "var(--hi-accent)" }}>{showTankWatch ? "\u25B2" : "\u25BC"}</span>
           </button>
           {showTankWatch && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -186,12 +186,12 @@ export default function DraftTracker() {
                     <span className="flex items-center gap-1.5 font-bold text-white"><TeamLogo team={t.team} size={18} />{t.team}</span>
                     <span className="text-xs font-mono" style={{ color: "#F43F5E" }}>{t.record}</span>
                   </div>
-                  <div className="flex gap-3 text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <div className="flex gap-3 text-xs mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     <span>Lottery: {t.lotteryOdds}</span>
                     <span>Need: {t.primaryNeed}</span>
                   </div>
-                  <div className="text-xs mb-1" style={{ color: "#0EA5E9" }}>Best Fit: {t.bestProspectFit}</div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{t.note}</div>
+                  <div className="text-xs mb-1" style={{ color: "var(--hi-accent)" }}>Best Fit: {t.bestProspectFit}</div>
+                  <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{t.note}</div>
                 </div>
               ))}
             </div>
@@ -199,7 +199,7 @@ export default function DraftTracker() {
         </div>
 
         <div className="mt-8 text-center">
-          <a href="/" className="text-xs" style={{ color: "#0EA5E9" }}>&larr; Back to Hoops Intel</a>
+          <a href="/" className="text-xs" style={{ color: "var(--hi-accent)" }}>&larr; Back to Hoops Intel</a>
         </div>
     </ToolPageLayout>
   );

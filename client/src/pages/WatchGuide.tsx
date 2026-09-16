@@ -12,7 +12,7 @@ import { watchGuideData } from "../lib/watchGuideData";
 
 const FACTOR_LABELS: { key: keyof (typeof watchGuideData.games)[0]["factors"]; label: string; color: string }[] = [
   { key: "starPower", label: "Stars", color: "#F59E0B" },
-  { key: "playoffImplications", label: "Playoffs", color: "#0EA5E9" },
+  { key: "playoffImplications", label: "Playoffs", color: "var(--hi-accent)" },
   { key: "rivalry", label: "Rivalry", color: "#F43F5E" },
   { key: "entertainment", label: "Entertain", color: "#10B981" },
   { key: "storyline", label: "Story", color: "#A855F7" },
@@ -28,7 +28,7 @@ function FactorBars({ factors }: { factors: (typeof watchGuideData.games)[0]["fa
           <div key={key}>
             <div
               className="text-[9px] uppercase tracking-wider text-center mb-1"
-              style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
             >
               {label}
             </div>
@@ -43,7 +43,7 @@ function FactorBars({ factors }: { factors: (typeof watchGuideData.games)[0]["fa
             </div>
             <div
               className="text-[10px] text-center mt-0.5 tabular-nums font-bold"
-              style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color, fontFamily: "var(--hi-font-mono)" }}
             >
               {value}
             </div>
@@ -61,7 +61,7 @@ function FactorBars({ factors }: { factors: (typeof watchGuideData.games)[0]["fa
 function WatchScoreBar({ score }: { score: number }) {
   const color =
     score >= 85 ? "#10B981" :
-    score >= 70 ? "#0EA5E9" :
+    score >= 70 ? "var(--hi-accent)" :
     score >= 55 ? "#F59E0B" :
     "#F43F5E";
 
@@ -78,7 +78,7 @@ function WatchScoreBar({ score }: { score: number }) {
       </div>
       <span
         className="text-sm font-bold tabular-nums w-8 text-right"
-        style={{ color, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color, fontFamily: "var(--hi-font-mono)" }}
       >
         {score}
       </span>
@@ -98,10 +98,10 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
       className="rounded-xl overflow-hidden transition-all"
       style={{
         background: featured
-          ? "linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(16,185,129,0.05) 100%)"
+          ? "linear-gradient(135deg, rgba(142,200,240,0.08) 0%, rgba(16,185,129,0.05) 100%)"
           : "rgba(255,255,255,0.02)",
-        border: `1px solid ${featured ? "rgba(14,165,233,0.2)" : "rgba(255,255,255,0.06)"}`,
-        borderLeft: featured ? "3px solid #0EA5E9" : `3px solid rgba(255,255,255,0.08)`,
+        border: `1px solid ${featured ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.06)"}`,
+        borderLeft: featured ? "3px solid var(--hi-accent)" : `3px solid rgba(255,255,255,0.08)`,
       }}
     >
       <div className="p-5">
@@ -112,10 +112,10 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
             className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg"
             style={{
               background: game.rank <= 2
-                ? "rgba(14,165,233,0.12)"
+                ? "rgba(142,200,240,0.12)"
                 : "rgba(255,255,255,0.04)",
-              color: game.rank <= 2 ? "#0EA5E9" : "rgba(255,255,255,0.4)",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              color: game.rank <= 2 ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+              fontFamily: "var(--hi-font-display)",
             }}
           >
             {game.rank}
@@ -125,14 +125,14 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
           <div className="flex-1 min-w-0">
             <div
               className="text-base font-bold"
-              style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}
             >
               {game.awayTeam} @ {game.homeTeam}
             </div>
             <div className="flex items-center gap-2 mt-0.5">
               <span
                 className="text-xs"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'JetBrains Mono', monospace" }}
+                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
               >
                 {game.time}
               </span>
@@ -143,7 +143,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
                     ? "rgba(244,63,94,0.12)"
                     : "rgba(255,255,255,0.04)",
                   color: game.tv === "ESPN" ? "#F43F5E" : "rgba(255,255,255,0.35)",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "var(--hi-font-display)",
                 }}
               >
                 {game.tv}
@@ -154,7 +154,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
                   style={{
                     background: "rgba(16,185,129,0.12)",
                     color: "#10B981",
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "var(--hi-font-display)",
                   }}
                 >
                   MUST WATCH
@@ -170,7 +170,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
         {/* Headline */}
         <p
           className="text-sm font-semibold mt-3 mb-2"
-          style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--hi-font-body)" }}
         >
           {game.headline}
         </p>
@@ -178,7 +178,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
         {/* Key matchup */}
         <div
           className="text-xs mb-3"
-          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
         >
           Key Matchup: {game.keyMatchup}
         </div>
@@ -191,7 +191,7 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
           <button
             onClick={() => setExpanded(!expanded)}
             className="mt-3 text-xs font-semibold transition-all hover:opacity-80"
-            style={{ color: "#0EA5E9", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-body)" }}
           >
             {expanded ? "Hide Storyline \u25B2" : "Full Storyline \u25BC"}
           </button>
@@ -201,8 +201,8 @@ function GameCard({ game, featured }: { game: (typeof watchGuideData.games)[0]; 
           <p
             className="text-sm leading-relaxed mt-3 pt-3 border-t"
             style={{
-              color: "rgba(255,255,255,0.5)",
-              fontFamily: "'DM Sans', sans-serif",
+              color: "var(--hi-muted,#5c5c58)",
+              fontFamily: "var(--hi-font-body)",
               borderColor: "rgba(255,255,255,0.06)",
             }}
           >
@@ -227,14 +227,14 @@ function CalloutCard({ type, game, reason }: {
     topPick: {
       icon: "\u{1F3C6}",
       title: "Top Pick of the Night",
-      bgGrad: "linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(14,165,233,0.06) 100%)",
+      bgGrad: "linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(142,200,240,0.06) 100%)",
       border: "rgba(16,185,129,0.2)",
       titleColor: "#10B981",
     },
     sleeper: {
       icon: "\u{1F634}",
       title: "Sleeper Pick",
-      bgGrad: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(14,165,233,0.06) 100%)",
+      bgGrad: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(142,200,240,0.06) 100%)",
       border: "rgba(168,85,247,0.2)",
       titleColor: "#A855F7",
     },
@@ -258,19 +258,19 @@ function CalloutCard({ type, game, reason }: {
         <div>
           <h3
             className="text-sm font-bold uppercase tracking-wider mb-1"
-            style={{ color: c.titleColor, fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: c.titleColor, fontFamily: "var(--hi-font-display)" }}
           >
             {c.title}
           </h3>
           <p
             className="text-base font-bold mb-1"
-            style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}
           >
             {game.awayTeam} @ {game.homeTeam} {"\u00B7"} {game.time}
           </p>
           <p
             className="text-xs leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             {reason}
           </p>
@@ -301,7 +301,7 @@ export default function WatchGuide() {
       headerToolbarExtra={
         <span
           className="text-xs whitespace-nowrap"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
         >
           {data.games.length} games tonight
         </span>
@@ -333,7 +333,7 @@ export default function WatchGuide() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
           >
             Game of the Night
           </h2>
@@ -344,7 +344,7 @@ export default function WatchGuide() {
         <div>
           <h2
             className="text-sm font-bold uppercase tracking-wider mb-3"
-            style={{ color: "#0EA5E9", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
           >
             Full Rankings
           </h2>
@@ -373,7 +373,7 @@ export default function WatchGuide() {
         >
           <h3
             className="text-[10px] font-bold uppercase tracking-wider mb-2"
-            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Barlow Condensed', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)" }}
           >
             Watch Score Factors
           </h3>
@@ -386,7 +386,7 @@ export default function WatchGuide() {
                 />
                 <div
                   className="text-[9px] uppercase tracking-wider"
-                  style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
                 >
                   {label}
                 </div>
@@ -395,7 +395,7 @@ export default function WatchGuide() {
           </div>
           <p
             className="text-[10px] text-center mt-2"
-            style={{ color: "rgba(255,255,255,0.2)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
           >
             Each factor scored 0-20. Watch Score = sum of all factors.
           </p>

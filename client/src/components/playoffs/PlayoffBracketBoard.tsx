@@ -31,7 +31,7 @@ function BracketNode({ series }: { series: PlayoffSeries }) {
   return (
     <a
       href={href}
-      className="block rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 transition-colors hover:border-sky-500/40 hover:bg-sky-500/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/50"
+      className="block rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 transition-colors hover:border-sky-500/40 hover:bg-sky-500/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/50"
       style={{ borderLeftWidth: 3, borderLeftColor: accent }}
     >
       <div className="flex items-center justify-between gap-2 mb-1">
@@ -51,7 +51,7 @@ function BracketNode({ series }: { series: PlayoffSeries }) {
       {lastScore ? (
         <div className="mt-0.5 text-[10px] mono-data text-white/50">Last: {lastScore}</div>
       ) : null}
-      <div className="mt-1 text-[9px] text-sky-400/80 font-semibold uppercase tracking-wide">Series intel →</div>
+      <div className="mt-1 text-[9px] text-[var(--hi-text)]/80 font-semibold uppercase tracking-wide">Series intel →</div>
     </a>
   );
 }

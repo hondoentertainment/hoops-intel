@@ -151,14 +151,14 @@ export default function BettingIntel() {
             >
               <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="mono-data text-xs mb-2" style={{ color: "#0EA5E9" }}>
+                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent)" }}>
                     {g.tv ? `${g.tv} · ` : ""}
                     {g.time ?? "TBD"}
                   </div>
                   <a href={gameHref} className="group block">
-                    <div className="text-xl font-bold text-white flex flex-wrap gap-2 items-baseline group-hover:text-sky-200 transition-colors">
+                    <div className="text-xl font-bold text-white flex flex-wrap gap-2 items-baseline group-hover:text-[var(--hi-muted)] transition-colors">
                       <span>{g.awayTeam}</span>
-                      <span style={{ color: "rgba(255,255,255,0.3)" }}>@</span>
+                      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</span>
                       <span>{g.homeTeam}</span>
                     </div>
                   </a>
@@ -193,7 +193,7 @@ export default function BettingIntel() {
                   ) : null}
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                     Projection
                   </div>
                   <div className="text-lg font-semibold mt-2" style={{ color: "#10B981" }}>
@@ -201,7 +201,7 @@ export default function BettingIntel() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                 {g.storyline}
               </p>
               {"marketThesis" in g && typeof (g as { marketThesis?: unknown }).marketThesis === "string" ? (
@@ -248,9 +248,9 @@ export default function BettingIntel() {
               })()}
               <div
                 className="rounded-lg p-4 text-xs leading-relaxed space-y-2"
-                style={{ background: "rgba(14,165,233,0.06)", border: "1px solid rgba(14,165,233,0.12)" }}
+                style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.12)" }}
               >
-                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-400/95 mb-1">Sharps & books</div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--hi-text)]/95 mb-1">Sharps & books</div>
                 {edu.map((line, j) => (
                   <p key={j} style={{ color: "rgba(226,239,249,0.85)" }}>
                     {line}
@@ -258,7 +258,7 @@ export default function BettingIntel() {
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <a href={gameHref} className="text-xs font-semibold text-sky-300 hover:text-sky-200 min-h-[44px] inline-flex items-center">
+                <a href={gameHref} className="text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)] min-h-[44px] inline-flex items-center">
                   Game Center →
                 </a>
                 <a href="/pick-em" className="text-xs font-semibold text-emerald-300 hover:text-emerald-200 min-h-[44px] inline-flex items-center">

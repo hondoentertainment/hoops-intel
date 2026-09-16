@@ -111,11 +111,11 @@ export default function WidgetAnalytics() {
               key={id}
               className="rounded-xl px-4 py-3 border border-white/[0.08] bg-white/[0.02]"
             >
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 {id}
               </div>
               <div className="text-2xl font-bold text-white/90 mono-data mt-1">{totals[id]}</div>
-              <div className="text-[11px] mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <div className="text-[11px] mt-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
                 last {days}d (RPC summary)
               </div>
             </div>
@@ -167,7 +167,7 @@ export default function WidgetAnalytics() {
           )}
         </div>
 
-        <div className="flex gap-6 text-[11px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <div className="flex gap-6 text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
           <span className="flex items-center gap-2">
             <span className="inline-block w-3 h-3 rounded-sm bg-sky-500/80" /> Pulse
           </span>
