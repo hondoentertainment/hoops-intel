@@ -32,9 +32,9 @@ export function GameScoreboardStrip({ games, higherTeam, lowerTeam }: GameScoreb
           >
             <span className="playoff-score-pill__g mono-data">G{g.gameNumber}</span>
             <span className="playoff-score-pill__line mono-data">
-              <span style={{ color: win === g.awayTeam ? winColor : "rgba(255,255,255,0.45)" }}>{g.awayTeam}</span>
+              <span style={{ color: win === g.awayTeam ? winColor : "var(--hi-muted,#5c5c58)" }}>{g.awayTeam}</span>
               <span className="text-white/25 px-0.5">@</span>
-              <span style={{ color: win === g.homeTeam ? winColor : "rgba(255,255,255,0.45)" }}>{g.homeTeam}</span>
+              <span style={{ color: win === g.homeTeam ? winColor : "var(--hi-muted,#5c5c58)" }}>{g.homeTeam}</span>
             </span>
             <span className="playoff-score-pill__score mono-data font-bold text-white/95">
               {g.awayScore}–{g.homeScore}

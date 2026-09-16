@@ -33,7 +33,7 @@ export default function ErrorBlock({
           <a
             href={fallbackHref}
             className="min-h-[44px] inline-flex items-center px-4 py-2 rounded-lg text-xs font-semibold"
-            style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
+            style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
           >
             {fallbackLabel}
           </a>

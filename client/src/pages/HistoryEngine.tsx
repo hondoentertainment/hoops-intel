@@ -56,11 +56,11 @@ function ComparisonCard({ comp }: { comp: HistoricalComparison }) {
             className="rounded-lg p-3"
             style={{ background: "rgba(142,200,240,0.06)", border: "1px solid rgba(142,200,240,0.12)" }}
           >
-            <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent)" }}>
+            <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
               NOW
             </div>
             <div className="text-sm font-bold text-white mb-0.5">{comp.player}</div>
-            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{comp.team}</div>
+            <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{comp.team}</div>
           </div>
 
           {/* Historical */}
@@ -72,7 +72,7 @@ function ComparisonCard({ comp }: { comp: HistoricalComparison }) {
               THEN
             </div>
             <div className="text-sm font-bold text-white mb-0.5">{comp.historicalParallel.player}</div>
-            <div className="text-xs mb-1" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="text-xs mb-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {comp.historicalParallel.season}
             </div>
             <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -82,7 +82,7 @@ function ComparisonCard({ comp }: { comp: HistoricalComparison }) {
         </div>
 
         {/* Context */}
-        <div className="text-xs leading-relaxed mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-xs leading-relaxed mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {comp.historicalParallel.context}
         </div>
 
@@ -122,11 +122,11 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
       <div className="flex items-start justify-between gap-3 mb-3">
         <div>
           <div className="text-sm font-bold text-white">{milestone.player}</div>
-          <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{milestone.team}</div>
+          <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{milestone.team}</div>
         </div>
         <span
           className="text-[10px] font-semibold px-2 py-0.5 rounded"
-          style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent)" }}
+          style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}
         >
           {milestone.projectedDate}
         </span>
@@ -137,10 +137,10 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
       {/* Progress bar */}
       <div className="mb-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {milestone.current}
           </span>
-          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {milestone.needed} needed
           </span>
         </div>
@@ -159,7 +159,7 @@ function MilestoneCard({ milestone }: { milestone: MilestoneWatchType }) {
         </div>
       </div>
 
-      <p className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="text-xs leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         {milestone.significance}
       </p>
     </div>
@@ -181,7 +181,7 @@ export default function HistoryEngine() {
       description={`${formatContentDate(data.generatedDate)} — Connecting today's performances to NBA history`}
     >
         <DeskPanel kicker="This week" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text,#0a0a0a)" }}>
             {data.narrative}
           </p>
         </DeskPanel>
@@ -242,7 +242,7 @@ export default function HistoryEngine() {
                       <th
                         key={h}
                         className="text-left text-[10px] font-bold uppercase tracking-wider px-4 py-3"
-                        style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                        style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                       >
                         {h}
                       </th>
@@ -259,7 +259,7 @@ export default function HistoryEngine() {
                       <td className="px-4 py-3">
                         <span
                           className="text-xs px-1.5 py-0.5 rounded"
-                          style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
+                          style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
                         >
                           {s.team}
                         </span>
@@ -267,7 +267,7 @@ export default function HistoryEngine() {
                       <td className="px-4 py-3 text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                         {s.streak}
                       </td>
-                      <td className="px-4 py-3 text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <td className="px-4 py-3 text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         {s.record}
                       </td>
                       <td className="px-4 py-3">
@@ -283,7 +283,7 @@ export default function HistoryEngine() {
                             className="text-xs font-bold"
                             style={{
                               fontFamily: "var(--hi-font-display)",
-                              color: s.gamesAway <= 3 ? "#F59E0B" : "rgba(255,255,255,0.5)",
+                              color: s.gamesAway <= 3 ? "#F59E0B" : "var(--hi-muted,#5c5c58)",
                             }}
                           >
                             {s.gamesAway}

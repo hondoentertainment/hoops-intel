@@ -32,7 +32,7 @@ export default function BettingIntel() {
 
       <p
         className="text-xs mb-10 max-w-3xl rounded-lg px-4 py-3 leading-relaxed"
-        style={{ border: "1px solid rgba(239,68,68,0.25)", background: "rgba(239,68,68,0.05)", color: "rgba(253,226,226,0.85)" }}
+        style={{ border: "1px solid rgba(190,18,60,0.28)", background: "rgba(255,228,230,0.7)", color: "#9f1239" }}
       >
         {bettingDisclaimer()}
       </p>
@@ -40,9 +40,9 @@ export default function BettingIntel() {
       {movement.comparable > 0 ? (
         <div
           className="text-sm mb-8 max-w-3xl rounded-lg px-4 py-3 leading-relaxed"
-          style={{ border: "1px solid rgba(251,191,36,0.22)", background: "rgba(251,191,36,0.06)", color: "rgba(254,243,199,0.92)" }}
+          style={{ border: "1px solid rgba(124,45,18,0.28)", background: "#fff4e5", color: "#7c2d12" }}
         >
-          <strong className="text-amber-200">Slate movement:</strong> {movement.moved}/{movement.comparable} matchups moved opener → current (
+          <strong>Slate movement:</strong> {movement.moved}/{movement.comparable} matchups moved opener → current (
           {movement.comparable ? Math.round((movement.moved / movement.comparable) * 100) : 0}%).
           {movement.rows.filter((r) => r.moved).length > 0 ? (
             <ul className="mt-2 space-y-1 text-xs mono-data list-disc ml-5">
@@ -64,10 +64,10 @@ export default function BettingIntel() {
       {slate.comparable > 0 && slate.pct !== null ? (
         <p
           className="text-sm mb-8 max-w-3xl rounded-lg px-4 py-3 leading-relaxed mono-data"
-          style={{ border: "1px solid rgba(148,251,223,0.22)", background: "rgba(6,148,148,0.08)", color: "rgba(220,251,239,0.92)" }}
+          style={{ border: "1px solid rgba(4,120,87,0.25)", background: "rgba(209,250,229,0.55)", color: "#065f46" }}
         >
           Slate vs editorial: spread favorite matches Pulse pick copy on{" "}
-          <strong style={{ color: "#94F5D9" }}>
+          <strong style={{ color: "#047857" }}>
             {slate.aligned}/{slate.comparable}
           </strong>{" "}
           games (<strong>{slate.pct}%</strong>). Markets and the desk diverge deliberately on some nights — audit game cards below for context.
@@ -75,7 +75,7 @@ export default function BettingIntel() {
       ) : null}
 
       <section className="mb-12" aria-labelledby="opener-archive-heading">
-        <h2 id="opener-archive-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/45 mb-3">
+        <h2 id="opener-archive-heading" className="hi-th mb-3">
           Opener archive
         </h2>
         {lineOpenersArchive.length === 0 ? (
@@ -87,7 +87,7 @@ export default function BettingIntel() {
           <div className="overflow-x-auto rounded-xl border border-white/[0.08]">
             <table className="w-full text-xs mono-data">
               <thead>
-                <tr className="text-left text-white/40 border-b border-white/[0.08]">
+                <tr className="text-left hi-th border-b" style={{ borderColor: "var(--hi-border-soft, rgba(10,10,10,0.06))" }}>
                   <th className="px-4 py-3 font-semibold">Date</th>
                   <th className="px-4 py-3 font-semibold">Matchup</th>
                   <th className="px-4 py-3 font-semibold">Opener</th>
@@ -151,18 +151,18 @@ export default function BettingIntel() {
             >
               <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent)" }}>
+                  <div className="mono-data text-xs mb-2" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                     {g.tv ? `${g.tv} · ` : ""}
                     {g.time ?? "TBD"}
                   </div>
                   <a href={gameHref} className="group block">
                     <div className="text-xl font-bold text-white flex flex-wrap gap-2 items-baseline group-hover:text-[var(--hi-muted)] transition-colors">
                       <span>{g.awayTeam}</span>
-                      <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</span>
+                      <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</span>
                       <span>{g.homeTeam}</span>
                     </div>
                   </a>
-                  <div className="mono-data mt-3 text-lg" style={{ color: "rgba(255,255,255,0.75)" }}>
+                  <div className="mono-data mt-3 text-lg" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {current} · O/U {g.overUnder}
                   </div>
                   {ladder ? (
@@ -193,7 +193,7 @@ export default function BettingIntel() {
                   ) : null}
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     Projection
                   </div>
                   <div className="text-lg font-semibold mt-2" style={{ color: "#10B981" }}>

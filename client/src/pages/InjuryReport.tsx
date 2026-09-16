@@ -156,7 +156,7 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
               <a
                 href={`/team/${injury.team.toLowerCase()}`}
                 className="inline-flex items-center gap-1.5 text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
-                style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
+                style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
               >
                 <TeamLogo team={injury.team} size={16} />
                 {injury.team}
@@ -172,17 +172,17 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
         </div>
 
         {/* Injury description */}
-        <div className="mb-1 text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>
+        <div className="mb-1 text-xs font-semibold" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {injury.injury}
         </div>
-        <div className="text-xs leading-relaxed mb-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-xs leading-relaxed mb-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {injury.timeline}
         </div>
 
         {/* Impact rating bar */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Team Impact
             </span>
             <span className="text-xs font-bold mono-data" style={{ color: barColor }}>
@@ -232,7 +232,7 @@ function InjuryCard({ injury }: { injury: (typeof injuryUpdates)[0] }) {
 
         {/* Fantasy action badge */}
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Fantasy
           </span>
           <span
@@ -273,8 +273,8 @@ function FilterButton({
         className="rounded-full px-1.5 py-0.5 text-[10px] font-bold"
         style={
           active
-            ? { background: "rgba(255,255,255,0.18)", color: "var(--hi-text,#0a0a0a)" }
-            : { background: "rgba(10,10,10,0.06)", color: "var(--hi-text-secondary,#8a8a86)" }
+            ? { background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)" }
+            : { background: "rgba(10,10,10,0.06)", color: "var(--hi-text-secondary,#5c5c58)" }
         }
       >
         {count}
@@ -336,7 +336,7 @@ export default function InjuryReport() {
             type="button"
             onClick={nextClub}
             className="text-sm font-medium min-h-11 shrink-0 inline-flex items-end pb-1 self-start"
-            style={{ color: "var(--hi-accent,#8ec8f0)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)" }}
           >
             {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
           </button>
@@ -364,8 +364,8 @@ export default function InjuryReport() {
                 className="enhanced-card flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 p-3.5 min-w-0 overflow-hidden"
               >
                 <div className="w-full sm:w-[220px] shrink-0 min-w-0">
-                  <p className="text-base font-semibold leading-6 text-[var(--hi-text,#f3f6fa)] truncate">{injury.player}</p>
-                  <p className="text-sm font-bold tracking-[0.6px] leading-5" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                  <p className="text-base font-semibold leading-6 hi-title text-[var(--hi-text,#0a0a0a)]">{injury.player}</p>
+                  <p className="text-sm font-bold tracking-[0.6px] leading-5 hi-accent-text">
                     {injury.team}
                   </p>
                 </div>
@@ -373,8 +373,8 @@ export default function InjuryReport() {
                   <InjuryChip status={injury.status} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-base font-medium leading-6 text-[var(--hi-text,#f3f6fa)]">{injury.injury}</p>
-                  <p className="editorial-body mobile-readable mt-1" style={{ color: "var(--hi-text-secondary,#8b9bb0)" }}>
+                  <p className="text-base font-medium leading-6 hi-title text-[var(--hi-text,#0a0a0a)]">{injury.injury}</p>
+                  <p className="editorial-body mobile-readable mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {injury.timeline}
                   </p>
                 </div>

@@ -17,7 +17,7 @@ function StatPill({ label, value, color }: { label: string; value: string; color
       <div className="text-lg font-bold tabular-nums" style={{ color, fontFamily: "var(--hi-font-display)" }}>
         {value}
       </div>
-      <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         {label}
       </div>
     </div>
@@ -88,7 +88,7 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
         >
           You vs. editorial picks
         </h2>
-        <p className="text-xs mt-2 leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-xs mt-2 leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {headlineForSummary(summary)}
         </p>
       </div>
@@ -121,7 +121,7 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
             className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
             style={{
               background: "rgba(255,255,255,0.04)",
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-display)",
               letterSpacing: "0.06em",
             }}
@@ -151,13 +151,13 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
                   className="grid grid-cols-12 gap-2 px-4 py-3 items-center text-xs"
                   style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
                 >
-                  <div className="col-span-4 font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>
+                  <div className="col-span-4 font-medium" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {row.matchup}
                   </div>
                   <div
                     className="col-span-2 text-center font-bold"
                     style={{
-                      color: row.userCorrect === true ? "#10B981" : row.userCorrect === false ? "#F43F5E" : "#fff",
+                      color: row.userCorrect === true ? "#10B981" : row.userCorrect === false ? "#F43F5E" : "var(--hi-text,#0a0a0a)",
                       fontFamily: "var(--hi-font-mono)",
                     }}
                   >
@@ -166,13 +166,13 @@ export default function BeatTheDeskPanel({ games, editionDate, results = [], com
                   <div
                     className="col-span-2 text-center font-bold"
                     style={{
-                      color: row.deskCorrect === true ? "#10B981" : row.deskCorrect === false ? "#F43F5E" : "var(--hi-accent)",
+                      color: row.deskCorrect === true ? "#10B981" : row.deskCorrect === false ? "#F43F5E" : "var(--hi-accent-text,#146a8c)",
                       fontFamily: "var(--hi-font-mono)",
                     }}
                   >
                     {row.deskPick ?? "—"}
                   </div>
-                  <div className="col-span-2 text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <div className="col-span-2 text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                     {row.final ? row.winner : "Pending"}
                   </div>
                   <div className="col-span-2 text-right font-semibold" style={{ color: edgeColor }}>

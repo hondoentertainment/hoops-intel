@@ -4,6 +4,7 @@ import { activeEditionContext, editionContextDeskLabel, type EditionContext } fr
 import { editionPublishLabel } from "./pacificTime";
 
 export const ENHANCED_ACCENT = "#8ec8f0";
+export const ENHANCED_ACCENT_TEXT = "#146a8c";
 export const ENHANCED_CHIP = "#ff7a17";
 export const ENHANCED_INK = "#0a0a0a";
 export const CAMP_OPEN_ISO = "2026-10-03";

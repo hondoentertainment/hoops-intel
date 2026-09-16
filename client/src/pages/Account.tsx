@@ -319,7 +319,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         className="rounded-xl p-6 mb-6 scroll-mt-24"
         style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           BROWSER PUSH (PLAYOFFS)
         </div>
         <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -338,7 +338,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
       className="rounded-xl p-6 mb-6 scroll-mt-24"
       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
     >
-      <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         BROWSER PUSH (PLAYOFFS)
       </div>
       <p className="text-sm mb-4 leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -347,14 +347,14 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         <strong className="text-white/70 font-medium">urgency-tier</strong> topics (elimination / clinchers). Volume
         stays capped. Team targeting uses your first My Pulse favorite when present.
       </p>
-      <p className="text-xs mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.38)" }}>
+      <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         Operators: configure VAPID + Supabase + push API per{" "}
         <code className="text-[var(--hi-text)]/80">references/push-notifications.md</code> — see also{" "}
         <code className="text-[var(--hi-text)]/80">.github/workflows/playoff-push.yml</code>.
       </p>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        <span className="w-full text-[11px] uppercase tracking-[0.16em]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <span className="w-full text-[11px] uppercase tracking-[0.16em]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Quick presets
         </span>
         <button
@@ -405,7 +405,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
             />
             <span>
               <span className="text-sm text-white/85 font-medium block">{opt.label}</span>
-              <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {opt.hint}
               </span>
             </span>
@@ -413,7 +413,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         ))}
       </div>
 
-      <p className="text-[11px] mb-4 leading-relaxed px-2" style={{ color: "rgba(255,255,255,0.38)" }}>
+      <p className="text-[11px] mb-4 leading-relaxed px-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         Fantasy-only cohort: leave <strong className="text-white/65">Fantasy</strong> checked and uncheck Injury if you don&apos;t want infirmary blasts.&nbsp;
         Rival pings require enabling <strong className="text-white/65">Rival grudge alerts</strong> plus{" "}
         <a href="/rivals" className="text-[var(--hi-text)]/95 underline">
@@ -422,7 +422,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         pairings — then tap sync below.
       </p>
 
-      <div className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <div className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         Permission:{" "}
         <span className={perm === "granted" ? "text-emerald-400" : "text-amber-400"}>{perm}</span>
         {deviceEndpoint ? " · This device registered" : ""}
@@ -434,7 +434,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
           disabled={busy}
           onClick={() => void handleRegister()}
           className="min-h-[44px] px-4 py-2 rounded-lg text-xs font-semibold text-white disabled:opacity-50"
-          style={{ background: "var(--hi-accent,#8ec8f0)", color: "var(--hi-accent-ink,#0a0a0a)" }}
+          style={{ background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-accent-ink,#0a0a0a)" }}
         >
           {deviceEndpoint ? "RE-SYNC THIS DEVICE" : "ENABLE PUSH ON THIS DEVICE"}
         </button>
@@ -550,7 +550,7 @@ export default function Account() {
         <div className="py-12 flex justify-center">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin"
-            style={{ borderColor: "var(--hi-accent,#8ec8f0)", borderTopColor: "transparent" }}
+            style={{ borderColor: "var(--hi-accent-text,#146a8c)", borderTopColor: "transparent" }}
           />
         </div>
       </ToolPageLayout>
@@ -568,7 +568,7 @@ export default function Account() {
         showRelated={false}
       >
         {!isSupabaseConfigured ? (
-          <div className="rounded-xl p-5 text-sm" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}>
+          <div className="rounded-xl p-5 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", border: "1px solid rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}>
             Accounts are not configured in this environment (missing Supabase keys).
           </div>
         ) : (
@@ -576,7 +576,7 @@ export default function Account() {
             type="button"
             onClick={() => setShowAuth(true)}
             className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold text-white"
-            style={{ background: "var(--hi-accent,#8ec8f0)", color: "var(--hi-accent-ink,#0a0a0a)" }}
+            style={{ background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-accent-ink,#0a0a0a)" }}
           >
             SIGN IN OR CREATE ACCOUNT
           </button>
@@ -610,12 +610,12 @@ export default function Account() {
         className="rounded-xl p-6 mb-6"
         style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           SIGNED IN AS
         </div>
         <div className="text-white font-medium mb-1">{user.email}</div>
         {user.user_metadata?.display_name && (
-          <div className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <div className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             {user.user_metadata.display_name}
           </div>
         )}
@@ -637,7 +637,7 @@ export default function Account() {
         }}
       >
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <div className="section-label" style={{ color: sub.isPro ? "#10B981" : "var(--hi-accent)" }}>
+          <div className="section-label" style={{ color: sub.isPro ? "#10B981" : "var(--hi-accent-text,#146a8c)" }}>
             HOOPS INTEL PRO
           </div>
           {!sub.loading && (
@@ -653,7 +653,7 @@ export default function Account() {
           )}
         </div>
         {sub.loading ? (
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Checking subscription…
           </p>
         ) : sub.isPro ? (
@@ -674,7 +674,7 @@ export default function Account() {
               disabled={portalLoading}
               onClick={() => void handlePortal()}
               className="w-full sm:w-auto min-h-[48px] px-5 py-2.5 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
-              style={{ background: "var(--hi-accent,#8ec8f0)", color: "var(--hi-accent-ink,#0a0a0a)" }}
+              style={{ background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-accent-ink,#0a0a0a)" }}
             >
               {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
             </button>
@@ -708,7 +708,7 @@ export default function Account() {
             <a
               href="/pro"
               className="inline-flex min-h-[48px] items-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white"
-              style={{ background: "var(--hi-accent,#8ec8f0)", color: "var(--hi-accent-ink,#0a0a0a)" }}
+              style={{ background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-accent-ink,#0a0a0a)" }}
             >
               {stripeCheckoutReady === false ? "VIEW PRO (OPS PENDING)" : "UPGRADE TO PRO"}
             </a>
@@ -718,7 +718,7 @@ export default function Account() {
 
       {isSupabaseConfigured ? <AccountPushAlerts userId={user.id} /> : null}
 
-      <div className="section-label mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <div className="section-label mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         SHORTCUTS
       </div>
       <ul className="space-y-2 text-sm">
@@ -726,13 +726,13 @@ export default function Account() {
           <a href="/my-pulse" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">
             My Pulse
           </a>
-          <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}> — favorites &amp; personalized edition</span>
+          <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}> — favorites &amp; personalized edition</span>
         </li>
         <li>
           <a href="/unsubscribe" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">
             Unsubscribe from digest
           </a>
-          <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}> — morning email opt-out</span>
+          <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}> — morning email opt-out</span>
         </li>
         <li>
           <a href="/" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">

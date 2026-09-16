@@ -39,7 +39,7 @@ export default function ReactionBar({ itemId }: { itemId: string }) {
           >
             <span style={{ fontSize: "0.85rem" }} aria-hidden>{REACTION_EMOJIS[r]}</span>
             {count > 0 && (
-              <span className="mono-data" style={{ color: isActive ? "var(--hi-accent)" : "rgba(255,255,255,0.4)", fontSize: "0.65rem" }}>
+              <span className="mono-data" style={{ color: isActive ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)", fontSize: "0.65rem" }}>
                 {count}
               </span>
             )}

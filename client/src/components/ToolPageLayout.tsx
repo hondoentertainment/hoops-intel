@@ -32,6 +32,7 @@ export type ToolPageLayoutProps = {
   /** Skip container, breadcrumbs, and related sidebar — header + children only */
   contentOnly?: boolean;
   shellClassName?: string;
+  footer?: boolean;
   children: ReactNode;
 };
 
@@ -51,6 +52,7 @@ export default function ToolPageLayout({
   showBreadcrumbs = true,
   contentOnly = false,
   shellClassName = "",
+  footer = true,
   children,
 }: ToolPageLayoutProps) {
   const [location] = useLocation();
@@ -75,6 +77,7 @@ export default function ToolPageLayout({
     return (
       <DeskAppShell
         header={header}
+        footer={footer}
         padded={false}
         askInFlow={false}
         mainClassName="flex-1 flex flex-col min-h-0"
@@ -105,9 +108,7 @@ export default function ToolPageLayout({
         <header className="mb-8 min-w-0">
           {sectionLabel ? <p className="enhanced-kicker mb-2">{sectionLabel}</p> : null}
           {description ? (
-            <p className="mobile-readable max-w-2xl" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
-              {description}
-            </p>
+            <p className="hi-lede">{description}</p>
           ) : null}
         </header>
       ) : null}
@@ -137,7 +138,7 @@ export default function ToolPageLayout({
               <a
                 href="/tools"
                 className="inline-flex items-center min-h-11 text-[11px]"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)" }}
               >
                 All tools directory
               </a>

@@ -133,7 +133,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
         <div
           className="flex items-center justify-between px-6 py-4 border-b sticky top-0 z-10"
           style={{
-            borderColor: "rgba(255,255,255,0.08)",
+            borderColor: "var(--hi-muted,#5c5c58)",
             background: "var(--hi-surface,#eeeeec)",
           }}
         >
@@ -146,7 +146,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
             onClick={onClose}
             aria-label="Close My Pulse setup"
             className="w-8 h-8 rounded flex items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
           >
             <svg
               width="16"
@@ -172,7 +172,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
               </div>
               <div
                 className="text-xs"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
               >
                 Personalize your daily edition based on favorites
               </div>
@@ -342,7 +342,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                     className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
                     style={{
                       background: "rgba(142,200,240,0.15)",
-                      color: "var(--hi-accent)",
+                      color: "var(--hi-accent-text,#146a8c)",
                       border: "1px solid rgba(142,200,240,0.3)",
                     }}
                   >
@@ -352,7 +352,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
                       onClick={() => removePlayer(player)}
                       aria-label={`Remove ${player} from favorites`}
                       className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 transition-colors"
-                      style={{ color: "var(--hi-accent)" }}
+                      style={{ color: "var(--hi-accent-text,#146a8c)" }}
                     >
                       <svg
                         width="10"
@@ -375,7 +375,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
             {players.length === 0 && (
               <div
                 className="text-xs py-2"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
               >
                 Search and add up to {MAX_PLAYERS} favorite players
               </div>
@@ -387,7 +387,7 @@ export default function PreferencesSetup({ onClose, onSave }: Props) {
         <div
           className="flex items-center justify-between px-6 py-4 border-t sticky bottom-0"
           style={{
-            borderColor: "rgba(255,255,255,0.08)",
+            borderColor: "var(--hi-muted,#5c5c58)",
             background: "var(--hi-surface,#eeeeec)",
           }}
         >

@@ -59,7 +59,7 @@ function ScoreBlock({ abbr, score, align }: { abbr: string; score: number | null
     <a href={`/team/${abbr.toLowerCase()}`} className={`flex flex-col ${align === "right" ? "items-end" : "items-start"}`}>
       <TeamLogo team={abbr} size={48} className="mb-2" />
       <div className="section-label mb-1" style={{ color: getTeamColor(abbr) }}>{abbr}</div>
-      <div className="mono-data text-4xl font-bold text-white">{score ?? "—"}</div>
+      <div className="hi-stat text-4xl">{score ?? "—"}</div>
     </a>
   );
 }
@@ -207,7 +207,7 @@ export default function GameCenter() {
 
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)" }}>
             <ScoreBlock abbr={game.away.abbr} score={game.away.score} />
-            <div className="section-label text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>AT</div>
+            <div className="section-label text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>AT</div>
             <ScoreBlock abbr={game.home.abbr} score={game.home.score} align="right" />
           </div>
           <div className="mt-4 flex flex-wrap gap-2 text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -262,7 +262,7 @@ export default function GameCenter() {
           <section className="lg:col-span-2 space-y-4">
             <div className="enhanced-card p-5">
               <div className="section-label mb-2">WHY IT MATTERS</div>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{game.whyItMatters}</p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{game.whyItMatters}</p>
             </div>
 
             {game.espnGameId && (
@@ -282,7 +282,7 @@ export default function GameCenter() {
                   </a>
                 )}
                 {game.topLine && <div className="mono-data text-sm mt-1" style={{ color: "#10B981" }}>{game.topLine}</div>}
-                {game.recap && <p className="text-sm mt-3" style={{ color: "rgba(255,255,255,0.62)" }}>{game.recap}</p>}
+                {game.recap && <p className="text-sm mt-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>{game.recap}</p>}
               </div>
             )}
 
@@ -291,7 +291,7 @@ export default function GameCenter() {
                 <div className="section-label mb-2">REF CONTEXT</div>
                 <div className="text-sm font-semibold text-white mb-2">{game.refs.leadRef} lead crew</div>
                 {game.refs.crew && <div className="mono-data text-xs mb-3" style={{ color: "#38BDF8" }}>{game.refs.crew.join(" · ")}</div>}
-                <p className="text-xs leading-relaxed line-clamp-6" style={{ color: "rgba(255,255,255,0.62)" }}>{game.refs.impact}</p>
+                <p className="text-xs leading-relaxed line-clamp-6" style={{ color: "var(--hi-muted,#5c5c58)" }}>{game.refs.impact}</p>
               </div>
             )}
 
@@ -321,11 +321,11 @@ export default function GameCenter() {
                   </div>
                 </div>
                 {(lineMove?.education ?? game.betting?.lineMovement ?? []).map((line, i) => (
-                  <p key={i} className="text-xs leading-relaxed mb-2 last:mb-0" style={{ color: "rgba(255,255,255,0.62)" }}>
+                  <p key={i} className="text-xs leading-relaxed mb-2 last:mb-0" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     {line}
                   </p>
                 ))}
-                {game.betting?.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "rgba(255,255,255,0.62)" }}>{game.betting.angle}</p>}
+                {game.betting?.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "var(--hi-muted,#5c5c58)" }}>{game.betting.angle}</p>}
               </div>
             )}
           </section>
@@ -344,7 +344,7 @@ export default function GameCenter() {
               <div className="space-y-2">
                 {game.insights.map((insight) => (
                   <div key={insight.label} className="flex justify-between gap-3 text-xs">
-                    <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{insight.label}</span>
+                    <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{insight.label}</span>
                     <span className="text-right text-white font-semibold">{insight.value}</span>
                   </div>
                 ))}

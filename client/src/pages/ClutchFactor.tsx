@@ -3,9 +3,9 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import { clutchData, ClutchPlayer } from "../lib/clutchData";
 
 function getMedalStyle(rank: number): React.CSSProperties | null {
-  if (rank === 1) return { color: "#FFD700", fontWeight: 800 };
-  if (rank === 2) return { color: "#C0C0C0", fontWeight: 800 };
-  if (rank === 3) return { color: "#CD7F32", fontWeight: 800 };
+  if (rank === 1) return { color: "#B45309", fontWeight: 800 };
+  if (rank === 2) return { color: "#57534e", fontWeight: 800 };
+  if (rank === 3) return { color: "#9a3412", fontWeight: 800 };
   return null;
 }
 
@@ -65,7 +65,7 @@ function ClutchKingCard() {
       </div>
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 24 }}>
         <div style={{ flex: "1 1 400px" }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#FFD700", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
             Clutch King
           </div>
           <div style={{ fontSize: 28, fontWeight: 800, color: "var(--hi-text,#0a0a0a)", marginBottom: 4 }}>
@@ -74,15 +74,15 @@ function ClutchKingCard() {
           <div style={{ fontSize: 14, fontWeight: 600, color: "var(--hi-muted,#5c5c58)", marginBottom: 16 }}>
             {clutchKing.team}
           </div>
-          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: 0, maxWidth: 600 }}>
+          <p style={{ fontSize: 15, color: "var(--hi-muted,#5c5c58)", lineHeight: 1.7, margin: 0, maxWidth: 600 }}>
             {clutchKing.description}
           </p>
         </div>
         <div style={{ textAlign: "center", flex: "0 0 auto" }}>
-          <div style={{ fontSize: 64, fontWeight: 900, color: "#FFD700", lineHeight: 1 }}>
+          <div style={{ fontSize: 64, fontWeight: 900, color: "#B45309", lineHeight: 1 }}>
             {rating}
           </div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,215,0,0.6)", letterSpacing: 1, marginTop: 4 }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "var(--hi-text-secondary,#5c5c5a)", letterSpacing: 1, marginTop: 4 }}>
             CLUTCH RATING
           </div>
         </div>
@@ -109,7 +109,7 @@ function PlayerRow({ player, index, expanded, onToggle }: { player: ClutchPlayer
         </td>
         <td style={{ padding: "12px 16px" }}>
           <span style={{ color: "var(--hi-text,#0a0a0a)", fontWeight: 600, fontSize: 14 }}>{player.player}</span>
-          <span style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: 12, marginLeft: 8 }}>{player.team}</span>
+          <span style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: 12, marginLeft: 8 }}>{player.team}</span>
         </td>
         <td style={{ padding: "12px 16px", width: 180 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -152,8 +152,8 @@ function PlayerRow({ player, index, expanded, onToggle }: { player: ClutchPlayer
       {expanded && (
         <tr style={{ background: "rgba(142,200,240,0.05)" }}>
           <td colSpan={9} style={{ padding: "12px 16px 12px 56px" }}>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, fontStyle: "italic" }}>
-              <span style={{ color: "var(--hi-accent)", fontWeight: 600, fontStyle: "normal" }}>Biggest Moment:</span>{" "}
+            <div style={{ fontSize: 13, color: "var(--hi-muted,#5c5c58)", lineHeight: 1.6, fontStyle: "italic" }}>
+              <span style={{ color: "var(--hi-accent-text,#146a8c)", fontWeight: 600, fontStyle: "normal" }}>Biggest Moment:</span>{" "}
               {player.biggestMoment}
             </div>
           </td>
@@ -170,7 +170,7 @@ function RankingsTable() {
     padding: "10px 16px",
     fontSize: 11,
     fontWeight: 700,
-    color: "var(--hi-text-secondary,#8a8a86)",
+    color: "var(--hi-text,#0a0a0a)",
     letterSpacing: 1.2,
     textTransform: "uppercase",
     borderBottom: "1px solid rgba(255,255,255,0.06)",
@@ -215,7 +215,7 @@ function RankingsTable() {
           </tbody>
         </table>
       </div>
-      <div style={{ padding: "10px 16px", fontSize: 11, color: "var(--hi-text-secondary,#8a8a86)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ padding: "10px 16px", fontSize: 11, color: "var(--hi-text-secondary,#5c5c58)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         Click any row to reveal biggest moment. C-PPG = Clutch Points Per Game (final 5 min, score within 5). GW = Game Winners.
       </div>
     </div>
@@ -277,10 +277,10 @@ function WeeklyHighlight() {
         padding: "28px 32px",
       }}
     >
-      <div style={{ fontSize: 12, fontWeight: 700, color: "var(--hi-accent)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, color: "var(--hi-accent-text,#146a8c)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>
         Weekly Highlight
       </div>
-      <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, margin: 0 }}>
+      <p style={{ fontSize: 15, color: "var(--hi-muted,#5c5c58)", lineHeight: 1.8, margin: 0 }}>
         {clutchData.weeklyHighlight}
       </p>
     </div>

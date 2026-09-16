@@ -84,11 +84,11 @@ export default function GuestPulse() {
     >
 
       <section className="mb-12" aria-labelledby="guest-published-heading">
-        <h2 id="guest-published-heading" className="text-sm font-bold uppercase tracking-[0.18em] text-white/50 mb-4">
+        <h2 id="guest-published-heading" className="text-sm font-bold uppercase tracking-[0.18em] mb-4" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           Published pitches
         </h2>
         {postsNote ? (
-          <p className="text-sm text-amber-200/80 mb-4">{postsNote}</p>
+          <p className="text-sm mb-4" style={{ color: "var(--hi-warn,#c2410c)" }}>{postsNote}</p>
         ) : null}
         {posts.length === 0 && !postsNote ? (
           <EmptyState
@@ -105,7 +105,7 @@ export default function GuestPulse() {
                 key={p.id}
                 className="rounded-xl px-5 py-4 border border-white/[0.08] bg-white/[0.02]"
               >
-                <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <div className="flex flex-wrap justify-between gap-2 text-xs mono-data mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   <span className="font-semibold text-white/70">{p.name}</span>
                   <span>{p.created_at ? p.created_at.slice(0, 10) : ""}</span>
                 </div>
@@ -118,7 +118,7 @@ export default function GuestPulse() {
         )}
       </section>
 
-      <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-white/50 mb-4">Submit a pitch</h2>
+      <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4" style={{ color: "var(--hi-text,#0a0a0a)" }}>Submit a pitch</h2>
       <div className="space-y-4">
         <Field label="Your name">
           <input
@@ -172,7 +172,7 @@ export default function GuestPulse() {
         >
           <p className="text-emerald-400/95 font-medium">{success}</p>
           {queueRef && (
-            <p style={{ color: "rgba(255,255,255,0.7)" }}>
+            <p style={{ color: "var(--hi-muted,#5c5c58)" }}>
               Queue reference{" "}
               <code title={queueRef.full} className="mono-data text-emerald-200/95 text-[0.95em]">
                 {queueRef.display}
@@ -203,7 +203,7 @@ export default function GuestPulse() {
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <label className="block text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <label className="block text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         {label}
       </label>
       {children}

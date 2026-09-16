@@ -49,7 +49,7 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
           className="text-7xl font-black tabular-nums leading-none mb-2"
           style={{
             fontFamily: "var(--hi-font-display)",
-            color: current >= 7 ? "#F59E0B" : current >= 3 ? "var(--hi-accent)" : "rgba(255,255,255,0.5)",
+            color: "var(--hi-text,#0a0a0a)",
             textShadow: current >= 3 ? "0 0 30px rgba(251,146,60,0.3)" : "none",
           }}
         >
@@ -68,7 +68,7 @@ function StreakCounter({ current, longest }: { current: number; longest: number 
         </div>
         <div
           className="text-xs"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           Longest streak: <span className="font-bold" style={{ color: "var(--hi-muted,#5c5c58)" }}>{longest} day{longest !== 1 ? "s" : ""}</span>
         </div>
@@ -95,7 +95,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       style={{
         background: earned ? "rgba(255,255,255,0.035)" : "rgba(255,255,255,0.015)",
         border: `1px solid ${earned ? tierColor + "40" : "rgba(255,255,255,0.06)"}`,
-        borderLeft: `3px solid ${earned ? tierColor : "rgba(255,255,255,0.08)"}`,
+        borderLeft: `3px solid ${earned ? tierColor : "var(--hi-muted,#5c5c58)"}`,
         opacity: earned ? 1 : 0.55,
         filter: earned ? "none" : "grayscale(60%)",
       }}
@@ -120,7 +120,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Name */}
       <h3
         className="text-base font-bold mb-1"
-        style={{ color: earned ? "#fff" : "rgba(255,255,255,0.6)", fontFamily: "var(--hi-font-body)" }}
+        style={{ color: earned ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {badge.name}
       </h3>
@@ -128,7 +128,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Description */}
       <p
         className="text-xs mb-3 leading-relaxed"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
       >
         {badge.description}
       </p>
@@ -136,7 +136,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       {/* Requirement */}
       <div
         className="text-[11px] mb-2"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
       >
         {badge.requirement}
       </div>
@@ -162,7 +162,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
           </div>
           <div
             className="text-[10px] text-right tabular-nums"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-mono)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-mono)" }}
           >
             {progress}%
           </div>
@@ -170,7 +170,7 @@ function BadgeCard({ badge, earned, earnedDate, progress }: {
       ) : (
         <div
           className="text-[11px]"
-          style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+          style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
         >
           Locked
         </div>
@@ -224,7 +224,7 @@ export default function Badges() {
       headerToolbarExtra={
         <span
           className="text-xs tabular-nums font-bold whitespace-nowrap"
-          style={{ color: "var(--hi-accent,#8ec8f0)", fontFamily: "var(--hi-font-mono)" }}
+          style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-mono)" }}
         >
           {earnedCount}/{totalBadges} earned
         </span>
@@ -237,7 +237,7 @@ export default function Badges() {
         {/* Stats Summary */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: "Badges Earned", value: String(earnedCount), color: "var(--hi-accent,#8ec8f0)" },
+            { label: "Badges Earned", value: String(earnedCount), color: "var(--hi-accent-text,#146a8c)" },
             { label: "Current Streak", value: `${streak.currentStreak}d`, color: "#F59E0B" },
             { label: "Longest Streak", value: `${streak.longestStreak}d`, color: "#10B981" },
           ].map((stat) => (
@@ -257,7 +257,7 @@ export default function Badges() {
               </div>
               <div
                 className="text-[10px] uppercase tracking-wider"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+                style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
               >
                 {stat.label}
               </div>

@@ -103,7 +103,7 @@ export default function MyPulse() {
                       <a href={`/team/${preview.awayTeam.toLowerCase()}`} className="text-center">
                         <div className="section-label">{preview.awayTeam}</div>
                       </a>
-                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</div>
                       <a href={`/team/${preview.homeTeam.toLowerCase()}`} className="text-center">
                         <div className="section-label">{preview.homeTeam}</div>
                       </a>
@@ -111,12 +111,12 @@ export default function MyPulse() {
                     <div className="text-right">
                       <div className="text-sm font-medium text-white">{preview.time}</div>
                       {preview.tv && (
-                        <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{preview.tv}</div>
+                        <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{preview.tv}</div>
                       )}
                     </div>
                     <div className="text-right ml-4">
-                      <div className="mono-data text-xs" style={{ color: "var(--hi-accent,#8ec8f0)" }}>{preview.spread}</div>
-                      <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                      <div className="mono-data text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{preview.spread}</div>
+                      <div className="mono-data text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                         O/U {preview.overUnder}
                       </div>
                     </div>
@@ -147,7 +147,7 @@ export default function MyPulse() {
             <div className="space-y-2">
               {yourPlayerIndex.map((player: any) => (
                 <div key={player.rank} className="enhanced-card p-4 flex items-center gap-4" style={{ borderLeft: "3px solid var(--hi-accent,#8ec8f0)" }}>
-                  <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                  <div className="mono-data text-2xl font-bold w-8 text-center" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                     {player.rank}
                   </div>
                   <div className="flex-1">
@@ -161,7 +161,7 @@ export default function MyPulse() {
                       <a
                         href={`/team/${player.team.toLowerCase()}`}
                         className="text-xs px-1.5 py-0.5 rounded hover:bg-white/10 transition-colors"
-                        style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}
+                        style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
                       >
                         {player.team}
                       </a>
@@ -177,10 +177,10 @@ export default function MyPulse() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+                    <div className="mono-data text-lg font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                       {player.indexScore}
                     </div>
-                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                       {player.teamRecord}
                     </div>
                   </div>
@@ -208,15 +208,15 @@ export default function MyPulse() {
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <a href={`/team/${game.awayTeam.toLowerCase()}`} className="text-center w-12">
-                        <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent,#8ec8f0)" : "rgba(255,255,255,0.4)" }}>{game.awayTeam}</div>
-                        <div className="mono-data font-bold text-2xl" style={{ color: awayWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.awayScore}</div>
+                        <div className="section-label mb-0.5" style={{ color: awayWin ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>{game.awayTeam}</div>
+                        <div className="hi-stat text-2xl" style={{ color: awayWin ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}>{game.awayScore}</div>
                       </a>
-                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>@</div>
+                      <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>@</div>
                       <a href={`/team/${game.homeTeam.toLowerCase()}`} className="text-center w-12">
-                        <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent,#8ec8f0)" : "rgba(255,255,255,0.4)" }}>{game.homeTeam}</div>
-                        <div className="mono-data font-bold text-2xl" style={{ color: homeWin ? "#ffffff" : "rgba(255,255,255,0.5)" }}>{game.homeScore}</div>
+                        <div className="section-label mb-0.5" style={{ color: homeWin ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)" }}>{game.homeTeam}</div>
+                        <div className="hi-stat text-2xl" style={{ color: homeWin ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}>{game.homeScore}</div>
                       </a>
-                      <div className="text-xs font-medium px-2 py-0.5 rounded ml-auto" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>FINAL</div>
+                      <div className="text-xs font-medium px-2 py-0.5 rounded ml-auto" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}>FINAL</div>
                     </div>
                     <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
                       <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "var(--hi-accent,#8ec8f0)" }} />
@@ -253,14 +253,14 @@ export default function MyPulse() {
                         <a href={`/player/${slugify(injury.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">
                           {injury.player}
                         </a>
-                        <a href={`/team/${injury.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
+                        <a href={`/team/${injury.team.toLowerCase()}`} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}>
                           {injury.team}
                         </a>
                       </div>
                       <InjuryChip status={injury.status} />
                     </div>
                     <div className="text-xs mb-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>{injury.injury}</div>
-                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{injury.timeline}</div>
+                    <div className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{injury.timeline}</div>
                   </div>
                 );
               })}
@@ -280,7 +280,7 @@ export default function MyPulse() {
                   add: { color: "#10B981", bg: "rgba(16,185,129,0.1)" },
                   drop: { color: "#F43F5E", bg: "rgba(244,63,94,0.1)" },
                   hold: { color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
-                  stream: { color: "var(--hi-accent,#8ec8f0)", bg: "rgba(142,200,240,0.1)" },
+                  stream: { color: "var(--hi-accent-text,#146a8c)", bg: "rgba(142,200,240,0.1)" },
                 };
                 const ac = actionColors[alert.action] || actionColors.hold;
                 return (
@@ -288,7 +288,7 @@ export default function MyPulse() {
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-bold px-2 py-0.5 rounded uppercase" style={{ background: ac.bg, color: ac.color }}>{alert.action}</span>
                       <a href={`/player/${slugify(alert.player)}`} className="text-sm font-semibold text-white hover:text-[var(--hi-text)] transition-colors">{alert.player}</a>
-                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>{alert.team}</a>
+                      <a href={`/team/${alert.team.toLowerCase()}`} className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{alert.team}</a>
                     </div>
                     <p className="text-xs leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>{alert.reason}</p>
                   </div>
@@ -323,7 +323,7 @@ export default function MyPulse() {
                 >
                   <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${dotColors[item.type] || "bg-slate-400"}`} />
                   <div className="flex-1">
-                    <div className="text-sm leading-relaxed" style={{ color: item.isPersonalized ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.6)" }}>
+                    <div className="text-sm leading-relaxed" style={{ color: item.isPersonalized ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}>
                       {item.text}
                     </div>
                   </div>
@@ -383,7 +383,7 @@ function MyPulseShell({
                     className="px-2 py-1 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-colors hover:bg-black/5"
                     style={{
                       background: "rgba(142,200,240,0.15)",
-                      color: "var(--hi-accent,#8ec8f0)",
+                      color: "var(--hi-accent-text,#146a8c)",
                       border: "1px solid rgba(142,200,240,0.3)",
                     }}
                   >

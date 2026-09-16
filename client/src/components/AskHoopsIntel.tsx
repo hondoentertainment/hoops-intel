@@ -36,7 +36,7 @@ function renderMarkdown(text: string): ReactElement[] {
         parts.push(line.slice(lastIndex, match.index));
       }
       parts.push(
-        <strong key={`b-${i}-${match.index}`} className="font-semibold text-white">
+        <strong key={`b-${i}-${match.index}`} className="font-semibold" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           {match[1]}
         </strong>
       );
@@ -286,7 +286,7 @@ export function ChatMessages({
               </svg>
             </div>
             <h3 className="text-white font-semibold text-sm mb-1">Ask Hoops Intel</h3>
-            <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Ask anything about NBA games, players, standings, and more
             </p>
           </div>
@@ -335,7 +335,7 @@ export function ChatMessages({
                       style={{ background: "var(--hi-accent)", animationDelay: "300ms" }}
                     />
                   </div>
-                  <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>Analyzing...</span>
+                  <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Analyzing...</span>
                 </div>
               ) : (
                 <div className="space-y-1">{renderMarkdown(msg.content)}</div>
@@ -368,16 +368,16 @@ export function ChatInput({
   return (
     <div
       className="px-3 py-3 border-t"
-      style={{ borderColor: "rgba(255,255,255,0.06)" }}
+      style={{ borderColor: "var(--hi-border-soft, rgba(10,10,10,0.06))" }}
     >
-      <label htmlFor={inputId} className="block text-xs font-medium mb-2 text-white">
+      <label htmlFor={inputId} className="block text-xs font-medium mb-2" style={{ color: "var(--hi-text,#0a0a0a)" }}>
         Ask Hoops Intel
       </label>
       <div
-        className="flex items-center gap-2 rounded-lg px-3 py-2"
+        className="flex items-center gap-2 rounded-full px-4 py-1.5"
         style={{
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: "var(--hi-canvas-soft,#fafaf8)",
+          border: "1px solid var(--hi-pill-border, rgba(10,10,10,0.16))",
         }}
       >
         <input
@@ -393,7 +393,8 @@ export function ChatInput({
           }}
           placeholder="Ask about NBA games, players, stats..."
           maxLength={500}
-          className="flex-1 bg-transparent text-base sm:text-sm text-white placeholder-white/40 outline-none min-h-[44px]"
+          className="flex-1 bg-transparent text-base sm:text-sm outline-none min-h-[44px]"
+          style={{ color: "var(--hi-text,#0a0a0a)" }}
           disabled={isLoading}
         />
         <button
@@ -401,17 +402,9 @@ export function ChatInput({
           onClick={onSend}
           disabled={isLoading || !input.trim()}
           aria-label="Send message"
-          className="flex-shrink-0 min-h-[44px] px-3 rounded-lg flex items-center justify-center gap-1 text-xs font-semibold transition-all"
-          style={{
-            background:
-              isLoading || !input.trim()
-                ? "rgba(255,255,255,0.05)"
-                : "rgba(142,200,240,0.2)",
-            color:
-              isLoading || !input.trim()
-                ? "rgba(255,255,255,0.2)"
-                : "var(--hi-accent)",
-          }}
+          className={`flex-shrink-0 min-h-[44px] px-4 rounded-full flex items-center justify-center gap-1 text-xs font-semibold transition-all ${
+            isLoading || !input.trim() ? "hi-pill" : "hi-pill-primary"
+          }`}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
             <line x1="22" y1="2" x2="11" y2="13" />
@@ -422,7 +415,7 @@ export function ChatInput({
       </div>
       <div
         className="text-center mt-1.5"
-        style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}
+        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}
       >
         Powered by Hoops Intel AI
       </div>
@@ -499,7 +492,7 @@ export default function AskHoopsIntel() {
           {/* Header */}
           <div
             className="flex items-center justify-between px-4 py-3 border-b flex-shrink-0"
-            style={{ borderColor: "rgba(255,255,255,0.08)" }}
+            style={{ borderColor: "var(--hi-muted,#5c5c58)" }}
           >
             <div className="flex items-center gap-2">
               <div
@@ -511,10 +504,10 @@ export default function AskHoopsIntel() {
                 </svg>
               </div>
               <div>
-                <div id="floating-chat-title" className="text-white text-xs font-semibold">
+                <div id="floating-chat-title" className="text-xs font-semibold" style={{ color: "var(--hi-text,#0a0a0a)" }}>
                   Ask Hoops Intel
                 </div>
-                <div style={{ color: "var(--hi-text-secondary,#8a8a86)", fontSize: "0.6rem" }}>
+                <div style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}>
                   NBA AI Assistant
                 </div>
               </div>
@@ -523,7 +516,7 @@ export default function AskHoopsIntel() {
               <a
                 href="/ask"
                 className="text-xs min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-2 rounded-lg transition-colors hover:text-[var(--hi-text)]"
-                style={{ color: "var(--hi-muted,#5c5c58)", background: "rgba(255,255,255,0.05)" }}
+                style={{ color: "var(--hi-muted,#5c5c58)", background: "var(--hi-surface-2,#f3f3f0)" }}
                 title="Open full page"
                 aria-label="Open full Ask Hoops Intel page"
               >

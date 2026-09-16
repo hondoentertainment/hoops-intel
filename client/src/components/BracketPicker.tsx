@@ -100,7 +100,7 @@ function SeriesRow({
       style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${borderColor}` }}
     >
       <div className="flex items-center justify-between mb-2">
-        <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-[10px] uppercase tracking-wider" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {series.conference === "east" ? "East" : "West"} · ({series.higherSeed}) vs ({series.lowerSeed}) · {series.round.replace(/-/g, " ")}
         </div>
         <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{series.summary}</div>
@@ -120,10 +120,10 @@ function SeriesRow({
                 cursor: locked ? "default" : "pointer",
               }}
             >
-              <div className="text-lg font-bold" style={{ color: selected ? "var(--hi-accent)" : "rgba(255,255,255,0.85)", fontFamily: "var(--hi-font-display)" }}>
+              <div className="text-lg font-bold" style={{ color: selected ? "var(--hi-accent-text,#146a8c)" : "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}>
                 {team}
               </div>
-              <div className="text-[11px]" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+              <div className="text-[11px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                 {team === series.higherTeam ? `#${series.higherSeed}` : `#${series.lowerSeed}`}
               </div>
             </button>
@@ -140,14 +140,14 @@ function SeriesRow({
               className="px-2 py-1 rounded"
               style={{
                 background: pick.picked_in_games === g ? "rgba(142,200,240,0.2)" : "rgba(255,255,255,0.04)",
-                color: pick.picked_in_games === g ? "var(--hi-accent)" : "rgba(255,255,255,0.55)",
+                color: pick.picked_in_games === g ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
                 border: `1px solid ${pick.picked_in_games === g ? "var(--hi-accent)" : "rgba(255,255,255,0.06)"}`,
               }}
             >
               {g}
             </button>
           ))}
-          <span style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>games</span>
+          <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>games</span>
         </div>
       )}
       {correct && (
@@ -206,7 +206,7 @@ export default function BracketPicker() {
 
   if (playoffSeries.length === 0) {
     return (
-      <div className="rounded-lg p-4 text-sm" style={{ background: "rgba(255,255,255,0.03)", color: "var(--hi-muted,#5c5c58)" }}>
+      <div className="rounded-lg p-4 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}>
         Bracket picks open when the playoffs tip off.
       </div>
     );
@@ -222,12 +222,12 @@ export default function BracketPicker() {
     <div className="space-y-3">
       <div className="flex items-center justify-between mb-2">
         <div>
-          <div className="section-label" style={{ color: "var(--hi-accent)" }}>BRACKET PICKS</div>
+          <div className="section-label" style={{ color: "var(--hi-accent-text,#146a8c)" }}>BRACKET PICKS</div>
           <div className="text-xs mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
             Pick one winner per series. Series-level picks lock when the series tips off.
           </div>
         </div>
-        <div className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <div className="text-xs mono-data" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {picked}/{total}
         </div>
       </div>

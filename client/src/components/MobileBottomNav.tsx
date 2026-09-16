@@ -34,7 +34,7 @@ export default function MobileBottomNav() {
               aria-current={active ? "page" : undefined}
               className="mobile-bottom-nav-item relative h-full min-h-12 flex flex-col items-center justify-center gap-1 text-[11px] leading-none tracking-wide active:scale-[0.97] transition-transform"
               style={{
-                color: active ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#8a8a86)",
+                color: active ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#5c5c58)",
                 fontWeight: active ? 600 : 500,
               }}
               onClick={() => hapticTap()}

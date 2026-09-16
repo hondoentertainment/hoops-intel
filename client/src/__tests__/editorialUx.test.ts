@@ -25,7 +25,7 @@ describe("editorial UX primitives", () => {
     expect(css).toMatch(/\.glass-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toContain(".desk-hairline");
     expect(css).toContain(".desk-page-main");
-    expect(css).toContain("--hi-desk-pad-x: 1.25rem");
+    expect(css).toContain("--hi-desk-pad-x: 1.5rem");
     expect(css).toContain("--hi-desk-pad-x-md: 2rem");
     expect(css).toContain(".glass-card.rounded-lg");
     expect(css).toMatch(/\.glass-card\.rounded-lg[\s\S]{0,180}var\(--hi-card-radius/);
@@ -57,7 +57,7 @@ describe("editorial UX primitives", () => {
     expect(tools).toContain("Every Hoops Intel tool");
     expect(players).toContain("DeskFilterChip");
     expect(players).toContain("DeskSearchField");
-    expect(players).toContain("var(--hi-accent,#8ec8f0)");
+    expect(players).toContain("var(--hi-accent-text,#146a8c)");
     expect(archive).toContain("DeskFilterChip");
     expect(archive).toContain("desk-field");
     expect(css).toContain(".desk-section-pill");

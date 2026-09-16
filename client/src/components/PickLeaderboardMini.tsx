@@ -55,7 +55,7 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
 
   if (rows.length === 0) {
     return (
-      <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
         No settled picks yet — check back after tonight&apos;s games.
       </p>
     );
@@ -84,7 +84,7 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
     >
       <div
         className="grid grid-cols-12 gap-2 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider"
-        style={{ background: "rgba(255,255,255,0.04)", color: "var(--hi-text-secondary,#8a8a86)" }}
+        style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}
       >
         <div className="col-span-1">#</div>
         <div className="col-span-5">User</div>
@@ -113,7 +113,7 @@ export default function PickLeaderboardMini({ limit = 5, compact = false }: Prop
             >
               {row.accuracy_pct !== null ? `${row.accuracy_pct}%` : "—"}
             </div>
-            <div className="col-span-3 text-right tabular-nums" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <div className="col-span-3 text-right tabular-nums" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {row.current_streak > 0 ? `${row.current_streak}W` : "—"}
             </div>
           </div>

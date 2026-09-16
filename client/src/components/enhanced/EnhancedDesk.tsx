@@ -52,17 +52,17 @@ function PulseRow({
       href={`/player/${slugify(player)}`}
       className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_4rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#8ec8f0)]/40 transition-colors"
     >
-      <p className="mono-data pulse-score font-bold text-lg md:text-xl self-center" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+      <p className="hi-stat text-lg md:text-xl self-center hi-accent-text">
         {padRank(rank)}
       </p>
       <div className="min-w-0 overflow-hidden">
         <div className="flex items-baseline gap-2 min-w-0">
-          <span className="text-base font-semibold leading-5 text-[var(--hi-text,#0a0a0a)] truncate">{player}</span>
-          <span className="text-xs font-bold tracking-[0.6px] shrink-0" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+          <span className="text-base font-semibold leading-5 hi-title text-[var(--hi-text,#0a0a0a)]">{player}</span>
+          <span className="text-xs font-bold tracking-[0.6px] shrink-0 hi-accent-text">
             {team}
           </span>
         </div>
-        <p className="text-sm leading-5 mt-0.5 truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-sm leading-5 mt-0.5 hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
         <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#0a0a0a)] line-clamp-2">{note}</p>
@@ -72,7 +72,7 @@ function PulseRow({
           {mark.mark}
         </span>
         <span className="mono-data pulse-score font-bold text-[22px] text-[var(--hi-text,#0a0a0a)]">{formatPulseScore(indexScore)}</span>
-        <span className="text-xs leading-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <span className="text-xs leading-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {teamRecord}
         </span>
       </div>
@@ -91,14 +91,14 @@ function CompactPulseRow({
       href={`/player/${slugify(player)}`}
       className="desk-inset flex items-center gap-3 px-3 py-2.5 min-h-11 min-w-0 overflow-hidden"
     >
-      <span className="mono-data text-xs font-bold shrink-0 w-4" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+      <span className="hi-stat text-xs shrink-0 w-6 hi-accent-text">
         {rank}
       </span>
-      <span className="flex-1 min-w-0 text-[13px] font-medium text-[var(--hi-text,#0a0a0a)] truncate">{player}</span>
-      <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <span className="flex-1 min-w-0 text-[13px] font-medium hi-title text-[var(--hi-text,#0a0a0a)]">{player}</span>
+      <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {team}
       </span>
-      <span className="mono-data text-sm font-bold shrink-0 pulse-score" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
+      <span className="hi-stat text-sm shrink-0 hi-accent-text">
         {formatPulseTenths(indexScore)}
       </span>
     </a>
@@ -109,11 +109,9 @@ function CampIntelRow({ card }: { card: CampCard }) {
   const kicker = card.team ? `${card.kicker} · ${card.team}` : card.kicker;
   return (
     <DeskInset href={card.href} className="flex flex-col gap-1 p-3">
-      <p className="text-[10px] font-semibold tracking-[0.8px] uppercase" style={{ color: "var(--hi-accent,#8ec8f0)" }}>
-        {kicker}
-      </p>
-      <p className="text-sm font-semibold leading-[17px] text-[var(--hi-text,#0a0a0a)] line-clamp-2">{card.title}</p>
-      <p className="text-xs leading-[18px] line-clamp-2" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="enhanced-kicker hi-accent-text">{kicker}</p>
+      <p className="text-sm font-semibold leading-[17px] hi-title text-[var(--hi-text,#0a0a0a)]">{card.title}</p>
+      <p className="text-xs leading-[18px]" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {card.body}
       </p>
     </DeskInset>
@@ -125,7 +123,7 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
   return (
     <DeskInset className="flex flex-col gap-1.5 p-2.5 w-[152px] shrink-0">
       <p className="text-[11px] font-semibold text-[var(--hi-text,#0a0a0a)]">{dateLabel}</p>
-      <p className="text-[11px] truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="text-[11px] hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {game.away} @ {game.home}
       </p>
       <StatusPill tone="warn">NOT TONIGHT</StatusPill>
@@ -136,12 +134,12 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
 export function EnhancedTicker() {
   return (
     <div
-      className="hidden md:flex items-center gap-4 px-4 md:px-7 py-2 overflow-hidden"
-      style={{ background: "var(--hi-surface-2,#12171f)" }}
+      className="hi-desk-pad-x hidden md:flex items-center gap-4 py-2 overflow-hidden"
+      style={{ background: "var(--hi-surface-2,#f3f3f0)" }}
       aria-label="Edition wire"
     >
       <p className="enhanced-kicker shrink-0">{deskEyebrow()}</p>
-      <p className="text-xs truncate" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+      <p className="text-xs truncate" style={{ color: "var(--hi-muted,#5c5c58)" }}>
         {tickerWireText()}
       </p>
     </div>
@@ -166,19 +164,19 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
   const schedule = campScheduleStatus();
 
   return (
-    <div className="px-4 md:px-7 py-6 md:py-6">
+    <div className="hi-desk-pad-x py-6">
       <div className="flex flex-col gap-[22px]">
         <div id="today-desk" className="flex flex-col gap-2.5 max-w-[980px] min-w-0">
           <p className="enhanced-kicker">
             {deskKickerLine()}
           </p>
-          <h1 className="hidden md:block editorial-heading text-[var(--hi-text,#0a0a0a)] text-[32px] leading-[38px]">
+          <h1 className="hidden md:block editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] leading-[38px]">
             {narrative.headline}
           </h1>
-          <h1 className="md:hidden editorial-heading text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8">
+          <h1 className="md:hidden editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8">
             {campMode ? pulseEdition.date : narrative.headline}
           </h1>
-          <p className="text-xs max-md:mobile-readable" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="hi-lede text-xs max-md:text-base">
             <span className="hidden md:inline">Will Henderson · Updated {editionPublishLabel()}</span>
             <span className="md:hidden">
               {campMode
@@ -280,10 +278,10 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
                     href={`/player/${slugify(injury.player)}`}
                     className="desk-inset flex items-center gap-2 px-2.5 py-2 min-h-11 min-w-0"
                   >
-                    <span className="flex-1 min-w-0 text-xs font-medium text-[var(--hi-text,#0a0a0a)] truncate">
+                    <span className="flex-1 min-w-0 text-xs font-medium hi-title text-[var(--hi-text,#0a0a0a)]">
                       {injury.player}
                     </span>
-                    <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                    <span className="text-[11px] font-medium shrink-0" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                       {injury.team}
                     </span>
                     <InjuryChip status={injury.status} />
@@ -301,7 +299,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
               <DeskPanel kicker="Tonight">
                 <DeskInset className="flex flex-col items-center justify-center gap-2 p-[18px] text-center">
                   <p className="text-sm font-semibold text-[var(--hi-text,#0a0a0a)]">Slate clear</p>
-                  <p className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                  <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                     No invented tip-offs. Camp opens Oct 3.
                   </p>
                   <StatusPill tone="accent">EMPTY · HONEST</StatusPill>
@@ -313,7 +311,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           {campMode ? (
             <div className="md:hidden w-full flex flex-col gap-3">
               <DeskPanel kicker="Tonight">
-                <p className="text-sm" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+                <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   Slate clear · not tonight
                 </p>
               </DeskPanel>

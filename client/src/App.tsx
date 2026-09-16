@@ -122,7 +122,7 @@ function PageLoader() {
         <div className="flex items-center gap-3">
           <div
             className="w-8 h-8 rounded border-2 border-t-transparent animate-spin shrink-0"
-            style={{ borderColor: "var(--hi-accent,#8ec8f0)", borderTopColor: "transparent" }}
+            style={{ borderColor: "var(--hi-accent-text,#146a8c)", borderTopColor: "transparent" }}
             aria-hidden
           />
           <div className="text-sm font-medium" style={{ color: "var(--hi-muted,#5c5c58)" }}>

@@ -48,7 +48,7 @@ export default function SiteFooter() {
             <div className="mb-3">
               <BrandLockup subtitle="Daily NBA intelligence" />
             </div>
-            <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               {pulseEdition.edition} · {pulseEdition.date}
             </p>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -66,7 +66,7 @@ export default function SiteFooter() {
 
           <div className="min-w-0">
             <p className="enhanced-kicker mb-2">Daily digest</p>
-            <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+            <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Morning edition in your inbox at {editionHourLabel()}
             </p>
             {subscribed ? (
@@ -120,7 +120,7 @@ export default function SiteFooter() {
                   key={link.href}
                   href={link.href}
                   className="text-xs min-h-11 inline-flex items-center hover:opacity-80"
-                  style={{ color: "var(--hi-text-secondary,#8a8a86)" }}
+                  style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
                 >
                   {link.label}
                 </a>
@@ -130,7 +130,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="desk-hairline mb-4" />
-        <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           © {new Date().getFullYear()} Hoops Intel · Not affiliated with the NBA · Data for entertainment purposes
         </p>
       </div>

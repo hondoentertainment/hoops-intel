@@ -109,7 +109,7 @@ function LineupSection({
           <span
             className="text-xs tabular-nums"
             style={{
-              color: "var(--hi-text-secondary,#8a8a86)",
+              color: "var(--hi-text-secondary,#5c5c58)",
               fontFamily: "var(--hi-font-mono)",
               fontSize: "0.65rem",
             }}
@@ -135,7 +135,7 @@ function LineupSection({
             className="text-xs px-2 py-0.5 rounded"
             style={{
               background: "rgba(255,255,255,0.05)",
-              color: "rgba(255,255,255,0.7)",
+              color: "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-body)",
             }}
           >
@@ -147,7 +147,7 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
@@ -157,7 +157,7 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
@@ -167,7 +167,7 @@ function LineupSection({
         <span
           className="text-xs tabular-nums"
           style={{
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-mono)",
             fontSize: "0.65rem",
           }}
@@ -213,7 +213,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
             </span>
             <span
               className="text-sm font-semibold"
-              style={{ color: "var(--hi-accent)", fontFamily: "var(--hi-font-display)" }}
+              style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
             >
               {team.teamRecord}
             </span>
@@ -221,7 +221,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
           <span
             className="text-xs font-bold tabular-nums px-2 py-0.5 rounded"
             style={{
-              color: team.bestUnit.netRating >= 12 ? "#10B981" : "var(--hi-accent)",
+              color: team.bestUnit.netRating >= 12 ? "#10B981" : "var(--hi-accent-text,#146a8c)",
               background:
                 team.bestUnit.netRating >= 12
                   ? "rgba(16,185,129,0.12)"
@@ -260,7 +260,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
           className="w-full text-center py-2 mt-3 rounded-lg transition-colors"
           style={{
             background: expanded ? "rgba(142,200,240,0.08)" : "rgba(255,255,255,0.03)",
-            color: expanded ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+            color: expanded ? "var(--hi-accent-text,#146a8c)" : "var(--hi-muted,#5c5c58)",
             fontFamily: "var(--hi-font-display)",
             fontSize: "0.75rem",
             letterSpacing: "0.06em",
@@ -282,7 +282,7 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
             <div
               className="text-xs font-semibold mb-1.5"
               style={{
-                color: "var(--hi-accent)",
+                color: "var(--hi-accent-text,#146a8c)",
                 fontFamily: "var(--hi-font-display)",
                 letterSpacing: "0.08em",
               }}
@@ -327,7 +327,7 @@ function LeagueTable() {
   };
 
   const headerStyle = (key: SortKey) => ({
-    color: sortBy === key ? "var(--hi-accent)" : "rgba(255,255,255,0.4)",
+    color: sortBy === key ? "var(--hi-accent-text,#146a8c)" : "var(--hi-text,#0a0a0a)",
     fontFamily: "var(--hi-font-display)",
     letterSpacing: "0.06em",
     cursor: "pointer" as const,
@@ -349,13 +349,13 @@ function LeagueTable() {
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 #
               </th>
               <th
                 className="text-left px-4 py-3 text-xs font-semibold"
-                style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
+                style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.06em" }}
               >
                 LINEUP
               </th>
@@ -408,7 +408,7 @@ function LeagueTable() {
                 <td
                   className="px-4 py-3 font-bold"
                   style={{
-                    color: "var(--hi-accent)",
+                    color: "var(--hi-accent-text,#146a8c)",
                     fontFamily: "var(--hi-font-display)",
                   }}
                 >
@@ -500,13 +500,13 @@ export default function LineupIntel() {
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Generated {generatedDate}
           </span>
         </div>
 
         <DeskPanel kicker="Methodology" className="mb-8">
-          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             Lineup Intelligence ranks five-man units by net rating (points scored minus points allowed per 100 possessions). &quot;Death Lineups&quot; are closing units used in the final 5 minutes of close games. Minimum 30 minutes together to qualify. Data sourced from NBA.com advanced stats.
           </p>
         </DeskPanel>
@@ -515,7 +515,7 @@ export default function LineupIntel() {
         <div
           className="text-xs font-semibold mb-3"
           style={{
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
@@ -562,7 +562,7 @@ export default function LineupIntel() {
         <div
           className="text-xs font-semibold mb-4"
           style={{
-            color: "var(--hi-text-secondary,#8a8a86)",
+            color: "var(--hi-text-secondary,#5c5c58)",
             fontFamily: "var(--hi-font-display)",
             letterSpacing: "0.1em",
           }}
@@ -601,7 +601,7 @@ export default function LineupIntel() {
           </div>
           <p
             className="text-sm"
-            style={{ color: "var(--hi-text-secondary,#8a8a86)", fontFamily: "var(--hi-font-body)" }}
+            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
           >
             Lineup intelligence is regenerated every Monday with the latest rotation data
           </p>

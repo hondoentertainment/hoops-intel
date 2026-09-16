@@ -104,7 +104,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
             type="button"
             onClick={() => signInWithOAuth("google")}
             className="w-full py-2.5 rounded-lg text-sm font-medium flex items-center justify-center gap-2 min-h-[44px] hover:opacity-90"
-            style={{ background: "rgba(255,255,255,0.08)", color: "white", border: "1px solid rgba(255,255,255,0.1)" }}
+            style={{ background: "var(--hi-canvas-soft,#fafaf8)", color: "var(--hi-text,#0a0a0a)", border: "1px solid var(--hi-pill-border, rgba(10,10,10,0.16))" }}
           >
             Continue with Google
           </button>
@@ -112,7 +112,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
 
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.1)" }} />
-          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+          <span className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
             or
           </span>
           <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.1)" }} />
@@ -132,7 +132,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 py-2.5 rounded-lg text-sm outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 min-h-[44px]"
-                style={{ background: "rgba(255,255,255,0.05)", color: "white", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "var(--hi-canvas-soft,#fafaf8)", color: "var(--hi-text,#0a0a0a)", border: "1px solid var(--hi-pill-border, rgba(10,10,10,0.16))" }}
               />
             </div>
           )}
@@ -149,7 +149,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2.5 rounded-lg text-sm outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 min-h-[44px]"
-              style={{ background: "rgba(255,255,255,0.05)", color: "white", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--hi-canvas-soft,#fafaf8)", color: "var(--hi-text,#0a0a0a)", border: "1px solid var(--hi-pill-border, rgba(10,10,10,0.16))" }}
             />
           </div>
           <div className="space-y-1">
@@ -166,7 +166,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
               required
               minLength={6}
               className="w-full px-3 py-2.5 rounded-lg text-sm outline-none focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]/60 min-h-[44px]"
-              style={{ background: "rgba(255,255,255,0.05)", color: "white", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--hi-canvas-soft,#fafaf8)", color: "var(--hi-text,#0a0a0a)", border: "1px solid var(--hi-pill-border, rgba(10,10,10,0.16))" }}
             />
           </div>
 
@@ -186,7 +186,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
           </button>
         </form>
 
-        <p className="text-center text-xs mt-4" style={{ color: "var(--hi-text-secondary,#8a8a86)" }}>
+        <p className="text-center text-xs mt-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           {mode === "signin" ? "No account? " : "Already have an account? "}
           <button
             type="button"
@@ -195,7 +195,7 @@ export default function AuthModal({ onClose, onAuth }: { onClose: () => void; on
               setError("");
             }}
             className="font-medium hover:underline"
-            style={{ color: "var(--hi-accent)" }}
+            style={{ color: "var(--hi-accent-text,#146a8c)" }}
           >
             {mode === "signin" ? "Sign up" : "Sign in"}
           </button>

@@ -29,7 +29,7 @@ export function TeamPageSkeleton() {
 
 export function LiveScoreSkeleton() {
   return (
-    <div className="border-b" style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(0,0,0,0.25)" }}>
+    <div className="border-b" style={{ borderColor: "var(--hi-muted,#5c5c58)", background: "rgba(0,0,0,0.25)" }}>
       <div className="container flex items-center gap-4 py-2 overflow-x-auto">
         <div className="h-4 w-20 rounded bg-white/10 animate-pulse shrink-0" />
         {[0, 1].map((i) => (
