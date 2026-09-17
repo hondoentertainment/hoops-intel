@@ -8,21 +8,24 @@ import {
   EnhancedButton,
 } from "../components/enhanced/EnhancedUi";
 import {
+  deskRailTools,
   publicToolsDirectory,
   TOOL_CATEGORY_ORDER,
   TOOL_CATEGORY_LABELS,
   type ToolCategory,
 } from "../lib/siteNav";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { POPULAR_SEARCH_DESTINATIONS } from "../lib/searchHistory";
 
 const PUBLIC_TOOLS = publicToolsDirectory();
+const FEATURED_TOOLS = deskRailTools();
 
 const bySection = TOOL_CATEGORY_ORDER.reduce<Record<ToolCategory, typeof PUBLIC_TOOLS>>(
   (acc, cat) => {
     acc[cat] = PUBLIC_TOOLS.filter((t) => t.category === cat);
     return acc;
   },
-  { desk: [], postseason: [], analysis: [], community: [], publishing: [] },
+  { play: [], desk: [], analysis: [], community: [], postseason: [], publishing: [] },
 );
 
 export default function Tools() {
@@ -57,9 +60,25 @@ export default function Tools() {
       sectionLabel="Feature directory"
       title="Every Hoops Intel tool"
       description="Daily desk and analysis tools. Search from any page, or press / to jump to a player, team, or story."
+      heroMeta={lastUpdatedStamp()}
       maxWidth="xl"
       showRelated={false}
     >
+      {category === "all" && !query.trim() ? (
+        <section className="mb-8" aria-labelledby="tools-featured">
+          <h2 id="tools-featured" className="enhanced-kicker mb-4">
+            Featured through camp
+          </h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {FEATURED_TOOLS.map((t) => (
+              <li key={t.href}>
+                <DeskLinkCard href={t.href} title={t.label} description={t.description} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <div className="mb-4 flex flex-wrap gap-2">
         <DeskFilterChip active={category === "all"} onClick={() => setCategory("all")}>
           All

@@ -207,6 +207,23 @@ body {
 .ask-page-composer {
   flex-shrink: 0;
   padding-bottom: calc(var(--hi-tabbar-clearance) + 0.75rem);
+  background: var(--hi-bg-page, #f7f7f5);
+}
+
+.ask-composer-context {
+  padding-top: 0.5rem;
+}
+
+.ask-msg-user {
+  background: var(--hi-accent-soft, #d7eef9);
+  border: 1px solid rgba(20, 106, 140, 0.22);
+  color: var(--hi-text, #0a0a0a);
+}
+
+.ask-msg-assistant {
+  background: var(--hi-canvas-soft, #fafaf8);
+  border: 1px solid var(--hi-border-soft, rgba(10, 10, 10, 0.06));
+  color: var(--hi-text, #0a0a0a);
 }
 
 .ask-fill-scroll {
@@ -803,7 +820,8 @@ main:not(.desk-page-main) > .desk-page-ask {
   transition: top 0.15s ease;
 }
 
-.skip-to-content:focus {
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
   top: 1rem;
   outline: 2px solid var(--hi-accent, #8ec8f0);
   outline-offset: 2px;
@@ -877,6 +895,12 @@ main:not(.desk-page-main) > .desk-page-ask {
   color: var(--hi-cta-ink, #ffffff);
   background: var(--hi-cta, #0a0a0a);
   border-color: var(--hi-cta, #0a0a0a);
+}
+
+.desk-section-pill:focus-visible {
+  outline: 2px solid var(--hi-accent, #8ec8f0);
+  outline-offset: 3px;
+  color: var(--hi-text, #0a0a0a);
 }
 
 #main-content:focus {

@@ -3,6 +3,7 @@ import { useFocusTrap } from "../hooks/useFocusTrap";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { searchContext } from "../lib/hoopsSearch";
 import { contextualAskChips } from "../lib/askShortcuts";
+import { DeskFilterChip } from "./enhanced/EnhancedUi";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -49,7 +50,7 @@ function renderMarkdown(text: string): ReactElement[] {
     // Bullet list
     if (line.match(/^[-•]\s/)) {
       elements.push(
-        <li key={i} className="ml-4 list-disc" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+        <li key={i} className="ml-4 list-disc" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           {parts.length > 1 ? parts : line.replace(/^[-•]\s/, "")}
         </li>
       );
@@ -59,7 +60,7 @@ function renderMarkdown(text: string): ReactElement[] {
     // Numbered list
     if (line.match(/^\d+\.\s/)) {
       elements.push(
-        <li key={i} className="ml-4 list-decimal" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+        <li key={i} className="ml-4 list-decimal" style={{ color: "var(--hi-text,#0a0a0a)" }}>
           {parts.length > 1 ? parts : line.replace(/^\d+\.\s/, "")}
         </li>
       );
@@ -73,7 +74,7 @@ function renderMarkdown(text: string): ReactElement[] {
     }
 
     elements.push(
-      <p key={i} style={{ color: "var(--hi-muted,#5c5c58)" }}>
+      <p key={i} style={{ color: "var(--hi-text,#0a0a0a)" }}>
         {parts.length > 1 ? parts : line}
       </p>
     );
@@ -224,27 +225,11 @@ export function AskPromptChips({ onSelect }: { onSelect: (q: string) => void }) 
   const suggestions = contextualAskChips();
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Suggested prompts">
       {suggestions.map((q) => (
-        <button
-          key={q}
-          type="button"
-          onClick={() => onSelect(q)}
-          className="hi-pill text-left px-3 py-2 text-xs"
-          style={{
-            color: "var(--hi-muted,#5c5c58)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "var(--hi-accent-soft,#d7eef9)";
-            e.currentTarget.style.color = "var(--hi-text,#0a0a0a)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "var(--hi-muted,#5c5c58)";
-          }}
-        >
+        <DeskFilterChip key={q} onClick={() => onSelect(q)}>
           {q}
-        </button>
+        </DeskFilterChip>
       ))}
     </div>
   );
@@ -254,10 +239,12 @@ export function ChatMessages({
   messages,
   isLoading,
   onSuggestion,
+  showChips = true,
 }: {
   messages: Message[];
   isLoading: boolean;
   onSuggestion: (q: string) => void;
+  showChips?: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -278,21 +265,23 @@ export function ChatMessages({
           <div className="text-center">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3"
-              style={{ background: "rgba(142,200,240,0.15)" }}
+              style={{ background: "var(--hi-accent-soft,#d7eef9)" }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent)" strokeWidth="1.5">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hi-accent-text,#146a8c)" strokeWidth="1.5">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                 <path d="M12 16v-4M12 8h.01" />
               </svg>
             </div>
-            <h3 className="text-white font-semibold text-sm mb-1">Ask Hoops Intel</h3>
+            <h3 className="hi-title font-semibold text-sm mb-1 text-[var(--hi-text,#0a0a0a)]">Ask Hoops Intel</h3>
             <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Ask anything about NBA games, players, standings, and more
             </p>
           </div>
-          <div className="w-full max-w-sm">
-            <AskPromptChips onSelect={onSuggestion} />
-          </div>
+          {showChips ? (
+            <div className="w-full max-w-sm">
+              <AskPromptChips onSelect={onSuggestion} />
+            </div>
+          ) : null}
         </div>
       ) : (
         messages.map((msg) => (
@@ -301,24 +290,12 @@ export function ChatMessages({
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[85%] rounded-xl px-3 py-2 text-xs leading-relaxed ${
-                msg.role === "user" ? "" : "glass-card"
+              className={`ask-msg max-w-[85%] rounded-xl px-3 py-2.5 text-sm leading-relaxed ${
+                msg.role === "user" ? "ask-msg-user" : "ask-msg-assistant"
               }`}
-              style={
-                msg.role === "user"
-                  ? {
-                      background: "rgba(142,200,240,0.2)",
-                      border: "1px solid rgba(142,200,240,0.3)",
-                      color: "white",
-                    }
-                  : {
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }
-              }
             >
               {msg.role === "user" ? (
-                <p className="text-white">{msg.content}</p>
+                <p className="hi-title text-[var(--hi-text,#0a0a0a)]">{msg.content}</p>
               ) : msg.content === "" && isLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">

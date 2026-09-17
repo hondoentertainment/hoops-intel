@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  campDeskEmptyCopy,
   campIntelCards,
   campRosterBattles,
   campScheduleStatus,
@@ -65,11 +66,20 @@ describe("Tonight empty slate", () => {
   it("does not render invented camp-opener GamePreview cards", () => {
     const tonight = readFileSync(join(srcDir, "pages/Tonight.tsx"), "utf8");
     expect(tonight).not.toContain("CAMP_OPENER");
-    expect(tonight).toContain("Open camp intel");
+    expect(tonight).toContain("CampDeskEmpty");
     expect(tonight).toContain("Waiting on ${openDate}");
     expect(tonight).toContain("empty slate until real tip-offs");
     expect(tonight).toContain("we never invent a slate");
     expect(tonight).not.toMatch(/away:\s*"NYK"[\s\S]*home:\s*"BOS"/);
+  });
+});
+
+describe("camp desk empty copy", () => {
+  it("explains live vs October-held desks and points home / tools / archive", () => {
+    const copy = campDeskEmptyCopy();
+    expect(copy.title.toLowerCase()).toContain("october");
+    expect(copy.body.toLowerCase()).toContain("never invent");
+    expect(copy.destinations.map((d) => d.href)).toEqual(["/#camp-intel", "/tools", "/archive"]);
   });
 });
 

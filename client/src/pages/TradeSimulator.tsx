@@ -841,6 +841,7 @@ export default function TradeSimulator() {
       sectionLabel="Weekly AI analysis"
       title="Trade simulator"
       description="What If — AI-powered trade proposals and interactive trade builder"
+      heroMeta={`Updated ${generatedDate}`}
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>Generated {generatedDate}</SeasonChip>

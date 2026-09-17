@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
+import { toolUpdatedLabel } from "../lib/dataTrust";
+import { matchesPlayerQuery, readQueryParam } from "../lib/playerToolLinks";
+import { slugify } from "../lib/searchUtils";
 import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
 // Trade Value Index — data from `generate-trade-value.mjs` → tradeValueData.ts
@@ -103,17 +107,18 @@ function TradeValueBar({ value }: { value: number }) {
 // PLAYER CARD
 // ═══════════════════════════════════════════════════════════
 
-function PlayerCard({ p }: { p: TVIPlayer }) {
+function PlayerCard({ p, highlight }: { p: TVIPlayer; highlight?: boolean }) {
   const rankImproved = p.rank < p.prevRank;
   const rankWorsened = p.rank > p.prevRank;
   const accentColor = rankImproved ? "#10B981" : rankWorsened ? "#F43F5E" : "rgba(255,255,255,0.08)";
 
   return (
     <div
+      id={`tvi-${slugify(p.player)}`}
       className="rounded-xl p-5"
       style={{
-        background: "rgba(255,255,255,0.025)",
-        border: "1px solid rgba(255,255,255,0.07)",
+        background: highlight ? "var(--hi-accent-soft,#d7eef9)" : "rgba(255,255,255,0.025)",
+        border: highlight ? "1px solid rgba(20,106,140,0.28)" : "1px solid rgba(255,255,255,0.07)",
         borderLeft: `3px solid ${accentColor}`,
       }}
     >
@@ -199,6 +204,14 @@ export default function TradeValue() {
     gated && players.length > previewCount
       ? players.slice(0, previewCount)
       : players;
+  const focusPlayer = readQueryParam("player");
+
+  useEffect(() => {
+    if (!focusPlayer) return;
+    const match = players.find((p) => matchesPlayerQuery(focusPlayer, p.player));
+    if (!match) return;
+    document.getElementById(`tvi-${slugify(match.player)}`)?.scrollIntoView({ block: "center" });
+  }, [focusPlayer, players]);
 
   return (
     <ToolPageLayout
@@ -206,6 +219,7 @@ export default function TradeValue() {
       sectionLabel="Weekly rankings"
       title="Trade Value Index"
       description="Updated weekly by Hoops Intel AI"
+      heroMeta={toolUpdatedLabel(`${generatedDate} · ${weekLabel}`)}
     >
         <div className="flex items-center gap-3 flex-wrap mb-8">
           <SeasonChip>{weekLabel}</SeasonChip>
@@ -251,7 +265,7 @@ export default function TradeValue() {
         {/* Player list */}
         <div className="space-y-3 mb-10">
           {preview.map((p) => (
-            <PlayerCard key={p.player} p={p} />
+            <PlayerCard key={p.player} p={p} highlight={Boolean(focusPlayer && matchesPlayerQuery(focusPlayer, p.player))} />
           ))}
         </div>
 

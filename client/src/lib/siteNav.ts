@@ -57,6 +57,7 @@ export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Archive", href: "/archive" },
   { label: "Ask", href: "/ask" },
   { label: "Tools", href: "/tools" },
+  { label: "82-0", href: "/82-0" },
   { label: "My Pulse", href: "/my-pulse" },
   { label: "Watch guide", href: "/watch-guide" },
   { label: "Players", href: "/players" },
@@ -104,17 +105,35 @@ export const DESK_SECTION_LINKS: MainNavLink[] = deskSectionLinks();
 export const MOBILE_BOTTOM_NAV_LINKS: MainNavLink[] = mobileBottomNavLinks();
 
 /** All feature routes — Tools directory */
-export type ToolCategory = "desk" | "postseason" | "analysis" | "community" | "publishing";
+export type ToolCategory = "play" | "desk" | "analysis" | "community" | "postseason" | "publishing";
 
-export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["desk", "postseason", "analysis", "community", "publishing"];
+export const TOOL_CATEGORY_ORDER: ToolCategory[] = [
+  "play",
+  "desk",
+  "analysis",
+  "community",
+  "postseason",
+  "publishing",
+];
 
 export const TOOL_CATEGORY_LABELS: Record<ToolCategory, string> = {
+  play: "Play & compete",
   desk: "Daily desk",
+  analysis: "Labs & analysis",
+  community: "Companion",
   postseason: "Playoffs & health",
-  analysis: "Analysis & tools",
-  community: "Community & companion",
-  publishing: "Publishing & account",
+  publishing: "Account & publish",
 };
+
+/** Homepage + /tools featured rail — keep these off sitemap-only status. */
+export const DESK_RAIL_HREFS = [
+  "/82-0",
+  "/clutch",
+  "/draft",
+  "/pick-em",
+  "/badges",
+  "/trade-simulator",
+] as const;
 
 export interface ToolLink {
   label: string;
@@ -134,7 +153,7 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "My Pulse", href: "/my-pulse", description: "Personalized edition", category: "desk" },
   { label: "Print edition", href: "/print-edition", description: "Clean PDF / print sheet", category: "desk" },
   { label: "Playoffs", href: "/playoffs", description: "Bracket and series board", category: "postseason" },
-  { label: "Picks", href: "/pick-em", description: "Bracket-style picks", category: "postseason" },
+  { label: "Picks", href: "/pick-em", description: "Bracket-style picks — live when ESPN posts a slate", category: "play" },
   { label: "Injuries", href: "/injuries", description: "Full injury report", category: "postseason" },
   { label: "Rival alerts", href: "/rivals", description: "Headline banners for grudge games", category: "postseason" },
   { label: "Performance", href: "/performance", description: "AI season tracker", category: "analysis" },
@@ -147,13 +166,13 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Sentiment", href: "/sentiment", description: "Sentiment pulse", category: "analysis" },
   { label: "Tactics", href: "/tactics", description: "Coach corner", category: "analysis" },
   { label: "Projections", href: "/projections", description: "Projections", category: "analysis" },
-  { label: "Badges", href: "/badges", description: "Achievement badges", category: "analysis" },
+  { label: "Badges", href: "/badges", description: "Achievement badges", category: "play" },
   { label: "History engine", href: "/history", description: "Historical lookups", category: "analysis" },
   { label: "Ref reports", href: "/refs", description: "Crew tendencies", category: "analysis" },
   { label: "Ask Hoops Intel", href: "/ask", description: "Full-page assistant", category: "analysis" },
   { label: "Player compare", href: "/compare-players", description: "Pulse Index side-by-side", category: "analysis" },
   { label: "Pulse methodology", href: "/pulse-methodology", description: "How Pulse rankings are judged", category: "analysis" },
-  { label: "82-0 Challenge", href: "/82-0", description: "Spin eras, draft a five, chase the perfect season", category: "community" },
+  { label: "82-0 Challenge", href: "/82-0", description: "Spin eras, draft a five, chase the perfect season", category: "play" },
   { label: "Community pulse", href: "/community-pulse", description: "Community trends", category: "community" },
   { label: "Watch guide", href: "/watch-guide", description: "What to watch", category: "community" },
   { label: "Podcast companion", href: "/podcast-companion", description: "Show notes mode", category: "community" },
@@ -182,7 +201,7 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   },
   { label: "Account", href: "/account", description: "Profile, Pro billing, shortcuts", category: "publishing" },
   { label: "Hoops Intel Pro", href: "/pro", description: "Pro tier", category: "publishing" },
-  { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges", category: "publishing" },
+  { label: "Hoops IQ (Trivia)", href: "/trivia", description: "IQ challenges", category: "play" },
   {
     label: "Unsubscribe digest",
     href: "/unsubscribe",
@@ -203,6 +222,12 @@ export function distributionTools() {
 
 export function publicToolsDirectory() {
   return TOOLS_DIRECTORY.filter((t) => !t.hideFromDirectory);
+}
+
+export function deskRailTools() {
+  return DESK_RAIL_HREFS.map((href) => TOOLS_DIRECTORY.find((t) => t.href === href)).filter(
+    (t): t is ToolLink => Boolean(t),
+  );
 }
 
 /** Related tools in the same category (excluding current route). */

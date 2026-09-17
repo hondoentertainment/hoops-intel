@@ -25,8 +25,11 @@ import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 import EditorialShell from "../components/EditorialShell";
-import { EnhancedButton, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { GuestNotice } from "../components/GuestNotice";
+import { CampDeskEmpty, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
+import { hasLocalAuthToken } from "../lib/guestAuth";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -97,11 +100,11 @@ function LeaderboardTable({ rows }: { rows: PickLeaderboardRow[] }) {
       style={{ border: "1px solid rgba(255,255,255,0.06)" }}
     >
       {/* Header */}
-      <div
-        className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold"
+        <div
+          className="grid grid-cols-12 gap-2 px-4 py-2 text-xs font-semibold hi-th"
         style={{
-          background: "rgba(255,255,255,0.04)",
-          color: "var(--hi-text-secondary,#5c5c58)",
+          background: "var(--hi-surface-2,#f3f3f0)",
+          color: "var(--hi-text,#0a0a0a)",
           fontFamily: "var(--hi-font-display)",
           letterSpacing: "0.06em",
         }}
@@ -518,19 +521,18 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
           action="Season board →"
           actionHref="/pick-em#season-board"
         />
-        <div className="enhanced-card flex flex-col gap-2.5 p-[22px] max-md:p-4">
-          <p className="editorial-heading text-2xl max-md:text-[1.5rem] max-md:leading-8 text-[var(--hi-text,#0a0a0a)]">Board closed.</p>
-          <p className="editorial-body mobile-readable text-[var(--hi-text,#0a0a0a)] max-w-3xl">
-            Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. We never invent tip-offs for camp week.
-            Game and bracket picks count toward the season board when the first tip lands.
-          </p>
-          <div className="flex flex-wrap gap-2 pt-1">
-            <EnhancedButton href="/tonight">Open Tonight</EnhancedButton>
-            <EnhancedButton href="/#camp-intel" variant="ghost">
-              Camp intel
-            </EnhancedButton>
-          </div>
-        </div>
+        {!hasLocalAuthToken() ? (
+          <GuestNotice
+            kicker="Pick 'Em"
+            title="Picks stay on this device until you sign in"
+            body="The board is closed because ESPN has no slate — not because you are locked out. Sign in to keep a season record when tip-offs return."
+          />
+        ) : null}
+        <CampDeskEmpty
+          title="Board closed."
+          body="Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. We never invent tip-offs for camp week. Game and bracket picks count toward the season board when the first tip lands."
+          pill="NOT TONIGHT"
+        />
         <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3">
           <StatCard kicker="SEASON RECORD" value={record} sub="No settled picks yet" />
           <StatCard kicker="DESK RECORD" value="—" sub="The desk waits on October" />
@@ -598,7 +600,15 @@ export default function PickEmPage() {
       sectionLabel={`${pulseEdition.edition} · ${pulseEdition.date}`}
       title="Daily Pick 'Em"
       description={`${gamePreviews.length} games on the slate tonight. Pick your winners before tip-off.`}
+      heroMeta={lastUpdatedStamp()}
     >
+        {!hasLocalAuthToken() ? (
+          <GuestNotice
+            kicker="Pick 'Em"
+            title="Picks stay on this device until you sign in"
+            body="You can still lock winners. Sign in to keep them on the season board instead of this browser only."
+          />
+        ) : null}
 
         {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0 || slateSettled > 0) && (
           <PickEmShareCard

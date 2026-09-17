@@ -81,10 +81,17 @@ export default function AskAI() {
             messages={messages}
             isLoading={isLoading}
             onSuggestion={(q) => sendMessage(q)}
+            showChips={false}
           />
         </div>
 
         <div className="ask-page-composer sticky bottom-0" style={{ background: "var(--hi-bg-page, #f7f7f5)" }}>
+          {messages.length === 0 ? (
+            <div className="ask-composer-context hi-desk-pad-x pb-2">
+              <p className="enhanced-kicker mb-2">Try a prompt</p>
+              <AskPromptChips onSelect={(q) => sendMessage(q)} />
+            </div>
+          ) : null}
           <ChatInput
             input={input}
             setInput={setInput}

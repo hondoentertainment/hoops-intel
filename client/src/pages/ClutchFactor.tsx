@@ -294,6 +294,7 @@ export default function ClutchFactor() {
       sectionLabel="Clutch factor"
       title="Who owns the last two minutes"
       description={`${clutchData.weekLabel} · Generated ${clutchData.generatedDate}`}
+      heroMeta={`Updated ${clutchData.generatedDate} · ${clutchData.weekLabel}`}
       maxWidth="2xl"
       showBreadcrumbs={false}
     >

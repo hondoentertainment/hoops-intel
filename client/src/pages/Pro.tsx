@@ -7,6 +7,9 @@ import { pulseProFeatureBody } from "../lib/deskMode";
 import { distributionTools } from "../lib/siteNav";
 import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
+import { GuestNotice } from "../components/GuestNotice";
+import { lastUpdatedStamp } from "../lib/dataTrust";
+import { hasLocalAuthToken } from "../lib/guestAuth";
 
 type OpsStripe = { checkoutReady?: boolean; webhookReady?: boolean };
 
@@ -169,9 +172,17 @@ export default function Pro() {
       sectionLabel="Hoops Intel Pro"
       title="Sharper basketball, earlier and ad-free."
       description="Everything free readers get — plus early access, deeper analytics, and an unobstructed reading experience."
+      heroMeta={lastUpdatedStamp()}
       maxWidth="xl"
       showRelated={false}
     >
+        {!sub.isPro && !hasLocalAuthToken() ? (
+          <GuestNotice
+            kicker="Pro"
+            title="Sign in before checkout"
+            body="Stripe needs a Hoops Intel account to attach billing. Plans below stay visible — checkout opens after you sign in. Nothing on this page is blank or broken."
+          />
+        ) : null}
 
         {sub.isPro ? (
           <div className="rounded-xl p-6 mb-10" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.3)" }}>

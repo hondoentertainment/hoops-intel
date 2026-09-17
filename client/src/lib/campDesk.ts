@@ -219,3 +219,28 @@ export function campAskChips(): string[] {
     "Any unresolved injuries?",
   ];
 }
+
+export type CampDeskEmptyCopy = {
+  kicker: string;
+  title: string;
+  body: string;
+  pill: string;
+  footnote: string;
+  destinations: { label: string; href: string }[];
+};
+
+/** Shared preseason empty copy — live vs held until October, plus honest destinations. */
+export function campDeskEmptyCopy(): CampDeskEmptyCopy {
+  return {
+    kicker: "Camp desk",
+    title: "What's live vs held until October",
+    body: "Camp intel, Pulse, and last-known tags are live. Tonight's slate, live scores, and the injury cron stay empty until ESPN posts real tip-offs — we never invent games.",
+    pill: "CAMP DESK",
+    footnote: "Season openers land in October",
+    destinations: [
+      { label: "Home desk", href: "/#camp-intel" },
+      { label: "Tools", href: "/tools" },
+      { label: "Archive", href: "/archive" },
+    ],
+  };
+}

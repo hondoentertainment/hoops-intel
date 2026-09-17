@@ -1,3 +1,4 @@
+import { campAskChips } from "./campDesk";
 import { gamePreviews } from "./pulseData";
 
 /** Pre-baked Ask Hoops Intel prompt chips — wired to the floating chat via dispatchAskPrompt. */
@@ -9,6 +10,7 @@ export const ASK_PROMPT_CHIPS = [
 ] as const;
 
 export function contextualAskChips(): string[] {
+  if (gamePreviews.length === 0) return campAskChips().slice(0, 4);
   const featured = gamePreviews.find((g) => g.featured) || gamePreviews[0];
   const chips = [...ASK_PROMPT_CHIPS];
   if (featured) {

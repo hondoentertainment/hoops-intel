@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import ShareButton from "../components/ShareButton";
+import { lastUpdatedStamp } from "../lib/dataTrust";
 import { ERA_LABELS, type EraPlayer, type TeamEraPool } from "../lib/eightyTwoZeroData";
 import {
   availablePlayers,
@@ -302,6 +303,7 @@ export default function EightyTwoZero() {
       sectionLabel="The 82-0 challenge"
       title="Can your five go 82-0?"
       description="Spin a franchise and an era, draft one player, repeat until you have a starting five. Then we play out a full 82-game season against history's buzzsaws. One team re-spin and one era re-spin per slot — spend them wisely. Same five, same record, every time: no take-backs, no lucky reruns."
+      heroMeta={lastUpdatedStamp()}
       maxWidth="xl"
       relatedHref="/82-0"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "82-0" }]}
