@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-09-16T13:08:36.565Z",
+  fetchedAt: "2026-09-17T13:08:36.888Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",

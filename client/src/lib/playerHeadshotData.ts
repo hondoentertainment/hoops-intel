@@ -157,6 +157,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "dru smith": 4066993,
   "duke miles": 4702049,
   "duncan robinson": 3157465,
+  "duop reath": 4066268,
   "dylan cardwell": 4433174,
   "dylan harper": 5037871,
   "dyson daniels": 4869342,
