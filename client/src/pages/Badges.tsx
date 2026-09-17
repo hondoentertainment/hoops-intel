@@ -3,7 +3,10 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { GuestNotice } from "../components/GuestNotice";
 import { DeskFilterChip, EmptyState } from "../components/enhanced/EnhancedUi";
+import { lastUpdatedStamp } from "../lib/dataTrust";
+import { hasLocalAuthToken } from "../lib/guestAuth";
 import { useBadges } from "../lib/useBadges";
 import { allBadges, getBadgeTierColor, getBadgeTierLabel, type Badge } from "../lib/badgesData";
 
@@ -220,6 +223,7 @@ export default function Badges() {
       sectionLabel="Badges & streaks"
       title="Your Hoops Intel journey"
       description="Earn badges, build streaks, prove your hoops knowledge"
+      heroMeta={lastUpdatedStamp()}
       maxWidth="md"
       headerToolbarExtra={
         <span
@@ -230,6 +234,15 @@ export default function Badges() {
         </span>
       }
     >
+
+        {!hasLocalAuthToken() ? (
+          <GuestNotice
+            kicker="Badges"
+            title="This board is local until you sign in"
+            body="Streaks and badges stay on this device. Sign in to keep them with your Hoops Intel account — nothing here is locked or broken."
+            proHref="/pro"
+          />
+        ) : null}
 
         {/* Streak Counter */}
         <StreakCounter current={streak.currentStreak} longest={streak.longestStreak} />

@@ -25,8 +25,11 @@ import {
   tickerWireText,
 } from "../../lib/enhancedDesk";
 import { editionPublishLabel } from "../../lib/pacificTime";
+import { deskRailTools } from "../../lib/siteNav";
 import {
+  DeskFilterChip,
   DeskInset,
+  DeskLinkCard,
   DeskPanel,
   EnhancedButton,
   InjuryChip,
@@ -258,6 +261,28 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             )}
 
             <AskInFlowCta />
+
+            <DeskPanel
+              id="desk-rail"
+              kicker="Desk rail"
+              hint="Labs that stay live through camp — not sitemap-only"
+            >
+              <ul className="hidden md:grid grid-cols-2 gap-3">
+                {deskRailTools().map((tool) => (
+                  <li key={tool.href}>
+                    <DeskLinkCard href={tool.href} title={tool.label} description={tool.description} />
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2 md:hidden">
+                {deskRailTools().map((tool) => (
+                  <DeskFilterChip key={tool.href} href={tool.href}>
+                    {tool.label}
+                  </DeskFilterChip>
+                ))}
+                <DeskFilterChip href="/tools">All tools</DeskFilterChip>
+              </div>
+            </DeskPanel>
           </div>
 
           <aside id="injuries" className="hidden md:flex w-full lg:w-[420px] shrink-0 flex-col gap-4">

@@ -3,7 +3,8 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { DeskLoopLinks, EmptyState, EnhancedButton } from "../components/enhanced/EnhancedUi";
+import { CampDeskEmpty, DeskLoopLinks } from "../components/enhanced/EnhancedUi";
+import { toolUpdatedLabel } from "../lib/dataTrust";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -297,6 +298,7 @@ export default function WatchGuide() {
       sectionLabel="Watch guide"
       title="Tonight's watch guide"
       description={data.date}
+      heroMeta={toolUpdatedLabel(data.generatedDate || data.displayDate)}
       maxWidth="md"
       headerToolbarExtra={
         <span
@@ -310,19 +312,12 @@ export default function WatchGuide() {
 
         {!slateOpen ? (
           <>
-          <EmptyState
-            kicker="Watch guide"
+          <CampDeskEmpty
             title="No games on the board"
-            body="The league is dark — Hoops Intel is not inventing a watch ranking, sleeper pick, or skip list. Check Tonight's slate or the injury wire when camp and games resume."
+            body="The league is dark — Hoops Intel is not inventing a watch ranking, sleeper pick, or skip list. Camp intel is live; the slate stays empty until ESPN posts tip-offs."
             pill="NOT TONIGHT"
             footnote={data.nightOverview || data.topPick.reason}
           />
-          <div className="flex flex-wrap gap-2 mb-6">
-            <EnhancedButton href="/tonight">Tonight&apos;s slate</EnhancedButton>
-            <EnhancedButton href="/injuries" variant="ghost">
-              Injury wire
-            </EnhancedButton>
-          </div>
           </>
         ) : (
           <>

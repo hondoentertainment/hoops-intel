@@ -1,8 +1,10 @@
 // Rest-of-Season Projections Page
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { projectionsData, type TeamProjection, type PlayoffMatchup } from "../lib/projectionsData";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
+import { toolUpdatedLabel } from "../lib/dataTrust";
+import { readQueryParam } from "../lib/playerToolLinks";
 
 // ═══════════════════════════════════════════════════════════
 // CONFERENCE TABLE
@@ -49,11 +51,10 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
               {["Team", "Record", "Proj", "W\u0394", "Playoff %", "Title %", "SOS", "Outlook"].map((h) => (
                 <th
                   key={h}
-                  className="text-left py-2 px-2 text-xs font-semibold"
+                  className="hi-th text-left py-2 px-2"
                   style={{
                     color: "var(--hi-text,#0a0a0a)",
                     fontFamily: "var(--hi-font-display)",
-                    letterSpacing: "0.06em",
                   }}
                 >
                   {h}
@@ -65,6 +66,7 @@ function ConferenceTable({ conference, teams }: { conference: "east" | "west"; t
             {sorted.map((t, i) => (
               <tr
                 key={t.team}
+                id={`proj-${t.team}`}
                 style={{
                   background: rowTint(t),
                   borderBottom: i === 5 ? "2px solid rgba(142,200,240,0.3)" :
@@ -363,6 +365,12 @@ export default function Projections() {
   const westR1 = projectedBracket.west.filter((m) => m.round === "First Round");
   const westR2 = projectedBracket.west.filter((m) => m.round === "Second Round");
   const westCF = projectedBracket.west.filter((m) => m.round === "Conference Finals");
+  const focusTeam = readQueryParam("team").toUpperCase();
+
+  useEffect(() => {
+    if (!focusTeam) return;
+    document.getElementById(`proj-${focusTeam}`)?.scrollIntoView({ block: "center" });
+  }, [focusTeam]);
 
   return (
     <ToolPageLayout
@@ -370,6 +378,7 @@ export default function Projections() {
       sectionLabel="Weekly projections"
       title="Rest-of-season projections"
       description="Win totals, playoff probabilities & championship odds"
+      heroMeta={toolUpdatedLabel(`${generatedDate} · ${weekLabel}`)}
     >
           <div className="flex items-center gap-3 flex-wrap mb-8">
             <SeasonChip>{weekLabel}</SeasonChip>

@@ -42,6 +42,8 @@ describe("editorial UX primitives", () => {
     expect(ui).toContain("export function DeskFilterChip");
     expect(ui).toContain("export function DeskLinkCard");
     expect(ui).toContain("export function DeskSearchField");
+    expect(ui).toContain("export function CampDeskEmpty");
+    expect(ui).toContain("export function DeskRail");
     expect(ui).toContain("subtitle");
   });
 
@@ -80,7 +82,7 @@ describe("editorial UX primitives", () => {
     expect(layout).toContain("PageHero");
     expect(shell).toContain("desk-page-main");
     expect(home).toContain("SiteFooter");
-    expect(tonight).toContain("EmptyState");
+    expect(tonight).toContain("CampDeskEmpty");
     expect(tonight).toContain("Waiting on");
     expect(tonight).toContain("empty slate until real tip-offs");
     expect(tonight).toContain("DataTrustBadge");
@@ -103,8 +105,11 @@ describe("editorial UX primitives", () => {
     const watch = readFileSync(join(srcDir, "pages/WatchGuide.tsx"), "utf8");
     const podcast = readFileSync(join(srcDir, "pages/PodcastCompanion.tsx"), "utf8");
     expect(watch).toContain("DeskLoopLinks");
+    expect(watch).toContain("CampDeskEmpty");
     expect(watch).toContain("No games on the board");
+    expect(watch).toContain("toolUpdatedLabel");
     expect(podcast).toContain("DeskLoopLinks");
+    expect(podcast).toContain("toolUpdatedLabel");
   });
 
   it("keeps Ask in-flow in the main column and never as a fixed overlay", () => {

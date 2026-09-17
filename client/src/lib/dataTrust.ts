@@ -13,6 +13,13 @@ export function lastUpdatedStamp(display = pulseEdition.date): string {
   return `Last updated: ${display}`;
 }
 
+/** Honest tool freshness — a known data date, else the morning edition date. Never a live clock. */
+export function toolUpdatedLabel(source?: string | null): string {
+  const stamp = source?.trim();
+  if (stamp) return `Updated ${stamp}`;
+  return lastUpdatedStamp();
+}
+
 function pacificIsoDay(date: Date): string {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: PACIFIC_TZ,

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { campDeskEmptyCopy } from "../../lib/campDesk";
 import { ENHANCED_CHIP, ENHANCED_INK, injuryChipTone, injuryStatusLabel } from "../../lib/enhancedDesk";
 
 export function BrandMark({ size = 14 }: { size?: number }) {
@@ -447,6 +448,8 @@ export function EmptyState({
   pill,
   pillTone = "warn",
   footnote,
+  compact = false,
+  children,
 }: {
   kicker?: string;
   title: string;
@@ -454,16 +457,22 @@ export function EmptyState({
   pill?: string;
   pillTone?: "accent" | "warn" | "success" | "danger";
   footnote?: string;
+  compact?: boolean;
+  children?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center text-center gap-4 py-12 md:py-20 px-5 min-w-0">
+    <div
+      className={`flex flex-col items-center text-center gap-4 px-5 min-w-0 ${
+        compact ? "py-6 md:py-8" : "py-12 md:py-20"
+      }`}
+    >
       {kicker ? <p className="enhanced-kicker">{kicker}</p> : null}
       <h2 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] md:text-[40px] leading-tight max-md:text-[1.75rem]">
         {title}
       </h2>
       {body ? <p className="hi-empty-copy">{body}</p> : null}
       {pill || footnote ? (
-        <div className="enhanced-card flex flex-col items-center justify-center gap-2 px-8 py-8 w-full max-w-xl">
+        <div className="enhanced-card flex flex-col items-center justify-center gap-2 px-8 py-6 w-full max-w-xl">
           {pill ? <StatusPill tone={pillTone}>{pill}</StatusPill> : null}
           {footnote ? (
             <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
@@ -472,6 +481,69 @@ export function EmptyState({
           ) : null}
         </div>
       ) : null}
+      {children}
     </div>
+  );
+}
+
+export function CampDeskEmpty({
+  title,
+  body,
+  pill,
+  footnote,
+}: {
+  title?: string;
+  body?: string;
+  pill?: string;
+  footnote?: string;
+}) {
+  const copy = campDeskEmptyCopy();
+  return (
+    <EmptyState
+      kicker={copy.kicker}
+      title={title ?? copy.title}
+      body={body ?? copy.body}
+      pill={pill ?? copy.pill}
+      footnote={footnote ?? copy.footnote}
+      compact
+    >
+      <div className="flex flex-wrap justify-center gap-2">
+        {copy.destinations.map((dest) => (
+          <EnhancedButton key={dest.href} href={dest.href} variant={dest.href === "/#camp-intel" ? "primary" : "ghost"}>
+            {dest.label}
+          </EnhancedButton>
+        ))}
+      </div>
+    </EmptyState>
+  );
+}
+
+export function DeskRail({
+  kicker = "Desk rail",
+  hint,
+  tools,
+}: {
+  kicker?: string;
+  hint?: string;
+  tools: { href: string; label: string; description?: string }[];
+}) {
+  return (
+    <DeskPanel id="desk-rail" kicker={kicker} hint={hint}>
+      <ul className="hidden sm:grid grid-cols-1 md:grid-cols-2 gap-3">
+        {tools.map((tool) => (
+          <li key={tool.href}>
+            <DeskLinkCard href={tool.href} title={tool.label} description={tool.description} />
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-wrap gap-2 sm:hidden">
+        {tools.map((tool) => (
+          <DeskFilterChip key={tool.href} href={tool.href}>
+            {tool.label}
+          </DeskFilterChip>
+        ))}
+        <DeskFilterChip href="/tools">All tools</DeskFilterChip>
+      </div>
+    </DeskPanel>
   );
 }

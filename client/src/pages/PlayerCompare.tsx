@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import TeamLogo from "../components/TeamLogo";
 import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
+import { lastUpdatedStamp } from "../lib/dataTrust";
+import { matchesPlayerQuery, readQueryParam } from "../lib/playerToolLinks";
 import { pulseIndex } from "../lib/pulseData";
 import { slugify } from "../lib/searchUtils";
 
@@ -15,9 +17,20 @@ function indexForName(name: string) {
   return pulseIndex.findIndex((p) => p.player === name);
 }
 
+function indexForQuery(query: string) {
+  if (!query) return -1;
+  return pulseIndex.findIndex((p) => matchesPlayerQuery(query, p.player));
+}
+
 export default function PlayerCompare() {
-  const [aIdx, setAIdx] = useState(() => Math.max(0, indexForName("Jalen Brunson")));
-  const [bIdx, setBIdx] = useState(() => Math.max(0, indexForName("Donovan Mitchell")));
+  const [aIdx, setAIdx] = useState(() => {
+    const fromQuery = indexForQuery(readQueryParam("a") || readQueryParam("player"));
+    return fromQuery >= 0 ? fromQuery : Math.max(0, indexForName("Jalen Brunson"));
+  });
+  const [bIdx, setBIdx] = useState(() => {
+    const fromQuery = indexForQuery(readQueryParam("b"));
+    return fromQuery >= 0 ? fromQuery : Math.max(0, indexForName("Donovan Mitchell"));
+  });
 
   const a = pulseIndex[aIdx];
   const b = pulseIndex[bIdx];
@@ -43,6 +56,7 @@ export default function PlayerCompare() {
       sectionLabel="Pulse lab"
       title="Player compare"
       description="Side-by-side read of today’s Pulse Index entrants — rankings and editorial notes regenerate with each morning edition."
+      heroMeta={lastUpdatedStamp()}
       maxWidth="xl"
       breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Tools", href: "/tools" }, { label: "Player compare" }]}
     >

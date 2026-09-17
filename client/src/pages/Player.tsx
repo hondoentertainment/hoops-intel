@@ -16,6 +16,7 @@ import {
 import { getPlayerRosterStatus, playerCoverageEmptyState } from "../lib/playerRosterStatus";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
+import { PlayerToolLinks } from "../components/PlayerToolLinks";
 import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
 import { PlayerPageSkeleton } from "../components/PageSkeletons";
@@ -321,9 +322,6 @@ export default function Player() {
                 />
                 <div className="flex flex-wrap gap-2">
                   <EnhancedButton href="/players">Player index</EnhancedButton>
-                  <EnhancedButton href="/compare-players" variant="ghost">
-                    Compare Pulse
-                  </EnhancedButton>
                 </div>
               </>
             )}
@@ -501,12 +499,11 @@ export default function Player() {
               </div>
             </div>
 
-            <a
-              href="/compare-players"
-              className="block enhanced-card p-4 text-sm font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
-            >
-              Compare {player.name} in Player Compare →
-            </a>
+            <PlayerToolLinks
+              name={player.name}
+              team={player.teams[0]}
+              live={roster?.status === "active"}
+            />
           </div>
         </div>
     </ToolPageLayout>

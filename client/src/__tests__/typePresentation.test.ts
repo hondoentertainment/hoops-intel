@@ -178,7 +178,7 @@ describe("type + contrast presentation", () => {
     expect(pageSrc("AskAI.tsx")).not.toMatch(/className="text-xs font-medium truncate"/);
     expect(pageSrc("Home.tsx")).toContain("hi-stat");
     expect(pageSrc("GameCenter.tsx")).toContain("hi-stat");
-    expect(pageSrc("Tonight.tsx")).toContain("EmptyState");
+    expect(pageSrc("Tonight.tsx")).toContain("CampDeskEmpty");
     expect(pageSrc("Pro.tsx")).toContain("hi-notice-warn");
     expect(pageSrc("Pro.tsx")).not.toContain("rgba(253,224,71");
   });

@@ -1,6 +1,6 @@
 import EditorialShell from "../components/EditorialShell";
 import DataTrustBadge from "../components/DataTrustBadge";
-import { DeskPanel, EmptyState, EnhancedButton, GamePreviewCard, PageHero, StatCard } from "../components/enhanced/EnhancedUi";
+import { CampDeskEmpty, DeskPanel, EnhancedButton, GamePreviewCard, PageHero, StatCard } from "../components/enhanced/EnhancedUi";
 import { campOpenDisplay, daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
 import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
 import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
@@ -70,10 +70,9 @@ export default function Tonight() {
                 {freshness}
               </p>
             </div>
-            <EmptyState
-              kicker="Tonight"
+            <CampDeskEmpty
               title={`Waiting on ${openDate}`}
-              body="The desk stays honest — empty slate until real tip-offs."
+              body="The desk stays honest — empty slate until real tip-offs. Camp intel is live; we never invent a slate."
               pill="NOT TONIGHT"
               footnote="Camp openers land on ESPN schedule"
             />
@@ -96,7 +95,6 @@ export default function Tonight() {
               </DeskPanel>
             ) : null}
             <div className="flex flex-wrap gap-2">
-              <EnhancedButton href="/#camp-intel">Open camp intel</EnhancedButton>
               <EnhancedButton href="/lineups" variant="ghost">
                 Rotation battles
               </EnhancedButton>

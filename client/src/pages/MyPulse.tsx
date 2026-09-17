@@ -15,7 +15,10 @@ import { slugify } from "../lib/searchUtils";
 import { makeGameId } from "../lib/gameCenter";
 import PreferencesSetup from "../components/PreferencesSetup";
 import EditorialShell from "../components/EditorialShell";
+import { GuestNotice } from "../components/GuestNotice";
 import { EmptyState, EnhancedButton, InjuryChip, PageHero, SectionHeader } from "../components/enhanced/EnhancedUi";
+import { lastUpdatedStamp } from "../lib/dataTrust";
+import { hasLocalAuthToken } from "../lib/guestAuth";
 
 // ═══════════════════════════════════════════════════════════
 // MY PULSE PAGE
@@ -61,16 +64,23 @@ export default function MyPulse() {
   if (!hasPrefs && !showSetup) {
     return (
       <MyPulseShell onOpenSetup={() => setShowSetup(true)} prefs={prefs}>
+        {!hasLocalAuthToken() ? (
+          <GuestNotice
+            kicker="My Pulse"
+            title="Favorites stay on this device until you sign in"
+            body="You can still build a personal desk. Sign in to sync teams and players across browsers — this page is not locked."
+          />
+        ) : null}
         <EmptyState
           kicker="My Pulse"
           title="Set up My Pulse"
           body="Pick your favorite teams and players to get a personalized daily edition tailored just for you."
           pill="PERSONAL DESK"
           pillTone="accent"
-        />
-        <div className="flex justify-center">
+          compact
+        >
           <EnhancedButton onClick={() => setShowSetup(true)}>Choose Favorites</EnhancedButton>
-        </div>
+        </EmptyState>
         {showSetup && (
           <PreferencesSetup onClose={() => setShowSetup(false)} onSave={handleSave} />
         )}
@@ -84,7 +94,15 @@ export default function MyPulse() {
         kicker="Personalized edition"
         title="My Pulse"
         description={`${pulseEdition.edition} · ${pulseEdition.date}`}
+        meta={lastUpdatedStamp()}
       />
+      {!hasLocalAuthToken() ? (
+        <GuestNotice
+          kicker="My Pulse"
+          title="This desk is local until you sign in"
+          body="Favorites already on this device stay here. Sign in to sync My Pulse across browsers."
+        />
+      ) : null}
 
       {/* Your Teams Tonight */}
       {yourTeamPreviews.length > 0 && (

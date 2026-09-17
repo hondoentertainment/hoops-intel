@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskLoopLinks, DeskPanel } from "../components/enhanced/EnhancedUi";
+import { toolUpdatedLabel } from "../lib/dataTrust";
 import { podcastCompanion } from "../lib/podcastData";
 import type { TalkingPoint } from "../lib/podcastData";
 
@@ -160,6 +161,7 @@ export default function PodcastCompanion() {
       sectionLabel="Podcast companion"
       title="Today's episode blueprint"
       description={`Frozen show notes from ${data.date} — not a live daily rundown.`}
+      heroMeta={toolUpdatedLabel(`${data.generatedDate} · last-known blueprint`)}
     >
         <DeskPanel kicker="Soft launch" className="mb-6">
           <p className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>

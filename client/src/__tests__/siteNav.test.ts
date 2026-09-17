@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { deskSectionLinks, headerNavLinks, mobileBottomNavLinks, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
+import { deskRailTools, deskSectionLinks, headerNavLinks, mobileBottomNavLinks, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
 
 const ENHANCED_HEADER = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Archive", "Ask"];
 const ENHANCED_MOBILE = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Ask"];
@@ -45,5 +45,25 @@ describe("siteNav", () => {
     expect(TOOLS_DIRECTORY.some((t) => t.href === "/tonight")).toBe(true);
     expect(hrefs).toContain("/players");
     expect(TOOLS_DIRECTORY.some((t) => t.href === "/players")).toBe(true);
+  });
+
+  it("groups play tools and exposes a homepage desk rail", () => {
+    const play = publicToolsDirectory().filter((t) => t.category === "play").map((t) => t.href);
+    expect(play).toEqual(expect.arrayContaining(["/82-0", "/pick-em", "/badges", "/trivia"]));
+    expect(deskRailTools().map((t) => t.href)).toEqual([
+      "/82-0",
+      "/clutch",
+      "/draft",
+      "/pick-em",
+      "/badges",
+      "/trade-simulator",
+    ]);
+    expect(mobileBottomNavLinks().map((l) => l.label)).toEqual([
+      "Desk",
+      "Injuries",
+      "Tonight",
+      "Pick 'Em",
+      "Ask",
+    ]);
   });
 });

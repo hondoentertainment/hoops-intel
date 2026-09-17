@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import EditorialShell from "../components/EditorialShell";
-import { EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
+import { CampDeskEmpty, EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
+import { matchesPlayerQuery, readQueryParam } from "../lib/playerToolLinks";
 import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
 import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryCounts } from "../lib/enhancedDesk";
@@ -294,7 +295,12 @@ export default function InjuryReport() {
     () => ["all", ...Array.from(new Set(injuryUpdates.map((i) => i.team))).sort()],
     [],
   );
-  const rows = injuryUpdates.filter((injury) => club === "all" || injury.team === club);
+  const playerQuery = readQueryParam("player") || readQueryParam("q");
+  const rows = injuryUpdates.filter((injury) => {
+    if (club !== "all" && injury.team !== club) return false;
+    if (playerQuery && !matchesPlayerQuery(playerQuery, injury.player)) return false;
+    return true;
+  });
   const stale = deskStaleNote();
   const nextClub = () => {
     const idx = clubs.indexOf(club);
@@ -347,13 +353,20 @@ export default function InjuryReport() {
           </p>
         ) : null}
 
-        {rows.length === 0 ? (
+        {injuryUpdates.length === 0 ? (
+          <CampDeskEmpty
+            title="Injury wire is last-known only"
+            body="No live injury tags on this edition. Camp intel stays on the desk; the live injury cron is held until October."
+            pill="LAST KNOWN"
+          />
+        ) : rows.length === 0 ? (
           <EmptyState
             kicker="Injury wire"
             title="No matches"
-            body="No injuries match this club filter."
+            body={playerQuery ? `No injury tag matches ${playerQuery}.` : "No injuries match this club filter."}
             pill="CLEAR FILTER"
             pillTone="accent"
+            compact
           />
         ) : (
           <div className="flex flex-col gap-2">
