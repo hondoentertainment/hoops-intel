@@ -229,18 +229,19 @@ export type CampDeskEmptyCopy = {
   destinations: { label: string; href: string }[];
 };
 
-/** Shared preseason empty copy — live vs held until October, plus honest destinations. */
+/** Shared preseason empty copy — live vs held until ~Oct 1, plus honest destinations. */
 export function campDeskEmptyCopy(): CampDeskEmptyCopy {
   return {
-    kicker: "Camp desk",
-    title: "What's live vs held until October",
-    body: "Camp intel, Pulse, and last-known tags are live. Tonight's slate, live scores, and the injury cron stay empty until ESPN posts real tip-offs — we never invent games.",
+    kicker: "Season desk coming",
+    title: "What's live vs held until ~Oct 1",
+    body: "The desk, tools, archive, and Ask stay live. Live scores and the injury cron stay held until ~Oct 1 — we never invent games or availability.",
     pill: "CAMP DESK",
-    footnote: "Season openers land in October",
+    footnote: "Scores and injury crons return around October 1",
     destinations: [
       { label: "Home desk", href: "/#camp-intel" },
       { label: "Tools", href: "/tools" },
       { label: "Archive", href: "/archive" },
+      { label: "Ask", href: "/ask" },
     ],
   };
 }
