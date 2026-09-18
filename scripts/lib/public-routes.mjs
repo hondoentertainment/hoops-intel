@@ -52,8 +52,8 @@ export const SITE_REVIEW_PATHS = [
  * Soft-launch noindex routes (/82-0, /badges, /watch-guide, /podcast-companion) stay off this list. */
 export const SITEMAP_STATIC_ROUTES = [
   // Daily desk — crawl above interactive tools
-  { loc: "/injuries", priority: "0.7", changefreq: "daily" },
-  { loc: "/tonight", priority: "0.7", changefreq: "daily" },
+  { loc: "/injuries", priority: "0.85", changefreq: "daily" },
+  { loc: "/tonight", priority: "0.85", changefreq: "daily" },
   { loc: "/players", priority: "0.65", changefreq: "daily" },
   { loc: "/betting-intel", priority: "0.7", changefreq: "daily" },
   { loc: "/momentum", priority: "0.65", changefreq: "daily" },

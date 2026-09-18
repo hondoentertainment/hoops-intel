@@ -28,13 +28,13 @@
     <loc>https://hoopsintel.net/injuries</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/tonight</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/players</loc>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/momentum</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pick-em</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
@@ -92,7 +92,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pro</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -116,7 +116,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/sentiment</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -170,7 +170,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/tools</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
@@ -188,7 +188,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/ask</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>

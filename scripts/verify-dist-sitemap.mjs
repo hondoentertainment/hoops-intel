@@ -21,4 +21,24 @@ if (urls < 20) {
   process.exit(1);
 }
 
-console.log(`✓ dist/sitemap.xml well-formed (${urls} urls)`);
+const lastmods = (xml.match(/<lastmod>/g) || []).length;
+if (lastmods !== urls) {
+  console.error(`dist/sitemap.xml missing lastmod on some URLs (${lastmods} lastmod / ${urls} url).`);
+  process.exit(1);
+}
+
+const dailyRoutes = ["/", "/tonight", "/injuries"];
+for (const path of dailyRoutes) {
+  const escaped = path === "/" ? "/" : path.replace(/\//g, "\\/");
+  const block = xml.match(
+    new RegExp(
+      `<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}<\\/lastmod>\\s*<changefreq>daily<\\/changefreq>\\s*<priority>\\d(?:\\.\\d+)?<\\/priority>`,
+    ),
+  );
+  if (!block) {
+    console.error(`dist/sitemap.xml missing lastmod/priority block for ${path}`);
+    process.exit(1);
+  }
+}
+
+console.log(`✓ dist/sitemap.xml well-formed (${urls} urls, lastmod on daily desk routes)`);
