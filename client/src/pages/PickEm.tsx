@@ -25,7 +25,7 @@ import { playoffSnapshot, todayISOLocal } from "../lib/playoffAnalytics";
 import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 import EditorialShell from "../components/EditorialShell";
-import { GuestNotice } from "../components/GuestNotice";
+import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { CampDeskEmpty, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
@@ -522,15 +522,13 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
           actionHref="/pick-em#season-board"
         />
         {!hasLocalAuthToken() ? (
-          <GuestNotice
-            kicker="Pick 'Em"
-            title="Picks stay on this device until you sign in"
-            body="The board is closed because ESPN has no slate — not because you are locked out. Sign in to keep a season record when tip-offs return."
-          />
-        ) : null}
+          <GuestNotice page="pick-em" />
+        ) : (
+          <SignedInNextNotice page="pick-em" />
+        )}
         <CampDeskEmpty
           title="Board closed."
-          body="Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. We never invent tip-offs for camp week. Game and bracket picks count toward the season board when the first tip lands."
+          body="Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. Scores return ~Oct 1 — we never invent tip-offs. Desk, tools, archive, and Ask stay live."
           pill="NOT TONIGHT"
         />
         <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3">
@@ -603,12 +601,10 @@ export default function PickEmPage() {
       heroMeta={lastUpdatedStamp()}
     >
         {!hasLocalAuthToken() ? (
-          <GuestNotice
-            kicker="Pick 'Em"
-            title="Picks stay on this device until you sign in"
-            body="You can still lock winners. Sign in to keep them on the season board instead of this browser only."
-          />
-        ) : null}
+          <GuestNotice page="pick-em" />
+        ) : (
+          <SignedInNextNotice page="pick-em" />
+        )}
 
         {(pickStats.wins + pickStats.losses > 0 || pickStats.streak > 0 || slateSettled > 0) && (
           <PickEmShareCard

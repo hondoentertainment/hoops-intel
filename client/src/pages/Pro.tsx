@@ -7,7 +7,7 @@ import { pulseProFeatureBody } from "../lib/deskMode";
 import { distributionTools } from "../lib/siteNav";
 import ToolPageLayout from "../components/ToolPageLayout";
 import AuthModal from "../components/AuthModal";
-import { GuestNotice } from "../components/GuestNotice";
+import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { hasLocalAuthToken } from "../lib/guestAuth";
 
@@ -177,11 +177,10 @@ export default function Pro() {
       showRelated={false}
     >
         {!sub.isPro && !hasLocalAuthToken() ? (
-          <GuestNotice
-            kicker="Pro"
-            title="Sign in before checkout"
-            body="Stripe needs a Hoops Intel account to attach billing. Plans below stay visible — checkout opens after you sign in. Nothing on this page is blank or broken."
-          />
+          <GuestNotice page="pro" />
+        ) : null}
+        {!sub.isPro && hasLocalAuthToken() ? (
+          <SignedInNextNotice page="pro" />
         ) : null}
 
         {sub.isPro ? (

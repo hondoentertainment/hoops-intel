@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { GuestNotice } from "../components/GuestNotice";
+import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { DeskFilterChip, EmptyState } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { hasLocalAuthToken } from "../lib/guestAuth";
@@ -236,13 +236,10 @@ export default function Badges() {
     >
 
         {!hasLocalAuthToken() ? (
-          <GuestNotice
-            kicker="Badges"
-            title="This board is local until you sign in"
-            body="Streaks and badges stay on this device. Sign in to keep them with your Hoops Intel account — nothing here is locked or broken."
-            proHref="/pro"
-          />
-        ) : null}
+          <GuestNotice page="badges" />
+        ) : (
+          <SignedInNextNotice page="badges" />
+        )}
 
         {/* Streak Counter */}
         <StreakCounter current={streak.currentStreak} longest={streak.longestStreak} />

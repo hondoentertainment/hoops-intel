@@ -15,7 +15,7 @@ import { slugify } from "../lib/searchUtils";
 import { makeGameId } from "../lib/gameCenter";
 import PreferencesSetup from "../components/PreferencesSetup";
 import EditorialShell from "../components/EditorialShell";
-import { GuestNotice } from "../components/GuestNotice";
+import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { EmptyState, EnhancedButton, InjuryChip, PageHero, SectionHeader } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { hasLocalAuthToken } from "../lib/guestAuth";
@@ -65,12 +65,10 @@ export default function MyPulse() {
     return (
       <MyPulseShell onOpenSetup={() => setShowSetup(true)} prefs={prefs}>
         {!hasLocalAuthToken() ? (
-          <GuestNotice
-            kicker="My Pulse"
-            title="Favorites stay on this device until you sign in"
-            body="You can still build a personal desk. Sign in to sync teams and players across browsers — this page is not locked."
-          />
-        ) : null}
+          <GuestNotice page="my-pulse" />
+        ) : (
+          <SignedInNextNotice page="my-pulse" />
+        )}
         <EmptyState
           kicker="My Pulse"
           title="Set up My Pulse"
@@ -97,12 +95,10 @@ export default function MyPulse() {
         meta={lastUpdatedStamp()}
       />
       {!hasLocalAuthToken() ? (
-        <GuestNotice
-          kicker="My Pulse"
-          title="This desk is local until you sign in"
-          body="Favorites already on this device stay here. Sign in to sync My Pulse across browsers."
-        />
-      ) : null}
+        <GuestNotice page="my-pulse" />
+      ) : (
+        <SignedInNextNotice page="my-pulse" />
+      )}
 
       {/* Your Teams Tonight */}
       {yourTeamPreviews.length > 0 && (

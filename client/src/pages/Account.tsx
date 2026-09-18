@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import ToolPageLayout from "../components/ToolPageLayout";
-import AuthModal from "../components/AuthModal";
+import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import {
   deleteMyPushSubscription,
   getFavorites,
@@ -497,7 +497,6 @@ export default function Account() {
   const [, setLocation] = useLocation();
   const sub = useSubscription();
   const [user, setUser] = useState<User | null | undefined>(undefined);
-  const [showAuth, setShowAuth] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
   const [portalError, setPortalError] = useState("");
   const [stripeCheckoutReady, setStripeCheckoutReady] = useState<boolean | null>(null);
@@ -567,30 +566,19 @@ export default function Account() {
         maxWidth="lg"
         showRelated={false}
       >
+        <GuestNotice
+          page="account"
+          showSignIn={isSupabaseConfigured}
+          onAuth={() => {
+            refreshUser();
+            sub.refreshSubscription();
+          }}
+        />
         {!isSupabaseConfigured ? (
           <div className="rounded-xl p-5 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", border: "1px solid rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}>
             Accounts are not configured in this environment (missing Supabase keys).
           </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setShowAuth(true)}
-            className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-lg text-sm font-semibold text-white"
-            style={{ background: "var(--hi-accent-text,#146a8c)", color: "var(--hi-accent-ink,#0a0a0a)" }}
-          >
-            SIGN IN OR CREATE ACCOUNT
-          </button>
-        )}
-        {showAuth && (
-          <AuthModal
-            onClose={() => setShowAuth(false)}
-            onAuth={() => {
-              setShowAuth(false);
-              refreshUser();
-              sub.refreshSubscription();
-            }}
-          />
-        )}
+        ) : null}
       </ToolPageLayout>
     );
   }
@@ -603,6 +591,8 @@ export default function Account() {
       maxWidth="lg"
       showRelated={false}
     >
+
+      {!sub.isPro ? <SignedInNextNotice page="account" /> : null}
 
       <OpsReadinessPanel />
 
