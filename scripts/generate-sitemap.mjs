@@ -94,6 +94,7 @@ function loadRosterLists() {
     historical: new Set(readExportedNameList(rosterFile, "HISTORICAL_PLAYER_NAMES").map(canonicalPlayerName)),
     retired: new Set(readExportedNameList(rosterFile, "RETIRED_PLAYER_NAMES").map(canonicalPlayerName)),
     nonPlayers: new Set(readExportedNameList(rosterFile, "NON_PLAYER_NAMES").map(canonicalPlayerName)),
+    prospects: new Set(readExportedNameList(rosterFile, "PROSPECT_PLAYER_NAMES").map(canonicalPlayerName)),
   };
 }
 
@@ -103,6 +104,7 @@ export function isSitemapIndexablePlayer(name, context, lists) {
   if (lists.nonPlayers.has(canonical) || lists.historical.has(canonical)) return false;
   if (lists.retired.has(canonical)) return (context.mentions ?? 0) > 0;
   if (context.inPulse || context.hasCurrentTeam) return true;
+  if (lists.prospects?.has(canonical)) return (context.mentions ?? 0) >= 2;
   return (context.mentions ?? 0) >= 2;
 }
 
@@ -135,9 +137,10 @@ export function buildUrlEntry(u, { buildDay } = {}) {
   if (!ALLOWED_CHANGEFREQ.has(u.changefreq)) return "";
   if (!/^\d(\.\d+)?$/.test(String(u.priority))) return "";
   const lastmod = sanitizeLastmod(u.lastmod) ?? sanitizeLastmod(buildDay);
-  const lastmodLine = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
+  if (!lastmod) return "";
   return `  <url>
-    <loc>${xmlEscape(BASE + u.loc)}</loc>${lastmodLine}
+    <loc>${xmlEscape(BASE + u.loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`;
@@ -158,6 +161,10 @@ export function assertWellFormedSitemap(xml) {
   const locs = (xml.match(/<loc>/g) || []).length;
   if (locs !== opens) {
     throw new Error("sitemap loc count mismatch");
+  }
+  const lastmods = (xml.match(/<lastmod>/g) || []).length;
+  if (lastmods !== opens) {
+    throw new Error(`sitemap lastmod count mismatch (${lastmods} lastmod / ${opens} url)`);
   }
   if (/<loc>[^<\n]*$/.test(xml.replace(/\s*<\/urlset>\s*$/, ""))) {
     throw new Error("sitemap loc truncated mid-entry");
@@ -325,6 +332,7 @@ export function lastmodForLoc(loc, ctx) {
     "/print-edition",
     "/betting-intel",
     "/compare-players",
+    "/ask",
     // Daily-pipeline pages: lastmod follows the edition when generators freeze.
     "/history",
     "/refs",

@@ -551,9 +551,9 @@ export default function SiteHeader({
           paddingTop: "env(safe-area-inset-top)",
         }}
       >
-        <div className="container max-md:px-4">
-          <div className="flex items-center justify-between gap-2 h-14 min-h-[56px]">
-            <div className="flex items-center gap-1 min-w-0 overflow-x-clip">
+        <div className="container max-md:px-3">
+          <div className="flex items-center justify-between gap-1.5 sm:gap-2 h-14 min-h-[56px] min-w-0">
+            <div className="flex items-center gap-0.5 sm:gap-1 min-w-0">
               <button
                 type="button"
                 className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--hi-text,#0a0a0a)] hover:bg-black/5 focus-visible:outline focus-visible:outline-[var(--hi-accent)]"
@@ -634,7 +634,11 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex items-center gap-0.5 sm:gap-2 shrink-0">
-              {seasonChip ? <SeasonChip>{seasonChip}</SeasonChip> : null}
+              {seasonChip ? (
+                <span className="hidden min-[360px]:inline-flex">
+                  <SeasonChip>{seasonChip}</SeasonChip>
+                </span>
+              ) : null}
               <span
                 className="hidden md:inline text-[11px] font-medium whitespace-nowrap"
                 style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
@@ -649,11 +653,11 @@ export default function SiteHeader({
                   {compactEditionDate(editionBadge ?? pulseEdition.date)}
                 </span>
               ) : null}
-              {toolbarExtra}
+              {toolbarExtra ? <span className="hidden sm:contents">{toolbarExtra}</span> : null}
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-lg hover:bg-white/10"
+                className="md:hidden min-h-11 min-w-11 shrink-0 flex items-center justify-center rounded-lg hover:bg-white/10"
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
@@ -738,6 +742,35 @@ export default function SiteHeader({
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                   Sign In
+                </button>
+              )}
+
+              {sessionUser ? (
+                <a
+                  href="/account"
+                  data-testid="header-account-control"
+                  className="header-account-control md:hidden min-h-11 min-w-11 shrink-0 inline-flex items-center justify-center rounded-full"
+                  style={{ border: "1px solid var(--hi-pill-border,rgba(10,10,10,0.16))", color: "var(--hi-text,#0a0a0a)" }}
+                  aria-label="Open your account"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="header-account-control"
+                  className="header-account-control md:hidden min-h-11 min-w-11 shrink-0 inline-flex items-center justify-center rounded-full"
+                  style={{ border: "1px solid var(--hi-pill-border,rgba(10,10,10,0.16))", color: "var(--hi-text,#0a0a0a)" }}
+                  aria-label="Sign in to your account"
+                  onClick={() => setShowAuth(true)}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
                 </button>
               )}
 

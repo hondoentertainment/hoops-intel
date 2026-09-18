@@ -113,16 +113,18 @@ export default function Players() {
                         {player.label}
                       </span>
                     ) : null}
-                    {player.teams.map((abbr) => (
-                      <span
-                        key={abbr}
-                        className="inline-flex items-center gap-1 text-[10px] font-bold"
-                        style={{ color: getTeamColor(abbr) }}
-                      >
-                        <TeamLogo team={abbr} size={16} />
-                        {abbr}
-                      </span>
-                    ))}
+                    {player.status === "active"
+                      ? player.teams.map((abbr) => (
+                          <span
+                            key={abbr}
+                            className="inline-flex items-center gap-1 text-[10px] font-bold"
+                            style={{ color: getTeamColor(abbr) }}
+                          >
+                            <TeamLogo team={abbr} size={16} />
+                            {abbr}
+                          </span>
+                        ))
+                      : null}
                     {player.pulseRank != null ? (
                       <span className="mono-data text-sm font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                         #{player.pulseRank}

@@ -72,9 +72,9 @@ export default function Tonight() {
             </div>
             <CampDeskEmpty
               title={`Waiting on ${openDate}`}
-              body="The desk stays honest — empty slate until real tip-offs. Camp intel is live; we never invent a slate."
+              body="Season desk is coming. The desk, tools, archive, and Ask stay live. Live scores stay held until ~Oct 1 — empty slate until real tip-offs, never invented."
               pill="NOT TONIGHT"
-              footnote="Camp openers land on ESPN schedule"
+              footnote="Scores and injury crons return around October 1"
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {deskCards.map((card) => (

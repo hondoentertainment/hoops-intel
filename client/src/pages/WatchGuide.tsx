@@ -314,7 +314,7 @@ export default function WatchGuide() {
           <>
           <CampDeskEmpty
             title="No games on the board"
-            body="The league is dark — Hoops Intel is not inventing a watch ranking, sleeper pick, or skip list. Camp intel is live; the slate stays empty until ESPN posts tip-offs."
+            body="Season desk is coming. The desk, tools, archive, and Ask stay live. Hoops Intel is not inventing a watch ranking — the slate stays empty until ESPN posts tip-offs (~Oct 1)."
             pill="NOT TONIGHT"
             footnote={data.nightOverview || data.topPick.reason}
           />

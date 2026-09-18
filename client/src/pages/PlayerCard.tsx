@@ -4,7 +4,7 @@ import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { pulseIndex, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { findPlayerInjury } from "../lib/playerIntel";
-import { getPlayerRosterStatus } from "../lib/playerRosterStatus";
+import { getPlayerRosterStatus, playerProfileFrame } from "../lib/playerRosterStatus";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import EditorialShell from "../components/EditorialShell";
 
@@ -41,9 +41,10 @@ export default function PlayerCard() {
   const currentInjury = findPlayerInjury(player.name);
   const roster = getPlayerRosterStatus(player.name, {
     inPulse: Boolean(currentPulse),
-    hasCurrentTeam: player.teams.length > 0,
+    hasCurrentTeam: Boolean(currentPulse || currentInjury),
     mentions: player.mentions,
   });
+  const frame = playerProfileFrame(roster, player.teams);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent)";
 
   // Parse season stats from keyStats string (e.g. "40 PTS · 14-27 FG · 3-5 3PT · 9-11 FT")
@@ -173,20 +174,33 @@ export default function PlayerCard() {
           {/* Top row: team badge + rank badge */}
           <div className="flex items-start justify-between mb-5">
             <div className="flex items-center gap-2 flex-wrap">
-              {player.teams.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs px-2.5 py-1 rounded-full font-bold tracking-wide"
-                  style={{
-                    background: hexToRgba(teamColor, 0.15),
-                    color: teamColor,
-                    border: `1px solid ${hexToRgba(teamColor, 0.3)}`,
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-              {currentInjury && <InjuryChip status={currentInjury.status} />}
+              {frame.showTeamLinks
+                ? player.teams.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs px-2.5 py-1 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: hexToRgba(teamColor, 0.15),
+                        color: teamColor,
+                        border: `1px solid ${hexToRgba(teamColor, 0.3)}`,
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))
+                : (
+                    <span
+                      className="text-xs px-2.5 py-1 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: "rgba(255,255,255,0.08)",
+                        color: "rgba(255,255,255,0.7)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                      }}
+                    >
+                      {frame.teamValue}
+                    </span>
+                  )}
+              {frame.live && currentInjury && <InjuryChip status={currentInjury.status} />}
               {roster.status !== "active" && (
                 <span
                   className="text-xs px-2.5 py-1 rounded-full font-bold tracking-wide uppercase"
@@ -228,8 +242,8 @@ export default function PlayerCard() {
           </h1>
 
           {/* Team full names row */}
-          <div className="text-xs font-semibold mb-5" style={{ color: hexToRgba(teamColor, 0.9) }}>
-            {player.teams.join(" · ")}
+          <div className="text-xs font-semibold mb-5" style={{ color: frame.live ? hexToRgba(teamColor, 0.9) : "rgba(255,255,255,0.55)" }}>
+            {frame.live ? player.teams.join(" · ") : frame.teamValue}
           </div>
 
           {/* Pulse score */}

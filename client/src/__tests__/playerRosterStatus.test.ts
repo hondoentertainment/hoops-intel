@@ -4,7 +4,9 @@ import {
   getPlayerRosterStatus,
   isCurrentNbaRosterCard,
   isIndexablePlayerProfile,
+  isProspectPlayerName,
   playerCoverageEmptyState,
+  playerProfileFrame,
 } from "../lib/playerRosterStatus";
 
 describe("playerRosterStatus", () => {
@@ -38,7 +40,7 @@ describe("playerRosterStatus", () => {
   });
 
   it("frames archive-only names as not current NBA roster cards", () => {
-    const status = getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 });
+    const status = getPlayerRosterStatus("Amen Thompson", { mentions: 4 });
     expect(status.status).toBe("inactive");
     expect(status.label).toBe("Archive only");
     expect(status.indexable).toBe(true);
@@ -46,14 +48,27 @@ describe("playerRosterStatus", () => {
     expect(isCurrentNbaRosterCard({ inPulse: false, hasCurrentTeam: false })).toBe(false);
   });
 
+  it("frames known prospects separately from active NBA cards", () => {
+    expect(isProspectPlayerName("VJ Edgecombe")).toBe(true);
+    const status = getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 });
+    expect(status.status).toBe("prospect");
+    expect(status.label).toBe("Prospect archive");
+    expect(status.indexable).toBe(true);
+    expect(status.detail.toLowerCase()).toContain("not a current nba roster card");
+    expect(isCurrentNbaRosterCard({ inPulse: false, hasCurrentTeam: false })).toBe(false);
+
+    const desk = getPlayerRosterStatus("VJ Edgecombe", { inPulse: true, hasCurrentTeam: true, mentions: 4 });
+    expect(desk.status).toBe("active");
+  });
+
   it("uses honest empty-state copy for prospects and retired names", () => {
     const vj = playerCoverageEmptyState(
       "VJ Edgecombe",
       getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 }),
     );
-    expect(vj.title).toMatch(/No current NBA stats/);
-    expect(vj.pill).toBe("ARCHIVE ONLY");
-    expect(vj.body.toLowerCase()).toContain("not publishing a current roster card");
+    expect(vj.title).toMatch(/not a current NBA roster card/);
+    expect(vj.pill).toBe("PROSPECT");
+    expect(vj.body.toLowerCase()).toContain("not assigning a current team");
 
     const cp = playerCoverageEmptyState(
       "Chris Paul",
@@ -61,6 +76,26 @@ describe("playerRosterStatus", () => {
     );
     expect(cp.pill).toBe("RETIRED");
     expect(cp.title.toLowerCase()).toContain("not on an active nba roster");
+  });
+
+  it("hides current-team chrome on prospect and archive frames", () => {
+    const prospect = playerProfileFrame(
+      getPlayerRosterStatus("VJ Edgecombe", { mentions: 4 }),
+      ["PHI"],
+    );
+    expect(prospect.live).toBe(false);
+    expect(prospect.showTeamLinks).toBe(false);
+    expect(prospect.jsonLdAffiliation).toBe(false);
+    expect(prospect.shareAsLiveCard).toBe(false);
+    expect(prospect.teamValue).toBe("Not on a current NBA roster");
+
+    const active = playerProfileFrame(
+      getPlayerRosterStatus("Victor Wembanyama", { inPulse: true, hasCurrentTeam: true }),
+      ["SAS"],
+    );
+    expect(active.live).toBe(true);
+    expect(active.showTeamLinks).toBe(true);
+    expect(active.teamValue).toBe("SAS");
   });
 });
 

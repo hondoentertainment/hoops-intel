@@ -69,7 +69,8 @@ describe("Tonight empty slate", () => {
     expect(tonight).toContain("CampDeskEmpty");
     expect(tonight).toContain("Waiting on ${openDate}");
     expect(tonight).toContain("empty slate until real tip-offs");
-    expect(tonight).toContain("we never invent a slate");
+    expect(tonight).toContain("never invented");
+    expect(tonight).toContain("Oct 1");
     expect(tonight).not.toMatch(/away:\s*"NYK"[\s\S]*home:\s*"BOS"/);
   });
 });
@@ -77,9 +78,12 @@ describe("Tonight empty slate", () => {
 describe("camp desk empty copy", () => {
   it("explains live vs October-held desks and points home / tools / archive", () => {
     const copy = campDeskEmptyCopy();
-    expect(copy.title.toLowerCase()).toContain("october");
+    expect(copy.kicker.toLowerCase()).toContain("season desk coming");
+    expect(copy.title.toLowerCase()).toContain("oct 1");
     expect(copy.body.toLowerCase()).toContain("never invent");
-    expect(copy.destinations.map((d) => d.href)).toEqual(["/#camp-intel", "/tools", "/archive"]);
+    expect(copy.body.toLowerCase()).toContain("ask");
+    expect(copy.footnote.toLowerCase()).toContain("october 1");
+    expect(copy.destinations.map((d) => d.href)).toEqual(["/#camp-intel", "/tools", "/archive", "/ask"]);
   });
 });
 

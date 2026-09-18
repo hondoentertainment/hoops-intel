@@ -1,12 +1,22 @@
 import { canonicalizePlayerName, playerSlug } from "./identity";
 
-export type RosterStatus = "active" | "inactive" | "retired" | "historical";
+export type RosterStatus = "active" | "inactive" | "retired" | "historical" | "prospect";
 
 export interface RosterStatusInfo {
   status: RosterStatus;
   label: string;
   detail: string;
   indexable: boolean;
+}
+
+/** Shared chrome so thin / prospect / archive pages do not look like live NBA cards. */
+export interface PlayerProfileFrame {
+  live: boolean;
+  teamLabel: string;
+  teamValue: string;
+  showTeamLinks: boolean;
+  jsonLdAffiliation: boolean;
+  shareAsLiveCard: boolean;
 }
 
 /** Hall-of-fame / comparison names that leak into archive `players[]` arrays. */
@@ -48,9 +58,19 @@ export const NON_PLAYER_NAMES = [
   "Tom Thibodeau",
 ] as const;
 
+/**
+ * Archive names that must never render as a current NBA roster card.
+ * Thin draft / incoming profiles (historically VJ Edgecombe) belong here —
+ * Pulse or injury-wire membership still wins and marks them active.
+ */
+export const PROSPECT_PLAYER_NAMES = [
+  "VJ Edgecombe",
+] as const;
+
 const HISTORICAL = new Set(HISTORICAL_PLAYER_NAMES.map((n) => canonicalizePlayerName(n)));
 const RETIRED = new Set(RETIRED_PLAYER_NAMES.map((n) => canonicalizePlayerName(n)));
 const NON_PLAYER = new Set(NON_PLAYER_NAMES.map((n) => canonicalizePlayerName(n)));
+const PROSPECT = new Set(PROSPECT_PLAYER_NAMES.map((n) => canonicalizePlayerName(n)));
 
 export function isHistoricalPlayerName(name: string): boolean {
   return HISTORICAL.has(canonicalizePlayerName(name));
@@ -62,6 +82,10 @@ export function isRetiredPlayerName(name: string): boolean {
 
 export function isNonPlayerName(name: string): boolean {
   return NON_PLAYER.has(canonicalizePlayerName(name));
+}
+
+export function isProspectPlayerName(name: string): boolean {
+  return PROSPECT.has(canonicalizePlayerName(name));
 }
 
 export function getPlayerRosterStatus(
@@ -104,6 +128,15 @@ export function getPlayerRosterStatus(
       label: "Active",
       detail: "Appears on the current Hoops Intel desk (Pulse Index, injury wire, or today's edition).",
       indexable: true,
+    };
+  }
+
+  if (PROSPECT.has(canonical)) {
+    return {
+      status: "prospect",
+      label: "Prospect archive",
+      detail: "Draft / incoming profile from past editions only. Not a current NBA roster card — no live counting stats or active-team line on this page.",
+      indexable: mentions >= 2,
     };
   }
 
@@ -151,11 +184,37 @@ export function playerCoverageEmptyState(
       pill: "HISTORICAL",
     };
   }
+  if (roster.status === "prospect") {
+    return {
+      kicker: "Prospect archive",
+      title: `${name} is not a current NBA roster card`,
+      body: "This is a thin archive / prospect profile. Hoops Intel is not assigning a current team, Pulse line, or live counting stats — past-edition mentions only.",
+      pill: "PROSPECT",
+    };
+  }
   return {
     kicker: "Archive only",
     title: `No current NBA stats for ${name}`,
     body: "This page is built from archive mentions only. Hoops Intel is not publishing a current roster card, Pulse line, or live counting stats here.",
     pill: "ARCHIVE ONLY",
+  };
+}
+
+export function playerProfileFrame(
+  roster: RosterStatusInfo,
+  teams: string[] = [],
+): PlayerProfileFrame {
+  const live = roster.status === "active";
+  const teamValue = live
+    ? teams.filter(Boolean).join(", ") || "—"
+    : "Not on a current NBA roster";
+  return {
+    live,
+    teamLabel: live ? "Current team" : "Current team",
+    teamValue,
+    showTeamLinks: live && teams.length > 0,
+    jsonLdAffiliation: live && teams.length > 0,
+    shareAsLiveCard: live,
   };
 }
 

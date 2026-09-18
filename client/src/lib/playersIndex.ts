@@ -35,7 +35,7 @@ export function listBrowsePlayers(): BrowsePlayer[] {
       );
       const roster = getPlayerRosterStatus(player.name, {
         inPulse: Boolean(pulse),
-        hasCurrentTeam: player.teams.length > 0,
+        hasCurrentTeam: Boolean(pulse || injury),
         mentions: player.mentions,
       });
       return {

@@ -98,21 +98,28 @@ export function getPlayerIntelBySlug(slug: string): PlayerIntelResponse | null {
   const matchesPlayer = (name: string) => canonicalizePlayerName(name) === playerName;
   const pulse = pulseIndex.find((p: any) => matchesPlayer(p.player));
   const injury = injuryUpdates.find((i: any) => matchesPlayer(i.player));
-  const sentiment = sentimentData.playerSentiments?.find((s) => matchesPlayer(s.player));
-  const mover = playoffMovers.find((m) => matchesPlayer(m.player));
+  const onDesk = Boolean(pulse || injury);
+  const sentiment = onDesk
+    ? sentimentData.playerSentiments?.find((s) => matchesPlayer(s.player))
+    : undefined;
+  const mover = onDesk ? playoffMovers.find((m) => matchesPlayer(m.player)) : undefined;
   const games = getAllGameCenterGames();
-  const statCategories = statLeaders.filter((s: any) => matchesPlayer(s.player)).map((s: any) => s.category);
-  const relatedSeries = playoffSeries
-    .filter((s) => player.teams.some((t) => s.higherTeam === t || s.lowerTeam === t))
-    .map((s) => {
-      const team = player.teams.find((t) => s.higherTeam === t || s.lowerTeam === t) || player.teams[0] || "";
-      return {
-        seriesId: s.seriesId,
-        summary: s.summary,
-        opponent: opponentFor(s, team),
-        round: s.round,
-      };
-    });
+  const statCategories = onDesk
+    ? statLeaders.filter((s: any) => matchesPlayer(s.player)).map((s: any) => s.category)
+    : [];
+  const relatedSeries = onDesk
+    ? playoffSeries
+        .filter((s) => player.teams.some((t) => s.higherTeam === t || s.lowerTeam === t))
+        .map((s) => {
+          const team = player.teams.find((t) => s.higherTeam === t || s.lowerTeam === t) || player.teams[0] || "";
+          return {
+            seriesId: s.seriesId,
+            summary: s.summary,
+            opponent: opponentFor(s, team),
+            round: s.round,
+          };
+        })
+    : [];
   const archives = archiveEditions
     .filter((ed: any) => matchesPlayer(ed.topPlayer) || (ed.players || []).some((p: string) => matchesPlayer(p)))
     .slice(0, 8)
@@ -124,38 +131,42 @@ export function getPlayerIntelBySlug(slug: string): PlayerIntelResponse | null {
       topStatLine: matchesPlayer(ed.topPlayer) ? ed.topStatLine : undefined,
     }));
 
-  const recentGames = [
-    ...gameResults
-      .filter((g: any) => matchesPlayer(g.topPerformer) || player.teams.includes(g.homeTeam) || player.teams.includes(g.awayTeam))
-      .slice(0, 4)
-      .map((g: any) => ({
-        gameId: g.gameId || "",
-        title: `${g.awayTeam} ${g.awayScore} @ ${g.homeTeam} ${g.homeScore}`,
-        status: "final",
-        line: matchesPlayer(g.topPerformer) ? g.topLine : g.topPerformer,
-        link: `/game/${g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`,
-      })),
-    ...games
-      .filter((g) => player.teams.some((t) => g.relatedTeams.includes(t)) || g.relatedPlayers.some((p) => matchesPlayer(p)))
-      .slice(0, 4)
-      .map((g) => ({
-        gameId: g.gameId,
-        title: g.title,
-        status: g.status,
-        line: g.topPerformer && matchesPlayer(g.topPerformer) ? g.topLine : g.subtitle,
-        link: `/game/${g.gameId}`,
-      })),
-  ].filter((g, i, arr) => g.gameId && arr.findIndex((x) => x.gameId === g.gameId) === i).slice(0, 5);
+  const recentGames = onDesk
+    ? [
+        ...gameResults
+          .filter((g: any) => matchesPlayer(g.topPerformer) || player.teams.includes(g.homeTeam) || player.teams.includes(g.awayTeam))
+          .slice(0, 4)
+          .map((g: any) => ({
+            gameId: g.gameId || "",
+            title: `${g.awayTeam} ${g.awayScore} @ ${g.homeTeam} ${g.homeScore}`,
+            status: "final",
+            line: matchesPlayer(g.topPerformer) ? g.topLine : g.topPerformer,
+            link: `/game/${g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`,
+          })),
+        ...games
+          .filter((g) => player.teams.some((t) => g.relatedTeams.includes(t)) || g.relatedPlayers.some((p) => matchesPlayer(p)))
+          .slice(0, 4)
+          .map((g) => ({
+            gameId: g.gameId,
+            title: g.title,
+            status: g.status,
+            line: g.topPerformer && matchesPlayer(g.topPerformer) ? g.topLine : g.subtitle,
+            link: `/game/${g.gameId}`,
+          })),
+      ].filter((g, i, arr) => g.gameId && arr.findIndex((x) => x.gameId === g.gameId) === i).slice(0, 5)
+    : [];
 
-  const upcomingGames = gamePreviews
-    .filter((g: any) => player.teams.includes(g.homeTeam) || player.teams.includes(g.awayTeam))
-    .map((g: any) => ({
-      gameId: g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date),
-      title: `${g.awayTeam} @ ${g.homeTeam}`,
-      time: g.time,
-      tv: g.tv,
-      link: `/game/${g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`,
-    }));
+  const upcomingGames = onDesk
+    ? gamePreviews
+        .filter((g: any) => player.teams.includes(g.homeTeam) || player.teams.includes(g.awayTeam))
+        .map((g: any) => ({
+          gameId: g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date),
+          title: `${g.awayTeam} @ ${g.homeTeam}`,
+          time: g.time,
+          tv: g.tv,
+          link: `/game/${g.gameId || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`,
+        }))
+    : [];
 
   return {
     slug: playerSlug(playerName),
@@ -209,12 +220,8 @@ export function topPlayerIntelSlugs(limit = 12) {
   return pulseIndex.slice(0, limit).map((p: any) => playerSlug(p.player));
 }
 
-/** True when the profile has live desk intel — Pulse, injury, sentiment, or games. */
+/** True when the profile has a current desk card — Pulse or injury wire only. */
 export function playerHasLiveDeskCoverage(intel: PlayerIntelResponse | null): boolean {
   if (!intel) return false;
-  if (intel.pulse || intel.injury || intel.sentiment) return true;
-  if (intel.recentGames?.length || intel.upcomingGames?.length) return true;
-  if (intel.playoff?.mover || (intel.playoff?.series?.length ?? 0) > 0) return true;
-  if (intel.statLeaderCategories?.length) return true;
-  return false;
+  return Boolean(intel.pulse || intel.injury);
 }

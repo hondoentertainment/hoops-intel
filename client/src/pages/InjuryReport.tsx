@@ -356,7 +356,7 @@ export default function InjuryReport() {
         {injuryUpdates.length === 0 ? (
           <CampDeskEmpty
             title="Injury wire is last-known only"
-            body="No live injury tags on this edition. Camp intel stays on the desk; the live injury cron is held until October."
+            body="No live injury tags on this edition. Desk, tools, archive, and Ask stay live; the injury cron is held until ~Oct 1."
             pill="LAST KNOWN"
           />
         ) : rows.length === 0 ? (

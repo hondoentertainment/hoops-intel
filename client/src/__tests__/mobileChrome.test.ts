@@ -15,8 +15,19 @@ describe("mobile chrome", () => {
 
   it("does not clip header popovers on the shared 56px row", () => {
     const header = readFileSync(join(srcDir, "components/SiteHeader.tsx"), "utf8");
-    expect(header).toMatch(/h-14 min-h-\[56px\]"/);
+    expect(header).toMatch(/h-14 min-h-\[56px\]/);
     expect(header).not.toMatch(/h-14 min-h-\[56px\] overflow-hidden/);
+  });
+
+  it("keeps a compact account control visible on the 390px header", () => {
+    const header = readFileSync(join(srcDir, "components/SiteHeader.tsx"), "utf8");
+    const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    expect(header).toContain('data-testid="header-account-control"');
+    expect(header).toContain("header-account-control md:hidden");
+    expect(header).toContain("hidden sm:contents");
+    expect(css).toContain(".hi-pill:not(.hidden)");
+    expect(css).toContain(".hi-pill-primary:not(.hidden)");
+    expect(css).not.toMatch(/\.hi-pill,\s*\n\.hi-pill-primary,\s*\n\.ask-inflow-cta \{\s*\n\s*display: inline-flex/);
   });
 
   it("keeps Ask input and page padding on the shared tab-bar clearance", () => {

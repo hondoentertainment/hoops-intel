@@ -116,6 +116,11 @@ test("publisher 200 routes are in the static sitemap list", () => {
   assert.ok(!locs.includes("/podcast-companion"));
 });
 
+test("ask lastmod follows the daily edition when the page source is older", () => {
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/ask", ctx), "2026-09-02");
+});
+
 test("tonight and players lastmod follow the daily edition", () => {
   const later = (...dates) => dates.filter(Boolean).sort().at(-1);
   const pulseIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
@@ -196,10 +201,15 @@ test("daily desk sitemap priority sits above interactive tools", () => {
   assert.ok(Number(byLoc["/betting-intel"].priority) > Number(byLoc["/tools"].priority));
   assert.ok(Number(byLoc["/betting-intel"].priority) > Number(byLoc["/trade-simulator"].priority));
   assert.ok(Number(byLoc["/injuries"].priority) > Number(byLoc["/compare-players"].priority));
+  assert.ok(Number(byLoc["/tonight"].priority) >= 0.8);
+  assert.ok(Number(byLoc["/injuries"].priority) >= 0.8);
+  assert.ok(Number(byLoc["/tonight"].priority) > Number(byLoc["/pro"].priority));
+  assert.ok(Number(byLoc["/injuries"].priority) > Number(byLoc["/pro"].priority));
   assert.ok(Number(byLoc["/tools"].priority) <= 0.55);
   assert.ok(Number(byLoc["/trade-simulator"].priority) <= 0.55);
   assert.ok(Number(byLoc["/compare-players"].priority) <= 0.55);
   assert.equal(byLoc["/injuries"].changefreq, "daily");
+  assert.equal(byLoc["/tonight"].changefreq, "daily");
   assert.equal(byLoc["/betting-intel"].changefreq, "daily");
 });
 
@@ -211,6 +221,16 @@ test("historical comparison names are not sitemap-indexable", () => {
 test("retired Chris Paul stays indexable when archive coverage exists", () => {
   assert.equal(isSitemapIndexablePlayer("Chris Paul", { mentions: 2 }, lists), true);
   assert.equal(isSitemapIndexablePlayer("Chris Paul", { mentions: 0 }, lists), false);
+});
+
+test("prospect names stay indexable only with real archive coverage", () => {
+  const withProspects = { ...lists, prospects: new Set(["VJ Edgecombe"]) };
+  assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 4 }, withProspects), true);
+  assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 1 }, withProspects), false);
+  assert.equal(
+    isSitemapIndexablePlayer("VJ Edgecombe", { inPulse: true, mentions: 1 }, withProspects),
+    true,
+  );
 });
 
 test("thin one-mention archive names are dropped", () => {
@@ -234,7 +254,9 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/watch-guide<\/loc>/);
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/podcast-companion<\/loc>/);
   for (const path of [
+    "/",
     "/tonight",
+    "/injuries",
     "/players",
     "/embed-stats",
     "/widgets/analytics",
@@ -315,6 +337,17 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assert.ok(xml.trimEnd().endsWith("</urlset>"));
   assert.ok(urls.length >= 50, `expected a full sitemap, got ${urls.length} URLs`);
   assert.ok(!urls.some((u) => u.loc === "/watch-guide" || u.loc === "/podcast-companion"));
+  assert.equal(urls.filter((u) => !u.lastmod).length, 0, "every sitemap URL needs a lastmod");
+  const home = urls.find((u) => u.loc === "/");
+  const tonight = urls.find((u) => u.loc === "/tonight");
+  const injuries = urls.find((u) => u.loc === "/injuries");
+  const tools = urls.find((u) => u.loc === "/tools");
+  assert.ok(home && tonight && injuries && tools);
+  assert.match(home.lastmod, /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(tonight.lastmod, /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(injuries.lastmod, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(Number(tonight.priority) > Number(tools.priority));
+  assert.ok(Number(injuries.priority) > Number(tools.priority));
   const requiredPlayers = ["jaime-jaquez-jr", "vj-edgecombe", "amen-thompson", "keyonte-george"];
   for (const slug of requiredPlayers) {
     const block = xml.match(

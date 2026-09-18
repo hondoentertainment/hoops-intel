@@ -46,13 +46,17 @@ describe("player tool cross-links", () => {
 });
 
 describe("guest honesty", () => {
-  it("uses GuestNotice on badges, pick-em, pro, and my-pulse", () => {
-    for (const page of ["pages/Badges.tsx", "pages/PickEm.tsx", "pages/Pro.tsx", "pages/MyPulse.tsx"]) {
+  it("uses GuestNotice on badges, pick-em, pro, my-pulse, and account", () => {
+    for (const page of ["pages/Badges.tsx", "pages/PickEm.tsx", "pages/Pro.tsx", "pages/MyPulse.tsx", "pages/Account.tsx"]) {
       expect(src(page), page).toContain("GuestNotice");
-      expect(src(page), page).toContain("hasLocalAuthToken");
     }
+    expect(src("pages/Account.tsx")).toContain("SignedInNextNotice");
     expect(src("components/GuestNotice.tsx")).toContain("data-testid=\"guest-notice\"");
+    expect(src("components/GuestNotice.tsx")).toContain("data-testid=\"funnel-steps\"");
     expect(src("components/GuestNotice.tsx")).toContain("Sign in");
+    expect(src("components/GuestNotice.tsx")).toContain("Account");
+    expect(src("lib/guestAuth.ts")).toContain("guestFunnelCopy");
+    expect(src("lib/guestAuth.ts")).toContain("$5/month or $40/year");
   });
 });
 
