@@ -10,10 +10,9 @@ import { useMetaTags } from "../lib/useMetaTags";
 import {
   findPlayerInjury,
   getPlayerIntelBySlug,
-  playerHasLiveDeskCoverage,
   type PlayerIntelResponse,
 } from "../lib/playerIntel";
-import { getPlayerRosterStatus, playerCoverageEmptyState } from "../lib/playerRosterStatus";
+import { getPlayerRosterStatus, playerCoverageEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import { PlayerToolLinks } from "../components/PlayerToolLinks";
@@ -75,13 +74,15 @@ export default function Player() {
 
   const slug = params.slug || "";
   const currentPulse = player ? pulseIndex.find((p: any) => p.player === player.name) : undefined;
+  const currentInjuryPreview = player ? findPlayerInjury(player.name) : null;
   const roster = player
     ? getPlayerRosterStatus(player.name, {
         inPulse: Boolean(currentPulse),
-        hasCurrentTeam: player.teams.length > 0,
+        hasCurrentTeam: Boolean(currentPulse || currentInjuryPreview),
         mentions: player.mentions,
       })
     : null;
+  const frame = roster ? playerProfileFrame(roster, player?.teams ?? []) : null;
 
   useMetaTags({
     enabled: Boolean(slug),
@@ -112,7 +113,9 @@ export default function Player() {
               ? `${player.name} — ${roster.label}. ${roster.detail}`
               : `Hoops Intel desk coverage for ${player.name}.`),
           url: `https://hoopsintel.net/player/${slug}`,
-          affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })),
+          ...(frame?.jsonLdAffiliation
+            ? { affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })) }
+            : {}),
           dateModified: pulseEdition.date,
         }
       : undefined,
@@ -151,7 +154,7 @@ export default function Player() {
     );
   }
 
-  const currentInjury = findPlayerInjury(player.name);
+  const currentInjury = currentInjuryPreview;
   const coverageEmpty = playerCoverageEmptyState(player.name, roster ?? {
     status: "inactive",
     label: "Limited coverage",
@@ -216,18 +219,28 @@ export default function Player() {
               </p>
               <h1 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-3xl mb-2 max-md:text-[1.5rem]">{player.name}</h1>
               <div className="flex items-center gap-2 flex-wrap">
-                {player.teams.map((t) => (
-                  <a
-                    key={t}
-                    href={`/team/${t.toLowerCase()}`}
-                    className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded font-semibold"
-                    style={{ background: "var(--hi-surface-2,#f3f3f0)", color: getTeamColor(t) }}
-                  >
-                    <TeamLogo team={t} size={16} />
-                    {t}
-                  </a>
-                ))}
-                {currentInjury && (
+                {frame?.showTeamLinks
+                  ? player.teams.map((t) => (
+                      <a
+                        key={t}
+                        href={`/team/${t.toLowerCase()}`}
+                        className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded font-semibold"
+                        style={{ background: "var(--hi-surface-2,#f3f3f0)", color: getTeamColor(t) }}
+                      >
+                        <TeamLogo team={t} size={16} />
+                        {t}
+                      </a>
+                    ))
+                  : (
+                      <span
+                        data-testid="player-team-honesty"
+                        className="text-xs px-2 py-1 rounded font-semibold"
+                        style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-muted,#5c5c58)" }}
+                      >
+                        {frame?.teamValue ?? "Not on a current NBA roster"}
+                      </span>
+                    )}
+                {frame?.live && currentInjury && (
                   <span data-testid="player-injury-badge">
                     <InjuryChip status={currentInjury.status} />
                   </span>
@@ -258,7 +271,7 @@ export default function Player() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              {currentPulse && (
+              {frame?.live && currentPulse && (
                 <div className="text-right">
                   <div className="mono-data text-3xl font-bold" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
                     {currentPulse.indexScore}
@@ -311,7 +324,7 @@ export default function Player() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-4">
-            {!playerHasLiveDeskCoverage(intel) && (
+            {!frame?.live && (
               <>
                 <EmptyState
                   kicker={coverageEmpty.kicker}
@@ -326,7 +339,7 @@ export default function Player() {
               </>
             )}
             {/* Current Stats */}
-            {currentPulse && (
+            {frame?.live && currentPulse && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-2">CURRENT FORM — {pulseEdition.date}</div>
                 <div className="mono-data text-sm mb-2" style={{ color: "#10B981" }}>
@@ -338,7 +351,7 @@ export default function Player() {
               </div>
             )}
 
-            {intel?.sentiment && (
+            {frame?.live && intel?.sentiment && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-2">SENTIMENT PROFILE</div>
                 <div className="flex items-center justify-between mb-2">
@@ -350,7 +363,7 @@ export default function Player() {
               </div>
             )}
 
-            {intel?.recentGames && intel.recentGames.length > 0 && (
+            {frame?.live && intel?.recentGames && intel.recentGames.length > 0 && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-3">RELATED GAMES</div>
                 <div className="space-y-2">
@@ -365,7 +378,7 @@ export default function Player() {
             )}
 
             {/* Current Game */}
-            {currentGame && (
+            {frame?.live && currentGame && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-2">LAST GAME</div>
                 <div className="text-sm font-semibold text-white mb-1">
@@ -417,7 +430,7 @@ export default function Player() {
           {/* Sidebar */}
           <div className="space-y-4">
             {/* Injury Status */}
-            {currentInjury && (
+            {frame?.live && currentInjury && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-2">INJURY STATUS</div>
                 <div className="flex items-center gap-2 mb-2">
@@ -430,7 +443,7 @@ export default function Player() {
               </div>
             )}
 
-            {intel?.playoff && (intel.playoff.mover || intel.playoff.series.length > 0) && (
+            {frame?.live && intel?.playoff && (intel.playoff.mover || intel.playoff.series.length > 0) && (
               <div className="enhanced-card p-4">
                 <div className="section-label mb-3">PLAYOFF CONTEXT</div>
                 {intel.playoff.mover && (
@@ -457,8 +470,10 @@ export default function Player() {
                   <span className="text-white font-semibold">{roster?.label ?? "—"}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Team</span>
-                  <span className="text-white font-semibold">{player.teams.join(", ") || "—"}</span>
+                  <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{frame?.teamLabel ?? "Current team"}</span>
+                  <span className="text-white font-semibold" data-testid="player-team-fact">
+                    {frame?.teamValue ?? "Not on a current NBA roster"}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>Archive Mentions</span>
@@ -501,8 +516,8 @@ export default function Player() {
 
             <PlayerToolLinks
               name={player.name}
-              team={player.teams[0]}
-              live={roster?.status === "active"}
+              team={frame?.showTeamLinks ? player.teams[0] : undefined}
+              live={Boolean(frame?.live)}
             />
           </div>
         </div>

@@ -73,10 +73,11 @@ describe("player availability badges", () => {
 
     const vj = rows.find((p) => p.slug === "vj-edgecombe" || p.name === "VJ Edgecombe");
     if (vj) {
-      expect(vj.status).toBe("inactive");
-      expect(vj.label).toBe("Archive only");
+      expect(vj.status).toBe("prospect");
+      expect(vj.label).toBe("Prospect archive");
       expect(vj.injuryStatus).toBeUndefined();
       expect(vj.pulseRank).toBeUndefined();
+      expect(vj.teams).toEqual([]);
     }
   });
 });
