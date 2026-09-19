@@ -191,6 +191,11 @@ test("player profile lastmod follows the current edition, not a stale archive-on
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
 });
 
+test("injury-wire players get the same daily desk sitemap weight as Pulse Index", () => {
+  assert.deepEqual(playerSitemapMeta({ onInjuryWire: true }), { priority: "0.65", changefreq: "daily" });
+  assert.deepEqual(playerSitemapMeta({ inPulse: false, onInjuryWire: false }), { priority: "0.5", changefreq: "weekly" });
+});
+
 test("Pulse Index players get higher sitemap priority; others stay default", () => {
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
   assert.deepEqual(playerSitemapMeta({ inPulse: false }), { priority: "0.5", changefreq: "weekly" });
@@ -356,5 +361,20 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
       ),
     );
     assert.ok(block, `complete <url> block missing for /player/${slug}`);
+  }
+});
+
+test("committed sitemap player locs match generate() so new profiles ship on publish", () => {
+  const { urls } = generate({ write: false });
+  const xml = readFileSync(join(ROOT, "public/sitemap.xml"), "utf8");
+  const committed = new Set(
+    [...xml.matchAll(/<loc>https:\/\/hoopsintel\.net(\/player\/[^<]+)<\/loc>/g)].map((m) => m[1]),
+  );
+  const generated = new Set(urls.filter((u) => u.loc.startsWith("/player/")).map((u) => u.loc));
+  for (const loc of generated) {
+    assert.ok(committed.has(loc), `committed sitemap missing ${loc} — run node scripts/generate-sitemap.mjs`);
+  }
+  for (const loc of committed) {
+    assert.ok(generated.has(loc), `committed sitemap has stale ${loc}`);
   }
 });

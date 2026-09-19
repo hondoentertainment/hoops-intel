@@ -80,7 +80,7 @@ jobs:
         run: node --test scripts/tests/season-mode.test.mjs
 
       - name: Sitemap lastmod + player index quality (node:test)
-        run: node --test scripts/tests/sitemap-lastmod.test.mjs
+        run: node --test scripts/tests/sitemap-lastmod.test.mjs scripts/tests/site-review-paths.test.mjs
 
       - name: RSS well-formed + newest edition (node:test)
         run: node --test scripts/tests/rss-feed.test.mjs

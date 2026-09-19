@@ -41,7 +41,7 @@ const DAILY_SCRIPTS = [
   { name: "History",     script: "generate-history.mjs",     critical: false, output: "client/src/lib/historyData.ts"    },
   { name: "Refs",        script: "generate-refs.mjs",        critical: false, output: "client/src/lib/refData.ts"        },
   { name: "RSS Feed",    script: "generate-rss.mjs",         critical: false },
-  { name: "Sitemap",     script: "generate-sitemap.mjs",     critical: false },
+  { name: "Sitemap",     script: "generate-sitemap.mjs",     critical: true },
 ];
 
 // Backfill only needs edition + archive + feed/sitemap — skip live-only secondary content.
