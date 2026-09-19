@@ -4,7 +4,7 @@ import { slugify, getAllPlayers } from "../lib/searchUtils";
 import { pulseIndex, pulseEdition } from "../lib/pulseData";
 import { getTeamColor } from "../lib/teamColors";
 import { findPlayerInjury } from "../lib/playerIntel";
-import { getPlayerRosterStatus, playerProfileFrame } from "../lib/playerRosterStatus";
+import { getPlayerRosterStatus, playerCoverageEmptyState, playerLiveEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import EditorialShell from "../components/EditorialShell";
 
@@ -245,6 +245,19 @@ export default function PlayerCard() {
           <div className="text-xs font-semibold mb-5" style={{ color: frame.live ? hexToRgba(teamColor, 0.9) : "rgba(255,255,255,0.55)" }}>
             {frame.live ? player.teams.join(" · ") : frame.teamValue}
           </div>
+
+          {!currentPulse && (
+            <p
+              className="text-xs leading-relaxed mb-5"
+              data-testid="player-card-empty"
+              style={{ color: "rgba(255,255,255,0.7)" }}
+            >
+              {(roster.status === "active"
+                ? playerLiveEmptyState(player.name, currentInjury)
+                : playerCoverageEmptyState(player.name, roster)
+              ).body}
+            </p>
+          )}
 
           {/* Pulse score */}
           {currentPulse && (

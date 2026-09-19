@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { findPlayerInjury, playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
 import { deskStaleNote, isDeskEditionStale, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
-import { filterBrowsePlayers, listBrowsePlayers } from "../lib/playersIndex";
+import { filterBrowsePlayers, listBrowsePlayers, playerProfileHref } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
 
 describe("playersIndex", () => {
@@ -28,6 +28,14 @@ describe("playersIndex", () => {
     const queried = filterBrowsePlayers(rows, "brunson", "all");
     expect(queried.some((p) => /brunson/i.test(p.name))).toBe(true);
     expect(filterBrowsePlayers(rows, "zzzz-not-a-player", "all")).toEqual([]);
+  });
+
+  it("returns a profile href only for indexable names", () => {
+    const leader = pulseIndex[0]!.player;
+    expect(playerProfileHref(leader)).toBe(`/player/${slugify(leader)}`);
+    expect(playerProfileHref("Chris Paul")).toBe("/player/chris-paul");
+    expect(playerProfileHref("Michael Jordan")).toBeNull();
+    expect(playerProfileHref("")).toBeNull();
   });
 });
 

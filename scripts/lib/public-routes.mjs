@@ -88,10 +88,10 @@ export const SITEMAP_STATIC_ROUTES = [
 ];
 
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };
-/** Pulse Index names — existing daily desk signal, not a handmade celebrity list. */
+/** Pulse Index or today's injury wire — existing daily desk signals, not a handmade celebrity list. */
 export const SITEMAP_PLAYER_DESK_META = { priority: "0.65", changefreq: "daily" };
-// Threshold (do not invent another ranking): Pulse Index membership only.
-// inPulse → daily 0.65; everyone else → weekly 0.5.
+// Threshold (do not invent another ranking): Pulse Index or injury-wire membership.
+// inPulse || onInjuryWire → daily 0.65; everyone else → weekly 0.5.
 export const SITEMAP_TEAM_META = { priority: "0.6", changefreq: "weekly" };
 export const SITEMAP_GAME_META = { priority: "0.55", changefreq: "daily" };
 /** Default series sitemap meta; generate-sitemap.mjs bumps during active playoffs. */

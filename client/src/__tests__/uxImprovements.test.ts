@@ -40,8 +40,12 @@ describe("player tool cross-links", () => {
     expect(src("pages/Player.tsx")).toContain("PlayerToolLinks");
     expect(src("pages/PlayerCompare.tsx")).toContain("readQueryParam");
     expect(src("pages/TradeValue.tsx")).toContain("tvi-");
-    expect(src("pages/Projections.tsx")).toContain("proj-");
+    expect(src("pages/TradeValue.tsx")).toContain("PlayerNameLink");
+    expect(src("pages/LineupIntel.tsx")).toContain("PlayerNameLink");
+    expect(src("pages/PlayerCompare.tsx")).toContain("/player/");
     expect(src("pages/InjuryReport.tsx")).toContain("playerQuery");
+    expect(src("pages/InjuryReport.tsx")).toContain("/player/");
+    expect(src("pages/Projections.tsx")).toContain("proj-");
   });
 });
 

@@ -97,6 +97,7 @@ describe("editorial UX primitives", () => {
     expect(player).toContain("player-last-updated");
     expect(player).toContain("player-team-honesty");
     expect(player).toContain("playerProfileFrame");
+    expect(player).toContain("playerLiveEmptyState");
     expect(player).toContain("Not on a current NBA roster");
     const players = readFileSync(join(srcDir, "pages/Players.tsx"), "utf8");
     expect(players).toContain("lastUpdatedStamp");

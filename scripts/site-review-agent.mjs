@@ -19,11 +19,9 @@ const STATE_PATH = join(CACHE_DIR, "site-review-state.json");
 const REPORT_MD = join(ROOT, "site-review-report.md");
 const META_JSON = join(ROOT, "site-review-meta.json");
 
-import { SITE_REVIEW_PATHS } from "./lib/public-routes.mjs";
+import { resolveSiteReviewPaths } from "./lib/site-review-paths.mjs";
 
 const DEFAULT_BASE = "https://hoopsintel.net";
-/** Production smoke routes — sourced from scripts/lib/public-routes.mjs (+ dynamic series below). */
-const DEFAULT_PATHS = SITE_REVIEW_PATHS;
 
 const FETCH_TIMEOUT_MS = 25_000;
 const MAX_EXCERPT = 3200;
@@ -34,19 +32,21 @@ function parsePaths() {
   return resolveReviewPaths();
 }
 
-/** Static manifest + active playoff series pages from playoffData.ts */
+/** Static manifest + active playoff series + representative /player/* pages. */
 function resolveReviewPaths() {
-  const paths = [...DEFAULT_PATHS];
+  let playoffFile = "";
+  let pulseFile = "";
   try {
-    const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
-    for (const m of playoffFile.matchAll(/seriesId:\s*"([^"]+)"/g)) {
-      const loc = `/playoffs/series/${m[1]}`;
-      if (!paths.includes(loc)) paths.push(loc);
-    }
+    playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
   } catch {
     /* playoff data optional in local runs */
   }
-  return paths;
+  try {
+    pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  } catch {
+    /* pulse data optional in local runs */
+  }
+  return resolveSiteReviewPaths({ playoffFile, pulseFile });
 }
 
 function stripForHash(html, path) {

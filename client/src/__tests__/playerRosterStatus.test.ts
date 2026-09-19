@@ -6,6 +6,7 @@ import {
   isIndexablePlayerProfile,
   isProspectPlayerName,
   playerCoverageEmptyState,
+  playerLiveEmptyState,
   playerProfileFrame,
 } from "../lib/playerRosterStatus";
 
@@ -59,6 +60,21 @@ describe("playerRosterStatus", () => {
 
     const desk = getPlayerRosterStatus("VJ Edgecombe", { inPulse: true, hasCurrentTeam: true, mentions: 4 });
     expect(desk.status).toBe("active");
+  });
+
+  it("uses an availability empty state when a live desk player has no Pulse line", () => {
+    const injured = playerLiveEmptyState("Kawhi Leonard", {
+      status: "Out",
+      injury: "Right knee",
+    });
+    expect(injured.kicker).toBe("Availability");
+    expect(injured.pill).toBe("OUT");
+    expect(injured.title).toMatch(/no Pulse counting line/i);
+    expect(injured.body.toLowerCase()).toContain("not inventing counting stats");
+
+    const deskOnly = playerLiveEmptyState("Joel Embiid");
+    expect(deskOnly.pill).toBe("NO PULSE LINE");
+    expect(deskOnly.title).toMatch(/Joel Embiid/);
   });
 
   it("uses honest empty-state copy for prospects and retired names", () => {

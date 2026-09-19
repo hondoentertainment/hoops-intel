@@ -12,7 +12,7 @@ import {
   getPlayerIntelBySlug,
   type PlayerIntelResponse,
 } from "../lib/playerIntel";
-import { getPlayerRosterStatus, playerCoverageEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
+import { getPlayerRosterStatus, playerCoverageEmptyState, playerLiveEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
 import { PlayerToolLinks } from "../components/PlayerToolLinks";
@@ -161,6 +161,8 @@ export default function Player() {
     detail: "Thin archive mention only — not a current NBA roster card.",
     indexable: false,
   });
+  const liveEmpty =
+    frame?.live && !currentPulse ? playerLiveEmptyState(player.name, currentInjury) : null;
   const currentGame = gameResults.find((g: any) => g.topPerformer === player.name);
   const editions = getPlayerEditions(player.name);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent,#8ec8f0)";
@@ -282,7 +284,7 @@ export default function Player() {
                   </div>
                 </div>
               )}
-              {/* Share Card link */}
+              {frame?.shareAsLiveCard && (
               <a
                 href={`/card/${slug}`}
                 className="flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold transition-colors"
@@ -311,6 +313,7 @@ export default function Player() {
                 </svg>
                 Share Card
               </a>
+              )}
               {/* Share button */}
               <ShareButton
                 url={shareUrl}
@@ -338,6 +341,16 @@ export default function Player() {
                 </div>
               </>
             )}
+            {liveEmpty && (
+              <EmptyState
+                kicker={liveEmpty.kicker}
+                title={liveEmpty.title}
+                body={liveEmpty.body}
+                pill={liveEmpty.pill}
+                footnote={currentInjury ? currentInjury.timeline : undefined}
+                compact
+              />
+            )}
             {/* Current Stats */}
             {frame?.live && currentPulse && (
               <div className="enhanced-card p-4">
@@ -360,6 +373,20 @@ export default function Player() {
                 </div>
                 <p className="text-sm mb-2" style={{ color: "var(--hi-muted,#5c5c58)" }}>{intel.sentiment.topTake}</p>
                 <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>{intel.sentiment.narrativeArc}</p>
+              </div>
+            )}
+
+            {frame?.live && intel?.upcomingGames && intel.upcomingGames.length > 0 && (
+              <div className="enhanced-card p-4">
+                <div className="section-label mb-3">UPCOMING</div>
+                <div className="space-y-2">
+                  {intel.upcomingGames.map((g) => (
+                    <a key={g.gameId} href={g.link} className="block rounded p-2 bg-white/[0.03] hover:bg-white/[0.06]">
+                      <div className="text-sm font-semibold text-white">{g.title}</div>
+                      <div className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>{g.time || g.tv || "Scheduled"}</div>
+                    </a>
+                  ))}
+                </div>
               </div>
             )}
 

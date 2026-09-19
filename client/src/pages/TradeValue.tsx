@@ -4,6 +4,7 @@ import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 import { toolUpdatedLabel } from "../lib/dataTrust";
 import { matchesPlayerQuery, readQueryParam } from "../lib/playerToolLinks";
+import { PlayerNameLink } from "../components/PlayerNameLink";
 import { slugify } from "../lib/searchUtils";
 import { tradeValueData, type TVIPlayer } from "../lib/tradeValueData";
 import { useSubscription } from "../lib/useSubscription";
@@ -139,12 +140,11 @@ function PlayerCard({ p, highlight }: { p: TVIPlayer; highlight?: boolean }) {
         <div className="flex-1 min-w-0">
           {/* Top row: name + team + badge */}
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <span
-              className="text-base font-bold leading-tight"
+            <PlayerNameLink
+              name={p.player}
+              className="text-base font-bold leading-tight hover:opacity-80"
               style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", letterSpacing: "0.02em" }}
-            >
-              {p.player}
-            </span>
+            />
             <span
               className="flex items-center gap-1.5 text-sm font-semibold"
               style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}

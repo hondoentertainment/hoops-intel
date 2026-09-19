@@ -257,11 +257,11 @@ function extractLatestArchiveIso(archiveFile) {
 }
 
 /**
- * Pulse Index membership is the only popularity signal we trust for crawl weight.
- * Threshold: inPulse → daily 0.65; otherwise weekly 0.5. No minutes/search/celebrity list.
+ * Pulse Index or today's injury wire are the only popularity signals we trust for crawl weight.
+ * Threshold: inPulse || onInjuryWire → daily 0.65; otherwise weekly 0.5. No minutes/search/celebrity list.
  */
-export function playerSitemapMeta({ inPulse } = {}) {
-  return inPulse ? SITEMAP_PLAYER_DESK_META : SITEMAP_PLAYER_META;
+export function playerSitemapMeta({ inPulse, onInjuryWire } = {}) {
+  return inPulse || onInjuryWire ? SITEMAP_PLAYER_DESK_META : SITEMAP_PLAYER_META;
 }
 
 /** Prefer content dates / source mtimes so crawlers see selective freshness. */
@@ -468,6 +468,13 @@ export function generate({ write = true } = {}) {
       pulseIndexPlayers.add(canonicalPlayerName(m[1]));
     }
   }
+  const injuryPlayers = new Set();
+  const injuryBlock = pulseFile.match(/export const injuryUpdates\s*=\s*\[([\s\S]*?)\]/);
+  if (injuryBlock) {
+    for (const m of injuryBlock[1].matchAll(/\bplayer:\s*"([^"]+)"/g)) {
+      injuryPlayers.add(canonicalPlayerName(m[1]));
+    }
+  }
 
   const playerSlugs = new Map();
   for (const [canonical, mentions] of mentionCounts) {
@@ -489,7 +496,10 @@ export function generate({ write = true } = {}) {
     playerSlugs.set(slug, canonical);
     urls.push({
       loc: `/player/${slug}`,
-      ...playerSitemapMeta({ inPulse: pulseIndexPlayers.has(canonical) }),
+      ...playerSitemapMeta({
+        inPulse: pulseIndexPlayers.has(canonical),
+        onInjuryWire: injuryPlayers.has(canonical),
+      }),
     });
   }
   const teamSlugs = new Set();
@@ -545,5 +555,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   } catch (err) {
     console.error("Sitemap generation failed — writing fallback so /sitemap.xml stays valid.", err);
     writeFallbackSitemap();
+    process.exitCode = 1;
   }
 }
