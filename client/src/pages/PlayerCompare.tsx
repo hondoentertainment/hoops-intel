@@ -105,7 +105,11 @@ export default function PlayerCompare() {
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
                   <div className="mono-data text-xs mb-1" style={{ color: "var(--hi-accent-text,#146a8c)" }}>RANK #{p.rank}</div>
-                  <h2 className="text-xl font-bold text-[var(--hi-text,#0a0a0a)]">{p.player}</h2>
+                  <h2 className="text-xl font-bold text-[var(--hi-text,#0a0a0a)]">
+                    <a href={`/player/${slugify(p.player)}`} className="hover:opacity-80">
+                      {p.player}
+                    </a>
+                  </h2>
                   <div className="flex items-center gap-1.5 text-sm mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}><TeamLogo team={p.team} size={16} />{p.team} · {p.teamRecord}</div>
                 </div>
                 <div className="mono-data px-4 py-2 rounded-[10px] text-xl font-black" style={{ background: "rgba(142,200,240,0.12)", color: "var(--hi-accent-text,#146a8c)", border: "1px solid rgba(142,200,240,0.25)" }}>

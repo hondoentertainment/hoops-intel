@@ -7,6 +7,7 @@ import type { LineupUnit, TeamLineupIntel } from "../lib/lineupData";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
+import { PlayerNameLink } from "../components/PlayerNameLink";
 
 // ═══════════════════════════════════════════════════════════
 // NET RATING BAR
@@ -54,17 +55,17 @@ function LineupPill({ players }: { players: string[] }) {
   return (
     <div className="flex flex-wrap gap-1">
       {players.map((p, i) => (
-        <span
+        <PlayerNameLink
           key={i}
-          className="text-xs px-2 py-0.5 rounded"
+          name={p}
+          lastNameOnly
+          className="text-xs px-2 py-0.5 rounded hover:opacity-80"
           style={{
             background: "rgba(255,255,255,0.04)",
             color: "var(--hi-muted,#5c5c58)",
             fontFamily: "var(--hi-font-body)",
           }}
-        >
-          {p.split(" ").slice(-1)[0]}
-        </span>
+        />
       ))}
     </div>
   );
@@ -130,17 +131,16 @@ function LineupSection({
       </div>
       <div className="flex flex-wrap gap-1.5 mb-2">
         {lineup.players.map((p, i) => (
-          <span
+          <PlayerNameLink
             key={i}
-            className="text-xs px-2 py-0.5 rounded"
+            name={p}
+            className="text-xs px-2 py-0.5 rounded hover:opacity-80"
             style={{
               background: "rgba(255,255,255,0.05)",
               color: "var(--hi-muted,#5c5c58)",
               fontFamily: "var(--hi-font-body)",
             }}
-          >
-            {p}
-          </span>
+          />
         ))}
       </div>
       <div className="flex items-center gap-4 mb-1.5">

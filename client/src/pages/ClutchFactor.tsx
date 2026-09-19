@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
+import { PlayerNameLink } from "../components/PlayerNameLink";
 import { clutchData, ClutchPlayer } from "../lib/clutchData";
 
 function getMedalStyle(rank: number): React.CSSProperties | null {
@@ -108,7 +109,9 @@ function PlayerRow({ player, index, expanded, onToggle }: { player: ClutchPlayer
           {getMedalEmoji(player.rank)}
         </td>
         <td style={{ padding: "12px 16px" }}>
-          <span style={{ color: "var(--hi-text,#0a0a0a)", fontWeight: 600, fontSize: 14 }}>{player.player}</span>
+          <span style={{ color: "var(--hi-text,#0a0a0a)", fontWeight: 600, fontSize: 14 }}>
+            <PlayerNameLink name={player.player} style={{ color: "inherit", fontWeight: 600 }} />
+          </span>
           <span style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: 12, marginLeft: 8 }}>{player.team}</span>
         </td>
         <td style={{ padding: "12px 16px", width: 180 }}>

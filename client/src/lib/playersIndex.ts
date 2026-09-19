@@ -63,6 +63,23 @@ export function listBrowsePlayers(): BrowsePlayer[] {
     });
 }
 
+let hrefByCanonical: Map<string, string> | null = null;
+
+function profileHrefMap(): Map<string, string> {
+  if (!hrefByCanonical) {
+    hrefByCanonical = new Map(
+      listBrowsePlayers().map((player) => [canonicalizePlayerName(player.name), `/player/${player.slug}`]),
+    );
+  }
+  return hrefByCanonical;
+}
+
+/** `/player/:slug` when the name is an indexable profile; otherwise null. */
+export function playerProfileHref(name: string): string | null {
+  if (!name?.trim()) return null;
+  return profileHrefMap().get(canonicalizePlayerName(name)) ?? null;
+}
+
 export function filterBrowsePlayers(
   players: BrowsePlayer[],
   query: string,
