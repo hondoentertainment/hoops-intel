@@ -200,6 +200,27 @@ export function playerCoverageEmptyState(
   };
 }
 
+/** Live desk card (injury wire / edition) that still has no Pulse counting line. */
+export function playerLiveEmptyState(
+  name: string,
+  injury?: { status: string; injury: string } | null,
+): { kicker: string; title: string; body: string; pill: string } {
+  if (injury) {
+    return {
+      kicker: "Availability",
+      title: `${name} is ${injury.status} — no Pulse counting line today`,
+      body: `${injury.injury}. This profile stays on the desk for availability, not an empty stat shell — Hoops Intel is not inventing counting stats while there is no Pulse Index card.`,
+      pill: injury.status.toUpperCase(),
+    };
+  }
+  return {
+    kicker: "Desk coverage",
+    title: `No Pulse counting line for ${name}`,
+    body: "This player is on today's desk but does not have a Pulse Index card. Archive mentions and injury notes (if any) are the coverage — not a blank stat panel.",
+    pill: "NO PULSE LINE",
+  };
+}
+
 export function playerProfileFrame(
   roster: RosterStatusInfo,
   teams: string[] = [],
