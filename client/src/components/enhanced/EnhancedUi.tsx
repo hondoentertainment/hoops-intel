@@ -139,16 +139,21 @@ export function SectionHeader({
   title,
   action,
   actionHref,
+  badge,
 }: {
   eyebrow: string;
   title: string;
   action?: string;
   actionHref?: string;
+  badge?: ReactNode;
 }) {
   return (
     <div className="flex flex-col items-start gap-1 md:flex-row md:items-end md:gap-3 w-full min-w-0">
       <div className="flex-1 min-w-0">
-        <p className="enhanced-kicker">{eyebrow}</p>
+        <div className="flex items-center gap-2 flex-wrap mb-1">
+          <p className="enhanced-kicker">{eyebrow}</p>
+          {badge}
+        </div>
         <h2 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] leading-9 max-md:text-[1.75rem] max-md:leading-8">
           {title}
         </h2>
@@ -188,6 +193,19 @@ export function StatCard({
 
 export function InjuryChip({ status }: { status: string }) {
   return <StatusPill tone={injuryChipTone(status)}>{injuryStatusLabel(status)}</StatusPill>;
+}
+
+/** Shared novelty marker — same desk chip as the rest of the editorial chrome. */
+export function ForFunChip() {
+  return (
+    <span
+      className="desk-chip"
+      data-testid="for-fun-chip"
+      style={{ background: "var(--hi-accent-soft,#d7eef9)", color: "var(--hi-accent-text,#146a8c)" }}
+    >
+      For fun
+    </span>
+  );
 }
 
 export function DeskFilterChip({
@@ -401,6 +419,7 @@ export function PageHero({
   meta,
   action,
   actionHref,
+  badge,
   as: Heading = "h1",
 }: {
   kicker: string;
@@ -409,11 +428,15 @@ export function PageHero({
   meta?: string;
   action?: string;
   actionHref?: string;
+  badge?: ReactNode;
   as?: "h1" | "h2";
 }) {
   return (
     <header className="flex flex-col gap-2 min-w-0">
-      <p className="enhanced-kicker">{kicker}</p>
+      <div className="flex items-center gap-2 flex-wrap">
+        <p className="enhanced-kicker">{kicker}</p>
+        {badge}
+      </div>
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between min-w-0">
         <Heading className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[40px] leading-[1.1] max-md:text-[1.75rem] max-md:leading-8 min-w-0">
           {title}

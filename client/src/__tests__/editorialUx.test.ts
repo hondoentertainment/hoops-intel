@@ -111,9 +111,9 @@ describe("editorial UX primitives", () => {
     expect(watch).toContain("DeskLoopLinks");
     expect(watch).toContain("CampDeskEmpty");
     expect(watch).toContain("No games on the board");
-    expect(watch).toContain("toolUpdatedLabel");
+    expect(watch).toContain("freshnessHeroMeta");
     expect(podcast).toContain("DeskLoopLinks");
-    expect(podcast).toContain("toolUpdatedLabel");
+    expect(podcast).toContain("freshnessHeroMeta");
   });
 
   it("keeps Ask in-flow in the main column and never as a fixed overlay", () => {

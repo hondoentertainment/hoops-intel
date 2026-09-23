@@ -4,7 +4,7 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { CampDeskEmpty, DeskLoopLinks } from "../components/enhanced/EnhancedUi";
-import { toolUpdatedLabel } from "../lib/dataTrust";
+import { assessContentFreshness, freshnessHeroMeta } from "../lib/dataTrust";
 import { watchGuideData } from "../lib/watchGuideData";
 
 // ═══════════════════════════════════════════════════════════
@@ -287,6 +287,7 @@ function CalloutCard({ type, game, reason }: {
 
 export default function WatchGuide() {
   const data = watchGuideData;
+  const freshness = assessContentFreshness(data.generatedDate || data.displayDate);
   const topGame = data.games[data.topPick.gameIndex];
   const sleeperGame = data.games[data.sleeper.gameIndex];
   const skipGame = data.games[data.skipIt.gameIndex];
@@ -297,8 +298,8 @@ export default function WatchGuide() {
       subtitle="WATCH GUIDE"
       sectionLabel="Watch guide"
       title="Tonight's watch guide"
-      description={data.date}
-      heroMeta={toolUpdatedLabel(data.generatedDate || data.displayDate)}
+      description={freshness.state === "stale" ? "This ranking is past the daily freshness window." : data.date}
+      heroMeta={freshnessHeroMeta(data.generatedDate || data.displayDate, data.displayDate) ?? undefined}
       maxWidth="md"
       headerToolbarExtra={
         <span
@@ -309,6 +310,16 @@ export default function WatchGuide() {
         </span>
       }
     >
+        {freshness.state === "stale" ? (
+          <p
+            className="text-xs mb-4"
+            role="status"
+            data-testid="content-may-be-outdated"
+            style={{ color: "var(--hi-warn,#c2410c)" }}
+          >
+            May be outdated. Last generated {data.displayDate || data.generatedDate}. Not today’s desk.
+          </p>
+        ) : null}
 
         {!slateOpen ? (
           <>

@@ -79,8 +79,8 @@ describe("freshness signals", () => {
   it("stamps watch-guide, podcast, and major labs with real dates", () => {
     expect(toolUpdatedLabel("September 16, 2026")).toBe("Updated September 16, 2026");
     expect(toolUpdatedLabel("")).toMatch(/^Last updated:/);
-    expect(src("pages/WatchGuide.tsx")).toContain("toolUpdatedLabel");
-    expect(src("pages/PodcastCompanion.tsx")).toContain("toolUpdatedLabel");
+    expect(src("pages/WatchGuide.tsx")).toContain("freshnessHeroMeta");
+    expect(src("pages/PodcastCompanion.tsx")).toContain("freshnessHeroMeta");
     expect(src("pages/TradeValue.tsx")).toContain("heroMeta");
     expect(src("pages/Projections.tsx")).toContain("heroMeta");
     expect(src("pages/ClutchFactor.tsx")).toContain("heroMeta");

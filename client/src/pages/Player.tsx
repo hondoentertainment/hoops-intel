@@ -7,6 +7,8 @@ import { getTeamColor } from "../lib/teamColors";
 import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
+import { playerProfileCanonicalUrl } from "../lib/seoConfig";
+import { playerAvailability } from "../lib/playerAvailability";
 import {
   findPlayerInjury,
   getPlayerIntelBySlug,
@@ -14,7 +16,7 @@ import {
 } from "../lib/playerIntel";
 import { getPlayerRosterStatus, playerCoverageEmptyState, playerLiveEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
 import { lastUpdatedStamp } from "../lib/dataTrust";
-import { EmptyState, EnhancedButton, InjuryChip } from "../components/enhanced/EnhancedUi";
+import { EmptyState, EnhancedButton, InjuryChip, StatusPill } from "../components/enhanced/EnhancedUi";
 import { PlayerToolLinks } from "../components/PlayerToolLinks";
 import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
@@ -73,6 +75,7 @@ export default function Player() {
   }, [requestedSlug]);
 
   const slug = params.slug || "";
+  const profileCanonical = slug ? playerProfileCanonicalUrl(slug) : undefined;
   const currentPulse = player ? pulseIndex.find((p: any) => p.player === player.name) : undefined;
   const currentInjuryPreview = player ? findPlayerInjury(player.name) : null;
   const roster = player
@@ -99,8 +102,8 @@ export default function Player() {
           ? `${player.name} — ${roster.label}. ${roster.detail}`
           : `Archive and desk coverage for ${player.name} on Hoops Intel.`,
     ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
-    ogUrl: `https://hoopsintel.net/player/${slug}`,
-    canonicalUrl: `https://hoopsintel.net/player/${slug}`,
+    ogUrl: profileCanonical,
+    canonicalUrl: profileCanonical,
     noindex: !player || !roster?.indexable,
     jsonLd: player
       ? {
@@ -112,7 +115,7 @@ export default function Player() {
             (roster && roster.status !== "active"
               ? `${player.name} — ${roster.label}. ${roster.detail}`
               : `Hoops Intel desk coverage for ${player.name}.`),
-          url: `https://hoopsintel.net/player/${slug}`,
+          url: profileCanonical,
           ...(frame?.jsonLdAffiliation
             ? { affiliation: player.teams.map((team) => ({ "@type": "SportsTeam", name: team })) }
             : {}),
@@ -155,6 +158,7 @@ export default function Player() {
   }
 
   const currentInjury = currentInjuryPreview;
+  const availability = playerAvailability(player.name, Boolean(frame?.live));
   const coverageEmpty = playerCoverageEmptyState(player.name, roster ?? {
     status: "inactive",
     label: "Limited coverage",
@@ -167,7 +171,7 @@ export default function Player() {
   const editions = getPlayerEditions(player.name);
   const teamColor = player.teams[0] ? getTeamColor(player.teams[0]) : "var(--hi-accent,#8ec8f0)";
 
-  const shareUrl = `https://hoopsintel.net/player/${slug}`;
+  const shareUrl = profileCanonical ?? `https://hoopsintel.net/player/${slug}`;
   const shareTweet = currentPulse
     ? `${currentPulse.player} — Pulse Rank #${currentPulse.rank} | ${currentPulse.keyStats} hoopsintel.net/player/${slug}`
     : `${player.name} on Hoops Intel hoopsintel.net/player/${slug}`;
@@ -242,9 +246,23 @@ export default function Player() {
                         {frame?.teamValue ?? "Not on a current NBA roster"}
                       </span>
                     )}
-                {frame?.live && currentInjury && (
+                {availability?.kind === "listed" && (
                   <span data-testid="player-injury-badge">
-                    <InjuryChip status={currentInjury.status} />
+                    <InjuryChip status={availability.label} />
+                  </span>
+                )}
+                {availability?.kind === "clear" && (
+                  <span data-testid="player-availability-clear">
+                    <StatusPill tone="success">{availability.label}</StatusPill>
+                  </span>
+                )}
+                {availability && (
+                  <span
+                    className="text-xs"
+                    data-testid="player-availability-as-of"
+                    style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
+                  >
+                    Availability as of {availability.asOf}
                   </span>
                 )}
                 {roster && roster.status !== "active" && (
@@ -456,16 +474,32 @@ export default function Player() {
 
           {/* Sidebar */}
           <div className="space-y-4">
-            {/* Injury Status */}
-            {frame?.live && currentInjury && (
-              <div className="enhanced-card p-4">
-                <div className="section-label mb-2">INJURY STATUS</div>
+            {availability && (
+              <div className="enhanced-card p-4" data-testid="player-availability">
+                <div className="section-label mb-2">AVAILABILITY</div>
                 <div className="flex items-center gap-2 mb-2">
-                  <InjuryChip status={currentInjury.status} />
+                  {availability.kind === "listed" ? (
+                    <InjuryChip status={availability.label} />
+                  ) : (
+                    <StatusPill tone="success">{availability.label}</StatusPill>
+                  )}
                 </div>
-                <div className="text-sm text-white mb-1">{currentInjury.injury}</div>
-                <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
-                  {currentInjury.timeline}
+                {availability.kind === "listed" ? (
+                  <>
+                    <div className="text-sm text-white mb-1">{availability.injury}</div>
+                    {availability.timeline ? (
+                      <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+                        {availability.timeline}
+                      </p>
+                    ) : null}
+                  </>
+                ) : (
+                  <p className="text-xs" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+                    Not on today’s injury wire. Hoops Intel is not assigning a status beyond that.
+                  </p>
+                )}
+                <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+                  As of {availability.asOf}
                 </p>
               </div>
             )}

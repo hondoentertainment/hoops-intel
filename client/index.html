@@ -23,6 +23,23 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Hoops Intel" />
     <link rel="canonical" href="https://hoopsintel.net" />
+    <script>
+      // Player profiles own their canonical before React boots, so the homepage
+      // tag in this shell does not compete with /players or /compare-players.
+      (function () {
+        var path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+        var match = /^\/player\/([^/]+)$/i.exec(path);
+        if (!match) return;
+        var slug = match[1];
+        try { slug = decodeURIComponent(slug); } catch (e) {}
+        slug = String(slug || "").toLowerCase();
+        var url = "https://hoopsintel.net/player/" + encodeURIComponent(slug);
+        var link = document.querySelector('link[rel="canonical"]');
+        if (link) link.setAttribute("href", url);
+        var og = document.querySelector('meta[property="og:url"]');
+        if (og) og.setAttribute("content", url);
+      })();
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
