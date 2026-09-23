@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { parseEmbedAnalyticsDays } from "./_lib/embedAnalyticsDays";
+import { parseEmbedAnalyticsDays } from "./_lib/embedAnalyticsDays.js";
 
 describe("parseEmbedAnalyticsDays", () => {
   it("defaults to 8 when days missing", () => {

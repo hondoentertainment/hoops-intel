@@ -1,5 +1,5 @@
-import { parseEmbedAnalyticsDays } from "./_lib/embedAnalyticsDays";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { parseEmbedAnalyticsDays } from "./_lib/embedAnalyticsDays.js";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 export const config = { runtime: "nodejs" };
 

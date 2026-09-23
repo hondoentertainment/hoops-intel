@@ -8,7 +8,7 @@
 // Until STRIPE_SECRET_KEY and the Pro price IDs are set this handler returns
 // 503 so the Pro page can show a "coming soon" state.
 
-import { adaptNodeHandler } from './_lib/nodeHandler';
+import { adaptNodeHandler } from './_lib/nodeHandler.js';
 
 export const config = { runtime: 'nodejs' };
 

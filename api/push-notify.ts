@@ -3,8 +3,8 @@
 
 export const config = { runtime: "nodejs" };
 
-import { filterRowsForTopic, type PushPrefsRow, type PushTopicKind } from "../shared/pushTopics";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { filterRowsForTopic, type PushPrefsRow, type PushTopicKind } from "../shared/pushTopics.js";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 interface PushSubscriptionKeys {
   p256dh: string;

@@ -3,7 +3,7 @@
 // Requires STRIPE_SECRET_KEY, Supabase service role, and an existing subscriptions row
 // with stripe_customer_id (written by checkout / webhooks).
 
-import { adaptNodeHandler } from './_lib/nodeHandler';
+import { adaptNodeHandler } from './_lib/nodeHandler.js';
 
 export const config = { runtime: 'nodejs' };
 

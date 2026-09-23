@@ -18,7 +18,7 @@
 //   invoice.payment_failed
 //
 import Stripe from 'stripe';
-import { adaptNodeHandler } from './_lib/nodeHandler';
+import { adaptNodeHandler } from './_lib/nodeHandler.js';
 
 export const config = { runtime: 'nodejs' };
 

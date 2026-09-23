@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+// .js suffix: Vercel emits this file as ask.js and Node ESM will not resolve extensionless specifiers.
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 // Anthropic streaming stays on Node. adaptNodeHandler bridges this Fetch handler
 // to Vercel's (IncomingMessage, ServerResponse) call shape.

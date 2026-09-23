@@ -6,6 +6,11 @@ import type { IncomingHttpHeaders } from "node:http";
  * `req.headers.get` throws, and a returned Web Response is discarded (the
  * invocation 500s or hangs). Handlers stay on the Fetch API; this adapter
  * accepts either shape and writes the Response onto the Node response.
+ *
+ * Import this file with an explicit `.js` suffix (`./_lib/nodeHandler.js`).
+ * Vercel emits each Node route as ESM (`package.json` `"type": "module"`),
+ * and Node resolves that specifier literally — it will not append `.js`.
+ * The same rule applies to every other relative import these routes make.
  */
 
 type HeaderSource = IncomingHttpHeaders | Headers | Record<string, string | string[] | undefined>;

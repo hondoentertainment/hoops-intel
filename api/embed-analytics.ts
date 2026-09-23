@@ -1,5 +1,5 @@
-import { rateWindow } from "./_lib/embedRateLimiter";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { rateWindow } from "./_lib/embedRateLimiter.js";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 const ALLOWED_WIDGETS = new Set(["pulse", "ticker", "injury"]);
 const BODY_LIMIT = 2048;
