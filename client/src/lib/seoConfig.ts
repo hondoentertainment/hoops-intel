@@ -19,6 +19,21 @@ export interface PageSeo {
 /** Routes with page-level useMetaTags (player, team, game center). */
 const PAGE_LEVEL_SEO_PREFIXES = ["/player/", "/team/", "/game/"];
 
+/**
+ * Self-canonical for one player profile.
+ * `/players` and `/compare-players` keep their own hub canonicals.
+ */
+export function playerProfileCanonicalUrl(slug: string): string {
+  let clean = String(slug || "").trim();
+  try {
+    clean = decodeURIComponent(clean);
+  } catch {
+    // Malformed escape sequences stay as written.
+  }
+  clean = (clean.replace(/^\/+/, "").split(/[?#/]/)[0] ?? "").toLowerCase();
+  return `${SITE_ORIGIN}/player/${encodeURIComponent(clean)}`;
+}
+
 /** Private or thin pages — noindex in meta + robots.txt where applicable. */
 export const NOINDEX_PATHS = new Set([
   "/account",

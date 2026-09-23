@@ -20,6 +20,63 @@ export function toolUpdatedLabel(source?: string | null): string {
   return lastUpdatedStamp();
 }
 
+/**
+ * Camp / daily companion SLA. Content older than this is labeled outdated
+ * instead of wearing a fresh "Updated" stamp.
+ */
+export const DESK_CONTENT_SLA_DAYS = 7;
+
+export type ContentFreshnessState = "current" | "stale" | "unknown";
+
+export interface ContentFreshness {
+  state: ContentFreshnessState;
+  ageDays: number | null;
+  isoDay: string | null;
+}
+
+function contentIsoDay(value: string): string | null {
+  const iso = value.trim().match(/^(\d{4}-\d{2}-\d{2})/);
+  if (iso) return iso[1] ?? null;
+  const parsed = new Date(`${value.trim()} 12:00:00`);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return pacificIsoDay(parsed);
+}
+
+function isoDayDelta(fromIso: string, toIso: string): number {
+  const from = Date.parse(`${fromIso}T00:00:00Z`);
+  const to = Date.parse(`${toIso}T00:00:00Z`);
+  return Math.round((to - from) / 86_400_000);
+}
+
+/** Age of a generated companion against the Pacific calendar day. Unparseable dates stay unknown. */
+export function assessContentFreshness(source?: string | null, now = new Date()): ContentFreshness {
+  const raw = source?.trim();
+  if (!raw) return { state: "unknown", ageDays: null, isoDay: null };
+  const isoDay = contentIsoDay(raw);
+  if (!isoDay) return { state: "unknown", ageDays: null, isoDay: null };
+  const ageDays = isoDayDelta(isoDay, pacificIsoDay(now));
+  if (ageDays > DESK_CONTENT_SLA_DAYS) return { state: "stale", ageDays, isoDay };
+  return { state: "current", ageDays, isoDay };
+}
+
+/**
+ * Hero stamp for companion pages.
+ * Current content shows last-updated. Stale content says so. Missing dates stay blank.
+ */
+export function freshnessHeroMeta(
+  source?: string | null,
+  display?: string | null,
+  now = new Date(),
+): string | null {
+  const fresh = assessContentFreshness(source, now);
+  if (fresh.state === "stale") return "May be outdated";
+  if (fresh.state === "current") {
+    const shown = display?.trim() || fresh.isoDay;
+    return shown ? `Last updated: ${shown}` : null;
+  }
+  return null;
+}
+
 function pacificIsoDay(date: Date): string {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: PACIFIC_TZ,

@@ -26,7 +26,7 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import PulseAccountabilityPanel from "../components/PulseAccountabilityPanel";
 import EditorialShell from "../components/EditorialShell";
 import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
-import { CampDeskEmpty, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
+import { CampDeskEmpty, ForFunChip, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
 import { hasLocalAuthToken } from "../lib/guestAuth";
@@ -520,6 +520,7 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
           title="Lock tonight’s slate"
           action="Season board →"
           actionHref="/pick-em#season-board"
+          badge={<ForFunChip />}
         />
         {!hasLocalAuthToken() ? (
           <GuestNotice page="pick-em" />

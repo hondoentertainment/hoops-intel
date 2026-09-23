@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskLoopLinks, DeskPanel } from "../components/enhanced/EnhancedUi";
-import { toolUpdatedLabel } from "../lib/dataTrust";
+import { assessContentFreshness, freshnessHeroMeta } from "../lib/dataTrust";
 import { podcastCompanion } from "../lib/podcastData";
 import type { TalkingPoint } from "../lib/podcastData";
 
@@ -154,20 +154,37 @@ function SegmentCard({ point, index }: { point: TalkingPoint; index: number }) {
 
 export default function PodcastCompanion() {
   const data = podcastCompanion;
+  const freshness = assessContentFreshness(data.generatedDate || data.date);
+  const stale = freshness.state === "stale";
 
   return (
     <ToolPageLayout
       subtitle="PODCAST COMPANION"
       sectionLabel="Podcast companion"
       title="Today's episode blueprint"
-      description={`Frozen show notes from ${data.date} — not a live daily rundown.`}
-      heroMeta={toolUpdatedLabel(`${data.generatedDate} · last-known blueprint`)}
+      description={
+        stale
+          ? "Archived show notes. This page does not refresh with the morning desk."
+          : freshness.state === "current"
+            ? `Show notes for ${data.date}.`
+            : "No generation date on file — this page is not claiming a current episode."
+      }
+      heroMeta={freshnessHeroMeta(data.generatedDate || data.date, data.generatedDate || data.date) ?? undefined}
     >
-        <DeskPanel kicker="Soft launch" className="mb-6">
-          <p className="text-sm" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
-            This companion is last generated {data.generatedDate}. It is show-notes mode from a frozen edition, not a current-day podcast product.
-          </p>
-        </DeskPanel>
+        {stale ? (
+          <DeskPanel kicker="May be outdated" className="mb-6">
+            <p className="text-sm" role="status" data-testid="content-may-be-outdated" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+              May be outdated. Last generated {data.generatedDate}
+              {data.date ? ` · episode date ${data.date}` : ""}. Not today’s desk.
+            </p>
+          </DeskPanel>
+        ) : freshness.state === "unknown" ? (
+          <DeskPanel kicker="No generation date" className="mb-6">
+            <p className="text-sm" role="status" data-testid="content-freshness-unknown" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+              This companion has no generation date, so it is not marked current.
+            </p>
+          </DeskPanel>
+        ) : null}
 
         {/* Episode title card */}
         <div

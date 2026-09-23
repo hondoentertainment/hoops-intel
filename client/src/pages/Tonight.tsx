@@ -6,6 +6,31 @@ import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
 import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { makeGameId } from "../lib/gameCenter";
+import { tonightPlayerLinks, type TonightSlateGame } from "../lib/tonightPlayerLinks";
+
+function TonightPlayerLinks({ game }: { game: TonightSlateGame }) {
+  const links = tonightPlayerLinks(game);
+  if (links.length === 0) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-1.5 px-1" data-testid="tonight-player-links">
+      <span className="enhanced-kicker">Players</span>
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          className="desk-chip"
+          style={{
+            background: "var(--hi-accent-soft,#d7eef9)",
+            color: "var(--hi-text,#0a0a0a)",
+            textDecoration: "none",
+          }}
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  );
+}
 
 export default function Tonight() {
   const campDays = daysUntilIso(CAMP_OPEN_ISO);
@@ -46,19 +71,23 @@ export default function Tonight() {
                 storyline?: string;
                 keyMatchup?: string;
               }>).map((preview) => (
-                <a
+                <div
                   key={preview.gameId || `${preview.awayTeam}-${preview.homeTeam}`}
-                  href={`/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, pulseEdition.date)}`}
+                  className="flex flex-col gap-2 min-w-0"
+                  data-testid="tonight-game-card"
                 >
-                  <GamePreviewCard
-                    status={preview.featured ? "FEATURED" : "TONIGHT"}
-                    when={`${preview.time ?? ""}${preview.tv ? ` · ${preview.tv}` : ""}`}
-                    away={preview.awayTeam}
-                    home={preview.homeTeam}
-                    network={preview.tv || ""}
-                    note={preview.storyline || preview.keyMatchup || ""}
-                  />
-                </a>
+                  <a href={`/game/${preview.gameId || makeGameId(preview.awayTeam, preview.homeTeam, pulseEdition.date)}`}>
+                    <GamePreviewCard
+                      status={preview.featured ? "FEATURED" : "TONIGHT"}
+                      when={`${preview.time ?? ""}${preview.tv ? ` · ${preview.tv}` : ""}`}
+                      away={preview.awayTeam}
+                      home={preview.homeTeam}
+                      network={preview.tv || ""}
+                      note={preview.storyline || preview.keyMatchup || ""}
+                    />
+                  </a>
+                  <TonightPlayerLinks game={preview} />
+                </div>
               ))}
             </div>
           </>

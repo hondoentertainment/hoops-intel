@@ -135,6 +135,15 @@ export const DESK_RAIL_HREFS = [
   "/trade-simulator",
 ] as const;
 
+/** Novelty routes — labeled in page chrome so they are not read as the daily desk. */
+export const FOR_FUN_PATHS = ["/82-0", "/pick-em", "/badges", "/trivia", "/trade-simulator"] as const;
+
+export function isForFunRoute(pathname: string): boolean {
+  const path = pathname.split("?")[0]?.split("#")[0] ?? "";
+  const normalized = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path || "/";
+  return (FOR_FUN_PATHS as readonly string[]).includes(normalized);
+}
+
 export interface ToolLink {
   label: string;
   href: string;

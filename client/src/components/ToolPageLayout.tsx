@@ -2,9 +2,9 @@ import { type ReactNode } from "react";
 import { useLocation } from "wouter";
 import DeskAppShell from "./DeskAppShell";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
-import { DeskPanel, PageHero } from "./enhanced/EnhancedUi";
+import { DeskPanel, ForFunChip, PageHero } from "./enhanced/EnhancedUi";
 import { AskInFlowCta } from "./AskHoopsIntel";
-import { relatedToolsForHref } from "../lib/siteNav";
+import { isForFunRoute, relatedToolsForHref } from "../lib/siteNav";
 
 const MAX_WIDTH: Record<string, string> = {
   md: "max-w-3xl",
@@ -57,6 +57,7 @@ export default function ToolPageLayout({
 }: ToolPageLayoutProps) {
   const [location] = useLocation();
   const href = relatedHref ?? location.split("?")[0];
+  const forFun = isForFunRoute(href);
   const related = showRelated ? relatedToolsForHref(href) : [];
   const widthClass = MAX_WIDTH[maxWidth] ?? MAX_WIDTH.full;
 
@@ -102,6 +103,7 @@ export default function ToolPageLayout({
             title={title}
             description={description}
             meta={heroMeta}
+            badge={forFun ? <ForFunChip /> : undefined}
           />
         </div>
       ) : sectionLabel || description ? (
@@ -111,6 +113,11 @@ export default function ToolPageLayout({
             <p className="hi-lede">{description}</p>
           ) : null}
         </header>
+      ) : null}
+      {forFun && !title ? (
+        <div className="mb-4">
+          <ForFunChip />
+        </div>
       ) : null}
       <div className={related.length > 0 ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_15rem] gap-8 items-start" : undefined}>
         <div className="min-w-0">

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { NOINDEX_PATHS, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
+import { isPageLevelSeoRoute, NOINDEX_PATHS, playerProfileCanonicalUrl, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
 
 describe("publisher dashboard SEO", () => {
   it("noindexes embed analytics shells and canonicalizes them to /widgets", () => {
@@ -48,6 +48,14 @@ describe("soft-launch and desk SEO", () => {
     expect(seo?.noindex).toBeUndefined();
     expect(seo?.canonicalPath).toBe("/players");
     expect(seo?.title).toMatch(/Player Index/i);
+  });
+
+  it("does not let compare or browse hubs own a player profile canonical", () => {
+    const compare = resolveRouteSeo("/compare-players");
+    expect(compare?.canonicalPath).toBe("/compare-players");
+    expect(playerProfileCanonicalUrl("victor-wembanyama")).toBe("https://hoopsintel.net/player/victor-wembanyama");
+    expect(isPageLevelSeoRoute("/player/victor-wembanyama")).toBe(true);
+    expect(resolveRouteSeo("/player/victor-wembanyama")).toBeNull();
   });
 
   it("indexes the draft board (populated weekly, not a stub)", () => {
