@@ -3,6 +3,8 @@
 // Requires STRIPE_SECRET_KEY, Supabase service role, and an existing subscriptions row
 // with stripe_customer_id (written by checkout / webhooks).
 
+import { adaptNodeHandler } from './_lib/nodeHandler';
+
 export const config = { runtime: 'nodejs' };
 
 async function supabaseUserFromToken(token: string): Promise<{ id: string; email: string } | null> {
@@ -32,7 +34,7 @@ async function fetchStripeCustomerId(userId: string): Promise<string | null> {
   return typeof id === 'string' && id.startsWith('cus_') ? id : null;
 }
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
   }
@@ -105,3 +107,5 @@ export default async function handler(req: Request): Promise<Response> {
     headers: { 'Content-Type': 'application/json' },
   });
 }
+
+export default adaptNodeHandler(handler);

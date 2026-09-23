@@ -4,6 +4,7 @@
 export const config = { runtime: "nodejs" };
 
 import { filterRowsForTopic, type PushPrefsRow, type PushTopicKind } from "../shared/pushTopics";
+import { adaptNodeHandler } from "./_lib/nodeHandler";
 
 interface PushSubscriptionKeys {
   p256dh: string;
@@ -200,7 +201,7 @@ async function insertPushAlertHistory(
   }
 }
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
@@ -315,3 +316,5 @@ export default async function handler(req: Request): Promise<Response> {
     headers: { "Content-Type": "application/json" },
   });
 }
+
+export default adaptNodeHandler(handler);

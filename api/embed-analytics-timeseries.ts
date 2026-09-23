@@ -1,7 +1,9 @@
+import { adaptNodeHandler } from "./_lib/nodeHandler";
+
 export const config = { runtime: "nodejs" };
 
 /** GET /api/embed-analytics-timeseries — daily bucket counts per widget for charts. */
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== "GET" && req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
   }
@@ -67,3 +69,5 @@ export default async function handler(req: Request): Promise<Response> {
     },
   });
 }
+
+export default adaptNodeHandler(handler);
