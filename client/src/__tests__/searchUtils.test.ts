@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { slugify } from "../lib/searchUtils";
+import { searchContext } from "../lib/hoopsSearch";
+import { globalSearch, slugify } from "../lib/searchUtils";
+import { pulseIndex } from "../lib/pulseData";
 
 describe("searchUtils", () => {
   describe("slugify", () => {
@@ -46,6 +48,20 @@ describe("searchUtils", () => {
     it("handles Turkish and Serbian Latin letters like production sitemap", () => {
       expect(slugify("Alperen Şengün")).toBe("alperen-sengun");
       expect(slugify("Nikola Jokić")).toBe("nikola-jokic");
+    });
+  });
+
+  describe("site search", () => {
+    it("finds the Pulse Index leader and builds Ask context for that question", () => {
+      const leader = pulseIndex[0];
+      expect(leader).toBeTruthy();
+      const hits = globalSearch(leader.player);
+      expect(hits.some((hit) => hit.type === "player" && hit.title === leader.player && hit.link?.startsWith("/player/"))).toBe(true);
+
+      const context = searchContext("Who leads the Pulse Index?");
+      expect(context).not.toMatch(/No specific context found/);
+      expect(context.toLowerCase()).toContain("pulse");
+      expect(context).toContain(leader.player);
     });
   });
 });
