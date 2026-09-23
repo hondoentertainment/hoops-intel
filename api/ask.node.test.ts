@@ -2,9 +2,11 @@
 import { EventEmitter } from "node:events";
 import { describe, expect, it, afterEach } from "vitest";
 import askHandler from "./ask";
+import contactIntake from "./contact-intake";
 import { adaptNodeHandler, type NodeLikeRequest, type NodeLikeResponse } from "./_lib/nodeHandler";
 import timeseries from "./embed-analytics-timeseries";
 import guestPulseQueue from "./guest-pulse-queue";
+import stripeWebhook from "./stripe-webhook";
 
 function mockRes() {
   const chunks: Buffer[] = [];
@@ -208,5 +210,56 @@ describe("other Node query routes", () => {
     );
     expect(res.statusCode).toBe(401);
     expect(JSON.parse(res.text())).toEqual({ error: "Unauthorized" });
+  });
+
+  it("reads intake JSON and x-forwarded-for from a Node request", async () => {
+    const res = mockRes();
+    await contactIntake(
+      {
+        method: "POST",
+        url: "/api/contact-intake",
+        headers: {
+          host: "hoopsintel.net",
+          "content-type": "application/json",
+          "x-forwarded-for": "203.0.113.10, 10.0.0.1",
+        },
+        readableEnded: true,
+        body: { kind: "general", message: "short" },
+      },
+      res,
+    );
+    expect(res.statusCode).toBe(400);
+    expect(JSON.parse(res.text())).toEqual({ error: "Please add more detail (10+ chars)." });
+  });
+
+  it("reads stripe-signature off a plain Node header map", async () => {
+    const prevKey = process.env.STRIPE_SECRET_KEY;
+    const prevSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    process.env.STRIPE_SECRET_KEY = "sk_test_node_adapter";
+    process.env.STRIPE_WEBHOOK_SECRET = "whsec_node_adapter";
+    try {
+      const res = mockRes();
+      await stripeWebhook(
+        {
+          method: "POST",
+          url: "/api/stripe-webhook",
+          headers: {
+            host: "hoopsintel.net",
+            "content-type": "application/json",
+            "stripe-signature": "t=1,v1=not-a-real-signature",
+          },
+          readableEnded: true,
+          body: JSON.stringify({ id: "evt_test", type: "customer.subscription.updated" }),
+        },
+        res,
+      );
+      expect(res.statusCode).toBe(400);
+      expect(res.text()).toContain("Signature verification failed");
+    } finally {
+      if (prevKey === undefined) delete process.env.STRIPE_SECRET_KEY;
+      else process.env.STRIPE_SECRET_KEY = prevKey;
+      if (prevSecret === undefined) delete process.env.STRIPE_WEBHOOK_SECRET;
+      else process.env.STRIPE_WEBHOOK_SECRET = prevSecret;
+    }
   });
 });
