@@ -8,6 +8,8 @@
 // Until STRIPE_SECRET_KEY and the Pro price IDs are set this handler returns
 // 503 so the Pro page can show a "coming soon" state.
 
+import { adaptNodeHandler } from './_lib/nodeHandler';
+
 export const config = { runtime: 'nodejs' };
 
 async function supabaseUserFromToken(token: string): Promise<{ id: string; email: string } | null> {
@@ -21,7 +23,7 @@ async function supabaseUserFromToken(token: string): Promise<{ id: string; email
   return (await res.json()) as { id: string; email: string };
 }
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
   }
@@ -94,3 +96,5 @@ export default async function handler(req: Request): Promise<Response> {
     headers: { 'Content-Type': 'application/json' },
   });
 }
+
+export default adaptNodeHandler(handler);

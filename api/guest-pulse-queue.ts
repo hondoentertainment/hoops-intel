@@ -2,6 +2,7 @@
 // PATCH /api/guest-pulse-queue — { id, status?, notes?, published_pitch? }, same Bearer.
 
 import { sendResendEmail } from "./_lib/resendSend";
+import { adaptNodeHandler } from "./_lib/nodeHandler";
 
 export const config = { runtime: "nodejs" };
 
@@ -53,7 +54,7 @@ async function notifySubmitterStatus(
   await sendResendEmail({ to: email, subject, html: body });
 }
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (!auth(req)) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
@@ -154,3 +155,5 @@ export default async function handler(req: Request): Promise<Response> {
 
   return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
 }
+
+export default adaptNodeHandler(handler);

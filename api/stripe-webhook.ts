@@ -18,6 +18,7 @@
 //   invoice.payment_failed
 //
 import Stripe from 'stripe';
+import { adaptNodeHandler } from './_lib/nodeHandler';
 
 export const config = { runtime: 'nodejs' };
 
@@ -73,7 +74,7 @@ function planFromInterval(interval: string | undefined): 'monthly' | 'annual' {
   return interval === 'year' ? 'annual' : 'monthly';
 }
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
   }
@@ -150,3 +151,5 @@ export default async function handler(req: Request): Promise<Response> {
 
   return new Response(JSON.stringify({ received: true }), { status: 200 });
 }
+
+export default adaptNodeHandler(handler);

@@ -118,6 +118,7 @@ export function globalSearch(query: string, limit = 20): SearchResult[] {
       ed.topPlayer,
       ...(ed.tags || []),
       ...(ed.players || []),
+      ...((ed as { keyPlayers?: string[] }).keyPlayers || []),
       ...(ed.teams || []),
     ]
       .join(" ")

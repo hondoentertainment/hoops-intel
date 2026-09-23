@@ -1,4 +1,5 @@
 import { rateWindow } from "./_lib/embedRateLimiter";
+import { adaptNodeHandler } from "./_lib/nodeHandler";
 
 const ALLOWED_WIDGETS = new Set(["pulse", "ticker", "injury"]);
 const BODY_LIMIT = 2048;
@@ -15,7 +16,7 @@ function parseReferrerHost(referrer: string | undefined): string | null {
 
 export const config = { runtime: "nodejs" };
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
   }
@@ -82,3 +83,5 @@ export default async function handler(req: Request): Promise<Response> {
     headers: { "Content-Type": "application/json" },
   });
 }
+
+export default adaptNodeHandler(handler);

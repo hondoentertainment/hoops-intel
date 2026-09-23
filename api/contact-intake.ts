@@ -1,6 +1,8 @@
 // POST /api/contact-intake  { kind, name?, email?, message }
 // Guest Pulse pitches enqueue to Supabase when service creds exist; Resend notify is best-effort.
 
+import { adaptNodeHandler } from "./_lib/nodeHandler";
+
 const RATE_WINDOW_MS = 60_000;
 const MAX_SUBMISSIONS_PER_WINDOW = 12;
 
@@ -80,7 +82,7 @@ async function enqueueGuestPulse(opts: {
 
 export const config = { runtime: "nodejs" };
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
   }
@@ -204,3 +206,5 @@ export default async function handler(req: Request): Promise<Response> {
     headers: { "Content-Type": "application/json" },
   });
 }
+
+export default adaptNodeHandler(handler);

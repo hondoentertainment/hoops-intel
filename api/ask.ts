@@ -1,5 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { adaptNodeHandler } from "./_lib/nodeHandler";
 
+// Anthropic streaming stays on Node. adaptNodeHandler bridges this Fetch handler
+// to Vercel's (IncomingMessage, ServerResponse) call shape.
 export const config = { runtime: "nodejs" };
 
 const SYSTEM_PROMPT = `You are the Hoops Intel AI assistant — an expert NBA analyst with the editorial voice of ESPN meets The Athletic. Answer questions using the provided context from Hoops Intel's daily editions. Be concise, opinionated, and data-driven. If the context doesn't contain enough info to answer, say so honestly. Never make up stats or game results.`;
@@ -14,7 +17,7 @@ const CORS_HEADERS: Record<string, string> = {
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 3000; // 3 second cooldown
 
-export default async function handler(req: Request) {
+async function handler(req: Request) {
   // Handle preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
@@ -119,7 +122,6 @@ export default async function handler(req: Request) {
       headers: {
         ...CORS_HEADERS,
         "Content-Type": "text/plain; charset=utf-8",
-        "Transfer-Encoding": "chunked",
         "Cache-Control": "no-cache",
       },
     });
@@ -133,3 +135,5 @@ export default async function handler(req: Request) {
     );
   }
 }
+
+export default adaptNodeHandler(handler);

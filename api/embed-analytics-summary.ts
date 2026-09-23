@@ -1,8 +1,9 @@
 import { parseEmbedAnalyticsDays } from "./_lib/embedAnalyticsDays";
+import { adaptNodeHandler } from "./_lib/nodeHandler";
 
 export const config = { runtime: "nodejs" };
 
-export default async function handler(req: Request): Promise<Response> {
+async function handler(req: Request): Promise<Response> {
   if (req.method !== "GET") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
   }
@@ -56,3 +57,5 @@ export default async function handler(req: Request): Promise<Response> {
     },
   });
 }
+
+export default adaptNodeHandler(handler);

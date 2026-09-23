@@ -53,6 +53,7 @@ const STOP_WORDS = new Set([
 ]);
 
 function tokenize(text: string): string[] {
+  if (typeof text !== "string" || text.length === 0) return [];
   return text
     .toLowerCase()
     .replace(/[^a-z0-9\s'-]/g, " ")
@@ -184,24 +185,33 @@ function buildDocuments(): SearchDocument[] {
     date: pulseEdition.date,
   });
 
-  // Archive editions
+  // Archive editions. Older rows (pre–summer 2026) store the lede in
+  // `subheadline` and names in `keyPlayers`, with no `headline` / `players`.
   for (const edition of archiveEditions) {
+    const row = edition as typeof edition & {
+      headline?: string;
+      subheadline?: string;
+      keyPlayers?: string[];
+    };
+    const title = row.headline || row.subheadline || "Archive edition";
+    const players = [...(row.players || []), ...(row.keyPlayers || [])];
     docs.push({
-      id: `archive-${edition.id}`,
+      id: `archive-${row.id}`,
       type: "archive",
-      title: edition.headline,
+      title,
       content: [
-        edition.headline,
-        edition.subheadline || "",
-        edition.topStory || "",
-        edition.topPlayer || "",
-        edition.topStatLine || "",
-        ...(edition.tags || []),
+        title,
+        row.subheadline || "",
+        row.topStory || "",
+        row.topPlayer || "",
+        row.topStatLine || "",
+        ...(row.tags || []),
+        ...players,
       ].join(" "),
-      tags: edition.tags || [],
-      players: edition.players || [],
-      teams: edition.teams || [],
-      date: edition.date,
+      tags: row.tags || [],
+      players,
+      teams: row.teams || [],
+      date: row.date,
     });
   }
 
@@ -221,7 +231,7 @@ function scoreDocument(doc: SearchDocument, queryTokens: string[]): number {
   const contentTokens = tokenize(doc.content);
   const tagTokens = doc.tags.flatMap((t) => tokenize(t));
   const playerTokens = doc.players.flatMap((p) => tokenize(p));
-  const teamTokens = doc.teams.map((t) => t.toLowerCase());
+  const teamTokens = doc.teams.flatMap((t) => (typeof t === "string" ? [t.toLowerCase()] : []));
 
   for (const qt of queryTokens) {
     // Title match (weight: 5)
