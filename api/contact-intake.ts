@@ -1,7 +1,7 @@
 // POST /api/contact-intake  { kind, name?, email?, message }
 // Guest Pulse pitches enqueue to Supabase when service creds exist; Resend notify is best-effort.
 
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 const RATE_WINDOW_MS = 60_000;
 const MAX_SUBMISSIONS_PER_WINDOW = 12;

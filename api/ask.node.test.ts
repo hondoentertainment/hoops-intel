@@ -1,12 +1,12 @@
 // @vitest-environment node
 import { EventEmitter } from "node:events";
 import { describe, expect, it, afterEach } from "vitest";
-import askHandler from "./ask";
-import contactIntake from "./contact-intake";
-import { adaptNodeHandler, type NodeLikeRequest, type NodeLikeResponse } from "./_lib/nodeHandler";
-import timeseries from "./embed-analytics-timeseries";
-import guestPulseQueue from "./guest-pulse-queue";
-import stripeWebhook from "./stripe-webhook";
+import askHandler from "./ask.js";
+import contactIntake from "./contact-intake.js";
+import { adaptNodeHandler, type NodeLikeRequest, type NodeLikeResponse } from "./_lib/nodeHandler.js";
+import timeseries from "./embed-analytics-timeseries.js";
+import guestPulseQueue from "./guest-pulse-queue.js";
+import stripeWebhook from "./stripe-webhook.js";
 
 function mockRes() {
   const chunks: Buffer[] = [];

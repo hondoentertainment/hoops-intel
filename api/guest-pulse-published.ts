@@ -1,6 +1,6 @@
 // GET /api/guest-pulse-published — public feed of accepted Guest Pulse pitches (no email/notes).
 
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 export const config = { runtime: "nodejs" };
 

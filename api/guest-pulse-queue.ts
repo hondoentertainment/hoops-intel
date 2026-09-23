@@ -1,8 +1,8 @@
 // GET /api/guest-pulse-queue — list moderation queue rows (Bearer GUEST_PULSE_ADMIN_SECRET).
 // PATCH /api/guest-pulse-queue — { id, status?, notes?, published_pitch? }, same Bearer.
 
-import { sendResendEmail } from "./_lib/resendSend";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+import { sendResendEmail } from "./_lib/resendSend.js";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 export const config = { runtime: "nodejs" };
 

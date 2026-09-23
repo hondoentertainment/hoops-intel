@@ -8,8 +8,8 @@ import {
   buildPushHistoryTeamFilter,
   parseTeamFilterFromSearch,
   type PushAlertHistoryItem,
-} from "../shared/pushAlertHistory";
-import { adaptNodeHandler } from "./_lib/nodeHandler";
+} from "../shared/pushAlertHistory.js";
+import { adaptNodeHandler } from "./_lib/nodeHandler.js";
 
 async function handler(req: Request): Promise<Response> {
   if (req.method !== "GET") {
