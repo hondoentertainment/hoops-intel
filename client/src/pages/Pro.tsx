@@ -65,7 +65,6 @@ function PlanCard({
   onSelect,
   loading,
   disabled,
-  checkoutReady,
 }: {
   title: string;
   price: string;
@@ -74,7 +73,6 @@ function PlanCard({
   onSelect: () => void;
   loading: boolean;
   disabled: boolean;
-  checkoutReady: boolean | null;
 }) {
   return (
     <div
@@ -103,11 +101,7 @@ function PlanCard({
           cursor: loading || disabled ? "not-allowed" : "pointer",
         }}
       >
-        {loading
-          ? "OPENING CHECKOUT..."
-          : checkoutReady === false
-            ? "CHECKOUT PENDING OPS"
-            : `GO PRO ${cadence.toUpperCase()}`}
+        {loading ? "OPENING CHECKOUT..." : `GO PRO ${cadence.toUpperCase()}`}
       </button>
     </div>
   );
@@ -121,21 +115,21 @@ export default function Pro() {
   const [portalError, setPortalError] = useState("");
   const [showAuth, setShowAuth] = useState(false);
   const [stripeOps, setStripeOps] = useState<OpsStripe | null>(null);
+  const [opsLoaded, setOpsLoaded] = useState(false);
 
   useEffect(() => {
     fetch("/api/ops-readiness")
       .then((r) => r.json())
       .then((b: { stripe?: OpsStripe }) => setStripeOps(b.stripe ?? null))
-      .catch(() => setStripeOps(null));
+      .catch(() => setStripeOps(null))
+      .finally(() => setOpsLoaded(true));
   }, []);
 
-  const checkoutReady = stripeOps?.checkoutReady ?? null;
+  const checkoutReady = stripeOps?.checkoutReady === true;
 
   const handleCheckout = async (plan: "monthly" | "annual") => {
-    if (checkoutReady === false) {
-      setError(
-        "Stripe checkout is not configured on this deployment. Required: STRIPE_SECRET_KEY, STRIPE_PRICE_MONTHLY, STRIPE_PRICE_ANNUAL.",
-      );
+    if (!checkoutReady) {
+      setError("Checkout temporarily unavailable.");
       return;
     }
     if (!getStoredAuthToken()) {
@@ -149,7 +143,8 @@ export default function Pro() {
       const url = await startCheckout(plan);
       window.location.href = url;
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Checkout failed");
+      const message = err instanceof Error ? err.message : "Checkout failed";
+      setError(isStripeConfigError(message) ? "Checkout temporarily unavailable." : message);
       setCheckoutLoading(null);
     }
   };
@@ -176,10 +171,10 @@ export default function Pro() {
       maxWidth="xl"
       showRelated={false}
     >
-        {!sub.isPro && !hasLocalAuthToken() ? (
+        {!sub.isPro && checkoutReady && !hasLocalAuthToken() ? (
           <GuestNotice page="pro" />
         ) : null}
-        {!sub.isPro && hasLocalAuthToken() ? (
+        {!sub.isPro && checkoutReady && hasLocalAuthToken() ? (
           <SignedInNextNotice page="pro" />
         ) : null}
 
@@ -220,77 +215,67 @@ export default function Pro() {
               </a>
             </div>
             {portalError ? (
-              isStripeConfigError(portalError) ? (
-                <p className="text-sm mt-3" style={{ color: "var(--hi-warn,#c2410c)" }} role="alert">
-                  Billing portal isn&apos;t wired yet ({portalError}). See README env vars or{" "}
-                  <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
-                </p>
-              ) : (
-                <p className="text-sm mt-3 text-rose-400" role="alert">{portalError}</p>
-              )
+              <p className="text-sm mt-3 hi-notice-warn" role="alert">
+                {isStripeConfigError(portalError)
+                  ? "Billing management is temporarily unavailable."
+                  : portalError}
+              </p>
             ) : null}
           </div>
         ) : (
           <>
-            {checkoutReady === false && (
-              <div className="hi-notice-warn mb-6 space-y-2" role="status">
-                <p className="text-sm font-semibold">Upgrade available — checkout pending ops</p>
-                <p className="text-xs">
-                  <code>/api/ops-readiness</code> reports Stripe checkout as Pending. Set{" "}
-                  STRIPE_SECRET_KEY + price IDs in Vercel before go-live.
-                </p>
-              </div>
-            )}
-            {checkoutReady === true && (
-              <div
-                className="rounded-lg px-4 py-3 mb-6 text-xs"
-                style={{
-                  background: "rgba(16,185,129,0.06)",
-                  border: "1px solid rgba(16,185,129,0.22)",
-                  color: "var(--hi-success,#1f9d6a)",
-                }}
-                role="status"
+            {!opsLoaded ? (
+              <p className="text-sm mb-10" role="status" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+                Checking checkout…
+              </p>
+            ) : checkoutReady ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                  <PlanCard
+                    title="Monthly"
+                    price="$5"
+                    cadence="month"
+                    onSelect={() => handleCheckout("monthly")}
+                    loading={checkoutLoading === "monthly"}
+                    disabled={checkoutLoading !== null}
+                  />
+                  <PlanCard
+                    title="Annual (33% off)"
+                    price="$40"
+                    cadence="year"
+                    highlighted
+                    onSelect={() => handleCheckout("annual")}
+                    loading={checkoutLoading === "annual"}
+                    disabled={checkoutLoading !== null}
+                  />
+                </div>
+                {error ? (
+                  <div className="hi-notice-warn mb-10" role="alert">
+                    <p className="text-sm font-semibold">{error}</p>
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <section
+                className="enhanced-card p-6 mb-10"
+                data-testid="pro-checkout-unavailable"
+                aria-labelledby="pro-checkout-status"
               >
-                Checkout is live — pick a plan below. Sign in first so Stripe links to your Hoops Intel account.
-              </div>
+                <p className="enhanced-kicker mb-2">Hoops Intel Pro</p>
+                <h2 id="pro-checkout-status" className="text-lg font-semibold hi-title text-[var(--hi-text,#0a0a0a)]">
+                  Checkout temporarily unavailable
+                </h2>
+                <p className="text-sm mt-2 mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+                  Plans stay $5 a month or $40 a year. Checkout is paused, so nothing is charged from this page.
+                </p>
+                <a
+                  href="/account"
+                  className="hi-pill-primary inline-flex items-center justify-center min-h-12 px-5"
+                >
+                  {hasLocalAuthToken() ? "Go to account" : "Create an account"}
+                </a>
+              </section>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-              <PlanCard
-                title="Monthly"
-                price="$5"
-                cadence="month"
-                onSelect={() => handleCheckout("monthly")}
-                loading={checkoutLoading === "monthly"}
-                disabled={checkoutLoading !== null || checkoutReady === false}
-                checkoutReady={checkoutReady}
-              />
-              <PlanCard
-                title="Annual (33% off)"
-                price="$40"
-                cadence="year"
-                highlighted
-                onSelect={() => handleCheckout("annual")}
-                loading={checkoutLoading === "annual"}
-                disabled={checkoutLoading !== null || checkoutReady === false}
-                checkoutReady={checkoutReady}
-              />
-            </div>
-            {error ? (
-              isStripeConfigError(error) ? (
-                <div className="hi-notice-warn mb-10 space-y-2">
-                  <p className="text-sm font-semibold">Checkout isn&apos;t live on this deployment</p>
-                  <p className="text-sm opacity-90">{error}</p>
-                  <p className="text-xs opacity-80">
-                    Production needs Stripe keys and price IDs (see repo README — Environment variables). Questions:{" "}
-                    <a href="mailto:hello@hoopsintel.net" className="underline">hello@hoopsintel.net</a>
-                  </p>
-                </div>
-              ) : (
-                <div className="rounded-lg p-4 mb-10 text-sm" style={{ background: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.2)", color: "rgba(244,63,94,0.9)" }}>
-                  {error}
-                </div>
-              )
-            ) : null}
           </>
         )}
 
@@ -327,12 +312,11 @@ export default function Pro() {
         </div>
 
         <div className="rounded-lg p-5 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", border: "1px solid rgba(255,255,255,0.06)", color: "var(--hi-muted,#5c5c58)" }}>
-          Billing handled by Stripe. Manage or cancel anytime from{" "}
+          Billing is handled by Stripe. Manage or cancel anytime from{" "}
           <a href="/account" className="text-[var(--hi-text)] underline hover:text-[var(--hi-text)]">
             your account
           </a>
-          . If Pro checkout returns &quot;not live&quot;, the Stripe price IDs aren&apos;t configured in production yet — ping
-          hello@hoopsintel.net if you&apos;re blocked.
+          .
         </div>
 
       {showAuth && (

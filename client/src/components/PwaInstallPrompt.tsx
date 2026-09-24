@@ -31,36 +31,46 @@ export default function PwaInstallPrompt() {
 
   if (!visible || !deferred) return null;
 
+  const dismiss = () => {
+    try {
+      localStorage.setItem("hi-pwa-dismissed", "1");
+    } catch {
+      /* private mode */
+    }
+    setVisible(false);
+  };
+
   return (
-    <div className="pwa-install-prompt" role="dialog" aria-labelledby="pwa-install-title">
+    <div
+      className="pwa-install-prompt"
+      role="region"
+      aria-label="Add Hoops Intel to your home screen"
+      data-testid="pwa-install-prompt"
+    >
       <div>
-        <div id="pwa-install-title" className="text-sm font-semibold text-white">
+        <p id="pwa-install-title" className="text-sm font-semibold text-[var(--hi-text,#0a0a0a)]">
           Add Hoops Intel to your home screen
-        </div>
-        <p className="text-xs mt-1" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+        </p>
+        <p className="text-xs mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Quick access to today&apos;s desk, scores, and Pulse Index every morning.
         </p>
       </div>
       <div className="flex gap-2 shrink-0">
         <button
           type="button"
-          className="text-xs px-3 py-2 rounded-lg min-h-[44px]"
-          style={{ color: "var(--hi-muted,#5c5c58)" }}
-          onClick={() => {
-            localStorage.setItem("hi-pwa-dismissed", "1");
-            setVisible(false);
-          }}
+          className="text-xs px-3 py-2 rounded-lg min-h-11"
+          style={{ color: "var(--hi-text,#0a0a0a)" }}
+          aria-label="Dismiss home screen install prompt"
+          onClick={dismiss}
         >
           Not now
         </button>
         <button
           type="button"
-          className="text-xs font-semibold px-3 py-2 rounded-lg min-h-[44px] text-white"
-          style={{ background: "var(--hi-accent)" }}
+          className="hi-pill-primary text-xs font-semibold px-3 py-2 min-h-11"
           onClick={() => {
             void deferred.prompt().then(() => {
-              localStorage.setItem("hi-pwa-dismissed", "1");
-              setVisible(false);
+              dismiss();
             });
           }}
         >

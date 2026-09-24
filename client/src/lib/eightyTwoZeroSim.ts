@@ -3,6 +3,8 @@
 // always produces the same record. That keeps shared results honest.
 
 import { ERA_LABELS, LEGENDARY_OPPONENTS, type EraKey, type EraPlayer, type TeamEraPool, TEAM_ERA_POOLS } from "./eightyTwoZeroData";
+import { PACIFIC_TZ } from "./pacificTime";
+import { pulseEdition } from "./pulseData";
 
 export interface LineupSlot {
   player: EraPlayer;
@@ -188,15 +190,73 @@ export function createRng(seedString: string): () => number {
   return mulberry32(fnv1a(seedString));
 }
 
-export function dailyWheelSeed(date: Date = new Date()): string {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `82-0-daily-${y}-${m}-${d}`;
+const DESK_MONTHS: Record<string, number> = {
+  january: 1,
+  february: 2,
+  march: 3,
+  april: 4,
+  may: 5,
+  june: 6,
+  july: 7,
+  august: 8,
+  september: 9,
+  october: 10,
+  november: 11,
+  december: 12,
+};
+
+const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+export interface DeskCalendarDay {
+  year: number;
+  month: number;
+  day: number;
 }
 
-export function dailyWheelLabel(date: Date = new Date()): string {
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+/** Product desk day from an edition display string. Not the browser's local clock. */
+export function parseDeskCalendarDay(display: string): DeskCalendarDay | null {
+  const match = display.trim().match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/);
+  if (!match) return null;
+  const month = DESK_MONTHS[match[1].toLowerCase()];
+  const day = Number(match[2]);
+  const year = Number(match[3]);
+  if (!month || day < 1 || day > 31 || !year) return null;
+  return { year, month, day };
+}
+
+function pacificCalendarDay(date: Date): DeskCalendarDay {
+  const iso = new Intl.DateTimeFormat("en-CA", {
+    timeZone: PACIFIC_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+  const [year, month, day] = iso.split("-").map(Number);
+  return { year, month, day };
+}
+
+/** Edition display date, else the Pacific calendar day of `now`. */
+export function productDeskDay(display = pulseEdition.date, now = new Date()): DeskCalendarDay {
+  return parseDeskCalendarDay(display) ?? pacificCalendarDay(now);
+}
+
+function wheelStamp(day: DeskCalendarDay): string {
+  const month = String(day.month).padStart(2, "0");
+  const date = String(day.day).padStart(2, "0");
+  return `82-0-daily-${day.year}-${month}-${date}`;
+}
+
+function wheelDay(date?: Date): DeskCalendarDay {
+  return date ? pacificCalendarDay(date) : productDeskDay();
+}
+
+export function dailyWheelSeed(date?: Date): string {
+  return wheelStamp(wheelDay(date));
+}
+
+export function dailyWheelLabel(date?: Date): string {
+  const day = wheelDay(date);
+  return `${SHORT_MONTHS[day.month - 1]} ${day.day}`;
 }
 
 // ── Spin helpers ────────────────────────────────────────────

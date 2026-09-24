@@ -163,7 +163,7 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Print edition", href: "/print-edition", description: "Clean PDF / print sheet", category: "desk" },
   { label: "Playoffs", href: "/playoffs", description: "Bracket and series board", category: "postseason" },
   { label: "Picks", href: "/pick-em", description: "Bracket-style picks — live when ESPN posts a slate", category: "play" },
-  { label: "Injuries", href: "/injuries", description: "Full injury report", category: "postseason" },
+  { label: "Injuries", href: "/injuries", description: "Last-known injury report", category: "postseason" },
   { label: "Rival alerts", href: "/rivals", description: "Headline banners for grudge games", category: "postseason" },
   { label: "Performance", href: "/performance", description: "AI season tracker", category: "analysis" },
   { label: "Momentum", href: "/momentum", description: "Game momentum swings", category: "analysis" },

@@ -164,6 +164,7 @@ export default function App() {
         }}
       >
         <div className="hi-app-scroll">
+        {chromeless ? null : <PwaInstallPrompt />}
         <RouteErrorBoundary resetKey={location}>
         <Suspense fallback={<PageLoader />}>
           <Switch>
@@ -228,7 +229,6 @@ export default function App() {
         {chromeless ? null : <AskHoopsIntel />}
         {chromeless ? null : <MobileBottomNav />}
         {chromeless ? null : <BackToTop />}
-        {chromeless ? null : <PwaInstallPrompt />}
         {chromeless ? null : <KeyboardShortcutsHelp />}
       </div>
       </ToastProvider>

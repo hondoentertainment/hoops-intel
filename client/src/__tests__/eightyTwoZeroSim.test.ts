@@ -3,7 +3,10 @@ import { ERA_LABELS, TEAM_ERA_POOLS, type EraPlayer } from "../lib/eightyTwoZero
 import {
   availablePlayers,
   createRng,
+  dailyWheelLabel,
   dailyWheelSeed,
+  parseDeskCalendarDay,
+  productDeskDay,
   draftCoverage,
   gameStrip,
   monthlySplits,
@@ -201,13 +204,27 @@ describe("Daily Wheel seeding", () => {
   });
 
   it("different days yield different sequences", () => {
-    const a = createRng(dailyWheelSeed(new Date(2026, 7, 9)));
-    const b = createRng(dailyWheelSeed(new Date(2026, 7, 10)));
+    const a = createRng(dailyWheelSeed(new Date("2026-08-09T19:00:00Z")));
+    const b = createRng(dailyWheelSeed(new Date("2026-08-10T19:00:00Z")));
     expect(a()).not.toBe(b());
   });
 
-  it("seed string is date-stamped", () => {
-    expect(dailyWheelSeed(new Date(2026, 7, 9))).toBe("82-0-daily-2026-08-09");
+  it("seed string follows the Pacific calendar day", () => {
+    expect(dailyWheelSeed(new Date("2026-08-09T19:00:00Z"))).toBe("82-0-daily-2026-08-09");
+    expect(dailyWheelLabel(new Date("2026-08-09T19:00:00Z"))).toBe("Aug 9");
+  });
+
+  it("defaults to the product desk date, not the browser clock", () => {
+    const desk = productDeskDay("September 23, 2026", new Date("2026-09-24T18:00:00Z"));
+    expect(parseDeskCalendarDay("September 23, 2026")).toEqual({ year: 2026, month: 9, day: 23 });
+    expect(desk).toEqual({ year: 2026, month: 9, day: 23 });
+    expect(dailyWheelSeed()).toBe(
+      `82-0-daily-${String(productDeskDay().year)}-${String(productDeskDay().month).padStart(2, "0")}-${String(productDeskDay().day).padStart(2, "0")}`,
+    );
+    expect(dailyWheelLabel()).toBe(
+      ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][productDeskDay().month - 1] +
+        ` ${productDeskDay().day}`,
+    );
   });
 });
 
