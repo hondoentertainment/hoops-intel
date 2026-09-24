@@ -257,7 +257,9 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    padding-bottom: calc(var(--hi-tabbar-height) + env(safe-area-inset-bottom, 0px));
+    /* Clearance, not the 4rem bar: the scrollport ends above the tab bar
+       so first-paint lines are not sliced flush against it. */
+    padding-bottom: var(--hi-tabbar-clearance);
   }
 
   .hi-app-scroll {
@@ -975,35 +977,26 @@ main:not(.desk-page-main) > .desk-page-ask {
 }
 
 .pwa-install-prompt {
-  position: fixed;
-  left: 1rem;
-  right: 1rem;
-  bottom: var(--hi-tabbar-clearance);
-  z-index: 55;
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 1rem;
+  margin: 0.75rem 1rem 0;
+  padding: 0.875rem 1rem;
   border-radius: var(--hi-card-radius, 20px);
-  border: 1px solid transparent;
+  border: 1px solid var(--hi-border-soft, rgba(10, 10, 10, 0.06));
   background: var(--hi-surface, #eeeeec);
   box-shadow: none;
 }
 
-@media (max-width: 767px) {
-  .pwa-install-prompt {
-    padding: 0.75rem 0.875rem;
-    gap: 0.5rem;
-  }
-}
-
 @media (min-width: 768px) {
   .pwa-install-prompt {
-    left: auto;
-    max-width: 24rem;
-    bottom: 1.5rem;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

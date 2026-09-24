@@ -21,17 +21,17 @@ const FACTOR_LABELS: { key: keyof (typeof watchGuideData.games)[0]["factors"]; l
 
 function FactorBars({ factors }: { factors: (typeof watchGuideData.games)[0]["factors"] }) {
   return (
-    <div className="grid grid-cols-5 gap-2">
+    <div className="grid grid-cols-3 gap-x-3 gap-y-3 min-[480px]:grid-cols-5">
       {FACTOR_LABELS.map(({ key, label, color }) => {
         const value = factors[key];
         const pct = (value / 20) * 100;
         return (
           <div key={key}>
             <div
-              className="text-[9px] uppercase tracking-wider text-center mb-1"
-              style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
+              className="text-xs font-medium text-center mb-1 leading-4"
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-body)" }}
             >
-              {label}
+              {label === "Entertain" ? "Entertainment" : label}
             </div>
             <div
               className="rounded-full overflow-hidden mx-auto"
@@ -369,41 +369,36 @@ export default function WatchGuide() {
           </>
         )}
 
-        {/* Legend */}
         <div
           className="rounded-xl p-4"
+          data-testid="watch-factor-legend"
           style={{
-            background: "rgba(255,255,255,0.015)",
-            border: "1px solid rgba(255,255,255,0.05)",
+            background: "var(--hi-canvas-soft,#fafaf8)",
+            border: "1px solid var(--hi-border-soft, rgba(10,10,10,0.06))",
           }}
         >
           <h3
-            className="text-[10px] font-bold uppercase tracking-wider mb-2"
-            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-display)" }}
+            className="text-xs font-semibold mb-3"
+            style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
           >
-            Watch Score Factors
+            Watch score factors
           </h3>
-          <div className="grid grid-cols-5 gap-2 text-center">
-            {FACTOR_LABELS.map(({ label, color }) => (
-              <div key={label}>
-                <div
-                  className="w-3 h-3 rounded-full mx-auto mb-1"
+          <ul className="grid grid-cols-3 gap-x-3 gap-y-3 sm:grid-cols-5 list-none m-0 p-0">
+            {FACTOR_LABELS.map(({ key, label, color }) => (
+              <li key={key} className="flex items-center gap-2 min-h-11 sm:flex-col sm:justify-center sm:text-center sm:gap-1.5">
+                <span
+                  className="w-3 h-3 rounded-full shrink-0"
                   style={{ background: color }}
+                  aria-hidden
                 />
-                <div
-                  className="text-[9px] uppercase tracking-wider"
-                  style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
-                >
-                  {label}
-                </div>
-              </div>
+                <span className="text-sm font-medium leading-5" style={{ color: "var(--hi-text,#0a0a0a)" }}>
+                  {label === "Entertain" ? "Entertainment" : label}
+                </span>
+              </li>
             ))}
-          </div>
-          <p
-            className="text-[10px] text-center mt-2"
-            style={{ color: "var(--hi-text-secondary,#5c5c58)", fontFamily: "var(--hi-font-body)" }}
-          >
-            Each factor scored 0-20. Watch Score = sum of all factors.
+          </ul>
+          <p className="text-sm mt-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+            Each factor is scored 0–20. Watch Score is the sum of all five.
           </p>
         </div>
 

@@ -83,6 +83,10 @@ describe("mobile chrome", () => {
     const print = readFileSync(join(pagesDir, "PrintEdition.tsx"), "utf8");
     expect(print).toContain("has-mobile-tabbar");
     expect(print).toContain("print-edition-shell");
+    const shellCss = readFileSync(join(srcDir, "styles/index.css"), "utf8");
+    expect(shellCss).toMatch(
+      /@media \(max-width: 767px\) \{[\s\S]*?\.hi-app-shell:not\(\.hi-app-shell--chromeless\)[\s\S]*?padding-bottom:\s*var\(--hi-tabbar-clearance\)/,
+    );
 
     const home = readFileSync(join(pagesDir, "Home.tsx"), "utf8");
     expect(home).toContain("has-mobile-tabbar");
@@ -91,5 +95,10 @@ describe("mobile chrome", () => {
     expect(app).toContain("hi-app-shell--chromeless");
     expect(app).toContain("hi-app-scroll");
     expect(app).toContain('location.startsWith("/embed/")');
+    const scrollBlock = app.slice(app.indexOf('className="hi-app-scroll"'));
+    expect(scrollBlock.indexOf("<PwaInstallPrompt />")).toBeGreaterThan(-1);
+    expect(scrollBlock.indexOf("<PwaInstallPrompt />")).toBeLessThan(scrollBlock.indexOf("<RouteErrorBoundary"));
+    expect(shellCss).toMatch(/\.pwa-install-prompt\s*\{[^}]*position:\s*relative/);
+    expect(shellCss).not.toMatch(/\.pwa-install-prompt\s*\{[^}]*position:\s*fixed/);
   });
 });

@@ -302,6 +302,7 @@ export default function InjuryReport() {
     return true;
   });
   const stale = deskStaleNote();
+  const lastKnown = isOffseasonDesk() || Boolean(stale);
   const nextClub = () => {
     const idx = clubs.indexOf(club);
     setClub(clubs[(idx + 1) % clubs.length] ?? "all");
@@ -327,31 +328,36 @@ export default function InjuryReport() {
   return (
     <EditorialShell>
       <div className="desk-page-stack">
-        <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between min-w-0">
-          <PageHero
-            kicker="Injury wire"
-            title="Full report"
-            description={`${shortDate} · ${editionContextDeskLabel().toLowerCase()} · ${tallies.dtd} day-to-day · ${tallies.probable} probable · ${tallies.out} out${
-              isOffseasonDesk()
-                ? " · last-known editorial tags — live injury cron is dark through September"
-                : ""
-            }`}
-            meta={lastUpdatedStamp()}
-          />
-          <button
-            type="button"
-            onClick={nextClub}
-            className="text-sm font-medium min-h-11 shrink-0 inline-flex items-end pb-1 self-start"
-            style={{ color: "var(--hi-accent-text,#146a8c)" }}
-          >
-            {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
-          </button>
+        <div className="flex flex-col gap-3 min-w-0">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between min-w-0">
+            <PageHero
+              kicker="Injury wire"
+              title={lastKnown ? "Last-known injury report" : "Injury report"}
+              description={`${shortDate} · ${editionContextDeskLabel().toLowerCase()} · ${tallies.dtd} day-to-day · ${tallies.probable} probable · ${tallies.out} out`}
+              meta={lastUpdatedStamp()}
+              badge={
+                lastKnown ? (
+                  <span className="desk-chip" style={{ background: "#fff4e5", color: "#7c2d12" }}>
+                    Not live
+                  </span>
+                ) : undefined
+              }
+            />
+            <button
+              type="button"
+              onClick={nextClub}
+              className="text-sm font-medium min-h-11 shrink-0 inline-flex items-end pb-1 self-start"
+              style={{ color: "var(--hi-accent-text,#146a8c)" }}
+            >
+              {club === "all" ? "Filter · all clubs" : `Filter · ${club}`}
+            </button>
+          </div>
+          {lastKnown ? (
+            <p className="hi-notice-warn text-sm" role="status" data-testid="injuries-stale-note">
+              {stale ?? "Last-known editorial tags. This is not a live injury wire."}
+            </p>
+          ) : null}
         </div>
-        {stale ? (
-          <p className="text-xs" role="status" data-testid="injuries-stale-note" style={{ color: "#F59E0B" }}>
-            {stale}
-          </p>
-        ) : null}
 
         {injuryUpdates.length === 0 ? (
           <CampDeskEmpty
