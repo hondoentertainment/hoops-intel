@@ -321,7 +321,6 @@ export const sentimentData: SentimentData = {
       score: 91,
       mentions: 9800,
       topTake: "Stephon Castle's extension accruing anchor value at peak velocity while rival guards scramble to figure out their situations is the most underrated dynasty-building advantage in basketball right now. SAS did this perfectly.",
-      narrativeSummary: "Castle is the Spurs' rising social media star as his extension narrative accelerates heading into the single-digit countdown. The anchor-value discourse is resonating with analytically-minded NBA Twitter and the broader consensus is that San Antonio's decision to lock Castle early was one of the most underrated organizational moves of the offseason.",
       narrativeArc: "Castle is the Spurs' rising social media star as his extension narrative accelerates heading into the single-digit countdown. The anchor-value discourse is resonating with analytically-minded NBA Twitter and the broader consensus is that San Antonio's decision to lock Castle early was one of the most underrated organizational moves of the offseason.",
     },
     {
