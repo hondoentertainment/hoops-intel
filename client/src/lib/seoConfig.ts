@@ -108,7 +108,8 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
   },
   "/82-0": {
     title: "The 82-0 Challenge | Hoops Intel",
-    description: "Spin a franchise and an era, draft a starting five, and simulate a full season. Can your lineup go 82-0?",
+    description:
+      "Spin an NBA franchise and era, draft a starting five, and simulate an 82-game season. Free spin or the daily wheel — a for-fun lineup game beside the morning desk.",
     canonicalPath: "/82-0",
     noindex: true,
   },
@@ -158,25 +159,29 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     canonicalPath: "/projections",
   },
   "/badges": {
-    title: "Hoops Intel Badges | Hoops Intel",
-    description: "Achievement badges earned across Hoops Intel tools and community features.",
+    title: "Hoops Intel Badges & Streaks | Hoops Intel",
+    description:
+      "Streaks and badges from Pick ’Em, trivia, and daily visits to Hoops Intel. Progress stays in this browser for guests and signed-in readers.",
     canonicalPath: "/badges",
     noindex: true,
   },
   "/community-pulse": {
     title: "Community Pulse | Hoops Intel",
-    description: "Community ratings and trends on players and storylines.",
+    description:
+      "Score NBA players against the Hoops Intel Pulse read and see where your ballot splits from the desk. Votes stay in this browser.",
     canonicalPath: "/community-pulse",
   },
   "/watch-guide": {
     title: "NBA Watch Guide | Hoops Intel",
-    description: "What to watch tonight — must-see games, matchups, and storyline priorities.",
+    description:
+      "Rank the NBA slate by stars, rivalry, and storyline. A watch guide beside the desk — when the league is dark, it says so instead of inventing a game.",
     canonicalPath: "/watch-guide",
     noindex: true,
   },
   "/podcast-companion": {
-    title: "Podcast Companion | Hoops Intel",
-    description: "Show-notes mode linking Hoops Intel data to your favorite NBA podcasts.",
+    title: "NBA Podcast Companion | Hoops Intel",
+    description:
+      "Show notes from the Hoops Intel desk: an episode title, cold open, segment rundown, social clip, and thread. A companion sheet, not a live podcast.",
     canonicalPath: "/podcast-companion",
     noindex: true,
   },
@@ -226,14 +231,16 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     canonicalPath: "/widgets",
   },
   "/embed-stats": {
-    title: "Embed Publisher Stats | Hoops Intel",
-    description: "Publisher dashboard for embed load trends and export.",
+    title: "Publisher Embed Snapshot | Hoops Intel",
+    description:
+      "Public snapshot of Hoops Intel widget loads — Pulse, ticker, and injury — for sites that embed the desk. Open the widgets page to copy an embed, or see Pro.",
     canonicalPath: "/widgets",
     noindex: true,
   },
   "/widgets/analytics": {
     title: "Widget Load Timeline | Hoops Intel",
-    description: "Publisher dashboard for stacked daily embed loads — pulse, ticker, and injury.",
+    description:
+      "Day-by-day public timeline of Hoops Intel embed loads, split by Pulse, ticker, and injury. A publisher snapshot with a path back to the widgets page.",
     canonicalPath: "/widgets",
     noindex: true,
   },
@@ -248,8 +255,9 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     canonicalPath: "/betting-intel",
   },
   "/guest-pulse": {
-    title: "Guest Pulse Pitch | Hoops Intel",
-    description: "Submit a Guest Pulse takeover idea for the Hoops Intel morning desk.",
+    title: "Guest Pulse — Pitch the Desk | Hoops Intel",
+    description:
+      "Pitch a Guest Pulse takeover for the morning desk: who you would elevate and why. Read notes editors have published, then send your own.",
     canonicalPath: "/guest-pulse",
   },
 };
