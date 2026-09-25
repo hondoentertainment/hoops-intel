@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { PublisherSnapshotFrame } from "../components/PublisherSnapshotFrame";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskFilterChip } from "../components/enhanced/EnhancedUi";
 
@@ -59,7 +60,7 @@ function parseSeries(raw: unknown): TimeseriesRow[] {
   for (const item of raw) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
     const o = item as Record<string, unknown>;
-    // RPC embed_agg_timeseries returns `day`; older clients/fixtures used `d`.
+    // Timeseries rows use `day`; older fixtures used `d`.
     const d = typeof o.day === "string" ? o.day : typeof o.d === "string" ? o.d : null;
     if (!d) continue;
     out.push({
@@ -87,27 +88,10 @@ function UnavailableBanner({ flags }: { flags: FetchFlags }) {
       }}
       role="status"
     >
-      <p className="font-semibold text-amber-100">Analytics backend unavailable</p>
-      {flags.summaryUnavailable && flags.timeseriesUnavailable && flags.domainsUnavailable ? (
-        <p>
-          Supabase is not configured on this deployment (<code className="text-amber-200/90">SUPABASE_URL</code> + service
-          key). Counts, daily rows, and referrer breakdown will stay empty until env is wired.
-        </p>
-      ) : (
-        <ul className="list-disc pl-4 space-y-1 opacity-90">
-          {flags.summaryUnavailable && <li>Summary rollups unavailable</li>}
-          {flags.timeseriesUnavailable && <li>Daily timeseries unavailable</li>}
-          {flags.domainsUnavailable && <li>Referrer / host breakdown unavailable</li>}
-        </ul>
-      )}
-      {flags.error && flags.error !== "rpc_failed" && (
-        <p className="opacity-90">Detail: {flags.error}</p>
-      )}
-      {flags.error === "rpc_failed" && (
-        <p className="opacity-90">
-          Aggregation RPC failed — run Supabase migrations (<code className="text-amber-200/90">embed_agg_*</code> functions).
-        </p>
-      )}
+      <p className="font-semibold text-amber-100">Load counts aren’t available right now</p>
+      <p>
+        This public snapshot stays empty until widget traffic is recorded. Copy an embed from the widgets page to start counting loads.
+      </p>
     </div>
   );
 }
@@ -285,10 +269,11 @@ export default function EmbedPublisherStats() {
   return (
     <ToolPageLayout
       subtitle="EMBED ANALYTICS"
-      sectionLabel="Publisher · iframe loads"
-      title="Embed analytics"
-      description="Rollups match Supabase embed_analytics_events. Referrer hosts come from embed_agg_by_referrer (parent page hostname on load)."
+      sectionLabel="Publisher snapshot"
+      title="Embed load snapshot"
+      description="Public counts of Pulse, ticker, and injury widget loads. An empty window means no recorded embeds yet."
     >
+      <PublisherSnapshotFrame body="Anyone can view how often Hoops Intel widgets load on other sites. This is a publisher snapshot of Pulse, ticker, and injury embeds — not an operations console." />
 
       <UnavailableBanner flags={flags} />
 
@@ -443,7 +428,7 @@ export default function EmbedPublisherStats() {
             </div>
             {flags.domainsUnavailable ? (
               <div className="px-5 py-10 text-center text-xs text-amber-200/80">
-                Host breakdown requires Supabase + <code className="text-amber-100/90">embed_agg_by_referrer</code> migration.
+                Host breakdown isn’t available in this window. Embed a widget and loads from other sites will show up here.
               </div>
             ) : displayHosts.length === 0 ? (
               <div className="px-5 py-10 text-center text-xs text-white/35">
@@ -518,7 +503,7 @@ export default function EmbedPublisherStats() {
                   {flags.timeseriesUnavailable ? (
                     <tr>
                       <td colSpan={tableColumns.length + 1} className="px-5 py-10 text-center text-xs text-amber-200/80">
-                        Timeseries unavailable — configure Supabase server env.
+                        Daily rows aren’t available in this window yet.
                       </td>
                     </tr>
                   ) : series.length === 0 ? (

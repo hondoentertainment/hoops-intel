@@ -342,6 +342,26 @@ export default function Player() {
           </div>
         </div>
 
+        <div
+          className="enhanced-card p-4 mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          data-testid="player-compare-cta"
+        >
+          <div className="min-w-0">
+            <p className="enhanced-kicker mb-1">Compare</p>
+            <p className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+              {currentPulse
+                ? `${player.name} is on today's Pulse Index. Open a side-by-side with another card.`
+                : `Open the Pulse compare lab. ${player.name} is selected when they are on today's index.`}
+            </p>
+          </div>
+          <EnhancedButton
+            href={`/compare-players?a=${encodeURIComponent(player.name)}`}
+            className="shrink-0"
+          >
+            Compare {player.name}
+          </EnhancedButton>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-4">

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { PublisherSnapshotFrame } from "../components/PublisherSnapshotFrame";
 import ToolPageLayout from "../components/ToolPageLayout";
 import { EnhancedButton } from "../components/enhanced/EnhancedUi";
 
@@ -27,7 +28,7 @@ export default function WidgetAnalytics() {
           pulse: typeof row.pulse === "number" ? row.pulse : Number(row.pulse) || 0,
           ticker: typeof row.ticker === "number" ? row.ticker : Number(row.ticker) || 0,
           injury: typeof row.injury === "number" ? row.injury : Number(row.injury) || 0,
-        })).filter((r) => r.day);
+        })).filter((r: DayBucket) => Boolean(r.day));
         setSeries(s);
         const c = sum?.counts && typeof sum.counts === "object" && sum.counts !== null ? sum.counts : {};
         const norm: Record<string, number> = {};
@@ -70,10 +71,11 @@ export default function WidgetAnalytics() {
     <ToolPageLayout
       subtitle="PUBLISHER ANALYTICS"
       sectionLabel="Embed loads"
-      title="Publisher analytics dashboard"
-      description="Rolling daily counts aggregated from iframe beacons. Telemetry needs the Supabase RPCs in the migration pack."
+      title="Widget load timeline"
+      description="A public day-by-day look at Pulse, ticker, and injury widget loads. Grab embed code from the widgets page."
       maxWidth="xl"
     >
+        <PublisherSnapshotFrame body="These bars are the same public widget loads, split by day. Use them to see the shape of embed traffic, then copy an embed from the widgets page or read about Pro." />
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
           <div className="flex flex-wrap gap-3">
             <EnhancedButton href="/widgets" variant="ghost">Back to widgets</EnhancedButton>
@@ -116,7 +118,7 @@ export default function WidgetAnalytics() {
               </div>
               <div className="text-2xl font-bold text-white/90 mono-data mt-1">{totals[id]}</div>
               <div className="text-[11px] mt-1" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
-                last {days}d (RPC summary)
+                last {days} days
               </div>
             </div>
           ))}
@@ -127,10 +129,8 @@ export default function WidgetAnalytics() {
         </p>
 
         {error && (
-          <div className="mb-6 text-sm px-4 py-3 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-100/95">
-            {error === "fetch_failed"
-              ? "Could not reach analytics endpoint."
-              : `Note: ${error} — totals may appear empty until RPCs are migrated.`}
+          <div className="mb-6 text-sm px-4 py-3 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-100/95" role="status">
+            Load counts aren’t available in this window yet. Embed a widget to start a public snapshot.
           </div>
         )}
 

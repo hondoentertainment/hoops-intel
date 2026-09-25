@@ -39,6 +39,7 @@ export function mainNavLinks(date = new Date()): MainNavLink[] {
     { label: "Compare", href: "/compare-players" },
     { label: "Performance", href: "/performance" },
     { label: "Hoops IQ", href: "/trivia" },
+    { label: "Badges", href: "/badges" },
     { label: "My Pulse", href: "/my-pulse" },
   ];
 
@@ -54,6 +55,7 @@ export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Injuries", href: "/injuries" },
   { label: "Tonight", href: "/tonight" },
   { label: "Pick 'Em", href: "/pick-em" },
+  { label: "Badges", href: "/badges" },
   { label: "Archive", href: "/archive" },
   { label: "Ask", href: "/ask" },
   { label: "Tools", href: "/tools" },
@@ -190,14 +192,14 @@ export const TOOLS_DIRECTORY: ToolLink[] = [
   {
     label: "Embed analytics",
     href: "/embed-stats",
-    description: "Publisher dashboard — embed load trends and CSV export",
+    description: "Public snapshot of embed loads, with a CSV export for publishers",
     category: "publishing",
     hideFromDirectory: true,
   },
   {
     label: "Widget load timeline",
     href: "/widgets/analytics",
-    description: "Stacked daily embed loads — pulse vs ticker vs injury",
+    description: "Public day-by-day embed loads — Pulse, ticker, and injury",
     category: "publishing",
     hideFromDirectory: true,
   },

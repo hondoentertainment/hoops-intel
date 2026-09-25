@@ -16,9 +16,19 @@ import { makeGameId } from "../lib/gameCenter";
 import PreferencesSetup from "../components/PreferencesSetup";
 import EditorialShell from "../components/EditorialShell";
 import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
-import { EmptyState, EnhancedButton, InjuryChip, PageHero, SectionHeader } from "../components/enhanced/EnhancedUi";
+import { DeskFilterChip, EmptyState, EnhancedButton, InjuryChip, PageHero, SectionHeader } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { hasLocalAuthToken } from "../lib/guestAuth";
+
+function PulseDeskLinks() {
+  return (
+    <div className="flex flex-wrap items-center gap-2" data-testid="my-pulse-play-links">
+      <span className="enhanced-kicker">Also on your desk</span>
+      <DeskFilterChip href="/pick-em">Pick 'Em</DeskFilterChip>
+      <DeskFilterChip href="/badges">Badges</DeskFilterChip>
+    </div>
+  );
+}
 
 // ═══════════════════════════════════════════════════════════
 // MY PULSE PAGE
@@ -69,6 +79,7 @@ export default function MyPulse() {
         ) : (
           <SignedInNextNotice page="my-pulse" />
         )}
+        <PulseDeskLinks />
         <EmptyState
           kicker="My Pulse"
           title="Set up My Pulse"
@@ -99,6 +110,7 @@ export default function MyPulse() {
       ) : (
         <SignedInNextNotice page="my-pulse" />
       )}
+      <PulseDeskLinks />
 
       {/* Your Teams Tonight */}
       {yourTeamPreviews.length > 0 && (

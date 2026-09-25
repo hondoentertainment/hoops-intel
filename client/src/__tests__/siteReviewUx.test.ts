@@ -6,7 +6,7 @@ import { assessContentFreshness, DESK_CONTENT_SLA_DAYS, freshnessHeroMeta } from
 import { CLEAR_AVAILABILITY_LABEL, playerAvailability } from "../lib/playerAvailability";
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { isPageLevelSeoRoute, playerProfileCanonicalUrl, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
-import { FOR_FUN_PATHS, isForFunRoute } from "../lib/siteNav";
+import { FOR_FUN_PATHS, FOOTER_QUICK_LINKS, isForFunRoute, mainNavLinks } from "../lib/siteNav";
 import { tonightPlayerLinks } from "../lib/tonightPlayerLinks";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -116,6 +116,37 @@ describe("tonight player links", () => {
     expect(tonightPlayerLinks({ awayTeam: "ZZZ", homeTeam: "YYY" })).toEqual([]);
     expect(src("pages/Tonight.tsx")).toContain("tonight-player-links");
     expect(src("pages/Tonight.tsx")).toContain("TonightPlayerLinks");
+  });
+});
+
+describe("site-review leftover discoverability", () => {
+  it("deep-links a compare CTA from the player profile", () => {
+    const player = src("pages/Player.tsx");
+    expect(player).toContain('data-testid="player-compare-cta"');
+    expect(player).toContain("/compare-players?a=");
+    expect(player).toContain("encodeURIComponent(player.name)");
+  });
+
+  it("surfaces Pick 'Em and Badges from My Pulse, the More menu, and the footer", () => {
+    const pulse = src("pages/MyPulse.tsx");
+    expect(pulse).toContain('data-testid="my-pulse-play-links"');
+    expect(pulse).toContain('href="/pick-em"');
+    expect(pulse).toContain('href="/badges"');
+    expect(mainNavLinks().map((link) => link.href)).toEqual(expect.arrayContaining(["/pick-em", "/badges"]));
+    expect(FOOTER_QUICK_LINKS.map((link) => link.href)).toEqual(expect.arrayContaining(["/pick-em", "/badges"]));
+  });
+
+  it("frames publisher snapshots without operations diagnostics", () => {
+    const frame = src("components/PublisherSnapshotFrame.tsx");
+    expect(frame).toContain('data-testid="publisher-snapshot-frame"');
+    expect(frame).toContain('href="/widgets"');
+    expect(frame).toContain('href="/pro"');
+    expect(frame).toContain('href="/guest-pulse"');
+    for (const page of ["pages/EmbedPublisherStats.tsx", "pages/WidgetAnalytics.tsx"]) {
+      const text = src(page);
+      expect(text).toContain("PublisherSnapshotFrame");
+      expect(text).not.toMatch(/SUPABASE_URL|service key|embed_agg_|RPC summary|RPCs are migrated/);
+    }
   });
 });
 

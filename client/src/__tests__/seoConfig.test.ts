@@ -58,6 +58,33 @@ describe("soft-launch and desk SEO", () => {
     expect(resolveRouteSeo("/player/victor-wembanyama")).toBeNull();
   });
 
+  it("gives thin and novelty routes a descriptive title, description, and OG payload", () => {
+    const routes = [
+      "/82-0",
+      "/guest-pulse",
+      "/podcast-companion",
+      "/badges",
+      "/watch-guide",
+      "/community-pulse",
+      "/embed-stats",
+      "/widgets/analytics",
+    ];
+    for (const path of routes) {
+      const seo = resolveRouteSeo(path);
+      expect(seo?.title.length).toBeGreaterThan(18);
+      expect(seo?.description.length).toBeGreaterThan(110);
+      expect(seo?.description).not.toMatch(/supabase|rpc|service key/i);
+      const meta = toMetaTags(seo!);
+      expect(meta.title).toBe(seo?.title);
+      expect(meta.description).toBe(seo?.description);
+      expect(meta.ogImage).toMatch(/^https:\/\/hoopsintel\.net\//);
+      expect(meta.ogUrl).toMatch(/^https:\/\/hoopsintel\.net/);
+    }
+    expect(resolveRouteSeo("/guest-pulse")?.noindex).toBeUndefined();
+    expect(resolveRouteSeo("/82-0")?.noindex).toBe(true);
+    expect(resolveRouteSeo("/podcast-companion")?.noindex).toBe(true);
+  });
+
   it("indexes the draft board (populated weekly, not a stub)", () => {
     expect(NOINDEX_PATHS.has("/draft")).toBe(false);
     const seo = resolveRouteSeo("/draft");

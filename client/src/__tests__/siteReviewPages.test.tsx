@@ -10,6 +10,7 @@ import Tonight from "../pages/Tonight";
 import WatchGuide from "../pages/WatchGuide";
 import PickEm from "../pages/PickEm";
 import { pulseEdition } from "../lib/pulseData";
+import { watchGuideData } from "../lib/watchGuideData";
 
 function renderAt(path: string, tree: ReactNode) {
   const { hook } = memoryLocation({ path, static: true });
@@ -79,7 +80,7 @@ describe("site review pages", () => {
 
   it("stamps a current watch guide and an outdated podcast", () => {
     renderAt("/watch-guide", <WatchGuide />);
-    expect(screen.getByText("Last updated: September 23, 2026")).toBeInTheDocument();
+    expect(screen.getByText(`Last updated: ${watchGuideData.displayDate}`)).toBeInTheDocument();
     expect(screen.queryByTestId("content-may-be-outdated")).not.toBeInTheDocument();
 
     cleanup();
