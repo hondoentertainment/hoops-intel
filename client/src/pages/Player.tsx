@@ -14,7 +14,7 @@ import {
   getPlayerIntelBySlug,
   type PlayerIntelResponse,
 } from "../lib/playerIntel";
-import { getPlayerRosterStatus, playerCoverageEmptyState, playerLiveEmptyState, playerProfileFrame } from "../lib/playerRosterStatus";
+import { getPlayerRosterStatus, playerCoverageEmptyState, playerHasSubstantiveDeskCard, playerLiveEmptyState, playerProfileFrame, profileSeoIndexable } from "../lib/playerRosterStatus";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { EmptyState, EnhancedButton, InjuryChip, StatusPill } from "../components/enhanced/EnhancedUi";
 import { PlayerToolLinks } from "../components/PlayerToolLinks";
@@ -78,14 +78,18 @@ export default function Player() {
   const profileCanonical = slug ? playerProfileCanonicalUrl(slug) : undefined;
   const currentPulse = player ? pulseIndex.find((p: any) => p.player === player.name) : undefined;
   const currentInjuryPreview = player ? findPlayerInjury(player.name) : null;
-  const roster = player
-    ? getPlayerRosterStatus(player.name, {
-        inPulse: Boolean(currentPulse),
-        hasCurrentTeam: Boolean(currentPulse || currentInjuryPreview),
-        mentions: player.mentions,
-      })
-    : null;
+  const rosterContext = {
+    inPulse: Boolean(currentPulse),
+    hasCurrentTeam: Boolean(currentPulse || currentInjuryPreview),
+    mentions: player?.mentions,
+  };
+  const substantive = playerHasSubstantiveDeskCard(currentPulse);
+  const roster = player ? getPlayerRosterStatus(player.name, rosterContext) : null;
   const frame = roster ? playerProfileFrame(roster, player?.teams ?? []) : null;
+  const seoIndexable = player
+    ? profileSeoIndexable(player.name, { ...rosterContext, substantive })
+    : false;
+  const thinShell = Boolean(player) && !substantive && roster?.status !== "retired";
 
   useMetaTags({
     enabled: Boolean(slug),
@@ -104,7 +108,7 @@ export default function Player() {
     ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
     ogUrl: profileCanonical,
     canonicalUrl: profileCanonical,
-    noindex: !player || !roster?.indexable,
+    noindex: !seoIndexable,
     jsonLd: player
       ? {
           "@context": "https://schema.org",
@@ -342,6 +346,7 @@ export default function Player() {
           </div>
         </div>
 
+        {(substantive || roster?.status === "retired") && (
         <div
           className="enhanced-card p-4 mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
           data-testid="player-compare-cta"
@@ -361,33 +366,43 @@ export default function Player() {
             Compare {player.name}
           </EnhancedButton>
         </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-4">
             {!frame?.live && (
-              <>
+              <div data-testid={thinShell ? "player-thin-state" : undefined}>
                 <EmptyState
                   kicker={coverageEmpty.kicker}
                   title={coverageEmpty.title}
                   body={coverageEmpty.body}
                   pill={coverageEmpty.pill}
-                  footnote={`${player.mentions} archive mention${player.mentions !== 1 ? "s" : ""}`}
+                  footnote={
+                    thinShell
+                      ? "No Pulse score, counting stats, or context blurb on this page."
+                      : `${player.mentions} archive mention${player.mentions !== 1 ? "s" : ""}`
+                  }
                 />
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center">
                   <EnhancedButton href="/players">Player index</EnhancedButton>
                 </div>
-              </>
+              </div>
             )}
-            {liveEmpty && (
-              <EmptyState
-                kicker={liveEmpty.kicker}
-                title={liveEmpty.title}
-                body={liveEmpty.body}
-                pill={liveEmpty.pill}
-                footnote={currentInjury ? currentInjury.timeline : undefined}
-                compact
-              />
+            {thinShell && frame?.live && (
+              <div data-testid="player-thin-state">
+                <EmptyState
+                  kicker={liveEmpty?.kicker ?? "Desk coverage"}
+                  title={liveEmpty?.title ?? `No Pulse counting line for ${player.name}`}
+                  body={
+                    liveEmpty?.body ??
+                    "This name is on the desk without a Pulse card. Hoops Intel is not inventing counting stats or a context blurb."
+                  }
+                  pill={liveEmpty?.pill ?? "THIN PROFILE"}
+                  footnote={currentInjury?.timeline ?? "No Pulse score, counting stats, or context blurb on this page."}
+                  compact
+                />
+              </div>
             )}
             {/* Current Stats */}
             {frame?.live && currentPulse && (
@@ -458,7 +473,7 @@ export default function Player() {
               </div>
             )}
 
-            {/* Timeline */}
+            {(editions.length > 0 || substantive) && (
             <div>
               <div className="section-label mb-3">EDITION HISTORY</div>
               <div className="space-y-3">
@@ -490,6 +505,7 @@ export default function Player() {
                 ))}
               </div>
             </div>
+            )}
           </div>
 
           {/* Sidebar */}

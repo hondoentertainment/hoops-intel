@@ -26,6 +26,9 @@ function PulseDeskLinks() {
       <span className="enhanced-kicker">Also on your desk</span>
       <DeskFilterChip href="/pick-em">Pick 'Em</DeskFilterChip>
       <DeskFilterChip href="/badges">Badges</DeskFilterChip>
+      <DeskFilterChip href="/82-0">82-0</DeskFilterChip>
+      <DeskFilterChip href="/trade-simulator">Trade sim</DeskFilterChip>
+      <DeskFilterChip href="/clutch">Clutch</DeskFilterChip>
     </div>
   );
 }

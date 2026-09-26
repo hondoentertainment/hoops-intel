@@ -3,7 +3,8 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { CampDeskEmpty, DeskLoopLinks } from "../components/enhanced/EnhancedUi";
+import { CampDeskEmpty, CompanionCadence, DeskLoopLinks } from "../components/enhanced/EnhancedUi";
+import { liveWireMonthGateClosed } from "../lib/deskMode";
 import { assessContentFreshness, freshnessHeroMeta } from "../lib/dataTrust";
 import { watchGuideData } from "../lib/watchGuideData";
 
@@ -310,6 +311,8 @@ export default function WatchGuide() {
         </span>
       }
     >
+        <CompanionCadence asOf={data.displayDate || data.generatedDate || data.date} />
+
         {freshness.state === "stale" ? (
           <p
             className="text-xs mb-4"
@@ -324,8 +327,12 @@ export default function WatchGuide() {
         {!slateOpen ? (
           <>
           <CampDeskEmpty
-            title="No games on the board"
-            body="Season desk is coming. The desk, tools, archive, and Ask stay live. Hoops Intel is not inventing a watch ranking — the slate stays empty until ESPN posts tip-offs (~Oct 1)."
+            title={liveWireMonthGateClosed() ? "No games on the board" : undefined}
+            body={
+              liveWireMonthGateClosed()
+                ? "Season desk is coming. The desk, tools, archive, and Ask stay live. Hoops Intel is not inventing a watch ranking — the slate stays empty until ESPN posts tip-offs (~Oct 1)."
+                : "Hoops Intel is not inventing a watch ranking. ESPN has not posted tip-offs, and the scores wire is in season."
+            }
             pill="NOT TONIGHT"
             footnote={data.nightOverview || data.topPick.reason}
           />

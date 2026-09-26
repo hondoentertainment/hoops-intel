@@ -28,6 +28,7 @@ import EditorialShell from "../components/EditorialShell";
 import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { CampDeskEmpty, ForFunChip, GamePreviewCard, SectionHeader, StatCard } from "../components/enhanced/EnhancedUi";
 import { lastUpdatedStamp } from "../lib/dataTrust";
+import { liveWireMonthGateClosed } from "../lib/deskMode";
 import { SAMPLE_LOCKS } from "../lib/enhancedDesk";
 import { hasLocalAuthToken } from "../lib/guestAuth";
 
@@ -529,12 +530,20 @@ function ClosedBoardPickEm({ pickStats }: { pickStats: PickWinLoss }) {
         )}
         <CampDeskEmpty
           title="Board closed."
-          body="Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. Scores return ~Oct 1 — we never invent tip-offs. Desk, tools, archive, and Ask stay live."
+          body={
+            liveWireMonthGateClosed()
+              ? "Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. Scores return ~Oct 1 — we never invent tip-offs. Desk, tools, archive, and Ask stay live."
+              : "Nothing on tonight’s ESPN slate, so Pick ’Em stays locked. The scores wire is in season — we still never invent tip-offs."
+          }
           pill="NOT TONIGHT"
         />
         <div id="season-board" className="grid grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3">
           <StatCard kicker="SEASON RECORD" value={record} sub="No settled picks yet" />
-          <StatCard kicker="DESK RECORD" value="—" sub="The desk waits on October" />
+          <StatCard
+            kicker="DESK RECORD"
+            value="—"
+            sub={liveWireMonthGateClosed() ? "The desk waits on October" : "Waiting on a posted slate"}
+          />
           <StatCard kicker="STREAK" value={streak} sub="First lock of 2026-27" />
           <StatCard kicker="BRACKET" value="Open" sub="Playoff tooling idle" />
         </div>

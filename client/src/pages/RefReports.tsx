@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { DeskPanel } from "../components/enhanced/EnhancedUi";
+import { DeskPanel, EnhancedButton } from "../components/enhanced/EnhancedUi";
 import { formatContentDate } from "../lib/contentDate";
 import { refData } from "../lib/refData";
 import type { RefereeProfile, TonightRefAssignment } from "../lib/refData";
@@ -200,7 +200,17 @@ export default function RefReports() {
       sectionLabel="Referee reports"
       title="Know the whistle"
       description={`${formatContentDate(data.generatedDate)} — Tonight's officiating crews and their tendencies`}
+      heroMeta={`As of ${formatContentDate(data.generatedDate)}`}
     >
+        <div className="enhanced-card p-4 mb-6" data-testid="refs-methodology">
+          <p className="enhanced-kicker mb-2">How to read the whistle</p>
+          <p className="text-sm mb-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+            Crew notes are an editorial desk read — tendencies and assignments, not a league ruling.
+            As of {formatContentDate(data.generatedDate)}. Rankings on this site follow the same judgment standard as the Pulse Index.
+          </p>
+          <EnhancedButton href="/pulse-methodology">Pulse methodology</EnhancedButton>
+        </div>
+
         <DeskPanel kicker="Weekly trend" className="mb-8">
           <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text,#0a0a0a)" }}>
             {data.weeklyTrend}

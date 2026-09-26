@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ToolPageLayout from "../components/ToolPageLayout";
-import { DeskLoopLinks, DeskPanel } from "../components/enhanced/EnhancedUi";
+import { CompanionCadence, DeskLoopLinks, DeskPanel } from "../components/enhanced/EnhancedUi";
 import { assessContentFreshness, freshnessHeroMeta } from "../lib/dataTrust";
 import { podcastCompanion } from "../lib/podcastData";
 import type { TalkingPoint } from "../lib/podcastData";
@@ -171,6 +171,8 @@ export default function PodcastCompanion() {
       }
       heroMeta={freshnessHeroMeta(data.generatedDate || data.date, data.generatedDate || data.date) ?? undefined}
     >
+        <CompanionCadence asOf={data.generatedDate || data.date} />
+
         {stale ? (
           <DeskPanel kicker="May be outdated" className="mb-6">
             <p className="text-sm" role="status" data-testid="content-may-be-outdated" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>

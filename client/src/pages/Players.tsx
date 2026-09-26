@@ -37,8 +37,8 @@ export default function Players() {
       title="Browse player profiles"
       description={
         pulseCount > 0
-          ? `Search the Pulse Index and archive coverage so sitemap player pages are one click from the desk. ${pulseCount} on today’s Pulse · ${catalog.length} indexable profiles.`
-          : "Search the Pulse Index and archive coverage so sitemap player pages are one click from the desk."
+          ? `Pulse cards with a stat line and blurb, plus archive names that stay on the index when the desk has no counting line. ${pulseCount} on today’s Pulse · ${catalog.length} profiles.`
+          : "Search Pulse cards and archive names. Profiles without a stat line, Pulse score, and blurb say so."
       }
       heroMeta={lastUpdatedStamp()}
       maxWidth="xl"

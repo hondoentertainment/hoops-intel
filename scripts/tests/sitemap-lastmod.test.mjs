@@ -228,14 +228,16 @@ test("retired Chris Paul stays indexable when archive coverage exists", () => {
   assert.equal(isSitemapIndexablePlayer("Chris Paul", { mentions: 0 }, lists), false);
 });
 
-test("prospect names stay indexable only with real archive coverage", () => {
+test("thin archive and prospect names stay out of the sitemap until they have a pulse card", () => {
   const withProspects = { ...lists, prospects: new Set(["VJ Edgecombe"]) };
-  assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 4 }, withProspects), true);
-  assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 1 }, withProspects), false);
+  assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 4 }, withProspects), false);
+  assert.equal(isSitemapIndexablePlayer("Amen Thompson", { mentions: 6 }, lists), false);
+  assert.equal(isSitemapIndexablePlayer("Keyonte George", { mentions: 3 }, lists), false);
   assert.equal(
     isSitemapIndexablePlayer("VJ Edgecombe", { inPulse: true, mentions: 1 }, withProspects),
     true,
   );
+  assert.equal(isSitemapIndexablePlayer("Keyonte George", { substantive: true, mentions: 1 }, lists), true);
 });
 
 test("thin one-mention archive names are dropped", () => {
@@ -287,9 +289,13 @@ test("every static sitemap source file exists (no silent build-day lastmod)", ()
   }
 });
 
-test("current-team one-mention players stay sitemap-indexable", () => {
+test("a team tag without pulse stats is not a sitemap content bar", () => {
   assert.equal(
     isSitemapIndexablePlayer("Jaime Jaquez Jr.", { hasCurrentTeam: true, mentions: 1 }, lists),
+    false,
+  );
+  assert.equal(
+    isSitemapIndexablePlayer("Jaime Jaquez Jr.", { substantive: true, mentions: 1 }, lists),
     true,
   );
 });
@@ -353,7 +359,7 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assert.match(injuries.lastmod, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(Number(tonight.priority) > Number(tools.priority));
   assert.ok(Number(injuries.priority) > Number(tools.priority));
-  const requiredPlayers = ["jaime-jaquez-jr", "vj-edgecombe", "amen-thompson", "keyonte-george"];
+  const requiredPlayers = ["victor-wembanyama"];
   for (const slug of requiredPlayers) {
     const block = xml.match(
       new RegExp(
@@ -361,6 +367,9 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
       ),
     );
     assert.ok(block, `complete <url> block missing for /player/${slug}`);
+  }
+  for (const slug of ["vj-edgecombe", "amen-thompson", "keyonte-george", "jaime-jaquez-jr"]) {
+    assert.equal(urls.some((u) => u.loc === `/player/${slug}`), false, `${slug} lacks a pulse card`);
   }
 });
 

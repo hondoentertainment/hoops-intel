@@ -26,6 +26,7 @@ import {
 } from "../../lib/enhancedDesk";
 import { editionPublishLabel } from "../../lib/pacificTime";
 import { deskRailTools } from "../../lib/siteNav";
+import { liveWireMonthGateClosed } from "../../lib/deskMode";
 import {
   DeskFilterChip,
   DeskInset,
@@ -265,7 +266,11 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             <DeskPanel
               id="desk-rail"
               kicker="Desk rail"
-              hint="Labs that stay live through camp — not sitemap-only"
+              hint={
+                liveWireMonthGateClosed()
+                  ? "Labs that stay live through camp — not sitemap-only"
+                  : "82-0, clutch, and the trade sim stay one click from the desk"
+              }
             >
               <ul className="hidden md:grid grid-cols-2 gap-3">
                 {deskRailTools().map((tool) => (

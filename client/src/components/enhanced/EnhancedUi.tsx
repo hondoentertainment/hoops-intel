@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { campDeskEmptyCopy } from "../../lib/campDesk";
+import { campDeskEmptyCopy, companionNextSlate } from "../../lib/campDesk";
 import { ENHANCED_CHIP, ENHANCED_INK, injuryChipTone, injuryStatusLabel } from "../../lib/enhancedDesk";
 
 export function BrandMark({ size = 14 }: { size?: number }) {
@@ -532,12 +532,28 @@ export function CampDeskEmpty({
     >
       <div className="flex flex-wrap justify-center gap-2">
         {copy.destinations.map((dest) => (
-          <EnhancedButton key={dest.href} href={dest.href} variant={dest.href === "/#camp-intel" ? "primary" : "ghost"}>
+          <EnhancedButton key={dest.href} href={dest.href} variant={dest.href === "/#camp-intel" || dest.href === "/" ? "primary" : "ghost"}>
             {dest.label}
           </EnhancedButton>
         ))}
       </div>
     </EmptyState>
+  );
+}
+
+/** As-of stamp plus the next real slate for watch-guide and podcast companion. */
+export function CompanionCadence({ asOf }: { asOf: string }) {
+  const next = companionNextSlate();
+  return (
+    <div className="enhanced-card p-4 mb-4" data-testid="companion-cadence">
+      <p className="enhanced-kicker" data-testid="companion-as-of">
+        As of {asOf}
+      </p>
+      <p className="text-sm mt-2" data-testid="companion-next-slate" style={{ color: "var(--hi-text,#0a0a0a)" }}>
+        <span className="font-semibold">{next.kicker}. </span>
+        {next.line}
+      </p>
+    </div>
   );
 }
 

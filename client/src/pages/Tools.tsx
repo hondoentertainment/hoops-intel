@@ -15,6 +15,7 @@ import {
   type ToolCategory,
 } from "../lib/siteNav";
 import { lastUpdatedStamp } from "../lib/dataTrust";
+import { liveWireMonthGateClosed } from "../lib/deskMode";
 import { POPULAR_SEARCH_DESTINATIONS } from "../lib/searchHistory";
 
 const PUBLIC_TOOLS = publicToolsDirectory();
@@ -67,7 +68,7 @@ export default function Tools() {
       {category === "all" && !query.trim() ? (
         <section className="mb-8" aria-labelledby="tools-featured">
           <h2 id="tools-featured" className="enhanced-kicker mb-4">
-            Featured through camp
+            {liveWireMonthGateClosed() ? "Featured through camp" : "Featured on the desk"}
           </h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {FEATURED_TOOLS.map((t) => (

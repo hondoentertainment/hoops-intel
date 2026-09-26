@@ -98,14 +98,29 @@ function loadRosterLists() {
   };
 }
 
-/** Mirror `isIndexablePlayerProfile` so sitemap and player pages stay aligned. */
+/** Pulse Index rows with stats, a score, and a context blurb — the rich-profile bar. */
+export function substantivePulseNames(pulseIndexSource) {
+  const names = new Set();
+  if (!pulseIndexSource) return names;
+  for (const chunk of String(pulseIndexSource).split(/},\s*{/)) {
+    const player = chunk.match(/\bplayer:\s*"([^"]+)"/)?.[1];
+    const keyStats = chunk.match(/\bkeyStats:\s*"([^"]*)"/)?.[1]?.trim() ?? "";
+    const note = chunk.match(/\bnote:\s*"([^"]*)"/)?.[1]?.trim() ?? "";
+    const score = chunk.match(/\bindexScore:\s*(-?\d+(?:\.\d+)?)/);
+    if (player && keyStats && note && score) names.add(canonicalPlayerName(player));
+  }
+  return names;
+}
+
+/**
+ * Mirror `profileSeoIndexable`: retired archive stays, thin name-drops do not.
+ * `inPulse` / `substantive` mean a rich Pulse card, not any `player:` string.
+ */
 export function isSitemapIndexablePlayer(name, context, lists) {
   const canonical = canonicalPlayerName(name);
   if (lists.nonPlayers.has(canonical) || lists.historical.has(canonical)) return false;
   if (lists.retired.has(canonical)) return (context.mentions ?? 0) > 0;
-  if (context.inPulse || context.hasCurrentTeam) return true;
-  if (lists.prospects?.has(canonical)) return (context.mentions ?? 0) >= 2;
-  return (context.mentions ?? 0) >= 2;
+  return Boolean(context.substantive || context.inPulse);
 }
 
 const ALLOWED_CHANGEFREQ = new Set([
@@ -366,7 +381,6 @@ export function generate({ write = true } = {}) {
   const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
 
   const mentionCounts = new Map();
-  const playerTeams = new Map();
   const teams = new Set();
   const games = new Set();
 
@@ -374,16 +388,6 @@ export function generate({ write = true } = {}) {
     const canonical = canonicalPlayerName(name);
     if (!canonical) return;
     mentionCounts.set(canonical, (mentionCounts.get(canonical) || 0) + 1);
-  };
-
-  const noteTeam = (name, team) => {
-    const code = canonicalTeamCode(team);
-    if (!code) return;
-    const canonical = canonicalPlayerName(name);
-    if (!canonical) return;
-    const set = playerTeams.get(canonical) ?? new Set();
-    set.add(code);
-    playerTeams.set(canonical, set);
   };
 
   const playerMatches = archiveFile.matchAll(/players:\s*\[([^\]]+)\]/g);
@@ -452,17 +456,12 @@ export function generate({ write = true } = {}) {
   for (const name of rosterLists.retired) {
     if (archiveFile.includes(name) || pulseFile.includes(name)) bumpMention(name);
   }
-  const pulsePlayers = new Set();
   for (const m of pulseFile.matchAll(/\bplayer:\s*"([^"]+)"/g)) {
-    const canonical = canonicalPlayerName(m[1]);
-    pulsePlayers.add(canonical);
-    bumpMention(canonical);
-  }
-  for (const m of pulseFile.matchAll(/player:\s*"([^"]+)"\s*,\s*team:\s*"([^"]+)"/g)) {
-    noteTeam(m[1], m[2]);
+    bumpMention(m[1]);
   }
   const pulseIndexPlayers = new Set();
   const pulseIndexBlock = pulseFile.match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/);
+  const substantivePlayers = substantivePulseNames(pulseIndexBlock ? pulseIndexBlock[1] : "");
   if (pulseIndexBlock) {
     for (const m of pulseIndexBlock[1].matchAll(/\bplayer:\s*"([^"]+)"/g)) {
       pulseIndexPlayers.add(canonicalPlayerName(m[1]));
@@ -484,8 +483,8 @@ export function generate({ write = true } = {}) {
       !isSitemapIndexablePlayer(
         canonical,
         {
-          inPulse: pulsePlayers.has(canonical),
-          hasCurrentTeam: (playerTeams.get(canonical)?.size ?? 0) > 0,
+          inPulse: substantivePlayers.has(canonical),
+          substantive: substantivePlayers.has(canonical),
           mentions,
         },
         rosterLists,
