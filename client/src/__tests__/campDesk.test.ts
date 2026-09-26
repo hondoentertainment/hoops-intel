@@ -10,6 +10,7 @@ import {
   campShortDate,
   campStorylines,
   campUnresolved,
+  companionNextSlate,
   isCampDesk,
 } from "../lib/campDesk";
 import { campScheduleGames, campScheduleMeta } from "../lib/campScheduleData";
@@ -84,6 +85,19 @@ describe("camp desk empty copy", () => {
     expect(copy.body.toLowerCase()).toContain("ask");
     expect(copy.footnote.toLowerCase()).toContain("october 1");
     expect(copy.destinations.map((d) => d.href)).toEqual(["/#camp-intel", "/tools", "/archive", "/ask"]);
+  });
+
+  it("drops camp framing once the July–September wire gate opens", () => {
+    const october = campDeskEmptyCopy(new Date("2026-10-02T18:00:00Z"));
+    expect(october.kicker.toLowerCase()).not.toContain("camp");
+    expect(october.title.toLowerCase()).not.toContain("oct 1");
+    expect(october.body.toLowerCase()).toContain("in season");
+    expect(october.pill).toBe("SLATE CLEAR");
+    expect(october.destinations[0]?.href).toBe("/");
+
+    const next = companionNextSlate(new Date("2026-10-02T18:00:00Z"));
+    expect(next.line.toLowerCase()).not.toContain("camp");
+    expect(next.kicker.toLowerCase()).toMatch(/slate/);
   });
 });
 

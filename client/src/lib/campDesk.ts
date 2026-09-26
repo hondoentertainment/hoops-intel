@@ -1,5 +1,5 @@
 import { slugify } from "./searchUtils";
-import { activeEditionContext, isOffseasonDesk } from "./deskMode";
+import { activeEditionContext, isOffseasonDesk, liveWireMonthGateClosed } from "./deskMode";
 import { lineupData } from "./lineupData";
 import { projectionsData } from "./projectionsData";
 import { campScheduleGames } from "./campScheduleData";
@@ -229,8 +229,23 @@ export type CampDeskEmptyCopy = {
   destinations: { label: string; href: string }[];
 };
 
-/** Shared preseason empty copy — live vs held until ~Oct 1, plus honest destinations. */
-export function campDeskEmptyCopy(): CampDeskEmptyCopy {
+/** Shared empty copy. Camp language only while the July–September wire gate is closed. */
+export function campDeskEmptyCopy(date = new Date()): CampDeskEmptyCopy {
+  if (!liveWireMonthGateClosed(date)) {
+    return {
+      kicker: "Tonight",
+      title: "No games on the ESPN board",
+      body: "Scores and the injury wire are in season. This slate is empty because ESPN has not posted tip-offs — the desk does not invent games or availability.",
+      pill: "SLATE CLEAR",
+      footnote: "As of the morning edition",
+      destinations: [
+        { label: "Home desk", href: "/" },
+        { label: "Tools", href: "/tools" },
+        { label: "Archive", href: "/archive" },
+        { label: "Ask", href: "/ask" },
+      ],
+    };
+  }
   return {
     kicker: "Season desk coming",
     title: "What's live vs held until ~Oct 1",
@@ -243,5 +258,36 @@ export function campDeskEmptyCopy(): CampDeskEmptyCopy {
       { label: "Archive", href: "/archive" },
       { label: "Ask", href: "/ask" },
     ],
+  };
+}
+
+/** Game-night cadence for companion pages: as-of is the caller's date; the slate comes from real data. */
+export function companionNextSlate(date = new Date()): { kicker: string; line: string } {
+  const previews = gamePreviews as Array<{ awayTeam?: string; homeTeam?: string }>;
+  if (previews.length > 0) {
+    const first = previews[0];
+    const matchup = first?.awayTeam && first.homeTeam ? `${first.awayTeam} @ ${first.homeTeam}` : "";
+    return {
+      kicker: "Tonight's slate",
+      line: `${gamePreviews.length} game${gamePreviews.length === 1 ? "" : "s"} on the board${matchup ? ` · ${matchup}` : ""}.`,
+    };
+  }
+  if (liveWireMonthGateClosed(date)) {
+    const schedule = campScheduleStatus();
+    const game = schedule.games[0];
+    if (schedule.kind === "espn-upcoming" && game) {
+      return {
+        kicker: "Next slate",
+        line: `${game.away} @ ${game.home}${game.when ? ` · ${game.when}` : ""}. Camp-week listing, not tonight.`,
+      };
+    }
+    return {
+      kicker: "Next slate",
+      line: "No ESPN tip-offs posted. The camp desk stays empty until a real slate lands.",
+    };
+  }
+  return {
+    kicker: "Next slate",
+    line: "No games on the ESPN board. The wires are in season — nothing on this page is invented.",
   };
 }

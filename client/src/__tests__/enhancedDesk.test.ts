@@ -60,6 +60,14 @@ describe("enhancedDesk", () => {
     expect(chips[1]?.value).toMatch(/d$|Today|Open|—/);
   });
 
+  it("swaps the camp-opens chip for a clear slate once October's wire gate opens", () => {
+    const october = new Date("2026-10-02T18:00:00Z");
+    const cards = heroStats(october);
+    expect(cards.some((c) => c.kicker === "CAMP OPENS")).toBe(false);
+    expect(cards.some((c) => c.kicker === "TONIGHT" && c.value === "Clear")).toBe(true);
+    expect(mobileHeroStats(october)[1]?.kicker).toBe("SLATE");
+  });
+
   it("uses closed-slate Ask chips when there are no games", () => {
     const chips = deskAskChips();
     expect(chips).toContain("Who leads Camp Pulse?");

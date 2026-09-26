@@ -2,6 +2,7 @@ import EditorialShell from "../components/EditorialShell";
 import DataTrustBadge from "../components/DataTrustBadge";
 import { CampDeskEmpty, DeskPanel, EnhancedButton, GamePreviewCard, PageHero, StatCard } from "../components/enhanced/EnhancedUi";
 import { campOpenDisplay, daysUntilIso, CAMP_OPEN_ISO, hasTonightSlate } from "../lib/enhancedDesk";
+import { liveWireMonthGateClosed } from "../lib/deskMode";
 import { campIntelCards, campScheduleStatus } from "../lib/campDesk";
 import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
@@ -34,6 +35,7 @@ function TonightPlayerLinks({ game }: { game: TonightSlateGame }) {
 
 export default function Tonight() {
   const campDays = daysUntilIso(CAMP_OPEN_ISO);
+  const wireHeld = liveWireMonthGateClosed();
   const slateOpen = hasTonightSlate();
   const deskCards = campIntelCards(3);
   const schedule = campScheduleStatus();
@@ -100,34 +102,45 @@ export default function Tonight() {
               </p>
             </div>
             <CampDeskEmpty
-              title={`Waiting on ${openDate}`}
-              body="Season desk is coming. The desk, tools, archive, and Ask stay live. Live scores stay held until ~Oct 1 — empty slate until real tip-offs, never invented."
-              pill="NOT TONIGHT"
-              footnote="Scores and injury crons return around October 1"
+              title={wireHeld ? `Waiting on ${openDate}` : undefined}
+              body={
+                wireHeld
+                  ? "Season desk is coming. The desk, tools, archive, and Ask stay live. Live scores stay held until ~Oct 1 — empty slate until real tip-offs, never invented."
+                  : undefined
+              }
+              pill={wireHeld ? "NOT TONIGHT" : undefined}
+              footnote={wireHeld ? "Scores and injury crons return around October 1" : undefined}
             />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {deskCards.map((card) => (
-                <a key={`${card.kicker}-${card.title}`} href={card.href}>
-                  <StatCard kicker={card.kicker} value={card.team ?? card.kicker} sub={card.title} />
-                </a>
-              ))}
-            </div>
+            {wireHeld ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {deskCards.map((card) => (
+                  <a key={`${card.kicker}-${card.title}`} href={card.href}>
+                    <StatCard kicker={card.kicker} value={card.team ?? card.kicker} sub={card.title} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
             {schedule.kind === "espn-upcoming" ? (
-              <DeskPanel kicker="ESPN camp-week slate" hint={schedule.sub}>
+              <DeskPanel
+                kicker={wireHeld ? "ESPN camp-week slate" : "Next posted slate"}
+                hint={wireHeld ? schedule.sub : "ESPN listing — not tonight, and not invented"}
+              >
                 <p className="text-xs" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
                   {schedule.games
                     .slice(0, 3)
                     .map((game) => `${game.away} @ ${game.home}`)
                     .join(" · ")}
-                  {campDays > 0 ? ` · ${campDays === 1 ? "one day" : `${campDays} days`} out` : ""}
+                  {wireHeld && campDays > 0 ? ` · ${campDays === 1 ? "one day" : `${campDays} days`} out` : ""}
                 </p>
               </DeskPanel>
             ) : null}
-            <div className="flex flex-wrap gap-2">
-              <EnhancedButton href="/lineups" variant="ghost">
-                Rotation battles
-              </EnhancedButton>
-            </div>
+            {wireHeld ? (
+              <div className="flex flex-wrap gap-2">
+                <EnhancedButton href="/lineups" variant="ghost">
+                  Rotation battles
+                </EnhancedButton>
+              </div>
+            ) : null}
           </>
         )}
       </div>

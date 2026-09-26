@@ -136,6 +136,17 @@ describe("site-review leftover discoverability", () => {
     expect(FOOTER_QUICK_LINKS.map((link) => link.href)).toEqual(expect.arrayContaining(["/pick-em", "/badges"]));
   });
 
+  it("surfaces 82-0, the trade sim, and clutch without a second Pick 'Em chip", () => {
+    const pulse = src("pages/MyPulse.tsx");
+    expect(pulse.match(/href="\/pick-em"/g)).toHaveLength(1);
+    expect(pulse.match(/href="\/badges"/g)).toHaveLength(1);
+    for (const href of ["/82-0", "/trade-simulator", "/clutch"]) {
+      expect(pulse).toContain(`href="${href}"`);
+      expect(mainNavLinks().map((link) => link.href)).toContain(href);
+      expect(FOOTER_QUICK_LINKS.map((link) => link.href)).toContain(href);
+    }
+  });
+
   it("frames publisher snapshots without operations diagnostics", () => {
     const frame = src("components/PublisherSnapshotFrame.tsx");
     expect(frame).toContain('data-testid="publisher-snapshot-frame"');
@@ -165,8 +176,14 @@ describe("companion freshness SLA", () => {
 
     expect(src("pages/WatchGuide.tsx")).toContain("freshnessHeroMeta");
     expect(src("pages/WatchGuide.tsx")).toContain("content-may-be-outdated");
+    expect(src("pages/WatchGuide.tsx")).toContain("CompanionCadence");
     expect(src("pages/PodcastCompanion.tsx")).toContain("freshnessHeroMeta");
     expect(src("pages/PodcastCompanion.tsx")).toContain("content-may-be-outdated");
+    expect(src("pages/PodcastCompanion.tsx")).toContain("CompanionCadence");
+    expect(src("pages/RefReports.tsx")).toContain('data-testid="refs-methodology"');
+    expect(src("pages/RefReports.tsx")).toContain('href="/pulse-methodology"');
+    expect(src("pages/Player.tsx")).toContain('data-testid="player-thin-state"');
+    expect(src("pages/Player.tsx")).toContain("profileSeoIndexable");
     expect(src("pages/PodcastCompanion.tsx")).not.toContain("toolUpdatedLabel");
     expect(src("pages/WatchGuide.tsx")).not.toContain("toolUpdatedLabel");
   });

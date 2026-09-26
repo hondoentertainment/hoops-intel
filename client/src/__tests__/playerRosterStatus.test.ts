@@ -6,8 +6,10 @@ import {
   isIndexablePlayerProfile,
   isProspectPlayerName,
   playerCoverageEmptyState,
+  playerHasSubstantiveDeskCard,
   playerLiveEmptyState,
   playerProfileFrame,
+  profileSeoIndexable,
 } from "../lib/playerRosterStatus";
 
 describe("playerRosterStatus", () => {
@@ -92,6 +94,27 @@ describe("playerRosterStatus", () => {
     );
     expect(cp.pill).toBe("RETIRED");
     expect(cp.title.toLowerCase()).toContain("not on an active nba roster");
+  });
+
+  it("keeps thin archive names browsable but off the SEO bar until a pulse card exists", () => {
+    expect(
+      playerHasSubstantiveDeskCard({
+        keyStats: "32.8 PPG · 12.1 RPG",
+        note: "Forty-two compound mornings.",
+        indexScore: 99,
+      }),
+    ).toBe(true);
+    expect(playerHasSubstantiveDeskCard({ keyStats: "", note: "Context", indexScore: 10 })).toBe(false);
+    expect(playerHasSubstantiveDeskCard(null)).toBe(false);
+
+    expect(profileSeoIndexable("Amen Thompson", { mentions: 4 })).toBe(false);
+    expect(profileSeoIndexable("VJ Edgecombe", { mentions: 4 })).toBe(false);
+    expect(profileSeoIndexable("Keyonte George", { mentions: 3, substantive: false })).toBe(false);
+    expect(profileSeoIndexable("Chris Paul", { mentions: 3 })).toBe(true);
+    expect(
+      profileSeoIndexable("Victor Wembanyama", { inPulse: true, hasCurrentTeam: true, mentions: 20, substantive: true }),
+    ).toBe(true);
+    expect(getPlayerRosterStatus("Amen Thompson", { mentions: 4 }).indexable).toBe(true);
   });
 
   it("hides current-team chrome on prospect and archive frames", () => {

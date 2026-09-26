@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import EditorialShell from "../components/EditorialShell";
 import { CampDeskEmpty, EmptyState, InjuryChip, PageHero } from "../components/enhanced/EnhancedUi";
 import { matchesPlayerQuery, readQueryParam } from "../lib/playerToolLinks";
-import { editionContextDeskLabel, isOffseasonDesk } from "../lib/deskMode";
+import { editionContextDeskLabel, isOffseasonDesk, liveWireMonthGateClosed } from "../lib/deskMode";
 import { deskStaleNote, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryCounts } from "../lib/enhancedDesk";
 import { injuryUpdates, fantasyAlerts, pulseEdition, pulseIndex } from "../lib/pulseData";
@@ -302,7 +302,8 @@ export default function InjuryReport() {
     return true;
   });
   const stale = deskStaleNote();
-  const lastKnown = isOffseasonDesk() || Boolean(stale);
+  const wireHeld = liveWireMonthGateClosed();
+  const lastKnown = (wireHeld && isOffseasonDesk()) || Boolean(stale);
   const nextClub = () => {
     const idx = clubs.indexOf(club);
     setClub(clubs[(idx + 1) % clubs.length] ?? "all");
@@ -361,9 +362,13 @@ export default function InjuryReport() {
 
         {injuryUpdates.length === 0 ? (
           <CampDeskEmpty
-            title="Injury wire is last-known only"
-            body="No live injury tags on this edition. Desk, tools, archive, and Ask stay live; the injury cron is held until ~Oct 1."
-            pill="LAST KNOWN"
+            title={wireHeld ? "Injury wire is last-known only" : "No injury tags on this edition"}
+            body={
+              wireHeld
+                ? "No live injury tags on this edition. Desk, tools, archive, and Ask stay live; the injury cron is held until ~Oct 1."
+                : "The injury wire is in season. This edition has no tags — Hoops Intel is not inventing availability."
+            }
+            pill={wireHeld ? "LAST KNOWN" : "WIRE CLEAR"}
           />
         ) : rows.length === 0 ? (
           <EmptyState

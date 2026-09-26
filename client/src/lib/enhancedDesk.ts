@@ -1,6 +1,6 @@
 import { gamePreviews, injuryUpdates, narrative, pulseEdition, pulseIndex, tickerItems, westStandings } from "./pulseData";
 import { contextualAskChips } from "./askShortcuts";
-import { activeEditionContext, editionContextDeskLabel, type EditionContext } from "./deskMode";
+import { activeEditionContext, editionContextDeskLabel, liveWireMonthGateClosed, type EditionContext } from "./deskMode";
 import { editionPublishLabel } from "./pacificTime";
 
 export const ENHANCED_ACCENT = "#8ec8f0";
@@ -183,12 +183,13 @@ export function murrayStandoff(): { value: string; sub: string } | null {
 
 export type HeroStat = { kicker: string; value: string; sub: string };
 
-export function heroStats(): HeroStat[] {
+export function heroStats(date = new Date()): HeroStat[] {
   const leader = pulseIndex[0];
   const west1 = westStandings[0];
   const campDays = daysUntilIso(CAMP_OPEN_ISO);
   const murray = murrayStandoff();
   const lastName = leader ? lastNameOf(leader.player) : "—";
+  const gateClosed = liveWireMonthGateClosed(date);
 
   const cards: HeroStat[] = [];
   if (leader) {
@@ -198,11 +199,25 @@ export function heroStats(): HeroStat[] {
       sub: `${leader.team} · ${formatPulseScore(leader.indexScore)}`,
     });
   }
-  cards.push({
-    kicker: "CAMP OPENS",
-    value: campDays > 0 ? `${campDays} days` : campDays === 0 ? "Today" : "Open",
-    sub: "October 3",
-  });
+  if (gateClosed) {
+    cards.push({
+      kicker: "CAMP OPENS",
+      value: campDays > 0 ? `${campDays} days` : campDays === 0 ? "Today" : "Open",
+      sub: "October 3",
+    });
+  } else if (gamePreviews.length === 0) {
+    cards.push({
+      kicker: "TONIGHT",
+      value: "Clear",
+      sub: "No ESPN tip-offs",
+    });
+  } else {
+    cards.push({
+      kicker: "TONIGHT",
+      value: String(gamePreviews.length),
+      sub: gamePreviews.length === 1 ? "Tip-off posted" : "Tip-offs posted",
+    });
+  }
 
   // Empty slates stay a camp desk — last season's W-L is not tonight's scoreboard.
   if (gamePreviews.length === 0) {
@@ -232,17 +247,21 @@ export function heroStats(): HeroStat[] {
   return cards;
 }
 
-export function mobileHeroStats(): HeroStat[] {
-  const all = heroStats();
+export function mobileHeroStats(date = new Date()): HeroStat[] {
+  const all = heroStats(date);
   const pulse = all.find((c) => c.kicker === "PULSE LEADER");
   const camp = all.find((c) => c.kicker === "CAMP OPENS" || c.kicker === "PRESEASON");
+  const slate = all.find((c) => c.kicker === "TONIGHT");
+  const second = camp
+    ? { kicker: "CAMP", value: camp.value.replace(/ days$/, "d"), sub: camp.sub }
+    : slate
+      ? { kicker: "SLATE", value: slate.value, sub: slate.sub }
+      : { kicker: "SLATE", value: "—", sub: "No tip-offs" };
   return [
     pulse
       ? { kicker: "PULSE", value: pulse.value.replace(/Wembanyama/, "Wemby"), sub: pulse.sub }
       : { kicker: "PULSE", value: "—", sub: "Board idle" },
-    camp
-      ? { kicker: "CAMP", value: camp.value.replace(/ days$/, "d"), sub: camp.sub }
-      : { kicker: "CAMP", value: "—", sub: "October 3" },
+    second,
   ];
 }
 

@@ -239,6 +239,32 @@ export function playerProfileFrame(
   };
 }
 
+/**
+ * Rich desk card: counting stats, a Pulse score, and a context blurb.
+ * Archive name-drops do not qualify — those pages stay a thin state.
+ */
+export function playerHasSubstantiveDeskCard(
+  card?: { keyStats?: string | null; note?: string | null; indexScore?: number | null } | null,
+): boolean {
+  if (!card) return false;
+  const stats = card.keyStats?.trim() ?? "";
+  const note = card.note?.trim() ?? "";
+  return stats.length > 0 && note.length > 0 && typeof card.indexScore === "number" && Number.isFinite(card.indexScore);
+}
+
+/**
+ * Crawl gate. Retired archive cards stay indexable. Everyone else needs a
+ * substantive Pulse card — a team tag or mention count is not enough.
+ */
+export function profileSeoIndexable(
+  name: string,
+  context: { inPulse?: boolean; hasCurrentTeam?: boolean; mentions?: number; substantive?: boolean } = {},
+): boolean {
+  const roster = getPlayerRosterStatus(name, context);
+  if (roster.status === "retired") return roster.indexable;
+  return Boolean(context.substantive);
+}
+
 /** Sitemap-quality gate: populated current-era pages, plus retired players with real archive. */
 export function isIndexablePlayerProfile(
   name: string,

@@ -59,6 +59,16 @@ export function clientSeasonMode(date = new Date()): ClientSeasonMode {
   return "regular-season";
 }
 
+/**
+ * Scores and injury crons stay dark in July–September (UTC), matching
+ * the month check in the scores and injury workflows.
+ * October through June those wires are in season even when tonight's slate is empty.
+ */
+export function liveWireMonthGateClosed(date = new Date()): boolean {
+  const month = date.getUTCMonth() + 1;
+  return month >= 7 && month <= 9;
+}
+
 export function seasonModeToEditionContext(mode: ClientSeasonMode): EditionContext {
   switch (mode) {
     case "playoffs":

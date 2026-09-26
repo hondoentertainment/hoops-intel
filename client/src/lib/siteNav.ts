@@ -40,6 +40,9 @@ export function mainNavLinks(date = new Date()): MainNavLink[] {
     { label: "Performance", href: "/performance" },
     { label: "Hoops IQ", href: "/trivia" },
     { label: "Badges", href: "/badges" },
+    { label: "82-0", href: "/82-0" },
+    { label: "Trade sim", href: "/trade-simulator" },
+    { label: "Clutch", href: "/clutch" },
     { label: "My Pulse", href: "/my-pulse" },
   ];
 
@@ -60,6 +63,8 @@ export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Ask", href: "/ask" },
   { label: "Tools", href: "/tools" },
   { label: "82-0", href: "/82-0" },
+  { label: "Trade sim", href: "/trade-simulator" },
+  { label: "Clutch", href: "/clutch" },
   { label: "My Pulse", href: "/my-pulse" },
   { label: "Watch guide", href: "/watch-guide" },
   { label: "Players", href: "/players" },
