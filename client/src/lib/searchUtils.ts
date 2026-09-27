@@ -11,6 +11,8 @@ import { archiveEditions } from "./archiveData.js";
 import { makeGameId } from "./gameCenter.js";
 import { canonicalizePlayerName, canonicalizeTeamCode, playerSlug, slugifyName, teamName } from "./identity.js";
 import { playoffSeries } from "./playoffData.js";
+import { getPlayerRosterStatus } from "./playerRosterStatus.js";
+import { playerQueryScore } from "./playerQueryRank.js";
 
 export interface SearchResult {
   type: "player" | "team" | "game" | "story" | "injury";
@@ -25,17 +27,54 @@ export function globalSearch(query: string, limit = 20): SearchResult[] {
   const q = query.toLowerCase().trim();
   const results: SearchResult[] = [];
 
-  // Search current edition players (Pulse Index)
+  // Pulse cards and archive/prospect profiles. Name rank beats stat-line noise.
+  // Subtitles for archive names stay a coverage label — no invented counting line.
+  const playerHits: Array<SearchResult & { score: number }> = [];
+  const pulseNames = new Set((pulseIndex as Array<{ player: string }>).map((p) => canonicalizePlayerName(p.player)));
+
   for (const p of pulseIndex as any[]) {
-    if (p.player.toLowerCase().includes(q) || p.team.toLowerCase().includes(q)) {
-      results.push({
-        type: "player",
-        title: p.player,
-        subtitle: `${p.team} · ${p.keyStats}`,
-        link: `/player/${playerSlug(p.player)}`,
-        date: pulseEdition.date,
-      });
-    }
+    const score = playerQueryScore(
+      { name: p.player, teams: [p.team], keyStats: p.keyStats, label: "Active" },
+      q,
+    );
+    if (score < 400) continue;
+    playerHits.push({
+      score,
+      type: "player",
+      title: p.player,
+      subtitle: `${p.team} · ${p.keyStats}`,
+      link: `/player/${playerSlug(p.player)}`,
+      date: pulseEdition.date,
+    });
+  }
+
+  for (const player of getAllPlayers()) {
+    if (pulseNames.has(canonicalizePlayerName(player.name))) continue;
+    const roster = getPlayerRosterStatus(player.name, { mentions: player.mentions });
+    if (!roster.indexable) continue;
+    const score = playerQueryScore(
+      { name: player.name, teams: player.teams, label: roster.label },
+      q,
+    );
+    if (score < 400) continue;
+    playerHits.push({
+      score,
+      type: "player",
+      title: player.name,
+      subtitle: `${roster.label} · ${player.mentions} archive mention${player.mentions === 1 ? "" : "s"}`,
+      link: `/player/${playerSlug(player.name)}`,
+    });
+  }
+
+  playerHits.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+  for (const hit of playerHits.slice(0, 6)) {
+    results.push({
+      type: hit.type,
+      title: hit.title,
+      subtitle: hit.subtitle,
+      link: hit.link,
+      date: hit.date,
+    });
   }
 
   // Search current game results
@@ -164,10 +203,20 @@ export function getAllPlayers(): { name: string; teams: string[]; mentions: numb
   for (const g of gameResults as any[]) addPlayer(g.topPerformer);
   for (const inj of injuryUpdates as any[]) addPlayer(inj.player, inj.team);
 
-  // Archive
+  // Archive. Older editions store names only in keyPlayers — index those
+  // once when the modern players[] row does not already count them.
   for (const ed of archiveEditions) {
-    if (ed.topPlayer) addPlayer(ed.topPlayer);
-    for (const p of (ed.players || [])) addPlayer(p);
+    const row = ed as typeof ed & { keyPlayers?: string[] };
+    if (row.topPlayer) addPlayer(row.topPlayer);
+    for (const p of row.players || []) addPlayer(p);
+    const already = new Set(
+      [row.topPlayer, ...(row.players || [])]
+        .filter((name): name is string => Boolean(name))
+        .map((name) => canonicalizePlayerName(name)),
+    );
+    for (const p of row.keyPlayers || []) {
+      if (!already.has(canonicalizePlayerName(p))) addPlayer(p);
+    }
   }
 
   return Array.from(playerMap.entries())

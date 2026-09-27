@@ -2,6 +2,7 @@ import { injuryUpdates, pulseIndex } from "./pulseData";
 import { canonicalizePlayerName, playerSlug } from "./identity";
 import { getPlayerRosterStatus, type RosterStatus } from "./playerRosterStatus";
 import { getAllPlayers } from "./searchUtils";
+import { playerQueryScore } from "./playerQueryRank";
 
 export type PlayerBrowseFilter = "all" | "pulse" | "archive";
 
@@ -80,17 +81,38 @@ export function playerProfileHref(name: string): string | null {
   return profileHrefMap().get(canonicalizePlayerName(name)) ?? null;
 }
 
+export function browsePlayerScore(player: BrowsePlayer, query: string): number {
+  return playerQueryScore(
+    {
+      name: player.name,
+      teams: player.teams,
+      label: player.label,
+      keyStats: player.keyStats,
+    },
+    query,
+  );
+}
+
 export function filterBrowsePlayers(
   players: BrowsePlayer[],
   query: string,
   filter: PlayerBrowseFilter = "all",
 ): BrowsePlayer[] {
-  const q = query.trim().toLowerCase();
-  return players.filter((player) => {
+  const q = query.trim();
+  const matched = players.filter((player) => {
     if (filter === "pulse" && player.pulseRank == null) return false;
     if (filter === "archive" && player.pulseRank != null) return false;
     if (!q) return true;
-    const hay = [player.name, player.label, ...player.teams, player.keyStats ?? ""].join(" ").toLowerCase();
-    return hay.includes(q);
+    return browsePlayerScore(player, q) > 0;
+  });
+  if (!q) return matched;
+  return matched.sort((a, b) => {
+    const delta = browsePlayerScore(b, q) - browsePlayerScore(a, q);
+    if (delta !== 0) return delta;
+    if (a.pulseRank != null && b.pulseRank != null) return a.pulseRank - b.pulseRank;
+    if (a.pulseRank != null) return -1;
+    if (b.pulseRank != null) return 1;
+    if (b.mentions !== a.mentions) return b.mentions - a.mentions;
+    return a.name.localeCompare(b.name);
   });
 }

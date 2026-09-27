@@ -63,13 +63,13 @@ export default function Players() {
           label="Search players"
           value={query}
           onChange={setQuery}
-          placeholder="Search by name or team…"
+          placeholder="Name, initials, or team…"
         />
         {query.trim() ? (
           <p className="text-xs mt-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }} role="status">
             {rows.length === 0
-              ? "No players match — try a last name or a 3-letter team."
-              : `${rows.length} player${rows.length === 1 ? "" : "s"} found`}
+              ? "No players match — try a last name, initials, or a 3-letter team."
+              : `${rows.length} player${rows.length === 1 ? "" : "s"} found · best name matches first`}
           </p>
         ) : null}
       </div>

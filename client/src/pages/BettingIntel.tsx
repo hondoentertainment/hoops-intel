@@ -1,12 +1,42 @@
 import ToolPageLayout from "../components/ToolPageLayout";
+import { CampDeskEmpty } from "../components/enhanced/EnhancedUi";
+import { BookConsensusPanel, BooksPendingNote } from "../components/BookConsensusPanel";
 import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { lineOpenersArchive } from "../lib/lineOpenersArchiveData";
-import { booksForMatchup, consensusSummary } from "../lib/oddsBooksData";
+import { bookGamesMissingFromPreviews, booksForMatchup, oddsBooksGames, type OddsBooksGame } from "../lib/oddsBooks";
 import { slateMarketVsEditorialStats } from "../lib/editionPredictionStats";
 import { bettingDisclaimer, summarizeLineMovementEducation, slateLineMovementSummary } from "../lib/bettingLineStory";
 import { makeGameId } from "../lib/gameCenter";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
+import { liveWireMonthGateClosed } from "../lib/deskMode";
+
+function MarketQuoteList({ games, intro, headingId }: { games: OddsBooksGame[]; intro: string; headingId: string }) {
+  if (!games.length) return null;
+  return (
+    <section className="mb-12" aria-labelledby={headingId}>
+      <h2 id={headingId} className="hi-th mb-2">
+        Books on the board
+      </h2>
+      <p className="text-sm mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+        {intro}
+      </p>
+      <div className="space-y-4">
+        {games.map((game) => (
+          <article key={`${game.awayTeam}-${game.homeTeam}`} className="enhanced-card p-4">
+            <h3 className="hi-title text-base mb-1" style={{ color: "var(--hi-text,#0a0a0a)" }}>
+              {game.awayTeam} @ {game.homeTeam}
+            </h3>
+            <p className="mono-data text-sm mb-3" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+              {game.closingSpread}
+            </p>
+            <BookConsensusPanel game={game} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function lineLadder(opener?: string, closer?: string, current?: string): string | null {
   const parts = [opener, closer, current].filter(Boolean);
@@ -121,8 +151,27 @@ export default function BettingIntel() {
         )}
       </section>
 
+      {gamePreviews.length === 0 && oddsBooksGames.length === 0 ? (
+        <CampDeskEmpty
+          title="No live board"
+          body={
+            liveWireMonthGateClosed()
+              ? "No games on the desk, so there is no number to shop. Multi-book quotes stay blank until The Odds API returns books[] for a real slate — Hoops Intel does not invent spreads. The scores wire stays held until ~Oct 1."
+              : "No games on the desk, so there is no number to shop. Multi-book quotes stay blank until The Odds API returns books[] — Hoops Intel does not invent spreads."
+          }
+          pill="NO LINES"
+        />
+      ) : null}
+
+      {gamePreviews.length === 0 ? (
+        <MarketQuoteList
+          games={oddsBooksGames}
+          headingId="books-board-heading"
+          intro="These rows are The Odds API books[] only. Today’s desk has no editorial preview, storyline, or total for them."
+        />
+      ) : null}
+
       <div className="space-y-8">
-        {!gamePreviews.length && <p className="text-white/60 text-sm">No slate rows in today’s edition yet.</p>}
         {gamePreviews.map((g, i) => {
           const lm = lineMovementForMatchup(g.awayTeam, g.homeTeam);
           const opener =
@@ -215,36 +264,7 @@ export default function BettingIntel() {
               ) : null}
               {(() => {
                 const mb = booksForMatchup(g.awayTeam, g.homeTeam);
-                const cons = mb ? consensusSummary(mb) : null;
-                return (
-                  <div
-                    className="mb-4 rounded-lg px-4 py-3 text-xs leading-relaxed"
-                    style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.18)" }}
-                  >
-                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400/90 mb-1">
-                      Multi-book consensus
-                    </div>
-                    {mb && cons ? (
-                      <>
-                        <p className="mono-data text-emerald-100/90 mb-2">
-                          {cons.agree}/{cons.total} books at {cons.label}
-                        </p>
-                        <ul className="space-y-1 text-white/65 mono-data">
-                          {mb.books.map((b) => (
-                            <li key={b.key}>
-                              {b.title}: {b.spread}
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : (
-                      <p style={{ color: "rgba(226,239,249,0.55)" }}>
-                        Multi-book quotes appear when The Odds API returns <span className="mono-data">books[]</span>{" "}
-                        (set <span className="mono-data">ODDS_API_KEY</span> on midday / scores runs).
-                      </p>
-                    )}
-                  </div>
-                );
+                return mb ? <BookConsensusPanel game={mb} /> : <BooksPendingNote />;
               })()}
               <div
                 className="rounded-lg p-4 text-xs leading-relaxed space-y-2"
@@ -269,6 +289,14 @@ export default function BettingIntel() {
           );
         })}
       </div>
+
+      {gamePreviews.length > 0 ? (
+        <MarketQuoteList
+          games={bookGamesMissingFromPreviews(gamePreviews)}
+          headingId="unmatched-books-heading"
+          intro="Odds API books[] with no editorial preview on today’s desk. Spreads below are the returned books only — no invented storyline or total."
+        />
+      ) : null}
     </ToolPageLayout>
   );
 }

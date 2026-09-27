@@ -12,6 +12,8 @@ import TeamLogo from "../components/TeamLogo";
 import PlayByPlayFeed from "../components/PlayByPlayFeed";
 import BoxScoreCard from "../components/BoxScoreCard";
 import { slugify } from "../lib/searchUtils";
+import { booksForMatchup } from "../lib/oddsBooks";
+import { BookConsensusPanel } from "../components/BookConsensusPanel";
 import { useMetaTags } from "../lib/useMetaTags";
 import { useLiveScores } from "../lib/useLiveScores";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
@@ -91,6 +93,7 @@ export default function GameCenter() {
 
   const share = game ? gameCenterShareMeta(game) : null;
   const lineMove = game ? gameCenterLineMovement(game.away.abbr, game.home.abbr, game.betting) : null;
+  const bookGame = game ? booksForMatchup(game.away.abbr, game.home.abbr) : undefined;
   const isLiveOverlay = game?.status === "live";
 
   useMetaTags({
@@ -295,13 +298,13 @@ export default function GameCenter() {
               </div>
             )}
 
-            {(game.betting?.spread || game.betting?.overUnder || game.betting?.angle || lineMove?.moveBadge) && (
+            {(game.betting?.spread || game.betting?.overUnder || game.betting?.angle || lineMove?.moveBadge || bookGame) && (
               <div className="enhanced-card p-5">
                 <div className="section-label mb-2">MARKET CONTEXT</div>
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   <div className="rounded bg-white/[0.04] p-3">
                     <div className="text-xs text-white/40">Spread</div>
-                    <div className="mono-data text-white">{lineMove?.closingSpread || game.betting?.spread || "TBD"}</div>
+                    <div className="mono-data text-white">{lineMove?.closingSpread || game.betting?.spread || bookGame?.closingSpread || "TBD"}</div>
                     {lineMove?.openingSpread ? (
                       <div className="text-[10px] mono-data text-emerald-300/80 mt-1">
                         Opener {lineMove.openingSpread}
@@ -317,7 +320,7 @@ export default function GameCenter() {
                   </div>
                   <div className="rounded bg-white/[0.04] p-3">
                     <div className="text-xs text-white/40">Total</div>
-                    <div className="mono-data text-white">{game.betting.overUnder || "TBD"}</div>
+                    <div className="mono-data text-white">{game.betting?.overUnder || "TBD"}</div>
                   </div>
                 </div>
                 {(lineMove?.education ?? game.betting?.lineMovement ?? []).map((line, i) => (
@@ -326,6 +329,11 @@ export default function GameCenter() {
                   </p>
                 ))}
                 {game.betting?.angle && <p className="text-xs leading-relaxed line-clamp-5" style={{ color: "var(--hi-muted,#5c5c58)" }}>{game.betting.angle}</p>}
+                {bookGame ? (
+                  <div className="mt-3">
+                    <BookConsensusPanel game={bookGame} />
+                  </div>
+                ) : null}
               </div>
             )}
           </section>
