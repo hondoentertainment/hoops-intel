@@ -4,6 +4,7 @@ import { deskStaleNote, isDeskEditionStale, lastUpdatedStamp } from "../lib/data
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { filterBrowsePlayers, listBrowsePlayers, playerProfileHref } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
+import { profileSeoIndexable } from "../lib/playerRosterStatus";
 
 describe("playersIndex", () => {
   it("lists Pulse players first and keeps emerging archive names searchable", () => {
@@ -28,6 +29,28 @@ describe("playersIndex", () => {
     const queried = filterBrowsePlayers(rows, "brunson", "all");
     expect(queried.some((p) => /brunson/i.test(p.name))).toBe(true);
     expect(filterBrowsePlayers(rows, "zzzz-not-a-player", "all")).toEqual([]);
+  });
+
+  it("ranks archive and prospect names ahead of stat-line noise", () => {
+    const rows = listBrowsePlayers();
+    expect(filterBrowsePlayers(rows, "edgecombe")[0]?.slug).toBe("vj-edgecombe");
+    expect(filterBrowsePlayers(rows, "vj")[0]?.slug).toBe("vj-edgecombe");
+    expect(filterBrowsePlayers(rows, "amen")[0]?.slug).toBe("amen-thompson");
+    expect(filterBrowsePlayers(rows, "sga")[0]?.name).toMatch(/Gilgeous-Alexander/);
+    expect(filterBrowsePlayers(rows, "de'aaron")[0]?.name).toMatch(/Fox/);
+
+    const harper = filterBrowsePlayers(rows, "harper")[0];
+    expect(harper?.slug).toBe("dylan-harper");
+    expect(harper?.pulseRank).toBeUndefined();
+    expect(harper?.keyStats).toBeUndefined();
+    expect(profileSeoIndexable("Dylan Harper", { mentions: harper?.mentions ?? 0 })).toBe(false);
+    expect(profileSeoIndexable("VJ Edgecombe", { mentions: 4 })).toBe(false);
+
+    expect(filterBrowsePlayers(rows, "", "all")[0]?.pulseRank).toBe(1);
+
+    const slugs = rows.map((player) => player.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    expect(rows.filter((player) => player.slug === "kristaps-porzingis")).toHaveLength(1);
   });
 
   it("returns a profile href only for indexable names", () => {

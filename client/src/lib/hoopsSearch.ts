@@ -14,6 +14,7 @@ import {
   mediaReactions,
   tickerItems,
 } from "./pulseData";
+import { listBrowsePlayers } from "./playersIndex";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -212,6 +213,21 @@ function buildDocuments(): SearchDocument[] {
       players,
       teams: row.teams || [],
       date: row.date,
+    });
+  }
+
+  // Archive / prospect profiles that left the sitemap still need a retrieval
+  // hit. Content is the coverage label only — no invented counting line.
+  for (const player of listBrowsePlayers()) {
+    if (player.pulseRank != null) continue;
+    docs.push({
+      id: `archive-player-${player.slug}`,
+      type: "archive",
+      title: player.name,
+      content: `${player.name}. ${player.label}. ${player.mentions} archive mentions. No live counting line on this profile.`,
+      tags: ["archive", "player", player.status],
+      players: [player.name],
+      teams: player.teams,
     });
   }
 

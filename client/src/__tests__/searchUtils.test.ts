@@ -63,5 +63,24 @@ describe("searchUtils", () => {
       expect(context.toLowerCase()).toContain("pulse");
       expect(context).toContain(leader.player);
     });
+
+    it("links thin archive names without inventing a counting line", () => {
+      const hits = globalSearch("Edgecombe");
+      const player = hits.find((hit) => hit.type === "player");
+      expect(player?.title).toMatch(/Edgecombe/);
+      expect(player?.link).toBe("/player/vj-edgecombe");
+      expect(player?.subtitle?.toLowerCase()).toContain("prospect");
+      expect(player?.subtitle).not.toMatch(/PPG|RPG|APG/);
+
+      const harper = globalSearch("Dylan Harper").find((hit) => hit.type === "player");
+      expect(harper?.link).toBe("/player/dylan-harper");
+      expect(harper?.subtitle).not.toMatch(/PPG|RPG|APG/);
+
+      expect(globalSearch("Michael Jordan").some((hit) => hit.link === "/player/michael-jordan")).toBe(false);
+
+      const ask = searchContext("VJ Edgecombe");
+      expect(ask).toContain("VJ Edgecombe");
+      expect(ask).toContain("No live counting line");
+    });
   });
 });
