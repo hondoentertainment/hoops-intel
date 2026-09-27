@@ -186,16 +186,21 @@ export function slugify(name: string): string {
   return playerSlug(name);
 }
 
-// Collect all unique players and teams from archive + current edition
+// Collect all unique players and teams from archive + current edition.
+// Key by slug so "Porziņģis" and "Porzingis" are one profile. Two rows with
+// the same slug collide as React keys and a filtered list keeps a stale card.
 export function getAllPlayers(): { name: string; teams: string[]; mentions: number }[] {
-  const playerMap = new Map<string, { teams: Set<string>; mentions: number }>();
+  const playerMap = new Map<string, { name: string; teams: Set<string>; mentions: number }>();
 
   const addPlayer = (name: string, team?: string) => {
-    const canonical = canonicalizePlayerName(name);
-    const entry = playerMap.get(canonical) || { teams: new Set<string>(), mentions: 0 };
+    const slug = playerSlug(name);
+    if (!slug) return;
+    const display = canonicalizePlayerName(name);
+    const entry = playerMap.get(slug) || { name: display, teams: new Set<string>(), mentions: 0 };
+    if (hasCombiningMarks(entry.name) && !hasCombiningMarks(display)) entry.name = display;
     if (team) entry.teams.add(canonicalizeTeamCode(team));
     entry.mentions++;
-    playerMap.set(canonical, entry);
+    playerMap.set(slug, entry);
   };
 
   // Current edition
@@ -212,20 +217,25 @@ export function getAllPlayers(): { name: string; teams: string[]; mentions: numb
     const already = new Set(
       [row.topPlayer, ...(row.players || [])]
         .filter((name): name is string => Boolean(name))
-        .map((name) => canonicalizePlayerName(name)),
+        .map((name) => playerSlug(name)),
     );
     for (const p of row.keyPlayers || []) {
-      if (!already.has(canonicalizePlayerName(p))) addPlayer(p);
+      if (!already.has(playerSlug(p))) addPlayer(p);
     }
   }
 
-  return Array.from(playerMap.entries())
-    .map(([name, data]) => ({
-      name,
+  return Array.from(playerMap.values())
+    .map((data) => ({
+      name: data.name,
       teams: Array.from(data.teams),
       mentions: data.mentions,
     }))
     .sort((a, b) => b.mentions - a.mentions);
+}
+
+function hasCombiningMarks(value: string): boolean {
+  const folded = value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return folded !== value.normalize("NFD");
 }
 
 export function getAllTeams(): { abbr: string; fullName: string; mentions: number }[] {

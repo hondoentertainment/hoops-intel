@@ -47,6 +47,10 @@ describe("playersIndex", () => {
     expect(profileSeoIndexable("VJ Edgecombe", { mentions: 4 })).toBe(false);
 
     expect(filterBrowsePlayers(rows, "", "all")[0]?.pulseRank).toBe(1);
+
+    const slugs = rows.map((player) => player.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    expect(rows.filter((player) => player.slug === "kristaps-porzingis")).toHaveLength(1);
   });
 
   it("returns a profile href only for indexable names", () => {
