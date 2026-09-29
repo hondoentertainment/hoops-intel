@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-09-28T13:10:59.948Z",
+  fetchedAt: "2026-09-29T13:12:18.176Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -21,7 +21,7 @@ export const campScheduleMeta = {
 export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-03",when:"10/3 - 7:00 PM EDT",away:"MIA",home:"TOR",tv:"",venue:"Videotron Centre"},
   {dateIso:"2026-10-04",when:"10/4 - 7:00 PM EDT",away:"UTA",home:"DEN",tv:"",venue:"CU Events Center"},
-  {dateIso:"2026-10-04",when:"10/4 - 7:00 PM EDT",away:"GSW",home:"LAC",tv:"",venue:"Intuit Dome"},
+  {dateIso:"2026-10-04",when:"10/4 - 7:00 PM EDT",away:"GSW",home:"LAC",tv:"",venue:"Stan Sheriff Center"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"MEM",home:"ATL",tv:"",venue:"State Farm Arena"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"PHX",home:"DET",tv:"",venue:"Little Caesars Arena"},
   {dateIso:"2026-10-05",when:"10/5 - 7:00 PM EDT",away:"NYK",home:"PHI",tv:"",venue:"Xfinity Mobile Arena"},
