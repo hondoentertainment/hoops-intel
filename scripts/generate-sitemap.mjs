@@ -287,7 +287,7 @@ export const STATIC_ROUTE_SOURCES = {
   "/players": ["client/src/lib/playerRosterStatus.ts", "client/src/lib/pulseData.ts"],
   "/pick-em": ["client/src/lib/playoffData.ts", "client/src/pages/PickEm.tsx"],
   "/trade-value": ["client/src/lib/tradeValueData.ts"],
-  "/trivia": ["client/src/pages/Trivia.tsx"],
+  "/trivia": ["client/src/lib/pulseData.ts", "client/src/pages/Trivia.tsx"],
   "/82-0": ["client/src/lib/eightyTwoZeroData.ts", "client/src/lib/eightyTwoZeroSim.ts"],
   "/performance": ["client/src/pages/SeasonPerformance.tsx"],
   "/momentum": ["client/src/lib/momentumData.ts"],
@@ -342,6 +342,8 @@ export function lastmodForLoc(loc, ctx) {
   const deskTied = new Set([
     "/injuries",
     "/tonight",
+    "/watch-guide",
+    "/trivia",
     "/players",
     "/my-pulse",
     "/print-edition",

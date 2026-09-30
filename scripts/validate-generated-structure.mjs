@@ -159,10 +159,31 @@ export function validateWorldClassRoutes() {
         `sitemap should not index thin/noindex URL: ${banned}`,
       );
     }
-    for (const required of ["/embed-stats", "/widgets/analytics"]) {
+    for (const required of [
+      "/embed-stats",
+      "/widgets/analytics",
+      "/my-pulse",
+      "/trivia",
+      "/momentum",
+      "/clutch",
+      "/82-0",
+      "/badges",
+      "/watch-guide",
+      "/podcast-companion",
+    ]) {
       assertCond(
         locs.some((loc) => loc.endsWith(required)),
         `sitemap should include public 200 route: ${required}`,
+      );
+    }
+    assertCond(
+      !locs.some((loc) => loc.endsWith("/account")),
+      "sitemap should not include the private account hub",
+    );
+    for (const thin of ["/player/kawhi-leonard", "/player/vj-edgecombe"]) {
+      assertCond(
+        !locs.some((loc) => loc.endsWith(thin)),
+        `sitemap should not index thin player shell: ${thin}`,
       );
     }
     assertCond(

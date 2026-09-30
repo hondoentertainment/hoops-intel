@@ -19,7 +19,7 @@ const STATE_PATH = join(CACHE_DIR, "site-review-state.json");
 const REPORT_MD = join(ROOT, "site-review-report.md");
 const META_JSON = join(ROOT, "site-review-meta.json");
 
-import { resolveSiteReviewPaths } from "./lib/site-review-paths.mjs";
+import { classifySitemapCoverage, resolveSiteReviewPaths, summarizeSitemapXml } from "./lib/site-review-paths.mjs";
 
 const DEFAULT_BASE = "https://hoopsintel.net";
 
@@ -64,9 +64,7 @@ function stripForHash(html, path) {
 
 function htmlToExcerpt(html, path) {
   if (path === "/sitemap.xml" || path?.endsWith("/sitemap.xml")) {
-    const locs = [...html.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    const summary = `${locs.length} urls: ${locs.join(" ")}`;
-    return summary.length > MAX_EXCERPT ? `${summary.slice(0, MAX_EXCERPT)}…` : summary;
+    return summarizeSitemapXml(html);
   }
   let s = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
   s = s.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "");
@@ -116,6 +114,34 @@ function saveState(payload) {
   writeFileSync(STATE_PATH, JSON.stringify(payload, null, 2), "utf8");
 }
 
+function sitemapFacts(results) {
+  const sitemap = results.find((r) => r.path === "/sitemap.xml" && r.ok && r.html);
+  if (!sitemap) return "Sitemap was not fetched.";
+  const coverage = classifySitemapCoverage(
+    results.map((r) => r.path),
+    sitemap.html,
+  );
+  const lines = [
+    `Sitemap has ${coverage.urlCount} URLs and ${coverage.lastmodCount} <lastmod> values (ISO dates; do not claim the file is URL-only).`,
+  ];
+  if (coverage.publicAbsent.length === 0) {
+    lines.push("Every other monitored public route is already in the sitemap.");
+  } else {
+    lines.push(`Monitored public routes missing from the sitemap: ${coverage.publicAbsent.join(", ")}.`);
+  }
+  if (coverage.privateAbsent.length) {
+    lines.push(
+      `Intentionally omitted private hubs (keep out): ${coverage.privateAbsent.join(", ")}.`,
+    );
+  }
+  if (coverage.playerAbsent.length) {
+    lines.push(
+      `Player URLs omitted because they are thin noindex shells, not Pulse cards (keep out until a Pulse card exists): ${coverage.playerAbsent.join(", ")}.`,
+    );
+  }
+  return lines.join("\n");
+}
+
 async function runRecommendations({ base, results, previous, changedPaths, failed }) {
   if (process.env.SITE_REVIEW_SKIP_AI === "1" || process.env.SITE_REVIEW_SKIP_AI === "true") {
     return "_Skipping AI recommendations (`SITE_REVIEW_SKIP_AI`)._\n";
@@ -149,6 +175,9 @@ Base URL: ${base}
 Route summary:
 ${lines.join("\n")}
 ${failedNote}
+
+Sitemap facts (do not contradict these):
+${sitemapFacts(results)}
 
 The following excerpts are visible text from routes whose fingerprint **changed** since the last run (may be content updates, A/B output, or benign deployment drift). Use them only as hints:
 ${excerpts || "(No changed routes with successful fetches — site may be unchanged since last run.)"}

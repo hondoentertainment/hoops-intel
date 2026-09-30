@@ -49,16 +49,19 @@ export const SITE_REVIEW_PATHS = [
 ];
 
 /** Static tool paths written to sitemap.xml (excludes /, /archive, /pulse-history, /playoffs).
- * Soft-launch noindex routes (/82-0, /badges, /watch-guide, /podcast-companion) stay off this list. */
+ * /account stays off: robots.txt Disallow plus a noindex account hub.
+ * Thin player shells (no Pulse card) are omitted by generate-sitemap, not this list. */
 export const SITEMAP_STATIC_ROUTES = [
   // Daily desk — crawl above interactive tools
   { loc: "/injuries", priority: "0.85", changefreq: "daily" },
   { loc: "/tonight", priority: "0.85", changefreq: "daily" },
   { loc: "/players", priority: "0.65", changefreq: "daily" },
   { loc: "/betting-intel", priority: "0.7", changefreq: "daily" },
+  { loc: "/watch-guide", priority: "0.65", changefreq: "daily" },
   { loc: "/momentum", priority: "0.65", changefreq: "daily" },
   { loc: "/my-pulse", priority: "0.6", changefreq: "daily" },
   { loc: "/print-edition", priority: "0.6", changefreq: "daily" },
+  { loc: "/podcast-companion", priority: "0.6", changefreq: "weekly" },
   { loc: "/pick-em", priority: "0.65", changefreq: "daily" },
   { loc: "/widgets", priority: "0.6", changefreq: "daily" },
   { loc: "/widgets/analytics", priority: "0.5", changefreq: "weekly" },
@@ -85,7 +88,12 @@ export const SITEMAP_STATIC_ROUTES = [
   { loc: "/compare-players", priority: "0.55", changefreq: "weekly" },
   { loc: "/trade-simulator", priority: "0.5", changefreq: "weekly" },
   { loc: "/trivia", priority: "0.5", changefreq: "weekly" },
+  { loc: "/82-0", priority: "0.5", changefreq: "weekly" },
+  { loc: "/badges", priority: "0.5", changefreq: "weekly" },
 ];
+
+/** Monitored routes that must not be submitted to crawlers. */
+export const SITEMAP_PRIVATE_PATHS = ["/account", "/creator-queue", "/unsubscribe"];
 
 export const SITEMAP_PLAYER_META = { priority: "0.5", changefreq: "weekly" };
 /** Pulse Index or today's injury wire — existing daily desk signals, not a handmade celebrity list. */

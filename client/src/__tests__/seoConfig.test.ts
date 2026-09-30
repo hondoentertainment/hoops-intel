@@ -26,11 +26,11 @@ describe("publisher dashboard SEO", () => {
 });
 
 describe("soft-launch and desk SEO", () => {
-  it("noindexes thin engagement routes with self canonicals", () => {
-    for (const path of ["/82-0", "/badges", "/watch-guide", "/podcast-companion"]) {
-      expect(NOINDEX_PATHS.has(path)).toBe(true);
+  it("indexes public companion and for-fun routes with self canonicals", () => {
+    for (const path of ["/82-0", "/badges", "/watch-guide", "/podcast-companion", "/my-pulse", "/trivia", "/momentum", "/clutch"]) {
+      expect(NOINDEX_PATHS.has(path)).toBe(false);
       const seo = resolveRouteSeo(path);
-      expect(seo?.noindex).toBe(true);
+      expect(seo?.noindex).toBeUndefined();
       expect(seo?.canonicalPath).toBe(path);
       expect(toMetaTags(seo!).canonicalUrl).toBe(`https://hoopsintel.net${path}`);
     }
@@ -81,8 +81,9 @@ describe("soft-launch and desk SEO", () => {
       expect(meta.ogUrl).toMatch(/^https:\/\/hoopsintel\.net/);
     }
     expect(resolveRouteSeo("/guest-pulse")?.noindex).toBeUndefined();
-    expect(resolveRouteSeo("/82-0")?.noindex).toBe(true);
-    expect(resolveRouteSeo("/podcast-companion")?.noindex).toBe(true);
+    expect(resolveRouteSeo("/82-0")?.noindex).toBeUndefined();
+    expect(resolveRouteSeo("/podcast-companion")?.noindex).toBeUndefined();
+    expect(resolveRouteSeo("/account")?.noindex).toBe(true);
   });
 
   it("indexes the draft board (populated weekly, not a stub)", () => {
