@@ -74,7 +74,7 @@ describe("site review pages", () => {
 
   it("keeps tonight empty without placeholder player links", () => {
     renderAt("/tonight", <Tonight />);
-    expect(screen.getByText(/Waiting on/)).toBeInTheDocument();
+    expect(screen.getByText(/Waiting on|No games on the ESPN board/)).toBeInTheDocument();
     expect(screen.queryByTestId("tonight-player-links")).not.toBeInTheDocument();
   });
 

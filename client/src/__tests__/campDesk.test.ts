@@ -78,7 +78,7 @@ describe("Tonight empty slate", () => {
 
 describe("camp desk empty copy", () => {
   it("explains live vs October-held desks and points home / tools / archive", () => {
-    const copy = campDeskEmptyCopy();
+    const copy = campDeskEmptyCopy(new Date("2026-09-15T18:00:00Z"));
     expect(copy.kicker.toLowerCase()).toContain("season desk coming");
     expect(copy.title.toLowerCase()).toContain("oct 1");
     expect(copy.body.toLowerCase()).toContain("never invent");
