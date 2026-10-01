@@ -30,7 +30,7 @@ describe("enhancedDesk", () => {
   });
 
   it("derives hero stats from live edition data, not invented scores", () => {
-    const cards = heroStats();
+    const cards = heroStats(new Date("2026-09-15T18:00:00Z"));
     expect(cards[0]?.kicker).toBe("PULSE LEADER");
     expect(cards[0]?.value).toBe(lastNameOf(pulseIndex[0]!.player));
     expect(cards[0]?.sub).toContain(formatPulseScore(pulseIndex[0]!.indexScore));
@@ -53,7 +53,7 @@ describe("enhancedDesk", () => {
     expect(compactPulseStats("32.8 PPG · 12.1 RPG · 4.2 BPG · Locked 2030-31")).toBe(
       "32.8 · 12.1 · 4.2 · Locked 2030-31",
     );
-    const chips = mobileHeroStats();
+    const chips = mobileHeroStats(new Date("2026-09-15T18:00:00Z"));
     expect(chips).toHaveLength(2);
     expect(chips[0]?.kicker).toBe("PULSE");
     expect(chips[1]?.kicker).toBe("CAMP");

@@ -42,10 +42,6 @@ export const NOINDEX_PATHS = new Set([
   "/widgets/analytics",
   "/embed-stats",
   "/embed",
-  "/82-0",
-  "/badges",
-  "/watch-guide",
-  "/podcast-companion",
 ]);
 
 const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
@@ -111,7 +107,6 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description:
       "Spin an NBA franchise and era, draft a starting five, and simulate an 82-game season. Free spin or the daily wheel — a for-fun lineup game beside the morning desk.",
     canonicalPath: "/82-0",
-    noindex: true,
   },
   "/performance": {
     title: "Season Performance Tracker | Hoops Intel",
@@ -163,7 +158,6 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description:
       "Streaks and badges from Pick ’Em, trivia, and daily visits to Hoops Intel. Progress stays in this browser for guests and signed-in readers.",
     canonicalPath: "/badges",
-    noindex: true,
   },
   "/community-pulse": {
     title: "Community Pulse | Hoops Intel",
@@ -176,14 +170,12 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description:
       "Rank the NBA slate by stars, rivalry, and storyline. A watch guide beside the desk — when the league is dark, it says so instead of inventing a game.",
     canonicalPath: "/watch-guide",
-    noindex: true,
   },
   "/podcast-companion": {
     title: "NBA Podcast Companion | Hoops Intel",
     description:
       "Show notes from the Hoops Intel desk: an episode title, cold open, segment rundown, social clip, and thread. A companion sheet, not a live podcast.",
     canonicalPath: "/podcast-companion",
-    noindex: true,
   },
   "/history": {
     title: "NBA History Engine | Hoops Intel",
@@ -271,9 +263,12 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/injuries",
   "/tonight",
   "/players",
+  "/watch-guide",
   "/pick-em",
   "/trade-value",
   "/trivia",
+  "/82-0",
+  "/badges",
   "/performance",
   "/momentum",
   "/lineups",
@@ -291,6 +286,7 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/pulse-methodology",
   "/rivals",
   "/my-pulse",
+  "/podcast-companion",
   "/print-edition",
   "/widgets",
   "/widgets/analytics",

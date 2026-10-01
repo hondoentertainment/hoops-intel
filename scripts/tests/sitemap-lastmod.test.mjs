@@ -15,7 +15,7 @@ import {
   sanitizeLastmod,
   xmlEscape,
 } from "../generate-sitemap.mjs";
-import { SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
+import { SITE_REVIEW_PATHS, SITEMAP_PRIVATE_PATHS, SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
 import { stampGeneratedDate } from "../lib/stamp-generated-date.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -109,11 +109,32 @@ test("publisher 200 routes are in the static sitemap list", () => {
   assert.ok(locs.includes("/widgets/analytics"));
   assert.ok(locs.includes("/players"));
   assert.ok(locs.includes("/tonight"));
-  assert.ok(!locs.includes("/account"));
-  assert.ok(!locs.includes("/82-0"));
-  assert.ok(!locs.includes("/badges"));
-  assert.ok(!locs.includes("/watch-guide"));
-  assert.ok(!locs.includes("/podcast-companion"));
+  assert.ok(locs.includes("/my-pulse"));
+  assert.ok(locs.includes("/trivia"));
+  assert.ok(locs.includes("/momentum"));
+  assert.ok(locs.includes("/clutch"));
+  assert.ok(locs.includes("/82-0"));
+  assert.ok(locs.includes("/badges"));
+  assert.ok(locs.includes("/watch-guide"));
+  assert.ok(locs.includes("/podcast-companion"));
+  for (const path of SITEMAP_PRIVATE_PATHS) {
+    assert.ok(!locs.includes(path), `${path} is a private hub`);
+  }
+});
+
+test("trivia lastmod follows the daily edition, not the page component", () => {
+  const ctx = { buildDay: "2099-01-01", editionIso: "2026-12-01" };
+  assert.equal(lastmodForLoc("/trivia", ctx), "2026-12-01");
+  assert.notEqual(lastmodForLoc("/trivia", ctx), ctx.buildDay);
+});
+
+test("watch-guide lastmod follows the guide date or the edition, not the build day", () => {
+  const guideIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/watchGuideData.ts"), "utf8"));
+  assert.ok(guideIso, "watchGuideData should export a generated date");
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-02" };
+  assert.equal(lastmodForLoc("/watch-guide", ctx), later(guideIso, ctx.editionIso));
+  assert.notEqual(lastmodForLoc("/watch-guide", ctx), ctx.buildDay);
 });
 
 test("ask lastmod follows the daily edition when the page source is older", () => {
@@ -256,15 +277,16 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
   const editionIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
   assert.ok(editionIso, "pulseEdition.date should parse to an ISO day");
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
-  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/82-0<\/loc>/);
-  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/badges<\/loc>/);
-  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/watch-guide<\/loc>/);
-  assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/podcast-companion<\/loc>/);
   for (const path of [
     "/",
     "/tonight",
     "/injuries",
     "/players",
+    "/my-pulse",
+    "/trivia",
+    "/momentum",
+    "/watch-guide",
+    "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",
     "/lineups",
@@ -277,7 +299,19 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
     );
     assert.ok(block, `${path} missing from committed sitemap`);
     const expected = lastmodForLoc(path, { buildDay: "2099-01-01", editionIso });
-    assert.equal(block[1], expected, `${path} lastmod should follow the current edition`);
+    assert.equal(block[1], expected, `${path} lastmod should match the content or edition date`);
+  }
+  // /82-0 and /badges lastmod follow source git dates. A depth-1 checkout
+  // makes `git log -1 -- path` report the tip commit for every file, so do not
+  // compare those dates to lastmodForLoc in CI.
+  for (const path of ["/82-0", "/badges"]) {
+    const escaped = path.replace(/\//g, "\\/");
+    const block = xml.match(
+      new RegExp(`<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`),
+    );
+    assert.ok(block, `${path} missing from committed sitemap`);
+    assert.match(block[1], /^\d{4}-\d{2}-\d{2}$/);
+    assert.notEqual(block[1], "2099-01-01");
   }
 });
 
@@ -347,8 +381,18 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assertWellFormedSitemap(xml);
   assert.ok(xml.trimEnd().endsWith("</urlset>"));
   assert.ok(urls.length >= 50, `expected a full sitemap, got ${urls.length} URLs`);
-  assert.ok(!urls.some((u) => u.loc === "/watch-guide" || u.loc === "/podcast-companion"));
   assert.equal(urls.filter((u) => !u.lastmod).length, 0, "every sitemap URL needs a lastmod");
+  const locs = new Set(urls.map((u) => u.loc));
+  for (const path of SITE_REVIEW_PATHS) {
+    if (path === "/sitemap.xml" || SITEMAP_PRIVATE_PATHS.includes(path)) {
+      assert.equal(locs.has(path), false, `${path} stays out of the sitemap`);
+      continue;
+    }
+    assert.equal(locs.has(path), true, `public route missing from sitemap: ${path}`);
+    assert.match(urls.find((u) => u.loc === path).lastmod, /^\d{4}-\d{2}-\d{2}$/);
+  }
+  assert.equal(locs.has("/player/kawhi-leonard"), false, "Kawhi has no Pulse card");
+  assert.equal(locs.has("/player/vj-edgecombe"), false, "VJ Edgecombe is a thin prospect shell");
   const home = urls.find((u) => u.loc === "/");
   const tonight = urls.find((u) => u.loc === "/tonight");
   const injuries = urls.find((u) => u.loc === "/injuries");
