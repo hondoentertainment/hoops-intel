@@ -8,8 +8,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
-import { seasonMode, editionContextForMode } from "./lib/season-mode.mjs";
-import { VALID_EDITION_CONTEXTS } from "./lib/content-quality-constants.mjs";
+import { seasonMode, editionContextForMode, stampEditionContext } from "./lib/season-mode.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -346,26 +345,17 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
   let contentToWrite = newPulseContent;
   try {
     const ctx = scope.pulseEdition?.editionContext;
-    if (!ctx || !VALID_EDITION_CONTEXTS.has(ctx)) {
-      console.warn(`⚠ pulseEdition.editionContext missing or invalid (${JSON.stringify(ctx)}) — injecting "${editionContext}"`);
-      const patched = contentToWrite.replace(
-        /export const pulseEdition = (\{[^}]+\});/,
-        (m, inner) => {
-          if (inner.includes("editionContext")) return m;
-          return `export const pulseEdition = ${inner.slice(0, -1)},editionContext:${JSON.stringify(editionContext)}};`;
-        }
+    if (ctx !== editionContext) {
+      console.warn(
+        `⚠ pulseEdition.editionContext ${JSON.stringify(ctx)} != calendar "${editionContext}" — stamping`,
       );
-      if (patched === contentToWrite) {
-        console.error("❌ Could not inject editionContext (pulseEdition may be multi-line).");
-        process.exit(1);
-      }
-      contentToWrite = patched;
-      scope.pulseEdition = extractExportLiteral(contentToWrite, "pulseEdition", {});
-      const ctx2 = scope.pulseEdition?.editionContext;
-      if (!ctx2 || !VALID_EDITION_CONTEXTS.has(ctx2)) {
-        console.error("❌ editionContext still invalid after inject");
-        process.exit(1);
-      }
+    }
+    contentToWrite = stampEditionContext(contentToWrite, editionContext);
+    scope.pulseEdition = extractExportLiteral(contentToWrite, "pulseEdition", {});
+    const ctx2 = scope.pulseEdition?.editionContext;
+    if (ctx2 !== editionContext) {
+      console.error("❌ editionContext still wrong after stamp");
+      process.exit(1);
     }
   } catch (e) {
     console.error("❌ pulseEdition.editionContext handling failed:", e.message);
