@@ -6,6 +6,7 @@ import {
   generatorActive,
   editionContextForMode,
   deskLabelForContext,
+  stampEditionContext,
 } from "../lib/season-mode.mjs";
 
 test("seasonMode maps postseason window", () => {
@@ -34,6 +35,23 @@ test("seasonMode maps dead period (late July)", () => {
 
 test("seasonMode maps preseason (September)", () => {
   assert.equal(seasonMode(new Date(Date.UTC(2026, 8, 15))), "preseason");
+});
+
+test("seasonMode maps October camp-open as regular season", () => {
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 3))), "regular-season");
+  assert.equal(editionContextForMode("regular-season"), "regular");
+});
+
+test("stampEditionContext overwrites a valid but stale preseason context", () => {
+  const src = `export const pulseEdition = {date:"October 3, 2026",edition:"Vol. 2026 · No. 248",editionContext:"preseason"};\n`;
+  const stamped = stampEditionContext(src, "regular");
+  assert.match(stamped, /editionContext: "regular"/);
+  assert.doesNotMatch(stamped, /editionContext:"preseason"/);
+});
+
+test("stampEditionContext injects when pulseEdition omits the field", () => {
+  const src = `export const pulseEdition = {date:"October 3, 2026",edition:"Vol. 2026 · No. 248"};\n`;
+  assert.match(stampEditionContext(src, "regular"), /editionContext:"regular"/);
 });
 
 test("generatorActive is true year-round, including dead-period", () => {

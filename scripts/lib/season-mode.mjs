@@ -1,4 +1,6 @@
 // season-mode.mjs — Determine the current Hoops Intel content mode by date.
+
+import { VALID_EDITION_CONTEXTS } from "./content-quality-constants.mjs";
 //
 // The NBA calendar breaks cleanly into content windows. Daily generators use
 // this to pick the right prompt and section mix instead of producing stale
@@ -62,6 +64,32 @@ export function seasonMode(date = new Date()) {
  */
 export function editionContextForMode(mode) {
   return mode === "regular-season" ? "regular" : mode;
+}
+
+/**
+ * Force pulseEdition.editionContext to the calendar value.
+ * Claude often keeps yesterday's valid context (e.g. "preseason" on Oct 1)
+ * which passes the enum check and then fails the drift gate.
+ */
+export function stampEditionContext(fileText, editionContext) {
+  if (!VALID_EDITION_CONTEXTS.has(editionContext)) {
+    throw new Error(`stampEditionContext: invalid context ${editionContext}`);
+  }
+  if (/\beditionContext\s*:/.test(fileText)) {
+    return fileText.replace(
+      /\beditionContext\s*:\s*(?:"[^"]*"|'[^']*')/,
+      `editionContext: ${JSON.stringify(editionContext)}`,
+    );
+  }
+  const patched = fileText.replace(
+    /export const pulseEdition = (\{[^}]+\});/,
+    (_m, inner) =>
+      `export const pulseEdition = ${inner.slice(0, -1)},editionContext:${JSON.stringify(editionContext)}};`,
+  );
+  if (patched === fileText) {
+    throw new Error("stampEditionContext: pulseEdition object not found");
+  }
+  return patched;
 }
 
 /** Mirrors editionContextDeskLabel in client/src/lib/deskMode.ts. */
