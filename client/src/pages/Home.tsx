@@ -60,7 +60,7 @@ import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
 import { shouldShowLiveScorebar, scorebarGamesToShow } from "../lib/scorebarVisibility";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
-import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
+import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel, priorSeasonStandingsCopy } from "../lib/deskMode";
 import { isCampDesk } from "../lib/campDesk";
 import { hasTonightSlate } from "../lib/enhancedDesk";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
@@ -1653,10 +1653,10 @@ function StandingsSection() {
                     {team.team}
                   </a>
                   {team.rank === 6 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 1–6 clinch an automatic playoff berth" style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}>PLAYOFF</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title={playoffChipTitle} style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}>{playoffChip}</span>
                   )}
                   {team.rank === 10 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title="Seeds 7–10 enter the Play-In Tournament for the final two playoff spots" style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>PLAY-IN</span>
+                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title={playInChipTitle} style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>{playInChip}</span>
                   )}
                 </td>
                 <td className="text-center px-3 py-2 mono-data">{team.wins}</td>
@@ -1684,8 +1684,8 @@ function StandingsSection() {
         </table>
         {sortKey === "rank" && (
           <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}>
-            <span className="cursor-help" title="Top 6 in each conference clinch a playoff berth outright">1-6: <span style={{ color: "#10B981" }}>Playoff Seeds</span></span>
-            <span className="cursor-help" title="Seeds 7–10 play a mini-tournament for the final two playoff spots in each conference">7-10: <span style={{ color: "#F59E0B" }}>Play-In Tournament</span></span>
+            <span className="cursor-help" title={playoffChipTitle}>1-6: <span style={{ color: "#10B981" }}>{priorStandings ? `${priorYear} playoff seeds` : "Playoff Seeds"}</span></span>
+            <span className="cursor-help" title={playInChipTitle}>7-10: <span style={{ color: "#F59E0B" }}>{priorStandings ? `${priorYear} play-in` : "Play-In Tournament"}</span></span>
           </div>
         )}
       </div>
@@ -1712,11 +1712,29 @@ function StandingsSection() {
     </div>
   );
 
+  const priorStandings = priorSeasonStandingsCopy(new Date(`${pulseEdition.date} 12:00:00 UTC`));
+  const priorYear = priorStandings?.kicker.replace(/ final$/, "") ?? "";
+  const playoffChip = priorStandings ? `${priorYear} PLAYOFF` : "PLAYOFF";
+  const playInChip = priorStandings ? `${priorYear} PLAY-IN` : "PLAY-IN";
+  const playoffChipTitle = priorStandings
+    ? `Prior-season cut line: seeds 1–6 clinched a playoff berth in ${priorYear}`
+    : "Seeds 1–6 clinch an automatic playoff berth";
+  const playInChipTitle = priorStandings
+    ? `Prior-season cut line: seeds 7–10 entered the play-in in ${priorYear}`
+    : "Seeds 7–10 enter the Play-In Tournament for the final two playoff spots";
+
   return (
     <section id="standings" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
       <div className="container">
-        <p className="enhanced-kicker mb-2">Conference standings</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-2xl mb-6">Standings</h2>
+        <p className="enhanced-kicker mb-2">{priorStandings ? priorStandings.kicker : "Conference standings"}</p>
+        <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-2xl mb-2">Standings</h2>
+        {priorStandings ? (
+          <p className="text-sm mb-6 max-w-3xl" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+            {priorStandings.note}
+          </p>
+        ) : (
+          <div className="mb-4" />
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {renderConference("Eastern Conference", eastStandings)}
           {renderConference("Western Conference", westStandings)}

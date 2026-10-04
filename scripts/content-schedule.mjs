@@ -6,7 +6,7 @@
 import { readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { seasonMode, generatorActive, primaryGenerator } from "./lib/season-mode.mjs";
+import { seasonMode, generatorActive, primaryGenerator, REGULAR_SEASON_OPEN_DAY } from "./lib/season-mode.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -202,14 +202,14 @@ function printSchedule() {
   console.log(`  Primary generator: ${primaryGenerator(today)}`);
   console.log("");
   console.log("  Content windows:");
-  console.log("    Oct–mid-Apr   regular-season    generate-edition.mjs");
+  console.log(`    Oct ${REGULAR_SEASON_OPEN_DAY}–mid-Apr regular-season    generate-edition.mjs`);
   console.log("    mid-Apr–May   playoffs          generate-edition.mjs (playoff mode)");
   console.log("    early June    finals            generate-edition.mjs (finals mode)");
   console.log("    late June     draft             generate-draft.mjs");
   console.log("    Jul 1–10      free-agency       generate-edition.mjs (FA mode)");
   console.log("    Jul 10–22     summer-league     generate-edition.mjs (SL mode)");
   console.log("    late Jul–Aug  dead-period       generate-history.mjs (flashback)");
-  console.log("    September     preseason         generate-edition.mjs (preseason mode)");
+  console.log(`    Sep–Oct ${REGULAR_SEASON_OPEN_DAY - 1}   preseason         generate-edition.mjs (preseason mode)`);
   console.log("");
   console.log("  NOTE: daily-update.yml uses scripts/check-generator-active.mjs (season-mode)");
   console.log("  so only the late-July/August dead period skips generation; free-agency and");

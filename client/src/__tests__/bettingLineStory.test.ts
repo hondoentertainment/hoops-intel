@@ -14,6 +14,30 @@ describe("bettingLineStory", () => {
     expect(lines.some((l) => /flip/i.test(l))).toBe(true);
   });
 
+  it("explains a preseason total without naming an API key or a postseason whistle", () => {
+    const lines = summarizeLineMovementEducation(
+      {
+        homeTeam: "DEN",
+        awayTeam: "UTA",
+        spread: "DEN -7.5",
+        overUnder: "219.5",
+      },
+      "preseason",
+    );
+    const text = lines.join(" ");
+    expect(text).toMatch(/preseason minutes/i);
+    expect(text).not.toMatch(/ODDS_API_KEY/);
+    expect(text).not.toMatch(/postseason whistle/i);
+  });
+
+  it("keeps series foul language on a playoff total", () => {
+    const lines = summarizeLineMovementEducation(
+      { homeTeam: "BOS", awayTeam: "NYK", spread: "BOS -3", overUnder: "214.5" },
+      "playoffs",
+    );
+    expect(lines.join(" ")).toMatch(/series is underway/i);
+  });
+
   it("counts slate movement rows", () => {
     const summary = slateLineMovementSummary(
       [

@@ -40,10 +40,21 @@ const OFFSEASON_CONTEXTS = new Set<EditionContext>([
   "dead-period",
 ]);
 
+/**
+ * Opening night on the UTC calendar. Keep in sync with
+ * REGULAR_SEASON_OPEN_* in scripts/lib/season-mode.mjs.
+ * 2026–27 tips off October 20, 2026.
+ */
+export const REGULAR_SEASON_OPEN_MONTH = 10;
+export const REGULAR_SEASON_OPEN_DAY = 20;
+
 /** UTC calendar mode — keep in sync with scripts/lib/season-mode.mjs */
 export function clientSeasonMode(date = new Date()): ClientSeasonMode {
   const month = date.getUTCMonth() + 1;
   const day = date.getUTCDate();
+
+  if (month === 9) return "preseason";
+  if (month === REGULAR_SEASON_OPEN_MONTH && day < REGULAR_SEASON_OPEN_DAY) return "preseason";
 
   if (month >= 10 || month <= 3) return "regular-season";
   if (month === 4 && day <= 15) return "regular-season";
@@ -55,8 +66,22 @@ export function clientSeasonMode(date = new Date()): ClientSeasonMode {
   if (month === 7 && day > 10 && day <= 22) return "summer-league";
   if (month === 7 && day > 22) return "dead-period";
   if (month === 8) return "dead-period";
-  if (month === 9) return "preseason";
   return "regular-season";
+}
+
+/** Prior-season final standings, shown until opening night. */
+export function priorSeasonStandingsCopy(date = new Date()): { kicker: string; note: string } | null {
+  if (clientSeasonMode(date) !== "preseason") return null;
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth() + 1;
+  const upcomingStart = month >= 7 ? year : year - 1;
+  const priorStart = upcomingStart - 1;
+  const priorLabel = `${priorStart}–${String(upcomingStart).slice(-2)}`;
+  const nextLabel = `${upcomingStart}–${String(upcomingStart + 1).slice(-2)}`;
+  return {
+    kicker: `${priorLabel} final`,
+    note: `Prior-season records (${priorLabel}). Playoff and play-in marks are last year's cut line. The ${nextLabel} regular season has not started, so these are not current-season records.`,
+  };
 }
 
 /**

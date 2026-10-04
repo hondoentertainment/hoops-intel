@@ -12,6 +12,7 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { validateOutput } from "./lib/validate-output.mjs";
 import { GAME_ID_PATTERN, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
+import { collectCommittedEditionDateErrors } from "./lib/edition-date-alignment.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -204,6 +205,16 @@ export function validateWorldClassRoutes() {
       );
       assertCond(Boolean(block), `sitemap player entry truncated or incomplete: ${loc}`);
     }
+    const pulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+    const archive = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
+    const dateErrors = collectCommittedEditionDateErrors({
+      pulseSource: pulse,
+      archiveSource: archive,
+      sitemapXml: sitemap,
+      lineMovementSource: readFileSync(join(ROOT, "client/src/lib/lineMovementData.ts"), "utf8"),
+      lineOpenersSource: readFileSync(join(ROOT, "client/src/lib/lineOpenersArchiveData.ts"), "utf8"),
+    });
+    assertCond(dateErrors.length === 0, dateErrors.join("; "));
   }
 
   return { ok: true };

@@ -13,10 +13,16 @@ import {
   lastmodForLoc,
   playerSitemapMeta,
   sanitizeLastmod,
+  teamContentLastmods,
   xmlEscape,
 } from "../generate-sitemap.mjs";
 import { SITE_REVIEW_PATHS, SITEMAP_PRIVATE_PATHS, SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
 import { stampGeneratedDate } from "../lib/stamp-generated-date.mjs";
+import {
+  collectCommittedEditionDateErrors,
+  collectPulsePublicationErrors,
+  displayDateToIso,
+} from "../lib/edition-date-alignment.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -430,4 +436,70 @@ test("committed sitemap player locs match generate() so new profiles ship on pub
   for (const loc of committed) {
     assert.ok(generated.has(loc), `committed sitemap has stale ${loc}`);
   }
+});
+
+test("team lastmod moves only when that team is on the wire, in the archive, or on the lineup file", () => {
+  const map = teamContentLastmods({
+    editionIso: "2026-10-04",
+    archiveFile: `
+  {
+    id: "2026-04-13",
+    teams: ["IND"],
+    topStory: "Indiana closes the year",
+  }
+  {
+    id: "2026-10-04",
+    teams: ["DEN"],
+  }
+`,
+    pulseFile: `export const injuryUpdates = [{player:"Jamal Murray",team:"DEN",status:"Day-to-Day"}];`,
+    lineupFile: `export const lineupData = { generatedDate: "September 28, 2026", teams: [{ team: "CHI" }] };`,
+  });
+  assert.equal(map.get("DEN"), "2026-10-04");
+  assert.equal(map.get("IND"), "2026-04-13");
+  assert.equal(map.get("CHI"), "2026-09-28");
+  assert.equal(map.has("ATL"), false);
+});
+
+test("generated team pages do not share one lastmod", () => {
+  const { urls } = generate({ write: false });
+  const teamDates = urls.filter((u) => u.loc.startsWith("/team/")).map((u) => u.lastmod);
+  assert.ok(teamDates.length >= 30, `expected every franchise, got ${teamDates.length}`);
+  assert.ok(new Set(teamDates).size > 1, "team lastmods must diverge when content diverges");
+  assert.ok(urls.some((u) => u.loc === "/game/UTA-DEN-20261004"));
+  assert.ok(urls.some((u) => u.loc === "/game/GSW-LAC-20261004"));
+  assert.equal(urls.find((u) => u.loc === "/")?.lastmod, "2026-10-04");
+  assert.equal(urls.find((u) => u.loc === "/player/kawhi-leonard"), undefined);
+  assert.equal(urls.find((u) => u.loc === "/player/vj-edgecombe"), undefined);
+});
+
+test("publication date, tonight slugs, and a next-day display date cannot ship together", () => {
+  assert.equal(displayDateToIso("October 4, 2026"), "2026-10-04");
+  const bad = collectPulsePublicationErrors(
+    `export const pulseEdition = {date:"October 5, 2026",editionContext:"regular"};
+export const gamePreviews = [{gameId:"UTA-DEN-20261005",homeTeam:"DEN",awayTeam:"UTA",storyline:"Malone manages the minutes"}];`,
+    { editionDisplay: "October 4, 2026", editionIso: "2026-10-04", tonightEspn: "20261004" },
+  );
+  assert.ok(bad.some((line) => line.includes("October 5, 2026")));
+  assert.ok(bad.some((line) => line.includes("UTA-DEN-20261004")));
+  assert.ok(bad.some((line) => /Malone/i.test(line)));
+
+  const karl = collectPulsePublicationErrors(
+    `export const pulseEdition = {date:"October 4, 2026"};
+export const gamePreviews = [];
+export const historyFact = {fact:"Karl Malone scored 36."};`,
+    { editionDisplay: "October 4, 2026", editionIso: "2026-10-04", tonightEspn: "20261004" },
+  );
+  assert.equal(karl.length, 0);
+});
+
+test("committed edition display date matches the archive publication id", () => {
+  const errors = collectCommittedEditionDateErrors({
+    pulseSource: readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"),
+    archiveSource: readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8"),
+    sitemapXml: readFileSync(join(ROOT, "public/sitemap.xml"), "utf8"),
+    lineMovementSource: readFileSync(join(ROOT, "client/src/lib/lineMovementData.ts"), "utf8"),
+    lineOpenersSource: readFileSync(join(ROOT, "client/src/lib/lineOpenersArchiveData.ts"), "utf8"),
+  });
+  assert.deepEqual(errors, []);
 });

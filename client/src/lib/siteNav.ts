@@ -1,5 +1,5 @@
 import { isPlayoffsActive } from "./playoffData";
-import { isOffseasonDesk, offseasonPrimaryHref } from "./deskMode";
+import { isOffseasonDesk, liveWireMonthGateClosed, offseasonPrimaryHref } from "./deskMode";
 
 export const PLAYOFFS_NAV_HREF = "/playoffs";
 
@@ -161,7 +161,7 @@ export interface ToolLink {
 }
 
 export const TOOLS_DIRECTORY: ToolLink[] = [
-  { label: "Desk", href: "/", description: "Daily briefing, Pulse Index, camp intel when the slate is empty", category: "desk" },
+  { label: "Desk", href: "/", description: "Daily briefing and Pulse Index. During July–September camp, an empty slate points at camp intel.", category: "desk" },
   { label: "Tonight", href: "/tonight", description: "Tonight's ESPN slate — empty when the league is dark, with a pointer to the desk", category: "desk" },
   { label: "Players", href: "/players", description: "Browse and search player profiles from Pulse and the archive", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },
@@ -236,8 +236,16 @@ export function distributionTools() {
   );
 }
 
-export function publicToolsDirectory() {
-  return TOOLS_DIRECTORY.filter((t) => !t.hideFromDirectory);
+export function publicToolsDirectory(date = new Date()) {
+  return TOOLS_DIRECTORY.filter((t) => !t.hideFromDirectory).map((tool) => {
+    if (tool.href === "/" && !liveWireMonthGateClosed(date)) {
+      return {
+        ...tool,
+        description: "Daily briefing and Pulse Index. An empty ESPN slate stays empty.",
+      };
+    }
+    return tool;
+  });
 }
 
 export function deskRailTools() {

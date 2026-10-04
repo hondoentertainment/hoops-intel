@@ -22,6 +22,7 @@ import EditorialShell from "../../components/EditorialShell";
 import { DeskFilterChip, EmptyState, EnhancedButton, PageHero } from "../../components/enhanced/EnhancedUi";
 import { PlayoffMoversDesk } from "./PlayoffMoversDesk";
 import { PlayoffBracketBoard } from "./PlayoffBracketBoard";
+import { TeamPageLinks } from "../TeamPageLinks";
 
 function StickyRibbon({ series }: { series: typeof playoffSeries }) {
   const snap = playoffSnapshot(series, todayISOLocal());
@@ -210,6 +211,7 @@ export function PlayoffsPage() {
     >
       <StickyRibbon series={mergedSeries} />
       <div className="desk-page-main max-w-[1400px] mx-auto">
+        <TeamPageLinks id="playoff-teams" />
         {hasBoard && (
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <DataTrustBadge variant={hasLive ? "live" : "espn"} fetchedAt={liveData?.fetchedAt} />

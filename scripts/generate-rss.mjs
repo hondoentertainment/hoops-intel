@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { displayDateToIso } from "./lib/edition-date-alignment.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -29,6 +30,8 @@ export function editionIso(value) {
   if (typeof value !== "string") return "";
   const trimmed = value.trim();
   if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+  const named = displayDateToIso(trimmed);
+  if (named) return named;
   const parsed = Date.parse(trimmed);
   if (Number.isNaN(parsed)) return "";
   return new Date(parsed).toISOString().slice(0, 10);

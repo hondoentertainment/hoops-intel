@@ -89,6 +89,23 @@ export default function Tonight() {
                     />
                   </a>
                   <TonightPlayerLinks game={preview} />
+                  <div className="flex flex-wrap items-center gap-1.5 px-1" data-testid="tonight-team-links">
+                    <span className="enhanced-kicker">Teams</span>
+                    {[preview.awayTeam, preview.homeTeam].map((abbr) => (
+                      <a
+                        key={abbr}
+                        href={`/team/${abbr.toLowerCase()}`}
+                        className="desk-chip"
+                        style={{
+                          background: "var(--hi-surface-2,#f3f3f0)",
+                          color: "var(--hi-text,#0a0a0a)",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {abbr}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

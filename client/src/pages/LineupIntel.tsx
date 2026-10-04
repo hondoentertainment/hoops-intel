@@ -8,6 +8,7 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import { DeskPanel, SeasonChip } from "../components/enhanced/EnhancedUi";
 import TeamLogo from "../components/TeamLogo";
 import { PlayerNameLink } from "../components/PlayerNameLink";
+import { TeamPageLinks } from "../components/TeamPageLinks";
 
 // ═══════════════════════════════════════════════════════════
 // NET RATING BAR
@@ -205,12 +206,13 @@ function TeamCard({ team }: { team: TeamLineupIntel }) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <TeamLogo team={team.team} size={22} />
-            <span
-              className="text-lg font-bold"
-              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)" }}
+            <a
+              href={`/team/${team.team.toLowerCase()}`}
+              className="text-lg font-bold hover:underline"
+              style={{ color: "var(--hi-text,#0a0a0a)", fontFamily: "var(--hi-font-display)", textDecorationThickness: "1px" }}
             >
               {team.team}
-            </span>
+            </a>
             <span
               className="text-sm font-semibold"
               style={{ color: "var(--hi-accent-text,#146a8c)", fontFamily: "var(--hi-font-display)" }}
@@ -504,6 +506,8 @@ export default function LineupIntel() {
             Generated {generatedDate}
           </span>
         </div>
+
+        <TeamPageLinks id="lineup-teams" />
 
         <DeskPanel kicker="Methodology" className="mb-8">
           <p className="text-sm leading-relaxed" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>

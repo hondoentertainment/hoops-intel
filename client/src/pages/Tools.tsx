@@ -17,6 +17,7 @@ import {
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { liveWireMonthGateClosed } from "../lib/deskMode";
 import { POPULAR_SEARCH_DESTINATIONS } from "../lib/searchHistory";
+import { TeamPageLinks } from "../components/TeamPageLinks";
 
 const PUBLIC_TOOLS = publicToolsDirectory();
 const FEATURED_TOOLS = deskRailTools();
@@ -79,6 +80,8 @@ export default function Tools() {
           </ul>
         </section>
       ) : null}
+
+      <TeamPageLinks id="tools-teams" />
 
       <div className="mb-4 flex flex-wrap gap-2">
         <DeskFilterChip active={category === "all"} onClick={() => setCategory("all")}>

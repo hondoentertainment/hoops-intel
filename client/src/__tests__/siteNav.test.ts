@@ -36,6 +36,17 @@ describe("siteNav", () => {
     expect(hrefs).not.toContain("#tonight");
   });
 
+  it("drops camp intel from the desk card once the July–September gate is open", () => {
+    const october = new Date(Date.UTC(2026, 9, 4));
+    const july = new Date(Date.UTC(2026, 6, 20));
+    const octoberDesk = publicToolsDirectory(october).find((t) => t.href === "/");
+    const julyDesk = publicToolsDirectory(july).find((t) => t.href === "/");
+    expect(octoberDesk?.description).toMatch(/empty ESPN slate stays empty/i);
+    expect(octoberDesk?.description).not.toMatch(/camp/i);
+    expect(julyDesk?.description).toMatch(/camp intel/i);
+    expect(TOOLS_DIRECTORY.find((t) => t.href === "/")?.description).toMatch(/July–September camp/i);
+  });
+
   it("hides admin and opt-out routes from the public tools grid", () => {
     const hrefs = publicToolsDirectory().map((t) => t.href);
     expect(hrefs).not.toContain("/creator-queue");

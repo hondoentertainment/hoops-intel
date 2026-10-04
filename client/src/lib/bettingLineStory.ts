@@ -1,6 +1,7 @@
 /** Educational copy for Betting Intel — not picks; explains how to read snapshots. */
 
 import { spreadFavoriteAbbrev } from "./editionPredictionStats";
+import { activeEditionContext, type EditionContext } from "./deskMode";
 
 export interface BettingPreviewSlice {
   homeTeam: string;
@@ -12,7 +13,20 @@ export interface BettingPreviewSlice {
   openingSpread?: string;
 }
 
-export function summarizeLineMovementEducation(preview: BettingPreviewSlice): string[] {
+function totalEducation(total: string, ctx: EditionContext): string {
+  if (ctx === "playoffs" || ctx === "finals") {
+    return `Total ${total}: pace and foul rate move this more than the spread once a series is underway.`;
+  }
+  if (ctx === "preseason" || ctx === "summer-league") {
+    return `Total ${total}: preseason minutes and pace move this more than the spread. Treat the number as a thin-slate snapshot.`;
+  }
+  return `Total ${total}: pace, rotation minutes, and how tightly the game is called move this more than the spread.`;
+}
+
+export function summarizeLineMovementEducation(
+  preview: BettingPreviewSlice,
+  ctx: EditionContext = activeEditionContext(),
+): string[] {
   const lines: string[] = [];
   const forSpread = { ...preview, prediction: preview.prediction ?? "" };
   const closeFav = spreadFavoriteAbbrev(forSpread);
@@ -39,13 +53,11 @@ export function summarizeLineMovementEducation(preview: BettingPreviewSlice): st
   }
 
   lines.push(
-    `Closing line value (CLV): pros benchmark their number against the closing number. When ODDS_API_KEY is live, the desk syncs openers and sportsbook closers into lineMovementData; otherwise this card shows the morning edition snapshot — always compare your book’s final print before tip.`,
+    `Closing line value (CLV): pros benchmark their number against the closing number. This card is the morning edition snapshot — compare your book’s final print before tip.`,
   );
 
   if (preview.overUnder) {
-    lines.push(
-      `Total ${preview.overUnder}: faster pace forecasts or foul-game scripts move this more than spreads; watch replay minutes and postseason whistle tightness.`,
-    );
+    lines.push(totalEducation(preview.overUnder, ctx));
   }
 
   return lines;

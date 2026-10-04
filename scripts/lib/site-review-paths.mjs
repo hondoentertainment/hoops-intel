@@ -89,11 +89,35 @@ export function siteReviewPlayerSamplePaths(pulseFile = "") {
   return [...new Set(samples)];
 }
 
-/** Static manifest + active playoff series + a player-profile sample. */
+/** Tonight's /game/ URLs from gamePreviews gameIds — the nightly review list. */
+export function siteReviewTonightGamePaths(pulseFile = "") {
+  const start = String(pulseFile).search(/export const gamePreviews\s*=\s*\[/);
+  if (start < 0) return [];
+  const bracket = String(pulseFile).indexOf("[", start);
+  let depth = 0;
+  let body = "";
+  for (let i = bracket; i < pulseFile.length; i++) {
+    const ch = pulseFile[i];
+    if (ch === "[") depth += 1;
+    else if (ch === "]") {
+      depth -= 1;
+      if (depth === 0) {
+        body = pulseFile.slice(bracket + 1, i);
+        break;
+      }
+    }
+  }
+  return [...body.matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)].map((m) => `/game/${m[1]}`);
+}
+
+/** Static manifest + active playoff series + tonight's games + a player-profile sample. */
 export function resolveSiteReviewPaths({ playoffFile = "", pulseFile = "" } = {}) {
   const paths = [...SITE_REVIEW_PATHS];
   for (const m of String(playoffFile || "").matchAll(/seriesId:\s*"([^"]+)"/g)) {
     const loc = `/playoffs/series/${m[1]}`;
+    if (!paths.includes(loc)) paths.push(loc);
+  }
+  for (const loc of siteReviewTonightGamePaths(pulseFile)) {
     if (!paths.includes(loc)) paths.push(loc);
   }
   for (const loc of siteReviewPlayerSamplePaths(pulseFile)) {
