@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: June 14, 2026
+// Last updated: October 4, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -34,109 +34,76 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  generatedDate: "2026-10-03",
-  date: "June 14, 2026",
-  gameOfTheNight: "NYK-SAS-20260613",
+  generatedDate: "2026-10-04",
+  date: "October 4, 2026",
+  gameOfTheNight: "MIA-TOR-20261003",
   topClutchPerformer: {
-    player: "Jalen Brunson",
-    team: "New York Knicks",
-    clutchRating: 97,
+    player: "Jimmy Butler",
+    team: "MIA",
+    clutchRating: 81,
     description:
-      "Brunson was simply unstoppable when the stakes were highest. He scored 17 of his 41 points in the fourth quarter alone, converting two critical and-one opportunities and draining a pull-up mid-range jumper over Wembanyama with 1:42 remaining to push the Knicks' lead to four. His ability to weaponize Thibodeau's staggered-screen reads against the Castle-Wembanyama coverage scheme turned San Antonio's most carefully constructed defensive blueprint into rubble.",
+      "Butler did not need the fourth quarter to make his case. Operating on a minutes restriction, he delivered maximum efficiency in 28 minutes — setting the tone in the first half with decisive mid-range looks and defensive positioning that collapsed Toronto's half-court sets before they could develop. For a game that was never truly close after the first eight minutes, Butler's early-quarter control was the closest thing to clutch dominance this opening weekend produced.",
   },
   games: [
     {
-      gameId: "NYK-SAS-20260613",
-      teams: { home: "San Antonio Spurs", away: "New York Knicks" },
-      finalScore: { home: 90, away: 94 },
+      gameId: "MIA-TOR-20261003",
+      teams: { home: "TOR", away: "MIA" },
+      finalScore: { home: 105, away: 129 },
       swings: [
         {
           quarter: "Q1",
-          timestamp: "3:22",
+          timestamp: "Q1 · 7:42",
           description:
-            "Wembanyama ignited Frost Bank Center with back-to-back blocks followed by a coast-to-coast layup, capping an 11-2 Spurs run that gave San Antonio early command and had the crowd sensing a series-tying statement game.",
-          runScore: "11-2 SAS",
+            "Miami opened with an 11-2 run to seize immediate control, punctuated by a Butler pull-up jumper and back-to-back deflections that ignited Heat transition offense. Toronto never answered the opening salvo.",
+          runScore: "11-2 MIA run",
+          momentum: "away",
+          keyPlayer: "Jimmy Butler",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q1",
+          timestamp: "Q1 · 1:55",
+          description:
+            "Scottie Barnes converted a and-one layup through contact and briefly sparked the Scotiabank crowd, trimming the deficit to nine and threatening to make the first quarter a contested affair.",
+          runScore: "7-2 TOR run",
           momentum: "home",
-          keyPlayer: "Victor Wembanyama",
-          impact: "significant",
+          keyPlayer: "Scottie Barnes",
+          impact: "notable",
         },
         {
           quarter: "Q2",
-          timestamp: "6:47",
+          timestamp: "Q2 · 9:10",
           description:
-            "Brunson began dismantling the Castle-Wembanyama coverage with a series of right-side staggered-screen actions, engineering a 14-4 New York run that erased the deficit and flipped the emotional energy in the building. Three consecutive Brunson baskets — a floater, a step-back three, and an and-one drive — were the sequence that rewired the game.",
-          runScore: "14-4 NYK",
+            "The Heat's bench unit extended the lead immediately out of the first-quarter break, rattling off nine unanswered points. Toronto's reserves offered nothing in response, and the game's competitive window effectively closed.",
+          runScore: "9-0 MIA run",
           momentum: "away",
-          keyPlayer: "Jalen Brunson",
+          keyPlayer: "Haywood Highsmith",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "5:10",
+          timestamp: "Q3 · 5:30",
           description:
-            "San Antonio's De'Aaron Fox found a second gear in the third, rattling off 9 quick points on mid-range pull-ups and free throws to spark a 13-5 Spurs surge that reclaimed the lead and briefly restored belief inside Frost Bank Center.",
-          runScore: "13-5 SAS",
+            "A brief Toronto flurry — three consecutive Barnes buckets in the third — trimmed the margin to 18 and produced the only sustained noise from the home crowd all evening, before Miami's rotation resealed the game.",
+          runScore: "8-2 TOR run",
           momentum: "home",
-          keyPlayer: "De'Aaron Fox",
+          keyPlayer: "Scottie Barnes",
           impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "8:31",
+          timestamp: "Q4 · 10:00",
           description:
-            "New York's switching scheme suffocated San Antonio's half-court sets to open the fourth quarter, forcing three consecutive shot-clock violations and turnovers. The Knicks converted the chaos into a 10-2 run, seizing a lead they would never relinquish and holding the Spurs to a staggering 19 second-half points total.",
-          runScore: "10-2 NYK",
+            "Miami's starters sat early in the fourth with a 25-point cushion. The Heat's second unit maintained the advantage without difficulty, underscoring just how complete the victory was across all rotations.",
+          runScore: "6-0 MIA run",
           momentum: "away",
-          keyPlayer: "OG Anunoby",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "1:05",
-          description:
-            "Wembanyama hit a desperation three-pointer to trim the deficit to two and gave San Antonio fans one final heartbeat, but it proved too little too late as the Knicks calmly executed at the free-throw line to close it out.",
-          runScore: "3-0 SAS",
-          momentum: "home",
-          keyPlayer: "Victor Wembanyama",
+          keyPlayer: "Davion Mitchell",
           impact: "notable",
         },
       ],
-      clutchPlays: [
-        {
-          player: "Jalen Brunson",
-          team: "New York Knicks",
-          description:
-            "Pull-up mid-range jumper over a closing Wembanyama from the right elbow — the signature shot of Thibodeau's staggered-screen package — with 1:42 remaining to push New York's advantage to four and functionally ice the road victory.",
-          timeRemaining: "1:42",
-          winProbabilityShift: 28,
-        },
-        {
-          player: "Jalen Brunson",
-          team: "New York Knicks",
-          description:
-            "Absorbed contact driving baseline through Castle's coverage, converted the layup, and sank the free throw to complete a three-point play that extended the lead to five with 3:08 left and silenced the Frost Bank Center crowd.",
-          timeRemaining: "3:08",
-          winProbabilityShift: 19,
-        },
-        {
-          player: "Victor Wembanyama",
-          team: "San Antonio Spurs",
-          description:
-            "Step-back three-pointer from the left wing over a scrambling Josh Hart to cut the deficit to two and reignite the crowd with 58 seconds remaining, momentarily threatening to force a Knicks timeout.",
-          timeRemaining: "0:58",
-          winProbabilityShift: -14,
-        },
-        {
-          player: "OG Anunoby",
-          team: "New York Knicks",
-          description:
-            "Stripped De'Aaron Fox on a live-ball drive with 2:21 remaining, pushing the pace for a Brunson-led fast break that resulted in two free throws and pushed the lead back to five at a critical juncture.",
-          timeRemaining: "2:21",
-          winProbabilityShift: 17,
-        },
-      ],
+      clutchPlays: [],
       narrative:
-        "This was the night Jalen Brunson etched his name into Knicks lore, delivering a 41-point masterclass on the road in a must-win NBA Finals game with the precision of someone who had already seen every defensive wrinkle San Antonio could draw up. Thibodeau's staggered-screen adjustments were the tactical masterstroke, systematically dismantling the Castle-Wembanyama coverage scheme that had bottled Brunson up in Games 2 and 3 and leaving Spurs head coach Gregg Popovich Jr. with no clean answers. Wembanyama was magnificent — 29 points, 11 rebounds, three blocks — but the Spurs' offensive infrastructure crumbled when New York's switching scheme denied Fox clean looks and forced San Antonio into isolation basketball in the second half. Holding a Finals-caliber opponent to 19 second-half points on their home floor, in a Game 5 with the series on the line, is the kind of defensive performance that defines championships. The Knicks head back to Madison Square Garden on the edge of ending a 53-year drought, and the city is already shaking.",
+        "This was a statement delivered in the first eight minutes and never rescinded. Miami came into Toronto with the composure of a team that had resolved its identity long before tip-off — and the Raptors, still searching for theirs, had no answer for it. Butler's efficiency on a minutes restriction was almost insulting in its ease; he did not need to force the issue because the issue was never really in doubt. The crowd at Videotron Centre made noise when Barnes surged in the third, but Miami's defense absorbed it the way a deep foundation absorbs a tremor — without visible strain. A 24-point preseason blowout rarely tells the whole story, but here it told most of it.",
     },
   ],
 };
