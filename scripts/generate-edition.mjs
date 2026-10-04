@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 import { seasonMode, editionContextForMode, stampEditionContext } from "./lib/season-mode.mjs";
+import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -52,64 +53,6 @@ function parseGames(espnData) {
       leaders,
     };
   });
-}
-
-// ── Parse a JS object/array literal export from pulseData.ts source.
-//    Walks the source respecting string and bracket nesting, then evaluates
-//    the literal inside an isolated Function scope. Previously-extracted
-//    exports can be passed in via `scope` so that derived exports such as
-//    `standings = [...eastStandings, ...westStandings]` resolve correctly.
-//    Throws on any mismatch.
-function extractExportLiteral(src, name, scope = {}) {
-  const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*`);
-  const m = re.exec(src);
-  if (!m) throw new Error("export not found");
-
-  const start = m.index + m[0].length;
-  let depth = 0, inStr = false, strCh = "", esc = false, end = -1;
-  for (let i = start; i < src.length; i++) {
-    const ch = src[i];
-    if (esc) { esc = false; continue; }
-    if (inStr) {
-      if (ch === "\\") { esc = true; continue; }
-      if (ch === strCh) { inStr = false; }
-      continue;
-    }
-    if (ch === '"' || ch === "'" || ch === "`") { inStr = true; strCh = ch; continue; }
-    if (ch === "{" || ch === "[" || ch === "(") depth++;
-    else if (ch === "}" || ch === "]" || ch === ")") depth--;
-    else if (ch === ";" && depth === 0) { end = i; break; }
-  }
-  if (end < 0) throw new Error("could not find terminating ;");
-
-  const literal = stripTopLevelTsAssertion(src.slice(start, end).trim());
-  try {
-    const keys = Object.keys(scope);
-    const values = keys.map((k) => scope[k]);
-    return new Function(...keys, `"use strict"; return (${literal});`)(...values);
-  } catch (err) {
-    throw new Error(`literal eval failed: ${err.message}`);
-  }
-}
-
-function stripTopLevelTsAssertion(literal) {
-  let depth = 0, inStr = false, strCh = "", esc = false;
-  for (let i = 0; i < literal.length; i++) {
-    const ch = literal[i];
-    if (esc) { esc = false; continue; }
-    if (inStr) {
-      if (ch === "\\") { esc = true; continue; }
-      if (ch === strCh) inStr = false;
-      continue;
-    }
-    if (ch === '"' || ch === "'" || ch === "`") { inStr = true; strCh = ch; continue; }
-    if (ch === "{" || ch === "[" || ch === "(") depth++;
-    else if (ch === "}" || ch === "]" || ch === ")") depth--;
-    else if (depth === 0 && /\sas\s/.test(literal.slice(i, i + 4))) {
-      return literal.slice(0, i).trim();
-    }
-  }
-  return literal;
 }
 
 // ── Read current edition number ────────────────────────────
@@ -287,7 +230,7 @@ ${playoffInstructions}${seasonWindowInstructions}
 6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
 7. Conversation read: write 6 clearly synthetic, paraphrased conversation summaries. Do NOT impersonate real journalists, invent direct quotes, or attribute reporting. Use author/outlet fields only as broad source-category labels such as "Hoops Intel Desk" / "Generated conversation read".
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
-9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style
+9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style. Every export statement MUST end with a semicolon before the next \`export const\` — a missing semicolon fails the build.
 10. Also generate a "This Day in NBA History" fact for ${editionDate}. Format as: export const historyFact = {year:YYYY,fact:"1-2 sentence historical fact about this date in NBA history.",players:["Player Name"]};
 11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
 12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
@@ -298,49 +241,48 @@ ${playoffInstructions}${seasonWindowInstructions}
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
-  const pulseMsg = await claudeGenerate("pulse edition", {
-    max_tokens: 16384,
-    messages: [{ role: "user", content: pulsePrompt }],
-  });
-
-  const newPulseContent = pulseMsg.content[0].text.trim();
-
-  if (pulseMsg.stop_reason === "max_tokens") {
-    console.warn("⚠ Claude output was truncated (hit max_tokens) — regenerating is recommended");
-  }
-
   const requiredExports = [
     "pulseEdition", "narrative", "tickerItems", "gameResults", "pulseIndex",
     "statLeaders", "mediaReactions", "injuryUpdates", "gamePreviews",
     "rookieWatch", "fantasyAlerts", "eastStandings", "westStandings",
     "standings", "historyFact", "hoopsIQ", "triviaQuestion",
   ];
-  const missing = requiredExports.filter((e) => !newPulseContent.includes(`export const ${e}`));
-  if (missing.length > 0) {
-    console.error(`❌ pulseData.ts is missing exports: ${missing.join(", ")}`);
-    console.error("   This usually means Claude hit max_tokens. Aborting to avoid a broken build.");
-    process.exit(1);
-  }
 
-  // ── Parse-validate every export so a bracket/string mismatch never
-  //    reaches the build (this is what broke the 2026-04-19 deploy).
-  //    Evaluate in declaration order and accumulate a scope so that
-  //    derived exports like `standings = [...eastStandings, ...westStandings]`
-  //    can resolve their references.
-  const parseErrors = [];
-  const scope = {};
-  for (const name of requiredExports) {
-    try {
-      scope[name] = extractExportLiteral(newPulseContent, name, scope);
-    } catch (err) {
-      parseErrors.push(`${name}: ${err.message}`);
+  // One repair+retry. Run 37174921849 (#435) aborted on a draft whose
+  // narrative literal swallowed the next `export` and whose triviaQuestion
+  // had no terminating semicolon. Do not write that file.
+  let newPulseContent = "";
+  let scope = {};
+  let parseErrors = [];
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const messages = [{ role: "user", content: pulsePrompt }];
+    if (attempt > 1) {
+      messages.push(
+        { role: "assistant", content: "(previous draft rejected by the pulseData parser)" },
+        {
+          role: "user",
+          content: `The previous file failed parse validation and was discarded:\n${parseErrors.map((e) => "- " + e).join("\n")}\n\nRegenerate the COMPLETE pulseData.ts file. Every export const statement must end with a semicolon. Do not wrap the file in markdown fences. Do not stop before triviaQuestion is closed and terminated.`,
+        },
+      );
     }
-  }
-  if (parseErrors.length > 0) {
+    const pulseMsg = await claudeGenerate("pulse edition", {
+      max_tokens: 16384,
+      messages,
+    });
+    console.log(`   stop_reason=${pulseMsg.stop_reason ?? "unknown"} (attempt ${attempt})`);
+    if (pulseMsg.stop_reason === "max_tokens") {
+      console.warn("⚠ Claude output was truncated (hit max_tokens)");
+    }
+    newPulseContent = repairPulseSource(pulseMsg.content?.[0]?.text ?? "");
+    ({ errors: parseErrors, scope } = collectParseErrors(newPulseContent, requiredExports));
+    if (parseErrors.length === 0) break;
     console.error("❌ pulseData.ts failed parse validation:");
     for (const e of parseErrors) console.error("   - " + e);
-    console.error("   Aborting to avoid a broken build / failed Vercel deploy.");
-    process.exit(1);
+    if (attempt === 2) {
+      console.error("   Aborting to avoid a broken build / failed Vercel deploy.");
+      process.exit(1);
+    }
+    console.warn("↻ retrying pulse generation once after parser repair");
   }
   let contentToWrite = newPulseContent;
   try {

@@ -35,8 +35,8 @@ describe("enhancedDesk", () => {
     expect(cards[0]?.value).toBe(lastNameOf(pulseIndex[0]!.player));
     expect(cards[0]?.sub).toContain(formatPulseScore(pulseIndex[0]!.indexScore));
     expect(cards.some((c) => c.kicker === "CAMP OPENS")).toBe(true);
-    expect(cards.some((c) => c.kicker === "WEST NO. 1")).toBe(false);
-    expect(cards.some((c) => c.kicker === "UNRESOLVED")).toBe(true);
+    expect(cards.some((c) => c.kicker === "WEST NO. 1")).toBe(gamePreviews.length > 0);
+    expect(cards.some((c) => c.kicker === "UNRESOLVED")).toBe(gamePreviews.length === 0);
     expect(hasTonightSlate()).toBe(gamePreviews.length > 0);
   });
 
@@ -64,13 +64,20 @@ describe("enhancedDesk", () => {
     const october = new Date("2026-10-02T18:00:00Z");
     const cards = heroStats(october);
     expect(cards.some((c) => c.kicker === "CAMP OPENS")).toBe(false);
-    expect(cards.some((c) => c.kicker === "TONIGHT" && c.value === "Clear")).toBe(true);
+    const tonightValue = gamePreviews.length === 0 ? "Clear" : String(gamePreviews.length);
+    expect(cards.some((c) => c.kicker === "TONIGHT" && c.value === tonightValue)).toBe(true);
     expect(mobileHeroStats(october)[1]?.kicker).toBe("SLATE");
+    expect(mobileHeroStats(october)[1]?.value).toBe(tonightValue);
   });
 
   it("uses closed-slate Ask chips when there are no games", () => {
     const chips = deskAskChips();
-    expect(chips).toContain("Who leads Camp Pulse?");
+    if (gamePreviews.length === 0) {
+      expect(chips).toContain("Who leads Camp Pulse?");
+    } else {
+      const featured = gamePreviews.find((g) => g.featured) || gamePreviews[0];
+      expect(chips[0]).toBe(`Who wins ${featured.awayTeam} @ ${featured.homeTeam}?`);
+    }
     expect(daysUntilIso("2026-10-03", new Date("2026-09-01T12:00:00"))).toBe(32);
     expect(seasonChipLabel("preseason")).toBe("PRESEASON");
     expect(headerDateLabel("September 9, 2026")).toBe("Sep 9, 2026");

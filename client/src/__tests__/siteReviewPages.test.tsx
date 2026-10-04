@@ -9,7 +9,7 @@ import PodcastCompanion from "../pages/PodcastCompanion";
 import Tonight from "../pages/Tonight";
 import WatchGuide from "../pages/WatchGuide";
 import PickEm from "../pages/PickEm";
-import { pulseEdition } from "../lib/pulseData";
+import { gamePreviews, pulseEdition } from "../lib/pulseData";
 import { watchGuideData } from "../lib/watchGuideData";
 
 function renderAt(path: string, tree: ReactNode) {
@@ -72,10 +72,15 @@ describe("site review pages", () => {
     expect(screen.queryByTestId("player-availability-clear")).not.toBeInTheDocument();
   });
 
-  it("keeps tonight empty without placeholder player links", () => {
+  it("keeps an empty tonight honest and a posted slate on the ESPN board", () => {
     renderAt("/tonight", <Tonight />);
-    expect(screen.getByText(/Waiting on|No games on the ESPN board/)).toBeInTheDocument();
-    expect(screen.queryByTestId("tonight-player-links")).not.toBeInTheDocument();
+    if (gamePreviews.length === 0) {
+      expect(screen.getByText(/Waiting on|No games on the ESPN board/)).toBeInTheDocument();
+      expect(screen.queryByTestId("tonight-player-links")).not.toBeInTheDocument();
+    } else {
+      expect(screen.getByText(`${gamePreviews.length} games on the ESPN board`)).toBeInTheDocument();
+      expect(screen.getAllByTestId("tonight-game-card")).toHaveLength(gamePreviews.length);
+    }
   });
 
   it("stamps a current watch guide and an outdated podcast", () => {
