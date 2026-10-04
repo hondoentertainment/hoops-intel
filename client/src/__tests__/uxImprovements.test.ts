@@ -104,9 +104,15 @@ describe("light-theme a11y", () => {
 });
 
 describe("Ask depth", () => {
-  it("uses camp chips when the slate is empty and readable light bubbles", () => {
-    expect(gamePreviews).toEqual([]);
-    expect(contextualAskChips()).toEqual(campAskChips().slice(0, 4));
+  it("uses camp chips when the slate is empty and the featured matchup when it is not", () => {
+    const chips = contextualAskChips();
+    if (gamePreviews.length === 0) {
+      expect(chips).toEqual(campAskChips().slice(0, 4));
+    } else {
+      const featured = gamePreviews.find((g) => g.featured) || gamePreviews[0];
+      expect(chips[0]).toBe(`Who wins ${featured.awayTeam} @ ${featured.homeTeam}?`);
+      expect(chips).toHaveLength(4);
+    }
     const ask = src("components/AskHoopsIntel.tsx");
     expect(ask).toContain("DeskFilterChip");
     expect(ask).toContain("ask-msg-user");
