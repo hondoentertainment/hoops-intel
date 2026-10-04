@@ -38,11 +38,20 @@ function slugify(name) {
   }
 }
 
-const TEAM_NAMES = new Set([
-  "ATL","BOS","BRK","CHA","CHI","CLE","DAL","DEN","DET","GSW",
-  "HOU","IND","LAC","LAL","MEM","MIA","MIL","MIN","NOP","NYK",
-  "OKC","ORL","PHI","PHX","POR","SAC","SAS","TOR","UTA","WAS",
-]);
+const TEAM_FULL_NAMES = Object.freeze({
+  ATL: "Atlanta Hawks", BOS: "Boston Celtics", BRK: "Brooklyn Nets",
+  CHA: "Charlotte Hornets", CHI: "Chicago Bulls", CLE: "Cleveland Cavaliers",
+  DAL: "Dallas Mavericks", DEN: "Denver Nuggets", DET: "Detroit Pistons",
+  GSW: "Golden State Warriors", HOU: "Houston Rockets", IND: "Indiana Pacers",
+  LAC: "LA Clippers", LAL: "Los Angeles Lakers", MEM: "Memphis Grizzlies",
+  MIA: "Miami Heat", MIL: "Milwaukee Bucks", MIN: "Minnesota Timberwolves",
+  NOP: "New Orleans Pelicans", NYK: "New York Knicks", OKC: "Oklahoma City Thunder",
+  ORL: "Orlando Magic", PHI: "Philadelphia 76ers", PHX: "Phoenix Suns",
+  POR: "Portland Trail Blazers", SAC: "Sacramento Kings", SAS: "San Antonio Spurs",
+  TOR: "Toronto Raptors", UTA: "Utah Jazz", WAS: "Washington Wizards",
+});
+
+const TEAM_NAMES = new Set(Object.keys(TEAM_FULL_NAMES));
 
 const TEAM_ALIASES = new Map([
   ["BKN", "BRK"],
@@ -231,8 +240,25 @@ function sourceFreshnessIso(relPath) {
   return gitCommitIso(relPath) ?? fileMtimeIso(relPath);
 }
 
+const DISPLAY_MONTHS = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
+
+/** Calendar day from an ISO or "Month D, YYYY" stamp. Date.parse shifts those strings off UTC. */
 function parseDisplayDate(str) {
-  const t = Date.parse(str);
+  const raw = String(str ?? "").trim();
+  const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
+  const named = raw.match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/);
+  if (named) {
+    const month = DISPLAY_MONTHS.indexOf(named[1].toLowerCase()) + 1;
+    const day = Number(named[2]);
+    if (month > 0 && day >= 1 && day <= 31) {
+      return `${named[3]}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    }
+  }
+  const t = Date.parse(raw);
   return Number.isNaN(t) ? null : isoDay(new Date(t));
 }
 
@@ -266,8 +292,51 @@ function contentDatesLastmod(sources) {
   return maxIso(...(sources || []).map(contentTimestampIso));
 }
 
+function bumpIso(map, code, iso) {
+  if (!code || !iso) return;
+  const prev = map.get(code);
+  if (!prev || iso > prev) map.set(code, iso);
+}
+
+/**
+ * A team's sitemap lastmod moves only when that team shows up in the archive,
+ * on today's injury wire, or in the lineup roster file. The edition date is
+ * not applied to every franchise.
+ */
+export function teamContentLastmods({ archiveFile = "", pulseFile = "", lineupFile = "", editionIso = null } = {}) {
+  const map = new Map();
+  const chunks = String(archiveFile).split(/\n\s*\{/).slice(1);
+  for (const chunk of chunks) {
+    const id = chunk.match(/(?:["']id["']|\bid)\s*:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    if (!id) continue;
+    for (const code of TEAM_NAMES) {
+      const name = TEAM_FULL_NAMES[code];
+      if (new RegExp(`\\b${code}\\b`).test(chunk) || (name && chunk.includes(name))) {
+        bumpIso(map, code, id);
+      }
+    }
+  }
+
+  const injuryBody = String(pulseFile).match(/export const injuryUpdates\s*=\s*\[([\s\S]*?)\]/)?.[1] ?? "";
+  if (editionIso) {
+    for (const m of injuryBody.matchAll(/\bteam:\s*"([A-Z]{2,3})"/g)) {
+      bumpIso(map, canonicalTeamCode(m[1]), editionIso);
+    }
+  }
+
+  const lineupIso = parseDisplayDate(
+    String(lineupFile).match(/\bgeneratedDate:\s*"([^"]+)"/)?.[1] ?? "",
+  );
+  if (lineupIso) {
+    for (const m of String(lineupFile).matchAll(/\bteam:\s*"([A-Z]{2,3})"/g)) {
+      bumpIso(map, canonicalTeamCode(m[1]), lineupIso);
+    }
+  }
+  return map;
+}
+
 function extractLatestArchiveIso(archiveFile) {
-  const dates = [...archiveFile.matchAll(/\bdate:\s*"(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]);
+  const dates = [...archiveFile.matchAll(/(?:["']date["']|\bdate)\s*:\s*"(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]);
   return maxIso(...dates);
 }
 
@@ -329,8 +398,13 @@ export function lastmodForLoc(loc, ctx) {
   if (loc === "/playoffs" || loc.startsWith("/playoffs/series/")) {
     return maxIso(ctx.playoffContentIso, ctx.editionIso) ?? ctx.buildDay;
   }
-  if (loc.startsWith("/player/") || loc.startsWith("/team/")) {
+  if (loc.startsWith("/player/")) {
     return maxIso(ctx.editionIso, ctx.latestArchiveIso) ?? ctx.buildDay;
+  }
+  if (loc.startsWith("/team/")) {
+    const code = canonicalTeamCode(loc.slice("/team/".length));
+    const specific = ctx.teamLastmods?.get?.(code);
+    return specific ?? ctx.buildDay;
   }
   if (loc.startsWith("/game/")) {
     const digits = loc.match(/(\d{8})$/)?.[1];
@@ -422,7 +496,11 @@ export function generate({ write = true } = {}) {
   const editionIso = extractPulseEditionIso(pulseFile);
   const latestArchiveIso = extractLatestArchiveIso(archiveFile);
   const playoffContentIso = extractExportedTimestamp(playoffFile);
-  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso };
+  const lineupFile = existsSync(join(ROOT, "client/src/lib/lineupData.ts"))
+    ? readFileSync(join(ROOT, "client/src/lib/lineupData.ts"), "utf8")
+    : "";
+  const teamLastmods = teamContentLastmods({ archiveFile, pulseFile, lineupFile, editionIso });
+  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso, teamLastmods };
 
   const playoffsActive =
     /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);
@@ -533,6 +611,26 @@ export function generate({ write = true } = {}) {
 
   const xml = buildSitemapXml(urls, { buildDay });
   const written = urls.filter((u) => buildUrlEntry(u, { buildDay }));
+  if (editionIso) {
+    for (const path of ["/", "/players", "/injuries", "/tonight"]) {
+      const row = written.find((u) => u.loc === path);
+      if (row?.lastmod !== editionIso) {
+        throw new Error(`sitemap lastmod for ${path} is ${row?.lastmod ?? "missing"}, expected edition ${editionIso}`);
+      }
+    }
+    const previewBlock = pulseFile.match(/export const gamePreviews\s*=\s*\[([\s\S]*?)\];/);
+    if (previewBlock) {
+      for (const id of previewBlock[1].matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)) {
+        const loc = `/game/${id[1]}`;
+        const row = written.find((u) => u.loc === loc);
+        const gameIso = `${id[1].slice(-8, -4)}-${id[1].slice(-4, -2)}-${id[1].slice(-2)}`;
+        if (!row) throw new Error(`sitemap missing tonight game ${loc}`);
+        if (row.lastmod !== gameIso) {
+          throw new Error(`sitemap lastmod for ${loc} is ${row.lastmod}, expected ${gameIso}`);
+        }
+      }
+    }
+  }
   if (write) {
     writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
     const distinctLastmods = new Set(written.map((u) => u.lastmod).filter(Boolean));

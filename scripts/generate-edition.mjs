@@ -8,7 +8,8 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
-import { seasonMode, editionContextForMode, stampEditionContext } from "./lib/season-mode.mjs";
+import { seasonMode, editionContextForMode, stampEditionContext, REGULAR_SEASON_OPEN_DAY } from "./lib/season-mode.mjs";
+import { collectPulsePublicationErrors } from "./lib/edition-date-alignment.mjs";
 import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -169,14 +170,14 @@ async function main() {
           ? `
 
 ## PRESEASON WINDOW (season-mode)
-- September / pre-camp / early camp is a CAMP DESK: roster battles, cuts, camp storylines, schedule-release, and Pulse-of-the-camp — not a game night
-- Do NOT invent scores, box scores, injury reports, or tonight's matchups
-- If ESPN's tonight slate is empty: gamePreviews MUST be []; say plainly there are no NBA games tonight and point readers at camp intel
+- September through October ${REGULAR_SEASON_OPEN_DAY - 1} is still PRESEASON. Opening night is October ${REGULAR_SEASON_OPEN_DAY}. Do NOT call the desk a regular season, and do NOT write editionContext "regular"
+- Preseason games do not change standings. Copy eastStandings and westStandings from the current file unchanged — those are prior-season finals. Do NOT apply last night's exhibition results, and do NOT invent 0-0 or current-season records
+- Do NOT invent scores, box scores, or injury reports that ESPN did not return
+- If ESPN's tonight slate is empty: gamePreviews MUST be []; say plainly there are no NBA games tonight
 - If ESPN's yesterday slate is empty: gameResults MUST be []
 - Do NOT estimate spreads, openingSpread, or marketThesis when gamePreviews is empty
-- Pulse Index ranks by offseason/camp stock (contract status, role change, camp readiness, unresolved extensions) — never by invented box scores
-- Lead narrative/ticker with camp design costs, rotation questions, extension freezes, and the October 3 camp open
-- Injury rows are last-known editorial context for camp participation, not a live ESPN injury wire (that cron is dark July–September)
+- Pulse Index ranks by camp and preseason stock — never by invented box scores
+- Injury rows are last-known editorial context, not a fabricated availability wire
 - Label speculation clearly
 `
           : cal === "dead-period"
@@ -199,6 +200,8 @@ async function main() {
 
 ## Edition Info
 - Publication date: ${editionDate}
+- Edition ISO (archive id, trivia id, sitemap lastmod): ${editionISO}
+- Tonight's gameId date stamp: ${todayESPN}
 - Edition: Vol. 2026 · No. ${editionNo}
 - Content covers games played YESTERDAY (${yesterdayESPN})
 - **pulseEdition.editionContext** MUST be exactly: "${editionContext}" (one of "regular" | "playoffs" | "finals" | "draft" | "free-agency" | "summer-league" | "preseason" | "dead-period"). Copy the value verbatim — it is derived from the season calendar and drives the site's desk labelling.
@@ -227,7 +230,7 @@ ${playoffInstructions}${seasonWindowInstructions}
 3. Write crisp, sharp copy — not a box score recitation; actual insights
 4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates). For each gamePreviews row include **openingSpread** (morning opener, e.g. "NYK -4.5") and **spread** (current/closing board number). When movement is expected, opener and spread should differ by roughly 0.5–1.5 points — never omit openingSpread on playoff or featured slates. Add **marketThesis** (1–2 sentences: sharp/public read on why the line moved or held).
-6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. Update by applying last night's results.
+6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. In the regular season, update by applying last night's results. Before opening night (preseason), copy the prior-season finals through unchanged — do not invent current-season records.
 7. Conversation read: write 6 clearly synthetic, paraphrased conversation summaries. Do NOT impersonate real journalists, invent direct quotes, or attribute reporting. Use author/outlet fields only as broad source-category labels such as "Hoops Intel Desk" / "Generated conversation read".
 8. Keep all TypeScript exports exactly matching the schema — no extra fields, no missing ones
 9. Format: single-line objects per export (no line breaks inside object literals) to match the existing style. Every export statement MUST end with a semicolon before the next \`export const\` — a missing semicolon fails the build.
@@ -238,6 +241,9 @@ ${playoffInstructions}${seasonWindowInstructions}
 14. CRITICAL — team abbreviations MUST be exactly one of: ATL, BOS, BRK, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS. NEVER use "NY" (use "NYK"), "SA" (use "SAS"), "BKN" (use "BRK"), "NO" (use "NOP"), or "GS" (use "GSW"). Anything else will fail validation.
 15. CRITICAL — injury status field MUST be exactly one of (case sensitive): "Out", "Day-to-Day", "Questionable", "Probable", "Doubtful". Never lowercase.
 16. CRITICAL — every \`{\` must be matched by \`}\` and every \`[\` must be matched by \`]\` in every export. Special attention to the \`narrative.body\` array — it MUST be wrapped in \`[\` and \`]\` and end with \`]}\` before the trailing semicolon.
+17. CRITICAL — pulseEdition.date MUST be exactly "${editionDate}". Do not use tomorrow's date, yesterday's date, or the next morning's paper date. The archive id and trivia id use ${editionISO}.
+18. CRITICAL — every gamePreviews object MUST include gameId "AWAY-HOME-${todayESPN}" (away team, home team, tonight's ESPN date). gameResults gameIds use yesterday (${yesterdayESPN}), not tonight.
+19. CRITICAL — Michael Malone was fired as Denver's head coach in April 2025. Never attribute Denver's bench, minutes, rotations, or a Nuggets game to Malone. Karl Malone and Moses Malone may appear only with those first names, in a historical context.
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation.`;
 
@@ -275,6 +281,13 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
     }
     newPulseContent = repairPulseSource(pulseMsg.content?.[0]?.text ?? "");
     ({ errors: parseErrors, scope } = collectParseErrors(newPulseContent, requiredExports));
+    if (parseErrors.length === 0) {
+      parseErrors = collectPulsePublicationErrors(newPulseContent, {
+        editionDisplay: editionDate,
+        editionIso: editionISO,
+        tonightEspn: todayESPN,
+      });
+    }
     if (parseErrors.length === 0) break;
     console.error("❌ pulseData.ts failed parse validation:");
     for (const e of parseErrors) console.error("   - " + e);

@@ -37,13 +37,19 @@ test("seasonMode maps preseason (September)", () => {
   assert.equal(seasonMode(new Date(Date.UTC(2026, 8, 15))), "preseason");
 });
 
-test("seasonMode maps October camp-open as regular season", () => {
-  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 3))), "regular-season");
+test("seasonMode keeps early October on the preseason desk until opening night", () => {
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 8, 15))), "preseason");
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 3))), "preseason");
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 4))), "preseason");
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 19))), "preseason");
+  assert.equal(editionContextForMode("preseason"), "preseason");
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 20))), "regular-season");
+  assert.equal(seasonMode(new Date(Date.UTC(2026, 9, 21))), "regular-season");
   assert.equal(editionContextForMode("regular-season"), "regular");
 });
 
-test("stampEditionContext overwrites a valid but stale preseason context", () => {
-  const src = `export const pulseEdition = {date:"October 3, 2026",edition:"Vol. 2026 · No. 248",editionContext:"preseason"};\n`;
+test("stampEditionContext overwrites a stale context with the calendar value", () => {
+  const src = `export const pulseEdition = {date:"January 10, 2026",edition:"Vol. 2026 · No. 80",editionContext:"preseason"};\n`;
   const stamped = stampEditionContext(src, "regular");
   assert.match(stamped, /editionContext: "regular"/);
   assert.doesNotMatch(stamped, /editionContext:"preseason"/);

@@ -8,7 +8,7 @@ Full TypeScript interface definitions for `pulseData.ts`. Every field is require
 
 ```ts
 export interface PulseEdition {
-  date: string;      // Display date: "March 3, 2026"
+  date: string;      // Display date of the publication id, e.g. "October 4, 2026" for id 2026-10-04. Never the next morning.
   edition: string;   // "Vol. 2026 · No. 62"
   subtitle: string;  // 2–3 story bullets joined by " · "
   // Set from the season calendar + ESPN snapshot via editionContextForMode()
@@ -157,6 +157,7 @@ export interface GamePreview {
   storyline: string;   // 2–3 sentences of context
   prediction: string;  // "BOS wins 112-108 — one-sentence reason"
   featured: boolean;   // true for exactly ONE game per night
+  gameId: string;      // "AWAY-HOME-YYYYMMDD" using the publication date, e.g. "UTA-DEN-20261004"
 }
 ```
 

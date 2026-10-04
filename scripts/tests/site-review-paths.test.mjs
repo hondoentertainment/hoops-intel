@@ -40,6 +40,8 @@ test("resolveSiteReviewPaths appends series and player samples to the static all
     assert.ok(paths.includes(loc), `missing static path ${loc}`);
   }
   assert.ok(paths.includes("/playoffs/series/east-1"));
+  assert.ok(paths.includes("/game/UTA-DEN-20261004"));
+  assert.ok(paths.includes("/game/GSW-LAC-20261004"));
   assert.ok(paths.some((p) => p.startsWith("/player/")));
   assert.ok(paths.filter((p) => p.startsWith("/player/")).length <= 8);
 });

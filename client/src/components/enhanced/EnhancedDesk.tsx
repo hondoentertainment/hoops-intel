@@ -174,11 +174,8 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           <p className="enhanced-kicker">
             {deskKickerLine()}
           </p>
-          <h1 className="hidden md:block editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[32px] leading-[38px]">
+          <h1 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8 md:text-[32px] md:leading-[38px]">
             {narrative.headline}
-          </h1>
-          <h1 className="md:hidden editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8">
-            {campMode ? pulseEdition.date : narrative.headline}
           </h1>
           <p className="hi-lede text-xs max-md:text-base">
             <span className="hidden md:inline">Will Henderson · Updated {editionPublishLabel()}</span>

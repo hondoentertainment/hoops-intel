@@ -179,7 +179,7 @@ export default function BettingIntel() {
             ("openingSpread" in g ? (g as { openingSpread?: string }).openingSpread : undefined);
           const closer = g.spread;
           const current = lm?.closingSpread || g.spread;
-          const gameHref = `/game/${makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`;
+          const gameHref = `/game/${("gameId" in g && g.gameId) || makeGameId(g.awayTeam, g.homeTeam, pulseEdition.date)}`;
           const ladder = lineLadder(opener, closer, current);
           const moveBadge =
             opener && current && spreadMoved(opener, current) ? formatLineMovementBadge(opener, current) : null;

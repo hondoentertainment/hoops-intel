@@ -51,9 +51,11 @@ export const HISTORICAL_PLAYER_NAMES = [
 /** Retired or inactive players that still have current-era archive coverage. */
 export const RETIRED_PLAYER_NAMES = ["Chris Paul"] as const;
 
-/** Coaches / media voices that sometimes appear in archive player lists. */
+/** Coaches, executives, and media voices that sometimes appear in archive player lists. */
 export const NON_PLAYER_NAMES = [
+  "Billy Hunter",
   "Charles Barkley",
+  "David Stern",
   "Gregg Popovich",
   "Tom Thibodeau",
 ] as const;
@@ -99,7 +101,7 @@ export function getPlayerRosterStatus(
     return {
       status: "historical",
       label: "Not a player profile",
-      detail: "This name appears in Hoops Intel coverage as a coach or media voice, not as a current roster player.",
+      detail: "This name appears in Hoops Intel coverage as a coach, executive, or media voice, not as a current roster player.",
       indexable: false,
     };
   }
@@ -261,6 +263,7 @@ export function profileSeoIndexable(
   context: { inPulse?: boolean; hasCurrentTeam?: boolean; mentions?: number; substantive?: boolean } = {},
 ): boolean {
   const roster = getPlayerRosterStatus(name, context);
+  if (roster.status === "historical") return false;
   if (roster.status === "retired") return roster.indexable;
   return Boolean(context.substantive);
 }

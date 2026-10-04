@@ -170,6 +170,17 @@ export function SeriesCard({ series, defaultExpanded = false }: SeriesCardProps)
           </span>
         </div>
       </button>
+      <div className="flex flex-wrap gap-2 px-4 pb-3">
+        {[series.higherTeam, series.lowerTeam].map((abbr) => (
+          <a
+            key={abbr}
+            href={`/team/${abbr.toLowerCase()}`}
+            className="text-[10px] font-bold uppercase tracking-wide text-[var(--hi-text)] hover:underline"
+          >
+            {abbr} team page
+          </a>
+        ))}
+      </div>
 
       <div
         id={`series-panel-${series.seriesId}`}

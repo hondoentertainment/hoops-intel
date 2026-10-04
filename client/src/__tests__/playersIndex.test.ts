@@ -18,6 +18,8 @@ describe("playersIndex", () => {
     const vj = rows.find((p) => p.slug === "vj-edgecombe" || p.name === "VJ Edgecombe");
     expect(amen || vj).toBeTruthy();
     expect(rows.some((p) => p.slug === "michael-jordan")).toBe(false);
+    expect(rows.some((p) => p.name === "David Stern" || p.slug === "david-stern")).toBe(false);
+    expect(rows.some((p) => p.name === "Billy Hunter" || p.slug === "billy-hunter")).toBe(false);
   });
 
   it("filters by query and Pulse vs archive", () => {

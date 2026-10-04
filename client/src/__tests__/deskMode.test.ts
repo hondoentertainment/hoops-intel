@@ -5,6 +5,7 @@ import {
   editionContextDeskLabel,
   isOffseasonDesk,
   offseasonPrimaryHref,
+  priorSeasonStandingsCopy,
   pulseProFeatureBody,
   seasonModeToEditionContext,
   type ClientSeasonMode,
@@ -75,6 +76,27 @@ describe("calendar chrome", () => {
     const january = new Date(Date.UTC(2026, 0, 15));
     expect(isOffseasonDesk(january)).toBe(false);
     expect(activeEditionContext(january)).toBe("regular");
+  });
+
+  it("stays in preseason until opening night, then switches to the regular desk", () => {
+    const oct4 = new Date(Date.UTC(2026, 9, 4));
+    const oct19 = new Date(Date.UTC(2026, 9, 19));
+    const oct20 = new Date(Date.UTC(2026, 9, 20));
+    expect(clientSeasonMode(oct4)).toBe("preseason");
+    expect(activeEditionContext(oct4)).toBe("preseason");
+    expect(editionContextDeskLabel(activeEditionContext(oct4))).toBe("Preseason desk");
+    expect(clientSeasonMode(oct19)).toBe("preseason");
+    expect(clientSeasonMode(oct20)).toBe("regular-season");
+    expect(activeEditionContext(oct20)).toBe("regular");
+    expect(editionContextDeskLabel("regular")).toBe("Regular season desk");
+  });
+
+  it("labels October standings as the prior season without inventing a record", () => {
+    const copy = priorSeasonStandingsCopy(new Date(Date.UTC(2026, 9, 4)));
+    expect(copy?.kicker).toBe("2025–26 final");
+    expect(copy?.note).toMatch(/Prior-season records/);
+    expect(copy?.note).toMatch(/2026–27/);
+    expect(priorSeasonStandingsCopy(new Date(Date.UTC(2026, 9, 20)))).toBeNull();
   });
 });
 

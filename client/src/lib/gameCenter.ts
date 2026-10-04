@@ -91,29 +91,30 @@ export interface GameCenterResponse {
   unavailable?: boolean;
 }
 
+const GAME_ID_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+/** Calendar stamp from a display or ISO date. Avoids Date parsing, which shifts the day across timezones. */
+export function gameDateStamp(raw: string): string {
+  const iso = raw.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return `${iso[1]}${iso[2]}${iso[3]}`;
+  const monthName = raw.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),\s+(\d{4})/i);
+  if (monthName) {
+    const month = GAME_ID_MONTHS.indexOf(monthName[1].slice(0, 3).toLowerCase()) + 1;
+    if (month > 0) {
+      return `${monthName[3]}${String(month).padStart(2, "0")}${monthName[2].padStart(2, "0")}`;
+    }
+  }
+  const slash = raw.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);
+  if (slash) {
+    const year = slash[3] ? (slash[3].length === 2 ? `20${slash[3]}` : slash[3]) : new Date().getFullYear().toString();
+    return `${year}${slash[1].padStart(2, "0")}${slash[2].padStart(2, "0")}`;
+  }
+  return "";
+}
+
 export function makeGameId(awayTeam: string, homeTeam: string, date?: string) {
   const raw = date ?? pulseEdition.date ?? "today";
-  const iso = raw.match(/(\d{4})-(\d{2})-(\d{2})/);
-  const slash = raw.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);
-  const monthName = raw.match(/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{1,2}),\s+(\d{4})/i);
-  let stamp = "";
-  if (iso) {
-    stamp = `${iso[1]}${iso[2]}${iso[3]}`;
-  } else if (slash) {
-    const year = slash[3] ? (slash[3].length === 2 ? `20${slash[3]}` : slash[3]) : new Date().getFullYear().toString();
-    stamp = `${year}${slash[1].padStart(2, "0")}${slash[2].padStart(2, "0")}`;
-  } else if (monthName) {
-    const d = new Date(raw);
-    stamp = Number.isNaN(d.getTime())
-      ? ""
-      : `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
-  }
-  if (!stamp) {
-    const d = new Date(pulseEdition.date);
-    stamp = Number.isNaN(d.getTime())
-      ? new Date().toISOString().slice(0, 10).replace(/-/g, "")
-      : `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
-  }
+  const stamp = gameDateStamp(raw) || gameDateStamp(pulseEdition.date) || new Date().toISOString().slice(0, 10).replace(/-/g, "");
   return `${canonicalizeTeamCode(awayTeam)}-${canonicalizeTeamCode(homeTeam)}-${stamp}`;
 }
 

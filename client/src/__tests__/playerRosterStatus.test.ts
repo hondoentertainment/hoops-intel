@@ -13,6 +13,14 @@ import {
 } from "../lib/playerRosterStatus";
 
 describe("playerRosterStatus", () => {
+  it("drops executives and media voices from the archive index", () => {
+    for (const name of ["David Stern", "Billy Hunter", "Charles Barkley"]) {
+      const status = getPlayerRosterStatus(name, { mentions: 10 });
+      expect(status.indexable).toBe(false);
+      expect(profileSeoIndexable(name, { mentions: 10, substantive: true })).toBe(false);
+    }
+  });
+
   it("marks Hall of Fame comparison names as historical and not indexable", () => {
     const status = getPlayerRosterStatus("Michael Jordan", { mentions: 8 });
     expect(status.status).toBe("historical");

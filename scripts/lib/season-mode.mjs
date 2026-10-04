@@ -11,6 +11,14 @@ import { VALID_EDITION_CONTEXTS } from "./content-quality-constants.mjs";
  */
 
 /**
+ * Regular-season opening night, UTC calendar.
+ * 2026–27 tips off October 20, 2026. September through the day before
+ * stays a preseason desk even after camp opens.
+ */
+export const REGULAR_SEASON_OPEN_MONTH = 10;
+export const REGULAR_SEASON_OPEN_DAY = 20;
+
+/**
  * @param {Date} [date]  UTC date, defaults to now
  * @returns {SeasonMode}
  */
@@ -18,7 +26,11 @@ export function seasonMode(date = new Date()) {
   const month = date.getUTCMonth() + 1;   // 1-12
   const day = date.getUTCDate();
 
-  // October through mid-April — regular season
+  // September through the day before opening night — preseason
+  if (month === 9) return "preseason";
+  if (month === REGULAR_SEASON_OPEN_MONTH && day < REGULAR_SEASON_OPEN_DAY) return "preseason";
+
+  // Opening night through mid-April — regular season
   if (month >= 10 || month <= 3) return "regular-season";
   if (month === 4 && day <= 15) return "regular-season";
 
@@ -41,9 +53,6 @@ export function seasonMode(date = new Date()) {
   // Late July through Aug — dead period
   if (month === 7 && day > 22) return "dead-period";
   if (month === 8) return "dead-period";
-
-  // September — preseason buildup
-  if (month === 9) return "preseason";
 
   return "regular-season";
 }
