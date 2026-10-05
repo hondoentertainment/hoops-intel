@@ -74,11 +74,36 @@ test("momentum lastmod prefers generatedDate over the narrative date", () => {
   assert.match(file, /\bdate:\s*"[^"]+"/, "narrative date stays on the exported object");
   const contentDate = extractExportedTimestamp(file);
   assert.equal(contentDate, generated[1], "lastmod source must be generatedDate, not the narrative date");
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
   assert.equal(
     lastmodForLoc("/momentum", { buildDay: "2099-01-01", editionIso: "2000-01-01" }),
-    contentDate,
+    later(contentDate, "2000-01-01"),
   );
   assert.notEqual(contentDate, "2099-01-01");
+});
+
+test("momentum and sentiment lastmod follow the daily edition when content is frozen", () => {
+  const later = (...dates) => dates.filter(Boolean).sort().at(-1);
+  const futureDesk = { buildDay: "2026-12-01", editionIso: "2099-01-01" };
+  for (const [path, rel] of [
+    ["/momentum", "client/src/lib/momentumData.ts"],
+    ["/sentiment", "client/src/lib/sentimentData.ts"],
+  ]) {
+    const contentIso = extractExportedTimestamp(readFileSync(join(ROOT, rel), "utf8"));
+    assert.ok(contentIso, `${rel} should export a generated date`);
+    assert.equal(lastmodForLoc(path, futureDesk), futureDesk.editionIso, path);
+    assert.equal(
+      lastmodForLoc(path, { buildDay: "2026-12-01", editionIso: "2000-01-01" }),
+      later(contentIso, "2000-01-01"),
+      path,
+    );
+  }
+});
+
+test("midday staging regenerates the committed sitemap", () => {
+  const src = readFileSync(join(ROOT, "scripts/stage-midday-refresh.mjs"), "utf8");
+  assert.match(src, /generate-sitemap\.mjs/);
+  assert.match(src, /public\/sitemap\.xml/);
 });
 
 test("podcast lastmod prefers generatedDate over the episode date", () => {

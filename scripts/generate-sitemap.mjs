@@ -430,6 +430,11 @@ export function lastmodForLoc(loc, ctx) {
     "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",
+    // Midday pages: generatedDate advances on the 2 PM PT refresh, but the
+    // committed sitemap only rewrote if generate-sitemap ran. Tie lastmod to
+    // the edition so a later content stamp cannot fail CI against a morning XML.
+    "/momentum",
+    "/sentiment",
     // Weekly tools: generatedDate freezes on the last successful weekly run
     // (currently 2026-08-31). Follow the edition so lastmod tracks real desk
     // freshness without inventing lineup/clutch/tactics copy.
