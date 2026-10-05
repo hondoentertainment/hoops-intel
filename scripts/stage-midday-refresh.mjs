@@ -14,9 +14,11 @@ const MIDDAY_PATHS = [
   "client/src/lib/momentumData.ts",
   "client/src/lib/watchGuideData.ts",
   "client/src/lib/lineMovementData.ts",
+  "public/sitemap.xml",
 ];
 
 execSync("node scripts/validate-generated-structure.mjs", { cwd: ROOT, stdio: "inherit" });
+execSync("node scripts/generate-sitemap.mjs", { cwd: ROOT, stdio: "inherit" });
 
 execSync(`git add ${MIDDAY_PATHS.map((p) => `"${p}"`).join(" ")}`, {
   cwd: ROOT,
