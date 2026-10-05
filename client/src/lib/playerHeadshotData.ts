@@ -541,6 +541,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "taurean prince": 2990962,
   "taylor hendricks": 4684806,
   "terance mann": 3907823,
+  "terrell brown": 4395997,
   "terrence shannon": 4432847,
   "thomas bryant": 3934723,
   "thomas sorber": 5061603,
