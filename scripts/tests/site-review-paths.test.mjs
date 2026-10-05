@@ -8,6 +8,7 @@ import {
   classifySitemapCoverage,
   resolveSiteReviewPaths,
   siteReviewPlayerSamplePaths,
+  siteReviewTonightGamePaths,
   summarizeSitemapXml,
 } from "../lib/site-review-paths.mjs";
 
@@ -32,16 +33,21 @@ export const injuryUpdates = [
 });
 
 test("resolveSiteReviewPaths appends series and player samples to the static allowlist", () => {
+  const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const paths = resolveSiteReviewPaths({
     playoffFile: `seriesId: "east-1"\nseriesId: "west-2"`,
-    pulseFile: readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"),
+    pulseFile,
   });
   for (const loc of SITE_REVIEW_PATHS) {
     assert.ok(paths.includes(loc), `missing static path ${loc}`);
   }
   assert.ok(paths.includes("/playoffs/series/east-1"));
-  assert.ok(paths.includes("/game/UTA-DEN-20261004"));
-  assert.ok(paths.includes("/game/GSW-LAC-20261004"));
+  const tonight = siteReviewTonightGamePaths(pulseFile);
+  assert.ok(tonight.length > 0, "gamePreviews should contribute tonight's /game paths");
+  for (const loc of tonight) {
+    assert.ok(paths.includes(loc), `missing tonight path ${loc}`);
+    assert.match(loc, /^\/game\/[A-Z]{3}-[A-Z]{3}-\d{8}$/);
+  }
   assert.ok(paths.some((p) => p.startsWith("/player/")));
   assert.ok(paths.filter((p) => p.startsWith("/player/")).length <= 8);
 });
