@@ -67,18 +67,18 @@ test("game lastmod uses the game date in the URL", () => {
   );
 });
 
-test("momentum lastmod prefers generatedDate over the frozen game-night date", () => {
+test("momentum lastmod prefers generatedDate over the narrative date", () => {
   const file = readFileSync(join(ROOT, "client/src/lib/momentumData.ts"), "utf8");
+  const generated = file.match(/\bgeneratedDate:\s*"(\d{4}-\d{2}-\d{2})"/);
+  assert.ok(generated, "momentumData.ts should export an ISO generatedDate");
+  assert.match(file, /\bdate:\s*"[^"]+"/, "narrative date stays on the exported object");
   const contentDate = extractExportedTimestamp(file);
-  assert.ok(contentDate, "momentumData.ts should export a date");
-  assert.match(file, /generatedDate:\s*"\d{4}-\d{2}-\d{2}"/);
-  assert.match(file, /date:\s*"June 14, 2026"/);
-  assert.notEqual(contentDate, "2026-06-14", "lastmod source must not stay stuck on last game night");
+  assert.equal(contentDate, generated[1], "lastmod source must be generatedDate, not the narrative date");
   assert.equal(
-    lastmodForLoc("/momentum", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
+    lastmodForLoc("/momentum", { buildDay: "2099-01-01", editionIso: "2000-01-01" }),
     contentDate,
   );
-  assert.notEqual(contentDate, "2026-08-21");
+  assert.notEqual(contentDate, "2099-01-01");
 });
 
 test("podcast lastmod prefers generatedDate over the episode date", () => {
@@ -462,13 +462,20 @@ test("team lastmod moves only when that team is on the wire, in the archive, or 
 });
 
 test("generated team pages do not share one lastmod", () => {
+  const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  const editionDisplay = pulseFile.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/)?.[1];
+  const editionIso = displayDateToIso(editionDisplay);
+  assert.match(editionIso ?? "", /^\d{4}-\d{2}-\d{2}$/);
   const { urls } = generate({ write: false });
   const teamDates = urls.filter((u) => u.loc.startsWith("/team/")).map((u) => u.lastmod);
   assert.ok(teamDates.length >= 30, `expected every franchise, got ${teamDates.length}`);
   assert.ok(new Set(teamDates).size > 1, "team lastmods must diverge when content diverges");
-  assert.ok(urls.some((u) => u.loc === "/game/UTA-DEN-20261004"));
-  assert.ok(urls.some((u) => u.loc === "/game/GSW-LAC-20261004"));
-  assert.equal(urls.find((u) => u.loc === "/")?.lastmod, "2026-10-04");
+  const gameIds = [...pulseFile.matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)].map((m) => m[1]);
+  assert.ok(gameIds.length > 0, "pulse edition should publish game ids");
+  for (const id of new Set(gameIds)) {
+    assert.ok(urls.some((u) => u.loc === `/game/${id}`), `missing /game/${id}`);
+  }
+  assert.equal(urls.find((u) => u.loc === "/")?.lastmod, editionIso);
   assert.equal(urls.find((u) => u.loc === "/player/kawhi-leonard"), undefined);
   assert.equal(urls.find((u) => u.loc === "/player/vj-edgecombe"), undefined);
 });
