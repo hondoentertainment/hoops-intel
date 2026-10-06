@@ -18,10 +18,12 @@ import {
 } from "../generate-sitemap.mjs";
 import { SITE_REVIEW_PATHS, SITEMAP_PRIVATE_PATHS, SITEMAP_STATIC_ROUTES } from "../lib/public-routes.mjs";
 import { stampGeneratedDate } from "../lib/stamp-generated-date.mjs";
+import { pacificIsoDate } from "../lib/daily-dates.mjs";
 import {
   collectCommittedEditionDateErrors,
   collectPulsePublicationErrors,
   displayDateToIso,
+  sitemapLastmodTracksEdition,
 } from "../lib/edition-date-alignment.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -303,10 +305,28 @@ test("Pulse Index players stay indexable", () => {
   );
 });
 
+test("sitemap lastmod treats a one-day edition lag as pipeline drift", () => {
+  // Actions run 37383912092: /momentum was 2026-10-04, lastmodForLoc returned
+  // momentumData.generatedDate 2026-10-05. Same calendar mismatch as a UTC
+  // clock crossing 17:00 PT. Two days behind the edition is actually stale.
+  assert.equal(sitemapLastmodTracksEdition("2026-10-04", "2026-10-05"), true);
+  assert.equal(sitemapLastmodTracksEdition("2026-10-05", "2026-10-05"), true);
+  assert.equal(sitemapLastmodTracksEdition("2026-10-06", "2026-10-05"), true);
+  assert.equal(sitemapLastmodTracksEdition("2026-10-03", "2026-10-05"), false);
+  assert.equal(sitemapLastmodTracksEdition("2026-09-30", "2026-10-05"), false);
+  assert.equal(sitemapLastmodTracksEdition("2099-01-01", "2026-10-05"), false);
+  assert.equal(sitemapLastmodTracksEdition("not-a-date", "2026-10-05"), false);
+  assert.equal(pacificIsoDate(new Date("2026-10-06T01:00:00Z")), "2026-10-05");
+  assert.equal(pacificIsoDate(new Date("2026-10-06T07:00:00Z")), "2026-10-06");
+});
+
 test("committed sitemap includes publisher 200 routes and edition-stamped lastmod", () => {
   const xml = readFileSync(join(ROOT, "public/sitemap.xml"), "utf8");
-  const editionIso = extractExportedTimestamp(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"));
-  assert.ok(editionIso, "pulseEdition.date should parse to an ISO day");
+  const pulseSource = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  const editionDisplay = pulseSource.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/)?.[1];
+  const editionIso = displayDateToIso(editionDisplay);
+  assert.equal(editionIso, extractExportedTimestamp(pulseSource));
+  assert.match(editionIso ?? "", /^\d{4}-\d{2}-\d{2}$/);
   assert.doesNotMatch(xml, /<loc>https:\/\/hoopsintel\.net\/account<\/loc>/);
   for (const path of [
     "/",
@@ -316,6 +336,7 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
     "/my-pulse",
     "/trivia",
     "/momentum",
+    "/sentiment",
     "/watch-guide",
     "/podcast-companion",
     "/embed-stats",
@@ -329,8 +350,11 @@ test("committed sitemap includes publisher 200 routes and edition-stamped lastmo
       new RegExp(`<url>\\s*<loc>https:\\/\\/hoopsintel\\.net${escaped}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`),
     );
     assert.ok(block, `${path} missing from committed sitemap`);
-    const expected = lastmodForLoc(path, { buildDay: "2099-01-01", editionIso });
-    assert.equal(block[1], expected, `${path} lastmod should match the content or edition date`);
+    assert.ok(
+      sitemapLastmodTracksEdition(block[1], editionIso),
+      `${path} lastmod ${block[1]} is more than 1 day from edition ${editionIso}`,
+    );
+    assert.notEqual(block[1], "2099-01-01");
   }
   // /82-0 and /badges lastmod follow source git dates. A depth-1 checkout
   // makes `git log -1 -- path` report the tip commit for every file, so do not

@@ -14,6 +14,7 @@ import {
   SITEMAP_STATIC_ROUTES,
   SITEMAP_TEAM_META,
 } from "./lib/public-routes.mjs";
+import { pacificIsoDate } from "./lib/daily-dates.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -215,7 +216,8 @@ function isoDay(d) {
 function fileMtimeIso(relPath) {
   const p = join(ROOT, relPath);
   if (!existsSync(p)) return null;
-  return isoDay(statSync(p).mtime);
+  // Checkout mtimes are "now". UTC midnight is still the previous evening in PT.
+  return pacificIsoDate(statSync(p).mtime);
 }
 
 /** Prefer git history so clones with uniform mtimes still emit selective lastmod. */
@@ -223,12 +225,15 @@ function gitCommitIso(relPath) {
   if (gitDateCache.has(relPath)) return gitDateCache.get(relPath);
   let value = null;
   try {
-    const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", relPath], {
+    // %ct is timezone-free. %cs follows the committer offset, which is UTC on
+    // Actions and becomes the next calendar day after 17:00 PT.
+    const out = execFileSync("git", ["log", "-1", "--format=%ct", "--", relPath], {
       cwd: ROOT,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     }).trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(out)) value = out;
+    const sec = Number(out);
+    if (Number.isFinite(sec) && sec > 0) value = pacificIsoDate(new Date(sec * 1000));
   } catch {
     value = null;
   }
@@ -430,9 +435,10 @@ export function lastmodForLoc(loc, ctx) {
     "/podcast-companion",
     "/embed-stats",
     "/widgets/analytics",
-    // Midday pages: generatedDate advances on the 2 PM PT refresh, but the
-    // committed sitemap only rewrote if generate-sitemap ran. Tie lastmod to
-    // the edition so a later content stamp cannot fail CI against a morning XML.
+    // Midday pages. CI-fast daily skips these generators, so generatedDate
+    // can sit a day behind the edition until the 2 PM PT refresh. Follow the
+    // later of the stamp and the edition; the committed-sitemap test allows
+    // that one-day gap instead of requiring the files to land in one commit.
     "/momentum",
     "/sentiment",
     // Weekly tools: generatedDate freezes on the last successful weekly run
@@ -497,7 +503,7 @@ export function generate({ write = true } = {}) {
     games.add(`${m.groups.away}-${m.groups.home}-${m.groups.date.replace(/-/g, "")}`);
   }
 
-  const buildDay = new Date().toISOString().split("T")[0];
+  const buildDay = pacificIsoDate();
   const editionIso = extractPulseEditionIso(pulseFile);
   const latestArchiveIso = extractLatestArchiveIso(archiveFile);
   const playoffContentIso = extractExportedTimestamp(playoffFile);
@@ -647,7 +653,7 @@ export function generate({ write = true } = {}) {
 function writeFallbackSitemap() {
   const xml = buildSitemapXml(
     [{ loc: "/", changefreq: "daily", priority: "1.0" }],
-    { buildDay: new Date().toISOString().split("T")[0] },
+    { buildDay: pacificIsoDate() },
   );
   writeFileSync(join(ROOT, "public", "sitemap.xml"), xml, "utf8");
 }
