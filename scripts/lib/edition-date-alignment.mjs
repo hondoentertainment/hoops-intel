@@ -33,6 +33,29 @@ export function isoToEspnDate(iso) {
   return m ? `${m[1]}${m[2]}${m[3]}` : null;
 }
 
+/** Whole calendar days from `fromIso` to `toIso` (positive when `toIso` is later). */
+export function isoDayDelta(fromIso, toIso) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(fromIso ?? "") || !/^\d{4}-\d{2}-\d{2}$/.test(toIso ?? "")) {
+    return null;
+  }
+  const from = Date.parse(`${fromIso}T00:00:00Z`);
+  const to = Date.parse(`${toIso}T00:00:00Z`);
+  if (Number.isNaN(from) || Number.isNaN(to)) return null;
+  return Math.round((to - from) / 86_400_000);
+}
+
+/**
+ * Committed `<lastmod>` may lag or lead the edition by one publication day.
+ * The morning job rewrites the sitemap in CI-fast mode (momentum/sentiment
+ * stay on yesterday's stamp) and the 2 PM PT refresh stamps `generatedDate`
+ * on a later commit. A UTC clock rolls to the next day at 17:00 PT.
+ * Two or more days behind the edition is a stale sitemap.
+ */
+export function sitemapLastmodTracksEdition(lastmod, editionIso, toleranceDays = 1) {
+  const delta = isoDayDelta(editionIso, lastmod);
+  return delta !== null && Math.abs(delta) <= toleranceDays;
+}
+
 function exportArrayBody(source, name) {
   const start = source.search(new RegExp(`export const ${name}\\s*=\\s*`));
   if (start < 0) return null;
