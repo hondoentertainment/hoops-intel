@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: October 6, 2026
+// Last updated: October 7, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -34,298 +34,233 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  generatedDate: "2026-10-06",
-  date: "October 6, 2026",
-
-  gameOfTheNight: "PHX-DET-20261005",
-
+  generatedDate: "2026-10-07",
+  date: "October 7, 2026",
+  gameOfTheNight: "NOP-OKC-20261006",
   topClutchPerformer: {
-    player: "Cade Cunningham",
-    team: "DET",
+    player: "Zion Williamson",
+    team: "NOP",
     clutchRating: 91,
-    description:
-      "Cunningham authored the night's defining clutch sequence, engineering a go-ahead possession in the final two minutes against Phoenix and converting a pull-up mid-range jumper with the shot clock expiring to seal Detroit's two-point survival. In a night dominated by blowouts, he was the only player forced to perform under genuine win-or-lose pressure — and he delivered.",
+    description: "Zion Williamson authored the night's defining closing sequence, scoring 8 of New Orleans's final 12 points in a road environment that had no business going their way. His ability to draw fouls, finish through contact, and hold the lead against a Thunder team with legitimate home-court identity made him the unambiguous clutch performer of October 6th.",
   },
-
   games: [
     {
-      gameId: "LAL-SAC-20261005",
-      teams: { home: "SAC", away: "LAL" },
-      finalScore: { home: 103, away: 127 },
+      gameId: "NOP-OKC-20261006",
+      teams: { home: "OKC", away: "NOP" },
+      finalScore: { home: 110, away: 116 },
       swings: [
         {
           quarter: "Q1",
           timestamp: "4:22",
-          description:
-            "LeBron James orchestrates a 9-0 Lakers run to close the first quarter, converting back-to-back and-one opportunities that immediately establish Los Angeles's physical tone on the road.",
-          runScore: "9-0 LAL",
-          momentum: "away",
-          keyPlayer: "LeBron James",
+          description: "OKC opened with a 12-4 run behind back-to-back transition buckets and early defensive intensity, establishing BOK Center's home-court posture immediately.",
+          runScore: "16-8 OKC",
+          momentum: "home",
+          keyPlayer: "Shai Gilgeous-Alexander",
           impact: "significant",
         },
         {
           quarter: "Q2",
-          timestamp: "7:41",
-          description:
-            "Sacramento responds with a 12-4 spurt to briefly close within five, energizing the Golden 1 crowd and threatening to make a game of it before halftime.",
-          runScore: "12-4 SAC",
-          momentum: "home",
-          keyPlayer: "Domantas Sabonis",
-          impact: "notable",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "5:10",
-          description:
-            "Los Angeles detonates a 16-4 third-quarter run that functionally ends the contest. LeBron and Austin Reaves combine for 14 of those points, pushing the lead past 20 and draining every ounce of competitive oxygen from the building.",
-          runScore: "16-4 LAL",
+          timestamp: "7:51",
+          description: "New Orleans answered with a 14-3 counter-run spanning the final five minutes of the first quarter and opening minutes of the second, with Williamson repeatedly attacking the paint and drawing fouls.",
+          runScore: "22-19 NOP",
           momentum: "away",
-          keyPlayer: "LeBron James",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "9:00",
-          description:
-            "Reserves inherit a 24-point advantage, and both benches play out the final frame in a comfortable garbage-time rotation that confirms the outcome was decided well before the fourth.",
-          runScore: "Even Q4",
-          momentum: "away",
-          keyPlayer: "Austin Reaves",
-          impact: "notable",
-        },
-      ],
-      clutchPlays: [],
-      narrative:
-        "This was a road performance of genuine authority. The Lakers arrived in Sacramento as underdogs and spent 36 minutes methodically dismantling a Kings roster that looked undersized, underprepared, and organizationally uncertain in its first competitive night of the post-De'Aaron Fox era. LeBron James set the tone in the first quarter and never relinquished it, and the 16-4 third-quarter eruption was the kind of run that breaks both scoreboards and spirits simultaneously. Sacramento's 0-1 start is not a reason for structural alarm this early, but the 24-point margin against a playoff-caliber road opponent sends a message the Kings' front office will have to sit with.",
-    },
-
-    {
-      gameId: "NYK-PHI-20261005",
-      teams: { home: "PHI", away: "NYK" },
-      finalScore: { home: 120, away: 97 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "8:30",
-          description:
-            "Joel Embiid opens aggressively in the post, scoring eight consecutive Philadelphia points in a three-minute stretch that forces the Knicks into an early timeout and signals this will be a difficult night for New York's interior defense.",
-          runScore: "8-0 PHI",
-          momentum: "home",
-          keyPlayer: "Joel Embiid",
-          impact: "significant",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "6:15",
-          description:
-            "New York executes a disciplined 11-3 second-quarter run, tightening the game to single digits and generating brief optimism from the road contingent at Xfinity Mobile Arena.",
-          runScore: "11-3 NYK",
-          momentum: "away",
-          keyPlayer: "Jalen Brunson",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "1:45",
-          description:
-            "Philadelphia closes the half with a devastating 13-2 burst, capped by an Embiid fadeaway over two Knick defenders and a Tyrese Maxey transition layup at the buzzer. The 76ers enter halftime ahead by 18 and firmly in control.",
-          runScore: "13-2 PHI",
-          momentum: "home",
-          keyPlayer: "Tyrese Maxey",
+          keyPlayer: "Zion Williamson",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "4:00",
-          description:
-            "New York never threatens again. Philadelphia's defensive rotations smother the Knicks' half-court sets, and the lead expands to 25 before both coaching staffs empty their benches.",
-          runScore: "14-6 PHI",
+          timestamp: "5:03",
+          description: "OKC seized third-quarter control with a disciplined half-court offensive stretch, going up seven on a Gilgeous-Alexander pull-up and successive corner threes from the wings.",
+          runScore: "78-71 OKC",
           momentum: "home",
-          keyPlayer: "Joel Embiid",
-          impact: "significant",
-        },
-      ],
-      clutchPlays: [],
-      narrative:
-        "Philadelphia used the NBA TV spotlight the way elite organizations are supposed to — as a platform for a statement, not a test. Joel Embiid imposed his will from the opening possession, and the Knicks' brief second-quarter flirtation with a comeback was answered so swiftly and violently that New York never found footing again. The 13-2 closing burst before halftime was the defining sequence: it arrived precisely when the Knicks had generated momentum, and it didn't just stop their run — it reversed it with interest. For a Sixers franchise that has weathered organizational turbulence, a 23-point home win over a conference rival on national television is the kind of result that recalibrates external perception entering a meaningful regular season.",
-    },
-
-    {
-      gameId: "MIN-MIL-20261005",
-      teams: { home: "MIL", away: "MIN" },
-      finalScore: { home: 97, away: 116 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "6:00",
-          description:
-            "Milwaukee opens at home with evident energy, building a 7-point first-quarter lead behind Giannis Antetokounmpo's early aggression and a Fiserv Forum crowd primed for preseason opening night.",
-          runScore: "10-3 MIL",
-          momentum: "home",
-          keyPlayer: "Giannis Antetokounmpo",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:20",
-          description:
-            "Anthony Edwards ignites a 15-4 Minnesota run that swings the entire game's complexion. Edwards hits back-to-back pull-up threes in transition and punctuates the burst with a two-handed fastbreak dunk that silences the home crowd completely.",
-          runScore: "15-4 MIN",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "7:45",
-          description:
-            "Milwaukee briefly rallies to cut the deficit to seven on a pair of Giannis finishes in the lane, but Minnesota's defensive pressure extinguishes the threat within three minutes of game time.",
-          runScore: "8-3 MIL",
-          momentum: "home",
-          keyPlayer: "Giannis Antetokounmpo",
-          impact: "notable",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:10",
-          description:
-            "Minnesota responds to Milwaukee's third-quarter push with a 12-3 counter-run, expanding the lead back to 16 and confirming that the Bucks' offense has no answer for Minnesota's switching, ball-pressure defense when Edwards is locked in.",
-          runScore: "12-3 MIN",
-          momentum: "away",
-          keyPlayer: "Anthony Edwards",
-          impact: "significant",
-        },
-      ],
-      clutchPlays: [],
-      narrative:
-        "Anthony Edwards walked into Giannis's home opener and took over the building in the second quarter — and that is the entire story of this game. Milwaukee's 7-point first-quarter lead felt like a comfortable home advantage; the 15-4 Edwards-engineered run that dissolved it felt like a weather event. The Bucks recovered enough pride to cut it to seven midway through the third, which made Minnesota's immediate 12-3 response all the more psychologically damaging. A 19-point road win at Fiserv Forum as a 3.5-point underdog is the kind of result that forces league-wide recalibration of where the Timberwolves actually sit among the West's elite, regardless of whatever roster architecture questions followed them into camp.",
-    },
-
-    {
-      gameId: "MEM-ATL-20261005",
-      teams: { home: "ATL", away: "MEM" },
-      finalScore: { home: 123, away: 132 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "5:30",
-          description:
-            "Atlanta races out of the gate behind a 10-2 opening run, State Farm Arena immediately alive with the kind of energy a Hawks team fighting for play-in positioning desperately needs to harness.",
-          runScore: "10-2 ATL",
-          momentum: "home",
-          keyPlayer: "Trae Young",
-          impact: "significant",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "8:00",
-          description:
-            "Ja Morant engineers a 17-6 Memphis run across the first six minutes of the second quarter, slashing through Atlanta's defensive gaps in transition and converting four straight layups before the Hawks call timeout.",
-          runScore: "17-6 MEM",
-          momentum: "away",
-          keyPlayer: "Ja Morant",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "6:45",
-          description:
-            "Atlanta claws back into it with a disciplined 13-5 third-quarter run, tying the game at 94 and generating the night's longest sustained home crowd moment.",
-          runScore: "13-5 ATL",
-          momentum: "home",
-          keyPlayer: "Dejounte Murray",
+          keyPlayer: "Shai Gilgeous-Alexander",
           impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "7:30",
-          description:
-            "Memphis separates for good with a decisive 18-6 fourth-quarter burst over a seven-minute span. Morant and Desmond Bane combine for 14 of those points, and Atlanta's defensive breakdowns in the final frame expose the organizational concern that trails this franchise into the regular season.",
-          runScore: "18-6 MEM",
+          timestamp: "6:18",
+          description: "New Orleans erased the seven-point deficit with a decisive 15-4 closing burst, Williamson scoring six straight and Brandon Ingram adding a step-back triple that shifted the building's energy entirely.",
+          runScore: "104-99 NOP",
           momentum: "away",
-          keyPlayer: "Ja Morant",
+          keyPlayer: "Zion Williamson",
           impact: "game-changing",
-        },
-      ],
-      clutchPlays: [],
-      narrative:
-        "This was the night's most narratively complete game — a genuine back-and-forth contest that reached parity in the third quarter before Memphis pulled away with a fourth-quarter run of real authority. Atlanta showed enough in the first three quarters to suggest they can compete, but their defensive organization collapsed at exactly the wrong moment when Morant and Bane got downhill in the fourth. The 18-6 closing run is a legitimate red flag for a Hawks team whose regular-season survival depends entirely on defensive improvement that isn't yet visible in live competition. Memphis departs Atlanta at 1-0 having confirmed the offensive firepower their camp has projected — and they did it on the road against a crowd that was genuinely invested.",
-    },
-
-    {
-      gameId: "PHX-DET-20261005",
-      teams: { home: "DET", away: "PHX" },
-      finalScore: { home: 109, away: 107 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "7:00",
-          description:
-            "Phoenix opens with crisp half-court execution, building a 9-point first-quarter advantage that reflects the Suns' offensive sophistication even within an unsettled roster construction.",
-          runScore: "9-2 PHX",
-          momentum: "away",
-          keyPlayer: "Devin Booker",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "5:30",
-          description:
-            "Cade Cunningham drives Detroit's 14-5 second-quarter answer, attacking the Suns' switching defense with a series of pull-up mid-range jumpers and threading passes into the short roll to manufacture easy buckets.",
-          runScore: "14-5 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "significant",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "9:00",
-          description:
-            "Phoenix retakes the lead with an 11-4 third-quarter burst, Devin Booker finding his rhythm from the mid-post and converting consecutive step-back twos over Detroit's closing defender.",
-          runScore: "11-4 PHX",
-          momentum: "away",
-          keyPlayer: "Devin Booker",
-          impact: "significant",
         },
         {
           quarter: "Q4",
-          timestamp: "4:10",
-          description:
-            "Detroit answers Phoenix's third-quarter takeover with a gritty 8-2 run to open the fourth, and the game enters its final three minutes tied at 105 — setting the stage for the night's only genuine clutch sequence.",
-          runScore: "8-2 DET",
-          momentum: "home",
-          keyPlayer: "Cade Cunningham",
-          impact: "game-changing",
+          timestamp: "1:44",
+          description: "NOP's lead grew to eight after Williamson converted a tough and-one and the free throw, effectively closing the door on OKC's comeback window in front of a stunned home crowd.",
+          runScore: "112-104 NOP",
+          momentum: "away",
+          keyPlayer: "Zion Williamson",
+          impact: "notable",
         },
       ],
       clutchPlays: [
         {
-          player: "Cade Cunningham",
-          team: "DET",
-          description:
-            "With the game tied at 105 and the shot clock winding down, Cunningham creates separation off a Jalen Duren ball screen and buries a pull-up mid-range jumper from the elbow — his signature shot — to give Detroit a 107-105 lead with 1:47 remaining.",
-          timeRemaining: "1:47",
-          winProbabilityShift: 28,
+          player: "Zion Williamson",
+          team: "NOP",
+          description: "Caught a dump-off on the left block with 4:01 remaining, spun baseline through contact, and converted the and-one to give New Orleans their first lead in the fourth quarter. The play immediately shifted the energy at BOK Center.",
+          timeRemaining: "4:01",
+          winProbabilityShift: 22,
         },
         {
-          player: "Devin Booker",
-          team: "PHX",
-          description:
-            "Booker answers immediately, isolating on the wing and converting a smooth step-back three-point attempt — except the shot clips the back iron and caroms long, swinging possession back to Detroit at a pivotal moment.",
-          timeRemaining: "1:22",
-          winProbabilityShift: -19,
+          player: "Brandon Ingram",
+          team: "NOP",
+          description: "Step-back three-pointer over a closing defender with 3:14 remaining pushed the lead to five and forced OKC into a timeout they couldn't convert into corrective action.",
+          timeRemaining: "3:14",
+          winProbabilityShift: 17,
         },
         {
-          player: "Cade Cunningham",
-          team: "DET",
-          description:
-            "Cunningham draws a foul on the ensuing Detroit possession and calmly converts both free throws, extending the lead to four with 48 seconds remaining. Phoenix's subsequent possession ends in a contested Booker runner that draws iron, and Detroit secures the rebound to seal the result.",
-          timeRemaining: "0:48",
-          winProbabilityShift: 34,
+          player: "Shai Gilgeous-Alexander",
+          team: "OKC",
+          description: "Pulled up from the elbow for a mid-range jumper with 2:30 remaining to cut the deficit to three, briefly reigniting the home crowd before Williamson's subsequent and-one silenced the response.",
+          timeRemaining: "2:30",
+          winProbabilityShift: -11,
+        },
+        {
+          player: "Zion Williamson",
+          team: "NOP",
+          description: "Drew a critical offensive foul call reversal under duress with 1:09 remaining, converting both free throws to push the lead to eight and functionally end OKC's possession-by-possession leverage.",
+          timeRemaining: "1:09",
+          winProbabilityShift: 19,
         },
       ],
-      narrative:
-        "Five games into the preseason slate and this was the only one that required the final two minutes to decide — which made it, by definition, the most important competitive data point of the night. Cade Cunningham did not wilt when the game was on a knife's edge; he produced two straight clutch conversions, including the pull-up elbow jumper that is already becoming his signature pressure-moment shot. Detroit winning by two over a Phoenix team with genuine offensive talent is a meaningful early organizational signal for a Pistons franchise that needs its young core to demonstrate winning instincts, not just statistical production. The Suns absorb an 0-1 start that confirms, rather than creates, the uncertainty surrounding their rebuild entering 2026-27.",
+      narrative: "BOK Center had every structural advantage — home crowd, favored roster, national perception — and New Orleans dismantled it quarter by quarter. The game's defining narrative arc was not the Pelicans' early deficit but the composure with which they absorbed OKC's third-quarter surge and then responded with a closing run that felt inevitable rather than desperate. Zion Williamson was the engine, but the organizational message from New Orleans was broader: this team has a fourth-quarter identity. For Oklahoma City, the loss introduces a real question about closing reliability that one preseason result shouldn't answer but one preseason result just raised.",
+    },
+    {
+      gameId: "LAL-GSW-20261006",
+      teams: { home: "GSW", away: "LAL" },
+      finalScore: { home: 124, away: 98 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "9:12",
+          description: "Los Angeles opened with purpose, leaning on their front-court advantage for a 10-2 start that briefly suggested the Lakers' Sacramento momentum had transferred across the state.",
+          runScore: "10-4 LAL",
+          momentum: "away",
+          keyPlayer: "LeBron James",
+          impact: "notable",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "8:44",
+          description: "Curry ignited a 19-6 Warriors run across the first-quarter close and second-quarter open, hitting three consecutive threes and turning Chase Center into a live-round shooting gallery. Golden State went from down six to up seven in under four minutes.",
+          runScore: "38-29 GSW",
+          momentum: "home",
+          keyPlayer: "Stephen Curry",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "6:30",
+          description: "Golden State's third-quarter execution — moving the ball through 11 consecutive passes on two straight possessions — produced a 17-point swing that made the national television audience irrelevant for the Lakers' purposes. The game was effectively decided.",
+          runScore: "89-64 GSW",
+          momentum: "home",
+          keyPlayer: "Stephen Curry",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "10:00",
+          description: "With the outcome long decided, Golden State's reserves maintained the margin through structured rotation play, the lead never dropping below 22 in the final period.",
+          runScore: "105-80 GSW",
+          momentum: "home",
+          keyPlayer: "Moses Moody",
+          impact: "notable",
+        },
+      ],
+      clutchPlays: [],
+      narrative: "The Lakers arrived at Chase Center as the night's most momentum-positive road team and left 26 points worse off, which is a number that reframes Monday's Sacramento blowout as a team quality statement rather than an opponent-specific fluke. Golden State's second and third quarters were the analytical desk's clearest team-quality read of the preseason window — the ball movement, defensive rotations, and Curry's rhythm shooting against a live scheme were all present simultaneously. The question the result poses for Los Angeles is structural: was Sacramento's defensive scheme the specific variable, or is this Lakers group vulnerable to disciplined perimeter-heavy offenses at full pace? Golden State does not need that answer; they already provided theirs.",
+    },
+    {
+      gameId: "DEN-UTA-20261006",
+      teams: { home: "UTA", away: "DEN" },
+      finalScore: { home: 106, away: 117 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "5:55",
+          description: "Utah rode home-crowd energy to a fast start, the Jazz's guard rotation creating three early turnovers and converting them into nine transition points for a double-digit lead.",
+          runScore: "24-13 UTA",
+          momentum: "home",
+          keyPlayer: "Keyonte George",
+          impact: "significant",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "9:01",
+          description: "Jokic methodically disassembled Utah's frontcourt mismatch scheme, posting up four consecutive possessions and going 4-for-4 from the field to anchor a 16-4 Denver correction run. The Nuggets' coaching staff adjustments from the Boulder film session were visibly operational.",
+          runScore: "37-33 DEN",
+          momentum: "away",
+          keyPlayer: "Nikola Jokic",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "4:20",
+          description: "Denver extended their lead with a third-quarter paint presence that Utah had no answer for, Jokic adding two assists on lob actions as Utah's help defense collapsed and the perimeter opened.",
+          runScore: "84-73 DEN",
+          momentum: "away",
+          keyPlayer: "Nikola Jokic",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "7:15",
+          description: "Utah made a brief 8-2 run to trim the margin to five, but Denver's second-unit held the line with disciplined half-court defense and timely free-throw shooting to close out the road win.",
+          runScore: "99-94 DEN",
+          momentum: "home",
+          keyPlayer: "Keyonte George",
+          impact: "notable",
+        },
+      ],
+      clutchPlays: [],
+      narrative: "Denver needed this result not just for the win column but for the organizational psychological ledger, and they produced it against a Jazz team that had genuine home-court incentive following their own home opener win. The defining story is less the margin than the mechanism: Jokic's interior dominance was predictable, but the coaching staff's visible deployment of Monday's film corrections — the adjusted pick-and-roll coverage, the modified Jokic post-entry reads — gave the performance a structural weight beyond a standard bounce-back result. The Nuggets at 1-1 feel steadier than their record suggests; the Boulder loss is now contextualized. Utah at 1-1 has answered its own questions about home-court identity but now faces questions about frontcourt depth that Delta Center didn't resolve.",
+    },
+    {
+      gameId: "BRK-CHA-20261006",
+      teams: { home: "CHA", away: "BRK" },
+      finalScore: { home: 90, away: 124 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "7:30",
+          description: "Brooklyn's defensive intensity was visible from the opening possession — three forced turnovers in the first four minutes established the tone before Charlotte could find early offensive rhythm.",
+          runScore: "14-6 BRK",
+          momentum: "away",
+          keyPlayer: "Cam Thomas",
+          impact: "significant",
+        },
+        {
+          quarter: "Q2",
+          timestamp: "5:22",
+          description: "Thomas and the Brooklyn backcourt pushed the lead to 22 with a devastating eight-minute stretch of offensive efficiency — seven-of-eight from the field, four assists, zero turnovers — that exposed Charlotte's defensive depth issues in live competition for the first time this preseason.",
+          runScore: "62-40 BRK",
+          momentum: "away",
+          keyPlayer: "Cam Thomas",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "8:00",
+          description: "Charlotte's reserves mounted a token 11-4 stretch in the third quarter's opening minutes, narrowing the gap momentarily to 15 before Brooklyn's starters re-entered and restored the blowout margin within three possessions.",
+          runScore: "71-56 BRK",
+          momentum: "home",
+          keyPlayer: "Brandon Miller",
+          impact: "notable",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "9:30",
+          description: "Brooklyn's second unit played the entire fourth quarter with full competitive effort, the margin expanding to 34 as Charlotte's defensive rotations broke down systematically against the Nets' ball movement.",
+          runScore: "115-82 BRK",
+          momentum: "away",
+          keyPlayer: "Ziaire Williams",
+          impact: "significant",
+        },
+      ],
+      clutchPlays: [],
+      narrative: "Thirty-four points is a number that resists preseason-noise classification, and it deserves analytical honesty: Brooklyn came to Spectrum Center and executed at a level that raised genuine questions about Charlotte's defensive infrastructure before October has found its footing. The Hornets' issues weren't effort-based — they were structural, the kind of rotation breakdowns and help-side lapses that don't self-correct by November without deliberate organizational intervention. For Brooklyn, the result is a real early signal from a franchise still calibrating what its rebuild ceiling looks like under the current roster configuration; Cam Thomas's offensive control in the first half was the night's most complete individual team-quality statement outside of Curry's Chase Center performance. The 34-point margin won't define either team's season, but it will define the conversation about both franchises heading into week two.",
     },
   ],
 };
