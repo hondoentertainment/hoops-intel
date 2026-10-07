@@ -5,8 +5,15 @@
     <link>https://hoopsintel.net</link>
     <description>Your daily NBA intelligence briefing with scores, player rankings, injury reports, and game previews.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Oct 2026 13:13:50 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 13:16:55 GMT</lastBuildDate>
     <atom:link href="https://hoopsintel.net/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Pelicans Silence BOK Center, Warriors Torch Lakers: West Hierarchy Shakeups on Four-Game Tuesday</title>
+      <description>New Orleans handed Oklahoma City its first preseason home loss while Golden State demolished the Lakers by 26 on NBA TV, complicating early West organizational readings entering the final stretch before Opening Night. — The New Orleans Pelicans went into BOK Center and upset the Oklahoma City Thunder 116-110, handing OKC its first preseason home loss of the 2026-27 window, while Golden State answered the Lakers&apos; Monday momentum with a 26-point demolition at Chase Center on national television.</description>
+      <link>https://hoopsintel.net/archive</link>
+      <guid>https://hoopsintel.net/edition/2026-10-07</guid>
+      <pubDate>Wed, 07 Oct 2026 12:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Lakers Rout Kings 127-103, Wolves Stun Bucks 116-97 on Five-Game Preseason Night</title>
       <description>Philadelphia dominates New York 120-97 on NBA TV; Memphis upsets Atlanta 132-123; Detroit survives Phoenix 109-107 — The Lakers blew out Sacramento by 24 points on the road as underdogs, Minnesota won at Fiserv Forum by 19 against a favored Giannis-led Bucks squad, and Philadelphia demolished the Knicks by 23 on national television — a five-game preseason slate that produced four double-digit decisions and a clear early organizational hierarchy entering Opening Night on October 20.</description>
@@ -209,13 +216,6 @@
       <link>https://hoopsintel.net/archive</link>
       <guid>https://hoopsintel.net/edition/2026-09-08</guid>
       <pubDate>Tue, 08 Sep 2026 12:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Murray Standoff Day Twenty-Three: Denver&apos;s Retrofit Cost Compounds as OKC&apos;s Preparation Ecosystem Widens the Category Gap</title>
-      <description>Houston&apos;s load-bearing workarounds formally identified; twenty-six days remain to October 3 camp open — Denver&apos;s October blueprint is now a finished structure with Murray&apos;s integration reduced to a time-pressured appendix, while OKC enters its twenty-third consecutive day of uninterrupted second-iteration preparation work — a compound advantage rivals cannot replicate on any accelerated timeline available before camp opens.</description>
-      <link>https://hoopsintel.net/archive</link>
-      <guid>https://hoopsintel.net/edition/2026-09-07</guid>
-      <pubDate>Mon, 07 Sep 2026 12:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>

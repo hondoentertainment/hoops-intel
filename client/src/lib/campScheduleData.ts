@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-10-06T13:10:24.908Z",
+  fetchedAt: "2026-10-07T13:13:24.548Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -27,10 +27,10 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-05",when:"Final",away:"NYK",home:"PHI",tv:"NBA TV",venue:"Xfinity Mobile Arena"},
   {dateIso:"2026-10-05",when:"Final",away:"MIN",home:"MIL",tv:"",venue:"Fiserv Forum"},
   {dateIso:"2026-10-05",when:"Final",away:"LAL",home:"SAC",tv:"NBA TV",venue:"Golden 1 Center"},
-  {dateIso:"2026-10-06",when:"10/6 - 7:00 PM EDT",away:"BRK",home:"CHA",tv:"NBA TV",venue:"Spectrum Center"},
-  {dateIso:"2026-10-06",when:"10/6 - 8:00 PM EDT",away:"NOP",home:"OKC",tv:"",venue:"BOK Center"},
-  {dateIso:"2026-10-06",when:"10/6 - 9:00 PM EDT",away:"DEN",home:"UTA",tv:"",venue:"Delta Center"},
-  {dateIso:"2026-10-06",when:"10/6 - 10:00 PM EDT",away:"LAL",home:"GSW",tv:"NBA TV",venue:"Chase Center"},
+  {dateIso:"2026-10-06",when:"Final",away:"BRK",home:"CHA",tv:"NBA TV",venue:"Spectrum Center"},
+  {dateIso:"2026-10-06",when:"Final",away:"NOP",home:"OKC",tv:"",venue:"BOK Center"},
+  {dateIso:"2026-10-06",when:"Final",away:"DEN",home:"UTA",tv:"",venue:"Delta Center"},
+  {dateIso:"2026-10-06",when:"Final",away:"LAL",home:"GSW",tv:"NBA TV",venue:"Chase Center"},
   {dateIso:"2026-10-07",when:"10/7 - 7:00 PM EDT",away:"MIN",home:"IND",tv:"NBA TV",venue:"Hilton Coliseum"},
   {dateIso:"2026-10-07",when:"10/7 - 8:00 PM EDT",away:"ORL",home:"MEM",tv:"",venue:"FedExForum"},
   {dateIso:"2026-10-07",when:"10/7 - 8:00 PM EDT",away:"MIL",home:"OKC",tv:"",venue:"Paycom Center"},
