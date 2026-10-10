@@ -17,7 +17,6 @@ on:
       - Midday Content Refresh
       - Playoff Nightly Sync
       - Weekly Data Update
-      - Midday Content Refresh
     types: [completed]
   workflow_dispatch:
     inputs:
@@ -35,7 +34,16 @@ on:
     - cron: "30 13 * * *"
 
 concurrency:
-  group: deployment-smoke
+  # Non-success workflow_run completions still open a run in this workflow
+  # (Auto-Retry skips after every successful daily edition). The job `if`
+  # below no-ops them, but the run joins the concurrency group first.
+  # cancel-in-progress then kills the smoke the successful edition just
+  # started, and the follow-up run skips — so the edition is never smoked.
+  # That pair (cancelled, then skipped) landed after every daily success
+  # on Oct 7–10 2026. No-op completions get a private group so they cannot
+  # cancel a real smoke. Push, schedule, dispatch, and successful upstreams
+  # still share deployment-smoke and still supersede each other.
+  group: "${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion != 'success' && format('deployment-smoke-noop-{0}', github.run_id) || 'deployment-smoke' }}"
   cancel-in-progress: true
 
 jobs:
