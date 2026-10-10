@@ -29,6 +29,8 @@ interface SearchDocument {
   players: string[];
   teams: string[];
   date?: string;
+  // Edition order, not blurb wording. pulseIndex[0] is the desk's leader.
+  pulseLeader?: boolean;
 }
 
 interface ScoredDocument {
@@ -104,8 +106,9 @@ function buildDocuments(): SearchDocument[] {
     });
   }
 
-  // Pulse index players
-  for (const p of pulseIndex) {
+  // Pulse index players. The first row is the leader the desk publishes,
+  // even when that note never repeats the words "leads" or "index".
+  for (const [i, p] of pulseIndex.entries()) {
     docs.push({
       id: `pulse-${p.player.replace(/\s/g, "-").toLowerCase()}`,
       type: "player",
@@ -115,6 +118,7 @@ function buildDocuments(): SearchDocument[] {
       players: [p.player],
       teams: [p.team],
       date: pulseEdition.date,
+      pulseLeader: i === 0,
     });
   }
 
@@ -284,19 +288,42 @@ function scoreDocument(doc: SearchDocument, queryTokens: string[]): number {
 // SEARCH
 // ═══════════════════════════════════════════════════════════
 
+// "Who leads the Pulse Index?" drops "who" as a stop word and then never
+// finds the verb "leads" in edition copy. Remaining tokens are pulse+index,
+// so the wordiest blurb — often a lower rank that repeats "index" — fills
+// the top 5 and the published leader falls off.
+function asksWhoLeadsPulseIndex(queryTokens: string[]): boolean {
+  return (
+    queryTokens.includes("pulse") &&
+    queryTokens.includes("index") &&
+    queryTokens.some((token) => token.startsWith("lead"))
+  );
+}
+
+function pinPulseIndexLeader(docs: SearchDocument[], scored: ScoredDocument[]): ScoredDocument[] {
+  const leader = docs.find((doc) => doc.pulseLeader);
+  if (!leader) return scored;
+  const already = scored.find((row) => row.doc.id === leader.id);
+  const rest = scored.filter((row) => row.doc.id !== leader.id);
+  return [{ doc: leader, score: (already?.score ?? 0) + 1 }, ...rest];
+}
+
 function search(query: string, topK: number = 5): ScoredDocument[] {
   const docs = buildDocuments();
   const queryTokens = tokenize(query);
 
   if (queryTokens.length === 0) return [];
 
-  const scored: ScoredDocument[] = docs
+  let scored: ScoredDocument[] = docs
     .map((doc) => ({ doc, score: scoreDocument(doc, queryTokens) }))
     .filter((s) => s.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK);
+    .sort((a, b) => b.score - a.score);
 
-  return scored;
+  if (asksWhoLeadsPulseIndex(queryTokens)) {
+    scored = pinPulseIndexLeader(docs, scored);
+  }
+
+  return scored.slice(0, topK);
 }
 
 // ═══════════════════════════════════════════════════════════
