@@ -106,15 +106,19 @@ function buildDocuments(): SearchDocument[] {
     });
   }
 
-  // Pulse index players. The first row is the leader the desk publishes,
-  // even when that note never repeats the words "leads" or "index".
+  // First row is the published leader (pulseIndex[0]). Rank-1 copy
+  // still carries "leads" so lexical search can see it; the pin below
+  // does not depend on that wording.
   for (const [i, p] of pulseIndex.entries()) {
+    const leadCopy = p.rank === 1 ? `${p.player} leads the Pulse Index` : "";
     docs.push({
       id: `pulse-${p.player.replace(/\s/g, "-").toLowerCase()}`,
       type: "player",
       title: `${p.player} (#${p.rank} Pulse Index)`,
-      content: [p.player, p.keyStats, p.note, p.rationale].join(" "),
-      tags: ["pulse", "ranking", "index", "mvp", "player"],
+      content: [p.player, leadCopy, p.keyStats, p.note, p.rationale].filter(Boolean).join(" "),
+      tags: p.rank === 1
+        ? ["pulse", "ranking", "index", "mvp", "player", "leader", "leads"]
+        : ["pulse", "ranking", "index", "mvp", "player"],
       players: [p.player],
       teams: [p.team],
       date: pulseEdition.date,
