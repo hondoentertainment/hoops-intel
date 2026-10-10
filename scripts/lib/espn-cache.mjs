@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { fetchWithRetry } from "./retry.mjs";
+import { canonicalNbaAbbrev } from "./content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -92,17 +93,17 @@ export function parseGames(espnData) {
     const leaders = (comp.leaders || []).map((l) => ({
       category: l.name,
       player: l.leaders?.[0]?.athlete?.displayName ?? "",
-      team: l.leaders?.[0]?.team?.abbreviation ?? "",
+      team: canonicalNbaAbbrev(l.leaders?.[0]?.team?.abbreviation ?? ""),
       value: l.leaders?.[0]?.displayValue ?? "",
     }));
 
     return {
       status: done ? "final" : "scheduled",
-      homeTeam: home?.team?.abbreviation ?? "",
+      homeTeam: canonicalNbaAbbrev(home?.team?.abbreviation ?? ""),
       homeTeamFull: home?.team?.displayName ?? "",
       homeRecord: home?.records?.[0]?.summary ?? "",
       homeScore: done ? parseInt(home?.score ?? "0", 10) : null,
-      awayTeam: away?.team?.abbreviation ?? "",
+      awayTeam: canonicalNbaAbbrev(away?.team?.abbreviation ?? ""),
       awayTeamFull: away?.team?.displayName ?? "",
       awayRecord: away?.records?.[0]?.summary ?? "",
       awayScore: done ? parseInt(away?.score ?? "0", 10) : null,

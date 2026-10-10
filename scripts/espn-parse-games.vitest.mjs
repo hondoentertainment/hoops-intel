@@ -22,4 +22,28 @@ describe("parseGames (script pipeline)", () => {
     expect(games[1].status).toBe("scheduled");
     expect(games[1].homeScore).toBeNull();
   });
+
+  it("remaps ESPN WSH to WAS before the edition prompt sees it", () => {
+    const games = parseGames({
+      events: [
+        {
+          competitions: [
+            {
+              competitors: [
+                { homeAway: "home", team: { abbreviation: "WSH", displayName: "Washington Wizards" }, records: [{ summary: "0-0" }], score: "110" },
+                { homeAway: "away", team: { abbreviation: "DET", displayName: "Detroit Pistons" }, records: [{ summary: "0-0" }], score: "104" },
+              ],
+              status: { type: { completed: true, shortDetail: "Final" } },
+              venue: { fullName: "Capital One Arena" },
+              broadcasts: [],
+              leaders: [{ name: "points", leaders: [{ athlete: { displayName: "Alex Sarr" }, team: { abbreviation: "WSH" }, displayValue: "22" }] }],
+            },
+          ],
+        },
+      ],
+    });
+    expect(games[0].homeTeam).toBe("WAS");
+    expect(games[0].awayTeam).toBe("DET");
+    expect(games[0].leaders[0].team).toBe("WAS");
+  });
 });

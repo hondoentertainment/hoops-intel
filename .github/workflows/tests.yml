@@ -77,7 +77,7 @@ jobs:
         run: node scripts/verify-deploy-config.mjs
 
       - name: Season-mode calendar (node:test)
-        run: node --test scripts/tests/season-mode.test.mjs
+        run: node --test scripts/tests/season-mode.test.mjs scripts/tests/content-quality-constants.test.mjs
 
       - name: Sitemap lastmod + player index quality (node:test)
         run: node --test scripts/tests/sitemap-lastmod.test.mjs scripts/tests/site-review-paths.test.mjs
