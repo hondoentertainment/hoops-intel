@@ -27,13 +27,11 @@ describe("player availability", () => {
     expect(listed?.injury).toBe(wired.injury);
     expect(listed?.asOf).toBe(pulseEdition.date);
 
-    const murray = playerAvailability("Jamal Murray", true);
-    expect(murray?.kind).toBe("listed");
-    expect(murray?.label).toBe("Day-to-Day");
-
-    const wemby = playerAvailability("Victor Wembanyama", true);
-    expect(wemby?.kind).toBe("listed");
-    expect(wemby?.label).toBe("Probable");
+    for (const row of injuryUpdates) {
+      const listedRow = playerAvailability(row.player, true);
+      expect(listedRow?.kind).toBe("listed");
+      expect(listedRow?.label).toBe(row.status);
+    }
 
     const clearName = pulseIndex.find(
       (row) => !injuryUpdates.some((injury) => injury.player === row.player),

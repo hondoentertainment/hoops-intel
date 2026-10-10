@@ -9,7 +9,8 @@ import PodcastCompanion from "../pages/PodcastCompanion";
 import Tonight from "../pages/Tonight";
 import WatchGuide from "../pages/WatchGuide";
 import PickEm from "../pages/PickEm";
-import { gamePreviews, pulseEdition } from "../lib/pulseData";
+import { playerSlug } from "../lib/identity";
+import { gamePreviews, injuryUpdates, pulseEdition } from "../lib/pulseData";
 import { watchGuideData } from "../lib/watchGuideData";
 
 function renderAt(path: string, tree: ReactNode) {
@@ -30,21 +31,23 @@ describe("site review pages", () => {
     cleanup();
   });
 
-  it("shows Jamal Murray's injury-wire status and a profile canonical", async () => {
+  it("shows an injury-wire player's status and a profile canonical", async () => {
+    const wired = injuryUpdates[0]!;
+    const slug = playerSlug(wired.player);
     renderAt(
-      "/player/jamal-murray",
+      `/player/${slug}`,
       <Switch>
         <Route path="/player/:slug" component={Player} />
       </Switch>,
     );
-    expect(await screen.findByTestId("player-injury-badge")).toHaveTextContent("Day-to-Day");
+    expect(await screen.findByTestId("player-injury-badge")).toHaveTextContent(wired.status);
     expect(screen.getByTestId("player-availability-as-of")).toHaveTextContent(pulseEdition.date);
     await waitFor(() => {
       expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
-        "https://hoopsintel.net/player/jamal-murray",
+        `https://hoopsintel.net/player/${slug}`,
       );
       expect(document.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe(
-        "https://hoopsintel.net/player/jamal-murray",
+        `https://hoopsintel.net/player/${slug}`,
       );
     });
   });

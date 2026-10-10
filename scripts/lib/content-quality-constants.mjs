@@ -23,7 +23,27 @@ const ESPN_TEAM_ALIASES = Object.freeze({
 /** @returns {string} */
 export function canonicalNbaAbbrev(abbr) {
   if (!abbr || typeof abbr !== "string") return abbr;
-  return ESPN_TEAM_ALIASES[abbr] ?? abbr;
+  const key = abbr.toUpperCase();
+  return ESPN_TEAM_ALIASES[key] ?? abbr;
+}
+
+/**
+ * Remap ESPN aliases in a generated pulse/data file so validators see
+ * WAS/NYK/BRK instead of WSH/NY/BKN. Field-scoped so prose is left alone.
+ */
+export function stampCanonicalTeamAbbrevs(fileText) {
+  if (!fileText || typeof fileText !== "string") return fileText;
+  let out = fileText;
+  out = out.replace(
+    /\b(team|homeTeam|awayTeam):\s*"([A-Za-z]{2,4})"/g,
+    (_, key, abbr) => `${key}: "${canonicalNbaAbbrev(abbr)}"`,
+  );
+  out = out.replace(
+    /\bgameId:\s*"([A-Za-z]{2,4})-([A-Za-z]{2,4})-(\d{8})"/g,
+    (_, away, home, date) =>
+      `gameId: "${canonicalNbaAbbrev(away)}-${canonicalNbaAbbrev(home)}-${date}"`,
+  );
+  return out;
 }
 
 export function isEspnSyncedTeamAbbrev(abbr) {
