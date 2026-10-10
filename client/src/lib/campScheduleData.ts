@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-10-09T13:12:20.646Z",
+  fetchedAt: "2026-10-10T14:13:30.243Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -42,8 +42,8 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-08",when:"Final",away:"WAS",home:"NYK",tv:"NBA TV / MNMT",venue:"Madison Square Garden"},
   {dateIso:"2026-10-08",when:"Final",away:"ATL",home:"SAS",tv:"",venue:"Frost Bank Center"},
   {dateIso:"2026-10-08",when:"Final",away:"SAC",home:"LAL",tv:"ESPN2",venue:"crypto.com Arena"},
-  {dateIso:"2026-10-09",when:"Halftime",away:"HOU",home:"DAL",tv:"NBA TV",venue:"Venetian Arena"},
-  {dateIso:"2026-10-09",when:"10/9 - 8:00 PM EDT",away:"MEM",home:"CHI",tv:"NBA TV",venue:"United Center"},
+  {dateIso:"2026-10-09",when:"Final",away:"HOU",home:"DAL",tv:"NBA TV",venue:"Venetian Arena"},
+  {dateIso:"2026-10-09",when:"Final",away:"MEM",home:"CHI",tv:"NBA TV",venue:"United Center"},
   {dateIso:"2026-10-10",when:"10/10 - 6:30 PM EDT",away:"LAC",home:"TOR",tv:"",venue:"Rogers Arena"},
   {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"ATL",home:"IND",tv:"",venue:"Gainbridge Fieldhouse"},
   {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"DET",home:"WAS",tv:"MNMT",venue:"Capital One Arena"},
