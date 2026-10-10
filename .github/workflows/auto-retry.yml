@@ -27,6 +27,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          # This run is queued against the failed edition's SHA, then sleeps
+          # 10 minutes. A fix pushed to main during that wait is invisible
+          # unless checkout fetches the branch tip (2026-10-10: retry still
+          # failed the WSH gate on 316b32c after #449 had already merged).
+          ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
