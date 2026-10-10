@@ -61,7 +61,15 @@ describe("searchUtils", () => {
       const context = searchContext("Who leads the Pulse Index?");
       expect(context).not.toMatch(/No specific context found/);
       expect(context.toLowerCase()).toContain("pulse");
-      expect(context).toContain(leader.player);
+      // The card itself, not a name dropped inside a lower-ranked blurb.
+      expect(context).toContain(`${leader.player} (#${leader.rank} Pulse Index)`);
+    });
+
+    it("still retrieves a named Pulse player when the question is not who leads", () => {
+      const named = pulseIndex.find((row) => row.player !== pulseIndex[0]?.player);
+      if (!named) throw new Error("edition has no second Pulse Index player");
+      const context = searchContext(`Why is ${named.player} on the Pulse Index?`);
+      expect(context).toContain(`${named.player} (#${named.rank} Pulse Index)`);
     });
 
     it("links thin archive names without inventing a counting line", () => {
