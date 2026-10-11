@@ -11,7 +11,7 @@ export interface CampScheduleGame {
 }
 
 export const campScheduleMeta = {
-  fetchedAt: "2026-10-10T14:13:30.243Z",
+  fetchedAt: "2026-10-11T13:08:56.971Z",
   source: "ESPN scoreboard",
   windowStart: "2026-10-03",
   windowEnd: "2026-10-10",
@@ -44,11 +44,11 @@ export const campScheduleGames: CampScheduleGame[] = [
   {dateIso:"2026-10-08",when:"Final",away:"SAC",home:"LAL",tv:"ESPN2",venue:"crypto.com Arena"},
   {dateIso:"2026-10-09",when:"Final",away:"HOU",home:"DAL",tv:"NBA TV",venue:"Venetian Arena"},
   {dateIso:"2026-10-09",when:"Final",away:"MEM",home:"CHI",tv:"NBA TV",venue:"United Center"},
-  {dateIso:"2026-10-10",when:"10/10 - 6:30 PM EDT",away:"LAC",home:"TOR",tv:"",venue:"Rogers Arena"},
-  {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"ATL",home:"IND",tv:"",venue:"Gainbridge Fieldhouse"},
-  {dateIso:"2026-10-10",when:"10/10 - 7:00 PM EDT",away:"DET",home:"WAS",tv:"MNMT",venue:"Capital One Arena"},
-  {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"MIN",home:"MIA",tv:"",venue:"Kaseya Center"},
-  {dateIso:"2026-10-10",when:"10/10 - 8:00 PM EDT",away:"PHI",home:"BOS",tv:"NBA TV",venue:"TD Garden"},
-  {dateIso:"2026-10-10",when:"10/10 - 8:30 PM EDT",away:"SAC",home:"GSW",tv:"",venue:"Chase Center"},
-  {dateIso:"2026-10-10",when:"10/10 - 10:30 PM EDT",away:"SAS",home:"PHX",tv:"ESPN2",venue:"Mortgage Matchup Center"},
+  {dateIso:"2026-10-10",when:"Final",away:"LAC",home:"TOR",tv:"",venue:"Rogers Arena"},
+  {dateIso:"2026-10-10",when:"Final",away:"ATL",home:"IND",tv:"",venue:"Gainbridge Fieldhouse"},
+  {dateIso:"2026-10-10",when:"Final/OT",away:"DET",home:"WAS",tv:"MNMT",venue:"Capital One Arena"},
+  {dateIso:"2026-10-10",when:"Final",away:"MIN",home:"MIA",tv:"",venue:"Kaseya Center"},
+  {dateIso:"2026-10-10",when:"Final",away:"PHI",home:"BOS",tv:"NBA TV",venue:"TD Garden"},
+  {dateIso:"2026-10-10",when:"Final",away:"SAC",home:"GSW",tv:"",venue:"Chase Center"},
+  {dateIso:"2026-10-10",when:"Final",away:"SAS",home:"PHX",tv:"ESPN2",venue:"Mortgage Matchup Center"},
 ];
