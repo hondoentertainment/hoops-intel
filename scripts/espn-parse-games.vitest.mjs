@@ -46,4 +46,40 @@ describe("parseGames (script pipeline)", () => {
     expect(games[0].awayTeam).toBe("DET");
     expect(games[0].leaders[0].team).toBe("WAS");
   });
+
+  it("drops exhibition games against non-NBA clubs such as the London Lions", () => {
+    const games = parseGames({
+      events: [
+        {
+          competitions: [
+            {
+              competitors: [
+                { homeAway: "home", team: { abbreviation: "POR", displayName: "Portland Trail Blazers" }, records: [{ summary: "0-0" }], score: "0" },
+                { homeAway: "away", team: { abbreviation: "LON", displayName: "London Lions" }, records: [{ summary: "0-0" }], score: "0" },
+              ],
+              status: { type: { completed: false, shortDetail: "10/12 - 4:00 PM EDT" } },
+              venue: { fullName: "Moda Center" },
+              broadcasts: [],
+            },
+          ],
+        },
+        {
+          competitions: [
+            {
+              competitors: [
+                { homeAway: "home", team: { abbreviation: "ATL", displayName: "Atlanta Hawks" }, records: [{ summary: "0-0" }], score: "0" },
+                { homeAway: "away", team: { abbreviation: "OKC", displayName: "Oklahoma City Thunder" }, records: [{ summary: "0-0" }], score: "0" },
+              ],
+              status: { type: { completed: false, shortDetail: "10/12 - 7:00 PM EDT" } },
+              venue: { fullName: "State Farm Arena" },
+              broadcasts: [],
+            },
+          ],
+        },
+      ],
+    });
+    expect(games).toHaveLength(1);
+    expect(games[0].awayTeam).toBe("OKC");
+    expect(games[0].homeTeam).toBe("ATL");
+  });
 });
