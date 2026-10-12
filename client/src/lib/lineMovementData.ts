@@ -8,28 +8,35 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "October 11, 2026";
+export const lineMovementEditionDate = "October 12, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "ORL",
-    homeTeam: "CLE",
-    openingSpread: "ORL -1.0",
-    closingSpread: "ORL -1.5",
-    updatedAt: "2026-10-12T08:40:55.415Z",
+    awayTeam: "OKC",
+    homeTeam: "ATL",
+    openingSpread: "ATL -2.0",
+    closingSpread: "ATL -2.5",
+    updatedAt: "2026-10-12T13:48:25.354Z",
   },
   {
-    awayTeam: "MIL",
-    homeTeam: "CHA",
-    openingSpread: "MIL -2.5",
-    closingSpread: "MIL -3.0",
-    updatedAt: "2026-10-12T08:40:55.415Z",
+    awayTeam: "BRK",
+    homeTeam: "WAS",
+    openingSpread: "EVEN",
+    closingSpread: "WAS -1.5",
+    updatedAt: "2026-10-12T13:48:25.354Z",
   },
   {
-    awayTeam: "CHI",
-    homeTeam: "DEN",
-    openingSpread: "DEN -2.0",
-    closingSpread: "DEN -2.5",
-    updatedAt: "2026-10-12T08:40:55.415Z",
+    awayTeam: "MIN",
+    homeTeam: "NYK",
+    openingSpread: "MIN -1.5",
+    closingSpread: "MIN -2.0",
+    updatedAt: "2026-10-12T13:48:25.354Z",
+  },
+  {
+    awayTeam: "SAS",
+    homeTeam: "UTA",
+    openingSpread: "SAS -1.0",
+    closingSpread: "SAS -1.5",
+    updatedAt: "2026-10-12T13:48:25.354Z",
   }
 ];
