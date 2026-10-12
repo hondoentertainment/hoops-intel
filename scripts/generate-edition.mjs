@@ -11,7 +11,7 @@ import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 import { seasonMode, editionContextForMode, stampEditionContext, REGULAR_SEASON_OPEN_DAY } from "./lib/season-mode.mjs";
 import { collectPulsePublicationErrors } from "./lib/edition-date-alignment.mjs";
 import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
-import { canonicalNbaAbbrev, stampCanonicalTeamAbbrevs } from "./lib/content-quality-constants.mjs";
+import { canonicalNbaAbbrev, dropNonNbaMatchupObjects, isNbaFranchiseAbbrev, stampCanonicalTeamAbbrevs } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -54,7 +54,7 @@ function parseGames(espnData) {
       tv: (comp.broadcasts || []).map((b) => b.names?.join(", ")).filter(Boolean).join(" / ") || "Local",
       leaders,
     };
-  });
+  }).filter((g) => isNbaFranchiseAbbrev(g.homeTeam) && isNbaFranchiseAbbrev(g.awayTeam));
 }
 
 // ── Read current edition number ────────────────────────────
@@ -239,7 +239,7 @@ ${playoffInstructions}${seasonWindowInstructions}
 11. Also generate a Hoops IQ quiz with exactly 5 questions. Format as: export const hoopsIQ = {questions:[{question:"...",options:["A. ...", "B. ...", "C. ...", "D. ..."],answer:"B",explanation:"1-sentence explanation.",difficulty:"easy"}]};
 12. Also generate a daily trivia question. Format as: export const triviaQuestion = {id:"${editionISO}",question:"...",options:["opt1","opt2","opt3","opt4"],correctIndex:N,explanation:"...",difficulty:"medium"};
 13. CRITICAL: Keep injury impact field SHORT — use only "high", "medium", or "low" (not long sentences). Keep conversation summaries to 2-3 sentences max and do not wrap them in quotation marks. Keep recap text concise. The file MUST stay under 15000 tokens total.
-14. CRITICAL — team abbreviations MUST be exactly one of: ATL, BOS, BRK, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS. NEVER use "NY" (use "NYK"), "SA" (use "SAS"), "BKN" (use "BRK"), "NO" (use "NOP"), "GS" (use "GSW"), or "WSH" (use "WAS"). Anything else will fail validation.
+14. CRITICAL — team abbreviations MUST be exactly one of: ATL, BOS, BRK, CHA, CHI, CLE, DAL, DEN, DET, GSW, HOU, IND, LAC, LAL, MEM, MIA, MIL, MIN, NOP, NYK, OKC, ORL, PHI, PHX, POR, SAC, SAS, TOR, UTA, WAS. NEVER use "NY" (use "NYK"), "SA" (use "SAS"), "BKN" (use "BRK"), "NO" (use "NOP"), "GS" (use "GSW"), or "WSH" (use "WAS"). NEVER use non-NBA clubs such as LON (London Lions). Omit exhibition games against non-NBA opponents from gamePreviews and gameResults. Anything else will fail validation.
 15. CRITICAL — injury status field MUST be exactly one of (case sensitive): "Out", "Day-to-Day", "Questionable", "Probable", "Doubtful". Never lowercase.
 16. CRITICAL — every \`{\` must be matched by \`}\` and every \`[\` must be matched by \`]\` in every export. Special attention to the \`narrative.body\` array — it MUST be wrapped in \`[\` and \`]\` and end with \`]}\` before the trailing semicolon.
 17. CRITICAL — pulseEdition.date MUST be exactly "${editionDate}". Do not use tomorrow's date, yesterday's date, or the next morning's paper date. The archive id and trivia id use ${editionISO}.
@@ -306,7 +306,9 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
         `⚠ pulseEdition.editionContext ${JSON.stringify(ctx)} != calendar "${editionContext}" — stamping`,
       );
     }
-    contentToWrite = stampCanonicalTeamAbbrevs(stampEditionContext(contentToWrite, editionContext));
+    contentToWrite = dropNonNbaMatchupObjects(
+      stampCanonicalTeamAbbrevs(stampEditionContext(contentToWrite, editionContext)),
+    );
     scope.pulseEdition = extractExportLiteral(contentToWrite, "pulseEdition", {});
     const ctx2 = scope.pulseEdition?.editionContext;
     if (ctx2 !== editionContext) {

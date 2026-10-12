@@ -51,6 +51,33 @@ export function isEspnSyncedTeamAbbrev(abbr) {
   return TEAM_ABBR_SET.has(canonicalNbaAbbrev(abbr));
 }
 
+/** True only for the 30 NBA franchises after ESPN alias remap. */
+export function isNbaFranchiseAbbrev(abbr) {
+  if (!abbr || typeof abbr !== "string") return false;
+  return TEAM_ABBR_SET.has(canonicalNbaAbbrev(abbr));
+}
+
+/**
+ * Drop single-line game objects whose home/away is not an NBA franchise
+ * (preseason exhibitions such as LON / London Lions). Run after
+ * stampCanonicalTeamAbbrevs so WSH/BKN remaps are kept.
+ */
+export function dropNonNbaMatchupObjects(fileText) {
+  if (!fileText || typeof fileText !== "string") return fileText;
+  let out = fileText.replace(
+    /\{[^{}]*\b(?:homeTeam|awayTeam):\s*"[^"]+"[^{}]*\}/g,
+    (obj) => {
+      const teams = [...obj.matchAll(/\b(?:homeTeam|awayTeam):\s*"([A-Za-z]{2,4})"/g)].map((m) => m[1]);
+      if (teams.length === 0) return obj;
+      return teams.every((t) => isNbaFranchiseAbbrev(t)) ? obj : "";
+    },
+  );
+  out = out.replace(/,\s*,/g, ",");
+  out = out.replace(/\[\s*,/g, "[");
+  out = out.replace(/,\s*\]/g, "]");
+  return out;
+}
+
 export const VALID_EDITION_CONTEXTS = new Set([
   "regular",
   "playoffs",

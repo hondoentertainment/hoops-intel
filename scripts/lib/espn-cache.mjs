@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { fetchWithRetry } from "./retry.mjs";
-import { canonicalNbaAbbrev } from "./content-quality-constants.mjs";
+import { canonicalNbaAbbrev, isNbaFranchiseAbbrev } from "./content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -116,5 +116,5 @@ export function parseGames(espnData) {
           .join(" / ") || "Local",
       leaders,
     };
-  }).filter(Boolean);
+  }).filter((g) => g && isNbaFranchiseAbbrev(g.homeTeam) && isNbaFranchiseAbbrev(g.awayTeam));
 }
