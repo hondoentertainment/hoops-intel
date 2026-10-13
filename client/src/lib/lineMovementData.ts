@@ -16,27 +16,27 @@ export const lineMovementRows: LineMovementRow[] = [
     homeTeam: "ATL",
     openingSpread: "ATL -2.0",
     closingSpread: "ATL -2.5",
-    updatedAt: "2026-10-12T22:13:57.435Z",
+    updatedAt: "2026-10-13T07:03:23.355Z",
   },
   {
     awayTeam: "BRK",
     homeTeam: "WAS",
     openingSpread: "EVEN",
     closingSpread: "WAS -1.5",
-    updatedAt: "2026-10-12T22:13:57.435Z",
+    updatedAt: "2026-10-13T07:03:23.355Z",
   },
   {
     awayTeam: "MIN",
     homeTeam: "NYK",
     openingSpread: "MIN -1.5",
     closingSpread: "MIN -2.0",
-    updatedAt: "2026-10-12T22:13:57.435Z",
+    updatedAt: "2026-10-13T07:03:23.355Z",
   },
   {
     awayTeam: "SAS",
     homeTeam: "UTA",
     openingSpread: "SAS -1.0",
     closingSpread: "SAS -1.5",
-    updatedAt: "2026-10-12T22:13:57.435Z",
+    updatedAt: "2026-10-13T07:03:23.355Z",
   }
 ];
