@@ -15,31 +15,37 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "October 12, 2026",
+    editionDate: "October 13, 2026",
     games: [
       {
-        awayTeam: "OKC",
-        homeTeam: "ATL",
-        openingSpread: "ATL -2.0",
-        closingSpread: "ATL -2.5",
+        awayTeam: "GSW",
+        homeTeam: "LAL",
+        openingSpread: "LAL -2.0",
+        closingSpread: "LAL -2.5",
       },
       {
-        awayTeam: "BRK",
-        homeTeam: "WAS",
+        awayTeam: "CLE",
+        homeTeam: "ORL",
         openingSpread: "EVEN",
-        closingSpread: "WAS -1.5",
+        closingSpread: "CLE -1.5",
       },
       {
-        awayTeam: "MIN",
-        homeTeam: "NYK",
-        openingSpread: "MIN -1.5",
-        closingSpread: "MIN -2.0",
+        awayTeam: "IND",
+        homeTeam: "OKC",
+        openingSpread: "OKC -1.5",
+        closingSpread: "OKC -2.0",
       },
       {
-        awayTeam: "SAS",
-        homeTeam: "UTA",
-        openingSpread: "SAS -1.0",
-        closingSpread: "SAS -1.5",
+        awayTeam: "NYK",
+        homeTeam: "TOR",
+        openingSpread: "TOR -1.0",
+        closingSpread: "TOR -1.5",
+      },
+      {
+        awayTeam: "POR",
+        homeTeam: "SAC",
+        openingSpread: "EVEN",
+        closingSpread: "POR -1.0",
       }
     ],
   }
