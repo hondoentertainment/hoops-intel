@@ -8,42 +8,56 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "October 13, 2026";
+export const lineMovementEditionDate = "October 14, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "GSW",
-    homeTeam: "LAL",
-    openingSpread: "LAL -2.0",
-    closingSpread: "LAL -2.5",
-    updatedAt: "2026-10-14T08:25:14.940Z",
+    awayTeam: "BRK",
+    homeTeam: "MIA",
+    openingSpread: "MIA -1.0",
+    closingSpread: "MIA -1.5",
+    updatedAt: "2026-10-14T13:16:11.250Z",
   },
   {
-    awayTeam: "CLE",
-    homeTeam: "ORL",
+    awayTeam: "NOP",
+    homeTeam: "DAL",
+    openingSpread: "DAL -2.5",
+    closingSpread: "DAL -3.0",
+    updatedAt: "2026-10-14T13:16:11.250Z",
+  },
+  {
+    awayTeam: "DEN",
+    homeTeam: "LAC",
+    openingSpread: "DEN -1.0",
+    closingSpread: "DEN -1.5",
+    updatedAt: "2026-10-14T13:16:11.250Z",
+  },
+  {
+    awayTeam: "CHI",
+    homeTeam: "MIL",
+    openingSpread: "MIL -2.0",
+    closingSpread: "MIL -2.5",
+    updatedAt: "2026-10-14T13:16:11.250Z",
+  },
+  {
+    awayTeam: "CHA",
+    homeTeam: "BOS",
+    openingSpread: "BOS -5.0",
+    closingSpread: "BOS -5.5",
+    updatedAt: "2026-10-14T13:16:11.250Z",
+  },
+  {
+    awayTeam: "PHX",
+    homeTeam: "SAS",
     openingSpread: "EVEN",
-    closingSpread: "CLE -1.5",
-    updatedAt: "2026-10-14T08:25:14.940Z",
+    closingSpread: "SAS -1.5",
+    updatedAt: "2026-10-14T13:16:11.250Z",
   },
   {
-    awayTeam: "IND",
-    homeTeam: "OKC",
-    openingSpread: "OKC -1.5",
-    closingSpread: "OKC -2.0",
-    updatedAt: "2026-10-14T08:25:14.940Z",
-  },
-  {
-    awayTeam: "NYK",
-    homeTeam: "TOR",
-    openingSpread: "TOR -1.0",
-    closingSpread: "TOR -1.5",
-    updatedAt: "2026-10-14T08:25:14.940Z",
-  },
-  {
-    awayTeam: "POR",
-    homeTeam: "SAC",
-    openingSpread: "EVEN",
-    closingSpread: "POR -1.0",
-    updatedAt: "2026-10-14T08:25:14.940Z",
+    awayTeam: "DET",
+    homeTeam: "MIN",
+    openingSpread: "MIN -3.5",
+    closingSpread: "MIN -4.0",
+    updatedAt: "2026-10-14T13:16:11.250Z",
   }
 ];
