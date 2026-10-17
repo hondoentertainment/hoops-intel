@@ -42,9 +42,17 @@ test("resolveSiteReviewPaths appends series and player samples to the static all
     assert.ok(paths.includes(loc), `missing static path ${loc}`);
   }
   assert.ok(paths.includes("/playoffs/series/east-1"));
-  const tonight = siteReviewTonightGamePaths(pulseFile);
-  assert.ok(tonight.length > 0, "gamePreviews should contribute tonight's /game paths");
-  for (const loc of tonight) {
+  // Off-nights ship `gamePreviews = []` (2026-10-17). Empty is valid; prove
+  // the helper still appends /game paths from a preview fixture.
+  const previewPulse = `export const gamePreviews = [{gameId:"OKC-ATL-20261017",homeTeam:"ATL",awayTeam:"OKC"}];`;
+  const tonight = siteReviewTonightGamePaths(previewPulse);
+  assert.deepEqual(tonight, ["/game/OKC-ATL-20261017"]);
+  const withPreview = resolveSiteReviewPaths({
+    playoffFile: `seriesId: "east-1"`,
+    pulseFile: previewPulse,
+  });
+  assert.ok(withPreview.includes("/game/OKC-ATL-20261017"));
+  for (const loc of siteReviewTonightGamePaths(pulseFile)) {
     assert.ok(paths.includes(loc), `missing tonight path ${loc}`);
     assert.match(loc, /^\/game\/[A-Z]{3}-[A-Z]{3}-\d{8}$/);
   }
