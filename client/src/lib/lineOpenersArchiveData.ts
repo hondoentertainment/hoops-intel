@@ -15,80 +15,9 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "October 16, 2026",
+    editionDate: "October 17, 2026",
     games: [
-      {
-        awayTeam: "DEN",
-        homeTeam: "LAL",
-        openingSpread: "LAL -1.0",
-        closingSpread: "LAL -1.5",
-      },
-      {
-        awayTeam: "BOS",
-        homeTeam: "PHI",
-        openingSpread: "BOS -3.0",
-        closingSpread: "BOS -3.5",
-      },
-      {
-        awayTeam: "POR",
-        homeTeam: "GSW",
-        openingSpread: "GSW -2.0",
-        closingSpread: "GSW -1.5",
-      },
-      {
-        awayTeam: "MIL",
-        homeTeam: "IND",
-        openingSpread: "MIL -1.5",
-        closingSpread: "MIL -1.0",
-      },
-      {
-        awayTeam: "MIA",
-        homeTeam: "ORL",
-        openingSpread: "MIA -1.5",
-        closingSpread: "MIA -2.0",
-      },
-      {
-        awayTeam: "ATL",
-        homeTeam: "DAL",
-        openingSpread: "DAL -1.0",
-        closingSpread: "ATL -1.0",
-      },
-      {
-        awayTeam: "MIN",
-        homeTeam: "CHI",
-        openingSpread: "MIN -1.0",
-        closingSpread: "MIN -1.5",
-      },
-      {
-        awayTeam: "WAS",
-        homeTeam: "NOP",
-        openingSpread: "NOP -1.5",
-        closingSpread: "NOP -2.0",
-      },
-      {
-        awayTeam: "SAC",
-        homeTeam: "SAS",
-        openingSpread: "SAS -4.0",
-        closingSpread: "SAS -4.5",
-      },
-      {
-        awayTeam: "CHA",
-        homeTeam: "MEM",
-        openingSpread: "MEM -2.5",
-        closingSpread: "MEM -3.0",
-      },
-      {
-        awayTeam: "UTA",
-        homeTeam: "PHX",
-        openingSpread: "PHX -1.0",
-        closingSpread: "UTA -1.0",
-      },
-      {
-        awayTeam: "TOR",
-        homeTeam: "DET",
-        openingSpread: "DET -1.5",
-        closingSpread: "DET -2.0",
-      }
+
     ],
   }
 ];
