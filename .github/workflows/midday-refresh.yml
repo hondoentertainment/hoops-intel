@@ -60,22 +60,27 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: node scripts/run-midday-refresh.mjs
-        timeout-minutes: 15
+        timeout-minutes: 20
 
+      # Invalid sections are reverted before this step. Stage whatever survived
+      # so a truncated Momentum file does not discard a valid Sentiment write
+      # (#465). The job still fails when the refresh step fails.
       - name: Stage midday refresh files
+        if: ${{ !cancelled() }}
         run: node scripts/stage-midday-refresh.mjs
 
       - name: Check for changes
+        if: ${{ !cancelled() }}
         id: changes
         run: |
           git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Pre-push CI gate (schema + build)
-        if: steps.changes.outputs.changed == 'true'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'true' }}
         run: npm run test:pre-push
 
       - name: Commit and push refresh
-        if: steps.changes.outputs.changed == 'true'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'true' }}
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
@@ -88,7 +93,7 @@ jobs:
           exit 1
 
       - name: No changes detected
-        if: steps.changes.outputs.changed == 'false'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'false' }}
         run: echo "No data changes — skipping commit."
 
       - name: Close resolved midday-failure issues

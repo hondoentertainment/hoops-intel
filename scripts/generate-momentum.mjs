@@ -12,6 +12,8 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toDisplayDate, toISODate } from "./lib/daily-dates.mjs";
 import { stampGeneratedDate } from "./lib/stamp-generated-date.mjs";
+import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
+import { isNbaFranchiseAbbrev } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,35 +28,44 @@ async function fetchESPN(espnDate) {
   return res.json();
 }
 
-function parseGames(espnData) {
-  return (espnData.events || []).map((e) => {
-    const comp = e.competitions[0];
-    const home = comp.competitors.find((c) => c.homeAway === "home");
-    const away = comp.competitors.find((c) => c.homeAway === "away");
-    const done = comp.status?.type?.completed ?? false;
+// 8K truncated mid-string on a 12-game slate (2026-10-17 #465). Retry at
+// 16K like history/sentiment rather than committing a cut-off file.
+const MOMENTUM_MAX_TOKENS = 16384;
 
-    const leaders = (comp.leaders || []).map((l) => ({
-      category: l.name,
-      player: l.leaders?.[0]?.athlete?.displayName ?? "",
-      team: l.leaders?.[0]?.team?.abbreviation ?? "",
-      value: l.leaders?.[0]?.displayValue ?? "",
-    }));
+export function parseMomentumGames(espnData) {
+  return (espnData.events || [])
+    .map((e) => {
+      const comp = e.competitions?.[0];
+      if (!comp) return null;
+      const home = comp.competitors.find((c) => c.homeAway === "home");
+      const away = comp.competitors.find((c) => c.homeAway === "away");
+      const done = comp.status?.type?.completed ?? false;
 
-    return {
-      status: done ? "final" : "scheduled",
-      homeTeam: home?.team?.abbreviation ?? "",
-      homeTeamFull: home?.team?.displayName ?? "",
-      homeRecord: home?.records?.[0]?.summary ?? "",
-      homeScore: done ? parseInt(home?.score ?? "0") : null,
-      awayTeam: away?.team?.abbreviation ?? "",
-      awayTeamFull: away?.team?.displayName ?? "",
-      awayRecord: away?.records?.[0]?.summary ?? "",
-      awayScore: done ? parseInt(away?.score ?? "0") : null,
-      time: comp.status?.type?.shortDetail ?? "",
-      venue: comp.venue?.fullName ?? "",
-      leaders,
-    };
-  });
+      const leaders = (comp.leaders || []).map((l) => ({
+        category: l.name,
+        player: l.leaders?.[0]?.athlete?.displayName ?? "",
+        team: l.leaders?.[0]?.team?.abbreviation ?? "",
+        value: l.leaders?.[0]?.displayValue ?? "",
+      }));
+
+      return {
+        status: done ? "final" : "scheduled",
+        homeTeam: home?.team?.abbreviation ?? "",
+        homeTeamFull: home?.team?.displayName ?? "",
+        homeRecord: home?.records?.[0]?.summary ?? "",
+        homeScore: done ? parseInt(home?.score ?? "0") : null,
+        awayTeam: away?.team?.abbreviation ?? "",
+        awayTeamFull: away?.team?.displayName ?? "",
+        awayRecord: away?.records?.[0]?.summary ?? "",
+        awayScore: done ? parseInt(away?.score ?? "0") : null,
+        time: comp.status?.type?.shortDetail ?? "",
+        venue: comp.venue?.fullName ?? "",
+        leaders,
+      };
+    })
+    .filter(
+      (g) => g && isNbaFranchiseAbbrev(g.homeTeam) && isNbaFranchiseAbbrev(g.awayTeam),
+    );
 }
 
 // ── Read pulseData.ts as context ────────────────────────────
@@ -144,16 +155,10 @@ Rules:
 - Clutch plays: only for close games (within 10 points in final 5 minutes)
 - winProbabilityShift: positive = favors the winning team, negative = favors the losing team
 - clutchRating: 0-100 scale for the top clutch performer
-- Narratives should be vivid, editorial, 3-5 sentences
-- The TypeScript must be syntactically valid and importable`;
-}
-
-// ── Write output ────────────────────────────────────────────
-
-function writeOutput(content) {
-  const outPath = join(ROOT, "client", "src", "lib", "momentumData.ts");
-  writeFileSync(outPath, content, "utf8");
-  return outPath;
+- Narratives should be vivid, editorial, 2-4 sentences
+- On a large slate keep swings to 2-3 per game so the file is complete
+- The TypeScript must be syntactically valid and importable
+- The file MUST end with a closing \`};\` for export const momentumData`;
 }
 
 // ── Main ────────────────────────────────────────────────────
@@ -172,7 +177,7 @@ async function main() {
   let games;
   try {
     const espnData = await fetchESPN(yesterdayESPN);
-    games = parseGames(espnData);
+    games = parseMomentumGames(espnData);
   } catch (err) {
     console.error("❌ ESPN fetch error:", err.message);
     process.exit(1);
@@ -193,13 +198,13 @@ async function main() {
   const pulseContext = readPulseContext();
   console.log("📊 Loaded pulseData.ts context");
 
-  console.log("🤖 Calling Claude...");
   const prompt = buildPrompt(displayDate, pulseContext, JSON.stringify(finalGames, null, 2));
+  const outPath = join(ROOT, "client", "src", "lib", "momentumData.ts");
 
-  let responseText;
-  try {
+  async function generateOnce(attempt) {
+    console.log(`🤖 Calling Claude (max_tokens=${MOMENTUM_MAX_TOKENS}, attempt ${attempt}/2)...`);
     const message = await claudeGenerate("momentum", {
-      max_tokens: 8192,
+      max_tokens: MOMENTUM_MAX_TOKENS,
       messages: [
         {
           role: "user",
@@ -208,37 +213,31 @@ async function main() {
       ],
     });
 
+    if (message.stop_reason === "max_tokens") {
+      console.warn("⚠ Claude output was truncated (hit max_tokens)");
+    }
+
     const block = message.content.find((b) => b.type === "text");
     if (!block) throw new Error("No text block in Claude response");
-    responseText = block.text;
-  } catch (err) {
-    console.error("❌ Claude API error:", err.message);
-    process.exit(1);
+    return block.text
+      .replace(/^```(?:typescript|ts)?\n?/m, "")
+      .replace(/\n?```$/m, "")
+      .trim();
   }
 
-  // Strip any accidental markdown fences
-  responseText = responseText
-    .replace(/^```(?:typescript|ts)?\n?/m, "")
-    .replace(/\n?```$/m, "")
-    .trim();
-
-  // Write to file
-  let outPath;
-  try {
-    outPath = writeOutput(responseText);
-  } catch (err) {
-    console.error("❌ Failed to write output:", err.message);
-    process.exit(1);
+  const result = await writeGeneratedFile(outPath, generateOnce, { retries: 2 });
+  if (!result.ok) {
+    throw new Error(`momentumData.ts failed validation: ${result.reason}`);
   }
 
+  writeFileSync(outPath, stampGeneratedDate(readFileSync(outPath, "utf8"), toISODate(0)), "utf8");
   console.log(`✅ Momentum Engine data written to: ${outPath}`);
-  console.log("");
-  console.log("Next steps:");
-  console.log("  1. Review client/src/lib/momentumData.ts for accuracy");
-  console.log("  2. Commit and deploy");
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  main().catch((err) => {
+    console.error("Fatal error:", err);
+    process.exit(1);
+  });
+}
