@@ -34,7 +34,7 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  generatedDate: "2026-10-16",
+  generatedDate: "2026-10-18",
   date: "October 16, 2026",
   gameOfTheNight: "TOR-NYK-20261015",
   topClutchPerformer: {
