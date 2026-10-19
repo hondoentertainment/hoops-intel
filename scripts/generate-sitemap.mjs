@@ -15,6 +15,7 @@ import {
   SITEMAP_TEAM_META,
 } from "./lib/public-routes.mjs";
 import { pacificIsoDate } from "./lib/daily-dates.mjs";
+import { describePulseSlate } from "./lib/edition-date-alignment.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -462,9 +463,9 @@ export function lastmodForLoc(loc, ctx) {
   return contentDate ?? sourceDate ?? ctx.buildDay;
 }
 
-export function generate({ write = true } = {}) {
+export function generate({ write = true, pulseSource = null } = {}) {
   const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
-  const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  const pulseFile = pulseSource ?? readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const playoffFile = readFileSync(join(ROOT, "client/src/lib/playoffData.ts"), "utf8");
 
   const mentionCounts = new Map();
@@ -489,9 +490,11 @@ export function generate({ write = true } = {}) {
     m[1].match(/"([^"]+)"/g)?.forEach((t) => teams.add(t.replace(/"/g, "")));
   }
 
-  for (const m of pulseFile.matchAll(/gameId:\s*"([^"]+)"/g)) {
-    games.add(m[1]);
+  const slate = describePulseSlate(pulseFile);
+  if (slate.errors.length) {
+    throw new Error(slate.errors.join("\n"));
   }
+  for (const id of slate.ids) games.add(id);
   for (const m of playoffFile.matchAll(
     /date:\s*"(?<date>\d{4}-\d{2}-\d{2})"[\s\S]{0,400}?homeTeam:\s*"(?<home>[A-Z]{3})"[\s\S]{0,400}?awayTeam:\s*"(?<away>[A-Z]{3})"/g,
   )) {

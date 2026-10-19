@@ -272,12 +272,10 @@ function main() {
           game.status === "final",
           `Game ${game.homeTeam} vs ${game.awayTeam} has unexpected status: "${game.status}"`,
         );
-        if (game.gameId != null && game.gameId !== "") {
-          assert(
-            GAME_ID_PATTERN.test(String(game.gameId)),
-            `Invalid gameId "${game.gameId}" (expected ABB-ABB-YYYYMMDD)`,
-          );
-        }
+        assert(
+          GAME_ID_PATTERN.test(String(game.gameId ?? "")),
+          `Game ${game.awayTeam} @ ${game.homeTeam} must publish gameId AWAY-HOME-YYYYMMDD (got ${JSON.stringify(game.gameId ?? null)})`,
+        );
       }
     });
   }
@@ -365,6 +363,10 @@ function main() {
         assert(
           TEAM_ABBR_SET.has(preview.awayTeam),
           `Invalid away team in preview: "${preview.awayTeam}"`,
+        );
+        assert(
+          GAME_ID_PATTERN.test(String(preview.gameId ?? "")),
+          `Preview ${preview.awayTeam} @ ${preview.homeTeam} must publish gameId AWAY-HOME-YYYYMMDD (got ${JSON.stringify(preview.gameId ?? null)})`,
         );
       }
     });

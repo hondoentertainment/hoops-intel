@@ -153,6 +153,49 @@ export function tonightGameIds(pulseSource) {
   return [...previews.matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)].map((m) => m[1]);
 }
 
+const PULSE_GAME_ID = /^[A-Z]{3}-[A-Z]{3}-\d{8}$/;
+
+/**
+ * Off-days ship `gameResults = []` (with the No Games marker) and
+ * `gamePreviews = []`. A slate that actually has games must put a canonical
+ * gameId on every object — that id is what becomes `/game/AWAY-HOME-YYYYMMDD`.
+ * @param {string} source
+ * @returns {{ offDay: boolean, ids: string[], errors: string[] }}
+ */
+export function describePulseSlate(source) {
+  const errors = [];
+  const ids = [];
+  let sawGame = false;
+  for (const name of ["gameResults", "gamePreviews"]) {
+    const body = exportArrayBody(source, name);
+    if (body == null) {
+      errors.push(`${name} export is missing`);
+      continue;
+    }
+    if (!body.trim()) {
+      if (name === "gameResults" && !/GAME RESULTS\s+—\s+No Games/i.test(source)) {
+        errors.push('empty gameResults require a "GAME RESULTS — No Games" marker');
+      }
+      continue;
+    }
+    for (const chunk of body.split(/\}\s*,\s*\{/)) {
+      if (!/\b(?:homeTeam|awayTeam|gameId)\s*:/.test(chunk)) continue;
+      sawGame = true;
+      const id = chunk.match(/\bgameId:\s*"([^"]*)"/)?.[1] ?? "";
+      if (!PULSE_GAME_ID.test(id)) {
+        const away = chunk.match(/\bawayTeam:\s*"([^"]+)"/)?.[1] ?? "?";
+        const home = chunk.match(/\bhomeTeam:\s*"([^"]+)"/)?.[1] ?? "?";
+        errors.push(
+          `${name} ${away}-${home} must publish game id AWAY-HOME-YYYYMMDD (pulse edition should publish game ids)`,
+        );
+        continue;
+      }
+      ids.push(id);
+    }
+  }
+  return { offDay: !sawGame && errors.length === 0, ids, errors };
+}
+
 /**
  * Committed edition: archive id is the publication day. Display date, tonight's
  * slugs, and desk sitemap lastmods have to match it.

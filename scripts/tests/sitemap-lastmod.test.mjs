@@ -22,6 +22,7 @@ import { pacificIsoDate } from "../lib/daily-dates.mjs";
 import {
   collectCommittedEditionDateErrors,
   collectPulsePublicationErrors,
+  describePulseSlate,
   displayDateToIso,
   sitemapLastmodTracksEdition,
 } from "../lib/edition-date-alignment.mjs";
@@ -519,14 +520,71 @@ test("generated team pages do not share one lastmod", () => {
   const teamDates = urls.filter((u) => u.loc.startsWith("/team/")).map((u) => u.lastmod);
   assert.ok(teamDates.length >= 30, `expected every franchise, got ${teamDates.length}`);
   assert.ok(new Set(teamDates).size > 1, "team lastmods must diverge when content diverges");
-  const gameIds = [...pulseFile.matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)].map((m) => m[1]);
-  assert.ok(gameIds.length > 0, "pulse edition should publish game ids");
-  for (const id of new Set(gameIds)) {
+  // Off-days publish empty gameResults and gamePreviews. Game pages are
+  // required only when the slate actually contains games.
+  const slate = describePulseSlate(pulseFile);
+  assert.deepEqual(slate.errors, []);
+  if (slate.offDay) {
+    assert.deepEqual(slate.ids, []);
+  } else {
+    assert.ok(slate.ids.length > 0, "pulse edition should publish game ids");
+  }
+  for (const id of new Set(slate.ids)) {
     assert.ok(urls.some((u) => u.loc === `/game/${id}`), `missing /game/${id}`);
   }
   assert.equal(urls.find((u) => u.loc === "/")?.lastmod, editionIso);
   assert.equal(urls.find((u) => u.loc === "/player/kawhi-leonard"), undefined);
   assert.equal(urls.find((u) => u.loc === "/player/vj-edgecombe"), undefined);
+});
+
+test("published game ids are sitemap locs, and a game without an id cannot ship", () => {
+  const published = `
+export const pulseEdition = {date:"December 31, 2099"};
+export const gameResults = [{homeTeam:"PHI",awayTeam:"BOS",gameId:"BOS-PHI-20991230"}];
+export const gamePreviews = [{homeTeam:"BOS",awayTeam:"NYK",gameId:"NYK-BOS-20991231"}];
+`;
+  const slate = describePulseSlate(published);
+  assert.equal(slate.offDay, false);
+  assert.deepEqual(slate.errors, []);
+  assert.deepEqual(slate.ids, ["BOS-PHI-20991230", "NYK-BOS-20991231"]);
+  const { urls } = generate({ write: false, pulseSource: published });
+  for (const id of slate.ids) {
+    assert.ok(urls.some((u) => u.loc === `/game/${id}`), `missing /game/${id}`);
+  }
+
+  const missing = `
+export const gameResults = [{homeTeam:"PHI",awayTeam:"BOS",status:"final"}];
+export const gamePreviews = [];
+`;
+  const bad = describePulseSlate(missing);
+  assert.equal(bad.offDay, false);
+  assert.ok(
+    bad.errors.some((line) => /pulse edition should publish game ids/.test(line)),
+    "pulse edition should publish game ids",
+  );
+  assert.throws(() => generate({ write: false, pulseSource: missing }), /pulse edition should publish game ids/);
+
+  const off = `
+// GAME RESULTS — No Games (October 19, 2026)
+export const gameResults = [];
+export const gamePreviews = [];
+`;
+  const empty = describePulseSlate(off);
+  assert.equal(empty.offDay, true);
+  assert.deepEqual(empty.ids, []);
+  assert.deepEqual(empty.errors, []);
+  const { urls: offUrls } = generate({ write: false, pulseSource: off });
+  assert.equal(offUrls.some((u) => u.loc === "/game/BOS-PHI-20991230"), false);
+  assert.equal(offUrls.some((u) => u.loc === "/game/NYK-BOS-20991231"), false);
+
+  const wiped = `
+export const gameResults = [];
+export const gamePreviews = [];
+`;
+  const wipedSlate = describePulseSlate(wiped);
+  assert.equal(wipedSlate.offDay, false);
+  assert.ok(wipedSlate.errors.some((line) => /No Games/.test(line)));
+  assert.throws(() => generate({ write: false, pulseSource: wiped }), /No Games/);
 });
 
 test("publication date, tonight slugs, and a next-day display date cannot ship together", () => {
