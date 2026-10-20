@@ -13,6 +13,7 @@ import ToolPageLayout from "../components/ToolPageLayout";
 import ErrorBlock from "../components/ErrorBlock";
 import { TeamPageSkeleton } from "../components/PageSkeletons";
 import { getTeamIntelByAbbr, type TeamIntelResponse } from "../lib/teamIntel";
+import { isoToDisplayDate, lastUpdatedStamp } from "../lib/dataTrust";
 
 export default function Team() {
   const params = useParams<{ abbr: string }>();
@@ -101,6 +102,7 @@ export default function Team() {
   }
 
   const teamColor = getTeamColor(abbr);
+  const updatedDisplay = isoToDisplayDate(teamIntel.updatedAt);
   const standing = teamIntel.standing;
   const teamGames = teamIntel.recentGames;
   const teamPreviews = teamIntel.previews;
@@ -143,6 +145,15 @@ export default function Team() {
                 <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>
                   {standing?.conf === "east" ? "Eastern" : "Western"} Conference
                 </div>
+                {updatedDisplay ? (
+                  <p
+                    className="text-xs mt-1"
+                    data-testid="team-last-updated"
+                    style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
+                  >
+                    {lastUpdatedStamp(updatedDisplay)}
+                  </p>
+                ) : null}
               </div>
             </div>
             {standing && (

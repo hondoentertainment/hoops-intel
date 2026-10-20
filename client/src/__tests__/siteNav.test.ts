@@ -58,6 +58,32 @@ describe("siteNav", () => {
     expect(TOOLS_DIRECTORY.some((t) => t.href === "/players")).toBe(true);
   });
 
+  it("links every live tool route from the public directory", () => {
+    const hrefs = publicToolsDirectory().map((t) => t.href);
+    for (const path of [
+      "/compare-players",
+      "/trade-simulator",
+      "/clutch",
+      "/refs",
+      "/watch-guide",
+      "/podcast-companion",
+      "/draft",
+      "/sentiment",
+      "/tactics",
+      "/projections",
+      "/rivals",
+      "/82-0",
+      "/pick-em",
+      "/badges",
+      "/betting-intel",
+      "/tonight",
+      "/players",
+    ]) {
+      expect(hrefs).toContain(path);
+    }
+    expect(hrefs.filter((href) => href === "/betting-intel")).toHaveLength(1);
+  });
+
   it("groups play tools and exposes a homepage desk rail", () => {
     const play = publicToolsDirectory().filter((t) => t.category === "play").map((t) => t.href);
     expect(play).toEqual(expect.arrayContaining(["/82-0", "/pick-em", "/badges", "/trivia"]));

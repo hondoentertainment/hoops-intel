@@ -163,6 +163,7 @@ export interface ToolLink {
 export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Desk", href: "/", description: "Daily briefing and Pulse Index. During July–September camp, an empty slate points at camp intel.", category: "desk" },
   { label: "Tonight", href: "/tonight", description: "Tonight's ESPN slate — empty when the league is dark, with a pointer to the desk", category: "desk" },
+  { label: "Betting intel", href: "/betting-intel", description: "Line movement and market context for tonight's slate", category: "desk" },
   { label: "Players", href: "/players", description: "Browse and search player profiles from Pulse and the archive", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },
   { label: "Pulse history", href: "/pulse-history", description: "Ranking history", category: "desk" },

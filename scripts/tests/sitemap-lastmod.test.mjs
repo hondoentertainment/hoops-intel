@@ -11,6 +11,8 @@ import {
   generate,
   isSitemapIndexablePlayer,
   lastmodForLoc,
+  substantivePulseNames,
+  playerContentLastmods,
   playerSitemapMeta,
   sanitizeLastmod,
   teamContentLastmods,
@@ -238,12 +240,47 @@ test("weekly tool pages lastmod advance with the daily edition when content is f
   }
 });
 
-test("player profile lastmod follows the current edition, not a stale archive-only date", () => {
-  const ctx = { buildDay: "2026-12-01", editionIso: "2026-09-14", latestArchiveIso: "2026-05-11" };
-  assert.equal(lastmodForLoc("/player/kawhi-leonard", ctx), "2026-09-14");
-  assert.equal(lastmodForLoc("/player/vj-edgecombe", ctx), "2026-09-14");
-  assert.equal(lastmodForLoc("/player/chris-paul", ctx), "2026-09-14");
+test("player profile lastmod follows that player's desk date, not the build day", () => {
+  const ctx = {
+    buildDay: "2026-12-01",
+    editionIso: "2026-09-14",
+    latestArchiveIso: "2026-10-20",
+    playerLastmods: new Map([
+      ["jayson-tatum", "2026-09-14"],
+      ["chris-paul", "2026-05-11"],
+    ]),
+  };
+  assert.equal(lastmodForLoc("/player/jayson-tatum", ctx), "2026-09-14");
+  assert.equal(lastmodForLoc("/player/chris-paul", ctx), "2026-05-11");
+  assert.equal(lastmodForLoc("/player/kawhi-leonard", ctx), null);
+  assert.notEqual(lastmodForLoc("/player/chris-paul", ctx), ctx.buildDay);
+  assert.notEqual(lastmodForLoc("/player/chris-paul", ctx), ctx.editionIso);
   assert.deepEqual(playerSitemapMeta({ inPulse: true }), { priority: "0.65", changefreq: "daily" });
+});
+
+test("player lastmod uses the edition only when that player is on today's desk", () => {
+  const map = playerContentLastmods({
+    editionIso: "2026-10-20",
+    archiveFile: `
+  {
+    id: "2026-05-02",
+    players: ["Chris Paul", "Kawhi Leonard"],
+    topPlayer: "Chris Paul",
+  }
+  {
+    id: "2026-10-20",
+    players: ["Jayson Tatum"],
+    topPlayer: "Jayson Tatum",
+  }
+`,
+    pulseFile: `export const pulseIndex = [{player:"Jayson Tatum",team:"BOS",keyStats:"x",note:"y",indexScore:90}];
+export const injuryUpdates = [{player:"Ja Morant",team:"MEM",status:"Day-to-Day"}];`,
+  });
+  assert.equal(map.get("Jayson Tatum"), "2026-10-20");
+  assert.equal(map.get("Ja Morant"), "2026-10-20");
+  assert.equal(map.get("Chris Paul"), "2026-05-02");
+  assert.equal(map.get("Kawhi Leonard"), "2026-05-02");
+  assert.equal(map.has("Joel Embiid"), false);
 });
 
 test("injury-wire players get the same daily desk sitemap weight as Pulse Index", () => {
@@ -511,6 +548,28 @@ test("team lastmod moves only when that team is on the wire, in the archive, or 
   assert.equal(map.has("ATL"), false);
 });
 
+test("team lastmod includes today's pulse card and slate without stamping every franchise", () => {
+  const map = teamContentLastmods({
+    editionIso: "2026-10-20",
+    archiveFile: `
+  {
+    id: "2026-04-13",
+    teams: ["IND"],
+    topStory: "Indiana closes the year",
+  }
+`,
+    pulseFile: `export const pulseIndex = [{player:"Jayson Tatum",team:"BOS"}];
+export const gamePreviews = [{homeTeam:"DET",awayTeam:"BOS",gameId:"BOS-DET-20261020"}];
+export const gameResults = [];
+export const injuryUpdates = [];`,
+    lineupFile: "",
+  });
+  assert.equal(map.get("BOS"), "2026-10-20");
+  assert.equal(map.get("DET"), "2026-10-20");
+  assert.equal(map.get("IND"), "2026-04-13");
+  assert.equal(map.has("ATL"), false);
+});
+
 test("generated team pages do not share one lastmod", () => {
   const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const editionDisplay = pulseFile.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/)?.[1];
@@ -533,8 +592,30 @@ test("generated team pages do not share one lastmod", () => {
     assert.ok(urls.some((u) => u.loc === `/game/${id}`), `missing /game/${id}`);
   }
   assert.equal(urls.find((u) => u.loc === "/")?.lastmod, editionIso);
-  assert.equal(urls.find((u) => u.loc === "/player/kawhi-leonard"), undefined);
-  assert.equal(urls.find((u) => u.loc === "/player/vj-edgecombe"), undefined);
+  const substantive = substantivePulseNames(
+    pulseFile.match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/)?.[1] ?? "",
+  );
+  for (const [slug, name] of [
+    ["kawhi-leonard", "Kawhi Leonard"],
+    ["vj-edgecombe", "VJ Edgecombe"],
+    ["jamal-murray", "Jamal Murray"],
+    ["ja-morant", "Ja Morant"],
+    ["joel-embiid", "Joel Embiid"],
+  ]) {
+    if (substantive.has(name)) continue;
+    assert.equal(urls.find((u) => u.loc === `/player/${slug}`), undefined, `${name} has no Pulse card`);
+  }
+  const slateTeam = pulseFile.match(/export const gamePreviews\s*=\s*\[[\s\S]*?\bhomeTeam:\s*"([A-Z]{3})"/)?.[1];
+  if (slateTeam) {
+    assert.equal(urls.find((u) => u.loc === `/team/${slateTeam.toLowerCase()}`)?.lastmod, editionIso);
+  }
+  const paul = urls.find((u) => u.loc === "/player/chris-paul");
+  if (paul && !substantive.has("Chris Paul")) {
+    assert.match(paul.lastmod, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(paul.lastmod <= editionIso, `Chris Paul lastmod ${paul.lastmod} is after edition ${editionIso}`);
+  }
+  const playerDates = new Set(urls.filter((u) => u.loc.startsWith("/player/")).map((u) => u.lastmod));
+  assert.ok(playerDates.size > 1, "player lastmods must diverge when coverage diverges");
 });
 
 test("published game ids are sitemap locs, and a game without an id cannot ship", () => {
