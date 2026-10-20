@@ -6,11 +6,14 @@ import type { ReactNode } from "react";
 import { ToastProvider } from "../contexts/ToastContext";
 import Player from "../pages/Player";
 import PodcastCompanion from "../pages/PodcastCompanion";
+import Team from "../pages/Team";
 import Tonight from "../pages/Tonight";
 import WatchGuide from "../pages/WatchGuide";
 import PickEm from "../pages/PickEm";
 import { playerSlug } from "../lib/identity";
 import { gamePreviews, injuryUpdates, pulseEdition } from "../lib/pulseData";
+import { isoToDisplayDate } from "../lib/dataTrust";
+import { getTeamIntelByAbbr } from "../lib/teamIntel";
 import { watchGuideData } from "../lib/watchGuideData";
 
 function renderAt(path: string, tree: ReactNode) {
@@ -83,7 +86,23 @@ describe("site review pages", () => {
     } else {
       expect(screen.getByText(`${gamePreviews.length} games on the ESPN board`)).toBeInTheDocument();
       expect(screen.getAllByTestId("tonight-game-card")).toHaveLength(gamePreviews.length);
+      expect(screen.queryByText(/until ~Oct 1/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Waiting on/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/CAMP DESK/)).not.toBeInTheDocument();
     }
+  });
+
+  it("stamps a team page with the content date, not a live clock", async () => {
+    renderAt(
+      "/team/bos",
+      <Switch>
+        <Route path="/team/:abbr" component={Team} />
+      </Switch>,
+    );
+    const expected = isoToDisplayDate(getTeamIntelByAbbr("BOS")?.updatedAt ?? "");
+    expect(expected).toMatch(/^[A-Z][a-z]+ \d{1,2}, \d{4}$/);
+    expect(await screen.findByTestId("team-last-updated")).toHaveTextContent(`Last updated: ${expected}`);
+    expect(screen.getByTestId("team-last-updated").textContent).not.toMatch(/T\d{2}:/);
   });
 
   it("stamps a current watch guide and an outdated podcast", () => {

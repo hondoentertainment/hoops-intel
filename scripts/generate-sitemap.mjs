@@ -305,9 +305,9 @@ function bumpIso(map, code, iso) {
 }
 
 /**
- * A team's sitemap lastmod moves only when that team shows up in the archive,
- * on today's injury wire, or in the lineup roster file. The edition date is
- * not applied to every franchise.
+ * A team's sitemap lastmod moves when that team is in the archive, on today's
+ * Pulse Index, injury wire, or game slate, or in the lineup file. The edition
+ * date is not copied onto every franchise, and the build clock is not a date.
  */
 export function teamContentLastmods({ archiveFile = "", pulseFile = "", lineupFile = "", editionIso = null } = {}) {
   const map = new Map();
@@ -323,10 +323,17 @@ export function teamContentLastmods({ archiveFile = "", pulseFile = "", lineupFi
     }
   }
 
-  const injuryBody = String(pulseFile).match(/export const injuryUpdates\s*=\s*\[([\s\S]*?)\]/)?.[1] ?? "";
   if (editionIso) {
-    for (const m of injuryBody.matchAll(/\bteam:\s*"([A-Z]{2,3})"/g)) {
-      bumpIso(map, canonicalTeamCode(m[1]), editionIso);
+    const deskBodies = [
+      "pulseIndex",
+      "injuryUpdates",
+      "gamePreviews",
+      "gameResults",
+    ].map((name) => String(pulseFile).match(new RegExp(`export const ${name}\\s*=\\s*\\[([\\s\\S]*?)\\]`))?.[1] ?? "");
+    for (const body of deskBodies) {
+      for (const m of body.matchAll(/\b(?:team|homeTeam|awayTeam):\s*"([A-Z]{2,3})"/g)) {
+        bumpIso(map, canonicalTeamCode(m[1]), editionIso);
+      }
     }
   }
 
@@ -344,6 +351,47 @@ export function teamContentLastmods({ archiveFile = "", pulseFile = "", lineupFi
 function extractLatestArchiveIso(archiveFile) {
   const dates = [...archiveFile.matchAll(/(?:["']date["']|\bdate)\s*:\s*"(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]);
   return maxIso(...dates);
+}
+
+/**
+ * Per-player content date. Pulse Index and the injury wire use the edition
+ * day. Everyone else keeps the latest archive edition that actually lists them.
+ * A global edition stamp would tell Google every profile changed this morning.
+ */
+export function playerContentLastmods({ archiveFile = "", pulseFile = "", editionIso = null } = {}) {
+  const map = new Map();
+  const chunks = String(archiveFile).split(/\n\s*\{/).slice(1);
+  for (const chunk of chunks) {
+    const id = chunk.match(/(?:["']id["']|\bid)\s*:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    if (!id) continue;
+    const listed = new Set();
+    for (const block of chunk.matchAll(/\b(?:players|keyPlayers):\s*\[([^\]]*)\]/g)) {
+      for (const name of block[1].matchAll(/"([^"]+)"/g)) listed.add(canonicalPlayerName(name[1]));
+    }
+    const top = chunk.match(/\btopPlayer:\s*"([^"]+)"/)?.[1];
+    if (top) listed.add(canonicalPlayerName(top));
+    for (const name of listed) bumpIso(map, name, id);
+  }
+  if (editionIso) {
+    for (const exportName of ["pulseIndex", "injuryUpdates"]) {
+      const body = String(pulseFile).match(new RegExp(`export const ${exportName}\\s*=\\s*\\[([\\s\\S]*?)\\]`))?.[1] ?? "";
+      for (const m of body.matchAll(/\bplayer:\s*"([^"]+)"/g)) {
+        bumpIso(map, canonicalPlayerName(m[1]), editionIso);
+      }
+    }
+  }
+  return map;
+}
+
+function playerLastmodsBySlug(nameDates) {
+  const bySlug = new Map();
+  for (const [name, iso] of nameDates) {
+    const slug = slugify(name);
+    if (!slug) continue;
+    const prev = bySlug.get(slug);
+    if (!prev || iso > prev) bySlug.set(slug, iso);
+  }
+  return bySlug;
 }
 
 /**
@@ -405,7 +453,7 @@ export function lastmodForLoc(loc, ctx) {
     return maxIso(ctx.playoffContentIso, ctx.editionIso) ?? ctx.buildDay;
   }
   if (loc.startsWith("/player/")) {
-    return maxIso(ctx.editionIso, ctx.latestArchiveIso) ?? ctx.buildDay;
+    return ctx.playerLastmods?.get?.(loc.slice("/player/".length)) ?? null;
   }
   if (loc.startsWith("/team/")) {
     const code = canonicalTeamCode(loc.slice("/team/".length));
@@ -514,7 +562,8 @@ export function generate({ write = true, pulseSource = null } = {}) {
     ? readFileSync(join(ROOT, "client/src/lib/lineupData.ts"), "utf8")
     : "";
   const teamLastmods = teamContentLastmods({ archiveFile, pulseFile, lineupFile, editionIso });
-  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso, teamLastmods };
+  const playerLastmods = playerLastmodsBySlug(playerContentLastmods({ archiveFile, pulseFile, editionIso }));
+  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso, teamLastmods, playerLastmods };
 
   const playoffsActive =
     /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);

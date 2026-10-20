@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findPlayerInjury, playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
-import { deskStaleNote, isDeskEditionStale, lastUpdatedStamp } from "../lib/dataTrust";
+import { deskStaleNote, displayDateToIso, isDeskEditionStale, isoToDisplayDate, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { filterBrowsePlayers, listBrowsePlayers, playerProfileHref } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
@@ -49,6 +49,10 @@ describe("playersIndex", () => {
     expect(profileSeoIndexable("VJ Edgecombe", { mentions: 4 })).toBe(false);
 
     expect(filterBrowsePlayers(rows, "", "all")[0]?.pulseRank).toBe(1);
+    for (const row of rows) {
+      expect(row.name).not.toMatch(/role players|placeholder|lorem ipsum|coming soon|\bTBD\b/i);
+      expect(row.label).not.toMatch(/placeholder|lorem|coming soon|\bTBD\b/i);
+    }
 
     const slugs = rows.map((player) => player.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
@@ -118,6 +122,9 @@ describe("player availability badges", () => {
 describe("freshness stamp", () => {
   it("uses the edition date, not a live clock", () => {
     expect(lastUpdatedStamp()).toBe(`Last updated: ${pulseEdition.date}`);
+    expect(displayDateToIso("October 20, 2026")).toBe("2026-10-20");
+    expect(isoToDisplayDate("2026-10-17")).toBe("October 17, 2026");
+    expect(isoToDisplayDate("not-a-date")).toBeNull();
   });
 
   it("treats a same-day Pacific edition as fresh and yesterday as stale", () => {

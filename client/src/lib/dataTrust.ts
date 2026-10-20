@@ -8,6 +8,30 @@ export function editionUpdatedLabel(): string {
   return `Updated ${EDITION_PUBLISH_LABEL} · ${pulseEdition.date}`;
 }
 
+const DISPLAY_MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+/** "October 20, 2026" → "2026-10-20". Display strings only — no Date timezone shift. */
+export function displayDateToIso(display: string | null | undefined): string | null {
+  const named = String(display ?? "").trim().match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/);
+  if (!named) return null;
+  const month = DISPLAY_MONTHS.findIndex((name) => name.toLowerCase() === named[1]!.toLowerCase()) + 1;
+  const day = Number(named[2]);
+  if (!month || day < 1 || day > 31) return null;
+  return `${named[3]}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+/** ISO day → "October 20, 2026". Accepts a date-only stamp or a datetime prefix. */
+export function isoToDisplayDate(iso: string | null | undefined): string | null {
+  const match = String(iso ?? "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return null;
+  const month = DISPLAY_MONTHS[Number(match[2]) - 1];
+  if (!month) return null;
+  return `${month} ${Number(match[3])}, ${match[1]}`;
+}
+
 /** Visible desk stamp — edition date only, no live clock. */
 export function lastUpdatedStamp(display = pulseEdition.date): string {
   return `Last updated: ${display}`;
