@@ -1,5 +1,5 @@
 // Momentum Engine — Real-time narrative momentum shifts
-// Last updated: October 16, 2026
+// Last updated: October 21, 2026
 // Live at: https://hoopsintel.net/momentum
 
 export interface MomentumSwing {
@@ -34,151 +34,145 @@ export interface MomentumData {
 }
 
 export const momentumData: MomentumData = {
-  generatedDate: "2026-10-20",
-  date: "October 16, 2026",
-  gameOfTheNight: "TOR-NYK-20261015",
+  generatedDate: "2026-10-21",
+  date: "October 21, 2026",
+  gameOfTheNight: "PHI-NYK-20261020",
   topClutchPerformer: {
-    player: "Jalen Brunson",
-    team: "New York Knicks",
-    clutchRating: 88,
-    description:
-      "Brunson authored the defining sequence of Thursday's tightest game, orchestrating back-to-back fourth-quarter possessions that converted a two-point Knicks deficit into a lead MSG never surrendered. With the organization's preseason credibility on the line at 0-4, he delivered the window's most contextually loaded clutch shift — two points of final margin, maximum organizational weight.",
+    player: "Tyrese Maxey",
+    team: "PHI",
+    clutchRating: 91,
+    description: "Maxey authored three consecutive clutch buckets in the final four minutes at Madison Square Garden, each one landing like a grenade in one of the loudest buildings in sports. His ability to manufacture clean looks against New York's switching schemes — and convert them — was the single reason Philadelphia walked out of MSG with a win.",
   },
   games: [
     {
-      gameId: "TOR-NYK-20261015",
-      teams: { home: "NYK", away: "TOR" },
-      finalScore: { home: 122, away: 120 },
+      gameId: "BOS-DET-20261020",
+      teams: { home: "DET", away: "BOS" },
+      finalScore: { home: 121, away: 113 },
       swings: [
         {
-          quarter: "Q1",
-          timestamp: "4:12",
-          description:
-            "Toronto opened with a crisp pick-and-roll attack that caught the Knicks' defense rotating late, igniting a 9-2 run that established early road control inside MSG.",
-          runScore: "18-9 TOR",
-          momentum: "away",
-          keyPlayer: "Scottie Barnes",
-          impact: "significant",
-        },
-        {
           quarter: "Q2",
-          timestamp: "7:44",
-          description:
-            "New York answered with a sustained half-court grind, converting six consecutive mid-range possessions and forcing Toronto into three shot-clock violations to reclaim the lead before halftime.",
-          runScore: "54-48 NYK",
+          timestamp: "6:41",
+          description: "Cunningham orchestrated a 12-2 Detroit run through the mid-second quarter, turning a two-point edge into a commanding 14-point lead. His pick-and-roll reads carved Boston's switching defense apart, and the Little Caesars crowd sensed the statement being made in real time.",
+          runScore: "12-2 DET",
           momentum: "home",
-          keyPlayer: "Jalen Brunson",
-          impact: "significant",
-        },
-        {
-          quarter: "Q3",
-          timestamp: "3:28",
-          description:
-            "Toronto's bench unit erupted with a 12-3 third-quarter burst, exploiting Knicks rotation fatigue and converting three straight transition layups to swing the lead back to the Raptors heading into the final frame.",
-          runScore: "88-92 TOR",
-          momentum: "away",
-          keyPlayer: "Immanuel Quickley",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "5:51",
-          description:
-            "Brunson seized the game's most critical juncture, drilling back-to-back pull-up jumpers over Toronto's coverage to flip a two-point deficit into a lead that MSG's crowd instantly amplified into a full organizational exhale.",
-          runScore: "108-104 NYK",
-          momentum: "home",
-          keyPlayer: "Jalen Brunson",
-          impact: "game-changing",
-        },
-        {
-          quarter: "Q4",
-          timestamp: "0:38",
-          description:
-            "Toronto trimmed it to one on a Scottie Barnes putback with under a minute left, triggering a final possession sequence that required the Knicks to execute in a pressure environment they had repeatedly failed to navigate this preseason.",
-          runScore: "120-119 NYK",
-          momentum: "away",
-          keyPlayer: "Scottie Barnes",
-          impact: "significant",
-        },
-      ],
-      clutchPlays: [
-        {
-          player: "Jalen Brunson",
-          team: "New York Knicks",
-          description:
-            "Consecutive pull-up jumpers in the paint over switching coverage flipped a 104-106 deficit into a 108-106 lead with 5:51 remaining — the singular possession sequence that defined NYK's survival.",
-          timeRemaining: "5:51",
-          winProbabilityShift: 34,
-        },
-        {
-          player: "Scottie Barnes",
-          team: "Toronto Raptors",
-          description:
-            "Offensive rebound and putback over two defenders cut the Knicks' lead to one with 38 seconds left, forcing New York into a must-execute final possession and briefly swinging the room's oxygen to the Toronto bench.",
-          timeRemaining: "0:38",
-          winProbabilityShift: -22,
-        },
-        {
-          player: "OG Anunoby",
-          team: "New York Knicks",
-          description:
-            "Sealed the game with two clutch free throws at the 14-second mark after drawing a foul on Toronto's desperate full-court trap, providing the two-point cushion that became the final margin.",
-          timeRemaining: "0:14",
-          winProbabilityShift: 28,
-        },
-      ],
-      narrative:
-        "Thursday's game at Madison Square Garden was less a basketball showcase than an organizational stress test conducted in public, with two points of final margin doing heavy lifting for a franchise that had spent four preseason games searching for a reason to believe in itself. Toronto controlled tempo for long stretches — their bench unit's third-quarter burst was the game's single most decisive non-Brunson sequence — but the Raptors could not sustain that energy into a fourth quarter where MSG's urgency became a genuine environmental factor. Brunson's back-to-back pull-ups at the 5:51 mark were the kind of possessions that shift a team's preseason psychological ledger, converting collective anxiety into something resembling competence. The two-point margin is thin enough to be suspicious and meaningful enough to matter — NYK at 1-4 is still a damaged preseason number, but the alternative result would have been the window's most corrosive organizational outcome for an East contender.",
-    },
-    {
-      gameId: "OKC-HOU-20261015",
-      teams: { home: "HOU", away: "OKC" },
-      finalScore: { home: 116, away: 89 },
-      swings: [
-        {
-          quarter: "Q1",
-          timestamp: "6:33",
-          description:
-            "Houston imposed physical interior pressure from the opening tip, with Sengun converting four consecutive post-up opportunities that immediately signaled OKC's inability to match the Rockets' size on the interior.",
-          runScore: "18-8 HOU",
-          momentum: "home",
-          keyPlayer: "Alperen Sengun",
-          impact: "significant",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "9:02",
-          description:
-            "SGA briefly stabilized Oklahoma City with three straight isolation scores to start the second quarter, pulling the Thunder within seven and suggesting a competitive game remained available if OKC could generate stops.",
-          runScore: "22-29 OKC",
-          momentum: "away",
-          keyPlayer: "Shai Gilgeous-Alexander",
-          impact: "notable",
-        },
-        {
-          quarter: "Q2",
-          timestamp: "2:17",
-          description:
-            "Houston's defensive rotation collapsed OKC's half-court offense into a six-minute scoring drought, during which the Rockets converted in transition four times to blow the game decisively open before halftime and effectively end the contest as a competitive event.",
-          runScore: "64-38 HOU",
-          momentum: "home",
-          keyPlayer: "Jalen Green",
+          keyPlayer: "Cade Cunningham",
           impact: "game-changing",
         },
         {
           quarter: "Q3",
-          timestamp: "5:44",
-          description:
-            "Toyota Center's crowd reached its loudest register as Houston's starters completed the window's most thorough national-TV statement, extending the margin beyond 30 and rendering the second half a glorified exhibition for the Rockets' depth rotation.",
-          runScore: "94-62 HOU",
+          timestamp: "3:15",
+          description: "Detroit extended its advantage to 16 on the back of relentless transition defense and two consecutive Cunningham-to-Duren lobs that energized a building already at full volume. Boston's half-court offense looked labored and disjointed against Detroit's disciplined rotations.",
+          runScore: "8-2 DET",
           momentum: "home",
-          keyPlayer: "Alperen Sengun",
+          keyPlayer: "Cade Cunningham",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "4:52",
+          description: "Tatum ignited a 9-2 Boston push to trim the deficit to five, briefly threatening to turn a rout into a genuine drama. The Celtics' pressure forced two Detroit turnovers in 90 seconds and the Garden North crowd in Detroit suddenly tensed — but the Pistons' defensive identity reasserted itself before Boston could get any closer.",
+          runScore: "9-2 BOS",
+          momentum: "away",
+          keyPlayer: "Jayson Tatum",
           impact: "significant",
         },
       ],
       clutchPlays: [],
-      narrative:
-        "This was not a game so much as a 48-minute demonstration of organizational divergence — Houston knowing exactly what it is, Oklahoma City unable to access what it was supposed to be. The Rockets' second-quarter defensive stretch was the decisive sequence: a six-minute OKC scoring drought that Toyota Center metabolized into full-venue energy, and by the time the margin crested 26 at halftime the game's only remaining question was how large Houston's statement would ultimately read on a national-TV box score. SGA's brief second-quarter stabilization window was the game's one moment of competitive ambiguity — three isolation scores that briefly suggested OKC had a path — but the Thunder's inability to generate a single defensive stop during Houston's closing burst answered the question before it could fully form. At 1-4 entering the final preseason weekend, Oklahoma City is now the desk's loudest West alarm: the window is nearly closed, the national-TV sample has been damning, and the gap between what the Thunder looked like last April and what they look like tonight is the most unsettling organizational distance in the Western Conference.",
+      narrative: "Detroit used the home opener as a proving ground, and the Pistons passed with distinction. Cunningham's 34-point masterclass was less about the volume and more about the timing — every big shot came at a moment Boston needed a stop. The Celtics' 4-0 preseason glow faded fast under Detroit's suffocating defensive structure, and the East's hierarchy just sent its clearest opening-night signal in years.",
+    },
+    {
+      gameId: "OKC-SAS-20261020",
+      teams: { home: "SAS", away: "OKC" },
+      finalScore: { home: 104, away: 116 },
+      swings: [
+        {
+          quarter: "Q1",
+          timestamp: "2:30",
+          description: "SGA opened the game with nine straight Oklahoma City points on back-to-back pull-up mid-rangers and a floater through contact, establishing an immediate tone that Frost Bank Center had no answer for. The Thunder's pace was relentless from the opening tip.",
+          runScore: "9-0 OKC",
+          momentum: "away",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "significant",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "5:10",
+          description: "Wembanyama briefly dragged San Antonio within five with a pair of mid-range pull-ups and a chase-down block that momentarily rewired the building's energy. The Spurs rattled off eight straight and the crowd sensed a potential comeback brewing in the South Texas heat.",
+          runScore: "8-3 SAS",
+          momentum: "home",
+          keyPlayer: "Victor Wembanyama",
+          impact: "notable",
+        },
+        {
+          quarter: "Q3",
+          timestamp: "1:44",
+          description: "SGA responded to San Antonio's surge with a step-back three followed by a coast-to-coast finish, stretching the lead back to double digits and effectively ending the Spurs' comeback window. OKC's ball movement in the third quarter was a clinic in pace-and-pressure basketball.",
+          runScore: "10-3 OKC",
+          momentum: "away",
+          keyPlayer: "Shai Gilgeous-Alexander",
+          impact: "game-changing",
+        },
+      ],
+      clutchPlays: [],
+      narrative: "Oklahoma City came to San Antonio with a 1-4 preseason scar and left with a statement. SGA's 38 points weren't just a statistical achievement — they were a series of precision strikes at every moment the Spurs found footing. Wembanyama showed flashes of brilliance but could never recruit enough secondary support to sustain pressure, and OKC's depth advantage became the story of the second half.",
+    },
+    {
+      gameId: "PHI-NYK-20261020",
+      teams: { home: "NYK", away: "PHI" },
+      finalScore: { home: 100, away: 106 },
+      swings: [
+        {
+          quarter: "Q2",
+          timestamp: "8:22",
+          description: "New York's home energy materialized into a 10-3 run that pushed the Knicks ahead by eight, riding Brunson's pick-and-roll mastery and a pair of corner threes from the wings. MSG was at full roar and it looked like the Knicks' 11-game closing streak was ready to roll seamlessly into 2026-27.",
+          runScore: "10-3 NYK",
+          momentum: "home",
+          keyPlayer: "Jalen Brunson",
+          impact: "significant",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "5:30",
+          description: "Philadelphia's switching scheme finally caught up with Brunson — neutralizing him for a critical four-minute stretch — while Maxey seized control with back-to-back pull-up jumpers to flip a four-point New York lead into a two-point Philly advantage. The momentum shift was palpable and the building grew uneasy.",
+          runScore: "11-3 PHI",
+          momentum: "away",
+          keyPlayer: "Tyrese Maxey",
+          impact: "game-changing",
+        },
+        {
+          quarter: "Q4",
+          timestamp: "1:55",
+          description: "New York trimmed it to two on a Brunson drive-and-finish with under two minutes left, giving MSG one final surge of desperate belief. But Maxey answered on the very next possession with a step-back three that put Philadelphia up five and effectively sealed the stunning road win.",
+          runScore: "5-2 PHI",
+          momentum: "away",
+          keyPlayer: "Tyrese Maxey",
+          impact: "game-changing",
+        },
+      ],
+      clutchPlays: [
+        {
+          player: "Tyrese Maxey",
+          team: "PHI",
+          description: "Consecutive pull-up jumpers in the final five minutes erased a four-point Knicks lead and shifted the game's entire gravitational center toward Philadelphia. Maxey was operating in a different gear than everyone else on the floor.",
+          timeRemaining: "4:58",
+          winProbabilityShift: 34,
+        },
+        {
+          player: "Tyrese Maxey",
+          team: "PHI",
+          description: "Step-back three-pointer over a closing Knick defender with 1:47 remaining, extending the lead to five and functionally ending New York's hope of an opening-night recovery. The shot silenced 20,000 people instantaneously.",
+          timeRemaining: "1:47",
+          winProbabilityShift: 41,
+        },
+        {
+          player: "Jalen Brunson",
+          team: "NYK",
+          description: "Crafty left-handed finish through contact to cut the deficit to two with under two minutes to play, momentarily reigniting MSG and setting up what could have been a frantic final sequence.",
+          timeRemaining: "1:58",
+          winProbabilityShift: -18,
+        },
+      ],
+      narrative: "Madison Square Garden opened its 2026-27 season in stunned silence, and Tyrese Maxey was the architect of that silence. The 76ers executed a textbook late-game heist — locking down Brunson precisely when New York needed him most, then watching Maxey take the game by the throat in the final four minutes. Philadelphia's opening-night road win at MSG is the kind of result that echoes through a franchise's early-season psyche, and for the Knicks, an 11-game win streak suddenly feels like ancient history.",
     },
   ],
 };
