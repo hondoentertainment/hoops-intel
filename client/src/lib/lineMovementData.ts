@@ -8,28 +8,84 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "October 20, 2026";
+export const lineMovementEditionDate = "October 21, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "BOS",
-    homeTeam: "DET",
-    openingSpread: "DET -1.0",
-    closingSpread: "DET -1.5",
-    updatedAt: "2026-10-21T08:23:50.058Z",
+    awayTeam: "GSW",
+    homeTeam: "LAL",
+    openingSpread: "LAL -2.5",
+    closingSpread: "LAL -3.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
   },
   {
-    awayTeam: "PHI",
-    homeTeam: "NYK",
-    openingSpread: "NYK -3.5",
-    closingSpread: "NYK -4.5",
-    updatedAt: "2026-10-21T08:23:50.058Z",
+    awayTeam: "MIN",
+    homeTeam: "MIA",
+    openingSpread: "MIN -1.0",
+    closingSpread: "MIN -1.5",
+    updatedAt: "2026-10-21T13:14:32.911Z",
   },
   {
-    awayTeam: "OKC",
-    homeTeam: "SAS",
-    openingSpread: "SAS -1.5",
-    closingSpread: "SAS -2.0",
-    updatedAt: "2026-10-21T08:23:50.058Z",
+    awayTeam: "DAL",
+    homeTeam: "HOU",
+    openingSpread: "HOU -1.5",
+    closingSpread: "HOU -2.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "ATL",
+    homeTeam: "ORL",
+    openingSpread: "ATL -2.0",
+    closingSpread: "ATL -2.5",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "MIL",
+    homeTeam: "WAS",
+    openingSpread: "MIL -7.0",
+    closingSpread: "MIL -7.5",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "CHA",
+    homeTeam: "BRK",
+    openingSpread: "BRK -3.0",
+    closingSpread: "BRK -3.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "CHI",
+    homeTeam: "TOR",
+    openingSpread: "TOR -1.5",
+    closingSpread: "TOR -2.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "UTA",
+    homeTeam: "MEM",
+    openingSpread: "MEM -5.0",
+    closingSpread: "MEM -5.5",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "IND",
+    homeTeam: "NOP",
+    openingSpread: "NOP -1.5",
+    closingSpread: "NOP -1.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "PHX",
+    homeTeam: "POR",
+    openingSpread: "POR -1.0",
+    closingSpread: "POR -1.5",
+    updatedAt: "2026-10-21T13:14:32.911Z",
+  },
+  {
+    awayTeam: "SAC",
+    homeTeam: "LAC",
+    openingSpread: "LAC -3.5",
+    closingSpread: "LAC -4.0",
+    updatedAt: "2026-10-21T13:14:32.911Z",
   }
 ];
