@@ -15,73 +15,19 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "October 21, 2026",
+    editionDate: "October 22, 2026",
     games: [
       {
-        awayTeam: "GSW",
-        homeTeam: "LAL",
-        openingSpread: "LAL -2.5",
-        closingSpread: "LAL -3.0",
+        awayTeam: "CLE",
+        homeTeam: "PHI",
+        openingSpread: "PHI -3.0",
+        closingSpread: "PHI -3.5",
       },
       {
-        awayTeam: "MIN",
-        homeTeam: "MIA",
-        openingSpread: "MIN -1.0",
-        closingSpread: "MIN -1.5",
-      },
-      {
-        awayTeam: "DAL",
-        homeTeam: "HOU",
-        openingSpread: "HOU -1.5",
-        closingSpread: "HOU -2.0",
-      },
-      {
-        awayTeam: "ATL",
-        homeTeam: "ORL",
-        openingSpread: "ATL -2.0",
-        closingSpread: "ATL -2.5",
-      },
-      {
-        awayTeam: "MIL",
-        homeTeam: "WAS",
-        openingSpread: "MIL -7.0",
-        closingSpread: "MIL -7.5",
-      },
-      {
-        awayTeam: "CHA",
-        homeTeam: "BRK",
-        openingSpread: "BRK -3.0",
-        closingSpread: "BRK -3.0",
-      },
-      {
-        awayTeam: "CHI",
-        homeTeam: "TOR",
-        openingSpread: "TOR -1.5",
-        closingSpread: "TOR -2.0",
-      },
-      {
-        awayTeam: "UTA",
-        homeTeam: "MEM",
-        openingSpread: "MEM -5.0",
-        closingSpread: "MEM -5.5",
-      },
-      {
-        awayTeam: "IND",
-        homeTeam: "NOP",
-        openingSpread: "NOP -1.5",
-        closingSpread: "NOP -1.0",
-      },
-      {
-        awayTeam: "PHX",
-        homeTeam: "POR",
-        openingSpread: "POR -1.0",
-        closingSpread: "POR -1.5",
-      },
-      {
-        awayTeam: "SAC",
-        homeTeam: "LAC",
-        openingSpread: "LAC -3.5",
-        closingSpread: "LAC -4.0",
+        awayTeam: "DEN",
+        homeTeam: "OKC",
+        openingSpread: "OKC -2.0",
+        closingSpread: "OKC -2.5",
       }
     ],
   }
