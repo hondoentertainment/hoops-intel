@@ -8,21 +8,49 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "October 22, 2026";
+export const lineMovementEditionDate = "October 23, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "CLE",
-    homeTeam: "PHI",
-    openingSpread: "PHI -3.0",
-    closingSpread: "PHI -3.5",
-    updatedAt: "2026-10-23T08:24:12.189Z",
+    awayTeam: "NYK",
+    homeTeam: "BOS",
+    openingSpread: "BOS -2.5",
+    closingSpread: "BOS -3.0",
+    updatedAt: "2026-10-23T13:12:06.952Z",
   },
   {
-    awayTeam: "DEN",
-    homeTeam: "OKC",
-    openingSpread: "OKC -2.0",
-    closingSpread: "OKC -2.5",
-    updatedAt: "2026-10-23T08:24:12.189Z",
+    awayTeam: "HOU",
+    homeTeam: "SAS",
+    openingSpread: "HOU -1.0",
+    closingSpread: "HOU -1.5",
+    updatedAt: "2026-10-23T13:12:06.952Z",
+  },
+  {
+    awayTeam: "LAC",
+    homeTeam: "LAL",
+    openingSpread: "LAL -1.5",
+    closingSpread: "LAL -2.0",
+    updatedAt: "2026-10-23T13:12:06.952Z",
+  },
+  {
+    awayTeam: "DAL",
+    homeTeam: "IND",
+    openingSpread: "IND -2.0",
+    closingSpread: "IND -2.5",
+    updatedAt: "2026-10-23T13:12:06.952Z",
+  },
+  {
+    awayTeam: "CHI",
+    homeTeam: "MIL",
+    openingSpread: "MIL -5.0",
+    closingSpread: "MIL -5.5",
+    updatedAt: "2026-10-23T13:12:06.952Z",
+  },
+  {
+    awayTeam: "MEM",
+    homeTeam: "GSW",
+    openingSpread: "GSW -1.5",
+    closingSpread: "GSW -1.0",
+    updatedAt: "2026-10-23T13:12:06.952Z",
   }
 ];
