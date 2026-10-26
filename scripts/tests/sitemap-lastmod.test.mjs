@@ -28,6 +28,7 @@ import {
   displayDateToIso,
   sitemapLastmodTracksEdition,
 } from "../lib/edition-date-alignment.mjs";
+import { pulseCardThinShellLocs } from "../validate-generated-structure.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -523,6 +524,21 @@ test("committed sitemap player locs match generate() so new profiles ship on pub
   for (const loc of committed) {
     assert.ok(generated.has(loc), `committed sitemap has stale ${loc}`);
   }
+});
+
+test("thin-shell sitemap ban lifts when that player has a Pulse card", () => {
+  assert.deepEqual(
+    pulseCardThinShellLocs(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8")),
+    [],
+  );
+  const pulse = `export const pulseIndex = [
+  {rank:4,player:"Kawhi Leonard",team:"LAC",indexScore:81.2,keyStats:"24.1 / 5.8 / 3.4",note:"Returns as the Clippers' closer."},
+];`;
+  assert.deepEqual(pulseCardThinShellLocs(pulse), ["/player/kawhi-leonard"]);
+  assert.deepEqual(
+    pulseCardThinShellLocs(`export const pulseIndex = [{player:"Kawhi Leonard",team:"LAC"}];`),
+    [],
+  );
 });
 
 test("team lastmod moves only when that team is on the wire, in the archive, or on the lineup file", () => {
