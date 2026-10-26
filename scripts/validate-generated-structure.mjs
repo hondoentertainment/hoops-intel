@@ -13,6 +13,19 @@ import { fileURLToPath } from "url";
 import { validateOutput } from "./lib/validate-output.mjs";
 import { GAME_ID_PATTERN, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
 import { collectCommittedEditionDateErrors } from "./lib/edition-date-alignment.mjs";
+import { substantivePulseNames } from "./generate-sitemap.mjs";
+
+/** Fixture shells — keep them out of the sitemap unless they have a Pulse card. */
+export const THIN_PLAYER_SHELLS = [
+  { loc: "/player/kawhi-leonard", pulseName: "Kawhi Leonard" },
+  { loc: "/player/vj-edgecombe", pulseName: "VJ Edgecombe" },
+];
+
+export function pulseCardThinShellLocs(pulseFile) {
+  const block = String(pulseFile).match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/);
+  const names = substantivePulseNames(block ? block[1] : "");
+  return THIN_PLAYER_SHELLS.filter((row) => names.has(row.pulseName)).map((row) => row.loc);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -181,7 +194,10 @@ export function validateWorldClassRoutes() {
       !locs.some((loc) => loc.endsWith("/account")),
       "sitemap should not include the private account hub",
     );
-    for (const thin of ["/player/kawhi-leonard", "/player/vj-edgecombe"]) {
+    const pulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+    const allowedThin = new Set(pulseCardThinShellLocs(pulse));
+    for (const { loc: thin } of THIN_PLAYER_SHELLS) {
+      if (allowedThin.has(thin)) continue;
       assertCond(
         !locs.some((loc) => loc.endsWith(thin)),
         `sitemap should not index thin player shell: ${thin}`,
@@ -205,7 +221,6 @@ export function validateWorldClassRoutes() {
       );
       assertCond(Boolean(block), `sitemap player entry truncated or incomplete: ${loc}`);
     }
-    const pulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
     const archive = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
     const dateErrors = collectCommittedEditionDateErrors({
       pulseSource: pulse,
