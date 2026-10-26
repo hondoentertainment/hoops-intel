@@ -11,7 +11,7 @@ import Tonight from "../pages/Tonight";
 import WatchGuide from "../pages/WatchGuide";
 import PickEm from "../pages/PickEm";
 import { playerSlug } from "../lib/identity";
-import { gamePreviews, injuryUpdates, pulseEdition } from "../lib/pulseData";
+import { gamePreviews, injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { isoToDisplayDate } from "../lib/dataTrust";
 import { getTeamIntelByAbbr } from "../lib/teamIntel";
 import { watchGuideData } from "../lib/watchGuideData";
@@ -56,8 +56,12 @@ describe("site review pages", () => {
   });
 
   it("labels a Pulse player missing from the injury wire as not listed", async () => {
+    const wired = new Set(injuryUpdates.map((row) => playerSlug(row.player)));
+    const clear = pulseIndex.find((row) => !wired.has(playerSlug(row.player)));
+    expect(clear, "Pulse Index should include a player who is not on the injury wire").toBeTruthy();
+    const slug = playerSlug(clear!.player);
     renderAt(
-      "/player/shai-gilgeous-alexander",
+      `/player/${slug}`,
       <Switch>
         <Route path="/player/:slug" component={Player} />
       </Switch>,
