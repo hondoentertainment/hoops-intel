@@ -19,6 +19,8 @@ import { substantivePulseNames } from "./generate-sitemap.mjs";
 export const THIN_PLAYER_SHELLS = [
   { loc: "/player/kawhi-leonard", pulseName: "Kawhi Leonard" },
   { loc: "/player/vj-edgecombe", pulseName: "VJ Edgecombe" },
+  { loc: "/player/jamal-murray", pulseName: "Jamal Murray" },
+  { loc: "/player/ja-morant", pulseName: "Ja Morant" },
 ];
 
 export function pulseCardThinShellLocs(pulseFile) {
@@ -115,6 +117,17 @@ function assertCond(c, msg) {
   if (!c) throw new Error(msg);
 }
 
+export function assertThinPlayerShells(locs, pulseFile) {
+  const allowedThin = new Set(pulseCardThinShellLocs(pulseFile));
+  for (const { loc: thin } of THIN_PLAYER_SHELLS) {
+    if (allowedThin.has(thin)) continue;
+    assertCond(
+      !locs.some((loc) => String(loc).endsWith(thin)),
+      `sitemap should not index thin player shell: ${thin}`,
+    );
+  }
+}
+
 export function validateWorldClassRoutes() {
   const requiredFiles = [
     "client/src/lib/gameCenter.ts",
@@ -194,15 +207,7 @@ export function validateWorldClassRoutes() {
       !locs.some((loc) => loc.endsWith("/account")),
       "sitemap should not include the private account hub",
     );
-    const pulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
-    const allowedThin = new Set(pulseCardThinShellLocs(pulse));
-    for (const { loc: thin } of THIN_PLAYER_SHELLS) {
-      if (allowedThin.has(thin)) continue;
-      assertCond(
-        !locs.some((loc) => loc.endsWith(thin)),
-        `sitemap should not index thin player shell: ${thin}`,
-      );
-    }
+    assertThinPlayerShells(locs, pulse);
     assertCond(
       locs.some((loc) => loc.includes("/player/chris-paul")),
       "retired Chris Paul should stay in the sitemap with roster-status context",
