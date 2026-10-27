@@ -15,61 +15,31 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "October 26, 2026",
+    editionDate: "October 27, 2026",
     games: [
       {
-        awayTeam: "PHX",
-        homeTeam: "OKC",
-        openingSpread: "OKC -3.5",
-        closingSpread: "OKC -4.0",
+        awayTeam: "DET",
+        homeTeam: "NYK",
+        openingSpread: "NYK -1.0",
+        closingSpread: "DET -1.5",
       },
       {
-        awayTeam: "GSW",
-        homeTeam: "DEN",
-        openingSpread: "DEN -5.0",
-        closingSpread: "DEN -5.5",
+        awayTeam: "POR",
+        homeTeam: "LAL",
+        openingSpread: "LAL -3.5",
+        closingSpread: "LAL -4.5",
       },
       {
-        awayTeam: "IND",
-        homeTeam: "MIL",
-        openingSpread: "MIL -2.0",
-        closingSpread: "MIL -1.5",
-      },
-      {
-        awayTeam: "ATL",
-        homeTeam: "HOU",
-        openingSpread: "HOU -3.0",
-        closingSpread: "HOU -3.5",
-      },
-      {
-        awayTeam: "CHI",
+        awayTeam: "BRK",
         homeTeam: "BOS",
-        openingSpread: "BOS -4.0",
-        closingSpread: "BOS -4.5",
+        openingSpread: "BOS -8.5",
+        closingSpread: "BOS -9.5",
       },
       {
-        awayTeam: "CLE",
-        homeTeam: "MIN",
-        openingSpread: "MIN -4.5",
-        closingSpread: "MIN -5.0",
-      },
-      {
-        awayTeam: "DAL",
-        homeTeam: "MIA",
-        openingSpread: "DAL -1.0",
-        closingSpread: "DAL -1.5",
-      },
-      {
-        awayTeam: "MEM",
-        homeTeam: "UTA",
-        openingSpread: "MEM -2.0",
-        closingSpread: "MEM -2.5",
-      },
-      {
-        awayTeam: "WAS",
-        homeTeam: "CHA",
-        openingSpread: "CHA -1.5",
-        closingSpread: "CHA -2.0",
+        awayTeam: "SAC",
+        homeTeam: "SAS",
+        openingSpread: "SAS -2.5",
+        closingSpread: "SAS -3.0",
       }
     ],
   }
