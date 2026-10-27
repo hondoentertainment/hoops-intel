@@ -28,7 +28,7 @@ import {
   displayDateToIso,
   sitemapLastmodTracksEdition,
 } from "../lib/edition-date-alignment.mjs";
-import { pulseCardThinShellLocs } from "../validate-generated-structure.mjs";
+import { assertThinPlayerShells, pulseCardThinShellLocs, THIN_PLAYER_SHELLS } from "../validate-generated-structure.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -497,8 +497,10 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assert.match(injuries.lastmod, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(Number(tonight.priority) > Number(tools.priority));
   assert.ok(Number(injuries.priority) > Number(tools.priority));
-  const requiredPlayers = ["victor-wembanyama"];
-  for (const slug of requiredPlayers) {
+  const playerLocs = urls.filter((u) => u.loc.startsWith("/player/")).map((u) => u.loc);
+  assert.ok(playerLocs.length >= 1, "expected substantive player profiles in the sitemap");
+  for (const loc of playerLocs) {
+    const slug = loc.slice("/player/".length);
     const block = xml.match(
       new RegExp(
         `<url>\\s*<loc>https:\\/\\/hoopsintel\\.net\\/player\\/${slug}<\\/loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}<\\/lastmod>\\s*<changefreq>[a-z]+<\\/changefreq>\\s*<priority>[0-9.]+<\\/priority>\\s*<\\/url>`,
@@ -527,18 +529,79 @@ test("committed sitemap player locs match generate() so new profiles ship on pub
 });
 
 test("thin-shell sitemap ban lifts when that player has a Pulse card", () => {
-  assert.deepEqual(
-    pulseCardThinShellLocs(readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8")),
-    [],
-  );
+  const livePulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  const sitemap = readFileSync(join(ROOT, "public/sitemap.xml"), "utf8");
+  const lifted = new Set(pulseCardThinShellLocs(livePulse));
+  for (const { loc } of THIN_PLAYER_SHELLS) {
+    if (!sitemap.includes(`https://hoopsintel.net${loc}</loc>`)) continue;
+    assert.ok(lifted.has(loc), `${loc} is in the committed sitemap without a substantive Pulse card`);
+  }
+
   const pulse = `export const pulseIndex = [
   {rank:4,player:"Kawhi Leonard",team:"LAC",indexScore:81.2,keyStats:"24.1 / 5.8 / 3.4",note:"Returns as the Clippers' closer."},
 ];`;
   assert.deepEqual(pulseCardThinShellLocs(pulse), ["/player/kawhi-leonard"]);
-  assert.deepEqual(
-    pulseCardThinShellLocs(`export const pulseIndex = [{player:"Kawhi Leonard",team:"LAC"}];`),
-    [],
+  assert.doesNotThrow(() =>
+    assertThinPlayerShells(["https://hoopsintel.net/player/kawhi-leonard"], pulse),
   );
+  const thinKawhi = `export const pulseIndex = [{player:"Kawhi Leonard",team:"LAC"}];`;
+  assert.deepEqual(pulseCardThinShellLocs(thinKawhi), []);
+  assert.throws(
+    () => assertThinPlayerShells(["https://hoopsintel.net/player/kawhi-leonard"], thinKawhi),
+    /thin player shell: \/player\/kawhi-leonard/,
+  );
+
+  for (const [name, loc] of [
+    ["Jamal Murray", "/player/jamal-murray"],
+    ["Ja Morant", "/player/ja-morant"],
+  ]) {
+    const team = name === "Jamal Murray" ? "DEN" : "MEM";
+    const rich = `export const pulseIndex = [{player:"${name}",team:"${team}",indexScore:84.0,keyStats:"28 / 6 / 7",note:"A full counting line and desk note."}];`;
+    assert.deepEqual(pulseCardThinShellLocs(rich), [loc]);
+    assert.doesNotThrow(() => assertThinPlayerShells([`https://hoopsintel.net${loc}`], rich));
+    const bare = `export const pulseIndex = [{player:"${name}",team:"${team}"}];`;
+    assert.deepEqual(pulseCardThinShellLocs(bare), []);
+    assert.throws(
+      () => assertThinPlayerShells([`https://hoopsintel.net${loc}`], bare),
+      new RegExp(`thin player shell: ${loc}`),
+    );
+    const partial = `export const pulseIndex = [{player:"${name}",team:"${team}",indexScore:84.0,keyStats:"28 / 6 / 7"}];`;
+    assert.deepEqual(pulseCardThinShellLocs(partial), []);
+    assert.throws(
+      () => assertThinPlayerShells([`https://hoopsintel.net${loc}`], partial),
+      new RegExp(`thin player shell: ${loc}`),
+    );
+  }
+});
+
+test("generate keeps the four thin shells out until the Pulse card is substantive", () => {
+  const shell = (name, team) => `{player:"${name}",team:"${team}"}`;
+  const card = (name, team) =>
+    `{player:"${name}",team:"${team}",indexScore:88,keyStats:"30 / 10 / 8",note:"Counting line and context."}`;
+  const slate = `
+// GAME RESULTS — No Games
+export const pulseEdition = {date:"December 31, 2099"};
+export const gameResults = [];
+export const gamePreviews = [];
+`;
+  const names = [
+    ["Kawhi Leonard", "LAC", "kawhi-leonard"],
+    ["VJ Edgecombe", "PHI", "vj-edgecombe"],
+    ["Jamal Murray", "DEN", "jamal-murray"],
+    ["Ja Morant", "MEM", "ja-morant"],
+  ];
+  const bare = `${slate}export const pulseIndex = [${names.map(([name, team]) => shell(name, team)).join(",")},${shell("Joel Embiid", "PHI")}];`;
+  const { urls: bareUrls } = generate({ write: false, pulseSource: bare });
+  for (const [, , slug] of names) {
+    assert.equal(bareUrls.some((u) => u.loc === `/player/${slug}`), false, `${slug} has no Pulse card`);
+  }
+  assert.equal(bareUrls.some((u) => u.loc === "/player/joel-embiid"), false);
+
+  const rich = `${slate}export const pulseIndex = [${names.map(([name, team]) => card(name, team)).join(",")},${card("Joel Embiid", "PHI")}];`;
+  const { urls: richUrls } = generate({ write: false, pulseSource: rich });
+  for (const [, , slug] of [...names, ["Joel Embiid", "PHI", "joel-embiid"]]) {
+    assert.equal(richUrls.some((u) => u.loc === `/player/${slug}`), true, `${slug} has a Pulse card`);
+  }
 });
 
 test("team lastmod moves only when that team is on the wire, in the archive, or on the lineup file", () => {
