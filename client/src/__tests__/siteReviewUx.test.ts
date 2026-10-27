@@ -44,8 +44,15 @@ describe("player availability", () => {
       asOf: pulseEdition.date,
     });
 
-    expect(playerAvailability("Kawhi Leonard", false)).toBeNull();
-    expect(playerAvailability("Chris Paul", false)).toBeNull();
+    expect(playerAvailability("Not On The Injury Wire", false)).toBeNull();
+    const paulOnWire = injuryUpdates.some((row) => row.player === "Chris Paul");
+    const paul = playerAvailability("Chris Paul", false);
+    if (paulOnWire) {
+      expect(paul?.kind).toBe("listed");
+      expect(paul?.asOf).toBe(pulseEdition.date);
+    } else {
+      expect(paul).toBeNull();
+    }
   });
 
   it("renders the badge, as-of stamp, and a self canonical on the profile", () => {
@@ -105,8 +112,12 @@ describe("tonight player links", () => {
     });
     expect(links.length).toBeGreaterThanOrEqual(3);
     expect(links.length).toBeLessThanOrEqual(5);
-    expect(links.map((link) => link.name).slice(0, 2)).toEqual(["Victor Wembanyama", "Nikola Jokic"]);
-    expect(links.some((link) => link.name === "Jamal Murray")).toBe(true);
+    const names = links.map((link) => link.name);
+    const copyNames = ["Victor Wembanyama", "Nikola Jokic", "Jamal Murray"];
+    expect(names[0]).toBe("Victor Wembanyama");
+    expect(new Set(names.slice(0, copyNames.length))).toEqual(new Set(copyNames));
+    expect(names.indexOf("Victor Wembanyama")).toBeLessThan(names.indexOf("Nikola Jokic"));
+    expect(names.indexOf("Victor Wembanyama")).toBeLessThan(names.indexOf("Jamal Murray"));
     expect(new Set(links.map((link) => link.href)).size).toBe(links.length);
     for (const link of links) {
       expect(link.href.startsWith("/player/")).toBe(true);

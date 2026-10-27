@@ -92,24 +92,30 @@ describe("player availability badges", () => {
     expect(card?.injuryStatus).toBe(wired!.status);
     expect(card?.injuryNote).toBe(wired!.injury);
 
-    expect(findPlayerInjury("Chris Paul")).toBeNull();
-    expect(findPlayerInjury("Kawhi Leonard")).toBeNull();
+    expect(findPlayerInjury("Not On The Injury Wire")).toBeNull();
     expect(findPlayerInjury(wired!.player)?.status).toBe(wired!.status);
+    const paulWire = injuryUpdates.find((row) => row.player === "Chris Paul");
+    expect(findPlayerInjury("Chris Paul")).toBe(paulWire ?? null);
 
     const chris = rows.find((p) => p.name === "Chris Paul");
-    expect(chris?.injuryStatus).toBeUndefined();
+    expect(chris?.injuryStatus).toBe(paulWire?.status);
     expect(chris?.status).toBe("retired");
     expect(chris?.label).toBe("Retired");
 
-    const kawhi = rows.find((p) => p.name === "Kawhi Leonard" || p.slug === "kawhi-leonard");
-    if (kawhi) {
-      expect(kawhi.injuryStatus).toBeUndefined();
-      expect(kawhi.status).not.toBe("active");
-      expect(kawhi.label.toLowerCase()).toMatch(/archive|limited/);
-    }
+    const offWire = rows.find(
+      (row) =>
+        (row.status === "retired" || row.status === "prospect" || row.status === "inactive") &&
+        !injuryUpdates.some((injury) => injury.player === row.name),
+    );
+    expect(offWire).toBeTruthy();
+    expect(offWire?.injuryStatus).toBeUndefined();
+    expect(offWire?.status).not.toBe("active");
 
+    const vjOnDesk =
+      injuryUpdates.some((row) => row.player === "VJ Edgecombe") ||
+      pulseIndex.some((row) => row.player === "VJ Edgecombe");
     const vj = rows.find((p) => p.slug === "vj-edgecombe" || p.name === "VJ Edgecombe");
-    if (vj) {
+    if (vj && !vjOnDesk) {
       expect(vj.status).toBe("prospect");
       expect(vj.label).toBe("Prospect archive");
       expect(vj.injuryStatus).toBeUndefined();

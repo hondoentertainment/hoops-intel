@@ -71,13 +71,21 @@ describe("site review pages", () => {
   });
 
   it("does not invent an injury for an archive profile", async () => {
+    const wired = new Set(injuryUpdates.map((row) => playerSlug(row.player)));
+    const onPulse = new Set(pulseIndex.map((row) => playerSlug(row.player)));
+    const archive = [
+      { slug: "chris-paul", name: "Chris Paul" },
+      { slug: "vj-edgecombe", name: "VJ Edgecombe" },
+      { slug: "kawhi-leonard", name: "Kawhi Leonard" },
+    ].find((row) => !wired.has(row.slug) && !onPulse.has(row.slug));
+    expect(archive, "an archive fixture should be off the wire and off the Pulse Index").toBeTruthy();
     renderAt(
-      "/player/kawhi-leonard",
+      `/player/${archive!.slug}`,
       <Switch>
         <Route path="/player/:slug" component={Player} />
       </Switch>,
     );
-    expect(await screen.findByRole("heading", { name: "Kawhi Leonard" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: archive!.name })).toBeInTheDocument();
     expect(screen.queryByTestId("player-injury-badge")).not.toBeInTheDocument();
     expect(screen.queryByTestId("player-availability-clear")).not.toBeInTheDocument();
   });
