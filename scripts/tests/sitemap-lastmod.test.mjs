@@ -497,8 +497,10 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
   assert.match(injuries.lastmod, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(Number(tonight.priority) > Number(tools.priority));
   assert.ok(Number(injuries.priority) > Number(tools.priority));
-  const requiredPlayers = ["victor-wembanyama"];
-  for (const slug of requiredPlayers) {
+  const playerLocs = urls.filter((u) => u.loc.startsWith("/player/")).map((u) => u.loc);
+  assert.ok(playerLocs.length >= 1, "expected substantive player profiles in the sitemap");
+  for (const loc of playerLocs) {
+    const slug = loc.slice("/player/".length);
     const block = xml.match(
       new RegExp(
         `<url>\\s*<loc>https:\\/\\/hoopsintel\\.net\\/player\\/${slug}<\\/loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}<\\/lastmod>\\s*<changefreq>[a-z]+<\\/changefreq>\\s*<priority>[0-9.]+<\\/priority>\\s*<\\/url>`,
