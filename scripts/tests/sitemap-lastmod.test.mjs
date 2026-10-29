@@ -8,6 +8,7 @@ import {
   assertWellFormedSitemap,
   buildSitemapXml,
   extractExportedTimestamp,
+  gameContentLastmods,
   generate,
   isSitemapIndexablePlayer,
   lastmodForLoc,
@@ -66,11 +67,88 @@ test("home lastmod uses edition date, not build/deploy day", () => {
   );
 });
 
-test("game lastmod uses the game date in the URL", () => {
+test("game lastmod without a content row stays on the tip-off date, not the build day", () => {
   assert.equal(
-    lastmodForLoc("/game/NYK-SAS-20260613", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
+    lastmodForLoc("/game/NYK-SAS-20260613", {
+      buildDay: "2026-08-21",
+      editionIso: "2026-08-20",
+      gameLastmods: new Map(),
+    }),
     "2026-06-13",
   );
+  assert.notEqual(
+    lastmodForLoc("/game/NYK-SAS-20260613", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
+    "2026-08-21",
+  );
+  assert.notEqual(
+    lastmodForLoc("/game/NYK-SAS-20260613", { buildDay: "2026-08-21", editionIso: "2026-08-20" }),
+    "2026-08-20",
+  );
+});
+
+test("game lastmod follows that game's edition or ingestion stamp", () => {
+  const pulse = `
+export const pulseEdition = {date:"December 31, 2099"};
+export const gameResults = [
+  {homeTeam:"PHI",awayTeam:"BOS",status:"final",gameId:"BOS-PHI-20991230",ingestedAt:"2099-12-31T11:15:00.000Z"},
+  {homeTeam:"SAS",awayTeam:"NYK",status:"final",gameId:"NYK-SAS-20991230"}
+];
+export const gamePreviews = [
+  {homeTeam:"BOS",awayTeam:"DET",gameId:"DET-BOS-20991231",updatedAt:"2100-01-02T08:00:00.000Z"}
+];
+`;
+  const map = gameContentLastmods({ pulseFile: pulse, editionIso: "2099-12-31" });
+  assert.equal(map.get("BOS-PHI-20991230"), "2099-12-31");
+  assert.equal(map.get("NYK-SAS-20991230"), "2099-12-31");
+  assert.equal(map.get("DET-BOS-20991231"), "2100-01-02");
+  assert.equal(map.has("LAL-GSW-20990101"), false);
+
+  const ctx = { buildDay: "2026-10-29", editionIso: "2099-12-31", gameLastmods: map };
+  assert.equal(lastmodForLoc("/game/BOS-PHI-20991230", ctx), "2099-12-31");
+  assert.equal(lastmodForLoc("/game/NYK-SAS-20991230", ctx), "2099-12-31");
+  assert.equal(lastmodForLoc("/game/DET-BOS-20991231", ctx), "2100-01-02");
+  assert.notEqual(lastmodForLoc("/game/BOS-PHI-20991230", ctx), "2099-12-30");
+  assert.notEqual(lastmodForLoc("/game/BOS-PHI-20991230", ctx), ctx.buildDay);
+  assert.equal(lastmodForLoc("/game/LAL-GSW-20990101", ctx), "2099-01-01");
+  assert.notEqual(lastmodForLoc("/game/LAL-GSW-20990101", ctx), ctx.editionIso);
+
+  const earlierEditionWins = gameContentLastmods({
+    pulseFile: `export const pulseEdition = {date:"December 31, 2099"};
+export const gameResults = [{gameId:"BOS-PHI-20991230",homeTeam:"PHI",awayTeam:"BOS",ingestedAt:"2099-12-30T23:00:00.000Z"}];
+export const gamePreviews = [];`,
+    editionIso: "2099-12-31",
+  });
+  assert.equal(earlierEditionWins.get("BOS-PHI-20991230"), "2099-12-31");
+
+  const playoffStamp = gameContentLastmods({
+    pulseFile: "export const gameResults = [];\nexport const gamePreviews = [];\n",
+    editionIso: "2099-12-31",
+    playoffFile: `export const playoffSeries = [{ games: [{ date: "2099-06-01", homeTeam: "BOS", awayTeam: "NYK", status: "final", updatedAt: "2099-06-02T04:00:00.000Z" }] }];`,
+  });
+  assert.equal(playoffStamp.get("NYK-BOS-20990601"), "2099-06-02");
+  assert.equal(playoffStamp.has("BOS-PHI-20991230"), false);
+
+  const scheduledOnly = gameContentLastmods({
+    pulseFile: "",
+    editionIso: "2099-12-31",
+    playoffFile: `export const playoffSeries = [{ games: [{ date: "2099-06-03", homeTeam: "PHI", awayTeam: "BOS", status: "scheduled" }] }];`,
+  });
+  assert.equal(scheduledOnly.has("BOS-PHI-20990603"), false);
+  assert.equal(
+    lastmodForLoc("/game/BOS-PHI-20990603", { buildDay: "2026-10-29", editionIso: "2099-12-31", gameLastmods: scheduledOnly }),
+    "2099-06-03",
+  );
+
+  const { urls } = generate({ write: false, pulseSource: pulse });
+  const byLoc = Object.fromEntries(urls.map((u) => [u.loc, u.lastmod]));
+  assert.equal(byLoc["/game/BOS-PHI-20991230"], "2099-12-31");
+  assert.equal(byLoc["/game/NYK-SAS-20991230"], "2099-12-31");
+  assert.equal(byLoc["/game/DET-BOS-20991231"], "2100-01-02");
+  assert.notEqual(byLoc["/game/BOS-PHI-20991230"], "2099-12-30");
+  for (const slug of ["kawhi-leonard", "vj-edgecombe", "jamal-murray", "ja-morant"]) {
+    assert.equal(urls.some((u) => u.loc === `/player/${slug}`), false, `${slug} has no Pulse card in the fixture`);
+  }
+  assert.equal(urls.some((u) => /bluesky|bsky\.app/i.test(u.loc)), false);
 });
 
 test("momentum lastmod prefers generatedDate over the narrative date", () => {
@@ -657,7 +735,10 @@ test("generated team pages do not share one lastmod", () => {
   const { urls } = generate({ write: false });
   const teamDates = urls.filter((u) => u.loc.startsWith("/team/")).map((u) => u.lastmod);
   assert.ok(teamDates.length >= 30, `expected every franchise, got ${teamDates.length}`);
-  assert.ok(new Set(teamDates).size > 1, "team lastmods must diverge when content diverges");
+  // Opening-week archive rows name every franchise, so live dates can collapse
+  // onto that publication id. Divergence when coverage differs is fixture-tested above.
+  for (const date of teamDates) assert.match(date, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(!teamDates.includes("2099-01-01"));
   // Off-days publish empty gameResults and gamePreviews. Game pages are
   // required only when the slate actually contains games.
   const slate = describePulseSlate(pulseFile);

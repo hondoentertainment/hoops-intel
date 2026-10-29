@@ -272,6 +272,87 @@ function maxIso(...dates) {
   return dates.filter(Boolean).sort().at(-1) ?? null;
 }
 
+function exportArrayBody(source, name) {
+  const start = String(source).search(new RegExp(`export const ${name}\\s*=\\s*`));
+  if (start < 0) return null;
+  const bracket = source.indexOf("[", start);
+  if (bracket < 0) return null;
+  let depth = 0;
+  for (let i = bracket; i < source.length; i++) {
+    const ch = source[i];
+    if (ch === "[") depth += 1;
+    else if (ch === "]") {
+      depth -= 1;
+      if (depth === 0) return source.slice(bracket + 1, i);
+    }
+  }
+  return null;
+}
+
+/** Leading calendar day of an ingestion stamp. No Date parse — timezones must not move the day. */
+function isoDayFromStamp(value) {
+  const raw = String(value ?? "").trim();
+  const prefixed = raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|[T\s])/);
+  if (prefixed) {
+    const month = Number(prefixed[2]);
+    const day = Number(prefixed[3]);
+    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+    return `${prefixed[1]}-${prefixed[2]}-${prefixed[3]}`;
+  }
+  return parseDisplayDate(raw);
+}
+
+const GAME_CONTENT_STAMP_FIELDS = ["ingestedAt", "finalizedAt", "updatedAt"];
+
+function gameStampIso(chunk) {
+  let best = null;
+  for (const field of GAME_CONTENT_STAMP_FIELDS) {
+    const m = String(chunk).match(new RegExp(`\\b${field}:\\s*"([^"]+)"`));
+    if (!m) continue;
+    const iso = isoDayFromStamp(m[1]);
+    if (iso && (!best || iso > best)) best = iso;
+  }
+  return best;
+}
+
+function bumpGameIso(map, id, iso) {
+  if (!/^[A-Z]{3}-[A-Z]{3}-\d{8}$/.test(id || "") || !iso) return;
+  const prev = map.get(id);
+  if (!prev || iso > prev) map.set(id, iso);
+}
+
+/**
+ * Per-game content date. Finals and previews in the edition move on the
+ * edition day (the morning the copy, including a final score, was published).
+ * An ingestedAt / finalizedAt / updatedAt stamp on that game wins when it is
+ * later. The build clock is not a date, and the tip-off baked into the URL
+ * is only the fallback when this map has no row.
+ */
+export function gameContentLastmods({ pulseFile = "", editionIso = null, playoffFile = "" } = {}) {
+  const map = new Map();
+  for (const name of ["gameResults", "gamePreviews"]) {
+    const body = exportArrayBody(pulseFile, name);
+    if (!body?.trim()) continue;
+    for (const chunk of body.split(/\}\s*,\s*\{/)) {
+      const id = chunk.match(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/)?.[1];
+      if (!id) continue;
+      bumpGameIso(map, id, maxIso(gameStampIso(chunk), editionIso));
+    }
+  }
+  // Playoff objects have no edition day of their own. Only an explicit
+  // ingestion stamp moves them; otherwise lastmod stays the scheduled date.
+  for (const m of String(playoffFile).matchAll(/\{[^{}]*\b(?:homeTeam|awayTeam):[^{}]*\}/g)) {
+    const chunk = m[0];
+    const date = chunk.match(/\bdate:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    const home = chunk.match(/\bhomeTeam:\s*"([A-Z]{3})"/)?.[1];
+    const away = chunk.match(/\bawayTeam:\s*"([A-Z]{3})"/)?.[1];
+    const stamp = gameStampIso(chunk);
+    if (!date || !home || !away || !stamp) continue;
+    bumpGameIso(map, `${away}-${home}-${date.replace(/-/g, "")}`, stamp);
+  }
+  return map;
+}
+
 function extractPulseEditionIso(pulseFile) {
   const m = pulseFile.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/);
   return m ? parseDisplayDate(m[1]) : null;
@@ -461,11 +542,16 @@ export function lastmodForLoc(loc, ctx) {
     return specific ?? ctx.buildDay;
   }
   if (loc.startsWith("/game/")) {
-    const digits = loc.match(/(\d{8})$/)?.[1];
+    const id = loc.slice("/game/".length);
+    const specific = ctx.gameLastmods?.get?.(id);
+    if (specific) return specific;
+    // No content row: the tip-off in the URL is the only date we have.
+    // Do not copy the build day or today's edition onto an unrelated game.
+    const digits = id.match(/(\d{8})$/)?.[1];
     if (digits) {
       return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}`;
     }
-    return ctx.editionIso ?? ctx.buildDay;
+    return null;
   }
   const deskTied = new Set([
     "/injuries",
@@ -563,7 +649,8 @@ export function generate({ write = true, pulseSource = null } = {}) {
     : "";
   const teamLastmods = teamContentLastmods({ archiveFile, pulseFile, lineupFile, editionIso });
   const playerLastmods = playerLastmodsBySlug(playerContentLastmods({ archiveFile, pulseFile, editionIso }));
-  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso, teamLastmods, playerLastmods };
+  const gameLastmods = gameContentLastmods({ pulseFile, editionIso, playoffFile });
+  const lastmodCtx = { buildDay, editionIso, latestArchiveIso, playoffContentIso, teamLastmods, playerLastmods, gameLastmods };
 
   const playoffsActive =
     /status:\s*"active"/.test(playoffFile) || /eliminationGame:\s*true/.test(playoffFile);
@@ -681,16 +768,12 @@ export function generate({ write = true, pulseSource = null } = {}) {
         throw new Error(`sitemap lastmod for ${path} is ${row?.lastmod ?? "missing"}, expected edition ${editionIso}`);
       }
     }
-    const previewBlock = pulseFile.match(/export const gamePreviews\s*=\s*\[([\s\S]*?)\];/);
-    if (previewBlock) {
-      for (const id of previewBlock[1].matchAll(/\bgameId:\s*"([A-Z]{3}-[A-Z]{3}-\d{8})"/g)) {
-        const loc = `/game/${id[1]}`;
-        const row = written.find((u) => u.loc === loc);
-        const gameIso = `${id[1].slice(-8, -4)}-${id[1].slice(-4, -2)}-${id[1].slice(-2)}`;
-        if (!row) throw new Error(`sitemap missing tonight game ${loc}`);
-        if (row.lastmod !== gameIso) {
-          throw new Error(`sitemap lastmod for ${loc} is ${row.lastmod}, expected ${gameIso}`);
-        }
+    for (const [id, expected] of gameLastmods) {
+      const loc = `/game/${id}`;
+      const row = written.find((u) => u.loc === loc);
+      if (!row) throw new Error(`sitemap missing game ${loc}`);
+      if (row.lastmod !== expected) {
+        throw new Error(`sitemap lastmod for ${loc} is ${row.lastmod}, expected content date ${expected}`);
       }
     }
   }

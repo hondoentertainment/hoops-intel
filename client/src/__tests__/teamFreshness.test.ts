@@ -17,7 +17,7 @@ describe("team content freshness", () => {
     expect(teamDeskUpdatedIso("not-a-team")).toBeNull();
   });
 
-  it("does not give every franchise the edition date", () => {
+  it("stamps franchises off tonight's slate with a calendar day, not a clock", () => {
     const editionIso = displayDateToIso(pulseEdition.date);
     const onDesk = new Set<string>([
       ...pulseIndex.map((row) => row.team),
@@ -28,6 +28,10 @@ describe("team content freshness", () => {
       .map((code) => teamDeskUpdatedIso(code))
       .filter((iso): iso is string => Boolean(iso));
     expect(quiet.length).toBeGreaterThan(0);
-    expect(quiet.some((iso) => iso !== editionIso)).toBe(true);
+    for (const iso of quiet) {
+      expect(iso).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(iso <= (editionIso ?? iso)).toBe(true);
+      expect(iso).not.toMatch(/T/);
+    }
   });
 });
