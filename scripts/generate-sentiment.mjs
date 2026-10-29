@@ -4,6 +4,7 @@
 // Run daily at 5am PST via GitHub Actions (.github/workflows/daily-update.yml)
 
 import { claudeGenerate } from "./lib/claude-client.mjs";
+import { normalizeSentimentSource } from "./lib/normalize-sentiment.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
@@ -111,6 +112,8 @@ export const sentimentData: SentimentData = {
 - volume: simulated mention count (100-50000 range)
 - score: -100 to 100 (negative = negative sentiment, positive = positive)
 - mentions: simulated mention count for player (100-25000)
+- Player entries use narrativeArc only. Never put narrativeSummary, teamFull, or buzzWords on a player. A summary sentence about a player belongs in narrativeArc.
+- Team entries use narrativeSummary only. Never put narrativeArc, mentions, topTake, or a player field on a team.
 - sampleTakes: 3-4 realistic-sounding social media takes (short, punchy, opinionated)
 - Write in an authentic social media voice — hot takes, overreactions, memes
 - Base everything on the actual game results and standings from pulseData
@@ -124,13 +127,9 @@ Output ONLY the complete TypeScript file. No markdown fences, no explanation.`;
     messages: [{ role: "user", content: prompt }],
   });
 
-  let content = msg.content[0].text.trim();
-
-  // Strip accidental markdown fences
-  content = content
-    .replace(/^```(?:typescript|ts)?\n?/m, "")
-    .replace(/\n?```$/m, "")
-    .trim();
+  // The model copies narrativeSummary onto players. esbuild allows that excess
+  // property; normalize onto PlayerSentiment / TeamSentiment before write.
+  const content = normalizeSentimentSource(msg.content[0].text);
 
   writeFileSync(join(ROOT, "client/src/lib/sentimentData.ts"), content, "utf8");
   console.log("✓ sentimentData.ts written");

@@ -1,6 +1,7 @@
 import { gamePreviews, injuryUpdates, narrative, pulseEdition, pulseIndex, tickerItems, westStandings } from "./pulseData";
 import { contextualAskChips } from "./askShortcuts";
 import { activeEditionContext, editionContextDeskLabel, liveWireMonthGateClosed, type EditionContext } from "./deskMode";
+import { canonicalizeTeamCode, isCanonicalTeamCode } from "./identity";
 import { editionPublishLabel } from "./pacificTime";
 
 export const ENHANCED_ACCENT = "#8ec8f0";
@@ -313,4 +314,83 @@ export const SAMPLE_LOCKS: SampleLock[] = [
 
 export function hasTonightSlate(): boolean {
   return gamePreviews.length > 0;
+}
+
+const EDITION_MONTHS = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
+
+const PUBLISHED_GAME_ID = /^[A-Z]{3}-[A-Z]{3}-\d{8}$/;
+
+export type TonightSlatePreview = {
+  gameId?: string;
+  awayTeam?: string;
+  homeTeam?: string;
+  time?: string;
+  tv?: string;
+  featured?: boolean;
+};
+
+export type TonightGameLink = {
+  gameId: string;
+  href: string;
+  awayTeam: string;
+  homeTeam: string;
+  time: string;
+  tv: string;
+  featured: boolean;
+};
+
+/** Calendar stamp from an edition display date or ISO day. Empty when it does not parse. */
+export function editionDateStamp(editionDate: string): string {
+  const raw = String(editionDate ?? "").trim();
+  const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return `${iso[1]}${iso[2]}${iso[3]}`;
+  const named = raw.match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/);
+  if (!named) return "";
+  const month = EDITION_MONTHS.indexOf(named[1].toLowerCase()) + 1;
+  const day = Number(named[2]);
+  if (month < 1 || day < 1 || day > 31) return "";
+  return `${named[3]}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}`;
+}
+
+/**
+ * One deep link per published preview. Order follows the edition.
+ * A row is omitted when it has no canonical game id — nothing is invented.
+ */
+export function tonightGameLinks(
+  previews: readonly TonightSlatePreview[] | null | undefined,
+  editionDate: string,
+): TonightGameLink[] {
+  if (!previews || previews.length === 0) return [];
+  const stamp = editionDateStamp(editionDate);
+  const links: TonightGameLink[] = [];
+  const seen = new Set<string>();
+  for (const preview of previews) {
+    const published = String(preview.gameId ?? "").trim().toUpperCase();
+    let gameId = PUBLISHED_GAME_ID.test(published) ? published : "";
+    let away = canonicalizeTeamCode(preview.awayTeam ?? "");
+    let home = canonicalizeTeamCode(preview.homeTeam ?? "");
+    if (!gameId) {
+      if (!stamp || !isCanonicalTeamCode(away) || !isCanonicalTeamCode(home)) continue;
+      gameId = `${away}-${home}-${stamp}`;
+    }
+    const [idAway, idHome] = gameId.split("-");
+    if (!isCanonicalTeamCode(idAway) || !isCanonicalTeamCode(idHome)) continue;
+    away = idAway;
+    home = idHome;
+    if (seen.has(gameId)) continue;
+    seen.add(gameId);
+    links.push({
+      gameId,
+      href: `/game/${gameId}`,
+      awayTeam: away,
+      homeTeam: home,
+      time: String(preview.time ?? "").trim(),
+      tv: String(preview.tv ?? "").trim(),
+      featured: Boolean(preview.featured),
+    });
+  }
+  return links;
 }
