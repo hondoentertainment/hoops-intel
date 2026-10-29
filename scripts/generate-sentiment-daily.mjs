@@ -7,6 +7,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { normalizeSentimentSource } from "./lib/normalize-sentiment.mjs";
 import { writeGeneratedFile } from "./lib/write-generated-file.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -96,6 +97,8 @@ Generate a complete sentimentData.ts file with these sections:
 - Export const sentimentData with all data
 - Single export object, valid TypeScript
 - Match the exact structure of the current file
+- PlayerSentiment entries use narrativeArc only. Do not emit narrativeSummary on a player.
+- TeamSentiment entries use narrativeSummary only. Do not emit narrativeArc on a team.
 
 Output ONLY the complete TypeScript file. Start with the comment header. No markdown fences, no explanation. The file MUST end with a closing \`};\` for the exported sentimentData object.`;
 
@@ -105,7 +108,15 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
       messages: [{ role: "user", content: prompt }],
     });
 
-    return msg.content[0].text.trim();
+    const text = msg.content[0].text.trim();
+    try {
+      return normalizeSentimentSource(text);
+    } catch (err) {
+      // writeGeneratedFile retries only when validateOutput rejects the body.
+      // A truncated module spends those retries instead of writing the draft.
+      console.warn(`⚠ sentiment shape rejected: ${err.message}`);
+      return "export const sentimentData = {";
+    }
   }
 
   const result = await writeGeneratedFile(outPath, generateOnce, { retries: 2 });
