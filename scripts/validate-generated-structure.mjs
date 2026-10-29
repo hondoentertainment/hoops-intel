@@ -14,19 +14,19 @@ import { validateOutput } from "./lib/validate-output.mjs";
 import { GAME_ID_PATTERN, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
 import { collectCommittedEditionDateErrors } from "./lib/edition-date-alignment.mjs";
 import { substantivePulseNames } from "./generate-sitemap.mjs";
+import { THIN_PLAYER_SHELLS, thinShellViolation } from "./lib/thin-player-shells.mjs";
 
-/** Fixture shells — keep them out of the sitemap unless they have a Pulse card. */
-export const THIN_PLAYER_SHELLS = [
-  { loc: "/player/kawhi-leonard", pulseName: "Kawhi Leonard" },
-  { loc: "/player/vj-edgecombe", pulseName: "VJ Edgecombe" },
-  { loc: "/player/jamal-murray", pulseName: "Jamal Murray" },
-  { loc: "/player/ja-morant", pulseName: "Ja Morant" },
-];
+export { THIN_PLAYER_SHELLS };
+
+/** One line a failing CI log can act on: URL, rule id, fix. */
+function ruleFailure(url, rule, fix) {
+  return `${url} violates ${rule}: ${fix}`;
+}
 
 export function pulseCardThinShellLocs(pulseFile) {
   const block = String(pulseFile).match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/);
   const names = substantivePulseNames(block ? block[1] : "");
-  return THIN_PLAYER_SHELLS.filter((row) => names.has(row.pulseName)).map((row) => row.loc);
+  return THIN_PLAYER_SHELLS.filter((row) => names.has(row.name)).map((row) => row.loc);
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -119,12 +119,10 @@ function assertCond(c, msg) {
 
 export function assertThinPlayerShells(locs, pulseFile) {
   const allowedThin = new Set(pulseCardThinShellLocs(pulseFile));
-  for (const { loc: thin } of THIN_PLAYER_SHELLS) {
-    if (allowedThin.has(thin)) continue;
-    assertCond(
-      !locs.some((loc) => String(loc).endsWith(thin)),
-      `sitemap should not index thin player shell: ${thin}`,
-    );
+  for (const row of THIN_PLAYER_SHELLS) {
+    if (allowedThin.has(row.loc)) continue;
+    const hit = locs.find((loc) => String(loc).endsWith(row.loc));
+    assertCond(!hit, thinShellViolation(String(hit), row.name));
   }
 }
 
@@ -167,13 +165,29 @@ export function validateWorldClassRoutes() {
     const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     const seen = new Set();
     for (const loc of locs) {
-      assertCond(!seen.has(loc), `duplicate sitemap URL: ${loc}`);
+      assertCond(
+        !seen.has(loc),
+        ruleFailure(loc, "duplicate-sitemap-url", "delete the repeated <loc> so each URL is listed once"),
+      );
       seen.add(loc);
-      assertCond(!/%20|\s/.test(loc), `sitemap URL contains whitespace: ${loc}`);
+      assertCond(
+        !/%20|\s/.test(loc),
+        ruleFailure(loc, "sitemap-url-whitespace", "remove the space so the loc is a single path token"),
+      );
       const team = loc.match(/\/team\/([^/?#]+)/)?.[1];
-      if (team) assertCond(/^[a-z]{3}$/.test(team), `sitemap team URL is not lowercase 3-letter code: ${loc}`);
+      if (team) {
+        assertCond(
+          /^[a-z]{3}$/.test(team),
+          ruleFailure(loc, "sitemap-team-slug", "use a lowercase 3-letter team code"),
+        );
+      }
       const game = loc.match(/\/game\/([^/?#]+)/)?.[1];
-      if (game) assertCond(GAME_ID_PATTERN.test(game), `sitemap game URL has invalid gameId: ${loc}`);
+      if (game) {
+        assertCond(
+          GAME_ID_PATTERN.test(game),
+          ruleFailure(loc, "sitemap-game-id", "use AWAY-HOME-YYYYMMDD"),
+        );
+      }
     }
     for (const banned of [
       "/player/michael-jordan",
@@ -181,9 +195,10 @@ export function validateWorldClassRoutes() {
       "/player/larry-bird",
       "/player/hakeem-olajuwon",
     ]) {
+      const hit = locs.find((loc) => loc.endsWith(banned));
       assertCond(
-        !locs.some((loc) => loc.endsWith(banned)),
-        `sitemap should not index thin/noindex URL: ${banned}`,
+        !hit,
+        ruleFailure(hit ?? banned, "historical-noindex", "remove this hall-of-fame comparison URL from the sitemap"),
       );
     }
     for (const required of [
@@ -200,12 +215,13 @@ export function validateWorldClassRoutes() {
     ]) {
       assertCond(
         locs.some((loc) => loc.endsWith(required)),
-        `sitemap should include public 200 route: ${required}`,
+        ruleFailure(required, "required-public-route", "add this URL to public/sitemap.xml"),
       );
     }
+    const account = locs.find((loc) => loc.endsWith("/account"));
     assertCond(
-      !locs.some((loc) => loc.endsWith("/account")),
-      "sitemap should not include the private account hub",
+      !account,
+      ruleFailure(account ?? "/account", "private-route", "remove the account hub from the sitemap"),
     );
     assertThinPlayerShells(locs, pulse);
     assertCond(
@@ -224,7 +240,10 @@ export function validateWorldClassRoutes() {
           `<url>\\s*<loc>${escaped}<\\/loc>\\s*<lastmod>[^<]+<\\/lastmod>\\s*<changefreq>[^<]+<\\/changefreq>\\s*<priority>[^<]+<\\/priority>\\s*<\\/url>`,
         ),
       );
-      assertCond(Boolean(block), `sitemap player entry truncated or incomplete: ${loc}`);
+      assertCond(
+        Boolean(block),
+        ruleFailure(loc, "sitemap-player-entry", "write a complete <url> block (loc, lastmod, changefreq, priority)"),
+      );
     }
     const archive = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
     const dateErrors = collectCommittedEditionDateErrors({

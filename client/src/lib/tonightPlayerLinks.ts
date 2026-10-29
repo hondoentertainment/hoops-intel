@@ -18,6 +18,15 @@ export interface TonightSlateGame {
 
 const LINK_CAP = 5;
 
+/**
+ * Longer names win so "Nikola Jokic" is seen before a shorter "Jokic" inside it.
+ * Equal lengths use localeCompare. Pulse rank must not reshuffle that tie —
+ * listBrowsePlayers order changes every edition.
+ */
+export function compareMentionedNames(a: string, b: string): number {
+  return b.length - a.length || a.localeCompare(b);
+}
+
 function mentionsName(blob: string, name: string): boolean {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return new RegExp(`(?:^|[^A-Za-z])${escaped}(?=$|[^A-Za-z])`, "i").test(blob);
@@ -67,7 +76,7 @@ export function tonightPlayerLinks(game: TonightSlateGame, limit = LINK_CAP): To
   if (blob) {
     const names = listBrowsePlayers()
       .map((player) => player.name)
-      .sort((a, b) => b.length - a.length);
+      .sort(compareMentionedNames);
     for (const name of names) {
       if (mentionsName(blob, name)) push(name);
     }

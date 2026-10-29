@@ -16,6 +16,7 @@ import {
 } from "./lib/public-routes.mjs";
 import { pacificIsoDate } from "./lib/daily-dates.mjs";
 import { describePulseSlate } from "./lib/edition-date-alignment.mjs";
+import { isThinPlayerShellName } from "./lib/thin-player-shells.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,7 +25,7 @@ const BASE = "https://hoopsintel.net";
 const gitDateCache = new Map();
 
 /** Match `slugify` in `client/src/lib/searchUtils.ts` so /player/:slug URLs align. */
-function slugify(name) {
+export function slugify(name) {
   try {
     return String(name ?? "")
       .toLowerCase()
@@ -125,11 +126,14 @@ export function substantivePulseNames(pulseIndexSource) {
 
 /**
  * Mirror `profileSeoIndexable`: retired archive stays, thin name-drops do not.
- * `inPulse` / `substantive` mean a rich Pulse card, not any `player:` string.
+ * `substantive` means a rich Pulse card (keyStats + note + indexScore).
+ * A bare `player:` string is not enough for thin shells — that mismatch put
+ * /player/kawhi-leonard in the sitemap while the validator rejected it.
  */
 export function isSitemapIndexablePlayer(name, context, lists) {
   const canonical = canonicalPlayerName(name);
   if (lists.nonPlayers.has(canonical) || lists.historical.has(canonical)) return false;
+  if (isThinPlayerShellName(canonical) && !context.substantive) return false;
   if (lists.retired.has(canonical)) return (context.mentions ?? 0) > 0;
   return Boolean(context.substantive || context.inPulse);
 }

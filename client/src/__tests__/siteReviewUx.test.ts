@@ -7,7 +7,7 @@ import { CLEAR_AVAILABILITY_LABEL, playerAvailability } from "../lib/playerAvail
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
 import { isPageLevelSeoRoute, playerProfileCanonicalUrl, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
 import { FOR_FUN_PATHS, FOOTER_QUICK_LINKS, isForFunRoute, mainNavLinks } from "../lib/siteNav";
-import { tonightPlayerLinks } from "../lib/tonightPlayerLinks";
+import { compareMentionedNames, tonightPlayerLinks } from "../lib/tonightPlayerLinks";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "../../..");
 const srcDir = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -104,6 +104,13 @@ describe("for fun routes", () => {
 
 describe("tonight player links", () => {
   it("links real profiles for a slate game and skips unknown teams", () => {
+    // Jamal Murray and Nikola Jokic are the same length. Order is alphabetical,
+    // not whoever the edition listed first.
+    expect(
+      ["Nikola Jokic", "Jamal Murray", "Victor Wembanyama"].sort(compareMentionedNames),
+    ).toEqual(["Victor Wembanyama", "Jamal Murray", "Nikola Jokic"]);
+    expect(compareMentionedNames("Jamal Murray", "Nikola Jokic")).toBeLessThan(0);
+
     const links = tonightPlayerLinks({
       awayTeam: "SAS",
       homeTeam: "DEN",
@@ -114,10 +121,9 @@ describe("tonight player links", () => {
     expect(links.length).toBeLessThanOrEqual(5);
     const names = links.map((link) => link.name);
     const copyNames = ["Victor Wembanyama", "Nikola Jokic", "Jamal Murray"];
-    expect(names[0]).toBe("Victor Wembanyama");
-    expect(new Set(names.slice(0, copyNames.length))).toEqual(new Set(copyNames));
-    expect(names.indexOf("Victor Wembanyama")).toBeLessThan(names.indexOf("Nikola Jokic"));
+    for (const name of copyNames) expect(names).toContain(name);
     expect(names.indexOf("Victor Wembanyama")).toBeLessThan(names.indexOf("Jamal Murray"));
+    expect(names.indexOf("Jamal Murray")).toBeLessThan(names.indexOf("Nikola Jokic"));
     expect(new Set(links.map((link) => link.href)).size).toBe(links.length);
     for (const link of links) {
       expect(link.href.startsWith("/player/")).toBe(true);

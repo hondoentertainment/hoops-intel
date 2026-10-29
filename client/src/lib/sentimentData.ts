@@ -333,7 +333,6 @@ export const sentimentData: SentimentData = {
       score: 22,
       mentions: 8700,
       topTake: "Cunningham had a fine game and it wasn't enough. Detroit's first loss exposed something about their road ceiling and Cade's fourth quarter disappeared. We need to talk about it.",
-      narrativeSummary: "Cunningham's first meaningful adversity of the season is generating a measured but genuinely concerned discourse. The 22-9 road line in a loss feels insufficient in a way his winning performances did not and the organizational ceiling questions are entering the conversation for the first time.",
       narrativeArc: "Cunningham's first meaningful adversity of the season is generating a measured but genuinely concerned discourse. The 22-9 road line in a loss feels insufficient in a way his winning performances did not and the organizational ceiling questions are entering the conversation for the first time.",
     },
     {
