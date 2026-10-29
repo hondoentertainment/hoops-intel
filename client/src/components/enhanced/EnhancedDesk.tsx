@@ -1,4 +1,4 @@
-import { pulseEdition, pulseIndex, injuryUpdates, narrative } from "../../lib/pulseData";
+import { gamePreviews, pulseEdition, pulseIndex, injuryUpdates, narrative } from "../../lib/pulseData";
 import { slugify } from "../../lib/searchUtils";
 import { AskInFlowCta } from "../AskHoopsIntel";
 import { isFinalsActive, finalistTeams } from "../../lib/playoffData";
@@ -23,6 +23,8 @@ import {
   pulseTrendMark,
   shortInjuryLine,
   tickerWireText,
+  tonightGameLinks,
+  type TonightGameLink,
 } from "../../lib/enhancedDesk";
 import { editionPublishLabel } from "../../lib/pacificTime";
 import { deskRailTools } from "../../lib/siteNav";
@@ -135,6 +137,59 @@ function CampSlateCard({ game }: { game: CampScheduleRow }) {
   );
 }
 
+export function TonightGamesEntry({ games }: { games: TonightGameLink[] }) {
+  if (games.length === 0) return null;
+  return (
+    <section
+      id="tonights-games"
+      aria-labelledby="tonights-games-title"
+      data-testid="tonights-games"
+      className="enhanced-card flex flex-col gap-3 p-4 md:p-6 min-w-0"
+    >
+      <div className="flex items-end justify-between gap-3 min-w-0">
+        <div className="min-w-0">
+          <p className="enhanced-kicker">On the board</p>
+          <h2
+            id="tonights-games-title"
+            className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-xl leading-6 md:text-2xl"
+          >
+            Tonight&apos;s Games
+          </h2>
+        </div>
+        <a
+          href="/tonight"
+          className="text-sm font-medium shrink-0 inline-flex items-center min-h-11"
+          style={{ color: "var(--hi-text,#0a0a0a)" }}
+        >
+          Full slate
+        </a>
+      </div>
+      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 m-0 p-0 list-none">
+        {games.map((game) => {
+          const when = [game.time, game.tv].filter(Boolean).join(" · ");
+          return (
+            <li key={game.gameId} data-testid="tonight-game-link" className="min-w-0">
+              <DeskInset href={game.href} className="flex flex-col gap-1 px-3 py-2.5 min-h-11">
+                <span className="flex flex-wrap items-center gap-2 min-w-0">
+                  <span className="text-sm font-semibold hi-title text-[var(--hi-text,#0a0a0a)]">
+                    {game.awayTeam} @ {game.homeTeam}
+                  </span>
+                  {game.featured ? <StatusPill tone="accent">Featured</StatusPill> : null}
+                </span>
+                {when ? (
+                  <span className="text-xs leading-4 hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
+                    {when}
+                  </span>
+                ) : null}
+              </DeskInset>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
 export function EnhancedTicker() {
   return (
     <div
@@ -206,6 +261,8 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
             <StatCard key={card.kicker} {...card} />
           ))}
         </div>
+
+        <TonightGamesEntry games={tonightGameLinks(gamePreviews, pulseEdition.date)} />
 
         <div className="flex flex-col lg:flex-row gap-5 items-start">
           <div className="flex-1 min-w-0 flex flex-col gap-4">
