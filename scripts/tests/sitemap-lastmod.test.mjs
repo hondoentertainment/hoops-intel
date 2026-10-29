@@ -10,6 +10,7 @@ import {
   extractExportedTimestamp,
   generate,
   isSitemapIndexablePlayer,
+  slugify,
   lastmodForLoc,
   substantivePulseNames,
   playerContentLastmods,
@@ -37,6 +38,29 @@ const lists = {
   retired: new Set(["Chris Paul"]),
   nonPlayers: new Set(["Gregg Popovich", "Charles Barkley"]),
 };
+
+/** Names the substantive-card gate must follow, including the thin shells and Embiid. */
+const SUBSTANTIVE_GATED_PLAYERS = [
+  ...THIN_PLAYER_SHELLS.map((row) => [row.slug, row.name]),
+  ["joel-embiid", "Joel Embiid"],
+  ["amen-thompson", "Amen Thompson"],
+  ["keyonte-george", "Keyonte George"],
+  ["jaime-jaquez-jr", "Jaime Jaquez Jr."],
+];
+
+function assertPlayerLocsFollowSubstantiveCards(urls, pulseFile) {
+  const substantive = substantivePulseNames(
+    String(pulseFile).match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/)?.[1] ?? "",
+  );
+  for (const [slug, name] of SUBSTANTIVE_GATED_PLAYERS) {
+    const present = urls.some((u) => u.loc === `/player/${slug}`);
+    if (substantive.has(name)) {
+      assert.equal(present, true, `${name} has a substantive Pulse card and should be indexed`);
+    } else {
+      assert.equal(present, false, `${name} has no substantive Pulse card`);
+    }
+  }
+}
 
 test("extractExportedTimestamp prefers generatedDate on the exported object", () => {
   const iso = extractExportedTimestamp(`
@@ -321,16 +345,22 @@ test("retired Chris Paul stays indexable when archive coverage exists", () => {
   assert.equal(isSitemapIndexablePlayer("Chris Paul", { mentions: 0 }, lists), false);
 });
 
-test("thin archive and prospect names stay out of the sitemap until they have a pulse card", () => {
+test("thin archive and prospect names stay out of the sitemap until the Pulse card is substantive", () => {
   const withProspects = { ...lists, prospects: new Set(["VJ Edgecombe"]) };
   assert.equal(isSitemapIndexablePlayer("VJ Edgecombe", { mentions: 4 }, withProspects), false);
   assert.equal(isSitemapIndexablePlayer("Amen Thompson", { mentions: 6 }, lists), false);
   assert.equal(isSitemapIndexablePlayer("Keyonte George", { mentions: 3 }, lists), false);
+  // A bare player: string is not a card. Thin shells need keyStats, note, and indexScore.
   assert.equal(
     isSitemapIndexablePlayer("VJ Edgecombe", { inPulse: true, mentions: 1 }, withProspects),
+    false,
+  );
+  assert.equal(
+    isSitemapIndexablePlayer("VJ Edgecombe", { substantive: true, mentions: 1 }, withProspects),
     true,
   );
   assert.equal(isSitemapIndexablePlayer("Keyonte George", { substantive: true, mentions: 1 }, lists), true);
+  assert.equal(isSitemapIndexablePlayer("Amen Thompson", { inPulse: true, mentions: 1 }, lists), true);
 });
 
 test("thin one-mention archive names are dropped", () => {
@@ -485,8 +515,8 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
     assert.equal(locs.has(path), true, `public route missing from sitemap: ${path}`);
     assert.match(urls.find((u) => u.loc === path).lastmod, /^\d{4}-\d{2}-\d{2}$/);
   }
-  assert.equal(locs.has("/player/kawhi-leonard"), false, "Kawhi has no Pulse card");
-  assert.equal(locs.has("/player/vj-edgecombe"), false, "VJ Edgecombe is a thin prospect shell");
+  const livePulse = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
+  assertPlayerLocsFollowSubstantiveCards(urls, livePulse);
   const home = urls.find((u) => u.loc === "/");
   const tonight = urls.find((u) => u.loc === "/tonight");
   const injuries = urls.find((u) => u.loc === "/injuries");
@@ -507,9 +537,6 @@ test("generate writes a well-formed sitemap with complete player profile URLs", 
       ),
     );
     assert.ok(block, `complete <url> block missing for /player/${slug}`);
-  }
-  for (const slug of ["vj-edgecombe", "amen-thompson", "keyonte-george", "jaime-jaquez-jr"]) {
-    assert.equal(urls.some((u) => u.loc === `/player/${slug}`), false, `${slug} lacks a pulse card`);
   }
 });
 
@@ -548,7 +575,7 @@ test("thin-shell sitemap ban lifts when that player has a Pulse card", () => {
   assert.deepEqual(pulseCardThinShellLocs(thinKawhi), []);
   assert.throws(
     () => assertThinPlayerShells(["https://hoopsintel.net/player/kawhi-leonard"], thinKawhi),
-    /thin player shell: \/player\/kawhi-leonard/,
+    /https:\/\/hoopsintel\.net\/player\/kawhi-leonard violates thin-player-shell: .*substantive Pulse card \(keyStats, note, and indexScore\) for Kawhi Leonard/,
   );
 
   for (const [name, loc] of [
@@ -563,45 +590,54 @@ test("thin-shell sitemap ban lifts when that player has a Pulse card", () => {
     assert.deepEqual(pulseCardThinShellLocs(bare), []);
     assert.throws(
       () => assertThinPlayerShells([`https://hoopsintel.net${loc}`], bare),
-      new RegExp(`thin player shell: ${loc}`),
+      new RegExp(`https://hoopsintel\\.net${loc} violates thin-player-shell: .*for ${name}`),
     );
     const partial = `export const pulseIndex = [{player:"${name}",team:"${team}",indexScore:84.0,keyStats:"28 / 6 / 7"}];`;
     assert.deepEqual(pulseCardThinShellLocs(partial), []);
     assert.throws(
       () => assertThinPlayerShells([`https://hoopsintel.net${loc}`], partial),
-      new RegExp(`thin player shell: ${loc}`),
+      new RegExp(`https://hoopsintel\\.net${loc} violates thin-player-shell:`),
     );
   }
 });
 
-test("generate keeps the four thin shells out until the Pulse card is substantive", () => {
+test("generate keeps thin shells out until the Pulse card is substantive", () => {
   const shell = (name, team) => `{player:"${name}",team:"${team}"}`;
   const card = (name, team) =>
     `{player:"${name}",team:"${team}",indexScore:88,keyStats:"30 / 10 / 8",note:"Counting line and context."}`;
+  const injury = (name, team) => `{player:"${name}",team:"${team}",status:"Out",injury:"Knee"}`;
   const slate = `
 // GAME RESULTS — No Games
 export const pulseEdition = {date:"December 31, 2099"};
 export const gameResults = [];
 export const gamePreviews = [];
 `;
-  const names = [
-    ["Kawhi Leonard", "LAC", "kawhi-leonard"],
-    ["VJ Edgecombe", "PHI", "vj-edgecombe"],
-    ["Jamal Murray", "DEN", "jamal-murray"],
-    ["Ja Morant", "MEM", "ja-morant"],
-  ];
-  const bare = `${slate}export const pulseIndex = [${names.map(([name, team]) => shell(name, team)).join(",")},${shell("Joel Embiid", "PHI")}];`;
+  const names = THIN_PLAYER_SHELLS.map((row) => [row.name, row.team, row.slug]);
+  const bare = `${slate}export const pulseIndex = [${names.map(([name, team]) => shell(name, team)).join(",")},${shell("Joel Embiid", "PHI")}];
+export const injuryUpdates = [${names.map(([name, team]) => injury(name, team)).join(",")},${injury("Joel Embiid", "PHI")}];`;
   const { urls: bareUrls } = generate({ write: false, pulseSource: bare });
-  for (const [, , slug] of names) {
-    assert.equal(bareUrls.some((u) => u.loc === `/player/${slug}`), false, `${slug} has no Pulse card`);
+  for (const [name, , slug] of names) {
+    assert.equal(bareUrls.some((u) => u.loc === `/player/${slug}`), false, `${name} has no substantive Pulse card`);
   }
   assert.equal(bareUrls.some((u) => u.loc === "/player/joel-embiid"), false);
+  assert.doesNotThrow(() =>
+    assertThinPlayerShells(
+      bareUrls.map((u) => `https://hoopsintel.net${u.loc}`),
+      bare,
+    ),
+  );
 
   const rich = `${slate}export const pulseIndex = [${names.map(([name, team]) => card(name, team)).join(",")},${card("Joel Embiid", "PHI")}];`;
   const { urls: richUrls } = generate({ write: false, pulseSource: rich });
-  for (const [, , slug] of [...names, ["Joel Embiid", "PHI", "joel-embiid"]]) {
-    assert.equal(richUrls.some((u) => u.loc === `/player/${slug}`), true, `${slug} has a Pulse card`);
+  for (const [name, , slug] of [...names, ["Joel Embiid", "PHI", "joel-embiid"]]) {
+    assert.equal(richUrls.some((u) => u.loc === `/player/${slug}`), true, `${name} has a substantive Pulse card`);
   }
+  assert.doesNotThrow(() =>
+    assertThinPlayerShells(
+      richUrls.map((u) => `https://hoopsintel.net${u.loc}`),
+      rich,
+    ),
+  );
 });
 
 test("team lastmod moves only when that team is on the wire, in the archive, or on the lineup file", () => {
@@ -649,15 +685,32 @@ export const injuryUpdates = [];`,
   assert.equal(map.has("ATL"), false);
 });
 
-test("generated team pages do not share one lastmod", () => {
+test("generated team and player lastmods follow that page's content date", () => {
   const pulseFile = readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8");
   const editionDisplay = pulseFile.match(/export const pulseEdition\s*=\s*\{[^}]*?\bdate:\s*"([^"]+)"/)?.[1];
   const editionIso = displayDateToIso(editionDisplay);
   assert.match(editionIso ?? "", /^\d{4}-\d{2}-\d{2}$/);
   const { urls } = generate({ write: false });
-  const teamDates = urls.filter((u) => u.loc.startsWith("/team/")).map((u) => u.lastmod);
-  assert.ok(teamDates.length >= 30, `expected every franchise, got ${teamDates.length}`);
-  assert.ok(new Set(teamDates).size > 1, "team lastmods must diverge when content diverges");
+  const teamUrls = urls.filter((u) => u.loc.startsWith("/team/"));
+  assert.ok(teamUrls.length >= 30, `expected every franchise, got ${teamUrls.length}`);
+  const archiveFile = readFileSync(join(ROOT, "client/src/lib/archiveData.ts"), "utf8");
+  const lineupFile = existsSync(join(ROOT, "client/src/lib/lineupData.ts"))
+    ? readFileSync(join(ROOT, "client/src/lib/lineupData.ts"), "utf8")
+    : "";
+  const expectedTeams = teamContentLastmods({ archiveFile, pulseFile, lineupFile, editionIso });
+  for (const url of teamUrls) {
+    const code = url.loc.slice("/team/".length).toUpperCase();
+    assert.equal(
+      url.lastmod,
+      expectedTeams.get(code) ?? editionIso,
+      `${code} lastmod should follow that franchise's content date`,
+    );
+  }
+  const contentDates = new Set(expectedTeams.values());
+  if (contentDates.size > 1) {
+    const stamped = new Set(teamUrls.map((u) => u.lastmod));
+    assert.ok(stamped.size > 1, "team lastmods must diverge when content dates diverge");
+  }
   // Off-days publish empty gameResults and gamePreviews. Game pages are
   // required only when the slate actually contains games.
   const slate = describePulseSlate(pulseFile);
@@ -671,19 +724,10 @@ test("generated team pages do not share one lastmod", () => {
     assert.ok(urls.some((u) => u.loc === `/game/${id}`), `missing /game/${id}`);
   }
   assert.equal(urls.find((u) => u.loc === "/")?.lastmod, editionIso);
+  assertPlayerLocsFollowSubstantiveCards(urls, pulseFile);
   const substantive = substantivePulseNames(
     pulseFile.match(/export const pulseIndex\s*=\s*\[([\s\S]*?)\]/)?.[1] ?? "",
   );
-  for (const [slug, name] of [
-    ["kawhi-leonard", "Kawhi Leonard"],
-    ["vj-edgecombe", "VJ Edgecombe"],
-    ["jamal-murray", "Jamal Murray"],
-    ["ja-morant", "Ja Morant"],
-    ["joel-embiid", "Joel Embiid"],
-  ]) {
-    if (substantive.has(name)) continue;
-    assert.equal(urls.find((u) => u.loc === `/player/${slug}`), undefined, `${name} has no Pulse card`);
-  }
   const slateTeam = pulseFile.match(/export const gamePreviews\s*=\s*\[[\s\S]*?\bhomeTeam:\s*"([A-Z]{3})"/)?.[1];
   if (slateTeam) {
     assert.equal(urls.find((u) => u.loc === `/team/${slateTeam.toLowerCase()}`)?.lastmod, editionIso);
@@ -693,8 +737,25 @@ test("generated team pages do not share one lastmod", () => {
     assert.match(paul.lastmod, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(paul.lastmod <= editionIso, `Chris Paul lastmod ${paul.lastmod} is after edition ${editionIso}`);
   }
-  const playerDates = new Set(urls.filter((u) => u.loc.startsWith("/player/")).map((u) => u.lastmod));
-  assert.ok(playerDates.size > 1, "player lastmods must diverge when coverage diverges");
+  const playerUrls = urls.filter((u) => u.loc.startsWith("/player/"));
+  const playerDates = playerContentLastmods({ archiveFile, pulseFile, editionIso });
+  const playerBySlug = new Map();
+  for (const [name, iso] of playerDates) {
+    const slug = slugify(name);
+    const prev = playerBySlug.get(slug);
+    if (!prev || iso > prev) playerBySlug.set(slug, iso);
+  }
+  for (const url of playerUrls) {
+    const slug = url.loc.slice("/player/".length);
+    const specific = playerBySlug.get(slug);
+    if (!specific) continue;
+    assert.equal(url.lastmod, specific, `${slug} lastmod should follow that player's content date`);
+  }
+  const covered = playerUrls.map((url) => playerBySlug.get(url.loc.slice("/player/".length))).filter(Boolean);
+  if (new Set(covered).size > 1) {
+    const stamped = new Set(playerUrls.map((url) => url.lastmod));
+    assert.ok(stamped.size > 1, "player lastmods must diverge when coverage dates diverge");
+  }
 });
 
 test("published game ids are sitemap locs, and a game without an id cannot ship", () => {

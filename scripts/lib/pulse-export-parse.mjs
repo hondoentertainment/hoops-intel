@@ -94,7 +94,11 @@ function stripTopLevelTsAssertion(literal) {
 }
 
 export function extractExportLiteral(src, name, scope = {}) {
-  const re = new RegExp(`export\\s+const\\s+${name}\\s*=\\s*`);
+  // Allow `export const name: Type =` so sentimentData.ts parses. The
+  // annotation sits before `=`; excess-property checks depend on that type.
+  const re = new RegExp(
+    `export\\s+const\\s+${name}\\b(?:\\s*:\\s*[A-Za-z_][\\w]*)?\\s*=\\s*`,
+  );
   const m = re.exec(src);
   if (!m) throw new Error("export not found");
 

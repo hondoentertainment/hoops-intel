@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { findPlayerInjury, playerHasLiveDeskCoverage, getPlayerIntelBySlug } from "../lib/playerIntel";
 import { deskStaleNote, displayDateToIso, isDeskEditionStale, isoToDisplayDate, lastUpdatedStamp } from "../lib/dataTrust";
 import { injuryUpdates, pulseEdition, pulseIndex } from "../lib/pulseData";
-import { filterBrowsePlayers, listBrowsePlayers, playerProfileHref } from "../lib/playersIndex";
+import { filterBrowsePlayers, listBrowsePlayers, playerProfileHref, type BrowsePlayer } from "../lib/playersIndex";
 import { slugify } from "../lib/searchUtils";
 import { profileSeoIndexable } from "../lib/playerRosterStatus";
 
@@ -28,25 +28,58 @@ describe("playersIndex", () => {
     expect(pulseOnly.every((p) => p.pulseRank != null)).toBe(true);
     expect(pulseOnly.length).toBe(pulseIndex.length);
 
-    const queried = filterBrowsePlayers(rows, "brunson", "all");
-    expect(queried.some((p) => /brunson/i.test(p.name))).toBe(true);
+    const leaderName = pulseIndex[0]?.player ?? "";
+    const lastName = leaderName.split(" ").at(-1) ?? "";
+    const queried = filterBrowsePlayers(rows, lastName, "all");
+    expect(queried.some((p) => p.name === leaderName)).toBe(true);
     expect(filterBrowsePlayers(rows, "zzzz-not-a-player", "all")).toEqual([]);
   });
 
-  it("ranks archive and prospect names ahead of stat-line noise", () => {
-    const rows = listBrowsePlayers();
-    expect(filterBrowsePlayers(rows, "edgecombe")[0]?.slug).toBe("vj-edgecombe");
-    expect(filterBrowsePlayers(rows, "vj")[0]?.slug).toBe("vj-edgecombe");
-    expect(filterBrowsePlayers(rows, "amen")[0]?.slug).toBe("amen-thompson");
-    expect(filterBrowsePlayers(rows, "sga")[0]?.name).toMatch(/Gilgeous-Alexander/);
-    expect(filterBrowsePlayers(rows, "de'aaron")[0]?.name).toMatch(/Fox/);
+  it("ranks a name hit above stat-line noise and breaks ties without the edition order", () => {
+    const fixture: BrowsePlayer[] = [
+      browse({ name: "Blake Carter", slug: "blake-carter", mentions: 5 }),
+      browse({ name: "Alex Carter", slug: "alex-carter", mentions: 5 }),
+      browse({
+        name: "Dana Carter",
+        slug: "dana-carter",
+        mentions: 1,
+        status: "active",
+        label: "Active",
+        pulseRank: 3,
+        pulseScore: 80,
+        keyStats: "20 PPG",
+      }),
+      browse({
+        name: "Casey North",
+        slug: "casey-north",
+        mentions: 9,
+        keyStats: "mentions carter in the blurb",
+      }),
+    ];
+    expect(filterBrowsePlayers(fixture, "carter").map((player) => player.name)).toEqual([
+      "Dana Carter",
+      "Alex Carter",
+      "Blake Carter",
+      "Casey North",
+    ]);
 
-    const harper = filterBrowsePlayers(rows, "harper")[0];
-    expect(harper?.slug).toBe("dylan-harper");
-    expect(harper?.pulseRank).toBeUndefined();
-    expect(harper?.keyStats).toBeUndefined();
-    expect(profileSeoIndexable("Dylan Harper", { mentions: harper?.mentions ?? 0 })).toBe(false);
+    const rows = listBrowsePlayers();
+    expectNameBeatsStatNoise(rows, "edgecombe", "vj-edgecombe");
+    expectNameBeatsStatNoise(rows, "vj", "vj-edgecombe");
+    expectNameBeatsStatNoise(rows, "amen", "amen-thompson");
+    expect(filterBrowsePlayers(rows, "sga").some((player) => /Gilgeous-Alexander/.test(player.name))).toBe(true);
+    expect(filterBrowsePlayers(rows, "de'aaron").some((player) => /Fox/.test(player.name))).toBe(true);
+    expect(rows.some((player) => player.slug === "dylan-harper")).toBe(true);
+    for (const row of rows) {
+      if (row.pulseRank == null) {
+        expect(row.keyStats).toBeUndefined();
+      } else {
+        expect(pulseIndex.some((card) => card.player === row.name && card.rank === row.pulseRank)).toBe(true);
+      }
+    }
+    expect(profileSeoIndexable("Dylan Harper", { mentions: 4 })).toBe(false);
     expect(profileSeoIndexable("VJ Edgecombe", { mentions: 4 })).toBe(false);
+    expect(profileSeoIndexable("Dylan Harper", { mentions: 1, substantive: true })).toBe(true);
 
     expect(filterBrowsePlayers(rows, "", "all")[0]?.pulseRank).toBe(1);
     for (const row of rows) {
@@ -68,18 +101,46 @@ describe("playersIndex", () => {
   });
 });
 
-describe("player empty-state coverage", () => {
-  it("treats Pulse leaders as live coverage and archive-only names as empty", () => {
-    const leaderSlug = slugify(pulseIndex[0]!.player);
-    expect(playerHasLiveDeskCoverage(getPlayerIntelBySlug(leaderSlug))).toBe(true);
+function browse(partial: Partial<BrowsePlayer> & Pick<BrowsePlayer, "name" | "slug">): BrowsePlayer {
+  return {
+    teams: [],
+    mentions: 1,
+    status: "inactive",
+    label: "Archive only",
+    ...partial,
+  };
+}
 
-    const thin = getPlayerIntelBySlug("vj-edgecombe") ?? getPlayerIntelBySlug("amen-thompson");
-    if (thin) {
-      expect(playerHasLiveDeskCoverage(thin)).toBe(false);
-      expect(thin.mentions).toBeGreaterThan(0);
-      expect(thin.pulse).toBeUndefined();
-      expect(thin.injury).toBeUndefined();
+function expectNameBeatsStatNoise(rows: BrowsePlayer[], query: string, slug: string) {
+  const ranked = filterBrowsePlayers(rows, query);
+  const nameIdx = ranked.findIndex((player) => player.slug === slug);
+  expect(nameIdx).toBeGreaterThanOrEqual(0);
+  const needle = query.toLowerCase();
+  for (const row of ranked.slice(0, nameIdx)) {
+    expect(row.name.toLowerCase()).toContain(needle);
+  }
+}
+
+describe("player empty-state coverage", () => {
+  it("treats Pulse leaders as live coverage and off-desk archive names as empty", () => {
+    const leaderSlug = slugify(pulseIndex[0]!.player);
+    const leader = getPlayerIntelBySlug(leaderSlug);
+    expect(playerHasLiveDeskCoverage(leader)).toBe(true);
+    expect(leader?.pulse).toBeTruthy();
+
+    const found = ["vj-edgecombe", "amen-thompson", "dylan-harper", "kawhi-leonard"]
+      .map((slug) => getPlayerIntelBySlug(slug))
+      .filter((intel): intel is NonNullable<typeof intel> => Boolean(intel));
+    expect(found.length).toBeGreaterThan(0);
+    for (const intel of found) {
+      expect(playerHasLiveDeskCoverage(intel)).toBe(Boolean(intel.pulse || intel.injury));
+      if (!intel.pulse && !intel.injury) {
+        expect(intel.mentions).toBeGreaterThan(0);
+      }
     }
+    expect(
+      playerHasLiveDeskCoverage({ ...found[0]!, pulse: undefined, injury: undefined }),
+    ).toBe(false);
   });
 });
 
