@@ -15,25 +15,67 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "October 29, 2026",
+    editionDate: "October 30, 2026",
     games: [
       {
-        awayTeam: "CLE",
-        homeTeam: "ATL",
-        openingSpread: "CLE -1.0",
-        closingSpread: "CLE -1.5",
+        awayTeam: "NYK",
+        homeTeam: "PHI",
+        openingSpread: "PHI -2.5",
+        closingSpread: "PHI -3.5",
       },
       {
-        awayTeam: "SAC",
-        homeTeam: "NOP",
-        openingSpread: "NOP -1.0",
-        closingSpread: "NOP -1.5",
+        awayTeam: "LAL",
+        homeTeam: "GSW",
+        openingSpread: "GSW -1.0",
+        closingSpread: "LAL -1.5",
       },
       {
-        awayTeam: "MEM",
-        homeTeam: "POR",
-        openingSpread: "POR -1.0",
-        closingSpread: "MEM -1.0",
+        awayTeam: "HOU",
+        homeTeam: "DAL",
+        openingSpread: "DAL -1.5",
+        closingSpread: "HOU -1.0",
+      },
+      {
+        awayTeam: "CHA",
+        homeTeam: "WAS",
+        openingSpread: "WAS -0.5",
+        closingSpread: "CHA -1.0",
+      },
+      {
+        awayTeam: "CHI",
+        homeTeam: "BOS",
+        openingSpread: "BOS -7.0",
+        closingSpread: "BOS -7.5",
+      },
+      {
+        awayTeam: "LAC",
+        homeTeam: "MIN",
+        openingSpread: "MIN -3.5",
+        closingSpread: "MIN -4.0",
+      },
+      {
+        awayTeam: "DEN",
+        homeTeam: "PHX",
+        openingSpread: "PHX -1.0",
+        closingSpread: "DEN -1.5",
+      },
+      {
+        awayTeam: "ORL",
+        homeTeam: "TOR",
+        openingSpread: "TOR -4.0",
+        closingSpread: "TOR -4.5",
+      },
+      {
+        awayTeam: "IND",
+        homeTeam: "MIA",
+        openingSpread: "MIA -1.0",
+        closingSpread: "EVEN",
+      },
+      {
+        awayTeam: "DET",
+        homeTeam: "BRK",
+        openingSpread: "DET -3.0",
+        closingSpread: "DET -3.5",
       }
     ],
   }
