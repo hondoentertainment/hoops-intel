@@ -396,6 +396,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "nolan traore": 5279130,
   "norman powell": 2595516,
   "obi toppin": 4278355,
+  "ochai agbaji": 4397018,
   "og anunoby": 3934719,
   "olivier maxence prosper": 4595400,
   "onyeka okongwu": 4431680,
