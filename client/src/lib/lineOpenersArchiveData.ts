@@ -15,74 +15,9 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 2, 2026",
+    editionDate: "November 3, 2026",
     games: [
-      {
-        awayTeam: "BOS",
-        homeTeam: "HOU",
-        openingSpread: "HOU -1.0",
-        closingSpread: "HOU -1.5",
-      },
-      {
-        awayTeam: "NOP",
-        homeTeam: "MEM",
-        openingSpread: "MEM -9.0",
-        closingSpread: "MEM -9.5",
-      },
-      {
-        awayTeam: "OKC",
-        homeTeam: "CLE",
-        openingSpread: "CLE -2.0",
-        closingSpread: "CLE -2.5",
-      },
-      {
-        awayTeam: "MIL",
-        homeTeam: "MIN",
-        openingSpread: "MIN -5.5",
-        closingSpread: "MIN -6.5",
-      },
-      {
-        awayTeam: "SAC",
-        homeTeam: "DAL",
-        openingSpread: "DAL -10.5",
-        closingSpread: "DAL -11.0",
-      },
-      {
-        awayTeam: "UTA",
-        homeTeam: "SAS",
-        openingSpread: "SAS -8.0",
-        closingSpread: "SAS -8.5",
-      },
-      {
-        awayTeam: "CHI",
-        homeTeam: "PHI",
-        openingSpread: "PHI -8.5",
-        closingSpread: "PHI -9.0",
-      },
-      {
-        awayTeam: "POR",
-        homeTeam: "DEN",
-        openingSpread: "POR -0.5",
-        closingSpread: "DEN -1.0",
-      },
-      {
-        awayTeam: "MIA",
-        homeTeam: "LAL",
-        openingSpread: "LAL -5.0",
-        closingSpread: "LAL -5.5",
-      },
-      {
-        awayTeam: "PHX",
-        homeTeam: "GSW",
-        openingSpread: "GSW -6.5",
-        closingSpread: "GSW -7.0",
-      },
-      {
-        awayTeam: "TOR",
-        homeTeam: "LAC",
-        openingSpread: "TOR -1.5",
-        closingSpread: "TOR -2.0",
-      }
+
     ],
   }
 ];
