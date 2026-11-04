@@ -160,7 +160,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "egor demin": 5175643,
   "elijah harkless": 4397449,
   "emanuel sharp": 5106058,
-  "enrique freeman": 4592699,
   "ernest udeh": 5106261,
   "evan mobley": 4432158,
   "felix okpara": 5105841,
