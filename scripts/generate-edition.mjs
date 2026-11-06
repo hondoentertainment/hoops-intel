@@ -268,7 +268,7 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
         { role: "assistant", content: "(previous draft rejected by the pulseData parser)" },
         {
           role: "user",
-          content: `The previous file failed parse validation and was discarded:\n${parseErrors.map((e) => "- " + e).join("\n")}\n\nRegenerate the COMPLETE pulseData.ts file. Every export const statement must end with a semicolon. Do not wrap the file in markdown fences. Do not stop before triviaQuestion is closed and terminated.`,
+          content: `The previous file failed parse validation and was discarded:\n${parseErrors.map((e) => "- " + e).join("\n")}\n\nRegenerate the COMPLETE pulseData.ts file. pulseIndex must have exactly 10 entries ranked 1 through 10. Every export const statement must end with a semicolon. Do not wrap the file in markdown fences. Do not stop before triviaQuestion is closed and terminated.`,
         },
       );
     }
