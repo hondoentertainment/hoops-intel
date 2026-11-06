@@ -906,6 +906,36 @@ export const historyFact = {fact:"Karl Malone scored 36."};`,
   assert.equal(karl.length, 0);
 });
 
+test("a short or unranked pulseIndex cannot ship", () => {
+  const expected = {
+    editionDisplay: "October 4, 2026",
+    editionIso: "2026-10-04",
+    tonightEspn: "20261004",
+  };
+  const ranks = (n, offset = 1) =>
+    Array.from({ length: n }, (_, i) => `{rank:${i + offset},player:"P${i + 1}",team:"BOS"}`).join(",");
+  const header = `export const pulseEdition = {date:"October 4, 2026"};
+export const gamePreviews = [];`;
+
+  const short = collectPulsePublicationErrors(
+    `${header}\nexport const pulseIndex = [${ranks(4)}];`,
+    expected,
+  );
+  assert.ok(short.some((line) => line.includes("pulseIndex length is 4")));
+
+  const skipped = collectPulsePublicationErrors(
+    `${header}\nexport const pulseIndex = [${ranks(10, 2)}];`,
+    expected,
+  );
+  assert.ok(skipped.some((line) => /pulseIndex ranks must be 1-10/.test(line)));
+
+  const full = collectPulsePublicationErrors(
+    `${header}\nexport const pulseIndex = [${ranks(10)}];`,
+    expected,
+  );
+  assert.equal(full.length, 0);
+});
+
 test("committed edition display date matches the archive publication id", () => {
   const errors = collectCommittedEditionDateErrors({
     pulseSource: readFileSync(join(ROOT, "client/src/lib/pulseData.ts"), "utf8"),

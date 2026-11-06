@@ -137,7 +137,33 @@ export function collectPulsePublicationErrors(source, expected) {
       `stale Denver coach reference (Michael Malone was fired in April 2025): "${hit}"`,
     );
   }
+
+  errors.push(...pulseIndexPublicationErrors(source));
   return errors;
+}
+
+/**
+ * A 4-entry Pulse Index still parses. Nov 6 2026 wrote that draft
+ * (stop_reason=end_turn) and failed the pre-push hard gate. Reject it
+ * here so generate-edition retries before pulseData.ts is written.
+ * Missing pulseIndex is a parse error, not a publication error.
+ * @param {string} source
+ * @returns {string[]}
+ */
+export function pulseIndexPublicationErrors(source) {
+  const body = exportArrayBody(source, "pulseIndex");
+  if (body == null) return [];
+  const ranks = [...body.matchAll(/\brank:\s*(\d+)/g)].map((m) => Number(m[1]));
+  if (ranks.length !== 10) {
+    return [`pulseIndex length is ${ranks.length}, expected 10 ranked entries`];
+  }
+  const sorted = [...ranks].sort((a, b) => a - b);
+  for (let i = 0; i < 10; i++) {
+    if (sorted[i] !== i + 1) {
+      return [`pulseIndex ranks must be 1-10, got ${JSON.stringify(ranks)}`];
+    }
+  }
+  return [];
 }
 
 export function sitemapLastmod(xml, path) {
