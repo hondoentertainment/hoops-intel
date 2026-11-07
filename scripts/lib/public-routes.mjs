@@ -45,6 +45,11 @@ export const SITE_REVIEW_PATHS = [
   "/history",
   "/guest-pulse",
   "/pulse-methodology",
+  "/about",
+  "/methodology",
+  "/privacy",
+  "/terms",
+  "/contact",
   "/sitemap.xml",
 ];
 
@@ -80,6 +85,11 @@ export const SITEMAP_STATIC_ROUTES = [
   { loc: "/community-pulse", priority: "0.6", changefreq: "weekly" },
   { loc: "/guest-pulse", priority: "0.55", changefreq: "weekly" },
   { loc: "/pulse-methodology", priority: "0.55", changefreq: "monthly" },
+  { loc: "/about", priority: "0.4", changefreq: "monthly" },
+  { loc: "/methodology", priority: "0.4", changefreq: "monthly" },
+  { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
+  { loc: "/terms", priority: "0.3", changefreq: "yearly" },
+  { loc: "/contact", priority: "0.3", changefreq: "yearly" },
   // Interactive tools — below daily desk so crawl budget is not flattened
   { loc: "/tools", priority: "0.55", changefreq: "weekly" },
   { loc: "/trade-value", priority: "0.55", changefreq: "weekly" },

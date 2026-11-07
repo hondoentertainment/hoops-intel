@@ -1,5 +1,7 @@
 /** Newsletter signup — persists to Supabase via `/api/subscribe-digest`; local flags only mirror success */
 
+import { publicFeatureError } from "./comingSoon";
+
 export type SubscribeDigestResult =
   | { ok: true; message: string }
   | { ok: false; error: string };
@@ -52,7 +54,7 @@ export async function subscribeDigestEmail(rawEmail: string): Promise<SubscribeD
         : res.status >= 500
           ? "Server error — try again in a minute."
           : "Could not subscribe right now.";
-    return { ok: false, error: err };
+    return { ok: false, error: publicFeatureError("email", err) };
   } catch {
     return { ok: false, error: "Network error — check your connection and try again." };
   }

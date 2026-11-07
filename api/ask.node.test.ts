@@ -146,8 +146,8 @@ describe("/api/ask on a Node-style request", () => {
       ),
     ).resolves.toBeUndefined();
     expect(res.ended).toBe(true);
-    expect(res.statusCode).toBe(500);
-    expect(JSON.parse(res.text())).toEqual({ error: "API key not configured" });
+    expect(res.statusCode).toBe(503);
+    expect(JSON.parse(res.text())).toEqual({ error: "Ask Hoops Intel is coming soon.", code: "ask_not_configured" });
     expect(res.headers["access-control-allow-origin"]).toBe("*");
   });
 
@@ -164,8 +164,11 @@ describe("/api/ask on a Node-style request", () => {
       }),
     );
     expect(response).toBeInstanceOf(Response);
-    expect(response?.status).toBe(500);
-    await expect(response?.json()).resolves.toEqual({ error: "API key not configured" });
+    expect(response?.status).toBe(503);
+    await expect(response?.json()).resolves.toEqual({
+      error: "Ask Hoops Intel is coming soon.",
+      code: "ask_not_configured",
+    });
   });
 
   it("rejects a non-POST Node request before touching the model", async () => {

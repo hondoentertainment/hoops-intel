@@ -1,9 +1,10 @@
 import { narrative, pulseEdition } from "./pulseData";
+import { isoToDisplayDate } from "./dataTrust";
 import { isFinalsActive, isPlayoffsActive, playoffSeries, type PlayoffRound } from "./playoffData";
 
 export const SITE_ORIGIN = "https://hoopsintel.net";
 export const SITE_NAME = "Hoops Intel";
-export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/api/og?type=edition`;
+export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og/desk.svg`;
 export const TWITTER_SITE = "@hoopsintel";
 
 export interface PageSeo {
@@ -252,6 +253,36 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
       "Pitch a Guest Pulse takeover for the morning desk: who you would elevate and why. Read notes editors have published, then send your own.",
     canonicalPath: "/guest-pulse",
   },
+  "/about": {
+    title: "About Hoops Intel | Hoops Intel",
+    description:
+      "Hoops Intel is an independent daily NBA desk. Each morning it publishes scores, a Pulse Index, injuries, and previews. It is not the league and not a sportsbook.",
+    canonicalPath: "/about",
+  },
+  "/methodology": {
+    title: "How Hoops Intel Editions Are Made | Hoops Intel",
+    description:
+      "How the Pulse Index is judged and how each morning edition is produced from ESPN scoreboards, an AI draft, and validation. Hoops Intel is an editorial desk, not an official league feed.",
+    canonicalPath: "/methodology",
+  },
+  "/privacy": {
+    title: "Privacy | Hoops Intel",
+    description:
+      "What Hoops Intel stores when you read the desk, create an account, subscribe to the digest, or allow browser alerts, and how ESPN data is used. This page is a product description, not legal advice.",
+    canonicalPath: "/privacy",
+  },
+  "/terms": {
+    title: "Terms | Hoops Intel",
+    description:
+      "Ground rules for reading Hoops Intel: editorial content, no league affiliation, no betting advice, and what Pro means when checkout is open. This page is not legal advice.",
+    canonicalPath: "/terms",
+  },
+  "/contact": {
+    title: "Contact Hoops Intel | Hoops Intel",
+    description:
+      "Email the Hoops Intel desk. There is no contact form and no account is required to write in. Corrections, privacy questions, and terms questions go to the address on this page.",
+    canonicalPath: "/contact",
+  },
 };
 
 /** Indexable static paths for sitemap generation (keep in sync with STATIC_ROUTE_SEO). */
@@ -294,6 +325,11 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/pro",
   "/betting-intel",
   "/guest-pulse",
+  "/about",
+  "/methodology",
+  "/privacy",
+  "/terms",
+  "/contact",
 ];
 
 function homePageSeo(): PageSeo {
@@ -315,22 +351,47 @@ function homePageSeo(): PageSeo {
     description,
     canonicalPath: "/",
     ogType: "article",
-    ogImage: finalsDesk ? `${SITE_ORIGIN}/api/og?type=edition` : DEFAULT_OG_IMAGE,
+    ogImage: DEFAULT_OG_IMAGE,
+    jsonLd: homeEditionJsonLd(finalsDesk ? `NBA Finals — ${narrative.headline}` : narrative.headline, description, published),
+  };
+}
+
+function homeEditionJsonLd(headline: string, description: string, published: string) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      ...SITE_JSON_LD["@graph"],
+      {
+        "@type": "NewsArticle",
+        headline,
+        description,
+        datePublished: published,
+        dateModified: published,
+        author: { "@id": `${SITE_ORIGIN}/#organization` },
+        publisher: { "@id": `${SITE_ORIGIN}/#organization` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": SITE_ORIGIN },
+        image: [DEFAULT_OG_IMAGE],
+      },
+    ],
+  };
+}
+
+function printEditionSeo(): PageSeo {
+  const base = STATIC_ROUTE_SEO["/print-edition"]!;
+  return {
+    ...base,
+    ogType: "article",
+    ogImage: DEFAULT_OG_IMAGE,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      headline: finalsDesk ? `NBA Finals — ${narrative.headline}` : narrative.headline,
-      description,
-      datePublished: published,
-      dateModified: published,
+      headline: narrative.headline,
+      description: narrative.subhead || base.description,
+      datePublished: pulseEdition.date,
+      dateModified: pulseEdition.date,
       author: { "@type": "Organization", name: SITE_NAME, url: SITE_ORIGIN },
-      publisher: {
-        "@type": "Organization",
-        name: SITE_NAME,
-        url: SITE_ORIGIN,
-        logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/assets/logo.png` },
-      },
-      mainEntityOfPage: { "@type": "WebPage", "@id": SITE_ORIGIN },
+      publisher: { "@id": `${SITE_ORIGIN}/#organization` },
+      mainEntityOfPage: `${SITE_ORIGIN}/print-edition`,
       image: [DEFAULT_OG_IMAGE],
     },
   };
@@ -425,6 +486,7 @@ export function resolveRouteSeo(pathname: string): PageSeo | null {
   }
 
   if (path === "/") return homePageSeo();
+  if (path === "/print-edition") return printEditionSeo();
   if (path === "/playoffs") return playoffsPageSeo("/playoffs");
   if (path === "/playoff-bracket") return playoffsPageSeo("/playoff-bracket");
 
@@ -452,6 +514,67 @@ export function resolveRouteSeo(pathname: string): PageSeo | null {
     canonicalPath: path,
     noindex: true,
   };
+}
+
+export function gamePageMeta(input: { gameId: string; whyItMatters?: string | null; found: boolean }) {
+  const gameId = input.gameId.trim();
+  const canonicalUrl = `${SITE_ORIGIN}/game/${gameId}`;
+  const ogImage = `${SITE_ORIGIN}/api/og?type=game&gameId=${encodeURIComponent(gameId)}`;
+  const match = /^([A-Za-z]{2,3})-([A-Za-z]{2,3})-(\d{4})(\d{2})(\d{2})$/.exec(gameId);
+  const away = match?.[1]?.toUpperCase() ?? "";
+  const home = match?.[2]?.toUpperCase() ?? "";
+  const label = match ? isoToDisplayDate(`${match[3]}-${match[4]}-${match[5]}`) : null;
+  if (!input.found || !away || !home || !label) {
+    const token = gameId || "unknown";
+    return {
+      title: `Game not on the desk (${token}) | Hoops Intel`,
+      description: `Hoops Intel does not have a Game Center page for ${token}. Browse today's desk for the current slate.`,
+      canonicalUrl,
+      ogImage,
+    };
+  }
+  const why = input.whyItMatters?.trim();
+  return {
+    title: `${away} at ${home}, ${label} | Hoops Intel`,
+    description: `${away} at ${home} on ${label} (${gameId}). ${why || "Score context, injuries, and desk notes for this game."}`,
+    canonicalUrl,
+    ogImage,
+  };
+}
+
+export function playerPageMeta(input: {
+  name?: string;
+  slug: string;
+  found: boolean;
+  rank?: number;
+  keyStats?: string;
+  note?: string;
+  rosterLabel?: string;
+  rosterDetail?: string;
+  rosterActive?: boolean;
+}) {
+  const canonicalUrl = playerProfileCanonicalUrl(input.slug);
+  if (!input.found || !input.name) {
+    const slug = input.slug || "unknown";
+    return {
+      title: `Player not found (${slug}) | Hoops Intel`,
+      description: `Hoops Intel does not have a profile for ${slug}. Browse the player index for Pulse and archive coverage.`,
+      canonicalUrl,
+    };
+  }
+  const title =
+    input.rank != null
+      ? `${input.name} — Pulse Index #${input.rank} | Hoops Intel`
+      : `${input.name} | Hoops Intel`;
+  let description: string;
+  if (input.keyStats && input.note) {
+    description = `${input.name}: ${input.keyStats} — ${input.note}`;
+  } else if (input.rosterLabel && input.rosterActive === false) {
+    description = `${input.name} — ${input.rosterLabel}. ${input.rosterDetail ?? ""}`.trim();
+  } else {
+    description = `Archive and desk coverage for ${input.name} on Hoops Intel.`;
+  }
+  return { title, description, canonicalUrl };
 }
 
 export function toMetaTags(seo: PageSeo) {

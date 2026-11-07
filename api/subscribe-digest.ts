@@ -64,7 +64,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   if (!supabaseUrl || !serviceKey) {
     console.error('[subscribe-digest] Missing SUPABASE_URL or SUPABASE_SERVICE_KEY');
-    return jsonResponse({ error: 'Server misconfiguration' }, 500);
+    return jsonResponse({ error: 'The morning digest is coming soon.', code: 'email_not_configured' }, 503);
   }
 
   // Upsert into digest_subscribers — if the email already exists and is inactive,

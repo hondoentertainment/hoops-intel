@@ -15,6 +15,7 @@ import { slugify } from "../lib/searchUtils";
 import { booksForMatchup } from "../lib/oddsBooks";
 import { BookConsensusPanel } from "../components/BookConsensusPanel";
 import { useMetaTags } from "../lib/useMetaTags";
+import { gamePageMeta } from "../lib/seoConfig";
 import { useLiveScores } from "../lib/useLiveScores";
 import { liveScoresTrustLabel } from "../lib/dataTrust";
 
@@ -96,12 +97,14 @@ export default function GameCenter() {
   const bookGame = game ? booksForMatchup(game.away.abbr, game.home.abbr) : undefined;
   const isLiveOverlay = game?.status === "live";
 
+  const pageMeta = gamePageMeta({ gameId, whyItMatters: game?.whyItMatters, found: Boolean(game) });
+
   useMetaTags({
-    title: game ? `${game.away.abbr} at ${game.home.abbr} | Game Center | Hoops Intel` : "Game Center | Hoops Intel",
-    description: game?.whyItMatters || "Live game intelligence, score context, injuries, refs, and related Hoops Intel links.",
-    ogImage: share?.ogImage ?? `https://hoopsintel.net/api/og?type=game&gameId=${encodeURIComponent(gameId)}`,
-    ogUrl: share?.url ?? `https://hoopsintel.net/game/${gameId}`,
-    canonicalUrl: share?.url ?? `https://hoopsintel.net/game/${gameId}`,
+    title: pageMeta.title,
+    description: pageMeta.description,
+    ogImage: share?.ogImage ?? pageMeta.ogImage,
+    ogUrl: share?.url ?? pageMeta.canonicalUrl,
+    canonicalUrl: share?.url ?? pageMeta.canonicalUrl,
     jsonLd: game
       ? {
           "@context": "https://schema.org",

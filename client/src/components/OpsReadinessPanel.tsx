@@ -36,9 +36,8 @@ export default function OpsReadinessPanel() {
       style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="section-label mb-2">PRODUCTION READINESS</div>
-      <p className="text-xs mb-4 text-white/45 leading-relaxed">
-        Public snapshot from <code className="text-[var(--hi-text)]/80">/api/ops-readiness</code> — wire Stripe, VAPID, and Resend in
-        Vercel/GitHub to complete the daily habit loop.
+      <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--hi-muted,#686359)" }}>
+        Pro checkout, browser alerts, and the morning digest stay coming soon until they are turned on. The free desk does not depend on them.
       </p>
       {err && <p className="text-xs text-amber-300">Could not load readiness flags.</p>}
       {ops && (
@@ -49,7 +48,7 @@ export default function OpsReadinessPanel() {
           <Flag ok={Boolean(ops.pushDispatch?.apiUrlConfigured)} label="Push API URL (cron)" />
           <Flag ok={Boolean(ops.emailDigest?.intakeInboxReady)} label="Guest Pulse inbox" />
           <Flag ok={Boolean(ops.creatorQueue?.adminConfigured)} label="Creator queue admin" />
-          <Flag ok={Boolean(ops.emailDigest?.resendReady)} label="Email digest (Resend)" />
+          <Flag ok={Boolean(ops.emailDigest?.resendReady)} label="Email digest" />
           <Flag ok={Boolean(ops.supabase?.serverReady)} label="Supabase server" />
           <Flag ok={Boolean(ops.llm?.anthropicSeriesIntelReady)} label="Series intel (Claude)" />
         </div>

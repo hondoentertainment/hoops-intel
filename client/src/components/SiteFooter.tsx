@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EnhancedButton } from "./enhanced/EnhancedUi";
-import { FOOTER_QUICK_LINKS, type MainNavLink } from "../lib/siteNav";
+import { FOOTER_QUICK_LINKS, TRUST_FOOTER_LINKS, type MainNavLink } from "../lib/siteNav";
 import { pulseEdition } from "../lib/pulseData";
 import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
 import { editionHourLabel } from "../lib/pacificTime";
@@ -153,6 +153,18 @@ export default function SiteFooter() {
         </div>
 
         <div className="desk-hairline mb-4" />
+        <nav aria-label="About Hoops Intel" className="flex flex-wrap gap-x-5 gap-y-1 mb-4">
+          {TRUST_FOOTER_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm min-h-11 inline-flex items-center"
+              style={{ color: "var(--hi-text,#14120B)" }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
         <p className="text-xs mb-2" style={{ color: "var(--hi-muted,#686359)" }}>
           {bettingDisclaimer()}
         </p>

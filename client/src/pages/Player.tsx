@@ -7,7 +7,7 @@ import { getTeamColor } from "../lib/teamColors";
 import PlayerAvatar from "../components/PlayerAvatar";
 import TeamLogo from "../components/TeamLogo";
 import { useMetaTags } from "../lib/useMetaTags";
-import { playerProfileCanonicalUrl } from "../lib/seoConfig";
+import { playerPageMeta, playerProfileCanonicalUrl } from "../lib/seoConfig";
 import { playerAvailability } from "../lib/playerAvailability";
 import {
   findPlayerInjury,
@@ -91,21 +91,23 @@ export default function Player() {
     : false;
   const thinShell = Boolean(player) && !substantive && roster?.status !== "retired";
 
+  const pageMeta = playerPageMeta({
+    name: player?.name,
+    slug,
+    found: Boolean(player),
+    rank: currentPulse?.rank,
+    keyStats: currentPulse?.keyStats,
+    note: currentPulse?.note,
+    rosterLabel: roster?.label,
+    rosterDetail: roster?.detail,
+    rosterActive: roster ? roster.status === "active" : undefined,
+  });
+
   useMetaTags({
     enabled: Boolean(slug),
-    title: !player
-      ? "Player Not Found | Hoops Intel"
-      : currentPulse
-        ? `${player.name} — Pulse Index #${currentPulse.rank} | Hoops Intel`
-        : `${player.name} | Hoops Intel`,
-    description: !player
-      ? "This player profile is not available on Hoops Intel."
-      : currentPulse
-        ? `${currentPulse.keyStats} — ${currentPulse.note}`
-        : roster && roster.status !== "active"
-          ? `${player.name} — ${roster.label}. ${roster.detail}`
-          : `Archive and desk coverage for ${player.name} on Hoops Intel.`,
-    ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : undefined,
+    title: pageMeta.title,
+    description: pageMeta.description,
+    ogImage: player ? `https://hoopsintel.net/api/og?player=${slug}` : "https://hoopsintel.net/og/desk.svg",
     ogUrl: profileCanonical,
     canonicalUrl: profileCanonical,
     noindex: !seoIndexable,

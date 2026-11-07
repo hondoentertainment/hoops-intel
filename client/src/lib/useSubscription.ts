@@ -3,6 +3,7 @@
 // so the lookup runs entirely client-side.
 
 import { useEffect, useState } from "react";
+import { comingSoonCopy, publicFeatureError } from "./comingSoon";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
@@ -105,14 +106,10 @@ export async function startCheckout(plan: "monthly" | "annual"): Promise<string>
       code?: string;
       expectedEnv?: string[];
     } | null;
-    if (raw?.code === "stripe_not_configured") {
-      const suffix =
-        Array.isArray(raw.expectedEnv) && raw.expectedEnv.length > 0
-          ? ` Required env: ${raw.expectedEnv.join(", ")}.`
-          : "";
-      throw new Error((raw.error ?? "Stripe checkout is not configured for this deployment.") + suffix);
+    if (raw?.code === "stripe_not_configured" || raw?.code === "supabase_misconfigured") {
+      throw new Error(comingSoonCopy("pro"));
     }
-    if (typeof raw?.error === "string") throw new Error(raw.error);
+    if (typeof raw?.error === "string") throw new Error(publicFeatureError("pro", raw.error));
     throw new Error(`Checkout failed (${res.status})`);
   }
   const { url } = await res.json();
@@ -133,19 +130,10 @@ export async function openBillingPortal(): Promise<string> {
       code?: string;
       expectedEnv?: string[];
     } | null;
-    if (raw?.code === "stripe_not_configured") {
-      const suffix =
-        Array.isArray(raw.expectedEnv) && raw.expectedEnv.length > 0
-          ? ` Required env: ${raw.expectedEnv.join(", ")}.`
-          : "";
-      throw new Error(
-        (raw.error ?? "Stripe billing portal is not configured for this deployment.") + suffix,
-      );
+    if (raw?.code === "stripe_not_configured" || raw?.code === "supabase_misconfigured") {
+      throw new Error(comingSoonCopy("pro"));
     }
-    if (raw?.code === "supabase_misconfigured") {
-      throw new Error(raw.error ?? "Account billing lookup is not configured on the server.");
-    }
-    if (typeof raw?.error === "string") throw new Error(raw.error);
+    if (typeof raw?.error === "string") throw new Error(publicFeatureError("pro", raw.error));
     throw new Error(`Billing portal failed (${res.status})`);
   }
   const { url } = await res.json();

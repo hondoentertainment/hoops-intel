@@ -54,6 +54,8 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
     "@atproto/api": "^0.29.1",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.1.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "stripe": "^23.0.1",

@@ -37,9 +37,8 @@ async function handler(req: Request): Promise<Response> {
 
   if (!STRIPE_SECRET_KEY || !STRIPE_PRICE_MONTHLY || !STRIPE_PRICE_ANNUAL) {
     return new Response(JSON.stringify({
-      error: 'Stripe checkout is not configured for this deployment.',
+      error: 'Hoops Intel Pro is coming soon.',
       code: 'stripe_not_configured',
-      expectedEnv: ['STRIPE_SECRET_KEY', 'STRIPE_PRICE_MONTHLY', 'STRIPE_PRICE_ANNUAL'],
     }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' },

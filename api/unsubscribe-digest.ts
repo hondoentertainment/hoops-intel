@@ -34,7 +34,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_KEY;
-  if (!supabaseUrl || !serviceKey) return json({ error: 'Server misconfiguration' }, 500);
+  if (!supabaseUrl || !serviceKey) return json({ error: 'The morning digest is coming soon.', code: 'email_not_configured' }, 503);
 
   const res = await fetch(
     `${supabaseUrl}/rest/v1/digest_subscribers?email=eq.${encodeURIComponent(email)}`,

@@ -42,9 +42,8 @@ async function handler(req: Request): Promise<Response> {
   if (!process.env.STRIPE_SECRET_KEY) {
     return new Response(
       JSON.stringify({
-        error: 'Stripe billing portal is not configured for this deployment.',
+        error: 'Hoops Intel Pro is coming soon.',
         code: 'stripe_not_configured',
-        expectedEnv: ['STRIPE_SECRET_KEY'],
       }),
       { status: 503, headers: { 'Content-Type': 'application/json' } },
     );
@@ -60,7 +59,7 @@ async function handler(req: Request): Promise<Response> {
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY) {
     return new Response(
       JSON.stringify({
-        error: 'Subscription lookup is not configured on the server.',
+        error: 'Hoops Intel Pro is coming soon.',
         code: 'supabase_misconfigured',
       }),
       { status: 503, headers: { 'Content-Type': 'application/json' } },
