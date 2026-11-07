@@ -15,9 +15,9 @@
 }
 
 html {
-  /* MobileBottomNav is 4rem + safe-area. Content inset is the Figma 88px safe-stack. */
+  /* Bar is 4rem. Clearance is the bar plus 1.5rem so the last line sits above it. */
   --hi-tabbar-height: 4rem;
-  --hi-tabbar-clearance: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  --hi-tabbar-clearance: calc(var(--hi-tabbar-height) + 1.5rem + env(safe-area-inset-bottom, 0px));
   --hi-header-offset: calc(3.5rem + env(safe-area-inset-top, 0px));
   --hi-font-display: "Source Serif 4", "Iowan Old Style", Palatino, "Palatino Linotype", serif;
   --hi-font-body: "Inter", "Geist", system-ui, sans-serif;
@@ -281,6 +281,9 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /* html scroll-padding does not apply here. The scroller is the viewport,
+       so the last line of a tall footer must keep the tab-bar clearance. */
+    scroll-padding-bottom: var(--hi-tabbar-clearance);
   }
 
   .has-mobile-tabbar {
