@@ -1,10 +1,32 @@
 import { useState } from "react";
-import { BrandLockup, EnhancedButton } from "./enhanced/EnhancedUi";
-import { FOOTER_QUICK_LINKS } from "../lib/siteNav";
+import { EnhancedButton } from "./enhanced/EnhancedUi";
+import { FOOTER_QUICK_LINKS, type MainNavLink } from "../lib/siteNav";
 import { pulseEdition } from "../lib/pulseData";
 import { subscribeDigestEmail, readDigestSignupHint } from "../lib/subscribeDigest";
 import { editionHourLabel } from "../lib/pacificTime";
+import { bettingDisclaimer } from "../lib/bettingLineStory";
 import { useToast } from "../contexts/ToastContext";
+
+const FOOTER_GROUPS: { title: string; hrefs: string[] }[] = [
+  { title: "Daily", hrefs: ["/", "/tonight", "/archive", "/ask", "/feed.xml"] },
+  { title: "Data", hrefs: ["/#pulse-index", "/players", "/injuries", "/my-pulse", "/pulse-methodology"] },
+  { title: "Play", hrefs: ["/pick-em", "/badges", "/82-0", "/trade-simulator", "/clutch"] },
+  { title: "About", hrefs: ["/tools", "/watch-guide", "/pro"] },
+];
+
+function footerColumns(): { title: string; links: MainNavLink[] }[] {
+  const used = new Set<string>();
+  const columns = FOOTER_GROUPS.map((group) => {
+    const links = group.hrefs
+      .map((href) => FOOTER_QUICK_LINKS.find((link) => link.href === href))
+      .filter((link): link is MainNavLink => Boolean(link));
+    links.forEach((link) => used.add(link.href));
+    return { title: group.title, links };
+  });
+  const rest = FOOTER_QUICK_LINKS.filter((link) => !used.has(link.href));
+  if (rest.length > 0) columns[columns.length - 1]?.links.push(...rest);
+  return columns;
+}
 
 function footerEmailOk(raw: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.trim());
@@ -40,31 +62,20 @@ export default function SiteFooter() {
   const digestDescribedBy =
     [emailError ? "footer-email-err" : "", apiError ? "footer-digest-api-err" : ""].filter(Boolean).join(" ") || undefined;
 
+  const columns = footerColumns();
+
   return (
-    <footer className="py-10 mt-8 border-t" style={{ borderColor: "var(--hi-border-soft, rgba(255,255,255,0.06))" }}>
+    <footer className="py-10 mt-8 border-t" style={{ borderColor: "var(--hi-hairline, #E4E0D6)", background: "var(--hi-canvas-soft, #FBF9F4)" }}>
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div className="min-w-0">
-            <div className="mb-3">
-              <BrandLockup subtitle="Daily NBA intelligence" />
-            </div>
-            <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+          <div className="min-w-0 col-span-2 md:col-span-1">
+            <a href="/" className="hi-masthead-word text-2xl">Hoops Intel</a>
+            <p className="text-sm mt-2 mb-3" style={{ color: "var(--hi-muted,#686359)" }}>
+              Daily NBA intelligence. Scores via ESPN; editions AI-written.
+            </p>
+            <p className="text-xs mb-3" style={{ color: "var(--hi-muted,#686359)" }}>
               {pulseEdition.edition} · {pulseEdition.date}
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              <a href="/archive" className="text-xs min-h-11 inline-flex items-center" style={{ color: "var(--hi-text,#0a0a0a)" }}>
-                Archive
-              </a>
-              <a href="/performance" className="text-xs min-h-11 inline-flex items-center" style={{ color: "var(--hi-text,#0a0a0a)" }}>
-                AI Performance
-              </a>
-              <a href="/feed.xml" className="text-xs min-h-11 inline-flex items-center" style={{ color: "var(--hi-text,#0a0a0a)" }}>
-                RSS Feed
-              </a>
-            </div>
-          </div>
-
-          <div className="min-w-0">
             <p className="enhanced-kicker mb-2">Daily digest</p>
             <p className="text-xs mb-3" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
               Morning edition in your inbox at {editionHourLabel()}
@@ -112,25 +123,40 @@ export default function SiteFooter() {
             )}
           </div>
 
-          <div className="min-w-0">
-            <p className="enhanced-kicker mb-3">Explore</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-              {FOOTER_QUICK_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-xs min-h-11 inline-flex items-center hover:opacity-80"
-                  style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
-                >
-                  {link.label}
-                </a>
-              ))}
+          {columns.map((column) => (
+            <div key={column.title} className="min-w-0">
+              <p className="enhanced-kicker mb-3">{column.title}</p>
+              <div className="flex flex-col">
+                {column.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm min-h-11 inline-flex items-center"
+                    style={{ color: "var(--hi-text,#14120B)" }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                {column.title === "About" ? (
+                  <a href="/performance" className="text-sm min-h-11 inline-flex items-center" style={{ color: "var(--hi-text,#14120B)" }}>
+                    AI Performance
+                  </a>
+                ) : null}
+                {column.title === "Daily" ? (
+                  <a href="/print-edition" className="text-sm min-h-11 inline-flex items-center" style={{ color: "var(--hi-text,#14120B)" }}>
+                    Print Edition
+                  </a>
+                ) : null}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
         <div className="desk-hairline mb-4" />
-        <p className="text-xs text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
+        <p className="text-xs mb-2" style={{ color: "var(--hi-muted,#686359)" }}>
+          {bettingDisclaimer()}
+        </p>
+        <p className="text-xs" style={{ color: "var(--hi-muted,#686359)" }}>
           © {new Date().getFullYear()} Hoops Intel · Not affiliated with the NBA · Data for entertainment purposes
         </p>
       </div>

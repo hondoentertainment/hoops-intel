@@ -283,7 +283,7 @@ export default function Pro() {
           <div className="section-label mb-4" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>WHAT YOU GET</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {FEATURES.map((f, i) => (
-              <div key={i} className="rounded-lg p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div key={i} className="enhanced-card p-4">
                 <div className="display-heading text-white text-base mb-1">{f.title}</div>
                 <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>{f.body}</div>
               </div>
@@ -301,8 +301,7 @@ export default function Pro() {
               <a
                 key={t.href}
                 href={t.href}
-                className="rounded-lg p-4 block transition-colors hover:bg-white/[0.04]"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
+                className="enhanced-card p-4 block"
               >
                 <div className="display-heading text-white text-base mb-1">{t.label}</div>
                 <div className="text-sm" style={{ color: "var(--hi-muted,#5c5c58)" }}>{t.description}</div>

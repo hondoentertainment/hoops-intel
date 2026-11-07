@@ -14,16 +14,33 @@ export interface MainNavLink {
   href: string;
 }
 
-/** Compact header links (desktop) — Enhanced IA. */
+/** Desktop masthead — editorial IA. Detail routes light the matching item. */
 export function headerNavLinks(_date = new Date()): MainNavLink[] {
   return [
-    { label: "Desk", href: "/" },
-    { label: "Injuries", href: "/injuries" },
-    { label: "Tonight", href: "/tonight" },
+    { label: "Today", href: "/" },
+    { label: "Scores", href: "/tonight" },
+    { label: "Pulse Index", href: "/pulse-history" },
+    { label: "Teams", href: "/#standings" },
+    { label: "Players", href: "/players" },
+    { label: "Betting Intel", href: "/betting-intel" },
     { label: "Pick 'Em", href: "/pick-em" },
+    { label: "Tools", href: "/tools" },
     { label: "Archive", href: "/archive" },
     { label: "Ask", href: "/ask" },
   ];
+}
+
+/** Active state shared by the masthead and the mobile tab bar. */
+export function navItemActive(href: string, pathname: string): boolean {
+  const path = (pathname.split("?")[0] ?? "/").split("#")[0] || "/";
+  if (href === "/") return path === "/";
+  if (href === "/tonight") return path === "/tonight" || path.startsWith("/game/");
+  if (href === "/players") return path === "/players" || path.startsWith("/player/");
+  if (href === "/#standings") return path.startsWith("/team/");
+  if (href === "/pulse-history") return path === "/pulse-history" || path.startsWith("/pulse-");
+  const base = href.split("#")[0] || "/";
+  if (!base || base === "/") return false;
+  return path === base || path.startsWith(`${base}/`);
 }
 
 /** Full drawer navigation (mobile menu + overflow) */
@@ -94,9 +111,9 @@ export function deskSectionLinks(date = new Date()): MainNavLink[] {
 
 export function mobileBottomNavLinks(_date = new Date()): MainNavLink[] {
   return [
-    { label: "Desk", href: "/" },
-    { label: "Injuries", href: "/injuries" },
-    { label: "Tonight", href: "/tonight" },
+    { label: "Today", href: "/" },
+    { label: "Scores", href: "/tonight" },
+    { label: "Pulse", href: "/pulse-history" },
     { label: "Pick 'Em", href: "/pick-em" },
     { label: "Ask", href: "/ask" },
   ];

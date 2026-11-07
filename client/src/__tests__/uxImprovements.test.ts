@@ -95,7 +95,7 @@ describe("light-theme a11y", () => {
     expect(css).toContain(".skip-to-content:focus-visible");
     expect(css).toContain(".desk-section-pill:focus-visible");
     expect(css).toContain(".hi-th");
-    expect(css).toContain("--hi-text-secondary: #5c5c5a");
+    expect(css).toContain("--hi-text-secondary: #686359");
     expect(css).not.toContain("#050D1A");
     expect(src("App.tsx")).toContain("SkipToContent");
     expect(src("pages/Projections.tsx")).toContain("hi-th");

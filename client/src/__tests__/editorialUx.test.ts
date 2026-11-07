@@ -15,17 +15,17 @@ const CHROMELESS_PAGES = new Set([
 describe("editorial UX primitives", () => {
   it("keeps the shared light Grok canvas, pills, and soft-radius cards", () => {
     const css = readFileSync(join(srcDir, "styles/index.css"), "utf8");
-    expect(css).toContain("--hi-bg-page: #f7f7f5");
-    expect(css).toContain("--hi-accent: #8ec8f0");
-    expect(css).toContain("--hi-chip: #ff7a17");
-    expect(css).toContain("--hi-cta: #0a0a0a");
+    expect(css).toContain("--hi-bg-page: #F6F4EF");
+    expect(css).toContain("--hi-accent: #C8102E");
+    expect(css).toContain("--hi-chip: #C8102E");
+    expect(css).toContain("--hi-cta: #14120B");
     expect(css).toContain("--hi-pill-radius: 9999px");
-    expect(css).toContain("--hi-card-radius: 20px");
+    expect(css).toContain("--hi-card-radius: 16px");
     expect(css).toMatch(/\.enhanced-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toMatch(/\.glass-card[\s\S]{0,200}var\(--hi-card-radius/);
     expect(css).toContain(".desk-hairline");
     expect(css).toContain(".desk-page-main");
-    expect(css).toContain("--hi-desk-pad-x: 1.5rem");
+    expect(css).toContain("--hi-desk-pad-x: 1rem");
     expect(css).toContain("--hi-desk-pad-x-md: 2rem");
     expect(css).toContain(".glass-card.rounded-lg");
     expect(css).toMatch(/\.glass-card\.rounded-lg[\s\S]{0,180}var\(--hi-card-radius/);

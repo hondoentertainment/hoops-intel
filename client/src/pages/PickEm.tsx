@@ -418,19 +418,22 @@ function HowItWorksSection() {
   const steps = [
     {
       icon: "1",
-      color: "#8ec8f0",
+      color: "var(--hi-accent-text,#1D4E89)",
+      wash: "var(--hi-accent-soft,#E7EEF6)",
       title: "Pick Tonight's Winners",
       body: "Before tip-off, select which team you think will win each game. You can pick as many or as few games as you want.",
     },
     {
       icon: "2",
-      color: "#10B981",
+      color: "var(--hi-success,#1B7A45)",
+      wash: "#E5F4EC",
       title: "Lock In Your Picks",
       body: "Submit your picks to lock them in. Once locked, picks are final — no changes after the buzzer.",
     },
     {
       icon: "3",
-      color: "#F59E0B",
+      color: "var(--hi-warn,#7C2D12)",
+      wash: "#F8EDE6",
       title: "Track Your Accuracy",
       body: "After games conclude, results are settled automatically. Your season accuracy is tracked all year on the leaderboard.",
     },
@@ -452,22 +455,12 @@ function HowItWorksSection() {
         {steps.map((step) => (
           <div
             key={step.icon}
-            className="rounded-xl p-4"
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
+            className="enhanced-card p-4"
           >
             <div
-              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mb-3"
+              className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold mb-3"
               style={{
-                background: `rgba(${
-                  step.color === "#8ec8f0"
-                    ? "142,200,240"
-                    : step.color === "#10B981"
-                    ? "16,185,129"
-                    : "245,158,11"
-                },0.12)`,
+                background: step.wash,
                 color: step.color,
                 fontFamily: "var(--hi-font-display)",
               }}

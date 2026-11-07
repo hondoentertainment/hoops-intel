@@ -1,4 +1,4 @@
-import { gamePreviews, pulseEdition, pulseIndex, injuryUpdates, narrative } from "../../lib/pulseData";
+import { gamePreviews, pulseEdition, pulseIndex, injuryUpdates, narrative, statLeaders } from "../../lib/pulseData";
 import { slugify } from "../../lib/searchUtils";
 import { AskInFlowCta } from "../AskHoopsIntel";
 import { isFinalsActive, finalistTeams } from "../../lib/playoffData";
@@ -56,7 +56,8 @@ function PulseRow({
   return (
     <a
       href={`/player/${slugify(player)}`}
-      className="enhanced-card grid grid-cols-[1.75rem_minmax(0,1fr)_4rem] items-start gap-x-3 px-3 py-3 md:px-4 w-full min-w-0 overflow-hidden hover:border-[var(--hi-accent,#8ec8f0)]/40 transition-colors"
+      className="grid grid-cols-[1.75rem_minmax(0,1fr)_auto] items-start gap-x-3 px-1 py-3 md:px-2 w-full min-w-0 min-h-[72px] border-b transition-colors"
+      style={{ borderColor: "var(--hi-hairline,#E4E0D6)" }}
     >
       <p className="hi-stat text-lg md:text-xl self-center hi-accent-text">
         {padRank(rank)}
@@ -71,7 +72,7 @@ function PulseRow({
         <p className="text-sm leading-5 mt-0.5 hi-title" style={{ color: "var(--hi-muted,#5c5c58)" }}>
           {compact ? compactPulseStats(keyStats) : keyStats}
         </p>
-        <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#0a0a0a)] line-clamp-2">{note}</p>
+        <p className="editorial-body mobile-readable mt-1 text-[var(--hi-text,#14120B)]">{note}</p>
       </div>
       <div className="flex flex-col items-end gap-0.5 min-w-0 text-right">
         <span className="text-xs font-bold leading-none" style={{ color: mark.color }}>
@@ -108,6 +109,23 @@ function CompactPulseRow({
         {formatPulseTenths(indexScore)}
       </span>
     </a>
+  );
+}
+
+function EditorialProCard() {
+  return (
+    <div className="hi-pro-card">
+      <p className="text-[12px] font-semibold tracking-[0.08em] uppercase" style={{ color: "#F8E6E8" }}>
+        Hoops Intel Pro
+      </p>
+      <h2 className="editorial-heading text-[1.75rem] leading-tight mt-2 mb-2">Go deeper than the box score</h2>
+      <p className="text-sm leading-6 mb-4" style={{ color: "#F6F4EF" }}>
+        Full Pulse history, projections, lineup and ref intel, ad-free editions.
+      </p>
+      <a href="/pro" className="hi-pill-primary inline-flex min-h-11 px-4 text-sm">
+        Explore Pro
+      </a>
+    </div>
   );
 }
 
@@ -158,8 +176,7 @@ export function TonightGamesEntry({ games }: { games: TonightGameLink[] }) {
         </div>
         <a
           href="/tonight"
-          className="text-sm font-medium shrink-0 inline-flex items-center min-h-11"
-          style={{ color: "var(--hi-text,#0a0a0a)" }}
+          className="hi-arrow-link text-sm shrink-0 inline-flex items-center min-h-11"
         >
           Full slate
         </a>
@@ -229,10 +246,10 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           <p className="enhanced-kicker">
             {deskKickerLine()}
           </p>
-          <h1 className="editorial-heading hi-title text-[var(--hi-text,#0a0a0a)] text-[1.5rem] leading-8 md:text-[32px] md:leading-[38px]">
+          <h1 className="editorial-heading hi-title text-[var(--hi-text,#14120B)] text-[1.75rem] leading-tight md:text-[2.75rem] md:leading-[1.12]">
             {narrative.headline}
           </h1>
-          <p className="hi-lede text-xs max-md:text-base">
+          <p className="hi-lede">
             <span className="hidden md:inline">Will Henderson · Updated {editionPublishLabel()}</span>
             <span className="md:hidden">
               {campMode
@@ -249,6 +266,47 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
               </EnhancedButton>
             </div>
           ) : null}
+        </div>
+
+        {!campMode ? (
+          <div className="grid md:grid-cols-2 gap-x-8">
+            {narrative.body.slice(0, 4).map((para, index) => (
+              <article key={index} className="border-t py-4" style={{ borderColor: "var(--hi-hairline,#E4E0D6)" }}>
+                <p className="enhanced-kicker">Edition</p>
+                <p className="text-sm leading-6 mt-2" style={{ color: "var(--hi-muted,#686359)" }}>
+                  {para}
+                </p>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {!campMode && statLeaders.length > 0 ? (
+          <section aria-labelledby="quick-hits-title">
+            <h2 id="quick-hits-title" className="editorial-heading text-2xl mb-2">
+              Quick hits
+            </h2>
+            <ol className="m-0 p-0 list-none">
+              {statLeaders.slice(0, 4).map((leader, index) => (
+                <li key={leader.category} className="border-t py-3" style={{ borderColor: "var(--hi-hairline,#E4E0D6)" }}>
+                  <p className="text-sm">
+                    <span className="enhanced-kicker">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="font-semibold text-[var(--hi-text,#14120B)]">
+                      {" "}
+                      {leader.category} · {leader.player}
+                    </span>
+                  </p>
+                  <p className="text-sm leading-6 mt-1" style={{ color: "var(--hi-muted,#686359)" }}>
+                    {leader.context}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
+
+        <div className="md:hidden">
+          <EditorialProCard />
         </div>
 
         <div className="hidden md:grid grid-cols-3 gap-3 max-w-[936px]">
@@ -345,6 +403,7 @@ export default function EnhancedDesk({ showMyPulse }: { showMyPulse: boolean }) 
           </div>
 
           <aside id="injuries" className="hidden md:flex w-full lg:w-[420px] shrink-0 flex-col gap-4">
+            <EditorialProCard />
             {campMode && schedule.kind !== "empty" ? (
               <DeskPanel id="camp-schedule" kicker="ESPN camp-week slate" hint={schedule.sub}>
                 <div className="flex gap-2 overflow-x-auto pb-1">

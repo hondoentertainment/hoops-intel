@@ -234,8 +234,8 @@ export default function Player() {
                       <a
                         key={t}
                         href={`/team/${t.toLowerCase()}`}
-                        className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded font-semibold"
-                        style={{ background: "var(--hi-surface-2,#f3f3f0)", color: getTeamColor(t) }}
+                        className="inline-flex items-center gap-1.5 text-xs px-2 min-h-11 rounded font-semibold underline underline-offset-2"
+                        style={{ background: "var(--hi-surface-2,#EFECE4)", color: "var(--hi-text,#14120B)" }}
                       >
                         <TeamLogo team={t} size={16} />
                         {t}

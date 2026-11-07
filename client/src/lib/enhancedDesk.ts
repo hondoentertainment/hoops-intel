@@ -4,10 +4,10 @@ import { activeEditionContext, editionContextDeskLabel, liveWireMonthGateClosed,
 import { canonicalizeTeamCode, isCanonicalTeamCode } from "./identity";
 import { editionPublishLabel } from "./pacificTime";
 
-export const ENHANCED_ACCENT = "#8ec8f0";
-export const ENHANCED_ACCENT_TEXT = "#146a8c";
-export const ENHANCED_CHIP = "#ff7a17";
-export const ENHANCED_INK = "#0a0a0a";
+export const ENHANCED_ACCENT = "#C8102E";
+export const ENHANCED_ACCENT_TEXT = "#1D4E89";
+export const ENHANCED_CHIP = "#7C2D12";
+export const ENHANCED_INK = "#14120B";
 export const CAMP_OPEN_ISO = "2026-10-03";
 
 const WORD_DAYS: Record<string, number> = {
@@ -64,9 +64,9 @@ export function padRank(rank: number): string {
 }
 
 export function pulseTrendMark(trend: string): { mark: string; color: string } {
-  if (trend === "up") return { mark: "▲", color: "#3DDC97" };
-  if (trend === "down") return { mark: "▼", color: "#FF4D6A" };
-  return { mark: "●", color: "#3DDC97" };
+  if (trend === "up") return { mark: "▲", color: "#1B7A45" };
+  if (trend === "down") return { mark: "▼", color: "#9B2C2C" };
+  return { mark: "●", color: "#686359" };
 }
 
 export function injuryStatusKey(status: string): string {
