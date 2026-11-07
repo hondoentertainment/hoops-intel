@@ -379,7 +379,7 @@ export function ChatInput({
           onClick={onSend}
           disabled={isLoading || !input.trim()}
           aria-label="Send message"
-          className={`flex-shrink-0 min-h-[44px] px-4 rounded-full flex items-center justify-center gap-1 text-xs font-semibold transition-all ${
+          className={`flex-shrink-0 min-h-11 min-w-11 px-4 rounded-full flex items-center justify-center gap-1 text-sm font-semibold ${
             isLoading || !input.trim() ? "hi-pill" : "hi-pill-primary"
           }`}
         >
@@ -390,10 +390,7 @@ export function ChatInput({
           <span>Send</span>
         </button>
       </div>
-      <div
-        className="text-center mt-1.5"
-        style={{ color: "var(--hi-text-secondary,#5c5c58)", fontSize: "0.6rem" }}
-      >
+      <div className="text-center mt-1.5 text-xs" style={{ color: "var(--hi-muted,#686359)" }}>
         Powered by Hoops Intel AI
       </div>
     </div>

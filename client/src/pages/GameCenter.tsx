@@ -60,7 +60,7 @@ function ScoreBlock({ abbr, score, align }: { abbr: string; score: number | null
   return (
     <a href={`/team/${abbr.toLowerCase()}`} className={`flex flex-col ${align === "right" ? "items-end" : "items-start"}`}>
       <TeamLogo team={abbr} size={48} className="mb-2" />
-      <div className="section-label mb-1" style={{ color: getTeamColor(abbr) }}>{abbr}</div>
+      <div className="section-label mb-1" style={{ color: "var(--hi-text,#14120B)" }}>{abbr}</div>
       <div className="hi-stat text-4xl">{score ?? "—"}</div>
     </a>
   );
@@ -208,7 +208,7 @@ export default function GameCenter() {
             <ShareButton url={shareUrl} tweetText={shareTweet} size="md" />
           </div>
 
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)" }}>
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-xl p-4" style={{ background: "var(--hi-canvas-soft,#FBF9F4)", border: "1px solid var(--hi-hairline,#E4E0D6)" }}>
             <ScoreBlock abbr={game.away.abbr} score={game.away.score} />
             <div className="section-label text-center" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>AT</div>
             <ScoreBlock abbr={game.home.abbr} score={game.home.score} align="right" />
@@ -254,7 +254,7 @@ export default function GameCenter() {
             </p>
             <a
               href={`/playoffs/series/${activePlayoffSeries.seriesId}`}
-              className="text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]"
+              className="hi-arrow-link text-sm inline-flex items-center min-h-11"
             >
               Full series timeline →
             </a>
@@ -342,11 +342,11 @@ export default function GameCenter() {
             <div className="enhanced-card p-4 sticky top-4">
               <div className="section-label mb-3">KEY FACTS</div>
               <div className="flex flex-wrap gap-2 mb-3">
-                <a href="/pick-em" className="text-[10px] font-bold uppercase tracking-wider px-2 py-1.5 rounded bg-emerald-500/15 text-emerald-300">
-                  Pick &apos;Em
+                <a href="/pick-em" className="hi-arrow-link text-xs min-h-11 inline-flex items-center">
+                  Pick &apos;Em →
                 </a>
-                <a href="/betting-intel" className="text-[10px] font-bold uppercase tracking-wider px-2 py-1.5 rounded bg-white/[0.06] text-white/55">
-                  Lines
+                <a href="/betting-intel" className="hi-arrow-link text-xs min-h-11 inline-flex items-center">
+                  Lines →
                 </a>
               </div>
               <div className="space-y-2">
@@ -357,7 +357,7 @@ export default function GameCenter() {
                   </div>
                 ))}
                 {game.series && (
-                  <a href={`/playoffs/series/${game.series.seriesId}`} className="block pt-2 text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]">
+                  <a href={`/playoffs/series/${game.series.seriesId}`} className="hi-arrow-link inline-flex items-center min-h-11 pt-2 text-sm">
                     Open series timeline →
                   </a>
                 )}

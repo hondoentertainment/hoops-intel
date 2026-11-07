@@ -18,8 +18,7 @@ import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
 import TeamLogo from "../components/TeamLogo";
 import PlayerAvatar from "../components/PlayerAvatar";
-import { useLiveScores } from "../lib/useLiveScores";
-import type { LiveGame } from "../lib/espnApi";
+import ScoreRail from "../components/ScoreRail";
 import { slugify } from "../lib/searchUtils";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useFocusTrap } from "../hooks/useFocusTrap";
@@ -28,7 +27,6 @@ import ReactionBar from "../components/ReactionBar";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import PreferencesSetup from "../components/PreferencesSetup";
-import { LiveScoreSkeleton } from "../components/PageSkeletons";
 import { useToast } from "../contexts/ToastContext";
 import RivalTonightBanner from "../components/RivalTonightBanner";
 import ShareButton from "../components/ShareButton";
@@ -58,12 +56,10 @@ import SectionErrorBoundary from "../components/SectionErrorBoundary";
 import { AskPromptChips } from "../components/AskHoopsIntel";
 import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
-import { shouldShowLiveScorebar, scorebarGamesToShow } from "../lib/scorebarVisibility";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
 import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel, priorSeasonStandingsCopy } from "../lib/deskMode";
 import { isCampDesk } from "../lib/campDesk";
 import { hasTonightSlate } from "../lib/enhancedDesk";
-import { liveScoresTrustLabel } from "../lib/dataTrust";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
 import { formatLineMovementBadge } from "../lib/spreadMovement";
 import EnhancedDesk, { EnhancedTicker } from "../components/enhanced/EnhancedDesk";
@@ -72,137 +68,6 @@ function shortenPulsePreview(text: string, max = 110) {
   const t = text.trim();
   if (t.length <= max) return t;
   return `${t.slice(0, max).trim()}…`;
-}
-
-// ═══════════════════════════════════════════════════════════
-// LIVE SCOREBAR — Real-time ESPN scores
-// ═══════════════════════════════════════════════════════════
-
-function fmtLiveScore(value: number | null) {
-  return value != null && Number.isFinite(value) ? value : "—";
-}
-
-function ScoreboardTeamRow({ team, score, leading, dim }: { team: string; score: number | null; leading: boolean; dim: boolean }) {
-  return (
-    <div className="flex items-center justify-between gap-3">
-      <span
-        className="flex items-center gap-1.5 section-label text-xs"
-        style={{ color: dim ? "var(--hi-muted,#5c5c58)" : "var(--hi-text,#0a0a0a)" }}
-      >
-        <TeamLogo team={team} size={18} />
-        {team}
-      </span>
-      <span
-        className="hi-stat text-sm"
-        style={{ color: leading ? "var(--hi-text,#0a0a0a)" : "var(--hi-muted,#5c5c58)" }}
-      >
-        {fmtLiveScore(score)}
-      </span>
-    </div>
-  );
-}
-
-function ScoreboardCell({ g }: { g: LiveGame }) {
-  const live = g.status === "in";
-  const final = g.status === "post";
-  const pre = g.status === "pre";
-  const comparable = g.homeScore != null && g.awayScore != null;
-  const awayLead = comparable && (g.awayScore as number) > (g.homeScore as number);
-  const homeLead = comparable && (g.homeScore as number) > (g.awayScore as number);
-
-  return (
-    <div
-      className="flex flex-col gap-1 px-3 py-1.5 rounded-md flex-shrink-0 min-w-[148px]"
-      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-    >
-      <ScoreboardTeamRow team={g.awayTeam} score={g.awayScore} leading={awayLead} dim={final && !awayLead} />
-      <ScoreboardTeamRow team={g.homeTeam} score={g.homeScore} leading={homeLead} dim={final && !homeLead} />
-      <div className="flex items-center gap-1.5 pt-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-        {live && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
-        <span
-          className="mono-data text-[10px] font-semibold tracking-wide"
-          style={{ color: live ? "#10B981" : pre ? "var(--hi-muted,#5c5c58)" : "var(--hi-muted,#5c5c58)" }}
-        >
-          {final ? "FINAL" : g.statusDetail || (pre ? "Scheduled" : "")}
-        </span>
-        {pre && g.tv && g.tv !== "Local" ? (
-          <span className="text-[10px]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>· {g.tv}</span>
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
-function LiveScorebar() {
-  const { data, error, refresh, loading } = useLiveScores();
-  const games = scorebarGamesToShow(data?.games ?? [], isOffseasonDesk());
-  const anyLive = games.some((g) => g.status === "in");
-
-  if (loading && !data) {
-    return <LiveScoreSkeleton />;
-  }
-
-  if (!shouldShowLiveScorebar(games, isOffseasonDesk()) && games.length === 0) {
-    return null;
-  }
-
-  if (games.length > 0) {
-    return (
-      <div
-        className="border-b overflow-hidden"
-        style={{
-          borderColor: anyLive ? "rgba(16,185,129,0.3)" : "rgba(142,200,240,0.2)",
-          background: anyLive ? "rgba(16,185,129,0.05)" : "rgba(142,200,240,0.04)",
-        }}
-        aria-label="Today's NBA scoreboard"
-      >
-        <div className="container">
-          <div className="flex items-center gap-3 py-2 overflow-x-auto">
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {anyLive && <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden />}
-              <span className={`section-label text-xs ${anyLive ? "text-emerald-400" : ""}`} style={anyLive ? undefined : { color: "var(--hi-accent-text,#146a8c)" }}>
-                {anyLive ? "LIVE" : "TODAY"}
-              </span>
-              {data?.fetchedAt ? (
-                <span className="text-[10px] mono-data hidden sm:inline" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
-                  {liveScoresTrustLabel(data.fetchedAt)}
-                </span>
-              ) : null}
-            </div>
-            {games.map((g) => (
-              <ScoreboardCell key={g.id} g={g} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div
-        className="border-b overflow-hidden"
-        style={{ borderColor: "rgba(244,63,94,0.35)", background: "rgba(244,63,94,0.06)" }}
-        role="status"
-      >
-        <div className="container flex flex-wrap items-center gap-3 py-2">
-          <span className="text-xs text-rose-300">
-            {/(network|fetch|failed)/i.test(error) ? "Live scores unreachable." : error}
-          </span>
-          <button
-            type="button"
-            onClick={() => void refresh()}
-            className="text-xs font-semibold px-3 py-1.5 rounded-md min-h-[44px] sm:min-h-0"
-            style={{ background: "rgba(142,200,240,0.2)", color: "#7dd3fc" }}
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return null;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -583,12 +448,7 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
       className="glass-card rounded-lg overflow-hidden transition-all duration-200"
       style={{ borderLeft: `3px solid ${getTeamColor(homeWin ? game.homeTeam : game.awayTeam)}` }}
     >
-      <button
-        type="button"
-        className="w-full p-4 text-left hover:bg-white/[0.02] transition-colors"
-        aria-expanded={expanded}
-        onClick={() => setExpanded(!expanded)}
-      >
+      <div className="w-full p-4 text-left">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3 flex-1">
             <a href={`/team/${game.awayTeam.toLowerCase()}`} className="flex flex-col items-center w-14" onClick={(e) => e.stopPropagation()}>
@@ -605,7 +465,15 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
           </div>
           <div className="text-right">
             <div className="text-xs font-medium px-2 py-0.5 rounded mb-1 inline-block" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text,#0a0a0a)" }}>FINAL</div>
-            <div className="text-xs" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{expanded ? "▲ Collapse" : "▼ Expand"}</div>
+            <button
+              type="button"
+              className="text-xs min-h-11 min-w-11"
+              style={{ color: "var(--hi-accent-text,#1D4E89)" }}
+              aria-expanded={expanded}
+              onClick={() => setExpanded((open) => !open)}
+            >
+              {expanded ? "▲ Collapse" : "▼ Expand"}
+            </button>
           </div>
         </div>
         <div className="flex items-center gap-2 py-2 px-3 rounded" style={{ background: "rgba(255,255,255,0.04)" }}>
@@ -617,9 +485,9 @@ function GameCard({ game }: { game: (typeof gameResults)[0] }) {
             <span className="text-xs ml-2 mono-data" style={{ color: "#10B981" }}>{game.topLine}</span>
           </div>
         </div>
-      </button>
+      </div>
       <div className="px-4 pb-3">
-        <a href={gameHref} className="inline-flex min-h-[44px] items-center text-xs font-semibold text-[var(--hi-text)] hover:text-[var(--hi-muted)]">
+        <a href={gameHref} className="hi-arrow-link inline-flex min-h-11 items-center text-sm">
           Open Game Center →
         </a>
       </div>
@@ -1610,7 +1478,7 @@ function StandingsSection() {
       <button
         type="button"
         onClick={() => handleSort(keyName)}
-        className="section-label w-full min-h-[44px] sm:min-h-0 flex items-center justify-center sm:inline cursor-pointer hover:text-[var(--hi-text)] transition-colors select-none rounded-lg sm:rounded-none px-2 sm:px-0 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--hi-accent)]"
+        className="section-label w-full min-h-11 min-w-6 flex items-center justify-center sm:inline-flex cursor-pointer hover:text-[var(--hi-text)] transition-colors select-none rounded-lg sm:rounded-none px-2 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--hi-focus)]"
       >
         {label} {sortKey === keyName ? (sortAsc ? "↑" : "↓") : ""}
       </button>
@@ -1648,7 +1516,7 @@ function StandingsSection() {
               >
                 <td className="px-3 py-2 mono-data" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{team.rank}</td>
                 <td className="px-3 py-2 font-semibold">
-                  <a href={`/team/${team.team.toLowerCase()}`} className="inline-flex items-center gap-2 text-white hover:text-[var(--hi-text)] transition-colors">
+                  <a href={`/team/${team.team.toLowerCase()}`} className="inline-flex items-center gap-2 underline decoration-from-font underline-offset-2 text-[var(--hi-text,#14120B)]">
                     <TeamLogo team={team.team} size={20} />
                     {team.team}
                   </a>
@@ -1778,8 +1646,8 @@ export default function Home() {
       <RivalTonightBanner />
       {isCampDesk() && !hasTonightSlate() ? null : <EnhancedTicker />}
       <main id="main-content" tabIndex={-1}>
+        <ScoreRail />
         <EnhancedDesk showMyPulse={showMyPulse} />
-        <LiveScorebar />
         {isPlayoffsActive() ? <PlayoffSection /> : null}
         {!(isOffseasonDesk() && gameResults.length === 0) ? <ScoresSection favoriteTeams={favoriteTeams} /> : null}
         {!isOffseasonDesk() || gamePreviews.length > 0 ? <PickEmHomeBanner /> : null}

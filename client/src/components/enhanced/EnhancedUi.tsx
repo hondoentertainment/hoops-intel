@@ -161,8 +161,7 @@ export function SectionHeader({
       {action && actionHref ? (
         <a
           href={actionHref}
-          className="text-sm font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
-          style={{ color: ENHANCED_INK }}
+          className="hi-arrow-link text-sm shrink-0 inline-flex items-end min-h-11 pb-1"
         >
           {action}
         </a>
@@ -343,7 +342,7 @@ export function EnhancedButton({
   className?: string;
 }) {
   const cls =
-    `inline-flex items-center justify-center min-h-11 transition-opacity hover:opacity-90 ${
+    `inline-flex items-center justify-center min-h-11 ${
       variant === "primary" ? "hi-pill-primary" : "hi-pill"
     } ${className}`;
 
@@ -444,8 +443,7 @@ export function PageHero({
         {action && actionHref ? (
           <a
             href={actionHref}
-            className="text-sm font-medium shrink-0 inline-flex items-end min-h-11 pb-1"
-            style={{ color: ENHANCED_INK }}
+            className="hi-arrow-link text-sm shrink-0 inline-flex items-end min-h-11 pb-1"
           >
             {action}
           </a>

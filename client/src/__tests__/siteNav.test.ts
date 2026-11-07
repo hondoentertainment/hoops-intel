@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { deskRailTools, deskSectionLinks, headerNavLinks, mobileBottomNavLinks, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
+import { deskRailTools, deskSectionLinks, headerNavLinks, mobileBottomNavLinks, navItemActive, publicToolsDirectory, TOOLS_DIRECTORY } from "../lib/siteNav";
 
-const ENHANCED_HEADER = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Archive", "Ask"];
-const ENHANCED_MOBILE = ["Desk", "Injuries", "Tonight", "Pick 'Em", "Ask"];
+const ENHANCED_HEADER = ["Today", "Scores", "Pulse Index", "Teams", "Players", "Betting Intel", "Pick 'Em", "Tools", "Archive", "Ask"];
+const ENHANCED_MOBILE = ["Today", "Scores", "Pulse", "Pick 'Em", "Ask"];
 
 describe("siteNav", () => {
   it("uses Enhanced IA in August dead period", () => {
@@ -12,7 +12,7 @@ describe("siteNav", () => {
 
     expect(header).toEqual(ENHANCED_HEADER);
     expect(mobile).toEqual(ENHANCED_MOBILE);
-    expect(header).not.toContain("Scores");
+    expect(header).toContain("Scores");
     expect(mobile).not.toContain("Live");
   });
 
@@ -23,10 +23,10 @@ describe("siteNav", () => {
 
     expect(header).toEqual(ENHANCED_HEADER);
     expect(mobile).toEqual(ENHANCED_MOBILE);
-    expect(header).not.toContain("Scores");
+    expect(header).toContain("Scores");
     expect(mobile).not.toContain("Picks");
     expect(mobile).toContain("Pick 'Em");
-    expect(headerNavLinks(january).find((l) => l.label === "Tonight")?.href).toBe("/tonight");
+    expect(headerNavLinks(january).find((l) => l.label === "Scores")?.href).toBe("/tonight");
   });
 
   it("jumps the offseason desk to camp intel instead of a game-night slate", () => {
@@ -96,11 +96,23 @@ describe("siteNav", () => {
       "/trade-simulator",
     ]);
     expect(mobileBottomNavLinks().map((l) => l.label)).toEqual([
-      "Desk",
-      "Injuries",
-      "Tonight",
+      "Today",
+      "Scores",
+      "Pulse",
       "Pick 'Em",
       "Ask",
     ]);
+  });
+
+  it("lights the matching desk item and leaves Today off on detail routes", () => {
+    expect(navItemActive("/", "/")).toBe(true);
+    expect(navItemActive("/", "/team/nyk")).toBe(false);
+    expect(navItemActive("/", "/pro")).toBe(false);
+    expect(navItemActive("/tonight", "/game/NYK-BOS-20261107")).toBe(true);
+    expect(navItemActive("/#standings", "/team/nyk")).toBe(true);
+    expect(navItemActive("/players", "/player/jalen-brunson")).toBe(true);
+    expect(navItemActive("/pulse-history", "/pulse-history")).toBe(true);
+    expect(navItemActive("/ask", "/ask")).toBe(true);
+    expect(navItemActive("/archive", "/archive")).toBe(true);
   });
 });

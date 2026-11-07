@@ -134,8 +134,7 @@ export default function ToolPageLayout({
                   <li key={tool.href}>
                     <a
                       href={tool.href}
-                      className="desk-inset flex items-center min-h-11 px-3 text-xs font-medium"
-                      style={{ color: "var(--hi-text,#0a0a0a)" }}
+                      className="desk-inset hi-arrow-link flex items-center min-h-11 px-3 text-sm"
                     >
                       {tool.label} →
                     </a>

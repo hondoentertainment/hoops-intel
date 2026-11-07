@@ -219,12 +219,10 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
         <button
           onClick={() => !locked && onPick(gameId, game.awayTeam)}
           disabled={locked}
-          className="flex-1 rounded-lg py-3 px-4 text-center transition-all duration-200"
+          className="flex-1 rounded-lg py-3 px-4 text-center transition-colors min-h-11"
           style={{
-            background: awayPicked
-              ? "rgba(142,200,240,0.2)"
-              : "rgba(255,255,255,0.04)",
-            border: `2px solid ${awayPicked ? "var(--hi-accent)" : "rgba(255,255,255,0.08)"}`,
+            background: awayPicked ? "var(--hi-brand-soft,#F8E6E8)" : "var(--hi-surface,#ffffff)",
+            border: `2px solid ${awayPicked ? "var(--hi-brand,#C8102E)" : "var(--hi-control-border,#827C70)"}`,
             cursor: locked ? "default" : "pointer",
             transform: awayPicked && !locked ? "scale(1.02)" : "scale(1)",
           }}
@@ -242,7 +240,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: awayPicked ? "rgba(142,200,240,0.7)" : "var(--hi-muted,#5c5c58)",
+              color: "var(--hi-muted,#686359)",
               fontFamily: "var(--hi-font-mono)",
             }}
           >
@@ -269,14 +267,11 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
         <button
           onClick={() => !locked && onPick(gameId, game.homeTeam)}
           disabled={locked}
-          className="flex-1 rounded-lg py-3 px-4 text-center transition-all duration-200"
+          className="flex-1 rounded-lg py-3 px-4 text-center transition-colors min-h-11"
           style={{
-            background: homePicked
-              ? "rgba(142,200,240,0.2)"
-              : "rgba(255,255,255,0.04)",
-            border: `2px solid ${homePicked ? "var(--hi-accent)" : "rgba(255,255,255,0.08)"}`,
+            background: homePicked ? "var(--hi-brand-soft,#F8E6E8)" : "var(--hi-surface,#ffffff)",
+            border: `2px solid ${homePicked ? "var(--hi-brand,#C8102E)" : "var(--hi-control-border,#827C70)"}`,
             cursor: locked ? "default" : "pointer",
-            transform: homePicked && !locked ? "scale(1.02)" : "scale(1)",
           }}
         >
           <div
@@ -292,7 +287,7 @@ function GameCard({ game, gameId, pickedTeam, locked, onPick }: GameCardProps) {
           <div
             className="text-xs"
             style={{
-              color: homePicked ? "rgba(142,200,240,0.7)" : "var(--hi-muted,#5c5c58)",
+              color: "var(--hi-muted,#686359)",
               fontFamily: "var(--hi-font-mono)",
             }}
           >
@@ -514,7 +509,7 @@ export default function PickEm({ games, editionDate }: PickEmProps) {
           style={{
             background: "rgba(245,158,11,0.08)",
             border: "1px solid rgba(245,158,11,0.2)",
-            color: "rgba(245,158,11,0.9)",
+            color: "var(--hi-warn,#7C2D12)",
             fontFamily: "var(--hi-font-body)",
           }}
         >

@@ -82,10 +82,13 @@ function walkTsx(dir: string, skip = new Set<string>(), out: string[] = []): str
 
 describe("type + contrast presentation", () => {
   it("pins AA-safe type tokens on the light Grok canvas", () => {
-    expect(css).toContain("--hi-text-secondary: #5c5c5a");
-    expect(css).toContain("--hi-ink-secondary: #5c5c5a");
-    expect(css).toContain("--hi-muted-sub: #6b6b67");
-    expect(css).toContain("--hi-accent-text: #146a8c");
+    expect(css).toContain("--hi-text-secondary: #686359");
+    expect(css).toContain("--hi-ink-secondary: #3F3C36");
+    expect(css).toContain("--hi-muted-sub: #686359");
+    expect(css).toContain("--hi-accent-text: #1D4E89");
+    expect(css).toContain("--hi-control-border: #827C70");
+    expect(css).toContain("--hi-focus: #1D4E89");
+    expect(css).not.toContain("#8A857A");
     expect(css).toContain("--hi-kicker-size: 0.75rem");
     expect(css).toContain("--hi-measure: 40rem");
     expect(css).toMatch(/\.section-label,\s*\n\.enhanced-kicker/);
@@ -183,7 +186,8 @@ describe("type + contrast presentation", () => {
     expect(pageSrc("Pro.tsx")).not.toContain("rgba(253,224,71");
   });
 
-  it("does not reintroduce serif display faces on the desk", () => {
+  it("uses the editorial serif for display and keeps Geist for UI chrome", () => {
+    expect(css).toContain("Source Serif 4");
     expect(css).not.toMatch(/Playfair|Georgia|DM Sans|Barlow|JetBrains/);
     expect(css).toContain('"Geist"');
     const desk = readFileSync(join(srcDir, "components/enhanced/EnhancedDesk.tsx"), "utf8");

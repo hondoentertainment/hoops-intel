@@ -20,11 +20,11 @@ export default function DataTrustBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium mono-data ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mono-data ${className}`}
       style={{
-        background: "rgba(16,185,129,0.12)",
-        color: "#10B981",
-        border: "1px solid rgba(16,185,129,0.25)",
+        background: "var(--hi-surface-2,#EFECE4)",
+        color: "var(--hi-success,#1B7A45)",
+        border: "1px solid var(--hi-hairline,#E4E0D6)",
       }}
       title={label}
     >

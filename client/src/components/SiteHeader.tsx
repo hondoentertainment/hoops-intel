@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { useTheme } from "../contexts/ThemeContext";
-import { headerNavLinks, mainNavLinks, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
+import { headerNavLinks, mainNavLinks, navItemActive, PLAYOFFS_NAV_HREF, playoffsNavLabel } from "../lib/siteNav";
 import { globalSearch, type SearchResult } from "../lib/searchUtils";
 import AuthModal from "./AuthModal";
 import { getUser, type User } from "../lib/supabaseClient";
@@ -14,7 +14,7 @@ import {
   readRecentSearches,
   POPULAR_SEARCH_DESTINATIONS,
 } from "../lib/searchHistory";
-import { BrandLockup, SeasonChip } from "./enhanced/EnhancedUi";
+import { SeasonChip } from "./enhanced/EnhancedUi";
 import { ENHANCED_ACCENT, headerDateLabel, seasonChipLabel } from "../lib/enhancedDesk";
 import { pulseEdition } from "../lib/pulseData";
 import { compactEditionDate } from "../lib/enhancedDesk";
@@ -466,19 +466,8 @@ function SearchDialog({
   );
 }
 
-/** Route-only match (ignore #hash home anchors). */
-function navRouteMatches(href: string, pathname: string) {
-  if (href.includes("#")) {
-    const base = href.split("#")[0] || "";
-    if (!base || base === "/") return false;
-    return pathname === base || pathname.startsWith(`${base}/`);
-  }
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
-
 function navAriaCurrent(href: string, pathname: string): { "aria-current": "page" } | undefined {
-  return navRouteMatches(href, pathname) ? { "aria-current": "page" } : undefined;
+  return navItemActive(href, pathname) ? { "aria-current": "page" } : undefined;
 }
 
 export default function SiteHeader({
@@ -537,8 +526,7 @@ export default function SiteHeader({
     };
   }, [mobileOpen]);
 
-  const navLinkClass =
-    "text-[13px] font-medium transition-colors px-3 py-2 min-h-[44px] flex items-center md:inline-flex rounded-full border border-transparent [&:focus-visible]:outline [&:focus-visible]:outline-offset-2 [&:focus-visible]:outline-[var(--hi-accent)]";
+  const navLinkClass = "hi-nav-link";
 
   return (
     <>
@@ -551,12 +539,12 @@ export default function SiteHeader({
           paddingTop: "env(safe-area-inset-top)",
         }}
       >
-        <div className="container max-md:px-3">
-          <div className="flex items-center justify-between gap-1.5 sm:gap-2 h-14 min-h-[56px] min-w-0">
-            <div className="flex items-center gap-0.5 sm:gap-1 min-w-0">
+        <div className="container max-md:px-4">
+          <div className="flex items-center justify-between gap-3 h-14 min-h-[56px] min-w-0">
+            <div className="flex items-center gap-1 min-w-0 flex-1">
               <button
                 type="button"
-                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--hi-text,#0a0a0a)] hover:bg-black/5 focus-visible:outline focus-visible:outline-[var(--hi-accent)]"
+                className="md:hidden min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--hi-text,#14120B)] hover:bg-black/5"
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
@@ -573,91 +561,32 @@ export default function SiteHeader({
                   )}
                 </svg>
               </button>
-
-              <div className="flex items-center min-w-0 py-1">
-                <span className="md:hidden">
-                  <BrandLockup compact />
-                </span>
-                <span className="hidden md:inline-flex min-w-0">
-                  <BrandLockup subtitle="Daily NBA Intelligence" />
+              <div className="hidden md:flex flex-col min-w-0">
+                <span className="enhanced-kicker">Daily NBA Intelligence</span>
+                <span className="text-xs truncate" style={{ color: "var(--hi-muted,#686359)" }}>
+                  {pulseEdition.edition} · {headerDateLabel(editionBadge ?? pulseEdition.date)}
                 </span>
               </div>
             </div>
 
-            <nav className="hidden md:flex items-center gap-1 xl:gap-1 flex-1" aria-label="Primary">
-              {headerNavLinks().map(({ label, href }) => {
-                const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
-                const active = navRouteMatches(href, locationPath);
-                return (
-                <a
-                  key={label}
-                  href={href}
-                  className={navLinkClass}
-                  style={{
-                    color: active ? "var(--hi-cta-ink,#ffffff)" : "var(--hi-text-secondary,#5c5c58)",
-                    background: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
-                    borderColor: active ? "var(--hi-cta,#0a0a0a)" : "transparent",
-                    fontWeight: active ? 500 : 500,
-                  }}
-                  {...navAriaCurrent(href, locationPath)}
-                >
-                  {navLabel}
-                </a>
-                );
-              })}
-              <details className="relative group">
-                <summary
-                  className={`${navLinkClass} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
-                  style={{ color: "var(--hi-muted,#5c5c58)" }}
-                >
-                  More
-                </summary>
-                <div
-                  className="absolute right-0 top-full mt-2 min-w-[11rem] rounded-lg py-2 shadow-xl z-[60]"
-                  style={{ background: "var(--hi-surface,#eeeeec)", border: "1px solid var(--hi-border,rgba(10,10,10,0.06))" }}
-                >
-                  {mainNavLinks().filter((l) => !headerNavLinks().some((h) => h.href === l.href)).map(({ label, href }) => (
-                    <a
-                      key={`more-${label}`}
-                      href={href}
-                      className="block px-4 py-2.5 text-xs font-medium transition-colors hover:bg-black/5"
-                      style={{
-                        color: navRouteMatches(href, locationPath) ? "var(--hi-text,#0a0a0a)" : "var(--hi-text-secondary,#5c5c58)",
-                      }}
-                      {...navAriaCurrent(href, locationPath)}
-                    >
-                      {label}
-                    </a>
-                  ))}
-                </div>
-              </details>
-            </nav>
-
-            <div className="flex items-center gap-0.5 sm:gap-2 shrink-0">
-              {seasonChip ? (
-                <span className="hidden min-[360px]:inline-flex">
-                  <SeasonChip>{seasonChip}</SeasonChip>
-                </span>
-              ) : null}
-              <span
-                className="hidden md:inline text-[11px] font-medium whitespace-nowrap"
-                style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
-              >
-                {headerDateLabel(editionBadge ?? pulseEdition.date)}
+            <a href="/" className="hi-masthead-word shrink-0 text-center text-[1.35rem] md:text-[1.75rem]">
+              Hoops Intel
+              <span className="md:hidden block mt-1 text-[12px] font-sans font-medium tracking-normal" style={{ color: "var(--hi-muted,#686359)", fontFamily: "var(--hi-font-body)" }}>
+                {compactEditionDate(editionBadge ?? pulseEdition.date)}
               </span>
-              {!seasonChip ? (
-                <span
-                  className="mono-data text-[11px] md:hidden px-1"
-                  style={{ color: "var(--hi-text-secondary,#5c5c58)" }}
-                >
-                  {compactEditionDate(editionBadge ?? pulseEdition.date)}
+            </a>
+
+            <div className="flex items-center justify-end gap-1 min-w-0 flex-1">
+              {seasonChip ? (
+                <span className="hidden xl:inline-flex">
+                  <SeasonChip>{seasonChip}</SeasonChip>
                 </span>
               ) : null}
               {toolbarExtra ? <span className="hidden sm:contents">{toolbarExtra}</span> : null}
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="md:hidden min-h-11 min-w-11 shrink-0 flex items-center justify-center rounded-lg hover:bg-white/10"
+                className="md:hidden min-h-11 min-w-11 shrink-0 flex items-center justify-center rounded-full hover:bg-black/5"
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
@@ -669,29 +598,24 @@ export default function SiteHeader({
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="hi-pill hidden md:flex items-center gap-2 min-h-11 px-2.5 py-1.5 text-xs transition-colors"
+                className="hi-pill hidden md:flex items-center gap-2 min-h-11 px-3 text-xs whitespace-nowrap shrink-0"
                 aria-haspopup="dialog"
                 aria-label="Open search"
               >
-                <span>Search desk</span>
-                <span className="hidden lg:inline mono-data text-[11px]">⌘K</span>
+                <span>Search</span>
               </button>
-              <a
-                href="/pro"
-                className="hi-pill-primary hidden md:inline-flex items-center justify-center min-h-11 px-4 py-[9px] text-[13px]"
-              >
-                Pro
+              <a href="/pro" className="hi-pill-primary hidden md:inline-flex items-center justify-center min-h-11 px-4 text-[13px] whitespace-nowrap shrink-0">
+                Explore Pro
               </a>
-
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="hidden md:flex min-h-11 min-w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/10"
+                className="hidden lg:flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-black/5"
                 title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               >
                 {theme === "dark" ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" aria-hidden>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <circle cx="12" cy="12" r="5" />
                     <line x1="12" y1="1" x2="12" y2="3" />
                     <line x1="12" y1="21" x2="12" y2="23" />
@@ -703,54 +627,31 @@ export default function SiteHeader({
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                   </svg>
                 ) : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" aria-hidden>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                   </svg>
                 )}
               </button>
-
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <NotificationBell idPrefix="nav-bell" />
               </div>
-
               {sessionUser === undefined ? (
-                <span
-                  className="hidden md:inline-block w-14 h-8 rounded-lg animate-pulse shrink-0"
-                  style={{ background: "rgba(255,255,255,0.06)" }}
-                  aria-hidden
-                />
+                <span className="hidden md:inline-block w-14 h-8 rounded-full animate-pulse shrink-0" style={{ background: "var(--hi-surface-2,#EFECE4)" }} aria-hidden />
               ) : sessionUser ? (
-                <a
-                  href="/account"
-                  className="hi-pill hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 text-xs font-medium"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
+                <a href="/account" className="hi-pill hidden md:flex items-center gap-1 min-h-11 px-3 text-xs font-medium whitespace-nowrap shrink-0">
                   Account
                 </a>
               ) : (
-                <button
-                  type="button"
-                  onClick={() => setShowAuth(true)}
-                  aria-label="Sign in to your account"
-                  className="hi-pill hidden md:flex items-center gap-1 min-h-11 px-2.5 py-2 text-xs font-medium"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
+                <button type="button" onClick={() => setShowAuth(true)} aria-label="Sign in to your account" className="hi-pill hidden md:flex items-center min-h-11 px-3 text-xs font-medium whitespace-nowrap shrink-0">
                   Sign In
                 </button>
               )}
-
               {sessionUser ? (
                 <a
                   href="/account"
                   data-testid="header-account-control"
                   className="header-account-control md:hidden min-h-11 min-w-11 shrink-0 inline-flex items-center justify-center rounded-full"
-                  style={{ border: "1px solid var(--hi-pill-border,rgba(10,10,10,0.16))", color: "var(--hi-text,#0a0a0a)" }}
+                  style={{ border: "1px solid var(--hi-control-border,#827C70)", color: "var(--hi-text,#14120B)" }}
                   aria-label="Open your account"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -763,7 +664,7 @@ export default function SiteHeader({
                   type="button"
                   data-testid="header-account-control"
                   className="header-account-control md:hidden min-h-11 min-w-11 shrink-0 inline-flex items-center justify-center rounded-full"
-                  style={{ border: "1px solid var(--hi-pill-border,rgba(10,10,10,0.16))", color: "var(--hi-text,#0a0a0a)" }}
+                  style={{ border: "1px solid var(--hi-control-border,#827C70)", color: "var(--hi-text,#14120B)" }}
                   aria-label="Sign in to your account"
                   onClick={() => setShowAuth(true)}
                 >
@@ -773,9 +674,40 @@ export default function SiteHeader({
                   </svg>
                 </button>
               )}
-
             </div>
           </div>
+
+          <nav className="hidden md:flex flex-wrap items-center justify-center gap-x-1 border-t" style={{ borderColor: "var(--hi-hairline,#E4E0D6)" }} aria-label="Primary">
+            {headerNavLinks().map(({ label, href }) => {
+              const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
+              return (
+                <a key={label} href={href} className={navLinkClass} {...navAriaCurrent(href, locationPath)}>
+                  {navLabel}
+                </a>
+              );
+            })}
+            <details className="relative">
+              <summary className={`${navLinkClass} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}>
+                More
+              </summary>
+              <div
+                className="absolute right-0 top-full mt-2 min-w-[12rem] rounded-xl py-2 z-[60]"
+                style={{ background: "var(--hi-surface,#ffffff)", border: "1px solid var(--hi-hairline,#E4E0D6)", boxShadow: "0 8px 24px rgba(20,18,11,0.08)" }}
+              >
+                {mainNavLinks().filter((l) => !headerNavLinks().some((h) => h.href === l.href)).map(({ label, href }) => (
+                  <a
+                    key={`more-${label}`}
+                    href={href}
+                    className="flex items-center min-h-11 px-4 text-sm font-medium hover:bg-black/5"
+                    style={{ color: navItemActive(href, locationPath) ? "var(--hi-brand,#C8102E)" : "var(--hi-text,#14120B)" }}
+                    {...navAriaCurrent(href, locationPath)}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </details>
+          </nav>
         </div>
       </header>
 
@@ -804,7 +736,7 @@ export default function SiteHeader({
                 Today’s desk →
               </a>
               {mainNavLinks().map(({ label, href }) => {
-                const active = navRouteMatches(href, locationPath);
+                const active = navItemActive(href, locationPath);
                 const navLabel = href === PLAYOFFS_NAV_HREF ? playoffsNavLabel() : label;
                 return (
                   <a
