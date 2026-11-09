@@ -1,4 +1,6 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Route, Switch, useLocation } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ToastProvider } from "./contexts/ToastContext";
@@ -9,6 +11,7 @@ import BackToTop from "./components/BackToTop";
 import PwaInstallPrompt from "./components/PwaInstallPrompt";
 import KeyboardShortcutsHelp from "./components/KeyboardShortcutsHelp";
 import RouteSeo from "./components/RouteSeo";
+import EditionFallbackBanner from "./components/EditionFallbackBanner";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import SpaNavigator from "./components/SpaNavigator";
 import { incrementVisitCount } from "./lib/visitCount";
@@ -68,28 +71,29 @@ const PulseMethodology = lazy(() => import("./pages/PulseMethodology"));
 const WidgetAnalytics = lazy(() => import("./pages/WidgetAnalytics"));
 const CreatorQueue = lazy(() => import("./pages/CreatorQueue"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const About = lazy(() => import("./pages/TrustPages").then((m) => ({ default: m.AboutPage })));
+const Methodology = lazy(() => import("./pages/TrustPages").then((m) => ({ default: m.MethodologyPage })));
+const Privacy = lazy(() => import("./pages/TrustPages").then((m) => ({ default: m.PrivacyPage })));
+const Terms = lazy(() => import("./pages/TrustPages").then((m) => ({ default: m.TermsPage })));
+const Contact = lazy(() => import("./pages/TrustPages").then((m) => ({ default: m.ContactPage })));
 
-function VercelAnalyticsScript() {
+function ProductAnalytics() {
+  const [enabled, setEnabled] = useState(false);
   useEffect(() => {
     if (!import.meta.env.PROD) return;
-    if (typeof document === "undefined") return;
-    // vite preview / local hosts SPA-fallback HTML for /_vercel/*, which throws
-    // SyntaxError: Unexpected token '<' and flakes E2E visual smoke.
+    // vite preview serves index.html for /_vercel/*, which throws in the console
+    // and flakes the visual-smoke spec. The packages run on the real deployment.
     const host = window.location.hostname;
-    if (host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0" || host.endsWith(".local")) {
-      return;
-    }
-    if (document.querySelector('script[data-hi-vercel-insights="1"]')) return;
-    const s = document.createElement("script");
-    s.dataset.hiVercelInsights = "1";
-    s.src = "/_vercel/insights/script.js";
-    s.defer = true;
-    s.onerror = () => {
-      s.remove();
-    };
-    document.body.appendChild(s);
+    if (host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0" || host.endsWith(".local")) return;
+    setEnabled(true);
   }, []);
-  return null;
+  if (!enabled) return null;
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+    </>
+  );
 }
 
 function pageLoaderLabel(path: string): string {
@@ -102,6 +106,11 @@ function pageLoaderLabel(path: string): string {
   if (path.startsWith("/archive")) return "Loading archive";
   if (path.startsWith("/my-pulse")) return "Loading My Pulse";
   if (path.startsWith("/pro")) return "Loading Pro";
+  if (path.startsWith("/about")) return "Loading about";
+  if (path.startsWith("/methodology")) return "Loading methodology";
+  if (path.startsWith("/privacy")) return "Loading privacy";
+  if (path.startsWith("/terms")) return "Loading terms";
+  if (path.startsWith("/contact")) return "Loading contact";
   if (path.startsWith("/tools")) return "Loading tools";
   return "Loading page";
 }
@@ -155,7 +164,7 @@ export default function App() {
       <RouteSeo />
       <SpaNavigator />
       <SkipToContent />
-      <VercelAnalyticsScript />
+      <ProductAnalytics />
       <div
         className={`min-h-screen hi-app-shell${chromeless ? " hi-app-shell--chromeless" : ""}`}
         style={{
@@ -164,6 +173,7 @@ export default function App() {
         }}
       >
         <div className="hi-app-scroll">
+        {chromeless ? null : <EditionFallbackBanner />}
         {chromeless ? null : <PwaInstallPrompt />}
         <RouteErrorBoundary resetKey={location}>
         <Suspense fallback={<PageLoader />}>
@@ -219,6 +229,11 @@ export default function App() {
             <Route path="/pulse-methodology" component={PulseMethodology} />
             <Route path="/rivals" component={Rivals} />
             <Route path="/creator-queue" component={CreatorQueue} />
+            <Route path="/about" component={About} />
+            <Route path="/methodology" component={Methodology} />
+            <Route path="/privacy" component={Privacy} />
+            <Route path="/terms" component={Terms} />
+            <Route path="/contact" component={Contact} />
             <Route>
               <NotFound />
             </Route>

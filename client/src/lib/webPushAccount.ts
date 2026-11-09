@@ -86,7 +86,7 @@ export async function subscribeDevicePush(): Promise<{
   p256dh: string;
   auth_key: string;
 }> {
-  if (!vapidConfigured()) throw new Error("Web push is not configured (missing VITE_VAPID_PUBLIC_KEY).");
+  if (!vapidConfigured()) throw new Error("Browser alerts are coming soon.");
   const perm = await Notification.requestPermission();
   if (perm !== "granted") throw new Error("Notification permission denied.");
 

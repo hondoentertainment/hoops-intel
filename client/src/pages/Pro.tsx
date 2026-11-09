@@ -10,6 +10,7 @@ import AuthModal from "../components/AuthModal";
 import { GuestNotice, SignedInNextNotice } from "../components/GuestNotice";
 import { lastUpdatedStamp } from "../lib/dataTrust";
 import { hasLocalAuthToken } from "../lib/guestAuth";
+import { comingSoonCopy, publicFeatureError } from "../lib/comingSoon";
 
 type OpsStripe = { checkoutReady?: boolean; webhookReady?: boolean };
 
@@ -129,7 +130,7 @@ export default function Pro() {
 
   const handleCheckout = async (plan: "monthly" | "annual") => {
     if (!checkoutReady) {
-      setError("Checkout temporarily unavailable.");
+      setError(comingSoonCopy("pro"));
       return;
     }
     if (!getStoredAuthToken()) {
@@ -144,7 +145,7 @@ export default function Pro() {
       window.location.href = url;
     } catch (err) {
       const message = err instanceof Error ? err.message : "Checkout failed";
-      setError(isStripeConfigError(message) ? "Checkout temporarily unavailable." : message);
+      setError(publicFeatureError("pro", message));
       setCheckoutLoading(null);
     }
   };
@@ -156,7 +157,7 @@ export default function Pro() {
       const url = await openBillingPortal();
       window.location.href = url;
     } catch (err) {
-      setPortalError(err instanceof Error ? err.message : "Billing portal failed");
+      setPortalError(publicFeatureError("pro", err instanceof Error ? err.message : "Billing portal failed"));
       setPortalLoading(false);
     }
   };
@@ -216,9 +217,7 @@ export default function Pro() {
             </div>
             {portalError ? (
               <p className="text-sm mt-3 hi-notice-warn" role="alert">
-                {isStripeConfigError(portalError)
-                  ? "Billing management is temporarily unavailable."
-                  : portalError}
+                {isStripeConfigError(portalError) ? comingSoonCopy("pro") : portalError}
               </p>
             ) : null}
           </div>
@@ -263,10 +262,10 @@ export default function Pro() {
               >
                 <p className="enhanced-kicker mb-2">Hoops Intel Pro</p>
                 <h2 id="pro-checkout-status" className="text-lg font-semibold hi-title text-[var(--hi-text,#0a0a0a)]">
-                  Checkout temporarily unavailable
+                  Hoops Intel Pro is coming soon
                 </h2>
-                <p className="text-sm mt-2 mb-4" style={{ color: "var(--hi-muted,#5c5c58)" }}>
-                  Plans stay $5 a month or $40 a year. Checkout is paused, so nothing is charged from this page.
+                <p className="text-sm mt-2 mb-4" style={{ color: "var(--hi-muted,#686359)" }}>
+                  Plans stay $5 a month or $40 a year. Checkout is not open yet, so nothing is charged from this page.
                 </p>
                 <a
                   href="/account"

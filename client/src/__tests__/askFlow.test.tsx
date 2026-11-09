@@ -39,8 +39,8 @@ describe("Ask Hoops Intel submit", () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () =>
-        new Response(JSON.stringify({ error: "API key not configured" }), {
-          status: 500,
+        new Response(JSON.stringify({ error: "API key not configured", code: "ask_not_configured" }), {
+          status: 503,
           headers: { "Content-Type": "application/json" },
         }),
       ),
@@ -51,7 +51,8 @@ describe("Ask Hoops Intel submit", () => {
       await result.current.sendMessage("Who leads the Pulse Index?");
     });
 
-    expect(result.current.messages.at(-1)?.content).toContain("API key not configured");
+    expect(result.current.messages.at(-1)?.content).toBe("Ask Hoops Intel is coming soon.");
+    expect(result.current.messages.at(-1)?.content).not.toContain("API key");
     expect(result.current.isLoading).toBe(false);
   });
 });

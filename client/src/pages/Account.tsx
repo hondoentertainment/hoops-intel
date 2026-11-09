@@ -28,6 +28,7 @@ import {
   vapidConfigured,
 } from "../lib/webPushAccount";
 import OpsReadinessPanel from "../components/OpsReadinessPanel";
+import { comingSoonCopy, publicFeatureError } from "../lib/comingSoon";
 import PushAlertGuide from "../components/PushAlertGuide";
 import PushAlertHistory from "../components/PushAlertHistory";
 
@@ -167,7 +168,7 @@ function AccountPushAlerts({ userId }: { userId: string }) {
             : "This device is registered for browser push with your topic choices.",
       );
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Could not enable push");
+      setErr(publicFeatureError("push", e instanceof Error ? e.message : "Could not enable push"));
     } finally {
       setBusy(false);
     }
@@ -320,13 +321,14 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div className="section-label mb-2" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
-          BROWSER PUSH (PLAYOFFS)
+          BROWSER ALERTS
         </div>
-        <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
-          Web push is not configured in this build (set{" "}
-          <code className="text-[var(--hi-text)]/90">VITE_VAPID_PUBLIC_KEY</code> to match server{" "}
-          <code className="text-[var(--hi-text)]/90">VAPID_PUBLIC_KEY</code>). When enabled, alerts require HTTPS and browser
-          permission. Email digest in the header bell still works.
+        <h2 className="text-base font-semibold hi-title mb-2" style={{ color: "var(--hi-text,#14120B)" }}>
+          Browser alerts are coming soon
+        </h2>
+        <p className="text-sm leading-relaxed" style={{ color: "var(--hi-muted,#686359)" }} data-testid="push-coming-soon">
+          Push alerts are not available in this build yet. You can still read the morning edition on the desk, and the
+          email digest stays on the footer when it is open.
         </p>
       </div>
     );
@@ -347,12 +349,6 @@ function AccountPushAlerts({ userId }: { userId: string }) {
         <strong className="text-white/70 font-medium">urgency-tier</strong> topics (elimination / clinchers). Volume
         stays capped. Team targeting uses your first My Pulse favorite when present.
       </p>
-      <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--hi-muted,#5c5c58)" }}>
-        Operators: configure VAPID + Supabase + push API per{" "}
-        <code className="text-[var(--hi-text)]/80">references/push-notifications.md</code> — see also{" "}
-        <code className="text-[var(--hi-text)]/80">.github/workflows/playoff-push.yml</code>.
-      </p>
-
       <div className="flex flex-wrap gap-2 mb-4">
         <span className="w-full text-[11px] uppercase tracking-[0.16em]" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
           Quick presets
@@ -532,7 +528,7 @@ export default function Account() {
       const url = await openBillingPortal();
       window.location.href = url;
     } catch (e) {
-      setPortalError(e instanceof Error ? e.message : "Could not open billing portal");
+      setPortalError(publicFeatureError("pro", e instanceof Error ? e.message : "Could not open billing portal"));
       setPortalLoading(false);
     }
   };
@@ -576,7 +572,7 @@ export default function Account() {
         />
         {!isSupabaseConfigured ? (
           <div className="rounded-xl p-5 text-sm" style={{ background: "var(--hi-surface-2,#f3f3f0)", border: "1px solid rgba(255,255,255,0.08)", color: "var(--hi-muted,#5c5c58)" }}>
-            Accounts are not configured in this environment (missing Supabase keys).
+            Sign-in is not available in this build yet. The free edition does not need an account.
           </div>
         ) : null}
       </ToolPageLayout>
@@ -668,17 +664,11 @@ export default function Account() {
             >
               {portalLoading ? "OPENING STRIPE…" : "MANAGE BILLING & INVOICES"}
             </button>
-            {portalError && (
-              isStripeConfigError(portalError) ? (
-                <p className="text-sm mt-3 text-amber-200" role="alert">
-                  Billing portal isn&apos;t configured ({portalError}). Ops: set STRIPE_SECRET_KEY in production.
-                </p>
-              ) : (
-                <p className="text-sm mt-3 text-rose-400" role="alert">
-                  {portalError}
-                </p>
-              )
-            )}
+            {portalError ? (
+              <p className="text-sm mt-3 hi-notice-warn" role="alert">
+                {isStripeConfigError(portalError) ? comingSoonCopy("pro") : portalError}
+              </p>
+            ) : null}
           </>
         ) : (
           <>
@@ -686,8 +676,8 @@ export default function Account() {
               Upgrade for early drops, ad-free reading, full Trade Value ranks, and deeper Ask Hoops Intel context.
             </p>
             {stripeCheckoutReady === false && (
-              <p className="text-xs mb-4 px-3 py-2 rounded-lg text-amber-200/95" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.2)" }}>
-                Stripe checkout is pending ops on this deployment — upgrade buttons on /pro will stay disabled until env is wired.
+              <p className="text-sm mb-4 hi-notice-info" role="status">
+                Hoops Intel Pro is coming soon. Checkout is not open on this deployment yet.
               </p>
             )}
             {stripeCheckoutReady === true && (

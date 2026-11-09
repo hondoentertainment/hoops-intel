@@ -11,7 +11,7 @@ const read = (rel: string) => readFileSync(join(srcDir, rel), "utf8");
 describe("focused UX polish", () => {
   it("keeps /pro free of credential diagnostics and duplicate checkout buttons", () => {
     const pro = read("pages/Pro.tsx");
-    expect(pro).toContain("Checkout temporarily unavailable");
+    expect(pro).toContain("Hoops Intel Pro is coming soon");
     expect(pro).toContain('data-testid="pro-checkout-unavailable"');
     expect(pro).toContain("Create an account");
     expect(pro).toContain("GuestNotice");

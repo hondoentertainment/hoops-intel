@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { isPageLevelSeoRoute, NOINDEX_PATHS, playerProfileCanonicalUrl, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { gamePageMeta, isPageLevelSeoRoute, NOINDEX_PATHS, playerPageMeta, playerProfileCanonicalUrl, resolveRouteSeo, toMetaTags } from "../lib/seoConfig";
+
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "../../..");
 
 describe("publisher dashboard SEO", () => {
   it("noindexes embed analytics shells and canonicalizes them to /widgets", () => {
@@ -84,6 +89,53 @@ describe("soft-launch and desk SEO", () => {
     expect(resolveRouteSeo("/82-0")?.noindex).toBeUndefined();
     expect(resolveRouteSeo("/podcast-companion")?.noindex).toBeUndefined();
     expect(resolveRouteSeo("/account")?.noindex).toBe(true);
+  });
+
+  it("gives trust pages their own title, description, canonical, and share image", () => {
+    for (const path of ["/about", "/methodology", "/privacy", "/terms", "/contact"]) {
+      const seo = resolveRouteSeo(path);
+      expect(seo?.noindex).toBeUndefined();
+      expect(seo?.canonicalPath).toBe(path);
+      expect(seo?.title).toMatch(/Hoops Intel/);
+      expect(seo?.description.length).toBeGreaterThan(110);
+      const meta = toMetaTags(seo!);
+      expect(meta.canonicalUrl).toBe(`https://hoopsintel.net${path}`);
+      expect(meta.ogImage).toBe("https://hoopsintel.net/og/desk.svg");
+      expect(meta.ogUrl).toBe(meta.canonicalUrl);
+    }
+    const titles = ["/about", "/methodology", "/privacy", "/terms", "/contact"].map((path) => resolveRouteSeo(path)?.title);
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it("puts Organization, WebSite, and a NewsArticle on the home edition", () => {
+    const home = resolveRouteSeo("/");
+    const graph = (home?.jsonLd?.["@graph"] ?? []) as { "@type"?: string }[];
+    expect(graph.map((node) => node["@type"])).toEqual(expect.arrayContaining(["Organization", "WebSite", "NewsArticle"]));
+    const print = resolveRouteSeo("/print-edition");
+    expect(print?.jsonLd?.["@type"]).toBe("NewsArticle");
+    expect(toMetaTags(home!).ogImage).toBe("https://hoopsintel.net/og/desk.svg");
+  });
+
+  it("gives games and players unique titles and descriptions", () => {
+    const first = gamePageMeta({ gameId: "OKC-MEM-20261106", whyItMatters: "A road win.", found: true });
+    const rematch = gamePageMeta({ gameId: "OKC-MEM-20261108", whyItMatters: "A road win.", found: true });
+    expect(first.title).not.toBe(rematch.title);
+    expect(first.description).not.toBe(rematch.description);
+    expect(first.title).toContain("November 6, 2026");
+    expect(rematch.canonicalUrl).toBe("https://hoopsintel.net/game/OKC-MEM-20261108");
+
+    const kawhi = playerPageMeta({ name: "Kawhi Leonard", slug: "kawhi-leonard", found: true });
+    const morant = playerPageMeta({ name: "Ja Morant", slug: "ja-morant", found: true, rank: 9, keyStats: "23 PTS", note: "A quiet night." });
+    expect(kawhi.title).not.toBe(morant.title);
+    expect(kawhi.description).not.toBe(morant.description);
+    expect(kawhi.description).toContain("Kawhi Leonard");
+    expect(morant.description).toContain("Ja Morant");
+    expect(kawhi.canonicalUrl).toBe("https://hoopsintel.net/player/kawhi-leonard");
+  });
+
+  it("points robots.txt at the sitemap", () => {
+    const robots = readFileSync(join(repoRoot, "public/robots.txt"), "utf8");
+    expect(robots).toMatch(/Sitemap:\s+https:\/\/hoopsintel\.net\/sitemap\.xml/);
   });
 
   it("indexes the draft board (populated weekly, not a stub)", () => {

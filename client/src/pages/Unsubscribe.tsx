@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EditorialShell from "../components/EditorialShell";
+import { publicFeatureError } from "../lib/comingSoon";
 import { PageHero } from "../components/enhanced/EnhancedUi";
 
 function loadEmail(): string {
@@ -37,7 +38,7 @@ export default function Unsubscribe() {
       setMessage("You’ve been unsubscribed from the Hoops Intel daily digest.");
     } catch (err) {
       setStatus("err");
-      setMessage(err instanceof Error ? err.message : "Something went wrong.");
+      setMessage(publicFeatureError("email", err instanceof Error ? err.message : "Something went wrong."));
     }
   };
 

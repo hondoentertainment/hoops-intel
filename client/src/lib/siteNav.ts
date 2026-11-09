@@ -69,6 +69,14 @@ export function mainNavLinks(date = new Date()): MainNavLink[] {
 }
 
 /** Home footer explore links — keep discoverable product routes out of crawl orphan status. */
+export const TRUST_FOOTER_LINKS: MainNavLink[] = [
+  { label: "About", href: "/about" },
+  { label: "Methodology", href: "/methodology" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Contact", href: "/contact" },
+];
+
 export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Desk", href: "/" },
   { label: "Pulse", href: "/#pulse-index" },

@@ -77,8 +77,8 @@ async function handler(req: Request) {
   // Check API key
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: "API key not configured" }), {
-      status: 500,
+    return new Response(JSON.stringify({ error: "Ask Hoops Intel is coming soon.", code: "ask_not_configured" }), {
+      status: 503,
       headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
     });
   }

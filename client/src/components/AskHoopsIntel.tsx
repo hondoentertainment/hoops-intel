@@ -4,6 +4,7 @@ import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { searchContext } from "../lib/hoopsSearch";
 import { contextualAskChips } from "../lib/askShortcuts";
 import { DeskFilterChip } from "./enhanced/EnhancedUi";
+import { comingSoonCopy, publicFeatureError } from "../lib/comingSoon";
 
 // ═══════════════════════════════════════════════════════════
 // TYPES
@@ -13,6 +14,7 @@ interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
+  tone?: "coming-soon";
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -139,10 +141,16 @@ export function useChatEngine() {
 
         if (!res.ok) {
           const err = await res.json().catch(() => ({ error: "Request failed" }));
+          const raw = typeof err.error === "string" ? err.error : "Something went wrong. Please try again.";
+          const comingSoon = err.code === "ask_not_configured" || publicFeatureError("ask", raw) === comingSoonCopy("ask");
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantMsg.id
-                ? { ...m, content: `Error: ${err.error || "Something went wrong. Please try again."}` }
+                ? {
+                    ...m,
+                    tone: comingSoon ? "coming-soon" : undefined,
+                    content: comingSoon ? comingSoonCopy("ask") : `Error: ${raw}`,
+                  }
                 : m
             )
           );
@@ -296,6 +304,11 @@ export function ChatMessages({
             >
               {msg.role === "user" ? (
                 <p className="hi-title text-[var(--hi-text,#0a0a0a)]">{msg.content}</p>
+              ) : msg.tone === "coming-soon" ? (
+                <div role="status" data-testid="ask-coming-soon" className="hi-notice-info text-sm">
+                  <p className="font-semibold hi-title mb-1">Coming soon</p>
+                  <p>{msg.content}</p>
+                </div>
               ) : msg.content === "" && isLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">

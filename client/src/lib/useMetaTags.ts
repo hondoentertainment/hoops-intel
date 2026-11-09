@@ -95,9 +95,14 @@ export function useMetaTags({
       setMeta("og:description", description);
       setMeta("twitter:description", description);
     }
+    setMeta("twitter:card", "summary_large_image");
     if (ogImage) {
       setMeta("og:image", ogImage);
+      setMeta("og:image:alt", title || SITE_NAME);
+      setMeta("og:image:width", "1200");
+      setMeta("og:image:height", "630");
       setMeta("twitter:image", ogImage);
+      setMeta("twitter:card", "summary_large_image");
     }
     if (ogUrl) {
       setMeta("og:url", ogUrl);
