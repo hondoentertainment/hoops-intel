@@ -4,7 +4,7 @@ import { mkdtempSync, writeFileSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { hasCompleteModuleEnding, validateOutput } from "../lib/validate-output.mjs";
-import { countProjectedTeams } from "../generate-projections.mjs";
+import { countProjectedTeams, missingProjectedTeams } from "../generate-projections.mjs";
 
 test("hasCompleteModuleEnding accepts closed object / export endings", () => {
   assert.equal(hasCompleteModuleEnding("};"), true);
@@ -69,6 +69,13 @@ test("weekly runner gives Projections the same extra timeout as Trade Simulator"
   );
 });
 
+test("projections retry names the missing franchises", () => {
+  const src = readFileSync(new URL("../generate-projections.mjs", import.meta.url), "utf8");
+  assert.match(src, /TEAM_ABBREVIATIONS\.join/);
+  assert.match(src, /Previous draft was missing these franchises/);
+  assert.match(src, /missingProjectedTeams/);
+});
+
 const INTERFACE_AND_RISER = `
 export interface TeamProjection {
   team: string;
@@ -117,4 +124,30 @@ export const projectionsData = { teams: [
 test("committed projectionsData.ts still counts as a full 30-team slate", () => {
   const file = readFileSync(new URL("../../client/src/lib/projectionsData.ts", import.meta.url), "utf8");
   assert.equal(countProjectedTeams(file), 30);
+  assert.deepEqual(missingProjectedTeams(file), []);
+});
+
+test("countProjectedTeams still counts a row whose narrative contains braces", () => {
+  const thirty = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+    "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    .map((abbr, i) =>
+      i === 0
+        ? `    { team: "${abbr}", conference: "east", narrative: "Wins {must} hold." },`
+        : teamRow(abbr, i < 15 ? "east" : "west"),
+    )
+    .join("\n");
+  const src = `${INTERFACE_AND_RISER}\n${thirty}\n  ],\n};\n`;
+  assert.equal(countProjectedTeams(src), 30);
+  assert.deepEqual(missingProjectedTeams(src), []);
+});
+
+test("missingProjectedTeams names the omitted franchise", () => {
+  const twentyNine = Array.from({ length: 29 }, (_, i) =>
+    teamRow(["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+      "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+      "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA"][i]),
+  ).join("\n");
+  const src = `${INTERFACE_AND_RISER}\n${twentyNine}\n  ],\n};\n`;
+  assert.deepEqual(missingProjectedTeams(src), ["WAS"]);
 });
