@@ -108,7 +108,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "craig porter": 4701233,
   "daeqwon plowden": 4279318,
   "dailyn swain": 4848625,
-  "dalen terry": 4433159,
   "dalton knecht": 4897943,
   "damian lillard": 6606,
   "daniel gafford": 4278049,
