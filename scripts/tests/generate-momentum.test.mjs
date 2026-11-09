@@ -54,3 +54,16 @@ test("midday workflow stages surviving files after a generator failure", () => {
     /name:\s*Commit and push refresh[\s\S]{0,80}if:\s*\$\{\{\s*!cancelled\(\)/,
   );
 });
+
+test("weekly workflow stages surviving files after a generator failure", () => {
+  const src = readFileSync(join(ROOT, ".github/workflows/weekly-update.yml"), "utf8");
+  assert.match(
+    src,
+    /name:\s*Stage weekly data files[\s\S]{0,80}if:\s*\$\{\{\s*!cancelled\(\)/,
+  );
+  assert.match(
+    src,
+    /name:\s*Commit and push weekly data[\s\S]{0,80}if:\s*\$\{\{\s*!cancelled\(\)/,
+  );
+  assert.match(src, /Partial failure — staging surviving weekly files/);
+});

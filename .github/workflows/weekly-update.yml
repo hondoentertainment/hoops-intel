@@ -76,25 +76,31 @@ jobs:
             echo "Critical failure — aborting"
             exit 1
           elif [ "$exit_code" -eq 2 ]; then
-            echo "Partial failure — refusing to commit"
+            echo "Partial failure — staging surviving weekly files"
+            echo "partial=true" >> $GITHUB_OUTPUT
             exit 1
           fi
         timeout-minutes: 20
 
+      # Failed sections restore their previous file. Stage whatever survived
+      # so a 29-team Projections draft does not discard valid Lineups/Tactics
+      # writes (#508). The job still fails when the generate step fails.
       - name: Stage weekly data files
+        if: ${{ !cancelled() }}
         run: node scripts/stage-weekly-edition.mjs
 
       - name: Check for changes
+        if: ${{ !cancelled() }}
         id: changes
         run: |
           git diff --staged --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Pre-push CI gate (schema + build)
-        if: steps.changes.outputs.changed == 'true'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'true' }}
         run: npm run test:pre-push
 
       - name: Commit and push weekly data
-        if: steps.changes.outputs.changed == 'true'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'true' }}
         run: |
           git config user.name "hoops-intel-bot"
           git config user.email "bot@hoopsintel.net"
@@ -102,12 +108,12 @@ jobs:
           git push origin ${{ github.ref_name }}
 
       - name: Post-push note
-        if: steps.changes.outputs.changed == 'true'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'true' }}
         run: |
           echo "::notice::Weekly data pushed — deployment-smoke will verify production."
 
       - name: No changes detected
-        if: steps.changes.outputs.changed == 'false'
+        if: ${{ !cancelled() && steps.changes.outputs.changed == 'false' }}
         run: echo "No data changes — skipping commit."
 
       - name: Close resolved weekly-failure issues

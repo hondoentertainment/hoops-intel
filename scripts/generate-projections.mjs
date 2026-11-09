@@ -11,7 +11,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { validateOutput } from "./lib/validate-output.mjs";
-import { canonicalNbaAbbrev, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
+import { TEAM_ABBREVIATIONS, canonicalNbaAbbrev, isEspnSyncedTeamAbbrev } from "./lib/content-quality-constants.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -167,7 +167,7 @@ export const projectionsData: ProjectionsData = {
 };
 
 Rules:
-- Include ALL 30 NBA teams (15 East, 15 West) inline in teams[]
+- Include ALL 30 NBA teams (15 East, 15 West) inline in teams[], exactly once each: ${TEAM_ABBREVIATIONS.join(", ")}
 - Current records must be consistent with the pulse data context
 - Projected records must total 82 games (wins + losses = 82)
 - Championship probabilities should roughly sum to 100% across all teams
@@ -190,17 +190,62 @@ function stripFences(text) {
     .trim();
 }
 
-/** Count distinct NBA teams, not the `conference: "east" | "west"` interface. */
-export function countProjectedTeams(source) {
+function teamsArrayBody(source) {
+  const start = source.search(/\bteams\s*:\s*\[/);
+  if (start < 0) return null;
+  const bracket = source.indexOf("[", start);
+  let depth = 0;
+  for (let i = bracket; i < source.length; i++) {
+    if (source[i] === "[") depth += 1;
+    else if (source[i] === "]") {
+      depth -= 1;
+      if (depth === 0) return source.slice(bracket + 1, i);
+    }
+  }
+  return null;
+}
+
+function topLevelObjects(body) {
+  const objects = [];
+  let depth = 0;
+  let start = -1;
+  for (let i = 0; i < body.length; i++) {
+    const ch = body[i];
+    if (ch === "{") {
+      if (depth === 0) start = i;
+      depth += 1;
+    } else if (ch === "}") {
+      depth -= 1;
+      if (depth === 0 && start >= 0) {
+        objects.push(body.slice(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+  return objects;
+}
+
+/** Distinct NBA teams in `teams[]`, not the interface union or riser fields. */
+export function projectedTeamAbbrevs(source) {
   const abbrs = new Set();
-  const objects = source.match(/\{[^{}]*\}/g) || [];
+  const body = teamsArrayBody(source);
+  const objects = body != null ? topLevelObjects(body) : source.match(/\{[^{}]*\}/g) || [];
   for (const obj of objects) {
     const team = obj.match(/(?:(?<![A-Za-z])team|"team")\s*:\s*"([A-Z]{3})"/);
     const conf = obj.match(/(?:(?<![A-Za-z])conference|"conference")\s*:\s*"(?:east|west)"/);
     if (!team || !conf) continue;
     if (isEspnSyncedTeamAbbrev(team[1])) abbrs.add(canonicalNbaAbbrev(team[1]));
   }
-  return abbrs.size;
+  return abbrs;
+}
+
+export function countProjectedTeams(source) {
+  return projectedTeamAbbrevs(source).size;
+}
+
+export function missingProjectedTeams(source) {
+  const have = projectedTeamAbbrevs(source);
+  return TEAM_ABBREVIATIONS.filter((abbr) => !have.has(abbr));
 }
 
 async function generateOnce(client, prompt, attempt) {
@@ -224,6 +269,7 @@ async function generateOnce(client, prompt, attempt) {
   const block = message.content.find((b) => b.type === "text");
   if (!block) throw new Error("No text block in Claude response");
 
+  console.log(`   stop_reason=${message.stop_reason ?? "unknown"}`);
   if (message.stop_reason === "max_tokens") {
     console.warn("⚠ Claude hit max_tokens — output may be truncated");
   }
@@ -256,10 +302,14 @@ async function main() {
   };
 
   let lastError = null;
+  let missing = [];
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     let responseText;
+    const attemptPrompt = missing.length
+      ? `${prompt}\n\nPrevious draft was missing these franchises: ${missing.join(", ")}. Include ALL 30 exactly once: ${TEAM_ABBREVIATIONS.join(", ")}.`
+      : prompt;
     try {
-      const result = await generateOnce(client, prompt, attempt);
+      const result = await generateOnce(client, attemptPrompt, attempt);
       responseText = result.text;
     } catch (err) {
       restorePrevious();
@@ -277,7 +327,8 @@ async function main() {
 
     const check = await validateOutput(OUT_PATH);
     const teams = countProjectedTeams(responseText);
-    if (check.ok && teams >= MIN_TEAMS) {
+    missing = missingProjectedTeams(responseText);
+    if (check.ok && teams >= MIN_TEAMS && missing.length === 0) {
       console.log(`✅ Rest-of-Season Projections written to: ${OUT_PATH}`);
       console.log("");
       console.log("Next steps:");
@@ -288,7 +339,7 @@ async function main() {
 
     lastError = !check.ok
       ? check.reason
-      : `incomplete team list (${teams}/${MIN_TEAMS})`;
+      : `incomplete team list (${teams}/${MIN_TEAMS}${missing.length ? `; missing ${missing.join(", ")}` : ""})`;
     console.error(`  [Projections] parse check failed: ${lastError}`);
     if (attempt < MAX_ATTEMPTS) {
       console.warn("  Retrying generation once…");
