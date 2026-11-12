@@ -348,6 +348,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "mario hezonja": 2995706,
   "mark williams": 4701232,
   "marvin bagley": 4277848,
+  "mason plumlee": 2488653,
   "matas buzelis": 4711294,
   "matisse thybulle": 3907498,
   "max christie": 4432582,
