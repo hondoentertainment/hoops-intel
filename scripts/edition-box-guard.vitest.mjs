@@ -1,8 +1,11 @@
+import { readFileSync } from "fs";
 import { describe, expect, it } from "vitest";
 import {
   collectEditionBoxErrors,
   playerLinesFromSummary,
   pulseIndexConsistencyErrors,
+  slateStatLeaders,
+  stampStatLeadersSource,
   tickerFinalCoverageErrors,
 } from "./lib/edition-box-guard.mjs";
 
@@ -160,5 +163,52 @@ describe("edition box guard", () => {
     );
     expect(errors.filter((error) => /Assists|Harper keyStats|does not match/.test(error))).toEqual([]);
     expect(errors).toContain("missing gameResults for SAS @ CHI");
+  });
+
+  it("stamps a short rebound leader to the ESPN slate high instead of aborting", () => {
+    const lines = [
+      { player: "Jarrett Allen", team: "CLE", pts: 18, reb: 14, ast: 3, stl: 1, blk: 1, tpm: 0, pm: 8 },
+      { player: "Domantas Sabonis", team: "SAC", pts: 16, reb: 15, ast: 6, stl: 0, blk: 0, tpm: 0, pm: 4 },
+      { player: "Julius Randle", team: "BRK", pts: 22, reb: 8, ast: 5, stl: 1, blk: 0, tpm: 2, pm: 27 },
+      { player: "Luka Doncic", team: "LAL", pts: 32, reb: 7, ast: 9, stl: 2, blk: 0, tpm: 4, pm: 21 },
+    ];
+    const leaders = slateStatLeaders(lines);
+    expect(leaders.find((row) => row.category === "Rebounds")).toMatchObject({
+      player: "Domantas Sabonis",
+      value: "15",
+    });
+    expect(leaders.find((row) => row.category === "+/-")).toMatchObject({
+      player: "Julius Randle",
+      value: "+27",
+    });
+
+    const src = `export const tickerItems = [];
+export const statLeaders = [
+  {category:"Points",player:"Luka Doncic",team: "LAL",value:"32",context:"Luka's 32 led scoring."},
+  {category:"Rebounds",player:"Jarrett Allen",team: "CLE",value:"14",context:"Allen's 14 rebounds led the slate."},
+  {category:"Assists",player:"Luka Doncic",team: "LAL",value:"9",context:"Luka's 9 assists led."},
+  {category:"3-Pointers",player:"Luka Doncic",team: "LAL",value:"4",context:"Luka's 4 threes led."},
+  {category:"Blocks",player:"Jarrett Allen",team: "CLE",value:"1",context:"Allen's 1 block tied."},
+  {category:"+/-",player:"Luka Doncic",team: "LAL",value:"+21",context:"Luka was plus-21."}
+];
+export const gameResults = [];`;
+    const stamped = stampStatLeadersSource(src, lines);
+    expect(stamped).toContain('player:"Domantas Sabonis"');
+    expect(stamped).toContain('value:"15"');
+    expect(stamped).toContain('player:"Julius Randle"');
+    expect(stamped).toContain('value:"+27"');
+    expect(stamped).toContain("Luka's 32 led scoring.");
+
+    const reboundError = collectEditionBoxErrors(
+      { pulseIndex: [], tickerItems: [], gameResults: [], statLeaders: [{ category: "Rebounds", player: "Jarrett Allen", value: "14" }] },
+      [{ awayTeam: "CLE", homeTeam: "SAC", awayScore: 110, homeScore: 100, playerLines: lines }],
+    );
+    expect(reboundError.some((error) => error.includes("slate high of 15"))).toBe(true);
+  });
+
+  it("generate-edition stamps statLeaders from ESPN boxes before the box guard", () => {
+    const src = readFileSync("scripts/generate-edition.mjs", "utf8");
+    expect(src).toMatch(/stampStatLeadersSource/);
+    expect(src).toMatch(/Official slate leaders/);
   });
 });

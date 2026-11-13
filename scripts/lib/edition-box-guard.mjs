@@ -233,6 +233,59 @@ export function statLeaderBoxErrors(statLeaders, lines) {
   return errors;
 }
 
+function formatLeaderValue(key, n) {
+  return key === "pm" && n > 0 ? `+${n}` : String(n);
+}
+
+/**
+ * One row per LEADER_STAT category from the ESPN boxes. Ties keep the
+ * first player in `lines`. Nov 13 2026 regenerated the whole edition
+ * because Rebounds was 14 instead of 15, then +/- was +21 instead of +27.
+ */
+export function slateStatLeaders(lines) {
+  if (!lines?.length) return [];
+  return Object.entries(LEADER_STAT).map(([category, key]) => {
+    const max = Math.max(...lines.map((row) => row[key]));
+    const row = lines.find((r) => r[key] === max);
+    const value = formatLeaderValue(key, max);
+    const context = category === "+/-"
+      ? `${row.player} was ${value} on the slate, the high mark.`
+      : `${row.player}'s ${value} ${category.toLowerCase()} led the slate.`;
+    return { category, player: row.player, team: row.team, value, context };
+  });
+}
+
+function existingLeaderContext(block) {
+  const kept = new Map();
+  for (const obj of block.matchAll(/\{[^{}]*\}/g)) {
+    const category = obj[0].match(/\bcategory:\s*"([^"]+)"/)?.[1];
+    const player = obj[0].match(/\bplayer:\s*"([^"]+)"/)?.[1];
+    const value = obj[0].match(/\bvalue:\s*"([^"]+)"/)?.[1];
+    const context = obj[0].match(/\bcontext:\s*"((?:\\.|[^"\\])*)"/)?.[1];
+    if (category && player && value && context != null) {
+      kept.set(category, { player, value, context: context.replace(/\\"/g, '"') });
+    }
+  }
+  return kept;
+}
+
+/** Rewrite `export const statLeaders` from ESPN slate highs. Keep Claude's context when player+value already match. */
+export function stampStatLeadersSource(source, lines) {
+  const official = slateStatLeaders(lines);
+  if (!official.length) return source;
+  const match = String(source).match(/export const statLeaders\s*=\s*\[[\s\S]*?\];/);
+  if (!match) return source;
+  const kept = existingLeaderContext(match[0]);
+  const rows = official.map((row) => {
+    const prev = kept.get(row.category);
+    const context = prev && prev.player === row.player && prev.value === row.value
+      ? prev.context
+      : row.context;
+    return `{category:${JSON.stringify(row.category)},player:${JSON.stringify(row.player)},team: ${JSON.stringify(row.team)},value:${JSON.stringify(row.value)},context:${JSON.stringify(context)}}`;
+  });
+  return source.replace(match[0], `export const statLeaders = [\n  ${rows.join(",\n  ")}\n];`);
+}
+
 export function collectEditionBoxErrors(scope, finals) {
   const lines = (finals ?? []).flatMap((game) => game.playerLines ?? []);
   return [
