@@ -207,7 +207,7 @@ export const gameResults = [];`;
   });
 
   it("generate-edition stamps statLeaders from ESPN boxes before the box guard", () => {
-    const src = readFileSync(new URL("./generate-edition.mjs", import.meta.url), "utf8");
+    const src = readFileSync("scripts/generate-edition.mjs", "utf8");
     expect(src).toMatch(/stampStatLeadersSource/);
     expect(src).toMatch(/Official slate leaders/);
   });
