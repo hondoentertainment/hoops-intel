@@ -12,6 +12,7 @@
 import { readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { pulseIndexConsistencyErrors, tickerFinalCoverageErrors } from "../lib/edition-box-guard.mjs";
 import {
   TEAM_ABBR_SET,
   VALID_FANTASY_ACTIONS,
@@ -277,6 +278,10 @@ function main() {
           `Game ${game.awayTeam} @ ${game.homeTeam} must publish gameId AWAY-HOME-YYYYMMDD (got ${JSON.stringify(game.gameId ?? null)})`,
         );
       }
+      if (exports.tickerItems) {
+        const missingFinals = tickerFinalCoverageErrors(results, exports.tickerItems);
+        assert(missingFinals.length === 0, missingFinals.join("; "));
+      }
     });
   }
 
@@ -291,6 +296,8 @@ function main() {
       for (let i = 0; i < 10; i++) {
         assertEqual(ranks[i], i + 1, `Rank at position ${i}`);
       }
+      const consistency = pulseIndexConsistencyErrors(index);
+      assert(consistency.length === 0, consistency.join("; "));
       for (const entry of index) {
         assert(
           TEAM_ABBR_SET.has(entry.team),

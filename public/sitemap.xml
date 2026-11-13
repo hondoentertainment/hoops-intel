@@ -80,13 +80,13 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pick-em</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/widgets</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -104,7 +104,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/pro</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -158,7 +158,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/rivals</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -170,49 +170,49 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/guest-pulse</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/pulse-methodology</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/about</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/methodology</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/privacy</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/terms</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/contact</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/tools</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
@@ -224,7 +224,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/performance</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
@@ -254,15 +254,21 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/82-0</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/badges</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/victor-wembanyama</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.65</priority>
   </url>
   <url>
     <loc>https://hoopsintel.net/player/chris-paul</loc>
@@ -271,25 +277,19 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/lebron-james</loc>
+    <loc>https://hoopsintel.net/player/shai-gilgeous-alexander</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/donovan-mitchell</loc>
+    <loc>https://hoopsintel.net/player/pascal-siakam</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/alperen-sengun</loc>
-    <lastmod>2026-11-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/player/jayson-tatum</loc>
+    <loc>https://hoopsintel.net/player/jamal-murray</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
@@ -301,25 +301,31 @@
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/scoot-henderson</loc>
+    <loc>https://hoopsintel.net/player/zion-williamson</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/cam-thomas</loc>
+    <loc>https://hoopsintel.net/player/luka-doncic</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/stephon-castle</loc>
+    <loc>https://hoopsintel.net/player/franz-wagner</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/player/ja-morant</loc>
+    <loc>https://hoopsintel.net/player/deni-avdija</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/player/james-harden</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.65</priority>
@@ -404,7 +410,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/team/atl</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -440,7 +446,7 @@
   </url>
   <url>
     <loc>https://hoopsintel.net/team/lac</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -511,19 +517,13 @@
     <priority>0.55</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/game/ORL-UTA-20261111</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/game/LAL-MIL-20261111</loc>
-    <lastmod>2026-11-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/CLE-NYK-20261111</loc>
-    <lastmod>2026-11-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://hoopsintel.net/game/BOS-TOR-20261111</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
@@ -535,7 +535,19 @@
     <priority>0.55</priority>
   </url>
   <url>
+    <loc>https://hoopsintel.net/game/OKC-POR-20261111</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
     <loc>https://hoopsintel.net/game/DEN-MEM-20261111</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/game/CLE-NYK-20261111</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
@@ -547,7 +559,13 @@
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://hoopsintel.net/game/OKC-POR-20261111</loc>
+    <loc>https://hoopsintel.net/game/WAS-IND-20261111</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://hoopsintel.net/game/BOS-TOR-20261111</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.55</priority>
