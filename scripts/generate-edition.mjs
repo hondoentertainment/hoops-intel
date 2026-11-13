@@ -12,7 +12,7 @@ import { seasonMode, editionContextForMode, stampEditionContext, REGULAR_SEASON_
 import { collectPulsePublicationErrors } from "./lib/edition-date-alignment.mjs";
 import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
 import { canonicalNbaAbbrev, dropNonNbaMatchupObjects, isNbaFranchiseAbbrev, stampCanonicalTeamAbbrevs } from "./lib/content-quality-constants.mjs";
-import { attachOfficialBoxLines, collectEditionBoxErrors, promptPlayerLine } from "./lib/edition-box-guard.mjs";
+import { attachOfficialBoxLines, collectEditionBoxErrors, promptPlayerLine, slateStatLeaders, stampStatLeadersSource } from "./lib/edition-box-guard.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -112,6 +112,8 @@ async function main() {
     ...game,
     playerLines: (game.playerLines ?? []).map(promptPlayerLine),
   }));
+  const boxLines = finalGames.flatMap((game) => game.playerLines ?? []);
+  const officialLeaders = slateStatLeaders(boxLines);
 
   // Read reference files
   const schema = readFileSync(join(ROOT, "references/data-schema.md"), "utf8");
@@ -227,6 +229,10 @@ async function main() {
 ## Yesterday's Game Results (${yesterdayESPN}) — ESPN API
 Each final includes playerLines copied from the ESPN box score (name, team, PTS, REB, AST, STL, BLK, 3PM, +/-). Those counting stats are the only lines you may publish.
 ${JSON.stringify(promptFinals, null, 2)}
+${officialLeaders.length ? `
+## Official slate leaders — copy these into statLeaders
+${officialLeaders.map((row) => `- ${row.category}: ${row.player} (${row.team}) ${row.value}`).join("\n")}
+` : ""}
 ${offDayResults ? `
 ## OFF-DAY — no NBA games were played yesterday
 - Section comment MUST be: \`// GAME RESULTS — No Games (${editionDate})\`
@@ -308,6 +314,12 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
       });
     }
     if (parseErrors.length === 0 && !offDayResults) {
+      const stamped = stampStatLeadersSource(newPulseContent, boxLines);
+      if (stamped !== newPulseContent) {
+        newPulseContent = stamped;
+        scope.statLeaders = extractExportLiteral(newPulseContent, "statLeaders", scope);
+        console.log("✓ stamped statLeaders from ESPN boxes");
+      }
       parseErrors = collectEditionBoxErrors(scope, finalGames);
     }
     if (parseErrors.length === 0) break;
