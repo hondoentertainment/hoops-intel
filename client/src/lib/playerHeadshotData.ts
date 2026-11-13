@@ -187,6 +187,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "isaac okoro": 4432822,
   "isaiah collier": 4683766,
   "isaiah crawford": 4592857,
+  "isaiah evans": 5061585,
   "isaiah hartenstein": 4222252,
   "isaiah jackson": 4432170,
   "isaiah joe": 4395702,
