@@ -48,7 +48,10 @@ export function pulseIndexConsistencyErrors(index) {
       seen.set(name, row.rank);
     }
     const surname = playerSurname(name);
-    const about = `${row?.note ?? ""} ${row?.rationale ?? ""}`.toLowerCase();
+    const about = `${row?.note ?? ""} ${row?.rationale ?? ""}`
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .toLowerCase();
     if (surname && !about.includes(surname)) {
       errors.push(`Pulse rank ${row.rank} ${name} note/rationale does not mention ${surname}`);
     }

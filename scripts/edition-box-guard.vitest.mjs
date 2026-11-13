@@ -123,6 +123,19 @@ describe("edition box guard", () => {
     expect(errors.some((error) => error.includes("stat leader LeBron James is not in the ESPN boxes"))).toBe(true);
   });
 
+  it("matches an accented surname after the prose is folded the same way as the name", () => {
+    const errors = pulseIndexConsistencyErrors([
+      {
+        rank: 1,
+        player: "Nikola Jokić",
+        keyStats: "27 PTS · 11 REB · 8 AST",
+        note: "Jokić finished with 27 points, 11 rebounds, and 8 assists.",
+        rationale: "Jokić ranks here on the rebound and assist total.",
+      },
+    ]);
+    expect(errors).toEqual([]);
+  });
+
   it("accepts a card whose counting line matches the box, including an assist tie", () => {
     const lines = [
       { player: "Dylan Harper", team: "SAS", pts: 18, reb: 6, ast: 10, stl: 4, blk: 1, tpm: 2, pm: 19 },

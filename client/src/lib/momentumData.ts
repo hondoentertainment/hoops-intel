@@ -190,8 +190,8 @@ export const momentumData: MomentumData = {
       narrative: "Portland won 118-108, its second straight win over Oklahoma City after Tuesday's 123-103. The Trail Blazers are 8-3. The Thunder are 8-4.",
     },
     {
-      gameId: "WSH-IND-20261111",
-      teams: { home: "IND", away: "WSH" },
+      gameId: "WAS-IND-20261111",
+      teams: { home: "IND", away: "WAS" },
       finalScore: { home: 114, away: 101 },
       swings: [
         {
