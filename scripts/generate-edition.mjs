@@ -12,6 +12,7 @@ import { seasonMode, editionContextForMode, stampEditionContext, REGULAR_SEASON_
 import { collectPulsePublicationErrors } from "./lib/edition-date-alignment.mjs";
 import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
 import { canonicalNbaAbbrev, dropNonNbaMatchupObjects, isNbaFranchiseAbbrev, stampCanonicalTeamAbbrevs } from "./lib/content-quality-constants.mjs";
+import { attachOfficialBoxLines, collectEditionBoxErrors, promptPlayerLine } from "./lib/edition-box-guard.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -40,6 +41,7 @@ function parseGames(espnData) {
     }));
 
     return {
+      eventId: e.id ?? "",
       status: done ? "final" : "scheduled",
       homeTeam: canonicalNbaAbbrev(home?.team?.abbreviation ?? ""),
       homeTeamFull: home?.team?.displayName ?? "",
@@ -95,6 +97,21 @@ async function main() {
   console.log(`   Yesterday: ${finalGames.length} final games`);
   console.log(`   Tonight:   ${scheduledGames.length} scheduled games`);
   const offDayResults = finalGames.length === 0;
+
+  // The scoreboard payload has no player leaders. Pull each final's box
+  // before the model writes a line. An empty box aborts the run.
+  if (!offDayResults) {
+    try {
+      await attachOfficialBoxLines(finalGames);
+    } catch (err) {
+      console.error("ESPN box score fetch failed:", err.message);
+      process.exit(1);
+    }
+  }
+  const promptFinals = finalGames.map((game) => ({
+    ...game,
+    playerLines: (game.playerLines ?? []).map(promptPlayerLine),
+  }));
 
   // Read reference files
   const schema = readFileSync(join(ROOT, "references/data-schema.md"), "utf8");
@@ -208,7 +225,8 @@ async function main() {
 - **pulseEdition.editionContext** MUST be exactly: "${editionContext}" (one of "regular" | "playoffs" | "finals" | "draft" | "free-agency" | "summer-league" | "preseason" | "dead-period"). Copy the value verbatim — it is derived from the season calendar and drives the site's desk labelling.
 
 ## Yesterday's Game Results (${yesterdayESPN}) — ESPN API
-${JSON.stringify(finalGames, null, 2)}
+Each final includes playerLines copied from the ESPN box score (name, team, PTS, REB, AST, STL, BLK, 3PM, +/-). Those counting stats are the only lines you may publish.
+${JSON.stringify(promptFinals, null, 2)}
 ${offDayResults ? `
 ## OFF-DAY — no NBA games were played yesterday
 - Section comment MUST be: \`// GAME RESULTS — No Games (${editionDate})\`
@@ -227,9 +245,9 @@ ${currentPulse}
 ${playoffInstructions}${seasonWindowInstructions}
 ## Instructions
 1. Pick the night's best narrative — lead with the most dramatic/important game
-2. Feature 4–6 game results (most significant first)
+2. gameResults MUST include every final game in Yesterday's Game Results, one object per final, most significant first. Do not publish a short list. topPerformer must be a player in that game's playerLines, and every PTS/REB/AST/STL/BLK/3PM number in topLine must equal that player's box line. Do not invent a counting stat, and do not name a scorer who is absent from playerLines.
 3. Write crisp, sharp copy — not a box score recitation; actual insights
-4. Pulse Index: rank the top 10 performers editorially, not just by points. For each player in the pulseIndex, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them.
+4. Pulse Index: rank the top 10 performers editorially, not just by points. Players must be unique — never repeat a name to fill a rank. keyStats must be that player's own playerLines row. The note and rationale must be about that player, not a different one. For each player, add a \`rationale\` field: a single sentence explaining specifically why this player deserves their exact rank position relative to the players ranked just above and below them. statLeaders must be the slate high in playerLines for that category; a tie may name either player, and the value must equal the box.
 5. Estimate spreads/O-U for tonight's games if not in the ESPN data (reasonable estimates). For each gamePreviews row include **openingSpread** (morning opener, e.g. "NYK -4.5") and **spread** (current/closing board number). When movement is expected, opener and spread should differ by roughly 0.5–1.5 points — never omit openingSpread on playoff or featured slates. Add **marketThesis** (1–2 sentences: sharp/public read on why the line moved or held).
 6. Standings: export as TWO separate arrays — \`export const eastStandings = [...]\` and \`export const westStandings = [...]\`, then \`export const standings = [...eastStandings, ...westStandings];\`. In the regular season, update by applying last night's results. Before opening night (preseason), copy the prior-season finals through unchanged — do not invent current-season records.
 7. Conversation read: write 6 clearly synthetic, paraphrased conversation summaries. Do NOT impersonate real journalists, invent direct quotes, or attribute reporting. Use author/outlet fields only as broad source-category labels such as "Hoops Intel Desk" / "Generated conversation read".
@@ -288,6 +306,9 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
         editionIso: editionISO,
         tonightEspn: todayESPN,
       });
+    }
+    if (parseErrors.length === 0 && !offDayResults) {
+      parseErrors = collectEditionBoxErrors(scope, finalGames);
     }
     if (parseErrors.length === 0) break;
     console.error("❌ pulseData.ts failed parse validation:");

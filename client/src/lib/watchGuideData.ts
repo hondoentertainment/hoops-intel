@@ -71,7 +71,7 @@ export const watchGuideData: WatchGuideData = {
       playoffImplications: 8,
       rivalry: 6,
       storyline: "Two legitimate Western Conference contenders collide at Target Center as Minnesota's 8-3 start puts them firmly in the top tier of the West — a win here over a 7-4 Dallas squad that is fighting to establish itself as a consistent threat would be a significant credibility statement for both sides. The Wolves' home-floor dominance this season makes this a true litmus test for where Dallas actually stands in the Western hierarchy.",
-      keyMatchup: "Anthony Edwards vs. Luka Dončić",
+      keyMatchup: "LaMelo Ball vs. Kyrie Irving",
       mustWatch: true,
       factors: {
         starPower: 18,
@@ -99,7 +99,7 @@ export const watchGuideData: WatchGuideData = {
       playoffImplications: 7,
       rivalry: 7,
       storyline: "Philadelphia's surprising 9-3 start has quietly made the Sixers one of the East's most compelling stories, and a home matchup against a Toronto team at 5-6 and desperately needing wins to stay relevant in the East playoff picture gives this one real stakes on both sides. The Atlantic Division angle is genuine — the Raptors can't afford to fall further behind Philly this early in the month.",
-      keyMatchup: "Joel Embiid vs. Jakob Poeltl",
+      keyMatchup: "Joel Embiid vs. Toronto's frontcourt",
       mustWatch: true,
       factors: {
         starPower: 15,
@@ -155,7 +155,7 @@ export const watchGuideData: WatchGuideData = {
       playoffImplications: 3,
       rivalry: 2,
       storyline: "Two teams hovering near the bottom of their respective conferences with identical credibility deficits meet in a late West Coast tip that offers little playoff urgency and limited star-wattage — Phoenix at 4-6 continues to underwhelm relative to preseason expectations, while Charlotte's 4-7 mark keeps them in the East's lower tier with no defining win on the resume yet. The desk rates this the night's lowest-stakes matchup.",
-      keyMatchup: "Kevin Durant vs. LaMelo Ball",
+      keyMatchup: "Devin Booker vs. Brandon Miller",
       mustWatch: false,
       factors: {
         starPower: 10,
@@ -170,7 +170,7 @@ export const watchGuideData: WatchGuideData = {
   ],
   topPick: {
     gameIndex: 0,
-    reason: "MIN vs. DAL is the night's only matchup between two teams above .600 in the same conference — the Western playoff implications are real, the star power of Edwards vs. Dončić gives it a marquee individual storyline, and Target Center's atmosphere for a game of this magnitude makes it the clear must-watch of the evening. NBA TV national coverage means everyone can tune in.",
+    reason: "MIN vs. DAL is the night's only matchup between two teams above .600 in the same conference. LaMelo Ball is on Minnesota and Kyrie Irving and Cooper Flagg are on Dallas. Luka Doncic is not in this game — he scored 32 for the Lakers on Wednesday. NBA TV national coverage means everyone can tune in.",
   },
   sleeper: {
     gameIndex: 2,
