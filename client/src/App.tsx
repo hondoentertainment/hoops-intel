@@ -31,6 +31,7 @@ const PlayoffSeriesRedirect = lazy(() => import("./pages/PlayoffSeriesRedirect")
 const PickEm = lazy(() => import("./pages/PickEm"));
 const TradeValue = lazy(() => import("./pages/TradeValue"));
 const InjuryReport = lazy(() => import("./pages/InjuryReport"));
+const Standings = lazy(() => import("./pages/Standings"));
 const Tonight = lazy(() => import("./pages/Tonight"));
 const Players = lazy(() => import("./pages/Players"));
 const Trivia = lazy(() => import("./pages/Trivia"));
@@ -101,6 +102,7 @@ function pageLoaderLabel(path: string): string {
   if (path.startsWith("/playoffs")) return "Loading playoffs";
   if (path.startsWith("/ask")) return "Loading Ask Hoops Intel";
   if (path.startsWith("/injuries")) return "Loading injury report";
+  if (path.startsWith("/standings")) return "Loading standings";
   if (path.startsWith("/tonight")) return "Loading tonight's slate";
   if (path.startsWith("/players") || path.startsWith("/player/")) return "Loading players";
   if (path.startsWith("/archive")) return "Loading archive";
@@ -192,6 +194,7 @@ export default function App() {
             <Route path="/pick-em" component={PickEm} />
             <Route path="/trade-value" component={TradeValue} />
             <Route path="/injuries" component={InjuryReport} />
+            <Route path="/standings" component={Standings} />
             <Route path="/tonight" component={Tonight} />
             <Route path="/players" component={Players} />
             <Route path="/card/:player" component={PlayerCard} />

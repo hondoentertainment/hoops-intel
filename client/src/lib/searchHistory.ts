@@ -4,6 +4,7 @@ const MAX = 5;
 export const POPULAR_SEARCH_DESTINATIONS = [
   { label: "Pulse", href: "/#pulse-index" },
   { label: "Injury report", href: "/injuries" },
+  { label: "Standings", href: "/standings" },
   { label: "Season projections", href: "/projections" },
   { label: "Compare players", href: "/compare-players" },
   { label: "Player index", href: "/players" },

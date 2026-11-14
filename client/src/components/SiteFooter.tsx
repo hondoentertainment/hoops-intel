@@ -9,7 +9,7 @@ import { useToast } from "../contexts/ToastContext";
 
 const FOOTER_GROUPS: { title: string; hrefs: string[] }[] = [
   { title: "Daily", hrefs: ["/", "/tonight", "/archive", "/ask", "/feed.xml"] },
-  { title: "Data", hrefs: ["/#pulse-index", "/players", "/injuries", "/my-pulse", "/pulse-methodology"] },
+  { title: "Data", hrefs: ["/#pulse-index", "/standings", "/players", "/injuries", "/my-pulse", "/pulse-methodology"] },
   { title: "Play", hrefs: ["/pick-em", "/badges", "/82-0", "/trade-simulator", "/clutch"] },
   { title: "About", hrefs: ["/tools", "/watch-guide", "/pro"] },
 ];
