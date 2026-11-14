@@ -1,5 +1,7 @@
-// ESPN public API integration for live NBA data
-// Endpoint: site.api.espn.com (no auth required)
+import { parseEspnStandings, STANDINGS_SOURCE_URL, type NbaStandings } from "./standings";
+
+// ESPN public API integration for live NBA data.
+// Scoreboard stays on site v2. Standings use apis/v2 — the site v2 path 404s.
 
 const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba";
 
@@ -121,8 +123,9 @@ export async function fetchScoreboard(date?: string): Promise<ESPNScoreboard> {
   };
 }
 
-export async function fetchStandings(): Promise<unknown> {
-  const res = await fetch(`${ESPN_BASE}/standings`);
+export async function fetchStandings(): Promise<NbaStandings> {
+  const res = await fetch(STANDINGS_SOURCE_URL);
   if (!res.ok) throw new Error(`ESPN standings error: ${res.status}`);
-  return res.json();
+  const payload: unknown = await res.json();
+  return parseEspnStandings(payload);
 }

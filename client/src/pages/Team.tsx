@@ -77,7 +77,7 @@ export default function Team() {
       <ToolPageLayout
         subtitle="TEAMS"
         showRelated={false}
-        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: "Not found" }]}
+        breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/standings" }, { label: "Not found" }]}
       >
         <EmptyState
           kicker="Team"
@@ -120,7 +120,7 @@ export default function Team() {
     <ToolPageLayout
       subtitle={`TEAM · ${abbr}`}
       showRelated={false}
-      breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/#standings" }, { label: abbr }]}
+      breadcrumbs={[{ label: "Today's desk", href: "/" }, { label: "Standings", href: "/standings" }, { label: abbr }]}
     >
         {intelUnavailable && (
           <div className="mb-4">

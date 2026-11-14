@@ -20,7 +20,7 @@ export function headerNavLinks(_date = new Date()): MainNavLink[] {
     { label: "Today", href: "/" },
     { label: "Scores", href: "/tonight" },
     { label: "Pulse Index", href: "/pulse-history" },
-    { label: "Teams", href: "/#standings" },
+    { label: "Teams", href: "/standings" },
     { label: "Players", href: "/players" },
     { label: "Betting Intel", href: "/betting-intel" },
     { label: "Pick 'Em", href: "/pick-em" },
@@ -36,7 +36,7 @@ export function navItemActive(href: string, pathname: string): boolean {
   if (href === "/") return path === "/";
   if (href === "/tonight") return path === "/tonight" || path.startsWith("/game/");
   if (href === "/players") return path === "/players" || path.startsWith("/player/");
-  if (href === "/#standings") return path.startsWith("/team/");
+  if (href === "/standings" || href === "/#standings") return path === "/standings" || path.startsWith("/team/");
   if (href === "/pulse-history") return path === "/pulse-history" || path.startsWith("/pulse-");
   const base = href.split("#")[0] || "/";
   if (!base || base === "/") return false;
@@ -81,6 +81,7 @@ export const FOOTER_QUICK_LINKS: MainNavLink[] = [
   { label: "Desk", href: "/" },
   { label: "Pulse", href: "/#pulse-index" },
   { label: "Injuries", href: "/injuries" },
+  { label: "Standings", href: "/standings" },
   { label: "Tonight", href: "/tonight" },
   { label: "Pick 'Em", href: "/pick-em" },
   { label: "Badges", href: "/badges" },
@@ -188,6 +189,7 @@ export interface ToolLink {
 export const TOOLS_DIRECTORY: ToolLink[] = [
   { label: "Desk", href: "/", description: "Daily briefing and Pulse Index. During July–September camp, an empty slate points at camp intel.", category: "desk" },
   { label: "Tonight", href: "/tonight", description: "Tonight's ESPN slate — empty when the league is dark, with a pointer to the desk", category: "desk" },
+  { label: "Standings", href: "/standings", description: "Full NBA standings for all 30 teams, both conferences, from ESPN", category: "desk" },
   { label: "Betting intel", href: "/betting-intel", description: "Line movement and market context for tonight's slate", category: "desk" },
   { label: "Players", href: "/players", description: "Browse and search player profiles from Pulse and the archive", category: "desk" },
   { label: "Archive", href: "/archive", description: "Past morning editions", category: "desk" },

@@ -11,8 +11,6 @@ import {
   gamePreviews,
   rookieWatch,
   fantasyAlerts,
-  eastStandings,
-  westStandings,
 } from "../lib/pulseData";
 import { playoffTickerWireItems } from "../lib/playoffTickerDerived";
 import { getTeamColor } from "../lib/teamColors";
@@ -57,7 +55,9 @@ import { AskPromptChips } from "../components/AskHoopsIntel";
 import { dispatchAskPrompt } from "../lib/askShortcuts";
 import { rationaleToBullets, pulseLeadLine } from "../lib/pulseRationale";
 import PickEmHomeBanner from "../components/PickEmHomeBanner";
-import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel, priorSeasonStandingsCopy } from "../lib/deskMode";
+import { isOffseasonDesk, offseasonPrimaryCta, editionContextDeskLabel } from "../lib/deskMode";
+import StandingsBoard from "../components/StandingsBoard";
+import { useStandings } from "../lib/useStandings";
 import { isCampDesk } from "../lib/campDesk";
 import { hasTonightSlate } from "../lib/enhancedDesk";
 import { lineMovementForMatchup, spreadMoved } from "../lib/lineMovement";
@@ -1437,176 +1437,11 @@ function RookieAndFantasySection() {
 // ═══════════════════════════════════════════════════════════
 
 function StandingsSection() {
-  const [sortKey, setSortKey] = useState<string>("rank");
-  const [sortAsc, setSortAsc] = useState(true);
-  const [desktopTable, setDesktopTable] = useState(() =>
-    typeof window.matchMedia === "function" ? window.matchMedia("(min-width: 768px)").matches : false,
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const apply = () => setDesktopTable(mq.matches);
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
-
-  const handleSort = (key: string) => {
-    if (sortKey === key) { setSortAsc(!sortAsc); }
-    else { setSortKey(key); setSortAsc(key === "rank"); }
-  };
-
-  const sortedStandings = (standings: any[]) => {
-    const sorted = [...standings].sort((a, b) => {
-      let aVal: any, bVal: any;
-      switch (sortKey) {
-        case "wins": aVal = a.wins; bVal = b.wins; break;
-        case "losses": aVal = a.losses; bVal = b.losses; break;
-        case "pct": aVal = parseFloat(a.pct); bVal = parseFloat(b.pct); break;
-        case "streak":
-          aVal = (a.streak.startsWith("W") ? 1 : -1) * parseInt(a.streak.slice(1));
-          bVal = (b.streak.startsWith("W") ? 1 : -1) * parseInt(b.streak.slice(1));
-          break;
-        default: aVal = a.rank; bVal = b.rank;
-      }
-      return sortAsc ? aVal - bVal : bVal - aVal;
-    });
-    return sorted;
-  };
-
-  const SortHeader = ({ label, keyName, align = "center" }: { label: string; keyName: string; align?: string }) => (
-    <th scope="col" className={`text-${align} px-1 py-2 sm:px-3`}>
-      <button
-        type="button"
-        onClick={() => handleSort(keyName)}
-        className="section-label w-full min-h-11 min-w-6 flex items-center justify-center sm:inline-flex cursor-pointer hover:text-[var(--hi-text)] transition-colors select-none rounded-lg sm:rounded-none px-2 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[var(--hi-focus)]"
-      >
-        {label} {sortKey === keyName ? (sortAsc ? "↑" : "↓") : ""}
-      </button>
-    </th>
-  );
-
-  const renderConference = (title: string, standings: any[]) => (
-    <div>
-      <h3 className="display-heading text-white text-lg mb-3">{title}</h3>
-      {desktopTable ? (
-      <div className="glass-card rounded-lg overflow-x-auto">
-        <table className="w-full min-w-[620px] text-xs">
-          <thead>
-            <tr style={{ background: "rgba(255,255,255,0.04)" }}>
-              <SortHeader label="#" keyName="rank" align="left" />
-              <th className="text-left px-3 py-2 section-label">TEAM</th>
-              <SortHeader label="W" keyName="wins" />
-              <SortHeader label="L" keyName="losses" />
-              <SortHeader label="PCT" keyName="pct" />
-              <th className="text-center px-3 py-2 section-label cursor-help" title="Games Behind — how many games back of the conference leader (0 = leading)">GB</th>
-              <SortHeader label="STRK" keyName="streak" />
-              <th className="text-center px-3 py-2 section-label cursor-help" title="Record over the last 10 games">L10</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedStandings(standings).map((team: any, idx: number) => (
-              <tr
-                key={team.team}
-                className="border-t"
-                style={{
-                  borderColor: team.rank === 6 && sortKey === "rank" ? "rgba(142,200,240,0.4)" : "var(--hi-muted,#5c5c58)",
-                  borderTopWidth: team.rank === 7 && sortKey === "rank" ? 2 : undefined,
-                  background: team.rank <= 6 ? "transparent" : team.rank <= 10 ? "rgba(245,158,11,0.03)" : "rgba(244,63,94,0.03)",
-                }}
-              >
-                <td className="px-3 py-2 mono-data" style={{ color: "var(--hi-accent-text,#146a8c)" }}>{team.rank}</td>
-                <td className="px-3 py-2 font-semibold">
-                  <a href={`/team/${team.team.toLowerCase()}`} className="inline-flex items-center gap-2 underline decoration-from-font underline-offset-2 text-[var(--hi-text,#14120B)]">
-                    <TeamLogo team={team.team} size={20} />
-                    {team.team}
-                  </a>
-                  {team.rank === 6 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title={playoffChipTitle} style={{ background: "rgba(142,200,240,0.1)", color: "var(--hi-accent-text,#146a8c)" }}>{playoffChip}</span>
-                  )}
-                  {team.rank === 10 && sortKey === "rank" && (
-                    <span className="ml-2 text-[10px] px-1 py-0.5 rounded cursor-help" title={playInChipTitle} style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>{playInChip}</span>
-                  )}
-                </td>
-                <td className="text-center px-3 py-2 mono-data">{team.wins}</td>
-                <td className="text-center px-3 py-2 mono-data">{team.losses}</td>
-                <td className="text-center px-3 py-2 mono-data">{team.pct}</td>
-                <td className="text-center px-3 py-2 mono-data">{team.gb}</td>
-                <td className="text-center px-3 py-2">
-                  {team.streak ? (
-                    <span
-                      className="inline-block mono-data text-xs font-bold px-1.5 py-0.5 rounded"
-                      style={
-                        team.streak.startsWith("W")
-                          ? { background: "rgba(16,185,129,0.12)", color: "#10B981", border: "1px solid rgba(16,185,129,0.2)" }
-                          : { background: "rgba(244,63,94,0.12)", color: "#F43F5E", border: "1px solid rgba(244,63,94,0.2)" }
-                      }
-                    >
-                      {team.streak}
-                    </span>
-                  ) : null}
-                </td>
-                <td className="text-center px-3 py-2 mono-data">{team.last10}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {sortKey === "rank" && (
-          <div className="px-3 py-2 flex flex-wrap gap-4 text-[10px]" style={{ background: "var(--hi-surface-2,#f3f3f0)", color: "var(--hi-text-secondary,#5c5c58)" }}>
-            <span className="cursor-help" title={playoffChipTitle}>1-6: <span style={{ color: "#10B981" }}>{priorStandings ? `${priorYear} playoff seeds` : "Playoff Seeds"}</span></span>
-            <span className="cursor-help" title={playInChipTitle}>7-10: <span style={{ color: "#F59E0B" }}>{priorStandings ? `${priorYear} play-in` : "Play-In Tournament"}</span></span>
-          </div>
-        )}
-      </div>
-      ) : (
-      <div className="enhanced-card divide-y" style={{ borderColor: "var(--hi-border,#1e2c40)" }}>
-        {sortedStandings(standings).map((team: any) => (
-          <a
-            key={`m-${team.team}`}
-            href={`/team/${team.team.toLowerCase()}`}
-            className="flex items-center gap-3 px-3 py-2.5 min-h-12 min-w-0"
-          >
-            <span className="mono-data pulse-score w-6 text-sm" style={{ color: "var(--hi-accent-text,#146a8c)" }}>
-              {team.rank}
-            </span>
-            <TeamLogo team={team.team} size={24} />
-            <span className="text-base font-semibold leading-5 truncate">{team.team}</span>
-            <span className="mono-data pulse-score ml-auto text-sm">
-              {team.wins}-{team.losses}
-            </span>
-          </a>
-        ))}
-      </div>
-      )}
-    </div>
-  );
-
-  const priorStandings = priorSeasonStandingsCopy(new Date(`${pulseEdition.date} 12:00:00 UTC`));
-  const priorYear = priorStandings?.kicker.replace(/ final$/, "") ?? "";
-  const playoffChip = priorStandings ? `${priorYear} PLAYOFF` : "PLAYOFF";
-  const playInChip = priorStandings ? `${priorYear} PLAY-IN` : "PLAY-IN";
-  const playoffChipTitle = priorStandings
-    ? `Prior-season cut line: seeds 1–6 clinched a playoff berth in ${priorYear}`
-    : "Seeds 1–6 clinch an automatic playoff berth";
-  const playInChipTitle = priorStandings
-    ? `Prior-season cut line: seeds 7–10 entered the play-in in ${priorYear}`
-    : "Seeds 7–10 enter the Play-In Tournament for the final two playoff spots";
-
+  const { data, loading, error, refresh } = useStandings();
   return (
-    <section id="standings" className="py-10 border-t" style={{ borderColor: "var(--hi-muted,#5c5c58)" }}>
+    <section id="standings" className="py-10 border-t" style={{ borderColor: "var(--hi-hairline, #E4E0D6)" }}>
       <div className="container">
-        <p className="enhanced-kicker mb-2">{priorStandings ? priorStandings.kicker : "Conference standings"}</p>
-        <h2 className="editorial-heading text-[var(--hi-text,#0a0a0a)] text-2xl mb-2">Standings</h2>
-        {priorStandings ? (
-          <p className="text-sm mb-6 max-w-3xl" style={{ color: "var(--hi-text-secondary,#5c5c58)" }}>
-            {priorStandings.note}
-          </p>
-        ) : (
-          <div className="mb-4" />
-        )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {renderConference("Eastern Conference", eastStandings)}
-          {renderConference("Western Conference", westStandings)}
-        </div>
+        <StandingsBoard framed data={data} loading={loading} error={error} onRetry={() => void refresh()} />
       </div>
     </section>
   );

@@ -27,6 +27,7 @@ describe("siteNav", () => {
     expect(mobile).not.toContain("Picks");
     expect(mobile).toContain("Pick 'Em");
     expect(headerNavLinks(january).find((l) => l.label === "Scores")?.href).toBe("/tonight");
+    expect(headerNavLinks(january).find((l) => l.label === "Teams")?.href).toBe("/standings");
   });
 
   it("jumps the offseason desk to camp intel instead of a game-night slate", () => {
@@ -109,6 +110,8 @@ describe("siteNav", () => {
     expect(navItemActive("/", "/team/nyk")).toBe(false);
     expect(navItemActive("/", "/pro")).toBe(false);
     expect(navItemActive("/tonight", "/game/NYK-BOS-20261107")).toBe(true);
+    expect(navItemActive("/standings", "/team/nyk")).toBe(true);
+    expect(navItemActive("/standings", "/standings")).toBe(true);
     expect(navItemActive("/#standings", "/team/nyk")).toBe(true);
     expect(navItemActive("/players", "/player/jalen-brunson")).toBe(true);
     expect(navItemActive("/pulse-history", "/pulse-history")).toBe(true);

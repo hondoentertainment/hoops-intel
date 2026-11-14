@@ -491,6 +491,7 @@ export function playerSitemapMeta({ inPulse, onInjuryWire } = {}) {
 export const STATIC_ROUTE_SOURCES = {
   "/tools": ["client/src/lib/siteNav.ts"],
   "/injuries": ["client/src/lib/pulseData.ts"],
+  "/standings": ["client/src/pages/Standings.tsx", "client/src/lib/standings.ts"],
   "/tonight": ["client/src/lib/pulseData.ts", "client/src/pages/Tonight.tsx"],
   "/players": ["client/src/lib/playerRosterStatus.ts", "client/src/lib/pulseData.ts"],
   "/pick-em": ["client/src/lib/playoffData.ts", "client/src/pages/PickEm.tsx"],
@@ -564,6 +565,7 @@ export function lastmodForLoc(loc, ctx) {
   }
   const deskTied = new Set([
     "/injuries",
+    "/standings",
     "/tonight",
     "/watch-guide",
     "/trivia",

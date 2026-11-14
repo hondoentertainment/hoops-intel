@@ -78,6 +78,12 @@ const STATIC_ROUTE_SEO: Record<string, PageSeo> = {
     description: "Daily injury wire with status updates, return timelines, and impact on tonight's slate.",
     canonicalPath: "/injuries",
   },
+  "/standings": {
+    title: "NBA Standings | Hoops Intel",
+    description:
+      "Complete NBA standings for all 30 teams. Wins, losses, winning percentage, games behind, streak, last 10, and home and road records from ESPN, with playoff and play-in cutoffs.",
+    canonicalPath: "/standings",
+  },
   "/tonight": {
     title: "Tonight's NBA Slate | Hoops Intel",
     description: "Tonight's ESPN slate. When the league is dark, an honest empty board that points to camp intel on the desk.",
@@ -292,6 +298,7 @@ export const STATIC_SITEMAP_PATHS: string[] = [
   "/playoffs",
   "/tools",
   "/injuries",
+  "/standings",
   "/tonight",
   "/players",
   "/watch-guide",
