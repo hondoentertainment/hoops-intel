@@ -15,61 +15,37 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 13, 2026",
+    editionDate: "November 14, 2026",
     games: [
       {
-        awayTeam: "GSW",
-        homeTeam: "SAS",
-        openingSpread: "SAS -3.5",
-        closingSpread: "SAS -4.0",
-      },
-      {
-        awayTeam: "NYK",
-        homeTeam: "IND",
-        openingSpread: "NYK -1.0",
-        closingSpread: "NYK -1.5",
-      },
-      {
-        awayTeam: "MIL",
-        homeTeam: "ORL",
-        openingSpread: "ORL -5.0",
-        closingSpread: "ORL -5.5",
-      },
-      {
-        awayTeam: "CLE",
+        awayTeam: "DET",
         homeTeam: "MIA",
+        openingSpread: "MIA -1.0",
+        closingSpread: "MIA -1.5",
+      },
+      {
+        awayTeam: "DAL",
+        homeTeam: "CLE",
         openingSpread: "EVEN",
-        closingSpread: "MIA -1.0",
+        closingSpread: "DAL -1.0",
       },
       {
-        awayTeam: "ATL",
-        homeTeam: "CHI",
-        openingSpread: "ATL -4.5",
-        closingSpread: "ATL -5.0",
-      },
-      {
-        awayTeam: "MEM",
+        awayTeam: "DEN",
         homeTeam: "NOP",
-        openingSpread: "MEM -2.0",
-        closingSpread: "MEM -2.5",
+        openingSpread: "DEN -3.0",
+        closingSpread: "DEN -3.5",
       },
       {
-        awayTeam: "UTA",
-        homeTeam: "HOU",
-        openingSpread: "HOU -10.5",
-        closingSpread: "HOU -11.0",
+        awayTeam: "BRK",
+        homeTeam: "MEM",
+        openingSpread: "MEM -7.0",
+        closingSpread: "MEM -7.5",
       },
       {
-        awayTeam: "POR",
-        homeTeam: "SAC",
-        openingSpread: "POR -4.0",
-        closingSpread: "POR -4.5",
-      },
-      {
-        awayTeam: "OKC",
-        homeTeam: "LAC",
-        openingSpread: "OKC -5.0",
-        closingSpread: "OKC -5.5",
+        awayTeam: "CHI",
+        homeTeam: "MIN",
+        openingSpread: "MIN -8.0",
+        closingSpread: "MIN -8.5",
       }
     ],
   }
