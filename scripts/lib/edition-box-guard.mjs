@@ -35,6 +35,17 @@ export function playerNameTokens(name) {
     .filter((part) => part.length > 2 && !SUFFIX.test(part));
 }
 
+function proseWords(text) {
+  return String(text ?? "")
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase()
+    .replace(/['\u2019]s\b/g, "")
+    .replace(/['\u2019]/g, "")
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+}
+
 export function normPlayerName(name) {
   return String(name ?? "")
     .normalize("NFD")
@@ -59,11 +70,8 @@ export function pulseIndexConsistencyErrors(index) {
       seen.set(name, row.rank);
     }
     const tokens = playerNameTokens(name);
-    const about = `${row?.note ?? ""} ${row?.rationale ?? ""}`
-      .normalize("NFD")
-      .replace(/\p{M}/gu, "")
-      .toLowerCase();
-    if (tokens.length && !tokens.some((token) => about.includes(token))) {
+    const aboutWords = new Set(proseWords(`${row?.note ?? ""} ${row?.rationale ?? ""}`));
+    if (tokens.length && !tokens.some((token) => aboutWords.has(token))) {
       errors.push(
         `Pulse rank ${row.rank} ${name} note/rationale does not mention ${tokens.join(" or ")}`,
       );

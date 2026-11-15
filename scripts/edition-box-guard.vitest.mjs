@@ -168,6 +168,19 @@ describe("edition box guard", () => {
     expect(errors).toEqual([]);
   });
 
+  it("rejects a Cam Thomas card whose Haliburton blurb only contains cam as a substring", () => {
+    const errors = pulseIndexConsistencyErrors([
+      {
+        rank: 10,
+        player: "Cam Thomas",
+        keyStats: "23 PTS · 11 AST",
+        note: "Haliburton came alive late and controlled the offense.",
+        rationale: "Haliburton's 23-11 fills rank 10.",
+      },
+    ]);
+    expect(errors.some((error) => /does not mention cam or thomas/.test(error))).toBe(true);
+  });
+
   it("accepts a card whose counting line matches the box, including an assist tie", () => {
     const lines = [
       { player: "Dylan Harper", team: "SAS", pts: 18, reb: 6, ast: 10, stl: 4, blk: 1, tpm: 2, pm: 19 },
