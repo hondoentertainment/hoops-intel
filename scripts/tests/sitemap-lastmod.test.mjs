@@ -29,6 +29,7 @@ import {
   describePulseSlate,
   displayDateToIso,
   sitemapLastmodTracksEdition,
+  stampPreviewGameIds,
 } from "../lib/edition-date-alignment.mjs";
 import { assertThinPlayerShells, pulseCardThinShellLocs, THIN_PLAYER_SHELLS } from "../validate-generated-structure.mjs";
 
@@ -884,6 +885,21 @@ export const gamePreviews = [];
   assert.equal(wipedSlate.offDay, false);
   assert.ok(wipedSlate.errors.some((line) => /No Games/.test(line)));
   assert.throws(() => generate({ write: false, pulseSource: wiped }), /No Games/);
+});
+
+test("stampPreviewGameIds rebuilds a swapped away-home slug", () => {
+  const src = `export const gamePreviews = [{gameId:"SAS-UTA-20261115",homeTeam:"SAS",awayTeam:"UTA",storyline:"Jazz at Spurs"}];`;
+  const stamped = stampPreviewGameIds(src, "20261115");
+  assert.equal(
+    stamped,
+    `export const gamePreviews = [{gameId:"UTA-SAS-20261115",homeTeam:"SAS",awayTeam:"UTA",storyline:"Jazz at Spurs"}];`,
+  );
+  const errors = collectPulsePublicationErrors(
+    `export const pulseEdition = {date:"November 15, 2026"};
+${stamped}`,
+    { editionDisplay: "November 15, 2026", editionIso: "2026-11-15", tonightEspn: "20261115" },
+  );
+  assert.equal(errors.filter((line) => line.includes("gamePreviews slug")).length, 0);
 });
 
 test("publication date, tonight slugs, and a next-day display date cannot ship together", () => {

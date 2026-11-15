@@ -24,6 +24,17 @@ export function playerSurname(name) {
   return (parts[parts.length - 1] ?? "").toLowerCase();
 }
 
+/** First, last, and hyphenated pieces, minus Jr/Sr. Giannis/Kyrie/Klay cards often use the given name. */
+export function playerNameTokens(name) {
+  return String(name ?? "")
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase()
+    .split(/[\s-]+/)
+    .map((part) => part.replace(/[^a-z0-9]/g, ""))
+    .filter((part) => part.length > 2 && !SUFFIX.test(part));
+}
+
 export function normPlayerName(name) {
   return String(name ?? "")
     .normalize("NFD")
@@ -47,13 +58,15 @@ export function pulseIndexConsistencyErrors(index) {
     } else {
       seen.set(name, row.rank);
     }
-    const surname = playerSurname(name);
+    const tokens = playerNameTokens(name);
     const about = `${row?.note ?? ""} ${row?.rationale ?? ""}`
       .normalize("NFD")
       .replace(/\p{M}/gu, "")
       .toLowerCase();
-    if (surname && !about.includes(surname)) {
-      errors.push(`Pulse rank ${row.rank} ${name} note/rationale does not mention ${surname}`);
+    if (tokens.length && !tokens.some((token) => about.includes(token))) {
+      errors.push(
+        `Pulse rank ${row.rank} ${name} note/rationale does not mention ${tokens.join(" or ")}`,
+      );
     }
     if (!/\d+\s*PTS/i.test(String(row?.keyStats ?? ""))) {
       errors.push(`Pulse rank ${row.rank} ${name} keyStats has no point total`);
