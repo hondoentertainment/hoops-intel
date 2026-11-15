@@ -15,37 +15,61 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 14, 2026",
+    editionDate: "November 15, 2026",
     games: [
       {
-        awayTeam: "DET",
-        homeTeam: "MIA",
-        openingSpread: "MIA -1.0",
-        closingSpread: "MIA -1.5",
-      },
-      {
         awayTeam: "DAL",
-        homeTeam: "CLE",
+        homeTeam: "BOS",
+        openingSpread: "BOS -5.0",
+        closingSpread: "BOS -6.0",
+      },
+      {
+        awayTeam: "IND",
+        homeTeam: "PHI",
+        openingSpread: "PHI -5.0",
+        closingSpread: "PHI -5.5",
+      },
+      {
+        awayTeam: "LAL",
+        homeTeam: "PHX",
+        openingSpread: "LAL -3.0",
+        closingSpread: "LAL -3.5",
+      },
+      {
+        awayTeam: "CHA",
+        homeTeam: "LAC",
+        openingSpread: "LAC -1.0",
+        closingSpread: "LAC -1.5",
+      },
+      {
+        awayTeam: "SAS",
+        homeTeam: "UTA",
+        openingSpread: "SAS -9.0",
+        closingSpread: "SAS -9.5",
+      },
+      {
+        awayTeam: "NYK",
+        homeTeam: "TOR",
         openingSpread: "EVEN",
-        closingSpread: "DAL -1.0",
+        closingSpread: "NYK -1.0",
       },
       {
-        awayTeam: "DEN",
-        homeTeam: "NOP",
-        openingSpread: "DEN -3.0",
-        closingSpread: "DEN -3.5",
+        awayTeam: "HOU",
+        homeTeam: "WAS",
+        openingSpread: "HOU -6.5",
+        closingSpread: "HOU -7.0",
       },
       {
-        awayTeam: "BRK",
-        homeTeam: "MEM",
-        openingSpread: "MEM -7.0",
-        closingSpread: "MEM -7.5",
+        awayTeam: "ATL",
+        homeTeam: "MIL",
+        openingSpread: "ATL -3.0",
+        closingSpread: "ATL -3.5",
       },
       {
-        awayTeam: "CHI",
-        homeTeam: "MIN",
-        openingSpread: "MIN -8.0",
-        closingSpread: "MIN -8.5",
+        awayTeam: "OKC",
+        homeTeam: "SAC",
+        openingSpread: "OKC -6.0",
+        closingSpread: "OKC -6.5",
       }
     ],
   }
