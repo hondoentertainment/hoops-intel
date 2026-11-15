@@ -135,7 +135,7 @@ export function stampPreviewGameIds(source, tonightEspn) {
     const away = obj.match(/\bawayTeam:\s*"([A-Z]{3})"/)?.[1];
     if (!home || !away) return obj;
     const expectedId = `${away}-${home}-${tonightEspn}`;
-    return obj.replace(/\bgameId:\s*"[^"]*"/, `gameId: "${expectedId}"`);
+    return obj.replace(/\bgameId:\s*"[^"]*"/, (match) => match.replace(/"[^"]*"/, `"${expectedId}"`));
   });
   if (stamped === body) return source;
   return source.slice(0, open + 1) + stamped + source.slice(close);
