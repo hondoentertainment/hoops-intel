@@ -15,55 +15,37 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 16, 2026",
+    editionDate: "November 17, 2026",
     games: [
+      {
+        awayTeam: "DET",
+        homeTeam: "SAS",
+        openingSpread: "SAS -4.0",
+        closingSpread: "SAS -4.5",
+      },
+      {
+        awayTeam: "NYK",
+        homeTeam: "TOR",
+        openingSpread: "NYK -2.0",
+        closingSpread: "NYK -2.5",
+      },
       {
         awayTeam: "POR",
         homeTeam: "MIN",
-        openingSpread: "MIN -1.0",
-        closingSpread: "MIN -1.5",
+        openingSpread: "MIN -1.5",
+        closingSpread: "MIN -2.0",
       },
       {
-        awayTeam: "ORL",
-        homeTeam: "BOS",
-        openingSpread: "BOS -7.5",
-        closingSpread: "BOS -8.0",
+        awayTeam: "UTA",
+        homeTeam: "LAC",
+        openingSpread: "LAC -9.0",
+        closingSpread: "LAC -9.5",
       },
       {
-        awayTeam: "CHI",
-        homeTeam: "CLE",
-        openingSpread: "CLE -5.0",
-        closingSpread: "CLE -5.5",
-      },
-      {
-        awayTeam: "MEM",
-        homeTeam: "WAS",
-        openingSpread: "MEM -6.0",
-        closingSpread: "MEM -6.5",
-      },
-      {
-        awayTeam: "PHI",
-        homeTeam: "BRK",
-        openingSpread: "PHI -5.5",
-        closingSpread: "PHI -6.0",
-      },
-      {
-        awayTeam: "HOU",
-        homeTeam: "MIA",
-        openingSpread: "HOU -1.0",
-        closingSpread: "HOU -1.5",
-      },
-      {
-        awayTeam: "GSW",
-        homeTeam: "NOP",
-        openingSpread: "GSW -2.5",
-        closingSpread: "GSW -3.0",
-      },
-      {
-        awayTeam: "PHX",
-        homeTeam: "DEN",
-        openingSpread: "DEN -4.0",
-        closingSpread: "DEN -4.5",
+        awayTeam: "CHA",
+        homeTeam: "LAL",
+        openingSpread: "LAL -11.0",
+        closingSpread: "LAL -11.5",
       }
     ],
   }

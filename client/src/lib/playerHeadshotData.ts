@@ -492,7 +492,6 @@ export const playerHeadshotIds: Record<string, number> = {
   "tre mann": 4432819,
   "trendon watford": 4431675,
   "trevon brazile": 4698719,
-  "trey alexander": 4433268,
   "trey lyles": 3136196,
   "trey murphy": 4397688,
   "tristan da silva": 4702382,
