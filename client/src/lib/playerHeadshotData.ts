@@ -525,6 +525,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "zach collins": 4066650,
   "zach edey": 4600663,
   "zach lavine": 3064440,
+  "zack austin": 4702099,
   "zeke nnaji": 4431690,
   "ziaire williams": 4433137,
   "zion williamson": 4395628,
