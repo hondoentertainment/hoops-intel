@@ -4,6 +4,7 @@ import {
   collectEditionBoxErrors,
   playerLinesFromSummary,
   pulseIndexConsistencyErrors,
+  playerNameTokens,
   slateStatLeaders,
   stampStatLeadersSource,
   tickerFinalCoverageErrors,
@@ -70,7 +71,7 @@ describe("edition box guard", () => {
     ];
     const consistency = pulseIndexConsistencyErrors(pulseIndex);
     expect(consistency.some((error) => error.includes("duplicate Pulse player Cam Thomas"))).toBe(true);
-    expect(consistency.some((error) => error.includes("does not mention thomas"))).toBe(true);
+    expect(consistency.some((error) => /does not mention/.test(error))).toBe(true);
     expect(consistency.some((error) => error.includes("no point total"))).toBe(true);
 
     const coverage = tickerFinalCoverageErrors(
@@ -137,6 +138,47 @@ describe("edition box guard", () => {
       },
     ]);
     expect(errors).toEqual([]);
+  });
+
+  it("accepts a Pulse blurb that uses Giannis, Kyrie, or Klay instead of the surname", () => {
+    expect(playerNameTokens("Giannis Antetokounmpo")).toEqual(["giannis", "antetokounmpo"]);
+    const errors = pulseIndexConsistencyErrors([
+      {
+        rank: 1,
+        player: "Giannis Antetokounmpo",
+        keyStats: "36 PTS · 12 REB",
+        note: "Giannis scored 36 and owned the paint.",
+        rationale: "Giannis leads the slate on two-way impact.",
+      },
+      {
+        rank: 2,
+        player: "Kyrie Irving",
+        keyStats: "32 PTS · 8 AST",
+        note: "Kyrie scored 32 in the win.",
+        rationale: "Kyrie is second on creation.",
+      },
+      {
+        rank: 4,
+        player: "Klay Thompson",
+        keyStats: "27 PTS · 7 3PM",
+        note: "Klay hit seven threes.",
+        rationale: "Klay's shooting night holds rank 4.",
+      },
+    ]);
+    expect(errors).toEqual([]);
+  });
+
+  it("rejects a Cam Thomas card whose Haliburton blurb only contains cam as a substring", () => {
+    const errors = pulseIndexConsistencyErrors([
+      {
+        rank: 10,
+        player: "Cam Thomas",
+        keyStats: "23 PTS · 11 AST",
+        note: "Haliburton came alive late and controlled the offense.",
+        rationale: "Haliburton's 23-11 fills rank 10.",
+      },
+    ]);
+    expect(errors.some((error) => /does not mention cam or thomas/.test(error))).toBe(true);
   });
 
   it("accepts a card whose counting line matches the box, including an assist tie", () => {
@@ -210,5 +252,6 @@ export const gameResults = [];`;
     const src = readFileSync("scripts/generate-edition.mjs", "utf8");
     expect(src).toMatch(/stampStatLeadersSource/);
     expect(src).toMatch(/Official slate leaders/);
+    expect(src).toMatch(/stampPreviewGameIds/);
   });
 });

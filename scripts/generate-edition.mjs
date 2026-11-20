@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { toESPNDate, toISODate, toDisplayDate } from "./lib/daily-dates.mjs";
 import { seasonMode, editionContextForMode, stampEditionContext, REGULAR_SEASON_OPEN_DAY } from "./lib/season-mode.mjs";
-import { collectPulsePublicationErrors } from "./lib/edition-date-alignment.mjs";
+import { collectPulsePublicationErrors, stampPreviewGameIds } from "./lib/edition-date-alignment.mjs";
 import { collectParseErrors, extractExportLiteral, repairPulseSource } from "./lib/pulse-export-parse.mjs";
 import { canonicalNbaAbbrev, dropNonNbaMatchupObjects, isNbaFranchiseAbbrev, stampCanonicalTeamAbbrevs } from "./lib/content-quality-constants.mjs";
 import { attachOfficialBoxLines, collectEditionBoxErrors, promptPlayerLine, slateStatLeaders, stampStatLeadersSource } from "./lib/edition-box-guard.mjs";
@@ -305,6 +305,11 @@ Output ONLY the complete TypeScript file. Start with the comment header. No mark
       console.warn("⚠ Claude output was truncated (hit max_tokens)");
     }
     newPulseContent = repairPulseSource(pulseMsg.content?.[0]?.text ?? "");
+    const previewStamped = stampPreviewGameIds(newPulseContent, todayESPN);
+    if (previewStamped !== newPulseContent) {
+      newPulseContent = previewStamped;
+      console.log("✓ stamped gamePreviews gameIds from away/home");
+    }
     ({ errors: parseErrors, scope } = collectParseErrors(newPulseContent, requiredExports));
     if (parseErrors.length === 0) {
       parseErrors = collectPulsePublicationErrors(newPulseContent, {

@@ -103,6 +103,44 @@ export function staleDenverCoachHits(source) {
  * @param {{ editionDisplay: string, editionIso: string, tonightEspn: string }} expected
  * @returns {string[]}
  */
+/**
+ * Nov 15 2026 aborted a valid draft because one preview wrote SAS-UTA
+ * while homeTeam was SAS. Rebuild gameId from away/home + the ESPN date.
+ */
+export function stampPreviewGameIds(source, tonightEspn) {
+  if (!tonightEspn) return source;
+  const start = String(source).search(/export const gamePreviews\s*=\s*\[/);
+  if (start < 0) return source;
+  const open = source.indexOf("[", start);
+  if (open < 0) return source;
+  let depth = 0;
+  let close = -1;
+  for (let i = open; i < source.length; i++) {
+    if (source[i] === "[") depth += 1;
+    else if (source[i] === "]") {
+      depth -= 1;
+      if (depth === 0) {
+        close = i;
+        break;
+      }
+    }
+  }
+  if (close < 0) return source;
+  const body = source.slice(open + 1, close);
+  const stamped = body.replace(/\{[^{}]*\}/g, (obj) => {
+    if (!/\bhomeTeam\s*:/.test(obj) || !/\bawayTeam\s*:/.test(obj) || !/\bgameId\s*:/.test(obj)) {
+      return obj;
+    }
+    const home = obj.match(/\bhomeTeam:\s*"([A-Z]{3})"/)?.[1];
+    const away = obj.match(/\bawayTeam:\s*"([A-Z]{3})"/)?.[1];
+    if (!home || !away) return obj;
+    const expectedId = `${away}-${home}-${tonightEspn}`;
+    return obj.replace(/\bgameId:\s*"[^"]*"/, (match) => match.replace(/"[^"]*"/, `"${expectedId}"`));
+  });
+  if (stamped === body) return source;
+  return source.slice(0, open + 1) + stamped + source.slice(close);
+}
+
 export function collectPulsePublicationErrors(source, expected) {
   const errors = [];
   const display = pulseDisplayDate(source);
