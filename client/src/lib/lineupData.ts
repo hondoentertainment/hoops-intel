@@ -1,5 +1,5 @@
 // Lineup Intelligence — Weekly lineup analysis
-// Last updated: November 16, 2026
+// Last updated: November 23, 2026
 // Live at: https://hoopsintel.net/lineups
 
 export interface LineupUnit {
@@ -34,492 +34,492 @@ export interface LineupData {
 }
 
 export const lineupData: LineupData = {
-  generatedDate: "November 16, 2026",
-  weekLabel: "Week of November 16–22, 2026",
+  generatedDate: "November 23, 2026",
+  weekLabel: "Week of November 23–29, 2026",
 
   leagueWideBest: [
     {
-      players: ["Victor Wembanyama", "Dylan Harper", "Stephon Castle", "Harrison Barnes", "Devin Vassell"],
-      team: "SAS",
-      minutesTogether: 387,
+      players: ["Jamal Murray", "Nikola Jokic", "Michael Porter Jr.", "Aaron Gordon", "Christian Braun"],
+      team: "DEN",
+      minutesTogether: 412,
       netRating: 24.1,
-      offRating: 122.8,
-      defRating: 98.7,
-      plusMinus: 93,
-      record: "Equivalent to 13-1 pace",
-      keyStrength: "Wembanyama anchors a defense that holds opponents under 99 points per 100 possessions while Harper and Castle generate relentless transition offense off turnovers"
+      offRating: 122.4,
+      defRating: 98.3,
+      plusMinus: 187,
+      record: "Equivalent to 14-3 pace",
+      keyStrength: "Jokic-Murray two-man game creates unguardable pick-and-roll reads; Gordon's switch coverage erases defensive breakdowns"
     },
     {
-      players: ["Luka Doncic", "Austin Reaves", "LeBron James", "Rui Hachimura", "Anthony Davis"],
-      team: "LAL",
+      players: ["Bam Adebayo", "Tyler Herro", "Jimmy Butler", "Caleb Martin", "Terry Rozier"],
+      team: "MIA",
+      minutesTogether: 374,
+      netRating: 19.8,
+      offRating: 118.7,
+      defRating: 98.9,
+      plusMinus: 142,
+      record: "Equivalent to 13-3 pace",
+      keyStrength: "Adebayo anchors drop coverage while Butler and Herro generate elite mid-range efficiency in Miami's deliberate half-court sets"
+    },
+    {
+      players: ["Karl-Anthony Towns", "Jalen Brunson", "OG Anunoby", "Josh Hart", "Mikal Bridges"],
+      team: "NYK",
+      minutesTogether: 389,
+      netRating: 18.3,
+      offRating: 117.9,
+      defRating: 99.6,
+      plusMinus: 131,
+      record: "Equivalent to 13-4 pace",
+      keyStrength: "Towns's floor-spacing at center unlocks Brunson's drive-and-kick game; Hart's offensive rebound rate is the unit's secret weapon"
+    },
+    {
+      players: ["Dyson Daniels", "Trae Young", "De'Andre Hunter", "Jalen Johnson", "Clint Capela"],
+      team: "ATL",
       minutesTogether: 341,
-      netRating: 21.7,
-      offRating: 120.4,
-      defRating: 98.7,
-      plusMinus: 74,
-      record: "Equivalent to 12-2 pace",
-      keyStrength: "Luka-Davis pick-and-roll is the most efficient two-man action in the Western Conference, generating open corner threes for Hachimura and Reaves at an elite clip"
+      netRating: 16.7,
+      offRating: 116.2,
+      defRating: 99.5,
+      plusMinus: 109,
+      record: "Equivalent to 12-4 pace",
+      keyStrength: "Daniels's defensive omnipresence beside Young's playmaking creates a rare two-way balance Atlanta has never previously sustained"
     },
     {
-      players: ["Jayson Tatum", "Jaylen Brown", "Jrue Holiday", "Al Horford", "Kristaps Porzingis"],
+      players: ["Jayson Tatum", "Jaylen Brown", "Al Horford", "Kristaps Porzingis", "Jrue Holiday"],
       team: "BOS",
-      minutesTogether: 298,
-      netRating: 19.3,
-      offRating: 118.6,
-      defRating: 99.3,
-      plusMinus: 57,
-      record: "Equivalent to 11-3 pace",
-      keyStrength: "Horford and Porzingis create the league's most punishing drop coverage paired with ball movement that generates 32 assists per 100 possessions when this unit is on the floor"
-    },
-    {
-      players: ["Tyrese Maxey", "Jaylen Brown", "Paul George", "Joel Embiid", "Kelly Oubre Jr."],
-      team: "PHI",
-      minutesTogether: 276,
-      netRating: 17.8,
+      minutesTogether: 356,
+      netRating: 15.4,
       offRating: 119.1,
-      defRating: 101.3,
-      plusMinus: 49,
-      record: "Equivalent to 11-3 pace",
-      keyStrength: "Maxey and Brown's combined 58-point averages per 100 possessions in this alignment force defenses to collapse, creating wide-open midrange looks for George and corner opportunities for Oubre"
-    },
-    {
-      players: ["Shai Gilgeous-Alexander", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Hartenstein"],
-      team: "OKC",
-      minutesTogether: 312,
-      netRating: 16.4,
-      offRating: 116.9,
-      defRating: 100.5,
-      plusMinus: 51,
-      record: "Equivalent to 10-4 pace",
-      keyStrength: "The Dort-SGA defensive tandem creates the highest steal-rate pairing in the West while Holmgren and Hartenstein protect the paint with redundant rim deterrence"
+      defRating: 103.7,
+      plusMinus: 108,
+      record: "Equivalent to 12-4 pace",
+      keyStrength: "Porzingis's floor-stretch at center gives Tatum and Brown maximum drive lanes; Holiday's off-ball disruption elevates the defense"
     }
   ],
 
   biggestSurprise: {
-    team: "SAS",
-    description: "The Wembanyama–Harper–Castle three-headed core is posting a combined lineup net rating of +24.1 — a figure typically reserved for all-time dynasty units, not a roster headlined by two rookies and a sophomore. What makes it genuinely startling is that San Antonio is achieving this while ranking second in defensive rating, suggesting Gregg Popovich's system has found a way to weaponize youth rather than paper over it."
+    team: "ATL",
+    description: "Atlanta's Dyson Daniels–Trae Young pairing has produced a lineup net rating of +16.7, a figure virtually no one projected for a team built around a ball-dominant point guard who was presumed to be a defensive liability at the top of the rotation. Daniels's ability to guard 1-through-3 on every possession is effectively donating Atlanta a free defensive upgrade that makes Young's offensive genius sustainable rather than exploitable. The Hawks are 11-6 and legitimate, and this lineup combination is the structural reason why."
   },
 
   teams: [
-    // ── SAS 12-2 ──────────────────────────────────────────────────────────────
-    {
-      team: "SAS",
-      teamRecord: "12-2",
-      narrative: "San Antonio's starting five is the most statistically dominant lineup in the NBA through six weeks, and the numbers aren't even particularly close. What separates this Spurs group from prior Popovich teams is the sheer aggression — Harper and Castle are combining for 15 fast-break points per game off Wembanyama's shot-altering presence, essentially converting defense into offense in real time. The death lineup is their most versatile alignment yet, swapping Barnes for a second ball-handler to give Wembanyama more space to operate at the elbow. The only genuine weakness is a second-unit group that hemorrhages points when all three stars rest simultaneously, an issue Pop will need to solve before January.",
-      bestUnit: {
-        players: ["Stephon Castle", "Dylan Harper", "Devin Vassell", "Harrison Barnes", "Victor Wembanyama"],
-        team: "SAS",
-        minutesTogether: 387,
-        netRating: 24.1,
-        offRating: 122.8,
-        defRating: 98.7,
-        plusMinus: 93,
-        record: "Equivalent to 13-1 pace",
-        keyStrength: "Elite two-way balance — Wembanyama's shot deterrence frees Castle and Harper to gamble for steals in the passing lanes, creating a self-reinforcing defensive loop that generates transition buckets"
-      },
-      deathLineup: {
-        players: ["Stephon Castle", "Dylan Harper", "Devin Vassell", "Victor Wembanyama", "Chris Paul"],
-        team: "SAS",
-        minutesTogether: 54,
-        netRating: 19.8,
-        offRating: 118.3,
-        defRating: 98.5,
-        plusMinus: 11,
-        record: "8-2 in games when closing",
-        keyStrength: "Paul's late-clock management paired with Wembanyama's post-up threat is virtually unguardable in half-court sets, and Castle's four steals per 36 make him a nightmare for opponent ball-handlers under pressure"
-      },
-      worstUnit: {
-        players: ["Malaki Branham", "Blake Wesley", "Sidy Cissoko", "Zach Collins", "Julian Champagnie"],
-        team: "SAS",
-        minutesTogether: 61,
-        netRating: -14.7,
-        offRating: 103.2,
-        defRating: 117.9,
-        plusMinus: -9,
-        record: "Equivalent to 4-10 pace",
-        keyStrength: "No consistent strength — this unit struggles to generate half-court offense and leaks transition buckets at the second-highest rate on the roster when starters rest in the second quarter"
-      },
-      rookieLineup: {
-        players: ["Dylan Harper", "Stephon Castle", "Devin Vassell", "Harrison Barnes", "Victor Wembanyama"],
-        team: "SAS",
-        minutesTogether: 387,
-        netRating: 24.1,
-        offRating: 122.8,
-        defRating: 98.7,
-        plusMinus: 93,
-        record: "Equivalent to 13-1 pace",
-        keyStrength: "Harper and Castle's rookie synergy is the most productive first-year pairing since Curry and Thompson's sophomore season — their two-man game already forces defenses into impossible coverage decisions"
-      }
-    },
-
-    // ── LAL 12-2 ──────────────────────────────────────────────────────────────
-    {
-      team: "LAL",
-      teamRecord: "12-2",
-      narrative: "Los Angeles is running the most efficient Luka Doncic offense anyone has seen since his Dallas peak, and the reason is deceptively simple: Anthony Davis at center gives him a pick-and-roll partner who can both score out of the two-man game and protect the paint on the other end. The starting five is posting a +21.7 net rating that leads all lineups with more than 300 minutes, an extraordinary number for a group still learning each other. The death lineup becomes even more dangerous because LeBron James's fourth-quarter IQ allows Doncic to shift into off-ball movement, confusing defenses that have only prepared for one of the two. The main vulnerability is an over-reliance on that starting group — when Doncic rests, the Lakers' offense drops from elite to merely average.",
-      bestUnit: {
-        players: ["Luka Doncic", "Austin Reaves", "LeBron James", "Rui Hachimura", "Anthony Davis"],
-        team: "LAL",
-        minutesTogether: 341,
-        netRating: 21.7,
-        offRating: 120.4,
-        defRating: 98.7,
-        plusMinus: 74,
-        record: "Equivalent to 12-2 pace",
-        keyStrength: "Luka-Davis pick-and-roll is the most points-per-possession two-man action in the Western Conference — Davis's threat as a finisher opens the floor for Reaves and Hachimura to shoot 42% from three in this unit"
-      },
-      deathLineup: {
-        players: ["Luka Doncic", "Austin Reaves", "LeBron James", "Anthony Davis", "Jarred Vanderbilt"],
-        team: "LAL",
-        minutesTogether: 67,
-        netRating: 18.9,
-        offRating: 117.6,
-        defRating: 98.7,
-        plusMinus: 13,
-        record: "9-2 in games when closing",
-        keyStrength: "Vanderbilt's relentless rebounding and switchability allows Davis to roam as a help defender, and LeBron's late-game play-calling gives the Lakers two effective shot creators when defenses key on Doncic"
-      },
-      worstUnit: {
-        players: ["Gabe Vincent", "Max Christie", "Alex Len", "Cam Reddish", "D'Angelo Russell"],
-        team: "LAL",
-        minutesTogether: 48,
-        netRating: -13.2,
-        offRating: 105.1,
-        defRating: 118.3,
-        plusMinus: -6,
-        record: "Equivalent to 4-10 pace",
-        keyStrength: "No consistent offensive initiator — this group lacks a primary ball-handler capable of breaking down a set half-court defense and surrenders transition opportunities at a troubling rate"
-      }
-    },
-
-    // ── BOS 11-2 ──────────────────────────────────────────────────────────────
+    // 1. Boston Celtics — 11-6
     {
       team: "BOS",
-      teamRecord: "11-2",
-      narrative: "Boston's starting five continues to be the most cohesive offensive machine in the Eastern Conference, now posting a +19.3 net rating behind Jayson Tatum's sharpest shooting month of his career. The addition of Kristaps Porzingis in a stretch-five role has unlocked something subtle but critical: Horford no longer needs to anchor every possession, and the two-big lineups create matchup nightmares that neither Dallas nor Miami could solve this week. The death lineup is as reliable as any in the sport — Jrue Holiday's postseason-caliber two-way play makes him the ideal closer alongside Tatum and Brown. The only real lineup concern is Porzingis's durability, and the Celtics are already managing his minutes cautiously to avoid the injury spiral that plagued his 2024-25 campaign.",
+      teamRecord: "11-6",
+      narrative: "Boston's best five-man unit remains elite on paper but the Celtics are showing real cracks in close games — three losses in four tries when the margin is single digits tells you something the aggregate net rating conceals. Tatum's inability to convert the final possession in the Golden State loss this week is symptomatic of a broader pattern where Boston's half-court offense stalls in the final two minutes against switched coverages. The Horford-Porzingis frontcourt pairing is the best in the East when both are healthy and engaged, but Porzingis's minutes are still being managed, limiting that unit to under 30 minutes together this week. Mazzulla needs to find a closing lineup that doesn't require Tatum to be perfect every time — that answer may lie in running more Holiday-led sets.",
       bestUnit: {
-        players: ["Jrue Holiday", "Jaylen Brown", "Jayson Tatum", "Al Horford", "Kristaps Porzingis"],
+        players: ["Jayson Tatum", "Jaylen Brown", "Al Horford", "Kristaps Porzingis", "Jrue Holiday"],
         team: "BOS",
-        minutesTogether: 298,
-        netRating: 19.3,
-        offRating: 118.6,
-        defRating: 99.3,
-        plusMinus: 57,
-        record: "Equivalent to 11-3 pace",
-        keyStrength: "Horford-Porzingis two-big alignment creates the most versatile defensive coverage in the East — they can switch 1 through 5 or drop into paint-protecting mode depending on the opponent's ball-handler"
-      },
-      deathLineup: {
-        players: ["Jrue Holiday", "Jaylen Brown", "Jayson Tatum", "Al Horford", "Sam Hauser"],
-        team: "BOS",
-        minutesTogether: 71,
-        netRating: 16.8,
-        offRating: 116.4,
-        defRating: 99.6,
-        plusMinus: 12,
-        record: "9-1 in games when closing",
-        keyStrength: "Hauser's corner three spacing allows Tatum to operate without a weakside collapser, and Holiday's switchable defense on the other end makes it virtually impossible for opponents to find a favorable late-clock mismatch"
-      },
-      worstUnit: {
-        players: ["Payton Pritchard", "Jordan Walsh", "Luke Kornet", "Svi Mykhailiuk", "JD Davison"],
-        team: "BOS",
-        minutesTogether: 44,
-        netRating: -11.8,
-        offRating: 106.3,
-        defRating: 118.1,
-        plusMinus: -5,
-        record: "Equivalent to 5-9 pace",
-        keyStrength: "Pritchard provides some offensive initiation but the unit has no rim protection and opponents are hunting Kornet in pick-and-roll coverage at an unsustainable rate"
-      }
-    },
-
-    // ── PHI 11-3 ──────────────────────────────────────────────────────────────
-    {
-      team: "PHI",
-      teamRecord: "11-3",
-      narrative: "Philadelphia's most surprising early-season discovery is how well Jaylen Brown has integrated alongside Tyrese Maxey — the fear was that two lead guards would crowd each other, but instead they're generating the Eastern Conference's second-best starting-unit net rating by forcing defenses into impossible rotations. Joel Embiid is healthy and playing with a decisiveness not seen since the 2023 MVP season, and his pick-and-roll chemistry with Maxey gives the Sixers a secondary offensive engine that doesn't require Brown's ball-handling to function. The death lineup is built around Brown handling late-clock isolation while Embiid seals his defender in the post, a two-option closing attack that Indiana had no answer for. The concern is a bench that grades out as the worst among Eastern Conference playoff teams, and it will only become more exposed as opponent film study deepens.",
-      bestUnit: {
-        players: ["Tyrese Maxey", "Jaylen Brown", "Paul George", "Joel Embiid", "Kelly Oubre Jr."],
-        team: "PHI",
-        minutesTogether: 276,
-        netRating: 17.8,
+        minutesTogether: 356,
+        netRating: 15.4,
         offRating: 119.1,
-        defRating: 101.3,
-        plusMinus: 49,
-        record: "Equivalent to 11-3 pace",
-        keyStrength: "Maxey-Embiid two-man game generates the highest points-per-possession pick-and-roll in the Eastern Conference, and Brown's off-ball movement into 42% corner three shooting makes the entire alignment exceptionally difficult to gameplan"
+        defRating: 103.7,
+        plusMinus: 108,
+        record: "Equivalent to 12-4 pace",
+        keyStrength: "Porzingis's floor-stretch at center gives Tatum and Brown maximum drive lanes; Holiday's off-ball disruption elevates the defense"
       },
       deathLineup: {
-        players: ["Tyrese Maxey", "Jaylen Brown", "Paul George", "Joel Embiid", "Andre Drummond"],
-        team: "PHI",
+        players: ["Jayson Tatum", "Jaylen Brown", "Jrue Holiday", "Al Horford", "Payton Pritchard"],
+        team: "BOS",
         minutesTogether: 58,
-        netRating: 14.6,
-        offRating: 116.8,
-        defRating: 102.2,
-        plusMinus: 8,
-        record: "8-2 in games when closing",
-        keyStrength: "Drummond's offensive rebounding gives Philadelphia a second-chance safety net on late shot-clock possessions, while Brown's isolation scoring creates the kind of high-percentage late-game looks that closed out Indiana"
-      },
-      worstUnit: {
-        players: ["Eric Gordon", "Marcus Morris Sr.", "Ricky Council IV", "Mo Bamba", "Jeff Dowtin Jr."],
-        team: "PHI",
-        minutesTogether: 39,
-        netRating: -15.3,
-        offRating: 101.7,
-        defRating: 117.0,
-        plusMinus: -6,
-        record: "Equivalent to 3-11 pace",
-        keyStrength: "No primary ball-handler capable of creating off the dribble — this unit relies entirely on catch-and-shoot opportunities that dry up against disciplined defenses and has surrendered double-digit runs in four separate games"
-      }
-    },
-
-    // ── HOU 11-3 ──────────────────────────────────────────────────────────────
-    {
-      team: "HOU",
-      teamRecord: "11-3",
-      narrative: "Houston's three-headed offensive monster of Amen Thompson, Kevin Durant, and Cam Eason is evolving faster than the league can adapt — their 147-119 demolition of Washington this week was the most lopsided game of any top-ten team, and the lineup data shows it was not a fluke. Thompson's transformation into a true point-forward has been the season's most underrated development; his 7-assist game against Washington was the fourth time in five weeks he has topped six dimes, and opponents simply aren't built to handle his combination of downhill athleticism and improved perimeter touch. The death lineup becomes a chess problem for opposing coaches because Durant can close at any position from two to five, making it impossible to hide a weak defender. The Rockets' worst unit remains a concern only because Alperen Şengün's backup has yet to find his footing, leaving a small but real gap in the rotation that playoff opponents will eventually discover.",
-      bestUnit: {
-        players: ["Amen Thompson", "Kevin Durant", "Cam Eason", "Dillon Brooks", "Alperen Şengün"],
-        team: "HOU",
-        minutesTogether: 304,
-        netRating: 15.9,
-        offRating: 118.4,
-        defRating: 102.5,
-        plusMinus: 48,
-        record: "Equivalent to 11-3 pace",
-        keyStrength: "Thompson's point-forward playmaking combined with Durant's mid-range creation generates 1.14 points per possession in half-court sets — the second-highest mark in the Western Conference among five-man lineups with 250+ minutes"
-      },
-      deathLineup: {
-        players: ["Amen Thompson", "Kevin Durant", "Cam Eason", "Dillon Brooks", "Alperen Şengün"],
-        team: "HOU",
-        minutesTogether: 62,
-        netRating: 14.1,
-        offRating: 116.9,
-        defRating: 102.8,
+        netRating: 4.2,
+        offRating: 112.3,
+        defRating: 108.1,
         plusMinus: 9,
-        record: "8-2 in games when closing",
-        keyStrength: "Durant's late-clock isolation is the team's most reliable possession, converting at 58% in clutch situations this season, while Brooks's physical on-ball defense neutralizes opposing guards in the final two minutes"
+        record: "5-4 in games when closing",
+        keyStrength: "Pritchard's shooting creates late-clock spacing; Holiday's switchability allows Tatum to focus offensive energy without defensive assignment burden"
       },
       worstUnit: {
-        players: ["Aaron Holiday", "TyTy Washington Jr.", "Tari Eason", "Jeff Green", "Steven Adams"],
-        team: "HOU",
-        minutesTogether: 55,
-        netRating: -12.4,
-        offRating: 104.8,
-        defRating: 117.2,
-        plusMinus: -7,
-        record: "Equivalent to 5-9 pace",
-        keyStrength: "No true shot creator — this unit struggles to generate half-court offense and has been outscored by double digits in three second-quarter stints this season when all five starters are resting simultaneously"
-      }
-    },
-
-    // ── OKC 9-5 ──────────────────────────────────────────────────────────────
-    {
-      team: "OKC",
-      teamRecord: "9-5",
-      narrative: "Oklahoma City's starting five is statistically elite but the team's record is misleading — five of their losses have come in games where Shai Gilgeous-Alexander played fewer than 30 minutes due to load management, an experiment that Thunder brass appears to be reconsidering. When this starting lineup plays full games, OKC's net rating would rank third in the Western Conference, and Chet Holmgren's expanded offensive role has been the season's most important development for the franchise's ceiling. The death lineup is concerning in a way that the season record doesn't yet reveal — OKC converts less than 44% of their late-game half-court possessions without Holmgren on the floor, and his foul trouble in close games has cost them twice already. The Dort-Hartenstein defensive pairing grades as the second-best rim-protection tandem in the West and may ultimately be what separates this team in a seven-game series.",
-      bestUnit: {
-        players: ["Shai Gilgeous-Alexander", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Hartenstein"],
-        team: "OKC",
-        minutesTogether: 312,
-        netRating: 16.4,
-        offRating: 116.9,
-        defRating: 100.5,
-        plusMinus: 51,
-        record: "Equivalent to 10-4 pace",
-        keyStrength: "SGA-Williams backcourt generates the highest combined steal rate of any starting backcourt pair in the Western Conference, and their defensive pressure routinely creates the transition opportunities that fuel OKC's offensive efficiency"
-      },
-      deathLineup: {
-        players: ["Shai Gilgeous-Alexander", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Hartenstein"],
-        team: "OKC",
-        minutesTogether: 73,
-        netRating: 13.7,
-        offRating: 115.4,
-        defRating: 101.7,
-        plusMinus: 10,
-        record: "7-3 in games when closing",
-        keyStrength: "SGA's isolation scoring converts at 61% in clutch possessions this season — the highest mark among primary ball-handlers league-wide — while Dort's switchability eliminates the late-game mismatch hunting that derails most opponents' closing sets"
-      },
-      worstUnit: {
-        players: ["Aaron Wiggins", "Ousmane Dieng", "Kenrich Williams", "Bismack Biyombo", "Tre Mann"],
-        team: "OKC",
-        minutesTogether: 47,
-        netRating: -13.9,
-        offRating: 103.4,
-        defRating: 117.3,
-        plusMinus: -7,
-        record: "Equivalent to 4-10 pace",
-        keyStrength: "Dieng flashes potential as a secondary creator but this unit has no rim protection and opposing teams have identified the Biyombo-Wiggins pairing as a consistent source of open three-point attempts"
-      }
-    },
-
-    // ── LAC 4-8 ──────────────────────────────────────────────────────────────
-    {
-      team: "LAC",
-      teamRecord: "4-8",
-      narrative: "Los Angeles's record is deceptive in both directions — they have played the third-toughest schedule in the NBA while also squandering three late leads that their lineup data says they should have converted. Darius Garland has been the acquisition of the early season, posting the best starting-unit net rating on the team and providing the kind of on-ball creation that the Clippers desperately missed over their last two retooling years. The death lineup is where the problem becomes structural: when the Clippers close with their best five, they are out-talented at too many positions by the opponents they are likely to face in a playoff setting. The rookie lineup featuring their two first-round picks has shown genuine promise in garbage time, but the development timeline doesn't align with the win-now framing the front office has marketed all offseason.",
-      bestUnit: {
-        players: ["Darius Garland", "Norman Powell", "Kawhi Leonard", "Paul George", "Ivica Zubac"],
-        team: "LAC",
-        minutesTogether: 187,
-        netRating: 11.3,
-        offRating: 114.7,
-        defRating: 103.4,
-        plusMinus: 21,
-        record: "Equivalent to 8-6 pace",
-        keyStrength: "Garland's playmaking has unlocked Kawhi Leonard's off-ball cutting game in a way no Clippers guard has managed since Chris Paul — the two-man action generates open mid-range looks for Leonard at a career-high rate"
-      },
-      deathLineup: {
-        players: ["Darius Garland", "Norman Powell", "Kawhi Leonard", "Paul George", "Ivica Zubac"],
-        team: "LAC",
+        players: ["Jaylen Brown", "Sam Hauser", "Payton Pritchard", "Luke Kornet", "Neemias Queta"],
+        team: "BOS",
         minutesTogether: 44,
-        netRating: 8.6,
-        offRating: 112.9,
-        defRating: 104.3,
-        plusMinus: 4,
-        record: "4-5 in games when closing",
-        keyStrength: "Kawhi Leonard's late-clock shot creation is still among the most reliable in the NBA when healthy, and Garland's ability to extend possessions through secondary playmaking prevents the Clippers from devolving into one-on-one basketball under pressure"
-      },
-      worstUnit: {
-        players: ["Terance Mann", "Ben McLemore", "Marcus Morris Sr.", "Mo Bamba", "Xavier Moon"],
-        team: "LAC",
-        minutesTogether: 38,
-        netRating: -16.1,
-        offRating: 100.8,
-        defRating: 116.9,
-        plusMinus: -6,
-        record: "Equivalent to 2-12 pace",
-        keyStrength: "No discernible offensive system — this unit has the lowest assist rate on the roster and has been outscored in every single appearance this season, suggesting the Clippers' bench construction remains the team's most pressing front-office concern"
-      },
-      newLookLineup: {
-        players: ["Darius Garland", "Norman Powell", "Kawhi Leonard", "Paul George", "Ivica Zubac"],
-        team: "LAC",
-        minutesTogether: 187,
-        netRating: 11.3,
-        offRating: 114.7,
-        defRating: 103.4,
-        plusMinus: 21,
-        record: "Equivalent to 8-6 pace",
-        keyStrength: "Garland's integration as the starting point guard has stabilized a Clippers offense that cycled through three different primary ball-handlers last season — the five-man unit's net rating has improved by 9.4 points per 100 possessions since his debut"
+        netRating: -14.6,
+        offRating: 103.2,
+        defRating: 117.8,
+        plusMinus: -24,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Spacing is adequate but the absence of a true playmaker and rim protection makes this unit a liability against any above-average half-court offense"
       }
     },
 
-    // ── NYK 7-6 ──────────────────────────────────────────────────────────────
+    // 2. New York Knicks — 11-6
     {
       team: "NYK",
-      teamRecord: "7-6",
-      narrative: "New York's lineup story is fundamentally a tale of two halves — when Karl-Anthony Towns and Jalen Brunson share the floor, the Knicks post a net rating that belongs in the top four in the Eastern Conference; when they don't, the team is barely above replacement level. Towns' 28-17 overtime masterpiece against Toronto validated everything the front office believed when they surrendered three first-round picks to acquire him, and yet the game also exposed how thin New York's supporting cast becomes the moment either star faces foul trouble. The death lineup is their most versatile alignment and has been genuinely good in close games, but Brunson's fourth-quarter efficiency dips five points when he is handling the ball for more than 65% of late-clock possessions, a workload issue that Tom Thibodeau shows no inclination to address. OG Anunoby's return from a Grade 2 hamstring strain could change the calculus entirely — he was graded as the second-best defender in the East in last year's adjusted impact metrics.",
+      teamRecord: "11-6",
+      narrative: "New York's first unit is quietly one of the five best in the NBA, and Karl-Anthony Towns's performance this week — 30 points, 13 rebounds, 3 steals, 2 blocks — is the clearest proof yet that Tom Thibodeau finally has the roster construction he's always wanted. The Brunson-Towns pick-and-roll is the most efficient two-man action in the Eastern Conference by points-per-possession this month, and defenses still haven't found a coverage that neutralizes both simultaneously. OG Anunoby continues to be the unsung anchor of everything — his ability to guard the opponent's best wing while making the right read in transition gives this lineup a two-way completeness that last year's version lacked. The only concern is depth: when Bridges and Hart share the floor without Brunson, the Knicks' offense falls off a cliff, posting a -9.1 net rating that exposes how much of their structure depends on their star guard.",
       bestUnit: {
-        players: ["Jalen Brunson", "Donte DiVincenzo", "OG Anunoby", "Julius Randle", "Karl-Anthony Towns"],
+        players: ["Jalen Brunson", "Karl-Anthony Towns", "OG Anunoby", "Josh Hart", "Mikal Bridges"],
         team: "NYK",
-        minutesTogether: 189,
-        netRating: 14.2,
-        offRating: 116.1,
-        defRating: 101.9,
-        plusMinus: 27,
-        record: "Equivalent to 10-4 pace",
-        keyStrength: "Towns-Brunson two-man game generates the most efficient pick-and-roll in the Eastern Conference outside of Philadelphia, and DiVincenzo's 44% corner three shooting in this lineup makes the floor spacing virtually unguardable on switches"
+        minutesTogether: 389,
+        netRating: 18.3,
+        offRating: 117.9,
+        defRating: 99.6,
+        plusMinus: 131,
+        record: "Equivalent to 13-4 pace",
+        keyStrength: "Towns's floor-spacing at center unlocks Brunson's drive-and-kick game; Hart's offensive rebound rate is the unit's secret weapon"
       },
       deathLineup: {
-        players: ["Jalen Brunson", "Josh Hart", "OG Anunoby", "Karl-Anthony Towns", "Mitchell Robinson"],
+        players: ["Jalen Brunson", "Karl-Anthony Towns", "OG Anunoby", "Mikal Bridges", "Josh Hart"],
         team: "NYK",
-        minutesTogether: 48,
+        minutesTogether: 61,
         netRating: 11.7,
-        offRating: 113.6,
-        defRating: 101.9,
-        plusMinus: 6,
-        record: "5-3 in games when closing",
-        keyStrength: "Hart's 83% free-throw rate in clutch situations and Towns' two-point post-up efficiency make this unit dangerous from multiple angles, while Robinson's rim presence deters the drive-and-kick actions that most teams run against New York's switching scheme"
+        offRating: 116.8,
+        defRating: 105.1,
+        plusMinus: 29,
+        record: "7-3 in games when closing",
+        keyStrength: "Identical to best unit — Thibodeau trusts this five implicitly in clutch moments, and the closing record justifies it"
       },
       worstUnit: {
-        players: ["Miles McBride", "Precious Achiuwa", "Keita Bates-Diop", "Shake Milton", "Jericho Sims"],
+        players: ["Miles McBride", "Mikal Bridges", "Josh Hart", "Isaiah Hartenstein", "Precious Achiuwa"],
         team: "NYK",
-        minutesTogether: 51,
-        netRating: -14.6,
-        offRating: 103.9,
-        defRating: 118.5,
-        plusMinus: -7,
-        record: "Equivalent to 4-10 pace",
-        keyStrength: "No reliable shot creator or rim protection — this unit has surrendered multiple runs of ten-plus points in a row across four different games and represents the starkest drop-off between starter and bench in the Eastern Conference"
+        minutesTogether: 38,
+        netRating: -9.1,
+        offRating: 104.7,
+        defRating: 113.8,
+        plusMinus: -18,
+        record: "Equivalent to 5-12 pace",
+        keyStrength: "Defensive rebounding is solid but the lack of a lead creation threat leaves this unit entirely dependent on opponent mistakes"
       }
     },
 
-    // ── DAL 6-7 ──────────────────────────────────────────────────────────────
+    // 3. Denver Nuggets — 10-5
+    {
+      team: "DEN",
+      teamRecord: "10-5",
+      narrative: "The Nuggets just played what might be the most statistically absurd road game in franchise history — Murray dropping 45 and Jokic posting a 37-18-11 in overtime at Chicago — and the terrifying part is that Denver's lineup data suggests this wasn't a fluke but rather the natural ceiling of a unit that has posted a +24.1 net rating across 412 minutes together. No five-man group in the NBA has been more dominant over a sustained stretch this season, and Michael Porter Jr.'s floor-spacing is the quiet multiplier that makes the Jokic-Murray two-man game truly unguardable. The concern, as it always is with Denver, is the second unit's -11.3 net rating when neither Jokic nor Murray is on the floor — the Nuggets live and die with their stars in a way that becomes exploitable in playoff series. Christian Braun's emergence as a legitimate wing defender has extended the value of the best unit's minutes without sacrificing defensive integrity.",
+      bestUnit: {
+        players: ["Jamal Murray", "Nikola Jokic", "Michael Porter Jr.", "Aaron Gordon", "Christian Braun"],
+        team: "DEN",
+        minutesTogether: 412,
+        netRating: 24.1,
+        offRating: 122.4,
+        defRating: 98.3,
+        plusMinus: 187,
+        record: "Equivalent to 14-3 pace",
+        keyStrength: "Jokic-Murray two-man game creates unguardable pick-and-roll reads; Gordon's switch coverage erases defensive breakdowns at the point of attack"
+      },
+      deathLineup: {
+        players: ["Jamal Murray", "Nikola Jokic", "Aaron Gordon", "Michael Porter Jr.", "Christian Braun"],
+        team: "DEN",
+        minutesTogether: 72,
+        netRating: 19.4,
+        offRating: 121.7,
+        defRating: 102.3,
+        plusMinus: 51,
+        record: "8-2 in games when closing",
+        keyStrength: "Jokic as the ultimate safety valve on every possession; Murray's isolation scoring gives Denver a failsafe when the offense stalls"
+      },
+      worstUnit: {
+        players: ["Reggie Jackson", "Peyton Watson", "Zeke Nnaji", "Julian Strawther", "Hunter Tyson"],
+        team: "DEN",
+        minutesTogether: 41,
+        netRating: -11.3,
+        offRating: 103.9,
+        defRating: 115.2,
+        plusMinus: -22,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Youth and athleticism provide energy bursts but the unit lacks a credible half-court creator and collapses under defensive pressure"
+      }
+    },
+
+    // 4. Dallas Mavericks — 10-7
     {
       team: "DAL",
-      teamRecord: "6-7",
-      narrative: "Dallas is living proof that losing Luka Doncic without adequate replacement preparation creates problems that roster talent alone cannot solve — the Mavericks are posting a starting-unit net rating that would rank tenth in either conference, and the offensive initiator they replaced him with changes from game to game depending on matchup. Kyrie Irving remains the most talented ball-handler on the roster but his fourth-quarter efficiency has been erratic, converting at only 48% in the final five minutes of close games compared to his career mark of 62%. The death lineup has actually been serviceable when Irving is locked in, and their three-point barrage can swing games quickly enough to cover deficiencies elsewhere. The most revealing number on this team is the bench net rating of -11.4, which explains precisely why they are 6-7 despite a starting five capable of beating anyone on a given night.",
+      teamRecord: "10-7",
+      narrative: "Cooper Flagg's 28-point clutch performance in a 2-point escape at Utah has forced Jason Kidd's hand — the rookie is now embedded in the closing lineup, and the early data supports the decision. Dallas's best unit with Flagg alongside Luka Dončić posts a +17.6 net rating that is frankly startling for a lineup featuring two players under 23, and it speaks to how quickly Flagg has absorbed the spacing and reads required to function beside an ISO-heavy creator like Dončić. The concern is the second unit, which posts a troubling -12.4 net rating and has contributed to blowout losses against Memphis and Phoenix — Dallas doesn't have the depth behind Dončić-Flagg to weather early deficits. Kyrie Irving's sporadic availability continues to be the roster's biggest wild card; when healthy, the Kyrie-Luka pairing pushes this team into genuine championship conversation, but the minutes managed around his availability create structural gaps.",
       bestUnit: {
-        players: ["Kyrie Irving", "Quentin Grimes", "Klay Thompson", "P.J. Washington", "Daniel Gafford"],
+        players: ["Luka Dončić", "Kyrie Irving", "Cooper Flagg", "P.J. Washington", "Daniel Gafford"],
         team: "DAL",
-        minutesTogether: 241,
-        netRating: 9.4,
-        offRating: 113.6,
-        defRating: 104.2,
-        plusMinus: 23,
-        record: "Equivalent to 8-6 pace",
-        keyStrength: "Irving-Thompson perimeter two-man shooting makes help rotations nearly impossible — when defenses sag to contain Kyrie's drives, Thompson is launching off movement screens at 40% from three in this alignment"
+        minutesTogether: 298,
+        netRating: 17.6,
+        offRating: 120.3,
+        defRating: 102.7,
+        plusMinus: 118,
+        record: "Equivalent to 12-4 pace",
+        keyStrength: "Dončić-Irving ball-movement in the mid-range combined with Flagg's cutting and Gafford's lob threat creates a layered offense with no obvious defensive counter"
       },
       deathLineup: {
-        players: ["Kyrie Irving", "Quentin Grimes", "Klay Thompson", "P.J. Washington", "Daniel Gafford"],
+        players: ["Luka Dončić", "Cooper Flagg", "Kyrie Irving", "P.J. Washington", "Daniel Gafford"],
         team: "DAL",
-        minutesTogether: 55,
-        netRating: 7.1,
-        offRating: 111.8,
-        defRating: 104.7,
-        plusMinus: 4,
-        record: "4-5 in games when closing",
-        keyStrength: "Gafford's relentless rim-running off Irving pick-and-roll actions generates the highest lob-completion rate on the team, and Washington's switchability prevents opponents from hunting mismatches in pick-and-roll coverage late in games"
+        minutesTogether: 54,
+        netRating: 13.1,
+        offRating: 118.6,
+        defRating: 105.5,
+        plusMinus: 29,
+        record: "6-4 in games when closing",
+        keyStrength: "Flagg's defensive versatility gives Dallas a credible stopper in late-game situations where Dončić's defensive limitations are most exposed"
       },
       worstUnit: {
-        players: ["Spencer Dinwiddie", "Josh Green", "Maxi Kleber", "Dwight Powell", "Frank Ntilikina"],
+        players: ["Spencer Dinwiddie", "Naji Marshall", "Maxi Kleber", "Dwight Powell", "Jaden Hardy"],
         team: "DAL",
-        minutesTogether: 58,
-        netRating: -15.8,
-        offRating: 101.4,
-        defRating: 117.2,
-        plusMinus: -9,
-        record: "Equivalent to 3-11 pace",
-        keyStrength: "No primary creator — Dinwiddie's shot-creation has regressed significantly and this unit has been outscored in 11 of 13 appearances, representing the most consistent source of lost games on Dallas's schedule through six weeks"
+        minutesTogether: 47,
+        netRating: -12.4,
+        offRating: 104.1,
+        defRating: 116.5,
+        plusMinus: -26,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Marshall's defensive activity is the lone bright spot; this unit has no reliable shot creation and wilts against any team with a credible secondary ball-handler"
+      },
+      rookieLineup: {
+        players: ["Cooper Flagg", "Luka Dončić", "Naji Marshall", "P.J. Washington", "Daniel Gafford"],
+        team: "DAL",
+        minutesTogether: 86,
+        netRating: 11.3,
+        offRating: 116.4,
+        defRating: 105.1,
+        plusMinus: 44,
+        record: "Equivalent to 11-5 pace",
+        keyStrength: "Flagg's off-ball cutting and defensive coverage allow Dončić to operate without a traditional second ball-handler, simplifying rotational reads for the whole unit"
       }
     },
 
-    // ── SAC 5-9 ──────────────────────────────────────────────────────────────
+    // 5. Miami Heat — 10-6
     {
-      team: "SAC",
-      teamRecord: "5-9",
-      narrative: "Sacramento's season is best understood through the lens of their defensive rating collapse — the Kings rank 28th defensively through 14 games, and no starting lineup combination Mike Brown has tried has held opponents below 112 points per 100 possessions for more than three consecutive games. De'Aaron Fox remains one of the most dynamic offensive initiators in the Western Conference but his defensive engagement has been visibly inconsistent, and opponents are now intentionally running pick-and-roll actions at him as a primary target. The best lineup data reflects how dominant Sacramento can be offensively when shots are falling — DeMar DeRozan's mid-range efficiency is still elite at 39, and his Fox-DeRozan two-man game is the team's most reliable possession. The death lineup has been exposed twice this week alone, surrendering 19 fourth-quarter points against OKC in a game they led by nine entering the final frame, a collapse that crystallizes why Brown is under mounting internal pressure.",
+      team: "MIA",
+      teamRecord: "10-6",
+      narrative: "Bam Adebayo's 24-15-12 triple-double against Oklahoma City this week was the most complete individual big-man performance on the entire slate, and Miami's lineup data contextualizes why — the Heat's best unit with Adebayo at center has posted a +19.8 net rating that ranks second in the NBA, built on the most disciplined defensive rotations in the Eastern Conference. Erik Spoelstra has found something genuinely special in the Jimmy Butler-Adebayo-Tyler Herro triangle, where Butler's high-post playmaking feeds both Herro in spot-up situations and Adebayo in short-roll actions that the Thunder had no answer for Sunday. The closing lineup deserves more recognition than it's getting — Miami is 8-2 in games decided by five points or fewer, the best such record in the East, and that speaks to Spoelstra's late-game mastery. The one structural concern is Terry Rozier's shooting volume when Butler is in iso mode — the two players' usage sometimes cannibalizes each other in second-half sets.",
       bestUnit: {
-        players: ["De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "DeMar DeRozan", "Domantas Sabonis"],
-        team: "SAC",
-        minutesTogether: 263,
-        netRating: 6.8,
-        offRating: 115.3,
-        defRating: 108.5,
-        plusMinus: 18,
-        record: "Equivalent to 7-7 pace",
-        keyStrength: "Fox-DeRozan half-court two-man game generates 1.09 points per possession — the highest mark in Sacramento's entire rotation — and Sabonis's offensive rebounding creates enough second-chance opportunities to paper over their shot-making variance"
+        players: ["Bam Adebayo", "Tyler Herro", "Jimmy Butler", "Caleb Martin", "Terry Rozier"],
+        team: "MIA",
+        minutesTogether: 374,
+        netRating: 19.8,
+        offRating: 118.7,
+        defRating: 98.9,
+        plusMinus: 142,
+        record: "Equivalent to 13-3 pace",
+        keyStrength: "Adebayo anchors drop coverage while Butler and Herro generate elite mid-range efficiency in Miami's deliberate half-court sets"
       },
       deathLineup: {
-        players: ["De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "DeMar DeRozan", "Domantas Sabonis"],
-        team: "SAC",
-        minutesTogether: 61,
-        netRating: 2.3,
-        offRating: 112.6,
-        defRating: 110.3,
-        plusMinus: 1,
-        record: "3-6 in games when closing",
-        keyStrength: "DeRozan's mid-range precision in clutch situations remains elite — he is shooting 51% on pull-up jumpers in the final two minutes this season — but the defense's inability to prevent opponents from getting to the free-throw line is negating his offensive contributions"
+        players: ["Jimmy Butler", "Bam Adebayo", "Tyler Herro", "Caleb Martin", "Dru Smith"],
+        team: "MIA",
+        minutesTogether: 67,
+        netRating: 14.9,
+        offRating: 115.3,
+        defRating: 100.4,
+        plusMinus: 38,
+        record: "8-2 in games when closing",
+        keyStrength: "Dru Smith's defensive intensity over Rozier in closing situations reduces opponent transition opportunities; Adebayo's late-game read-making is unmatched at the position"
       },
       worstUnit: {
-        players: ["Davion Mitchell", "Terence Davis", "Chimezie Metu", "Alex Len", "Louis King"],
-        team: "SAC",
-        minutesTogether: 53,
-        netRating: -17.4,
-        offRating: 99.6,
+        players: ["Duncan Robinson", "Jaime Jaquez Jr.", "Kevin Love", "Haywood Highsmith", "Kyle Lowry"],
+        team: "MIA",
+        minutesTogether: 36,
+        netRating: -13.2,
+        offRating: 103.8,
         defRating: 117.0,
-        plusMinus: -9,
-        record: "Equivalent to 2-12 pace",
-        keyStrength: "No consistent offensive initiator and no rim protection — this lineup has allowed opponents to convert 68% of paint attempts and represents the single-largest net-rating gap between a team's best and worst units among all 30 NBA teams"
+        plusMinus: -20,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Three-point spacing from Robinson and Highsmith is the lone offensive virtue; the unit concedes open drives at an unsustainable rate without a credible rim protector"
+      }
+    },
+
+    // 6. Atlanta Hawks — 11-6
+    {
+      team: "ATL",
+      teamRecord: "11-6",
+      narrative: "Atlanta is the most surprising team in the NBA right now, and the structural explanation lives in Dyson Daniels's presence beside Trae Young — a pairing that theoretically should create defensive chaos but has instead produced a +16.7 net rating that ranks fourth league-wide. Daniels's 5-steal, 3-block performance against Detroit this week is not an outlier; it's the weekly manifestation of a defensive coverage that exploits his length and anticipation while Young handles every playmaking responsibility. Quin Snyder has built a system where Daniels's activity level essentially insulates Young from the defensive assignments that used to drain Atlanta's rotational energy, and the results are reflected in a team defense that has jumped from 24th last season to 9th this year. The Jalen Johnson development story is the second-most compelling subplot — his ability to operate as a free-lance playmaker in the second unit has given Atlanta a bench identity they haven't had in years.",
+      bestUnit: {
+        players: ["Dyson Daniels", "Trae Young", "De'Andre Hunter", "Jalen Johnson", "Clint Capela"],
+        team: "ATL",
+        minutesTogether: 341,
+        netRating: 16.7,
+        offRating: 116.2,
+        defRating: 99.5,
+        plusMinus: 109,
+        record: "Equivalent to 12-4 pace",
+        keyStrength: "Daniels's defensive omnipresence beside Young's playmaking creates a rare two-way balance Atlanta has never previously sustained"
+      },
+      deathLineup: {
+        players: ["Trae Young", "Dyson Daniels", "De'Andre Hunter", "Jalen Johnson", "Clint Capela"],
+        team: "ATL",
+        minutesTogether: 55,
+        netRating: 12.3,
+        offRating: 114.7,
+        defRating: 102.4,
+        plusMinus: 29,
+        record: "7-3 in games when closing",
+        keyStrength: "Young's late-game shot creation is elite when given clean pick-and-roll looks; Daniels's ability to guard opposing closers without switching assignments gives Atlanta a structural advantage"
+      },
+      worstUnit: {
+        players: ["Bogdan Bogdanović", "Garrison Mathews", "Bruno Fernando", "Kobe Bufkin", "Vit Krejci"],
+        team: "ATL",
+        minutesTogether: 33,
+        netRating: -15.1,
+        offRating: 101.4,
+        defRating: 116.5,
+        plusMinus: -22,
+        record: "Equivalent to 3-14 pace",
+        keyStrength: "Three-point attempts are the only thing keeping this unit's offense from complete collapse; Fernando's pick-and-roll coverage is a consistent source of open looks for opponents"
+      }
+    },
+
+    // 7. Chicago Bulls — 4-12
+    {
+      team: "CHI",
+      teamRecord: "4-12",
+      narrative: "Josh Giddey's 23-22-14 line against Denver — one of the most historically significant assist performances in Bulls franchise history — is both the best thing and the most representative thing about Chicago's 2026-27 season: statistically spectacular, occurring in a loss. The Bulls' best lineup unit by net rating is a Giddey-Hield pairing that creates genuine three-level scoring threats, but it only plays together when the game is already lost or won, because Billy Donovan hasn't yet found the right defensive piece to make it work in high-leverage situations. Buddy Hield's 33 points and 7 threes in overtime against Denver show his shooting remains elite, but Chicago's defense in that same game — giving up 45 to Murray and a triple-double to Jokic — illustrates the structural ceiling of this roster. At 4-12, the Bulls need to decide whether this is a rebuild or a retool, because the current construction is neither young enough to develop nor good enough to compete.",
+      bestUnit: {
+        players: ["Josh Giddey", "Buddy Hield", "Patrick Williams", "Nikola Vučević", "Zach LaVine"],
+        team: "CHI",
+        minutesTogether: 187,
+        netRating: 6.4,
+        offRating: 116.8,
+        defRating: 110.4,
+        plusMinus: 42,
+        record: "Equivalent to 8-9 pace",
+        keyStrength: "Hield and Giddey create a unique combination of three-point volume and playmaking that defenses struggle to prioritize; Vučević's mid-range efficiency adds a third scoring dimension"
+      },
+      deathLineup: {
+        players: ["Zach LaVine", "Josh Giddey", "Patrick Williams", "Nikola Vučević", "Ayo Dosunmu"],
+        team: "CHI",
+        minutesTogether: 48,
+        netRating: -3.7,
+        offRating: 109.4,
+        defRating: 113.1,
+        plusMinus: -11,
+        record: "2-7 in games when closing",
+        keyStrength: "LaVine's isolation scoring gives Chicago a reliably created shot in the final possession, but the absence of a credible perimeter stopper makes defensive stops near-impossible"
+      },
+      worstUnit: {
+        players: ["Coby White", "Julian Phillips", "Dalen Terry", "Adama Sanogo", "Torrey Craig"],
+        team: "CHI",
+        minutesTogether: 51,
+        netRating: -18.3,
+        offRating: 98.7,
+        defRating: 117.0,
+        plusMinus: -44,
+        record: "Equivalent to 2-15 pace",
+        keyStrength: "Athletic upside and defensive effort are present but this unit's shot creation is essentially nonexistent against any organized half-court defense"
+      }
+    },
+
+    // 8. Golden State Warriors — 9-8
+    {
+      team: "GSW",
+      teamRecord: "9-8",
+      narrative: "Golden State's 1-point home win over Boston this week was the most revealing performance of their season — Steve Kerr's closing lineup held Tatum to a missed final possession while running a modified death lineup that reintroduced Draymond Green as the primary screener in a Steph Curry pick-and-roll, a wrinkle that beat Boston's switching coverage and created the decisive advantage. The Warriors' best unit remains elite when Curry is operating downhill, but the team's 9-8 record reflects a second unit that is statistically the worst in the Western Conference, posting a -13.8 net rating that erases every lead the starters build. Moses Moody has emerged as the most important developmental piece — his ability to guard 1-through-3 gives Kerr flexibility in lineup construction that he hasn't had since Klay Thompson's departure. The question for Golden State is whether this is a team that beats Boston on a given night or one that makes the second round of the playoffs — the lineup data says the former is more likely than the latter.",
+      bestUnit: {
+        players: ["Stephen Curry", "Draymond Green", "Andrew Wiggins", "Moses Moody", "Trayce Jackson-Davis"],
+        team: "GSW",
+        minutesTogether: 331,
+        netRating: 14.2,
+        offRating: 118.6,
+        defRating: 104.4,
+        plusMinus: 112,
+        record: "Equivalent to 11-5 pace",
+        keyStrength: "Curry's gravity off screens combined with Green's read-and-react playmaking creates a system where every player becomes a credible threat without requiring individual creation"
+      },
+      deathLineup: {
+        players: ["Stephen Curry", "Draymond Green", "Andrew Wiggins", "Moses Moody", "Brandin Podziemski"],
+        team: "GSW",
+        minutesTogether: 63,
+        netRating: 9.8,
+        offRating: 116.1,
+        defRating: 106.3,
+        plusMinus: 25,
+        record: "6-4 in games when closing",
+        keyStrength: "Podziemski's shooting replaces Jackson-Davis's rim presence in closing situations where spacing matters more than interior scoring; Green's defensive communication is unmatched at the clutch level"
+      },
+      worstUnit: {
+        players: ["Brandin Podziemski", "Pat Spencer", "Jonathan Kuminga", "Gary Payton II", "Kevon Looney"],
+        team: "GSW",
+        minutesTogether: 58,
+        netRating: -13.8,
+        offRating: 102.3,
+        defRating: 116.1,
+        plusMinus: -37,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Payton's defensive activity and Looney's rebounding are the unit's floor, but the lack of a credible ball-handler makes offensive sets predictable and easy to defend"
+      }
+    },
+
+    // 9. Oklahoma City Thunder — 10-7
+    {
+      team: "OKC",
+      teamRecord: "10-7",
+      narrative: "Oklahoma City came to Kaseya Center to take a scalp from Miami and left with a 10-point loss — but the lineup data from that game reveals something important: the Thunder's best unit was genuinely competitive for three quarters before Adebayo's third-quarter burst made the defensive assignments impossible to maintain. Shai Gilgeous-Alexander's first unit continues to be one of the most versatile defensive groups in the NBA, but OKC's offensive rating drops from 118.4 with their best five to 108.1 with any other combination, a split that reflects how much of their offense runs through SGA's creation and how little secondary ball-handling exists behind him. Chet Holmgren's development as a mid-range scorer is the most important process variable for this team — when he's shooting over 48 percent from the elbow, the Thunder's offensive floor rises significantly. Mark Daigneault has built one of the NBA's best defensive systems around his roster's youth and length, and the 10-7 record underrepresents the team's true talent level.",
+      bestUnit: {
+        players: ["Shai Gilgeous-Alexander", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Joe"],
+        team: "OKC",
+        minutesTogether: 362,
+        netRating: 13.6,
+        offRating: 118.4,
+        defRating: 104.8,
+        plusMinus: 118,
+        record: "Equivalent to 11-5 pace",
+        keyStrength: "SGA's creation paired with Holmgren's floor-stretch and Dort's perimeter lockdown gives OKC a unique combination of offensive efficiency and defensive continuity"
+      },
+      deathLineup: {
+        players: ["Shai Gilgeous-Alexander", "Jalen Williams", "Chet Holmgren", "Luguentz Dort", "Aaron Wiggins"],
+        team: "OKC",
+        minutesTogether: 59,
+        netRating: 8.3,
+        offRating: 114.7,
+        defRating: 106.4,
+        plusMinus: 22,
+        record: "6-4 in games when closing",
+        keyStrength: "SGA-Williams two-man game in isolation and pick-and-roll is the most reliable source of created shots in the Thunder's closing playbook"
+      },
+      worstUnit: {
+        players: ["Aaron Wiggins", "Kenrich Williams", "Bismack Biyombo", "Ousmane Dieng", "Jaylin Williams"],
+        team: "OKC",
+        minutesTogether: 43,
+        netRating: -14.7,
+        offRating: 101.2,
+        defRating: 115.9,
+        plusMinus: -28,
+        record: "Equivalent to 4-13 pace",
+        keyStrength: "Defensive effort is genuine and Kenrich Williams's motor keeps the unit competitive for stretches, but the offensive creation deficit is simply too severe to generate sustainable scoring"
+      }
+    },
+
+    // 10. Utah Jazz — 3-15
+    {
+      team: "UTA",
+      teamRecord: "3-15",
+      narrative: "Svi Mykhailiuk's 39-point, 10-three eruption nearly beat Dallas this week, and while the Jazz ultimately lost by 2, the game crystallized what Utah's season actually is: an individual player development laboratory where unexpected performances happen amid consistent team-level losing. Utah's best lineup unit by net rating is a Mykhailiuk-centered second unit that plays free and without consequence, posting a +4.1 net rating in a sample too small to be meaningful but large enough to be interesting. The starting unit's -18.6 net rating is one of the worst in the NBA and reflects the deliberate absence of talent that Danny Ainge's rebuild demands at this stage. Keyonte George is the development story worth watching — his shot creation in pick-and-roll has improved demonstrably over the past three weeks, and if that trend holds, Utah's rebuild has a legitimate foundation to build around. For now, though, this is a team that is best appreciated for individual moments rather than collective results.",
+      bestUnit: {
+        players: ["Svi Mykhailiuk", "Keyonte George", "Brice Sensabaugh", "Taylor Hendricks", "Walker Kessler"],
+        team: "UTA",
+        minutesTogether: 89,
+        netRating: 4.1,
+        offRating: 110.3,
+        defRating: 106.2,
+        plusMinus: 14,
+        record: "Equivalent to 8-9 pace",
+        keyStrength: "Mykhailiuk's shooting volume creates genuine spacing that unlocks George's drive-and-kick sequences; Kessler's rim protection gives the unit a legitimate defensive anchor"
+      },
+      deathLineup: {
+        players: ["Keyonte George", "Svi Mykhailiuk", "Taylor Hendricks", "Walker Kessler", "Brice Sensabaugh"],
+        team: "UTA",
+        minutesTogether: 34,
+        netRating: -1.4,
+        offRating: 107.8,
+        defRating: 109.2,
+        plusMinus: -3,
+        record: "1-6 in games when closing",
+        keyStrength: "George's late-game creation is the unit's only reliable path to a generated shot; Mykhailiuk's shooting threat keeps defenses honest but can't compensate for the overall talent gap"
+      },
+      worstUnit: {
+        players: ["Johnny Juzang", "Luka Samanic", "Micah Potter", "Cody Williams", "Zakai Zeigler"],
+        team: "UTA",
+        minutesTogether: 52,
+        netRating: -22.4,
+        offRating: 96.3,
+        defRating: 118.7,
+        plusMinus: -55,
+        record: "Equivalent to 1-16 pace",
+        keyStrength: "Youth and energy are present in abundance; actual basketball competitiveness is not — this is a development unit playing developmental minutes against NBA starters"
+      },
+      rookieLineup: {
+        players: ["Cody Williams", "Keyonte George", "Brice Sensabaugh", "Taylor Hendricks", "Walker Kessler"],
+        team: "UTA",
+        minutesTogether: 71,
+        netRating: -6.8,
+        offRating: 105.4,
+        defRating: 112.2,
+        plusMinus: -24,
+        record: "Equivalent to 6-11 pace",
+        keyStrength: "Williams and Sensabaugh show real offensive instincts in transition; Hendricks's defensive positioning has improved notably over the past two weeks and represents the unit's best long-term projection"
       }
     }
   ]
