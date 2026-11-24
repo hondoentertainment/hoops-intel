@@ -8,77 +8,28 @@ export interface LineMovementRow {
   updatedAt: string;
 }
 
-export const lineMovementEditionDate = "November 23, 2026";
+export const lineMovementEditionDate = "November 24, 2026";
 
 export const lineMovementRows: LineMovementRow[] = [
   {
-    awayTeam: "SAS",
-    homeTeam: "SAC",
-    openingSpread: "SAS -8.5",
-    closingSpread: "SAS -9.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
+    awayTeam: "DAL",
+    homeTeam: "DEN",
+    openingSpread: "DEN -3.0",
+    closingSpread: "DEN -3.5",
+    updatedAt: "2026-11-24T13:13:31.153Z",
   },
   {
-    awayTeam: "POR",
-    homeTeam: "PHI",
-    openingSpread: "PHI -6.0",
-    closingSpread: "PHI -6.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
+    awayTeam: "DET",
+    homeTeam: "ORL",
+    openingSpread: "DET -2.0",
+    closingSpread: "DET -2.5",
+    updatedAt: "2026-11-24T13:13:31.153Z",
   },
   {
-    awayTeam: "UTA",
-    homeTeam: "LAL",
-    openingSpread: "LAL -12.5",
-    closingSpread: "LAL -13.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "LAC",
-    homeTeam: "HOU",
-    openingSpread: "HOU -7.5",
-    closingSpread: "HOU -8.0",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "BRK",
-    homeTeam: "MIN",
-    openingSpread: "MIN -10.0",
-    closingSpread: "MIN -11.0",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "OKC",
-    homeTeam: "IND",
-    openingSpread: "OKC -3.0",
-    closingSpread: "OKC -3.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "MIL",
-    homeTeam: "TOR",
-    openingSpread: "TOR -4.0",
-    closingSpread: "TOR -4.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "CLE",
-    homeTeam: "CHI",
-    openingSpread: "CLE -2.0",
-    closingSpread: "CLE -2.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "PHX",
-    homeTeam: "NOP",
-    openingSpread: "PHX -2.0",
-    closingSpread: "PHX -2.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
-  },
-  {
-    awayTeam: "MEM",
-    homeTeam: "CHA",
-    openingSpread: "MEM -8.0",
-    closingSpread: "MEM -8.5",
-    updatedAt: "2026-11-24T08:15:45.201Z",
+    awayTeam: "BOS",
+    homeTeam: "WAS",
+    openingSpread: "BOS -4.0",
+    closingSpread: "BOS -4.5",
+    updatedAt: "2026-11-24T13:13:31.153Z",
   }
 ];

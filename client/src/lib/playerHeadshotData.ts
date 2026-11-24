@@ -165,6 +165,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "felix okpara": 5105841,
   "franz wagner": 4566434,
   "fred vanvleet": 2991230,
+  "gabe vincent": 3137259,
   "gary payton": 3134903,
   "gary trent": 4277843,
   "georges niang": 2990969,

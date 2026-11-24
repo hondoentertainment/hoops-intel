@@ -15,67 +15,25 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 23, 2026",
+    editionDate: "November 24, 2026",
     games: [
       {
-        awayTeam: "SAS",
-        homeTeam: "SAC",
-        openingSpread: "SAS -8.5",
-        closingSpread: "SAS -9.5",
+        awayTeam: "DAL",
+        homeTeam: "DEN",
+        openingSpread: "DEN -3.0",
+        closingSpread: "DEN -3.5",
       },
       {
-        awayTeam: "POR",
-        homeTeam: "PHI",
-        openingSpread: "PHI -6.0",
-        closingSpread: "PHI -6.5",
+        awayTeam: "DET",
+        homeTeam: "ORL",
+        openingSpread: "DET -2.0",
+        closingSpread: "DET -2.5",
       },
       {
-        awayTeam: "UTA",
-        homeTeam: "LAL",
-        openingSpread: "LAL -12.5",
-        closingSpread: "LAL -13.5",
-      },
-      {
-        awayTeam: "LAC",
-        homeTeam: "HOU",
-        openingSpread: "HOU -7.5",
-        closingSpread: "HOU -8.0",
-      },
-      {
-        awayTeam: "BRK",
-        homeTeam: "MIN",
-        openingSpread: "MIN -10.0",
-        closingSpread: "MIN -11.0",
-      },
-      {
-        awayTeam: "OKC",
-        homeTeam: "IND",
-        openingSpread: "OKC -3.0",
-        closingSpread: "OKC -3.5",
-      },
-      {
-        awayTeam: "MIL",
-        homeTeam: "TOR",
-        openingSpread: "TOR -4.0",
-        closingSpread: "TOR -4.5",
-      },
-      {
-        awayTeam: "CLE",
-        homeTeam: "CHI",
-        openingSpread: "CLE -2.0",
-        closingSpread: "CLE -2.5",
-      },
-      {
-        awayTeam: "PHX",
-        homeTeam: "NOP",
-        openingSpread: "PHX -2.0",
-        closingSpread: "PHX -2.5",
-      },
-      {
-        awayTeam: "MEM",
-        homeTeam: "CHA",
-        openingSpread: "MEM -8.0",
-        closingSpread: "MEM -8.5",
+        awayTeam: "BOS",
+        homeTeam: "WAS",
+        openingSpread: "BOS -4.0",
+        closingSpread: "BOS -4.5",
       }
     ],
   }
