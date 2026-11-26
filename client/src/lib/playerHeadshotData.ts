@@ -307,6 +307,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "kevin durant": 3202,
   "kevin huerter": 4066372,
   "kevin mccullar": 4411057,
+  "kevin porter": 4397140,
   "kevon looney": 3155535,
   "keyonte george": 4433627,
   "khalifa diop": 4997530,
