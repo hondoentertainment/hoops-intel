@@ -5,8 +5,15 @@
     <link>https://hoopsintel.net</link>
     <description>Your daily NBA intelligence briefing with scores, player rankings, injury reports, and game previews.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2026 13:11:39 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 13:09:01 GMT</lastBuildDate>
     <atom:link href="https://hoopsintel.net/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Thanksgiving Eve Feast: SAS-LAL Tops an 11-Game Slate as the West&apos;s Best Records Collide</title>
+      <description>San Antonio hosts Los Angeles in a battle of the West&apos;s two finest records, while Minnesota and Memphis clash in an identical-record West seeding showdown and Philadelphia rolls into Indiana on a 10-game winning streak. — The San Antonio Spurs (15-4) host the Los Angeles Lakers (15-3) in the season&apos;s most anticipated regular-season matchup, with Victor Wembanyama seeking redemption after his 44-point effort went to waste in Portland two nights ago and the Lakers arriving on a three-game winning streak. Minnesota and Memphis, both at 14-5, play for sole possession of third in the West at Target Center.</description>
+      <link>https://hoopsintel.net/archive</link>
+      <guid>https://hoopsintel.net/edition/2026-11-27</guid>
+      <pubDate>Fri, 27 Nov 2026 12:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Wembanyama&apos;s 44-Point Masterpiece Falls Short as Portland Stuns San Antonio</title>
       <description>McDaniels 32-10 Leads Minnesota Past OKC; LeBron Triple-Double Powers Philadelphia — Victor Wembanyama posted 44 points and 16 rebounds but the Spurs fell 116-111 in Portland as Deni Avdija countered with 33 points, 12 rebounds, and 7 assists to deliver the upset. Jaden McDaniels erupted for 32 points and 10 rebounds to lead Minnesota past OKC 113-106, while LeBron James authored a 25-10-12 triple-double to lift Philadelphia over Miami 111-104.</description>
@@ -209,13 +216,6 @@
       <link>https://hoopsintel.net/archive</link>
       <guid>https://hoopsintel.net/edition/2026-10-29</guid>
       <pubDate>Thu, 29 Oct 2026 12:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Portland Shocks the Lakers in LA While Boston Survives a Nets Overtime Scare and San Antonio Announces Itself With a 27-Point Blowout of Sacramento</title>
-      <description>The Trail Blazers stunned Los Angeles 136-129 to move to 3-0, the Celtics needed overtime to beat Brooklyn 125-124 to reach 3-1, and the Spurs demolished Sacramento 130-103 at Frost Bank Center in the night&apos;s most dominant team performance. — Portland&apos;s 136-129 road victory in Los Angeles is the night&apos;s most organizationally disruptive result — the Trail Blazers are the West&apos;s only unbeaten team after passing their toughest test emphatically at crypto.com Arena against a Lakers squad widely projected as a top-three Western Conference seed.</description>
-      <link>https://hoopsintel.net/archive</link>
-      <guid>https://hoopsintel.net/edition/2026-10-28</guid>
-      <pubDate>Wed, 28 Oct 2026 12:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>
