@@ -15,73 +15,37 @@ export interface LineOpenerArchiveEdition {
 /** Recent opener (and optional closer) snapshots for Betting Intel history. */
 export const lineOpenersArchive: LineOpenerArchiveEdition[] = [
   {
-    editionDate: "November 27, 2026",
+    editionDate: "November 28, 2026",
     games: [
       {
-        awayTeam: "LAL",
-        homeTeam: "SAS",
-        openingSpread: "SAS -1.5",
-        closingSpread: "SAS -2.0",
-      },
-      {
-        awayTeam: "MEM",
-        homeTeam: "MIN",
-        openingSpread: "MIN -2.0",
-        closingSpread: "MIN -2.5",
-      },
-      {
-        awayTeam: "MIA",
-        homeTeam: "NYK",
-        openingSpread: "NYK -3.5",
-        closingSpread: "NYK -4.0",
-      },
-      {
         awayTeam: "PHI",
-        homeTeam: "IND",
-        openingSpread: "PHI -7.5",
-        closingSpread: "PHI -8.0",
+        homeTeam: "HOU",
+        openingSpread: "PHI -2.5",
+        closingSpread: "PHI -3.0",
       },
       {
-        awayTeam: "ATL",
-        homeTeam: "BOS",
-        openingSpread: "BOS -3.0",
-        closingSpread: "BOS -2.5",
+        awayTeam: "OKC",
+        homeTeam: "MIL",
+        openingSpread: "OKC -6.5",
+        closingSpread: "OKC -7.0",
       },
       {
-        awayTeam: "MIL",
-        homeTeam: "DET",
-        openingSpread: "DET -8.0",
-        closingSpread: "DET -8.5",
+        awayTeam: "ORL",
+        homeTeam: "WAS",
+        openingSpread: "WAS -1.0",
+        closingSpread: "WAS -1.5",
       },
       {
         awayTeam: "BRK",
-        homeTeam: "TOR",
-        openingSpread: "TOR -2.5",
-        closingSpread: "TOR -3.0",
+        homeTeam: "CHA",
+        openingSpread: "CHA -1.5",
+        closingSpread: "CHA -1.0",
       },
       {
-        awayTeam: "DAL",
-        homeTeam: "PHX",
-        openingSpread: "DAL -1.5",
-        closingSpread: "DAL -1.5",
-      },
-      {
-        awayTeam: "DEN",
-        homeTeam: "UTA",
-        openingSpread: "DEN -9.5",
-        closingSpread: "DEN -10.0",
-      },
-      {
-        awayTeam: "NOP",
-        homeTeam: "LAC",
-        openingSpread: "LAC -1.0",
-        closingSpread: "LAC -1.0",
-      },
-      {
-        awayTeam: "GSW",
-        homeTeam: "POR",
-        openingSpread: "POR -3.5",
-        closingSpread: "POR -3.0",
+        awayTeam: "IND",
+        homeTeam: "CHI",
+        openingSpread: "CHI -2.0",
+        closingSpread: "CHI -2.5",
       }
     ],
   }

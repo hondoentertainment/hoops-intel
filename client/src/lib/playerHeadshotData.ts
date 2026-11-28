@@ -334,6 +334,7 @@ export const playerHeadshotIds: Record<string, number> = {
   "landry shamet": 3914044,
   "larry nance": 2580365,
   "lauri markkanen": 4066336,
+  "lawson lovering": 4596528,
   "leaky black": 4395650,
   "lebron james": 1966,
   "leonard miller": 5044385,
